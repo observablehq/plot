@@ -4,12 +4,20 @@
 
 ## Principles
 
-Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart:
+Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
 
 <img src="./img/aapl.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
 ```js
 Plot.Line(AAPL, "Date", "Close")
+```
+
+And here’s a line chart of unemployment rates across metropolitan area:
+
+<img src="./img/unemployment.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+
+```js
+Plot.Line(unemployment, "date", "unemployment", "division")
 ```
 
 A chart created by Plot is simply a DOM element that you can put anywhere on the page.
@@ -50,11 +58,48 @@ And similarly here’s a line chart of a random walk using [d3.cumsum](https://g
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 ```
 
+The charts above use shorthand, but Plot charts are **highly configurable**. Here’s
+
+<img src="./img/unemployment-custom.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+
+```js
+Plot.Line(unemployment, {
+  x: {
+    value: d => d.date,
+    label: null // suppress the x-axis label
+  },
+  y: {
+    value: d => d.unemployment,
+    label: "↑ Unemployment (%)", // custom y-axis label
+    rule: 0, // add a rule at y=0
+    grid: true // show grid lines
+  },
+  z: {
+    value: d => d.division
+  },
+  line: {
+    strokeWidth: 1, // thinner stroke
+    strokeOpacity: 0.5 // allow blending
+  }
+})
+```
+
 With Plot, **all charts are interactive inputs**. A Plot chart element exposes a *value* property that represents the currently-selected data, and emits an *input* even whenever the selection changes in response to user interaction. This makes it easy to pipe the selection from one chart into another chart (or table) for coordinated views, and it works beautifully with [Observable’s reactive views](https://observablehq.com/@observablehq/introduction-to-views).
+
+In vanilla JavaScript:
 
 ```js
 const chart = Plot.Line(AAPL, "Date", "Close");
 chart.oninput = () => console.log(chart.value);
+```
+
+In Observable:
+
+```js
+viewof selection = Plot.Line(AAPL, "Date", "Close")
+```
+```js
+Table(selection)
 ```
 
 Lastly, Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
