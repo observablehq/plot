@@ -31,4 +31,6 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.Line(data, "unemployment"));
 });
 
+document.body.appendChild(Plot.Line(d3.cumsum({length: 500}, d3.randomNormal())));
+
 </script>
