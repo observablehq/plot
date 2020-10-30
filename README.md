@@ -33,7 +33,9 @@ Data in the wild — and in JavaScript! — comes in all shapes, so Plot is **fl
 // As rows…
 Plot.Line(AAPL, "Date", "Close"); // named fields
 Plot.Line(AAPL, d => d.Date, d => d.Close); // accessor functions
+```
 
+```js
 // As columns…
 const length = AAPL.length;
 const Date = AAPL.map(d => d.Date);
