@@ -1,9 +1,10 @@
-import {extent, group, sort} from "d3-array";
+import {group} from "d3-array";
+import {inferDomain, inferOrdinalDomain} from "./domain.js";
 import {Frame} from "./frame.js";
 import {Fragment} from "./mark/fragment.js";
 import {RuleX, RuleY} from "./mark/rule.js";
 import {LineIXYZ, LineXYZ} from "./mark/line.js";
-import {inferType} from "./scale.js";
+import {field, isMissing, isField, isValue} from "./value.js";
 
 export function Line(data, options = {}) {
   const A = arguments, a = A.length;
@@ -34,8 +35,8 @@ export function Line(data, options = {}) {
   const FY = typeof fyValue === "function" ? Array.from(data, fyValue) : fyValue;
   const xDomain = inferDomain(X, options.x);
   const yDomain = inferDomain(Y, options.y);
-  const fxDomain = options.fx && inferFacet(FX, options.fx);
-  const fyDomain = options.fy && inferFacet(FY, options.fy);
+  const fxDomain = options.fx && inferOrdinalDomain(FX, options.fx);
+  const fyDomain = options.fy && inferOrdinalDomain(FY, options.fy);
   return Frame({
     height: 240,
     ...options,
@@ -67,61 +68,4 @@ function LineFY(X, Y, Z, FY, options) {
 function LineFXY(X, Y, Z, FX, FY, options) {
   const I = group(Uint32Array.from(X, (_, i) => i), i => FX[i], i => FY[i]);
   return (x, y, d, fx, fy) => LineIXYZ(I.get(fx).get(fy), X, Y, Z, options)(x, y, d);
-}
-
-function isMissing(value) {
-  return !value || value.value === undefined;
-}
-
-function isField(value) {
-  return value && typeof value.value === "string";
-}
-
-function isValue(value) {
-  return value && (["string", "function"].includes(typeof value) || isIterable(value));
-}
-
-function isIterable(value) {
-  return value && ("length" in value || typeof value[Symbol.iterator] === "function");
-}
-
-function inferDomain(V, {
-  zero = false,
-  invert = false,
-  domain,
-  type = inferType(domain === undefined ? V : domain)
-} = {}) {
-  if (type === "band") throw new Error("band is not suited for lines; use point?");
-  if (type === "point") {
-    if (domain === undefined) domain = sort(V);
-  } else {
-    if (domain === undefined) domain = extent(V);
-    if (zero) { // ignored for point scales
-      const [min, max] = domain;
-      if (min > 0 || max < 0) {
-        if (max > 0) domain = [0, max];
-        else domain = [min, 0];
-      }
-    }
-  }
-  return invert ? Array.from(domain).reverse() : domain;
-}
-
-function inferFacet(V, {
-  invert = false,
-  domain = sort(new Set(V))
-} = {}) {
-  return invert ? Array.from(domain).reverse() : domain;
-}
-
-function field({value, invert, ...options}, key) {
-  return {
-    value: d => d[value],
-    label: !key ? value : `${
-      key === "y" ? (invert ? "↓ " : "↑ "): ""}${
-      value}${
-      key === "x" ? (invert ? " ←" : " →"): ""}`,
-    invert,
-    ...options
-  };
 }
