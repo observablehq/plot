@@ -1,5 +1,6 @@
 {
   "name": "@observablehq/plot",
+  "description": "A JavaScript library for exploratory data visualization.",
   "version": "0.0.0",
   "author": {
     "name": "Observable, Inc.",
@@ -24,7 +25,6 @@
     "postpublish": "git push && git push --tags && zip -j dist/${npm_package_name}.zip -- LICENSE README.md dist/${npm_package_name}.js dist/${npm_package_name}.min.js"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^10.0.0",
     "eslint": "^7.12.1",
     "jsdom": "^16.4.0",
     "rollup": "^2.32.1",
