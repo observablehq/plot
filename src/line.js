@@ -1,8 +1,9 @@
 import {extent, group, sort} from "d3-array";
-import {Frame, inferType} from "./frame.js";
+import {Frame} from "./frame.js";
 import {Fragment} from "./mark/fragment.js";
 import {RuleX, RuleY} from "./mark/rule.js";
 import {LineIXYZ, LineXYZ} from "./mark/line.js";
+import {inferType} from "./scale.js";
 
 export function Line(data, options = {}) {
   const A = arguments, a = A.length;
