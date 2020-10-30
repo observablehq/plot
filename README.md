@@ -60,25 +60,20 @@ And similarly here’s a line chart of a random walk using [d3.cumsum](https://g
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 ```
 
-The charts above use shorthand, but Plot charts are **highly configurable**. Here’s the longhand representation of the unemployment chart above, with a dash of customization:
+The charts above use shorthand, but Plot charts are **highly configurable**. Here’s a more longhand representation of the unemployment chart above, with a dash of customization:
 
 <img src="./img/unemployment-custom.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
 
 ```js
 Plot.Line(unemployment, {
-  x: {
-    value: d => d.date,
-    label: null // suppress the x-axis label
-  },
+  x: d => d.date,
   y: {
     value: d => d.unemployment,
     label: "↑ Unemployment (%)", // custom y-axis label
     rule: 0, // add a rule at y=0
     grid: true // show grid lines
   },
-  z: {
-    value: d => d.division
-  },
+  z: d => d.division,
   line: {
     strokeWidth: 1, // thinner stroke
     strokeOpacity: 0.5 // allow blending
