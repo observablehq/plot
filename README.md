@@ -19,13 +19,6 @@ const chart = Plot.Line(AAPL, "Date", "Close");
 document.body.appendChild(chart);
 ```
 
-With Plot, **all charts are interactive inputs**. A Plot chart element exposes a *value* property that represents the currently-selected data, and emits an *input* even whenever the selection changes in response to user interaction. This makes it easy to pipe the selection from one chart into another chart (or table) for coordinated views, and it works beautifully with [Observable’s reactive views](https://observablehq.com/@observablehq/introduction-to-views).
-
-```js
-const chart = Plot.Line(AAPL, "Date", "Close");
-chart.oninput = () => console.log(chart.value);
-```
-
 Data in the wild — and in JavaScript! — comes in all shapes, so Plot is **flexible regarding input data**: Data can be an array of objects with named properties (*a.k.a.* rows, as above), parallel “flat” arrays or iterables of values (*a.k.a.* columns), or even functions to compute values on-the-fly.
 
 ```js
@@ -47,6 +40,13 @@ And here’s a line chart of a random walk using [d3.cumsum](https://github.com/
 
 ```js
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
+```
+
+With Plot, **all charts are interactive inputs**. A Plot chart element exposes a *value* property that represents the currently-selected data, and emits an *input* even whenever the selection changes in response to user interaction. This makes it easy to pipe the selection from one chart into another chart (or table) for coordinated views, and it works beautifully with [Observable’s reactive views](https://observablehq.com/@observablehq/introduction-to-views).
+
+```js
+const chart = Plot.Line(AAPL, "Date", "Close");
+chart.oninput = () => console.log(chart.value);
 ```
 
 Lastly, Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
