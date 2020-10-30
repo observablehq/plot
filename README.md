@@ -9,7 +9,7 @@ Plot tries to be **concise and memorable** for common tasks. This makes Plot eas
 ```js
 Plot.Line(AAPL, "Date", "Close")
 ```
-<img src="./img/aapl.png?raw=true" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
+<img src="./img/aapl.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
 A chart created by Plot is simply a DOM element that you can put anywhere on the page.
 
