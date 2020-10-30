@@ -296,7 +296,7 @@ function auto(options = {}) {
   return types.get(type)(options, ...typeOptions);
 }
 
-function inferType(domain) {
+export function inferType(domain) {
   let type = "linear";
   for (const value of domain) {
     if (value == null) continue;

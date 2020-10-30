@@ -27,23 +27,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
 });
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
-  const date = data.map(d => d.date);
-  const unemployment = data.map(d => d.unemployment);
-  const division = data.map(d => d.division);
-  document.body.appendChild(Plot.Frame({
-    x: {
-      domain: d3.extent(date)
-    },
-    y: {
-      domain: [0, d3.max(unemployment)],
-      grid: true,
-      label: "↑ Unemployment (%)"
-    },
-    render: Plot.Fragment(
-      Plot.RuleY(0),
-      Plot.LineXYZ(date, unemployment, division)
-    )
-  }));
+  document.body.appendChild(Plot.Line(data, "date", "unemployment", "division"));
 });
 
 </script>
