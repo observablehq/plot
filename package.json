@@ -1,0 +1,43 @@
+{
+  "name": "@observablehq/plot",
+  "version": "0.0.0",
+  "author": {
+    "name": "Observable, Inc.",
+    "url": "https://observablehq.com"
+  },
+  "license": "ISC",
+  "main": "dist/@observablehq/plot.cjs.js",
+  "unpkg": "dist/@observablehq/plot.umd.js",
+  "module": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/observablehq/plot.git"
+  },
+  "files": [
+    "dist/**/*.js",
+    "src/**/*.js"
+  ],
+  "scripts": {
+    "pretest": "rollup -c",
+    "test": "tape 'test/**/*-test.js' && eslint src test",
+    "prepublishOnly": "rm -rf dist && yarn test",
+    "postpublish": "git push && git push --tags && zip -j dist/${npm_package_name}.zip -- LICENSE README.md dist/${npm_package_name}.js dist/${npm_package_name}.min.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "eslint": "^7.12.1",
+    "jsdom": "^16.4.0",
+    "rollup": "^2.32.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "tape": "^4.13.3",
+    "tape-await": "^0.1.2"
+  },
+  "dependencies": {
+    "d3-array": "^2.8.0",
+    "d3-axis": "^2.0.0",
+    "d3-interpolate": "^2.0.1",
+    "d3-scale": "^3.2.3",
+    "d3-selection": "^2.0.0",
+    "d3-shape": "^2.0.0"
+  }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/aapl.csv", d3.autoType).then(data => {
+  const Date = data.map(d => d.Date);
+  const Close = data.map(d => d.Close);
+  const Zero = data.map(d => 0);
+  document.body.appendChild(Plot.Frame({
+    x: {
+      domain: d3.extent(Date)
+    },
+    y: {
+      domain: [0, d3.max(Close)],
+      grid: true,
+      label: "↑ Price ($)"
+    },
+    render: Plot.Fragment(
+      Plot.RuleY(0),
+      Plot.AreaXY0Y1(Date, Zero, Close, {fillOpacity: 0.3}),
+      Plot.LineXY(Date, Close)
+    )
+  }));
+});
+
+d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
+  const date = data.map(d => d.date);
+  const unemployment = data.map(d => d.unemployment);
+  const division = data.map(d => d.division);
+  document.body.appendChild(Plot.Frame({
+    x: {
+      domain: d3.extent(date)
+    },
+    y: {
+      domain: [0, d3.max(unemployment)],
+      grid: true,
+      label: "↑ Unemployment (%)"
+    },
+    render: Plot.Fragment(
+      Plot.RuleY(0),
+      Plot.LineXYZ(date, unemployment, division)
+    )
+  }));
+});
+
+</script>
