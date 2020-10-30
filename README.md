@@ -13,6 +13,11 @@ Plot.Line(AAPL, "Date", "Close")
 
 A chart created by Plot is simply a DOM element that you can put anywhere on the page.
 
+```js
+const chart = Plot.Line(AAPL, "Date", "Close");
+document.body.appendChild(chart);
+```
+
 With Plot, **all charts are interactive inputs**. A Plot chart element exposes a *value* property that represents the currently-selected data, and emits an *input* even whenever the selection changes in response to user interaction. This makes it easy to pipe the selection from one chart into another chart (or table) for coordinated views, and it works beautifully with [Observable’s reactive views](https://observablehq.com/@observablehq/introduction-to-views).
 
 ```js
@@ -32,11 +37,13 @@ For example, here’s a line chart of random *y*-values:
 ```js
 Plot.Line({length: 500}, Math.random)
 ```
+<img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
 
 And here’s a line chart with a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
 
 ```js
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 ```
+<img src="./img/random-walk.png" width="640" height="240" alt="A line chart of a random walk">
 
 Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
