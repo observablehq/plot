@@ -39,6 +39,7 @@ Plot.Line(AAPL, d => d.Date, d => d.Close); // accessor functions
 // As columns…
 Plot.Line(null, Date, Close); // explicit values
 Plot.Line({length}, (_, i) => Date[i], (_, i) => Close[i]); // accessor functions
+Plot.Line(index, i => Date[i], i => Close[i]); // as function of index
 ```
 
 Above, the columns might be computed from rows as:
@@ -47,6 +48,7 @@ Above, the columns might be computed from rows as:
 const length = AAPL.length;
 const Date = AAPL.map(d => d.Date);
 const Close = AAPL.map(d => d.Close);
+const index = AAPL.map((d, i) => i);
 ```
 
 For example, here’s a line chart of random *y*-values where *x* encodes the index of the input data:
