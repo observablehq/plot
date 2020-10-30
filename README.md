@@ -26,14 +26,14 @@ const chart = Plot.Line(AAPL, "Date", "Close");
 chart.oninput = () => console.log(chart.value);
 ```
 
-Data in the wild (especially in JavaScript) comes in all shapes, so Plot uses a **flexible data representation**. Data can be an array of objects with named properties (as above), parallel “flat” arrays (or iterables) of values (*i.e.*, columnar data), or even values that you compute on-the-fly.
+Data in the wild — and in JavaScript! — comes in all shapes, so Plot is **flexible regarding input data**: Data can be an array of objects with named properties (*a.k.a.* rows, as above), parallel “flat” arrays or iterables of values (*a.k.a.* columns), or even functions to compute values on-the-fly.
 
 ```js
 Plot.Line(AAPL, d => d.Date, d => d.Close); // accessor functions
 Plot.Line(null, AAPL.map(d => d.Date), AAPL.map(d => d.Close)); // columns
 ```
 
-For example, here’s a line chart of random *y*-values:
+For example, here’s a line chart of uniform random *y*-values:
 
 <img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
 
@@ -41,7 +41,7 @@ For example, here’s a line chart of random *y*-values:
 Plot.Line({length: 500}, Math.random)
 ```
 
-And here’s a line chart with a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
+And here’s a line chart of a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
 
 <img src="./img/random-walk.png" width="640" height="240" alt="A line chart of a random walk">
 
@@ -49,4 +49,4 @@ And here’s a line chart with a random walk using [d3.cumsum](https://github.co
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 ```
 
-Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
+Lastly, Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
