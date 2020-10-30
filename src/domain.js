@@ -2,21 +2,17 @@ import {extent, sort} from "d3-array";
 import {inferType} from "./scale.js";
 
 export function inferDomain(V, {
-  zero = false,
   invert = false,
   domain,
+  rules, // ignored for point and band scales
   type = inferType(domain === undefined ? V : domain)
 } = {}) {
-  if (type === "point" || type === "band") {
-    if (domain === undefined) domain = sort(V);
-  } else {
-    if (domain === undefined) domain = extent(V);
-    if (zero) { // ignored for point scales
-      const [min, max] = domain;
-      if (min > 0 || max < 0) {
-        if (max > 0) domain = [0, max];
-        else domain = [min, 0];
-      }
+  if (domain === undefined) {
+    if (type === "point" || type === "band") {
+      domain = sort(V);
+    } else {
+      domain = extent(V);
+      if (rules !== undefined) domain = extent([...domain, ...rules]);
     }
   }
   return invert ? Array.from(domain).reverse() : domain;

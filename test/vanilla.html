@@ -27,7 +27,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
 });
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.Line(data, "date", "unemployment", "division"));
+  document.body.appendChild(Plot.Line(data, "date", {value: "unemployment", rule: 0}, "division"));
   document.body.appendChild(Plot.Line(data, "unemployment"));
 });
 

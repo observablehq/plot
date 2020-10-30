@@ -16,8 +16,8 @@ export function Line(data, options = {}) {
   options = normalizeValue(options, "fx");
   options = normalizeValue(options, "fy");
   const {
-    x: {value: xValue = index, zero: xZero} = {},
-    y: {value: yValue = identity, zero: yZero} = {},
+    x: {value: xValue = index, rules: xRules} = {},
+    y: {value: yValue = identity, rules: yRules} = {},
     z: {value: zValue} = {},
     fx: {value: fxValue} = {},
     fy: {value: fyValue} = {}
@@ -39,8 +39,8 @@ export function Line(data, options = {}) {
     ...options.fx && {fx: {domain: fxDomain, ...options.fx}},
     ...options.fy && {fy: {domain: fyDomain, ...options.fy}},
     render: Fragment(
-      ...xZero ? [RuleX(0)] : [],
-      ...yZero ? [RuleY(0)] : [],
+      ...xRules ? Array.from(xRules, RuleX) : [],
+      ...yRules ? Array.from(yRules, RuleY) : [],
       options.fx && options.fy ? LineFXY(X, Y, Z, FX, FY, options.line)
         : options.fx ? LineFX(X, Y, Z, FX, options.line)
         : options.fy ? LineFY(X, Y, Z, FY, options.line)

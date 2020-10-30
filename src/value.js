@@ -44,11 +44,9 @@ export function field({value, invert, ...options}, key) {
   };
 }
 
-// Given a plot’s input data (possibly null) and a value specification, computes
-// the corresponding array of values, if any. The given value must either be
-// missing (falsey), an accessor function, or an array of values.
-export function inferValues(data, value) {
-  return typeof value === "function" ? Array.from(data, value) : value;
+// Channel rules may be expressed in shorthand as a single rule.
+export function hasRule(channel) {
+  return channel && "rule" in channel;
 }
 
 // Given an options object name a channel key (such as x or y), returns a
@@ -59,7 +57,15 @@ export function normalizeValue(options, key, implied) {
   if (isBareValue(options[key])) options = {...options, [key]: {value: options[key]}};
   if (implied && isMissing(options[key])) options = {...options, [key]: {axis: false, ...options[key]}};
   if (isField(options[key])) options = {...options, [key]: field(options[key], key)};
+  if (hasRule(options[key])) options = {...options, [key]: {rules: [options[key].rule], ...options[key]}};
   return options;
+}
+
+// Given a plot’s input data (possibly null) and a value specification, computes
+// the corresponding array of values, if any. The given value must either be
+// missing (falsey), an accessor function, or an array of values.
+export function inferValues(data, value) {
+  return typeof value === "function" ? Array.from(data, value) : value;
 }
 
 // The identity value accessor.
