@@ -37,17 +37,17 @@ Plot.Line(AAPL, d => d.Date, d => d.Close); // accessor functions
 
 ```js
 // As columns…
-Plot.Line(null, Date, Close); // explicit values
-Plot.Line({length}, (_, i) => Date[i], (_, i) => Close[i]); // accessor functions
-Plot.Line(index, i => Date[i], i => Close[i]); // as function of index
+Plot.Line(null, dates, closes); // explicit values
+Plot.Line({length}, (_, i) => dates[i], (_, i) => closes[i]); // accessor functions
+Plot.Line(index, i => dates[i], i => closes[i]); // as function of index
 ```
 
 Above, the columns might be computed from rows as:
 
 ```js
 const length = AAPL.length;
-const Date = AAPL.map(d => d.Date);
-const Close = AAPL.map(d => d.Close);
+const dates = AAPL.map(d => d.Date);
+const closes = AAPL.map(d => d.Close);
 const index = AAPL.map((d, i) => i);
 ```
 
