@@ -44,7 +44,7 @@ Plot.Line(null, Date, Close); // explicit values
 Plot.Line({length}, (_, i) => Date[i], (_, i) => Close[i]); // accessor functions
 ```
 
-For example, here’s a line chart of uniform random *y*-values where *x* implicitly represents the index of the input data:
+For example, here’s a line chart of random *y*-values where *x* implicitly represents the index of the input data:
 
 <img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
 
