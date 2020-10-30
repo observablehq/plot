@@ -4,35 +4,29 @@ import {Frame} from "./frame.js";
 import {Fragment} from "./mark/fragment.js";
 import {RuleX, RuleY} from "./mark/rule.js";
 import {LineIXYZ, LineXYZ} from "./mark/line.js";
-import {field, isMissing, isField, isValue} from "./value.js";
+import {identity, index, isBareValue, inferValues, normalizeValue} from "./value.js";
 
 export function Line(data, options = {}) {
   const A = arguments, a = A.length;
-  if (a === 2 && isValue(options)) options = {y: options};
+  if (a === 2 && isBareValue(options)) options = {y: options};
   else if (a > 2) options = {x: options, y: A[2], z: A[3]};
-  if (isValue(options.x)) options = {...options, x: {value: options.x}};
-  if (isValue(options.y)) options = {...options, y: {value: options.y}};
-  if (isValue(options.z)) options = {...options, z: {value: options.z}};
-  if (isValue(options.fx)) options = {...options, fx: {value: options.fx}};
-  if (isValue(options.fy)) options = {...options, fy: {value: options.fy}};
-  if (isMissing(options.x)) options = {...options, x: {axis: false, ...options.x}};
-  else if (isField(options.x)) options = {...options, x: field(options.x, "x")};
-  if (isField(options.y)) options = {...options, y: field(options.y, "y")};
-  if (isField(options.z)) options = {...options, z: field(options.z)};
-  if (isField(options.fx)) options = {...options, fx: field(options.fx)};
-  if (isField(options.fy)) options = {...options, fy: field(options.fy)};
+  options = normalizeValue(options, "x", true);
+  options = normalizeValue(options, "y");
+  options = normalizeValue(options, "z");
+  options = normalizeValue(options, "fx");
+  options = normalizeValue(options, "fy");
   const {
-    x: {value: xValue = (d, i) => i, zero: xZero = false} = {},
-    y: {value: yValue = d => d, zero: yZero = false} = {},
+    x: {value: xValue = index, zero: xZero} = {},
+    y: {value: yValue = identity, zero: yZero} = {},
     z: {value: zValue} = {},
     fx: {value: fxValue} = {},
     fy: {value: fyValue} = {}
   } = options;
-  const X = typeof xValue === "function" ? Array.from(data, xValue) : xValue;
-  const Y = typeof yValue === "function" ? Array.from(data, yValue) : yValue;
-  const Z = typeof zValue === "function" ? Array.from(data, zValue) : zValue;
-  const FX = typeof fxValue === "function" ? Array.from(data, fxValue) : fxValue;
-  const FY = typeof fyValue === "function" ? Array.from(data, fyValue) : fyValue;
+  const X = inferValues(data, xValue);
+  const Y = inferValues(data, yValue);
+  const Z = inferValues(data, zValue);
+  const FX = inferValues(data, fxValue);
+  const FY = inferValues(data, fyValue);
   const xDomain = inferDomain(X, options.x);
   const yDomain = inferDomain(Y, options.y);
   const fxDomain = options.fx && inferOrdinalDomain(FX, options.fx);
