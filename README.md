@@ -7,6 +7,7 @@
 Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart:
 
 <img src="./img/aapl.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
+
 ```js
 Plot.Line(AAPL, "Date", "Close")
 ```
@@ -35,6 +36,7 @@ Plot.Line(null, AAPL.map(d => d.Date), AAPL.map(d => d.Close)); // columns
 For example, here’s a line chart of random *y*-values:
 
 <img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
+
 ```js
 Plot.Line({length: 500}, Math.random)
 ```
@@ -42,6 +44,7 @@ Plot.Line({length: 500}, Math.random)
 And here’s a line chart with a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
 
 <img src="./img/random-walk.png" width="640" height="240" alt="A line chart of a random walk">
+
 ```js
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 ```
