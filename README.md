@@ -4,7 +4,7 @@
 
 ## Principles
 
-Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
+Observable Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
 
 <img src="./img/aapl.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
@@ -37,14 +37,19 @@ Plot.Line(AAPL, d => d.Date, d => d.Close); // accessor functions
 
 ```js
 // As columns…
-const length = AAPL.length;
-const Date = AAPL.map(d => d.Date);
-const Close = AAPL.map(d => d.Close);
 Plot.Line(null, Date, Close); // explicit values
 Plot.Line({length}, (_, i) => Date[i], (_, i) => Close[i]); // accessor functions
 ```
 
-For example, here’s a line chart of random *y*-values where *x* implicitly represents the index of the input data:
+Above, the columns might be computed from rows as:
+
+```js
+const length = AAPL.length;
+const Date = AAPL.map(d => d.Date);
+const Close = AAPL.map(d => d.Close);
+```
+
+For example, here’s a line chart of random *y*-values where *x* encodes the index of the input data:
 
 <img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
 
