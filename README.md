@@ -6,7 +6,7 @@
 
 Observable Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
 
-<img src="./img/aapl.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
+<img src="./img/line-aapl-date-close.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
 ```js
 Plot.Line(AAPL, "Date", "Close")
@@ -14,7 +14,7 @@ Plot.Line(AAPL, "Date", "Close")
 
 And here’s a line chart of unemployment rates across metropolitan area:
 
-<img src="./img/unemployment.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+<img src="./img/line-bls-date-unemployment-division.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
 
 ```js
 Plot.Line(unemployment, "date", "unemployment", "division")
@@ -53,7 +53,7 @@ const index = AAPL.map((d, i) => i);
 
 For example, here’s a line chart of random *y*-values where *x* encodes the index of the input data:
 
-<img src="./img/random-uniform.png" width="640" height="240" alt="A line chart of a uniform random variable">
+<img src="./img/line-random.png" width="640" height="240" alt="A line chart of a uniform random variable">
 
 ```js
 Plot.Line({length: 500}, Math.random)
@@ -61,7 +61,7 @@ Plot.Line({length: 500}, Math.random)
 
 And similarly here’s a line chart of a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
 
-<img src="./img/random-walk.png" width="640" height="240" alt="A line chart of a random walk">
+<img src="./img/line-random-walk.png" width="640" height="240" alt="A line chart of a random walk">
 
 ```js
 Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
@@ -69,9 +69,17 @@ Plot.Line(d3.cumsum({length: 500}, d3.randomNormal()))
 
 If you don’t specify a scale type explicitly, Plot will try to infer a suitable one based on the input values. For example, a UTC (temporal) scale is used for Date instances, a point (ordinal) scale is used for strings, and a linear (quantitative) scale is used for numbers.
 
+It’s not just line charts, of course. Here’s another useful chart type, the histogram:
+
+<img src="./img/histogram-aapl-volume.png" width="640" height="240" alt="A histogram of daily trading volume for Apple stock, 2013–2018">
+
+```js
+Plot.Histogram(AAPL, "Volume")
+```
+
 While the charts above use shorthand defaults, Plot charts are **highly configurable**. Here’s a more longhand representation of the unemployment chart above, with a dash of customization:
 
-<img src="./img/unemployment-custom.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+<img src="./img/line-bls-date-unemployment-division-custom.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
 
 ```js
 Plot.Line(unemployment, {
