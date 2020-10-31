@@ -2,9 +2,18 @@
 
 **Observable Plot** is a JavaScript library for exploratory data visualization.
 
-## Principles
+## Introduction
 
-Observable Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
+Observable Plot adheres to several principles:
+
+* Be concise and memorable for common tasks.
+* Be flexible regarding input data.
+* Provide good defaults, but allow configuration.
+* Support faceting (small multiples) in all charts.
+* Support interaction (selection) in all charts.
+* Provide an open, extensible foundation for visualization.
+
+Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
 
 <img src="./img/line-aapl-date-close.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
@@ -116,4 +125,4 @@ viewof selection = Plot.Line(AAPL, "Date", "Close")
 Table(selection)
 ```
 
-Lastly, Plot provides **an extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
+Lastly, Plot provides **an open, extensible foundation** for visualization. While Plot includes a variety of standard chart types out of the box, it also includes lower-level APIs: Plot.Frame and Plot.Plot. These can be used directly to create one-off custom charts, or to implement new reusable mark and chart types, without needing to fork Plot’s internals. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
