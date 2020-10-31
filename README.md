@@ -29,14 +29,14 @@ And here’s a line chart of unemployment rates across metropolitan area:
 Plot.Line(unemployment, "date", "unemployment", "division")
 ```
 
-A chart created by Plot is simply a DOM element that you can put anywhere on the page.
+A chart created by Plot is simply an SVG element that you can put anywhere on the page.
 
 ```js
 const chart = Plot.Line(AAPL, "Date", "Close");
 document.body.appendChild(chart);
 ```
 
-Data in the wild — and in JavaScript! — comes in all shapes, so Plot is **flexible regarding input data**: Data can be an array of objects with named properties (rows, as above), parallel “flat” arrays or iterables of values (columns), or even functions to compute values on-the-fly.
+Data in the wild comes in all shapes, so Plot is **flexible regarding input data**: Data can be an array of objects with named properties (rows, as above), parallel “flat” arrays or iterables of values (columns), or even functions to compute values on-the-fly.
 
 ```js
 // As rows…

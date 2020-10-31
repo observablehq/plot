@@ -77,3 +77,7 @@ export function identity(d) {
 export function index(d, i) {
   return i;
 }
+
+export function range(V) {
+  return Uint32Array.from(V, index);
+}

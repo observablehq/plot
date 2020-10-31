@@ -1,12 +1,13 @@
 import {group} from "d3-array";
 import {line} from "d3-shape";
+import {range} from "../value.js";
 
 export function LineXY(X, Y, options) {
   return LineXYZ(X, Y, null, options);
 }
 
 export function LineXYZ(X, Y, Z, options) {
-  return LineIXYZ(Uint32Array.from(X, (_, i) => i), X, Y, Z, options);
+  return LineIXYZ(range(X), X, Y, Z, options);
 }
 
 export function LineIXYZ(I, X, Y, Z, {

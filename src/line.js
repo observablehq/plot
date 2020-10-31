@@ -4,7 +4,7 @@ import {Frame} from "./frame.js";
 import {Fragment} from "./mark/fragment.js";
 import {RuleX, RuleY} from "./mark/rule.js";
 import {LineIXYZ, LineXYZ} from "./mark/line.js";
-import {identity, index, isBareValue, inferValues, normalizeValue} from "./value.js";
+import {identity, index, range, isBareValue, inferValues, normalizeValue} from "./value.js";
 
 export function Line(data, options = {}) {
   const A = arguments, a = A.length;
@@ -50,16 +50,16 @@ export function Line(data, options = {}) {
 }
 
 function LineFX(X, Y, Z, FX, options) {
-  const I = group(Uint32Array.from(X, (_, i) => i), i => FX[i]);
+  const I = group(range(X), i => FX[i]);
   return (x, y, d, fx) => LineIXYZ(I.get(fx), X, Y, Z, options)(x, y, d);
 }
 
 function LineFY(X, Y, Z, FY, options) {
-  const I = group(Uint32Array.from(X, (_, i) => i), i => FY[i]);
+  const I = group(range(X), i => FY[i]);
   return (x, y, d, fx, fy) => LineIXYZ(I.get(fy), X, Y, Z, options)(x, y, d);
 }
 
 function LineFXY(X, Y, Z, FX, FY, options) {
-  const I = group(Uint32Array.from(X, (_, i) => i), i => FX[i], i => FY[i]);
+  const I = group(range(X), i => FX[i], i => FY[i]);
   return (x, y, d, fx, fy) => LineIXYZ(I.get(fx).get(fy), X, Y, Z, options)(x, y, d);
 }

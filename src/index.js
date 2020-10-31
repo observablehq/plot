@@ -1,5 +1,6 @@
 export {Plot} from "./plot.js";
 export {Frame} from "./frame.js";
+export {Histogram} from "./histogram.js";
 export {Line} from "./line.js";
 export {AreaXY0Y1} from "./mark/area.js";
 export {Fragment} from "./mark/fragment.js";

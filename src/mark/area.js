@@ -2,7 +2,7 @@ import {area} from "d3-shape";
 
 export function AreaXY0Y1(X, Y0, Y1, {
   fill = "currentColor",
-  fillOpacity = null,
+  fillOpacity,
   stroke = "none",
   strokeWidth = stroke === "none" ? null : 1.5,
   strokeMiterlimit = stroke === "none" ? null : 1,
