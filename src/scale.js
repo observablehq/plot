@@ -1,5 +1,6 @@
 import {extent} from "d3-array";
 import {scalePoint, scaleBand, scaleLinear, scalePow, scaleLog, scaleSymlog, scaleTime, scaleUtc} from "d3-scale";
+import {inferType} from "./domain.js";
 
 const types = new Map(Object.entries({
   point,
@@ -122,15 +123,4 @@ export function utc({
     scaleUtc()
       .domain(domain)
   ];
-}
-
-export function inferType(domain) {
-  let type = "linear";
-  for (const value of domain) {
-    if (value == null) continue;
-    if (typeof value === "string") type = "point";
-    else if (value instanceof Date) type = "utc";
-    break;
-  }
-  return type;
 }

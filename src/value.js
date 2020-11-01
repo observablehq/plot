@@ -74,10 +74,12 @@ export function identity(d) {
 }
 
 // The index value accessor.
-export function index(d, i) {
+export function indexOf(d, i) {
   return i;
 }
 
-export function range(V) {
-  return Uint32Array.from(V, index);
+// Given an array of values, returns an array [0, 1, ... values.length - 1]. The
+// specified array must not contain more than 2^31 - 1 values.
+export function index(values) {
+  return Uint32Array.from(values, indexOf);
 }

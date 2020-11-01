@@ -1,7 +1,7 @@
-import {range} from "../value.js";
+import {index} from "../value.js";
 
 export function RectXY(X1, Y1, X2, Y2, options) {
-  return RectIXY(range(X1), X1, Y1, X2, Y2, options);
+  return RectIXY(index(X1), X1, Y1, X2, Y2, options);
 }
 
 export function RectIXY(I, X1, Y1, X2, Y2, {
