@@ -1,15 +1,15 @@
 import {extent, reverse, sort} from "d3-array";
 
 // Given an array of values, and any options, returns the corresponding domain:
-// for quantitative data (linear, pow, log, symlog), the domain is two numbers
-// [min, max] or [max, min] (if inverted); for temporal data (time, utc), the
-// domain should be two dates [start, end] or [end, start] (if inverted); and
-// for ordinal data (point, band), the domain should be an array of values. If
-// the domain is specified explicitly, a reversed copy is returned if invert is
-// true; otherwise the domain is returned as-is. If the domain is not specified,
-// it is computed from the given values based on the given type, then extended
-// to cover the specified rules, if any. If the type is not specified, it is
-// inferred from the given values; see inferType.
+// for quantitative data (linear, pow, log, symlog), the domain should be two
+// numbers [min, max] or [max, min] (if inverted); for temporal data (time,
+// utc), the domain should be two dates [start, end] or [end, start] (if
+// inverted); and for ordinal data (point, band), the domain should be an array
+// of values. If the domain is specified, a reversed copy is returned if invert
+// is true; otherwise the domain is returned as-is. If the domain is not
+// specified, it is computed from the given values based on the given type, then
+// extended to cover the specified rules, if any. If the type is not specified,
+// it is inferred from the given values; see inferType.
 export function inferDomain(values, {
   domain,
   invert,
