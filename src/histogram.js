@@ -20,6 +20,7 @@ import {RuleX, RuleY} from "./mark/rule.js";
 
 const xDefaults = {value: identity};
 const yDefaults = {label: "↑ Frequency", rules: [0]};
+const rectDefaults = {roundHorizontal: true, insetLeft: 1};
 
 export function Histogram(data, options = {}) {
   if (arguments.length === 2 && isBareValue(options)) options = {x: options};
@@ -74,7 +75,8 @@ export function Histogram(data, options = {}) {
   // y-extent of the (possibly faceted) bins.
   const {domain: yDomain = inferDomain(YV, y)} = y;
 
-  const {rect} = options;
+  let {rect} = options;
+  rect = {...rectDefaults, rect};
   return Frame({
     height: 240,
     ...options,
