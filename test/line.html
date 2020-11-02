@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.Line(data, {
+    x: "date",
+    y: {value: "unemployment", rule: 0, ticks: 0},
+    fy: {value: "division", offset: -150, label: null},
+    height: 1200,
+    marginLeft: 150
+  }));
+});
+
+</script>

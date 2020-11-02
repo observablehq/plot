@@ -32,7 +32,7 @@ export function isField(channel) {
 
 // Given a channel specified as a shorthand field, promotes the field to an
 // accessor function and assigns a default label with an array of x and y.
-export function field({value, invert, ...options}, key) {
+export function field({value, invert, ...channel}, key) {
   return {
     value: d => d[value],
     label: `${
@@ -40,7 +40,7 @@ export function field({value, invert, ...options}, key) {
       value}${
       key === "x" ? (invert ? " ←" : " →"): ""}`,
     invert,
-    ...options
+    ...channel
   };
 }
 
@@ -51,20 +51,21 @@ export function hasRule(channel) {
 
 // Given an options object name a channel key (such as x or y), returns a
 // normalized options object by promoting bare values, implied channels, and
-// fields to the longhand representation. If implied is false and the given
-// channel is not specified, the input options are returned as-is.
-export function normalizeValue(options, key, implied) {
-  if (isBareValue(options[key])) options = {...options, [key]: {value: options[key]}};
-  if (implied && isMissing(options[key])) options = {...options, [key]: {axis: false, ...options[key]}};
-  if (isField(options[key])) options = {...options, [key]: field(options[key], key)};
-  if (hasRule(options[key])) options = {...options, [key]: {rules: [options[key].rule], ...options[key]}};
-  return options;
+// fields to the longhand representation.
+export function channel(options, key, defaults, implied) {
+  let channel = options[key];
+  if (isBareValue(channel)) channel = {value: channel};
+  if (isField(channel)) channel = field(channel, key);
+  if (hasRule(channel)) channel = {rules: [channel.rule], ...channel};
+  if (implied && isMissing(channel)) defaults = {...defaults, ...implied};
+  if (defaults) channel = {...defaults, ...channel};
+  return channel;
 }
 
 // Given a plot’s input data (possibly null) and a value specification, computes
 // the corresponding array of values, if any. The given value must either be
 // missing (falsey), an accessor function, or an array of values.
-export function inferValues(data, value) {
+export function inferValues(data, {value}) {
   return typeof value === "function" ? Array.from(data, value) : value;
 }
 

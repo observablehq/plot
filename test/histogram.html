@@ -16,16 +16,12 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       grid: true
     },
     fy: {
-      // value: d => Math.sign(d.Close - d.Open) || 1,
-      // format: d => d === 1 ? "Up" : "Down",
       value: d => Math.max(-2, Math.min(2, Math.floor((d.Close - d.Open) / d.Open * 100))),
       label: "Daily change (%)",
-      format: d3.format("+"),
-      // format: d => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d],
-      // invert: true
+      format: d3.format("+")
     },
     bin: {
-      // normalize: true
+      normalize: true
     },
     height: 640
   }));
