@@ -22,8 +22,7 @@ const xDefaults = {value: identity};
 const yDefaults = {label: "↑ Frequency", rules: [0]};
 
 export function Histogram(data, options = {}) {
-  const A = arguments, a = A.length;
-  if (a === 2 && isBareValue(options)) options = {x: options};
+  if (arguments.length === 2 && isBareValue(options)) options = {x: options};
   const x = channel(options, "x", xDefaults);
   const y = channel(options, "y", yDefaults);
   const fx = channel(options, "fx");
