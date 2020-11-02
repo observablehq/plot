@@ -120,7 +120,7 @@ export function Plot(x, y, options = {}) {
             })${yLabelAnchor === "center" ? ` rotate(-90)` : ""}`)
           .attr("dy", yLabelAnchor === "center" ? (yAxis === "right" ? "-0.32em" : "0.75em")
               : yLabelAnchor === "bottom" ? "1.4em"
-              : "-0.75em")
+              : "-1em")
           .attr("text-anchor", yLabelAnchor === "center" ? "middle"
               : yAxis === "right" ? "end"
               : "start")
