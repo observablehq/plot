@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
+  document.body.appendChild(Plot.Histogram(AAPL, {
+    x: {
+      value: d => Math.log10(d.Volume),
+      label: "Volume (log₁₀)",
+      ticks: 10
+    },
+    y: {
+      grid: true
+    },
+    fy: {
+      // value: d => Math.sign(d.Close - d.Open) || 1,
+      // format: d => d === 1 ? "Up" : "Down",
+      value: d => Math.max(-2, Math.min(2, Math.floor((d.Close - d.Open) / d.Open * 100))),
+      label: "Daily change (%)",
+      format: d3.format("+"),
+      // format: d => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][d],
+      // invert: true
+    },
+    bin: {
+      // normalize: true
+    },
+    height: 640
+  }));
+});
+
+</script>
