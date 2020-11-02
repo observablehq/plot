@@ -8,7 +8,7 @@
   },
   "license": "ISC",
   "main": "dist/@observablehq/plot.cjs.js",
-  "unpkg": "dist/@observablehq/plot.umd.js",
+  "unpkg": "dist/@observablehq/plot.umd.min.js",
   "module": "src/index.js",
   "repository": {
     "type": "git",

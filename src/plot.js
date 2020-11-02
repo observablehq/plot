@@ -36,7 +36,7 @@ export function Plot(x, y, options = {}) {
       grid: yGrid = grid, // true, false
       offset: yOffset = 0,
       nice: yNice,
-      ticks: yTicks = (height - marginTop - marginBottom) / 25, // optional number or array
+      ticks: yTicks = (height - marginTop - marginBottom) / 35, // optional number or array
       tickSize: yTickSize = 6,
       label: yLabel, // optional string
       labelAnchor: yLabelAnchor = xAxis === "top" ? "bottom" : "top", // or center

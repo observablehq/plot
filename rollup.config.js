@@ -32,6 +32,18 @@ export default [
       file: `dist/${meta.name}.umd.js`,
       globals: Object.fromEntries(external.map(key => [key, "d3"])),
       paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
+    }
+  },
+  {
+    ...config,
+    output: {
+      ...config.output,
+      name: "Plot",
+      format: "umd",
+      extend: true,
+      file: `dist/${meta.name}.umd.min.js`,
+      globals: Object.fromEntries(external.map(key => [key, "d3"])),
+      paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
     },
     plugins: [
       ...config.plugins,
