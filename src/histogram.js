@@ -63,8 +63,7 @@ export function Histogram(data, options = {}) {
   // Group the bins by facet. We can’t use the normal Facet primitive here
   // because the computed y-values and y-domain depends on the facets. TODO
   // Allow a custom y.value accessor function to be set, so that the caller can
-  // determine how to weight the data? Or expose that as a custom bin.weight
-  // accessor?
+  // determine how to weight the data? Or a custom bin.weight accessor?
   const yValue = normalize ? binRelative : binAbsolute;
   let Y, YV;
   if (fx && fy) [Y, YV] = binFacetXY(bins, FX, FY, fxDomain, fyDomain, yValue);
