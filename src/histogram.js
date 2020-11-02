@@ -1,4 +1,4 @@
-import {bin, extent, rollup, sum} from "d3-array";
+import {bin as Bin, extent, sum} from "d3-array";
 import {inferDomain, inferOrdinalDomain} from "./domain.js";
 import {Frame} from "./frame.js";
 import {channel, identity, index, isBareValue, inferValues} from "./value.js";
@@ -42,10 +42,10 @@ export function Histogram(data, options = {}) {
   // subdivided by each facet, but this initial computation is necessary to
   // compute the bin thresholds and domains which are shared by all facets.
   const {bin: {thresholds, normalize} = {}} = options;
-  const binner = bin().value(i => X[i]);
-  if (xDomain !== undefined) binner.domain(xDomain);
-  if (thresholds !== undefined) binner.thresholds(thresholds);
-  const bins = binner(I);
+  const bin = Bin().value(i => X[i]);
+  if (xDomain !== undefined) bin.domain(xDomain);
+  if (thresholds !== undefined) bin.thresholds(thresholds);
+  const bins = bin(I);
 
   // If the x-domain was not specified, compute the x-domain from the (possibly
   // niced) bins, then extend that to include any x-rules.
