@@ -28,7 +28,7 @@ export function Plot(x, y, options = {}) {
       ticks: xTicks = (width - marginLeft - marginRight) / 80, // optional number or array
       tickSize: xTickSize = 6,
       label: xLabel, // optional string
-      labelAnchor: xLabelAnchor = yAxis === "right" ? "left" : "right", // or center
+      labelAnchor: xLabelAnchor = "right", // or center
       labelOffset: xLabelOffset = xAxis === "top" ? marginTop : marginBottom,
       format: xFormat // optional format string or function
     } = {},
@@ -93,7 +93,8 @@ export function Plot(x, y, options = {}) {
               xLabelAnchor === "center" ? (width + marginLeft - marginRight) / 2
                 : xLabelAnchor === "right" ? width
                 : 0
-            },${xLabelOffset + (xAxis === "top" ? 10 : -3)})`)
+            },${xLabelOffset})`)
+          .attr("dy", xAxis === "top" ? "1em" : "-0.32em")
           .attr("text-anchor", xLabelAnchor === "center" ? "middle"
               : xLabelAnchor === "right" ? "end"
               : "start")
@@ -114,11 +115,12 @@ export function Plot(x, y, options = {}) {
           .attr("fill", "currentColor")
           .attr("transform", `translate(${yLabelOffset},${
               yLabelAnchor === "center" ? (height + marginTop - marginBottom) / 2
-                : yLabelAnchor === "bottom" ? height - marginBottom + 15
-                : marginTop - 10
-            })${
-              yLabelAnchor === "center" ? ` rotate(${yAxis === "right" ? 90 : -90}) translate(0,8)`
-                : ""}`)
+                : yLabelAnchor === "bottom" ? height - marginBottom
+                : marginTop
+            })${yLabelAnchor === "center" ? ` rotate(-90)` : ""}`)
+          .attr("dy", yLabelAnchor === "center" ? (yAxis === "right" ? "-0.32em" : "0.75em")
+              : yLabelAnchor === "bottom" ? "1.4em"
+              : "-0.75em")
           .attr("text-anchor", yLabelAnchor === "center" ? "middle"
               : yAxis === "right" ? "end"
               : "start")

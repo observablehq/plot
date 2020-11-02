@@ -120,7 +120,7 @@ export function Frame(options = {}) {
         const suboptions = {
           ...options,
           x: {
-            labelAnchor: yAxis === "right" ? "left" : "right",
+            labelAnchor: "right",
             ...xOptions,
             ...options.x,
             labelOffset: xLabelOffset

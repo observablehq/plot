@@ -9,15 +9,14 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
   document.body.appendChild(Plot.Histogram(AAPL, {
     x: {
       value: d => Math.log10(d.Volume),
-      label: "Volume (log₁₀)",
-      ticks: 10
+      label: "Volume (log₁₀) →"
     },
     y: {
       grid: true
     },
     fy: {
       value: d => Math.max(-2, Math.min(2, Math.floor((d.Close - d.Open) / d.Open * 100))),
-      label: "Daily change (%)",
+      label: "Daily change (%) →",
       format: d3.format("+")
     },
     bin: {
