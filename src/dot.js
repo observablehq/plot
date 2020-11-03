@@ -10,8 +10,6 @@ const xDefaults = {value: d => d[0]};
 const yDefaults = {value: d => d[1]};
 
 export function Dot(data, options = {}) {
-  const A = arguments, a = A.length;
-  if (a > 2) options = {x: options, y: A[2]};
   const x = channel(options, "x", xDefaults);
   const y = channel(options, "y", yDefaults);
   const fx = channel(options, "fx");

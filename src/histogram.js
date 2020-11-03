@@ -1,7 +1,7 @@
 import {bin as Bin, extent, sum} from "d3-array";
 import {inferDomain, inferOrdinalDomain} from "./domain.js";
 import {Frame} from "./frame.js";
-import {channel, identity, index, isBareValue, inferValues} from "./value.js";
+import {channel, identity, index, inferValues} from "./value.js";
 import {Fragment} from "./mark/fragment.js";
 import {RectXY} from "./mark/rect.js";
 import {RuleX, RuleY} from "./mark/rule.js";
@@ -23,7 +23,6 @@ const yDefaults = {label: "↑ Frequency", rules: [0]};
 const rectDefaults = {roundHorizontal: true, insetLeft: 1};
 
 export function Histogram(data, options = {}) {
-  if (arguments.length === 2 && isBareValue(options)) options = {x: options};
   const x = channel(options, "x", xDefaults);
   const y = channel(options, "y", yDefaults);
   const fx = channel(options, "fx");

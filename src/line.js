@@ -4,16 +4,13 @@ import {Frame} from "./frame.js";
 import {Fragment} from "./mark/fragment.js";
 import {RuleX, RuleY} from "./mark/rule.js";
 import {LineIXYZ} from "./mark/line.js";
-import {channel, identity, indexOf, index, isBareValue, inferValues} from "./value.js";
+import {channel, identity, indexOf, index, inferValues} from "./value.js";
 
 const xImplied = {axis: false};
 const xDefaults = {value: indexOf};
 const yDefaults = {value: identity};
 
 export function Line(data, options = {}) {
-  const A = arguments, a = A.length;
-  if (a === 2 && isBareValue(options)) options = {y: options};
-  else if (a > 2) options = {x: options, y: A[2], z: A[3]};
   const x = channel(options, "x", xDefaults, xImplied);
   const y = channel(options, "y", yDefaults);
   const z = channel(options, "z");
