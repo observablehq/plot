@@ -18,7 +18,7 @@ export function Plot(x, y, options = {}) {
     height = y ? 396 : 60,
     marginTop = !yAxis ? 0 : xAxis === "top" ? 30 : 20,
     marginRight = yAxis === "right" ? 40 : 20,
-    marginBottom = 30,
+    marginBottom = xAxis === "top" ? 10 : 30,
     marginLeft = !yAxis || yAxis === "right" ? 20 : 40,
     grid, // convenience for xGrid, yGrid
     x: {
