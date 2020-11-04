@@ -75,7 +75,7 @@ export function Histogram(data, options = {}) {
   // y-extent of the (possibly faceted) bins.
   const {domain: yDomain = inferDomain(YV, y)} = y;
 
-  let {rect} = options;
+  let {rect} = options; // TODO Bar uses bar?
   rect = {...rectDefaults, rect};
   return Frame({
     height: 240,

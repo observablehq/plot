@@ -20,7 +20,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
     },
     render: Plot.Fragment(
       Plot.RuleY(0),
-      Plot.AreaXY0Y1(Date, Zero, Close, {fillOpacity: 0.3}),
+      Plot.AreaXYY(Date, Zero, Close, {fillOpacity: 0.3}),
       Plot.LineXY(Date, Close)
     )
   }));

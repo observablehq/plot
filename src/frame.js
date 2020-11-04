@@ -27,14 +27,14 @@ export function Frame(options = {}) {
       axes = true, // convenience for xAxis, yAxis
       x: {axis: xAxis = axes} = {}, // true = bottom, top, false
       y: {axis: yAxis = axes} = {}, // true = left, right, false
-      fx: {axis: fxAxis = xAxis, label: fxLabel} = {},
-      fy: {axis: fyAxis = yAxis, label: fyLabel} = {},
+      fx: {axis: fxAxis = axes, label: fxLabel} = {},
+      fy: {axis: fyAxis = axes, label: fyLabel} = {},
       render
     } = options;
     if (!xAxis) xAxis = null; else if (xAxis === true) xAxis = "bottom";
     if (!yAxis) yAxis = null; else if (yAxis === true) yAxis = "left";
-    if (!fx || !fxAxis) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis;
-    if (!fy || !fyAxis) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis;
+    if (!fx || !fxAxis) fxAxis = null; else if (fxAxis === true) fxAxis = "bottom";
+    if (!fy || !fyAxis) fyAxis = null; else if (fyAxis === true) fyAxis = "left";
 
     // Facet margins
     let {

@@ -64,7 +64,7 @@ export function Plot(x, y, options = {}) {
 
   // Ranges
   if (x) x.range([marginLeft, width - marginRight]);
-  if (y) y.range([height - marginBottom, marginTop]);
+  if (y) y.range(y.bandwidth ? [marginTop, height - marginBottom] : [height - marginBottom, marginTop]);
   if (!x && !y) throw new Error("either x or y must be specified, or both");
 
   // Rounded scales for pixel-snapped axes.

@@ -1,6 +1,6 @@
 import {extent} from "d3-array";
 import {scalePoint, scaleBand, scaleLinear, scalePow, scaleLog, scaleSymlog, scaleTime, scaleUtc} from "d3-scale";
-import {inferType} from "./domain.js";
+import {inferTypeFromDomain} from "./domain.js";
 
 const types = new Map(Object.entries({
   point,
@@ -14,14 +14,7 @@ const types = new Map(Object.entries({
 }));
 
 export function auto(options = {}) {
-  let typeOptions, {type, domain} = options;
-  if (type === undefined) {
-    type = "linear";
-    if (domain !== undefined) {
-      if (domain.length > 2) type = "point";
-      else type = inferType(domain);
-    }
-  }
+  let typeOptions, {domain, type = inferTypeFromDomain(domain)} = options;
   if (!type) return [null, {axis: false, grid: false}];
   if (type == "sqrt") type = ["pow", 0.5]; // alias
   ([type, ...typeOptions] = typeof type === "string" ? [type] : type);

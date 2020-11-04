@@ -1,5 +1,11 @@
 import {extent, reverse, sort} from "d3-array";
 
+export function inferType(values, {domain, type} = {}) {
+  return type !== undefined ? type
+    : domain !== undefined ? inferTypeFromDomain(domain)
+    : inferTypeFromValues(values);
+}
+
 // Given an array of values, and any options, returns the corresponding domain:
 // for quantitative data (linear, pow, log, symlog), the domain should be two
 // numbers [min, max] or [max, min] (if inverted); for temporal data (time,
@@ -17,7 +23,7 @@ export function inferDomain(values, {
   type // only needed if domain is undefined
 } = {}) {
   if (domain === undefined) {
-    if (type === undefined) type = inferType(values);
+    if (type === undefined) type = inferTypeFromValues(values);
     if (type === "point" || type === "band") {
       domain = sort(new Set(values));
     } else {
@@ -36,12 +42,19 @@ export function inferOrdinalDomain(values, {
   return invert ? reverse(domain) : domain;
 }
 
+// Given a domain, returns the inferred scale type.
+export function inferTypeFromDomain(domain) {
+  if (domain === undefined) return "linear";
+  if (domain.length > 2) return "point";
+  return inferTypeFromValues(domain);
+}
+
 // Given an array of values, infers a suitable scale type. If values contains
 // strings, returns point; if values contains Date instances, returns utc;
 // otherwise returns linear. Any null or undefined values are ignored. If values
 // contains heterogeneous types, the behavior of this function depends on the
 // first non-null value.
-export function inferType(values) {
+export function inferTypeFromValues(values) {
   let type = "linear";
   for (const value of values) {
     if (value == null) continue;
