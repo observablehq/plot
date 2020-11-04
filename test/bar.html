@@ -6,37 +6,38 @@
 <script>
 
 d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
-  const statuses = ["ACCEPTED", "ACCEPTED - CURED", "PENDING CURE", "RETURNED UNDELIVERABLE", "SPOILED", "WITNESS INFO INCOMPLETE"];
   const races = ["BLACK or AFRICAN AMERICAN", "WHITE"];
+  const statusAccepted = ["ACCEPTED", "ACCEPTED - CURED"];
+  const statusPending = ["PENDING", "PENDING CURE"];
 
   // Filter for mail ballots.
   // Filter for specific races.
   // Re-map non-specific statuses to “OTHER”.
-  // Group by race, then by ballot status.
+  // Group by race, then by accepted/pending/rejected status.
   // Compute the count for each race & status.
   // Compute the count for each race.
   // Compute the normalized rate for each status within each race.
   const rollup = d3.rollups(
     votes
       .filter(d => d.ballot_req_type === "MAIL")
-      .filter(d => races.includes(d.race))
-      .map(d => statuses.includes(d.ballot_rtn_status) ? d : {...d, ballot_rtn_status: "OTHER"}),
+      .filter(d => races.includes(d.race)),
     votes => d3.sum(votes, d => d.count),
     d => d.race,
-    d => d.ballot_rtn_status
+    d => statusAccepted.includes(d.ballot_rtn_status) ? "ACCEPTED"
+      : statusPending.includes(d.ballot_rtn_status) ? "PENDING"
+      : "REJECTED"
   ).flatMap(([race, group]) => {
     const total = d3.sum(group, ([, count]) => count);
-    return group.map(([ballot_rtn_status, count]) => {
-      return {race, ballot_rtn_status, percent: count / total * 100};
+    return group.map(([status, count]) => {
+      return {race, status, percent: count / total * 100};
     });
   });
 
   document.body.appendChild(Plot.Bar(rollup, {
     x: {value: "percent", grid: true, axis: "top", label: "Frequency (%) →"},
-    y: {value: "race", axis: null},
-    fy: {value: "ballot_rtn_status", label: null},
-    marginLeft: 180,
-    height: 360
+    fy: {value: "race", label: null},
+    y: {value: "status", label: null},
+    marginLeft: 160
   }));
 });
 
