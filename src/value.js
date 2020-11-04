@@ -1,3 +1,5 @@
+import {ascending} from "d3-array";
+
 // A channel value can be expressed in shorthand in several ways: it can be a
 // string which represents a named field, which is promoted to an accessor
 // function and assigned a default label; it can be an accessor function which
@@ -83,4 +85,10 @@ export function indexOf(d, i) {
 // specified array must not contain more than 2^31 - 1 values.
 export function index(values) {
   return Uint32Array.from(values, indexOf);
+}
+
+// Given an array of values, returns an array of zero-based indexes sorted in
+// natural ascending order.
+export function sortedIndex(values) {
+  return index(values).sort((i, j) => ascending(values[i], values[j]));
 }
