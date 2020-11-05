@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
+  document.body.appendChild(Plot.Area(AAPL, {x: "Date", y: "Close"}));
+});
+
+</script>

@@ -1,6 +1,10 @@
 import {area} from "d3-shape";
 
-export function AreaXYY(X, Y1, Y2, {
+export function AreaXYY(X, Y1, Y2, options) {
+  return AreaIXYY(Uint32Array.from(X, (_, i) => i), X, Y1, Y2, options);
+}
+
+export function AreaIXYY(I, X, Y1, Y2, {
   fill = "currentColor",
   fillOpacity,
   stroke = "none",
@@ -15,7 +19,6 @@ export function AreaXYY(X, Y1, Y2, {
   const {length} = X;
   if (length !== Y1.length) throw new Error("X and Y1 are different length");
   if (length !== Y2.length) throw new Error("X and Y1 are different length");
-  const I = Uint32Array.from(X, (_, i) => i);
   return (x, y) => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path"); // TODO d3.create
     if (mixBlendMode != null) path.style.mixBlendMode = mixBlendMode;
