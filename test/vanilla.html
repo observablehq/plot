@@ -6,31 +6,42 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(data => {
-  const Date = data.map(d => d.Date);
-  const Close = data.map(d => d.Close);
-  const Zero = data.map(d => 0);
-  document.body.appendChild(Plot.Frame({
-    x: {
-      domain: d3.extent(Date)
+  document.body.appendChild(Plot.plot(data, {
+    axes: {
+      y: {
+        grid: true
+      }
     },
-    y: {
-      domain: [0, d3.max(Close)],
-      grid: true,
-      label: "↑ Price ($)"
-    },
-    render: Plot.Fragment(
-      Plot.RuleY(0),
-      Plot.AreaXYY(Date, Zero, Close, {fillOpacity: 0.3}),
-      Plot.LineXY(Date, Close)
-    )
+    marks: [
+      new Plot.RuleY([0]),
+      new Plot.Area({x: "Date", y: "Close"})
+    ]
   }));
 });
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.Line(data, "date", "unemployment", "division"));
-  document.body.appendChild(Plot.Line(data, "unemployment"));
+  document.body.appendChild(Plot.plot(data, {
+    axes: {y: {grid: true}},
+    marks: [
+      new Plot.RuleY([0]),
+      new Plot.Line({
+        x: "date",
+        y: "unemployment",
+        z: "division"
+      })
+    ]
+  }));
+  document.body.appendChild(Plot.plot(data, {
+    marks: [
+      new Plot.Line({y: "unemployment"})
+    ]
+  }));
 });
 
-document.body.appendChild(Plot.Line(d3.cumsum({length: 500}, d3.randomNormal())));
+document.body.appendChild(Plot.plot(d3.cumsum({length: 500}, d3.randomNormal()), {
+  marks: [
+    new Plot.Line()
+  ]
+}));
 
 </script>
