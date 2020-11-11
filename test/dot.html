@@ -6,18 +6,24 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.Dot(AAPL, {
-    x: {
-      value: d => (d.Close - d.Open) / d.Open * 100,
-      label: "Daily change (%) →",
-      format: "+f",
-      rule: 0
+  document.body.appendChild(Plot.plot(AAPL, {
+    axes: {
+      grid: true,
+      x: {
+        label: "Daily change (%) →",
+        tickFormat: "+f"
+      },
+      y: {
+        label: "↑ Volume (log₁₀)"
+      }
     },
-    y: {
-      value: d => Math.log10(d.Volume),
-      label: "↑ Volume (log₁₀)"
-    },
-    grid: true
+    marks: [
+      new Plot.RuleX([0]),
+      new Plot.Dot({
+        x: d => (d.Close - d.Open) / d.Open * 100,
+        y: d => Math.log10(d.Volume)
+      })
+    ]
   }));
 });
 
