@@ -44,6 +44,7 @@ export class Dot {
     } = this;
     const {length} = X;
     if (length !== Y.length) throw new Error("X and Y are different length");
+    if (length !== R.length) throw new Error("X and R are different length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
