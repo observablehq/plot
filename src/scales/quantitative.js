@@ -4,12 +4,13 @@ import {scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
 export function ScaleQ(scale, encodings, {
   nice,
   domain = inferDomain(encodings),
+  range,
   invert
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice);
-  return {type: "quantitative", invert, scale};
+  return {type: "quantitative", invert, domain, range, scale};
 }
 
 export function ScaleLinear(encodings, options) {

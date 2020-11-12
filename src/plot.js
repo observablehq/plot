@@ -1,4 +1,4 @@
-import {group} from "d3-array";
+import {group, max, quantile} from "d3-array";
 import {create} from "d3-selection";
 import {AxisX, AxisY} from "./marks/axis.js";
 import {ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
@@ -66,13 +66,18 @@ function Field(value) {
 function Scales(encodings, options = {}) {
   const keys = new Set([...Object.keys(options), ...encodings.keys()]);
   const scales = {};
-  for (const key of keys) scales[key] = Scale(encodings.get(key), options[key]);
+  for (const key of keys) scales[key] = Scale(key, encodings.get(key), options[key]);
   return scales
 }
 
-function Scale(encodings, options = {}) {
+function Scale(key, encodings, options = {}) {
+  if (key === "r") {
+    const {domain = inferRadiusDomain(encodings)} = options;
+    options = {type: "sqrt", domain, ...options};
+  }
   switch (inferType(encodings, options)) {
     case "linear": return ScaleLinear(encodings, options);
+    case "sqrt": return ScalePow(encodings, {...options, exponent: 0.5});
     case "pow": return ScalePow(encodings, options);
     case "log": return ScaleLog(encodings, options);
     case "symlog": return ScaleSymlog(encodings, options);
@@ -107,6 +112,10 @@ function inferTypeFromValues(values) {
   }
 }
 
+function inferRadiusDomain(encodings) {
+  return [0, quantile(encodings, 0.5, ({value}) => quantile(value, 0.25))];
+}
+
 function Dimensions({y}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y ? 396 : 60,
@@ -125,15 +134,21 @@ function Axes({x, y}, {x: xAxis = {}, y: yAxis = {}, grid} = {}) {
   };
 }
 
-// Mutates scales.{x,y}.scale.range!
+// Mutates scale.range!
 function autoScaleRange(scales, dimensions) {
   if (scales.x) {
     const {width, marginLeft, marginRight} = dimensions;
-    scales.x.scale.range([marginLeft, width - marginRight]);
+    const {range = [marginLeft, width - marginRight]} = scales.x;
+    scales.x.scale.range(range);
   }
   if (scales.y) {
     const {height, marginTop, marginBottom} = dimensions;
-    scales.y.scale.range([height - marginBottom, marginTop]);
+    const {range = [height - marginBottom, marginTop]} = scales.y;
+    scales.y.scale.range(range);
+  }
+  if (scales.r) {
+    const {range = [0, 3]} = scales.r;
+    scales.r.scale.range(range);
   }
 }
 

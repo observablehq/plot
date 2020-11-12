@@ -21,7 +21,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       new Plot.RuleX([0]),
       new Plot.Dot({
         x: d => (d.Close - d.Open) / d.Open * 100,
-        y: d => Math.log10(d.Volume)
+        y: d => Math.log10(d.Volume),
+        r: d => d.Volume
       })
     ]
   }));

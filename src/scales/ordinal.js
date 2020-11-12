@@ -4,11 +4,12 @@ import {scaleBand, scalePoint} from "d3-scale";
 export function ScaleO(scale, encodings, {
   align = 0.5,
   domain = inferDomain(encodings),
+  range,
   invert
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain).align(align);
-  return {type: "ordinal", invert, scale};
+  return {type: "ordinal", invert, domain, range, scale};
 }
 
 export function ScalePoint(encodings, {padding = 0, ...options}) {
