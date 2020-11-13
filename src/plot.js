@@ -1,20 +1,18 @@
-import {group, quantile} from "d3-array";
 import {create} from "d3-selection";
-import {AxisX, AxisY} from "./marks/axis.js";
-import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
-import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
+import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Channels, Marks} from "./channels.js";
+import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(data, options = {}) {
   const marks = Marks(data, options.marks);
-  const encodings = Encodings(marks);
-  const scales = Scales(encodings, options.scales);
+  const channels = Channels(marks);
+  const scales = Scales(channels, options.scales);
   const axes = Axes(scales, options.axes);
   const dimensions = Dimensions(scales, axes, options);
 
   autoScaleRange(scales, dimensions);
   autoAxisTicks(axes, dimensions);
-  autoAxisLabels(encodings, scales, axes, dimensions);
+  autoAxisLabels(channels, scales, axes, dimensions);
 
   if (axes.y) marks.unshift(axes.y);
   if (axes.x) marks.unshift(axes.x);
@@ -34,100 +32,6 @@ export function plot(data, options = {}) {
   return svg.node();
 }
 
-function Encodings(marks) {
-  return group(
-    marks.flatMap(m => Object.values(m.channels).filter(({scale}) => scale)),
-    ({scale}) => scale
-  );
-}
-
-// TODO Don’t mutate channels in-place?
-function Marks(data, marks = []) {
-  for (const mark of marks) {
-    mark.channels = Object.fromEntries(Array.from(
-      Object.entries(mark.channels).filter(([, channel]) => channel),
-      ([name, channel]) => [name, Channel(data, channel)]
-    ));
-  }
-  return marks;
-}
-
-function Channel(data, {scale = null, type, value, label}) {
-  if (typeof value === "string") label = value, value = Array.from(data, Field(value));
-  else if (typeof value === "function") value = Array.from(data, value);
-  else if (typeof value.length !== "number") value = Array.from(value);
-  return {scale, type, value, label};
-}
-
-function Field(value) {
-  return d => d[value];
-}
-
-function Scales(encodings, options = {}) {
-  const keys = new Set([...Object.keys(options), ...encodings.keys()]);
-  const scales = {};
-  for (const key of keys) scales[key] = Scale(key, encodings.get(key), options[key]);
-  return scales
-}
-
-function Scale(key, encodings, options = {}) {
-  if (key === "r") {
-    const {domain = inferRadiusDomain(encodings)} = options;
-    options = {type: "sqrt", domain, ...options};
-  }
-  switch (inferScaleType(encodings, options)) {
-    case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
-    case "linear": return ScaleLinear(key, encodings, options);
-    case "sqrt": return ScalePow(key, encodings, {...options, exponent: 0.5});
-    case "pow": return ScalePow(key, encodings, options);
-    case "log": return ScaleLog(key, encodings, options);
-    case "symlog": return ScaleSymlog(key, encodings, options);
-    case "utc": return ScaleUtc(key, encodings, options);
-    case "time": return ScaleTime(key, encodings, options);
-    case "point": return ScalePoint(key, encodings, options);
-    case "band": return ScaleBand(key, encodings, options);
-    default: throw new Error(`unknown scale type: ${options.type}`);
-  }
-}
-
-function inferScaleType(encodings, {type, domain}) {
-  if (type !== undefined) {
-    for (const {type: t} of encodings) {
-      if (t !== undefined && type !== t) {
-        throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
-      }
-    }
-    return type;
-  }
-  for (const {type} of encodings) {
-    if (type !== undefined) return type;
-  }
-  if (domain !== undefined) {
-    if (domain.length > 2) return "point";
-    type = inferScaleTypeFromValues(domain);
-    if (type !== undefined) return type;
-  }
-  for (const {value} of encodings) {
-    type = inferScaleTypeFromValues(value);
-    if (type !== undefined) return type;
-  }
-  return "linear";
-}
-
-function inferScaleTypeFromValues(values) {
-  for (const value of values) {
-    if (value == null) continue;
-    if (typeof value === "string") return "point";
-    else if (typeof value === "boolean") return "point";
-    else if (value instanceof Date) return "utc";
-    return "linear";
-  }
-}
-
-function inferRadiusDomain(encodings) {
-  return [0, quantile(encodings, 0.5, ({value}) => quantile(value, 0.25))];
-}
-
 function Dimensions({y}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y ? 396 : 60,
@@ -137,97 +41,4 @@ function Dimensions({y}, {x: xAxis, y: yAxis}, {
   marginLeft = yAxis && yAxis.anchor === "left" ? 40 : 20
 } = {}) {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
-}
-
-function Axes({x, y}, {x: xAxis = {}, y: yAxis = {}, grid} = {}) {
-  return {
-    x: x && xAxis ? new AxisX({grid, ...xAxis}) : null,
-    y: y && yAxis ? new AxisY({grid, ...yAxis}) : null
-  };
-}
-
-// Mutates scale.range!
-function autoScaleRange(scales, dimensions) {
-  if (scales.x) {
-    const {width, marginLeft, marginRight} = dimensions;
-    const {range = [marginLeft, width - marginRight]} = scales.x;
-    scales.x.scale.range(range);
-  }
-  if (scales.y) {
-    const {height, marginTop, marginBottom} = dimensions;
-    const {range = [height - marginBottom, marginTop]} = scales.y;
-    scales.y.scale.range(range);
-  }
-  if (scales.r) {
-    const {range = [0, 3]} = scales.r;
-    scales.r.scale.range(range);
-  }
-}
-
-// Mutates axes.{x,y}.ticks!
-// TODO Populate tickFormat if undefined, too?
-function autoAxisTicks(axes, dimensions) {
-  if (axes.x && axes.x.ticks === undefined) {
-    const {width, marginRight, marginLeft} = dimensions;
-    axes.x.ticks = (width - marginLeft - marginRight) / 80;
-  }
-  if (axes.y && axes.y.ticks === undefined) {
-    const {height, marginTop, marginBottom} = dimensions;
-    axes.y.ticks = (height - marginTop - marginBottom) / 35;
-  }
-}
-
-// Mutates axes.{x,y}.label!
-// Mutates axes.{x,y}.labelAnchor!
-// Mutates axes.{x,y}.labelOffset!
-function autoAxisLabels(encodings, scales, axes, dimensions) {
-  if (axes.x) {
-    if (axes.x.label === undefined) {
-      axes.x.label = inferLabel(encodings, scales, "x");
-    }
-    if (axes.x.labelAnchor === undefined) {
-      axes.x.labelAnchor = scales.x.type === "ordinal" ? "center"
-        : scales.x.invert ? "left"
-        : "right";
-    }
-    if (axes.x.labelOffset === undefined) {
-      const {marginTop, marginBottom} = dimensions;
-      axes.x.labelOffset = axes.x.anchor === "top" ? marginTop : marginBottom;
-    }
-  }
-  if (axes.y) {
-    if (axes.y.label === undefined) {
-      axes.y.label = inferLabel(encodings, scales, "y");
-    }
-    if (axes.y.labelAnchor === undefined) {
-      axes.y.labelAnchor = scales.y.type === "ordinal" ? "center"
-        : axes.x && axes.x.anchor === "top" ? "bottom"
-        : "top";
-    }
-    if (axes.y.labelOffset === undefined) {
-      const {marginRight, marginLeft} = dimensions;
-      axes.y.labelOffset = axes.y.anchor === "left" ? marginLeft : marginRight;
-    }
-  }
-}
-
-// Encodings can have labels; if all the encodings for a given scale are
-// consistently labeled (i.e., have the same value if not undefined), and the
-// corresponding axis doesn’t already have an explicit label, then the
-// encodings’ label is promoted to the corresponding axis. TODO The arrows
-// should be disabled if the label anchor is center: the arrows will point the
-// wrong way with the rotated label.
-function inferLabel(encodings, scales, key) {
-  let candidate;
-  for (const {label} of encodings.get(key)) {
-    if (candidate === undefined) candidate = label;
-    else if (candidate !== label) return;
-  }
-  if (candidate !== undefined) {
-    const {invert} = scales[key];
-    const prefix = key === "y" ? (invert ? "↓ " : "↑ ") : key === "x" && invert ? "← " : "";
-    const suffix = key === "x" && !invert ? " →" : "";
-    candidate = `${prefix}${candidate}${suffix}`;
-  }
-  return candidate;
 }
