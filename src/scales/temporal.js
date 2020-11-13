@@ -1,10 +1,23 @@
-import {scaleTime, scaleUtc} from "d3-scale";
+import {scaleSequential, scaleTime, scaleUtc} from "d3-scale";
+import {interpolateTurbo} from "d3-scale-chromatic";
 import {ScaleQ} from "./quantitative.js";
 
-export function ScaleTime(encodings, options) {
-  return ScaleQ(scaleTime(), encodings, options);
+export function ScaleTime(key, encodings, options) {
+  return ScaleQ(
+    key === "color"
+      ? scaleSequential(interpolateTurbo)
+      : scaleTime(),
+    encodings,
+    options
+  );
 }
 
-export function ScaleUtc(encodings, options) {
-  return ScaleQ(scaleUtc(), encodings, options);
+export function ScaleUtc(key, encodings, options) {
+  return ScaleQ(
+    key === "color"
+      ? scaleSequential(interpolateTurbo)
+      : scaleUtc(),
+    encodings,
+    options
+  );
 }

@@ -1,7 +1,8 @@
 import {group, max, quantile} from "d3-array";
 import {create} from "d3-selection";
+import {interpolateTurbo, schemeTableau10} from "d3-scale-chromatic";
 import {AxisX, AxisY} from "./marks/axis.js";
-import {ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
+import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
@@ -76,15 +77,16 @@ function Scale(key, encodings, options = {}) {
     options = {type: "sqrt", domain, ...options};
   }
   switch (inferScaleType(encodings, options)) {
-    case "linear": return ScaleLinear(encodings, options);
-    case "sqrt": return ScalePow(encodings, {...options, exponent: 0.5});
-    case "pow": return ScalePow(encodings, options);
-    case "log": return ScaleLog(encodings, options);
-    case "symlog": return ScaleSymlog(encodings, options);
-    case "utc": return ScaleUtc(encodings, options);
-    case "time": return ScaleTime(encodings, options);
-    case "point": return ScalePoint(encodings, options);
-    case "band": return ScaleBand(encodings, options);
+    case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
+    case "linear": return ScaleLinear(key, encodings, options);
+    case "sqrt": return ScalePow(key, encodings, {...options, exponent: 0.5});
+    case "pow": return ScalePow(key, encodings, options);
+    case "log": return ScaleLog(key, encodings, options);
+    case "symlog": return ScaleSymlog(key, encodings, options);
+    case "utc": return ScaleUtc(key, encodings, options);
+    case "time": return ScaleTime(key, encodings, options);
+    case "point": return ScalePoint(key, encodings, options);
+    case "band": return ScaleBand(key, encodings, options);
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
 }
@@ -117,6 +119,7 @@ function inferScaleTypeFromValues(values) {
   for (const value of values) {
     if (value == null) continue;
     if (typeof value === "string") return "point";
+    else if (typeof value === "boolean") return "point";
     else if (value instanceof Date) return "utc";
     return "linear";
   }
