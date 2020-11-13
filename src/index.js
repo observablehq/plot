@@ -4,4 +4,5 @@ export {AxisX, AxisY} from "./marks/axis.js";
 export {Bar} from "./marks/bar.js";
 export {Dot} from "./marks/dot.js";
 export {Line} from "./marks/line.js";
+export {Rect} from "./marks/rect.js";
 export {RuleX, RuleY} from "./marks/rule.js";

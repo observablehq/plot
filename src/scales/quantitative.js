@@ -1,15 +1,18 @@
 import {min, max, reverse} from "d3-array";
+import {interpolateRound} from "d3-interpolate";
 import {scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
 
 export function ScaleQ(scale, encodings, {
   nice,
   domain = inferDomain(encodings),
+  round,
   range,
   invert
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice);
+  if (round) scale.interpolate(interpolateRound);
   return {type: "quantitative", invert, domain, range, scale};
 }
 

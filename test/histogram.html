@@ -6,23 +6,32 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.Histogram(AAPL, {
-    x: {
-      value: d => Math.log10(d.Volume),
-      label: "Volume (log₁₀) →"
+  const bins = d3.bin().value(d => Math.log10(d.Volume))(AAPL);
+  document.body.appendChild(Plot.plot(bins, {
+    scales: {
+      x: {
+        round: true
+      }
     },
-    y: {
-      grid: true
+    axes: {
+      x: {
+        label: "Trade volume (log₁₀) →"
+      },
+      y: {
+        label: "Days ↑",
+        grid: true
+      }
     },
-    fy: {
-      value: d => Math.max(-2, Math.min(2, Math.floor((d.Close - d.Open) / d.Open * 100))),
-      label: "Daily change (%) →",
-      format: d3.format("+")
-    },
-    bin: {
-      normalize: true
-    },
-    height: 640
+    marks: [
+      new Plot.RuleY([0]),
+      new Plot.Rect({
+        x1: "x0", // TODO This is awkward.
+        x2: "x1",
+        y1: () => 0, // TODO Default
+        y2: bin => bin.length,
+        insetLeft: 1
+      })
+    ]
   }));
 });
 
