@@ -56,7 +56,10 @@ class Bar {
             .filter(i => defined(X[i]) && defined(Y[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
-            .call(rect => this._layout(rect, scales)))
+            .attr("x", this._x(scales))
+            .attr("width", this._width(scales))
+            .attr("y", this._y(scales))
+            .attr("height", this._height(scales)))
       .node();
   }
 }
@@ -72,26 +75,25 @@ export class BarX extends Bar {
       channels: {
         x: {value: x, scale: "x"},
         y: {value: y, scale: "y", type: "band"},
-        x0: {value: [0], scale: "x"} // ensure the x-scale domain includes zero
+        x0: {value: [0], scale: "x"} // ensure the x-domain includes zero
       }
     });
   }
-  _layout(rect, {x: {scale: x}, y: {scale: y}}) {
-    const {
-      insetTop,
-      insetRight,
-      insetBottom,
-      insetLeft,
-      channels: {
-        x: {value: X},
-        y: {value: Y}
-      }
-    } = this;
-    rect
-        .attr("x", i => Math.min(x(0), x(X[i])) + insetLeft)
-        .attr("width", i => Math.max(0, Math.abs(x(X[i]) - x(0)) - insetLeft - insetRight))
-        .attr("y", i => y(Y[i]) + insetTop)
-        .attr("height", Math.max(0, y.bandwidth() - insetTop - insetBottom));
+  _x({x: {scale: x}}) {
+    const {insetLeft, channels: {x: {value: X}}} = this;
+    return i => Math.min(x(0), x(X[i])) + insetLeft;
+  }
+  _y({y: {scale: y}}) {
+    const {insetTop, channels: {y: {value: Y}}} = this;
+    return i => y(Y[i]) + insetTop;
+  }
+  _width({x: {scale: x}}) {
+    const {insetLeft, insetRight, channels: {x: {value: X}}} = this;
+    return i => Math.max(0, Math.abs(x(X[i]) - x(0)) - insetLeft - insetRight);
+  }
+  _height({y: {scale: y}}) {
+    const {insetTop, insetBottom} = this;
+    return Math.max(0, y.bandwidth() - insetTop - insetBottom);
   }
 }
 
@@ -106,25 +108,24 @@ export class BarY extends Bar {
       channels: {
         x: {value: x, scale: "x", type: "band"},
         y: {value: y, scale: "y"},
-        y0: {value: [0], scale: "y"} // ensure the y-scale domain includes zero
+        y0: {value: [0], scale: "y"} // ensure the y-domain includes zero
       }
     });
   }
-  _layout(rect, {x: {scale: x}, y: {scale: y}}) {
-    const {
-      insetTop,
-      insetRight,
-      insetBottom,
-      insetLeft,
-      channels: {
-        x: {value: X},
-        y: {value: Y}
-      }
-    } = this;
-    rect
-        .attr("x", i => x(X[i]) + insetLeft)
-        .attr("width", Math.max(0, x.bandwidth() - insetLeft - insetRight))
-        .attr("y", i => Math.min(y(0), y(Y[i])) + insetTop)
-        .attr("height", i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom));
+  _x({x: {scale: x}}) {
+    const {insetLeft, channels: {x: {value: X}}} = this;
+    return i => x(X[i]) + insetLeft;
+  }
+  _y({y: {scale: y}}) {
+    const {insetTop, channels: {y: {value: Y}}} = this;
+    return i => Math.min(y(0), y(Y[i])) + insetTop;
+  }
+  _width({x: {scale: x}}) {
+    const {insetLeft, insetRight} = this;
+    return Math.max(0, x.bandwidth() - insetLeft - insetRight);
+  }
+  _height({y: {scale: y}}) {
+    const {insetTop, insetBottom, channels: {y: {value: Y}}} = this;
+    return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
   }
 }
