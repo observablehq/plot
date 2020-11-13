@@ -5,7 +5,26 @@
 <script src="../dist/@observablehq/plot.umd.js"></script>
 <script>
 
-d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
+d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
+  document.body.appendChild(Plot.plot(alphabet, {
+    scales: {
+      y: {
+        type: "band", // TODO implicitly band
+        invert: true // TODO implicitly invert when band or point in y
+      }
+    },
+    axes: {
+      x: {label: "Frequency (%) →", grid: true},
+      y: {label: null}
+    },
+    marks: [
+      new Plot.RuleX([0]),
+      new Plot.Bar({x: d => d.frequency * 100, y: "letter"})
+    ]
+  }));
+});
+
+false && d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
   const races = ["BLACK or AFRICAN AMERICAN", "WHITE"];
   const statusAccepted = ["ACCEPTED", "ACCEPTED - CURED"];
   const statusPending = ["PENDING", "PENDING CURE"];
