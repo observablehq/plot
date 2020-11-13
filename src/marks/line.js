@@ -5,10 +5,10 @@ import {line} from "d3-shape";
 const indexOf = (d, i) => i;
 const identity = d => d;
 
-export class Line {
+class Line {
   constructor({
-    x = indexOf,
-    y = identity,
+    x,
+    y,
     z, // grouping for multiple series
     fill = "none",
     fillOpacity,
@@ -92,5 +92,17 @@ export class Line {
         .each(style)
         .each(path)
       .node();
+  }
+}
+
+export class LineX extends Line {
+  constructor({x = identity, y = indexOf, ...options} = {}) {
+    super({...options, x, y});
+  }
+}
+
+export class LineY extends Line {
+  constructor({x = indexOf, y = identity, ...options} = {}) {
+    super({...options, x, y});
   }
 }

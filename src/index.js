@@ -1,8 +1,8 @@
 export {plot} from "./plot.js";
-export {Area} from "./marks/area.js";
+export {AreaX, AreaY} from "./marks/area.js";
 export {AxisX, AxisY} from "./marks/axis.js";
-export {Bar} from "./marks/bar.js";
-export {Dot} from "./marks/dot.js";
-export {Line} from "./marks/line.js";
-export {Rect} from "./marks/rect.js";
+export {BarX, BarY} from "./marks/bar.js";
+export {DotXY} from "./marks/dot.js";
+export {LineX, LineY} from "./marks/line.js";
+export {RectXY} from "./marks/rect.js";
 export {RuleX, RuleY} from "./marks/rule.js";

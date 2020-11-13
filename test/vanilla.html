@@ -13,8 +13,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.Area({x: "Date", y: "Close"})
+      new Plot.RuleY({y: [0]}),
+      new Plot.AreaY({x: "Date", y: "Close"})
     ]
   }));
 });
@@ -23,8 +23,8 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot(data, {
     axes: {y: {grid: true}},
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.Line({
+      new Plot.RuleY({y: [0]}),
+      new Plot.LineY({
         x: "date",
         y: "unemployment",
         z: "division"
@@ -33,14 +33,14 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   }));
   document.body.appendChild(Plot.plot(data, {
     marks: [
-      new Plot.Line({y: "unemployment"})
+      new Plot.LineY({y: "unemployment"})
     ]
   }));
 });
 
 document.body.appendChild(Plot.plot(d3.cumsum({length: 500}, d3.randomNormal()), {
   marks: [
-    new Plot.Line()
+    new Plot.LineY()
   ]
 }));
 

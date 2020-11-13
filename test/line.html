@@ -8,8 +8,8 @@
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot(data, {
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.Line({
+      new Plot.RuleY({y: [0]}),
+      new Plot.LineY({
         x: "date",
         y: "unemployment",
         z: "division" // TODO y-facet

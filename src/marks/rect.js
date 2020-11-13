@@ -1,6 +1,6 @@
 import {create} from "d3-selection";
 
-export class Rect {
+export class RectXY {
   constructor({
     x1,
     y1,

@@ -1,7 +1,7 @@
 import {create} from "d3-selection";
 
 export class RuleX {
-  constructor(x) {
+  constructor({x} = {}) {
     this.channels = {
       x: {value: x, scale: "x"}
     };
@@ -21,10 +21,11 @@ export class RuleX {
 }
 
 export class RuleY {
-  constructor(y) {
+  constructor({y} = {}) {
     this.channels = {
       y: {value: y, scale: "y"}
     };
+    console.log(this.channels);
   }
   render({y: {scale: y}}, {width, marginLeft, marginRight}) {
     return create("svg:g")

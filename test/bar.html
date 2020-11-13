@@ -9,6 +9,7 @@ d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
   document.body.appendChild(Plot.plot(alphabet, {
     scales: {
       y: {
+        domain: d3.sort(alphabet, (a, b) => d3.descending(a.frequency, b.frequency)).map(d => d.letter),
         invert: true // TODO implicitly invert when band or point in y
       }
     },
@@ -17,8 +18,19 @@ d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
       y: {label: null}
     },
     marks: [
-      new Plot.RuleX([0]),
-      new Plot.Bar({x: d => d.frequency * 100, y: "letter"})
+      new Plot.RuleX({x: [0]}),
+      new Plot.BarX({x: d => d.frequency * 100, y: "letter"})
+    ],
+    height: 580
+  }));
+  document.body.appendChild(Plot.plot(alphabet, {
+    axes: {
+      x: {label: null},
+      y: {label: "↑ Frequency (%)", grid: true}
+    },
+    marks: [
+      new Plot.RuleY({y: [0]}),
+      new Plot.BarY({x: "letter", y: d => d.frequency * 100})
     ]
   }));
 });

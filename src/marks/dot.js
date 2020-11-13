@@ -4,7 +4,7 @@ const first = d => d[0];
 const second = d => d[1];
 const unit = () => 1;
 
-export class Dot {
+export class DotXY {
   constructor({
     x = first,
     y = second,

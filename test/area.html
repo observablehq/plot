@@ -11,9 +11,9 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       y: {grid: true}
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.Area({x: "Date", y: "Close", fillOpacity: 0.1}),
-      new Plot.Line({x: "Date", y: "Close"})
+      new Plot.RuleY({y: [0]}),
+      new Plot.AreaY({x: "Date", y: "Close", fillOpacity: 0.1}),
+      new Plot.LineY({x: "Date", y: "Close"})
     ]
   }));
 });

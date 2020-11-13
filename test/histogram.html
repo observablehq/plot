@@ -23,8 +23,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       }
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.Rect({
+      new Plot.RuleY({y: [0]}),
+      new Plot.RectXY({
         x1: "x0", // TODO This is awkward.
         x2: "x1",
         y1: () => 0, // TODO Default
