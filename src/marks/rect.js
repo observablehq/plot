@@ -1,4 +1,5 @@
 import {create} from "d3-selection";
+import {defined} from "../defined.js";
 
 export class RectXY {
   constructor({
@@ -65,10 +66,7 @@ export class RectXY {
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
           .data(Array.from(X1, (_, i) => i)
-            .filter(i => X1[i] != null // TODO Number.isNaN?
-              && Y1[i] != null
-              && X2[i] != null
-              && Y2[i] != null))
+            .filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
             .attr("x", i => x(X1[i]) + insetLeft)

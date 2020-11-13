@@ -1,4 +1,5 @@
 import {create} from "d3-selection";
+import {defined} from "../defined.js";
 
 const first = d => d[0];
 const second = d => d[1];
@@ -53,7 +54,7 @@ export class DotXY {
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
           .data(Array.from(X, (_, i) => i)
-            .filter(i => X[i] != null && Y[i] != null && R[i] != null)) // TODO Number.isNaN?
+            .filter(i => defined(X[i]) && defined(Y[i]) && defined(R[i])))
           .join("circle")
             .style("mix-blend-mode", mixBlendMode)
             .attr("cx", i => x(X[i]))

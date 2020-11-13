@@ -1,7 +1,8 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line} from "d3-shape";
-import {Curve} from "../curve";
+import {Curve} from "../curve.js";
+import {defined} from "../defined.js";
 
 const indexOf = (d, i) => i;
 const identity = d => d;
@@ -80,10 +81,10 @@ class Line {
       if (mixBlendMode != null) this.style.mixBlendMode = mixBlendMode;
       this.setAttribute("d", line()
           .curve(curve)
-          .defined(i => X[i] != null && Y[i] != null)
+          .defined(i => defined(X[i]) && defined(Y[i]))
           .x(i => x(X[i]))
           .y(i => y(Y[i]))
-        (I)); // TODO Number.isNaN?
+        (I));
     }
 
     if (Z) {

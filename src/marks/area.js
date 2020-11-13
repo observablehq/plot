@@ -1,6 +1,7 @@
 import {create} from "d3-selection";
 import {area} from "d3-shape";
-import {Curve} from "../curve";
+import {Curve} from "../curve.js";
+import {defined} from "../defined.js";
 
 const indexOf = (d, i) => i;
 const identity = d => d;
@@ -46,10 +47,7 @@ class Area {
         .attr("fill-opacity", this.fillOpacity)
         .attr("d", area()
             .curve(curve)
-            .defined(i => X1[i] != null // TODO Number.isNaN?
-              && Y1[i] != null
-              && X2[i] != null
-              && Y2[i] != null)
+            .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
             .x0(i => x(X1[i]))
             .y0(i => y(Y1[i]))
             .x1(i => x(X2[i]))

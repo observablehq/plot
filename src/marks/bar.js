@@ -1,4 +1,5 @@
 import {create} from "d3-selection";
+import {defined} from "../defined.js";
 
 const indexOf = (d, i) => i;
 const identity = d => d;
@@ -52,7 +53,7 @@ class Bar {
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
           .data(Array.from(X, (_, i) => i)
-            .filter(i => X[i] != null && Y[i] != null)) // TODO Number.isNaN?
+            .filter(i => defined(X[i]) && defined(Y[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
             .call(rect => this._layout(rect, scales)))
