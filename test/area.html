@@ -6,7 +6,16 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.Area(AAPL, {x: "Date", y: "Close"}));
+  document.body.appendChild(Plot.plot(AAPL, {
+    axes: {
+      y: {grid: true}
+    },
+    marks: [
+      new Plot.RuleY([0]),
+      new Plot.Area({x: "Date", y: "Close", fillOpacity: 0.1}),
+      new Plot.Line({x: "Date", y: "Close"})
+    ]
+  }));
 });
 
 </script>
