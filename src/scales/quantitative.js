@@ -20,13 +20,14 @@ export function ScaleQ(key, scale, encodings, {
   interpolate = round ? interpolateRound
     : key === "color" ? interpolateTurbo
     : undefined,
-  range, // see autoScaleRange
+  range = (key === "r" ? [0, 3] : undefined), // see autoScaleRange
   invert
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
-  if (interpolate) scale.interpolate(interpolate);
+  if (interpolate !== undefined) scale.interpolate(interpolate);
+  if (range !== undefined) scale.range(range);
   return {type: "quantitative", invert, domain, range, scale};
 }
 

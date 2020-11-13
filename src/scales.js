@@ -11,19 +11,13 @@ export function Scales(encodings, options = {}) {
 
 // Mutates scale.range!
 export function autoScaleRange(scales, dimensions) {
-  if (scales.x) {
+  if (scales.x && scales.x.range === undefined) {
     const {width, marginLeft, marginRight} = dimensions;
-    const {range = [marginLeft, width - marginRight]} = scales.x;
-    scales.x.scale.range(range);
+    scales.x.scale.range([marginLeft, width - marginRight]);
   }
-  if (scales.y) {
+  if (scales.y && scales.y.range === undefined) {
     const {height, marginTop, marginBottom} = dimensions;
-    const {range = [height - marginBottom, marginTop]} = scales.y;
-    scales.y.scale.range(range);
-  }
-  if (scales.r) {
-    const {range = [0, 3]} = scales.r;
-    scales.r.scale.range(range);
+    scales.y.scale.range([height - marginBottom, marginTop]);
   }
 }
 
