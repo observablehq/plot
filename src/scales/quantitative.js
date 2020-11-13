@@ -1,4 +1,4 @@
-import {min, max, reverse} from "d3-array";
+import {min, max, quantile, reverse} from "d3-array";
 import {interpolateRound} from "d3-interpolate";
 import {interpolateRdBu, interpolateTurbo} from "d3-scale-chromatic";
 import {
@@ -15,7 +15,7 @@ import {
 
 export function ScaleQ(key, scale, encodings, {
   nice,
-  domain = inferDomain(encodings),
+  domain = (key === "r" ? inferRadialDomain : inferDomain)(encodings),
   round,
   interpolate = round ? interpolateRound
     : key === "color" ? interpolateTurbo
@@ -85,4 +85,8 @@ function inferDomain(encodings) {
     min(encodings, ({value}) => min(value)),
     max(encodings, ({value}) => max(value))
   ];
+}
+
+function inferRadialDomain(encodings) {
+  return [0, quantile(encodings, 0.5, ({value}) => quantile(value, 0.25))];
 }

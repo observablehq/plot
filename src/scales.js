@@ -1,4 +1,3 @@
-import {quantile} from "d3-array";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
@@ -29,11 +28,7 @@ export function autoScaleRange(scales, dimensions) {
 }
 
 function Scale(key, encodings, options = {}) {
-  if (key === "r") {
-    const {domain = inferRadiusDomain(encodings)} = options;
-    options = {type: "sqrt", domain, ...options};
-  }
-  switch (inferScaleType(encodings, options)) {
+  switch (inferScaleType(key, encodings, options)) {
     case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
     case "linear": return ScaleLinear(key, encodings, options);
     case "sqrt": return ScalePow(key, encodings, {...options, exponent: 0.5});
@@ -48,7 +43,7 @@ function Scale(key, encodings, options = {}) {
   }
 }
 
-function inferScaleType(encodings, {type, domain}) {
+function inferScaleType(key, encodings, {type, domain}) {
   if (type !== undefined) {
     for (const {type: t} of encodings) {
       if (t !== undefined && type !== t) {
@@ -57,6 +52,7 @@ function inferScaleType(encodings, {type, domain}) {
     }
     return type;
   }
+  if (key === "r") return "sqrt";
   for (const {type} of encodings) {
     if (type !== undefined) return type;
   }
@@ -80,8 +76,4 @@ function inferScaleTypeFromValues(values) {
     else if (value instanceof Date) return "utc";
     return "linear";
   }
-}
-
-function inferRadiusDomain(encodings) {
-  return [0, quantile(encodings, 0.5, ({value}) => quantile(value, 0.25))];
 }
