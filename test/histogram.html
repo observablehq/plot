@@ -24,13 +24,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
     },
     marks: [
       new Plot.RuleY({y: [0]}),
-      new Plot.RectXY({
-        x1: "x0", // TODO This is awkward.
-        x2: "x1",
-        y1: () => 0, // TODO Default
-        y2: bin => bin.length,
-        insetLeft: 1
-      })
+      new Plot.RectY({x1: "x0", x2: "x1", y: d => d.length, insetLeft: 1})
     ]
   }));
 });

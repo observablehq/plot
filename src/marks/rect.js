@@ -1,6 +1,8 @@
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
 
+const zero = () => 0;
+
 export class RectXY {
   constructor({
     x1,
@@ -69,10 +71,22 @@ export class RectXY {
             .filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
-            .attr("x", i => x(X1[i]) + insetLeft)
-            .attr("width", i => Math.max(0, x(X2[i]) - x(X1[i]) - insetLeft - insetRight)) // TODO negative
-            .attr("y", i => y(Y2[i]) + insetTop)
-            .attr("height", i => Math.max(0, y(Y1[i]) - y(Y2[i]) - insetTop - insetBottom)))
+            .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + insetLeft)
+            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight))
+            .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop)
+            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - insetTop - insetBottom)))
       .node();
+  }
+}
+
+export class RectX extends RectXY {
+  constructor({x, y1, y2, ...options} = {}) {
+    super({...options, x1: zero, x2: x, y1, y2});
+  }
+}
+
+export class RectY extends RectXY {
+  constructor({x1, x2, y, ...options} = {}) {
+    super({...options, x1, x2, y1: zero, y2: y});
   }
 }
