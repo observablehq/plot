@@ -1,6 +1,5 @@
-import {group, max, quantile} from "d3-array";
+import {group, quantile} from "d3-array";
 import {create} from "d3-selection";
-import {interpolateTurbo, schemeTableau10} from "d3-scale-chromatic";
 import {AxisX, AxisY} from "./marks/axis.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
@@ -132,10 +131,10 @@ function inferRadiusDomain(encodings) {
 function Dimensions({y}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y ? 396 : 60,
-  marginTop = !yAxis ? 0 : xAxis?.anchor === "top" ? 30 : 20,
-  marginRight = yAxis?.anchor === "right" ? 40 : 20,
-  marginBottom = xAxis?.anchor === "bottom" ? 30 : 20,
-  marginLeft = yAxis?.anchor === "left" ? 40 : 20
+  marginTop = !yAxis ? 0 : xAxis && xAxis.anchor === "top" ? 30 : 20,
+  marginRight = yAxis && yAxis.anchor === "right" ? 40 : 20,
+  marginBottom = xAxis && xAxis.anchor === "bottom" ? 30 : 20,
+  marginLeft = yAxis && yAxis.anchor === "left" ? 40 : 20
 } = {}) {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
 }
