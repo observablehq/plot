@@ -4,8 +4,6 @@ const indexOf = (d, i) => i;
 const identity = d => d;
 
 // TODO Bar vs. Column orientation?
-// TODO In Bar orientation, enforce that x is a band scale.
-// TODO In Column orientation, enforce that y is a band scale.
 export class Bar {
   constructor({
     x = identity,
@@ -32,9 +30,9 @@ export class Bar {
     this.insetBottom = insetBottom;
     this.insetLeft = insetLeft;
     this.channels = {
-      _: {value: [0], scale: "x"},
       x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"}
+      y: {value: y, scale: "y", type: "band"},
+      x0: {value: [0], scale: "x"} // ensure the x-scale domain includes zero
     };
   }
   render({x: {scale: x}, y: {scale: y}}) {

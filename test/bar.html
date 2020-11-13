@@ -9,7 +9,6 @@ d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
   document.body.appendChild(Plot.plot(alphabet, {
     scales: {
       y: {
-        type: "band", // TODO implicitly band
         invert: true // TODO implicitly invert when band or point in y
       }
     },

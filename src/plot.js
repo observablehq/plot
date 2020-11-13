@@ -52,11 +52,11 @@ function Marks(data, marks = []) {
   return marks;
 }
 
-function Channel(data, {scale = null, value, label}) {
+function Channel(data, {scale = null, type, value, label}) {
   if (typeof value === "string") label = value, value = Array.from(data, Field(value));
   else if (typeof value === "function") value = Array.from(data, value);
   else if (typeof value.length !== "number") value = Array.from(value);
-  return {scale, value, label};
+  return {scale, type, value, label};
 }
 
 function Field(value) {
@@ -75,7 +75,7 @@ function Scale(key, encodings, options = {}) {
     const {domain = inferRadiusDomain(encodings)} = options;
     options = {type: "sqrt", domain, ...options};
   }
-  switch (inferType(encodings, options)) {
+  switch (inferScaleType(encodings, options)) {
     case "linear": return ScaleLinear(encodings, options);
     case "sqrt": return ScalePow(encodings, {...options, exponent: 0.5});
     case "pow": return ScalePow(encodings, options);
@@ -89,21 +89,31 @@ function Scale(key, encodings, options = {}) {
   }
 }
 
-function inferType(encodings, {type, domain}) {
-  if (type !== undefined) return type;
+function inferScaleType(encodings, {type, domain}) {
+  if (type !== undefined) {
+    for (const {type: t} of encodings) {
+      if (t !== undefined && type !== t) {
+        throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
+      }
+    }
+    return type;
+  }
+  for (const {type} of encodings) {
+    if (type !== undefined) return type;
+  }
   if (domain !== undefined) {
     if (domain.length > 2) return "point";
-    type = inferTypeFromValues(domain);
+    type = inferScaleTypeFromValues(domain);
     if (type !== undefined) return type;
   }
   for (const {value} of encodings) {
-    type = inferTypeFromValues(value);
+    type = inferScaleTypeFromValues(value);
     if (type !== undefined) return type;
   }
   return "linear";
 }
 
-function inferTypeFromValues(values) {
+function inferScaleTypeFromValues(values) {
   for (const value of values) {
     if (value == null) continue;
     if (typeof value === "string") return "point";
