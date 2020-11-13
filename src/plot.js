@@ -187,7 +187,7 @@ function autoAxisLabels(encodings, scales, axes, dimensions) {
       axes.x.label = inferLabel(encodings, scales, "x");
     }
     if (axes.x.labelAnchor === undefined) {
-      axes.x.labelAnchor = ["point", "band"].includes(scales.x.type) ? "center"
+      axes.x.labelAnchor = scales.x.type === "ordinal" ? "center"
         : scales.x.invert ? "left"
         : "right";
     }
@@ -201,7 +201,7 @@ function autoAxisLabels(encodings, scales, axes, dimensions) {
       axes.y.label = inferLabel(encodings, scales, "y");
     }
     if (axes.y.labelAnchor === undefined) {
-      axes.y.labelAnchor = ["point", "band"].includes(scales.y.type) ? "center"
+      axes.y.labelAnchor = scales.y.type === "ordinal" ? "center"
         : axes.x && axes.x.anchor === "top" ? "bottom"
         : "top";
     }
@@ -213,9 +213,11 @@ function autoAxisLabels(encodings, scales, axes, dimensions) {
 }
 
 // Encodings can have labels; if all the encodings for a given scale are
-// consistently labeled (i.e., have the same value if not undefined), and
-// the corresponding axis doesn’t already have an explicit label, then the
-// encodings’ label is promoted to the corresponding axis.
+// consistently labeled (i.e., have the same value if not undefined), and the
+// corresponding axis doesn’t already have an explicit label, then the
+// encodings’ label is promoted to the corresponding axis. TODO The arrows
+// should be disabled if the label anchor is center: the arrows will point the
+// wrong way with the rotated label.
 function inferLabel(encodings, scales, key) {
   let candidate;
   for (const {label} of encodings.get(key)) {
