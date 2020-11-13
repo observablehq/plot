@@ -5,7 +5,6 @@ const indexOf = (d, i) => i;
 const identity = d => d;
 const zero = () => 0;
 
-// TODO Optimize when x1 === x2 or y1 === y2?
 class Area {
   constructor({
     x1,
@@ -20,8 +19,8 @@ class Area {
     this.channels = {
       x1: {value: x1, scale: "x"},
       y1: {value: y1, scale: "y"},
-      x2: {value: x2, scale: "x"},
-      y2: {value: y2, scale: "y"}
+      x2: x2 && {value: x2, scale: "x"},
+      y2: y2 && {value: y2, scale: "y"}
     };
   }
   render({x: {scale: x}, y: {scale: y}}) {
@@ -29,8 +28,8 @@ class Area {
       channels: {
         x1: {value: X1},
         y1: {value: Y1},
-        x2: {value: X2},
-        y2: {value: Y2}
+        x2: {value: X2} = {value: X1},
+        y2: {value: Y2} = {value: Y1}
       }
     } = this;
     const I = Array.from(X1, (_, i) => i);
@@ -57,12 +56,12 @@ class Area {
 
 export class AreaX extends Area {
   constructor({x = identity, x1 = zero, x2 = x, y = indexOf, ...options} = {}) {
-    super({...options, x1, x2, y1: y, y2: y});
+    super({...options, x1, x2, y1: y, y2: null});
   }
 }
 
 export class AreaY extends Area {
   constructor({x = indexOf, y = identity, y1 = zero, y2 = y, ...options} = {}) {
-    super({...options, x1: x, x2: x, y1, y2});
+    super({...options, x1: x, x2: null, y1, y2});
   }
 }
