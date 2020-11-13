@@ -1,5 +1,6 @@
 import {create} from "d3-selection";
 import {area} from "d3-shape";
+import {Curve} from "../curve";
 
 const indexOf = (d, i) => i;
 const identity = d => d;
@@ -11,9 +12,11 @@ class Area {
     y1,
     x2,
     y2,
+    curve,
     fill = "currentColor",
     fillOpacity
   } = {}) {
+    this.curve = Curve(curve);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.channels = {
@@ -25,6 +28,7 @@ class Area {
   }
   render({x: {scale: x}, y: {scale: y}}) {
     const {
+      curve,
       channels: {
         x1: {value: X1},
         y1: {value: Y1},
@@ -41,6 +45,7 @@ class Area {
         .attr("fill", this.fill)
         .attr("fill-opacity", this.fillOpacity)
         .attr("d", area()
+            .curve(curve)
             .defined(i => X1[i] != null // TODO Number.isNaN?
               && Y1[i] != null
               && X2[i] != null

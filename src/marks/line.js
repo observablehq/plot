@@ -1,6 +1,7 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line} from "d3-shape";
+import {Curve} from "../curve";
 
 const indexOf = (d, i) => i;
 const identity = d => d;
@@ -10,6 +11,7 @@ class Line {
     x,
     y,
     z, // grouping for multiple series
+    curve,
     fill = "none",
     fillOpacity,
     stroke = "currentColor",
@@ -21,6 +23,7 @@ class Line {
     strokeOpacity,
     mixBlendMode
   } = {}) {
+    this.curve = Curve(curve);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.stroke = stroke;
@@ -39,6 +42,7 @@ class Line {
   }
   render({x: {scale: x}, y: {scale: y}}) {
     const {
+      curve,
       fill,
       fillOpacity,
       stroke,
@@ -74,7 +78,12 @@ class Line {
 
     function path(I) {
       if (mixBlendMode != null) this.style.mixBlendMode = mixBlendMode;
-      this.setAttribute("d", line(i => x(X[i]), i => y(Y[i])).defined(i => X[i] != null && Y[i] != null)(I)); // TODO Number.isNaN?
+      this.setAttribute("d", line()
+          .curve(curve)
+          .defined(i => X[i] != null && Y[i] != null)
+          .x(i => x(X[i]))
+          .y(i => y(Y[i]))
+        (I)); // TODO Number.isNaN?
     }
 
     if (Z) {
