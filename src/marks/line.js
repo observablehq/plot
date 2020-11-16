@@ -69,42 +69,43 @@ class Line extends Mark {
     if (length !== Y.length) throw new Error("X and Y are different length");
     if (Z && length !== Z.length) throw new Error("X and Z are different length");
 
-    function style() {
-      if (fill != null) this.setAttribute("fill", fill);
-      if (fillOpacity != null) this.setAttribute("fill-opacity", fillOpacity);
-      if (stroke != null) this.setAttribute("stroke", stroke);
-      if (strokeWidth != null) this.setAttribute("stroke-width", strokeWidth);
-      if (strokeMiterlimit != null) this.setAttribute("stroke-miterlimit", strokeMiterlimit);
-      if (strokeLinecap != null) this.setAttribute("stroke-linecap", strokeLinecap);
-      if (strokeLinejoin != null) this.setAttribute("stroke-linejoin", strokeLinejoin);
-      if (strokeDasharray != null) this.setAttribute("stroke-dasharray", strokeDasharray);
-      if (strokeOpacity != null) this.setAttribute("stroke-opacity", strokeOpacity);
+    function style(selection) {
+      selection
+          .attr("fill", fill)
+          .attr("fill-opacity", fillOpacity)
+          .attr("stroke", stroke)
+          .attr("stroke-width", strokeWidth)
+          .attr("stroke-miterlimit", strokeMiterlimit)
+          .attr("stroke-linecap", strokeLinecap)
+          .attr("stroke-linejoin", strokeLinejoin)
+          .attr("stroke-dasharray", strokeDasharray)
+          .attr("stroke-opacity", strokeOpacity);
     }
 
-    function path(I) {
-      if (mixBlendMode != null) this.style.mixBlendMode = mixBlendMode;
-      this.setAttribute("d", line()
-          .curve(curve)
-          .defined(i => defined(X[i]) && defined(Y[i]))
-          .x(i => x(X[i]))
-          .y(i => y(Y[i]))
-        (I));
+    function path(selection) {
+      selection
+          .style("mix-blend-mode", mixBlendMode)
+          .attr("d", line()
+            .curve(curve)
+            .defined(i => defined(X[i]) && defined(Y[i]))
+            .x(i => x(X[i]))
+            .y(i => y(Y[i])));
     }
 
     if (Z) {
       return create("svg:g")
-          .each(style)
+          .call(style)
           .call(g => g.selectAll()
             .data(group(I, i => Z[i]).values())
             .join("path")
-            .each(path))
+            .call(path))
         .node();
     }
 
     return create("svg:path")
         .datum(I)
-        .each(style)
-        .each(path)
+        .call(style)
+        .call(path)
       .node();
   }
 }
