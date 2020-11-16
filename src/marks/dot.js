@@ -11,12 +11,15 @@ export class DotXY extends Mark {
     {
       x = first,
       y = second,
-      r = () => 1, // TODO Allow constant?
-      stroke = () => true // TODO Allow constant?
+      r,
+      fill,
+      stroke
     } = {},
     {
-      fill = "none", // TODO Allow function?
+      r: fixedR = r === undefined ? 3 : undefined,
+      fill: fixedFill = fill === undefined ? "none" : undefined,
       fillOpacity,
+      stroke: fixedStroke = stroke === undefined && !fill ? "currentColor" : undefined,
       strokeWidth = 1.5,
       strokeOpacity,
       mixBlendMode
@@ -27,12 +30,15 @@ export class DotXY extends Mark {
       {
         x: {value: x, scale: "x"},
         y: {value: y, scale: "y"},
-        r: {value: r, scale: "r"},
-        stroke: {value: stroke, scale: "color"}
+        r: r && {value: r, scale: "r"},
+        fill: fill && {value: fill, scale: "color"},
+        stroke: stroke && {value: stroke, scale: "color"}
       }
     );
-    this.fill = fill;
+    this.r = fixedR;
+    this.fill = fixedFill;
     this.fillOpacity = fillOpacity;
+    this.stroke = fixedStroke;
     this.strokeWidth = strokeWidth;
     this.strokeOpacity = strokeOpacity;
     this.mixBlendMode = mixBlendMode;
@@ -42,39 +48,45 @@ export class DotXY extends Mark {
     {
       x: {scale: x},
       y: {scale: y},
-      r: {scale: r},
+      r: {scale: r} = {},
       color: {scale: color} = {}
     }
   ) {
     const {
       fill,
       fillOpacity,
+      stroke,
       strokeWidth,
       strokeOpacity,
       mixBlendMode,
       channels: {
         x: {value: X},
         y: {value: Y},
-        r: {value: R},
+        r: {value: R} = {},
+        fill: {value: F} = {},
         stroke: {value: S} = {}
       }
     } = this;
     const {length} = X;
     if (length !== Y.length) throw new Error("X and Y are different length");
-    if (length !== R.length) throw new Error("X and R are different length");
+    if (R && length !== R.length) throw new Error("X and R are different length");
+    if (F && length !== F.length) throw new Error("X and F are different length");
+    if (S && length !== S.length) throw new Error("X and S are different length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
+        .attr("stroke", stroke)
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
-          .data(I.filter(i => defined(X[i]) && defined(Y[i]) && defined(R[i])))
+          .data(I.filter(i => defined(X[i]) && defined(Y[i])))
           .join("circle")
             .style("mix-blend-mode", mixBlendMode)
+            .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", i => r(R[i])))
+            .attr("r", R ? i => r(R[i]) : this.r))
       .node();
   }
 }
