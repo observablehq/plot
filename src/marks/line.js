@@ -1,29 +1,31 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line} from "d3-shape";
+import {indexOf, identity} from "../channels.js";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 
-const indexOf = (d, i) => i;
-const identity = d => d;
-
 class Line {
-  constructor({
-    x,
-    y,
-    z, // grouping for multiple series
-    curve,
-    fill = "none",
-    fillOpacity,
-    stroke = "currentColor",
-    strokeWidth = z ? 1 : 1.5,
-    strokeMiterlimit = 1,
-    strokeLinecap,
-    strokeLinejoin,
-    strokeDasharray,
-    strokeOpacity,
-    mixBlendMode
-  } = {}) {
+  constructor(
+    data,
+    {
+      x,
+      y,
+      z, // grouping for multiple series
+      curve,
+      fill = "none",
+      fillOpacity,
+      stroke = "currentColor",
+      strokeWidth = z ? 1 : 1.5,
+      strokeMiterlimit = 1,
+      strokeLinecap,
+      strokeLinejoin,
+      strokeDasharray,
+      strokeOpacity,
+      mixBlendMode
+    } = {}
+  ) {
+    this.data = data;
     this.curve = Curve(curve);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
@@ -41,7 +43,7 @@ class Line {
       z: z && {value: z}
     };
   }
-  render({x: {scale: x}, y: {scale: y}}) {
+  render(I, {x: {scale: x}, y: {scale: y}}) {
     const {
       curve,
       fill,
@@ -63,7 +65,6 @@ class Line {
     const {length} = X;
     if (length !== Y.length) throw new Error("X and Y are different length");
     if (Z && length !== Z.length) throw new Error("X and Z are different length");
-    const I = Array.from(X, (_, i) => i);
 
     function style() {
       if (fill != null) this.setAttribute("fill", fill);
@@ -106,13 +107,13 @@ class Line {
 }
 
 export class LineX extends Line {
-  constructor({x = identity, y = indexOf, ...options} = {}) {
-    super({...options, x, y});
+  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
+    super(data, {...options, x, y});
   }
 }
 
 export class LineY extends Line {
-  constructor({x = indexOf, y = identity, ...options} = {}) {
-    super({...options, x, y});
+  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
+    super(data, {...options, x, y});
   }
 }

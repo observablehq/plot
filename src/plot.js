@@ -1,10 +1,10 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {Channels, Marks} from "./channels.js";
+import {Channels, Marks, indexOf} from "./channels.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
-export function plot(data, options = {}) {
-  const marks = Marks(data, options.marks);
+export function plot(options = {}) {
+  const marks = Marks(options.marks);
   const channels = Channels(marks);
   const scales = Scales(channels, options.scales);
   const axes = Axes(scales, options.axes);
@@ -24,8 +24,9 @@ export function plot(data, options = {}) {
       .style("max-width", `${width}px`)
       .style("display", "block");
 
-  for (const m of marks) {
-    const node = m.render(scales, dimensions);
+  for (const mark of marks) {
+    const index = mark.data === undefined ? undefined : Array.from(mark.data, indexOf);
+    const node = mark.render(index, scales, dimensions);
     if (node !== null) svg.append(() => node);
   }
 

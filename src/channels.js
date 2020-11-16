@@ -1,11 +1,11 @@
 import {group} from "d3-array";
 
 // TODO Don’t mutate channels in-place?
-export function Marks(data, marks = []) {
+export function Marks(marks = []) {
   for (const mark of marks) {
     mark.channels = Object.fromEntries(Array.from(
       Object.entries(mark.channels).filter(([, channel]) => channel),
-      ([name, channel]) => [name, Channel(data, channel)]
+      ([name, channel]) => [name, Channel(mark.data, channel)]
     ));
   }
   return marks;
@@ -28,3 +28,7 @@ function Channel(data, {scale = null, type, value, label}) {
 function Field(value) {
   return d => d[value];
 }
+
+export const indexOf = (d, i) => i;
+export const identity = d => d;
+export const zero = () => 0;

@@ -1,23 +1,26 @@
 import {create} from "d3-selection";
+import {identity, indexOf} from "../channels.js";
 import {defined} from "../defined.js";
 
-const indexOf = (d, i) => i;
-const identity = d => d;
-
 class Bar {
-  constructor({
+  constructor(
     channels,
-    fill = "currentColor",
-    fillOpacity,
-    stroke,
-    strokeWidth,
-    strokeOpacity,
-    mixBlendMode,
-    insetTop = 0,
-    insetRight = 0,
-    insetBottom = 0,
-    insetLeft = 0
-  } = {}) {
+    data,
+    {
+      fill = "currentColor",
+      fillOpacity,
+      stroke,
+      strokeWidth,
+      strokeOpacity,
+      mixBlendMode,
+      insetTop = 0,
+      insetRight = 0,
+      insetBottom = 0,
+      insetLeft = 0
+    } = {}
+  ) {
+    this.data = data;
+    this.channels = channels;
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.stroke = stroke;
@@ -28,9 +31,8 @@ class Bar {
     this.insetRight = insetRight;
     this.insetBottom = insetBottom;
     this.insetLeft = insetLeft;
-    this.channels = channels;
   }
-  render(scales) {
+  render(I, scales) {
     const {
       fill,
       fillOpacity,
@@ -52,8 +54,7 @@ class Bar {
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
-          .data(Array.from(X, (_, i) => i)
-            .filter(i => defined(X[i]) && defined(Y[i])))
+          .data(I.filter(i => defined(X[i]) && defined(Y[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
             .attr("x", this._x(scales))
@@ -65,19 +66,16 @@ class Bar {
 }
 
 export class BarX extends Bar {
-  constructor({
-    x = identity,
-    y = indexOf,
-    ...options
-  } = {}) {
-    super({
-      ...options,
-      channels: {
+  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
+    super(
+      {
         x: {value: x, scale: "x"},
         y: {value: y, scale: "y", type: "band"},
         x0: {value: [0], scale: "x"} // ensure the x-domain includes zero
-      }
-    });
+      },
+      data,
+      options
+    );
   }
   _x({x: {scale: x}}) {
     const {insetLeft, channels: {x: {value: X}}} = this;
@@ -98,19 +96,16 @@ export class BarX extends Bar {
 }
 
 export class BarY extends Bar {
-  constructor({
-    x = indexOf,
-    y = identity,
-    ...options
-  } = {}) {
-    super({
-      ...options,
-      channels: {
+  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
+    super(
+      {
         x: {value: x, scale: "x", type: "band"},
         y: {value: y, scale: "y"},
         y0: {value: [0], scale: "y"} // ensure the y-domain includes zero
-      }
-    });
+      },
+      data,
+      options
+    );
   }
   _x({x: {scale: x}}) {
     const {insetLeft, channels: {x: {value: X}}} = this;

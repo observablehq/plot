@@ -5,17 +5,21 @@ const first = d => d[0];
 const second = d => d[1];
 
 export class DotXY {
-  constructor({
-    x = first,
-    y = second,
-    r = () => 1, // TODO Allow constant?
-    fill = "none", // TODO Allow function?
-    fillOpacity,
-    stroke = () => true, // TODO Allow constant?
-    strokeWidth = 1.5,
-    strokeOpacity,
-    mixBlendMode
-  } = {}) {
+  constructor(
+    data,
+    {
+      x = first,
+      y = second,
+      r = () => 1, // TODO Allow constant?
+      fill = "none", // TODO Allow function?
+      fillOpacity,
+      stroke = () => true, // TODO Allow constant?
+      strokeWidth = 1.5,
+      strokeOpacity,
+      mixBlendMode
+    } = {}
+  ) {
+    this.data = data;
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.strokeWidth = strokeWidth;
@@ -28,12 +32,15 @@ export class DotXY {
       stroke: {value: stroke, scale: "color"}
     };
   }
-  render({
-    x: {scale: x},
-    y: {scale: y},
-    r: {scale: r},
-    color: {scale: color} = {}
-  }) {
+  render(
+    I,
+    {
+      x: {scale: x},
+      y: {scale: y},
+      r: {scale: r},
+      color: {scale: color} = {}
+    }
+  ) {
     const {
       fill,
       fillOpacity,
@@ -56,8 +63,7 @@ export class DotXY {
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
-          .data(Array.from(X, (_, i) => i)
-            .filter(i => defined(X[i]) && defined(Y[i]) && defined(R[i])))
+          .data(I.filter(i => defined(X[i]) && defined(Y[i]) && defined(R[i])))
           .join("circle")
             .style("mix-blend-mode", mixBlendMode)
             .attr("stroke", S && (i => color(S[i])))

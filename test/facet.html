@@ -6,7 +6,7 @@
 <script>
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.plot(data, {
+  document.body.appendChild(Plot.plot({
     scales: {
       x: {
         type: "utc",

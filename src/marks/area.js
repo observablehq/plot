@@ -1,22 +1,23 @@
 import {create} from "d3-selection";
 import {area} from "d3-shape";
 import {Curve} from "../curve.js";
+import {identity, indexOf, zero} from "../channels.js";
 import {defined} from "../defined.js";
 
-const indexOf = (d, i) => i;
-const identity = d => d;
-const zero = () => 0;
-
 class Area {
-  constructor({
-    x1,
-    y1,
-    x2,
-    y2,
-    curve,
-    fill = "currentColor",
-    fillOpacity
-  } = {}) {
+  constructor(
+    data,
+    {
+      x1,
+      y1,
+      x2,
+      y2,
+      curve,
+      fill = "currentColor",
+      fillOpacity
+    } = {}
+  ) {
+    this.data = data;
     this.curve = Curve(curve);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
@@ -27,7 +28,7 @@ class Area {
       y2: y2 && {value: y2, scale: "y"}
     };
   }
-  render({x: {scale: x}, y: {scale: y}}) {
+  render(I, {x: {scale: x}, y: {scale: y}}) {
     const {
       curve,
       channels: {
@@ -37,7 +38,6 @@ class Area {
         y2: {value: Y2} = {value: Y1}
       }
     } = this;
-    const I = Array.from(X1, (_, i) => i);
     const {length} = X1;
     if (length !== Y1.length) throw new Error("X1 and Y1 are different length");
     if (length !== X2.length) throw new Error("X1 and X2 are different length");
@@ -58,13 +58,13 @@ class Area {
 }
 
 export class AreaX extends Area {
-  constructor({x = identity, x1 = zero, x2 = x, y = indexOf, ...options} = {}) {
-    super({...options, x1, x2, y1: y, y2: null});
+  constructor(data, {x = identity, x1 = zero, x2 = x, y = indexOf, ...options} = {}) {
+    super(data, {...options, x1, x2, y1: y, y2: null});
   }
 }
 
 export class AreaY extends Area {
-  constructor({x = indexOf, y = identity, y1 = zero, y2 = y, ...options} = {}) {
-    super({...options, x1: x, x2: null, y1, y2});
+  constructor(data, {x = indexOf, y = identity, y1 = zero, y2 = y, ...options} = {}) {
+    super(data, {...options, x1: x, x2: null, y1, y2});
   }
 }

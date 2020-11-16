@@ -6,41 +6,37 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.plot(data, {
-    axes: {
-      y: {
-        grid: true
-      }
-    },
+  document.body.appendChild(Plot.plot({
+    axes: {y: {grid: true}},
     marks: [
-      new Plot.RuleY({y: [0]}),
-      new Plot.AreaY({x: "Date", y: "Close"})
+      new Plot.RuleY([0]),
+      new Plot.AreaY(data, {x: "Date", y: "Close"})
     ]
   }));
 });
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.plot(data, {
+  document.body.appendChild(Plot.plot({
     axes: {y: {grid: true}},
     marks: [
-      new Plot.RuleY({y: [0]}),
-      new Plot.LineY({
+      new Plot.RuleY([0]),
+      new Plot.LineY(data, {
         x: "date",
         y: "unemployment",
         z: "division"
       })
     ]
   }));
-  document.body.appendChild(Plot.plot(data, {
+  document.body.appendChild(Plot.plot({
     marks: [
-      new Plot.LineY({y: "unemployment"})
+      new Plot.LineY(data, {y: "unemployment"})
     ]
   }));
 });
 
-document.body.appendChild(Plot.plot(d3.cumsum({length: 500}, d3.randomNormal()), {
+document.body.appendChild(Plot.plot({
   marks: [
-    new Plot.LineY()
+    new Plot.LineY(d3.cumsum({length: 500}, d3.randomNormal()))
   ]
 }));
 

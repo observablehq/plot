@@ -1,25 +1,28 @@
 import {create} from "d3-selection";
+import {zero} from "../channels.js";
 import {defined} from "../defined.js";
 
-const zero = () => 0;
-
 export class RectXY {
-  constructor({
-    x1,
-    y1,
-    x2,
-    y2,
-    fill = "currentColor",
-    fillOpacity,
-    stroke,
-    strokeWidth,
-    strokeOpacity,
-    mixBlendMode,
-    insetTop = 0,
-    insetRight = 0,
-    insetBottom = 0,
-    insetLeft = 0
-  } = {}) {
+  constructor(
+    data,
+    {
+      x1,
+      y1,
+      x2,
+      y2,
+      fill = "currentColor",
+      fillOpacity,
+      stroke,
+      strokeWidth,
+      strokeOpacity,
+      mixBlendMode,
+      insetTop = 0,
+      insetRight = 0,
+      insetBottom = 0,
+      insetLeft = 0
+    } = {}
+  ) {
+    this.data = data;
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.stroke = stroke;
@@ -37,7 +40,7 @@ export class RectXY {
       y2: {value: y2, scale: "y"}
     };
   }
-  render({x: {scale: x}, y: {scale: y}}) {
+  render(I, {x: {scale: x}, y: {scale: y}}) {
     const {
       fill,
       fillOpacity,
@@ -67,8 +70,7 @@ export class RectXY {
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
-          .data(Array.from(X1, (_, i) => i)
-            .filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i])))
+          .data(I.filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
             .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + insetLeft)
@@ -80,13 +82,13 @@ export class RectXY {
 }
 
 export class RectX extends RectXY {
-  constructor({x, y1, y2, ...options} = {}) {
-    super({...options, x1: zero, x2: x, y1, y2});
+  constructor(data, {x, y1, y2, ...options} = {}) {
+    super(data, {...options, x1: zero, x2: x, y1, y2});
   }
 }
 
 export class RectY extends RectXY {
-  constructor({x1, x2, y, ...options} = {}) {
-    super({...options, x1, x2, y1: zero, y2: y});
+  constructor(data, {x1, x2, y, ...options} = {}) {
+    super(data, {...options, x1, x2, y1: zero, y2: y});
   }
 }

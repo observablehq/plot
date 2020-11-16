@@ -6,28 +6,28 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.plot(AAPL, {
+  document.body.appendChild(Plot.plot({
     axes: {
       y: {grid: true}
     },
     marks: [
-      new Plot.RuleY({y: [0]}),
-      new Plot.AreaY({x: "Date", y: "Close", fillOpacity: 0.1}),
-      new Plot.LineY({x: "Date", y: "Close"})
+      new Plot.RuleY([0]),
+      new Plot.AreaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
+      new Plot.LineY(AAPL, {x: "Date", y: "Close"})
     ]
   }));
 });
 
 d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
-  document.body.appendChild(Plot.plot(temperatures, {
+  document.body.appendChild(Plot.plot({
     axes: {
       x: {label: null}, // TODO Default to null for temporal scales?
       y: {grid: true, label: "↑ Daily temperature range (°F)"}
     },
     marks: [
-      new Plot.AreaY({curve: "step", x: "date", y1: "low", y2: "high", fill: "#ccc"}),
-      new Plot.LineY({curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.low), stroke: "blue"}),
-      new Plot.LineY({curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.high), stroke: "red"})
+      new Plot.AreaY(temperatures, {curve: "step", x: "date", y1: "low", y2: "high", fill: "#ccc"}),
+      new Plot.LineY(temperatures, {curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.low), stroke: "blue"}),
+      new Plot.LineY(temperatures, {curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.high), stroke: "red"})
     ],
     width: 960
   }));

@@ -6,7 +6,7 @@
 <script>
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.plot(AAPL, {
+  document.body.appendChild(Plot.plot({
     axes: {
       grid: true,
       x: {
@@ -18,8 +18,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       }
     },
     marks: [
-      new Plot.RuleX({x: [0]}),
-      new Plot.DotXY({
+      new Plot.RuleX([0]),
+      new Plot.DotXY(AAPL, {
         x: d => (d.Close - d.Open) / d.Open * 100,
         y: d => Math.log10(d.Volume),
         r: d => d.Volume
@@ -29,7 +29,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
 });
 
 d3.csv("data/gistemp.csv", d3.autoType).then(gistemp => {
-  document.body.appendChild(Plot.plot(gistemp, {
+  document.body.appendChild(Plot.plot({
     scales: {
       color: {type: "diverging"}
     },
@@ -38,8 +38,8 @@ d3.csv("data/gistemp.csv", d3.autoType).then(gistemp => {
       y: {label: "↑ Temperature anomaly (°C)", tickFormat: "+f", grid: true}
     },
     marks: [
-      new Plot.RuleY({y: [0]}),
-      new Plot.DotXY({x: "Date", y: "Anomaly", stroke: "Anomaly"})
+      new Plot.RuleY([0]),
+      new Plot.DotXY(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
     ]
   }));
 });
