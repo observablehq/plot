@@ -1,5 +1,5 @@
 import {create} from "d3-selection";
-import {identity, indexOf} from "../channels.js";
+import {identity, indexOf} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 

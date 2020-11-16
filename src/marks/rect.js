@@ -1,5 +1,5 @@
 import {create} from "d3-selection";
-import {zero} from "../channels.js";
+import {zero} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 

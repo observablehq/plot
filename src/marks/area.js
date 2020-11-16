@@ -1,7 +1,7 @@
 import {create} from "d3-selection";
 import {area} from "d3-shape";
 import {Curve} from "../curve.js";
-import {identity, indexOf, zero} from "../channels.js";
+import {identity, indexOf, zero} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 

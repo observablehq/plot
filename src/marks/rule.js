@@ -1,5 +1,5 @@
 import {create} from "d3-selection";
-import {identity} from "../channels.js";
+import {identity} from "../mark.js";
 import {Mark} from "../mark.js";
 
 export class RuleX extends Mark {

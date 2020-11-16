@@ -1,6 +1,7 @@
+import {group} from "d3-array";
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {Channels, indexOf} from "./channels.js";
+import {indexOf} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
@@ -42,4 +43,11 @@ function Dimensions({y}, {x: xAxis, y: yAxis}, {
   marginLeft = yAxis && yAxis.anchor === "left" ? 40 : 20
 } = {}) {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
+}
+
+function Channels(marks) {
+  return group(
+    marks.flatMap(m => Object.values(m.channels).filter(({scale}) => scale)),
+    ({scale}) => scale
+  );
 }

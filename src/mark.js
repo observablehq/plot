@@ -1,13 +1,14 @@
-import {group} from "d3-array";
-
-export function Channels(marks) {
-  return group(
-    marks.flatMap(m => Object.values(m.channels).filter(({scale}) => scale)),
-    ({scale}) => scale
-  );
+export class Mark {
+  constructor(data, channels) {
+    this.data = data;
+    this.channels = Object.fromEntries(Array.from(
+      Object.entries(channels).filter(([, channel]) => channel),
+      ([name, channel]) => [name, Channel(data, channel)]
+    ));
+  }
 }
 
-export function Channel(data, {scale = null, type, value, label}) {
+function Channel(data, {scale = null, type, value, label}) {
   if (typeof value === "string") label = value, value = Array.from(data, Field(value));
   else if (typeof value === "function") value = Array.from(data, value);
   else if (typeof value.length !== "number") value = Array.from(value);
