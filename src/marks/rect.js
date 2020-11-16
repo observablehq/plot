@@ -64,10 +64,6 @@ export class RectXY extends Mark {
         y2: {value: Y2}
       }
     } = this;
-    const {length} = X1;
-    if (length !== Y1.length) throw new Error("inconsistent channel length");
-    if (length !== X2.length) throw new Error("inconsistent channel length");
-    if (length !== Y2.length) throw new Error("inconsistent channel length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)

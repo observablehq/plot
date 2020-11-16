@@ -67,9 +67,6 @@ class Line extends Mark {
         z: {value: Z} = {}
       }
     } = this;
-    const {length} = X;
-    if (length !== Y.length) throw new Error("inconsistent channel length");
-    if (Z && length !== Z.length) throw new Error("inconsistent channel length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)

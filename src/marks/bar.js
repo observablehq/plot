@@ -45,8 +45,6 @@ class Bar extends Mark {
         y: {value: Y}
       }
     } = this;
-    const {length} = X;
-    if (length !== Y.length) throw new Error("inconsistent channel length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)

@@ -67,11 +67,6 @@ export class DotXY extends Mark {
         stroke: {value: S} = {}
       }
     } = this;
-    const {length} = X;
-    if (length !== Y.length) throw new Error("inconsistent channel length");
-    if (R && length !== R.length) throw new Error("inconsistent channel length");
-    if (F && length !== F.length) throw new Error("inconsistent channel length");
-    if (S && length !== S.length) throw new Error("inconsistent channel length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
