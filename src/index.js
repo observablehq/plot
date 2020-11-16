@@ -1,4 +1,5 @@
 export {plot} from "./plot.js";
+export {Mark} from "./mark.js";
 export {AreaX, AreaY} from "./marks/area.js";
 export {AxisX, AxisY} from "./marks/axis.js";
 export {BarX, BarY} from "./marks/bar.js";

@@ -1,8 +1,9 @@
 import {create} from "d3-selection";
 import {zero} from "../channels.js";
 import {defined} from "../defined.js";
+import {Mark} from "../mark.js";
 
-export class RectXY {
+export class RectXY extends Mark {
   constructor(
     data,
     {
@@ -22,7 +23,15 @@ export class RectXY {
       insetLeft = 0
     } = {}
   ) {
-    this.data = data;
+    super(
+      data,
+      {
+        x1: {value: x1, scale: "x"},
+        y1: {value: y1, scale: "y"},
+        x2: {value: x2, scale: "x"},
+        y2: {value: y2, scale: "y"}
+      }
+    );
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.stroke = stroke;
@@ -33,12 +42,6 @@ export class RectXY {
     this.insetRight = insetRight;
     this.insetBottom = insetBottom;
     this.insetLeft = insetLeft;
-    this.channels = {
-      x1: {value: x1, scale: "x"},
-      y1: {value: y1, scale: "y"},
-      x2: {value: x2, scale: "x"},
-      y2: {value: y2, scale: "y"}
-    };
   }
   render(I, {x: {scale: x}, y: {scale: y}}) {
     const {

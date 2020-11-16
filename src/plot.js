@@ -1,10 +1,10 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {Channels, Marks, indexOf} from "./channels.js";
+import {Channels, indexOf} from "./channels.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
-  const marks = Marks(options.marks);
+  const {marks = []} = options;
   const channels = Channels(marks);
   const scales = Scales(channels, options.scales);
   const axes = Axes(scales, options.axes);

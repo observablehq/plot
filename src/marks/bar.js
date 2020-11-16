@@ -1,11 +1,12 @@
 import {create} from "d3-selection";
 import {identity, indexOf} from "../channels.js";
 import {defined} from "../defined.js";
+import {Mark} from "../mark.js";
 
-class Bar {
+class Bar extends Mark {
   constructor(
-    channels,
     data,
+    channels,
     {
       fill = "currentColor",
       fillOpacity,
@@ -19,8 +20,7 @@ class Bar {
       insetLeft = 0
     } = {}
   ) {
-    this.data = data;
-    this.channels = channels;
+    super(data, channels);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.stroke = stroke;
@@ -68,12 +68,12 @@ class Bar {
 export class BarX extends Bar {
   constructor(data, {x = identity, y = indexOf, ...options} = {}) {
     super(
+      data,
       {
         x: {value: x, scale: "x"},
         y: {value: y, scale: "y", type: "band"},
         x0: {value: [0], scale: "x"} // ensure the x-domain includes zero
       },
-      data,
       options
     );
   }
@@ -98,12 +98,12 @@ export class BarX extends Bar {
 export class BarY extends Bar {
   constructor(data, {x = indexOf, y = identity, ...options} = {}) {
     super(
+      data,
       {
         x: {value: x, scale: "x", type: "band"},
         y: {value: y, scale: "y"},
         y0: {value: [0], scale: "y"} // ensure the y-domain includes zero
       },
-      data,
       options
     );
   }

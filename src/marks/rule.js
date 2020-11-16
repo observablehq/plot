@@ -1,19 +1,21 @@
 import {create} from "d3-selection";
 import {identity} from "../channels.js";
+import {Mark} from "../mark.js";
 
-export class RuleX {
+export class RuleX extends Mark {
   constructor(
-    data, {
+    data,
+    {
       x = identity,
       stroke = "currentColor",
       strokeWidth,
       strokeOpacity
-    } = {}) {
-    this.data = data;
+    } = {}
+  ) {
+    super(data, {x: {value: x, scale: "x"}});
     this.stroke = stroke;
     this.strokeWidth = strokeWidth;
     this.strokeOpacity = strokeOpacity;
-    this.channels = {x: {value: x, scale: "x"}};
   }
   render(I, {x: {scale: x}}, {marginTop, height, marginBottom}) {
     const {
@@ -39,7 +41,7 @@ export class RuleX {
   }
 }
 
-export class RuleY {
+export class RuleY extends Mark {
   constructor(
     data,
     {
@@ -49,11 +51,10 @@ export class RuleY {
       strokeOpacity
     } = {}
   ) {
-    this.data = data;
+    super(data, {y: {value: y, scale: "y"}});
     this.stroke = stroke;
     this.strokeWidth = strokeWidth;
     this.strokeOpacity = strokeOpacity;
-    this.channels = {y: {value: y, scale: "y"}};
   }
   render(I, {y: {scale: y}}, {width, marginLeft, marginRight}) {
     const {

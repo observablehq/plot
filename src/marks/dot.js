@@ -1,10 +1,11 @@
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
+import {Mark} from "../mark.js";
 
 const first = d => d[0];
 const second = d => d[1];
 
-export class DotXY {
+export class DotXY extends Mark {
   constructor(
     data,
     {
@@ -19,18 +20,20 @@ export class DotXY {
       mixBlendMode
     } = {}
   ) {
-    this.data = data;
+    super(
+      data,
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
+        r: {value: r, scale: "r"},
+        stroke: {value: stroke, scale: "color"}
+      }
+    );
     this.fill = fill;
     this.fillOpacity = fillOpacity;
     this.strokeWidth = strokeWidth;
     this.strokeOpacity = strokeOpacity;
     this.mixBlendMode = mixBlendMode;
-    this.channels = {
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      r: {value: r, scale: "r"},
-      stroke: {value: stroke, scale: "color"}
-    };
   }
   render(
     I,

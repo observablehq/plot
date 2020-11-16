@@ -4,8 +4,9 @@ import {line} from "d3-shape";
 import {indexOf, identity} from "../channels.js";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
+import {Mark} from "../mark.js";
 
-class Line {
+class Line extends Mark {
   constructor(
     data,
     {
@@ -25,7 +26,14 @@ class Line {
       mixBlendMode
     } = {}
   ) {
-    this.data = data;
+    super(
+      data,
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
+        z: z && {value: z}
+      }
+    );
     this.curve = Curve(curve);
     this.fill = fill;
     this.fillOpacity = fillOpacity;
@@ -37,11 +45,6 @@ class Line {
     this.strokeDasharray = strokeDasharray;
     this.strokeOpacity = strokeOpacity;
     this.mixBlendMode = mixBlendMode;
-    this.channels = {
-      x: {value: x, scale: "x"},
-      y: {value: y, scale: "y"},
-      z: z && {value: z}
-    };
   }
   render(I, {x: {scale: x}, y: {scale: y}}) {
     const {
