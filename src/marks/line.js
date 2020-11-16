@@ -68,44 +68,25 @@ class Line extends Mark {
     const {length} = X;
     if (length !== Y.length) throw new Error("X and Y are different length");
     if (Z && length !== Z.length) throw new Error("X and Z are different length");
-
-    function style(selection) {
-      selection
-          .attr("fill", fill)
-          .attr("fill-opacity", fillOpacity)
-          .attr("stroke", stroke)
-          .attr("stroke-width", strokeWidth)
-          .attr("stroke-miterlimit", strokeMiterlimit)
-          .attr("stroke-linecap", strokeLinecap)
-          .attr("stroke-linejoin", strokeLinejoin)
-          .attr("stroke-dasharray", strokeDasharray)
-          .attr("stroke-opacity", strokeOpacity);
-    }
-
-    function path(selection) {
-      selection
-          .style("mix-blend-mode", mixBlendMode)
-          .attr("d", line()
-            .curve(curve)
-            .defined(i => defined(X[i]) && defined(Y[i]))
-            .x(i => x(X[i]))
-            .y(i => y(Y[i])));
-    }
-
-    if (Z) {
-      return create("svg:g")
-          .call(style)
-          .call(g => g.selectAll()
-            .data(group(I, i => Z[i]).values())
-            .join("path")
-            .call(path))
-        .node();
-    }
-
-    return create("svg:path")
-        .datum(I)
-        .call(style)
-        .call(path)
+    return create("svg:g")
+        .attr("fill", fill)
+        .attr("fill-opacity", fillOpacity)
+        .attr("stroke", stroke)
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke-miterlimit", strokeMiterlimit)
+        .attr("stroke-linecap", strokeLinecap)
+        .attr("stroke-linejoin", strokeLinejoin)
+        .attr("stroke-dasharray", strokeDasharray)
+        .attr("stroke-opacity", strokeOpacity)
+        .call(g => g.selectAll()
+          .data(Z ? group(I, i => Z[i]).values() : [I])
+          .join("path")
+            .style("mix-blend-mode", mixBlendMode)
+            .attr("d", line()
+              .curve(curve)
+              .defined(i => defined(X[i]) && defined(Y[i]))
+              .x(i => x(X[i]))
+              .y(i => y(Y[i]))))
       .node();
   }
 }
