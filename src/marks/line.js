@@ -12,7 +12,9 @@ class Line extends Mark {
     {
       x,
       y,
-      z, // grouping for multiple series
+      z // optional grouping for multiple series
+    } = {},
+    {
       curve,
       fill = "none",
       fillOpacity,
@@ -92,13 +94,13 @@ class Line extends Mark {
 }
 
 export class LineX extends Line {
-  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
-    super(data, {...options, x, y});
+  constructor(data, {x = identity, y = indexOf, z} = {}, style) {
+    super(data, {x, y, z}, style);
   }
 }
 
 export class LineY extends Line {
-  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
-    super(data, {...options, x, y});
+  constructor(data, {x = indexOf, y = identity, z} = {}, style) {
+    super(data, {x, y, z}, style);
   }
 }

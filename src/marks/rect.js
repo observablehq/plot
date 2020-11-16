@@ -10,7 +10,9 @@ export class RectXY extends Mark {
       x1,
       y1,
       x2,
-      y2,
+      y2
+    } = {},
+    {
       fill = "currentColor",
       fillOpacity,
       stroke,
@@ -85,13 +87,13 @@ export class RectXY extends Mark {
 }
 
 export class RectX extends RectXY {
-  constructor(data, {x, y1, y2, ...options} = {}) {
-    super(data, {...options, x1: zero, x2: x, y1, y2});
+  constructor(data, {x, y1, y2} = {}, style) {
+    super(data, {x1: zero, x2: x, y1, y2}, style);
   }
 }
 
 export class RectY extends RectXY {
-  constructor(data, {x1, x2, y, ...options} = {}) {
-    super(data, {...options, x1, x2, y1: zero, y2: y});
+  constructor(data, {x1, x2, y} = {}, style) {
+    super(data, {x1, x2, y1: zero, y2: y}, style);
   }
 }

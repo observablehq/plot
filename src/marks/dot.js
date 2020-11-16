@@ -12,9 +12,11 @@ export class DotXY extends Mark {
       x = first,
       y = second,
       r = () => 1, // TODO Allow constant?
+      stroke = () => true // TODO Allow constant?
+    } = {},
+    {
       fill = "none", // TODO Allow function?
       fillOpacity,
-      stroke = () => true, // TODO Allow constant?
       strokeWidth = 1.5,
       strokeOpacity,
       mixBlendMode

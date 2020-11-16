@@ -24,7 +24,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
     },
     marks: [
       new Plot.RuleY([0]),
-      new Plot.RectY(bins, {x1: "x0", x2: "x1", y: d => d.length, insetLeft: 1})
+      new Plot.RectY(bins, {x1: "x0", x2: "x1", y: d => d.length}, {insetLeft: 1})
     ]
   }));
 });

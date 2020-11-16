@@ -6,10 +6,12 @@ export class RuleX extends Mark {
   constructor(
     data,
     {
-      x = identity,
+      x = identity
+    } = {},
+    {
       stroke = "currentColor",
       strokeWidth,
-      strokeOpacity
+      strokeOpacity,
     } = {}
   ) {
     super(data, {x: {value: x, scale: "x"}});
@@ -45,7 +47,9 @@ export class RuleY extends Mark {
   constructor(
     data,
     {
-      y = identity,
+      y = identity
+    } = {},
+    {
       stroke = "currentColor",
       strokeWidth,
       strokeOpacity

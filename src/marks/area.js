@@ -12,7 +12,9 @@ class Area extends Mark {
       x1,
       y1,
       x2,
-      y2,
+      y2
+    } = {},
+    {
       curve,
       fill = "currentColor",
       fillOpacity
@@ -61,13 +63,13 @@ class Area extends Mark {
 }
 
 export class AreaX extends Area {
-  constructor(data, {x = identity, x1 = zero, x2 = x, y = indexOf, ...options} = {}) {
-    super(data, {...options, x1, x2, y1: y, y2: null});
+  constructor(data, {x = identity, x1 = zero, x2 = x, y = indexOf} = {}, style) {
+    super(data, {x1, x2, y1: y, y2: null}, style);
   }
 }
 
 export class AreaY extends Area {
-  constructor(data, {x = indexOf, y = identity, y1 = zero, y2 = y, ...options} = {}) {
-    super(data, {...options, x1: x, x2: null, y1, y2});
+  constructor(data, {x = indexOf, y = identity, y1 = zero, y2 = y} = {}, style) {
+    super(data, {x1: x, x2: null, y1, y2}, style);
   }
 }

@@ -12,7 +12,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
     },
     marks: [
       new Plot.RuleY([0]),
-      new Plot.AreaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
+      new Plot.AreaY(AAPL, {x: "Date", y: "Close"}, {fillOpacity: 0.1}),
       new Plot.LineY(AAPL, {x: "Date", y: "Close"})
     ]
   }));
@@ -25,9 +25,9 @@ d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
       y: {grid: true, label: "↑ Daily temperature range (°F)"}
     },
     marks: [
-      new Plot.AreaY(temperatures, {curve: "step", x: "date", y1: "low", y2: "high", fill: "#ccc"}),
-      new Plot.LineY(temperatures, {curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.low), stroke: "blue"}),
-      new Plot.LineY(temperatures, {curve: "step", x: "date", y: movingAverage(temperatures, 7, d => d.high), stroke: "red"})
+      new Plot.AreaY(temperatures, {x: "date", y1: "low", y2: "high"}, {curve: "step", fill: "#ccc"}),
+      new Plot.LineY(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.low)}, {curve: "step", stroke: "blue"}),
+      new Plot.LineY(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.high)}, {curve: "step", stroke: "red"})
     ],
     width: 960
   }));

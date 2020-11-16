@@ -66,7 +66,7 @@ class Bar extends Mark {
 }
 
 export class BarX extends Bar {
-  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
+  constructor(data, {x = identity, y = indexOf} = {}, style) {
     super(
       data,
       {
@@ -74,7 +74,7 @@ export class BarX extends Bar {
         y: {value: y, scale: "y", type: "band"},
         x0: {value: [0], scale: "x"} // ensure the x-domain includes zero
       },
-      options
+      style
     );
   }
   _x({x: {scale: x}}) {
@@ -96,7 +96,7 @@ export class BarX extends Bar {
 }
 
 export class BarY extends Bar {
-  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
+  constructor(data, {x = indexOf, y = identity} = {}, style) {
     super(
       data,
       {
@@ -104,7 +104,7 @@ export class BarY extends Bar {
         y: {value: y, scale: "y"},
         y0: {value: [0], scale: "y"} // ensure the y-domain includes zero
       },
-      options
+      style
     );
   }
   _x({x: {scale: x}}) {
