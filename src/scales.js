@@ -21,7 +21,7 @@ export function autoScaleRange(scales, dimensions) {
   }
 }
 
-function Scale(key, encodings, options = {}) {
+function Scale(key, encodings = [], options = {}) {
   switch (inferScaleType(key, encodings, options)) {
     case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
     case "linear": return ScaleLinear(key, encodings, options);

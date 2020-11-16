@@ -26,7 +26,7 @@ export function autoAxisTicks(axes, dimensions) {
 export function autoAxisLabels(encodings, scales, axes, dimensions) {
   if (axes.x) {
     if (axes.x.label === undefined) {
-      axes.x.label = inferLabel(encodings, scales, "x");
+      axes.x.label = inferLabel(encodings.get("x"), scales.x, "x");
     }
     if (axes.x.labelAnchor === undefined) {
       axes.x.labelAnchor = scales.x.type === "ordinal" ? "center"
@@ -40,7 +40,7 @@ export function autoAxisLabels(encodings, scales, axes, dimensions) {
   }
   if (axes.y) {
     if (axes.y.label === undefined) {
-      axes.y.label = inferLabel(encodings, scales, "y");
+      axes.y.label = inferLabel(encodings.get("y"), scales.y, "y");
     }
     if (axes.y.labelAnchor === undefined) {
       axes.y.labelAnchor = scales.y.type === "ordinal" ? "center"
@@ -60,14 +60,14 @@ export function autoAxisLabels(encodings, scales, axes, dimensions) {
 // encodings’ label is promoted to the corresponding axis. TODO The arrows
 // should be disabled if the label anchor is center: the arrows will point the
 // wrong way with the rotated label.
-function inferLabel(encodings, scales, key) {
+function inferLabel(encodings = [], scale, key) {
   let candidate;
-  for (const {label} of encodings.get(key)) {
+  for (const {label} of encodings) {
     if (candidate === undefined) candidate = label;
     else if (candidate !== label) return;
   }
   if (candidate !== undefined) {
-    const {invert} = scales[key];
+    const {invert} = scale;
     const prefix = key === "y" ? (invert ? "↓ " : "↑ ") : key === "x" && invert ? "← " : "";
     const suffix = key === "x" && !invert ? " →" : "";
     candidate = `${prefix}${candidate}${suffix}`;
