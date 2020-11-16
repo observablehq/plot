@@ -44,9 +44,9 @@ class Area extends Mark {
       }
     } = this;
     const {length} = X1;
-    if (length !== Y1.length) throw new Error("X1 and Y1 are different length");
-    if (length !== X2.length) throw new Error("X1 and X2 are different length");
-    if (length !== Y2.length) throw new Error("X1 and Y2 are different length");
+    if (length !== Y1.length) throw new Error("inconsistent channel length");
+    if (length !== X2.length) throw new Error("inconsistent channel length");
+    if (length !== Y2.length) throw new Error("inconsistent channel length");
     return create("svg:path")
         .attr("fill", this.fill)
         .attr("fill-opacity", this.fillOpacity)

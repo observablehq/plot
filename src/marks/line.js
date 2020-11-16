@@ -68,8 +68,8 @@ class Line extends Mark {
       }
     } = this;
     const {length} = X;
-    if (length !== Y.length) throw new Error("X and Y are different length");
-    if (Z && length !== Z.length) throw new Error("X and Z are different length");
+    if (length !== Y.length) throw new Error("inconsistent channel length");
+    if (Z && length !== Z.length) throw new Error("inconsistent channel length");
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
