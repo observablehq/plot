@@ -5,8 +5,7 @@
 <script src="../dist/@observablehq/plot.umd.js"></script>
 <script>
 
-d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  const bins = d3.bin().value(d => Math.log10(d.Volume))(AAPL);
+d3.csv("data/aapl.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
     scales: {
       x: {
@@ -24,7 +23,38 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
     },
     marks: [
       new Plot.RuleY([0]),
-      new Plot.RectY(bins, {x1: "x0", x2: "x1", y: d => d.length}, {insetLeft: 1})
+      new Plot.RectY(
+        d3.bin().value(d => Math.log10(d.Volume))(data),
+        {x1: "x0", x2: "x1", y: d => d.length},
+        {insetLeft: 1}
+      )
+    ]
+  }));
+});
+
+d3.csv("data/penguins.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    scales: {
+      x: {
+        round: true
+      }
+    },
+    axes: {
+      x: {
+        label: "Body mass (g) →"
+      },
+      y: {
+        label: "Count ↑",
+        grid: true
+      }
+    },
+    marks: [
+      new Plot.RuleY([0]),
+      new Plot.RectY(
+        d3.bin().value(d => d.body_mass_g)(data),
+        {x1: "x0", x2: "x1", y: d => d.length},
+        {insetLeft: 1}
+      )
     ]
   }));
 });
