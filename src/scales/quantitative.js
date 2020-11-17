@@ -7,6 +7,10 @@ function constant(x) {
   return () => x;
 }
 
+function flip(i) {
+  return t => i(1 - t);
+}
+
 export function ScaleQ(key, scale, encodings, {
   nice,
   domain = (key === "r" ? inferRadialDomain : inferDomain)(encodings),
@@ -24,7 +28,10 @@ export function ScaleQ(key, scale, encodings, {
     // to interpolate two colors in Lab color space. Other times the interpolate
     // function is a “fixed” interpolator independent of the range, as when a
     // color scheme such as interpolateRdBu is used.
-    if (interpolate.length === 1) interpolate = constant(interpolate);
+    if (interpolate.length === 1) {
+      if (invert) interpolate = flip(interpolate);
+      interpolate = constant(interpolate);
+    }
     scale.interpolate(interpolate);
   }
   if (range !== undefined) scale.range(range);

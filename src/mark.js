@@ -5,17 +5,6 @@ export class Mark {
       Object.entries(channels).filter(([, channel]) => channel),
       ([name, channel]) => [name, Channel(data, channel)]
     ));
-
-    // Enforce that all present channels have the same length.
-    for (const key in channels) {
-      const {value: {length}} = channels[key];
-      for (const otherKey in channels) {
-        if (key === otherKey) continue;
-        const {value: {length: otherLength}} = channels[otherKey];
-        if (otherLength !== length) throw new Error("inconsistent channel length");
-      }
-      break;
-    }
   }
 }
 

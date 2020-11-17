@@ -70,7 +70,7 @@ export class BarX extends Bar {
       {
         x: {value: x, scale: "x"},
         y: {value: y, scale: "y", type: "band"},
-        x0: {value: [0], scale: "x"} // ensure the x-domain includes zero
+        _: {value: [0], scale: "x"} // ensure the x-domain includes zero
       },
       style
     );
@@ -100,7 +100,7 @@ export class BarY extends Bar {
       {
         x: {value: x, scale: "x", type: "band"},
         y: {value: y, scale: "y"},
-        y0: {value: [0], scale: "y"} // ensure the y-domain includes zero
+        _: {value: [0], scale: "y"} // ensure the y-domain includes zero
       },
       style
     );
