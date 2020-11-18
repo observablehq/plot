@@ -7,23 +7,26 @@
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        type: "utc",
-        domain: d3.extent(data, d => d.date)
-      },
-      y: {
-        type: "band",
-        domain: data.map(d => d.division)
-      }
-    },
     marks: [
-      // new Plot.RuleY({y: [0]}),
-      // new Plot.LineY({
-      //   x: "date",
-      //   y: "unemployment",
-      //   z: "division" // TODO y-facet
-      // })
+      new Plot.FacetY(
+        data,
+        {
+          x: "date",
+          y: "division"
+        },
+        {
+          scales: {
+            y: {
+              range: [20, -40]
+            }
+          },
+          marks: [
+            new Plot.RuleY([0]),
+            new Plot.AreaY(data, {x: "date", y: "unemployment"}, {fill: "#eee"}),
+            new Plot.LineY(data, {x: "date", y: "unemployment"})
+          ]
+        }
+      )
     ],
     width: 960,
     height: 1080,

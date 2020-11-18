@@ -28,13 +28,13 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const index = mark.data === undefined ? undefined : Array.from(mark.data, indexOf);
     const node = mark.render(index, scales, dimensions);
-    if (node !== null) svg.append(() => node);
+    if (node != null) svg.append(() => node);
   }
 
   return svg.node();
 }
 
-function Dimensions({y}, {x: xAxis, y: yAxis}, {
+export function Dimensions({y}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y ? 396 : 60,
   marginTop = !yAxis ? 0 : xAxis && xAxis.anchor === "top" ? 30 : 20,
@@ -45,7 +45,7 @@ function Dimensions({y}, {x: xAxis, y: yAxis}, {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
 }
 
-function Channels(marks) {
+export function Channels(marks) {
   return group(
     marks.flatMap(m => Object.values(m.channels).filter(({scale}) => scale)),
     ({scale}) => scale

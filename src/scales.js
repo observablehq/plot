@@ -17,7 +17,9 @@ export function autoScaleRange(scales, dimensions) {
   }
   if (scales.y && scales.y.range === undefined) {
     const {height, marginTop, marginBottom} = dimensions;
-    scales.y.scale.range([height - marginBottom, marginTop]);
+    const range = [height - marginBottom, marginTop];
+    if (scales.y.type === "ordinal") range.reverse();
+    scales.y.scale.range(range);
   }
 }
 
