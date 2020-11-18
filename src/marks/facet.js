@@ -22,23 +22,24 @@ export class FacetY extends Mark {
     );
     this.options = options;
   }
-  render(I, {y: {scale: y}, ...scales}, dimensions) {
+  render(I, {y: {scale: y, domain}, ...scales}, dimensions) {
     const {data, options, channels: {y: {value: Y}}} = this;
     const {marks: submarks = []} = options;
     const subchannels = Channels(submarks);
     const subscales = {...Scales(subchannels, options.scales), ...scales};
     const subdimensions = {...dimensions, marginTop: 0, marginBottom: 0, height: y.bandwidth()};
+    const G = group(I, i => Y[i]);
 
     autoScaleRange(subscales, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(group(I, i => Y[i]))
+          .data(domain)
           .join("g")
-            .attr("transform", ([key]) => `translate(0,${y(key)})`)
-            .each(function([, I]) {
+            .attr("transform", (key) => `translate(0,${y(key)})`)
+            .each(function(key) {
               for (const mark of submarks) {
-                const index = mark.data === data ? I
+                const index = mark.data === data ? G.get(key)
                   : mark.data === undefined ? undefined
                   : Array.from(mark.data, indexOf);
                 const node = mark.render(index, subscales, subdimensions);
