@@ -1,10 +1,10 @@
 export {plot} from "./plot.js";
 export {Mark} from "./mark.js";
-export {AreaX, AreaY} from "./marks/area.js";
+export {Area, areaX, areaY} from "./marks/area.js";
 export {AxisX, AxisY} from "./marks/axis.js";
-export {BarX, BarY} from "./marks/bar.js";
-export {DotXY} from "./marks/dot.js";
-export {FacetY} from "./marks/facet.js";
-export {LineX, LineY} from "./marks/line.js";
-export {RectX, RectY, RectXY} from "./marks/rect.js";
-export {RuleX, RuleY} from "./marks/rule.js";
+export {BarX, BarY, barX, barY} from "./marks/bar.js";
+export {Dot, dot} from "./marks/dot.js";
+export {FacetY, facetY} from "./marks/facet.js";
+export {Line, lineX, lineY} from "./marks/line.js";
+export {Rect, rectX, rectY, rect} from "./marks/rect.js";
+export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";

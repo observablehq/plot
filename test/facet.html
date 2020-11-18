@@ -18,13 +18,13 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.FacetY(
+      Plot.facetY(
         data,
         {y: "division"},
         [
-          new Plot.RuleY([0]),
-          new Plot.AreaY(data, {x: "date", y: "unemployment"}, {fill: "#eee"}),
-          new Plot.LineY(data, {x: "date", y: "unemployment"})
+          Plot.ruleY([0]),
+          Plot.areaY(data, {x: "date", y: "unemployment"}, {fill: "#eee"}),
+          Plot.lineY(data, {x: "date", y: "unemployment"})
         ]
       )
     ],
@@ -56,12 +56,12 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
     },
     marginLeft: 70,
     marks: [
-      new Plot.FacetY(
+      Plot.facetY(
         bins,
         {y: "sex"},
         [
-          new Plot.RuleY([0]),
-          new Plot.RectY(
+          Plot.ruleY([0]),
+          Plot.rectY(
             bins,
             {x1: "x0", x2: "x1", y: d => d.length},
             {insetLeft: 1}

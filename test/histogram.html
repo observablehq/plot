@@ -22,8 +22,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.RectY(
+      Plot.ruleY([0]),
+      Plot.rectY(
         d3.bin().value(d => Math.log10(d.Volume))(data),
         {x1: "x0", x2: "x1", y: d => d.length},
         {insetLeft: 1}
@@ -49,8 +49,8 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.RectY(
+      Plot.ruleY([0]),
+      Plot.rectY(
         d3.bin().value(d => d.body_mass_g)(data),
         {x1: "x0", x2: "x1", y: d => d.length},
         {insetLeft: 1}

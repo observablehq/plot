@@ -5,7 +5,7 @@ import {Mark} from "../mark.js";
 const first = d => d[0];
 const second = d => d[1];
 
-export class DotXY extends Mark {
+export class Dot extends Mark {
   constructor(
     data,
     {
@@ -84,4 +84,8 @@ export class DotXY extends Mark {
             .attr("r", R ? i => r(R[i]) : this.r))
       .node();
   }
+}
+
+export function dot(data, channels, style) {
+  return new Dot(data, channels, style);
 }

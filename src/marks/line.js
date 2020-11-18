@@ -6,7 +6,7 @@ import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 
-class Line extends Mark {
+export class Line extends Mark {
   constructor(
     data,
     {
@@ -90,14 +90,10 @@ class Line extends Mark {
   }
 }
 
-export class LineX extends Line {
-  constructor(data, {x = identity, y = indexOf, z} = {}, style) {
-    super(data, {x, y, z}, style);
-  }
+export function lineX(data, {x = identity, y = indexOf, z} = {}, style) {
+  return new Line(data, {x, y, z}, style);
 }
 
-export class LineY extends Line {
-  constructor(data, {x = indexOf, y = identity, z} = {}, style) {
-    super(data, {x, y, z}, style);
-  }
+export function lineY(data, {x = indexOf, y = identity, z} = {}, style) {
+  return new Line(data, {x, y, z}, style);
 }

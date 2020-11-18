@@ -5,7 +5,7 @@ import {identity, indexOf, zero} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 
-class Area extends Mark {
+export class Area extends Mark {
   constructor(
     data,
     {
@@ -58,14 +58,10 @@ class Area extends Mark {
   }
 }
 
-export class AreaX extends Area {
-  constructor(data, {x = identity, x1 = zero, x2 = x, y = indexOf} = {}, style) {
-    super(data, {x1, x2, y1: y}, style);
-  }
+export function areaX(data, {x = identity, x1 = zero, x2 = x, y = indexOf} = {}, style) {
+  return new Area(data, {x1, x2, y1: y}, style);
 }
 
-export class AreaY extends Area {
-  constructor(data, {x = indexOf, y = identity, y1 = zero, y2 = y} = {}, style) {
-    super(data, {x1: x, y1, y2}, style);
-  }
+export function areaY(data, {x = indexOf, y = identity, y1 = zero, y2 = y} = {}, style) {
+  return new Area(data, {x1: x, y1, y2}, style);
 }

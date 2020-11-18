@@ -18,8 +18,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.RuleX([0]),
-      new Plot.DotXY(data, {
+      Plot.ruleX([0]),
+      Plot.dot(data, {
         x: d => (d.Close - d.Open) / d.Open * 100,
         y: d => Math.log10(d.Volume),
         r: d => d.Volume
@@ -38,8 +38,8 @@ d3.csv("data/gistemp.csv", d3.autoType).then(data => {
       y: {label: "↑ Temperature anomaly (°C)", tickFormat: "+f", grid: true}
     },
     marks: [
-      new Plot.RuleY([0]),
-      new Plot.DotXY(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
+      Plot.ruleY([0]),
+      Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
     ]
   }));
 });
@@ -66,7 +66,7 @@ d3.csv("data/metros.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.DotXY(data, {x: "POP_1980", y: "R90_10_1980"})
+      Plot.dot(data, {x: "POP_1980", y: "R90_10_1980"})
     ]
   }));
 });

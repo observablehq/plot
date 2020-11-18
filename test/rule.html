@@ -20,7 +20,7 @@ d3.csv("data/seattle-weather.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      new Plot.RuleX(
+      Plot.ruleX(
         data,
         {
           x: "date",

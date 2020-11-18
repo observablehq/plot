@@ -129,3 +129,11 @@ export class RuleY extends Mark {
       .node();
   }
 }
+
+export function ruleX(data, channels, style) {
+  return new RuleX(data, channels, style);
+}
+
+export function ruleY(data, channels, style) {
+  return new RuleY(data, channels, style);
+}

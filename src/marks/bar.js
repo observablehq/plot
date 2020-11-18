@@ -122,3 +122,11 @@ export class BarY extends Bar {
     return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
   }
 }
+
+export function barX(data, channels, style) {
+  return new BarX(data, channels, style);
+}
+
+export function barY(data, channels, style) {
+  return new BarY(data, channels, style);
+}

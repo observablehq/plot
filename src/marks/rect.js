@@ -3,7 +3,7 @@ import {zero} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 
-export class RectXY extends Mark {
+export class Rect extends Mark {
   constructor(
     data,
     {
@@ -82,14 +82,14 @@ export class RectXY extends Mark {
   }
 }
 
-export class RectX extends RectXY {
-  constructor(data, {x, y1, y2} = {}, style) {
-    super(data, {x1: zero, x2: x, y1, y2}, style);
-  }
+export function rectX(data, {x, y1, y2} = {}, style) {
+  return new Rect(data, {x1: zero, x2: x, y1, y2}, style);
 }
 
-export class RectY extends RectXY {
-  constructor(data, {x1, x2, y} = {}, style) {
-    super(data, {x1, x2, y1: zero, y2: y}, style);
-  }
+export function rectY(data, {x1, x2, y} = {}, style) {
+  return new Rect(data, {x1, x2, y1: zero, y2: y}, style);
+}
+
+export function rect(data, channels, style) {
+  return new Rect(data, channels, style);
 }

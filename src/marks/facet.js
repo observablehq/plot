@@ -40,6 +40,10 @@ export class FacetY extends Mark {
   }
 }
 
+export function facetY(data, channels, marks) {
+  return new FacetY(data, channels, marks);
+}
+
 function facetYChannel({scale, ...channel}) {
   return {...channel, name: undefined, scale: scale === "y" ? "fy" : scale};
 }
