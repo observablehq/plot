@@ -1,36 +1,26 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {Mark, indexOf} from "../mark.js";
-import {ScaleChannels} from "../plot.js";
-import {Scales, autoScaleRange} from "../scales.js";
+import {autoScaleRange} from "../scales.js";
 
 export class FacetY extends Mark {
-  constructor(
-    data,
-    {
-      x,
-      y
-    } = {},
-    options = {}
-  ) {
+  constructor(data, {y} = {}, marks = []) {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", type: "band"}
+        {name: "y", value: y, scale: "y", type: "band"},
+        ...marks.flatMap(m => m.scaleChannels.map(facetYChannel))
       ]
     );
-    this.options = options;
+    this.marks = marks;
   }
-  render(I, {y: {scale: y, domain}, ...scales}, dimensions) {
-    const {data, options, channels: {y: {value: Y}}} = this;
-    const {marks: submarks = []} = options;
-    const subchannels = ScaleChannels(submarks);
-    const subscales = {...Scales(subchannels, options.scales), ...scales};
+  render(I, {y: {scale: y, domain}, fy, ...scales}, dimensions) {
+    const {data, marks, channels: {y: {value: Y}}} = this;
+    const subscales = {y: fy, ...scales};
     const subdimensions = {...dimensions, marginTop: 0, marginBottom: 0, height: y.bandwidth()};
     const G = group(I, i => Y[i]);
 
-    autoScaleRange(subscales, subdimensions);
+    autoScaleRange({y: fy}, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()
@@ -38,7 +28,7 @@ export class FacetY extends Mark {
           .join("g")
             .attr("transform", (key) => `translate(0,${y(key)})`)
             .each(function(key) {
-              for (const mark of submarks) {
+              for (const mark of marks) {
                 const index = mark.data === data ? G.get(key)
                   : mark.data === undefined ? undefined
                   : Array.from(mark.data, indexOf);
@@ -48,4 +38,8 @@ export class FacetY extends Mark {
             }))
       .node();
   }
+}
+
+function facetYChannel({scale, ...channel}) {
+  return {...channel, name: undefined, scale: scale === "y" ? "fy" : scale};
 }

@@ -1,6 +1,7 @@
 import {reverse, sort} from "d3-array";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
 import {schemeTableau10} from "d3-scale-chromatic";
+import {defined} from "../defined.js";
 
 export function ScaleO(scale, channels, {
   align = 0.5,
@@ -47,5 +48,9 @@ function inferDomain(channels) {
     if (value === undefined) continue;
     for (const v of value) domain.add(v);
   }
-  return sort(domain);
+  return sort(domain, ascending);
+}
+
+function ascending(a, b) {
+  return defined(a) - defined(b) || a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
 }
