@@ -16,7 +16,7 @@ export class FacetY extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x"},
+        x: x && {value: x, scale: "x"},
         y: {value: y, scale: "y", type: "band"}
       }
     );

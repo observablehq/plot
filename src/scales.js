@@ -5,7 +5,11 @@ import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
 export function Scales(encodings, options = {}) {
   const keys = new Set([...Object.keys(options), ...encodings.keys()]);
   const scales = {};
-  for (const key of keys) scales[key] = Scale(key, encodings.get(key), options[key]);
+  for (const key of keys) {
+    if (encodings.has(key)) {
+      scales[key] = Scale(key, encodings.get(key), options[key]);
+    }
+  }
   return scales
 }
 
@@ -23,7 +27,7 @@ export function autoScaleRange(scales, dimensions) {
   }
 }
 
-function Scale(key, encodings = [], options = {}) {
+function Scale(key, encodings, options = {}) {
   switch (inferScaleType(key, encodings, options)) {
     case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
     case "linear": return ScaleLinear(key, encodings, options);
