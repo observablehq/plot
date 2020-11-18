@@ -6,7 +6,7 @@ import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
   const {marks = []} = options;
-  const channels = Channels(marks);
+  const channels = ScaleChannels(marks);
   const scales = Scales(channels, options.scales);
   const axes = Axes(scales, options.axes);
   const dimensions = Dimensions(scales, axes, options);
@@ -45,9 +45,6 @@ export function Dimensions({y}, {x: xAxis, y: yAxis}, {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
 }
 
-export function Channels(marks) {
-  return group(
-    marks.flatMap(m => Object.values(m.channels).filter(({scale}) => scale)),
-    ({scale}) => scale
-  );
+export function ScaleChannels(marks) {
+  return group(marks.flatMap(m => m.scaleChannels), ({scale}) => scale);
 }

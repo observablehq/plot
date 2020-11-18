@@ -2,12 +2,12 @@ import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./sc
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
-export function Scales(encodings, options = {}) {
-  const keys = new Set([...Object.keys(options), ...encodings.keys()]);
+export function Scales(channels, options = {}) {
+  const keys = new Set([...Object.keys(options), ...channels.keys()]);
   const scales = {};
   for (const key of keys) {
-    if (encodings.has(key)) {
-      scales[key] = Scale(key, encodings.get(key), options[key]);
+    if (channels.has(key)) {
+      scales[key] = Scale(key, channels.get(key), options[key]);
     }
   }
   return scales
@@ -27,25 +27,26 @@ export function autoScaleRange(scales, dimensions) {
   }
 }
 
-function Scale(key, encodings, options = {}) {
-  switch (inferScaleType(key, encodings, options)) {
-    case "diverging": return ScaleDiverging(key, encodings, options); // TODO color-specific?
-    case "linear": return ScaleLinear(key, encodings, options);
-    case "sqrt": return ScalePow(key, encodings, {...options, exponent: 0.5});
-    case "pow": return ScalePow(key, encodings, options);
-    case "log": return ScaleLog(key, encodings, options);
-    case "symlog": return ScaleSymlog(key, encodings, options);
-    case "utc": return ScaleUtc(key, encodings, options);
-    case "time": return ScaleTime(key, encodings, options);
-    case "point": return ScalePoint(key, encodings, options);
-    case "band": return ScaleBand(key, encodings, options);
+function Scale(key, channels, options = {}) {
+  switch (inferScaleType(key, channels, options)) {
+    case "diverging": return ScaleDiverging(key, channels, options); // TODO color-specific?
+    case "linear": return ScaleLinear(key, channels, options);
+    case "sqrt": return ScalePow(key, channels, {...options, exponent: 0.5});
+    case "pow": return ScalePow(key, channels, options);
+    case "log": return ScaleLog(key, channels, options);
+    case "symlog": return ScaleSymlog(key, channels, options);
+    case "utc": return ScaleUtc(key, channels, options);
+    case "time": return ScaleTime(key, channels, options);
+    case "point": return ScalePoint(key, channels, options);
+    case "band": return ScaleBand(key, channels, options);
+    case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
 }
 
-function inferScaleType(key, encodings, {type, domain}) {
+function inferScaleType(key, channels, {type, domain}) {
   if (type !== undefined) {
-    for (const {type: t} of encodings) {
+    for (const {type: t} of channels) {
       if (t !== undefined && type !== t) {
         throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
       }
@@ -53,7 +54,8 @@ function inferScaleType(key, encodings, {type, domain}) {
     return type;
   }
   if (key === "r") return "sqrt";
-  for (const {type} of encodings) {
+  if (channels.every(({value}) => value === undefined)) return;
+  for (const {type} of channels) {
     if (type !== undefined) return type;
   }
   if (domain !== undefined) {
@@ -61,9 +63,11 @@ function inferScaleType(key, encodings, {type, domain}) {
     type = inferScaleTypeFromValues(domain);
     if (type !== undefined) return type;
   }
-  for (const {value} of encodings) {
-    type = inferScaleTypeFromValues(value);
-    if (type !== undefined) return type;
+  for (const {value} of channels) {
+    if (value !== undefined) {
+      type = inferScaleTypeFromValues(value);
+      if (type !== undefined) return type;
+    }
   }
   return "linear";
 }

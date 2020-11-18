@@ -19,12 +19,12 @@ export class RuleX extends Mark {
   ) {
     super(
       data,
-      {
-        x: {value: x, scale: "x"},
-        y1: y1 && {value: y1, scale: "y"},
-        y2: y2 && {value: y2, scale: "y"},
-        stroke: stroke && {value: stroke, scale: "color"}
-      }
+      [
+        {name: "x", value: x, scale: "x"},
+        {name: "y1", value: y1, scale: "y", optional: true},
+        {name: "y2", value: y2, scale: "y", optional: true},
+        {name: "stroke", value: stroke, scale: "color", optional: true}
+      ]
     );
     this.stroke = fixedStroke;
     this.strokeWidth = strokeWidth;
@@ -83,12 +83,12 @@ export class RuleY extends Mark {
   ) {
     super(
       data,
-      {
-        x1: x1 && {value: x1, scale: "x"},
-        x2: x2 && {value: x2, scale: "x"},
-        y: {value: y, scale: "y"},
-        stroke: stroke && {value: stroke, scale: "color"}
-      }
+      [
+        {name: "y", value: y, scale: "y"},
+        {name: "x1", value: x1, scale: "x", optional: true},
+        {name: "x2", value: x2, scale: "x", optional: true},
+        {name: "stroke", value: stroke, scale: "color", optional: true}
+      ]
     );
     this.stroke = fixedStroke;
     this.strokeWidth = strokeWidth;
@@ -97,8 +97,8 @@ export class RuleY extends Mark {
   render(
     I,
     {
-      x: {scale: x} = {},
       y: {scale: y},
+      x: {scale: x} = {},
       color: {scale: color} = {}
     },
     {width, marginLeft, marginRight}
@@ -108,9 +108,9 @@ export class RuleY extends Mark {
       strokeWidth,
       strokeOpacity,
       channels: {
+        y: {value: Y},
         x1: {value: X1} = {},
         x2: {value: X2} = {},
-        y: {value: Y},
         stroke: {value: S} = {}
       }
     } = this;

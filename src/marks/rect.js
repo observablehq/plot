@@ -27,12 +27,12 @@ export class RectXY extends Mark {
   ) {
     super(
       data,
-      {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
-        x2: {value: x2, scale: "x"},
-        y2: {value: y2, scale: "y"}
-      }
+      [
+        {name: "x1", value: x1, scale: "x"},
+        {name: "y1", value: y1, scale: "y"},
+        {name: "x2", value: x2, scale: "x"},
+        {name: "y2", value: y2, scale: "y"}
+      ]
     );
     this.fill = fill;
     this.fillOpacity = fillOpacity;

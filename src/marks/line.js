@@ -30,11 +30,11 @@ class Line extends Mark {
   ) {
     super(
       data,
-      {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y"},
-        z: z && {value: z}
-      }
+      [
+        {name: "x", value: x, scale: "x"},
+        {name: "y", value: y, scale: "y"},
+        {name: "z", value: z, optional: true}
+      ]
     );
     this.curve = Curve(curve);
     this.fill = fill;

@@ -11,9 +11,9 @@ function flip(i) {
   return t => i(1 - t);
 }
 
-export function ScaleQ(key, scale, encodings, {
+export function ScaleQ(key, scale, channels, {
   nice,
-  domain = (key === "r" ? inferRadialDomain : inferDomain)(encodings),
+  domain = (key === "r" ? inferRadialDomain : inferDomain)(channels),
   round,
   interpolate = round ? interpolateRound : key === "color" ? interpolateTurbo : undefined,
   range = key === "r" ? [0, 3] : undefined, // see autoScaleRange
@@ -38,25 +38,25 @@ export function ScaleQ(key, scale, encodings, {
   return {type: "quantitative", invert, domain, range, scale};
 }
 
-export function ScaleLinear(key, encodings, options) {
-  return ScaleQ(key, scaleLinear(), encodings, options);
+export function ScaleLinear(key, channels, options) {
+  return ScaleQ(key, scaleLinear(), channels, options);
 }
 
-export function ScalePow(key, encodings, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), encodings, options);
+export function ScalePow(key, channels, {exponent = 1, ...options}) {
+  return ScaleQ(key, scalePow().exponent(exponent), channels, options);
 }
 
-export function ScaleLog(key, encodings, {base = 10, ...options}) {
-  return ScaleQ(key, scaleLog().base(base), encodings, options);
+export function ScaleLog(key, channels, {base = 10, ...options}) {
+  return ScaleQ(key, scaleLog().base(base), channels, options);
 }
 
-export function ScaleSymlog(key, encodings, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), encodings, options);
+export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
+  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
 }
 
-export function ScaleDiverging(key, encodings, {
+export function ScaleDiverging(key, channels, {
   nice,
-  domain = inferDomain(encodings),
+  domain = inferDomain(channels),
   pivot = 0,
   interpolate = key === "color" ? interpolateRdBu : undefined,
   invert
@@ -68,13 +68,16 @@ export function ScaleDiverging(key, encodings, {
   return {type: "quantitative", invert, domain, scale};
 }
 
-function inferDomain(encodings) {
+function inferDomain(channels) {
   return [
-    min(encodings, ({value}) => min(value)),
-    max(encodings, ({value}) => max(value))
+    min(channels, ({value}) => value === undefined ? value : min(value)),
+    max(channels, ({value}) => value === undefined ? value : max(value))
   ];
 }
 
-function inferRadialDomain(encodings) {
-  return [0, quantile(encodings, 0.5, ({value}) => quantile(value, 0.25))];
+function inferRadialDomain(channels) {
+  return [
+    0,
+    quantile(channels, 0.5, ({value}) => value === undefined ? value : quantile(value, 0.25))
+  ];
 }

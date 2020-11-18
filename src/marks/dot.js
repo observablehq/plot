@@ -27,13 +27,13 @@ export class DotXY extends Mark {
   ) {
     super(
       data,
-      {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y"},
-        r: r && {value: r, scale: "r"},
-        fill: fill && {value: fill, scale: "color"},
-        stroke: stroke && {value: stroke, scale: "color"}
-      }
+      [
+        {name: "x", value: x, scale: "x"},
+        {name: "y", value: y, scale: "y"},
+        {name: "r", value: r, scale: "r", optional: true},
+        {name: "fill", value: fill, scale: "color", optional: true},
+        {name: "stroke", value: stroke, scale: "color", optional: true}
+      ]
     );
     this.r = fixedR;
     this.fill = fixedFill;

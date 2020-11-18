@@ -2,9 +2,9 @@ import {reverse, sort} from "d3-array";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
 import {schemeTableau10} from "d3-scale-chromatic";
 
-export function ScaleO(scale, encodings, {
+export function ScaleO(scale, channels, {
   align = 0.5,
-  domain = inferDomain(encodings),
+  domain = inferDomain(channels),
   round = true,
   range,
   invert
@@ -16,17 +16,17 @@ export function ScaleO(scale, encodings, {
   return {type: "ordinal", invert, domain, range, scale};
 }
 
-export function ScalePoint(key, encodings, {padding = 0.5, ...options}) {
+export function ScalePoint(key, channels, {padding = 0.5, ...options}) {
   return ScaleO(
     key === "color"
       ? scaleOrdinal(schemeTableau10)
       : scalePoint().padding(padding),
-    encodings,
+    channels,
     options
   );
 }
 
-export function ScaleBand(key, encodings, {
+export function ScaleBand(key, channels, {
   padding = 0.1,
   paddingInner = padding,
   paddingOuter = padding,
@@ -36,17 +36,16 @@ export function ScaleBand(key, encodings, {
     key === "color"
       ? scaleOrdinal(schemeTableau10)
       : scaleBand().paddingInner(paddingInner).paddingOuter(paddingOuter),
-    encodings,
+    channels,
     options
   );
 }
 
-function inferDomain(encodings) {
+function inferDomain(channels) {
   const domain = new Set();
-  for (const {value} of encodings) {
-    for (const v of value) {
-      domain.add(v);
-    }
+  for (const {value} of channels) {
+    if (value === undefined) continue;
+    for (const v of value) domain.add(v);
   }
   return sort(domain);
 }

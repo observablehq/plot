@@ -1,7 +1,7 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {Mark, indexOf} from "../mark.js";
-import {Channels} from "../plot.js";
+import {ScaleChannels} from "../plot.js";
 import {Scales, autoScaleRange} from "../scales.js";
 
 export class FacetY extends Mark {
@@ -15,17 +15,17 @@ export class FacetY extends Mark {
   ) {
     super(
       data,
-      {
-        x: x && {value: x, scale: "x"},
-        y: {value: y, scale: "y", type: "band"}
-      }
+      [
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", type: "band"}
+      ]
     );
     this.options = options;
   }
   render(I, {y: {scale: y, domain}, ...scales}, dimensions) {
     const {data, options, channels: {y: {value: Y}}} = this;
     const {marks: submarks = []} = options;
-    const subchannels = Channels(submarks);
+    const subchannels = ScaleChannels(submarks);
     const subscales = {...Scales(subchannels, options.scales), ...scales};
     const subdimensions = {...dimensions, marginTop: 0, marginBottom: 0, height: y.bandwidth()};
     const G = group(I, i => Y[i]);

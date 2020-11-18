@@ -22,12 +22,12 @@ class Area extends Mark {
   ) {
     super(
       data,
-      {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
-        x2: x2 && {value: x2, scale: "x"},
-        y2: y2 && {value: y2, scale: "y"}
-      }
+      [
+        {name: "x1", value: x1, scale: "x"},
+        {name: "y1", value: y1, scale: "y"},
+        {name: "x2", value: x2, scale: "x", optional: true},
+        {name: "y2", value: y2, scale: "y", optional: true}
+      ]
     );
     this.curve = Curve(curve);
     this.fill = fill;
@@ -60,12 +60,12 @@ class Area extends Mark {
 
 export class AreaX extends Area {
   constructor(data, {x = identity, x1 = zero, x2 = x, y = indexOf} = {}, style) {
-    super(data, {x1, x2, y1: y, y2: null}, style);
+    super(data, {x1, x2, y1: y}, style);
   }
 }
 
 export class AreaY extends Area {
   constructor(data, {x = indexOf, y = identity, y1 = zero, y2 = y} = {}, style) {
-    super(data, {x1: x, x2: null, y1, y2}, style);
+    super(data, {x1: x, y1, y2}, style);
   }
 }
