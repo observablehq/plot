@@ -59,46 +59,4 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
   }));
 });
 
-d3.csv("data/penguins.csv", d3.autoType).then(data => {
-  const bins = d3.bin().value(d => d.body_mass_g)(data)
-    .flatMap(bin => d3.groups(bin, d => d.sex).map(([sex, subbin]) => {
-      subbin.x0 = bin.x0;
-      subbin.x1 = bin.x1;
-      subbin.sex = sex;
-      return subbin;
-    }));
-  document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        round: true
-      }
-    },
-    axes: {
-      x: {
-        label: "Body mass (g) →"
-      }
-    },
-    marginLeft: 70,
-    marks: [
-      new Plot.FacetY(
-        bins,
-        {
-          x: bins.flatMap(d => [d.x0, d.x1]), // blech
-          y: "sex"
-        },
-        {
-          marks: [
-            new Plot.RuleY([0]),
-            new Plot.RectY(
-              bins,
-              {x1: "x0", x2: "x1", y: d => d.length},
-              {insetLeft: 1}
-            )
-          ]
-        }
-      )
-    ]
-  }));
-});
-
 </script>
