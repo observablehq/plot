@@ -1,3 +1,4 @@
+import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
@@ -11,6 +12,7 @@ export class Dot extends Mark {
     {
       x = first,
       y = second,
+      z,
       r,
       fill,
       stroke
@@ -30,6 +32,7 @@ export class Dot extends Mark {
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
+        {name: "z", value: z, optional: true},
         {name: "r", value: r, scale: "r", optional: true},
         {name: "fill", value: fill, scale: "color", optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
@@ -62,11 +65,14 @@ export class Dot extends Mark {
       channels: {
         x: {value: X},
         y: {value: Y},
+        z: {value: Z} = {},
         r: {value: R} = {},
         fill: {value: F} = {},
         stroke: {value: S} = {}
       }
     } = this;
+    const index = I.filter(i => defined(X[i]) && defined(Y[i]));
+    if (Z) index.sort(indexAscending(Z));
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
@@ -74,7 +80,7 @@ export class Dot extends Mark {
         .attr("stroke-width", strokeWidth)
         .attr("stroke-opacity", strokeOpacity)
         .call(g => g.selectAll()
-          .data(I.filter(i => defined(X[i]) && defined(Y[i])))
+          .data(index)
           .join("circle")
             .style("mix-blend-mode", mixBlendMode)
             .attr("fill", F && (i => color(F[i])))
@@ -88,4 +94,8 @@ export class Dot extends Mark {
 
 export function dot(data, channels, style) {
   return new Dot(data, channels, style);
+}
+
+function indexAscending(Z) {
+  return (i, j) => ascending(Z[i], Z[j]);
 }

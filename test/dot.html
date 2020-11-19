@@ -19,11 +19,14 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.dot(data, {
-        x: d => (d.Close - d.Open) / d.Open * 100,
-        y: d => Math.log10(d.Volume),
-        r: d => d.Volume
-      })
+      Plot.dot(
+        data,
+        {
+          x: d => (d.Close - d.Open) / d.Open * 100,
+          y: d => Math.log10(d.Volume),
+          r: d => d.Volume
+        }
+      )
     ]
   }));
 });
