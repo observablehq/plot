@@ -6,9 +6,7 @@ export function Scales(channels, options = {}) {
   const keys = new Set([...Object.keys(options), ...channels.keys()]);
   const scales = {};
   for (const key of keys) {
-    if (channels.has(key)) {
-      scales[key] = Scale(key, channels.get(key), options[key]);
-    }
+    scales[key] = Scale(key, channels.get(key), options[key]);
   }
   return scales
 }
@@ -27,7 +25,7 @@ export function autoScaleRange(scales, dimensions) {
   }
 }
 
-function Scale(key, channels, options = {}) {
+function Scale(key, channels = [], options = {}) {
   switch (inferScaleType(key, channels, options)) {
     case "diverging": return ScaleDiverging(key, channels, options); // TODO color-specific?
     case "linear": return ScaleLinear(key, channels, options);
@@ -54,7 +52,6 @@ function inferScaleType(key, channels, {type, domain}) {
     return type;
   }
   if (key === "r") return "sqrt";
-  if (channels.every(({value}) => value === undefined)) return;
   for (const {type} of channels) {
     if (type !== undefined) return type;
   }
@@ -63,6 +60,7 @@ function inferScaleType(key, channels, {type, domain}) {
     type = inferScaleTypeFromValues(domain);
     if (type !== undefined) return type;
   }
+  if (channels.every(({value}) => value === undefined)) return;
   for (const {value} of channels) {
     if (value !== undefined) {
       type = inferScaleTypeFromValues(value);
