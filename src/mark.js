@@ -22,16 +22,13 @@ export class Mark {
 }
 
 function Channel(data, {scale, type, value, label}) {
-  if (typeof value === "string") label = value, value = Array.from(data, Field(value));
+  if (typeof value === "string") label = value, value = Array.from(data, field(value));
   else if (typeof value === "function") value = Array.from(data, value);
   else if (typeof value.length !== "number") value = Array.from(value);
   return {scale, type, value, label};
 }
 
-function Field(value) {
-  return d => d[value];
-}
-
+export const field = value => d => d[value];
 export const indexOf = (d, i) => i;
 export const identity = d => d;
 export const zero = () => 0;
