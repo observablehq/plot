@@ -72,7 +72,7 @@ export class Dot extends Mark {
       }
     } = this;
     const index = I.filter(i => defined(X[i]) && defined(Y[i]));
-    if (Z) index.sort(indexAscending(Z));
+    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .attr("fill", fill)
         .attr("fill-opacity", fillOpacity)
@@ -94,8 +94,4 @@ export class Dot extends Mark {
 
 export function dot(data, channels, style) {
   return new Dot(data, channels, style);
-}
-
-function indexAscending(Z) {
-  return (i, j) => ascending(Z[i], Z[j]);
 }
