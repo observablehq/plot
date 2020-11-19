@@ -28,10 +28,10 @@ export class Rect extends Mark {
     super(
       data,
       [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "y1", value: y1, scale: "y"},
-        {name: "x2", value: x2, scale: "x"},
-        {name: "y2", value: y2, scale: "y"}
+        {name: "x1", value: x1, scale: "x", label: x1.label},
+        {name: "y1", value: y1, scale: "y", label: y1.label},
+        {name: "x2", value: x2, scale: "x", label: x2.label},
+        {name: "y2", value: y2, scale: "y", label: y2.label}
       ]
     );
     this.fill = fill;

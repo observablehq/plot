@@ -61,6 +61,7 @@ export function autoAxisLabels(channels, scales, axes, dimensions) {
 function inferLabel(channels = [], scale, axis, key) {
   let candidate;
   for (const {label} of channels) {
+    if (label === undefined) continue;
     if (candidate === undefined) candidate = label;
     else if (candidate !== label) return;
   }
