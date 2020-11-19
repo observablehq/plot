@@ -1,6 +1,6 @@
+import {axisTop, axisBottom, axisRight, axisLeft} from "d3-axis";
+import {interpolateRound} from "d3-interpolate";
 import {create} from "d3-selection";
-import {axisTop, axisBottom} from "d3-axis";
-import {axisRight, axisLeft} from "d3-axis";
 
 export class AxisX {
   constructor({
@@ -27,7 +27,6 @@ export class AxisX {
     {x: {scale: x}},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    // TODO offset?
     const {
       anchor,
       ticks,
@@ -41,10 +40,10 @@ export class AxisX {
     const offsetSign = anchor === "top" ? -1 : 1;
     return create("svg:g")
         .attr("transform", `translate(0,${anchor === "top" ? marginTop : height - marginBottom})`)
-        .call((anchor === "top" ? axisTop : axisBottom)(x) // TODO round(x)
+        .call((anchor === "top" ? axisTop : axisBottom)(round(x))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
-            .tickSizeInner(tickSize) // TODO default = 6?
+            .tickSizeInner(tickSize)
             .tickSizeOuter(0)
             .tickValues(Array.isArray(ticks) ? ticks : null))
         .call(g => g.select(".domain").remove())
@@ -92,7 +91,6 @@ export class AxisY {
     {y: {scale: y}},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    // TODO offset?
     const {
       anchor,
       ticks,
@@ -106,7 +104,7 @@ export class AxisY {
     const offsetSign = anchor === "left" ? -1 : 1;
     return create("svg:g")
         .attr("transform", `translate(${anchor === "right" ? width - marginRight : marginLeft},0)`)
-        .call((anchor === "right" ? axisRight : axisLeft)(y) // TODO round(y)
+        .call((anchor === "right" ? axisRight : axisLeft)(round(y))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
@@ -132,4 +130,10 @@ export class AxisY {
             .text(label))
       .node();
   }
+}
+
+function round(scale) {
+  return scale.round // TODO round band and point scales?
+      ? scale
+      : scale.copy().interpolate(interpolateRound);
 }

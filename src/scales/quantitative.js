@@ -17,7 +17,8 @@ export function ScaleQ(key, scale, channels, {
   round,
   interpolate = round ? interpolateRound : key === "color" ? interpolateTurbo : undefined,
   range = key === "r" ? [0, 3] : undefined, // see autoScaleRange
-  invert
+  invert,
+  inset
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
@@ -35,7 +36,7 @@ export function ScaleQ(key, scale, channels, {
     scale.interpolate(interpolate);
   }
   if (range !== undefined) scale.range(range);
-  return {type: "quantitative", invert, domain, range, scale};
+  return {type: "quantitative", invert, domain, range, scale, inset};
 }
 
 export function ScaleLinear(key, channels, options) {

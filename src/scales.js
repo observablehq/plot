@@ -2,11 +2,11 @@ import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./sc
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
-export function Scales(channels, options = {}) {
+export function Scales(channels, {inset, ...options} = {}) {
   const keys = new Set([...Object.keys(options), ...channels.keys()]);
   const scales = {};
   for (const key of keys) {
-    scales[key] = Scale(key, channels.get(key), options[key]);
+    scales[key] = Scale(key, channels.get(key), {inset, ...options[key]});
   }
   return scales
 }
@@ -14,12 +14,14 @@ export function Scales(channels, options = {}) {
 // Mutates scale.range!
 export function autoScaleRange(scales, dimensions) {
   if (scales.x && scales.x.range === undefined) {
+    const {inset = 0} = scales.x;
     const {width, marginLeft, marginRight} = dimensions;
-    scales.x.scale.range([marginLeft, width - marginRight]);
+    scales.x.scale.range([marginLeft + inset, width - marginRight - inset]);
   }
   if (scales.y && scales.y.range === undefined) {
+    const {inset = 0} = scales.y;
     const {height, marginTop, marginBottom} = dimensions;
-    const range = [height - marginBottom, marginTop];
+    const range = [height - marginBottom - inset, marginTop + inset];
     if (scales.y.type === "ordinal") range.reverse();
     scales.y.scale.range(range);
   }

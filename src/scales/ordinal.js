@@ -8,13 +8,14 @@ export function ScaleO(scale, channels, {
   domain = inferDomain(channels),
   round = true,
   range,
-  invert
+  invert,
+  inset
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (scale.align) scale.align(align); // TODO cleaner
   if (scale.round) scale.round(round); // TODO cleaner
-  return {type: "ordinal", invert, domain, range, scale};
+  return {type: "ordinal", invert, domain, range, scale, inset};
 }
 
 export function ScalePoint(key, channels, {padding = 0.5, ...options}) {
