@@ -1,10 +1,9 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line} from "d3-shape";
-import {indexOf, identity} from "../mark.js";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark, indexOf, identity} from "../mark.js";
 
 export class Line extends Mark {
   constructor(

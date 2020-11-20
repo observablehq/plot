@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark, indexOf, identity} from "../mark.js";
 
 const first = d => d[0];
 const second = d => d[1];
@@ -94,4 +94,12 @@ export class Dot extends Mark {
 
 export function dot(data, channels, style) {
   return new Dot(data, channels, style);
+}
+
+export function dotX(data, {x = identity, y = indexOf, ...channels} = {}, style) {
+  return new Dot(data, {x, y, ...channels}, style);
+}
+
+export function dotY(data, {x = indexOf, y = identity, ...channels} = {}, style) {
+  return new Dot(data, {x, y, ...channels}, style);
 }
