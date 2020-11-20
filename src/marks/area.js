@@ -58,10 +58,28 @@ export class Area extends Mark {
   }
 }
 
-export function areaX(data, {x = identity, x1 = zero, x2 = x, y = indexOf} = {}, style) {
+export function area(data, channels, style) {
+  return new Area(data, channels, style);
+}
+
+export function areaX(data, {x, x1, x2, y = indexOf} = {}, style) {
+  if (x1 === undefined && x2 === undefined) { // {x} or {}
+    x1 = zero, x2 = x === undefined ? identity : x;
+  } else if (x1 === undefined) { // {x, x2} or {x2}
+    x1 = x === undefined ? zero : x;
+  } else if (x2 === undefined) { // {x, x1} or {x1}
+    x2 = x === undefined ? zero : x;
+  }
   return new Area(data, {x1, x2, y1: y}, style);
 }
 
-export function areaY(data, {x = indexOf, y = identity, y1 = zero, y2 = y} = {}, style) {
+export function areaY(data, {x = indexOf, y, y1, y2} = {}, style) {
+  if (y1 === undefined && y2 === undefined) { // {y} or {}
+    y1 = zero, y2 = y === undefined ? identity : y;
+  } else if (y1 === undefined) { // {y, y2} or {y2}
+    y1 = y === undefined ? zero : y;
+  } else if (y2 === undefined) { // {y, y1} or {y1}
+    y2 = y === undefined ? zero : y;
+  }
   return new Area(data, {x1: x, y1, y2}, style);
 }

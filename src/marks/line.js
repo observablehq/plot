@@ -89,6 +89,10 @@ export class Line extends Mark {
   }
 }
 
+export function line(data, channels, style) {
+  return new Line(data, channels, style);
+}
+
 export function lineX(data, {x = identity, y = indexOf, z} = {}, style) {
   return new Line(data, {x, y, z}, style);
 }
