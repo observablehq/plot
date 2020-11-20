@@ -96,10 +96,10 @@ export function dot(data, channels, style) {
   return new Dot(data, channels, style);
 }
 
-export function dotX(data, {x = identity, y = indexOf, ...channels} = {}, style) {
-  return new Dot(data, {x, y, ...channels}, style);
+export function dotX(data, {x = identity, y, ...channels} = {}, style) {
+  return new Dot(data, {x, y: indexOf, ...channels}, style);
 }
 
-export function dotY(data, {x = indexOf, y = identity, ...channels} = {}, style) {
-  return new Dot(data, {x, y, ...channels}, style);
+export function dotY(data, {x, y = identity, ...channels} = {}, style) {
+  return new Dot(data, {x: indexOf, y, ...channels}, style);
 }

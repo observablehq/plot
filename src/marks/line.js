@@ -93,10 +93,10 @@ export function line(data, channels, style) {
   return new Line(data, channels, style);
 }
 
-export function lineX(data, {x = identity, y = indexOf, z} = {}, style) {
-  return new Line(data, {x, y, z}, style);
+export function lineX(data, {x = identity, z} = {}, style) {
+  return new Line(data, {x, y: indexOf, z}, style);
 }
 
-export function lineY(data, {x = indexOf, y = identity, z} = {}, style) {
-  return new Line(data, {x, y, z}, style);
+export function lineY(data, {y = identity, z} = {}, style) {
+  return new Line(data, {x: indexOf, y, z}, style);
 }
