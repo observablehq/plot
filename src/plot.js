@@ -23,7 +23,8 @@ export function plot(options = {}) {
   const svg = create("svg")
       .attr("viewBox", [0, 0, width, height])
       .style("max-width", `${width}px`)
-      .style("display", "block");
+      .style("display", "block")
+      .style("background", "white");
 
   for (const mark of marks) {
     const index = mark.data === undefined ? undefined : Array.from(mark.data, indexOf);
