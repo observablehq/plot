@@ -15,7 +15,7 @@ export function plot(options = {}) {
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
   for (const mark of marks) {
     const named = Object.create(null);
-    for (const [name, channel] of mark.initialize()) {
+    for (const [name, channel] of mark.initialize(mark.data)) {
       if (name !== undefined) {
         if (name in named) throw new Error(`duplicate channel: ${name}`);
         named[name] = channel.value;

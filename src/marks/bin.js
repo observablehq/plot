@@ -2,19 +2,22 @@ import {bin} from "d3-array";
 import {field, identity, zero} from "../mark.js";
 import {Rect} from "./rect.js";
 
+// TODO configurable thresholds
+// TODO facet dimension
 export class Bin extends Rect {
-  constructor(data, {value, ...channels}, style) {
+  constructor(data, value, channels, style) {
     super(data, channels, style);
-    this.value = value;
+    this.value = typeof value === "string" ? field(value) : value;
   }
-  facet({y}) {
-    return bins(this.data, this.value, y);
+  initialize(data) {
+    return super.initialize(bin().value(this.value)(data));
   }
 }
 
 export function binX(data, {x = identity} = {}, style) {
   return new Bin(
     data,
+    x,
     {
       x1: zero,
       y1: typeof x === "string" ? startof(x) : start,
@@ -28,6 +31,7 @@ export function binX(data, {x = identity} = {}, style) {
 export function binY(data, {y = identity} = {}, style) {
   return new Bin(
     data,
+    y,
     {
       x1: typeof y === "string" ? startof(y) : start,
       y1: zero,
@@ -36,13 +40,6 @@ export function binY(data, {y = identity} = {}, style) {
     },
     {insetLeft: 1, ...style}
   );
-}
-
-// TODO configurable thresholds
-// TODO facet dimension
-function bins(data, value) {
-  if (typeof value === "string") value = field(value);
-  return bin().value(value)(data);
 }
 
 function startof(value) {

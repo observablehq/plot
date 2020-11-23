@@ -10,10 +10,10 @@ export class Mark {
       return true;
     });
   }
-  initialize() {
+  initialize(data) {
     return this.channels.map(channel => {
       const {name} = channel;
-      return [name, Channel(this.data, channel)];
+      return [name, Channel(data, channel)];
     });
   }
 }
