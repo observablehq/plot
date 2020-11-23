@@ -17,7 +17,7 @@ export class FacetY extends Mark {
     return [
       ...super.initialize(),
       ...this.marks.flatMap(m => m.initialize().map(facetYChannel))
-    ]
+    ];
   }
   render(I, {y, fy, ...scales}, dimensions) {
     const {data, marks, channels: {y: {value: Y}}} = this;
