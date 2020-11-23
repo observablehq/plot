@@ -8,7 +8,7 @@ export function Scales(channels, {inset, ...options} = {}) {
   for (const key of keys) {
     scales[key] = Scale(key, channels.get(key), {inset, ...options[key]});
   }
-  return scales
+  return scales;
 }
 
 // Mutates scale.range!

@@ -1,6 +1,6 @@
 import {create} from "d3-selection";
 import {identity} from "../mark.js";
-import {Mark} from "../mark.js";
+import {Mark, string, number} from "../mark.js";
 
 export class RuleX extends Mark {
   constructor(
@@ -26,30 +26,17 @@ export class RuleX extends Mark {
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
-    this.stroke = fixedStroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeOpacity = strokeOpacity;
+    this.stroke = string(fixedStroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeOpacity = number(strokeOpacity);
   }
   render(
     I,
-    {
-      x: {scale: x},
-      y: {scale: y} = {},
-      color: {scale: color} = {}
-    },
+    {x, y, color},
+    {x: X, y1: Y1, y2: Y2, stroke: S},
     {marginTop, height, marginBottom}
   ) {
-    const {
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      channels: {
-        x: {value: X},
-        y1: {value: Y1} = {},
-        y2: {value: Y2} = {},
-        stroke: {value: S} = {}
-      }
-    } = this;
+    const {stroke, strokeWidth, strokeOpacity} = this;
     return create("svg:g")
         .attr("stroke", stroke)
         .attr("stroke-width", strokeWidth)
@@ -58,8 +45,8 @@ export class RuleX extends Mark {
           .data(I)
           .join("line")
             .attr("stroke", S && (i => color(S[i])))
-            .attr("x1", i => Math.round(x(X[i])) + 0.5) // TODO round
-            .attr("x2", i => Math.round(x(X[i])) + 0.5) // TODO round
+            .attr("x1", i => Math.round(x(X[i])) + 0.5)
+            .attr("x2", i => Math.round(x(X[i])) + 0.5)
             .attr("y1", Y1 ? i => y(Y1[i]) : marginTop)
             .attr("y2", Y2 ? i => y(Y2[i]) : height - marginBottom))
       .node();
@@ -90,30 +77,17 @@ export class RuleY extends Mark {
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
-    this.stroke = fixedStroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeOpacity = strokeOpacity;
+    this.stroke = string(fixedStroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeOpacity = number(strokeOpacity);
   }
   render(
     I,
-    {
-      y: {scale: y},
-      x: {scale: x} = {},
-      color: {scale: color} = {}
-    },
+    {x, y, color},
+    {y: Y, x1: X1, x2: X2, stroke: S},
     {width, marginLeft, marginRight}
   ) {
-    const {
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      channels: {
-        y: {value: Y},
-        x1: {value: X1} = {},
-        x2: {value: X2} = {},
-        stroke: {value: S} = {}
-      }
-    } = this;
+    const {stroke, strokeWidth, strokeOpacity} = this;
     return create("svg:g")
         .attr("stroke", stroke)
         .attr("stroke-width", strokeWidth)
@@ -124,8 +98,8 @@ export class RuleY extends Mark {
             .attr("stroke", S && (i => color(S[i])))
             .attr("x1", X1 ? i => x(X1[i]) : marginLeft)
             .attr("x2", X2 ? i => x(X2[i]) : width - marginRight)
-            .attr("y1", i => Math.round(y(Y[i])) + 0.5) // TODO round?
-            .attr("y2", i => Math.round(y(Y[i])) + 0.5)) // TODO round?
+            .attr("y1", i => Math.round(y(Y[i])) + 0.5)
+            .attr("y2", i => Math.round(y(Y[i])) + 0.5))
       .node();
   }
 }

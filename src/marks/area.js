@@ -1,7 +1,7 @@
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
-import {identity, indexOf, zero} from "../mark.js";
+import {identity, indexOf, zero, string, number} from "../mark.js";
 import {defined} from "../defined.js";
 import {Mark} from "../mark.js";
 
@@ -30,22 +30,14 @@ export class Area extends Mark {
       ]
     );
     this.curve = Curve(curve);
-    this.fill = fill;
-    this.fillOpacity = fillOpacity;
+    this.fill = string(fill);
+    this.fillOpacity = number(fillOpacity);
   }
-  render(I, {x: {scale: x}, y: {scale: y}}) {
-    const {
-      curve,
-      channels: {
-        x1: {value: X1},
-        y1: {value: Y1},
-        x2: {value: X2} = {value: X1},
-        y2: {value: Y2} = {value: Y1}
-      }
-    } = this;
+  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1}) {
+    const {curve, fill, fillOpacity} = this;
     return create("svg:path")
-        .attr("fill", this.fill)
-        .attr("fill-opacity", this.fillOpacity)
+        .attr("fill", fill)
+        .attr("fill-opacity", fillOpacity)
         .attr("d", shapeArea()
             .curve(curve)
             .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))

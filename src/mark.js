@@ -1,23 +1,20 @@
 export class Mark {
   constructor(data, channels = []) {
     this.data = data;
-    this.scaleChannels = [];
-    this.channels = Object.fromEntries(channels
-      .filter(channel => {
-        const {name, value, optional} = channel;
-        if (value === undefined) {
-          if (optional) return false;
-          throw new Error(`missing channel value: ${name}`);
-        }
-        return true;
-      })
-      .map(channel => {
-        const {name} = channel;
-        channel = Channel(data, channel);
-        if (channel.scale) this.scaleChannels.push(channel);
-        return [name, channel];
-      })
-      .filter(([name]) => name));
+    this.channels = channels.filter(channel => {
+      const {name, value, optional} = channel;
+      if (value === undefined) {
+        if (optional) return false;
+        throw new Error(`missing channel value: ${name}`);
+      }
+      return true;
+    });
+  }
+  initialize() {
+    return this.channels.map(channel => {
+      const {name} = channel;
+      return [name, Channel(this.data, channel)];
+    });
   }
 }
 
@@ -32,3 +29,5 @@ export const field = value => d => d[value];
 export const indexOf = (d, i) => i;
 export const identity = d => d;
 export const zero = () => 0;
+export const string = x => x == null ? null : x + "";
+export const number = x => x == null ? null : +x;

@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity} from "../mark.js";
+import {Mark, indexOf, identity, string, number} from "../mark.js";
 
 export class Line extends Mark {
   constructor(
@@ -36,18 +36,18 @@ export class Line extends Mark {
       ]
     );
     this.curve = Curve(curve);
-    this.fill = fill;
-    this.fillOpacity = fillOpacity;
-    this.stroke = stroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeMiterlimit = strokeMiterlimit;
-    this.strokeLinecap = strokeLinecap;
-    this.strokeLinejoin = strokeLinejoin;
-    this.strokeDasharray = strokeDasharray;
-    this.strokeOpacity = strokeOpacity;
-    this.mixBlendMode = mixBlendMode;
+    this.fill = string(fill);
+    this.fillOpacity = number(fillOpacity);
+    this.stroke = string(stroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeMiterlimit = string(strokeMiterlimit);
+    this.strokeLinecap = string(strokeLinecap);
+    this.strokeLinejoin = string(strokeLinejoin);
+    this.strokeDasharray = string(strokeDasharray);
+    this.strokeOpacity = number(strokeOpacity);
+    this.mixBlendMode = string(mixBlendMode);
   }
-  render(I, {x: {scale: x}, y: {scale: y}}) {
+  render(I, {x, y}, {x: X, y: Y, z: Z}) {
     const {
       curve,
       fill,
@@ -59,12 +59,7 @@ export class Line extends Mark {
       strokeLinejoin,
       strokeDasharray,
       strokeOpacity,
-      mixBlendMode,
-      channels: {
-        x: {value: X},
-        y: {value: Y},
-        z: {value: Z} = {}
-      }
+      mixBlendMode
     } = this;
     return create("svg:g")
         .attr("fill", fill)
@@ -93,10 +88,12 @@ export function line(data, channels, style) {
   return new Line(data, channels, style);
 }
 
+// TODO Error if y is specified?
 export function lineX(data, {x = identity, z} = {}, style) {
   return new Line(data, {x, y: indexOf, z}, style);
 }
 
+// TODO Error if x is specified?
 export function lineY(data, {y = identity, z} = {}, style) {
   return new Line(data, {x: indexOf, y, z}, style);
 }

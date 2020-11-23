@@ -1,7 +1,7 @@
 import {create} from "d3-selection";
 import {identity, indexOf} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark, string, number} from "../mark.js";
 
 class Bar extends Mark {
   constructor(
@@ -21,29 +21,26 @@ class Bar extends Mark {
     } = {}
   ) {
     super(data, channels);
-    this.fill = fill;
-    this.fillOpacity = fillOpacity;
-    this.stroke = stroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeOpacity = strokeOpacity;
-    this.mixBlendMode = mixBlendMode;
-    this.insetTop = insetTop;
-    this.insetRight = insetRight;
-    this.insetBottom = insetBottom;
-    this.insetLeft = insetLeft;
+    this.fill = string(fill);
+    this.fillOpacity = number(fillOpacity);
+    this.stroke = string(stroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeOpacity = number(strokeOpacity);
+    this.mixBlendMode = string(mixBlendMode);
+    this.insetTop = number(insetTop);
+    this.insetRight = number(insetRight);
+    this.insetBottom = number(insetBottom);
+    this.insetLeft = number(insetLeft);
   }
-  render(I, scales) {
+  render(I, scales, channels) {
+    const {x: X, y: Y} = channels;
     const {
       fill,
       fillOpacity,
       stroke,
       strokeWidth,
       strokeOpacity,
-      mixBlendMode,
-      channels: {
-        x: {value: X},
-        y: {value: Y}
-      }
+      mixBlendMode
     } = this;
     return create("svg:g")
         .attr("fill", fill)
@@ -55,10 +52,10 @@ class Bar extends Mark {
           .data(I.filter(i => defined(X[i]) && defined(Y[i])))
           .join("rect")
             .style("mix-blend-mode", mixBlendMode)
-            .attr("x", this._x(scales))
-            .attr("width", this._width(scales))
-            .attr("y", this._y(scales))
-            .attr("height", this._height(scales)))
+            .attr("x", this._x(scales, channels))
+            .attr("width", this._width(scales, channels))
+            .attr("y", this._y(scales, channels))
+            .attr("height", this._height(scales, channels)))
       .node();
   }
 }
@@ -75,19 +72,19 @@ export class BarX extends Bar {
       style
     );
   }
-  _x({x: {scale: x}}) {
-    const {insetLeft, channels: {x: {value: X}}} = this;
+  _x({x}, {x: X}) {
+    const {insetLeft} = this;
     return i => Math.min(x(0), x(X[i])) + insetLeft;
   }
-  _y({y: {scale: y}}) {
-    const {insetTop, channels: {y: {value: Y}}} = this;
+  _y({y}, {y: Y}) {
+    const {insetTop} = this;
     return i => y(Y[i]) + insetTop;
   }
-  _width({x: {scale: x}}) {
-    const {insetLeft, insetRight, channels: {x: {value: X}}} = this;
+  _width({x}, {x: X}) {
+    const {insetLeft, insetRight} = this;
     return i => Math.max(0, Math.abs(x(X[i]) - x(0)) - insetLeft - insetRight);
   }
-  _height({y: {scale: y}}) {
+  _height({y}) {
     const {insetTop, insetBottom} = this;
     return Math.max(0, y.bandwidth() - insetTop - insetBottom);
   }
@@ -105,20 +102,20 @@ export class BarY extends Bar {
       style
     );
   }
-  _x({x: {scale: x}}) {
-    const {insetLeft, channels: {x: {value: X}}} = this;
+  _x({x}, {x: X}) {
+    const {insetLeft} = this;
     return i => x(X[i]) + insetLeft;
   }
-  _y({y: {scale: y}}) {
-    const {insetTop, channels: {y: {value: Y}}} = this;
+  _y({y}, {y: Y}) {
+    const {insetTop} = this;
     return i => Math.min(y(0), y(Y[i])) + insetTop;
   }
-  _width({x: {scale: x}}) {
+  _width({x}) {
     const {insetLeft, insetRight} = this;
     return Math.max(0, x.bandwidth() - insetLeft - insetRight);
   }
-  _height({y: {scale: y}}) {
-    const {insetTop, insetBottom, channels: {y: {value: Y}}} = this;
+  _height({y}, {y: Y}) {
+    const {insetTop, insetBottom} = this;
     return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
   }
 }

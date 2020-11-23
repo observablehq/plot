@@ -1,26 +1,48 @@
-import {bin as Bin} from "d3-array";
-import {field, identity} from "../mark.js";
-import {rectX, rectY} from "./rect.js";
+import {bin} from "d3-array";
+import {field, identity, zero} from "../mark.js";
+import {Rect} from "./rect.js";
+
+export class Bin extends Rect {
+  constructor(data, {value, ...channels}, style) {
+    super(data, channels, style);
+    this.value = value;
+  }
+  facet({y}) {
+    return bins(this.data, this.value, y);
+  }
+}
 
 export function binX(data, {x = identity} = {}, style) {
-  return rectX(
-    bin(data, x), // TODO configurable thresholds
-    {y1: typeof x === "string" ? startof(x) : start, y2: end, x: length},
+  return new Bin(
+    data,
+    {
+      x1: zero,
+      y1: typeof x === "string" ? startof(x) : start,
+      x2: length,
+      y2: end
+    },
     {insetTop: 1, ...style}
   );
 }
 
 export function binY(data, {y = identity} = {}, style) {
-  return rectY(
-    bin(data, y), // TODO configurable thresholds
-    {x1: typeof y === "string" ? startof(y) : start, x2: end, y: length},
+  return new Bin(
+    data,
+    {
+      x1: typeof y === "string" ? startof(y) : start,
+      y1: zero,
+      x2: end,
+      y2: length
+    },
     {insetLeft: 1, ...style}
   );
 }
 
-function bin(data, value) {
+// TODO configurable thresholds
+// TODO facet dimension
+function bins(data, value) {
   if (typeof value === "string") value = field(value);
-  return Bin().value(value)(data);
+  return bin().value(value)(data);
 }
 
 function startof(value) {

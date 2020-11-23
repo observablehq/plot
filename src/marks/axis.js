@@ -23,8 +23,9 @@ export class AxisX {
     this.labelOffset = labelOffset;
   }
   render(
-    _,
-    {x: {scale: x}},
+    index,
+    {x},
+    channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {
@@ -87,8 +88,9 @@ export class AxisY {
     this.labelOffset = labelOffset;
   }
   render(
-    _,
-    {y: {scale: y}},
+    index,
+    {y},
+    channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {

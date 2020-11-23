@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity} from "../mark.js";
+import {Mark, indexOf, identity, string, number} from "../mark.js";
 
 const first = d => d[0];
 const second = d => d[1];
@@ -38,22 +38,18 @@ export class Dot extends Mark {
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
-    this.r = fixedR;
-    this.fill = fixedFill;
-    this.fillOpacity = fillOpacity;
-    this.stroke = fixedStroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeOpacity = strokeOpacity;
-    this.mixBlendMode = mixBlendMode;
+    this.r = number(fixedR);
+    this.fill = string(fixedFill);
+    this.fillOpacity = number(fillOpacity);
+    this.stroke = string(fixedStroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeOpacity = number(strokeOpacity);
+    this.mixBlendMode = string(mixBlendMode);
   }
   render(
     I,
-    {
-      x: {scale: x},
-      y: {scale: y},
-      r: {scale: r} = {},
-      color: {scale: color} = {}
-    }
+    {x, y, r, color},
+    {x: X, y: Y, z: Z, r: R, fill: F, stroke: S}
   ) {
     const {
       fill,
@@ -61,15 +57,7 @@ export class Dot extends Mark {
       stroke,
       strokeWidth,
       strokeOpacity,
-      mixBlendMode,
-      channels: {
-        x: {value: X},
-        y: {value: Y},
-        z: {value: Z} = {},
-        r: {value: R} = {},
-        fill: {value: F} = {},
-        stroke: {value: S} = {}
-      }
+      mixBlendMode
     } = this;
     const index = I.filter(i => defined(X[i]) && defined(Y[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));

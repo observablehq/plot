@@ -36,13 +36,6 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
 
 
 d3.csv("data/penguins.csv", d3.autoType).then(data => {
-  const bins = d3.bin().value(d => d.body_mass_g)(data)
-    .flatMap(bin => d3.groups(bin, d => d.sex).map(([sex, subbin]) => {
-      subbin.x0 = bin.x0;
-      subbin.x1 = bin.x1;
-      subbin.sex = sex;
-      return subbin;
-    }));
   document.body.appendChild(Plot.plot({
     scales: {
       x: {
@@ -57,15 +50,11 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
     marginLeft: 70,
     marks: [
       Plot.facetY(
-        bins,
+        data,
         {y: "sex"},
         [
           Plot.ruleY([0]),
-          Plot.rectY(
-            bins,
-            {x1: "x0", x2: "x1", y: d => d.length},
-            {insetLeft: 1}
-          )
+          Plot.binY(data, {y: "body_mass_g"})
         ]
       )
     ]

@@ -1,7 +1,7 @@
 import {create} from "d3-selection";
 import {zero} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark, string, number} from "../mark.js";
 
 export class Rect extends Mark {
   constructor(
@@ -34,18 +34,18 @@ export class Rect extends Mark {
         {name: "y2", value: y2, scale: "y", label: y2.label}
       ]
     );
-    this.fill = fill;
-    this.fillOpacity = fillOpacity;
-    this.stroke = stroke;
-    this.strokeWidth = strokeWidth;
-    this.strokeOpacity = strokeOpacity;
-    this.mixBlendMode = mixBlendMode;
-    this.insetTop = insetTop;
-    this.insetRight = insetRight;
-    this.insetBottom = insetBottom;
-    this.insetLeft = insetLeft;
+    this.fill = string(fill);
+    this.fillOpacity = number(fillOpacity);
+    this.stroke = string(stroke);
+    this.strokeWidth = number(strokeWidth);
+    this.strokeOpacity = number(strokeOpacity);
+    this.mixBlendMode = string(mixBlendMode);
+    this.insetTop = number(insetTop);
+    this.insetRight = number(insetRight);
+    this.insetBottom = number(insetBottom);
+    this.insetLeft = number(insetLeft);
   }
-  render(I, {x: {scale: x}, y: {scale: y}}) {
+  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2, y2: Y2}) {
     const {
       fill,
       fillOpacity,
@@ -56,13 +56,7 @@ export class Rect extends Mark {
       insetTop,
       insetRight,
       insetBottom,
-      insetLeft,
-      channels: {
-        x1: {value: X1},
-        y1: {value: Y1},
-        x2: {value: X2},
-        y2: {value: Y2}
-      }
+      insetLeft
     } = this;
     return create("svg:g")
         .attr("fill", fill)

@@ -20,11 +20,7 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
     axes: {y: {grid: true}},
     marks: [
       Plot.ruleY([0]),
-      Plot.lineY(data, {
-        x: "date",
-        y: "unemployment",
-        z: "division"
-      })
+      Plot.line(data, {x: "date", y: "unemployment", z: "division"})
     ]
   }));
   document.body.appendChild(Plot.plot({

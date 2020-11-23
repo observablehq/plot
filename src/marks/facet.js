@@ -8,13 +8,18 @@ export class FacetY extends Mark {
     super(
       data,
       [
-        {name: "y", value: y, scale: "y", type: "band"},
-        ...marks.flatMap(m => m.scaleChannels.map(facetYChannel))
+        {name: "y", value: y, scale: "y", type: "band"}
       ]
     );
     this.marks = marks;
   }
-  render(I, {y: {scale: y, domain}, fy, ...scales}, dimensions) {
+  initialize() {
+    return [
+      ...super.initialize(),
+      ...this.marks.flatMap(m => m.initialize().map(facetYChannel))
+    ]
+  }
+  render(I, {y, fy, ...scales}, dimensions) {
     const {data, marks, channels: {y: {value: Y}}} = this;
     const subscales = {y: fy, ...scales};
     const subdimensions = {...dimensions, marginTop: 0, marginBottom: 0, height: y.bandwidth()};
@@ -24,7 +29,7 @@ export class FacetY extends Mark {
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(domain)
+          .data(y.domain())
           .join("g")
             .attr("transform", (key) => `translate(0,${y(key)})`)
             .each(function(key) {
@@ -44,6 +49,7 @@ export function facetY(data, channels, marks) {
   return new FacetY(data, channels, marks);
 }
 
-function facetYChannel({scale, ...channel}) {
-  return {...channel, name: undefined, scale: scale === "y" ? "fy" : scale};
+function facetYChannel([name, {scale, ...channel}]) {
+  name; // TODO Retrieve each mark’s channels.
+  return [undefined, {...channel, scale: scale === "y" ? "fy" : scale}];
 }

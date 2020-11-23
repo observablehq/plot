@@ -13,7 +13,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
     marks: [
       Plot.ruleY([0]),
       Plot.areaY(AAPL, {x: "Date", y: "Close"}, {fillOpacity: 0.1}),
-      Plot.lineY(AAPL, {x: "Date", y: "Close"})
+      Plot.line(AAPL, {x: "Date", y: "Close"})
     ]
   }));
 });
@@ -26,8 +26,8 @@ d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
     },
     marks: [
       Plot.areaY(temperatures, {x: "date", y1: "low", y2: "high"}, {curve: "step", fill: "#ccc"}),
-      Plot.lineY(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.low)}, {curve: "step", stroke: "blue"}),
-      Plot.lineY(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.high)}, {curve: "step", stroke: "red"})
+      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.low)}, {curve: "step", stroke: "blue"}),
+      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.high)}, {curve: "step", stroke: "red"})
     ],
     width: 960
   }));
