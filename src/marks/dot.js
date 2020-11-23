@@ -97,9 +97,11 @@ export function dot(data, channels, style) {
 }
 
 export function dotX(data, {x = identity, y, ...channels} = {}, style) {
+  y; // hard-coded channel
   return new Dot(data, {x, y: indexOf, ...channels}, style);
 }
 
 export function dotY(data, {x, y = identity, ...channels} = {}, style) {
+  x; // hard-coded channel
   return new Dot(data, {x: indexOf, y, ...channels}, style);
 }

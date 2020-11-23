@@ -1,5 +1,5 @@
 import {create} from "d3-selection";
-import {area} from "d3-shape";
+import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {identity, indexOf, zero} from "../mark.js";
 import {defined} from "../defined.js";
@@ -46,7 +46,7 @@ export class Area extends Mark {
     return create("svg:path")
         .attr("fill", this.fill)
         .attr("fill-opacity", this.fillOpacity)
-        .attr("d", area()
+        .attr("d", shapeArea()
             .curve(curve)
             .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
             .x0(i => x(X1[i]))

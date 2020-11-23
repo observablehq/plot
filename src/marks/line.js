@@ -1,6 +1,6 @@
 import {group} from "d3-array";
 import {create} from "d3-selection";
-import {line} from "d3-shape";
+import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity} from "../mark.js";
@@ -80,7 +80,7 @@ export class Line extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .style("mix-blend-mode", mixBlendMode)
-            .attr("d", line()
+            .attr("d", shapeLine()
               .curve(curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
               .x(i => x(X[i]))
