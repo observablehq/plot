@@ -8,8 +8,8 @@
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
     marks: [
-      Plot.ruleY([0]),
-      Plot.line(data, {x: "date", y: "unemployment", z: "division"})
+      Plot.line(data, {x: "date", y: "unemployment", z: "division"}),
+      Plot.ruleY([0])
     ]
   }));
 });

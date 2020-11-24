@@ -12,6 +12,8 @@ export class Rect extends Mark {
       y1,
       x2,
       y2,
+      fill,
+      stroke,
       style,
       insetTop = 0,
       insetRight = 0,
@@ -25,7 +27,9 @@ export class Rect extends Mark {
         {name: "x1", value: x1, scale: "x", label: x1.label},
         {name: "y1", value: y1, scale: "y", label: y1.label},
         {name: "x2", value: x2, scale: "x", label: x2.label},
-        {name: "y2", value: y2, scale: "y", label: y2.label}
+        {name: "y2", value: y2, scale: "y", label: y2.label},
+        {name: "fill", value: fill, scale: "color", optional: true},
+        {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
     this.style = Style(style);
@@ -34,7 +38,11 @@ export class Rect extends Mark {
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
   }
-  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2, y2: Y2}) {
+  render(
+    I,
+    {x, y, color},
+    {x1: X1, y1: Y1, x2: X2, y2: Y2, fill: F, stroke: S}
+  ) {
     const {style, insetTop, insetRight, insetBottom, insetLeft} = this;
     return create("svg:g")
         .call(applyIndirectStyles, style)
@@ -43,9 +51,11 @@ export class Rect extends Mark {
           .join("rect")
             .call(applyDirectStyles, style)
             .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + insetLeft)
-            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight))
             .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop)
-            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - insetTop - insetBottom)))
+            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight))
+            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - insetTop - insetBottom))
+            .attr("fill", F && (i => color(F[i])))
+            .attr("stroke", S && (i => color(S[i]))))
       .node();
   }
 }

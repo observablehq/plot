@@ -21,8 +21,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      Plot.ruleY([0]),
-      Plot.binY(data, {y: d => Math.log10(d.Volume)})
+      Plot.binY(data, {y: d => Math.log10(d.Volume)}),
+      Plot.ruleY([0])
     ]
   }));
 });
@@ -43,8 +43,8 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      Plot.ruleY([0]),
-      Plot.binY(data, {y: "body_mass_g"})
+      Plot.binY(data, {y: "body_mass_g"}),
+      Plot.ruleY([0])
     ]
   }));
 });

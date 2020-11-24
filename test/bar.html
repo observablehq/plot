@@ -18,8 +18,8 @@ d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
       y: {label: null}
     },
     marks: [
-      Plot.ruleX([0]),
-      Plot.barX(alphabet, {x: d => d.frequency * 100, y: "letter"})
+      Plot.barX(alphabet, {x: d => d.frequency * 100, y: "letter"}),
+      Plot.ruleX([0])
     ],
     height: 580
   }));
@@ -29,8 +29,8 @@ d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
       y: {label: "↑ Frequency (%)", grid: true}
     },
     marks: [
-      Plot.ruleY([0]),
-      Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100})
+      Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100}),
+      Plot.ruleY([0])
     ]
   }));
 });

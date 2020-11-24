@@ -53,11 +53,11 @@ export class Dot extends Mark {
           .data(index)
           .join("circle")
             .call(applyDirectStyles, style)
-            .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i])))
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", R ? i => r(R[i]) : this.r))
+            .attr("r", R ? i => r(R[i]) : this.r)
+            .attr("fill", F && (i => color(F[i])))
+            .attr("stroke", S && (i => color(S[i]))))
       .node();
   }
 }

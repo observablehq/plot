@@ -9,6 +9,8 @@ class Bar extends Mark {
     data,
     channels,
     {
+      fill,
+      stroke,
       style,
       insetTop = 0,
       insetRight = 0,
@@ -16,7 +18,14 @@ class Bar extends Mark {
       insetLeft = 0
     } = {}
   ) {
-    super(data, channels);
+    super(
+      data,
+      [
+        ...channels,
+        {name: "fill", value: fill, scale: "color", optional: true},
+        {name: "stroke", value: stroke, scale: "color", optional: true}
+      ]
+    );
     this.style = Style(style);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
@@ -24,7 +33,8 @@ class Bar extends Mark {
     this.insetLeft = number(insetLeft);
   }
   render(I, scales, channels) {
-    const {x: X, y: Y} = channels;
+    const {color} = scales;
+    const {x: X, y: Y, fill: F, stroke: S} = channels;
     const {style} = this;
     return create("svg:g")
         .call(applyIndirectStyles, style)
@@ -35,7 +45,9 @@ class Bar extends Mark {
             .attr("x", this._x(scales, channels))
             .attr("width", this._width(scales, channels))
             .attr("y", this._y(scales, channels))
-            .attr("height", this._height(scales, channels)))
+            .attr("height", this._height(scales, channels))
+            .attr("fill", F && (i => color(F[i])))
+            .attr("stroke", S && (i => color(S[i]))))
       .node();
   }
 }
