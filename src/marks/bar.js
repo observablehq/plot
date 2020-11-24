@@ -1,19 +1,15 @@
 import {create} from "d3-selection";
 import {identity, indexOf} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark, string, number} from "../mark.js";
+import {Mark, number} from "../mark.js";
+import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
 
 class Bar extends Mark {
   constructor(
     data,
     channels,
     {
-      fill = "currentColor",
-      fillOpacity,
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      mixBlendMode,
+      style,
       insetTop = 0,
       insetRight = 0,
       insetBottom = 0,
@@ -21,12 +17,7 @@ class Bar extends Mark {
     } = {}
   ) {
     super(data, channels);
-    this.fill = string(fill);
-    this.fillOpacity = number(fillOpacity);
-    this.stroke = string(stroke);
-    this.strokeWidth = number(strokeWidth);
-    this.strokeOpacity = number(strokeOpacity);
-    this.mixBlendMode = string(mixBlendMode);
+    this.style = Style(style);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -34,24 +25,13 @@ class Bar extends Mark {
   }
   render(I, scales, channels) {
     const {x: X, y: Y} = channels;
-    const {
-      fill,
-      fillOpacity,
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      mixBlendMode
-    } = this;
+    const {style} = this;
     return create("svg:g")
-        .attr("fill", fill)
-        .attr("fill-opacity", fillOpacity)
-        .attr("stroke", stroke)
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke-opacity", strokeOpacity)
+        .call(applyIndirectStyles, style)
         .call(g => g.selectAll()
           .data(I.filter(i => defined(X[i]) && defined(Y[i])))
           .join("rect")
-            .style("mix-blend-mode", mixBlendMode)
+            .call(applyDirectStyles, style)
             .attr("x", this._x(scales, channels))
             .attr("width", this._width(scales, channels))
             .attr("y", this._y(scales, channels))
@@ -61,7 +41,7 @@ class Bar extends Mark {
 }
 
 export class BarX extends Bar {
-  constructor(data, {x = identity, y = indexOf} = {}, style) {
+  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
     super(
       data,
       [
@@ -69,7 +49,7 @@ export class BarX extends Bar {
         {name: "y", value: y, scale: "y", type: "band"},
         {value: [0], scale: "x"} // ensure the x-domain includes zero
       ],
-      style
+      options
     );
   }
   _x({x}, {x: X}) {
@@ -91,7 +71,7 @@ export class BarX extends Bar {
 }
 
 export class BarY extends Bar {
-  constructor(data, {x = indexOf, y = identity} = {}, style) {
+  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
     super(
       data,
       [
@@ -99,7 +79,7 @@ export class BarY extends Bar {
         {name: "y", value: y, scale: "y"},
         {value: [0], scale: "y"} // ensure the y-domain includes zero
       ],
-      style
+      options
     );
   }
   _x({x}, {x: X}) {
@@ -120,10 +100,10 @@ export class BarY extends Bar {
   }
 }
 
-export function barX(data, channels, style) {
-  return new BarX(data, channels, style);
+export function barX(data, options) {
+  return new BarX(data, options);
 }
 
-export function barY(data, channels, style) {
-  return new BarY(data, channels, style);
+export function barY(data, options) {
+  return new BarY(data, options);
 }

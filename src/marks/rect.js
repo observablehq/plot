@@ -1,7 +1,8 @@
 import {create} from "d3-selection";
 import {zero} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark, string, number} from "../mark.js";
+import {Mark, number} from "../mark.js";
+import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
 
 export class Rect extends Mark {
   constructor(
@@ -10,15 +11,8 @@ export class Rect extends Mark {
       x1,
       y1,
       x2,
-      y2
-    } = {},
-    {
-      fill = "currentColor",
-      fillOpacity,
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      mixBlendMode,
+      y2,
+      style,
       insetTop = 0,
       insetRight = 0,
       insetBottom = 0,
@@ -34,40 +28,20 @@ export class Rect extends Mark {
         {name: "y2", value: y2, scale: "y", label: y2.label}
       ]
     );
-    this.fill = string(fill);
-    this.fillOpacity = number(fillOpacity);
-    this.stroke = string(stroke);
-    this.strokeWidth = number(strokeWidth);
-    this.strokeOpacity = number(strokeOpacity);
-    this.mixBlendMode = string(mixBlendMode);
+    this.style = Style(style);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
   }
   render(I, {x, y}, {x1: X1, y1: Y1, x2: X2, y2: Y2}) {
-    const {
-      fill,
-      fillOpacity,
-      stroke,
-      strokeWidth,
-      strokeOpacity,
-      mixBlendMode,
-      insetTop,
-      insetRight,
-      insetBottom,
-      insetLeft
-    } = this;
+    const {style, insetTop, insetRight, insetBottom, insetLeft} = this;
     return create("svg:g")
-        .attr("fill", fill)
-        .attr("fill-opacity", fillOpacity)
-        .attr("stroke", stroke)
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke-opacity", strokeOpacity)
+        .call(applyIndirectStyles, style)
         .call(g => g.selectAll()
           .data(I.filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i])))
           .join("rect")
-            .style("mix-blend-mode", mixBlendMode)
+            .call(applyDirectStyles, style)
             .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + insetLeft)
             .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight))
             .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop)

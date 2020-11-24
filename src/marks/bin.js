@@ -3,8 +3,8 @@ import {field, identity, zero} from "../mark.js";
 import {Rect} from "./rect.js";
 
 export class Bin extends Rect {
-  constructor(data, value, channels, {domain, thresholds, ...style} = {}) {
-    super(data, channels, style);
+  constructor(data, {value, domain, thresholds, ...options} = {}) {
+    super(data, options);
     if (typeof value !== "function") value = field(value + "");
     const bin = this.bin = binner().value(value);
     if (domain !== undefined) bin.domain(domain);
@@ -22,31 +22,33 @@ export class Bin extends Rect {
   }
 }
 
-export function binX(data, {x = identity} = {}, style) {
+export function binX(data, {x = identity, ...options} = {}) {
   return new Bin(
     data,
-    x,
     {
+      insetTop: 1,
+      ...options,
+      value: x,
       x1: zero,
       y1: typeof x === "string" ? startof(x) : start,
       x2: length,
       y2: end
-    },
-    {insetTop: 1, ...style}
+    }
   );
 }
 
-export function binY(data, {y = identity} = {}, style) {
+export function binY(data, {y = identity, ...options} = {}) {
   return new Bin(
     data,
-    y,
     {
+      insetLeft: 1,
+      ...options,
+      value: y,
       x1: typeof y === "string" ? startof(y) : start,
       y1: zero,
       x2: end,
       y2: length
-    },
-    {insetLeft: 1, ...style}
+    }
   );
 }
 

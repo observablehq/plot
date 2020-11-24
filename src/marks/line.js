@@ -3,7 +3,8 @@ import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity, string, number} from "../mark.js";
+import {Mark, indexOf, identity} from "../mark.js";
+import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
 
 export class Line extends Mark {
   constructor(
@@ -11,20 +12,9 @@ export class Line extends Mark {
     {
       x,
       y,
-      z // optional grouping for multiple series
-    } = {},
-    {
+      z, // optional grouping for multiple series
       curve,
-      fill = "none",
-      fillOpacity,
-      stroke = "currentColor",
-      strokeWidth = z ? 1 : 1.5,
-      strokeMiterlimit = 1,
-      strokeLinecap,
-      strokeLinejoin,
-      strokeDasharray,
-      strokeOpacity,
-      mixBlendMode
+      style
     } = {}
   ) {
     super(
@@ -36,45 +26,21 @@ export class Line extends Mark {
       ]
     );
     this.curve = Curve(curve);
-    this.fill = string(fill);
-    this.fillOpacity = number(fillOpacity);
-    this.stroke = string(stroke);
-    this.strokeWidth = number(strokeWidth);
-    this.strokeMiterlimit = string(strokeMiterlimit);
-    this.strokeLinecap = string(strokeLinecap);
-    this.strokeLinejoin = string(strokeLinejoin);
-    this.strokeDasharray = string(strokeDasharray);
-    this.strokeOpacity = number(strokeOpacity);
-    this.mixBlendMode = string(mixBlendMode);
+    this.style = Style({
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: z ? 1 : 1.5,
+      ...style
+    });
   }
   render(I, {x, y}, {x: X, y: Y, z: Z}) {
-    const {
-      curve,
-      fill,
-      fillOpacity,
-      stroke,
-      strokeWidth,
-      strokeMiterlimit,
-      strokeLinecap,
-      strokeLinejoin,
-      strokeDasharray,
-      strokeOpacity,
-      mixBlendMode
-    } = this;
+    const {curve, style} = this;
     return create("svg:g")
-        .attr("fill", fill)
-        .attr("fill-opacity", fillOpacity)
-        .attr("stroke", stroke)
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke-miterlimit", strokeMiterlimit)
-        .attr("stroke-linecap", strokeLinecap)
-        .attr("stroke-linejoin", strokeLinejoin)
-        .attr("stroke-dasharray", strokeDasharray)
-        .attr("stroke-opacity", strokeOpacity)
+        .call(applyIndirectStyles, style)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
-            .style("mix-blend-mode", mixBlendMode)
+            .call(applyDirectStyles, style)
             .attr("d", shapeLine()
               .curve(curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
@@ -89,11 +55,11 @@ export function line(data, channels, style) {
 }
 
 // TODO Error if y is specified?
-export function lineX(data, {x = identity, z} = {}, style) {
-  return new Line(data, {x, y: indexOf, z}, style);
+export function lineX(data, {x = identity, ...options} = {}) {
+  return new Line(data, {...options, x, y: indexOf});
 }
 
 // TODO Error if x is specified?
-export function lineY(data, {y = identity, z} = {}, style) {
-  return new Line(data, {x: indexOf, y, z}, style);
+export function lineY(data, {y = identity, ...options} = {}) {
+  return new Line(data, {...options, x: indexOf, y});
 }

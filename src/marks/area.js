@@ -1,9 +1,9 @@
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
-import {identity, indexOf, zero, string, number} from "../mark.js";
+import {Mark, identity, indexOf, zero} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Style, applyStyles} from "../style.js";
 
 export class Area extends Mark {
   constructor(
@@ -12,12 +12,9 @@ export class Area extends Mark {
       x1,
       y1,
       x2,
-      y2
-    } = {},
-    {
+      y2,
       curve,
-      fill = "currentColor",
-      fillOpacity
+      style
     } = {}
   ) {
     super(
@@ -30,14 +27,12 @@ export class Area extends Mark {
       ]
     );
     this.curve = Curve(curve);
-    this.fill = string(fill);
-    this.fillOpacity = number(fillOpacity);
+    this.style = Style(style);
   }
   render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1}) {
-    const {curve, fill, fillOpacity} = this;
+    const {curve, style} = this;
     return create("svg:path")
-        .attr("fill", fill)
-        .attr("fill-opacity", fillOpacity)
+        .call(applyStyles, style)
         .attr("d", shapeArea()
             .curve(curve)
             .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
@@ -50,11 +45,11 @@ export class Area extends Mark {
   }
 }
 
-export function area(data, channels, style) {
-  return new Area(data, channels, style);
+export function area(data, options) {
+  return new Area(data, options);
 }
 
-export function areaX(data, {x, x1, x2, y = indexOf} = {}, style) {
+export function areaX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
   if (x1 === undefined && x2 === undefined) { // {x} or {}
     x1 = zero, x2 = x === undefined ? identity : x;
   } else if (x1 === undefined) { // {x, x2} or {x2}
@@ -62,10 +57,10 @@ export function areaX(data, {x, x1, x2, y = indexOf} = {}, style) {
   } else if (x2 === undefined) { // {x, x1} or {x1}
     x2 = x === undefined ? zero : x;
   }
-  return new Area(data, {x1, x2, y1: y}, style);
+  return new Area(data, {...options, x1, x2, y1: y, y2: undefined});
 }
 
-export function areaY(data, {x = indexOf, y, y1, y2} = {}, style) {
+export function areaY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
   if (y1 === undefined && y2 === undefined) { // {y} or {}
     y1 = zero, y2 = y === undefined ? identity : y;
   } else if (y1 === undefined) { // {y, y2} or {y2}
@@ -73,5 +68,5 @@ export function areaY(data, {x = indexOf, y, y1, y2} = {}, style) {
   } else if (y2 === undefined) { // {y, y1} or {y1}
     y2 = y === undefined ? zero : y;
   }
-  return new Area(data, {x1: x, y1, y2}, style);
+  return new Area(data, {...options, x1: x, x2: undefined, y1, y2});
 }

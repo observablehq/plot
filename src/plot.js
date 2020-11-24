@@ -48,6 +48,8 @@ export function plot(options = {}) {
 
   const svg = create("svg")
       .attr("viewBox", [0, 0, width, height])
+      .attr("fill", "currentColor")
+      .attr("stroke-miterlimit", 1)
       .style("max-width", `${width}px`)
       .style("display", "block")
       .style("background", "white");

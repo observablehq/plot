@@ -1,6 +1,6 @@
 import {create} from "d3-selection";
-import {identity} from "../mark.js";
-import {Mark, string, number} from "../mark.js";
+import {Mark, identity} from "../mark.js";
+import {Style, applyStyles} from "../style.js";
 
 export class RuleX extends Mark {
   constructor(
@@ -9,12 +9,8 @@ export class RuleX extends Mark {
       x = identity,
       y1,
       y2,
-      stroke
-    } = {},
-    {
-      stroke: fixedStroke = stroke === undefined ? "currentColor" : undefined,
-      strokeWidth,
-      strokeOpacity
+      stroke,
+      style
     } = {}
   ) {
     super(
@@ -26,9 +22,7 @@ export class RuleX extends Mark {
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
-    this.stroke = string(fixedStroke);
-    this.strokeWidth = number(strokeWidth);
-    this.strokeOpacity = number(strokeOpacity);
+    this.style = Style({stroke: "currentColor", ...style});
   }
   render(
     I,
@@ -36,11 +30,9 @@ export class RuleX extends Mark {
     {x: X, y1: Y1, y2: Y2, stroke: S},
     {marginTop, height, marginBottom}
   ) {
-    const {stroke, strokeWidth, strokeOpacity} = this;
+    const {style} = this;
     return create("svg:g")
-        .attr("stroke", stroke)
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke-opacity", strokeOpacity)
+        .call(applyStyles, style)
         .call(g => g.selectAll("line")
           .data(I)
           .join("line")
@@ -60,12 +52,8 @@ export class RuleY extends Mark {
       x1,
       x2,
       y = identity,
-      stroke
-    } = {},
-    {
-      stroke: fixedStroke = stroke === undefined ? "currentColor" : undefined,
-      strokeWidth,
-      strokeOpacity
+      stroke,
+      style
     } = {}
   ) {
     super(
@@ -77,9 +65,7 @@ export class RuleY extends Mark {
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
     );
-    this.stroke = string(fixedStroke);
-    this.strokeWidth = number(strokeWidth);
-    this.strokeOpacity = number(strokeOpacity);
+    this.style = Style({stroke: "currentColor", ...style});
   }
   render(
     I,
@@ -87,11 +73,9 @@ export class RuleY extends Mark {
     {y: Y, x1: X1, x2: X2, stroke: S},
     {width, marginLeft, marginRight}
   ) {
-    const {stroke, strokeWidth, strokeOpacity} = this;
+    const {style} = this;
     return create("svg:g")
-        .attr("stroke", stroke)
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke-opacity", strokeOpacity)
+        .call(applyStyles, style)
         .call(g => g.selectAll("line")
           .data(I)
           .join("line")

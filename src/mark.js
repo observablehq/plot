@@ -40,5 +40,5 @@ export const field = value => d => d[value];
 export const indexOf = (d, i) => i;
 export const identity = d => d;
 export const zero = () => 0;
-export const string = x => x == null ? null : x + "";
-export const number = x => x == null ? null : +x;
+export const string = x => x == null ? undefined : x + "";
+export const number = x => x == null ? undefined : +x;
