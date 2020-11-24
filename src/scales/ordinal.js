@@ -15,14 +15,20 @@ export function ScaleO(scale, channels, {
   scale.domain(domain);
   if (scale.align) scale.align(align); // TODO cleaner
   if (scale.round) scale.round(round); // TODO cleaner
+  if (range !== undefined) scale.range(range);
   return {type: "ordinal", invert, domain, range, scale, inset};
+}
+
+export function ScaleOrdinal(key, channels, {
+  range = key === "color" ? schemeTableau10 : undefined,
+  ...options
+}) {
+  return ScaleO(scaleOrdinal(range), channels, {range, ...options});
 }
 
 export function ScalePoint(key, channels, {padding = 0.5, ...options}) {
   return ScaleO(
-    key === "color"
-      ? scaleOrdinal(schemeTableau10)
-      : scalePoint().padding(padding),
+    scalePoint().padding(padding),
     channels,
     options
   );
@@ -35,9 +41,7 @@ export function ScaleBand(key, channels, {
   ...options
 }) {
   return ScaleO(
-    key === "color"
-      ? scaleOrdinal(schemeTableau10)
-      : scaleBand().paddingInner(paddingInner).paddingOuter(paddingOuter),
+    scaleBand().paddingInner(paddingInner).paddingOuter(paddingOuter),
     channels,
     options
   );

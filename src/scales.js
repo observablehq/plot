@@ -1,6 +1,6 @@
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScalePoint, ScaleBand} from "./scales/ordinal.js";
+import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
 export function Scales(channels, {inset, ...options} = {}) {
   const keys = new Set([...Object.keys(options), ...channels.keys()]);
@@ -29,7 +29,8 @@ export function autoScaleRange(scales, dimensions) {
 
 function Scale(key, channels = [], options = {}) {
   switch (inferScaleType(key, channels, options)) {
-    case "diverging": return ScaleDiverging(key, channels, options); // TODO color-specific?
+    case "diverging": return ScaleDiverging(key, channels, options);
+    case "ordinal": return ScaleOrdinal(key, channels, options);
     case "linear": return ScaleLinear(key, channels, options);
     case "sqrt": return ScalePow(key, channels, {...options, exponent: 0.5});
     case "pow": return ScalePow(key, channels, options);
@@ -58,26 +59,35 @@ function inferScaleType(key, channels, {type, domain}) {
     if (type !== undefined) return type;
   }
   if (domain !== undefined) {
-    if (domain.length > 2) return "point";
-    type = inferScaleTypeFromValues(domain);
+    if (domain.length > 2) return inferOrdinalType(key);
+    type = inferScaleTypeFromValues(key, domain);
     if (type !== undefined) return type;
   }
   if (channels.every(({value}) => value === undefined)) return;
   for (const {value} of channels) {
     if (value !== undefined) {
-      type = inferScaleTypeFromValues(value);
+      type = inferScaleTypeFromValues(key, value);
       if (type !== undefined) return type;
     }
   }
   return "linear";
 }
 
-function inferScaleTypeFromValues(values) {
+function inferScaleTypeFromValues(key, values) {
   for (const value of values) {
     if (value == null) continue;
-    if (typeof value === "string") return "point";
-    else if (typeof value === "boolean") return "point";
-    else if (value instanceof Date) return "utc";
+    if (typeof value === "string") return inferOrdinalType(key);
+    if (typeof value === "boolean") return inferOrdinalType(key);
+    if (value instanceof Date) return "utc";
     return "linear";
+  }
+}
+
+// The names of the known positional scales, which require a point (or band)
+// scale instead of an ordinal scale.
+function inferOrdinalType(key) {
+  switch (key) {
+    case "x": case "y": case "fx": case "fy": return "point";
+    default: return "ordinal";
   }
 }
