@@ -17,6 +17,14 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
         range: [20, -40]
       }
     },
+    axes: {
+      x: {
+        label: null
+      },
+      y: {
+        label: null
+      }
+    },
     marks: [
       Plot.facetY(
         data,
@@ -24,7 +32,7 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
         [
           Plot.ruleY([0]),
           Plot.areaY(data, {x: "date", y: "unemployment"}, {fill: "#eee"}),
-          Plot.lineY(data, {x: "date", y: "unemployment"})
+          Plot.line(data, {x: "date", y: "unemployment"})
         ]
       )
     ],

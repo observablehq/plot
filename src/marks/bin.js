@@ -2,15 +2,22 @@ import {bin} from "d3-array";
 import {field, identity, zero} from "../mark.js";
 import {Rect} from "./rect.js";
 
-// TODO configurable thresholds
-// TODO facet dimension
+// TODO Configurable thresholds
+// TODO What if value accessor is non-deterministic?
+// TODO What if data is not an array?
 export class Bin extends Rect {
   constructor(data, value, channels, style) {
     super(data, channels, style);
-    this.value = typeof value === "string" ? field(value) : value;
+    // Because faceting may be in use, we don’t want d3.bin to choose thresholds
+    // dynamically based on the input data; instead, we extract the set of
+    // thresholds from an initial computation.
+    this.bin = bin().value(typeof value === "string" ? field(value) : value);
+    const bins = this.bin(data);
+    this.bin.domain([bins[0].x0, bins[bins.length - 1].x1]);
+    this.bin.thresholds(bins.slice(1).map(start));
   }
   initialize(data) {
-    return super.initialize(bin().value(this.value)(data));
+    return super.initialize(this.bin(data));
   }
 }
 

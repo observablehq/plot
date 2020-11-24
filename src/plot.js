@@ -1,6 +1,5 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {indexOf} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
@@ -8,16 +7,18 @@ export function plot(options = {}) {
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();
+  const markIndex = new Map();
 
   // A Map from scale name to an array of associated channels.
   const scaleChannels = new Map();
 
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
   for (const mark of marks) {
+    if (markChannels.has(mark)) throw new Error("duplicate mark");
     const named = Object.create(null);
-    for (const [name, channel] of mark.initialize(mark.data)) {
+    const {index, channels} = mark.initialize(mark.data);
+    for (const [name, channel] of channels) {
       if (name !== undefined) {
-        if (name in named) throw new Error(`duplicate channel: ${name}`);
         named[name] = channel.value;
       }
       if (channel.scale !== undefined) {
@@ -26,8 +27,8 @@ export function plot(options = {}) {
         else scaleChannels.set(channel.scale, [channel]);
       }
     }
-    if (markChannels.has(mark)) throw new Error("duplicate mark");
     markChannels.set(mark, named);
+    markIndex.set(mark, index);
   }
 
   const scaleDescriptors = Scales(scaleChannels, options.scales);
@@ -42,6 +43,7 @@ export function plot(options = {}) {
   if (axes.y) marks.unshift(axes.y);
   if (axes.x) marks.unshift(axes.x);
 
+  const plotOptions = {scales: scaleDescriptors, axes, ...dimensions};
   const {width, height} = dimensions;
 
   const svg = create("svg")
@@ -51,9 +53,9 @@ export function plot(options = {}) {
       .style("background", "white");
 
   for (const mark of marks) {
-    const {data} = mark;
-    const index = data === undefined ? undefined : Array.from(data, indexOf);
-    const node = mark.render(index, scales, markChannels.get(mark), dimensions);
+    const channels = markChannels.get(mark);
+    const index = markIndex.get(mark);
+    const node = mark.render(index, scales, channels, plotOptions);
     if (node != null) svg.append(() => node);
   }
 

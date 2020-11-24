@@ -1,5 +1,6 @@
 export class Mark {
   constructor(data, channels = []) {
+    const names = new Set();
     this.data = data;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
@@ -7,17 +8,27 @@ export class Mark {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
+      if (name !== undefined) {
+        const key = name + "";
+        if (key === "__proto__") throw new Error("illegal channel name");
+        if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
+        names.add(key);
+      }
       return true;
     });
   }
   initialize(data) {
-    return this.channels.map(channel => {
-      const {name} = channel;
-      return [name, Channel(data, channel)];
-    });
+    return {
+      index: data === undefined ? undefined : Array.from(data, indexOf),
+      channels: this.channels.map(channel => {
+        const {name} = channel;
+        return [name == null ? undefined : name + "", Channel(data, channel)];
+      })
+    };
   }
 }
 
+// TODO Type coercion?
 function Channel(data, {scale, type, value, label}) {
   if (typeof value === "string") label = value, value = Array.from(data, field(value));
   else if (typeof value === "function") value = Array.from(data, value);
