@@ -21,7 +21,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(data => {
       }
     },
     marks: [
-      Plot.binY(data, {y: d => Math.log10(d.Volume)}),
+      Plot.binY(data, {y: d => Math.log10(d.Volume), normalize: true}),
       Plot.ruleY([0])
     ]
   }));
