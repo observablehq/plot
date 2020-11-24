@@ -7,9 +7,12 @@
 
 d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
   document.body.appendChild(Plot.plot({
-    axes: {
-      x: {label: null}, // TODO Default to null for temporal scales?
-      y: {grid: true, label: "↑ Daily temperature range (°F)"}
+    x: {
+      label: null // TODO Default to null for temporal scales?
+    },
+    y: {
+      grid: true,
+      label: "↑ Daily temperature range (°F)"
     },
     marks: [
       Plot.areaY(temperatures, {x: "date", y1: "low", y2: "high", curve: "step", style: {fill: "#ccc"}}),

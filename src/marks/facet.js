@@ -56,7 +56,7 @@ export class FacetY extends Mark {
       height: y.bandwidth()
     };
 
-    autoScaleRange({y: options.scales.fy}, subdimensions);
+    autoScaleRange({y: options.fy}, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()

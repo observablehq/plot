@@ -7,17 +7,10 @@
 
 d3.csv("data/penguins.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        round: true
-      }
+    x: {
+      round: true,
+      label: "Body mass (g) →"
     },
-    axes: {
-      x: {
-        label: "Body mass (g) →"
-      }
-    },
-    marginLeft: 70,
     marks: [
       Plot.facetY(
         data,
@@ -27,7 +20,8 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
           Plot.binY(data, {y: "body_mass_g"})
         ]
       )
-    ]
+    ],
+    marginLeft: 70
   }));
 });
 

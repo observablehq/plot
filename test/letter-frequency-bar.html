@@ -7,15 +7,14 @@
 
 d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      y: {
-        domain: d3.sort(alphabet, (a, b) => d3.descending(a.frequency, b.frequency)).map(d => d.letter),
-        invert: true // TODO implicitly invert when band or point in y
-      }
+    x: {
+      label: "Frequency (%) →",
+      grid: true
     },
-    axes: {
-      x: {label: "Frequency (%) →", grid: true},
-      y: {label: null}
+    y: {
+      domain: d3.sort(alphabet, (a, b) => d3.descending(a.frequency, b.frequency)).map(d => d.letter),
+      invert: true, // TODO implicitly invert when band or point in y
+      label: null
     },
     marks: [
       Plot.barX(alphabet, {x: d => d.frequency * 100, y: "letter"}),

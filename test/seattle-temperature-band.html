@@ -7,17 +7,13 @@
 
 d3.csv("data/seattle-weather.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      color: {
-        interpolate: d3.interpolateRdBu,
-        invert: true
-      }
+    y: {
+      grid: true,
+      label: "↑ Temperature (°C)"
     },
-    axes: {
-      y: {
-        grid: true,
-        label: "↑ Temperature (°C)"
-      }
+    color: {
+      interpolate: d3.interpolateRdBu,
+      invert: true
     },
     marks: [
       Plot.ruleX(

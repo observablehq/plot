@@ -7,18 +7,12 @@
 
 d3.csv("data/aapl.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        round: true
-      }
+    x: {
+      round: true,
+      label: "Trade volume (log₁₀) →"
     },
-    axes: {
-      x: {
-        label: "Trade volume (log₁₀) →"
-      },
-      y: {
-        grid: true
-      }
+    y: {
+      grid: true
     },
     marks: [
       Plot.binY(data, {y: d => Math.log10(d.Volume), normalize: true}),

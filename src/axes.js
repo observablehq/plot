@@ -1,9 +1,11 @@
 import {AxisX, AxisY} from "./marks/axis.js";
 
-export function Axes({x, y}, {x: xAxis = {}, y: yAxis = {}, grid} = {}) {
+export function Axes({x: xScale, y: yScale}, {x = {}, y = {}, grid} = {}) {
+  const {axis: xAxis = true} = x;
+  const {axis: yAxis = true} = y;
   return {
-    x: x && xAxis ? new AxisX({grid, ...xAxis}) : null,
-    y: y && yAxis ? new AxisY({grid, ...yAxis}) : null
+    x: xScale && xAxis ? new AxisX({grid, ...x}) : null,
+    y: yScale && yAxis ? new AxisY({grid, ...y}) : null
   };
 }
 
@@ -32,7 +34,7 @@ export function autoAxisLabels(channels, scales, axes, dimensions) {
     }
     if (axes.x.labelOffset === undefined) {
       const {marginTop, marginBottom} = dimensions;
-      axes.x.labelOffset = axes.x.anchor === "top" ? marginTop : marginBottom;
+      axes.x.labelOffset = axes.x.axis === "top" ? marginTop : marginBottom;
     }
     if (axes.x.label === undefined) {
       axes.x.label = inferLabel(channels.get("x"), scales.x, axes.x, "x");
@@ -41,12 +43,12 @@ export function autoAxisLabels(channels, scales, axes, dimensions) {
   if (axes.y) {
     if (axes.y.labelAnchor === undefined) {
       axes.y.labelAnchor = scales.y.type === "ordinal" ? "center"
-        : axes.x && axes.x.anchor === "top" ? "bottom"
+        : axes.x && axes.x.axis === "top" ? "bottom"
         : "top";
     }
     if (axes.y.labelOffset === undefined) {
       const {marginRight, marginLeft} = dimensions;
-      axes.y.labelOffset = axes.y.anchor === "left" ? marginLeft : marginRight;
+      axes.y.labelOffset = axes.y.axis === "left" ? marginLeft : marginRight;
     }
     if (axes.y.label === undefined) {
       axes.y.label = inferLabel(channels.get("y"), scales.y, axes.y, "y");

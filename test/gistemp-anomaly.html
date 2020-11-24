@@ -7,12 +7,16 @@
 
 d3.csv("data/gistemp.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      color: {type: "diverging"}
+    x: {
+      label: null
     },
-    axes: {
-      x: {label: null},
-      y: {label: "↑ Temperature anomaly (°C)", tickFormat: "+f", grid: true}
+    y: {
+      label: "↑ Temperature anomaly (°C)",
+      tickFormat: "+f",
+      grid: true
+    },
+    color: {
+      type: "diverging"
     },
     marks: [
       Plot.ruleY([0]),

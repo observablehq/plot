@@ -7,23 +7,17 @@
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      y: {
-        domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
-          .sort(([, a], [, b]) => d3.descending(a, b))
-          .map(([key]) => key)
-      },
-      fy: {
-        range: [20, -40]
-      }
+    x: {
+      label: null
     },
-    axes: {
-      x: {
-        label: null
-      },
-      y: {
-        label: null
-      }
+    y: {
+      domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
+        .sort(([, a], [, b]) => d3.descending(a, b))
+        .map(([key]) => key),
+      label: null
+    },
+    fy: {
+      range: [20, -40]
     },
     marks: [
       Plot.facetY(

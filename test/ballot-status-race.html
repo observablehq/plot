@@ -56,32 +56,25 @@ d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
   });
 
   document.body.appendChild(Plot.plot({
-    axes: {
-      x: {
-        grid: true,
-        label: "Frequency (%) →"
-      },
-      y: {
-        label: null
-      }
+    x: {
+      grid: true,
+      label: "Frequency (%) →"
     },
-    scales: {
-      color: {
-        type: "ordinal",
-        domain: ["ACCEPTED", "REJECTED", "PENDING"],
-        range: ["currentColor", "brown", "gray"]
-      },
-      y: {
-        domain: rollup
-          .filter(d => d.status === "ACCEPTED")
-          .sort((a, b) => d3.descending(a.percent, b.percent))
-          .map(d => d.race)
-      },
-      fy: {
-        domain: ["ACCEPTED", "REJECTED", "PENDING"]
-      }
+    y: {
+      domain: rollup
+        .filter(d => d.status === "ACCEPTED")
+        .sort((a, b) => d3.descending(a.percent, b.percent))
+        .map(d => d.race),
+      label: null
     },
-    marginLeft: 210,
+    fy: {
+      domain: ["ACCEPTED", "REJECTED", "PENDING"]
+    },
+    color: {
+      type: "ordinal",
+      domain: ["ACCEPTED", "REJECTED", "PENDING"],
+      range: ["currentColor", "brown", "gray"]
+    },
     marks: [
       Plot.facetY(
         rollup,
@@ -91,7 +84,8 @@ d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
           Plot.ruleX([0])
         ]
       )
-    ]
+    ],
+    marginLeft: 210
   }));
 });
 

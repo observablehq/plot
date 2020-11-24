@@ -2,11 +2,15 @@ import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./sc
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
+// TODO Allow arbitrary scale names to be registered by marks.
+const keys = ["x", "y", "fx", "fy", "r", "color"];
+
 export function Scales(channels, {inset, ...options} = {}) {
-  const keys = new Set([...Object.keys(options), ...channels.keys()]);
   const scales = {};
   for (const key of keys) {
-    scales[key] = Scale(key, channels.get(key), {inset, ...options[key]});
+    if (channels.has(key) || options[key]) {
+      scales[key] = Scale(key, channels.get(key), {inset, ...options[key]});
+    }
   }
   return scales;
 }
@@ -63,12 +67,11 @@ function inferScaleType(key, channels, {type, domain}) {
     type = inferScaleTypeFromValues(key, domain);
     if (type !== undefined) return type;
   }
-  if (channels.every(({value}) => value === undefined)) return;
+  channels = channels.filter(({value}) => value !== undefined);
+  if (!channels.length) return;
   for (const {value} of channels) {
-    if (value !== undefined) {
-      type = inferScaleTypeFromValues(key, value);
-      if (type !== undefined) return type;
-    }
+    type = inferScaleTypeFromValues(key, value);
+    if (type !== undefined) return type;
   }
   return "linear";
 }

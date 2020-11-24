@@ -6,18 +6,13 @@
 <script>
 
 document.body.appendChild(Plot.plot({
-  scales: {
-    x: {
-      domain: [0, 1],
-      inset: 6
-    },
-    y: {
-      domain: [0, 1],
-      inset: 6
-    }
+  grid: true,
+  inset: 6,
+  x: {
+    domain: [0, 1]
   },
-  axes: {
-    grid: true
+  y: {
+    domain: [0, 1]
   }
 }));
 

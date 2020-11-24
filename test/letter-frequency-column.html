@@ -7,9 +7,12 @@
 
 d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
   document.body.appendChild(Plot.plot({
-    axes: {
-      x: {label: null},
-      y: {label: "↑ Frequency (%)", grid: true}
+    x: {
+      label: null
+    },
+    y: {
+      label: "↑ Frequency (%)",
+      grid: true
     },
     marks: [
       Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100}),

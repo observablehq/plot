@@ -7,8 +7,8 @@
 
 d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
   document.body.appendChild(Plot.plot({
-    axes: {
-      y: {grid: true}
+    y: {
+      grid: true
     },
     marks: [
       Plot.areaY(AAPL, {x: "Date", y: "Close", style: {fillOpacity: 0.1}}),

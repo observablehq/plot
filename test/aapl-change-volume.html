@@ -7,16 +7,14 @@
 
 d3.csv("data/aapl.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    axes: {
-      grid: true,
-      x: {
-        label: "Daily change (%) →",
-        tickFormat: "+f"
-      },
-      y: {
-        label: "↑ Volume (log₁₀)"
-      }
+    x: {
+      label: "Daily change (%) →",
+      tickFormat: "+f"
     },
+    y: {
+      label: "↑ Volume (log₁₀)"
+    },
+    grid: true,
     marks: [
       Plot.ruleX([0]),
       Plot.dot(

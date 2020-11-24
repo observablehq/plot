@@ -4,7 +4,7 @@ import {create} from "d3-selection";
 
 export class AxisX {
   constructor({
-    anchor = "bottom",
+    axis = true,
     ticks,
     tickSize = 6,
     tickFormat,
@@ -13,7 +13,7 @@ export class AxisX {
     labelAnchor,
     labelOffset
   } = {}) {
-    this.anchor = anchor;
+    this.axis = axis === true ? "bottom" : axis;
     this.ticks = ticks;
     this.tickSize = tickSize;
     this.tickFormat = tickFormat;
@@ -29,7 +29,7 @@ export class AxisX {
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {
-      anchor,
+      axis,
       ticks,
       tickSize,
       tickFormat,
@@ -38,10 +38,10 @@ export class AxisX {
       labelAnchor,
       labelOffset
     } = this;
-    const offsetSign = anchor === "top" ? -1 : 1;
+    const offsetSign = axis === "top" ? -1 : 1;
     return create("svg:g")
-        .attr("transform", `translate(0,${anchor === "top" ? marginTop : height - marginBottom})`)
-        .call((anchor === "top" ? axisTop : axisBottom)(round(x))
+        .attr("transform", `translate(0,${axis === "top" ? marginTop : height - marginBottom})`)
+        .call((axis === "top" ? axisTop : axisBottom)(round(x))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
@@ -58,7 +58,7 @@ export class AxisX {
                   : labelAnchor === "right" ? width
                   : 0
               },${labelOffset * offsetSign})`)
-            .attr("dy", anchor === "top" ? "1em" : "-0.32em")
+            .attr("dy", axis === "top" ? "1em" : "-0.32em")
             .attr("text-anchor", labelAnchor === "center" ? "middle"
                 : labelAnchor === "right" ? "end"
                 : "start")
@@ -69,7 +69,7 @@ export class AxisX {
 
 export class AxisY {
   constructor({
-    anchor = "left",
+    axis = true,
     ticks,
     tickSize = 6,
     tickFormat,
@@ -78,7 +78,7 @@ export class AxisY {
     labelAnchor,
     labelOffset
   } = {}) {
-    this.anchor = anchor;
+    this.axis = axis === true ? "left" : axis;
     this.ticks = ticks;
     this.tickSize = tickSize;
     this.tickFormat = tickFormat;
@@ -94,7 +94,7 @@ export class AxisY {
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {
-      anchor,
+      axis,
       ticks,
       tickSize,
       tickFormat,
@@ -103,10 +103,10 @@ export class AxisY {
       labelAnchor,
       labelOffset
     } = this;
-    const offsetSign = anchor === "left" ? -1 : 1;
+    const offsetSign = axis === "left" ? -1 : 1;
     return create("svg:g")
-        .attr("transform", `translate(${anchor === "right" ? width - marginRight : marginLeft},0)`)
-        .call((anchor === "right" ? axisRight : axisLeft)(round(y))
+        .attr("transform", `translate(${axis === "right" ? width - marginRight : marginLeft},0)`)
+        .call((axis === "right" ? axisRight : axisLeft)(round(y))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
@@ -123,11 +123,11 @@ export class AxisY {
                   : labelAnchor === "bottom" ? height - marginBottom
                   : marginTop
               })${labelAnchor === "center" ? ` rotate(-90)` : ""}`)
-            .attr("dy", labelAnchor === "center" ? (anchor === "right" ? "-0.32em" : "0.75em")
+            .attr("dy", labelAnchor === "center" ? (axis === "right" ? "-0.32em" : "0.75em")
                 : labelAnchor === "bottom" ? "1.4em"
                 : "-1em")
             .attr("text-anchor", labelAnchor === "center" ? "middle"
-                : anchor === "right" ? "end"
+                : axis === "right" ? "end"
                 : "start")
             .text(label))
       .node();

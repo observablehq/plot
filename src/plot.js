@@ -31,19 +31,20 @@ export function plot(options = {}) {
     markIndex.set(mark, index);
   }
 
-  const scaleDescriptors = Scales(scaleChannels, options.scales);
+  const scaleDescriptors = Scales(scaleChannels, options);
   const scales = ScaleFunctions(scaleDescriptors);
-  const axes = Axes(scaleDescriptors, options.axes);
+  const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(axes, dimensions);
   autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
 
-  if (axes.y) marks.unshift(axes.y);
-  if (axes.x) marks.unshift(axes.x);
+  // Normalize the options.
+  options = {...scaleDescriptors, ...dimensions};
+  if (axes.y) options.y = {...options.y, ...axes.y}, marks.unshift(axes.y);
+  if (axes.x) options.x = {...options.x, ...axes.x}, marks.unshift(axes.x);
 
-  const plotOptions = {scales: scaleDescriptors, axes, ...dimensions};
   const {width, height} = dimensions;
 
   const svg = create("svg")
@@ -57,7 +58,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
-    const node = mark.render(index, scales, channels, plotOptions);
+    const node = mark.render(index, scales, channels, options);
     if (node != null) svg.append(() => node);
   }
 
@@ -67,10 +68,10 @@ export function plot(options = {}) {
 function Dimensions({y}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y ? 396 : 60,
-  marginTop = !yAxis ? 0 : xAxis && xAxis.anchor === "top" ? 30 : 20,
-  marginRight = yAxis && yAxis.anchor === "right" ? 40 : 20,
-  marginBottom = xAxis && xAxis.anchor === "bottom" ? 30 : 20,
-  marginLeft = yAxis && yAxis.anchor === "left" ? 40 : 20
+  marginTop = !yAxis ? 0 : xAxis && xAxis.axis === "top" ? 30 : 20,
+  marginRight = yAxis && yAxis.axis === "right" ? 40 : 20,
+  marginBottom = xAxis && xAxis.axis === "bottom" ? 30 : 20,
+  marginLeft = yAxis && yAxis.axis === "left" ? 40 : 20
 } = {}) {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
 }

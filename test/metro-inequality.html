@@ -7,24 +7,16 @@
 
 d3.csv("data/metros.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        type: "log",
-        domain: [85e3, 11e6]
-      },
-      y: {
-        domain: [3.0, 5.8]
-      }
+    grid: true,
+    x: {
+      type: "log",
+      domain: [85e3, 11e6],
+      label: "Population →",
+      tickFormat: "~s"
     },
-    axes: {
-      grid: true,
-      x: {
-        label: "Population →",
-        tickFormat: "~s"
-      },
-      y: {
-        label: "↑ Inequality"
-      }
+    y: {
+      domain: [3.0, 5.8],
+      label: "↑ Inequality"
     },
     marks: [
       Plot.dot(data, {x: "POP_1980", y: "R90_10_1980"})
