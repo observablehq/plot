@@ -42,31 +42,4 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   }));
 });
 
-
-d3.csv("data/penguins.csv", d3.autoType).then(data => {
-  document.body.appendChild(Plot.plot({
-    scales: {
-      x: {
-        round: true
-      }
-    },
-    axes: {
-      x: {
-        label: "Body mass (g) →"
-      }
-    },
-    marginLeft: 70,
-    marks: [
-      Plot.facetY(
-        data,
-        {y: "sex"},
-        [
-          Plot.ruleY([0]),
-          Plot.binY(data, {y: "body_mass_g"})
-        ]
-      )
-    ]
-  }));
-});
-
 </script>

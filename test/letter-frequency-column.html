@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/alphabet.csv", d3.autoType).then(alphabet => {
+  document.body.appendChild(Plot.plot({
+    axes: {
+      x: {label: null},
+      y: {label: "↑ Frequency (%)", grid: true}
+    },
+    marks: [
+      Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100}),
+      Plot.ruleY([0])
+    ]
+  }));
+});
+
+</script>

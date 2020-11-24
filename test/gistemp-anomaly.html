@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/gistemp.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    scales: {
+      color: {type: "diverging"}
+    },
+    axes: {
+      x: {label: null},
+      y: {label: "↑ Temperature anomaly (°C)", tickFormat: "+f", grid: true}
+    },
+    marks: [
+      Plot.ruleY([0]),
+      Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
+    ]
+  }));
+});
+
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/penguins.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    scales: {
+      x: {
+        round: true
+      }
+    },
+    axes: {
+      x: {
+        label: "Body mass (g) →"
+      }
+    },
+    marginLeft: 70,
+    marks: [
+      Plot.facetY(
+        data,
+        {y: "sex"},
+        [
+          Plot.ruleY([0]),
+          Plot.binY(data, {y: "body_mass_g"})
+        ]
+      )
+    ]
+  }));
+});
+
+</script>

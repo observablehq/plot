@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+document.body.appendChild(Plot.plot({
+  marks: [
+    Plot.lineY(d3.cumsum({length: 500}, d3.randomNormal()))
+  ]
+}));
+
+</script>

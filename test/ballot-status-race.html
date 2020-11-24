@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
+
+  // Filter for mail ballots.
+  const types = ["MAIL"];
+  votes = votes.filter(d => types.includes(d.ballot_req_type));
+
+  // Filter for specific races.
+  // const races = ["BLACK or AFRICAN AMERICAN", "WHITE"];
+  // votes = votes.filter(d => races.includes(d.race));
+
+  // Normalize the ballot status (accepted/pending/rejected). This is a fairly
+  // long list because we don’t want to misinterpret an unknown status.
+  const statuses = new Map([
+    ["ACCEPTED - CURED", "ACCEPTED"],
+    ["PENDING CURE", "PENDING"],
+    ["SPOILED", "REJECTED"],
+    ["RETURNED UNDELIVERABLE", "REJECTED"],
+    ["WITNESS INFO INCOMPLETE", "REJECTED"],
+    ["DUPLICATE", "REJECTED"],
+    ["ASSISTANT INFO INCOMPLETE", "REJECTED"],
+    ["E-TRANSMISSION FAILURE", "REJECTED"],
+    ["CONFLICT", "REJECTED"],
+    ["SIGNATURE DIFFERENT", "REJECTED"],
+    ["NO TIME FOR CURE - CONTACTED", "REJECTED"],
+    ["NOT PROPERLY NOTARIZED", "REJECTED"]
+  ]);
+  votes = votes.map(d => ({
+    ...d,
+    status: statuses.get(d.ballot_rtn_status) || d.ballot_rtn_status
+  }));
+
+  // Group by race,
+  // then by (normalized) status,
+  // then rollup the count for each group.
+  let rollup = d3.rollups(
+    votes,
+    votes => d3.sum(votes, d => d.count),
+    d => d.race,
+    d => d.status
+  );
+
+  // Compute the count for each race,
+  // then the percentage for each status within each race.
+  rollup = rollup.flatMap(([race, group]) => {
+    const total = d3.sum(group, ([, count]) => count);
+    return group.map(([status, count]) => {
+      return {race, status, percent: count / total * 100};
+    });
+  });
+
+  document.body.appendChild(Plot.plot({
+    axes: {
+      x: {
+        grid: true,
+        label: "Frequency (%) →"
+      },
+      y: {
+        label: null
+      }
+    },
+    scales: {
+      color: {
+        type: "ordinal",
+        domain: ["ACCEPTED", "REJECTED", "PENDING"],
+        range: ["currentColor", "brown", "gray"]
+      },
+      y: {
+        domain: rollup
+          .filter(d => d.status === "ACCEPTED")
+          .sort((a, b) => d3.descending(a.percent, b.percent))
+          .map(d => d.race)
+      },
+      fy: {
+        domain: ["ACCEPTED", "REJECTED", "PENDING"]
+      }
+    },
+    marginLeft: 210,
+    marks: [
+      Plot.facetY(
+        rollup,
+        {y: "race"},
+        [
+          Plot.barX(rollup, {x: "percent", y: "status", fill: "status"}),
+          Plot.ruleX([0])
+        ]
+      )
+    ]
+  }));
+});
+
+</script>

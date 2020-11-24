@@ -5,19 +5,6 @@
 <script src="../dist/@observablehq/plot.umd.js"></script>
 <script>
 
-d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
-  document.body.appendChild(Plot.plot({
-    axes: {
-      y: {grid: true}
-    },
-    marks: [
-      Plot.areaY(AAPL, {x: "Date", y: "Close", style: {fillOpacity: 0.1}}),
-      Plot.line(AAPL, {x: "Date", y: "Close"}),
-      Plot.ruleY([0])
-    ]
-  }));
-});
-
 d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
   document.body.appendChild(Plot.plot({
     axes: {
