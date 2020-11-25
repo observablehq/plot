@@ -37,7 +37,7 @@ export class Dot extends Mark {
       strokeWidth: fill === undefined && style.fill === undefined ? 1.5 : undefined,
       ...style
     });
-    this.r = style.r === undefined ? 3 : +style.r;
+    this.style.r = style.r === undefined ? 3 : +style.r;
   }
   render(
     I,
@@ -55,7 +55,7 @@ export class Dot extends Mark {
             .call(applyDirectStyles, style)
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", R ? i => r(R[i]) : this.r)
+            .attr("r", R ? i => r(R[i]) : style.r)
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i]))))
       .node();

@@ -51,6 +51,8 @@ export function plot(options = {}) {
       .attr("viewBox", [0, 0, width, height])
       .attr("fill", "currentColor")
       .attr("stroke-miterlimit", 1)
+      .attr("text-anchor", "middle")
+      .style("font", "10px sans-serif")
       .style("max-width", `${width}px`)
       .style("display", "block")
       .style("background", "white");

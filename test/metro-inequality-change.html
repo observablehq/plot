@@ -35,6 +35,11 @@ d3.csv("data/metros.csv", d3.autoType).then(data => {
         style: {
           r: 1
         }
+      }),
+      Plot.text(data, {
+        x: "POP_2015",
+        y: "R90_10_2015",
+        text: d => d.highlight && d.nyt_display
       })
     ]
   }));

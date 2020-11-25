@@ -47,10 +47,10 @@ export function applyDirectStyles(selection, style) {
   applyStyle(selection, "mix-blend-mode", style.mixBlendMode);
 }
 
-function applyAttr(selection, name, value) {
+export function applyAttr(selection, name, value) {
   if (value != null) selection.attr(name, value);
 }
 
-function applyStyle(selection, name, value) {
+export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
