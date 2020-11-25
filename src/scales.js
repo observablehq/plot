@@ -1,13 +1,11 @@
+import {registry, position, radius} from "./scales/index.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
-// TODO Allow arbitrary scale names to be registered by marks.
-const keys = ["x", "y", "fx", "fy", "r", "color"];
-
 export function Scales(channels, {inset, ...options} = {}) {
   const scales = {};
-  for (const key of keys) {
+  for (const key of registry.keys()) {
     if (channels.has(key) || options[key]) {
       scales[key] = Scale(key, channels.get(key), {inset, ...options[key]});
     }
@@ -58,7 +56,7 @@ function inferScaleType(key, channels, {type, domain}) {
     }
     return type;
   }
-  if (key === "r") return "sqrt";
+  if (registry.get(key) === radius) return "sqrt";
   for (const {type} of channels) {
     if (type !== undefined) return type;
   }
@@ -86,11 +84,7 @@ function inferScaleTypeFromValues(key, values) {
   }
 }
 
-// The names of the known positional scales, which require a point (or band)
-// scale instead of an ordinal scale.
+// Positional scales default to a point scale instead of an ordinal scale.
 function inferOrdinalType(key) {
-  switch (key) {
-    case "x": case "y": case "fx": case "fy": return "point";
-    default: return "ordinal";
-  }
+  return registry.get(key) === position ? "point" : "ordinal";
 }

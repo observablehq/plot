@@ -2,6 +2,7 @@ import {reverse, sort} from "d3-array";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
 import {schemeTableau10} from "d3-scale-chromatic";
 import {ascendingDefined} from "../defined.js";
+import {registry, color} from "./index.js";
 
 export function ScaleO(scale, channels, {
   align = 0.5,
@@ -20,7 +21,7 @@ export function ScaleO(scale, channels, {
 }
 
 export function ScaleOrdinal(key, channels, {
-  range = key === "color" ? schemeTableau10 : undefined,
+  range = registry.get(key) === color ? schemeTableau10 : undefined,
   ...options
 }) {
   return ScaleO(scaleOrdinal(range), channels, {range, ...options});
