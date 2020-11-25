@@ -11,11 +11,13 @@ d3.csv("data/cars.csv", d3.autoType).then(data => {
   // Reshape wide data to make it tidy.
   // TODO Instead of normalizing, separate scales for each dimension.
   data = dimensions.flatMap(c => {
-    const scale = d3.scaleLinear()
-      .domain(d3.extent(data, d => d[c]))
-      .clamp(true);
+    const scale = d3.scaleLinear().domain(d3.extent(data, d => d[c]));
     return data.map(d => {
-      return {name: d.name, dimension: c, value: scale(d[c])};
+      return {
+        name: d.name,
+        dimension: c,
+        value: d[c] == null ? NaN : scale(d[c])
+      };
     });
   });
 
