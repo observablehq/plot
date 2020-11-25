@@ -17,7 +17,7 @@ export function ScaleQ(key, scale, channels, {
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
   interpolate = round ? interpolateRound : registry.get(key) === color ? interpolateTurbo : undefined,
-  range = registry.get(key) === radius ? [0, 3] : undefined, // see autoScaleRange
+  range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
   invert,
   inset
 }) {
