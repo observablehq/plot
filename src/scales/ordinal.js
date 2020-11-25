@@ -5,17 +5,13 @@ import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
 
 export function ScaleO(scale, channels, {
-  align = 0.5,
   domain = inferDomain(channels),
-  round = true,
   range,
   invert,
   inset
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
-  if (scale.align) scale.align(align); // TODO cleaner
-  if (scale.round) scale.round(round); // TODO cleaner
   if (range !== undefined) scale.range(range);
   return {type: "ordinal", invert, domain, range, scale, inset};
 }
@@ -27,22 +23,36 @@ export function ScaleOrdinal(key, channels, {
   return ScaleO(scaleOrdinal(range), channels, {range, ...options});
 }
 
-export function ScalePoint(key, channels, {padding = 0.5, ...options}) {
+export function ScalePoint(key, channels, {
+  align = 0.5,
+  padding = 0.5,
+  round = true,
+  ...options
+}) {
   return ScaleO(
-    scalePoint().padding(padding),
+    scalePoint()
+      .align(align)
+      .padding(padding)
+      .round(round),
     channels,
     options
   );
 }
 
 export function ScaleBand(key, channels, {
+  align = 0.5,
   padding = 0.1,
   paddingInner = padding,
   paddingOuter = padding,
+  round = true,
   ...options
 }) {
   return ScaleO(
-    scaleBand().paddingInner(paddingInner).paddingOuter(paddingOuter),
+    scaleBand()
+      .align(align)
+      .paddingInner(paddingInner)
+      .paddingOuter(paddingOuter)
+      .round(round),
     channels,
     options
   );
