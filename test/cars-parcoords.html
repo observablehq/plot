@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/cars.csv", d3.autoType).then(data => {
+  const dimensions = data.columns.slice(1);
+
+  // Reshape wide data to make it tidy.
+  // TODO Instead of normalizing, separate scales for each dimension.
+  data = dimensions.flatMap(c => {
+    const scale = d3.scaleLinear()
+      .domain(d3.extent(data, d => d[c]))
+      .clamp(true);
+    return data.map(d => {
+      return {name: d.name, dimension: c, value: scale(d[c])};
+    });
+  });
+
+  document.body.appendChild(Plot.plot({
+    x: {
+      domain: [0, 1]
+    },
+    y: {
+      padding: 0.1,
+      domain: dimensions,
+      label: null
+    },
+    marks: [
+      Plot.ruleY(data, {
+        y: "dimension"
+      }),
+      Plot.line(data, {
+        x: "value",
+        y: "dimension",
+        z: "name",
+        style: {
+          stroke: "#444",
+          strokeOpacity: 0.3
+        }
+      })
+    ],
+    marginLeft: 100
+  }));
+});
+
+</script>
