@@ -17,15 +17,17 @@ d3.csv("data/metros.csv", d3.autoType).then(data => {
     y: {
       label: "↑ Inequality"
     },
+    color: {
+      type: "diverging",
+      invert: true
+    },
     marks: [
       Plot.link(data, {
         x1: "POP_1980",
         y1: "R90_10_1980",
         x2: "POP_2015",
         y2: "R90_10_2015",
-        style: {
-          strokeWidth: 0.5
-        }
+        stroke: d => d.R90_10_2015 - d.R90_10_1980
       }),
       Plot.dot(data, {
         x: "POP_2015",
