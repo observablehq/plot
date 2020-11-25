@@ -3,11 +3,11 @@ import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./sc
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
-export function Scales(channels, {inset, round, ...options} = {}) {
+export function Scales(channels, {inset, round, nice, ...options} = {}) {
   const scales = {};
   for (const key of registry.keys()) {
     if (channels.has(key) || options[key]) {
-      scales[key] = Scale(key, channels.get(key), {inset, round, ...options[key]});
+      scales[key] = Scale(key, channels.get(key), {inset, round, nice, ...options[key]});
     }
   }
   return scales;
