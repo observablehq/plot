@@ -7,5 +7,6 @@ export {binX, binY} from "./marks/bin.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {FacetY, facetY} from "./marks/facet.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
+export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";

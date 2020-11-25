@@ -34,7 +34,7 @@ export class Dot extends Mark {
     this.style = Style({
       fill: fill === undefined ? "none" : undefined,
       stroke: stroke === undefined && !fill ? "currentColor" : undefined,
-      strokeWidth: 1.5,
+      strokeWidth: fill === undefined && style.fill === undefined ? 1.5 : undefined,
       ...style
     });
     this.r = style.r === undefined ? 3 : +style.r;
