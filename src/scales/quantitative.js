@@ -1,23 +1,20 @@
 import {min, max, quantile, reverse} from "d3-array";
-import {interpolateRound} from "d3-interpolate";
+import {interpolateRgb, interpolateRound} from "d3-interpolate";
 import {interpolateRdBu, interpolateTurbo} from "d3-scale-chromatic";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
 import {registry, radius, color} from "./index.js";
 
-function constant(x) {
-  return () => x;
-}
-
-function flip(i) {
-  return t => i(1 - t);
-}
+const constant = x => () => x;
+const flip = i => t => i(1 - t);
 
 export function ScaleQ(key, scale, channels, {
   nice,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
-  interpolate = round ? interpolateRound : registry.get(key) === color ? interpolateTurbo : undefined,
   range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
+  interpolate = round ? interpolateRound
+    : registry.get(key) === color ? (range === undefined ? interpolateTurbo : interpolateRgb)
+    : undefined,
   invert,
   inset
 }) {

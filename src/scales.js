@@ -47,7 +47,7 @@ function Scale(key, channels = [], options = {}) {
   }
 }
 
-function inferScaleType(key, channels, {type, domain}) {
+function inferScaleType(key, channels, {type, domain, range}) {
   if (type !== undefined) {
     for (const {type: t} of channels) {
       if (t !== undefined && type !== t) {
@@ -57,11 +57,9 @@ function inferScaleType(key, channels, {type, domain}) {
     return type;
   }
   if (registry.get(key) === radius) return "sqrt";
-  for (const {type} of channels) {
-    if (type !== undefined) return type;
-  }
+  for (const {type} of channels) if (type !== undefined) return type;
+  if ((domain || range || []).length > 2) return inferOrdinalType(key);
   if (domain !== undefined) {
-    if (domain.length > 2) return inferOrdinalType(key);
     type = inferScaleTypeFromValues(key, domain);
     if (type !== undefined) return type;
   }
