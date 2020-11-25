@@ -3,7 +3,7 @@ export {Mark} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {AxisX, AxisY} from "./marks/axis.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
-export {binX, binY} from "./marks/bin.js";
+export {Bin, binX, binY} from "./marks/bin.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {FacetY, facetY} from "./marks/facet.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
