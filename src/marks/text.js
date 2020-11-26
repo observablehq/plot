@@ -69,7 +69,7 @@ export function textY(data, {y = identity, ...options} = {}) {
 }
 
 function nonempty(x) {
-  return x != null && x != "";
+  return x != null && (x + "") !== "";
 }
 
 function applyTextStyles(selection, style) {
