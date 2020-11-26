@@ -1,3 +1,4 @@
+import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {identity, indexOf} from "../mark.js";
 import {defined} from "../defined.js";
@@ -9,6 +10,7 @@ class Bar extends Mark {
     data,
     channels,
     {
+      z,
       fill,
       stroke,
       style,
@@ -22,6 +24,7 @@ class Bar extends Mark {
       data,
       [
         ...channels,
+        {name: "z", value: z, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
@@ -34,12 +37,14 @@ class Bar extends Mark {
   }
   render(I, scales, channels) {
     const {color} = scales;
-    const {x: X, y: Y, fill: F, stroke: S} = channels;
+    const {x: X, y: Y, z: Z, fill: F, stroke: S} = channels;
     const {style} = this;
+    const index = I.filter(i => defined(X[i]) && defined(Y[i]));
+    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, style)
         .call(g => g.selectAll()
-          .data(I.filter(i => defined(X[i]) && defined(Y[i])))
+          .data(index)
           .join("rect")
             .call(applyDirectStyles, style)
             .attr("x", this._x(scales, channels))
