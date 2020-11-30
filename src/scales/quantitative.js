@@ -1,11 +1,115 @@
 import {min, max, quantile, reverse} from "d3-array";
-import {interpolateRgb, interpolateRound} from "d3-interpolate";
-import {interpolateRdBu, interpolateTurbo} from "d3-scale-chromatic";
+import {
+  interpolateHcl,
+  interpolateHsl,
+  interpolateLab,
+  interpolateNumber,
+  interpolateRgb,
+  interpolateRound
+} from "d3-interpolate";
+import {
+  interpolateBlues,
+  interpolateBrBG,
+  interpolateBuGn,
+  interpolateBuPu,
+  interpolateCividis,
+  interpolateCool,
+  interpolateCubehelixDefault,
+  interpolateGnBu,
+  interpolateGreens,
+  interpolateGreys,
+  interpolateInferno,
+  interpolateMagma,
+  interpolateOranges,
+  interpolateOrRd,
+  interpolatePiYG,
+  interpolatePlasma,
+  interpolatePRGn,
+  interpolatePuBu,
+  interpolatePuBuGn,
+  interpolatePuOr,
+  interpolatePuRd,
+  interpolatePurples,
+  interpolateRainbow,
+  interpolateRdBu,
+  interpolateRdGy,
+  interpolateRdPu,
+  interpolateRdYlBu,
+  interpolateRdYlGn,
+  interpolateReds,
+  interpolateSinebow,
+  interpolateSpectral,
+  interpolateTurbo,
+  interpolateViridis,
+  interpolateWarm,
+  interpolateYlGn,
+  interpolateYlGnBu,
+  interpolateYlOrBr,
+  interpolateYlOrRd
+} from "d3-scale-chromatic";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
 import {registry, radius, color} from "./index.js";
 
 const constant = x => () => x;
 const flip = i => t => i(1 - t);
+
+// TODO Allow this to be extended.
+const interpolators = new Map([
+  // numbers
+  ["number", interpolateNumber],
+
+  // color spaces
+  ["rgb", interpolateRgb],
+  ["hsl", interpolateHsl],
+  ["hcl", interpolateHcl],
+  ["lab", interpolateLab],
+
+  // diverging
+  ["brbg", interpolateBrBG],
+  ["prgn", interpolatePRGn],
+  ["piyg", interpolatePiYG],
+  ["puor", interpolatePuOr],
+  ["rdbu", interpolateRdBu],
+  ["rdgy", interpolateRdGy],
+  ["rdylbu", interpolateRdYlBu],
+  ["rdylgn", interpolateRdYlGn],
+  ["spectral", interpolateSpectral],
+
+  // sequential (single-hue)
+  ["blues", interpolateBlues],
+  ["greens", interpolateGreens],
+  ["greys", interpolateGreys],
+  ["purples", interpolatePurples],
+  ["reds", interpolateReds],
+  ["oranges", interpolateOranges],
+
+  // sequential (multi-hue)
+  ["turbo", interpolateTurbo],
+  ["viridis", interpolateViridis],
+  ["magma", interpolateMagma],
+  ["inferno", interpolateInferno],
+  ["plasma", interpolatePlasma],
+  ["cividis", interpolateCividis],
+  ["cubehelix", interpolateCubehelixDefault],
+  ["warm", interpolateWarm],
+  ["cool", interpolateCool],
+  ["bugn", interpolateBuGn],
+  ["bupu", interpolateBuPu],
+  ["gnbu", interpolateGnBu],
+  ["orrd", interpolateOrRd],
+  ["pubugn", interpolatePuBuGn],
+  ["pubu", interpolatePuBu],
+  ["purd", interpolatePuRd],
+  ["rdpu", interpolateRdPu],
+  ["ylgnbu", interpolateYlGnBu],
+  ["ylgn", interpolateYlGn],
+  ["ylorbr", interpolateYlOrBr],
+  ["ylorrd", interpolateYlOrRd],
+
+  // cyclical
+  ["rainbow", interpolateRainbow],
+  ["sinebow", interpolateSinebow]
+]);
 
 export function ScaleQ(key, scale, channels, {
   nice,
@@ -22,6 +126,11 @@ export function ScaleQ(key, scale, channels, {
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (interpolate !== undefined) {
+    if (typeof interpolate !== "function") {
+      const i = (interpolate + "").toLowerCase();
+      if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
+      interpolate = interpolators.get(i);
+    }
     // Sometimes interpolate is a function that takes two arguments and is used
     // in conjunction with the range; for example, interpolateLab might be used
     // to interpolate two colors in Lab color space. Other times the interpolate
