@@ -5,7 +5,8 @@ import {
   interpolateLab,
   interpolateNumber,
   interpolateRgb,
-  interpolateRound
+  interpolateRound,
+  piecewise
 } from "d3-interpolate";
 import {
   interpolateBlues,
@@ -62,8 +63,11 @@ const interpolators = new Map([
   ["rgb", interpolateRgb],
   ["hsl", interpolateHsl],
   ["hcl", interpolateHcl],
-  ["lab", interpolateLab],
+  ["lab", interpolateLab]
+]);
 
+// TODO Allow this to be extended.
+const schemes = new Map([
   // diverging
   ["brbg", interpolateBrBG],
   ["prgn", interpolatePRGn],
@@ -111,37 +115,47 @@ const interpolators = new Map([
   ["sinebow", interpolateSinebow]
 ]);
 
+function Interpolator(interpolate) {
+  const i = (interpolate + "").toLowerCase();
+  if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
+  return interpolators.get(i);
+}
+
+function Scheme(scheme) {
+  const s = (scheme + "").toLowerCase();
+  if (!schemes.has(s)) throw new Error(`unknown scheme: ${s}`);
+  return schemes.get(s);
+}
+
 export function ScaleQ(key, scale, channels, {
   nice,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
   range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
-  interpolate = round ? interpolateRound
-    : registry.get(key) === color ? (range === undefined ? interpolateTurbo : interpolateRgb)
-    : undefined,
+  scheme,
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateTurbo) : round ? interpolateRound : undefined,
   invert,
   inset
 }) {
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
+
+  // Sometimes interpolator is named interpolator, such as "lab" for Lab color
+  // space. Other times interpolate is a function that takes two arguments and
+  // is used in conjunction with the range. And other times the interpolate
+  // function is a “fixed” interpolator independent of the range, as when a
+  // color scheme such as interpolateRdBu is used.
   if (interpolate !== undefined) {
     if (typeof interpolate !== "function") {
-      const i = (interpolate + "").toLowerCase();
-      if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
-      interpolate = interpolators.get(i);
-    }
-    // Sometimes interpolate is a function that takes two arguments and is used
-    // in conjunction with the range; for example, interpolateLab might be used
-    // to interpolate two colors in Lab color space. Other times the interpolate
-    // function is a “fixed” interpolator independent of the range, as when a
-    // color scheme such as interpolateRdBu is used.
-    if (interpolate.length === 1) {
+      interpolate = Interpolator(interpolate);
+    } else if (interpolate.length === 1) {
       if (invert) interpolate = flip(interpolate);
       interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
   }
+
   if (range !== undefined) scale.range(range);
   return {type: "quantitative", invert, domain, range, scale, inset};
 }
@@ -166,11 +180,25 @@ export function ScaleDiverging(key, channels, {
   nice,
   domain = inferDomain(channels),
   pivot = 0,
-  interpolate = registry.get(key) === color ? interpolateRdBu : undefined,
+  range,
+  scheme,
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateRdBu) : undefined,
   invert
 }) {
   domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
   if (invert = !!invert) domain = reverse(domain);
+
+  // Sometimes interpolator is named interpolator, such as "lab" for Lab color
+  // space; other times it is a function that takes t in [0, 1].
+  if (interpolate !== undefined && typeof interpolate !== "function") {
+    interpolate = Interpolator(interpolate);
+  }
+
+  // If an explicit range is specified, promote it to a piecewise interpolator.
+  if (range !== undefined) {
+    interpolate = piecewise(interpolate, range);
+  }
+
   const scale = scaleDiverging(domain, interpolate);
   if (nice) scale.nice(nice);
   return {type: "quantitative", invert, domain, scale};
