@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {defined} from "../defined.js";
+import {defined, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, first, second} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, Style} from "../style.js";
 
@@ -12,6 +12,7 @@ export class Dot extends Mark {
       y = second,
       z,
       r,
+      title,
       fill,
       stroke,
       style = {}
@@ -24,6 +25,7 @@ export class Dot extends Mark {
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
         {name: "r", value: r, scale: "r", optional: true},
+        {name: "title", value: title, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
       ]
@@ -39,7 +41,7 @@ export class Dot extends Mark {
   render(
     I,
     {x, y, r, color},
-    {x: X, y: Y, z: Z, r: R, fill: F, stroke: S}
+    {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S}
   ) {
     const {style} = this;
     let index = I.filter(i => defined(X[i]) && defined(Y[i]));
@@ -57,7 +59,11 @@ export class Dot extends Mark {
             .attr("cy", i => y(Y[i]))
             .attr("r", R ? i => r(R[i]) : style.r)
             .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i]))))
+            .attr("stroke", S && (i => color(S[i])))
+            .call(L ? text => text
+              .filter(i => nonempty(L[i]))
+              .append("title")
+              .text(i => L[i]) : () => {}))
       .node();
   }
 }

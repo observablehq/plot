@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/simpsons.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    height: 640,
+    inset: 6,
+    grid: true,
+    x: {
+      label: "IMDB rating →"
+    },
+    y: {
+      label: "↑ Viewers (U.S., millions)"
+    },
+    marks: [
+      Plot.ruleY([0]),
+      Plot.dot(data, {
+        x: "imdb_rating",
+        y: "us_viewers_in_millions",
+        fill: "season",
+        title: d => `${d.title} S${d.season}E${d.number_in_season}`
+      })
+    ]
+  }));
+});
+
+</script>

@@ -7,3 +7,7 @@ export function defined(x) {
 export function ascendingDefined(a, b) {
   return defined(a) - defined(b) || ascending(a, b);
 }
+
+export function nonempty(x) {
+  return x != null && (x + "") !== "";
+}

@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {defined} from "../defined.js";
+import {defined, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, applyAttr, Style} from "../style.js";
 
@@ -78,10 +78,6 @@ export function textX(data, {x = identity, ...options} = {}) {
 
 export function textY(data, {y = identity, ...options} = {}) {
   return new Text(data, {...options, x: indexOf, y});
-}
-
-function nonempty(x) {
-  return x != null && (x + "") !== "";
 }
 
 function applyTextStyles(selection, style) {
