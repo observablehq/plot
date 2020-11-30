@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/simpsons.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    grid: true,
+    padding: 0.05,
+    x: {
+      label: "Episode",
+      axis: "top"
+    },
+    y: {
+      label: "Season",
+    },
+    color: {
+      interpolate: d3.interpolatePiYG
+    },
+    height: 640,
+    marks: [
+      Plot.bar(data, {
+        x: "number_in_season",
+        y: "season",
+        fill: "imdb_rating"
+      }),
+      Plot.text(data, {
+        x: "number_in_season",
+        y: "season",
+        text: d => d.imdb_rating && d.imdb_rating.toFixed(1)
+      })
+    ]
+  }));
+});
+
+</script>

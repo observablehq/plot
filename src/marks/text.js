@@ -31,7 +31,7 @@ export class Text extends Mark {
     );
     this.style = Style(style);
     this.style.textAnchor = string(style.textAnchor);
-    this.style.dy = style.dy === undefined ? "-0.5em" : style.dy + "";
+    this.style.dy = style.dy === undefined ? undefined : style.dy + "";
   }
   render(
     I,
@@ -39,15 +39,21 @@ export class Text extends Mark {
     {x: X, y: Y, z: Z, text: T, fill: F}
   ) {
     const {style} = this;
-    const index = I.filter(i => defined(X[i]) && defined(Y[i]) && nonempty(T[i]));
+    let index = I.filter(i => defined(X[i]) && defined(Y[i]) && nonempty(T[i]));
+    if (F) index = index.filter(i => defined(F[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, style)
+        .attr("transform", `translate(${
+          x.bandwidth ? x.bandwidth() / 2 : 0},${
+          y.bandwidth ? y.bandwidth() / 2 : 0})`)
         .call(g => g.selectAll()
           .data(index)
           .join("text")
             .call(applyDirectStyles, style)
-            .call(applyTextStyles, style)
+            .call(applyTextStyles, y.bandwidth && style.dy === undefined
+              ? {...style, dy: "0.32em"}
+              : style)
             .attr("x", i => x(X[i]))
             .attr("y", i => y(Y[i]))
             .attr("fill", F && (i => color(F[i])))

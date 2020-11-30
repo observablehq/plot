@@ -1,11 +1,10 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {identity, indexOf} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark, number} from "../mark.js";
+import {Mark, number, identity, indexOf, first, second} from "../mark.js";
 import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
 
-class Bar extends Mark {
+class AbstractBar extends Mark {
   constructor(
     data,
     channels,
@@ -39,7 +38,9 @@ class Bar extends Mark {
     const {color} = scales;
     const {x: X, y: Y, z: Z, fill: F, stroke: S} = channels;
     const {style} = this;
-    const index = I.filter(i => defined(X[i]) && defined(Y[i]));
+    let index = I.filter(i => defined(X[i]) && defined(Y[i]));
+    if (F) index = index.filter(i => defined(F[i]));
+    if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, style)
@@ -57,7 +58,36 @@ class Bar extends Mark {
   }
 }
 
-export class BarX extends Bar {
+export class Bar extends AbstractBar {
+  constructor(data, {x = first, y = second, ...options} = {}) {
+    super(
+      data,
+      [
+        {name: "x", value: x, scale: "x", type: "band"},
+        {name: "y", value: y, scale: "y", type: "band"}
+      ],
+      options
+    );
+  }
+  _x({x}, {x: X}) {
+    const {insetLeft} = this;
+    return i => x(X[i]) + insetLeft;
+  }
+  _y({y}, {y: Y}) {
+    const {insetTop} = this;
+    return i => y(Y[i]) + insetTop;
+  }
+  _width({x}) {
+    const {insetLeft, insetRight} = this;
+    return Math.max(0, x.bandwidth() - insetLeft - insetRight);
+  }
+  _height({y}) {
+    const {insetTop, insetBottom} = this;
+    return Math.max(0, y.bandwidth() - insetTop - insetBottom);
+  }
+}
+
+export class BarX extends AbstractBar {
   constructor(data, {x = identity, y = indexOf, ...options} = {}) {
     super(
       data,
@@ -87,7 +117,7 @@ export class BarX extends Bar {
   }
 }
 
-export class BarY extends Bar {
+export class BarY extends AbstractBar {
   constructor(data, {x = indexOf, y = identity, ...options} = {}) {
     super(
       data,
@@ -115,6 +145,10 @@ export class BarY extends Bar {
     const {insetTop, insetBottom} = this;
     return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
   }
+}
+
+export function bar(data, options) {
+  return new Bar(data, options);
 }
 
 export function barX(data, options) {

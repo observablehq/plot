@@ -35,7 +35,8 @@ export class RuleX extends Mark {
     {marginTop, height, marginBottom}
   ) {
     const {style} = this;
-    const index = I.filter(i => defined(X[i]) && defined(Y1[i]) && defined(Y2[i]));
+    let index = I.filter(i => defined(X[i]) && defined(Y1[i]) && defined(Y2[i]));
+    if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyStyles, style)

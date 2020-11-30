@@ -42,3 +42,5 @@ export const identity = d => d;
 export const zero = () => 0;
 export const string = x => x == null ? undefined : x + "";
 export const number = x => x == null ? undefined : +x;
+export const first = d => d[0];
+export const second = d => d[1];

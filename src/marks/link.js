@@ -36,7 +36,8 @@ export class Link extends Mark {
     {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, stroke: S}
   ) {
     const {style} = this;
-    const index = I.filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]));
+    let index = I.filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]));
+    if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, style)
