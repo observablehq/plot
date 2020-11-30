@@ -29,7 +29,7 @@ d3.csv("data/simpsons.csv", d3.autoType).then(data => {
       Plot.text(data, {
         x: "number_in_season",
         y: "season",
-        text: d => d.imdb_rating && d.imdb_rating.toFixed(1),
+        text: d => d.imdb_rating?.toFixed(1),
         title: "title"
       })
     ]
