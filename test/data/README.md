@@ -49,4 +49,4 @@ https://data.world/data-society/the-simpsons-by-the-data
 
 ## travelers.csv
 TSA
-https://www.tsa.gov/coronavirus/passenger-throughput |
+https://www.tsa.gov/coronavirus/passenger-throughput
