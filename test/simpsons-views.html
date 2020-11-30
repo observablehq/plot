@@ -8,9 +8,9 @@
 d3.csv("data/simpsons.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
     height: 640,
-    inset: 6,
     grid: true,
     x: {
+      inset: 6,
       label: "IMDB rating →"
     },
     y: {
