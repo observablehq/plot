@@ -15,6 +15,7 @@ export class Text extends Mark {
       y = second,
       z,
       text = indexOf,
+      title,
       fill,
       style = {}
     } = {}
@@ -26,6 +27,7 @@ export class Text extends Mark {
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
         {name: "text", value: text},
+        {name: "title", value: title, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true}
       ]
     );
@@ -36,7 +38,7 @@ export class Text extends Mark {
   render(
     I,
     {x, y, color},
-    {x: X, y: Y, z: Z, text: T, fill: F}
+    {x: X, y: Y, z: Z, text: T, title: L, fill: F}
   ) {
     const {style} = this;
     let index = I.filter(i => defined(X[i]) && defined(Y[i]) && nonempty(T[i]));
@@ -57,7 +59,11 @@ export class Text extends Mark {
             .attr("x", i => x(X[i]))
             .attr("y", i => y(Y[i]))
             .attr("fill", F && (i => color(F[i])))
-            .text(i => T[i]))
+            .text(i => T[i])
+          .call(L ? text => text
+            .filter(i => nonempty(L[i]))
+            .append("title")
+            .text(i => L[i]) : () => {}))
       .node();
   }
 }
