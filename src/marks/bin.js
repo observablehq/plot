@@ -19,6 +19,7 @@ export function bin(options = {}) {
     }
     if (cumulative) {
       let sum = 0;
+      if (cumulative < 0) b.reverse();
       return b.map(({x0, x1, length}) => ({x0, x1, length: sum += length}));
     }
     return b;
