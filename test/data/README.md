@@ -50,3 +50,7 @@ https://data.world/data-society/the-simpsons-by-the-data
 ## travelers.csv
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
+
+## us-retail-sales.csv
+U.S. Census Bureau
+https://www.census.gov/retail/mrts/historic_releases.html
