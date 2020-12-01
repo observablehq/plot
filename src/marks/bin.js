@@ -1,6 +1,6 @@
 import {bin as binner} from "d3-array";
-import {field, identity, zero} from "../mark.js";
-import {Rect} from "./rect.js";
+import {field, identity} from "../mark.js";
+import {rectX, rectY} from "./rect.js";
 
 export function bin(options = {}) {
   if (typeof options === "string") options = {value: options};
@@ -28,15 +28,14 @@ export function binX(data, {
   normalize,
   ...options
 } = {}) {
-  return new Rect(
+  return rectX(
     data,
     {
       insetTop: 1,
       ...options,
       transform: bin({value: x, domain, thresholds}),
-      x1: zero,
+      x: normalize ? normalizer(normalize, data) : length,
       y1: typeof x === "string" ? startof(x) : start,
-      x2: normalize ? normalizer(normalize, data) : length,
       y2: end
     }
   );
@@ -49,16 +48,15 @@ export function binY(data, {
   normalize,
   ...options
 } = {}) {
-  return new Rect(
+  return rectY(
     data,
     {
       insetLeft: 1,
       ...options,
       transform: bin({value: y, domain, thresholds}),
+      y: normalize ? normalizer(normalize, data) : length,
       x1: typeof y === "string" ? startof(y) : start,
-      y1: zero,
-      x2: end,
-      y2: normalize ? normalizer(normalize, data) : length
+      x2: end
     }
   );
 }
