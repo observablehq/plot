@@ -1,7 +1,8 @@
 export class Mark {
-  constructor(data, channels = []) {
+  constructor(data, channels = [], transform = identity) {
     const names = new Set();
     this.data = data;
+    this.transform = transform;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value === undefined) {
@@ -18,6 +19,7 @@ export class Mark {
     });
   }
   initialize(data) {
+    if (data !== undefined) data = this.transform(data);
     return {
       index: data === undefined ? undefined : Array.from(data, indexOf),
       channels: this.channels.map(channel => {

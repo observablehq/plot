@@ -16,7 +16,8 @@ class AbstractBar extends Mark {
       insetTop = 0,
       insetRight = 0,
       insetBottom = 0,
-      insetLeft = 0
+      insetLeft = 0,
+      transform
     } = {}
   ) {
     super(
@@ -26,7 +27,8 @@ class AbstractBar extends Mark {
         {name: "z", value: z, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style(style);
     this.insetTop = number(insetTop);

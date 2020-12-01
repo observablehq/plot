@@ -14,7 +14,8 @@ export class Link extends Mark {
       y2,
       z,
       stroke,
-      style
+      style,
+      transform
     } = {}
   ) {
     super(
@@ -26,7 +27,8 @@ export class Link extends Mark {
         {name: "y2", value: y2, scale: "y", label: y2.label},
         {name: "z", value: z, optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style({stroke: "currentColor", ...style});
   }

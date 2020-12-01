@@ -2,33 +2,38 @@ import {bin as binner} from "d3-array";
 import {field, identity, zero} from "../mark.js";
 import {Rect} from "./rect.js";
 
-export class Bin extends Rect {
-  constructor(data, {value, domain, thresholds, ...options} = {}) {
-    super(data, options);
-    if (typeof value !== "function") value = field(value + "");
-    const bin = this.bin = binner().value(value);
-    if (domain !== undefined) bin.domain(domain);
-    if (thresholds !== undefined) bin.thresholds(thresholds);
+export function bin(options = {}) {
+  if (typeof options === "string") options = {value: options};
+  let {value, domain, thresholds} = options;
+  if (typeof value !== "function") value = field(value + "");
+  const bin = binner().value(value);
+  if (domain !== undefined) bin.domain(domain);
+  if (thresholds !== undefined) bin.thresholds(thresholds);
+  return data => {
+    const b = bin(data);
     // We don’t want to choose thresholds dynamically for each facet; instead,
     // we extract the set of thresholds from an initial computation.
     if (domain === undefined || thresholds === undefined) {
-      const b = bin(data);
-      if (domain === undefined) bin.domain([b[0].x0, b[b.length - 1].x1]);
-      if (thresholds === undefined) bin.thresholds(b.slice(1).map(start));
+      if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
+      if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(start));
     }
-  }
-  initialize(data) {
-    return super.initialize(this.bin(data));
-  }
+    return b;
+  };
 }
 
-export function binX(data, {x = identity, normalize, ...options} = {}) {
-  return new Bin(
+export function binX(data, {
+  x = identity,
+  domain,
+  thresholds,
+  normalize,
+  ...options
+} = {}) {
+  return new Rect(
     data,
     {
       insetTop: 1,
       ...options,
-      value: x,
+      transform: bin({value: x, domain, thresholds}),
       x1: zero,
       y1: typeof x === "string" ? startof(x) : start,
       x2: normalize ? normalizer(normalize, data) : length,
@@ -37,13 +42,19 @@ export function binX(data, {x = identity, normalize, ...options} = {}) {
   );
 }
 
-export function binY(data, {y = identity, normalize, ...options} = {}) {
-  return new Bin(
+export function binY(data, {
+  y = identity,
+  domain,
+  thresholds,
+  normalize,
+  ...options
+} = {}) {
+  return new Rect(
     data,
     {
       insetLeft: 1,
       ...options,
-      value: y,
+      transform: bin({value: y, domain, thresholds}),
       x1: typeof y === "string" ? startof(y) : start,
       y1: zero,
       x2: end,

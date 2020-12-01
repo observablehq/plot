@@ -17,7 +17,8 @@ export class Text extends Mark {
       text = indexOf,
       title,
       fill,
-      style = {}
+      style = {},
+      transform
     } = {}
   ) {
     super(
@@ -29,7 +30,8 @@ export class Text extends Mark {
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style(style);
     this.style.dx = string(style.dx);

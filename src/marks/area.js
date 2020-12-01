@@ -14,7 +14,8 @@ export class Area extends Mark {
       x2,
       y2,
       curve,
-      style
+      style,
+      transform
     } = {}
   ) {
     super(
@@ -24,7 +25,8 @@ export class Area extends Mark {
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true}
-      ]
+      ],
+      transform
     );
     this.curve = Curve(curve);
     this.style = Style(style);

@@ -13,7 +13,8 @@ export class RuleX extends Mark {
       y2,
       z,
       stroke,
-      style
+      style,
+      transform
     } = {}
   ) {
     super(
@@ -24,7 +25,8 @@ export class RuleX extends Mark {
         {name: "y2", value: y2, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style({stroke: "currentColor", ...style});
   }
@@ -63,7 +65,8 @@ export class RuleY extends Mark {
       y = identity,
       z,
       stroke,
-      style
+      style,
+      transform
     } = {}
   ) {
     super(
@@ -74,7 +77,8 @@ export class RuleY extends Mark {
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "z", value: z, optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style({stroke: "currentColor", ...style});
   }

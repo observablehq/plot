@@ -4,12 +4,13 @@ import {Mark} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
 
 export class FacetY extends Mark {
-  constructor(data, {y} = {}, marks = []) {
+  constructor(data, {y, transform} = {}, marks = []) {
     super(
       data,
       [
         {name: "y", value: y, scale: "y", type: "band"}
-      ]
+      ],
+      transform
     );
     this.marks = marks;
     this.facets = undefined; // set by initialize

@@ -15,7 +15,8 @@ export class Dot extends Mark {
       title,
       fill,
       stroke,
-      style = {}
+      style = {},
+      transform
     } = {}
   ) {
     super(
@@ -28,7 +29,8 @@ export class Dot extends Mark {
         {name: "title", value: title, optional: true},
         {name: "fill", value: fill, scale: "color", optional: true},
         {name: "stroke", value: stroke, scale: "color", optional: true}
-      ]
+      ],
+      transform
     );
     this.style = Style({
       fill: fill === undefined ? "none" : undefined,

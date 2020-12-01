@@ -14,7 +14,8 @@ export class Line extends Mark {
       y,
       z, // optional grouping for multiple series
       curve,
-      style
+      style,
+      transform
     } = {}
   ) {
     super(
@@ -23,7 +24,8 @@ export class Line extends Mark {
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true}
-      ]
+      ],
+      transform
     );
     this.curve = Curve(curve);
     this.style = Style({
