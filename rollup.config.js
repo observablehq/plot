@@ -8,7 +8,7 @@ const config = {
   external,
   output: {
     indent: false,
-    banner: `// ${meta.name} v${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}`,
+    banner: `// ${meta.name} v${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}`
   },
   plugins: []
 };
