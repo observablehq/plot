@@ -53,6 +53,7 @@ export function plot(options = {}) {
 
   const svg = create("svg")
       .attr("viewBox", [0, 0, width, height])
+      .attr("class", "plot")
       .attr("fill", "currentColor")
       .attr("stroke-miterlimit", 1)
       .attr("text-anchor", "middle")
@@ -60,6 +61,9 @@ export function plot(options = {}) {
       .style("max-width", `${width}px`)
       .style("display", "block")
       .style("background", background);
+
+  svg.append("style")
+      .text(`.plot text { fill: currentColor; white-space: pre; }`);
 
   for (const mark of marks) {
     const channels = markChannels.get(mark);
