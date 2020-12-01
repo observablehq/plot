@@ -68,8 +68,8 @@ export class Dot extends Mark {
   }
 }
 
-export function dot(data, channels, style) {
-  return new Dot(data, channels, style);
+export function dot(data, options) {
+  return new Dot(data, options);
 }
 
 export function dotX(data, {x = identity, ...options} = {}) {

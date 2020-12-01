@@ -54,6 +54,6 @@ export class Link extends Mark {
   }
 }
 
-export function link(data, channels, style) {
-  return new Link(data, channels, style);
+export function link(data, options) {
+  return new Link(data, options);
 }

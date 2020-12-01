@@ -50,8 +50,8 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, channels, style) {
-  return new Line(data, channels, style);
+export function line(data, options) {
+  return new Line(data, options);
 }
 
 // TODO Error if y is specified?

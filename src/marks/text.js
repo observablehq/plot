@@ -67,8 +67,8 @@ export class Text extends Mark {
   }
 }
 
-export function text(data, channels, style) {
-  return new Text(data, channels, style);
+export function text(data, options) {
+  return new Text(data, options);
 }
 
 export function textX(data, {x = identity, ...options} = {}) {

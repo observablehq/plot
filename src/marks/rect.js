@@ -67,14 +67,14 @@ export class Rect extends Mark {
   }
 }
 
-export function rectX(data, {x, y1, y2} = {}, style) {
-  return new Rect(data, {x1: zero, x2: x, y1, y2}, style);
+export function rectX(data, {x, y1, y2, ...options} = {}) {
+  return new Rect(data, {...options, x1: zero, x2: x, y1, y2});
 }
 
-export function rectY(data, {x1, x2, y} = {}, style) {
-  return new Rect(data, {x1, x2, y1: zero, y2: y}, style);
+export function rectY(data, {x1, x2, y, ...options} = {}) {
+  return new Rect(data, {...options, x1, x2, y1: zero, y2: y});
 }
 
-export function rect(data, channels, style) {
-  return new Rect(data, channels, style);
+export function rect(data, options) {
+  return new Rect(data, options);
 }
