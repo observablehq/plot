@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -22,7 +22,7 @@
     "pretest": "rollup -c",
     "test": "tape 'test/**/*-test.js' && eslint src test",
     "prepublishOnly": "rm -rf dist && yarn test",
-    "postpublish": "git push && git push --tags && zip -j dist/${npm_package_name}.zip -- LICENSE README.md dist/${npm_package_name}.js dist/${npm_package_name}.min.js"
+    "postpublish": "git push && git push --tags"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
@@ -40,5 +40,8 @@
     "d3-scale-chromatic": "^2.0.0",
     "d3-selection": "^2.0.0",
     "d3-shape": "^2.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
