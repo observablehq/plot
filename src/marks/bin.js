@@ -4,7 +4,7 @@ import {rectX, rectY} from "./rect.js";
 
 export function bin(options = {}) {
   if (typeof options === "string") options = {value: options};
-  let {value, domain, thresholds} = options;
+  let {value, domain, thresholds, cumulative} = options;
   if (typeof value !== "function") value = field(value + "");
   const bin = binner().value(value);
   if (domain !== undefined) bin.domain(domain);
@@ -17,6 +17,10 @@ export function bin(options = {}) {
       if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(start));
     }
+    if (cumulative) {
+      let sum = 0;
+      return b.map(({x0, x1, length}) => ({x0, x1, length: sum += length}));
+    }
     return b;
   };
 }
@@ -26,6 +30,7 @@ export function binX(data, {
   domain,
   thresholds,
   normalize,
+  cumulative,
   ...options
 } = {}) {
   return rectX(
@@ -33,7 +38,7 @@ export function binX(data, {
     {
       insetTop: 1,
       ...options,
-      transform: bin({value: x, domain, thresholds}),
+      transform: bin({value: x, domain, thresholds, cumulative}),
       x: normalize ? normalizer(normalize, data) : length,
       y1: typeof x === "string" ? startof(x) : start,
       y2: end
@@ -46,6 +51,7 @@ export function binY(data, {
   domain,
   thresholds,
   normalize,
+  cumulative,
   ...options
 } = {}) {
   return rectY(
@@ -53,7 +59,7 @@ export function binY(data, {
     {
       insetLeft: 1,
       ...options,
-      transform: bin({value: y, domain, thresholds}),
+      transform: bin({value: y, domain, thresholds, cumulative}),
       y: normalize ? normalizer(normalize, data) : length,
       x1: typeof y === "string" ? startof(y) : start,
       x2: end
