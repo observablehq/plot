@@ -32,8 +32,9 @@ export class Text extends Mark {
       ]
     );
     this.style = Style(style);
+    this.style.dx = string(style.dx);
+    this.style.dy = style.dy === undefined ? "0.32em" : string(style.dy);
     this.style.textAnchor = string(style.textAnchor);
-    this.style.dy = style.dy === undefined ? undefined : style.dy + "";
   }
   render(
     I,
@@ -53,9 +54,7 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectStyles, style)
-            .call(applyTextStyles, y.bandwidth && style.dy === undefined
-              ? {...style, dy: "0.32em"}
-              : style)
+            .call(applyTextStyles, style)
             .attr("x", i => x(X[i]))
             .attr("y", i => y(Y[i]))
             .attr("fill", F && (i => color(F[i])))
@@ -81,6 +80,7 @@ export function textY(data, {y = identity, ...options} = {}) {
 }
 
 function applyTextStyles(selection, style) {
+  applyAttr(selection, "dx", style.dx);
   applyAttr(selection, "dy", style.dy);
   applyAttr(selection, "text-anchor", style.textAnchor);
 }

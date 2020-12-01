@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, first, second} from "../mark.js";
+import {Mark, indexOf, identity, first, second, number} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, Style} from "../style.js";
 
 export class Dot extends Mark {
@@ -36,7 +36,7 @@ export class Dot extends Mark {
       strokeWidth: fill === undefined && style.fill === undefined ? 1.5 : undefined,
       ...style
     });
-    this.style.r = style.r === undefined ? 3 : +style.r;
+    this.style.r = style.r === undefined ? 3 : number(style.r);
   }
   render(
     I,
