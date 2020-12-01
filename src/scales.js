@@ -7,7 +7,8 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
   const scales = {};
   for (const key of registry.keys()) {
     if (channels.has(key) || options[key]) {
-      scales[key] = Scale(key, channels.get(key), {inset, round, nice, align, padding, ...options[key]});
+      const scale = Scale(key, channels.get(key), {inset, round, nice, align, padding, ...options[key]});
+      if (scale) scales[key] = scale;
     }
   }
   return scales;
