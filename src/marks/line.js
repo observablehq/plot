@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity} from "../mark.js";
+import {Mark, indexOf, identity, first, second} from "../mark.js";
 import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
 
 export class Line extends Mark {
@@ -52,8 +52,8 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, options) {
-  return new Line(data, options);
+export function line(data, {x = first, y = second, ...options}) {
+  return new Line(data, {...options, x, y});
 }
 
 // TODO Error if y is specified?
