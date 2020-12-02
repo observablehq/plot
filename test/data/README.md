@@ -20,6 +20,10 @@ https://www.bls.gov/
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## covid-ihme-projected-deaths.csv
+Institute for Health Metrics and Evaluation
+https://covid19.healthdata.org/
+
 ## gistemp.csv
 NASA Goddard Institute for Space Studies
 https://data.giss.nasa.gov/gistemp/
