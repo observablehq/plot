@@ -42,7 +42,7 @@ const curves = new Map([
 
 // TODO Tension and other parameters (e.g., curve: ["cardinal", 1])?
 export function Curve(curve = "linear") {
-  if (curve && typeof curve.point === "function") return curve; // custom curve
+  if (typeof curve === "function") return curve; // custom curve
   const c = (curve + "").toLowerCase();
   if (!curves.has(c)) throw new Error(`unknown curve: ${c}`);
   return curves.get(c);
