@@ -129,6 +129,7 @@ function Scheme(scheme) {
 
 export function ScaleQ(key, scale, channels, {
   nice,
+  clamp,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
   range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
@@ -157,6 +158,7 @@ export function ScaleQ(key, scale, channels, {
   }
 
   if (range !== undefined) scale.range(range);
+  if (clamp) scale.clamp(clamp);
   return {type: "quantitative", invert, domain, range, scale, inset};
 }
 
@@ -178,6 +180,7 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 
 export function ScaleDiverging(key, channels, {
   nice,
+  clamp,
   domain = inferDomain(channels),
   pivot = 0,
   range,
@@ -195,11 +198,10 @@ export function ScaleDiverging(key, channels, {
   }
 
   // If an explicit range is specified, promote it to a piecewise interpolator.
-  if (range !== undefined) {
-    interpolate = piecewise(interpolate, range);
-  }
+  if (range !== undefined) interpolate = piecewise(interpolate, range);
 
   const scale = scaleDiverging(domain, interpolate);
+  if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
   return {type: "quantitative", invert, domain, scale};
 }
