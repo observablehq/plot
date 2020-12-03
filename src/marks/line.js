@@ -35,7 +35,7 @@ export class Line extends Mark {
     Object.assign(this, Style({
       fill: "none",
       stroke: cstroke,
-      strokeWidth: z ? 1 : 1.5,
+      strokeWidth: 1.5,
       ...style
     }));
   }
