@@ -13,7 +13,8 @@ export class AxisX {
     labelAnchor,
     labelOffset
   } = {}) {
-    this.axis = axis === true ? "bottom" : axis;
+    this.axis = axis = axis === true ? "bottom" : (axis + "").toLowerCase();
+    if (!["top", "bottom"].includes(axis)) throw new Error(`invalid x-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;
     this.tickFormat = tickFormat;
@@ -79,7 +80,8 @@ export class AxisY {
     labelAnchor,
     labelOffset
   } = {}) {
-    this.axis = axis === true ? "left" : axis;
+    this.axis = axis = axis === true ? "left" : (axis + "").toLowerCase();
+    if (!["left", "right"].includes(axis)) throw new Error(`invalid y-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;
     this.tickFormat = tickFormat;
