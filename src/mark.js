@@ -33,9 +33,10 @@ export class Mark {
 }
 
 // TODO Type coercion?
-function Channel(data, {scale, type, value, label}) {
+function Channel(data, {scale, type, value}) {
+  let label;
   if (typeof value === "string") label = value, value = Array.from(data, field(value));
-  else if (typeof value === "function") value = Array.from(data, value);
+  else if (typeof value === "function") label = value.label, value = Array.from(data, value);
   else if (typeof value.length !== "number") value = Array.from(value);
   return {scale, type, value, label};
 }
