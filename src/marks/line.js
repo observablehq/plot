@@ -4,7 +4,7 @@ import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, first, second} from "../mark.js";
-import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 export class Line extends Mark {
   constructor(
@@ -14,8 +14,8 @@ export class Line extends Mark {
       y,
       z, // optional grouping for multiple series
       curve,
-      style,
-      transform
+      transform,
+      ...style
     } = {}
   ) {
     super(
@@ -28,23 +28,22 @@ export class Line extends Mark {
       transform
     );
     this.curve = Curve(curve);
-    this.style = Style({
+    Object.assign(this, Style({
       fill: "none",
       stroke: "currentColor",
       strokeWidth: z ? 1 : 1.5,
       ...style
-    });
+    }));
   }
   render(I, {x, y}, {x: X, y: Y, z: Z}) {
-    const {curve, style} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, style)
+        .call(applyIndirectStyles, this)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
-            .call(applyDirectStyles, style)
+            .call(applyDirectStyles, this)
             .attr("d", shapeLine()
-              .curve(curve)
+              .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
               .x(i => x(X[i]))
               .y(i => y(Y[i]))))

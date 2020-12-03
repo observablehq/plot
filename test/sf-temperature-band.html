@@ -15,9 +15,9 @@ d3.csv("data/sf-temperatures.csv", d3.autoType).then(temperatures => {
       label: "↑ Daily temperature range (°F)"
     },
     marks: [
-      Plot.areaY(temperatures, {x: "date", y1: "low", y2: "high", curve: "step", style: {fill: "#ccc"}}),
-      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.low), curve: "step", style: {stroke: "blue"}}),
-      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.high), curve: "step", style: {stroke: "red"}})
+      Plot.areaY(temperatures, {x: "date", y1: "low", y2: "high", curve: "step", fill: "#ccc"}),
+      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.low), curve: "step", stroke: "blue"}),
+      Plot.line(temperatures, {x: "date", y: movingAverage(temperatures, 7, d => d.high), curve: "step", stroke: "red"})
     ],
     width: 960
   }));

@@ -20,16 +20,11 @@ d3.csv("data/us-retail-sales.csv", ({Date, ...d}) => ({Date: parseDate(Date), ..
       Plot.line(data, {
         x: "Date",
         y: d => d.Sales / 1e3,
-        style: {
-          stroke: "#bab0ab"
-        }
+        stroke: "#bab0ab"
       }),
       Plot.line(data, {
         x: "Date",
-        y: d => d["Seasonally Adjusted Sales"] / 1e3,
-        style: {
-          stroke: "currentColor"
-        }
+        y: d => d["Seasonally Adjusted Sales"] / 1e3
       }),
       Plot.ruleY([0])
     ]

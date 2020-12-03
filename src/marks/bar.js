@@ -1,8 +1,8 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined} from "../defined.js";
-import {Mark, number, identity, indexOf, first, second} from "../mark.js";
-import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
+import {Mark, number, identity, indexOf, first, second, maybeColor} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 class AbstractBar extends Mark {
   constructor(
@@ -12,25 +12,27 @@ class AbstractBar extends Mark {
       z,
       fill,
       stroke,
-      style,
       insetTop = 0,
       insetRight = 0,
       insetBottom = 0,
       insetLeft = 0,
-      transform
+      transform,
+      ...style
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill);
+    const [vstroke, cstroke] = maybeColor(stroke);
     super(
       data,
       [
         ...channels,
         {name: "z", value: z, optional: true},
-        {name: "fill", value: fill, scale: "color", optional: true},
-        {name: "stroke", value: stroke, scale: "color", optional: true}
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
     );
-    this.style = Style(style);
+    Object.assign(this, Style({fill: cfill, stroke: cstroke, ...style}));
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -39,17 +41,16 @@ class AbstractBar extends Mark {
   render(I, scales, channels) {
     const {color} = scales;
     const {x: X, y: Y, z: Z, fill: F, stroke: S} = channels;
-    const {style} = this;
     let index = I.filter(i => defined(X[i]) && defined(Y[i]));
     if (F) index = index.filter(i => defined(F[i]));
     if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
-        .call(applyIndirectStyles, style)
+        .call(applyIndirectStyles, this)
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
-            .call(applyDirectStyles, style)
+            .call(applyDirectStyles, this)
             .attr("x", this._x(scales, channels))
             .attr("width", this._width(scales, channels))
             .attr("y", this._y(scales, channels))

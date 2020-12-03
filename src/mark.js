@@ -1,3 +1,5 @@
+import {color} from "d3-color";
+
 export class Mark {
   constructor(data, channels = [], transform = identity) {
     const names = new Set();
@@ -46,3 +48,27 @@ export const string = x => x == null ? undefined : x + "";
 export const number = x => x == null ? undefined : +x;
 export const first = d => d[0];
 export const second = d => d[1];
+
+// Some channels may allow a string constant to be specified; to differentiate
+// string constants (e.g., "red") from named fields (e.g., "date"), this
+// function tests whether the given value is a CSS color string and returns a
+// tuple [channel, constant] where one of the two is undefined, and the other is
+// the given value. If you wish to reference a named field that is also a valid
+// CSS color, use an accessor (d => d.red) instead.
+export function maybeColor(value) {
+  return typeof value === "string" && (value === "currentColor" || color(value)) ? [undefined, value] : [value, undefined];
+}
+
+// Similar to maybeColor, this tests whether the given value is a number
+// indicating a constant, and otherwise assumes that it’s a channel value.
+export function maybeNumber(value) {
+  return typeof value === "number" ? [undefined, value] : [value, undefined];
+}
+
+export function applyAttr(selection, name, value) {
+  if (value != null) selection.attr(name, value);
+}
+
+export function applyStyle(selection, name, value) {
+  if (value != null) selection.style(name, value);
+}

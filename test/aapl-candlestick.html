@@ -30,10 +30,8 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
         y1: "Open",
         y2: "Close",
         stroke: d => Math.sign(d.Close - d.Open),
-        style: {
-          strokeWidth: 4,
-          strokeLinecap: "round"
-        }
+        strokeWidth: 4,
+        strokeLinecap: "round"
       })
     ],
     width: 960

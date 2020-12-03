@@ -2,8 +2,8 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {zero} from "../mark.js";
 import {defined} from "../defined.js";
-import {Mark, number} from "../mark.js";
-import {Style, applyIndirectStyles, applyDirectStyles} from "../style.js";
+import {Mark, number, maybeColor} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 export class Rect extends Mark {
   constructor(
@@ -16,14 +16,16 @@ export class Rect extends Mark {
       z,
       fill,
       stroke,
-      style,
       insetTop = 0,
       insetRight = 0,
       insetBottom = 0,
       insetLeft = 0,
-      transform
+      transform,
+      ...style
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill);
+    const [vstroke, cstroke] = maybeColor(stroke);
     super(
       data,
       [
@@ -32,12 +34,12 @@ export class Rect extends Mark {
         {name: "x2", value: x2, scale: "x", label: x2.label},
         {name: "y2", value: y2, scale: "y", label: y2.label},
         {name: "z", value: z, optional: true},
-        {name: "fill", value: fill, scale: "color", optional: true},
-        {name: "stroke", value: stroke, scale: "color", optional: true}
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
     );
-    this.style = Style(style);
+    Object.assign(this, Style({fill: cfill, stroke: cstroke, ...style}));
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -48,21 +50,20 @@ export class Rect extends Mark {
     {x, y, color},
     {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, fill: F, stroke: S}
   ) {
-    const {style, insetTop, insetRight, insetBottom, insetLeft} = this;
     let index = I.filter(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]));
     if (F) index = index.filter(i => defined(F[i]));
     if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
-        .call(applyIndirectStyles, style)
+        .call(applyIndirectStyles, this)
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
-            .call(applyDirectStyles, style)
-            .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + insetLeft)
-            .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop)
-            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight))
-            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - insetTop - insetBottom))
+            .call(applyDirectStyles, this)
+            .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + this.insetLeft)
+            .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + this.insetTop)
+            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - this.insetLeft - this.insetRight))
+            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i]))))
       .node();

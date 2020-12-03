@@ -11,7 +11,7 @@ d3.csv("data/aapl.csv", d3.autoType).then(AAPL => {
       grid: true
     },
     marks: [
-      Plot.areaY(AAPL, {x: "Date", y: "Close", style: {fillOpacity: 0.1}}),
+      Plot.areaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
       Plot.line(AAPL, {x: "Date", y: "Close"}),
       Plot.ruleY([0])
     ]

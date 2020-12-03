@@ -1,8 +1,8 @@
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
-import {Mark, identity, indexOf, zero} from "../mark.js";
 import {defined} from "../defined.js";
+import {Mark, identity, indexOf, zero} from "../mark.js";
 import {Style, applyStyles} from "../style.js";
 
 export class Area extends Mark {
@@ -14,8 +14,8 @@ export class Area extends Mark {
       x2,
       y2,
       curve,
-      style,
-      transform
+      transform,
+      ...style
     } = {}
   ) {
     super(
@@ -29,14 +29,13 @@ export class Area extends Mark {
       transform
     );
     this.curve = Curve(curve);
-    this.style = Style(style);
+    Object.assign(this, Style(style));
   }
   render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1}) {
-    const {curve, style} = this;
     return create("svg:path")
-        .call(applyStyles, style)
+        .call(applyStyles, this)
         .attr("d", shapeArea()
-            .curve(curve)
+            .curve(this.curve)
             .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
             .x0(i => x(X1[i]))
             .y0(i => y(Y1[i]))

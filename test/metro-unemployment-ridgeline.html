@@ -25,7 +25,7 @@ d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
         {y: "division"},
         [
           Plot.ruleY([0]),
-          Plot.areaY(data, {x: "date", y: "unemployment", style: {fill: "#eee"}}),
+          Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
           Plot.line(data, {x: "date", y: "unemployment"})
         ]
       )

@@ -17,9 +17,7 @@ d3.csv("data/travelers.csv", d3.autoType).then(data => {
       Plot.line(data, {
         x: d => d.date,
         y: d => d.previous / 1e6,
-        style: {
-          stroke: "#bab0ab"
-        }
+        stroke: "#bab0ab"
       }),
       Plot.line(data, {
         x: d => d.date,
@@ -29,18 +27,14 @@ d3.csv("data/travelers.csv", d3.autoType).then(data => {
         x: d => d.date,
         y: d => d.previous / 1e6,
         text: ["2019"],
-        style: {
-          fill: "#bab0ab",
-          dy: "-0.5em"
-        }
+        fill: "#bab0ab",
+        dy: "-0.5em"
       }),
       Plot.text(data.slice(0, 1), {
         x: d => d.date,
         y: d => d.current / 1e6,
         text: ["2020"],
-        style: {
-          dy: "-0.5em"
-        }
+        dy: "-0.5em"
       })
     ]
   }));

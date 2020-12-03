@@ -1,8 +1,8 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {defined, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, first, second, number} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, Style} from "../style.js";
+import {Mark, indexOf, identity, first, second, maybeColor, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 export class Dot extends Mark {
   constructor(
@@ -15,51 +15,53 @@ export class Dot extends Mark {
       title,
       fill,
       stroke,
-      style = {},
-      transform
+      transform,
+      ...style
     } = {}
   ) {
+    const [vr, cr = vr == null ? 3 : undefined] = maybeNumber(r);
+    const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
+    const [vstroke, cstroke = vstroke == null && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
-        {name: "r", value: r, scale: "r", optional: true},
+        {name: "r", value: vr, scale: "r", optional: true},
         {name: "title", value: title, optional: true},
-        {name: "fill", value: fill, scale: "color", optional: true},
-        {name: "stroke", value: stroke, scale: "color", optional: true}
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
     );
-    this.style = Style({
-      fill: fill === undefined ? "none" : undefined,
-      stroke: stroke === undefined && fill === undefined && style.fill === undefined ? "currentColor" : undefined,
-      strokeWidth: fill === undefined && style.fill === undefined ? 1.5 : undefined,
+    this.r = cr;
+    Object.assign(this, Style({
+      fill: cfill,
+      stroke: cstroke,
+      strokeWidth: cstroke != null || vstroke != null ? 1.5 : undefined,
       ...style
-    });
-    this.style.r = style.r === undefined ? 3 : number(style.r);
+    }));
   }
   render(
     I,
     {x, y, r, color},
     {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S}
   ) {
-    const {style} = this;
     let index = I.filter(i => defined(X[i]) && defined(Y[i]));
     if (R) index = index.filter(i => defined(R[i]));
     if (F) index = index.filter(i => defined(F[i]));
     if (S) index = index.filter(i => defined(S[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
-        .call(applyIndirectStyles, style)
+        .call(applyIndirectStyles, this)
         .call(g => g.selectAll()
           .data(index)
           .join("circle")
-            .call(applyDirectStyles, style)
+            .call(applyDirectStyles, this)
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", R ? i => r(R[i]) : style.r)
+            .attr("r", R ? i => r(R[i]) : this.r)
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .call(L ? text => text
