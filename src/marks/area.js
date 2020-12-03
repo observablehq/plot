@@ -36,7 +36,7 @@ export class Area extends Mark {
       transform
     );
     this.curve = Curve(curve);
-    Object.assign(this, Style({fill: cfill, ...style}));
+    Style(this, {fill: cfill, ...style});
   }
   render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, fill: F}) {
     return create("svg:g")

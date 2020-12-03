@@ -37,7 +37,7 @@ export class Text extends Mark {
       ],
       transform
     );
-    Object.assign(this, Style({fill: cfill, ...style}));
+    Style(this, {fill: cfill, ...style});
     this.textAnchor = string(textAnchor);
     this.dx = string(dx);
     this.dy = string(dy);

@@ -25,7 +25,7 @@ class AbstractTick extends Mark {
       ],
       transform
     );
-    Object.assign(this, Style({stroke: cstroke, ...style}));
+    Style(this, {stroke: cstroke, ...style});
   }
   render(I, scales, channels) {
     const {color} = scales;

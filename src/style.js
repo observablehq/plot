@@ -1,6 +1,6 @@
 import {string, number} from "./mark.js";
 
-export function Style({
+export function Style(mark, {
   fill,
   fillOpacity,
   stroke,
@@ -12,34 +12,32 @@ export function Style({
   strokeDasharray,
   mixBlendMode
 } = {}) {
-  return {
-    fill: string(fill),
-    fillOpacity: number(fillOpacity),
-    stroke: string(stroke),
-    strokeWidth: number(strokeWidth),
-    strokeOpacity: number(strokeOpacity),
-    strokeLinejoin: string(strokeLinejoin),
-    strokeLinecap: string(strokeLinecap),
-    strokeMiterlimit: number(strokeMiterlimit),
-    strokeDasharray: string(strokeDasharray),
-    mixBlendMode: string(mixBlendMode)
-  };
+  mark.fill = string(fill);
+  mark.fillOpacity = number(fillOpacity);
+  mark.stroke = string(stroke);
+  mark.strokeWidth = number(strokeWidth);
+  mark.strokeOpacity = number(strokeOpacity);
+  mark.strokeLinejoin = string(strokeLinejoin);
+  mark.strokeLinecap = string(strokeLinecap);
+  mark.strokeMiterlimit = number(strokeMiterlimit);
+  mark.strokeDasharray = string(strokeDasharray);
+  mark.mixBlendMode = string(mixBlendMode);
 }
 
-export function applyIndirectStyles(selection, style) {
-  applyAttr(selection, "fill", style.fill);
-  applyAttr(selection, "fill-opacity", style.fillOpacity);
-  applyAttr(selection, "stroke", style.stroke);
-  applyAttr(selection, "stroke-width", style.strokeWidth);
-  applyAttr(selection, "stroke-opacity", style.strokeOpacity);
-  applyAttr(selection, "stroke-linejoin", style.strokeLinejoin);
-  applyAttr(selection, "stroke-linecap", style.strokeLinecap);
-  applyAttr(selection, "stroke-miterlimit", style.strokeMiterlimit);
-  applyAttr(selection, "stroke-dasharray", style.strokeDasharray);
+export function applyIndirectStyles(selection, mark) {
+  applyAttr(selection, "fill", mark.fill);
+  applyAttr(selection, "fill-opacity", mark.fillOpacity);
+  applyAttr(selection, "stroke", mark.stroke);
+  applyAttr(selection, "stroke-width", mark.strokeWidth);
+  applyAttr(selection, "stroke-opacity", mark.strokeOpacity);
+  applyAttr(selection, "stroke-linejoin", mark.strokeLinejoin);
+  applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
+  applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
+  applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
 }
 
-export function applyDirectStyles(selection, style) {
-  applyStyle(selection, "mix-blend-mode", style.mixBlendMode);
+export function applyDirectStyles(selection, mark) {
+  applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
 }
 
 export function applyAttr(selection, name, value) {

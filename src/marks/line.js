@@ -32,12 +32,12 @@ export class Line extends Mark {
       transform
     );
     this.curve = Curve(curve);
-    Object.assign(this, Style({
+    Style(this, {
       fill: "none",
       stroke: cstroke,
       strokeWidth: 1.5,
       ...style
-    }));
+    });
   }
   render(I, {x, y, color}, {x: X, y: Y, z: Z, stroke: S}) {
     return create("svg:g")

@@ -31,7 +31,7 @@ export class Link extends Mark {
       ],
       transform
     );
-    Object.assign(this, Style({stroke: cstroke, ...style}));
+    Style(this, {stroke: cstroke, ...style});
   }
   render(
     I,

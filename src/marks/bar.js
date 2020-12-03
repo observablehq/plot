@@ -32,7 +32,7 @@ class AbstractBar extends Mark {
       ],
       transform
     );
-    Object.assign(this, Style({fill: cfill, stroke: cstroke, ...style}));
+    Style(this, {fill: cfill, stroke: cstroke, ...style});
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);

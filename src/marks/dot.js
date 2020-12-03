@@ -36,12 +36,12 @@ export class Dot extends Mark {
       transform
     );
     this.r = cr;
-    Object.assign(this, Style({
+    Style(this, {
       fill: cfill,
       stroke: cstroke,
       strokeWidth: cstroke != null || vstroke != null ? 1.5 : undefined,
       ...style
-    }));
+    });
   }
   render(
     I,
