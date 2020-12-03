@@ -38,6 +38,9 @@ export class Line extends Mark {
   render(I, {x, y}, {x: X, y: Y, z: Z}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
+        .attr("transform", `translate(${
+          x.bandwidth ? x.bandwidth() / 2 : 0},${
+          y.bandwidth ? y.bandwidth() / 2 : 0})`)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")

@@ -34,6 +34,9 @@ export class Area extends Mark {
   render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1}) {
     return create("svg:path")
         .call(applyStyles, this)
+        .attr("transform", `translate(${
+          x.bandwidth ? x.bandwidth() / 2 : 0},${
+          y.bandwidth ? y.bandwidth() / 2 : 0})`)
         .attr("d", shapeArea()
             .curve(this.curve)
             .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
