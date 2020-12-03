@@ -49,6 +49,9 @@ export const number = x => x == null ? undefined : +x;
 export const first = d => d[0];
 export const second = d => d[1];
 
+// A few extra color keywords not known to d3-color.
+const colors = new Set(["currentColor", "none"]);
+
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this
 // function tests whether the given value is a CSS color string and returns a
@@ -56,7 +59,7 @@ export const second = d => d[1];
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColor(value) {
-  return typeof value === "string" && (value === "currentColor" || color(value)) ? [undefined, value] : [value, undefined];
+  return typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value] : [value, undefined];
 }
 
 // Similar to maybeColor, this tests whether the given value is a number

@@ -1,9 +1,10 @@
+import {group} from "d3-array";
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, identity, indexOf, zero} from "../mark.js";
-import {Style, applyStyles} from "../style.js";
+import {Mark, identity, indexOf, zero, maybeColor} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 export class Area extends Mark {
   constructor(
@@ -13,38 +14,48 @@ export class Area extends Mark {
       y1,
       x2,
       y2,
+      z, // optional grouping for multiple series
+      fill,
       curve,
       transform,
       ...style
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill);
+    if (z === undefined && vfill != null) z = vfill;
     super(
       data,
       [
         {name: "x1", value: x1, scale: "x"},
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true}
+        {name: "y2", value: y2, scale: "y", optional: true},
+        {name: "z", value: z, optional: true},
+        {name: "fill", value: vfill, scale: "color", optional: true}
       ],
       transform
     );
     this.curve = Curve(curve);
-    Object.assign(this, Style(style));
+    Object.assign(this, Style({fill: cfill, ...style}));
   }
-  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1}) {
-    return create("svg:path")
-        .call(applyStyles, this)
+  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, fill: F}) {
+    return create("svg:g")
+        .call(applyIndirectStyles, this)
         .attr("transform", `translate(${
           x.bandwidth ? x.bandwidth() / 2 : 0},${
           y.bandwidth ? y.bandwidth() / 2 : 0})`)
-        .attr("d", shapeArea()
-            .curve(this.curve)
-            .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
-            .x0(i => x(X1[i]))
-            .y0(i => y(Y1[i]))
-            .x1(i => x(X2[i]))
-            .y1(i => y(Y2[i]))
-          (I))
+        .call(g => g.selectAll()
+          .data(Z ? group(I, i => Z[i]).values() : [I])
+          .join("path")
+            .call(applyDirectStyles, this)
+            .attr("fill", F && (([i]) => color(F[i])))
+            .attr("d", shapeArea()
+              .curve(this.curve)
+              .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
+              .x0(i => x(X1[i]))
+              .y0(i => y(Y1[i]))
+              .x1(i => x(X2[i]))
+              .y1(i => y(Y2[i]))))
       .node();
   }
 }

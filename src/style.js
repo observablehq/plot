@@ -26,11 +26,6 @@ export function Style({
   };
 }
 
-export function applyStyles(selection, style) {
-  applyIndirectStyles(selection, style);
-  applyDirectStyles(selection, style);
-}
-
 export function applyIndirectStyles(selection, style) {
   applyAttr(selection, "fill", style.fill);
   applyAttr(selection, "fill-opacity", style.fillOpacity);
