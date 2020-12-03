@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {defined} from "../defined.js";
+import {filter} from "../defined.js";
 import {Mark, identity, indexOf, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
@@ -30,8 +30,7 @@ class AbstractTick extends Mark {
   render(I, scales, channels) {
     const {color} = scales;
     const {x: X, y: Y, z: Z, stroke: S} = channels;
-    let index = I.filter(i => defined(X[i]) && defined(Y[i]));
-    if (S) index = index.filter(i => defined(S[i]));
+    const index = filter(I, X, Y, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)

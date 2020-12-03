@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {defined} from "../defined.js";
+import {filter} from "../defined.js";
 import {Mark, identity, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 
@@ -37,10 +37,7 @@ export class RuleX extends Mark {
     {x: X, y1: Y1, y2: Y2, z: Z, stroke: S},
     {marginTop, height, marginBottom}
   ) {
-    let index = I.filter(i => defined(X[i]));
-    if (Y1) index = index.filter(i => defined(Y1[i]));
-    if (Y2) index = index.filter(i => defined(Y2[i]));
-    if (S) index = index.filter(i => defined(S[i]));
+    const index = filter(I, X, Y1, Y2, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -90,9 +87,7 @@ export class RuleY extends Mark {
     {y: Y, x1: X1, x2: X2, z: Z, stroke: S},
     {width, marginLeft, marginRight}
   ) {
-    let index = I.filter(i => defined(Y[i]));
-    if (X1) index = index.filter(i => defined(X1[i]));
-    if (X2) index = index.filter(i => defined(X2[i]));
+    const index = filter(I, Y, X1, X2);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)

@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {defined, nonempty} from "../defined.js";
+import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr} from "../style.js";
 
@@ -47,8 +47,7 @@ export class Text extends Mark {
     {x, y, color},
     {x: X, y: Y, z: Z, text: T, title: L, fill: F}
   ) {
-    let index = I.filter(i => defined(X[i]) && defined(Y[i]) && nonempty(T[i]));
-    if (F) index = index.filter(i => defined(F[i]));
+    const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)

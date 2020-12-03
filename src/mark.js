@@ -23,7 +23,7 @@ export class Mark {
   initialize(data) {
     if (data !== undefined) data = this.transform(data);
     return {
-      index: data === undefined ? undefined : Array.from(data, indexOf),
+      index: data === undefined ? undefined : Uint32Array.from(data, indexOf),
       channels: this.channels.map(channel => {
         const {name} = channel;
         return [name == null ? undefined : name + "", Channel(data, channel)];
@@ -67,12 +67,4 @@ export function maybeColor(value) {
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumber(value) {
   return typeof value === "number" ? [undefined, value] : [value, undefined];
-}
-
-export function applyAttr(selection, name, value) {
-  if (value != null) selection.attr(name, value);
-}
-
-export function applyStyle(selection, name, value) {
-  if (value != null) selection.style(name, value);
 }

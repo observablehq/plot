@@ -11,3 +11,10 @@ export function ascendingDefined(a, b) {
 export function nonempty(x) {
   return x != null && (x + "") !== "";
 }
+
+export function filter(index, ...channels) {
+  for (const c of channels) {
+    if (c) index = index.filter(i => defined(c[i]));
+  }
+  return index;
+}
