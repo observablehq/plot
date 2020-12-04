@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, number, identity, indexOf, first, second, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 class AbstractBar extends Mark {
   constructor(
@@ -45,6 +45,7 @@ class AbstractBar extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
+        .call(this._transform, scales)
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
@@ -69,6 +70,9 @@ export class Bar extends AbstractBar {
       ],
       options
     );
+  }
+  _transform() {
+    // noop
   }
   _x({x}, {x: X}) {
     const {insetLeft} = this;
@@ -100,6 +104,9 @@ export class BarX extends AbstractBar {
       options
     );
   }
+  _transform(selection, {x}) {
+    selection.call(applyBandTransform, x, false);
+  }
   _x({x}, {x: X}) {
     const {insetLeft} = this;
     return i => Math.min(x(0), x(X[i])) + insetLeft;
@@ -129,6 +136,9 @@ export class BarY extends AbstractBar {
       ],
       options
     );
+  }
+  _transform(selection, {y}) {
+    selection.call(applyBandTransform, false, y);
   }
   _x({x}, {x: X}) {
     const {insetLeft} = this;

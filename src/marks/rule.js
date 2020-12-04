@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class RuleX extends Mark {
   constructor(
@@ -41,6 +41,7 @@ export class RuleX extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
+        .call(applyBandTransform, x, y)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
@@ -91,6 +92,7 @@ export class RuleY extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
+        .call(applyBandTransform, x, y)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")

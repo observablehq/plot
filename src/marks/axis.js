@@ -139,7 +139,7 @@ export class AxisY {
 }
 
 function round(scale) {
-  return scale.round // TODO round band and point scales?
-      ? scale
-      : scale.copy().interpolate(interpolateRound);
+  return scale.interpolate // TODO round band and point scales?
+      ? scale.copy().interpolate(interpolateRound)
+      : scale;
 }

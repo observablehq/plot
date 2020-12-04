@@ -125,7 +125,9 @@ export function ScaleOrdinal(key, channels, {
   range = registry.get(key) === color ? (scheme !== undefined ? Scheme(scheme) : schemeTableau10) : undefined,
   ...options
 }) {
-  return ScaleO(scaleOrdinal(range), channels, {range, ...options});
+  const scale = scaleOrdinal();
+  if (range !== undefined) scale.range(range);
+  return ScaleO(scale, channels, {range, ...options});
 }
 
 export function ScalePoint(key, channels, {

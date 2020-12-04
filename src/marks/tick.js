@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, identity, indexOf, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 class AbstractTick extends Mark {
   constructor(
@@ -34,6 +34,7 @@ class AbstractTick extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
+        .call(this._transform, scales)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
@@ -57,6 +58,9 @@ export class TickX extends AbstractTick {
       ],
       options
     );
+  }
+  _transform(selection, {x}) {
+    selection.call(applyBandTransform, x, false);
   }
   _x1({x}, {x: X}) {
     return i => Math.round(x(X[i])) + 0.5;
@@ -82,6 +86,9 @@ export class TickY extends AbstractTick {
       ],
       options
     );
+  }
+  _transform(selection, {y}) {
+    selection.call(applyBandTransform, false, y);
   }
   _x1({x}, {x: X}) {
     return i => x(X[i]);

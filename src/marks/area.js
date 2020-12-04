@@ -4,7 +4,7 @@ import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, identity, indexOf, zero, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class Area extends Mark {
   constructor(
@@ -41,7 +41,7 @@ export class Area extends Mark {
   render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, fill: F}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y)
+        .call(applyBandTransform, x, y)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")

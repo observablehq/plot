@@ -4,7 +4,7 @@ import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, first, second, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class Line extends Mark {
   constructor(
@@ -42,7 +42,7 @@ export class Line extends Mark {
   render(I, {x, y, color}, {x: X, y: Y, z: Z, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y)
+        .call(applyBandTransform, x, y)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
