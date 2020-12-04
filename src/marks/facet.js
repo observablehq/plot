@@ -22,7 +22,7 @@ export class FacetY extends Mark {
     const facets = this.facets = new Map();
 
     //
-    for (const [facetKey, facetIndex] of group(index, (d, i) => Y[i])) {
+    for (const [facetKey, facetIndex] of group(index, i => Y[i])) {
       const facetData = Array.from(facetIndex, i => data[i]);
       const markIndex = new Map();
       const markChannels = new Map();
