@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyAttr} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
 
 const first = d => d[0];
 const second = d => d[1];
@@ -51,9 +51,7 @@ export class Text extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .attr("transform", `translate(${
-          x.bandwidth ? x.bandwidth() / 2 : 0},${
-          y.bandwidth ? y.bandwidth() / 2 : 0})`)
+        .call(applyTransform, x, y)
         .call(g => g.selectAll()
           .data(index)
           .join("text")
