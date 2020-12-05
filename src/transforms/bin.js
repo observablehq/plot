@@ -26,10 +26,8 @@ export function bin1(options = {}) {
 }
 
 export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
-  if (isvalue(x)) x = {value: x};
-  if (isvalue(y)) y = {value: y};
-  const binX = bin1({domain, thresholds, value: first, ...x});
-  const binY = bin1({domain, thresholds, value: second, ...y});
+  const binX = bin1({domain, thresholds, value: first, ...maybeValue(x)});
+  const binY = bin1({domain, thresholds, value: second, ...maybeValue(y)});
   return data => {
     return cross(binX(data), binY(data).map(binset), (x, y) => {
       return {
@@ -43,8 +41,11 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   };
 }
 
-function isvalue(x) {
-  return typeof x === "string" || typeof x === "function";
+// The value may be defined as a string or function, rather than an object with
+// a value property. TODO Allow value to be specified as array, too? This would
+// require promoting the array to an accessor for compatibility with d3.bin.
+function maybeValue(x) {
+  return typeof x === "string" || typeof x === "function" ? {value: x} : x;
 }
 
 function binset(bin) {

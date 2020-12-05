@@ -50,6 +50,7 @@ import {
 } from "d3-scale-chromatic";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
 import {registry, radius, color} from "./index.js";
+import {positive} from "../defined.js";
 
 const constant = x => () => x;
 const flip = i => t => i(1 - t);
@@ -213,9 +214,11 @@ function inferDomain(channels) {
   ];
 }
 
+// We don’t want the upper bound of the radial domain to be zero, as this would
+// be degenerate, so we ignore nonpositive values.
 function inferRadialDomain(channels) {
   return [
     0,
-    quantile(channels, 0.5, ({value}) => value === undefined ? value : quantile(value, 0.25))
+    quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive))
   ];
 }

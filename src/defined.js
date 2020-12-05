@@ -18,3 +18,7 @@ export function filter(index, ...channels) {
   }
   return index;
 }
+
+export function positive(x) {
+  return x > 0 ? x : NaN;
+}
