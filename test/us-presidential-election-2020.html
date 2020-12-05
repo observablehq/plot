@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.csv("data/us-presidential-election-2020.csv", d3.autoType).then(data => {
+  document.body.appendChild(Plot.plot({
+    width: 960,
+    height: 640,
+    inset: 12,
+    grid: true,
+    x: {
+      label: "← Biden · Vote margin (%) · Trump →",
+      labelAnchor: "center",
+      tickFormat: "+f"
+    },
+    y: {
+      type: "log",
+      label: "↑ Total number of votes",
+      tickFormat: "~s"
+    },
+    color: {
+      type: "diverging",
+      invert: true
+    },
+    marks: [
+      Plot.ruleX([0]),
+      Plot.dot(
+        data.filter(d => d.votes > 0),
+        {
+          x: d => (d.results_trumpd - d.results_bidenj) / d.votes * 100,
+          y: d => d.votes,
+          fill: d => (d.results_trumpd - d.results_bidenj) / d.votes,
+          title: d => `${d.name}, ${recase(d.state)}
+${[["Trump", d.results_trumpd], ["Biden", d.results_bidenj]]
+  .sort(([, a], [, b]) => d3.descending(a, b))
+  .map(([name, count]) => `${count.toLocaleString("en")} votes for ${name}`)
+  .join("\n")}`,
+          stroke: "currentColor",
+          strokeWidth: 0.5
+        }
+      )
+    ]
+  }));
+});
+
+function recase(hypenated) {
+  return hypenated
+    .split(/-/g)
+    .map(part => `${part[0].toUpperCase()}${part.substring(1)}`)
+    .join(" ");
+}
+
+</script>
