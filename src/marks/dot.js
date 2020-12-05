@@ -48,7 +48,8 @@ export class Dot extends Mark {
     {x, y, r, color},
     {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S}
   ) {
-    const index = filter(I, X, Y, F, S).filter(i => positive(R[i]));
+    let index = filter(I, X, Y, F, S);
+    if (R) index = index.filter(i => positive(R[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
