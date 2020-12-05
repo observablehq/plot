@@ -21,7 +21,7 @@ d3.csv("data/simpsons.csv", d3.autoType).then(data => {
     },
     height: 640,
     marks: [
-      Plot.bar(data, {
+      Plot.cell(data, {
         x: "number_in_season",
         y: "season",
         fill: "imdb_rating"
