@@ -30,9 +30,9 @@ d3.csv("data/us-presidential-election-2020.csv", d3.autoType).then(data => {
       Plot.dot(
         data.filter(d => d.votes > 0),
         {
-          x: d => (d.results_trumpd - d.results_bidenj) / d.votes * 100,
-          y: d => d.votes,
-          fill: d => (d.results_trumpd - d.results_bidenj) / d.votes,
+          x: "margin2020",
+          y: "votes",
+          fill: "margin2020",
           title: d => `${d.name}, ${recase(d.state)}
 ${[["Trump", d.results_trumpd], ["Biden", d.results_bidenj]]
   .sort(([, a], [, b]) => d3.descending(a, b))
