@@ -1,10 +1,10 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, identity, indexOf, first, second, maybeColor} from "../mark.js";
+import {Mark, number, identity, indexOf, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
-class AbstractBar extends Mark {
+export class AbstractBar extends Mark {
   constructor(
     data,
     channels,
@@ -57,38 +57,6 @@ class AbstractBar extends Mark {
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i]))))
       .node();
-  }
-}
-
-export class Bar extends AbstractBar {
-  constructor(data, {x = first, y = second, ...options} = {}) {
-    super(
-      data,
-      [
-        {name: "x", value: x, scale: "x", type: "band"},
-        {name: "y", value: y, scale: "y", type: "band"}
-      ],
-      options
-    );
-  }
-  _transform() {
-    // noop
-  }
-  _x({x}, {x: X}) {
-    const {insetLeft} = this;
-    return i => x(X[i]) + insetLeft;
-  }
-  _y({y}, {y: Y}) {
-    const {insetTop} = this;
-    return i => y(Y[i]) + insetTop;
-  }
-  _width({x}) {
-    const {insetLeft, insetRight} = this;
-    return Math.max(0, x.bandwidth() - insetLeft - insetRight);
-  }
-  _height({y}) {
-    const {insetTop, insetBottom} = this;
-    return Math.max(0, y.bandwidth() - insetTop - insetBottom);
   }
 }
 
@@ -156,10 +124,6 @@ export class BarY extends AbstractBar {
     const {insetTop, insetBottom} = this;
     return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
   }
-}
-
-export function bar(data, options) {
-  return new Bar(data, options);
 }
 
 export function barX(data, options) {

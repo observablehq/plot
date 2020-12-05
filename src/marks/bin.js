@@ -1,29 +1,22 @@
-import {bin as binner} from "d3-array";
-import {field, identity} from "../mark.js";
-import {rectX, rectY} from "./rect.js";
+import {identity} from "../mark.js";
+import {bin1, bin2} from "../transforms/bin.js";
+import {rect, rectX, rectY} from "./rect.js";
 
-export function bin(options = {}) {
-  if (typeof options === "string") options = {value: options};
-  let {value, domain, thresholds, cumulative} = options;
-  if (typeof value !== "function") value = field(value + "");
-  const bin = binner().value(value);
-  if (domain !== undefined) bin.domain(domain);
-  if (thresholds !== undefined) bin.thresholds(thresholds);
-  return data => {
-    const b = bin(data);
-    // We don’t want to choose thresholds dynamically for each facet; instead,
-    // we extract the set of thresholds from an initial computation.
-    if (domain === undefined || thresholds === undefined) {
-      if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
-      if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(start));
+export function bin(data, {x, y, domain, thresholds, normalize, ...options} = {}) {
+  return rect(
+    data,
+    {
+      insetTop: 1,
+      insetLeft: 1,
+      ...options,
+      transform: bin2({x, y, domain, thresholds}),
+      fill: normalize ? normalizer(normalize, data) : length,
+      x1: maybeLabel(x0, x),
+      x2: x1,
+      y1: maybeLabel(y0, y),
+      y2: y1
     }
-    if (cumulative) {
-      let sum = 0;
-      if (cumulative < 0) b.reverse();
-      return b.map(({x0, x1, length}) => ({x0, x1, length: sum += length}));
-    }
-    return b;
-  };
+  );
 }
 
 export function binX(data, {
@@ -39,10 +32,10 @@ export function binX(data, {
     {
       insetTop: 1,
       ...options,
-      transform: bin({value: x, domain, thresholds, cumulative}),
+      transform: bin1({value: x, domain, thresholds, cumulative}),
       x: normalize ? normalizer(normalize, data) : length,
-      y1: typeof x === "string" ? startof(x) : start,
-      y2: end
+      y1: maybeLabel(x0, x),
+      y2: x1
     }
   );
 }
@@ -60,26 +53,35 @@ export function binY(data, {
     {
       insetLeft: 1,
       ...options,
-      transform: bin({value: y, domain, thresholds, cumulative}),
+      transform: bin1({value: y, domain, thresholds, cumulative}),
       y: normalize ? normalizer(normalize, data) : length,
-      x1: typeof y === "string" ? startof(y) : start,
-      x2: end
+      x1: maybeLabel(x0, y),
+      x2: x1
     }
   );
 }
 
-function startof(value) {
-  const start = d => d.x0;
-  if (typeof value === "string") start.label = value;
-  return start;
+// If the channel value is specified as a string, indicating a named field, this
+// wraps the specified function f with another function with the corresponding
+// label property, such that the associated axis inherits the label by default.
+function maybeLabel(f, label) {
+  return typeof label === "string" ? Object.assign(d => f(d), {label}) : f;
 }
 
-function start(d) {
+function x0(d) {
   return d.x0;
 }
 
-function end(d) {
+function x1(d) {
   return d.x1;
+}
+
+function y0(d) {
+  return d.y0;
+}
+
+function y1(d) {
+  return d.y1;
 }
 
 function length(d) {
