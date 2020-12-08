@@ -10,6 +10,7 @@ export {FacetY, facetY} from "./marks/facet.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";
 export {Arrow, arrow} from "./marks/arrow.js";
+export {Swoop, swoop} from "./marks/swoop.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
