@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.text("data/moby-dick-chapter-1.txt").then(text => {
+
+  // Compute a set of “words” from the text. As with any natural language task,
+  // this is messy and approximate.
+  const words = text
+    .replace(/’/g, "") // remove apostrophes
+    .split(/\b/g) // split at word boundaries
+    .map(word => word.replace(/[^a-z]+/ig, "")) // strip non-letters
+    .filter(word => word); // ignore (now) empty words
+
+  document.body.appendChild(Plot.plot({
+    x: {
+      label: "Word length →",
+      labelAnchor: "right"
+    },
+    y: {
+      grid: true
+    },
+    marks: [
+      Plot.groupX(words, {x: d => d.length, normalize: true})
+    ]
+  }));
+});
+
+</script>

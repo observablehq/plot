@@ -1,9 +1,8 @@
 import {bin as binner, cross, sum} from "d3-array";
-import {field, first, second} from "../mark.js";
+import {field, first, second, maybeValue} from "../mark.js";
 
 export function bin1(options = {}) {
-  if (typeof options === "string") options = {value: options};
-  let {value, domain, thresholds, cumulative} = options;
+  let {value, domain, thresholds, cumulative} = maybeValue(options);
   if (typeof value !== "function") value = field(value + "");
   const bin = binner().value(value);
   if (domain !== undefined) bin.domain(domain);
@@ -39,13 +38,6 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
       };
     });
   };
-}
-
-// The value may be defined as a string or function, rather than an object with
-// a value property. TODO Allow value to be specified as array, too? This would
-// require promoting the array to an accessor for compatibility with d3.bin.
-function maybeValue(x) {
-  return typeof x === "string" || typeof x === "function" ? {value: x} : x;
 }
 
 function binset(bin) {

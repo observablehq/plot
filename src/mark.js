@@ -68,3 +68,24 @@ export function maybeColor(value) {
 export function maybeNumber(value) {
   return typeof value === "number" ? [undefined, value] : [value, undefined];
 }
+
+// The value may be defined as a string or function, rather than an object with
+// a value property. TODO Allow value to be specified as array, too? This would
+// require promoting the array to an accessor for compatibility with d3.bin.
+export function maybeValue(x) {
+  return typeof x === "string" || typeof x === "function" ? {value: x} : x;
+}
+
+// If the channel value is specified as a string, indicating a named field, this
+// wraps the specified function f with another function with the corresponding
+// label property, such that the associated axis inherits the label by default.
+export function maybeLabel(f, label) {
+  return typeof label === "string" ? Object.assign(d => f(d), {label}) : f;
+}
+
+// Computes the size of the given iterable, hopefully without iterating.
+export function size(data) {
+  return "length" in data ? data.length
+    : "size" in data ? data.size
+    : Array.from(data).length;
+}

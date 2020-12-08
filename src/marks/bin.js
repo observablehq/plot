@@ -1,4 +1,4 @@
-import {identity} from "../mark.js";
+import {identity, size, maybeLabel} from "../mark.js";
 import {bin1, bin2} from "../transforms/bin.js";
 import {rect, rectX, rectY} from "./rect.js";
 
@@ -10,7 +10,7 @@ export function bin(data, {x, y, domain, thresholds, normalize, ...options} = {}
       insetLeft: 1,
       ...options,
       transform: bin2({x, y, domain, thresholds}),
-      fill: normalize ? normalizer(normalize, data) : length,
+      fill: normalize ? normalizer(normalize, size(data)) : length,
       x1: maybeLabel(x0, x),
       x2: x1,
       y1: maybeLabel(y0, y),
@@ -33,7 +33,7 @@ export function binX(data, {
       insetTop: 1,
       ...options,
       transform: bin1({value: x, domain, thresholds, cumulative}),
-      x: normalize ? normalizer(normalize, data) : length,
+      x: normalize ? normalizer(normalize, size(data)) : length,
       y1: maybeLabel(x0, x),
       y2: x1
     }
@@ -61,13 +61,6 @@ export function binY(data, {
   );
 }
 
-// If the channel value is specified as a string, indicating a named field, this
-// wraps the specified function f with another function with the corresponding
-// label property, such that the associated axis inherits the label by default.
-function maybeLabel(f, label) {
-  return typeof label === "string" ? Object.assign(d => f(d), {label}) : f;
-}
-
 function x0(d) {
   return d.x0;
 }
@@ -93,11 +86,8 @@ length.label = "Frequency";
 // An alternative channel definition to length (above) that computes the
 // proportion of each bin in [0, k]. If k is true, it is treated as 100 for
 // percentages; otherwise, it is typically 1.
-function normalizer(k, data) {
+function normalizer(k, n) {
   k = k === true ? 100 : +k;
-  const n = "length" in data ? data.length
-      : "size" in data ? data.size
-      : Array.from(data).length;
   const value = bin => bin.length * k / n;
   value.label = `Frequency${k === 100 ? " (%)" : ""}`;
   return value;

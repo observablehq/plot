@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+d3.text("data/moby-dick-chapter-1.txt").then(text => {
+  document.body.appendChild(Plot.plot({
+    y: {
+      grid: true
+    },
+    marks: [
+      Plot.groupX([...text]
+        .filter(c => /[a-z]/i.test(c))
+        .map(c => c.toUpperCase())),
+      Plot.ruleY([0])
+    ]
+  }));
+});
+
+</script>
