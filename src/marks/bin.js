@@ -27,15 +27,15 @@ export function binX(data, {
   cumulative,
   ...options
 } = {}) {
-  return rectX(
+  return rectY(
     data,
     {
-      insetTop: 1,
+      insetLeft: 1,
       ...options,
       transform: bin1({value: x, domain, thresholds, cumulative}),
-      x: normalize ? normalizer(normalize, size(data)) : length,
-      y1: maybeLabel(x0, x),
-      y2: x1
+      y: normalize ? normalizer(normalize, size(data)) : length,
+      x1: maybeLabel(x0, x),
+      x2: x1
     }
   );
 }
@@ -48,15 +48,15 @@ export function binY(data, {
   cumulative,
   ...options
 } = {}) {
-  return rectY(
+  return rectX(
     data,
     {
-      insetLeft: 1,
+      insetTop: 1,
       ...options,
       transform: bin1({value: y, domain, thresholds, cumulative}),
-      y: normalize ? normalizer(normalize, data) : length,
-      x1: maybeLabel(x0, y),
-      x2: x1
+      x: normalize ? normalizer(normalize, data) : length,
+      y1: maybeLabel(x0, y),
+      y2: x1
     }
   );
 }

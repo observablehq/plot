@@ -15,7 +15,7 @@ d3.csv("data/penguins.csv", d3.autoType).then(data => {
       grid: true
     },
     marks: [
-      Plot.binY(data, {y: "body_mass_g"}),
+      Plot.binX(data, {x: "body_mass_g"}),
       Plot.ruleY([0])
     ]
   }));

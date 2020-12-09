@@ -14,7 +14,7 @@ document.body.appendChild(Plot.plot({
     grid: true
   },
   marks: [
-    Plot.binY({length: 10000}, {y: () => Math.random() - Math.random(), normalize: true}),
+    Plot.binX({length: 10000}, {x: () => Math.random() - Math.random(), normalize: true}),
     Plot.ruleY([0])
   ]
 }));
