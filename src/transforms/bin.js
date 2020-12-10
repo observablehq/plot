@@ -7,13 +7,17 @@ export function bin1(options = {}) {
   const bin = binner().value(value);
   if (domain !== undefined) bin.domain(domain);
   if (thresholds !== undefined) bin.thresholds(thresholds);
-  return data => {
-    const b = bin(data);
+  return (facetData, data) => {
+    let b;
     // We don’t want to choose thresholds dynamically for each facet; instead,
-    // we extract the set of thresholds from an initial computation.
+    // we extract the set of thresholds from an initial pass over all data.
     if (domain === undefined || thresholds === undefined) {
+      b = bin(data);
       if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(b => b.x0));
+      if (facetData !== data) b = bin(facetData);
+    } else {
+      b = bin(facetData);
     }
     if (cumulative) {
       let sum = 0;

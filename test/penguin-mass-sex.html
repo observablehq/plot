@@ -7,21 +7,19 @@
 
 d3.csv("data/penguins.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
+    marginLeft: 70,
     x: {
       round: true,
       label: "Body mass (g) →"
     },
+    facet: {
+      data,
+      y: "sex"
+    },
     marks: [
-      Plot.facetY(
-        data,
-        {y: "sex"},
-        [
-          Plot.ruleY([0]),
-          Plot.binX(data, {x: "body_mass_g"})
-        ]
-      )
-    ],
-    marginLeft: 70
+      Plot.binX(data, {x: "body_mass_g"}),
+      Plot.ruleY([0])
+    ]
   }));
 });
 

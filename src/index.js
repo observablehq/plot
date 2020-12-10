@@ -6,7 +6,6 @@ export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {bin, binX, binY} from "./marks/bin.js";
 export {Cell, cell} from "./marks/cell.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
-export {FacetY, facetY} from "./marks/facet.js";
 export {group, groupX, groupY} from "./marks/group.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";

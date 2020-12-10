@@ -1,11 +1,18 @@
 import {AxisX, AxisY} from "./marks/axis.js";
 
-export function Axes({x: xScale, y: yScale}, {x = {}, y = {}, grid} = {}) {
+export function Axes(
+  {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
+  {x = {}, y = {}, fx = {}, fy = {}, grid} = {}
+) {
   const {axis: xAxis = true} = x;
   const {axis: yAxis = true} = y;
+  const {axis: fxAxis = true} = fx;
+  const {axis: fyAxis = true} = fy;
   return {
     x: xScale && xAxis ? new AxisX({grid, ...x}) : null,
-    y: yScale && yAxis ? new AxisY({grid, ...y}) : null
+    y: yScale && yAxis ? new AxisY({grid, ...y}) : null,
+    fx: fxScale && fxAxis ? new AxisY({name: "fx", ...fx}) : null,
+    fy: fyScale && fyAxis ? new AxisY({name: "fy", ...fy}) : null
   };
 }
 

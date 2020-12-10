@@ -1,8 +1,18 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Facet} from "./marks/facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
+  const {facet} = options;
+
+  // When faceting, wrap all marks in a faceting mark.
+  if (facet !== undefined) {
+    const {marks} = options;
+    const {data} = facet;
+    options = {...options, marks: [new Facet(data, facet, marks)]};
+  }
+
   const {
     marks = [],
     font = "10px sans-serif",
@@ -40,14 +50,41 @@ export function plot(options = {}) {
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
-  autoScaleRange(scaleDescriptors, dimensions);
-  autoAxisTicks(axes, dimensions);
-  autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
+  // When faceting, layout fx and fy instead of x and y.
+  // TODO cleaner
+  if (facet !== undefined) {
+    const x = scales.fx ? "fx" : "x";
+    const y = scales.fy ? "fy" : "y";
+    const facetScaleChannels = new Map([["x", scaleChannels.get(x)], ["y", scaleChannels.get(y)]]);
+    const facetScaleDescriptors = {x: scaleDescriptors[x], y: scaleDescriptors[y]};
+    const facetAxes = {x: axes[x], y: axes[y]};
+    autoScaleRange(facetScaleDescriptors, dimensions);
+    autoAxisTicks(facetAxes, dimensions);
+    autoAxisLabels(facetScaleChannels, facetScaleDescriptors, facetAxes, dimensions);
+  } else {
+    autoScaleRange(scaleDescriptors, dimensions);
+    autoAxisTicks(axes, dimensions);
+    autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
+  }
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
-  if (axes.y) options.y = {...options.y, ...axes.y}, marks.unshift(axes.y);
-  if (axes.x) options.x = {...options.x, ...axes.x}, marks.unshift(axes.x);
+  if (axes.x) options.x = {...options.x, ...axes.x};
+  if (axes.y) options.y = {...options.y, ...axes.y};
+  if (axes.fx) options.fx = {...options.fx, ...axes.fx};
+  if (axes.fy) options.fy = {...options.fy, ...axes.fy};
+
+  // When faceting, render axes for fx and fy instead of x and y.
+  // TODO cleaner
+  if (facet !== undefined) {
+    const x = scales.fx ? "fx" : "x";
+    const y = scales.fy ? "fy" : "y";
+    if (axes[x]) marks.unshift(axes[x]);
+    if (axes[y]) marks.unshift(axes[y]);
+  } else {
+    if (axes.x) marks.unshift(axes.x);
+    if (axes.y) marks.unshift(axes.y);
+  }
 
   const {width, height} = dimensions;
 

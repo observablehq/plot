@@ -3,12 +3,13 @@ import {create} from "d3-selection";
 import {Mark} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
 
-export class FacetY extends Mark {
+// TODO facet-x
+export class Facet extends Mark {
   constructor(data, {y, transform} = {}, marks = []) {
     super(
       data,
       [
-        {name: "y", value: y, scale: "y", type: "band"}
+        {name: "fy", value: y, scale: "fy", type: "band"}
       ],
       transform
     );
@@ -16,13 +17,12 @@ export class FacetY extends Mark {
     this.facets = undefined; // set by initialize
   }
   initialize(data) {
-    const {index, channels: [y]} = super.initialize(data);
-    const [, {value: Y}] = y;
+    const {index, channels: [fy]} = super.initialize(data);
+    const [, {value: FY}] = fy;
     const subchannels = [];
     const facets = this.facets = new Map();
 
-    //
-    for (const [facetKey, facetIndex] of group(index, i => Y[i])) {
+    for (const [facetKey, facetIndex] of group(index, i => FY[i])) {
       const facetData = Array.from(facetIndex, i => data[i]);
       const markIndex = new Map();
       const markChannels = new Map();
@@ -33,7 +33,7 @@ export class FacetY extends Mark {
         const {index, channels} = mark.initialize(markData);
         for (const [name, channel] of channels) {
           if (name !== undefined) named[name] = channel.value;
-          subchannels.push([undefined, facetYChannel(channel)]);
+          subchannels.push([undefined, channel]);
         }
         markIndex.set(mark, index);
         markChannels.set(mark, named);
@@ -41,12 +41,12 @@ export class FacetY extends Mark {
       facets.set(facetKey, {markIndex, markChannels});
     }
 
-    return {index, channels: [y, ...subchannels]};
+    return {index, channels: [fy, ...subchannels]};
   }
-  render(index, {y, fy, ...scales}, channels, options) {
+  render(index, scales, channels, options) {
     const {marks, facets} = this;
-    const {marginRight, marginLeft, width} = options;
-    const subscales = {y: fy, ...scales};
+    const {fy} = scales;
+    const {y, marginRight, marginLeft, width} = options;
 
     const subdimensions = {
       marginTop: 0,
@@ -54,22 +54,22 @@ export class FacetY extends Mark {
       marginBottom: 0,
       marginLeft,
       width,
-      height: y.bandwidth()
+      height: fy.bandwidth()
     };
 
-    autoScaleRange({y: options.fy}, subdimensions);
+    autoScaleRange({y}, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(y.domain())
+          .data(fy.domain())
           .join("g")
-            .attr("transform", (key) => `translate(0,${y(key)})`)
+            .attr("transform", (key) => `translate(0,${fy(key)})`)
             .each(function(key) {
               const {markIndex, markChannels} = facets.get(key);
               for (const mark of marks) {
                 const node = mark.render(
                   markIndex.get(mark),
-                  subscales,
+                  scales,
                   markChannels.get(mark),
                   subdimensions
                 );
@@ -78,12 +78,4 @@ export class FacetY extends Mark {
             }))
       .node();
   }
-}
-
-export function facetY(data, options, marks) {
-  return new FacetY(data, options, marks);
-}
-
-function facetYChannel({scale, ...channel}) {
-  return {...channel, scale: scale === "y" ? "fy" : scale};
 }

@@ -7,32 +7,30 @@
 
 d3.csv("data/bls-metro-unemployment.csv", d3.autoType).then(data => {
   document.body.appendChild(Plot.plot({
+    width: 960,
+    height: 1080,
+    marginLeft: 300,
     x: {
       label: null
     },
     y: {
+      range: [20, -40]
+    },
+    fy: {
       domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
         .sort(([, a], [, b]) => d3.descending(a, b))
         .map(([key]) => key),
       label: null
     },
-    fy: {
-      range: [20, -40]
+    facet: {
+      data,
+      y: "division"
     },
     marks: [
-      Plot.facetY(
-        data,
-        {y: "division"},
-        [
-          Plot.ruleY([0]),
-          Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
-          Plot.line(data, {x: "date", y: "unemployment"})
-        ]
-      )
-    ],
-    width: 960,
-    height: 1080,
-    marginLeft: 300
+      Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
+      Plot.line(data, {x: "date", y: "unemployment"}),
+      Plot.ruleY([0])
+    ]
   }));
 });
 

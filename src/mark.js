@@ -21,7 +21,7 @@ export class Mark {
     });
   }
   initialize(data) {
-    if (data !== undefined) data = this.transform(data);
+    if (data !== undefined) data = this.transform(data, this.data);
     return {
       index: data === undefined ? undefined : Uint32Array.from(data, indexOf),
       channels: this.channels.map(channel => {
