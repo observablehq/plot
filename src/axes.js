@@ -2,7 +2,7 @@ import {AxisX, AxisY} from "./marks/axis.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, grid} = {}
+  {x = {}, y = {}, fx = {}, fy = {}, grid, facet: {grid: facetGrid} = {}} = {}
 ) {
   const {axis: xAxis = true} = x;
   const {axis: yAxis = true} = y;
@@ -11,8 +11,8 @@ export function Axes(
   return {
     x: xScale && xAxis ? new AxisX({grid, ...x}) : null,
     y: yScale && yAxis ? new AxisY({grid, ...y}) : null,
-    fx: fxScale && fxAxis ? new AxisX({name: "fx", ...fx}) : null,
-    fy: fyScale && fyAxis ? new AxisY({name: "fy", ...fy}) : null
+    fx: fxScale && fxAxis ? new AxisX({name: "fx", grid: facetGrid, ...fx}) : null,
+    fy: fyScale && fyAxis ? new AxisY({name: "fy", grid: facetGrid, ...fy}) : null
   };
 }
 
