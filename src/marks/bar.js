@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, identity, indexOf, maybeColor} from "../mark.js";
+import {Mark, number, indexOf, maybeColor, maybeZero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -40,8 +40,8 @@ export class AbstractBar extends Mark {
   }
   render(I, scales, channels) {
     const {color} = scales;
-    const {x: X, y: Y, z: Z, fill: F, stroke: S} = channels;
-    const index = filter(I, X, Y, F, S);
+    const {z: Z, fill: F, stroke: S} = channels;
+    const index = filter(I, ...this._positions(channels), F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -61,13 +61,13 @@ export class AbstractBar extends Mark {
 }
 
 export class BarX extends AbstractBar {
-  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
+  constructor(data, {x1, x2, y = indexOf, ...options} = {}) {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band"},
-        {value: [0], scale: "x"} // ensure the x-domain includes zero
+        {name: "x1", value: x1, scale: "x"},
+        {name: "x2", value: x2, scale: "x"},
+        {name: "y", value: y, scale: "y", type: "band"}
       ],
       options
     );
@@ -75,17 +75,20 @@ export class BarX extends AbstractBar {
   _transform(selection, {x}) {
     selection.call(applyBandTransform, x, false);
   }
-  _x({x}, {x: X}) {
+  _positions({x1: X1, x2: X2, y: Y}) {
+    return [X1, X2, Y];
+  }
+  _x({x}, {x1: X1, x2: X2}) {
     const {insetLeft} = this;
-    return i => Math.min(x(0), x(X[i])) + insetLeft;
+    return i => Math.min(x(X1[i]), x(X2[i])) + insetLeft;
   }
   _y({y}, {y: Y}) {
     const {insetTop} = this;
     return i => y(Y[i]) + insetTop;
   }
-  _width({x}, {x: X}) {
+  _width({x}, {x1: X1, x2: X2}) {
     const {insetLeft, insetRight} = this;
-    return i => Math.max(0, Math.abs(x(X[i]) - x(0)) - insetLeft - insetRight);
+    return i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight);
   }
   _height({y}) {
     const {insetTop, insetBottom} = this;
@@ -94,13 +97,13 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
+  constructor(data, {x = indexOf, y1, y2, ...options} = {}) {
     super(
       data,
       [
         {name: "x", value: x, scale: "x", type: "band"},
-        {name: "y", value: y, scale: "y"},
-        {value: [0], scale: "y"} // ensure the y-domain includes zero
+        {name: "y1", value: y1, scale: "y"},
+        {name: "y2", value: y2, scale: "y"}
       ],
       options
     );
@@ -108,28 +111,33 @@ export class BarY extends AbstractBar {
   _transform(selection, {y}) {
     selection.call(applyBandTransform, false, y);
   }
+  _positions({y1: Y1, y2: Y2, x: X}) {
+    return [Y1, Y2, X];
+  }
   _x({x}, {x: X}) {
     const {insetLeft} = this;
     return i => x(X[i]) + insetLeft;
   }
-  _y({y}, {y: Y}) {
+  _y({y}, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
-    return i => Math.min(y(0), y(Y[i])) + insetTop;
+    return i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop;
   }
   _width({x}) {
     const {insetLeft, insetRight} = this;
     return Math.max(0, x.bandwidth() - insetLeft - insetRight);
   }
-  _height({y}, {y: Y}) {
+  _height({y}, {y1: Y1, y2: Y2}) {
     const {insetTop, insetBottom} = this;
-    return i => Math.max(0, Math.abs(y(0) - y(Y[i])) - insetTop - insetBottom);
+    return i => Math.max(0, Math.abs(y(Y2[i]) - y(Y1[i])) - insetTop - insetBottom);
   }
 }
 
-export function barX(data, options) {
-  return new BarX(data, options);
+export function barX(data, {x, x1, x2, ...options} = {}) {
+  ([x1, x2] = maybeZero(x, x1, x2));
+  return new BarX(data, {...options, x1, x2});
 }
 
-export function barY(data, options) {
-  return new BarY(data, options);
+export function barY(data, {y, y1, y2, ...options}) {
+  ([y1, y2] = maybeZero(y, y1, y2));
+  return new BarY(data, {...options, y1, y2});
 }

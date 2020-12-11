@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, identity, indexOf, zero, maybeColor} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -63,23 +63,11 @@ export function area(data, options) {
 }
 
 export function areaX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
-  if (x1 === undefined && x2 === undefined) { // {x} or {}
-    x1 = zero, x2 = x === undefined ? identity : x;
-  } else if (x1 === undefined) { // {x, x2} or {x2}
-    x1 = x === undefined ? zero : x;
-  } else if (x2 === undefined) { // {x, x1} or {x1}
-    x2 = x === undefined ? zero : x;
-  }
+  ([x1, x2] = maybeZero(x, x1, x2));
   return new Area(data, {...options, x1, x2, y1: y, y2: undefined});
 }
 
 export function areaY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
-  if (y1 === undefined && y2 === undefined) { // {y} or {}
-    y1 = zero, y2 = y === undefined ? identity : y;
-  } else if (y1 === undefined) { // {y, y2} or {y2}
-    y1 = y === undefined ? zero : y;
-  } else if (y2 === undefined) { // {y, y1} or {y1}
-    y2 = y === undefined ? zero : y;
-  }
+  ([y1, y2] = maybeZero(y, y1, y2));
   return new Area(data, {...options, x1: x, x2: undefined, y1, y2});
 }
