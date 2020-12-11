@@ -11,7 +11,7 @@ export class Dot extends Mark {
       x = first,
       y = second,
       z,
-      r,
+      size,
       title,
       fill,
       stroke,
@@ -19,7 +19,7 @@ export class Dot extends Mark {
       ...style
     } = {}
   ) {
-    const [vr, cr = vr == null ? 3 : undefined] = maybeNumber(r);
+    const [vsize, csize = vsize == null ? 3 : undefined] = maybeNumber(size);
     const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
     const [vstroke, cstroke = vstroke == null && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
     super(
@@ -28,14 +28,14 @@ export class Dot extends Mark {
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
-        {name: "r", value: vr, scale: "r", optional: true},
+        {name: "size", value: vsize, scale: "size", optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
     );
-    this.r = cr;
+    this.size = csize;
     Style(this, {
       fill: cfill,
       stroke: cstroke,
@@ -45,8 +45,8 @@ export class Dot extends Mark {
   }
   render(
     I,
-    {x, y, r, color},
-    {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S}
+    {x, y, size, color},
+    {x: X, y: Y, z: Z, size: R, title: L, fill: F, stroke: S}
   ) {
     let index = filter(I, X, Y, F, S);
     if (R) index = index.filter(i => positive(R[i]));
@@ -60,7 +60,7 @@ export class Dot extends Mark {
             .call(applyDirectStyles, this)
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", R ? i => r(R[i]) : this.r)
+            .attr("r", R ? i => size(R[i]) : this.size)
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .call(L ? text => text

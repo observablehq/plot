@@ -32,7 +32,7 @@ d3.csv("data/metros.csv", d3.autoType).then(data => {
       Plot.dot(data, {
         x: "POP_2015",
         y: "R90_10_2015",
-        r: 1
+        size: 1
       }),
       Plot.text(data, {
         x: "POP_2015",
