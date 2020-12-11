@@ -15,6 +15,9 @@ export class Cell extends AbstractBar {
   _transform() {
     // noop
   }
+  _positions({x: X, y: Y}) {
+    return [X, Y];
+  }
   _x({x}, {x: X}) {
     const {insetLeft} = this;
     return i => x(X[i]) + insetLeft;
