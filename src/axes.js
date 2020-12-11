@@ -11,7 +11,7 @@ export function Axes(
   return {
     x: xScale && xAxis ? new AxisX({grid, ...x}) : null,
     y: yScale && yAxis ? new AxisY({grid, ...y}) : null,
-    fx: fxScale && fxAxis ? new AxisY({name: "fx", ...fx}) : null,
+    fx: fxScale && fxAxis ? new AxisX({name: "fx", ...fx}) : null,
     fy: fyScale && fyAxis ? new AxisY({name: "fy", ...fy}) : null
   };
 }

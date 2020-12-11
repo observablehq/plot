@@ -1,6 +1,6 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {Facet} from "./marks/facet.js";
+import {facets} from "./marks/facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
@@ -10,7 +10,7 @@ export function plot(options = {}) {
   if (facet !== undefined) {
     const {marks} = options;
     const {data} = facet;
-    options = {...options, marks: [new Facet(data, facet, marks)]};
+    options = {...options, marks: facets(data, facet, marks)};
   }
 
   const {

@@ -1,15 +1,15 @@
-import {group} from "d3-array";
+import {group, groups} from "d3-array";
 import {create} from "d3-selection";
 import {Mark} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
 
-// TODO facet-x
-export class Facet extends Mark {
-  constructor(data, {y, transform} = {}, marks = []) {
+class Facet extends Mark {
+  constructor(data, {x, y, transform} = {}, marks = []) {
     super(
       data,
       [
-        {name: "fy", value: y, scale: "fy", type: "band"}
+        {name: "fx", value: x, scale: "fx", type: "band", optional: true},
+        {name: "fy", value: y, scale: "fy", type: "band", optional: true}
       ],
       transform
     );
@@ -17,12 +17,10 @@ export class Facet extends Mark {
     this.facets = undefined; // set by initialize
   }
   initialize(data) {
-    const {index, channels: [fy]} = super.initialize(data);
-    const [, {value: FY}] = fy;
+    const {index, channels} = super.initialize(data);
     const subchannels = [];
     const facets = this.facets = new Map();
-
-    for (const [facetKey, facetIndex] of group(index, i => FY[i])) {
+    for (const [facetKey, facetIndex] of facetGroups(index, channels)) {
       const facetData = Array.from(facetIndex, i => data[i]);
       const markIndex = new Map();
       const markChannels = new Map();
@@ -40,30 +38,29 @@ export class Facet extends Mark {
       }
       facets.set(facetKey, {markIndex, markChannels});
     }
-
-    return {index, channels: [fy, ...subchannels]};
+    return {index, channels: [...channels, ...subchannels]};
   }
   render(index, scales, channels, options) {
     const {marks, facets} = this;
-    const {fy} = scales;
-    const {y, marginRight, marginLeft, width} = options;
+    const {fx, fy} = scales;
+    const {x, y, marginTop, marginRight, marginBottom, marginLeft, width, height} = options;
 
     const subdimensions = {
-      marginTop: 0,
-      marginRight,
-      marginBottom: 0,
-      marginLeft,
-      width,
-      height: fy.bandwidth()
+      ...fy
+        ? {marginTop: 0, marginBottom: 0, height: fy.bandwidth()}
+        : {marginTop, marginBottom, height},
+      ...fx
+        ? {marginRight: 0, marginLeft: 0, width: fx.bandwidth()}
+        : {marginRight, marginLeft, width}
     };
 
-    autoScaleRange({y}, subdimensions);
+    autoScaleRange({x, y}, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(fy.domain())
+          .data(facets.keys())
           .join("g")
-            .attr("transform", (key) => `translate(0,${fy(key)})`)
+            .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
               const {markIndex, markChannels} = facets.get(key);
               for (const mark of marks) {
@@ -78,4 +75,31 @@ export class Facet extends Mark {
             }))
       .node();
   }
+}
+
+export function facets(data, {x, y, ...options}, marks) {
+  return x === undefined && y === undefined
+    ? marks // if no facets are specified, ignore!
+    : [new Facet(data, {x, y, ...options}, marks)];
+}
+
+function facetGroups(index, channels) {
+  return (channels.length > 1 ? facetGroup2 : facetGroup1)(index, ...channels);
+}
+
+function facetGroup1(index, [, {value: F}]) {
+  return group(index, i => F[i]);
+}
+
+function facetGroup2(index, [, {value: FX}], [, {value: FY}]) {
+  return groups(index, i => FX[i], i => FY[i])
+    .flatMap(([x, xgroup]) => xgroup
+    .map(([y, ygroup]) => [[x, y], ygroup]));
+}
+
+// This must match the key structure returned by facetGroups.
+function facetTranslate(fx, fy) {
+  return fx && fy ? ([kx, ky]) => `translate(${fx(kx)},${fy(ky)})`
+    : fx ? kx => `translate(${fx(kx)},0)`
+    : ky => `translate(0,${fy(ky)})`;
 }
