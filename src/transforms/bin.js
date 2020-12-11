@@ -31,8 +31,8 @@ export function bin1(options = {}) {
 export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   const binX = bin1({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = bin1({domain, thresholds, value: second, ...maybeValue(y)});
-  return data => {
-    return cross(binX(data), binY(data).map(binset), (x, y) => {
+  return (facetData, data) => {
+    return cross(binX(facetData, data), binY(facetData, data).map(binset), (x, y) => {
       return {
         x0: x.x0,
         x1: x.x1,
