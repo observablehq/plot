@@ -37,7 +37,7 @@ d3.json("data/movies.json").then(movies => {
       }),
       Plot.tickX(genres, {
         y: ([genre]) => genre,
-        x: ([, movies]) => d3.quantile(movies, 0.5, Profit),
+        x: ([, movies]) => d3.median(movies, Profit),
         stroke: "red",
         strokeWidth: 2
       })
