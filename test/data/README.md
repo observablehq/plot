@@ -32,6 +32,10 @@ https://data.giss.nasa.gov/gistemp/
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
 
+## movies.json
+Vega
+https://github.com/vega/vega-datasets/blob/master/SOURCES.md#moviesjson
+
 ## nc-absentee-votes.csv
 unknown
 
