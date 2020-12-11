@@ -91,9 +91,9 @@ export function size(data) {
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
-export function maybeZero(x, x1, x2) {
+export function maybeZero(x, x1, x2, x3 = identity) {
   if (x1 === undefined && x2 === undefined) { // {x} or {}
-    x1 = zero, x2 = x === undefined ? identity : x;
+    x1 = zero, x2 = x === undefined ? x3 : x;
   } else if (x1 === undefined) { // {x, x2} or {x2}
     x1 = x === undefined ? zero : x;
   } else if (x2 === undefined) { // {x, x1} or {x1}

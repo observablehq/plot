@@ -1,4 +1,4 @@
-import {identity, first, second, size, maybeLabel} from "../mark.js";
+import {identity, first, second, size, maybeLabel, maybeZero} from "../mark.js";
 import {group1, group2} from "../transforms/group.js";
 import {barX, barY} from "./bar.js";
 import {cell} from "./cell.js";
@@ -22,31 +22,39 @@ export function group(data, {
 
 export function groupX(data, {
   x = identity,
-  normalize,
+  y,
+  y1,
+  y2,
   ...options
 } = {}) {
+  ([y1, y2] = maybeZero(y, y1, y2, maybeLength(data, options)));
   return barY(
     data,
     {
       ...options,
       transform: group1(x),
       x: maybeLabel(first, x),
-      y: normalize ? normalizer(normalize, size(data)) : length2
+      y1,
+      y2
     }
   );
 }
 
 export function groupY(data, {
   y = identity,
-  normalize,
+  x,
+  x1,
+  x2,
   ...options
 } = {}) {
+  ([x1, x2] = maybeZero(x, x1, x2, maybeLength(data, options)));
   return barX(
     data,
     {
       ...options,
       transform: group1(y),
-      x: normalize ? normalizer(normalize, size(data)) : length2,
+      x1,
+      x2,
       y: maybeLabel(first, y)
     }
   );
@@ -61,6 +69,10 @@ function length3([,, group]) {
 }
 
 length2.label = length3.label = "Frequency";
+
+function maybeLength(data, {normalize}) {
+  return normalize ? normalizer(normalize, size(data)) : length2;
+}
 
 // An alternative channel definition to length2 (above) that computes the
 // proportion of each bin in [0, k]. If k is true, it is treated as 100 for
