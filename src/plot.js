@@ -112,9 +112,9 @@ export function plot(options = {}) {
   return svg.node();
 }
 
-function Dimensions({y}, {x: xAxis, y: yAxis}, {
+function Dimensions({y, fy}, {x: xAxis, y: yAxis}, {
   width = 640,
-  height = y ? 396 : 60,
+  height = y || fy ? 396 : 60,
   marginTop = !yAxis ? 0 : xAxis && xAxis.axis === "top" ? 30 : 20,
   marginRight = yAxis && yAxis.axis === "right" ? 40 : 20,
   marginBottom = xAxis && xAxis.axis === "bottom" ? 30 : 20,
