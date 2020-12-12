@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, indexOf, maybeColor, maybeZero} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -38,7 +38,7 @@ export class AbstractBar extends Mark {
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
   }
-  render(I, scales, channels) {
+  render(I, scales, channels, options) {
     const {color} = scales;
     const {z: Z, fill: F, stroke: S} = channels;
     const index = filter(I, ...this._positions(channels), F, S);
@@ -50,10 +50,10 @@ export class AbstractBar extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", this._x(scales, channels))
-            .attr("width", this._width(scales, channels))
-            .attr("y", this._y(scales, channels))
-            .attr("height", this._height(scales, channels))
+            .attr("x", this._x(scales, channels, options))
+            .attr("width", this._width(scales, channels, options))
+            .attr("y", this._y(scales, channels, options))
+            .attr("height", this._height(scales, channels, options))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i]))))
       .node();
@@ -61,13 +61,13 @@ export class AbstractBar extends Mark {
 }
 
 export class BarX extends AbstractBar {
-  constructor(data, {x1, x2, y = indexOf, ...options} = {}) {
+  constructor(data, {x1, x2, y, ...options} = {}) {
     super(
       data,
       [
         {name: "x1", value: x1, scale: "x"},
         {name: "x2", value: x2, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band"}
+        {name: "y", value: y, scale: "y", type: "band", optional: true}
       ],
       options
     );
@@ -82,28 +82,29 @@ export class BarX extends AbstractBar {
     const {insetLeft} = this;
     return i => Math.min(x(X1[i]), x(X2[i])) + insetLeft;
   }
-  _y({y}, {y: Y}) {
+  _y({y}, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return i => y(Y[i]) + insetTop;
+    return Y ? i => y(Y[i]) + insetTop : marginTop + insetTop;
   }
   _width({x}, {x1: X1, x2: X2}) {
     const {insetLeft, insetRight} = this;
     return i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight);
   }
-  _height({y}) {
+  _height({y}, {y: Y}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
-    return Math.max(0, y.bandwidth() - insetTop - insetBottom);
+    const bandwidth = Y ? y.bandwidth() : height - marginTop - marginBottom;
+    return Math.max(0, bandwidth - insetTop - insetBottom);
   }
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, {x = indexOf, y1, y2, ...options} = {}) {
+  constructor(data, {x, y1, y2, ...options} = {}) {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x", type: "band"},
         {name: "y1", value: y1, scale: "y"},
-        {name: "y2", value: y2, scale: "y"}
+        {name: "y2", value: y2, scale: "y"},
+        {name: "x", value: x, scale: "x", type: "band", optional: true}
       ],
       options
     );
@@ -114,17 +115,18 @@ export class BarY extends AbstractBar {
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];
   }
-  _x({x}, {x: X}) {
+  _x({x}, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return i => x(X[i]) + insetLeft;
+    return X ? i => x(X[i]) + insetLeft : marginLeft + insetLeft;
   }
   _y({y}, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
     return i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop;
   }
-  _width({x}) {
+  _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
-    return Math.max(0, x.bandwidth() - insetLeft - insetRight);
+    const bandwidth = X ? x.bandwidth() : width - marginRight - marginLeft;
+    return Math.max(0, bandwidth - insetLeft - insetRight);
   }
   _height({y}, {y1: Y1, y2: Y2}) {
     const {insetTop, insetBottom} = this;
