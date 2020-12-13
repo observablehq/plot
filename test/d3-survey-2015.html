@@ -25,24 +25,22 @@ d3.json("data/d3-survey-2015.json").then(responses => {
 // TODO consolidate bars into Other category
 function chooseOne(responses, y, title) {
   return bars(
-    responses,
-    d3.groups(responses, d => d[y]),
+    d3.rollups(responses, group => group.length / responses.length, d => d[y]),
     title
   );
 }
 
 function chooseMany(responses, y, title) {
   return bars(
-    responses,
     Array.from(
       new Set(responses.flatMap(d => d[y])),
-      v => [v, responses.filter(d => d[y].includes(v))]
+      v => [v, d3.mean(responses, d => d[y].includes(v))]
     ),
     title
   );
 }
 
-function bars(responses, groups, title) {
+function bars(groups, title) {
   return Plot.plot({
     marginLeft: 300,
     width: 960,
@@ -57,13 +55,13 @@ function bars(responses, groups, title) {
       padding: 0,
       label: title,
       labelAnchor: "top",
-      domain: groups.map(([key, group]) => [key, group.length])
+      domain: groups.map(([key, value]) => [key, value])
         .sort(([ak, av], [bk, bv]) => d3.descending(av, bv) || d3.ascending(ak, bk))
         .map(([key]) => key)
     },
     marks: [
       Plot.barX(groups, {
-        x: ([, group]) => group.length / responses.length * 100,
+        x: ([, value]) => value * 100,
         y: ([key]) => key,
         fill: "steelblue",
         insetTop: 1
