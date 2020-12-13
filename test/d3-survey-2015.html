@@ -24,37 +24,29 @@ d3.json("data/d3-survey-2015.json").then(responses => {
 
 // TODO consolidate bars into Other category
 function chooseOne(responses, y, title) {
-  const groups = Plot.group1(y)(responses);
+  return bars(
+    responses,
+    d3.groups(responses, d => d[y]),
+    title
+  );
+}
+
+function chooseMany(responses, y, title) {
+  return bars(
+    responses,
+    Array.from(
+      new Set(responses.flatMap(d => d[y])),
+      v => [v, responses.filter(d => d[y].includes(v))]
+    ),
+    title
+  );
+}
+
+function bars(responses, groups, title) {
   return Plot.plot({
     marginLeft: 300,
     width: 960,
     height: groups.length * 20 + 50,
-    x: {
-      grid: true,
-      axis: "top",
-      domain: [0, 100]
-    },
-    y: {
-      padding: 0,
-      label: title,
-      labelAnchor: "top",
-      domain: groups.map(([key, group]) => [key, group.length])
-        .sort(([ak, av], [bk, bv]) => d3.descending(av, bv) || d3.ascending(ak, bk))
-        .map(([key]) => key)
-    },
-    marks: [
-      Plot.groupY(responses, {y, insetTop: 1, fill: "steelblue", normalize: true}),
-    ]
-  });
-}
-
-function chooseMany(responses, y, title) {
-  const values = [...new Set(responses.flatMap(d => d[y]))];
-  const groups = values.map(v => [v, responses.filter(d => d[y].includes(v))]);
-  return Plot.plot({
-    marginLeft: 300,
-    width: 960,
-    height: values.length * 20 + 50,
     x: {
       grid: true,
       axis: "top",
@@ -70,7 +62,13 @@ function chooseMany(responses, y, title) {
         .map(([key]) => key)
     },
     marks: [
-      Plot.barX(groups, {x: ([, group]) => group.length / responses.length * 100, y: ([key]) => key, fill: "steelblue", insetTop: 1})
+      Plot.barX(groups, {
+        x: ([, group]) => group.length / responses.length * 100,
+        y: ([key]) => key,
+        fill: "steelblue",
+        insetTop: 1
+      }),
+      Plot.ruleX([0])
     ]
   });
 }
