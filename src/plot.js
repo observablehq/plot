@@ -100,7 +100,7 @@ export function plot(options = {}) {
       .style("background", background);
 
   svg.append("style")
-      .text(`.plot text { fill: currentColor; white-space: pre; }`);
+      .text(`.plot text { white-space: pre; }`);
 
   for (const mark of marks) {
     const channels = markChannels.get(mark);

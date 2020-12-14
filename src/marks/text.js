@@ -24,7 +24,7 @@ export class Text extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
+    const [vfill, cfill = vfill == null ? "currentColor" : undefined] = maybeColor(fill);
     super(
       data,
       [
