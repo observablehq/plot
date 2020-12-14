@@ -15,6 +15,7 @@ export function plot(options = {}) {
 
   const {
     marks = [],
+    display = "block",
     font = "10px sans-serif",
     background = "white"
   } = options;
@@ -96,7 +97,7 @@ export function plot(options = {}) {
       .attr("text-anchor", "middle")
       .style("font", font)
       .style("max-width", `${width}px`)
-      .style("display", "block")
+      .style("display", display)
       .style("background", background);
 
   svg.append("style")
