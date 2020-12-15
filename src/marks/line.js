@@ -57,7 +57,7 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, {x = first, y = second, ...options}) {
+export function line(data, {x = first, y = second, ...options} = {}) {
   return new Line(data, {...options, x, y});
 }
 

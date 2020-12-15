@@ -139,7 +139,7 @@ export function barX(data, {x, x1, x2, ...options} = {}) {
   return new BarX(data, {...options, x1, x2});
 }
 
-export function barY(data, {y, y1, y2, ...options}) {
+export function barY(data, {y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
   return new BarY(data, {...options, y1, y2});
 }
