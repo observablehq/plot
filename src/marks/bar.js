@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, identity, indexOf, zero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -134,12 +134,20 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, {x, x1, x2, ...options} = {}) {
-  ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2});
+export function barX(data, {x, x1, x2, y, ...options} = {}) {
+  if (x === undefined && x1 === x && x2 === x && y === x) {
+    x1 = zero, x2 = identity, y = indexOf;
+  } else {
+    ([x1, x2] = maybeZero(x, x1, x2));
+  }
+  return new BarX(data, {...options, x1, x2, y});
 }
 
-export function barY(data, {y, y1, y2, ...options} = {}) {
-  ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, y1, y2});
+export function barY(data, {x, y, y1, y2, ...options} = {}) {
+  if (y === undefined && y1 === y && y2 === y && x === y) {
+    y1 = zero, y2 = identity, x = indexOf;
+  } else {
+    ([y1, y2] = maybeZero(y, y1, y2));
+  }
+  return new BarY(data, {...options, x, y1, y2});
 }
