@@ -57,6 +57,7 @@ export class AxisX {
             .attr("stroke-opacity", 0.1)
             .attr("y2", offsetSign * (marginBottom + marginTop - height)))
         .call(label == null ? () => {} : g => g.append("text")
+            .style("fill", "currentColor")
             .attr("transform", `translate(${
                 labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
                   : labelAnchor === "right" ? width
@@ -126,6 +127,7 @@ export class AxisY {
             .attr("stroke-opacity", 0.1)
             .attr("x2", offsetSign * (marginLeft + marginRight - width)))
         .call(label == null ? () => {} : g => g.append("text")
+            .style("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
                 labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
                   : labelAnchor === "bottom" ? height - marginBottom
