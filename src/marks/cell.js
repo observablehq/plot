@@ -2,7 +2,8 @@ import {first, second} from "../mark.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
-  constructor(data, {x = first, y = second, ...options} = {}) {
+  constructor(data, {x, y, ...options} = {}) {
+    if (x === undefined && y === undefined) x = first, y = second;
     super(
       data,
       [
