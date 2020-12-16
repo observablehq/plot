@@ -13,6 +13,5 @@ export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
-export {SpanX, SpanY, spanX, spanY} from "./marks/span.js";
 export {bin1, bin2} from "./transforms/bin.js";
 export {group1, group2} from "./transforms/group.js";

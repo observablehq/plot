@@ -58,11 +58,43 @@ export class AbstractBar extends Mark {
             .attr("stroke", S && (i => color(S[i]))))
       .node();
   }
+  _x({x}, {x: X}, {marginLeft}) {
+    const {insetLeft} = this;
+    return X ? i => x(X[i]) + insetLeft : marginLeft + insetLeft;
+  }
+  _y({y}, {y: Y}, {marginTop}) {
+    const {insetTop} = this;
+    return Y ? i => y(Y[i]) + insetTop : marginTop + insetTop;
+  }
+  _width({x}, {x: X}, {marginRight, marginLeft, width}) {
+    const {insetLeft, insetRight} = this;
+    const bandwidth = X ? x.bandwidth() : width - marginRight - marginLeft;
+    return Math.max(0, bandwidth - insetLeft - insetRight);
+  }
+  _height({y}, {y: Y}, {marginTop, marginBottom, height}) {
+    const {insetTop, insetBottom} = this;
+    const bandwidth = Y ? y.bandwidth() : height - marginTop - marginBottom;
+    return Math.max(0, bandwidth - insetTop - insetBottom);
+  }
 }
 
-export class AbstractBarX extends AbstractBar {
+export class BarX extends AbstractBar {
+  constructor(data, {x1, x2, y, ...options} = {}) {
+    super(
+      data,
+      [
+        {name: "x1", value: x1, scale: "x"},
+        {name: "x2", value: x2, scale: "x"},
+        {name: "y", value: y, scale: "y", type: "band", optional: true}
+      ],
+      options
+    );
+  }
   _transform(selection, {x}) {
     selection.call(applyBandTransform, x, false);
+  }
+  _positions({x1: X1, x2: X2, y: Y}) {
+    return [X1, X2, Y];
   }
   _x({x}, {x1: X1, x2: X2}) {
     const {insetLeft} = this;
@@ -74,35 +106,23 @@ export class AbstractBarX extends AbstractBar {
   }
 }
 
-export class BarX extends AbstractBarX {
-  constructor(data, {x1, x2, y = indexOf, ...options} = {}) {
+export class BarY extends AbstractBar {
+  constructor(data, {x, y1, y2, ...options} = {}) {
     super(
       data,
       [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "x2", value: x2, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band"}
+        {name: "y1", value: y1, scale: "y"},
+        {name: "y2", value: y2, scale: "y"},
+        {name: "x", value: x, scale: "x", type: "band", optional: true}
       ],
       options
     );
   }
-  _positions({x1: X1, x2: X2, y: Y}) {
-    return [X1, X2, Y];
-  }
-  _y({y}, {y: Y}) {
-    const {insetTop} = this;
-    return i => y(Y[i]) + insetTop;
-  }
-  _height({y}) {
-    const {insetTop, insetBottom} = this;
-    const bandwidth = y.bandwidth();
-    return Math.max(0, bandwidth - insetTop - insetBottom);
-  }
-}
-
-export class AbstractBarY extends AbstractBar {
   _transform(selection, {y}) {
     selection.call(applyBandTransform, false, y);
+  }
+  _positions({y1: Y1, y2: Y2, x: X}) {
+    return [Y1, Y2, X];
   }
   _y({y}, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
@@ -114,38 +134,12 @@ export class AbstractBarY extends AbstractBar {
   }
 }
 
-export class BarY extends AbstractBarY {
-  constructor(data, {x = indexOf, y1, y2, ...options} = {}) {
-    super(
-      data,
-      [
-        {name: "y1", value: y1, scale: "y"},
-        {name: "y2", value: y2, scale: "y"},
-        {name: "x", value: x, scale: "x", type: "band"}
-      ],
-      options
-    );
-  }
-  _positions({y1: Y1, y2: Y2, x: X}) {
-    return [Y1, Y2, X];
-  }
-  _x({x}, {x: X}) {
-    const {insetLeft} = this;
-    return i => x(X[i]) + insetLeft;
-  }
-  _width({x}) {
-    const {insetLeft, insetRight} = this;
-    const bandwidth = x.bandwidth();
-    return Math.max(0, bandwidth - insetLeft - insetRight);
-  }
-}
-
-export function barX(data, {x, x1, x2, ...options} = {}) {
+export function barX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2});
+  return new BarX(data, {...options, x1, x2, y});
 }
 
-export function barY(data, {y, y1, y2, ...options} = {}) {
+export function barY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, y1, y2});
+  return new BarY(data, {...options, x, y1, y2});
 }

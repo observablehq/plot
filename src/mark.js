@@ -7,7 +7,7 @@ export class Mark {
     this.transform = transform;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
-      if (value === undefined) {
+      if (value == null) {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
