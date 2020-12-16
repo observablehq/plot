@@ -27,7 +27,7 @@ d3.text("data/hadcrut-annual.txt").then(text => {
       scheme: "BuRd"
     },
     marks: [
-      Plot.barX(hadcrut, {
+      Plot.spanX(hadcrut, {
         x1: "year", // start of current year
         x2: d => d3.utcYear.offset(d.year), // start of next year
         fill: "anomaly"
