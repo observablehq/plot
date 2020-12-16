@@ -15,6 +15,7 @@ export function plot(options = {}) {
 
   const {
     marks = [],
+    overflow,
     display = "block",
     font = "10px sans-serif",
     background = "white"
@@ -98,7 +99,8 @@ export function plot(options = {}) {
       .style("font", font)
       .style("max-width", `${width}px`)
       .style("display", display)
-      .style("background", background);
+      .style("background", background)
+      .style("overflow", overflow);
 
   svg.append("style")
       .text(`.plot text { white-space: pre; }`);
