@@ -104,14 +104,13 @@ export class AbstractBarY extends AbstractBar {
   _transform(selection, {y}) {
     selection.call(applyBandTransform, false, y);
   }
-  _x({x}, {x: X}) {
-    const {insetLeft} = this;
-    return i => x(X[i]) + insetLeft;
+  _y({y}, {y1: Y1, y2: Y2}) {
+    const {insetTop} = this;
+    return i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop;
   }
-  _width({x}) {
-    const {insetLeft, insetRight} = this;
-    const bandwidth = x.bandwidth();
-    return Math.max(0, bandwidth - insetLeft - insetRight);
+  _height({y}, {y1: Y1, y2: Y2}) {
+    const {insetTop, insetBottom} = this;
+    return i => Math.max(0, Math.abs(y(Y2[i]) - y(Y1[i])) - insetTop - insetBottom);
   }
 }
 
@@ -130,13 +129,14 @@ export class BarY extends AbstractBarY {
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];
   }
-  _y({y}, {y1: Y1, y2: Y2}) {
-    const {insetTop} = this;
-    return i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop;
+  _x({x}, {x: X}) {
+    const {insetLeft} = this;
+    return i => x(X[i]) + insetLeft;
   }
-  _height({y}, {y1: Y1, y2: Y2}) {
-    const {insetTop, insetBottom} = this;
-    return i => Math.max(0, Math.abs(y(Y2[i]) - y(Y1[i])) - insetTop - insetBottom);
+  _width({x}) {
+    const {insetLeft, insetRight} = this;
+    const bandwidth = x.bandwidth();
+    return Math.max(0, bandwidth - insetLeft - insetRight);
   }
 }
 

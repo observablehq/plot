@@ -1,5 +1,4 @@
 import {maybeZero} from "../mark.js";
-import {applyBandTransform} from "../style.js";
 import {AbstractBarX, AbstractBarY} from "./bar.js";
 
 export class SpanX extends AbstractBarX {
