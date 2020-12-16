@@ -28,9 +28,17 @@ https://covid19.healthdata.org/
 NASA Goddard Institute for Space Studies
 https://data.giss.nasa.gov/gistemp/
 
+## hadcrut-annual.txt
+Met Office Hadley Centre
+https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
+
 ## metros.csv
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
+
+## morley.csv
+Michelson Speed of Light Data
+https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/datasets/morley.csv
 
 ## movies.json
 Vega
