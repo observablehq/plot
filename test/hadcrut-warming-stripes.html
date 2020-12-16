@@ -9,14 +9,10 @@ d3.text("data/hadcrut-annual.txt").then(text => {
   const hadcrut = text
     .split(/\n/g) // split into lines
     .map(line => line.split(/\s+/g)) // split each line into fields
-    .flatMap(([year, ...anomalies]) => { // convert to {year, anomaly} objects
-      return anomalies.map((anomaly, i) => {
-        return {
-          year: new Date(Date.UTC(+year + i, 0, 1)),
-          anomaly: +anomaly
-        };
-      });
-    });
+    .map(([year, anomaly]) => ({ // extract the year and median anomaly
+      year: new Date(Date.UTC(year, 0, 1)),
+      anomaly: +anomaly
+    }));
   document.body.appendChild(Plot.plot({
     x: {
       round: true,
