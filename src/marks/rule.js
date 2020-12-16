@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class RuleX extends Mark {
   constructor(
@@ -41,13 +41,13 @@ export class RuleX extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyBandTransform, x, false)
+        .call(applyTransform, x, false, 0.5, 0)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", i => Math.round(x(X[i])) + 0.5)
-            .attr("x2", i => Math.round(x(X[i])) + 0.5)
+            .attr("x1", i => Math.round(x(X[i])))
+            .attr("x2", i => Math.round(x(X[i])))
             .attr("y1", Y1 ? i => y(Y1[i]) : marginTop)
             .attr("y2", Y2 ? (y.bandwidth ? i => y(Y2[i]) + y.bandwidth() : i => y(Y2[i])) : height - marginBottom)
             .attr("stroke", S && (i => color(S[i]))))
@@ -92,15 +92,15 @@ export class RuleY extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyBandTransform, false, y)
+        .call(applyTransform, false, y, 0, 0.5)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
             .attr("x1", X1 ? i => x(X1[i]) : marginLeft)
             .attr("x2", X2 ? (x.bandwidth ? i => x(X2[i]) + x.bandwidth() : i => x(X2[i])) : width - marginRight)
-            .attr("y1", i => Math.round(y(Y[i])) + 0.5)
-            .attr("y2", i => Math.round(y(Y[i])) + 0.5)
+            .attr("y1", i => Math.round(y(Y[i])))
+            .attr("y2", i => Math.round(y(Y[i])))
             .attr("stroke", S && (i => color(S[i]))))
       .node();
   }

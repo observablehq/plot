@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, number, maybeColor, maybeZero, indexOf} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
   constructor(
@@ -91,7 +91,7 @@ export class BarX extends AbstractBar {
     );
   }
   _transform(selection, {x}) {
-    selection.call(applyBandTransform, x, false);
+    selection.call(applyTransform, x, false);
   }
   _positions({x1: X1, x2: X2, y: Y}) {
     return [X1, X2, Y];
@@ -119,7 +119,7 @@ export class BarY extends AbstractBar {
     );
   }
   _transform(selection, {y}) {
-    selection.call(applyBandTransform, false, y);
+    selection.call(applyTransform, false, y);
   }
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];

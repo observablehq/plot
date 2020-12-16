@@ -48,6 +48,8 @@ export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyBandTransform(selection, x, y) {
-  if (x.bandwidth || y.bandwidth) selection.attr("transform", `translate(${x.bandwidth ? x.bandwidth() / 2 : 0},${y.bandwidth ? y.bandwidth() / 2 : 0})`);
+export function applyTransform(selection, x, y, tx = 0, ty = 0) {
+  if (x.bandwidth) tx += x.bandwidth() / 2;
+  if (y.bandwidth) ty += y.bandwidth() / 2;
+  selection.attr("transform", `translate(${tx},${ty})`);
 }

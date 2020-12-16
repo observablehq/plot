@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Link extends Mark {
   constructor(
@@ -42,7 +42,7 @@ export class Link extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyBandTransform, x, y)
+        .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
           .data(index)
           .join("line")

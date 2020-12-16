@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
 import {Mark, identity, indexOf, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 class AbstractTick extends Mark {
   constructor(
@@ -60,13 +60,13 @@ export class TickX extends AbstractTick {
     );
   }
   _transform(selection, {x}) {
-    selection.call(applyBandTransform, x, false);
+    selection.call(applyTransform, x, false, 0.5, 0);
   }
   _x1({x}, {x: X}) {
-    return i => Math.round(x(X[i])) + 0.5;
+    return i => Math.round(x(X[i]));
   }
   _x2({x}, {x: X}) {
-    return i => Math.round(x(X[i])) + 0.5;
+    return i => Math.round(x(X[i]));
   }
   _y1({y}, {y: Y}) {
     return i => y(Y[i]);
@@ -88,7 +88,7 @@ export class TickY extends AbstractTick {
     );
   }
   _transform(selection, {y}) {
-    selection.call(applyBandTransform, false, y);
+    selection.call(applyTransform, false, y, 0, 0.5);
   }
   _x1({x}, {x: X}) {
     return i => x(X[i]);
@@ -97,10 +97,10 @@ export class TickY extends AbstractTick {
     return i => x(X[i]) + x.bandwidth();
   }
   _y1({y}, {y: Y}) {
-    return i => Math.round(y(Y[i])) + 0.5;
+    return i => Math.round(y(Y[i]));
   }
   _y2({y}, {y: Y}) {
-    return i => Math.round(y(Y[i])) + 0.5;
+    return i => Math.round(y(Y[i]));
   }
 }
 

@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {zero} from "../mark.js";
 import {filter} from "../defined.js";
 import {Mark, number, maybeColor} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyBandTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Rect extends Mark {
   constructor(
@@ -54,7 +54,7 @@ export class Rect extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyBandTransform, x, y)
+        .call(applyTransform, x, y)
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
