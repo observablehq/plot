@@ -49,7 +49,7 @@ import {
   interpolateYlOrRd
 } from "d3-scale-chromatic";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
-import {registry, radius, color} from "./index.js";
+import {registry, size, color} from "./index.js";
 import {positive} from "../defined.js";
 
 const constant = x => () => x;
@@ -135,9 +135,9 @@ function Scheme(scheme) {
 export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
-  domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
+  domain = (registry.get(key) === size ? inferRadialDomain : inferDomain)(channels),
   round,
-  range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
+  range = registry.get(key) === size ? [0, 27] : undefined, // see inferRadialDomain
   scheme,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateTurbo) : round ? interpolateRound : undefined,
   invert,

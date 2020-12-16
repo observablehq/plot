@@ -1,4 +1,4 @@
-import {registry, position, radius} from "./scales/index.js";
+import {registry, position, size} from "./scales/index.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
@@ -57,7 +57,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
     }
     return type;
   }
-  if (registry.get(key) === radius) return "sqrt";
+  if (registry.get(key) === size) return "linear";
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return inferOrdinalType(key);
   if (domain !== undefined) {

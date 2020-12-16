@@ -19,7 +19,7 @@ export class Dot extends Mark {
       ...style
     } = {}
   ) {
-    const [vsize, csize = vsize == null ? 3 : undefined] = maybeNumber(size);
+    const [vsize, csize = vsize == null ? 27 : undefined] = maybeNumber(size);
     const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
     const [vstroke, cstroke = vstroke == null && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
     super(
@@ -46,10 +46,10 @@ export class Dot extends Mark {
   render(
     I,
     {x, y, size, color},
-    {x: X, y: Y, z: Z, size: R, title: L, fill: F, stroke: S}
+    {x: X, y: Y, z: Z, size: A, title: L, fill: F, stroke: S}
   ) {
     let index = filter(I, X, Y, F, S);
-    if (R) index = index.filter(i => positive(R[i]));
+    if (A) index = index.filter(i => positive(A[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -60,7 +60,7 @@ export class Dot extends Mark {
             .call(applyDirectStyles, this)
             .attr("cx", i => x(X[i]))
             .attr("cy", i => y(Y[i]))
-            .attr("r", R ? i => size(R[i]) : this.size)
+            .attr("r", A ? i => radius(size(A[i])) : radius(this.size))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .call(L ? text => text
@@ -69,6 +69,10 @@ export class Dot extends Mark {
               .text(i => L[i]) : () => {}))
       .node();
   }
+}
+
+function radius(area) {
+  return Math.sqrt(area / 3);
 }
 
 export function dot(data, options) {
