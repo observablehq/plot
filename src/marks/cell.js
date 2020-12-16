@@ -1,4 +1,4 @@
-import {first, second} from "../mark.js";
+import {identity, first, second} from "../mark.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
@@ -23,4 +23,12 @@ export class Cell extends AbstractBar {
 
 export function cell(data, options) {
   return new Cell(data, options);
+}
+
+export function cellX(data, {x = identity, ...options}) {
+  return new Cell(data, {x, ...options, y: null});
+}
+
+export function cellY(data, {y = identity, ...options}) {
+  return new Cell(data, {y, ...options, x: null});
 }
