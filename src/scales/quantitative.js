@@ -80,6 +80,10 @@ const schemes = new Map([
   ["rdylgn", interpolateRdYlGn],
   ["spectral", interpolateSpectral],
 
+  // inverted diverging (for temperature data)
+  ["burd", t => interpolateRdBu(1 - t)],
+  ["buylrd", t => interpolateRdYlBu(1 - t)],
+
   // sequential (single-hue)
   ["blues", interpolateBlues],
   ["greens", interpolateGreens],
