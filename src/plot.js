@@ -116,10 +116,10 @@ export function plot(options = {}) {
 function Dimensions({y, fy}, {x: xAxis, y: yAxis}, {
   width = 640,
   height = y || fy ? 396 : 60,
-  marginTop = !yAxis ? 0 : xAxis && xAxis.axis === "top" ? 30 : 20,
-  marginRight = yAxis && yAxis.axis === "right" ? 40 : 20,
-  marginBottom = xAxis && xAxis.axis === "bottom" ? 30 : 20,
-  marginLeft = yAxis && yAxis.axis === "left" ? 40 : 20
+  marginTop = xAxis && xAxis.axis === "top" ? 30 : yAxis ? 20 : 0,
+  marginRight = yAxis && yAxis.axis === "right" ? 40 : xAxis ? 20 : 0,
+  marginBottom = xAxis && xAxis.axis === "bottom" ? 30 : yAxis ? 20 : 0,
+  marginLeft = yAxis && yAxis.axis === "left" ? 40 : xAxis ? 20 : 0
 } = {}) {
   return {width, height, marginTop, marginRight, marginBottom, marginLeft};
 }
