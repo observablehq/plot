@@ -23,7 +23,7 @@ export class Mark {
     });
   }
   initialize(data, index) {
-    if (data !== undefined) data = this.transform(data, this.data);
+    if (data !== undefined) data = this.transform(data, index);
     return {
       index: data === undefined ? undefined : Uint32Array.from(data, indexOf),
       channels: this.channels.map(channel => {
@@ -44,6 +44,14 @@ function Channel(data, index, {scale, type, value}) {
     if (index !== undefined) value = Array.from(index, i => value[i]);
   }
   return {scale, type, value, label};
+}
+
+// This allows transforms to behave equivalently to channels.
+export function valueof(data, value) {
+  return typeof value === "string" ? Array.from(data, field(value))
+    : typeof value === "function" ? Array.from(data, value)
+    : typeof value.length !== "number" ? Array.from(value)
+    : value;
 }
 
 export const field = value => d => d[value];
