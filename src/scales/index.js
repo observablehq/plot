@@ -20,6 +20,5 @@ export const registry = new Map([
   ["fx", position],
   ["fy", position],
   ["r", radius],
-  ["z", null],
   ["color", color]
 ]);
