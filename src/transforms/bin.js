@@ -1,23 +1,24 @@
 import {bin as binner, cross, sum} from "d3-array";
-import {field, first, second, maybeValue} from "../mark.js";
+import {valueof, first, second, maybeValue, indexOf} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
-  if (typeof value !== "function") value = field(value + "");
-  const bin = binner().value(value);
+  let values;
+  const bin = binner().value(i => values[i]);
   if (domain !== undefined) bin.domain(domain);
   if (thresholds !== undefined) bin.thresholds(thresholds);
-  return (facetData, data) => {
+  return function(data, index) {
     let b;
+    if (values === undefined) values = valueof(this.data, value);
     // We don’t want to choose thresholds dynamically for each facet; instead,
     // we extract the set of thresholds from an initial pass over all data.
     if (domain === undefined || thresholds === undefined) {
-      b = bin(data);
+      b = bin(Uint32Array.from(this.data, indexOf));
       if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(b => b.x0));
-      if (facetData !== data) b = bin(facetData);
+      if (index !== undefined) b = bin(index);
     } else {
-      b = bin(facetData);
+      b = bin(index);
     }
     if (cumulative) {
       let sum = 0;
@@ -31,8 +32,10 @@ export function bin1(options = {}) {
 export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   const binX = bin1({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = bin1({domain, thresholds, value: second, ...maybeValue(y)});
-  return (facetData, data) => {
-    return cross(binX(facetData, data), binY(facetData, data).map(binset), (x, y) => {
+  return function(data, index) {
+    const bx = this.call(binX, data, index);
+    const by = this.call(binY, data, index);
+    return cross(bx, by.map(binset), (x, y) => {
       return {
         x0: x.x0,
         x1: x.x1,
