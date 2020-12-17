@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor} from "../mark.js";
+import {Mark, identity, maybeColor, zero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class RuleX extends Mark {
@@ -106,10 +106,28 @@ export class RuleY extends Mark {
   }
 }
 
-export function ruleX(data, options) {
-  return new RuleX(data, options);
+export function ruleX(data, {y, y1, y2, ...options} = {}) {
+  ([y1, y2] = maybeOptionalZero(y, y1, y2));
+  return new RuleX(data, {...options, y1, y2});
 }
 
-export function ruleY(data, options) {
-  return new RuleY(data, options);
+export function ruleY(data, {x, x1, x2, ...options} = {}) {
+  ([x1, x2] = maybeOptionalZero(x, x1, x2));
+  return new RuleY(data, {...options, x1, x2});
+}
+
+// For marks specified either as [0, x] or [x1, x2], or nothing.
+function maybeOptionalZero(x, x1, x2) {
+  if (x === undefined) {
+    if (x1 === undefined) {
+      if (x2 !== undefined) return [0, x2];
+    } else {
+      if (x2 === undefined) return [0, x1];
+    }
+  } else if (x1 === undefined) {
+    return x2 === undefined ? [0, x] : [x, x2];
+  } else if (x2 === undefined) {
+    return [x, x1];
+  }
+  return [x1, x2];
 }
