@@ -120,12 +120,12 @@ export function ruleY(data, {x, x1, x2, ...options} = {}) {
 function maybeOptionalZero(x, x1, x2) {
   if (x === undefined) {
     if (x1 === undefined) {
-      if (x2 !== undefined) return [0, x2];
+      if (x2 !== undefined) return [zero, x2];
     } else {
-      if (x2 === undefined) return [0, x1];
+      if (x2 === undefined) return [zero, x1];
     }
   } else if (x1 === undefined) {
-    return x2 === undefined ? [0, x] : [x, x2];
+    return x2 === undefined ? [zero, x] : [x, x2];
   } else if (x2 === undefined) {
     return [x, x1];
   }
