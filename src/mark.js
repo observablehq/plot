@@ -22,24 +22,27 @@ export class Mark {
       return true;
     });
   }
-  initialize(data) {
+  initialize(data, index) {
     if (data !== undefined) data = this.transform(data, this.data);
     return {
       index: data === undefined ? undefined : Uint32Array.from(data, indexOf),
       channels: this.channels.map(channel => {
         const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, channel)];
+        return [name == null ? undefined : name + "", Channel(data, index, channel)];
       })
     };
   }
 }
 
 // TODO Type coercion?
-function Channel(data, {scale, type, value}) {
+function Channel(data, index, {scale, type, value}) {
   let label;
   if (typeof value === "string") label = value, value = Array.from(data, field(value));
   else if (typeof value === "function") label = value.label, value = Array.from(data, value);
-  else if (typeof value.length !== "number") value = Array.from(value);
+  else {
+    if (typeof value.length !== "number") value = Array.from(value);
+    if (index !== undefined) value = Array.from(index, i => value[i]);
+  }
   return {scale, type, value, label};
 }
 
