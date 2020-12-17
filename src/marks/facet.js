@@ -27,8 +27,9 @@ class Facet extends Mark {
       for (const mark of this.marks) {
         if (markIndex.has(mark)) throw new Error("duplicate mark");
         const markData = mark.data === data ? facetData : mark.data;
+        const markDataIndex = mark.data === data ? facetIndex : undefined;
         const named = Object.create(null);
-        const {index, channels} = mark.initialize(markData);
+        const {index, channels} = mark.initialize(markData, markDataIndex);
         for (const [name, channel] of channels) {
           if (name !== undefined) named[name] = channel.value;
           subchannels.push([undefined, channel]);
