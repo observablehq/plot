@@ -18,6 +18,7 @@ export function bin1(options = {}) {
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(b => b.x0));
       if (index !== undefined) b = bin(index);
     } else {
+      if (index === undefined) index = Uint32Array.from(data, indexOf);
       b = bin(index);
     }
     if (cumulative) {
@@ -33,8 +34,8 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   const binX = bin1({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = bin1({domain, thresholds, value: second, ...maybeValue(y)});
   return function(data, index) {
-    const bx = this.call(binX, data, index);
-    const by = this.call(binY, data, index);
+    const bx = binX.call(this, data, index);
+    const by = binY.call(this, data, index);
     return cross(bx, by.map(binset), (x, y) => {
       return {
         x0: x.x0,
