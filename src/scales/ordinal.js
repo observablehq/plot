@@ -165,6 +165,11 @@ export function ScaleBand(key, channels, {
   );
 }
 
+// An identity scale that works for strings and numbers
+export function ScaleIdentity(key, channels, options) {
+  return ScaleO(Object.assign(x => x, { domain: () => {} }), channels, options);
+}
+
 function inferDomain(channels) {
   const domain = new Set();
   for (const {value} of channels) {

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+document.body.appendChild(Plot.plot({
+  color: { type: "identity" },
+  //x: { type: "identity" },
+  //y: { type: "identity" },
+  marks: [
+    Plot.dot(Array.from({length: 100}, () => [
+      600 * Math.random(), 100 + 300 * Math.random(),
+      d3.schemeGreens[9][Math.random()*9|0],
+      d3.schemeOranges[9][Math.random()*9|0]
+    ]),
+    {
+      x: "0",
+      y: "1",
+      fill: "2",
+      stroke: "3"
+    })
+  ]
+}));
+
+</script>
