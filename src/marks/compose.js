@@ -6,9 +6,7 @@ import {Mark, Channel} from "../mark.js";
 
 export class Compose extends Mark {
   constructor(
-    data,
-    marks = [],
-    transform
+    marks = []
   ) {
     // collect all the channels from child marks and normalize their values
     const subchannels = marks.flatMap((mark, i) =>
@@ -19,23 +17,23 @@ export class Compose extends Mark {
       }))
     );
     super(
-      data,
+      [],
       subchannels,
-      transform
+      d => d
     );
     this.marks = marks;
   }
-  // TODO: initialize
   render(I, scales, channels, options) {
     const g = create("svg:g");
     for (const [i, mark] of this.marks.entries()) {
-      const subchannels = channels
-        .filter(({name}) => name.indexOf(`mark${i}`) === 0)
-        .map(channel => ({...channel, name: name.replace(`mark${i}`, "")}));
-      const node = mark.render(I, scales, subchannels, options);
+      const {index} = mark.initialize(mark.data);
+      const subchannels = Object.fromEntries(Object.entries(channels)
+        .filter(([name]) => name.indexOf(`mark${i}.`) === 0)
+        .map(([name, channel]) => [name.replace(`mark${i}.`, ""), channel]));
+      const node = mark.render(index, scales, subchannels, options);
       if (node != null) g.append(() => node);
     }
-    return g;
+    return g.node();
   }
 }
 

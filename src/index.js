@@ -5,6 +5,7 @@ export {AxisX, AxisY} from "./marks/axis.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {bin, binX, binY} from "./marks/bin.js";
 export {Cell, cell} from "./marks/cell.js";
+export {Compose, compose} from "./marks/compose.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {group, groupX, groupY} from "./marks/group.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
