@@ -1,7 +1,8 @@
 import {registry, position, radius} from "./scales/index.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScaleOrdinal, ScalePoint, ScaleBand, ScaleIdentity} from "./scales/ordinal.js";
+import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
+import {ScaleIdentity} from "./scales/identity.js";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};

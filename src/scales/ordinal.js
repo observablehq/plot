@@ -1,5 +1,5 @@
 import {reverse, sort} from "d3-array";
-import {scaleBand, scaleIdentity, scaleOrdinal, scalePoint} from "d3-scale";
+import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
 import {
   schemeAccent,
   schemeBlues,
@@ -41,7 +41,6 @@ import {
 } from "d3-scale-chromatic";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
-import {ScaleQ} from "./quantitative.js";
 
 // TODO Allow this to be extended.
 const schemes = new Map([
@@ -164,24 +163,6 @@ export function ScaleBand(key, channels, {
     channels,
     options
   );
-}
-
-export function ScaleIdentity(key, channels, options) {
-  let type = "quantitative";
-  for (const c of channels) {
-    for (const v of c.value) {
-      if (typeof v === "string") {
-        type = "ordinal";
-        break;
-      }
-    }
-  }
-  switch (type) {
-    case "ordinal":
-      return ScaleO(Object.assign(x => x, { domain: () => {} }), channels, options);
-    case "quantitative":
-      return ScaleQ(key, scaleIdentity(), channels, options);
-  }
 }
 
 function inferDomain(channels) {
