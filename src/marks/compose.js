@@ -1,36 +1,52 @@
-// IGNORE THIS FOR NOW, IT'S JUST ME CRAWLING ALONG PIECING TOGETHER WHAT THE
-// "PLOT.COMPOSE" MARK MAY NEED… IT'S ALL ONE BIG "TODO"… HAVENT EVEN TESTED ONCE :)
-
 import {create} from "d3-selection";
-import {Mark, Channel} from "../mark.js";
+import {Mark} from "../mark.js";
 
 export class Compose extends Mark {
   constructor(
     marks = []
   ) {
-    // collect all the channels from child marks and normalize their values
-    const subchannels = marks.flatMap((mark, i) =>
-      mark.channels.map((channel) => ({
-        ...channel,
-        name: `mark${i}.${channel.name}`, //namespacing
-        value: Channel(mark.data, channel).value
-      }))
-    );
+    const submarkChannels = new Map();
+    const submarkIndex = new Map();
+    const subchannels = [];
+
+    // duplicate initialization from plot.js for submarks
+    for (const [i, mark] of marks.entries()) {
+      const named = Object.create(null);
+      const {index, channels} = mark.initialize(mark.data);
+      for (const [name, channel] of channels) {
+        if (name !== undefined) {
+          named[name] = channel.value;
+        }
+        // collect and flatten all the channels from child marks so Plot can autoScale;
+        subchannels.push({
+          ...mark.channels.find(channel => channel.name === name),
+          name: `mark${i}.${name}`, // namespace to avoid collisions
+          value: channel.value
+        });
+      }
+      submarkChannels.set(mark, named);
+      submarkIndex.set(mark, index);
+    }
+
     super(
       [],
       subchannels,
       d => d
     );
+
     this.marks = marks;
+    this.submarkChannels = submarkChannels;
+    this.submarkIndex = submarkIndex;
   }
   render(I, scales, channels, options) {
+    // since index and channels will vary by submark, the `submarkChannels` and
+    // `submarkIndex` maps are used instead of `I` (which is empty) and
+    // `channels` (which is flattened); maybe wasteful!
     const g = create("svg:g");
-    for (const [i, mark] of this.marks.entries()) {
-      const {index} = mark.initialize(mark.data);
-      const subchannels = Object.fromEntries(Object.entries(channels)
-        .filter(([name]) => name.indexOf(`mark${i}.`) === 0)
-        .map(([name, channel]) => [name.replace(`mark${i}.`, ""), channel]));
-      const node = mark.render(index, scales, subchannels, options);
+    for (const mark of this.marks) {
+      const subchannels = this.submarkChannels.get(mark);
+      const subindex = this.submarkIndex.get(mark);
+      const node = mark.render(subindex, scales, subchannels, options);
       if (node != null) g.append(() => node);
     }
     return g.node();
