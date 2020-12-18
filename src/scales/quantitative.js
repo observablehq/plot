@@ -67,6 +67,16 @@ const interpolators = new Map([
   ["lab", interpolateLab]
 ]);
 
+// i get sorta worried when i see things like these big maps because it
+// represents some cognitive overhead where ppl gotta learn new names for the
+// same things. like the weight and sigh i feel when looking at the tachyons
+// docs haha. do i wish i were just directly passing interpolation functions in
+// the config? but then, that leads to stuff like vegalite where it feels like
+// you're repeating `vl.` all over the place just to do anything, which is
+// exhausting. i guess these are pretty systematically named: just all lowercase
+// versions of the suffixes. i had this feeling when i first saw some plot
+// implementation, but then i started writing Plot plots and it felt good.
+
 // TODO Allow this to be extended.
 const schemes = new Map([
   // diverging
@@ -132,6 +142,10 @@ function Scheme(scheme) {
   return schemes.get(s);
 }
 
+// ok here's a big important fn for understanding the fundamental "accessors to
+// dataspace" concept! let's see, how are the scale's domain and range actually
+// constructed? the domain's the extent (cf inferDomain), and the range is set
+// by autoScaleRange in scales.js
 export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
@@ -211,6 +225,9 @@ export function ScaleDiverging(key, channels, {
   return {type: "quantitative", invert, domain, scale};
 }
 
+// like d3.extent for a 2D array: min of all mins to max of all maxes. ("2D
+// array" in the sense of nested like [[1,2,3],[2,4,8]], but still all along one
+// positional encoding dimension; it's not returning a 2D bounding box!)
 function inferDomain(channels) {
   return [
     min(channels, ({value}) => value === undefined ? value : min(value)),
@@ -226,3 +243,4 @@ function inferRadialDomain(channels) {
     quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive))
   ];
 }
+// radial range is always [0, 3] !! all the action's in the domain adjusting to quantiles…

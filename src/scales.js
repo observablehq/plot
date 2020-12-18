@@ -3,6 +3,7 @@ import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./sc
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
+// build scales from options object
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
   for (const key of registry.keys()) {
@@ -15,6 +16,11 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
 }
 
 // Mutates scale.range!
+// this lil unassuming fn contains much of the magic of plot; it's central to
+// the whole "accessors go to dataspace and scales are inferred" thing. notably
+// it only autoscales x and y. hm. i wonder how it could be extended. what else
+// might wanna be autoscaled? anything? r? other sizing things that keep things
+// from bumping into each other?
 export function autoScaleRange(scales, dimensions) {
   if (scales.x && scales.x.range === undefined) {
     const {inset = 0} = scales.x;

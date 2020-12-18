@@ -20,6 +20,7 @@ export class Mark {
       return true;
     });
   }
+  // First apply transform. Then Normalize the values of all the channels, applying the accessors or w/e to turn them all into plain arrays of values that'll be scaled
   initialize(data) {
     if (data !== undefined) data = this.transform(data, this.data);
     return {
@@ -33,7 +34,8 @@ export class Mark {
 }
 
 // TODO Type coercion?
-function Channel(data, {scale, type, value}) {
+// Channels come in wih `values` of various sorts, often an accessor on the data object; this turns them all into plain arrays.
+export function Channel(data, {scale, type, value}) {
   let label;
   if (typeof value === "string") label = value, value = Array.from(data, field(value));
   else if (typeof value === "function") label = value.label, value = Array.from(data, value);
