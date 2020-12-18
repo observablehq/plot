@@ -6,12 +6,13 @@
 <script>
 
 document.body.appendChild(Plot.plot({
+  overflow: "visible",
   color: { type: "identity" },
-  //x: { type: "identity" },
-  //y: { type: "identity" },
+  x: { type: "identity" },
+  y: { type: "identity" },
   marks: [
     Plot.dot(Array.from({length: 100}, () => [
-      600 * Math.random(), 100 + 300 * Math.random(),
+      600 * Math.random(), 100 + 500 * Math.random(),
       d3.schemeGreens[9][Math.random()*9|0],
       d3.schemeOranges[9][Math.random()*9|0]
     ]),
