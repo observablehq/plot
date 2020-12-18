@@ -6,6 +6,7 @@ export {Area, area, areaX, areaY} from "./marks/area.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {binDot, binRect, binRectX, binRectY} from "./marks/bin.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
+export {Compose, compose} from "./marks/compose.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {groupCell, groupDot, groupBarX, groupBarY} from "./marks/group.js";
