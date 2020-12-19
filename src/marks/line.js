@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity, first, second, maybeColor} from "../mark.js";
+import {Mark, indexOf, identity, first, second, maybeColor, maybeSort} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Line extends Mark {
@@ -15,7 +15,8 @@ export class Line extends Mark {
       z, // optional grouping for multiple series
       stroke,
       curve,
-      transform,
+      sort,
+      transform = maybeSort(sort),
       ...style
     } = {}
   ) {

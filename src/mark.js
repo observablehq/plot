@@ -1,3 +1,4 @@
+import {sort} from "d3-array";
 import {color} from "d3-color";
 
 export class Mark {
@@ -100,4 +101,13 @@ export function maybeZero(x, x1, x2, x3 = identity) {
     x2 = x === undefined ? zero : x;
   }
   return [x1, x2];
+}
+
+// If a sort order is specified, returns a corresponding transform.
+// TODO Allow the sort order to be specified as an array.
+export function maybeSort(order) {
+  if (order !== undefined) {
+    if (typeof order !== "function") order = field(order);
+    return data => sort(data, order);
+  }
 }

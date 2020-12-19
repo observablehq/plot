@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, maybeSort} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -17,7 +17,8 @@ export class Area extends Mark {
       z, // optional grouping for multiple series
       fill,
       curve,
-      transform,
+      sort,
+      transform = maybeSort(sort),
       ...style
     } = {}
   ) {
