@@ -2,7 +2,7 @@ import {group} from "d3-array";
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
-import {defined} from "../defined.js";
+import {defined, nonempty} from "../defined.js";
 import {Mark, indexOf, maybeColor, maybeZero, maybeSort} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -15,6 +15,7 @@ export class Area extends Mark {
       x2,
       y2,
       z, // optional grouping for multiple series
+      title,
       fill,
       curve,
       sort,
@@ -32,6 +33,7 @@ export class Area extends Mark {
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
       ],
       transform
@@ -39,7 +41,7 @@ export class Area extends Mark {
     this.curve = Curve(curve);
     Style(this, {fill: cfill, ...style});
   }
-  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, fill: F}) {
+  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
@@ -54,7 +56,11 @@ export class Area extends Mark {
               .x0(i => x(X1[i]))
               .y0(i => y(Y1[i]))
               .x1(i => x(X2[i]))
-              .y1(i => y(Y2[i]))))
+              .y1(i => y(Y2[i])))
+            .call(L ? marks => marks
+              .filter(([i]) => nonempty(L[i]))
+              .append("title")
+              .text(([i]) => L[i]) : () => {}))
       .node();
   }
 }

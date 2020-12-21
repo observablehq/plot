@@ -2,7 +2,7 @@ import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
-import {defined} from "../defined.js";
+import {defined, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, first, second, maybeColor, maybeSort} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -13,6 +13,7 @@ export class Line extends Mark {
       x,
       y,
       z, // optional grouping for multiple series
+      title,
       stroke,
       curve,
       sort,
@@ -28,6 +29,7 @@ export class Line extends Mark {
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
@@ -40,7 +42,7 @@ export class Line extends Mark {
       ...style
     });
   }
-  render(I, {x, y, color}, {x: X, y: Y, z: Z, stroke: S}) {
+  render(I, {x, y, color}, {x: X, y: Y, z: Z, title: L, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -53,7 +55,11 @@ export class Line extends Mark {
               .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
               .x(i => x(X[i]))
-              .y(i => y(Y[i]))))
+              .y(i => y(Y[i])))
+            .call(L ? marks => marks
+              .filter(([i]) => nonempty(L[i]))
+              .append("title")
+              .text(([i]) => L[i]) : () => {}))
       .node();
   }
 }
