@@ -81,7 +81,7 @@ d3.csv("data/nc-absentee-votes.csv", d3.autoType).then(votes => {
       y: "race"
     },
     marks: [
-      Plot.barX(rollup, {x: "percent", y: "status", fill: "status"}),
+      Plot.barX(rollup, {x: "percent", y: "status", fill: "status", title: d => (+d["percent"]).toFixed(1)+"%"}),
       Plot.ruleX([0])
     ]
   }));
