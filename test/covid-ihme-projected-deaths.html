@@ -24,15 +24,18 @@ d3.csv("data/covid-ihme-projected-deaths.csv", d3.autoType).then(data => {
         x: "date",
         y1: d => Math.max(1, d.lower), // avoid zero
         y2: "upper",
+        title: () => "cone of uncertainty",
         fillOpacity: 0.2
       }),
       Plot.line(data.slice(0, i + 1), {
         x: "date",
-        y: "mean"
+        y: "mean",
+        title: () => "actual data"
       }),
       Plot.line(data.slice(i), {
         x: "date",
         y: "mean",
+        title: () => "projected values",
         strokeDasharray: "2,2"
       }),
       Plot.dot([data[i]], {
