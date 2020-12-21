@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {filter} from "../defined.js";
+import {filter, nonempty} from "../defined.js";
 import {Mark, identity, indexOf, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -10,6 +10,7 @@ class AbstractTick extends Mark {
     channels,
     {
       z,
+      title,
       stroke,
       transform,
       ...style
@@ -21,6 +22,7 @@ class AbstractTick extends Mark {
       [
         ...channels,
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
@@ -29,7 +31,7 @@ class AbstractTick extends Mark {
   }
   render(I, scales, channels) {
     const {color} = scales;
-    const {x: X, y: Y, z: Z, stroke: S} = channels;
+    const {x: X, y: Y, z: Z, title: L, stroke: S} = channels;
     const index = filter(I, X, Y, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
@@ -43,7 +45,11 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels))
             .attr("y1", this._y1(scales, channels))
             .attr("y2", this._y2(scales, channels))
-            .attr("stroke", S && (i => color(S[i]))))
+            .attr("stroke", S && (i => color(S[i])))
+          .call(L ? marks => marks
+            .filter(i => nonempty(L[i]))
+            .append("title")
+            .text(i => L[i]) : () => {}))
       .node();
   }
 }

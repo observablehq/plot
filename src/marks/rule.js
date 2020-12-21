@@ -1,6 +1,6 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {filter} from "../defined.js";
+import {filter, nonempty} from "../defined.js";
 import {Mark, identity, maybeColor, zero} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -12,6 +12,7 @@ export class RuleX extends Mark {
       y1,
       y2,
       z,
+      title,
       stroke,
       transform,
       ...style
@@ -25,6 +26,7 @@ export class RuleX extends Mark {
         {name: "y1", value: y1, scale: "y", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
@@ -34,7 +36,7 @@ export class RuleX extends Mark {
   render(
     I,
     {x, y, color},
-    {x: X, y1: Y1, y2: Y2, z: Z, stroke: S},
+    {x: X, y1: Y1, y2: Y2, z: Z, title: L, stroke: S},
     {marginTop, height, marginBottom}
   ) {
     const index = filter(I, X, Y1, Y2, S);
@@ -50,7 +52,11 @@ export class RuleX extends Mark {
             .attr("x2", i => Math.round(x(X[i])))
             .attr("y1", Y1 ? i => y(Y1[i]) : marginTop)
             .attr("y2", Y2 ? (y.bandwidth ? i => y(Y2[i]) + y.bandwidth() : i => y(Y2[i])) : height - marginBottom)
-            .attr("stroke", S && (i => color(S[i]))))
+            .attr("stroke", S && (i => color(S[i])))
+          .call(L ? marks => marks
+            .filter(i => nonempty(L[i]))
+            .append("title")
+            .text(i => L[i]) : () => {}))
       .node();
   }
 }
@@ -63,6 +69,7 @@ export class RuleY extends Mark {
       x2,
       y = identity,
       z,
+      title,
       stroke,
       transform,
       ...style
@@ -76,6 +83,7 @@ export class RuleY extends Mark {
         {name: "x1", value: x1, scale: "x", optional: true},
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
@@ -85,7 +93,7 @@ export class RuleY extends Mark {
   render(
     I,
     {x, y, color},
-    {y: Y, x1: X1, x2: X2, z: Z, stroke: S},
+    {y: Y, x1: X1, x2: X2, z: Z, title: L, stroke: S},
     {width, marginLeft, marginRight}
   ) {
     const index = filter(I, Y, X1, X2);
@@ -101,7 +109,11 @@ export class RuleY extends Mark {
             .attr("x2", X2 ? (x.bandwidth ? i => x(X2[i]) + x.bandwidth() : i => x(X2[i])) : width - marginRight)
             .attr("y1", i => Math.round(y(Y[i])))
             .attr("y2", i => Math.round(y(Y[i])))
-            .attr("stroke", S && (i => color(S[i]))))
+            .attr("stroke", S && (i => color(S[i])))
+          .call(L ? marks => marks
+            .filter(i => nonempty(L[i]))
+            .append("title")
+            .text(i => L[i]) : () => {}))
       .node();
   }
 }
