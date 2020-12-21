@@ -56,7 +56,7 @@ export class Line extends Mark {
               .defined(i => defined(X[i]) && defined(Y[i]))
               .x(i => x(X[i]))
               .y(i => y(Y[i])))
-            .call(title(L))
+            .call(title(L)))
       .node();
   }
 }
