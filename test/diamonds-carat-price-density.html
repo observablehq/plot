@@ -20,7 +20,7 @@ d3.csv("data/diamonds.csv", d3.autoType).then(data => {
       tickFormat: "~f"
     },
     marks: [
-      Plot.density(data, {x: "carat", y: "price", z: d => d.carat > 1, stroke: d => d.carat > 1, fill: d => d.carat > 1 }),
+      Plot.density(data, {x: "carat", y: "price", bandwidth: 20, z: d => d.carat > 1, stroke: d => d.carat > 1, fill: d => d.carat > 1 }),
       Plot.dot(data, {x: "carat", y: "price", r: .5, fill:"black", fillOpacity: 0.4 })
     ]
   }));

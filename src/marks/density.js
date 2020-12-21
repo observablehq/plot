@@ -14,6 +14,8 @@ export class Density extends Mark {
       x = first,
       y = second,
       z,
+      bandwidth,
+      thresholds,
       fill,
       stroke,
       title,
@@ -44,6 +46,8 @@ export class Density extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
+    this.bandwidth = number(bandwidth);
+    this.thresholds = number(thresholds); // does not accept an array of values.
   }
   render(
     I,
@@ -53,6 +57,8 @@ export class Density extends Mark {
   ) {
     let index = filter(I, D, F, S);
     const contours = contourDensity().size([width, height]).x(i => x(X[i])).y(i => y(Y[i]));
+    if (this.bandwidth !== undefined) contours.bandwidth(this.bandwidth);
+    if (this.thresholds !== undefined) contours.thresholds(this.thresholds);
     const series = Z ? group(index, i => Z[i]).values() : [I];
     const path = geoPath();
 
@@ -64,7 +70,7 @@ export class Density extends Mark {
           .selectAll()
             .data(values => {
               const c = contours(values);
-              return c.map(d => Object.assign(d, {values, opacity: 1 / c.length}));
+              return c.map((d,i) => Object.assign(d, {values, opacity: (1 + i) / 2 / c.length}));
             })
             .join("path")
               .call(applyDirectStyles, this)
