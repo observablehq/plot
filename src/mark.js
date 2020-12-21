@@ -1,5 +1,6 @@
 import {sort} from "d3-array";
 import {color} from "d3-color";
+import {nonempty} from "./defined.js";
 
 export class Mark {
   constructor(data, channels = [], transform = identity) {
@@ -110,4 +111,12 @@ export function maybeSort(order) {
     if (typeof order !== "function") order = field(order);
     return data => sort(data, order);
   }
+}
+
+// Applies the specified titles via selection.call.
+export function title(L) {
+  return L ? selection => selection
+    .filter(i => nonempty(L[i]))
+    .append("title")
+      .text(i => L[i]) : () => {});
 }

@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {filter, nonempty} from "../defined.js";
-import {Mark, identity, indexOf, maybeColor} from "../mark.js";
+import {filter} from "../defined.js";
+import {Mark, identity, indexOf, maybeColor, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 class AbstractTick extends Mark {
@@ -46,10 +46,7 @@ class AbstractTick extends Mark {
             .attr("y1", this._y1(scales, channels))
             .attr("y2", this._y2(scales, channels))
             .attr("stroke", S && (i => color(S[i])))
-          .call(L ? marks => marks
-            .filter(i => nonempty(L[i]))
-            .append("title")
-            .text(i => L[i]) : () => {}))
+            .call(title(L))
       .node();
   }
 }

@@ -1,8 +1,8 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {zero} from "../mark.js";
-import {filter, nonempty} from "../defined.js";
-import {Mark, number, maybeColor} from "../mark.js";
+import {filter} from "../defined.js";
+import {Mark, number, maybeColor, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Rect extends Mark {
@@ -66,11 +66,8 @@ export class Rect extends Mark {
             .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - this.insetLeft - this.insetRight))
             .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
             .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i])))
-          .call(L ? marks => marks
-            .filter(i => nonempty(L[i]))
-            .append("title")
-            .text(i => L[i]) : () => {}))
+            .attr("stroke", S && (i => color(S[i]))
+            .call(title(L)))
       .node();
   }
 }
