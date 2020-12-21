@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {zero} from "../mark.js";
-import {filter} from "../defined.js";
+import {filter, nonempty} from "../defined.js";
 import {Mark, number, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -14,6 +14,7 @@ export class Rect extends Mark {
       x2,
       y2,
       z,
+      title,
       fill,
       stroke,
       insetTop = 0,
@@ -34,6 +35,7 @@ export class Rect extends Mark {
         {name: "x2", value: x2, scale: "x"},
         {name: "y2", value: y2, scale: "y"},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
@@ -48,7 +50,7 @@ export class Rect extends Mark {
   render(
     I,
     {x, y, color},
-    {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, fill: F, stroke: S}
+    {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, fill: F, stroke: S}
   ) {
     const index = filter(I, X1, Y2, X2, Y2, F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -64,7 +66,11 @@ export class Rect extends Mark {
             .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - this.insetLeft - this.insetRight))
             .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
             .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i]))))
+            .attr("stroke", S && (i => color(S[i])))
+          .call(L ? marks => marks
+            .filter(i => nonempty(L[i]))
+            .append("title")
+            .text(i => L[i]) : () => {}))
       .node();
   }
 }
