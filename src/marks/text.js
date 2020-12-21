@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, maybeColor} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
 
 const first = d => d[0];

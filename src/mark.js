@@ -118,5 +118,5 @@ export function title(L) {
   return L ? selection => selection
     .filter(i => nonempty(L[i]))
     .append("title")
-      .text(i => L[i]) : () => {});
+      .text(i => L[i]) : () => {};
 }

@@ -67,7 +67,7 @@ export class Rect extends Mark {
             .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i]))
-            .call(title(L)))
+            .call(title(L))))
       .node();
   }
 }

@@ -46,7 +46,7 @@ class AbstractTick extends Mark {
             .attr("y1", this._y1(scales, channels))
             .attr("y2", this._y2(scales, channels))
             .attr("stroke", S && (i => color(S[i])))
-            .call(title(L))
+            .call(title(L)))
       .node();
   }
 }
