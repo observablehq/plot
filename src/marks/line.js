@@ -2,8 +2,8 @@ import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
-import {defined, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, first, second, maybeColor, maybeSort} from "../mark.js";
+import {defined} from "../defined.js";
+import {Mark, indexOf, identity, first, second, maybeColor, maybeSort, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Line extends Mark {
@@ -56,10 +56,7 @@ export class Line extends Mark {
               .defined(i => defined(X[i]) && defined(Y[i]))
               .x(i => x(X[i]))
               .y(i => y(Y[i])))
-            .call(L ? marks => marks
-              .filter(([i]) => nonempty(L[i]))
-              .append("title")
-              .text(([i]) => L[i]) : () => {}))
+            .call(title(L))
       .node();
   }
 }

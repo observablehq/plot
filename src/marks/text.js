@@ -61,10 +61,7 @@ export class Text extends Mark {
             .attr("y", i => y(Y[i]))
             .attr("fill", F && (i => color(F[i])))
             .text(i => T[i])
-          .call(L ? text => text
-            .filter(i => nonempty(L[i]))
-            .append("title")
-            .text(i => L[i]) : () => {}))
+            .call(title(L)))
       .node();
   }
 }

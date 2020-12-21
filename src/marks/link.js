@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {filter, nonempty} from "../defined.js";
-import {Mark, maybeColor} from "../mark.js";
+import {filter} from "../defined.js";
+import {Mark, maybeColor, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Link extends Mark {
@@ -54,10 +54,7 @@ export class Link extends Mark {
             .attr("x2", i => x(X2[i]))
             .attr("y2", i => y(Y2[i]))
             .attr("stroke", S && (i => color(S[i])))
-          .call(L ? marks => marks
-            .filter(i => nonempty(L[i]))
-            .append("title")
-            .text(i => L[i]) : () => {}))
+            .call(title(L)))
       .node();
   }
 }
