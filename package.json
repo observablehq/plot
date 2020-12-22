@@ -40,7 +40,8 @@
     "d3-scale": "^3.2.3",
     "d3-scale-chromatic": "^2.0.0",
     "d3-selection": "^2.0.0",
-    "d3-shape": "^2.0.0"
+    "d3-shape": "^2.0.0",
+    "gsvg": "^0.2.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

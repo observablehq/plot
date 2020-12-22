@@ -1,6 +1,7 @@
 const Plot = require("../");
 const tape = require("tape-await");
 const d3 = require("d3-selection");
+const gsvg = require("gsvg");
 const jsdom = require("./jsdom.js");
 global.document = jsdom("");
 
@@ -67,6 +68,33 @@ tape("Plot.dot respects the x and y accessors (innerHTML approach)", test => {
   }));
   const layer = svg.select("circle").node().parentElement;
   test.equal(layer.innerHTML, `<circle cx="10" cy="13" r="3"></circle><circle cx="20" cy="23" r="3"></circle>`);
+});
+
+tape("Plot.dot respects the x and y accessors (gsvg approach)", async test => {
+  const svg = d3.select(Plot.plot({
+    x: { type: "ordinal", domain: ["A", 1], range: [10, 20] },
+    y: { type: "ordinal", domain: ["A", 1], range: [13, 23] },
+    marks: [
+      Plot.dot(["A", "B"], {
+        x: (d, i) => i || d,
+        y: (d, i) => i || d
+      })
+    ]
+  }));
+  const layer = svg.select("circle").node().parentElement;
+  gsvg(`<svg>${layer.innerHTML}</svg>`).then(t => test.equal(t,
+    `<svg>
+  <circle
+     cx="10"
+     cy="13"
+     r="3"></circle>
+  <circle
+     cx="20"
+     cy="23"
+     r="3"></circle>
+</svg>
+`
+  ));
 });
 
 
