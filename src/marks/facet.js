@@ -64,13 +64,19 @@ class Facet extends Mark {
             .each(function(key) {
               const {markIndex, markChannels} = facets.get(key);
               for (const mark of marks) {
+                const index = markIndex.get(mark);
+                const channels = markChannels.get(mark);
+                const dimensions = subdimensions;
                 const node = mark.render(
-                  markIndex.get(mark),
+                  index,
                   scales,
-                  markChannels.get(mark),
-                  subdimensions
+                  channels,
+                  dimensions
                 );
                 if (node != null) this.appendChild(node);
+                if (mark.callback) {
+                  mark.callback(node, index, scales, channels, dimensions);
+                }
               }
             }))
       .node();

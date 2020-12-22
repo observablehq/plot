@@ -110,6 +110,9 @@ export function plot(options = {}) {
     const index = markIndex.get(mark);
     const node = mark.render(index, scales, channels, options);
     if (node != null) svg.append(() => node);
+    if (mark.callback) {
+      mark.callback(node, index, scales, channels, dimensions);
+    }
   }
 
   return svg.node();
