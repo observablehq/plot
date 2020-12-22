@@ -14,6 +14,7 @@ export class Line extends Mark {
       y,
       z, // optional grouping for multiple series
       title,
+      fill,
       stroke,
       curve,
       sort,
@@ -21,8 +22,10 @@ export class Line extends Mark {
       ...style
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill);
     const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
     if (z === undefined && vstroke != null) z = vstroke;
+    if (z === undefined && vfill != null) z = vfill;
     super(
       data,
       [
@@ -30,6 +33,7 @@ export class Line extends Mark {
         {name: "y", value: y, scale: "y"},
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
+        {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
@@ -42,7 +46,7 @@ export class Line extends Mark {
       ...style
     });
   }
-  render(I, {x, y, color}, {x: X, y: Y, z: Z, title: L, stroke: S}) {
+  render(I, {x, y, color}, {x: X, y: Y, z: Z, title: L, fill: F, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -50,6 +54,7 @@ export class Line extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
+            .attr("fill", F && (([i]) => color(F[i])))
             .attr("stroke", S && (([i]) => color(S[i])))
             .attr("d", shapeLine()
               .curve(this.curve)

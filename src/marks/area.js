@@ -17,6 +17,7 @@ export class Area extends Mark {
       z, // optional grouping for multiple series
       title,
       fill,
+      stroke,
       curve,
       sort,
       transform = maybeSort(sort),
@@ -24,7 +25,9 @@ export class Area extends Mark {
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill);
+    const [vstroke, cstroke] = maybeColor(stroke);
     if (z === undefined && vfill != null) z = vfill;
+    if (z === undefined && vstroke != null) z = vstroke;
     super(
       data,
       [
@@ -34,14 +37,15 @@ export class Area extends Mark {
         {name: "y2", value: y2, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true}
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
     );
     this.curve = Curve(curve);
-    Style(this, {fill: cfill, ...style});
+    Style(this, {fill: cfill, stroke: cstroke, ...style});
   }
-  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F}) {
+  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
@@ -50,6 +54,7 @@ export class Area extends Mark {
           .join("path")
             .call(applyDirectStyles, this)
             .attr("fill", F && (([i]) => color(F[i])))
+            .attr("stroke", S && (([i]) => color(S[i])))
             .attr("d", shapeArea()
               .curve(this.curve)
               .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
