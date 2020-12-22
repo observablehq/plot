@@ -22,7 +22,7 @@ export class Line extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
+    const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
     const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
     if (z === undefined && vstroke != null) z = vstroke;
     if (z === undefined && vfill != null) z = vfill;
@@ -40,7 +40,7 @@ export class Line extends Mark {
     );
     this.curve = Curve(curve);
     Style(this, {
-      fill: "none",
+      fill: cfill,
       stroke: cstroke,
       strokeWidth: 1.5,
       ...style
