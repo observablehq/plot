@@ -1,3 +1,4 @@
+import {max} from "d3-array";
 import {axisTop, axisBottom, axisRight, axisLeft} from "d3-axis";
 import {interpolateRound} from "d3-interpolate";
 import {create} from "d3-selection";
@@ -53,6 +54,7 @@ export class AxisX {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
+        .call(tickOcclusion(width - marginLeft - marginRight, true))
         .call(!grid ? () => {} : g => g.selectAll(".tick line").clone(true)
             .attr("stroke-opacity", 0.1)
             .attr("y2", offsetSign * (marginBottom + marginTop - height)))
@@ -123,6 +125,7 @@ export class AxisY {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
+        .call(tickOcclusion(height - marginTop - marginBottom, false))
         .call(!grid ? () => {} : g => g.selectAll(".tick line").clone(true)
             .attr("stroke-opacity", 0.1)
             .attr("x2", offsetSign * (marginLeft + marginRight - width)))
@@ -148,4 +151,17 @@ function round(scale) {
   return scale.interpolate // TODO round band and point scales?
       ? scale.copy().interpolate(interpolateRound)
       : scale;
+}
+
+function tickOcclusion(space, horizontal) {
+  return g => {
+    const tickLabels = g.selectAll(".tick text");
+    const n = tickLabels.size();
+    const M = (.5 + (horizontal ? max(tickLabels, d => d.textContent.length) : 1)) * 6.5;
+    const m = Math.ceil(n * M / space);
+    if (m > 1) {
+      tickLabels.filter((d,i) => i % m).remove();
+      g.selectAll(".tick line").filter((d,i) => i % m).remove();
+    }
+  };
 }
