@@ -20,6 +20,9 @@ export function autoScaleRange(scales, dimensions) {
     const {inset = 0} = scales.x;
     const {width, marginLeft, marginRight} = dimensions;
     scales.x.scale.range([marginLeft + inset, width - marginRight - inset]);
+    if (scales.x.scale.bandwidth && scales.x.scale.bandwidth() === 0) {
+      scales.x.scale.round(false);
+    }
   }
   if (scales.y && scales.y.range === undefined) {
     const {inset = 0} = scales.y;
@@ -27,6 +30,9 @@ export function autoScaleRange(scales, dimensions) {
     const range = [height - marginBottom - inset, marginTop + inset];
     if (scales.y.type === "ordinal") range.reverse();
     scales.y.scale.range(range);
+    if (scales.y.scale.bandwidth && scales.y.scale.bandwidth() === 0) {
+      scales.y.scale.round(false);
+    }
   }
 }
 
