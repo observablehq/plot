@@ -7,6 +7,7 @@ module.exports = {
   },
   mount: {
     "src": "/dist",
-    "test": "/"
+    "test/data": "/data",
+    "test/plots": "/"
   }
 };
