@@ -1,10 +1,10 @@
 import * as Plot from "@observablehq/plot";
-import {ascending, descending, mean, rollups} from "d3-array";
+import * as d3 from "d3";
 
 // TODO consolidate bars into Other category
 export function chooseOne(responses, y, title) {
   return bars(
-    rollups(responses, group => group.length / responses.length, d => d[y]),
+    d3.rollups(responses, group => group.length / responses.length, d => d[y]),
     title
   );
 }
@@ -13,7 +13,7 @@ export function chooseMany(responses, y, title) {
   return bars(
     Array.from(
       new Set(responses.flatMap(d => d[y])),
-      v => [v, mean(responses, d => d[y].includes(v))]
+      v => [v, d3.mean(responses, d => d[y].includes(v))]
     ),
     title
   );
@@ -35,7 +35,7 @@ function bars(groups, title) {
       label: title,
       labelAnchor: "top",
       domain: groups.map(([key, value]) => [key, value])
-        .sort(([ak, av], [bk, bv]) => descending(av, bv) || ascending(ak, bk))
+        .sort(([ak, av], [bk, bv]) => d3.descending(av, bv) || d3.ascending(ak, bk))
         .map(([key]) => key)
     },
     marks: [

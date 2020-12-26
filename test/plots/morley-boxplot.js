@@ -1,11 +1,9 @@
 import * as Plot from "@observablehq/plot";
-import {max, median, min, quantile, rollups} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const morley = await csv("data/morley.csv", autoType);
-  const expts = rollups(morley, data => box(data, d => d.Speed), d => d.Expt);
+  const morley = await d3.csv("data/morley.csv", d3.autoType);
+  const expts = d3.rollups(morley, data => box(data, d => d.Speed), d => d.Expt);
   return Plot.plot({
     x: {
       grid: true,
@@ -39,18 +37,18 @@ export default async function() {
 
 function box(data, accessor = x => x) {
   const values = Array.from(data, accessor);
-  const q0 = min(values);
-  const q1 = quantile(values, 0.25);
-  const q2 = median(values);
-  const q3 = quantile(values, 0.75);
-  const q4 = max(values);
+  const min = d3.min(values);
+  const max = d3.max(values);
+  const median = d3.median(values);
+  const q1 = d3.quantile(values, 0.25);
+  const q3 = d3.quantile(values, 0.75);
   const iqr = q3 - q1; // interquartile range
-  const r0 = Math.max(q0, q1 - iqr * 1.5);
-  const r1 = Math.min(q4, q3 + iqr * 1.5);
+  const r0 = Math.max(min, q1 - iqr * 1.5);
+  const r1 = Math.min(max, q3 + iqr * 1.5);
   return {
-    min: q0,
-    max: q4,
-    median: q2,
+    min,
+    max,
+    median,
     q1,
     q3,
     r0,

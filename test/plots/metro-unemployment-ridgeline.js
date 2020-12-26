@@ -1,10 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {descending, max, rollups} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const data = await csv("data/bls-metro-unemployment.csv", autoType);
+  const data = await d3.csv("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     width: 960,
     height: 1080,
@@ -16,8 +14,8 @@ export default async function() {
       range: [20, -40]
     },
     fy: {
-      domain: rollups(data, group => max(group, d => d.unemployment), d => d.division)
-        .sort(([, a], [, b]) => descending(a, b))
+      domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
+        .sort(([, a], [, b]) => d3.descending(a, b))
         .map(([key]) => key),
       label: null
     },

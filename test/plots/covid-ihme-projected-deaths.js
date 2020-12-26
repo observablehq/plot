@@ -1,9 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const data = await csv("data/covid-ihme-projected-deaths.csv", autoType);
+  const data = await d3.csv("data/covid-ihme-projected-deaths.csv", d3.autoType);
   const i = data.findIndex(d => d.projected) - 1;
   return Plot.plot({
     width: 960,

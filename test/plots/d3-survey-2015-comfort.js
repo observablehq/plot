@@ -1,8 +1,8 @@
-import {json} from "d3-fetch";
+import * as d3 from "d3";
 import {chooseOne} from "./d3-survey-2015";
 
 export default async function() {
-  const responses = await json("data/d3-survey-2015.json");
+  const responses = await d3.json("data/d3-survey-2015.json");
   return chooseOne(responses, "comfort", "How comfortable are you with d3 now?");
   // return chooseOne(responses, "comfort", "How comfortable are you with d3 now?");
   // return chooseOne(responses, "forloops", "Are you comfortable with for loops?");

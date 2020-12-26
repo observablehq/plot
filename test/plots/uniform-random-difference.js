@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
-import {randomLcg} from "d3-random";
+import * as d3 from "d3";
 
-const random = randomLcg(42);
+const random = d3.randomLcg(42);
 
 export default async function() {
   return Plot.plot({

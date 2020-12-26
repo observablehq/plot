@@ -1,17 +1,15 @@
 import * as Plot from "@observablehq/plot";
-import {sort, descending} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const alphabet = await csv("data/alphabet.csv", autoType);
+  const alphabet = await d3.csv("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     x: {
       label: "Frequency (%) →",
       grid: true
     },
     y: {
-      domain: sort(alphabet, (a, b) => descending(a.frequency, b.frequency)).map(d => d.letter),
+      domain: d3.sort(alphabet, (a, b) => d3.descending(a.frequency, b.frequency)).map(d => d.letter),
       invert: true, // TODO implicitly invert when band or point in y
       label: null
     },

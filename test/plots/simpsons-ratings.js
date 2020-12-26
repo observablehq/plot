@@ -1,9 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const data = await csv("data/simpsons.csv", autoType);
+  const data = await d3.csv("data/simpsons.csv", d3.autoType);
   return Plot.plot({
     grid: true,
     padding: 0.05,
@@ -27,7 +26,7 @@ export default async function() {
       Plot.text(data, {
         x: "number_in_season",
         y: "season",
-        text: d => d.imdb_rating && d.imdb_rating.toFixed(1),
+        text: d => d.imdb_rating == null ? null : d.imdb_rating.toFixed(1),
         title: "title"
       })
     ]

@@ -1,9 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const AAPL = (await csv("data/aapl.csv", autoType)).slice(-120);
+  const AAPL = (await d3.csv("data/aapl.csv", d3.autoType)).slice(-120);
   return Plot.plot({
     inset: 6,
     grid: true,

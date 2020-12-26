@@ -1,12 +1,10 @@
 import * as Plot from "@observablehq/plot";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
-import {utcParse} from "d3-time-format";
+import * as d3 from "d3";
 
-const parseDate = utcParse("%b-%Y");
+const parseDate = d3.utcParse("%b-%Y");
 
 export default async function() {
-  const data = await csv("data/us-retail-sales.csv", ({Date, ...d}) => ({Date: parseDate(Date), ...autoType(d)}));
+  const data = await d3.csv("data/us-retail-sales.csv", ({Date, ...d}) => ({Date: parseDate(Date), ...d3.autoType(d)}));
   return Plot.plot({
     x: {
       label: null

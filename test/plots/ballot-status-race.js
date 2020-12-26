@@ -1,10 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {descending, rollups, sum} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  let votes = await csv("data/nc-absentee-votes.csv", autoType);
+  let votes = await d3.csv("data/nc-absentee-votes.csv", d3.autoType);
 
   // Filter for mail ballots.
   const types = ["MAIL"];
@@ -38,9 +36,9 @@ export default async function() {
   // Group by race,
   // then by (normalized) status,
   // then rollup the count for each group.
-  let rollup = rollups(
+  let rollup = d3.rollups(
     votes,
-    votes => sum(votes, d => d.count),
+    votes => d3.sum(votes, d => d.count),
     d => d.race,
     d => d.status
   );
@@ -48,7 +46,7 @@ export default async function() {
   // Compute the count for each race,
   // then the percentage for each status within each race.
   rollup = rollup.flatMap(([race, group]) => {
-    const total = sum(group, ([, count]) => count);
+    const total = d3.sum(group, ([, count]) => count);
     return group.map(([status, count]) => {
       return {race, status, percent: count / total * 100};
     });
@@ -66,7 +64,7 @@ export default async function() {
     fy: {
       domain: rollup
         .filter(d => d.status === "ACCEPTED")
-        .sort((a, b) => descending(a.percent, b.percent))
+        .sort((a, b) => d3.descending(a.percent, b.percent))
         .map(d => d.race),
       label: null
     },

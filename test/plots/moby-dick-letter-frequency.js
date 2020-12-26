@@ -1,8 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {text} from "d3-fetch";
+import * as d3 from "d3";
 
 export default async function() {
-  const mobydick = await text("data/moby-dick-chapter-1.txt");
+  const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   return Plot.plot({
     y: {
       grid: true

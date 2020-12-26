@@ -1,13 +1,13 @@
 import * as Plot from "@observablehq/plot";
-import {cumsum} from "d3-array";
-import {randomLcg, randomNormal} from "d3-random";
+import * as d3 from "d3";
 
-const random = randomLcg(42);
+const random = d3.randomLcg(42);
+const randomNormal = d3.randomNormal.source(random);
 
 export default async function() {
   return Plot.plot({
     marks: [
-      Plot.lineY(cumsum({length: 500}, randomNormal.source(random)()))
+      Plot.lineY(d3.cumsum({length: 500}, randomNormal()))
     ]
   });
 }

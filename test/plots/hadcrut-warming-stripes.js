@@ -1,9 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {text} from "d3-fetch";
-import {utcYear} from "d3-time";
+import * as d3 from "d3";
 
 export default async function() {
-  const hadcrut = (await text("data/hadcrut-annual.txt"))
+  const hadcrut = (await d3.text("data/hadcrut-annual.txt"))
     .split(/\n/g) // split into lines
     .map(line => line.split(/\s+/g)) // split each line into fields
     .map(([year, anomaly]) => ({ // extract the year and median anomaly
@@ -23,7 +22,7 @@ export default async function() {
       Plot.barX(hadcrut, {
         y: null,
         x1: "year", // start of current year
-        x2: d => utcYear.offset(d.year), // start of next year
+        x2: d => d3.utcYear.offset(d.year), // start of next year
         fill: "anomaly"
       })
     ]

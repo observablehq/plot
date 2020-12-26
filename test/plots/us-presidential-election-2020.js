@@ -1,10 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {descending} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const data = await csv("data/us-presidential-election-2020.csv", autoType);
+  const data = await d3.csv("data/us-presidential-election-2020.csv", d3.autoType);
   return Plot.plot({
     width: 960,
     height: 640,
@@ -34,7 +32,7 @@ export default async function() {
           fill: "margin2020",
           title: d => `${d.name}, ${recase(d.state)}
 ${[["Trump", d.results_trumpd], ["Biden", d.results_bidenj]]
-  .sort(([, a], [, b]) => descending(a, b))
+  .sort(([, a], [, b]) => d3.descending(a, b))
   .map(([name, count]) => `${count.toLocaleString("en")} votes for ${name}`)
   .join("\n")}`,
           stroke: "currentColor",

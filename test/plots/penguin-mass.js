@@ -1,9 +1,8 @@
 import * as Plot from "@observablehq/plot";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
+import * as d3 from "d3";
 
 export default async function() {
-  const data = await csv("data/penguins.csv", autoType);
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     x: {
       round: true,

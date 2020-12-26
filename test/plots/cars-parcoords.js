@@ -1,17 +1,14 @@
 import * as Plot from "@observablehq/plot";
-import {extent} from "d3-array";
-import {csv} from "d3-fetch";
-import {autoType} from "d3-dsv";
-import {scaleLinear} from "d3-scale";
+import * as d3 from "d3";
 
 export default async function() {
-  let data = await csv("data/cars.csv", autoType);
+  let data = await d3.csv("data/cars.csv", d3.autoType);
   const dimensions = data.columns.slice(1);
 
   // Reshape wide data to make it tidy.
   // TODO Instead of normalizing, separate scales for each dimension.
   data = dimensions.flatMap(c => {
-    const scale = scaleLinear().domain(extent(data, d => d[c]));
+    const scale = d3.scaleLinear().domain(d3.extent(data, d => d[c]));
     return data.map(d => {
       return {
         name: d.name,

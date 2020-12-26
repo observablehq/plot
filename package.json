@@ -30,11 +30,7 @@
     "@observablehq/plot": "./src/index.js"
   },
   "devDependencies": {
-    "d3-dsv": "^2.0.0",
-    "d3-fetch": "^2.0.0",
-    "d3-random": "^2.2.2",
-    "d3-time": "^2.0.0",
-    "d3-time-format": "^3.0.0",
+    "d3": "^6.3.1",
     "eslint": "^7.12.1",
     "esm": "^3.2.25",
     "js-beautify": "^1.13.0",
