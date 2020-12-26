@@ -22,9 +22,9 @@ export function bin1(options = {}) {
     if (cumulative) {
       let sum = 0;
       if (cumulative < 0) b.reverse();
-      return b.map(({x0, x1, length}) => ({x0, x1, length: sum += length}));
+      b = b.map(({x0, x1, length}) => ({x0, x1, length: sum += length}));
     }
-    return b;
+    return b.filter(nonempty);
   };
 }
 
@@ -40,7 +40,7 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
         y1: y.x1,
         length: sum(x, d => y.has(d))
       };
-    });
+    }).filter(nonempty);
   };
 }
 
@@ -49,4 +49,8 @@ function binset(bin) {
   set.x0 = bin.x0;
   set.x1 = bin.x1;
   return set;
+}
+
+function nonempty({length}) {
+  return length > 0;
 }
