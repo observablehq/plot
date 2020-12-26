@@ -1,0 +1,120 @@
+<svg viewBox="0,0,960,350" class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" font-size="10" font-family="sans-serif" style="max-width: 960px; display: block; background: white;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(300,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,40.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For work</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,60.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For fun</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,80.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">To express myself</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,100.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">To get a job</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,120.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For school</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,140.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,160.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I think digital interactive systems tha explain complex systems visually are the future</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,180.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tableau to D3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,200.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">for my own projects</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,220.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">improve as a product designer</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,240.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to address visual learners</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,260.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to do vis on the web</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,280.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to give back to the dataviz community</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,300.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to understand data better</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,320.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to work with open data</text>
+    </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">Why do you want to learn d3?</text>
+  </g>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(300.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(364.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(428.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(492.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(556.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">50</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(684.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(748.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">70</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(812.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(876.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">90</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(940.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
+    </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
+  </g>
+  <g fill="steelblue" transform="translate(0,0)">
+    <rect x="300" width="446.2385321100917" y="51" height="19"></rect>
+    <rect x="300" width="518.6544342507646" y="31" height="19"></rect>
+    <rect x="300" width="309.2354740061162" y="71" height="19"></rect>
+    <rect x="300" width="205.5045871559633" y="91" height="19"></rect>
+    <rect x="300" width="45.01529051987768" y="111" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="311" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="271" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="211" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="171" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="251" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="191" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="131" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="291" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="231" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="151" height="19"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="300" x2="300" y1="30" y2="330"></line>
+  </g>
+</svg>

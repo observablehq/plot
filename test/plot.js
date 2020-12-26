@@ -7,6 +7,8 @@ import tape from "tape-await";
 fs.readdir("./test/plots").then(async names => {
   for (const name of names) {
     if (path.extname(name) !== ".js") continue;
+    const {default: chart} = await import(`./plots/${name}`);
+    if (chart === undefined) continue; // ignore if no default export
     tape(`plot ${name}`, async test => {
       try {
         // Not recommended, but this is only our test code, so should be fine?
@@ -15,7 +17,6 @@ fs.readdir("./test/plots").then(async names => {
         // Not fully functional, but only used to fetch data files, so should be fine?
         global.fetch = async (href) => new Response(path.resolve("./test", href));
 
-        const {default: chart} = await import(`./plots/${name}`);
         const svg = await chart();
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
