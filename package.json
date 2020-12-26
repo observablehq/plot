@@ -26,11 +26,17 @@
     "start": "snowpack dev",
     "build": "snowpack build"
   },
+  "_moduleAliases": {
+    "@observablehq/plot": "./src/index.js"
+  },
   "devDependencies": {
     "d3-dsv": "^2.0.0",
     "d3-fetch": "^2.0.0",
     "eslint": "^7.12.1",
+    "esm": "^3.2.25",
+    "js-beautify": "^1.13.0",
     "jsdom": "^16.4.0",
+    "module-alias": "^2.2.2",
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",
     "snowpack": "^2.18.5",
