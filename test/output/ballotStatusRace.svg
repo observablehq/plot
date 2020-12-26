@@ -49,6 +49,38 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>
   </g>
   <g>
+    <g transform="translate(0,27)">
+      <g transform="translate(0,0)">
+        <rect x="210" width="410" y="2" height="11" fill="currentColor">
+          <title>79.0%</title>
+        </rect>
+        <rect x="210" width="2.1016100611808213" y="26" height="11" fill="gray">
+          <title>0.4%</title>
+        </rect>
+        <rect x="210" width="106.57438875906558" y="14" height="11" fill="brown">
+          <title>20.5%</title>
+        </rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0.5,0)">
+        <line x1="210" x2="210" y1="0" y2="38"></line>
+      </g>
+    </g>
+    <g transform="translate(0,69)">
+      <g transform="translate(0,0)">
+        <rect x="210" width="405.8914002270852" y="2" height="11" fill="currentColor">
+          <title>78.3%</title>
+        </rect>
+        <rect x="210" width="3.1538887637774167" y="26" height="11" fill="gray">
+          <title>0.6%</title>
+        </rect>
+        <rect x="210" width="109.6307098293837" y="14" height="11" fill="brown">
+          <title>21.1%</title>
+        </rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0.5,0)">
+        <line x1="210" x2="210" y1="0" y2="38"></line>
+      </g>
+    </g>
     <g transform="translate(0,111)">
       <g transform="translate(0,0)">
         <rect x="210" width="404.1524922619212" y="2" height="11" fill="currentColor">
@@ -59,38 +91,6 @@
         </rect>
         <rect x="210" width="3.191901653376277" y="26" height="11" fill="gray">
           <title>0.6%</title>
-        </rect>
-      </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
-      </g>
-    </g>
-    <g transform="translate(0,279)">
-      <g transform="translate(0,0)">
-        <rect x="210" width="349.7813163559978" y="2" height="11" fill="currentColor">
-          <title>67.4%</title>
-        </rect>
-        <rect x="210" width="163.32285937333586" y="14" height="11" fill="brown">
-          <title>31.5%</title>
-        </rect>
-        <rect x="210" width="5.571823090912687" y="26" height="11" fill="gray">
-          <title>1.1%</title>
-        </rect>
-      </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
-      </g>
-    </g>
-    <g transform="translate(0,237)">
-      <g transform="translate(0,0)">
-        <rect x="210" width="132.02293626031644" y="14" height="11" fill="brown">
-          <title>25.5%</title>
-        </rect>
-        <rect x="210" width="374.6049571803459" y="2" height="11" fill="currentColor">
-          <title>72.2%</title>
-        </rect>
-        <rect x="210" width="12.048105379584086" y="26" height="11" fill="gray">
-          <title>2.3%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
@@ -129,32 +129,32 @@
         <line x1="210" x2="210" y1="0" y2="38"></line>
       </g>
     </g>
-    <g transform="translate(0,69)">
+    <g transform="translate(0,237)">
       <g transform="translate(0,0)">
-        <rect x="210" width="405.8914002270852" y="2" height="11" fill="currentColor">
-          <title>78.3%</title>
+        <rect x="210" width="132.02293626031644" y="14" height="11" fill="brown">
+          <title>25.5%</title>
         </rect>
-        <rect x="210" width="3.1538887637774167" y="26" height="11" fill="gray">
-          <title>0.6%</title>
+        <rect x="210" width="374.6049571803459" y="2" height="11" fill="currentColor">
+          <title>72.2%</title>
         </rect>
-        <rect x="210" width="109.6307098293837" y="14" height="11" fill="brown">
-          <title>21.1%</title>
+        <rect x="210" width="12.048105379584086" y="26" height="11" fill="gray">
+          <title>2.3%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="38"></line>
       </g>
     </g>
-    <g transform="translate(0,27)">
+    <g transform="translate(0,279)">
       <g transform="translate(0,0)">
-        <rect x="210" width="410" y="2" height="11" fill="currentColor">
-          <title>79.0%</title>
+        <rect x="210" width="349.7813163559978" y="2" height="11" fill="currentColor">
+          <title>67.4%</title>
         </rect>
-        <rect x="210" width="2.1016100611808213" y="26" height="11" fill="gray">
-          <title>0.4%</title>
+        <rect x="210" width="163.32285937333586" y="14" height="11" fill="brown">
+          <title>31.5%</title>
         </rect>
-        <rect x="210" width="106.57438875906558" y="14" height="11" fill="brown">
-          <title>20.5%</title>
+        <rect x="210" width="5.571823090912687" y="26" height="11" fill="gray">
+          <title>1.1%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">

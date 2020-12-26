@@ -1,4 +1,4 @@
-import {group, groups} from "d3-array";
+import {cross, group, groups} from "d3-array";
 import {create} from "d3-selection";
 import {Mark} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
@@ -58,7 +58,7 @@ class Facet extends Mark {
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(facets.keys())
+          .data(facetKeys(scales).filter(key => facets.has(key)))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
@@ -81,6 +81,12 @@ export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
     ? marks // if no facets are specified, ignore!
     : [new Facet(data, {x, y, ...options}, marks)];
+}
+
+function facetKeys({fx, fy}) {
+  return fx && fy ? cross(fx.domain(), fy.domain())
+    : fx ? fx.domain()
+    : fy.domain();
 }
 
 function facetGroups(index, channels) {

@@ -45,16 +45,16 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
   </g>
   <g>
-    <g transform="translate(0,254)">
+    <g transform="translate(0,32)">
       <g transform="translate(0,0)">
-        <rect x="71" y="100" width="68" height="0"></rect>
-        <rect x="140" y="86.79245283018868" width="68" height="13.20754716981132"></rect>
-        <rect x="209" y="11.32075471698113" width="67" height="88.67924528301887"></rect>
-        <rect x="277" y="20.75471698113207" width="68" height="79.24528301886792"></rect>
-        <rect x="346" y="75.47169811320755" width="68" height="24.52830188679245"></rect>
-        <rect x="415" y="50.943396226415096" width="68" height="49.056603773584904"></rect>
-        <rect x="484" y="45.28301886792453" width="67" height="54.71698113207547"></rect>
-        <rect x="552" y="92.45283018867924" width="68" height="7.547169811320757"></rect>
+        <rect x="71" y="98.11320754716981" width="68" height="1.8867924528301927"></rect>
+        <rect x="140" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
+        <rect x="209" y="98.11320754716981" width="67" height="1.8867924528301927"></rect>
+        <rect x="277" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
+        <rect x="346" y="94.33962264150944" width="68" height="5.660377358490564"></rect>
+        <rect x="415" y="100" width="68" height="0"></rect>
+        <rect x="484" y="100" width="67" height="0"></rect>
+        <rect x="552" y="100" width="68" height="0"></rect>
       </g>
       <g stroke="currentColor" transform="translate(0,0.5)">
         <line x1="70" x2="620" y1="100" y2="100"></line>
@@ -75,16 +75,16 @@
         <line x1="70" x2="620" y1="100" y2="100"></line>
       </g>
     </g>
-    <g transform="translate(0,32)">
+    <g transform="translate(0,254)">
       <g transform="translate(0,0)">
-        <rect x="71" y="98.11320754716981" width="68" height="1.8867924528301927"></rect>
-        <rect x="140" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
-        <rect x="209" y="98.11320754716981" width="67" height="1.8867924528301927"></rect>
-        <rect x="277" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
-        <rect x="346" y="94.33962264150944" width="68" height="5.660377358490564"></rect>
-        <rect x="415" y="100" width="68" height="0"></rect>
-        <rect x="484" y="100" width="67" height="0"></rect>
-        <rect x="552" y="100" width="68" height="0"></rect>
+        <rect x="71" y="100" width="68" height="0"></rect>
+        <rect x="140" y="86.79245283018868" width="68" height="13.20754716981132"></rect>
+        <rect x="209" y="11.32075471698113" width="67" height="88.67924528301887"></rect>
+        <rect x="277" y="20.75471698113207" width="68" height="79.24528301886792"></rect>
+        <rect x="346" y="75.47169811320755" width="68" height="24.52830188679245"></rect>
+        <rect x="415" y="50.943396226415096" width="68" height="49.056603773584904"></rect>
+        <rect x="484" y="45.28301886792453" width="67" height="54.71698113207547"></rect>
+        <rect x="552" y="92.45283018867924" width="68" height="7.547169811320757"></rect>
       </g>
       <g stroke="currentColor" transform="translate(0,0.5)">
         <line x1="70" x2="620" y1="100" y2="100"></line>
