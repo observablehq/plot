@@ -10,6 +10,11 @@
 <body></body>
 <script type="module">
 
+if (location.pathname !== "/") {
+  location = `/${location.search}${location.hash}`;
+  throw new Error("unexpected path");
+}
+
 const tests = [
   "aapl-candlestick",
   "aapl-change-volume",
