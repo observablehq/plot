@@ -10,53 +10,12 @@ body {
 </style>
 <script type="module">
 
+import tests from "./index.js";
+
 if (location.pathname !== "/") {
   location = `/${location.search}${location.hash}`;
   throw new Error("unexpected path");
 }
-
-const tests = [
-  "aapl-candlestick",
-  "aapl-change-volume",
-  "aapl-close",
-  "aapl-volume",
-  "ballot-status-race",
-  "cars-parcoords",
-  "covid-ihme-projected-deaths",
-  "d3-survey-2015-comfort",
-  "d3-survey-2015-why",
-  "diamonds-carat-price-dots",
-  "diamonds-carat-price",
-  "empty",
-  "gistemp-anomaly",
-  "hadcrut-warming-stripes",
-  "letter-frequency-bar",
-  "letter-frequency-column",
-  "letter-frequency-lollipop",
-  "metro-inequality-change",
-  "metro-inequality",
-  "metro-unemployment-index",
-  "metro-unemployment-ridgeline",
-  "metro-unemployment",
-  "moby-dick-letter-frequency",
-  "moby-dick-letter-position",
-  "morley-boxplot",
-  "movies-profit-by-genre",
-  "penguin-mass-sex",
-  "penguin-mass",
-  "random-walk",
-  "seattle-temperature-band",
-  "sf-temperature-band",
-  "simpsons-ratings",
-  "simpsons-views",
-  "travelers-year-over-year",
-  "uniform-random-difference",
-  "us-population-state-age",
-  "us-presidential-election-2020",
-  "us-retail-sales",
-  "us-state-population-change",
-  "word-length-moby-dick"
-];
 
 const select = document.createElement("select");
 select.autofocus = true;

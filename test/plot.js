@@ -3,12 +3,11 @@ import * as path from "path";
 import {JSDOM} from "jsdom";
 import {html as beautify} from "js-beautify";
 import tape from "tape-await";
+import names from "./plots/index.js";
 
-fs.readdir("./test/plots").then(async names => {
+(async () => {
   for (const name of names) {
-    if (path.extname(name) !== ".js") continue;
     const {default: chart} = await import(`./plots/${name}`);
-    if (chart === undefined) continue; // ignore if no default export
     tape(`plot ${name}`, async test => {
       try {
         // Not recommended, but this is only our test code, so should be fine?
@@ -43,7 +42,7 @@ fs.readdir("./test/plots").then(async names => {
       }
     });
   }
-});
+})();
 
 class Response {
   constructor(href) {
