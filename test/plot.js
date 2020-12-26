@@ -25,7 +25,7 @@ import * as plots from "./plots/index.js";
         try {
           expected = await fs.readFile(outfile, "utf8");
         } catch (error) {
-          if (error.code === "ENOENT") {
+          if (error.code === "ENOENT" && process.env.CI !== "true") {
             console.warn(`! generating ${outfile}`);
             await fs.writeFile(outfile, actual, "utf8");
             return;
