@@ -10,7 +10,7 @@ body {
 </style>
 <script type="module">
 
-import tests from "./index.js";
+import * as tests from "./index.js";
 
 if (location.pathname !== "/") {
   location = `/${location.search}${location.hash}`;
@@ -21,20 +21,18 @@ const select = document.createElement("select");
 select.autofocus = true;
 select.style.margin = "1em 0";
 select.onchange = () => location.href = `?test=${select.value}`;
-select.append(...tests.map(test => {
+select.append(...Object.keys(tests).map(key => {
   const option = document.createElement("option");
-  option.value = test;
-  option.textContent = test;
+  option.value = key;
+  option.textContent = key;
   return option;
 }));
 
 const initialValue = new URL(location).searchParams.get("test");
-if (tests.includes(initialValue)) select.value = initialValue;
+if (tests[initialValue]) select.value = initialValue;
 
 document.body.append(select);
 
-import(`./${select.value}.js`)
-  .then(module => module.default())
-  .then(chart => document.body.append(chart));
+tests[select.value]().then(chart => document.body.append(chart));
 
 </script>

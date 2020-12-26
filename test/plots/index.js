@@ -1,42 +1,40 @@
-export default [
-  "aapl-candlestick",
-  "aapl-change-volume",
-  "aapl-close",
-  "aapl-volume",
-  "ballot-status-race",
-  "cars-parcoords",
-  "covid-ihme-projected-deaths",
-  "d3-survey-2015-comfort",
-  "d3-survey-2015-why",
-  "diamonds-carat-price-dots",
-  "diamonds-carat-price",
-  "empty",
-  "gistemp-anomaly",
-  "hadcrut-warming-stripes",
-  "letter-frequency-bar",
-  "letter-frequency-column",
-  "letter-frequency-lollipop",
-  "metro-inequality-change",
-  "metro-inequality",
-  "metro-unemployment-index",
-  "metro-unemployment-ridgeline",
-  "metro-unemployment",
-  "moby-dick-letter-frequency",
-  "moby-dick-letter-position",
-  "morley-boxplot",
-  "movies-profit-by-genre",
-  "penguin-mass-sex",
-  "penguin-mass",
-  "random-walk",
-  "seattle-temperature-band",
-  "sf-temperature-band",
-  "simpsons-ratings",
-  "simpsons-views",
-  "travelers-year-over-year",
-  "uniform-random-difference",
-  "us-population-state-age",
-  "us-presidential-election-2020",
-  "us-retail-sales",
-  "us-state-population-change",
-  "word-length-moby-dick"
-];
+export {default as aaplCandlestick} from "./aapl-candlestick.js";
+export {default as aaplChangeVolume} from "./aapl-change-volume.js";
+export {default as aaplClose} from "./aapl-close.js";
+export {default as aaplVolume} from "./aapl-volume.js";
+export {default as ballotStatusRace} from "./ballot-status-race.js";
+export {default as carsParcoords} from "./cars-parcoords.js";
+export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
+export {default as d3Survey2015Comfort} from "./d3-survey-2015-comfort.js";
+export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
+export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
+export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
+export {default as empty} from "./empty.js";
+export {default as gistempAnomaly} from "./gistemp-anomaly.js";
+export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
+export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
+export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
+export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js";
+export {default as metroInequalityChange} from "./metro-inequality-change.js";
+export {default as metroInequality} from "./metro-inequality.js";
+export {default as metroUnemploymentIndex} from "./metro-unemployment-index.js";
+export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
+export {default as metroUnemployment} from "./metro-unemployment.js";
+export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.js";
+export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
+export {default as morleyBoxplot} from "./morley-boxplot.js";
+export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
+export {default as penguinMassSex} from "./penguin-mass-sex.js";
+export {default as penguinMass} from "./penguin-mass.js";
+export {default as randomWalk} from "./random-walk.js";
+export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
+export {default as sfTemperatureBand} from "./sf-temperature-band.js";
+export {default as simpsonsRatings} from "./simpsons-ratings.js";
+export {default as simpsonsViews} from "./simpsons-views.js";
+export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
+export {default as uniformRandomDifference} from "./uniform-random-difference.js";
+export {default as usPopulationStateAge} from "./us-population-state-age.js";
+export {default as usPresidentialElection2020} from "./us-presidential-election-2020.js";
+export {default as usRetailSales} from "./us-retail-sales.js";
+export {default as usStatePopulationChange} from "./us-state-population-change.js";
+export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";

@@ -3,11 +3,10 @@ import * as path from "path";
 import {JSDOM} from "jsdom";
 import {html as beautify} from "js-beautify";
 import tape from "tape-await";
-import names from "./plots/index.js";
+import * as plots from "./plots/index.js";
 
 (async () => {
-  for (const name of names) {
-    const {default: chart} = await import(`./plots/${name}`);
+  for (const [name, plot] of Object.entries(plots)) {
     tape(`plot ${name}`, async test => {
       try {
         // Not recommended, but this is only our test code, so should be fine?
@@ -16,7 +15,7 @@ import names from "./plots/index.js";
         // Not fully functional, but only used to fetch data files, so should be fine?
         global.fetch = async (href) => new Response(path.resolve("./test", href));
 
-        const svg = await chart();
+        const svg = await plot();
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
         const actual = beautify(svg.outerHTML, {indent_size: 2});
