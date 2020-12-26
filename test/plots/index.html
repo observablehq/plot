@@ -1,8 +1,37 @@
 <!DOCTYPE html>
-<head></head>
+<head>
+  <style>
+    body {
+      max-width: 960px;
+      margin: 1em auto;
+    }
+  </style>
+</head>
+<body></body>
 <script type="module">
 
-import("./penguin-mass-sex.js")
+const tests = [
+  "penguin-mass",
+  "penguin-mass-sex"
+];
+
+const select = document.createElement("select");
+select.autofocus = true;
+select.style.margin = "1em 0";
+select.onchange = () => location.href = `?test=${select.value}`;
+select.append(...tests.map(test => {
+  const option = document.createElement("option");
+  option.value = test;
+  option.textContent = test;
+  return option;
+}));
+
+const initialValue = new URL(location).searchParams.get("test");
+if (tests.includes(initialValue)) select.value = initialValue;
+
+document.body.append(select);
+
+import(`./${select.value}.js`)
   .then(module => module.default())
   .then(chart => document.body.append(chart));
 
