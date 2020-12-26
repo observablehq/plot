@@ -12,7 +12,9 @@ module.exports = async function svgCompare(svg, ref) {
   }
   
   const outfile = `test/reference/${ref}.svg`;
-  const actual = await gsvg(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${svg.outerHTML}`);
+  const actual = (await gsvg(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n${svg.outerHTML}`))
+    .replace(/\n */g, " ")
+    .replace(/ </g, "\n<");
 
   tape("Plot.dot respects the x and y accessors (gsvg approach)", test => {
     let expected;
