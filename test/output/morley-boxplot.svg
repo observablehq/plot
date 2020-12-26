@@ -1,0 +1,91 @@
+<svg viewBox="0,0,640,396" class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" font-size="10" font-family="sans-serif" style="max-width: 640px; display: block; background: white;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,59.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,126.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,193.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,260.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,327.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
+    </g><text fill="currentColor" transform="translate(-40,193) rotate(-90)" dy="0.75em" text-anchor="middle">Expt</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(84.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">650</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(147.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">700</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(210.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">750</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(273.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(336.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">850</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(399.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">900</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(463.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">950</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(526.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(589.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,050</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Speed →</text>
+  </g>
+  <g stroke="currentColor" transform="translate(0,30.5)">
+    <line x1="90.17777777777778" x2="614" y1="29" y2="29"></line>
+    <line x1="222.7111111111111" x2="475.15555555555557" y1="96" y2="96"></line>
+    <line x1="247.95555555555558" x2="449.91111111111115" y1="163" y2="163"></line>
+    <line x1="172.2222222222222" x2="424.66666666666663" y1="230" y2="230"></line>
+    <line x1="197.46666666666664" x2="462.5333333333333" y1="297" y2="297"></line>
+  </g>
+  <g fill="#ccc" transform="translate(0,0)">
+    <rect x="336.3111111111111" width="164.08888888888896" y="29" height="60"></rect>
+    <rect x="273.20000000000005" width="107.28888888888883" y="96" height="60"></rect>
+    <rect x="323.68888888888887" width="50.48888888888888" y="163" height="60"></rect>
+    <rect x="232.17777777777778" width="123.06666666666663" y="230" height="60"></rect>
+    <rect x="282.6666666666667" width="78.88888888888891" y="297" height="60"></rect>
+  </g>
+  <g stroke="currentColor" stroke-width="2" transform="translate(0.5,0)">
+    <line x1="450" x2="450" y1="29" y2="89"></line>
+    <line x1="330" x2="330" y1="96" y2="156"></line>
+    <line x1="343" x2="343" y1="163" y2="223"></line>
+    <line x1="292" x2="292" y1="230" y2="290"></line>
+    <line x1="286" x2="286" y1="297" y2="357"></line>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,30.5)">
+    <circle cx="83.86666666666667" cy="29" r="3"></circle>
+    <circle cx="172.2222222222222" cy="163" r="3"></circle>
+    <circle cx="172.2222222222222" cy="163" r="3"></circle>
+    <circle cx="46" cy="163" r="3"></circle>
+    <circle cx="487.77777777777777" cy="163" r="3"></circle>
+    <circle cx="462.5333333333333" cy="163" r="3"></circle>
+  </g>
+</svg>

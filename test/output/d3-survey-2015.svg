@@ -1,0 +1,80 @@
+<svg viewBox="0,0,960,150" class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" font-size="10" font-family="sans-serif" style="max-width: 960px; display: block; background: white;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(300,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,40.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I looked at some examples!</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,60.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I've forked a bl.ock or two</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,80.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">selectAll(".answers").enter()</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,100.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Someone told me I should learn it...</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,120.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
+    </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">How comfortable are you with d3 now?</text>
+  </g>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(300.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(364.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(428.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(492.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(556.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">50</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(684.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(748.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">70</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(812.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(876.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">90</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(940.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
+    </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
+  </g>
+  <g fill="steelblue" transform="translate(0,0)">
+    <rect x="300" width="150.70336391437309" y="71" height="19"></rect>
+    <rect x="300" width="56.75840978593271" y="91" height="19"></rect>
+    <rect x="300" width="254.43425076452604" y="31" height="19"></rect>
+    <rect x="300" width="174.18960244648315" y="51" height="19"></rect>
+    <rect x="300" width="3.9143730886850108" y="111" height="19"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="300" x2="300" y1="30" y2="130"></line>
+  </g>
+</svg>

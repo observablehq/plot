@@ -1,0 +1,312 @@
+<svg viewBox="0,0,640,800" class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" font-size="10" font-family="sans-serif" style="max-width: 640px; display: block; background: white;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(100,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,48.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Texas</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,62.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Florida</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,76.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">California</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,90.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">North Carolina</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,104.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Georgia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,118.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Washington</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,132.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Arizona</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,146.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Colorado</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,160.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Virginia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,174.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">South Carolina</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,188.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Tennessee</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,202.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Utah</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,216.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Massachusetts</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,230.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Oregon</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,244.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Nevada</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,258.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Minnesota</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,272.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Maryland</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,286.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Indiana</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,300.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Idaho</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,314.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Oklahoma</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,328.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Ohio</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,342.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Missouri</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,356.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Kentucky</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,384.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Alabama</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,398.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Louisiana</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,412.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Iowa</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,426.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Nebraska</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,440.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">District of Columbia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,454.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Michigan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,468.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Arkansas</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,482.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Pennsylvania</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,496.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Jersey</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,510.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">North Dakota</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,524.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Montana</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,538.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Delaware</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,552.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New York</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,566.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">South Dakota</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,580.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Kansas</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,594.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Hawaii</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,608.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Hampshire</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,622.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Mexico</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,636.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Alaska</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,650.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Maine</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,664.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wyoming</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,678.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Mississippi</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,692.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Rhode Island</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,706.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Vermont</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,720.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Connecticut</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,734.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">West Virginia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,748.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Illinois</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,762.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Puerto Rico</text>
+    </g>
+  </g>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(110.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(168.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+0.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(226.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+0.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(284.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+1.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(342.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+1.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(400.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+2.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(457.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+2.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(515.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+3.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(573.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+3.5</text>
+    </g><text fill="currentColor" transform="translate(360,-30)" dy="1em" text-anchor="middle">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
+  </g>
+  <g transform="translate(0,0)">
+    <rect x="168" width="261" y="70" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="446" y="42" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="310" y="56" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="8" y="546" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="11" y="476" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="149" width="19" y="742" height="13" fill="rgb(225, 87, 89)"></rect>
+    <rect x="168" width="17" y="322" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="107" y="98" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="110" y="84" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="12" y="448" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="10" y="490" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="62" y="154" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="103" y="112" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="102" y="126" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="46" y="210" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="56" y="182" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="28" y="280" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="17" y="336" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="31" y="266" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="15" y="350" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="84" y="140" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="39" y="252" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="60" y="168" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="14" y="378" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="13" y="392" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="15" y="364" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="45" y="224" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="24" y="308" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="167" width="1" y="714" height="13" fill="rgb(225, 87, 89)"></rect>
+    <rect x="168" width="51" y="196" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="106" width="62" y="756" height="13" fill="rgb(225, 87, 89)"></rect>
+    <rect x="168" width="12" y="406" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="44" y="238" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="11" y="462" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="1" y="672" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="7" y="574" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="4" y="616" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="12" y="420" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="161" width="7" y="728" height="13" fill="rgb(225, 87, 89)"></rect>
+    <rect x="168" width="25" y="294" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="6" y="588" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="5" y="602" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="2" y="644" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="9" y="518" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="0" y="686" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="8" y="532" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="8" y="560" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="10" y="504" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="2" y="630" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="168" width="12" y="434" height="13" fill="rgb(78, 121, 167)"></rect>
+    <rect x="167" width="1" y="700" height="13" fill="rgb(225, 87, 89)"></rect>
+    <rect x="168" width="1" y="658" height="13" fill="rgb(78, 121, 167)"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="168" x2="168" y1="30" y2="780"></line>
+  </g>
+</svg>

@@ -13,14 +13,7 @@ fs.readdir("./test/plots").then(async names => {
         global.document = new JSDOM("").window.document;
 
         // Not fully functional, but only used to fetch data files, so should be fine?
-        global.fetch = async (href) => {
-          href = path.resolve("./test", href);
-          return {
-            ok: true,
-            status: 200,
-            text: () => fs.readFile(href, {encoding: "utf-8"})
-          };
-        };
+        global.fetch = async (href) => new Response(path.resolve("./test", href));
 
         const {default: chart} = await import(`./plots/${name}`);
         const svg = await chart();
@@ -50,3 +43,17 @@ fs.readdir("./test/plots").then(async names => {
     });
   }
 });
+
+class Response {
+  constructor(href) {
+    this._href = href;
+    this.ok = true;
+    this.status = 200;
+  }
+  async text() {
+    return fs.readFile(this._href, {encoding: "utf-8"});
+  }
+  async json() {
+    return JSON.parse(await this.text());
+  }
+}
