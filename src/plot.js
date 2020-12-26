@@ -17,7 +17,8 @@ export function plot(options = {}) {
     marks = [],
     overflow,
     display = "block",
-    font = "10px sans-serif",
+    fontSize = 10,
+    fontFamily = "sans-serif",
     background = "white"
   } = options;
 
@@ -96,7 +97,8 @@ export function plot(options = {}) {
       .attr("fill", "currentColor")
       .attr("stroke-miterlimit", 1)
       .attr("text-anchor", "middle")
-      .style("font", font)
+      .attr("font-size", fontSize)
+      .attr("font-family", fontFamily)
       .style("max-width", `${width}px`)
       .style("display", display)
       .style("background", background)

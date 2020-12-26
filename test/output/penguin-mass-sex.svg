@@ -1,0 +1,94 @@
+<svg viewBox="0,0,640,396" class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" font-size="10" font-family="sans-serif" style="max-width: 640px; display: block; background: white;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(70,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,82.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,193.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">FEMALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,304.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">MALE</text>
+    </g><text fill="currentColor" transform="translate(-70,193) rotate(-90)" dy="0.75em" text-anchor="middle">sex</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(70.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(139.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(208.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(276.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(345.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(414.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(483.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(551.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,500</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
+  </g>
+  <g>
+    <g transform="translate(0,254)">
+      <g transform="translate(0,0)">
+        <rect x="71" y="100" width="68" height="0"></rect>
+        <rect x="140" y="86.79245283018868" width="68" height="13.20754716981132"></rect>
+        <rect x="209" y="11.32075471698113" width="67" height="88.67924528301887"></rect>
+        <rect x="277" y="20.75471698113207" width="68" height="79.24528301886792"></rect>
+        <rect x="346" y="75.47169811320755" width="68" height="24.52830188679245"></rect>
+        <rect x="415" y="50.943396226415096" width="68" height="49.056603773584904"></rect>
+        <rect x="484" y="45.28301886792453" width="67" height="54.71698113207547"></rect>
+        <rect x="552" y="92.45283018867924" width="68" height="7.547169811320757"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="70" x2="620" y1="100" y2="100"></line>
+      </g>
+    </g>
+    <g transform="translate(0,143)">
+      <g transform="translate(0,0)">
+        <rect x="71" y="84.90566037735849" width="68" height="15.094339622641513"></rect>
+        <rect x="140" y="0" width="68" height="100"></rect>
+        <rect x="209" y="13.207547169811317" width="67" height="86.79245283018868"></rect>
+        <rect x="277" y="71.69811320754718" width="68" height="28.30188679245282"></rect>
+        <rect x="346" y="33.9622641509434" width="68" height="66.0377358490566"></rect>
+        <rect x="415" y="84.90566037735849" width="68" height="15.094339622641513"></rect>
+        <rect x="484" y="100" width="67" height="0"></rect>
+        <rect x="552" y="100" width="68" height="0"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="70" x2="620" y1="100" y2="100"></line>
+      </g>
+    </g>
+    <g transform="translate(0,32)">
+      <g transform="translate(0,0)">
+        <rect x="71" y="98.11320754716981" width="68" height="1.8867924528301927"></rect>
+        <rect x="140" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
+        <rect x="209" y="98.11320754716981" width="67" height="1.8867924528301927"></rect>
+        <rect x="277" y="96.22641509433963" width="68" height="3.773584905660371"></rect>
+        <rect x="346" y="94.33962264150944" width="68" height="5.660377358490564"></rect>
+        <rect x="415" y="100" width="68" height="0"></rect>
+        <rect x="484" y="100" width="67" height="0"></rect>
+        <rect x="552" y="100" width="68" height="0"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="70" x2="620" y1="100" y2="100"></line>
+      </g>
+    </g>
+  </g>
+</svg>
