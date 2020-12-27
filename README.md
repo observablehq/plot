@@ -17,7 +17,7 @@ Observable Plot adheres to several principles:
 * Support interaction (selection) in all charts.
 * Provide an open, extensible foundation for visualization.
 
-Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset *AAPL* loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
+Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
 
 <img src="./img/line-aapl-date-close.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
 
@@ -25,7 +25,7 @@ Plot tries to be **concise and memorable** for common tasks. This makes Plot eas
 Plot.plot({
   height: 240,
   marks: [
-    Plot.line(AAPL, {x: "Date", y: "Close"})
+    Plot.line(data, {x: "Date", y: "Close"})
   ]
 })
 ```
@@ -54,8 +54,8 @@ Data in the wild comes in all shapes, so Plot is **flexible regarding input data
 
 ```js
 // As rows…
-Plot.line(AAPL, {x: "Date", y: "Close"}) // named fields
-Plot.line(AAPL, {x: d => d.Date, y: d => d.Close}) // accessor functions
+Plot.line(data, {x: "Date", y: "Close"}) // named fields
+Plot.line(data, {x: d => d.Date, y: d => d.Close}) // accessor functions
 ```
 
 ```js
@@ -68,10 +68,10 @@ Plot.line(index, {x: i => dates[i], y: i => closes[i]}) // as function of index
 Above, the columns might be computed from rows as:
 
 ```js
-const length = AAPL.length;
-const dates = AAPL.map(d => d.Date);
-const closes = AAPL.map(d => d.Close);
-const index = AAPL.map((d, i) => i);
+const length = data.length;
+const dates = data.map(d => d.Date);
+const closes = data.map(d => d.Close);
+const index = data.map((d, i) => i);
 ```
 
 For example, here’s a line chart of random *y*-values where *x* encodes the index of the input data:
