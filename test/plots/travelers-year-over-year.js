@@ -31,7 +31,7 @@ export default async function() {
         x: d => d.date,
         y: d => d.current / 1e6,
         text: ["2020"],
-        dy: "-0.5em"
+        dy: "1.2em"
       })
     ]
   });
