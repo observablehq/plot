@@ -46,13 +46,8 @@ Plot.plot({
 A chart created by Plot is simply an SVG element that you can put anywhere on the page.
 
 ```js
-const chart = Plot.plot({
-  height: 240,
-  marks: [
-    Plot.line(AAPL, {x: "Date", y: "Close"})
-  ]
-});
-document.body.appendChild(chart);
+const chart = Plot.plot(…); // create the plot
+document.body.appendChild(chart); // add it to the DOM
 ```
 
 Data in the wild comes in all shapes, so Plot is **flexible regarding input data**: Data can be an array of objects with named properties (rows, as above), parallel “flat” arrays or iterables of values (columns), or even functions to compute values on-the-fly.
