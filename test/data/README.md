@@ -24,6 +24,14 @@ http://lib.stat.cmu.edu/datasets/
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
 
+## d3-survey-2015.json
+D3 Community Survey, 2015
+https://github.com/enjalot/d3surveys
+
+## diamonds.csv
+ggplot2 “diamonds” dataset (carat and price columns only)
+https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv
+
 ## gistemp.csv
 NASA Goddard Institute for Space Studies
 https://data.giss.nasa.gov/gistemp/
@@ -35,6 +43,10 @@ https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 ## metros.csv
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
+
+## moby-dick-chapter-1.txt
+*Moby Dick; or The Whale* by Herman Melville
+https://www.gutenberg.org/files/2701/2701-h/2701-h.htm
 
 ## morley.csv
 Michelson Speed of Light Data
@@ -67,6 +79,18 @@ https://data.world/data-society/the-simpsons-by-the-data
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
 
+## us-population-state-age.csv
+U.S. Census Bureau
+https://observablehq.com/@d3/barcode-plot
+
+## us-presidential-election-2020.csv
+Fabio Votta/Edison Research/NYT
+https://github.com/favstats/USElection2020-EdisonResearch-Results
+
 ## us-retail-sales.csv
 U.S. Census Bureau
 https://www.census.gov/retail/mrts/historic_releases.html
+
+## us-state-population-2010-2019.csv
+U.S. Census Bureau (?)
+https://observablehq.com/@d3/diverging-bar-chart
