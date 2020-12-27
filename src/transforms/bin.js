@@ -7,13 +7,13 @@ export function bin1(options = {}) {
   const bin = binner().value(i => values[i]);
   if (domain !== undefined) bin.domain(domain);
   if (thresholds !== undefined) bin.thresholds(thresholds);
-  return function(data, index) {
+  return (data, index, allData = data) => {
     let b;
-    if (values === undefined) values = valueof(this.data, value);
+    if (values === undefined) values = valueof(allData, value);
     // We don’t want to choose thresholds dynamically for each facet; instead,
     // we extract the set of thresholds from an initial pass over all data.
     if (domain === undefined || thresholds === undefined) {
-      b = bin(Uint32Array.from(this.data, indexOf));
+      b = bin(Uint32Array.from(allData, indexOf));
       if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(b => b.x0));
       if (index !== undefined) b = bin(index);
@@ -33,10 +33,8 @@ export function bin1(options = {}) {
 export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   const binX = bin1({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = bin1({domain, thresholds, value: second, ...maybeValue(y)});
-  return function(data, index) {
-    const bx = binX.call(this, data, index);
-    const by = binY.call(this, data, index);
-    return cross(bx, by.map(binset), (x, y) => {
+  return (...args) => {
+    return cross(binX(...args), binY(...args).map(binset), (x, y) => {
       return {
         x0: x.x0,
         x1: x.x1,
