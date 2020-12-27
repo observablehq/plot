@@ -47,9 +47,9 @@ export default async function() {
 }
 ```
 
-When this test is run, its output is compared against the SVG snapshot saved in
-the `test/output` folder. This makes it easier to see the effect of code changes
-and to catch unintended changes.
+When a snapshot test is run, its output is compared against the SVG snapshot
+saved in the `test/output` folder. This makes it easier to see the effect of
+code changes and to catch unintended changes.
 
 (Snapshot tests must have deterministic, reproducible behavior; they should not
 depend on live data, external servers, the current time, the weather, etc. To
