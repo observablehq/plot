@@ -87,6 +87,8 @@ For example, here’s a line chart of random *y*-values where *x* encodes the in
 ```js
 Plot.plot({
   height: 240,
+  x: {axis: null}, // hide the x-axis
+  y: {ticks: 10}, // show about 10 ticks on the y-axis
   marks: [
     Plot.lineY({length: 500}, {y: Math.random})
   ]
@@ -100,6 +102,8 @@ And similarly here’s a line chart of a random walk using [d3.cumsum](https://g
 ```js
 Plot.plot({
   height: 240,
+  x: {axis: null}, // hide the x-axis
+  y: {ticks: 10}, // show about 10 ticks on the y-axis
   marks: [
     Plot.lineY(d3.cumsum({length: 500}, d3.randomNormal()))
   ]
@@ -116,7 +120,8 @@ It’s not just line charts, of course. Here’s another useful chart type, the 
 Plot.plot({
   height: 240,
   marks: [
-    Plot.binX(data, {x: "Volume"})
+    Plot.binX(data, {x: "Volume"}),
+    Plot.ruleY([0]) // add a rule at y = 0
   ]
 })
 ```
