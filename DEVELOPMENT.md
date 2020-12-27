@@ -51,15 +51,14 @@ When a snapshot test is run, its output is compared against the SVG snapshot
 saved in the `test/output` folder. This makes it easier to see the effect of
 code changes and to catch unintended changes.
 
-(Snapshot tests must have deterministic, reproducible behavior; they should not
-depend on live data, external servers, the current time, the weather, etc. To
-use randomness in a test, use a seeded random number generator such as
-[d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).)
-
 To add a new snapshot test, create a new JavaScript file in the `test/plots`
 folder. Then register your test in the test registry, `test/plots/index.js`.
 Once you’ve registered your test, it will also appear automatically in the test
 browser (http://localhost:8008), where you can inspect and debug the output.
+(Snapshot tests must have deterministic, reproducible behavior; they should not
+depend on live data, external servers, the current time, the weather, etc. To
+use randomness in a test, use a seeded random number generator such as
+[d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).)
 
 To run the tests:
 
