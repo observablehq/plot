@@ -8,6 +8,12 @@
 
 ## Introduction
 
+(TODO) Something about the Grammar of Graphics (scales, marks, composition,
+automatic axes; similar to Vega-Lite and ggplot2). Something about D3 (Plot is
+created by the author of D3, Mike Bostock, and builds on D3, but is intended
+more for fast exploration than bespoke presentation). Something about
+extensibility.
+
 Observable Plot adheres to several principles:
 
 * Be concise and memorable for common tasks.
