@@ -151,4 +151,4 @@ const chart = Plot.plot(…);
 chart.oninput = () => console.log(chart.value);
 ```
 
-Lastly, Plot provides **an open, extensible foundation** for visualization. While Plot includes a variety of standard mark types out of the box, it is designed to be extended. New mark types can be used to create one-off custom charts, or for reuse, without needing to fork Plot’s internals. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible.
+Lastly, Plot provides **an open, extensible foundation** for visualization. While Plot includes a variety of standard mark types out of the box, it is designed to be extended. New mark types can be used to create one-off custom charts, or for reuse, without needing to fork Plot’s internals. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible. To learn how to extend Plot, see [DEVELOPMENT.md](./DEVELOPMENT.md).
