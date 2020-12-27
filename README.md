@@ -115,7 +115,11 @@ Plot.plot({
 })
 ```
 
-The bin mark is shorthand for a rect mark with a bin transform. The bin transform uses [d3.bin](https://github.com/d3/d3-array/blob/master/README.md#bins) to group data into discrete bins by quantitative value; the rect mark then shows the number of data points in each bin as filled rectangles that extend up from the *x*-axis.
+The bin mark is shorthand for a rect mark with a bin transform; the bin
+transform [bins](https://github.com/d3/d3-array/blob/master/README.md#bins)
+quantitative data into discrete bins, then the rect mark visualizes the number
+of data points in each bin as filled rectangles that extend up from the
+*x*-axis.
 
 While the charts above use shorthand defaults, Plot charts are **highly configurable**. Here’s a more longhand representation of the unemployment chart above, with a dash of customization:
 
