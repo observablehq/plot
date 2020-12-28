@@ -36,7 +36,7 @@ class Facet extends Mark {
         markIndex.set(mark, index);
         markChannels.set(mark, named);
       }
-      facets.set(facetKey, {markIndex, markChannels});
+      facets.set(JSON.stringify(facetKey), {markIndex, markChannels});
     }
     return {index, channels: [...channels, ...subchannels]};
   }
@@ -58,11 +58,11 @@ class Facet extends Mark {
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(key => facets.has(key)))
+          .data(facetKeys(scales).filter(key => facets.has(JSON.stringify(key))))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const {markIndex, markChannels} = facets.get(key);
+              const {markIndex, markChannels} = facets.get(JSON.stringify(key));
               for (const mark of marks) {
                 const node = mark.render(
                   markIndex.get(mark),
