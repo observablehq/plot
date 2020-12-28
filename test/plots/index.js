@@ -22,6 +22,7 @@ export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgel
 export {default as metroUnemployment} from "./metro-unemployment.js";
 export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.js";
 export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
+export {default as mobyDickFaceted} from "./moby-dick-faceted.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
