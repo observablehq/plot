@@ -1,18 +1,35 @@
-import {groups} from "d3-array";
+import {rollups} from "d3-array";
 import {defined} from "../defined.js";
-import {field} from "../mark.js";
+import {valueof, maybeValue, indexOf} from "../mark.js";
 
-export function group1(key) {
-  if (typeof key !== "function") key = field(key + "");
-  return data => groups(data, key).filter(defined1);
+export function group1(x) {
+  let {value} = maybeValue({value: x});
+  let values;
+  return (data, index, allData = data) => {
+    if (values === undefined) values = valueof(allData, value);
+    if (!index) index = data.map(indexOf);
+    return rollups(index,
+      v => Array.from(v, i => allData[i]),
+      i => values[i]
+    ).filter(defined1);
+  };
 }
 
-export function group2(x, y) {
-  if (typeof x !== "function") x = field(x + "");
-  if (typeof y !== "function") y = field(y + "");
-  return data => groups(data, x, y)
-    .flatMap(([x, xgroup]) => xgroup
-    .map(([y, ygroup]) => [x, y, ygroup]));
+export function group2(vx, vy) {
+  let {value: x} = maybeValue({value: vx});
+  let {value: y} = maybeValue({value: vy});
+  let valuesX, valuesY;
+  return (data, index, allData = data) => {
+    if (valuesX === undefined) valuesX = valueof(allData, x);
+    if (valuesY === undefined) valuesY = valueof(allData, y);
+    if (!index) index = data.map(indexOf);
+    return rollups(index,
+      v => v.map(i => allData[i]),
+      i => valuesX[i],
+      i => valuesY[i]
+    )
+    .flatMap(([x, xgroup]) => xgroup.map(([y, ygroup]) => [x, y, ygroup]));
+  };
 }
 
 // Since marks don’t render when channel values are undefined (or null or NaN),
