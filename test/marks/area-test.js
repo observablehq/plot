@@ -104,3 +104,29 @@ tape("area(data, {curve}) specifies a named curve or function", test => {
   test.strictEqual(Plot.area(undefined, {x1: "0", y1: "1", curve: "step"}).curve, curveStep);
   test.strictEqual(Plot.area(undefined, {x1: "0", y1: "1", curve: curveStep}).curve, curveStep);
 });
+
+tape("areaX(data, {x, y}) defaults x1 to zero, x2 to x, and y1 to y", test => {
+  const area = Plot.areaX(undefined, {x: "0", y: "1"});
+  const x1 = area.channels.find(c => c.name === "x1");
+  test.strictEqual(x1.value(), 0);
+  test.strictEqual(x1.scale, "x");
+  const x2 = area.channels.find(c => c.name === "x2");
+  test.strictEqual(x2.value, "0");
+  test.strictEqual(x2.scale, "x");
+  const y1 = area.channels.find(c => c.name === "y1");
+  test.strictEqual(y1.value, "1");
+  test.strictEqual(y1.scale, "y");
+});
+
+tape("areaY(data, {x, y}) defaults x1 to x, y1 to zero, and y2 to y", test => {
+  const area = Plot.areaY(undefined, {x: "0", y: "1"});
+  const x1 = area.channels.find(c => c.name === "x1");
+  test.strictEqual(x1.value, "0");
+  test.strictEqual(x1.scale, "x");
+  const y1 = area.channels.find(c => c.name === "y1");
+  test.strictEqual(y1.value(), 0);
+  test.strictEqual(y1.scale, "y");
+  const y2 = area.channels.find(c => c.name === "y2");
+  test.strictEqual(y2.value, "1");
+  test.strictEqual(y2.scale, "y");
+});

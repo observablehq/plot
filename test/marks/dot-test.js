@@ -22,19 +22,19 @@ tape("dot() has the expected defaults", test => {
 });
 
 tape("dot(data, {z}) specifies an optional z channel", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {z: "x"});
+  const dot = Plot.dot(undefined, {z: "x"});
   const z = dot.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "x");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("dot(data, {r}) allows r to be a constant radius", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: 42});
+  const dot = Plot.dot(undefined, {r: 42});
   test.strictEqual(dot.r, 42);
 });
 
 tape("dot(data, {r}) allows r to be a variable radius", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"});
+  const dot = Plot.dot(undefined, {r: "x"});
   test.strictEqual(dot.r, undefined);
   const r = dot.channels.find(c => c.name === "r");
   test.strictEqual(r.value, "x");
@@ -42,24 +42,24 @@ tape("dot(data, {r}) allows r to be a variable radius", test => {
 });
 
 tape("dot(data, {title}) specifies an optional title channel", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {title: "x"});
+  const dot = Plot.dot(undefined, {title: "x"});
   const title = dot.channels.find(c => c.name === "title");
   test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
 tape("dot(data, {fill}) allows fill to be a constant color", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "red"});
+  const dot = Plot.dot(undefined, {fill: "red"});
   test.strictEqual(dot.fill, "red");
 });
 
 tape("dot(data, {fill}) allows fill to be null", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: null});
+  const dot = Plot.dot(undefined, {fill: null});
   test.strictEqual(dot.fill, "none");
 });
 
 tape("dot(data, {fill}) allows fill to be a variable color", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"});
+  const dot = Plot.dot(undefined, {fill: "x"});
   test.strictEqual(dot.fill, undefined);
   const fill = dot.channels.find(c => c.name === "fill");
   test.strictEqual(fill.value, "x");
@@ -73,17 +73,17 @@ tape("dot(data, {fill}) defaults stroke to undefined if fill is not none", test 
 });
 
 tape("dot(data, {stroke}) allows stroke to be a constant color", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {stroke: "red"});
+  const dot = Plot.dot(undefined, {stroke: "red"});
   test.strictEqual(dot.stroke, "red");
 });
 
 tape("dot(data, {stroke}) allows stroke to be null", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {stroke: null});
+  const dot = Plot.dot(undefined, {stroke: null});
   test.strictEqual(dot.stroke, undefined);
 });
 
 tape("dot(data, {stroke}) allows stroke to be a variable color", test => {
-  const dot = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {stroke: "x"});
+  const dot = Plot.dot(undefined, {stroke: "x"});
   test.strictEqual(dot.stroke, undefined);
   const stroke = dot.channels.find(c => c.name === "stroke");
   test.strictEqual(stroke.value, "x");

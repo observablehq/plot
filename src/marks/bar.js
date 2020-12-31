@@ -21,7 +21,7 @@ export class AbstractBar extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
+    const [vfill, cfill = vfill === null ? "none" : undefined] = maybeColor(fill);
     const [vstroke, cstroke] = maybeColor(stroke);
     super(
       data,
