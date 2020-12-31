@@ -1,4 +1,5 @@
 const Plot = require("../");
+const d3 = require("d3");
 const tape = require("tape-await");
 const {JSDOM} = require("jsdom");
 global.document = new JSDOM("").window.document;
@@ -42,7 +43,7 @@ tape("dot accepts channel arrays", test => {
   }).outerHTML, A);
 });
 
-tape("dot accepts another iterable", test => {
+tape("dot accepts functions to compute values on-the-fly", test => {
   test.equal(Plot.plot({
     x: { label: "x →" },
     y: { label: "↑ y" },
@@ -51,4 +52,12 @@ tape("dot accepts another iterable", test => {
       y: (_, i) => array[i][1]
     })]
   }).outerHTML, A);
+
+  const random = () => d3.randomNormal.source(d3.randomLcg(42))();
+  test.equal(Plot.plot({
+    marks: [Plot.dotY(Float64Array.from({length: 20}, random()))]
+  }).outerHTML, Plot.plot({
+    marks: [Plot.dotY({length: 20}, {y: random()})]
+  }).outerHTML);
 });
+
