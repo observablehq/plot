@@ -19,7 +19,7 @@ export class Link extends Mark {
       ...style
     } = {}
   ) {
-    const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke = vstroke === undefined ? "currentColor" : undefined] = maybeColor(stroke);
     super(
       data,
       [
@@ -27,8 +27,8 @@ export class Link extends Mark {
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x"},
         {name: "y2", value: y2, scale: "y"},
-        {name: "title", value: title, optional: true},
         {name: "z", value: z, optional: true},
+        {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
       transform
