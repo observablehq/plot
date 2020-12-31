@@ -16,7 +16,7 @@ class AbstractTick extends Mark {
       ...style
     } = {}
   ) {
-    const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke = vstroke === undefined ? "currentColor" : undefined] = maybeColor(stroke);
     super(
       data,
       [
