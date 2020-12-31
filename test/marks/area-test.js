@@ -100,6 +100,7 @@ tape("Area(data, {stroke}) implies a default z channel if stroke is variable", t
   test.strictEqual(z.scale, undefined);
 });
 
-tape("Area(data, {curve}) specifies a named D3 curve", test => {
+tape("Area(data, {curve}) specifies a named curve or function", test => {
   test.strictEqual(new Plot.Area(undefined, {curve: "step"}).curve, curveStep);
+  test.strictEqual(new Plot.Area(undefined, {curve: curveStep}).curve, curveStep);
 });

@@ -91,6 +91,7 @@ tape("Line(data, {stroke}) implies a default z channel if stroke is variable", t
   test.strictEqual(z.scale, undefined);
 });
 
-tape("Line(data, {curve}) specifies a named D3 curve", test => {
+tape("Line(data, {curve}) specifies a named curve or function", test => {
   test.strictEqual(new Plot.Line(undefined, {curve: "step"}).curve, curveStep);
+  test.strictEqual(new Plot.Line(undefined, {curve: curveStep}).curve, curveStep);
 });
