@@ -166,7 +166,7 @@
     <line x1="407" x2="407" y1="366" y2="363.41221854826006"></line>
     <line x1="605" x2="605" y1="366" y2="363.9842544481184"></line>
   </g>
-  <g fill="currentColor" transform="translate(0.5,0.5)">
+  <g transform="translate(0.5,0.5)">
     <circle cx="143" cy="20" r="3"></circle>
     <circle cx="473" cy="119.31632813730118" r="3"></circle>
     <circle cx="55" cy="143.53251456463545" r="3"></circle>

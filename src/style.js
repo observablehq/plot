@@ -12,16 +12,16 @@ export function Style(mark, {
   strokeDasharray,
   mixBlendMode
 } = {}) {
-  mark.fill = string(fill);
-  mark.fillOpacity = number(fillOpacity);
-  mark.stroke = string(stroke);
-  mark.strokeWidth = number(strokeWidth);
-  mark.strokeOpacity = number(strokeOpacity);
-  mark.strokeLinejoin = string(strokeLinejoin);
-  mark.strokeLinecap = string(strokeLinecap);
-  mark.strokeMiterlimit = number(strokeMiterlimit);
+  mark.fill = impliedString(fill, "currentColor");
+  mark.fillOpacity = impliedNumber(fillOpacity, 1);
+  mark.stroke = impliedString(stroke, "none");
+  mark.strokeWidth = impliedNumber(strokeWidth, 1);
+  mark.strokeOpacity = impliedNumber(strokeOpacity, 1);
+  mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
+  mark.strokeLinecap = impliedString(strokeLinecap, "butt");
+  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 1);
   mark.strokeDasharray = string(strokeDasharray);
-  mark.mixBlendMode = string(mixBlendMode);
+  mark.mixBlendMode = impliedString(mixBlendMode, "normal");
 }
 
 export function applyIndirectStyles(selection, mark) {
@@ -52,4 +52,12 @@ export function applyTransform(selection, x, y, tx = 0, ty = 0) {
   if (x.bandwidth) tx += x.bandwidth() / 2;
   if (y.bandwidth) ty += y.bandwidth() / 2;
   selection.attr("transform", `translate(${tx},${ty})`);
+}
+
+function impliedString(value, impliedValue) {
+  if ((value = string(value)) !== impliedValue) return value;
+}
+
+function impliedNumber(value, impliedValue) {
+  if ((value = number(value)) !== impliedValue) return value;
 }

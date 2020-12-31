@@ -89,7 +89,7 @@
     <rect x="180.81513755575222" width="9.83639370088494" y="259" height="23"></rect>
     <rect x="185.4513859823009" width="11.907315738053057" y="129" height="23"></rect>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1" transform="translate(0.5,12)">
+  <g fill="none" stroke="currentColor" transform="translate(0.5,12)">
     <circle cx="178.74981283539825" cy="337" r="3"></circle>
     <circle cx="182.0167322902655" cy="233" r="3"></circle>
     <circle cx="182.1213534442478" cy="181" r="3"></circle>

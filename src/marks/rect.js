@@ -25,8 +25,8 @@ export class Rect extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
-    const [vstroke, cstroke] = maybeColor(stroke);
+    const [vfill, cfill] = maybeColor(fill, "currentColor");
+    const [vstroke, cstroke] = maybeColor(stroke, "none");
     super(
       data,
       [
@@ -72,14 +72,14 @@ export class Rect extends Mark {
   }
 }
 
+export function rect(data, options) {
+  return new Rect(data, options);
+}
+
 export function rectX(data, {x, y1, y2, ...options} = {}) {
   return new Rect(data, {...options, x1: zero, x2: x, y1, y2});
 }
 
 export function rectY(data, {x1, x2, y, ...options} = {}) {
   return new Rect(data, {...options, x1, x2, y1: zero, y2: y});
-}
-
-export function rect(data, options) {
-  return new Rect(data, options);
 }

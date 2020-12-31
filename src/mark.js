@@ -61,14 +61,19 @@ const colors = new Set(["currentColor", "none"]);
 // tuple [channel, constant] where one of the two is undefined, and the other is
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
-export function maybeColor(value) {
-  return typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value] : [value, undefined];
+export function maybeColor(value, defaultValue) {
+  if (value === undefined) value = defaultValue;
+  return value === null ? [undefined, "none"]
+    : typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value]
+    : [value, undefined];
 }
 
 // Similar to maybeColor, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
-export function maybeNumber(value) {
-  return typeof value === "number" ? [undefined, value] : [value, undefined];
+export function maybeNumber(value, defaultValue) {
+  if (value === undefined) value = defaultValue;
+  return value === null || typeof value === "number" ? [undefined, value]
+    : [value, undefined];
 }
 
 // The value may be defined as a string or function, rather than an object with

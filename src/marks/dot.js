@@ -19,9 +19,9 @@ export class Dot extends Mark {
       ...style
     } = {}
   ) {
-    const [vr, cr = vr == null ? 3 : undefined] = maybeNumber(r);
-    const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
-    const [vstroke, cstroke = vstroke === undefined && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vr, cr] = maybeNumber(r, 3);
+    const [vfill, cfill] = maybeColor(fill, "none");
+    const [vstroke, cstroke] = maybeColor(stroke, cfill === "none" ? "currentColor" : "none");
     super(
       data,
       [
@@ -39,7 +39,7 @@ export class Dot extends Mark {
     Style(this, {
       fill: cfill,
       stroke: cstroke,
-      strokeWidth: cstroke != null || vstroke != null ? 1.5 : undefined,
+      strokeWidth: cstroke === "none" ? undefined : 1.5,
       ...style
     });
   }

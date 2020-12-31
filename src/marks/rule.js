@@ -18,7 +18,7 @@ export class RuleX extends Mark {
       ...style
     } = {}
   ) {
-    const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
     super(
       data,
       [
@@ -72,7 +72,7 @@ export class RuleY extends Mark {
       ...style
     } = {}
   ) {
-    const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
     super(
       data,
       [

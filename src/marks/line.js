@@ -22,8 +22,8 @@ export class Line extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
-    const [vstroke, cstroke = vstroke === undefined ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vfill, cfill] = maybeColor(fill, "none");
+    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
     if (z === undefined && vstroke != null) z = vstroke;
     if (z === undefined && vfill != null) z = vfill;
     super(
@@ -42,7 +42,7 @@ export class Line extends Mark {
     Style(this, {
       fill: cfill,
       stroke: cstroke,
-      strokeWidth: cstroke != null || vstroke != null ? 1.5 : undefined,
+      strokeWidth: cstroke === "none" ? undefined : 1.5,
       ...style
     });
   }
