@@ -8,6 +8,7 @@ tape("barX() has the expected defaults", test => {
   test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2", "y"]);
   test.deepEqual(bar.channels.map(c => c.value(1, 0)), [0, 1, 0]);
   test.deepEqual(bar.channels.map(c => c.scale), ["x", "x", "y"]);
+  test.strictEqual(bar.channels.find(c => c.name === "y").type, "band");
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
   test.strictEqual(bar.stroke, undefined);
@@ -94,6 +95,7 @@ tape("barY() has the expected defaults", test => {
   test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2", "x"]);
   test.deepEqual(bar.channels.map(c => c.value(1, 0)), [0, 1, 0]);
   test.deepEqual(bar.channels.map(c => c.scale), ["y", "y", "x"]);
+  test.strictEqual(bar.channels.find(c => c.name === "x").type, "band");
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
   test.strictEqual(bar.stroke, undefined);

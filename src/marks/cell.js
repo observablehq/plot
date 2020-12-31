@@ -25,10 +25,10 @@ export function cell(data, options) {
   return new Cell(data, options);
 }
 
-export function cellX(data, {x = identity, ...options}) {
+export function cellX(data, {x = identity, ...options} = {}) {
   return new Cell(data, {x, ...options, y: null});
 }
 
-export function cellY(data, {y = identity, ...options}) {
+export function cellY(data, {y = identity, ...options} = {}) {
   return new Cell(data, {y, ...options, x: null});
 }
