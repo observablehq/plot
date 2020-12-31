@@ -3,15 +3,15 @@ import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, maybeSort, title} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, maybeSort, title, first, second} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
   constructor(
     data,
     {
-      x1,
-      y1,
+      x1 = first,
+      y1 = second,
       x2,
       y2,
       z, // optional grouping for multiple series
@@ -24,7 +24,7 @@ export class Area extends Mark {
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
+    const [vfill, cfill = vfill === null ? "none" : undefined] = maybeColor(fill);
     const [vstroke, cstroke] = maybeColor(stroke);
     if (z === undefined && vfill != null) z = vfill;
     if (z === undefined && vstroke != null) z = vstroke;
