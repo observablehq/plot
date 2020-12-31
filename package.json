@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "pretest": "rollup -c",
-    "test": "mkdir -p test/output && node -r esm -r module-alias/register test/plot.js && tape 'test/**/*-test.js' && eslint src test",
+    "test": "mkdir -p test/output && node -r esm -r module-alias/register test/plot.js && tape -r esm -r module-alias/register 'test/**/*-test.js' && eslint src test",
     "prepublishOnly": "rm -rf dist && yarn pretest",
     "postpublish": "git push && git push --tags",
     "start": "snowpack dev",
