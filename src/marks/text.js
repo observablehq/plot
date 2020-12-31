@@ -1,11 +1,8 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, first, second} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
-
-const first = d => d[0];
-const second = d => d[1];
 
 export class Text extends Mark {
   constructor(
