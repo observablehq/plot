@@ -21,7 +21,7 @@ export class Dot extends Mark {
   ) {
     const [vr, cr = vr == null ? 3 : undefined] = maybeNumber(r);
     const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
-    const [vstroke, cstroke = vstroke == null && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke = vstroke === undefined && cfill === "none" ? "currentColor" : undefined] = maybeColor(stroke);
     super(
       data,
       [
