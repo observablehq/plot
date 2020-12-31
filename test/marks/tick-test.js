@@ -1,8 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
-tape("TickX() has the expected defaults", test => {
-  const tick = new Plot.TickX();
+tape("tickX() has the expected defaults", test => {
+  const tick = Plot.tickX();
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform("foo"), "foo");
   test.deepEqual(tick.channels.map(c => c.name), ["x", "y"]);
@@ -21,40 +21,40 @@ tape("TickX() has the expected defaults", test => {
   test.strictEqual(tick.mixBlendMode, undefined);
 });
 
-tape("TickX(data, {z}) specifies an optional z channel", test => {
-  const tick = new Plot.TickX([{x: 1}, {x: 2}, {x: 3}], {z: "x"});
+tape("tickX(data, {z}) specifies an optional z channel", test => {
+  const tick = Plot.tickX([{x: 1}, {x: 2}, {x: 3}], {z: "x"});
   const z = tick.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "x");
   test.strictEqual(z.scale, undefined);
 });
 
-tape("TickX(data, {title}) specifies an optional title channel", test => {
-  const tick = new Plot.TickX([{x: 1}, {x: 2}, {x: 3}], {title: "x"});
+tape("tickX(data, {title}) specifies an optional title channel", test => {
+  const tick = Plot.tickX([{x: 1}, {x: 2}, {x: 3}], {title: "x"});
   const title = tick.channels.find(c => c.name === "title");
   test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
-tape("TickX(data, {stroke}) allows stroke to be a constant color", test => {
-  const tick = new Plot.TickX([{x: 1}, {x: 2}, {x: 3}], {stroke: "red"});
+tape("tickX(data, {stroke}) allows stroke to be a constant color", test => {
+  const tick = Plot.tickX([{x: 1}, {x: 2}, {x: 3}], {stroke: "red"});
   test.strictEqual(tick.stroke, "red");
 });
 
-tape("TickX(data, {stroke}) allows stroke to be null", test => {
-  const tick = new Plot.TickX([{x: 1}, {x: 2}, {x: 3}], {stroke: null});
+tape("tickX(data, {stroke}) allows stroke to be null", test => {
+  const tick = Plot.tickX([{x: 1}, {x: 2}, {x: 3}], {stroke: null});
   test.strictEqual(tick.stroke, undefined);
 });
 
-tape("TickX(data, {stroke}) allows stroke to be a variable color", test => {
-  const tick = new Plot.TickX([{x: 1}, {x: 2}, {x: 3}], {stroke: "x"});
+tape("tickX(data, {stroke}) allows stroke to be a variable color", test => {
+  const tick = Plot.tickX([{x: 1}, {x: 2}, {x: 3}], {stroke: "x"});
   test.strictEqual(tick.stroke, undefined);
   const stroke = tick.channels.find(c => c.name === "stroke");
   test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
-tape("TickY() has the expected defaults", test => {
-  const tick = new Plot.TickY();
+tape("tickY() has the expected defaults", test => {
+  const tick = Plot.tickY();
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform("foo"), "foo");
   test.deepEqual(tick.channels.map(c => c.name), ["x", "y"]);
@@ -73,32 +73,32 @@ tape("TickY() has the expected defaults", test => {
   test.strictEqual(tick.mixBlendMode, undefined);
 });
 
-tape("TickY(data, {z}) specifies an optional z channel", test => {
-  const tick = new Plot.TickY([{x: 1}, {x: 2}, {x: 3}], {z: "x"});
+tape("tickY(data, {z}) specifies an optional z channel", test => {
+  const tick = Plot.tickY([{x: 1}, {x: 2}, {x: 3}], {z: "x"});
   const z = tick.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "x");
   test.strictEqual(z.scale, undefined);
 });
 
-tape("TickY(data, {title}) specifies an optional title channel", test => {
-  const tick = new Plot.TickY([{x: 1}, {x: 2}, {x: 3}], {title: "x"});
+tape("tickY(data, {title}) specifies an optional title channel", test => {
+  const tick = Plot.tickY([{x: 1}, {x: 2}, {x: 3}], {title: "x"});
   const title = tick.channels.find(c => c.name === "title");
   test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
-tape("TickY(data, {stroke}) allows stroke to be a constant color", test => {
-  const tick = new Plot.TickY([{x: 1}, {x: 2}, {x: 3}], {stroke: "red"});
+tape("tickY(data, {stroke}) allows stroke to be a constant color", test => {
+  const tick = Plot.tickY([{x: 1}, {x: 2}, {x: 3}], {stroke: "red"});
   test.strictEqual(tick.stroke, "red");
 });
 
-tape("TickY(data, {stroke}) allows stroke to be null", test => {
-  const tick = new Plot.TickY([{x: 1}, {x: 2}, {x: 3}], {stroke: null});
+tape("tickY(data, {stroke}) allows stroke to be null", test => {
+  const tick = Plot.tickY([{x: 1}, {x: 2}, {x: 3}], {stroke: null});
   test.strictEqual(tick.stroke, undefined);
 });
 
-tape("TickY(data, {stroke}) allows stroke to be a variable color", test => {
-  const tick = new Plot.TickY([{x: 1}, {x: 2}, {x: 3}], {stroke: "x"});
+tape("tickY(data, {stroke}) allows stroke to be a variable color", test => {
+  const tick = Plot.tickY([{x: 1}, {x: 2}, {x: 3}], {stroke: "x"});
   test.strictEqual(tick.stroke, undefined);
   const stroke = tick.channels.find(c => c.name === "stroke");
   test.strictEqual(stroke.value, "x");

@@ -2,8 +2,8 @@ import * as Plot from "@observablehq/plot";
 import {curveLinear, curveStep} from "d3-shape";
 import tape from "tape-await";
 
-tape("Line() has the expected defaults", test => {
-  const line = new Plot.Line();
+tape("line() has the expected defaults", test => {
+  const line = Plot.line();
   test.strictEqual(line.data, undefined);
   test.strictEqual(line.transform("foo"), "foo");
   test.deepEqual(line.channels.map(c => c.name), ["x", "y"]);
@@ -22,76 +22,76 @@ tape("Line() has the expected defaults", test => {
   test.strictEqual(line.mixBlendMode, undefined);
 });
 
-tape("Line(data, {z}) specifies an optional z channel", test => {
-  const line = new Plot.Line(undefined, {z: "2"});
+tape("line(data, {z}) specifies an optional z channel", test => {
+  const line = Plot.line(undefined, {z: "2"});
   const z = line.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
-tape("Line(data, {title}) specifies an optional title channel", test => {
-  const line = new Plot.Line(undefined, {title: "2"});
+tape("line(data, {title}) specifies an optional title channel", test => {
+  const line = Plot.line(undefined, {title: "2"});
   const title = line.channels.find(c => c.name === "title");
   test.strictEqual(title.value, "2");
   test.strictEqual(title.scale, undefined);
 });
 
-tape("Line(data, {fill}) allows fill to be a constant color", test => {
-  const line = new Plot.Line(undefined, {fill: "red"});
+tape("line(data, {fill}) allows fill to be a constant color", test => {
+  const line = Plot.line(undefined, {fill: "red"});
   test.strictEqual(line.fill, "red");
 });
 
-tape("Line(data, {fill}) allows fill to be null", test => {
-  const line = new Plot.Line(undefined, {fill: null});
+tape("line(data, {fill}) allows fill to be null", test => {
+  const line = Plot.line(undefined, {fill: null});
   test.strictEqual(line.fill, "none");
 });
 
-tape("Line(data, {fill}) allows fill to be a variable color", test => {
-  const line = new Plot.Line(undefined, {fill: "x"});
+tape("line(data, {fill}) allows fill to be a variable color", test => {
+  const line = Plot.line(undefined, {fill: "x"});
   test.strictEqual(line.fill, undefined);
   const fill = line.channels.find(c => c.name === "fill");
   test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
-tape("Line(data, {fill}) implies a default z channel if fill is variable", test => {
-  const line = new Plot.Line(undefined, {fill: "2"});
+tape("line(data, {fill}) implies a default z channel if fill is variable", test => {
+  const line = Plot.line(undefined, {fill: "2"});
   const z = line.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
-tape("Line(data, {stroke}) allows stroke to be a constant color", test => {
-  const line = new Plot.Line(undefined, {stroke: "red"});
+tape("line(data, {stroke}) allows stroke to be a constant color", test => {
+  const line = Plot.line(undefined, {stroke: "red"});
   test.strictEqual(line.stroke, "red");
 });
 
-tape("Line(data, {stroke}) allows stroke to be null", test => {
-  const line = new Plot.Line(undefined, {stroke: null});
+tape("line(data, {stroke}) allows stroke to be null", test => {
+  const line = Plot.line(undefined, {stroke: null});
   test.strictEqual(line.stroke, undefined);
 });
 
-tape("Line(data, {stroke}) implies no stroke width if stroke is null", test => {
-  const line = new Plot.Line(undefined, {stroke: null});
+tape("line(data, {stroke}) implies no stroke width if stroke is null", test => {
+  const line = Plot.line(undefined, {stroke: null});
   test.strictEqual(line.strokeWidth, undefined);
 });
 
-tape("Line(data, {stroke}) allows stroke to be a variable color", test => {
-  const line = new Plot.Line(undefined, {stroke: "x", fill: "3"}); // stroke takes priority
+tape("line(data, {stroke}) allows stroke to be a variable color", test => {
+  const line = Plot.line(undefined, {stroke: "x", fill: "3"}); // stroke takes priority
   test.strictEqual(line.stroke, undefined);
   const stroke = line.channels.find(c => c.name === "stroke");
   test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
-tape("Line(data, {stroke}) implies a default z channel if stroke is variable", test => {
-  const line = new Plot.Line(undefined, {stroke: "2"});
+tape("line(data, {stroke}) implies a default z channel if stroke is variable", test => {
+  const line = Plot.line(undefined, {stroke: "2"});
   const z = line.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
-tape("Line(data, {curve}) specifies a named curve or function", test => {
-  test.strictEqual(new Plot.Line(undefined, {curve: "step"}).curve, curveStep);
-  test.strictEqual(new Plot.Line(undefined, {curve: curveStep}).curve, curveStep);
+tape("line(data, {curve}) specifies a named curve or function", test => {
+  test.strictEqual(Plot.line(undefined, {curve: "step"}).curve, curveStep);
+  test.strictEqual(Plot.line(undefined, {curve: curveStep}).curve, curveStep);
 });

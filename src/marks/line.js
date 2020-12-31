@@ -10,8 +10,8 @@ export class Line extends Mark {
   constructor(
     data,
     {
-      x = first,
-      y = second,
+      x,
+      y,
       z, // optional grouping for multiple series
       title,
       fill,
@@ -66,16 +66,14 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, options) {
-  return new Line(data, options);
+export function line(data, {x = first, y = second, ...options} = {}) {
+  return new Line(data, {...options, x, y});
 }
 
-// TODO Error if y is specified?
 export function lineX(data, {x = identity, ...options} = {}) {
   return new Line(data, {...options, x, y: indexOf});
 }
 
-// TODO Error if x is specified?
 export function lineY(data, {y = identity, ...options} = {}) {
   return new Line(data, {...options, x: indexOf, y});
 }
