@@ -1,4 +1,5 @@
 import * as Plot from "@observablehq/plot";
+import {curveLinear, curveStep} from "d3-shape";
 import tape from "tape-await";
 
 tape("Area() has the expected defaults", test => {
@@ -8,6 +9,7 @@ tape("Area() has the expected defaults", test => {
   test.deepEqual(area.channels.map(c => c.name), ["x1", "y1"]);
   test.deepEqual(area.channels.map(c => c.value([1, 2])), [1, 2]);
   test.deepEqual(area.channels.map(c => c.scale), ["x", "y"]);
+  test.strictEqual(area.curve, curveLinear);
   test.strictEqual(area.fill, undefined);
   test.strictEqual(area.fillOpacity, undefined);
   test.strictEqual(area.stroke, undefined);
@@ -96,4 +98,8 @@ tape("Area(data, {stroke}) implies a default z channel if stroke is variable", t
   const z = area.channels.find(c => c.name === "z");
   test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
+});
+
+tape("Area(data, {curve}) specifies a named D3 curve", test => {
+  test.strictEqual(new Plot.Area(undefined, {curve: "step"}).curve, curveStep);
 });

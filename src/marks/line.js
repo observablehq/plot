@@ -10,8 +10,8 @@ export class Line extends Mark {
   constructor(
     data,
     {
-      x,
-      y,
+      x = first,
+      y = second,
       z, // optional grouping for multiple series
       title,
       fill,
@@ -23,7 +23,7 @@ export class Line extends Mark {
     } = {}
   ) {
     const [vfill, cfill = vfill == null ? "none" : undefined] = maybeColor(fill);
-    const [vstroke, cstroke = vstroke == null ? "currentColor" : undefined] = maybeColor(stroke);
+    const [vstroke, cstroke = vstroke === undefined ? "currentColor" : undefined] = maybeColor(stroke);
     if (z === undefined && vstroke != null) z = vstroke;
     if (z === undefined && vfill != null) z = vfill;
     super(
@@ -42,7 +42,7 @@ export class Line extends Mark {
     Style(this, {
       fill: cfill,
       stroke: cstroke,
-      strokeWidth: 1.5,
+      strokeWidth: cstroke != null || vstroke != null ? 1.5 : undefined,
       ...style
     });
   }
@@ -66,8 +66,8 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, {x = first, y = second, ...options} = {}) {
-  return new Line(data, {...options, x, y});
+export function line(data, options) {
+  return new Line(data, options);
 }
 
 // TODO Error if y is specified?
