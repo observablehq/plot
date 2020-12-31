@@ -19,7 +19,7 @@ class Facet extends Mark {
   initialize(data) {
     const {index, channels} = super.initialize(data);
     const subchannels = [];
-    const facets = this.facets = new Map();
+    const facets = this.facets = facetMap(channels);
     for (const [facetKey, facetIndex] of facetGroups(index, channels)) {
       const facetData = Array.from(facetIndex, i => data[i]);
       const markIndex = new Map();
@@ -36,7 +36,7 @@ class Facet extends Mark {
         markIndex.set(mark, index);
         markChannels.set(mark, named);
       }
-      facets.set(JSON.stringify(facetKey), {markIndex, markChannels});
+      facets.set(facetKey, {markIndex, markChannels});
     }
     return {index, channels: [...channels, ...subchannels]};
   }
@@ -58,11 +58,11 @@ class Facet extends Mark {
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(key => facets.has(JSON.stringify(key))))
+          .data(facetKeys(scales).filter(key => facets.has(key)))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const {markIndex, markChannels} = facets.get(JSON.stringify(key));
+              const {markIndex, markChannels} = facets.get(key);
               for (const mark of marks) {
                 const node = mark.render(
                   markIndex.get(mark),
@@ -81,6 +81,10 @@ export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
     ? marks // if no facets are specified, ignore!
     : [new Facet(data, {x, y, ...options}, marks)];
+}
+
+function facetMap(channels) {
+  return new (channels.length > 1 ? FacetMap2 : FacetMap);
 }
 
 function facetKeys({fx, fy}) {
@@ -108,4 +112,37 @@ function facetTranslate(fx, fy) {
   return fx && fy ? ([kx, ky]) => `translate(${fx(kx)},${fy(ky)})`
     : fx ? kx => `translate(${fx(kx)},0)`
     : ky => `translate(0,${fy(ky)})`;
+}
+
+class FacetMap {
+  constructor() {
+    this._ = new Map();
+  }
+  has(key) {
+    return this._.has(key);
+  }
+  get(key) {
+    return this._.get(key);
+  }
+  set(key, value) {
+    return this._.set(key, value), this;
+  }
+}
+
+// A Map-like interface that supports paired keys.
+class FacetMap2 extends FacetMap {
+  has([key1, key2]) {
+    const map = super.get(key1);
+    return map ? map.has(key2) : false;
+  }
+  get([key1, key2]) {
+    const map = super.get(key1);
+    return map && map.get(key2);
+  }
+  set([key1, key2], value) {
+    const map = super.get(key1);
+    if (map) map.set(key2, value);
+    else super.set(key1, new Map([[key2, value]]));
+    return this;
+  }
 }
