@@ -17,6 +17,7 @@ export class Arc extends Mark {
       y = constant(0),
       innerRadius,
       outerRadius,
+      padAngle,
       z,
       title,
       fill,
@@ -29,6 +30,7 @@ export class Arc extends Mark {
     const [vstroke, cstroke] = maybeColor(stroke, cfill === "none" ? "currentColor" : cfill === "currentColor" ? "white" : "none");
     const [vsa, csa] = maybeNumber(startAngle, 0);
     const [vea, cea] = maybeNumber(endAngle, 2 * Math.PI);
+    const [vpa, cpa] = maybeNumber(padAngle, 0);
     const [vx, cx] = maybeNumber(x, 0);
     const [vy, cy] = maybeNumber(y, 0);
     const [vri, cri] = maybeNumber(innerRadius, 0);
@@ -43,6 +45,7 @@ export class Arc extends Mark {
         {name: "endAngle", value: vea, optional: true},
         {name: "innerRadius", value: vri, optional: true},
         {name: "outerRadius", value: vro, optional: true},
+        {name: "padAngle", value: vpa, optional: true},
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
@@ -57,11 +60,12 @@ export class Arc extends Mark {
     this.ea = cea;
     this.ri = cri;
     this.ro = cro;
+    this.pa = cpa;
   }
   render(
     I,
     {x, y, color},
-    {startAngle: SA, endAngle: EA, innerRadius: RI, outerRadius: RO, x: X, y: Y, z: Z, title: L, fill: F, stroke: S},
+    {startAngle: SA, endAngle: EA, innerRadius: RI, outerRadius: RO, padAngle: PA, x: X, y: Y, z: Z, title: L, fill: F, stroke: S},
     {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
     const index = filter(I, SA, EA, F, S);
@@ -73,7 +77,8 @@ export class Arc extends Mark {
       .startAngle(SA ? (i => SA[i]) : this.sa)
       .endAngle(EA ? (i => EA[i]) : this.ea)
       .innerRadius(RI ? (i => r0 * RI[i]) : r0 * this.ri)
-      .outerRadius(RO ? (i => r0 * RO[i]) : r0 * this.ro);
+      .outerRadius(RO ? (i => r0 * RO[i]) : r0 * this.ro)
+      .padAngle(PA ? (i => PA[i]) : this.pa);
     
     return create("svg:g")
         .call(applyIndirectStyles, this)
