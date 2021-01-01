@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {arc as shapeArc} from "d3-shape";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeNumber, title} from "../mark.js";
+import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 const constant = x => () => x;
@@ -15,36 +15,34 @@ export class Arc extends Mark {
       endAngle = d => d.endAngle,
       x = constant(0),
       y = constant(0),
-      innerRadius = 0,
-      outerRadius = 140,
+      innerRadius,
+      outerRadius,
       z,
       title,
       fill,
       stroke,
-      insetTop = 0,
-      insetRight = 0,
-      insetBottom = 0,
-      insetLeft = 0,
       transform,
       ...style
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill);
-    const [vstroke, cstroke] = maybeColor(stroke);
-    const [vx, cx = vx == null ? 0 : undefined] = maybeNumber(x);
-    const [vy, cy = vy == null ? 0 : undefined] = maybeNumber(y);
-    const [vri, cri = vri == null ? 0 : undefined] = maybeNumber(innerRadius);
-    const [vro, cro = vro == null ? 0 : undefined] = maybeNumber(outerRadius);
+    const [vfill, cfill] = maybeColor(fill, "currentColor");
+    const [vstroke, cstroke] = maybeColor(stroke, cfill === "none" ? "currentColor" : cfill === "currentColor" ? "white" : "none");
+    const [vsa, csa] = maybeNumber(startAngle, 0);
+    const [vea, cea] = maybeNumber(endAngle, 2 * Math.PI);
+    const [vx, cx] = maybeNumber(x, 0);
+    const [vy, cy] = maybeNumber(y, 0);
+    const [vri, cri] = maybeNumber(innerRadius, 0);
+    const [vro, cro] = maybeNumber(outerRadius, 100);
 
     super(
       data,
       [
-        {name: "x", value: vx, scale: "x"},
-        {name: "y", value: vy, scale: "y"},
-        {name: "startAngle", value: startAngle},
-        {name: "endAngle", value: endAngle},
-        {name: "innerRadius", value: innerRadius, optional: true},
-        {name: "outerRadius", value: outerRadius, optional: true},
+        {name: "x", value: vx, scale: "x", optional: true},
+        {name: "y", value: vy, scale: "y", optional: true},
+        {name: "startAngle", value: vsa, optional: true},
+        {name: "endAngle", value: vea, optional: true},
+        {name: "innerRadius", value: vri, optional: true},
+        {name: "outerRadius", value: vro, optional: true},
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
@@ -55,27 +53,28 @@ export class Arc extends Mark {
     Style(this, {fill: cfill, stroke: cstroke, ...style});
     this.x = cx;
     this.y = cy;
+    this.sa = csa;
+    this.ea = cea;
     this.ri = cri;
     this.ro = cro;
-    this.insetTop = number(insetTop);
-    this.insetRight = number(insetRight);
-    this.insetBottom = number(insetBottom);
-    this.insetLeft = number(insetLeft);
   }
   render(
     I,
     {x, y, color},
-    {startAngle: A, endAngle: B, innerRadius: RI, outerRadius: RO, x: X, y: Y, z: Z, title: L, fill: F, stroke: S}
+    {startAngle: SA, endAngle: EA, innerRadius: RI, outerRadius: RO, x: X, y: Y, z: Z, title: L, fill: F, stroke: S},
+    {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
-    const index = filter(I, A, B, F, S);
+    const index = filter(I, SA, EA, F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     
+    const r0 = Math.min(width - marginLeft - marginRight, height - marginTop - marginBottom) / 200;
+    
     const arc = shapeArc()
-      .startAngle(i => A[i])
-      .endAngle(i => B[i])
-      .innerRadius(i => RI[i] || this.ri)
-      .outerRadius(i => RO[i] || this.ro);
-      
+      .startAngle(SA ? (i => SA[i]) : this.sa)
+      .endAngle(EA ? (i => EA[i]) : this.ea)
+      .innerRadius(RI ? (i => r0 * RI[i]) : r0 * this.ri)
+      .outerRadius(RO ? (i => r0 * RO[i]) : r0 * this.ro);
+    
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
