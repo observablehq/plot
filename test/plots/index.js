@@ -25,6 +25,7 @@ export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.j
 export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
+export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
 export {default as penguinMass} from "./penguin-mass.js";
