@@ -31,7 +31,7 @@ export class Mark {
         index = [], data = [];
         for (const facet of facets) {
           const facetData = this.transform(take(this.data, facet));
-          const facetIndex = facetData === undefined ? undefined : range(facetData).map(i => i + data.length); // TODO optimize
+          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, data.length);
           index.push(facetIndex);
           data.push(...facetData); // TODO optimize
         }
@@ -159,6 +159,12 @@ export function title(L) {
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
   return Uint32Array.from(data, indexOf);
+}
+
+// Returns a Uint32Array with elements [k, k + 1, … k + data.length - 1].
+export function offsetRange(data, k) {
+  k = Math.floor(k);
+  return Uint32Array.from(data, (_, i) => i + k);
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].

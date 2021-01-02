@@ -1,5 +1,5 @@
 import {bin as binner, cross, sum} from "d3-array";
-import {valueof, first, second, maybeValue, range} from "../mark.js";
+import {valueof, first, second, maybeValue, range, offsetRange} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
@@ -16,7 +16,7 @@ export function bin1(options = {}) {
         let b = bins.map(bin => binsubset(bin, facet));
         b = cumulative ? accumulate(cumulative < 0 ? b.reverse() : b) : b;
         b = b.filter(nonempty);
-        index.push(range(b).map(i => i + data.length)); // TODO optimize
+        index.push(offsetRange(b, data.length));
         data.push(...b); // TODO optimize
       }
       return {index, data};
