@@ -26,10 +26,10 @@ export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js"
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
+export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
 export {default as penguinMass} from "./penguin-mass.js";
-export {default as penguinFaceted} from "./penguin-faceted.js";
 export {default as randomWalk} from "./random-walk.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as sfTemperatureBand} from "./sf-temperature-band.js";
