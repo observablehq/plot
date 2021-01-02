@@ -1,6 +1,6 @@
 import {cross, group, groups} from "d3-array";
 import {create} from "d3-selection";
-import {Mark} from "../mark.js";
+import {Mark, take} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
 
 class Facet extends Mark {
@@ -21,7 +21,7 @@ class Facet extends Mark {
     const subchannels = [];
     const facets = this.facets = facetMap(channels);
     for (const [facetKey, facetIndex] of facetGroups(index, channels)) {
-      const facetData = Array.from(facetIndex, i => data[i]);
+      const facetData = take(data, facetIndex);
       const markIndex = new Map();
       const markChannels = new Map();
       for (const mark of this.marks) {

@@ -1,5 +1,5 @@
 import {bin as binner, cross, sum} from "d3-array";
-import {valueof, first, second, maybeValue, indexOf} from "../mark.js";
+import {valueof, first, second, maybeValue, range} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
@@ -13,12 +13,12 @@ export function bin1(options = {}) {
     // We don’t want to choose thresholds dynamically for each facet; instead,
     // we extract the set of thresholds from an initial pass over all data.
     if (domain === undefined || thresholds === undefined) {
-      b = bin(Uint32Array.from(allData, indexOf));
+      b = bin(range(allData));
       if (domain === undefined) bin.domain(domain = [b[0].x0, b[b.length - 1].x1]);
       if (thresholds === undefined) bin.thresholds(thresholds = b.slice(1).map(b => b.x0));
       if (index !== undefined) b = bin(index);
     } else {
-      if (index === undefined) index = Uint32Array.from(data, indexOf);
+      if (index === undefined) index = range(data);
       b = bin(index);
     }
     if (cumulative) {

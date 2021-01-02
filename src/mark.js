@@ -25,7 +25,7 @@ export class Mark {
   initialize(data, index) {
     if (data !== undefined) data = this.transform(data, index, this.data);
     return {
-      index: data === undefined ? undefined : Uint32Array.from(data, indexOf),
+      index: data === undefined ? undefined : range(data),
       channels: this.channels.map(channel => {
         const {name} = channel;
         return [name == null ? undefined : name + "", Channel(data, index, channel)];
@@ -41,7 +41,7 @@ function Channel(data, index, {scale, type, value}) {
   else if (typeof value === "function") label = value.label, value = Array.from(data, value);
   else {
     if (typeof value.length !== "number") value = Array.from(value);
-    if (index !== undefined) value = Array.from(index, i => value[i]);
+    if (index !== undefined) value = take(value, index);
   }
   return {scale, type, value, label};
 }
@@ -135,4 +135,14 @@ export function title(L) {
     .filter(i => nonempty(L[i]))
     .append("title")
       .text(i => L[i]) : () => {};
+}
+
+// Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
+export function range(data) {
+  return Uint32Array.from(data, indexOf);
+}
+
+// Returns an array [values[index[0]], values[index[1]], …].
+export function take(values, index) {
+  return Array.from(index, i => values[i]);
 }
