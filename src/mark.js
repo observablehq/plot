@@ -22,26 +22,45 @@ export class Mark {
       return true;
     });
   }
-  initialize(data, index) {
-    if (data !== undefined) data = this.transform(data, index, this.data);
+  initialize(facets) {
+    let index, data;
+    if (this.data !== undefined) {
+      if (this.transform.length === 2) { // facet-aware transform
+        ({index, data} = this.transform(this.data, facets));
+      } else if (facets !== undefined) { // basic transform, faceted
+        index = [], data = [];
+        for (const facet of facets) {
+          const facetData = this.transform(take(this.data, facet));
+          const facetIndex = facetData === undefined ? undefined : range(facetData).map(i => i + data.length); // TODO optimize
+          index.push(facetIndex);
+          data.push(...facetData); // TODO optimize
+        }
+      } else { // basic transform, non-faceted
+        data = this.transform(this.data);
+        index = data === undefined ? undefined : range(data);
+      }
+    }
     return {
-      index: data === undefined ? undefined : range(data),
+      index,
       channels: this.channels.map(channel => {
         const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, index, channel)];
+        return [name == null ? undefined : name + "", Channel(data, channel)];
       })
     };
   }
 }
 
 // TODO Type coercion?
-function Channel(data, index, {scale, type, value}) {
+function Channel(data, {scale, type, value}) {
   let label;
-  if (typeof value === "string") label = value, value = Array.from(data, field(value));
-  else if (typeof value === "function") label = value.label, value = Array.from(data, value);
-  else {
-    if (typeof value.length !== "number") value = Array.from(value);
-    if (index !== undefined) value = take(value, index);
+  if (typeof value === "string") {
+    label = value;
+    value = Array.from(data, field(value));
+  } else if (typeof value === "function") {
+    label = value.label;
+    value = Array.from(data, value);
+  } else if (typeof value.length !== "number") {
+    value = Array.from(value);
   }
   return {scale, type, value, label};
 }

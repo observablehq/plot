@@ -33,7 +33,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     if (markChannels.has(mark)) throw new Error("duplicate mark");
     const named = Object.create(null);
-    const {index, channels} = mark.initialize(mark.data);
+    const {index, channels} = mark.initialize();
     for (const [name, channel] of channels) {
       if (name !== undefined) {
         named[name] = channel.value;

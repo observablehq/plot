@@ -5,6 +5,7 @@ import {autoScaleRange} from "../scales.js";
 
 class Facet extends Mark {
   constructor(data, {x, y, transform} = {}, marks = []) {
+    if (data === undefined) throw new Error("missing facet data");
     super(
       data,
       [
@@ -14,35 +15,46 @@ class Facet extends Mark {
       transform
     );
     this.marks = marks;
-    this.facets = undefined; // set by initialize
+    // The following fields are set by initialize:
+    this.marksChannels = undefined; // array of mark channels
+    this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
   }
-  initialize(data) {
-    const {index, channels} = super.initialize(data);
+  initialize() {
+    const {index, channels} = super.initialize();
+    const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
+    const facets = facetGroups(index, channels);
+    const facetsKeys = Array.from(facets.keys());
+    const facetsIndex = Array.from(facets.values());
     const subchannels = [];
-    const facets = this.facets = facetMap(channels);
-    for (const [facetKey, facetIndex] of facetGroups(index, channels)) {
-      const facetData = take(data, facetIndex);
-      const markIndex = new Map();
-      const markChannels = new Map();
-      for (const mark of this.marks) {
-        if (markIndex.has(mark)) throw new Error("duplicate mark");
-        const markData = mark.data === data ? facetData : mark.data;
-        const markDataIndex = mark.data === data ? facetIndex : undefined;
-        const named = Object.create(null);
-        const {index, channels} = mark.initialize(markData, markDataIndex);
-        for (const [name, channel] of channels) {
-          if (name !== undefined) named[name] = channel.value;
-          subchannels.push([undefined, channel]);
+    const marksChannels = this.marksChannels = [];
+    for (const facetKey of facetsKeys) {
+      marksIndexByFacet.set(facetKey, new Array(this.marks.length)); // TODO optimize
+    }
+    for (let i = 0; i < this.marks.length; ++i) {
+      const mark = this.marks[i];
+      const facets = mark.data === this.data ? facetsIndex : undefined;
+      const {index, channels} = mark.initialize(facets);
+      // If an index is returned by mark.initialize, its structure depends on
+      // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
+      // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
+      // when faceted. Faceting is only applied if the mark data is the same as
+      // the facet’s data.
+      if (index !== undefined) {
+        for (let j = 0; j < facetsKeys.length; ++j) {
+          marksIndexByFacet.get(facetsKeys[j])[i] = facets ? index[j] : index;
         }
-        markIndex.set(mark, index);
-        markChannels.set(mark, named);
       }
-      facets.set(facetKey, {markIndex, markChannels});
+      const named = Object.create(null);
+      for (const [name, channel] of channels) {
+        if (name !== undefined) named[name] = channel.value;
+        subchannels.push([undefined, channel]);
+      }
+      marksChannels.push(named);
     }
     return {index, channels: [...channels, ...subchannels]};
   }
   render(index, scales, channels, options) {
-    const {marks, facets} = this;
+    const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const {x, y, marginTop, marginRight, marginBottom, marginLeft, width, height} = options;
 
@@ -59,16 +71,16 @@ class Facet extends Mark {
 
     return create("svg:g")
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(key => facets.has(key)))
+          .data(facetKeys(scales).filter(key => marksIndexByFacet.has(key)))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const {markIndex, markChannels} = facets.get(key);
-              for (const mark of marks) {
-                const node = mark.render(
-                  markIndex.get(mark),
+              const marksIndex = marksIndexByFacet.get(key);
+              for (let i = 0; i < marks.length; ++i) {
+                const node = marks[i].render(
+                  marksIndex[i],
                   scales,
-                  markChannels.get(mark),
+                  marksChannels[i],
                   subdimensions
                 );
                 if (node != null) this.appendChild(node);
