@@ -1,6 +1,6 @@
 import {create} from "d3-selection";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {facets} from "./marks/facet.js";
+import {facets} from "./facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {

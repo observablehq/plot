@@ -1,7 +1,7 @@
 import {cross, groups} from "d3-array";
 import {create} from "d3-selection";
-import {Mark, first, second} from "../mark.js";
-import {autoScaleRange} from "../scales.js";
+import {Mark, first, second} from "./mark.js";
+import {autoScaleRange} from "./scales.js";
 
 class Facet extends Mark {
   constructor(data, {x, y, transform} = {}, marks = []) {
