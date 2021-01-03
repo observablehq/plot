@@ -32,12 +32,15 @@ export class Mark {
         ({index, data} = this.transform(this.data, facets));
       } else if (facets !== undefined) { // basic transform, faceted
         index = [], data = [];
+        let k = 0;
         for (const facet of facets) {
           const facetData = this.transform(take(this.data, facet));
-          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, data.length);
+          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
           index.push(facetIndex);
-          data.push(...facetData); // TODO optimize
+          data.push(facetData);
+          k += facetData.length;
         }
+        data = data.flat();
         let facetIndex;
         // Reorder any channel value arrays to match the facet index.
         for (const channel of this.channels) {

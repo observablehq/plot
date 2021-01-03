@@ -28,7 +28,7 @@ class Facet extends Mark {
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
     for (const facetKey of facetsKeys) {
-      marksIndexByFacet.set(facetKey, new Array(this.marks.length)); // TODO optimize
+      marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
