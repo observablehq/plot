@@ -41,12 +41,14 @@ function binof({value, domain, thresholds}) {
 function binfacets(bins, facets, cumulative) {
   const index = [];
   const data = [];
+  let k = 0;
   for (const facet of facets.map(set)) {
     let b = bins.map(bin => binsubset(bin, facet));
     b = cumulative ? accumulate(cumulative < 0 ? b.reverse() : b) : b;
     b = b.filter(nonempty);
-    index.push(offsetRange(b, data.length));
+    index.push(offsetRange(b, k));
     data.push(b);
+    k += b.length;
   }
   return {index, data: data.flat()};
 }
