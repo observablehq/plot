@@ -136,8 +136,11 @@ export function maybeValue(x) {
 // If the channel value is specified as a string, indicating a named field, this
 // wraps the specified function f with another function with the corresponding
 // label property, such that the associated axis inherits the label by default.
-export function maybeLabel(f, label) {
-  return typeof label === "string" ? Object.assign(d => f(d), {label}) : f;
+export function maybeLabel(f, value) {
+  const label = typeof value === "string" ? value
+    : typeof value === "function" ? value.label
+    : undefined;
+  return label === undefined ? f : Object.assign(d => f(d), {label});
 }
 
 // Computes the size of the given iterable, hopefully without iterating.
