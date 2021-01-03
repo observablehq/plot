@@ -1,12 +1,12 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, set, maybeValue, range, offsetRange} from "../mark.js";
+import {valueof, first, second, maybeValue, range, offsetRange} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
   const bin = binof({value, domain, thresholds});
   return (data, facets) => {
     let bins = bin(data);
-    if (facets !== undefined) return binfacets(bins, facets, binsubset1, cumulative);
+    if (facets !== undefined) return binfacets(bins, facets, subset1, cumulative);
     if (cumulative) bins = accumulate(cumulative < 0 ? bins.reverse() : bins);
     bins = bins.filter(nonempty);
     return {index: range(bins), data: bins};
@@ -25,7 +25,7 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
       subbin.y1 = y.x1;
       return subbin;
     });
-    if (facets !== undefined) return binfacets(bins, facets, binsubset2);
+    if (facets !== undefined) return binfacets(bins, facets, subset2);
     bins = bins.filter(nonempty);
     return {index: range(bins), data: bins};
   };
@@ -45,8 +45,8 @@ function binfacets(bins, facets, subset, cumulative) {
   const index = [];
   const data = [];
   let k = 0;
-  for (const facet of facets.map(set)) {
-    let b = bins.map(bin => subset(bin, facet));
+  for (const facet of facets.map(subset)) {
+    let b = bins.map(facet);
     b = cumulative ? accumulate(cumulative < 0 ? b.reverse() : b) : b;
     b = b.filter(nonempty);
     index.push(offsetRange(b, k));
@@ -63,20 +63,26 @@ function binset(bin) {
   return set;
 }
 
-function binsubset1(bin, index) {
-  const subbin = bin.filter(i => index.has(i));
-  subbin.x0 = bin.x0;
-  subbin.x1 = bin.x1;
-  return subbin;
+function subset1(facet) {
+  const f = new Set(facet);
+  return bin => {
+    const subbin = bin.filter(i => f.has(i));
+    subbin.x0 = bin.x0;
+    subbin.x1 = bin.x1;
+    return subbin;
+  };
 }
 
-function binsubset2(bin, index) {
-  const subbin = bin.filter(i => index.has(i));
-  subbin.x0 = bin.x0;
-  subbin.x1 = bin.x1;
-  subbin.y0 = bin.y0;
-  subbin.y1 = bin.y1;
-  return subbin;
+function subset2(facet) {
+  const f = new Set(facet);
+  return bin => {
+    const subbin = bin.filter(i => f.has(i));
+    subbin.x0 = bin.x0;
+    subbin.x1 = bin.x1;
+    subbin.y0 = bin.y0;
+    subbin.y1 = bin.y1;
+    return subbin;
+  };
 }
 
 function accumulate(bins) {

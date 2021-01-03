@@ -181,7 +181,3 @@ export function offsetRange(data, k) {
 export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
-
-export function set(values) {
-  return new Set(values);
-}

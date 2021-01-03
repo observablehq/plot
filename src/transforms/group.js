@@ -1,6 +1,6 @@
 import {groups} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, maybeValue, range, offsetRange, set} from "../mark.js";
+import {valueof, maybeValue, range, offsetRange} from "../mark.js";
 
 export function group1(x) {
   const {value} = maybeValue({value: x});
@@ -29,13 +29,18 @@ function regroup(groups, facets) {
   const index = [];
   const data = [];
   let k = 0;
-  for (const facet of facets.map(set)) {
-    let g = groups.map(([k, v]) => [k, v.filter(i => facet.has(i))]).filter(nonempty1);
+  for (const facet of facets.map(subset)) {
+    let g = groups.map(facet).filter(nonempty1);
     index.push(offsetRange(g, k));
     data.push(g);
     k += g.length;
   }
   return {index, data: data.flat()};
+}
+
+function subset(facet) {
+  const f = new Set(facet);
+  return ([key, group]) => [key, group.filter(i => f.has(i))];
 }
 
 // Since marks don’t render when channel values are undefined (or null or NaN),
