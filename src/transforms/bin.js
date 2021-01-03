@@ -1,5 +1,5 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, maybeValue, range, offsetRange} from "../mark.js";
+import {valueof, first, second, set, maybeValue, range, offsetRange} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
@@ -31,17 +31,13 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   };
 }
 
-function set(index) {
-  return new Set(index);
-}
-
 function binof({value, domain, thresholds}) {
   return data => {
     const values = valueof(data, value);
     const bin = binner().value(i => values[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    return bin(range(values));
+    return bin(range(data));
   };
 }
 
