@@ -6,7 +6,7 @@ export function bin1(options = {}) {
   const bin = binof({value, domain, thresholds});
   return (data, facets) => {
     let bins = bin(data);
-    if (facets !== undefined) return binfacets(bins, facets, cumulative);
+    if (facets !== undefined) return binfacets(bins, facets, binsubset1, cumulative);
     if (cumulative) bins = accumulate(cumulative < 0 ? bins.reverse() : bins);
     bins = bins.filter(nonempty);
     return {index: range(bins), data: bins};
@@ -17,8 +17,15 @@ export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
   const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
   return (data, facets) => {
-    let bins = cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset), binsubset);
-    if (facets !== undefined) return binfacets(bins, facets);
+    let bins = cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset), (x, y) => {
+      const subbin = x.filter(i => y.has(i));
+      subbin.x0 = x.x0;
+      subbin.x1 = x.x1;
+      subbin.y0 = y.x0;
+      subbin.y1 = y.x1;
+      return subbin;
+    });
+    if (facets !== undefined) return binfacets(bins, facets, binsubset2);
     bins = bins.filter(nonempty);
     return {index: range(bins), data: bins};
   };
@@ -38,12 +45,12 @@ function binof({value, domain, thresholds}) {
   };
 }
 
-function binfacets(bins, facets, cumulative) {
+function binfacets(bins, facets, subset, cumulative) {
   const index = [];
   const data = [];
   let k = 0;
   for (const facet of facets.map(set)) {
-    let b = bins.map(bin => binsubset(bin, facet));
+    let b = bins.map(bin => subset(bin, facet));
     b = cumulative ? accumulate(cumulative < 0 ? b.reverse() : b) : b;
     b = b.filter(nonempty);
     index.push(offsetRange(b, k));
@@ -60,10 +67,19 @@ function binset(bin) {
   return set;
 }
 
-function binsubset(bin, index) {
+function binsubset1(bin, index) {
   const subbin = bin.filter(i => index.has(i));
   subbin.x0 = bin.x0;
   subbin.x1 = bin.x1;
+  return subbin;
+}
+
+function binsubset2(bin, index) {
+  const subbin = bin.filter(i => index.has(i));
+  subbin.x0 = bin.x0;
+  subbin.x1 = bin.x1;
+  subbin.y0 = bin.y0;
+  subbin.y1 = bin.y1;
   return subbin;
 }
 
