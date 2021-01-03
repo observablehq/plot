@@ -28,14 +28,14 @@ tape("barX() has the expected defaults", test => {
 tape("barX(data, {z}) specifies an optional z channel", test => {
   const bar = Plot.barX(undefined, {z: "x"});
   const z = bar.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "x");
+  test.strictEqual(z.value.label, "x");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("barX(data, {title}) specifies an optional title channel", test => {
   const bar = Plot.barX(undefined, {title: "x"});
   const title = bar.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "x");
+  test.strictEqual(title.value.label, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -53,7 +53,7 @@ tape("barX(data, {fill}) allows fill to be a variable color", test => {
   const bar = Plot.barX(undefined, {fill: "x"});
   test.strictEqual(bar.fill, undefined);
   const fill = bar.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "x");
+  test.strictEqual(fill.value.label, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -71,7 +71,7 @@ tape("barX(data, {stroke}) allows stroke to be a variable color", test => {
   const bar = Plot.barX(undefined, {stroke: "x"});
   test.strictEqual(bar.stroke, undefined);
   const stroke = bar.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "x");
+  test.strictEqual(stroke.value.label, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
@@ -81,10 +81,10 @@ tape("barX(data, {x, y}) defaults x1 to zero and x2 to x", test => {
   test.strictEqual(x1.value(), 0);
   test.strictEqual(x1.scale, "x");
   const x2 = bar.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value, "0");
+  test.strictEqual(x2.value.label, "0");
   test.strictEqual(x2.scale, "x");
   const y = bar.channels.find(c => c.name === "y");
-  test.strictEqual(y.value, "1");
+  test.strictEqual(y.value.label, "1");
   test.strictEqual(y.scale, "y");
 });
 
@@ -115,14 +115,14 @@ tape("barY() has the expected defaults", test => {
 tape("barY(data, {z}) specifies an optional z channel", test => {
   const bar = Plot.barY(undefined, {z: "x"});
   const z = bar.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "x");
+  test.strictEqual(z.value.label, "x");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("barY(data, {title}) specifies an optional title channel", test => {
   const bar = Plot.barY(undefined, {title: "x"});
   const title = bar.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "x");
+  test.strictEqual(title.value.label, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -140,7 +140,7 @@ tape("barY(data, {fill}) allows fill to be a variable color", test => {
   const bar = Plot.barY(undefined, {fill: "x"});
   test.strictEqual(bar.fill, undefined);
   const fill = bar.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "x");
+  test.strictEqual(fill.value.label, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -158,19 +158,19 @@ tape("barY(data, {stroke}) allows stroke to be a variable color", test => {
   const bar = Plot.barY(undefined, {stroke: "x"});
   test.strictEqual(bar.stroke, undefined);
   const stroke = bar.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "x");
+  test.strictEqual(stroke.value.label, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
 tape("barY(data, {x, y}) defaults y1 to zero and y2 to y", test => {
   const bar = Plot.barY(undefined, {x: "0", y: "1"});
   const x = bar.channels.find(c => c.name === "x");
-  test.strictEqual(x.value, "0");
+  test.strictEqual(x.value.label, "0");
   test.strictEqual(x.scale, "x");
   const y1 = bar.channels.find(c => c.name === "y1");
   test.strictEqual(y1.value(), 0);
   test.strictEqual(y1.scale, "y");
   const y2 = bar.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value, "1");
+  test.strictEqual(y2.value.label, "1");
   test.strictEqual(y2.scale, "y");
 });

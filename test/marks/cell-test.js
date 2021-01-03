@@ -29,14 +29,14 @@ tape("cell() has the expected defaults", test => {
 tape("cell(data, {z}) specifies an optional z channel", test => {
   const cell = Plot.cell(undefined, {z: "x"});
   const z = cell.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "x");
+  test.strictEqual(z.value.label, "x");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("cell(data, {title}) specifies an optional title channel", test => {
   const cell = Plot.cell(undefined, {title: "x"});
   const title = cell.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "x");
+  test.strictEqual(title.value.label, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -54,7 +54,7 @@ tape("cell(data, {fill}) allows fill to be a variable color", test => {
   const cell = Plot.cell(undefined, {fill: "x"});
   test.strictEqual(cell.fill, undefined);
   const fill = cell.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "x");
+  test.strictEqual(fill.value.label, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -72,7 +72,7 @@ tape("cell(data, {stroke}) allows stroke to be a variable color", test => {
   const cell = Plot.cell(undefined, {stroke: "x"});
   test.strictEqual(cell.stroke, undefined);
   const stroke = cell.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "x");
+  test.strictEqual(stroke.value.label, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
