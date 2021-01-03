@@ -96,16 +96,17 @@ export function facets(data, {x, y, ...options}, marks) {
     : [new Facet(data, {x, y, ...options}, marks)];
 }
 
-function facetMap(channels) {
-  return new (channels.length > 1 ? FacetMap2 : FacetMap);
-}
-
+// Unlike facetGroups, which returns groups in order of input data, this returns
+// keys in order of the associated scale’s domains.
 function facetKeys({fx, fy}) {
   return fx && fy ? cross(fx.domain(), fy.domain())
     : fx ? fx.domain()
     : fy.domain();
 }
 
+// Returns an array of [[key1, index1], [key2, index2], …] representing the data
+// indexes associated with each facet. For two-dimensional faceting, each key
+// is a two-element array; see also facetMap.
 function facetGroups(index, channels) {
   return (channels.length > 1 ? facetGroup2 : facetGroup1)(index, ...channels);
 }
@@ -125,6 +126,10 @@ function facetTranslate(fx, fy) {
   return fx && fy ? ([kx, ky]) => `translate(${fx(kx)},${fy(ky)})`
     : fx ? kx => `translate(${fx(kx)},0)`
     : ky => `translate(0,${fy(ky)})`;
+}
+
+function facetMap(channels) {
+  return new (channels.length > 1 ? FacetMap2 : FacetMap);
 }
 
 class FacetMap {
