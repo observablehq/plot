@@ -19,7 +19,7 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' && node -r esm -r module-alias/register test/plot.js && eslint src test",
+    "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "start": "snowpack dev",
@@ -38,6 +38,7 @@
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",
     "snowpack": "^2.18.5",
+    "tap-dot": "^2.0.0",
     "tape": "^4.13.3",
     "tape-await": "^0.1.2"
   },
