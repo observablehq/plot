@@ -21,12 +21,12 @@ class Facet extends Mark {
   }
   initialize() {
     const {index, channels} = super.initialize();
-    const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     const facets = facetGroups(index, channels);
     const facetsKeys = Array.from(facets, first);
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
+    const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
