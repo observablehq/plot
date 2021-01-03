@@ -28,21 +28,28 @@ export class Mark {
   initialize(facets) {
     let index, data;
     if (this.data !== undefined) {
-      if (this.transform.length === 2) { // facet-aware transform
+      if (this.transform === identity) { // optimized common case
+        data = this.data, index = facets !== undefined ? facets : range(data);
+      } else if (this.transform.length === 2) { // facet-aware transform
         ({index, data} = this.transform(this.data, facets));
       } else if (facets !== undefined) { // basic transform, faceted
-        index = [], data = [];
+        // Apply the transform to each facet’s data separately; since the
+        // transformed data can have different cardinality than the source
+        // data, also build up a new faceted index into the transformed data.
         let k = 0;
+        index = [], data = [];
         for (const facet of facets) {
           const facetData = this.transform(take(this.data, facet));
           const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
+          k += facetData.length;
           index.push(facetIndex);
           data.push(facetData);
-          k += facetData.length;
         }
         data = data.flat();
+        // Reorder any channel value arrays to match the transformed index.
+        // Since there may be zero or multiple channels that need reordering,
+        // we lazily compute the flattened transformed index.
         let facetIndex;
-        // Reorder any channel value arrays to match the facet index.
         for (const channel of this.channels) {
           let {value} = channel;
           if (typeof value !== "function") {
