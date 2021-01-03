@@ -1,6 +1,6 @@
-import {cross, group, groups} from "d3-array";
+import {cross, groups} from "d3-array";
 import {create} from "d3-selection";
-import {Mark, take} from "../mark.js";
+import {Mark, first, second} from "../mark.js";
 import {autoScaleRange} from "../scales.js";
 
 class Facet extends Mark {
@@ -23,8 +23,8 @@ class Facet extends Mark {
     const {index, channels} = super.initialize();
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     const facets = facetGroups(index, channels);
-    const facetsKeys = Array.from(facets.keys());
-    const facetsIndex = Array.from(facets.values());
+    const facetsKeys = Array.from(facets, first);
+    const facetsIndex = Array.from(facets, second);
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
     for (const facetKey of facetsKeys) {
@@ -111,7 +111,7 @@ function facetGroups(index, channels) {
 }
 
 function facetGroup1(index, [, {value: F}]) {
-  return group(index, i => F[i]);
+  return groups(index, i => F[i]);
 }
 
 function facetGroup2(index, [, {value: FX}], [, {value: FY}]) {
