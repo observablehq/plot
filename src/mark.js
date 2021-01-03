@@ -13,6 +13,9 @@ export class Mark {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
+      if (typeof value === "string") {
+        channel.value = field(value);
+      }
       if (name !== undefined) {
         const key = name + "";
         if (key === "__proto__") throw new Error("illegal channel name");
@@ -35,6 +38,16 @@ export class Mark {
           index.push(facetIndex);
           data.push(...facetData); // TODO optimize
         }
+        let facetIndex;
+        // Reorder any channel value arrays to match the facet index.
+        for (const channel of this.channels) {
+          let {value} = channel;
+          if (typeof value !== "function") {
+            if (typeof value.length !== "number") value = Array.from(value);
+            if (facetIndex === undefined) facetIndex = facets.flat();
+            channel.value = take(value, facetIndex);
+          }
+        }
       } else { // basic transform, non-faceted
         data = this.transform(this.data);
         index = data === undefined ? undefined : range(data);
@@ -53,10 +66,7 @@ export class Mark {
 // TODO Type coercion?
 function Channel(data, {scale, type, value}) {
   let label;
-  if (typeof value === "string") {
-    label = value;
-    value = Array.from(data, field(value));
-  } else if (typeof value === "function") {
+  if (typeof value === "function") {
     label = value.label;
     value = Array.from(data, value);
   } else if (typeof value.length !== "number") {
@@ -73,7 +83,7 @@ export function valueof(data, value) {
     : value;
 }
 
-export const field = value => d => d[value];
+export const field = label => Object.assign(d => d[label], {label});
 export const indexOf = (d, i) => i;
 export const identity = d => d;
 export const zero = () => 0;
