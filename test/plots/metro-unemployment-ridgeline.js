@@ -6,12 +6,12 @@ export default async function() {
   return Plot.plot({
     width: 960,
     height: 1080,
-    marginLeft: 300,
     x: {
       label: null
     },
     y: {
-      range: [20, -40]
+      range: [20, -40],
+      axis: null
     },
     fy: {
       domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
@@ -21,7 +21,8 @@ export default async function() {
     },
     facet: {
       data,
-      y: "division"
+      y: "division",
+      marginLeft: 300
     },
     marks: [
       Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),

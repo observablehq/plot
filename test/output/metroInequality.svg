@@ -65,7 +65,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(205.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">400k</text>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(230.5,0)">
       <line stroke="currentColor" y2="6"></line>
@@ -101,7 +101,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(463.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4M</text>
+      <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(489.5,0)">
       <line stroke="currentColor" y2="6"></line>

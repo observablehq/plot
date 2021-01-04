@@ -53,22 +53,9 @@ export function plot(options = {}) {
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
-  // When faceting, layout fx and fy instead of x and y.
-  // TODO cleaner
-  if (facet !== undefined) {
-    const x = scales.fx ? "fx" : "x";
-    const y = scales.fy ? "fy" : "y";
-    const facetScaleChannels = new Map([["x", scaleChannels.get(x)], ["y", scaleChannels.get(y)]]);
-    const facetScaleDescriptors = {x: scaleDescriptors[x], y: scaleDescriptors[y]};
-    const facetAxes = {x: axes[x], y: axes[y]};
-    autoScaleRange(facetScaleDescriptors, dimensions);
-    autoAxisTicks(facetAxes, dimensions);
-    autoAxisLabels(facetScaleChannels, facetScaleDescriptors, facetAxes, dimensions);
-  } else {
-    autoScaleRange(scaleDescriptors, dimensions);
-    autoAxisTicks(axes, dimensions);
-    autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
-  }
+  autoScaleRange(scaleDescriptors, dimensions);
+  autoAxisTicks(scaleDescriptors, axes);
+  autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
@@ -78,16 +65,10 @@ export function plot(options = {}) {
   if (axes.fy) options.fy = {...options.fy, ...axes.fy};
 
   // When faceting, render axes for fx and fy instead of x and y.
-  // TODO cleaner
-  if (facet !== undefined) {
-    const x = scales.fx ? "fx" : "x";
-    const y = scales.fy ? "fy" : "y";
-    if (axes[x]) marks.unshift(axes[x]);
-    if (axes[y]) marks.unshift(axes[y]);
-  } else {
-    if (axes.x) marks.unshift(axes.x);
-    if (axes.y) marks.unshift(axes.y);
-  }
+  const x = facet !== undefined && scales.fx ? "fx" : "x";
+  const y = facet !== undefined && scales.fy ? "fy" : "y";
+  if (axes[x]) marks.unshift(axes[x]);
+  if (axes[y]) marks.unshift(axes[y]);
 
   const {width, height} = dimensions;
 
@@ -117,15 +98,41 @@ export function plot(options = {}) {
   return svg.node();
 }
 
-function Dimensions({y, fy}, {x: xAxis, y: yAxis}, {
-  width = 640,
-  height = y || fy ? 396 : 60,
-  marginTop = xAxis && xAxis.axis === "top" ? 30 : yAxis ? 20 : 0,
-  marginRight = yAxis && yAxis.axis === "right" ? 40 : xAxis ? 20 : 0,
-  marginBottom = xAxis && xAxis.axis === "bottom" ? 30 : yAxis ? 20 : 0,
-  marginLeft = yAxis && yAxis.axis === "left" ? 40 : xAxis ? 20 : 0
-} = {}) {
-  return {width, height, marginTop, marginRight, marginBottom, marginLeft};
+function Dimensions(
+  {y, fy},
+  {
+    x: {axis: xAxis} = {},
+    y: {axis: yAxis} = {},
+    fx: {axis: fxAxis} = {},
+    fy: {axis: fyAxis} = {}
+  },
+  {
+    width = 640,
+    height = y || fy ? 396 : 60,
+    facet: {
+      marginTop: facetMarginTop = fxAxis === "top" ? 30 :0,
+      marginRight: facetMarginRight = fyAxis === "right" ? 40 : 0,
+      marginBottom: facetMarginBottom = fxAxis === "bottom" ? 30 : 0,
+      marginLeft: facetMarginLeft = fyAxis === "left" ? 40 : 0
+    } = {},
+    marginTop = Math.max((xAxis === "top" ? 30 : 0) + facetMarginTop, yAxis || fyAxis ? 20 : 0),
+    marginRight = Math.max((yAxis === "right" ? 40 : 0) + facetMarginRight, xAxis || fxAxis ? 20 : 0),
+    marginBottom = Math.max((xAxis === "bottom" ? 30 : 0) + facetMarginBottom, yAxis || fyAxis ? 20 : 0),
+    marginLeft = Math.max((yAxis === "left" ? 40 : 0) + facetMarginLeft, xAxis || fxAxis ? 20 : 0)
+  } = {}
+) {
+  return {
+    width,
+    height,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    facetMarginTop,
+    facetMarginRight,
+    facetMarginBottom,
+    facetMarginLeft
+  };
 }
 
 function ScaleFunctions(scales) {

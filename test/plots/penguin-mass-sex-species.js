@@ -4,15 +4,19 @@ import * as d3 from "d3";
 export default async function() {
   const data = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
-    marginLeft: 70,
     x: {
       round: true,
-      label: "Body mass (g) →"
+      label: "Body mass (g) →",
+      axis: null
+    },
+    y: {
+      axis: null
     },
     facet: {
       data,
       x: "sex",
-      y: "species"
+      y: "species",
+      marginLeft: 70
     },
     marks: [
       Plot.binX(data, {x: "body_mass_g"}),

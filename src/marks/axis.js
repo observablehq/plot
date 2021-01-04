@@ -29,7 +29,16 @@ export class AxisX {
     index,
     {[this.name]: x},
     channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
+    {
+      width,
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      facetMarginTop,
+      facetMarginBottom
+    }
   ) {
     const {
       axis,
@@ -41,9 +50,10 @@ export class AxisX {
       labelAnchor,
       labelOffset
     } = this;
+    const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     return create("svg:g")
-        .attr("transform", `translate(0,${axis === "top" ? marginTop : height - marginBottom})`)
+        .attr("transform", `translate(0,${offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom)})`)
         .call((axis === "top" ? axisTop : axisBottom)(round(x))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
@@ -99,7 +109,16 @@ export class AxisY {
     index,
     {[this.name]: y},
     channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
+    {
+      width,
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      facetMarginLeft,
+      facetMarginRight
+    }
   ) {
     const {
       axis,
@@ -111,9 +130,10 @@ export class AxisY {
       labelAnchor,
       labelOffset
     } = this;
+    const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     return create("svg:g")
-        .attr("transform", `translate(${axis === "right" ? width - marginRight : marginLeft},0)`)
+        .attr("transform", `translate(${offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft)},0)`)
         .call((axis === "right" ? axisRight : axisLeft)(round(y))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)

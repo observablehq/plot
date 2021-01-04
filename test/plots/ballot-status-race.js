@@ -53,13 +53,13 @@ export default async function() {
   });
 
   return Plot.plot({
-    marginLeft: 210,
     x: {
       grid: true,
       label: "Frequency (%) →"
     },
     y: {
-      domain: ["ACCEPTED", "REJECTED", "PENDING"]
+      domain: ["ACCEPTED", "REJECTED", "PENDING"],
+      axis: null
     },
     fy: {
       domain: rollup
@@ -75,7 +75,8 @@ export default async function() {
     },
     facet: {
       data: rollup,
-      y: "race"
+      y: "race",
+      marginLeft: 210
     },
     marks: [
       Plot.barX(rollup, {x: "percent", y: "status", fill: "status", title: d => `${d.percent.toFixed(1)}%`}),

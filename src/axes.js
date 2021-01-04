@@ -9,57 +9,73 @@ export function Axes(
   const {axis: fxAxis = true} = fx;
   const {axis: fyAxis = true} = fy;
   return {
-    x: xScale && xAxis ? new AxisX({grid, ...x}) : null,
-    y: yScale && yAxis ? new AxisY({grid, ...y}) : null,
-    fx: fxScale && fxAxis ? new AxisX({name: "fx", grid: facetGrid, ...fx}) : null,
-    fy: fyScale && fyAxis ? new AxisY({name: "fy", grid: facetGrid, ...fy}) : null
+    ...xScale && xAxis && {x: new AxisX({grid, ...x})},
+    ...yScale && yAxis && {y: new AxisY({grid, ...y})},
+    ...fxScale && fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx})},
+    ...fyScale && fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy})}
   };
 }
 
-// Mutates axes.{x,y}.ticks!
+// Mutates axis.ticks!
 // TODO Populate tickFormat if undefined, too?
-export function autoAxisTicks(axes, dimensions) {
-  if (axes.x && axes.x.ticks === undefined) {
-    const {width, marginRight, marginLeft} = dimensions;
-    axes.x.ticks = (width - marginLeft - marginRight) / 80;
-  }
-  if (axes.y && axes.y.ticks === undefined) {
-    const {height, marginTop, marginBottom} = dimensions;
-    axes.y.ticks = (height - marginTop - marginBottom) / 35;
+export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, fy: fyAxis}) {
+  if (fxAxis) autoAxisTicksK(fx, fxAxis, 80);
+  if (fyAxis) autoAxisTicksK(fy, fyAxis, 35);
+  if (xAxis) autoAxisTicksK(x, xAxis, 80);
+  if (yAxis) autoAxisTicksK(y, yAxis, 35);
+}
+
+function autoAxisTicksK(scale, axis, k) {
+  if (axis.ticks === undefined) {
+    const [min, max] = scale.scale.range();
+    axis.ticks = Math.abs(max - min) / k;
+    console.log(axis.ticks);
   }
 }
 
-// Mutates axes.{x,y}.label!
-// Mutates axes.{x,y}.labelAnchor!
-// Mutates axes.{x,y}.labelOffset!
+// Mutates axis.{label,labelAnchor,labelOffset}!
 export function autoAxisLabels(channels, scales, axes, dimensions) {
-  if (axes.x) {
-    if (axes.x.labelAnchor === undefined) {
-      axes.x.labelAnchor = scales.x.type === "ordinal" ? "center"
-        : scales.x.invert ? "left"
-        : "right";
-    }
-    if (axes.x.labelOffset === undefined) {
-      const {marginTop, marginBottom} = dimensions;
-      axes.x.labelOffset = axes.x.axis === "top" ? marginTop : marginBottom;
-    }
-    if (axes.x.label === undefined) {
-      axes.x.label = inferLabel(channels.get("x"), scales.x, axes.x, "x");
-    }
+  if (axes.fx) {
+    const {facetMarginTop, facetMarginBottom} = dimensions;
+    const margins = {marginTop: facetMarginTop, marginBottom: facetMarginBottom};
+    autoAxisLabelsX(axes.fx, scales.fx, channels.get("fx"), margins);
   }
-  if (axes.y) {
-    if (axes.y.labelAnchor === undefined) {
-      axes.y.labelAnchor = scales.y.type === "ordinal" ? "center"
-        : axes.x && axes.x.axis === "top" ? "bottom"
-        : "top";
-    }
-    if (axes.y.labelOffset === undefined) {
-      const {marginRight, marginLeft} = dimensions;
-      axes.y.labelOffset = axes.y.axis === "left" ? marginLeft : marginRight;
-    }
-    if (axes.y.label === undefined) {
-      axes.y.label = inferLabel(channels.get("y"), scales.y, axes.y, "y");
-    }
+  if (axes.fy) {
+    const {facetMarginLeft, facetMarginRight} = dimensions;
+    const margins = {marginLeft: facetMarginLeft, marginRight: facetMarginRight};
+    autoAxisLabelsY(axes.fy, axes.fx, scales.fy, channels.get("fy"), margins);
+  }
+  if (axes.x) autoAxisLabelsX(axes.x, scales.x, channels.get("x"), dimensions);
+  if (axes.y) autoAxisLabelsY(axes.y, axes.x, scales.y, channels.get("y"), dimensions);
+}
+
+function autoAxisLabelsX(axis, scale, channels, margins) {
+  if (axis.labelAnchor === undefined) {
+    axis.labelAnchor = scale.type === "ordinal" ? "center"
+      : scale.invert ? "left"
+      : "right";
+  }
+  if (axis.labelOffset === undefined) {
+    const {marginTop, marginBottom} = margins;
+    axis.labelOffset = axis.axis === "top" ? marginTop : marginBottom;
+  }
+  if (axis.label === undefined) {
+    axis.label = inferLabel(channels, scale, axis, "x");
+  }
+}
+
+function autoAxisLabelsY(axis, opposite, scale, channels, margins) {
+  if (axis.labelAnchor === undefined) {
+    axis.labelAnchor = scale.type === "ordinal" ? "center"
+      : opposite && opposite.axis === "top" ? "bottom" // TODO scale.invert?
+      : "top";
+  }
+  if (axis.labelOffset === undefined) {
+    const {marginRight, marginLeft} = margins;
+    axis.labelOffset = axis.axis === "left" ? marginLeft : marginRight;
+  }
+  if (axis.label === undefined) {
+    axis.label = inferLabel(channels, scale, axis, "y");
   }
 }
 

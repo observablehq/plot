@@ -1,7 +1,6 @@
 import {cross, groups} from "d3-array";
 import {create} from "d3-selection";
 import {Mark, first, second} from "./mark.js";
-import {autoScaleRange} from "./scales.js";
 
 class Facet extends Mark {
   constructor(data, {x, y, transform} = {}, marks = []) {
@@ -56,7 +55,7 @@ class Facet extends Mark {
   render(index, scales, channels, options) {
     const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
-    const {x, y, marginTop, marginRight, marginBottom, marginLeft, width, height} = options;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = options;
 
     const subdimensions = {
       ...fy
@@ -66,8 +65,6 @@ class Facet extends Mark {
         ? {marginRight: 0, marginLeft: 0, width: fx.bandwidth()}
         : {marginRight, marginLeft, width}
     };
-
-    autoScaleRange({x, y}, subdimensions);
 
     return create("svg:g")
         .call(g => g.selectAll()

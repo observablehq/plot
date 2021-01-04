@@ -6,12 +6,18 @@ export default async function() {
   const culmen_depth_mm = data.map(d => d.culmen_depth_mm);
   const culmen_length_mm = data.map(d => d.culmen_length_mm);
   return Plot.plot({
-    marginLeft: 80,
     height: 600,
+    x: {
+      axis: null
+    },
+    y: {
+      axis: null
+    },
     facet: {
       data,
       x: "sex",
-      y: "species"
+      y: "species",
+      marginLeft: 80
     },
     marks: [
       Plot.dot(data.slice(), {

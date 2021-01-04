@@ -15,18 +15,28 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
 }
 
 // Mutates scale.range!
-export function autoScaleRange(scales, dimensions) {
-  if (scales.x && scales.x.range === undefined) {
-    const {inset = 0} = scales.x;
-    const {width, marginLeft, marginRight} = dimensions;
-    scales.x.scale.range([marginLeft + inset, width - marginRight - inset]);
+export function autoScaleRange({x, y, fx, fy}, dimensions) {
+  if (fx) autoScaleRangeX(fx, dimensions);
+  if (fy) autoScaleRangeY(fy, dimensions);
+  if (x) autoScaleRangeX(x, fx ? {width: fx.scale.bandwidth()} : dimensions);
+  if (y) autoScaleRangeY(y, fy ? {height: fy.scale.bandwidth()} : dimensions);
+}
+
+function autoScaleRangeX(scale, dimensions) {
+  if (scale.range === undefined) {
+    const {inset = 0} = scale;
+    const {width, marginLeft = 0, marginRight = 0} = dimensions;
+    scale.scale.range([marginLeft + inset, width - marginRight - inset]);
   }
-  if (scales.y && scales.y.range === undefined) {
-    const {inset = 0} = scales.y;
-    const {height, marginTop, marginBottom} = dimensions;
+}
+
+function autoScaleRangeY(scale, dimensions) {
+  if (scale.range === undefined) {
+    const {inset = 0} = scale;
+    const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scales.y.type === "ordinal") range.reverse();
-    scales.y.scale.range(range);
+    if (scale.type === "ordinal") range.reverse();
+    scale.scale.range(range);
   }
 }
 

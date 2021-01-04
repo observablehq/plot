@@ -4,12 +4,18 @@ import * as d3 from "d3";
 export default async function() {
   const data = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
-    marginLeft: 80,
     height: 600,
+    x: {
+      axis: null
+    },
+    y: {
+      axis: null
+    },
     facet: {
       data,
       x: "sex",
-      y: "species"
+      y: "species",
+      marginLeft: 80
     },
     marks: [
       Plot.dot(data.slice(), {

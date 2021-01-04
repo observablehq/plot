@@ -9,8 +9,14 @@ export default async function() {
     case: letters.map(d => d.toLowerCase() === d ? "lower" : "upper"),
     vowel: letters.map(d => /[aeiouy]/i.test(d) ? "vowel" : "")
   };
-  
+
   const defA = {
+    x: {
+      axis: null
+    },
+    y: {
+      axis: null
+    },
     facet: {
       data: moby.letters,
       x: moby.vowel,
@@ -35,6 +41,6 @@ export default async function() {
     ]
   };
 */
-  
+
   return Plot.plot(defA);
 }
