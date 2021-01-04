@@ -34,7 +34,7 @@ import * as plots from "./plots/index.js";
           }
         }
 
-        test.ok(actual === expected, "matches snapshot");
+        test.ok(actual === expected, `${name} must match snapshot`);
       } finally {
         global.document = undefined;
         global.fetch = undefined;
