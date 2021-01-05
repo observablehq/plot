@@ -5,28 +5,28 @@
     }
   </style>
   <g transform="translate(210,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,46.5)">
+    <g class="tick" opacity="1" transform="translate(0,42.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">WHITE</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,88.5)">
+    <g class="tick" opacity="1" transform="translate(0,85.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">UNDESIGNATED</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,130.5)">
+    <g class="tick" opacity="1" transform="translate(0,128.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">ASIAN</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,172.5)">
+    <g class="tick" opacity="1" transform="translate(0,171.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">OTHER</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,214.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">TWO or MORE RACES</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,256.5)">
+    <g class="tick" opacity="1" transform="translate(0,257.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">INDIAN AMERICAN or ALASKA NATIVE</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,298.5)">
+    <g class="tick" opacity="1" transform="translate(0,300.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">BLACK or AFRICAN AMERICAN</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,340.5)">
+    <g class="tick" opacity="1" transform="translate(0,343.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>
   </g>
@@ -49,7 +49,7 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>
   </g>
   <g>
-    <g transform="translate(0,27)">
+    <g transform="translate(0,23)">
       <g transform="translate(0,0)">
         <rect x="210" width="410" y="2" height="11" fill="currentColor">
           <title>79.0%</title>
@@ -62,10 +62,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,69)">
+    <g transform="translate(0,66)">
       <g transform="translate(0,0)">
         <rect x="210" width="405.8914002270852" y="2" height="11" fill="currentColor">
           <title>78.3%</title>
@@ -78,10 +78,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,111)">
+    <g transform="translate(0,109)">
       <g transform="translate(0,0)">
         <rect x="210" width="404.1524922619212" y="2" height="11" fill="currentColor">
           <title>77.9%</title>
@@ -94,10 +94,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,153)">
+    <g transform="translate(0,152)">
       <g transform="translate(0,0)">
         <rect x="210" width="384.322276007396" y="2" height="11" fill="currentColor">
           <title>74.1%</title>
@@ -110,7 +110,7 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
     <g transform="translate(0,195)">
@@ -126,10 +126,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,237)">
+    <g transform="translate(0,238)">
       <g transform="translate(0,0)">
         <rect x="210" width="132.02293626031644" y="14" height="11" fill="brown">
           <title>25.5%</title>
@@ -142,10 +142,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,279)">
+    <g transform="translate(0,281)">
       <g transform="translate(0,0)">
         <rect x="210" width="349.7813163559978" y="2" height="11" fill="currentColor">
           <title>67.4%</title>
@@ -158,10 +158,10 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
-    <g transform="translate(0,321)">
+    <g transform="translate(0,324)">
       <g transform="translate(0,0)">
         <rect x="210" width="216.11499950843603" y="14" height="11" fill="brown">
           <title>41.7%</title>
@@ -171,7 +171,7 @@
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="38"></line>
+        <line x1="210" x2="210" y1="0" y2="39"></line>
       </g>
     </g>
   </g>

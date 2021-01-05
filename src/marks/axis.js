@@ -5,7 +5,7 @@ import {create} from "d3-selection";
 export class AxisX {
   constructor({
     name = "x",
-    axis = true,
+    axis,
     ticks,
     tickSize = 6,
     tickFormat,
@@ -15,7 +15,7 @@ export class AxisX {
     labelOffset
   } = {}) {
     this.name = name;
-    this.axis = axis = axis === true ? "bottom" : (axis + "").toLowerCase();
+    this.axis = (axis + "").toLowerCase();
     if (!["top", "bottom"].includes(axis)) throw new Error(`invalid x-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;
@@ -85,7 +85,7 @@ export class AxisX {
 export class AxisY {
   constructor({
     name = "y",
-    axis = true,
+    axis,
     ticks,
     tickSize = 6,
     tickFormat,
@@ -95,7 +95,7 @@ export class AxisY {
     labelOffset
   } = {}) {
     this.name = name;
-    this.axis = axis = axis === true ? "left" : (axis + "").toLowerCase();
+    this.axis = axis = (axis + "").toLowerCase();
     if (!["left", "right"].includes(axis)) throw new Error(`invalid y-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;

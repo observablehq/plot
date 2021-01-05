@@ -150,7 +150,7 @@ export function ScaleBand(key, channels, {
   align = 0.5,
   padding = 0.1,
   paddingInner = padding,
-  paddingOuter = padding,
+  paddingOuter = key === "fx" || key === "fy" ? 0 : padding,
   round = true,
   ...options
 }) {

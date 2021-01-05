@@ -4,43 +4,21 @@ import * as d3 from "d3";
 export default async function() {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
   const letters = [...mobydick].filter(d => /\w/.test(d));
-  const moby = {
-    letters,
-    case: letters.map(d => d.toLowerCase() === d ? "lower" : "upper"),
-    vowel: letters.map(d => /[aeiouy]/i.test(d) ? "vowel" : "")
-  };
-
-  const defA = {
-    x: {
-      axis: null
-    },
+  const uppers = letters.map(d => d.toUpperCase());
+  const cases = letters.map(d => d.toLowerCase() === d ? "lower" : "upper");
+  const vowels = letters.map(d => /[aeiouy]/i.test(d) ? "vowel" : "");
+  return Plot.plot({
     y: {
-      axis: null
+      grid: true
     },
     facet: {
-      data: moby.letters,
-      x: moby.vowel,
-      y: moby.case
+      data: letters,
+      x: vowels,
+      y: cases
     },
     marks: [
-      Plot.groupX(moby.letters, { x: d => d.toLowerCase() }),
+      Plot.groupX(letters, {x: uppers}),
       Plot.ruleY([0])
     ]
-  };
-
-/*  todo cf #50
-  const defB = {
-    facet: {
-      data: moby.letters,
-      x: moby.vowel,
-      y: moby.case
-    },
-    marks: [
-      Plot.groupX(moby.letters, {x: moby.letters.map(d => d.toLowerCase())}),
-      Plot.ruleY([0])
-    ]
-  };
-*/
-
-  return Plot.plot(defA);
+  });
 }

@@ -91,7 +91,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
-    const node = mark.render(index, scales, channels, options);
+    const node = mark.render(index, scales, channels, options, axes);
     if (node != null) svg.append(() => node);
   }
 

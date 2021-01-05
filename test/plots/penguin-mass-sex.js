@@ -8,13 +8,10 @@ export default async function() {
       round: true,
       label: "Body mass (g) →"
     },
-    y: {
-      axis: null
-    },
     facet: {
       data,
       y: "sex",
-      marginLeft: 70
+      marginRight: 70
     },
     marks: [
       Plot.binX(data, {x: "body_mass_g"}),

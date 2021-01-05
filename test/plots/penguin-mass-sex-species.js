@@ -6,17 +6,13 @@ export default async function() {
   return Plot.plot({
     x: {
       round: true,
-      label: "Body mass (g) →",
-      axis: null
-    },
-    y: {
-      axis: null
+      label: "Body mass (g) →"
     },
     facet: {
       data,
       x: "sex",
       y: "species",
-      marginLeft: 70
+      marginRight: 70
     },
     marks: [
       Plot.binX(data, {x: "body_mass_g"}),

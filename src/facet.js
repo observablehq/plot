@@ -52,21 +52,37 @@ class Facet extends Mark {
     }
     return {index, channels: [...channels, ...subchannels]};
   }
-  render(index, scales, channels, options) {
+  render(index, scales, channels, dimensions, axes) {
     const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
-    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = options;
-
-    const subdimensions = {
-      ...fy
-        ? {marginTop: 0, marginBottom: 0, height: fy.bandwidth()}
-        : {marginTop, marginBottom, height},
-      ...fx
-        ? {marginRight: 0, marginLeft: 0, width: fx.bandwidth()}
-        : {marginRight, marginLeft, width}
-    };
-
+    const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+    const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+    const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     return create("svg:g")
+        .call(g => {
+          if (fy && axes.y) {
+            const domain = fy.domain();
+            const axis1 = axes.y, axis2 = nolabel(axis1);
+            const j = axis1.labelAnchor === "bottom" ? domain.length - 1 : 0;
+            const fyDimensions = {...dimensions, ...fyMargins};
+            g.selectAll()
+              .data(domain)
+              .join("g")
+              .attr("transform", ky => `translate(0,${fy(ky)})`)
+              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fyDimensions));
+          }
+          if (fx && axes.x) {
+            const domain = fx.domain();
+            const axis1 = axes.x, axis2 = nolabel(axis1);
+            const j = axis1.labelAnchor === "right" ? domain.length - 1 : 0;
+            const fxDimensions = {...dimensions, ...fxMargins};
+            g.selectAll()
+              .data(domain)
+              .join("g")
+              .attr("transform", kx => `translate(${fx(kx)},0)`)
+              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fxDimensions));
+          }
+        })
         .call(g => g.selectAll()
           .data(facetKeys(scales).filter(key => marksIndexByFacet.has(key)))
           .join("g")
@@ -85,6 +101,13 @@ class Facet extends Mark {
             }))
       .node();
   }
+}
+
+// Derives a copy of the specified axis with the label disabled.
+function nolabel(axis) {
+  return axis === undefined || axis.label === undefined
+    ? axis // use the existing axis if unlabeled
+    : Object.assign(Object.create(axis), {label: undefined});
 }
 
 export function facets(data, {x, y, ...options}, marks) {
