@@ -40,7 +40,7 @@ export class AbstractBar extends Mark {
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
   }
-  render(I, scales, channels, options) {
+  render(I, scales, channels, dimensions) {
     const {color} = scales;
     const {z: Z, title: L, fill: F, stroke: S} = channels;
     const index = filter(I, ...this._positions(channels), F, S);
@@ -52,10 +52,10 @@ export class AbstractBar extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", this._x(scales, channels, options))
-            .attr("width", this._width(scales, channels, options))
-            .attr("y", this._y(scales, channels, options))
-            .attr("height", this._height(scales, channels, options))
+            .attr("x", this._x(scales, channels, dimensions))
+            .attr("width", this._width(scales, channels, dimensions))
+            .attr("y", this._y(scales, channels, dimensions))
+            .attr("height", this._height(scales, channels, dimensions))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .call(title(L)))

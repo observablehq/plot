@@ -27,7 +27,7 @@ export class AxisX {
   }
   render(
     index,
-    {[this.name]: x},
+    {[this.name]: x, fy},
     channels,
     {
       width,
@@ -37,8 +37,7 @@ export class AxisX {
       marginBottom,
       marginLeft,
       facetMarginTop,
-      facetMarginBottom,
-      fy
+      facetMarginBottom
     }
   ) {
     const {
@@ -109,7 +108,7 @@ export class AxisY {
   }
   render(
     index,
-    {[this.name]: y},
+    {[this.name]: y, fx},
     channels,
     {
       width,
@@ -119,8 +118,7 @@ export class AxisY {
       marginBottom,
       marginLeft,
       facetMarginLeft,
-      facetMarginRight,
-      fx
+      facetMarginRight
     }
   ) {
     const {
@@ -178,8 +176,8 @@ function gridX(fy, {height, marginBottom, marginTop, offsetSign}) {
   return fy
   ? g => {
     const t = g.selectAll(".tick line");
-    const bw = fy.scale.bandwidth();
-      for (const y of fy.domain.map(fy.scale)) {
+    const bw = fy.bandwidth();
+      for (const y of fy.domain().map(fy)) {
         t.clone(true)
           .attr("stroke-opacity", 0.1)
           .attr("y1", offsetSign * (y + bw + marginBottom - height))
@@ -194,9 +192,9 @@ function gridX(fy, {height, marginBottom, marginTop, offsetSign}) {
 function gridY(fx, {marginLeft, marginRight, offsetSign, width}) {
   return fx
   ? g => {
-      const bw = fx.scale.bandwidth();
+      const bw = fx.bandwidth();
       const t = g.selectAll(".tick line");
-      for (const x of fx.domain.map(fx.scale)) {
+      for (const x of fx.domain().map(fx)) {
         t.clone(true)
           .attr("stroke-opacity", 0.1)
           .attr("x1", offsetSign * (x + bw + marginRight - width))
