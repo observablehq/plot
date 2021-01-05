@@ -2,8 +2,6 @@ import {arc} from "./arc.js";
 import {pie as transformPie} from "../transforms/pie.js";
 import {field} from "../mark.js";
 
-function noSort() {}
-
 export function pie(data, {
   value,
   sort,
@@ -31,3 +29,5 @@ export function pie(data, {
     }
   );
 }
+
+function noSort() {}

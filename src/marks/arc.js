@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {arc as shapeArc} from "d3-shape";
-import {filter} from "../defined.js";
+import {filter, nonempty} from "../defined.js";
 import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -20,6 +20,7 @@ export class Arc extends Mark {
       padAngle,
       z,
       title,
+      label,
       fill,
       stroke,
       transform,
@@ -48,6 +49,7 @@ export class Arc extends Mark {
         {name: "padAngle", value: vpa, optional: true},
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
+        {name: "label", value: label, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
@@ -65,7 +67,7 @@ export class Arc extends Mark {
   render(
     I,
     {x, y, color},
-    {startAngle: SA, endAngle: EA, innerRadius: RI, outerRadius: RO, padAngle: PA, x: X, y: Y, z: Z, title: L, fill: F, stroke: S},
+    {startAngle: SA, endAngle: EA, innerRadius: RI, outerRadius: RO, padAngle: PA, x: X, y: Y, z: Z, title: T, label: L, fill: F, stroke: S},
     {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
     const index = filter(I, SA, EA, F, S);
@@ -80,9 +82,11 @@ export class Arc extends Mark {
       .outerRadius(RO ? (i => r0 * RO[i]) : r0 * this.ro)
       .padAngle(PA ? (i => PA[i]) : this.pa);
     
-    return create("svg:g")
+    const wrapper = create("svg:g")
+        .call(applyTransform, x, y);
+      wrapper
+        .append("g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y)
         .call(g => g.selectAll()
           .data(index)
           .join("path")
@@ -91,8 +95,24 @@ export class Arc extends Mark {
             .attr("transform", i => `translate(${x(X[i])},${y(Y[i])})`)
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
-        .call(title(L)))
-      .node();
+        .call(title(T)));
+    if (L) wrapper.append("g").call(_label(L, index, arc));
+    return wrapper.node();
+  
+  function _label(L, index, arc) {
+    return L ? g => {
+      g.append("g")
+      .selectAll("text")
+      .data(index.filter(i => nonempty(L[i])))
+      .join("g")
+      .attr("transform", i => `translate(${x(X[i])},${y(Y[i])})`)
+        .append("text")
+        .text(i => L[i])
+        .attr("transform", i => `translate(${arc.centroid(i)})`)
+        .attr("text-anchor", "center")
+        .style("fill", "black");
+      } : () => {};
+    }
   }
 }
 
