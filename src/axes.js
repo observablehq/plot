@@ -33,7 +33,6 @@ function autoAxisTicksK(scale, axis, k) {
   if (axis.ticks === undefined) {
     const [min, max] = scale.scale.range();
     axis.ticks = Math.abs(max - min) / k;
-    console.log(axis.ticks);
   }
 }
 
