@@ -1,8 +1,9 @@
-import {identity, size, maybeLabel} from "../mark.js";
+import {arrayify, identity, maybeLabel} from "../mark.js";
 import {bin1, bin2} from "../transforms/bin.js";
 import {rect, rectX, rectY} from "./rect.js";
 
 export function bin(data, {x, y, domain, thresholds, normalize, ...options} = {}) {
+  data = arrayify(data);
   return rect(
     data,
     {
@@ -10,7 +11,7 @@ export function bin(data, {x, y, domain, thresholds, normalize, ...options} = {}
       insetLeft: 1,
       ...options,
       transform: bin2({x, y, domain, thresholds}),
-      fill: normalize ? normalizer(normalize, size(data)) : length,
+      fill: normalize ? normalizer(normalize, data.length) : length,
       x1: maybeLabel(x0, x),
       x2: x1,
       y1: maybeLabel(y0, y),
@@ -27,13 +28,14 @@ export function binX(data, {
   cumulative,
   ...options
 } = {}) {
+  data = arrayify(data);
   return rectY(
     data,
     {
       insetLeft: 1,
       ...options,
       transform: bin1({value: x, domain, thresholds, cumulative}),
-      y: normalize ? normalizer(normalize, size(data)) : length,
+      y: normalize ? normalizer(normalize, data.length) : length,
       x1: maybeLabel(x0, x),
       x2: x1
     }
@@ -54,7 +56,7 @@ export function binY(data, {
       insetTop: 1,
       ...options,
       transform: bin1({value: y, domain, thresholds, cumulative}),
-      x: normalize ? normalizer(normalize, data) : length,
+      x: normalize ? normalizer(normalize, data.length) : length,
       y1: maybeLabel(x0, y),
       y2: x1
     }

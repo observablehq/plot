@@ -1,4 +1,4 @@
-import {identity, first, second, size, maybeLabel, maybeZero} from "../mark.js";
+import {arrayify, identity, first, second, maybeLabel, maybeZero} from "../mark.js";
 import {group1, group2} from "../transforms/group.js";
 import {barX, barY} from "./bar.js";
 import {cell} from "./cell.js";
@@ -27,6 +27,7 @@ export function groupX(data, {
   y2,
   ...options
 } = {}) {
+  data = arrayify(data);
   ([y1, y2] = maybeZero(y, y1, y2, maybeLength(data, options)));
   return barY(
     data,
@@ -47,6 +48,7 @@ export function groupY(data, {
   x2,
   ...options
 } = {}) {
+  data = arrayify(data);
   ([x1, x2] = maybeZero(x, x1, x2, maybeLength(data, options)));
   return barX(
     data,
@@ -71,7 +73,7 @@ function length3([,, group]) {
 length2.label = length3.label = "Frequency";
 
 function maybeLength(data, {normalize}) {
-  return normalize ? normalizer(normalize, size(data)) : length2;
+  return normalize ? normalizer(normalize, data.length) : length2;
 }
 
 // An alternative channel definition to length2 (above) that computes the

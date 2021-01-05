@@ -5,7 +5,7 @@ import {nonempty} from "./defined.js";
 export class Mark {
   constructor(data, channels = [], transform = identity) {
     const names = new Set();
-    this.data = data;
+    this.data = arrayify(data);
     this.transform = transform;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
@@ -36,10 +36,12 @@ export class Mark {
         // Apply the transform to each facet’s data separately; since the
         // transformed data can have different cardinality than the source
         // data, also build up a new faceted index into the transformed data.
+        // Note that the transformed data must be a generic Array, not a typed
+        // array, for the array.flat() call to flatten the array.
         let k = 0;
         index = [], data = [];
         for (const facet of facets) {
-          const facetData = this.transform(take(this.data, facet));
+          const facetData = arrayify(this.transform(take(this.data, facet)), Array);
           const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
           k += facetData.length;
           index.push(facetIndex);
@@ -53,9 +55,8 @@ export class Mark {
         for (const channel of this.channels) {
           let {value} = channel;
           if (typeof value !== "function") {
-            if (typeof value.length !== "number") value = Array.from(value);
             if (facetIndex === undefined) facetIndex = facets.flat();
-            channel.value = take(value, facetIndex);
+            channel.value = take(arrayify(value), facetIndex);
           }
         }
       } else { // basic transform, non-faceted
@@ -63,6 +64,7 @@ export class Mark {
         index = data === undefined ? undefined : range(data);
       }
     }
+    data = arrayify(data);
     return {
       index,
       channels: this.channels.map(channel => {
@@ -79,8 +81,8 @@ function Channel(data, {scale, type, value}) {
   if (typeof value === "function") {
     label = value.label;
     value = Array.from(data, value);
-  } else if (typeof value.length !== "number") {
-    value = Array.from(value);
+  } else {
+    value = arrayify(value);
   }
   return {scale, type, value, label};
 }
@@ -89,8 +91,7 @@ function Channel(data, {scale, type, value}) {
 export function valueof(data, value) {
   return typeof value === "string" ? Array.from(data, field(value))
     : typeof value === "function" ? Array.from(data, value)
-    : typeof value.length !== "number" ? Array.from(value)
-    : value;
+    : arrayify(value);
 }
 
 export const field = label => Object.assign(d => d[label], {label});
@@ -143,11 +144,17 @@ export function maybeLabel(f, value) {
   return label === undefined ? f : Object.assign(d => f(d), {label});
 }
 
-// Computes the size of the given iterable, hopefully without iterating.
-export function size(data) {
-  return "length" in data ? data.length
-    : "size" in data ? data.size
-    : Array.from(data).length;
+// Promotes the specified iterable to an array-like, if needed. If an array type
+// is provided, then the returned array will strictly be of the specified type;
+// otherwise, an array-like object may be returned, such as a string. By array-
+// like, we mean an object that can be safely iterated over multiple times in
+// consistent order, and that exposes a length property and numeric indexing. If
+// the specified data is null or undefined, returns the value as-is.
+export function arrayify(data, type) {
+  return data == null ? data
+    : type !== undefined && !(data instanceof type) ? type.from(data)
+    : typeof data.length !== "number" ? Array.from(data)
+    : data;
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
