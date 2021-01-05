@@ -16,6 +16,7 @@ class Facet extends Mark {
     this.marks = marks;
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
+    this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
   }
   initialize() {
@@ -25,22 +26,31 @@ class Facet extends Mark {
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
+    const marksIndex = this.marksIndex = new Array(this.marks.length);
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
-      const facets = mark.data === this.data ? facetsIndex : undefined;
-      const {index, channels} = mark.initialize(facets);
+      const markFacets = mark.data === this.data ? facetsIndex : undefined;
+      const {index, channels} = mark.initialize(markFacets);
       // If an index is returned by mark.initialize, its structure depends on
       // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
       // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
       // when faceted. Faceting is only applied if the mark data is the same as
       // the facet’s data.
       if (index !== undefined) {
-        for (let j = 0; j < facetsKeys.length; ++j) {
-          marksIndexByFacet.get(facetsKeys[j])[i] = facets ? index[j] : index;
+        if (markFacets) {
+          for (let j = 0; j < facetsKeys.length; ++j) {
+            marksIndexByFacet.get(facetsKeys[j])[i] = index[j];
+          }
+          marksIndex[i] = []; // implicit empty index for sparse facets
+        } else {
+          for (let j = 0; j < facetsKeys.length; ++j) {
+            marksIndexByFacet.get(facetsKeys[j])[i] = index;
+          }
+          marksIndex[i] = index;
         }
       }
       const named = Object.create(null);
@@ -53,7 +63,7 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(index, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksIndex, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
@@ -84,14 +94,14 @@ class Facet extends Mark {
           }
         })
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(key => marksIndexByFacet.has(key)))
+          .data(facetKeys(scales))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const marksIndex = marksIndexByFacet.get(key);
+              const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
               for (let i = 0; i < marks.length; ++i) {
                 const node = marks[i].render(
-                  marksIndex[i],
+                  marksFacetIndex[i],
                   scales,
                   marksChannels[i],
                   subdimensions
