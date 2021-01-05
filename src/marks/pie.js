@@ -1,5 +1,8 @@
 import {arc} from "./arc.js";
 import {pie as transformPie} from "../transforms/pie.js";
+import {field} from "../mark.js";
+
+function noSort() {}
 
 export function pie(data, {
   value,
@@ -12,9 +15,9 @@ export function pie(data, {
   ...options
 } = {}) {
   const pie = transformPie();
-  if (value !== undefined) pie.value(value);
-  if (sort !== undefined) pie.sort(sort);
-  if (sortValues !== undefined) pie.sortValues(sortValues);
+  if (value !== undefined) pie.value(typeof value === "string" ? field(value) : value);
+  if (sort !== undefined) pie.sort(sort || noSort);
+  if (sortValues !== undefined) pie.sortValues(sortValues || noSort);
   if (startAngle !== undefined) pie.startAngle(startAngle);
   if (endAngle !== undefined) pie.endAngle(endAngle);
   if (padAngle !== undefined) pie.padAngle(padAngle);
