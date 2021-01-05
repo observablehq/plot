@@ -32,6 +32,7 @@ export class Mark {
         data = this.data, index = facets !== undefined ? facets : range(data);
       } else if (this.transform.length === 2) { // facet-aware transform
         ({index, data} = this.transform(this.data, facets));
+        data = arrayify(data);
       } else if (facets !== undefined) { // basic transform, faceted
         // Apply the transform to each facet’s data separately; since the
         // transformed data can have different cardinality than the source
@@ -60,11 +61,10 @@ export class Mark {
           }
         }
       } else { // basic transform, non-faceted
-        data = this.transform(this.data);
+        data = arrayify(this.transform(this.data));
         index = data === undefined ? undefined : range(data);
       }
     }
-    data = arrayify(data);
     return {
       index,
       channels: this.channels.map(channel => {
