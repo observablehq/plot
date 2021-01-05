@@ -6,139 +6,139 @@
   </style>
   <g transform="translate(300,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,51.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Detroit-Livonia-Dearborn, MI Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Detroit-Livonia-Dearborn, MI Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,73.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Detroit-Warren-Livonia, MI MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Detroit-Warren-Livonia, MI MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Warren-Troy-Farmington Hills, MI Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Warren-Troy-Farmington Hills, MI Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,117.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lawrence-Methuen-Salem, MA-NH NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Lawrence-Methuen-Salem, MA-NH NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,139.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Los Angeles-Long Beach-Glendale, CA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Los Angeles-Long Beach-Glendale, CA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,161.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Miami-Miami Beach-Kendall, FL Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Miami-Miami Beach-Kendall, FL Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,183.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Los Angeles-Long Beach-Santa Ana, CA MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Los Angeles-Long Beach-Santa Ana, CA MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,205.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lake County-Kenosha County, IL-WI Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Lake County-Kenosha County, IL-WI Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,227.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">West Palm Beach-Boca Raton-Boynton Beach, FL Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">West Palm Beach-Boca Raton-Boynton Beach, FL Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,249.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chicago-Joliet-Naperville, IL Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Chicago-Joliet-Naperville, IL Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,271.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chicago-Joliet-Naperville, IL-IN-WI MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Chicago-Joliet-Naperville, IL-IN-WI MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,293.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Miami-Fort Lauderdale-Pompano Beach, FL MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Miami-Fort Lauderdale-Pompano Beach, FL MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,315.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oakland-Fremont-Hayward, CA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Oakland-Fremont-Hayward, CA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,337.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gary, IN Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Gary, IN Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,359.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tacoma, WA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Tacoma, WA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,381.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">San Francisco-Oakland-Fremont, CA MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">San Francisco-Oakland-Fremont, CA MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,403.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Camden, NJ Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Camden, NJ Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,425.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Brockton-Bridgewater-Easton, MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Brockton-Bridgewater-Easton, MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,447.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Seattle-Tacoma-Bellevue, WA MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Seattle-Tacoma-Bellevue, WA MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,469.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Fort Lauderdale-Pompano Beach-Deerfield Beach, FL Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Fort Lauderdale-Pompano Beach-Deerfield Beach, FL Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,491.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New York-White Plains-Wayne, NY-NJ Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">New York-White Plains-Wayne, NY-NJ Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,513.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Santa Ana-Anaheim-Irvine, CA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Santa Ana-Anaheim-Irvine, CA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,535.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Seattle-Bellevue-Everett, WA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Seattle-Bellevue-Everett, WA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,557.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Newark-Union, NJ-PA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Newark-Union, NJ-PA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,579.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Taunton-Norton-Raynham, MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Taunton-Norton-Raynham, MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,601.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lowell-Billerica-Chelmsford, MA-NH NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Lowell-Billerica-Chelmsford, MA-NH NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,623.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New York-Northern New Jersey-Long Island, NY-NJ-PA MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">New York-Northern New Jersey-Long Island, NY-NJ-PA MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,645.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">San Francisco-San Mateo-Redwood City, CA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">San Francisco-San Mateo-Redwood City, CA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,667.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Edison-New Brunswick, NJ Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Edison-New Brunswick, NJ Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,689.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Philadelphia-Camden-Wilmington, PA-NJ-DE-MD MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,711.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wilmington, DE-MD-NJ Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Wilmington, DE-MD-NJ Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,733.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peabody, MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Peabody, MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,755.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Philadelphia, PA Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Philadelphia, PA Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,777.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Fort Worth-Arlington, TX Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Fort Worth-Arlington, TX Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,799.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dallas-Fort Worth-Arlington, TX MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Dallas-Fort Worth-Arlington, TX MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,821.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dallas-Plano-Irving, TX Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Dallas-Plano-Irving, TX Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,843.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Haverhill-North Andover-Amesbury, MA-NH NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Haverhill-North Andover-Amesbury, MA-NH NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,865.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Boston-Cambridge-Quincy, MA-NH Met NECTA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Boston-Cambridge-Quincy, MA-NH Met NECTA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,887.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Boston-Cambridge-Quincy, MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Boston-Cambridge-Quincy, MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,909.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nassau-Suffolk, NY Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Nassau-Suffolk, NY Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,931.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Framingham, MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Framingham, MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,953.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nashua, NH-MA NECTA Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Nashua, NH-MA NECTA Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,975.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Washington-Arlington-Alexandria, DC-VA-MD-WV Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Washington-Arlington-Alexandria, DC-VA-MD-WV Met Div</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,997.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Washington-Arlington-Alexandria, DC-VA-MD-WV MSA</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Washington-Arlington-Alexandria, DC-VA-MD-WV MSA</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1019.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bethesda-Rockville-Frederick, MD Met Div</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Bethesda-Rockville-Frederick, MD Met Div</text>
     </g>
   </g>
   <g transform="translate(0,1050)" fill="none" text-anchor="middle">

@@ -6,13 +6,13 @@
   </style>
   <g transform="translate(570,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,73.5)">
-      <line stroke="currentColor" x2="6"></line><text fill="currentColor" x="9" dy="0.32em"></text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,192.5)">
-      <line stroke="currentColor" x2="6"></line><text fill="currentColor" x="9" dy="0.32em">FEMALE</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">FEMALE</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,311.5)">
-      <line stroke="currentColor" x2="6"></line><text fill="currentColor" x="9" dy="0.32em">MALE</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">MALE</text>
     </g><text fill="currentColor" transform="translate(70,193) rotate(-90)" dy="-0.32em" text-anchor="middle">sex</text>
   </g>
   <g transform="translate(0,366)" fill="none" text-anchor="middle">

@@ -7,7 +7,8 @@ export class AxisX {
     name = "x",
     axis,
     ticks,
-    tickSize = 6,
+    tickSize = name === "fx" ? 0 : 6,
+    tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
     grid,
     label,
@@ -19,6 +20,7 @@ export class AxisX {
     if (!["top", "bottom"].includes(axis)) throw new Error(`invalid x-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;
+    this.tickPadding = tickPadding;
     this.tickFormat = tickFormat;
     this.grid = grid;
     this.label = label;
@@ -44,6 +46,7 @@ export class AxisX {
       axis,
       ticks,
       tickSize,
+      tickPadding,
       tickFormat,
       grid,
       label,
@@ -60,6 +63,7 @@ export class AxisX {
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
             .tickSizeOuter(0)
+            .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
         .attr("font-size", null)
         .attr("font-family", null)
@@ -88,7 +92,8 @@ export class AxisY {
     name = "y",
     axis,
     ticks,
-    tickSize = 6,
+    tickSize = name === "fy" ? 0 : 6,
+    tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
     grid,
     label,
@@ -100,6 +105,7 @@ export class AxisY {
     if (!["left", "right"].includes(axis)) throw new Error(`invalid y-axis: ${axis}`);
     this.ticks = ticks;
     this.tickSize = tickSize;
+    this.tickPadding = tickPadding;
     this.tickFormat = tickFormat;
     this.grid = grid;
     this.label = label;
@@ -125,6 +131,7 @@ export class AxisY {
       axis,
       ticks,
       tickSize,
+      tickPadding,
       tickFormat,
       grid,
       label,
@@ -141,6 +148,7 @@ export class AxisY {
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
             .tickSizeOuter(0)
+            .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
         .attr("font-size", null)
         .attr("font-family", null)

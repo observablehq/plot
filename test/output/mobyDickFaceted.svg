@@ -6,18 +6,18 @@
   </style>
   <g transform="translate(600,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,110.5)">
-      <line stroke="currentColor" x2="6"></line><text fill="currentColor" x="9" dy="0.32em">lower</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">lower</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,286.5)">
-      <line stroke="currentColor" x2="6"></line><text fill="currentColor" x="9" dy="0.32em">upper</text>
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">upper</text>
     </g>
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(173.5,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em"></text>
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(467.5,0)">
-      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">vowel</text>
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">vowel</text>
     </g>
   </g>
   <g>
