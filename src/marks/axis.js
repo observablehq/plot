@@ -37,7 +37,8 @@ export class AxisX {
       marginBottom,
       marginLeft,
       facetMarginTop,
-      facetMarginBottom
+      facetMarginBottom,
+      fy
     }
   ) {
     const {
@@ -63,9 +64,10 @@ export class AxisX {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid ? () => {} : g => g.selectAll(".tick line").clone(true)
-            .attr("stroke-opacity", 0.1)
-            .attr("y2", offsetSign * (marginBottom + marginTop - height)))
+        .call(!grid
+          ? () => {}
+          : gridX(fy, {height, marginBottom, marginTop, offsetSign})
+        )
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
@@ -117,7 +119,8 @@ export class AxisY {
       marginBottom,
       marginLeft,
       facetMarginLeft,
-      facetMarginRight
+      facetMarginRight,
+      fx
     }
   ) {
     const {
@@ -143,9 +146,10 @@ export class AxisY {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid ? () => {} : g => g.selectAll(".tick line").clone(true)
-            .attr("stroke-opacity", 0.1)
-            .attr("x2", offsetSign * (marginLeft + marginRight - width)))
+        .call(!grid
+          ? () => {}
+          : gridY(fx, {marginLeft, marginRight, offsetSign, width})
+        )
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
@@ -168,4 +172,38 @@ function round(scale) {
   return scale.interpolate // TODO round band and point scales?
       ? scale.copy().interpolate(interpolateRound)
       : scale;
+}
+
+function gridX(fy, {height, marginBottom, marginTop, offsetSign}) {
+  return fy
+  ? g => {
+    const t = g.selectAll(".tick line");
+    const bw = fy.scale.bandwidth();
+      for (const y of fy.domain.map(fy.scale)) {
+        t.clone(true)
+          .attr("stroke-opacity", 0.1)
+          .attr("y1", offsetSign * (y + bw + marginBottom - height))
+          .attr("y2", offsetSign * (y + marginBottom - height));
+      }
+    }
+  : g => g.selectAll(".tick line").clone(true)
+      .attr("stroke-opacity", 0.1)
+      .attr("y2", offsetSign * (marginBottom + marginTop - height));
+}
+
+function gridY(fx, {marginLeft, marginRight, offsetSign, width}) {
+  return fx
+  ? g => {
+      const bw = fx.scale.bandwidth();
+      const t = g.selectAll(".tick line");
+      for (const x of fx.domain.map(fx.scale)) {
+        t.clone(true)
+          .attr("stroke-opacity", 0.1)
+          .attr("x1", offsetSign * (x + bw + marginRight - width))
+          .attr("x2", offsetSign * (x + marginRight - width));
+      }
+    }
+  : g => g.selectAll(".tick line").clone(true)
+      .attr("stroke-opacity", 0.1)
+      .attr("x2", offsetSign * (marginLeft + marginRight - width));
 }
