@@ -136,6 +136,7 @@
       </g>
     </g>
     <g transform="translate(40,30)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -489,6 +490,7 @@
       </g>
     </g>
     <g transform="translate(40,402)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -841,6 +843,7 @@
       </g>
     </g>
     <g transform="translate(219,30)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -1262,6 +1265,7 @@
       </g>
     </g>
     <g transform="translate(219,216)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -1644,6 +1648,7 @@
       </g>
     </g>
     <g transform="translate(219,402)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -2050,6 +2055,7 @@
       </g>
     </g>
     <g transform="translate(398,30)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -2471,6 +2477,7 @@
       </g>
     </g>
     <g transform="translate(398,216)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -2853,6 +2860,7 @@
       </g>
     </g>
     <g transform="translate(398,402)">
+      <rect fill="none" stroke="currentColor" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
