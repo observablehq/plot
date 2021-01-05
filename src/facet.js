@@ -4,7 +4,6 @@ import {Mark, first, second} from "./mark.js";
 
 class Facet extends Mark {
   constructor(data, {x, y, transform} = {}, marks = []) {
-    if (data === undefined) throw new Error("missing facet data");
     super(
       data,
       [
@@ -21,7 +20,7 @@ class Facet extends Mark {
   }
   initialize() {
     const {index, channels} = super.initialize();
-    const facets = facetGroups(index, channels);
+    const facets = index === undefined ? [] : facetGroups(index, channels);
     const facetsKeys = Array.from(facets, first);
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
