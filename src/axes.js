@@ -1,4 +1,4 @@
-import {AxisX, AxisY} from "./marks/axis.js";
+import {AxisX, AxisY} from "./axis.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
