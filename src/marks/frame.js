@@ -17,11 +17,13 @@ export class Frame extends Mark {
     channels,
     {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
+    const {stroke} = this;
+    const offset = stroke === "none" ? 0 : 0.5; // crisp edges
     return create("svg:rect")
         .call(applyIndirectStyles, this)
         .call(applyDirectStyles, this)
-        .attr("x", marginLeft)
-        .attr("y", marginTop)
+        .attr("x", marginLeft + offset)
+        .attr("y", marginTop + offset)
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
       .node();
