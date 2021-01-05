@@ -13,6 +13,7 @@ export default async function() {
       marginRight: 80
     },
     marks: [
+      Plot.frame(),
       Plot.dot(data.slice(), {
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
