@@ -52,8 +52,9 @@ export class AxisX {
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
+    const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
-        .attr("transform", `translate(0,${offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom)})`)
+        .attr("transform", `translate(0,${ty})`)
         .call((axis === "top" ? axisTop : axisBottom)(round(x))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
@@ -63,10 +64,9 @@ export class AxisX {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid
-          ? () => {}
-          : gridX(fy, {height, marginBottom, marginTop, offsetSign})
-        )
+        .call(!grid ? () => {}
+          : fy ? gridFacetX(fy, -ty)
+          : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
@@ -133,8 +133,9 @@ export class AxisY {
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
+    const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
-        .attr("transform", `translate(${offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft)},0)`)
+        .attr("transform", `translate(${tx},0)`)
         .call((axis === "right" ? axisRight : axisLeft)(round(y))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
@@ -144,10 +145,9 @@ export class AxisY {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid
-          ? () => {}
-          : gridY(fx, {marginLeft, marginRight, offsetSign, width})
-        )
+        .call(!grid ? () => {}
+          : fx ? gridFacetY(fx, -tx)
+          : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
@@ -172,36 +172,34 @@ function round(scale) {
       : scale;
 }
 
-function gridX(fy, {height, marginBottom, marginTop, offsetSign}) {
-  return fy
-  ? g => {
-    const t = g.selectAll(".tick line");
-    const bw = fy.bandwidth();
-      for (const y of fy.domain().map(fy)) {
-        t.clone(true)
-          .attr("stroke-opacity", 0.1)
-          .attr("y1", offsetSign * (y + bw + marginBottom - height))
-          .attr("y2", offsetSign * (y + marginBottom - height));
-      }
-    }
-  : g => g.selectAll(".tick line").clone(true)
+function gridX(y2) {
+  return g => g.selectAll(".tick line")
+    .clone(true)
       .attr("stroke-opacity", 0.1)
-      .attr("y2", offsetSign * (marginBottom + marginTop - height));
+      .attr("y2", y2);
 }
 
-function gridY(fx, {marginLeft, marginRight, offsetSign, width}) {
-  return fx
-  ? g => {
-      const bw = fx.bandwidth();
-      const t = g.selectAll(".tick line");
-      for (const x of fx.domain().map(fx)) {
-        t.clone(true)
-          .attr("stroke-opacity", 0.1)
-          .attr("x1", offsetSign * (x + bw + marginRight - width))
-          .attr("x2", offsetSign * (x + marginRight - width));
-      }
-    }
-  : g => g.selectAll(".tick line").clone(true)
+function gridY(x2) {
+  return g => g.selectAll(".tick line")
+    .clone(true)
       .attr("stroke-opacity", 0.1)
-      .attr("x2", offsetSign * (marginLeft + marginRight - width));
+      .attr("x2", x2);
+}
+
+function gridFacetX(fy, ty) {
+  const dy = fy.bandwidth();
+  return g => g.selectAll(".tick")
+    .append("path")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", 0.1)
+      .attr("d", fy.domain().map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
+}
+
+function gridFacetY(fx, tx) {
+  const dx = fx.bandwidth();
+  return g => g.selectAll(".tick")
+    .append("path")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", 0.1)
+      .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
