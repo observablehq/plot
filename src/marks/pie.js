@@ -6,24 +6,25 @@ export function pie(data, {
   sort,
   sortValues,
   startAngle,
+  transform,
   endAngle,
   padAngle,
   ...options
 } = {}) {
-  const transform = transformPie();
-  if (value !== undefined) transform.value(value);
-  if (sort !== undefined) transform.sort(sort);
-  if (sortValues !== undefined) transform.sortValues(sortValues);
-  if (startAngle !== undefined) transform.startAngle(startAngle);
-  if (endAngle !== undefined) transform.endAngle(endAngle);
-  if (padAngle !== undefined) transform.padAngle(padAngle);
+  const pie = transformPie();
+  if (value !== undefined) pie.value(value);
+  if (sort !== undefined) pie.sort(sort);
+  if (sortValues !== undefined) pie.sortValues(sortValues);
+  if (startAngle !== undefined) pie.startAngle(startAngle);
+  if (endAngle !== undefined) pie.endAngle(endAngle);
+  if (padAngle !== undefined) pie.padAngle(padAngle);
   
   return arc(
     data,
     {
       ...options,
       padAngle,
-      transform
+      transform: (!transform ? pie : data => pie(transform(data)))
     }
   );
 }
