@@ -3,8 +3,15 @@ import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
+const defaultStyle = {
+  display: "block",
+  fontSize: "10px",
+  fontFamily: "sans-serif",
+  background: "white"
+};
+
 export function plot(options = {}) {
-  const {facet} = options;
+  const {facet, style} = options;
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
@@ -13,14 +20,7 @@ export function plot(options = {}) {
     options = {...options, marks: facets(data, facet, marks)};
   }
 
-  const {
-    marks = [],
-    overflow,
-    display = "block",
-    fontSize = 10,
-    fontFamily = "sans-serif",
-    background = "white"
-  } = options;
+  const {marks = []} = options;
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();
@@ -78,12 +78,8 @@ export function plot(options = {}) {
       .attr("fill", "currentColor")
       .attr("stroke-miterlimit", 1)
       .attr("text-anchor", "middle")
-      .attr("font-size", fontSize)
-      .attr("font-family", fontFamily)
       .style("max-width", `${width}px`)
-      .style("display", display)
-      .style("background", background)
-      .style("overflow", overflow);
+      .each(function() { Object.assign(this.style, defaultStyle, style); });
 
   svg.append("style")
       .text(`.plot text { white-space: pre; }`);
