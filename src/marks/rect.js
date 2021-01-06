@@ -21,6 +21,8 @@ export class Rect extends Mark {
       insetRight = 0,
       insetBottom = 0,
       insetLeft = 0,
+      rx,
+      ry,
       transform,
       ...style
     } = {}
@@ -46,12 +48,15 @@ export class Rect extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
+    this.rx = number(rx);
+    this.ry = number(ry);
   }
   render(
     I,
     {x, y, color},
     {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, fill: F, stroke: S}
   ) {
+    const {rx, ry} = this;
     const index = filter(I, X1, Y2, X2, Y2, F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
@@ -65,9 +70,11 @@ export class Rect extends Mark {
             .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + this.insetTop)
             .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - this.insetLeft - this.insetRight))
             .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
+            .call(rx != null ? rect => rect.attr("rx", rx) : () => {})
+            .call(ry != null ? rect => rect.attr("ry", ry) : () => {})
             .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i]))
-            .call(title(L))))
+            .attr("stroke", S && (i => color(S[i])))
+            .call(title(L)))
       .node();
   }
 }
