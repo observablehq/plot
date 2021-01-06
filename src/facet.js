@@ -2,6 +2,12 @@ import {cross, groups} from "d3-array";
 import {create} from "d3-selection";
 import {Mark, first, second} from "./mark.js";
 
+export function facets(data, {x, y, ...options}, marks) {
+  return x === undefined && y === undefined
+    ? marks // if no facets are specified, ignore!
+    : [new Facet(data, {x, y, ...options}, marks)];
+}
+
 class Facet extends Mark {
   constructor(data, {x, y, transform} = {}, marks = []) {
     super(
@@ -72,7 +78,7 @@ class Facet extends Mark {
           if (fy && axes.y) {
             const domain = fy.domain();
             const axis1 = axes.y, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "bottom" ? domain.length - 1 : 0;
+            const j = axis1.labelAnchor === "bottom" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
             const fyDimensions = {...dimensions, ...fyMargins};
             g.selectAll()
               .data(domain)
@@ -83,8 +89,9 @@ class Facet extends Mark {
           if (fx && axes.x) {
             const domain = fx.domain();
             const axis1 = axes.x, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "right" ? domain.length - 1 : 0;
-            const fxDimensions = {...dimensions, ...fxMargins};
+            const j = axis1.labelAnchor === "right" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
+            const {marginLeft, marginRight} = dimensions;
+            const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
             g.selectAll()
               .data(domain)
               .join("g")
@@ -117,12 +124,6 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
-}
-
-export function facets(data, {x, y, ...options}, marks) {
-  return x === undefined && y === undefined
-    ? marks // if no facets are specified, ignore!
-    : [new Facet(data, {x, y, ...options}, marks)];
 }
 
 // Unlike facetGroups, which returns groups in order of input data, this returns

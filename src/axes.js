@@ -103,10 +103,14 @@ function inferLabel(channels = [], scale, axis, key) {
   }
   if (candidate !== undefined) {
     const {invert} = scale;
-    if (axis.labelAnchor !== "center") {
-      const prefix = key === "y" ? (invert ? "↓ " : "↑ ") : key === "x" && invert ? "← " : "";
-      const suffix = key === "x" && !invert ? " →" : "";
-      candidate = `${prefix}${candidate}${suffix}`;
+    if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
+      if (axis.labelAnchor === "center") {
+        candidate = `${candidate} →`;
+      } else if (key === "x") {
+        candidate = invert ? `← ${candidate}` : `${candidate} →`;
+      } else {
+        candidate = `${invert ? "↓ " : "↑ "}${candidate}`;
+      }
     }
   }
   return candidate;
