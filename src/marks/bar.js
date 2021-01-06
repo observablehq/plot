@@ -17,6 +17,8 @@ export class AbstractBar extends Mark {
       insetRight = 0,
       insetBottom = 0,
       insetLeft = 0,
+      rx,
+      ry,
       transform,
       ...style
     } = {}
@@ -39,8 +41,11 @@ export class AbstractBar extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
+    this.rx = number(rx);
+    this.ry = number(ry);
   }
   render(I, scales, channels, dimensions) {
+    const {rx, ry} = this;
     const {color} = scales;
     const {z: Z, title: L, fill: F, stroke: S} = channels;
     const index = filter(I, ...this._positions(channels), F, S);
@@ -58,6 +63,8 @@ export class AbstractBar extends Mark {
             .attr("height", this._height(scales, channels, dimensions))
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
+            .call(rx != null ? rect => rect.attr("rx", rx) : () => {})
+            .call(ry != null ? rect => rect.attr("ry", ry) : () => {})
             .call(title(L)))
       .node();
   }
