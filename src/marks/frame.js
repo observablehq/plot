@@ -5,7 +5,7 @@ import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 export class Frame extends Mark {
   constructor({
     fill = "none",
-    stroke = "currentColor",
+    stroke = fill == null || fill === "none" ? "currentColor" : "none",
     ...style
   } = {}) {
     super();
