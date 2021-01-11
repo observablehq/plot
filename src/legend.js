@@ -30,7 +30,7 @@ export class ColorLegend {
         tickSize = 6,
         width = 320,
         height = 44 + tickSize,
-        top = -20,
+        top = title === undefined ? -20 : -3,
         right = 0,
         bottom,
         left,
