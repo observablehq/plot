@@ -1,5 +1,6 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Legend} from "./legend.js";
 import {facets} from "./facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
@@ -50,7 +51,8 @@ export function plot(options = {}) {
   const scaleDescriptors = Scales(scaleChannels, options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
-  const dimensions = Dimensions(scaleDescriptors, axes, options);
+  const legend = Legend(scaleDescriptors, options);
+  const dimensions = Dimensions(scaleDescriptors, axes, legend, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -68,6 +70,8 @@ export function plot(options = {}) {
   const y = facet !== undefined && scales.fy ? "fy" : "y";
   if (axes[x]) marks.unshift(axes[x]);
   if (axes[y]) marks.unshift(axes[y]);
+  
+  if (legend.color) marks.push(legend.color);
 
   const {width, height} = dimensions;
 
@@ -102,6 +106,9 @@ function Dimensions(
     fy: {axis: fyAxis} = {}
   },
   {
+    color
+  },
+  {
     width = 640,
     height = y || fy ? 396 : 60,
     facet: {
@@ -116,6 +123,7 @@ function Dimensions(
     marginLeft = Math.max((yAxis === "left" ? 40 : 0) + facetMarginLeft, xAxis || fxAxis ? 20 : 0)
   } = {}
 ) {
+  color; // TDB: reserve space for the color legend?
   return {
     width,
     height,
