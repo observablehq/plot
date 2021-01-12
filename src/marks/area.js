@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, maybeSort, title} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, maybeSort, titleGroup} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -62,7 +62,7 @@ export class Area extends Mark {
               .y0(i => y(Y1[i]))
               .x1(i => x(X2[i]))
               .y1(i => y(Y2[i])))
-            .call(title(L)))
+            .call(titleGroup(L)))
       .node();
   }
 }

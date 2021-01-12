@@ -186,6 +186,14 @@ export function title(L) {
       .text(i => L[i]) : () => {};
 }
 
+// title for groups (lines, areas).
+export function titleGroup(L) {
+  return L ? selection => selection
+    .filter(([i]) => nonempty(L[i]))
+    .append("title")
+      .text(([i]) => L[i]) : () => {};
+}
+
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
   return Uint32Array.from(data, indexOf);
