@@ -6,6 +6,7 @@ export default async function() {
   return Plot.plot({
     x: {
       label: "Frequency (%) →",
+      transform: x => x * 100,
       grid: true
     },
     y: {
@@ -14,7 +15,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barX(alphabet, {x: d => d.frequency * 100, y: "letter"}),
+      Plot.barX(alphabet, {x: "frequency", y: "letter"}),
       Plot.ruleX([0])
     ],
     height: 580

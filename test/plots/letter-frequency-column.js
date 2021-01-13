@@ -9,10 +9,11 @@ export default async function() {
     },
     y: {
       label: "↑ Frequency (%)",
+      transform: y => y * 100,
       grid: true
     },
     marks: [
-      Plot.barY(alphabet, {x: "letter", y: d => d.frequency * 100}),
+      Plot.barY(alphabet, {x: "letter", y: "frequency"}),
       Plot.ruleY([0])
     ]
   });

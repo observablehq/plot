@@ -11,17 +11,18 @@ export default async function() {
     },
     y: {
       grid: true,
-      label: "U.S. retail monthly sales (in billions, seasonally-adjusted)"
+      label: "U.S. retail monthly sales (in billions, seasonally-adjusted)",
+      transform: y => y / 1e3 // convert millions to billions
     },
     marks: [
       Plot.line(data, {
         x: "Date",
-        y: d => d.Sales / 1e3,
+        y: "Sales",
         stroke: "#bab0ab"
       }),
       Plot.line(data, {
         x: "Date",
-        y: d => d["Seasonally Adjusted Sales"] / 1e3
+        y: "Seasonally Adjusted Sales"
       }),
       Plot.ruleY([0])
     ]

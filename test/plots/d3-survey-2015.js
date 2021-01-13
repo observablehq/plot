@@ -28,7 +28,8 @@ function bars(groups, title) {
       grid: true,
       axis: "top",
       domain: [0, 100],
-      label: "Frequency (%) →"
+      label: "Frequency (%) →",
+      transform: x => x * 100
     },
     y: {
       padding: 0,
@@ -40,7 +41,7 @@ function bars(groups, title) {
     },
     marks: [
       Plot.barX(groups, {
-        x: ([, value]) => value * 100,
+        x: ([, value]) => value,
         y: ([key]) => key,
         fill: "steelblue",
         insetTop: 1

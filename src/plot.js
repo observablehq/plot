@@ -30,18 +30,24 @@ export function plot(options = {}) {
   const scaleChannels = new Map();
 
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
+  // Also apply any scale transforms.
   for (const mark of marks) {
     if (markChannels.has(mark)) throw new Error("duplicate mark");
     const named = Object.create(null);
     const {index, channels} = mark.initialize();
     for (const [name, channel] of channels) {
+      const {scale} = channel;
+      if (scale !== undefined) {
+        const scaled = scaleChannels.get(scale);
+        const {transform} = options[scale] || {};
+        if (transform !== undefined) {
+          channel.value = Array.from(channel.value, transform);
+        }
+        if (scaled) scaled.push(channel);
+        else scaleChannels.set(scale, [channel]);
+      }
       if (name !== undefined) {
         named[name] = channel.value;
-      }
-      if (channel.scale !== undefined) {
-        const scaled = scaleChannels.get(channel.scale);
-        if (scaled) scaled.push(channel);
-        else scaleChannels.set(channel.scale, [channel]);
       }
     }
     markChannels.set(mark, named);

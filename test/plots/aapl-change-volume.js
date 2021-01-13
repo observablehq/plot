@@ -9,7 +9,8 @@ export default async function() {
       tickFormat: "+f"
     },
     y: {
-      label: "↑ Volume (log₁₀)"
+      label: "↑ Volume (log₁₀)",
+      transform: Math.log10
     },
     grid: true,
     marks: [
@@ -18,8 +19,8 @@ export default async function() {
         data,
         {
           x: d => (d.Close - d.Open) / d.Open * 100,
-          y: d => Math.log10(d.Volume),
-          r: d => d.Volume
+          y: "Volume",
+          r: "Volume"
         }
       )
     ]

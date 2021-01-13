@@ -12,6 +12,7 @@ export default async function() {
       inset: 6,
       round: true,
       label: "← decrease · Change in population, 2010–2019 (millions) · increase →",
+      transform: x => x / 1e6,
       labelAnchor: "center",
       tickFormat: "+f"
     },
@@ -25,7 +26,7 @@ export default async function() {
     marks: [
       Plot.barX(data, {
         y: "State",
-        x: d => (d[2019] - d[2010]) / 1e6,
+        x: d => d[2019] - d[2010],
         fill: d => Math.sign(d[2019] - d[2010])
       }),
       Plot.ruleX([0])
