@@ -80,14 +80,12 @@ export class Mark {
 
 // TODO Type coercion?
 function Channel(data, {scale, type, value}) {
-  let label;
-  if (typeof value === "function") {
-    label = value.label;
-    value = Array.from(data, value);
-  } else {
-    value = arrayify(value);
-  }
-  return {scale, type, value, label};
+  return {
+    scale,
+    type,
+    value: typeof value === "function" ? Array.from(data, value) : arrayify(value),
+    label: value ? value.label : undefined
+  };
 }
 
 // This allows transforms to behave equivalently to channels.

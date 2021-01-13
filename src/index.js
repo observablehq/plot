@@ -15,3 +15,4 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {bin1, bin2} from "./transforms/bin.js";
 export {group1, group2} from "./transforms/group.js";
+export {stackX, stackY} from "./transforms/stack.js";
