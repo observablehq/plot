@@ -67,6 +67,11 @@ export function plot(options = {}) {
   // When faceting, render axes for fx and fy instead of x and y.
   const x = facet !== undefined && scales.fx ? "fx" : "x";
   const y = facet !== undefined && scales.fy ? "fy" : "y";
+
+  const f = facet !== undefined ? marks[0].marks : marks;
+  if (axes.gridx) (x === "fx" ? f : marks).push(axes.gridx); // should be unshift
+  if (axes.gridy) (y === "fy" ? f : marks).push(axes.gridy);
+
   if (axes[x]) marks.unshift(axes[x]);
   if (axes[y]) marks.unshift(axes[y]);
 

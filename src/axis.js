@@ -10,7 +10,6 @@ export class AxisX {
     tickSize = name === "fx" ? 0 : 6,
     tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
-    grid,
     label,
     labelAnchor,
     labelOffset
@@ -22,14 +21,13 @@ export class AxisX {
     this.tickSize = tickSize;
     this.tickPadding = tickPadding;
     this.tickFormat = tickFormat;
-    this.grid = grid;
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
   }
   render(
     index,
-    {[this.name]: x, fy},
+    {[this.name]: x},
     channels,
     {
       width,
@@ -50,7 +48,6 @@ export class AxisX {
       tickSize,
       tickPadding,
       tickFormat,
-      grid,
       label,
       labelAnchor,
       labelOffset
@@ -70,9 +67,6 @@ export class AxisX {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid ? () => {}
-          : fy ? gridFacetX(fy, -ty)
-          : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
@@ -116,7 +110,7 @@ export class AxisY {
   }
   render(
     index,
-    {[this.name]: y, fx},
+    {[this.name]: y},
     channels,
     {
       width,
@@ -135,7 +129,6 @@ export class AxisY {
       tickSize,
       tickPadding,
       tickFormat,
-      grid,
       label,
       labelAnchor,
       labelOffset
@@ -155,9 +148,6 @@ export class AxisY {
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
-        .call(!grid ? () => {}
-          : fx ? gridFacetY(fx, -tx)
-          : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
@@ -176,40 +166,73 @@ export class AxisY {
   }
 }
 
+export class GridX {
+  constructor({
+    name = "x",
+    ticks
+  } = {}) {
+    this.name = name;
+    this.ticks = ticks;
+  }
+  render(
+    index,
+    {[this.name]: x},
+    channels,
+    {
+      height,
+      marginTop,
+      marginBottom
+    }
+  ) {
+    const { ticks } = this;
+    return create("svg:g")
+        .attr("transform", `translate(0,${marginTop})`)
+        .attr("stroke-opacity", 0.1)
+        .call(axisTop(round(x))
+            .ticks(Array.isArray(ticks) ? null : ticks)
+            .tickValues(Array.isArray(ticks) ? ticks : null)
+            .tickSize(marginTop + marginBottom - height))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.selectAll(".tick text").remove())
+      .node();
+  }
+}
+
+export class GridY {
+  constructor({
+    name = "y",
+    ticks
+  } = {}) {
+    this.name = name;
+    this.ticks = ticks;
+  }
+  render(
+    index,
+    {[this.name]: y},
+    channels,
+    {
+      width,
+      marginLeft,
+      marginRight
+    }
+  ) {
+    const { ticks } = this;
+    return create("svg:g")
+        .attr("transform", `translate(${marginLeft},0)`)
+        .attr("stroke-opacity", 0.1)
+        .call(axisLeft(round(y))
+            .ticks(Array.isArray(ticks) ? null : ticks)
+            .tickValues(Array.isArray(ticks) ? ticks : null)
+            .tickSize(marginLeft + marginRight - width))
+        .call(g => g.select(".domain").remove())
+        .call(g => g.selectAll(".tick text").remove())
+      .node();
+  }
+}
+
 function round(scale) {
   return scale.interpolate // TODO round band and point scales?
       ? scale.copy().interpolate(interpolateRound)
       : scale;
 }
 
-function gridX(y2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("y2", y2);
-}
-
-function gridY(x2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("x2", x2);
-}
-
-function gridFacetX(fy, ty) {
-  const dy = fy.bandwidth();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", fy.domain().map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
-}
-
-function gridFacetY(fx, tx) {
-  const dx = fx.bandwidth();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
-}

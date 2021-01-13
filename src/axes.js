@@ -1,8 +1,8 @@
-import {AxisX, AxisY} from "./axis.js";
+import {AxisX, AxisY, GridX, GridY} from "./axis.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, grid, facet: {grid: facetGrid} = {}} = {}
+  {x = {}, y = {}, fx = {}, fy = {}, grid = false} = {}
 ) {
   let {axis: xAxis = true} = x;
   let {axis: yAxis = true} = y;
@@ -13,10 +13,12 @@ export function Axes(
   if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
   if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xScale && xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
-    ...yScale && yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
-    ...fxScale && fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
-    ...fyScale && fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
+    ...xScale && xAxis && {x: new AxisX({...x, axis: xAxis})},
+    ...yScale && yAxis && {y: new AxisY({...y, axis: yAxis})},
+    ...fxScale && fxAxis && {fx: new AxisX({name: "fx", ...fx, axis: fxAxis})},
+    ...fyScale && fyAxis && {fy: new AxisY({name: "fy", ...fy, axis: fyAxis})},
+    ...(grid || x.grid) && xScale && xAxis && {gridx: new GridX(x)},
+    ...(grid || y.grid) && yScale && yAxis && {gridy: new GridY(y)}
   };
 }
 

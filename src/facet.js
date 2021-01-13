@@ -105,14 +105,16 @@ class Facet extends Mark {
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
               const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
-              for (let i = 0; i < marks.length; ++i) {
-                const node = marks[i].render(
-                  marksFacetIndex[i],
-                  scales,
-                  marksChannels[i],
-                  subdimensions
-                );
-                if (node != null) this.appendChild(node);
+              if (marksIndexByFacet.has(key)) {
+                for (let i = 0; i < marks.length; ++i) {
+                  const node = marks[i].render(
+                    marksFacetIndex[i],
+                    scales,
+                    marksChannels[i],
+                    subdimensions
+                  );
+                  if (node != null) this.appendChild(node);
+                }
               }
             }))
       .node();
