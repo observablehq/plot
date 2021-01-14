@@ -2,8 +2,9 @@ import {arrayify, identity, maybeLabel} from "../mark.js";
 import {bin1, bin2} from "../transforms/bin.js";
 import {rect, rectX, rectY} from "./rect.js";
 
-export function bin(data, {x, y, domain, thresholds, normalize, ...options} = {}) {
+export function bin(data, {x, y, domain, thresholds, normalize, transform, ...options} = {}) {
   data = arrayify(data);
+  if (transform) data = transform(data);
   return rect(
     data,
     {
@@ -26,9 +27,11 @@ export function binX(data, {
   thresholds,
   normalize,
   cumulative,
+  transform,
   ...options
 } = {}) {
   data = arrayify(data);
+  if (transform) data = transform(data);
   return rectY(
     data,
     {
@@ -48,9 +51,11 @@ export function binY(data, {
   thresholds,
   normalize,
   cumulative,
+  transform,
   ...options
 } = {}) {
   data = arrayify(data);
+  if (transform) data = transform(data);
   return rectX(
     data,
     {

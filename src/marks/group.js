@@ -6,8 +6,10 @@ import {cell} from "./cell.js";
 export function group(data, {
   x = first,
   y = second,
+  transform,
   ...options
 } = {}) {
+  if (transform) data = transform(arrayify(data));
   return cell(
     data,
     {
@@ -25,9 +27,11 @@ export function groupX(data, {
   y,
   y1,
   y2,
+  transform,
   ...options
 } = {}) {
   data = arrayify(data);
+  if (transform) data = transform(data);
   ([y1, y2] = maybeZero(y, y1, y2, maybeLength(data, options)));
   return barY(
     data,
@@ -46,9 +50,11 @@ export function groupY(data, {
   x,
   x1,
   x2,
+  transform,
   ...options
 } = {}) {
   data = arrayify(data);
+  if (transform) data = transform(data);
   ([x1, x2] = maybeZero(x, x1, x2, maybeLength(data, options)));
   return barX(
     data,
