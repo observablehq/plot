@@ -50,6 +50,7 @@ export function binY(data, {
   cumulative,
   ...options
 } = {}) {
+  data = arrayify(data);
   return rectX(
     data,
     {
