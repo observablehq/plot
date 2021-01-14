@@ -9,7 +9,7 @@ export function group(data, {
   transform,
   ...options
 } = {}) {
-  if (transform) data = transform(arrayify(data));
+  if (transform !== undefined) data = transform(arrayify(data));
   return cell(
     data,
     {
@@ -31,7 +31,7 @@ export function groupX(data, {
   ...options
 } = {}) {
   data = arrayify(data);
-  if (transform) data = transform(data);
+  if (transform !== undefined) data = arrayify(transform(data));
   ([y1, y2] = maybeZero(y, y1, y2, maybeLength(data, options)));
   return barY(
     data,
@@ -54,7 +54,7 @@ export function groupY(data, {
   ...options
 } = {}) {
   data = arrayify(data);
-  if (transform) data = transform(data);
+  if (transform !== undefined) data = arrayify(transform(data));
   ([x1, x2] = maybeZero(x, x1, x2, maybeLength(data, options)));
   return barX(
     data,

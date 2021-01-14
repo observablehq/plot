@@ -4,7 +4,7 @@ import {rect, rectX, rectY} from "./rect.js";
 
 export function bin(data, {x, y, domain, thresholds, normalize, transform, ...options} = {}) {
   data = arrayify(data);
-  if (transform) data = transform(data);
+  if (transform !== undefined) data = arrayify(transform(data));
   return rect(
     data,
     {
@@ -31,7 +31,7 @@ export function binX(data, {
   ...options
 } = {}) {
   data = arrayify(data);
-  if (transform) data = transform(data);
+  if (transform !== undefined) data = arrayify(transform(data));
   return rectY(
     data,
     {
@@ -55,7 +55,7 @@ export function binY(data, {
   ...options
 } = {}) {
   data = arrayify(data);
-  if (transform) data = transform(data);
+  if (transform !== undefined) data = arrayify(transform(data));
   return rectX(
     data,
     {
