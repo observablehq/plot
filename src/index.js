@@ -11,6 +11,7 @@ export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
+export {stackAreaX, stackAreaY, stackBarX, stackBarY} from "./marks/stack.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {bin1, bin2} from "./transforms/bin.js";
