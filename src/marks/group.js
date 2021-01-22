@@ -1,9 +1,9 @@
 import {arrayify, identity, first, second, maybeLabel, maybeZero} from "../mark.js";
-import {group1, group2} from "../transforms/group.js";
+import {group} from "../transforms/group.js";
 import {barX, barY} from "./bar.js";
 import {cell} from "./cell.js";
 
-export function group(data, {
+export function groupCell(data, {
   x = first,
   y = second,
   transform,
@@ -14,7 +14,7 @@ export function group(data, {
     data,
     {
       ...options,
-      transform: group2(x, y),
+      transform: group(x, y),
       x: maybeLabel(first, x),
       y: maybeLabel(second, y),
       fill: length3
@@ -22,7 +22,7 @@ export function group(data, {
   );
 }
 
-export function groupX(data, {
+export function groupBarY(data, {
   x = identity,
   y,
   y1,
@@ -37,7 +37,7 @@ export function groupX(data, {
     data,
     {
       ...options,
-      transform: group1(x),
+      transform: group(x),
       x: maybeLabel(first, x),
       y1,
       y2
@@ -45,7 +45,7 @@ export function groupX(data, {
   );
 }
 
-export function groupY(data, {
+export function groupBarX(data, {
   y = identity,
   x,
   x1,
@@ -60,7 +60,7 @@ export function groupY(data, {
     data,
     {
       ...options,
-      transform: group1(y),
+      transform: group(y),
       x1,
       x2,
       y: maybeLabel(first, y)

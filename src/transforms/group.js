@@ -2,16 +2,15 @@ import {groups} from "d3-array";
 import {defined} from "../defined.js";
 import {valueof, maybeValue, range, offsetRange} from "../mark.js";
 
-export function group1(x) {
-  const {value} = maybeValue({value: x});
-  return (data, facets) => {
-    const values = valueof(data, value);
-    let g = groups(range(data), i => values[i]).filter(defined1);
-    return regroup(g, facets);
-  };
-}
-
-export function group2(vx, vy) {
+export function group(vx, vy) {
+  if (vy === undefined) {
+    const {value} = maybeValue({value: vx});
+    return (data, facets) => {
+      const values = valueof(data, value);
+      let g = groups(range(data), i => values[i]).filter(defined1);
+      return regroup(g, facets);
+    };
+  }
   const {value: x} = maybeValue({value: vx});
   const {value: y} = maybeValue({value: vy});
   return (data, facets) => {

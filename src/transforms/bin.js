@@ -1,13 +1,13 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, maybeValue, range, offsetRange} from "../mark.js";
+import {valueof, first, second, maybeValue, range, offsetRange, identity} from "../mark.js";
 
-export function bin1(options = {}) {
-  let {value, domain, thresholds, cumulative} = maybeValue(options);
-  const bin = binof({value, domain, thresholds});
-  return (data, facets) => rebin(bin(data), facets, subset1, cumulative);
-}
-
-export function bin2({x = {}, y = {}, domain, thresholds} = {}) {
+export function bin(options = {}) {
+  if (options.y === undefined) {
+    const {x = {}, domain, thresholds, cumulative} = options;
+    const bin = binof({domain, thresholds, value: identity, ...maybeValue(x)});
+    return (data, facets) => rebin(bin(data), facets, subset1, cumulative);
+  }
+  const {x = {}, y, domain, thresholds} = options;
   const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
   return (data, facets) => rebin(

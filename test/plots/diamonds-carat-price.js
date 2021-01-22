@@ -10,7 +10,7 @@ export default async function() {
       type: "symlog"
     },
     marks: [
-      Plot.bin(data, {x: "carat", y: "price", thresholds: 100})
+      Plot.binRect(data, {x: "carat", y: "price", thresholds: 100})
     ]
   });
 }

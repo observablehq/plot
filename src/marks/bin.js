@@ -1,8 +1,8 @@
 import {arrayify, identity, maybeLabel} from "../mark.js";
-import {bin1, bin2} from "../transforms/bin.js";
+import {bin} from "../transforms/bin.js";
 import {rect, rectX, rectY} from "./rect.js";
 
-export function bin(data, {x, y, domain, thresholds, normalize, transform, ...options} = {}) {
+export function binRect(data, {x, y, domain, thresholds, normalize, transform, ...options} = {}) {
   data = arrayify(data);
   if (transform !== undefined) data = arrayify(transform(data));
   return rect(
@@ -11,7 +11,7 @@ export function bin(data, {x, y, domain, thresholds, normalize, transform, ...op
       insetTop: 1,
       insetLeft: 1,
       ...options,
-      transform: bin2({x, y, domain, thresholds}),
+      transform: bin({x, y, domain, thresholds}),
       fill: normalize ? normalizer(normalize, data.length) : length,
       x1: maybeLabel(x0, x),
       x2: x1,
@@ -21,7 +21,7 @@ export function bin(data, {x, y, domain, thresholds, normalize, transform, ...op
   );
 }
 
-export function binX(data, {
+export function binRectY(data, {
   x = identity,
   domain,
   thresholds,
@@ -37,7 +37,7 @@ export function binX(data, {
     {
       insetLeft: 1,
       ...options,
-      transform: bin1({value: x, domain, thresholds, cumulative}),
+      transform: bin({x, domain, thresholds, cumulative}),
       y: normalize ? normalizer(normalize, data.length) : length,
       x1: maybeLabel(x0, x),
       x2: x1
@@ -45,7 +45,7 @@ export function binX(data, {
   );
 }
 
-export function binY(data, {
+export function binRectX(data, {
   y = identity,
   domain,
   thresholds,
@@ -61,7 +61,7 @@ export function binY(data, {
     {
       insetTop: 1,
       ...options,
-      transform: bin1({value: y, domain, thresholds, cumulative}),
+      transform: bin({x: y, domain, thresholds, cumulative}),
       x: normalize ? normalizer(normalize, data.length) : length,
       y1: maybeLabel(x0, y),
       y2: x1

@@ -12,7 +12,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.binX(data, {x: "body_mass_g"}),
+      Plot.binRectY(data, {x: "body_mass_g"}),
       Plot.ruleY([0])
     ]
   });

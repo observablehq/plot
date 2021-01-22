@@ -20,7 +20,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.groupX(words, {x: d => d.length, normalize: true})
+      Plot.groupBarY(words, {x: d => d.length, normalize: true})
     ]
   });
 }

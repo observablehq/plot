@@ -15,7 +15,7 @@ export default async function() {
       marginRight: 70
     },
     marks: [
-      Plot.binX(data, {x: "body_mass_g"}),
+      Plot.binRectY(data, {x: "body_mass_g"}),
       Plot.ruleY([0])
     ]
   });
