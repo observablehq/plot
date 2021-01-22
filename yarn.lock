@@ -532,7 +532,7 @@ d3-zoom@2:
     d3-selection "2"
     d3-transition "2"
 
-d3@^6.3.1:
+d3@^6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/d3/-/d3-6.4.0.tgz#7b50a833209f70ccd768292d649417dddcb9bde0"
   integrity sha512-A8uZ7IPQSNmc5YZtrzbkNepsChV6vj7rZj9A1LV33GmDeZ0mMSgO1nxbksbN9ciTWR1YySUD4aJc3wBGb8xdrg==

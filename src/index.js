@@ -10,6 +10,7 @@ export {group, groupX, groupY} from "./marks/group.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
+export {linearRegression} from "./marks/regression.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {stackAreaX, stackAreaY, stackBarX, stackBarY} from "./marks/stack.js";
 export {Text, text, textX, textY} from "./marks/text.js";

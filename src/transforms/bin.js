@@ -1,5 +1,5 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, maybeValue, range, offsetRange} from "../mark.js";
+import {valueof, first, second, maybeValue, range} from "../mark.js";
 
 export function bin1(options = {}) {
   let {value, domain, thresholds, cumulative} = maybeValue(options);
@@ -34,7 +34,7 @@ function binof({value, domain, thresholds}) {
     const bin = binner().value(i => values[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    return bin(range(data));
+    return bin(range(data.length));
   };
 }
 
@@ -43,7 +43,7 @@ function rebin(bins, facets, subset, cumulative) {
   if (facets === undefined) {
     if (cumulative) bins = accumulate(cumulative < 0 ? bins.reverse() : bins);
     bins = bins.filter(nonempty);
-    return {index: range(bins), data: bins};
+    return {index: range(bins.length), data: bins};
   }
   const index = [];
   const data = [];
@@ -52,7 +52,7 @@ function rebin(bins, facets, subset, cumulative) {
     let b = bins.map(facet);
     if (cumulative) b = accumulate(cumulative < 0 ? b.reverse() : b);
     b = b.filter(nonempty);
-    index.push(offsetRange(b, k));
+    index.push(range(k, k + b.length));
     data.push(b);
     k += b.length;
   }

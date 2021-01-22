@@ -5,6 +5,8 @@ export {default as aaplVolume} from "./aapl-volume.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
+export {default as culmenRegression} from "./culmen-regression.js";
+export {default as culmenRegressionFaceted} from "./culmen-regression-faceted.js";
 export {default as d3Survey2015Comfort} from "./d3-survey-2015-comfort.js";
 export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";

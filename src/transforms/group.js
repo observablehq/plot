@@ -1,12 +1,12 @@
 import {groups} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, maybeValue, range, offsetRange} from "../mark.js";
+import {valueof, maybeValue, range} from "../mark.js";
 
 export function group1(x) {
   const {value} = maybeValue({value: x});
   return (data, facets) => {
     const values = valueof(data, value);
-    let g = groups(range(data), i => values[i]).filter(defined1);
+    let g = groups(range(data.length), i => values[i]).filter(defined1);
     return regroup(g, facets);
   };
 }
@@ -17,7 +17,7 @@ export function group2(vx, vy) {
   return (data, facets) => {
     const valuesX = valueof(data, x);
     const valuesY = valueof(data, y);
-    let g = groups(range(data), i => valuesX[i], i => valuesY[i]).filter(defined1);
+    let g = groups(range(data.length), i => valuesX[i], i => valuesY[i]).filter(defined1);
     g = g.flatMap(([x, xgroup]) => xgroup.filter(defined1).map(([y, ygroup]) => [x, y, ygroup]));
     return regroup(g, facets);
   };
@@ -25,13 +25,13 @@ export function group2(vx, vy) {
 
 // When faceting, subdivides the given groups according to the facet indexes.
 function regroup(groups, facets) {
-  if (facets === undefined) return {index: range(groups), data: groups};
+  if (facets === undefined) return {index: range(groups.length), data: groups};
   const index = [];
   const data = [];
   let k = 0;
   for (const facet of facets.map(subset)) {
     let g = groups.map(facet).filter(nonempty1);
-    index.push(offsetRange(g, k));
+    index.push(range(k, k + g.length));
     data.push(g);
     k += g.length;
   }

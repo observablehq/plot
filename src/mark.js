@@ -32,7 +32,7 @@ export class Mark {
     let index, data;
     if (this.data !== undefined) {
       if (this.transform === identity) { // optimized common case
-        data = this.data, index = facets !== undefined ? facets : range(data);
+        data = this.data, index = facets !== undefined ? facets : range(data.length);
       } else if (this.transform.length === 2) { // facet-aware transform
         ({index, data} = this.transform(this.data, facets));
         data = arrayify(data);
@@ -46,7 +46,7 @@ export class Mark {
         index = [], data = [];
         for (const facet of facets) {
           const facetData = arrayify(this.transform(take(this.data, facet)), Array);
-          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
+          const facetIndex = facetData === undefined ? undefined : range(k, k + facetData.length);
           k += facetData.length;
           index.push(facetIndex);
           data.push(facetData);
@@ -65,7 +65,7 @@ export class Mark {
         }
       } else { // basic transform, non-faceted
         data = arrayify(this.transform(this.data));
-        index = data === undefined ? undefined : range(data);
+        index = data === undefined ? undefined : range(data.length);
       }
     }
     return {
@@ -192,15 +192,15 @@ export function titleGroup(L) {
       .text(([i]) => L[i]) : () => {};
 }
 
-// Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
-export function range(data) {
-  return Uint32Array.from(data, indexOf);
-}
-
-// Returns a Uint32Array with elements [k, k + 1, … k + data.length - 1].
-export function offsetRange(data, k) {
-  k = Math.floor(k);
-  return Uint32Array.from(data, (_, i) => i + k);
+// Returns a Uint32Array with elements [start, start + 1, start + 2, … stop - 1].
+export function range(start, stop) {
+  if (stop === undefined) stop = start, start = 0;
+  start = Math.floor(start), stop = Math.floor(stop);
+  if (!(stop >= start)) throw new Error("invalid range");
+  const n = stop - start;
+  const range = new Uint32Array(n);
+  for (let i = 0; i < n; ++i) range[i] = i + start;
+  return range;
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
