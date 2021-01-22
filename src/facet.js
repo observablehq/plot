@@ -1,4 +1,4 @@
-import {cross, groups} from "d3-array";
+import {cross, groups, InternMap} from "d3-array";
 import {create} from "d3-selection";
 import {Mark, first, second} from "./mark.js";
 
@@ -164,7 +164,7 @@ function facetMap(channels) {
 
 class FacetMap {
   constructor() {
-    this._ = new Map();
+    this._ = new InternMap();
   }
   has(key) {
     return this._.has(key);
@@ -190,7 +190,7 @@ class FacetMap2 extends FacetMap {
   set([key1, key2], value) {
     const map = super.get(key1);
     if (map) map.set(key2, value);
-    else super.set(key1, new Map([[key2, value]]));
+    else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
 }

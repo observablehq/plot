@@ -43,7 +43,7 @@
     "tape-await": "^0.1.2"
   },
   "dependencies": {
-    "d3-array": "^2.8.0",
+    "d3-array": "^2.10.0",
     "d3-axis": "^2.0.0",
     "d3-color": "^2.0.0",
     "d3-interpolate": "^2.0.1",
