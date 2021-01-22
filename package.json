@@ -37,7 +37,7 @@
     "module-alias": "^2.2.2",
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",
-    "snowpack": "^2.18.5",
+    "snowpack": "^3.0.11",
     "tap-dot": "^2.0.0",
     "tape": "^4.13.3",
     "tape-await": "^0.1.2"
