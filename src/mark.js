@@ -75,7 +75,7 @@ export class Mark {
     });
     for (const targetName in this.order) {
       const order = this.order[targetName];
-      const [, t] = findChannel(channels, targetName);
+      const [, t] = findChannelByScale(channels, targetName);
       const {value: T} = t;
       if (order == null) {
         t.domain = T;
@@ -88,6 +88,12 @@ export class Mark {
     }
     return {index, channels};
   }
+}
+
+function findChannelByScale(channels, name) {
+  const channel = channels.find(([, {scale}]) => scale === name);
+  if (channel === undefined) throw new Error(`unknown scale: ${name}`);
+  return channel;
 }
 
 function findChannel(channels, name) {
@@ -237,11 +243,15 @@ function parseOrder(order) {
 
 // For marks that alias channels, for example mapping {x} to {x1 = 0, x2 = x}.
 export function mapOrder(object = {}, source, target) {
+  let copy; // copy on write
   for (const key in object) {
     const value = object[key];
     if (value == null) continue;
     const [sign, name] = parseOrder(value);
-    if (name === source) return {...object, [key]: `${sign}${target}`};
+    if (name === source) {
+      if (copy === undefined) copy = {...object};
+      copy[key] = `${sign}${target}`;
+    }
   }
-  return object;
+  return copy === undefined ? object : copy;
 }
