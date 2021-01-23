@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, indexOf, title} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, indexOf, title, remapOrder} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -154,21 +154,4 @@ export function barX(data, {x, x1, x2, y = indexOf, order, ...options} = {}) {
 export function barY(data, {x = indexOf, y, y1, y2, order, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
   return new BarY(data, {...options, x, y1, y2, order: remapOrder(order, "y", "y2")});
-}
-
-function remapOrder(object = {}, source, target) {
-  for (const key in object) {
-    const [prefix, name] = parseOrder(object[key]);
-    if (name === source) {
-      return {...object, [key]: `${prefix}${target}`};
-    }
-  }
-  return object;
-}
-
-function parseOrder(order) {
-  switch ((order += "")[0]) {
-    case "+": case "-": return [order[0], order.slice(1)];
-  }
-  return ["", order];
 }
