@@ -1,7 +1,7 @@
-import {ascending} from "d3-array";
+import {ascending, descending, sort} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, indexOf, title} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, indexOf, take, title, range} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -89,7 +89,7 @@ export class AbstractBar extends Mark {
 }
 
 export class BarX extends AbstractBar {
-  constructor(data, {x1, x2, y, ...options} = {}) {
+  constructor(data, {x1, x2, y, sort, ...options} = {}) {
     super(
       data,
       [
@@ -99,6 +99,12 @@ export class BarX extends AbstractBar {
       ],
       options
     );
+    this.sort = maybeSort(sort);
+  }
+  initialize(data, facets) {
+    const {index, channels} = super.initialize(data, facets);
+    if (this.sort) inferSortedDomain(this.sort, channels, "y", "x2");
+    return {index, channels};
   }
   _transform(selection, {x}) {
     selection.call(applyTransform, x, false);
@@ -117,7 +123,7 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, {x, y1, y2, ...options} = {}) {
+  constructor(data, {x, y1, y2, sort, ...options} = {}) {
     super(
       data,
       [
@@ -127,6 +133,12 @@ export class BarY extends AbstractBar {
       ],
       options
     );
+    this.sort = maybeSort(sort);
+  }
+  initialize(data, facets) {
+    const {index, channels} = super.initialize(data, facets);
+    if (this.sort) inferSortedDomain(this.sort, channels, "x", "y2");
+    return {index, channels};
   }
   _transform(selection, {y}) {
     selection.call(applyTransform, false, y);
@@ -152,4 +164,22 @@ export function barX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
 export function barY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
   return new BarY(data, {...options, x, y1, y2});
+}
+
+function maybeSort(sort) {
+  if (!sort) return;
+  if (typeof sort === "function") return sort;
+  switch (sort) {
+    case true: case "descending": return descending;
+    case "ascending": return ascending;
+  }
+  throw new Error("invalid sort");
+}
+
+function inferSortedDomain(order, channels, nameX, nameY) {
+  const [, x] = channels.find(([name]) => name === nameX);
+  const [, y] = channels.find(([name]) => name === nameY);
+  const {value: X} = x;
+  const {value: Y} = y;
+  x.domain = take(X, sort(range(X), (i, j) => order(Y[i], Y[j])));
 }
