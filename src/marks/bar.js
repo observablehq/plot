@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, indexOf, title, remapOrder} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, indexOf, title, mapOrder} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -19,8 +19,8 @@ export class AbstractBar extends Mark {
       insetLeft = 0,
       rx,
       ry,
-      transform,
       order,
+      transform,
       ...style
     } = {}
   ) {
@@ -35,8 +35,7 @@ export class AbstractBar extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform,
-      order
+      {order, transform}
     );
     Style(this, {fill: cfill, stroke: cstroke, ...style});
     this.insetTop = number(insetTop);
@@ -148,10 +147,10 @@ export class BarY extends AbstractBar {
 
 export function barX(data, {x, x1, x2, y = indexOf, order, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2, y, order: remapOrder(order, "x", "x2")});
+  return new BarX(data, {...options, x1, x2, y, order: mapOrder(order, "x", "x2")});
 }
 
 export function barY(data, {x = indexOf, y, y1, y2, order, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, x, y1, y2, order: remapOrder(order, "y", "y2")});
+  return new BarY(data, {...options, x, y1, y2, order: mapOrder(order, "y", "y2")});
 }

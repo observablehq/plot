@@ -1,4 +1,4 @@
-import {reverse, sort} from "d3-array";
+import {sort} from "d3-array";
 import {color} from "d3-color";
 import {ascendingDefined, descendingDefined, nonempty} from "./defined.js";
 
@@ -6,7 +6,7 @@ import {ascendingDefined, descendingDefined, nonempty} from "./defined.js";
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 
 export class Mark {
-  constructor(data, channels = [], transform = identity, order = {}) {
+  constructor(data, channels = [], {transform = identity, order = {}} = {}) {
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
@@ -80,9 +80,9 @@ export class Mark {
       if (order == null) {
         t.domain = T;
       } else {
-        const [sourceDirection, sourceName] = parseOrder(order);
+        const [sourceSign, sourceName] = parseOrder(order);
         const [, {value: S}] = findChannel(channels, sourceName);
-        const compare = sourceDirection === "+" ? ascendingDefined : descendingDefined;
+        const compare = sourceSign === "+" ? ascendingDefined : descendingDefined;
         t.domain = take(T, sort(range(T), (i, j) => compare(S[i], S[j])));
       }
     }
@@ -94,24 +94,6 @@ function findChannel(channels, name) {
   const channel = channels.find(([n]) => n === name);
   if (channel === undefined) throw new Error(`unknown channel: ${name}`);
   return channel;
-}
-
-function parseOrder(order) {
-  const sign = (order += "")[0];
-  switch (sign) {
-    case "-": case "+": return [sign, order.slice(1)];
-  }
-  return ["+", order];
-}
-
-export function remapOrder(object = {}, source, target) {
-  for (const key in object) {
-    const value = object[key];
-    if (value == null) continue;
-    const [direction, name] = parseOrder(value);
-    if (name === source) return {...object, [key]: `${direction}${target}`};
-  }
-  return object;
 }
 
 // TODO Type coercion?
@@ -242,4 +224,24 @@ export function offsetRange(data, k) {
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
   return Array.from(index, i => values[i]);
+}
+
+// Given a channel order, such as "+x", returns ["+", "x"];
+function parseOrder(order) {
+  const sign = (order += "")[0];
+  switch (sign) {
+    case "-": case "+": return [sign, order.slice(1)];
+  }
+  return ["+", order];
+}
+
+// For marks that alias channels, for example mapping {x} to {x1 = 0, x2 = x}.
+export function mapOrder(object = {}, source, target) {
+  for (const key in object) {
+    const value = object[key];
+    if (value == null) continue;
+    const [sign, name] = parseOrder(value);
+    if (name === source) return {...object, [key]: `${sign}${target}`};
+  }
+  return object;
 }

@@ -12,6 +12,7 @@ class AbstractTick extends Mark {
       z,
       title,
       stroke,
+      order,
       transform,
       ...style
     } = {}
@@ -25,7 +26,7 @@ class AbstractTick extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {order, transform}
     );
     Style(this, {stroke: cstroke, ...style});
   }

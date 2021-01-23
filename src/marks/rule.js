@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, zero, title} from "../mark.js";
+import {Mark, identity, maybeColor, zero, title, mapOrder} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class RuleX extends Mark {
@@ -14,6 +14,7 @@ export class RuleX extends Mark {
       z,
       title,
       stroke,
+      order,
       transform,
       ...style
     } = {}
@@ -29,7 +30,7 @@ export class RuleX extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {order, transform}
     );
     Style(this, {stroke: cstroke, ...style});
   }
@@ -68,6 +69,7 @@ export class RuleY extends Mark {
       z,
       title,
       stroke,
+      order,
       transform,
       ...style
     } = {}
@@ -83,7 +85,7 @@ export class RuleY extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {order, transform}
     );
     Style(this, {stroke: cstroke, ...style});
   }
@@ -112,14 +114,14 @@ export class RuleY extends Mark {
   }
 }
 
-export function ruleX(data, {y, y1, y2, ...options} = {}) {
+export function ruleX(data, {y, y1, y2, order, ...options} = {}) {
   ([y1, y2] = maybeOptionalZero(y, y1, y2));
-  return new RuleX(data, {...options, y1, y2});
+  return new RuleX(data, {...options, y1, y2, order: mapOrder(order, "y", "y2")});
 }
 
-export function ruleY(data, {x, x1, x2, ...options} = {}) {
+export function ruleY(data, {x, x1, x2, order, ...options} = {}) {
   ([x1, x2] = maybeOptionalZero(x, x1, x2));
-  return new RuleY(data, {...options, x1, x2});
+  return new RuleY(data, {...options, x1, x2, order: mapOrder(order, "x", "x2")});
 }
 
 // For marks specified either as [0, x] or [x1, x2], or nothing.

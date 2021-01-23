@@ -3,7 +3,7 @@ import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {group} from "../group.js";
-import {Mark, indexOf, maybeColor, maybeZero, maybeSort, titleGroup} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, maybeSort, titleGroup, mapOrder} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -20,6 +20,7 @@ export class Area extends Mark {
       stroke,
       curve,
       sort,
+      order,
       transform = maybeSort(sort),
       ...style
     } = {}
@@ -40,7 +41,7 @@ export class Area extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {order, transform}
     );
     this.curve = Curve(curve);
     Style(this, {fill: cfill, stroke: cstroke, ...style});
@@ -71,12 +72,12 @@ export function area(data, options) {
   return new Area(data, options);
 }
 
-export function areaX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
+export function areaX(data, {x, x1, x2, y = indexOf, order, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new Area(data, {...options, x1, x2, y1: y, y2: undefined});
+  return new Area(data, {...options, x1, x2, y1: y, y2: undefined, order: mapOrder(order, "x", "x2")});
 }
 
-export function areaY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
+export function areaY(data, {x = indexOf, y, y1, y2, order, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new Area(data, {...options, x1: x, x2: undefined, y1, y2});
+  return new Area(data, {...options, x1: x, x2: undefined, y1, y2, order: mapOrder(order, "y", "y2")});
 }

@@ -15,6 +15,7 @@ export class Link extends Mark {
       z,
       title,
       stroke,
+      order,
       transform,
       ...style
     } = {}
@@ -31,7 +32,7 @@ export class Link extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {order, transform}
     );
     Style(this, {stroke: cstroke, ...style});
   }
