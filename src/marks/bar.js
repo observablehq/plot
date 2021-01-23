@@ -1,6 +1,6 @@
-import {ascending, descending, sort} from "d3-array";
+import {ascending, sort} from "d3-array";
 import {create} from "d3-selection";
-import {filter} from "../defined.js";
+import {ascendingDefined, descendingDefined, filter} from "../defined.js";
 import {Mark, number, maybeColor, maybeZero, indexOf, take, title, range} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -170,8 +170,8 @@ function maybeSort(sort) {
   if (!sort) return;
   if (typeof sort === "function") return sort;
   switch (sort) {
-    case true: case "descending": return descending;
-    case "ascending": return ascending;
+    case true: case "descending": return descendingDefined;
+    case "ascending": return ascendingDefined;
   }
   throw new Error("invalid sort");
 }

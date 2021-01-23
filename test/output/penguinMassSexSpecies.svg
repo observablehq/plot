@@ -17,13 +17,13 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(123.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(305.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(487.5,0)">
+    <g class="tick" opacity="1" transform="translate(305.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(487.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
     </g><text fill="currentColor" transform="translate(305,-30)" dy="1em" text-anchor="middle">sex</text>
   </g>
   <g>
@@ -116,32 +116,6 @@
     </g>
     <g transform="translate(41,31)">
       <g transform="translate(0,0)">
-        <rect x="1" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
-        <rect x="22" y="99.04761904761904" width="19" height="4.952380952380963"></rect>
-        <rect x="42" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
-        <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
-      </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
-        <line x1="0" x2="164" y1="104" y2="104"></line>
-      </g>
-    </g>
-    <g transform="translate(41,146)">
-      <g transform="translate(0,0)"></g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
-        <line x1="0" x2="164" y1="104" y2="104"></line>
-      </g>
-    </g>
-    <g transform="translate(41,261)">
-      <g transform="translate(0,0)">
-        <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
-        <rect x="83" y="96.57142857142857" width="20" height="7.428571428571431"></rect>
-      </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
-        <line x1="0" x2="164" y1="104" y2="104"></line>
-      </g>
-    </g>
-    <g transform="translate(223,31)">
-      <g transform="translate(0,0)">
         <rect x="1" y="89.14285714285715" width="20" height="14.857142857142847"></rect>
         <rect x="22" y="0" width="19" height="104"></rect>
         <rect x="42" y="42.095238095238095" width="20" height="61.904761904761905"></rect>
@@ -150,7 +124,7 @@
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
-    <g transform="translate(223,146)">
+    <g transform="translate(41,146)">
       <g transform="translate(0,0)">
         <rect x="1" y="99.04761904761904" width="20" height="4.952380952380963"></rect>
         <rect x="22" y="76.76190476190476" width="19" height="27.23809523809524"></rect>
@@ -161,7 +135,7 @@
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
-    <g transform="translate(223,261)">
+    <g transform="translate(41,261)">
       <g transform="translate(0,0)">
         <rect x="42" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
         <rect x="63" y="69.33333333333334" width="19" height="34.66666666666666"></rect>
@@ -172,7 +146,7 @@
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
-    <g transform="translate(405,31)">
+    <g transform="translate(223,31)">
       <g transform="translate(0,0)">
         <rect x="22" y="96.57142857142857" width="19" height="7.428571428571431"></rect>
         <rect x="42" y="24.761904761904766" width="20" height="79.23809523809524"></rect>
@@ -183,7 +157,7 @@
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
-    <g transform="translate(405,146)">
+    <g transform="translate(223,146)">
       <g transform="translate(0,0)">
         <rect x="22" y="94.0952380952381" width="19" height="9.904761904761898"></rect>
         <rect x="42" y="66.85714285714285" width="20" height="37.14285714285715"></rect>
@@ -194,12 +168,38 @@
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
-    <g transform="translate(405,261)">
+    <g transform="translate(223,261)">
       <g transform="translate(0,0)">
         <rect x="83" y="99.04761904761904" width="20" height="4.952380952380963"></rect>
         <rect x="104" y="39.61904761904762" width="19" height="64.38095238095238"></rect>
         <rect x="124" y="32.19047619047619" width="20" height="71.80952380952381"></rect>
         <rect x="145" y="94.0952380952381" width="19" height="9.904761904761898"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="164" y1="104" y2="104"></line>
+      </g>
+    </g>
+    <g transform="translate(405,31)">
+      <g transform="translate(0,0)">
+        <rect x="1" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
+        <rect x="22" y="99.04761904761904" width="19" height="4.952380952380963"></rect>
+        <rect x="42" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
+        <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="164" y1="104" y2="104"></line>
+      </g>
+    </g>
+    <g transform="translate(405,146)">
+      <g transform="translate(0,0)"></g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="164" y1="104" y2="104"></line>
+      </g>
+    </g>
+    <g transform="translate(405,261)">
+      <g transform="translate(0,0)">
+        <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
+        <rect x="83" y="96.57142857142857" width="20" height="7.428571428571431"></rect>
       </g>
       <g stroke="currentColor" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
