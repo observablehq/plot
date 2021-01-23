@@ -8,9 +8,16 @@ https://finance.yahoo.com/lookup
 *Cryptographical Mathematics* by Robert Edward Lewand
 http://cs.wellesley.edu/~fturbak/codman/letterfreq.html
 
+## anscombe.csv
+Anscome’s quartet
+https://en.wikipedia.org/wiki/Anscombe%27s_quartet
+
 ## athletes.csv
 Matt Riggott/IOC
 https://www.flother.is/2017/olympic-games-data/
+
+## barley.csv
+http://search.r-project.org/R/library/lattice/html/barley.html
 
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
