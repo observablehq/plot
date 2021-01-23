@@ -74,19 +74,26 @@ export class Mark {
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
     for (const targetName in this.order) {
-      const [sourceDirection, sourceName] = parseOrder(this.order[targetName]);
-      const [, t] = channels.find(([name]) => name === targetName);
+      const order = this.order[targetName];
+      const [, t] = findChannel(channels, targetName);
       const {value: T} = t;
-      if (sourceName === "input") {
-        t.domain = sourceDirection === "+" ? T : reverse(T);
+      if (order == null) {
+        t.domain = T;
       } else {
-        const [, {value: S}] = channels.find(([name]) => name === sourceName);
-        const order = sourceDirection === "+" ? ascendingDefined : descendingDefined;
-        t.domain = take(T, sort(range(T), (i, j) => order(S[i], S[j])));
+        const [sourceDirection, sourceName] = parseOrder(order);
+        const [, {value: S}] = findChannel(channels, sourceName);
+        const compare = sourceDirection === "+" ? ascendingDefined : descendingDefined;
+        t.domain = take(T, sort(range(T), (i, j) => compare(S[i], S[j])));
       }
     }
     return {index, channels};
   }
+}
+
+function findChannel(channels, name) {
+  const channel = channels.find(([n]) => n === name);
+  if (channel === undefined) throw new Error(`unknown channel: ${name}`);
+  return channel;
 }
 
 function parseOrder(order) {
