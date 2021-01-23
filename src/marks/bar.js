@@ -20,6 +20,7 @@ export class AbstractBar extends Mark {
       rx,
       ry,
       transform,
+      order,
       ...style
     } = {}
   ) {
@@ -34,7 +35,8 @@ export class AbstractBar extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      transform,
+      order
     );
     Style(this, {fill: cfill, stroke: cstroke, ...style});
     this.insetTop = number(insetTop);
@@ -144,12 +146,29 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
+export function barX(data, {x, x1, x2, y = indexOf, order, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2, y});
+  return new BarX(data, {...options, x1, x2, y, order: remapOrder(order, "x", "x2")});
 }
 
-export function barY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
+export function barY(data, {x = indexOf, y, y1, y2, order, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, x, y1, y2});
+  return new BarY(data, {...options, x, y1, y2, order: remapOrder(order, "y", "y2")});
+}
+
+function remapOrder(object = {}, source, target) {
+  for (const key in object) {
+    const [prefix, name] = parseOrder(object[key]);
+    if (name === source) {
+      return {...object, [key]: `${prefix}${target}`};
+    }
+  }
+  return object;
+}
+
+function parseOrder(order) {
+  switch ((order += "")[0]) {
+    case "+": case "-": return [order[0], order.slice(1)];
+  }
+  return ["", order];
 }

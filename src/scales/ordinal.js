@@ -166,10 +166,11 @@ export function ScaleBand(key, channels, {
 }
 
 function inferDomain(channels) {
-  const domain = new Set();
-  for (const {value} of channels) {
+  const values = new Set();
+  for (const {value, domain} of channels) {
+    if (domain !== undefined) return domain;
     if (value === undefined) continue;
-    for (const v of value) domain.add(v);
+    for (const v of value) values.add(v);
   }
-  return sort(domain, ascendingDefined);
+  return sort(values, ascendingDefined);
 }

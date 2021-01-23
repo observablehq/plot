@@ -16,6 +16,7 @@ export class Dot extends Mark {
       fill,
       stroke,
       transform,
+      order,
       ...style
     } = {}
   ) {
@@ -33,7 +34,8 @@ export class Dot extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      transform,
+      order
     );
     this.r = cr;
     Style(this, {

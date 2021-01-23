@@ -1,15 +1,16 @@
 import {sort} from "d3-array";
 import {color} from "d3-color";
-import {nonempty} from "./defined.js";
+import {ascendingDefined, descendingDefined, nonempty} from "./defined.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 
 export class Mark {
-  constructor(data, channels = [], transform = identity) {
+  constructor(data, channels = [], transform = identity, order = {}) {
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
+    this.order = order;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
@@ -68,15 +69,52 @@ export class Mark {
         index = data === undefined ? undefined : range(data);
       }
     }
-    return {
-      index,
-      channels: this.channels.map(channel => {
-        const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, channel)];
-      })
-    };
+    const channels = this.channels.map(channel => {
+      const {name} = channel;
+      return [name == null ? undefined : name + "", Channel(data, channel)];
+    });
+    for (const targetName in this.order) {
+      const [sourceName, sourceOrder] = parseOrder(this.order[targetName]);
+      const [, {value: S}] = channels.find(([name]) => name === sourceName);
+      const [, t] = channels.find(([name]) => name === targetName);
+      const {value: T} = t;
+      t.domain = take(T, sort(range(T), (i, j) => sourceOrder(S[i], S[j])));
+    }
+    return {index, channels};
   }
 }
+
+function parseOrder(order) {
+  switch ((order += "")[0]) {
+    case "-": return [order.slice(1), descendingDefined];
+    case "+": return [order.slice(1), ascendingDefined];
+  }
+  return [order, ascendingDefined];
+}
+
+// const inputOrder = Symbol("input");
+
+// function maybeSort(order) {
+//   if (!order) return;
+//   if (typeof order === "function") return order;
+//   switch (order) {
+//     case true: case "descending": return descendingDefined;
+//     case "ascending": return ascendingDefined;
+//     case "input": return inputOrder;
+//   }
+//   throw new Error("invalid sort order");
+// }
+
+// function inferSortedDomain(order, channels, nameX, nameY) {
+//   const [, x] = channels.find(([name]) => name === nameX);
+//   const {value: X} = x;
+//   if (order === inputOrder) {
+//     x.domain = X;
+//   } else {
+//     const [, {value: Y}] = channels.find(([name]) => name === nameY);
+//     x.domain = take(X, sort(range(X), (i, j) => order(Y[i], Y[j])));
+//   }
+// }
 
 // TODO Type coercion?
 function Channel(data, {scale, type, value}) {
