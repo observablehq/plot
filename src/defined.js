@@ -5,7 +5,7 @@ export function defined(x) {
 }
 
 export function ascendingDefined(a, b) {
-  return defined(a) - defined(b) || ascending(a, b);
+  return defined(b) - defined(a) || ascending(a, b);
 }
 
 export function nonempty(x) {
