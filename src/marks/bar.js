@@ -166,20 +166,26 @@ export function barY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
   return new BarY(data, {...options, x, y1, y2});
 }
 
-function maybeSort(sort) {
-  if (!sort) return;
-  if (typeof sort === "function") return sort;
-  switch (sort) {
+const inputOrder = Symbol("input");
+
+function maybeSort(order) {
+  if (!order) return;
+  if (typeof order === "function") return order;
+  switch (order) {
     case true: case "descending": return descendingDefined;
     case "ascending": return ascendingDefined;
+    case "input": return inputOrder;
   }
-  throw new Error("invalid sort");
+  throw new Error("invalid sort order");
 }
 
 function inferSortedDomain(order, channels, nameX, nameY) {
   const [, x] = channels.find(([name]) => name === nameX);
-  const [, y] = channels.find(([name]) => name === nameY);
   const {value: X} = x;
-  const {value: Y} = y;
-  x.domain = take(X, sort(range(X), (i, j) => order(Y[i], Y[j])));
+  if (order === inputOrder) {
+    x.domain = X;
+  } else {
+    const [, {value: Y}] = channels.find(([name]) => name === nameY);
+    x.domain = take(X, sort(range(X), (i, j) => order(Y[i], Y[j])));
+  }
 }
