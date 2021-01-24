@@ -35,9 +35,7 @@ function bars(groups, title) {
       padding: 0,
       label: title,
       labelAnchor: "top",
-      domain: groups
-        .sort(([ak, av], [bk, bv]) => d3.descending(av, bv) || d3.ascending(ak, bk))
-        .map(([key]) => key)
+      domain: d3.sort(groups, ([ak, av], [bk, bv]) => d3.descending(av, bv) || d3.ascending(ak, bk)).map(([key]) => key)
     },
     marks: [
       Plot.barX(groups, {
