@@ -10,7 +10,7 @@ export default async function() {
       grid: true
     },
     y: {
-      domain: d3.sort(alphabet, (a, b) => d3.descending(a.frequency, b.frequency)).map(d => d.letter),
+      domain: d3.sort(alphabet, d => -d.frequency).map(d => d.letter),
       invert: true, // TODO implicitly invert when band or point in y
       label: null
     },

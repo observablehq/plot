@@ -18,7 +18,7 @@ export default async function() {
     },
     y: {
       label: null,
-      domain: d3.sort(data, (a, b) => d3.descending(a[2019] - a[2010], b[2019] - b[2010])).map(d => d.State)
+      domain: d3.sort(data, d => d[2010] - d[2019]).map(d => d.State)
     },
     color: {
       range: ["#e15759", "#4e79a7"]
