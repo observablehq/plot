@@ -15,9 +15,7 @@ export default async function() {
       domain: [d3.min(movies, Profit), 1e3]
     },
     y: {
-      domain: d3.rollups(movies, movies => d3.median(movies, Profit), Genre)
-        .sort(([, a], [, b]) => d3.descending(a, b))
-        .map(([key]) => key)
+      domain: d3.groupSort(movies, movies => -d3.median(movies, Profit), Genre)
     },
     marks: [
       Plot.ruleX([0]),

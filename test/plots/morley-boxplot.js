@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const morley = await d3.csv("data/morley.csv", d3.autoType);
-  const expts = d3.rollups(morley, data => box(data, d => d.Speed), d => d.Expt);
+  const expts = d3.rollup(morley, data => box(data, d => d.Speed), d => d.Expt);
   return Plot.plot({
     x: {
       grid: true,

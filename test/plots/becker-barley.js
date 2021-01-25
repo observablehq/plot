@@ -11,15 +11,11 @@ export default async function() {
       nice: true
     },
     y: {
-      domain: d3.rollups(barley, group => d3.median(group, d => d.yield), d => d.variety)
-        .sort(([, a], [, b]) => d3.descending(a, b))
-        .map(([key]) => key),
+      domain: d3.groupSort(barley, g => -d3.median(g, d => d.yield), d => d.variety),
       inset: 5
     },
     fy: {
-      domain: d3.rollups(barley, group => d3.median(group, d => d.yield), d => d.site)
-        .sort(([, a], [, b]) => d3.descending(a, b))
-        .map(([key]) => key)
+      domain: d3.groupSort(barley, g => -d3.median(g, d => d.yield), d => d.site)
     },
     color: {
       type: "ordinal"

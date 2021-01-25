@@ -62,10 +62,7 @@ export default async function() {
       axis: null
     },
     fy: {
-      domain: rollup
-        .filter(d => d.status === "ACCEPTED")
-        .sort((a, b) => d3.descending(a.percent, b.percent))
-        .map(d => d.race),
+      domain: d3.groupSort(rollup, group => -group.find(d => d.status === "ACCEPTED").percent, d => d.race),
       label: null
     },
     color: {

@@ -14,9 +14,7 @@ export default async function() {
       axis: null
     },
     fy: {
-      domain: d3.rollups(data, group => d3.max(group, d => d.unemployment), d => d.division)
-        .sort(([, a], [, b]) => d3.descending(a, b))
-        .map(([key]) => key),
+      domain: d3.groupSort(data, g => -d3.max(g, d => d.unemployment), d => d.division),
       label: null
     },
     facet: {
