@@ -5,6 +5,7 @@ export {default as aaplVolume} from "./aapl-volume.js";
 export {default as anscombeQuartet} from "./anscombe-quartet.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as beckerBarley} from "./becker-barley.js";
+export {default as caltrain} from "./caltrain.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
 export {default as d3Survey2015Comfort} from "./d3-survey-2015-comfort.js";
