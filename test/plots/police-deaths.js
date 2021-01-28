@@ -29,15 +29,13 @@ export default async function() {
     marks: [
       
       // fill
-      Plot.stackAreaY(data, {
-        transform: data => data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]),
+      Plot.stackAreaY(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), {
         x: "type", y: "value", fill: "race", curve: "monotone-x",
         z: "race", zOrder
       }),
       
       // top black lines
-      Plot.stackLineY(data, {
-        transform: data => data.flatMap(d => d.type === "police" ? [{...d, type:"---"}, d] : [d, {...d, type:"+++"}]),
+      Plot.stackLineY(data.flatMap(d => d.type === "police" ? [{...d, type:"---"}, d] : [d, {...d, type:"+++"}]), {
         x: "type", y: "value",
         z: "race", zOrder,
         stroke:"black", curve: "monotone-x", strokeWidth: 2
@@ -51,8 +49,7 @@ export default async function() {
       }),
   
       // text
-      Plot.text(data, {
-        transform: data => data.map(d => ({...d, type: d.type === "police" ? "--" : "++"})),
+      Plot.text(data.map(d => ({...d, type: d.type === "police" ? "--" : "++"})), {
         x: "type", y: Plot.stackY(data, {x: "type", y: "value", z: "race", zOrder})[1].ym,
         text: d => `${d.race} ${d.value}%`
       })
