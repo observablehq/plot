@@ -10,7 +10,14 @@ export function Style(mark, {
   strokeLinecap,
   strokeMiterlimit,
   strokeDasharray,
-  mixBlendMode
+  mixBlendMode,
+  fontFamily,
+  fontSize,
+  fontSizeAdjust,
+  fontStretch,
+  fontStyle,
+  fontVariant,
+  fontWeight
 } = {}) {
   mark.fill = impliedString(fill, "currentColor");
   mark.fillOpacity = impliedNumber(fillOpacity, 1);
@@ -22,6 +29,16 @@ export function Style(mark, {
   mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 1);
   mark.strokeDasharray = string(strokeDasharray);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  
+  mark.font = {
+    family: impliedString(fontFamily, "sans-serif"),
+    size: impliedString(fontSize, "10px"),
+    sizeAdjust: impliedString(fontSizeAdjust, "none"),
+    stretch: impliedString(fontStretch, "normal"),
+    style: impliedString(fontStyle, "normal"),
+    variant: impliedString(fontVariant, "normal"),
+    weight: impliedString(fontWeight, "normal")
+  };
 }
 
 export function applyIndirectStyles(selection, mark) {
@@ -34,6 +51,13 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
   applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
+  applyAttr(selection, "font-family", mark.font.family);
+  applyAttr(selection, "font-size", mark.font.size);
+  applyAttr(selection, "font-size-adjust", mark.font.sizeAdjust);
+  applyAttr(selection, "font-stretch", mark.font.stretch);
+  applyAttr(selection, "font-style", mark.font.style);
+  applyAttr(selection, "font-variant", mark.font.variant);
+  applyAttr(selection, "font-weight", mark.font.weight);
 }
 
 export function applyDirectStyles(selection, mark) {
