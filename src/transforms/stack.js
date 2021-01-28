@@ -1,38 +1,63 @@
-import {InternMap} from "d3-array";
+import {InternMap, ascending, range} from "d3-array";
 import {valueof} from "../mark";
 
-// TODO configurable series order
-export function stackX(data, {x, y, ...options}) {
-  const X = valueof(data, x);
-  const Y = valueof(data, y);
-  const n = X.length;
-  const X0 = new InternMap();
-  const X1 = new Float64Array(n);
-  const X2 = new Float64Array(n);
-  for (let i = 0; i < n; ++i) {
-    const k = Y[i];
-    const x1 = X1[i] = X0.has(k) ? X0.get(k) : 0;
-    const x2 = X2[i] = x1 + +X[i];
-    X0.set(k, isNaN(x2) ? x1 : x2);
-  }
-  return [data, {...options, x1: maybeLabel(X1, x), x2: X2, y: maybeLabel(Y, y)}];
+export function stackX(data, {x, y, z, ...options}) {
+  const [, {x: y_, y1: x1, y2: x2, ym: xm, ...rest}] = stackY(data, {x: y, y: x, z, ...options});
+  return [data, {...rest, x1, x2, xm, y: y_, z}];
 }
 
-// TODO configurable series order
-export function stackY(data, {x, y, ...options}) {
+export function stackY(data, {x, y, z, zOrder, offset, ...options}) {
   const X = valueof(data, x);
   const Y = valueof(data, y);
   const n = X.length;
-  const Y0 = new InternMap();
+  const I = range(n);
+  const Yp = new InternMap();
+  const Yn = new InternMap();
   const Y1 = new Float64Array(n);
   const Y2 = new Float64Array(n);
-  for (let i = 0; i < n; ++i) {
+  
+  // sort
+  if (z) {
+    const Z = valueof(data, z);
+    if (zOrder) I.forEach(i => Z[i] = zOrder.indexOf(Z[i]));
+    I.sort((i, j) => ascending(Z[i], Z[j]));
+  }
+  
+  // stack
+  for (const i of I) {
     const k = X[i];
-    const y1 = Y1[i] = Y0.has(k) ? Y0.get(k) : 0;
-    const y2 = Y2[i] = y1 + +Y[i];
+    const v = +Y[i];
+    const [Y0, ceil, floor] = v < 0 ? [Yn, Y1, Y2] : [Yp ,Y2, Y1];
+    const y1 = floor[i] = Y0.has(k) ? Y0.get(k) : 0;
+    const y2 = ceil[i] = y1 + +Y[i];
     Y0.set(k, isNaN(y2) ? y1 : y2);
   }
-  return [data, {...options, x: maybeLabel(X, x), y1: maybeLabel(Y1, y), y2: Y2}];
+  
+  // offset
+  if (offset === "expand") {
+    for (const i of I) {
+      const k = X[i];
+      const floor = Yn.has(k) ? Yn.get(k) : 0;
+      const ceil = Yp.has(k) ? Yp.get(k) : 0;
+      const m = 1 / (ceil - floor || 1);
+      Y1[i] = m * (-floor + Y1[i]);
+      Y2[i] = m * (-floor + Y2[i]);
+    }
+  }
+  if (offset === "silhouette") {
+    for (const i of I) {
+      const k = X[i];
+      const floor = Yn.has(k) ? Yn.get(k) : 0;
+      const ceil = Yp.has(k) ? Yp.get(k) : 0;
+      const m = (ceil + floor) / 2;
+      Y1[i] -= m;
+      Y2[i] -= m;
+    }
+  }
+  // todo "wiggle"
+  
+  const ym = Y1.map((y1, i) => (y1 + Y2[i]) / 2);
+  return [data, {...options, x: maybeLabel(X, x), y1: maybeLabel(Y1, y), y2: Y2, ym, z}];
 }
 
 // If x is a labeled value, propagate the label to the returned value array.
