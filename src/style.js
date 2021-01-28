@@ -1,40 +1,81 @@
 import {string, number} from "./mark.js";
 
-const stylesList = [
-  ["fill", "fill", "currentColor", impliedString],
-  ["fillOpacity", "fill-opacity", 1, impliedNumber],
-  ["stroke", "stroke", "none", impliedString],
-  ["strokeWidth", "stroke-width", 1, impliedNumber],
-  ["strokeOpacity", "stroke-opacity", 1, impliedNumber],
-  ["strokeLinejoin", "stroke-linejoin", "miter", impliedString],
-  ["strokeLinecap", "stroke-linecap", "butt", impliedString],
-  ["strokeMiterlimit", "stroke-miterlimit", 1, impliedNumber],
-  ["strokeDasharray", "stroke-dasharray", null, string],
-  ["mixBlendMode", "mix-blend-mode", "normal", impliedString, true],
-  ["fontFamily", "font-family", "sans-serif", impliedString],
-  ["fontSize", "font-size", "10px", impliedString],
-  ["fontSizeAdjust", "font-size-adjust", "none", impliedString],
-  ["fontStretch", "font-stretch", "normal", impliedString],
-  ["fontStyle", "font-style", "normal", impliedString],
-  ["fontVariant", "font-variant", "normal", impliedString],
-  ["fontWeight", "font-weight", "normal", impliedString]
+function attr(key, name, impliedValue) {
+  return new AttrProperty(key, name, impliedValue);
+}
+
+function style(key, name, impliedValue) {
+  return new StyleProperty(key, name, impliedValue);
+}
+
+class Property {
+  constructor(key, name, impliedValue) {
+    this.key = key;
+    this.name = name;
+    this.impliedValue = impliedValue;
+    this.type = typeof impliedValue === "number" ? number : string;
+  }
+  define(mark, style) {
+    const value = this.type(style[this.key]);
+    mark[this.key] = value === this.impliedValue ? undefined : value;
+  }
+}
+
+class AttrProperty extends Property {
+  apply(mark, selection) {
+    applyAttr(selection, this.name, mark[this.key]);
+  }
+}
+
+class StyleProperty extends Property {
+  apply(mark, selection) {
+    applyStyle(selection, this.name, mark[this.key]);
+  }
+}
+
+const indirectProperties = [
+  attr("fill", "fill", "currentColor"),
+  attr("fillOpacity", "fill-opacity", 1),
+  attr("stroke", "stroke", "none"),
+  attr("strokeWidth", "stroke-width", 1),
+  attr("strokeOpacity", "stroke-opacity", 1),
+  attr("strokeLinejoin", "stroke-linejoin", "miter"),
+  attr("strokeLinecap", "stroke-linecap", "butt"),
+  attr("strokeMiterlimit", "stroke-miterlimit", 1),
+  attr("strokeDasharray", "stroke-dasharray", null),
+  attr("fontFamily", "font-family", "sans-serif"),
+  attr("fontSize", "font-size", "10px"),
+  attr("fontSizeAdjust", "font-size-adjust", "none"),
+  attr("fontStretch", "font-stretch", "normal"),
+  attr("fontStyle", "font-style", "normal"),
+  attr("fontVariant", "font-variant", "normal"),
+  attr("fontWeight", "font-weight", "normal")
 ];
 
-export function Style(mark, styles = {}) {
-  for (const [key, hyphenkey, value, type] of stylesList) {
-    mark[key] = type((hyphenkey in styles) ? styles[hyphenkey] : styles[key], value);
+const directProperties = [
+  style("mixBlendMode", "mix-blend-mode", "normal")
+];
+
+const properties = [
+  ...directProperties,
+  ...indirectProperties
+];
+
+export function Style(mark, style = {}) {
+  for (const property of properties) {
+    property.define(mark, style);
   }
 }
 
 export function applyIndirectStyles(selection, mark) {
-  for (const [key, hyphenkey,,, indirect] of stylesList) {
-    if (!indirect) applyAttr(selection, hyphenkey, mark[key]);
+  for (const property of indirectProperties) {
+    property.apply(mark, selection);
   }
 }
 
 export function applyDirectStyles(selection, mark) {
-  for (const [key, hyphenkey,,, indirect] of stylesList) {
-    if (indirect) applyStyle(selection, hyphenkey, mark[key]);
+  for (const property of directProperties) {
+    property.apply(mark, selection);
   }
 }
 
@@ -50,12 +91,4 @@ export function applyTransform(selection, x, y, tx = 0, ty = 0) {
   if (x.bandwidth) tx += x.bandwidth() / 2;
   if (y.bandwidth) ty += y.bandwidth() / 2;
   selection.attr("transform", `translate(${tx},${ty})`);
-}
-
-function impliedString(value, impliedValue) {
-  if ((value = string(value)) !== impliedValue) return value;
-}
-
-function impliedNumber(value, impliedValue) {
-  if ((value = number(value)) !== impliedValue) return value;
 }
