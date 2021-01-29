@@ -34,11 +34,20 @@ export default async function() {
         z: "race", zOrder
       }),
       
+      // dashed lines
+      Plot.stackLineY(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), {
+        x: "type", y: "value",
+        z: "race", zOrder,
+        stroke: "black", curve: "monotone-x", strokeWidth: 0.5,
+        position: "center",
+        strokeDasharray: [5, 5]
+      }),
+      
       // top black lines
       Plot.stackLineY(data.flatMap(d => d.type === "police" ? [{...d, type:"---"}, d] : [d, {...d, type:"+++"}]), {
         x: "type", y: "value",
         z: "race", zOrder,
-        stroke:"black", curve: "monotone-x", strokeWidth: 2
+        stroke: "black", curve: "monotone-x", strokeWidth: 2
       }),
   
       // bottom black line
@@ -49,10 +58,16 @@ export default async function() {
       }),
   
       // text
-      Plot.text(data.map(d => ({...d, type: d.type === "police" ? "--" : "++"})), {
-        x: "type", y: Plot.stackY(data, {x: "type", y: "value", z: "race", zOrder})[1].ym,
-        text: d => `${d.race} ${d.value}%`
-      })
+      Plot.text(...Plot.stackY(
+        data.map(d => ({...d, type: d.type === "police" ? "--" : "++"})),
+        {
+          x: "type",
+          y: "value",
+          z: "race",
+          zOrder,
+          text: d => `${d.race} ${d.value}%`
+        }
+      ))
       
     ],
     marginBottom: 12
