@@ -22,7 +22,6 @@ export function stackY(data, {x, y, z, zOrder, offset, ...options}) {
   }
   
   const transform = (data, facets) => {
-    const index = [];
     for (const facet of (facets === undefined ? [I] : facets)) {
       const Yp = new InternMap();
       const Yn = new InternMap();
@@ -59,11 +58,9 @@ export function stackY(data, {x, y, z, zOrder, offset, ...options}) {
         }
       }
       // todo "wiggle"
-      
-      index.push(facet);
     }
 
-    return {index: facets === undefined ? I : index, data};
+    return {index: facets === undefined ? I : facets, data};
   };
   
   return [data, {
