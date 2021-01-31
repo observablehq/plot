@@ -8,7 +8,7 @@ const defaultStyle = {
   fontSize: "10px",
   fontFamily: "sans-serif",
   background: "white",
-  height: "intrinsic",
+  height: "auto",
   maxWidth: "100%"
 };
 
@@ -87,6 +87,7 @@ export function plot(options = {}) {
       .attr("stroke-miterlimit", 1)
       .attr("text-anchor", "middle")
       .attr("width", width)
+      .attr("height", height)
       .each(function() { Object.assign(this.style, defaultStyle, style); });
 
   svg.append("style")
