@@ -81,7 +81,6 @@ export function plot(options = {}) {
   const {width, height} = dimensions;
 
   const svg = create("svg")
-      .attr("viewBox", [0, 0, width, height])
       .attr("class", "plot")
       .attr("fill", "currentColor")
       .attr("stroke-miterlimit", 1)
