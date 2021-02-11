@@ -7,8 +7,8 @@
     "url": "https://observablehq.com"
   },
   "license": "ISC",
-  "main": "dist/@observablehq/plot.cjs.js",
-  "unpkg": "dist/@observablehq/plot.umd.min.js",
+  "main": "dist/plot.cjs.js",
+  "unpkg": "dist/plot.umd.min.js",
   "module": "src/index.js",
   "repository": {
     "type": "git",
