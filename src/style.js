@@ -49,8 +49,8 @@ export function applyStyle(selection, name, value) {
 }
 
 export function applyTransform(selection, x, y, tx = 0, ty = 0) {
-  if (x.bandwidth) tx += x.bandwidth() / 2;
-  if (y.bandwidth) ty += y.bandwidth() / 2;
+  if (x && x.bandwidth) tx += x.bandwidth() / 2;
+  if (y && y.bandwidth) ty += y.bandwidth() / 2;
   selection.attr("transform", `translate(${tx},${ty})`);
 }
 

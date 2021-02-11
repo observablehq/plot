@@ -17,6 +17,7 @@ export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
+export {default as letterFrequencyDot} from "./letter-frequency-dot.js";
 export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js";
 export {default as metroInequalityChange} from "./metro-inequality-change.js";
 export {default as metroInequality} from "./metro-inequality.js";
