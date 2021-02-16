@@ -83,7 +83,6 @@ export function plot(options = {}) {
   const svg = create("svg")
       .attr("class", "plot")
       .attr("fill", "currentColor")
-      .attr("stroke-miterlimit", 1)
       .attr("text-anchor", "middle")
       .attr("width", width)
       .attr("height", height)

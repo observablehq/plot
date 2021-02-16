@@ -17,7 +17,7 @@ tape("line() has the expected defaults", test => {
   test.strictEqual(line.strokeOpacity, undefined);
   test.strictEqual(line.strokeLinejoin, undefined);
   test.strictEqual(line.strokeLinecap, undefined);
-  test.strictEqual(line.strokeMiterlimit, undefined);
+  test.strictEqual(line.strokeMiterlimit, 1);
   test.strictEqual(line.strokeDasharray, undefined);
   test.strictEqual(line.mixBlendMode, undefined);
 });

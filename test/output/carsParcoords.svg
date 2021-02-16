@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" width="640" height="396" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot text {
       white-space: pre;
@@ -2891,7 +2891,7 @@
     <line x1="100" x2="620" y1="358" y2="358"></line>
     <line x1="100" x2="620" y1="358" y2="358"></line>
   </g>
-  <g fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" transform="translate(0.5,0.5)">
+  <g fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M155.31914893617022,28L620,83L492.35142118863047,138L464.5652173913043,193L425.5344485398355,248L192.85714285714286,303L230,358"></path>
     <path d="M182.9787234042553,28L620,83L532.6614987080104,138L506.9565217391305,193L429.81003685852,248L115.47619047619047,303L100,358"></path>
     <path d="M210.63829787234044,28L620,83L417.10594315245476,138L393.9130434782609,193L403.56677062659486,248L208.33333333333331,303L186.66666666666669,358"></path>

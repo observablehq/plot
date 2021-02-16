@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" stroke-miterlimit="1" text-anchor="middle" width="960" height="150" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="960" height="150" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot text {
       white-space: pre;

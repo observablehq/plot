@@ -19,7 +19,7 @@ export function Style(mark, {
   mark.strokeOpacity = impliedNumber(strokeOpacity, 1);
   mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
   mark.strokeLinecap = impliedString(strokeLinecap, "butt");
-  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 1);
+  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
   mark.strokeDasharray = string(strokeDasharray);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
 }
