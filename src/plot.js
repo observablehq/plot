@@ -34,6 +34,7 @@ export function plot(options = {}) {
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
   // Also apply any scale transforms.
   for (const mark of marks) {
+    if (!mark) continue;
     if (markChannels.has(mark)) throw new Error("duplicate mark");
     const named = Object.create(null);
     const {index, channels} = mark.initialize();
@@ -93,6 +94,7 @@ export function plot(options = {}) {
       .text(`.plot text { white-space: pre; }`);
 
   for (const mark of marks) {
+    if (!mark) continue;
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
     const node = mark.render(index, scales, channels, dimensions, axes);
