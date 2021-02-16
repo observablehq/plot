@@ -18,7 +18,7 @@ class Facet extends Mark {
       ],
       transform
     );
-    this.marks = marks;
+    this.marks = marks.filter(d => !!d);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
