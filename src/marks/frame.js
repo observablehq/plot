@@ -6,7 +6,7 @@ export class Frame extends Mark {
   constructor({
     fill = "none",
     stroke = fill === null || fill === "none" ? "currentColor" : "none",
-    inset = stroke === null || stroke === "none" ? 0 : 0.5,
+    inset = 0,
     insetTop = inset,
     insetRight = inset,
     insetBottom = inset,
