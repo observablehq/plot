@@ -9,6 +9,9 @@ export default async function() {
     },
     y: {
       domain: [0, 1]
-    }
+    },
+    marks: [
+      Plot.frame()
+    ]
   });
 }
