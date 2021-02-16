@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(100,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,28.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">economy (mpg)</text>
     </g>
@@ -27,7 +27,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">year</text>
     </g>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(100.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.0</text>
     </g>
@@ -47,7 +47,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">value →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
     <line x1="100" x2="620" y1="28" y2="28"></line>
     <line x1="100" x2="620" y1="28" y2="28"></line>
     <line x1="100" x2="620" y1="28" y2="28"></line>
@@ -2891,7 +2891,7 @@
     <line x1="100" x2="620" y1="358" y2="358"></line>
     <line x1="100" x2="620" y1="358" y2="358"></line>
   </g>
-  <g fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" transform="translate(0.5,0.5)">
+  <g fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" class="line" transform="translate(0.5,0.5)">
     <path d="M155.31914893617022,28L620,83L492.35142118863047,138L464.5652173913043,193L425.5344485398355,248L192.85714285714286,303L230,358"></path>
     <path d="M182.9787234042553,28L620,83L532.6614987080104,138L506.9565217391305,193L429.81003685852,248L115.47619047619047,303L100,358"></path>
     <path d="M210.63829787234044,28L620,83L417.10594315245476,138L393.9130434782609,193L403.56677062659486,248L208.33333333333331,303L186.66666666666669,358"></path>

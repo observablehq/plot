@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,366.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -42,7 +42,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency (%)</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">7.0</text>
     </g>
@@ -68,7 +68,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8.4</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Trade volume (log₁₀) →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g class="binX" transform="translate(0,0)">
     <rect x="41" y="364.3285024154589" width="38" height="1.6714975845411004"></rect>
     <rect x="80" y="345.94202898550725" width="37" height="20.05797101449275"></rect>
     <rect x="118" y="280.7536231884058" width="38" height="85.24637681159419"></rect>
@@ -85,7 +85,7 @@
     <rect x="544" y="362.65700483091786" width="37" height="3.342995169082144"></rect>
     <rect x="582" y="364.3285024154589" width="38" height="1.6714975845411004"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366" y2="366"></line>
   </g>
 </svg>

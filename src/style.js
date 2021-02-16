@@ -10,7 +10,8 @@ export function Style(mark, {
   strokeLinecap,
   strokeMiterlimit,
   strokeDasharray,
-  mixBlendMode
+  mixBlendMode,
+  className
 } = {}) {
   mark.fill = impliedString(fill, "currentColor");
   mark.fillOpacity = impliedNumber(fillOpacity, 1);
@@ -22,6 +23,7 @@ export function Style(mark, {
   mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 1);
   mark.strokeDasharray = string(strokeDasharray);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  mark.className = impliedString(className);
 }
 
 export function applyIndirectStyles(selection, mark) {
@@ -34,6 +36,7 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
   applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
+  applyClass(selection, mark.className);
 }
 
 export function applyDirectStyles(selection, mark) {
@@ -42,6 +45,10 @@ export function applyDirectStyles(selection, mark) {
 
 export function applyAttr(selection, name, value) {
   if (value != null) selection.attr(name, value);
+}
+
+export function applyClass(selection, value) {
+  if (value != null) selection.classed(value, true);
 }
 
 export function applyStyle(selection, name, value) {

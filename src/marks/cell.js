@@ -10,7 +10,7 @@ export class Cell extends AbstractBar {
         {name: "x", value: x, scale: "x", type: "band", optional: true},
         {name: "y", value: y, scale: "y", type: "band", optional: true}
       ],
-      options
+      {className: "cell", ...options}
     );
   }
   _transform() {
@@ -26,9 +26,9 @@ export function cell(data, options) {
 }
 
 export function cellX(data, {x = identity, ...options} = {}) {
-  return new Cell(data, {...options, x, y: null});
+  return new Cell(data, {className: "cellX", ...options, x, y: null});
 }
 
 export function cellY(data, {y = identity, ...options} = {}) {
-  return new Cell(data, {...options, y, x: null});
+  return new Cell(data, {className: "cellY", ...options, y, x: null});
 }

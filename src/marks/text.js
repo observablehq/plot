@@ -34,7 +34,7 @@ export class Text extends Mark {
       ],
       transform
     );
-    Style(this, {fill: cfill, ...style});
+    Style(this, {fill: cfill, className: "text", ...style});
     this.textAnchor = string(textAnchor);
     this.dx = string(dx);
     this.dy = string(dy);
@@ -68,11 +68,11 @@ export function text(data, options) {
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, {...options, x, y: indexOf});
+  return new Text(data, {className: "textX", ...options, x, y: indexOf});
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, {...options, x: indexOf, y});
+  return new Text(data, {className: "textY", ...options, x: indexOf, y});
 }
 
 function applyTextStyles(selection, style) {

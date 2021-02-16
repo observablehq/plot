@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,366.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -58,7 +58,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(55.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
     </g>
@@ -138,7 +138,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
     </g>
   </g>
-  <g transform="translate(0,0)">
+  <g class="groupX" transform="translate(0,0)">
     <rect x="89" width="20" y="303.09090909090907" height="62.909090909090935"></rect>
     <rect x="45" width="20" y="138.6694214876033" height="227.3305785123967"></rect>
     <rect x="287" width="20" y="244.18512396694214" height="121.81487603305786"></rect>
@@ -166,7 +166,7 @@
     <rect x="551" width="20" y="362.8545454545455" height="3.145454545454527"></rect>
     <rect x="243" width="20" y="362.8545454545455" height="3.145454545454527"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366" y2="366"></line>
   </g>
 </svg>

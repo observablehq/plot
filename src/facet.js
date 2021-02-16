@@ -9,7 +9,7 @@ export function facets(data, {x, y, ...options}, marks) {
 }
 
 class Facet extends Mark {
-  constructor(data, {x, y, transform} = {}, marks = []) {
+  constructor(data, {x, y, className = "facet", transform} = {}, marks = []) {
     super(
       data,
       [
@@ -23,6 +23,7 @@ class Facet extends Mark {
     this.marksChannels = undefined; // array of mark channels
     this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
+    this.className = className;
   }
   initialize() {
     const {index, channels} = super.initialize();
@@ -73,7 +74,9 @@ class Facet extends Mark {
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+    const className = this.className;
     return create("svg:g")
+        .classed(className, true)
         .call(g => {
           if (fy && axes.y) {
             const domain = fy.domain();

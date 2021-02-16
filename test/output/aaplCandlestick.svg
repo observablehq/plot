@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,320.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">155</text>
@@ -38,7 +38,7 @@
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">190</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Apple stock price ($)</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(117.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
@@ -64,7 +64,7 @@
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
     </g>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g stroke="currentColor" class="ruleX" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="198.5347717255848" y2="183.96960487655244"></line>
     <line x1="61" x2="61" y1="199.20061624735004" y2="190.8776637621887"></line>
     <line x1="66" x2="66" y1="189.0466058925008" y2="164.74360128173464"></line>
@@ -186,7 +186,7 @@
     <line x1="929" x2="929" y1="48.63843908259133" y2="26"></line>
     <line x1="934" x2="934" y1="50.3030046107661" y2="28.58009030154242"></line>
   </g>
-  <g stroke-width="4" stroke-linecap="round" transform="translate(0.5,0)">
+  <g stroke-width="4" stroke-linecap="round" class="ruleX" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="186.88268818407366" y2="194.29010757291496" stroke="#e41a1c"></line>
     <line x1="61" x2="61" y1="193.12490254794469" y2="195.70499284948733" stroke="#e41a1c"></line>
     <line x1="66" x2="66" y1="189.0466058925008" y2="169.4044380275201" stroke="#4daf4a"></line>

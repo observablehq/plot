@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,185.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M11,0h203M236,0h203M461,0h203M686,0h203"></path>
@@ -26,7 +26,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M11,0h203M236,0h203M461,0h203M686,0h203"></path>
     </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ y</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(152.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">1</text>
     </g>
@@ -40,9 +40,9 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">4</text>
     </g><text fill="currentColor" transform="translate(490,-30)" dy="1em" text-anchor="middle">series</text>
   </g>
-  <g>
+  <g class="facet">
     <g transform="translate(51,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,210)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(22.5,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -58,7 +58,7 @@
       </g>
     </g>
     <g transform="translate(276,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,210)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(22.5,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -74,7 +74,7 @@
       </g>
     </g>
     <g transform="translate(501,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,210)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(22.5,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -90,7 +90,7 @@
       </g>
     </g>
     <g transform="translate(726,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,210)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(22.5,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -106,8 +106,8 @@
       </g>
     </g>
     <g transform="translate(51,0)">
-      <rect fill="none" stroke="currentColor" x="0.5" y="30.5" width="203" height="180"></rect>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect fill="none" stroke="currentColor" class="frame" x="0.5" y="30.5" width="203" height="180"></rect>
+      <g fill="none" stroke="currentColor" stroke-width="1.5" class="dot" transform="translate(0.5,0.5)">
         <circle cx="83.2" cy="118.00829875518673" r="3"></circle>
         <circle cx="58.800000000000004" cy="136.0995850622407" r="3"></circle>
         <circle cx="119.8" cy="125.64315352697096" r="3"></circle>
@@ -122,8 +122,8 @@
       </g>
     </g>
     <g transform="translate(276,0)">
-      <rect fill="none" stroke="currentColor" x="0.5" y="30.5" width="203" height="180"></rect>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect fill="none" stroke="currentColor" class="frame" x="0.5" y="30.5" width="203" height="180"></rect>
+      <g fill="none" stroke="currentColor" stroke-width="1.5" class="dot" transform="translate(0.5,0.5)">
         <circle cx="83.2" cy="99.75103734439833" r="3"></circle>
         <circle cx="58.800000000000004" cy="116.34854771784231" r="3"></circle>
         <circle cx="119.8" cy="106.39004149377593" r="3"></circle>
@@ -138,8 +138,8 @@
       </g>
     </g>
     <g transform="translate(501,0)">
-      <rect fill="none" stroke="currentColor" x="0.5" y="30.5" width="203" height="180"></rect>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect fill="none" stroke="currentColor" class="frame" x="0.5" y="30.5" width="203" height="180"></rect>
+      <g fill="none" stroke="currentColor" stroke-width="1.5" class="dot" transform="translate(0.5,0.5)">
         <circle cx="83.2" cy="127.63485477178423" r="3"></circle>
         <circle cx="58.800000000000004" cy="139.0871369294606" r="3"></circle>
         <circle cx="119.8" cy="40" r="3"></circle>
@@ -154,8 +154,8 @@
       </g>
     </g>
     <g transform="translate(726,0)">
-      <rect fill="none" stroke="currentColor" x="0.5" y="30.5" width="203" height="180"></rect>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect fill="none" stroke="currentColor" class="frame" x="0.5" y="30.5" width="203" height="180"></rect>
+      <g fill="none" stroke="currentColor" stroke-width="1.5" class="dot" transform="translate(0.5,0.5)">
         <circle cx="58.800000000000004" cy="142.24066390041492" r="3"></circle>
         <circle cx="58.800000000000004" cy="155.85062240663902" r="3"></circle>
         <circle cx="58.800000000000004" cy="123.48547717842327" r="3"></circle>

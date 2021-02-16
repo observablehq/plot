@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,362.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
@@ -38,7 +38,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Temperature (°F)</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2012</text>
     </g>
@@ -52,7 +52,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">date →</text>
   </g>
-  <g transform="translate(0.5,0)">
+  <g class="ruleX" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="267.95316159250586" y2="204.74941451990637" stroke="rgb(236, 239, 241)"></line>
     <line x1="40" x2="40" y1="285.77985948477755" y2="222.57611241217802" stroke="rgb(200, 224, 237)"></line>
     <line x1="41" x2="41" y1="250.1264637002342" y2="213.66276346604212" stroke="rgb(250, 228, 215)"></line>

@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,366.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0.00</text>
@@ -58,7 +58,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0.12</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ frequency</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(55.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
     </g>
@@ -138,7 +138,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">letter</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g stroke="currentColor" class="ruleX" transform="translate(0.5,0)">
     <line x1="143" x2="143" y1="366" y2="20"></line>
     <line x1="473" x2="473" y1="366" y2="119.31632813730118"></line>
     <line x1="55" x2="55" y1="366" y2="143.53251456463545"></line>
@@ -166,7 +166,7 @@
     <line x1="407" x2="407" y1="366" y2="363.41221854826006"></line>
     <line x1="605" x2="605" y1="366" y2="363.9842544481184"></line>
   </g>
-  <g transform="translate(0.5,0.5)">
+  <g class="dot" transform="translate(0.5,0.5)">
     <circle cx="143" cy="20" r="3"></circle>
     <circle cx="473" cy="119.31632813730118" r="3"></circle>
     <circle cx="55" cy="143.53251456463545" r="3"></circle>
@@ -194,7 +194,7 @@
     <circle cx="407" cy="363.41221854826006" r="3"></circle>
     <circle cx="605" cy="363.9842544481184" r="3"></circle>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366" y2="366"></line>
   </g>
 </svg>

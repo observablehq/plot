@@ -13,6 +13,7 @@ export function group(data, {
   return cell(
     data,
     {
+      className: "group",
       ...options,
       transform: group2(x, y),
       x: maybeLabel(first, x),
@@ -36,6 +37,7 @@ export function groupX(data, {
   return barY(
     data,
     {
+      className: "groupX",
       ...options,
       transform: group1(x),
       x: maybeLabel(first, x),
@@ -59,6 +61,7 @@ export function groupY(data, {
   return barX(
     data,
     {
+      className: "groupY",
       ...options,
       transform: group1(y),
       x1,

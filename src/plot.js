@@ -96,7 +96,10 @@ export function plot(options = {}) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
     const node = mark.render(index, scales, channels, dimensions, axes);
-    if (node != null) svg.append(() => node);
+    if (node != null) {
+      if (mark.className != null) node.classList.add(mark.className);
+      svg.append(() => node);
+    }
   }
 
   return svg.node();

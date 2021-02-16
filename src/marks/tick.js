@@ -27,7 +27,7 @@ class AbstractTick extends Mark {
       ],
       transform
     );
-    Style(this, {stroke: cstroke, ...style});
+    Style(this, {stroke: cstroke, className: "tick", ...style});
   }
   render(I, scales, channels) {
     const {color} = scales;
@@ -59,7 +59,7 @@ export class TickX extends AbstractTick {
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y", type: "band"}
       ],
-      options
+      {className: "tickX", ...options}
     );
   }
   _transform(selection, {x}) {
@@ -87,7 +87,7 @@ export class TickY extends AbstractTick {
         {name: "x", value: x, scale: "x", type: "band"},
         {name: "y", value: y, scale: "y"}
       ],
-      options
+      {className: "tickY", ...options}
     );
   }
   _transform(selection, {y}) {

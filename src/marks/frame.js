@@ -9,7 +9,7 @@ export class Frame extends Mark {
     ...style
   } = {}) {
     super();
-    Style(this, {fill, stroke, ...style});
+    Style(this, {fill, stroke, className: "frame", ...style});
   }
   render(
     index,

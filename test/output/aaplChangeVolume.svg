@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,356.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">7.1</text>
@@ -62,7 +62,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8.4</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Volume (log₁₀)</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(64.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">−6</text>
@@ -96,10 +96,10 @@
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">+8</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Daily change (%) →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g stroke="currentColor" class="ruleX" transform="translate(0.5,0)">
     <line x1="291" x2="291" y1="20" y2="366"></line>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g fill="none" stroke="currentColor" stroke-width="1.5" class="dot" transform="translate(0.5,0.5)">
     <circle cx="318.038554974266" cy="153.40585626789803" r="4.9601205642809205"></circle>
     <circle cx="207.6869038789485" cy="115.54745350681388" r="5.891267650927496"></circle>
     <circle cx="202.14399026708406" cy="59.87306381993679" r="7.5872871315562325"></circle>

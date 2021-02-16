@@ -43,6 +43,7 @@ export class Line extends Mark {
       fill: cfill,
       stroke: cstroke,
       strokeWidth: cstroke === "none" ? undefined : 1.5,
+      className: "line",
       ...style
     });
   }
@@ -71,9 +72,9 @@ export function line(data, {x = first, y = second, ...options} = {}) {
 }
 
 export function lineX(data, {x = identity, ...options} = {}) {
-  return new Line(data, {...options, x, y: indexOf});
+  return new Line(data, {className: "lineX", ...options, x, y: indexOf});
 }
 
 export function lineY(data, {y = identity, ...options} = {}) {
-  return new Line(data, {...options, x: indexOf, y});
+  return new Line(data, {className: "lineY", ...options, x: indexOf, y});
 }

@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(570,0)" fill="none" text-anchor="start">
+  <g class="axisY" transform="translate(570,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,83.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Adelie</text>
     </g>
@@ -15,7 +15,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Gentoo</text>
     </g><text fill="currentColor" transform="translate(70,198) rotate(-90)" dy="-0.32em" text-anchor="middle">species</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(123.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
@@ -26,9 +26,9 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
     </g><text fill="currentColor" transform="translate(305,-30)" dy="1em" text-anchor="middle">sex</text>
   </g>
-  <g>
+  <g class="facet">
     <g transform="translate(0,31)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,104.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -47,7 +47,7 @@
       </g>
     </g>
     <g transform="translate(0,146)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,104.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -66,7 +66,7 @@
       </g>
     </g>
     <g transform="translate(0,261)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,104.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -85,7 +85,7 @@
       </g>
     </g>
     <g transform="translate(41,0)">
-      <g transform="translate(0,366)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(62.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
         </g>
@@ -95,7 +95,7 @@
       </g>
     </g>
     <g transform="translate(223,0)">
-      <g transform="translate(0,366)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(62.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
         </g>
@@ -105,7 +105,7 @@
       </g>
     </g>
     <g transform="translate(405,0)">
-      <g transform="translate(0,366)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(62.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
         </g>
@@ -115,93 +115,93 @@
       </g>
     </g>
     <g transform="translate(41,31)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="1" y="89.14285714285715" width="20" height="14.857142857142847"></rect>
         <rect x="22" y="0" width="19" height="104"></rect>
         <rect x="42" y="42.095238095238095" width="20" height="61.904761904761905"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(41,146)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="1" y="99.04761904761904" width="20" height="4.952380952380963"></rect>
         <rect x="22" y="76.76190476190476" width="19" height="27.23809523809524"></rect>
         <rect x="42" y="54.47619047619048" width="20" height="49.52380952380952"></rect>
         <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(41,261)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="42" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
         <rect x="63" y="69.33333333333334" width="19" height="34.66666666666666"></rect>
         <rect x="83" y="17.33333333333333" width="20" height="86.66666666666667"></rect>
         <rect x="104" y="84.19047619047619" width="19" height="19.80952380952381"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(223,31)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="22" y="96.57142857142857" width="19" height="7.428571428571431"></rect>
         <rect x="42" y="24.761904761904766" width="20" height="79.23809523809524"></rect>
         <rect x="63" y="29.71428571428571" width="19" height="74.28571428571429"></rect>
         <rect x="83" y="84.19047619047619" width="20" height="19.80952380952381"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(223,146)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="22" y="94.0952380952381" width="19" height="9.904761904761898"></rect>
         <rect x="42" y="66.85714285714285" width="20" height="37.14285714285715"></rect>
         <rect x="63" y="74.28571428571429" width="19" height="29.714285714285708"></rect>
         <rect x="83" y="96.57142857142857" width="20" height="7.428571428571431"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(223,261)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="83" y="99.04761904761904" width="20" height="4.952380952380963"></rect>
         <rect x="104" y="39.61904761904762" width="19" height="64.38095238095238"></rect>
         <rect x="124" y="32.19047619047619" width="20" height="71.80952380952381"></rect>
         <rect x="145" y="94.0952380952381" width="19" height="9.904761904761898"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(405,31)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="1" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
         <rect x="22" y="99.04761904761904" width="19" height="4.952380952380963"></rect>
         <rect x="42" y="101.52380952380952" width="20" height="2.4761904761904816"></rect>
         <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(405,146)">
-      <g transform="translate(0,0)"></g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g class="binX" transform="translate(0,0)"></g>
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>
     <g transform="translate(405,261)">
-      <g transform="translate(0,0)">
+      <g class="binX" transform="translate(0,0)">
         <rect x="63" y="101.52380952380952" width="19" height="2.4761904761904816"></rect>
         <rect x="83" y="96.57142857142857" width="20" height="7.428571428571431"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="164" y1="104" y2="104"></line>
       </g>
     </g>

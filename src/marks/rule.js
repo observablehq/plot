@@ -31,7 +31,7 @@ export class RuleX extends Mark {
       ],
       transform
     );
-    Style(this, {stroke: cstroke, ...style});
+    Style(this, {stroke: cstroke, className: "ruleX", ...style});
   }
   render(
     I,
@@ -85,7 +85,7 @@ export class RuleY extends Mark {
       ],
       transform
     );
-    Style(this, {stroke: cstroke, ...style});
+    Style(this, {stroke: cstroke, className: "ruleY", ...style});
   }
   render(
     I,

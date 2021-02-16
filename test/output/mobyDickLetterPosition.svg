@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,41.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">A</text>
     </g>
@@ -84,7 +84,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Z</text>
     </g>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(60.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">0</text>
     </g>
@@ -128,7 +128,7 @@
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">13</text>
     </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">Position within word</text>
   </g>
-  <g>
+  <g class="group">
     <rect x="41" width="40" y="75" height="21" fill="rgb(203, 223, 241)"></rect>
     <rect x="41" width="40" y="295" height="21" fill="rgb(169, 206, 229)"></rect>
     <rect x="41" width="40" y="207" height="21" fill="rgb(81, 156, 204)"></rect>

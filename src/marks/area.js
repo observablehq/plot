@@ -43,7 +43,7 @@ export class Area extends Mark {
       transform
     );
     this.curve = Curve(curve);
-    Style(this, {fill: cfill, stroke: cstroke, ...style});
+    Style(this, {fill: cfill, stroke: cstroke, className: "area", ...style});
   }
   render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
     return create("svg:g")
@@ -73,10 +73,10 @@ export function area(data, options) {
 
 export function areaX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new Area(data, {...options, x1, x2, y1: y, y2: undefined});
+  return new Area(data, {className: "areaX", ...options, x1, x2, y1: y, y2: undefined});
 }
 
 export function areaY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new Area(data, {...options, x1: x, x2: undefined, y1, y2});
+  return new Area(data, {className: "areaY", ...options, x1: x, x2: undefined, y1, y2});
 }

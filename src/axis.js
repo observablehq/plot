@@ -13,7 +13,8 @@ export class AxisX {
     grid,
     label,
     labelAnchor,
-    labelOffset
+    labelOffset,
+    className = "axisX"
   } = {}) {
     this.name = name;
     this.axis = (axis + "").toLowerCase();
@@ -26,6 +27,7 @@ export class AxisX {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
+    this.className = className;
   }
   render(
     index,
@@ -59,6 +61,7 @@ export class AxisX {
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
+        .classed(this.className, true)
         .attr("transform", `translate(0,${ty})`)
         .call((axis === "top" ? axisTop : axisBottom)(round(x))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
@@ -100,7 +103,8 @@ export class AxisY {
     grid,
     label,
     labelAnchor,
-    labelOffset
+    labelOffset,
+    className = "axisY"
   } = {}) {
     this.name = name;
     this.axis = axis = (axis + "").toLowerCase();
@@ -113,6 +117,7 @@ export class AxisY {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
+    this.className = className;
   }
   render(
     index,
@@ -144,6 +149,7 @@ export class AxisY {
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
+        .classed(this.className, true)
         .attr("transform", `translate(${tx},0)`)
         .call((axis === "right" ? axisRight : axisLeft)(round(y))
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)

@@ -40,6 +40,7 @@ export class Dot extends Mark {
       fill: cfill,
       stroke: cstroke,
       strokeWidth: cstroke === "none" ? undefined : 1.5,
+      className: "dot",
       ...style
     });
   }

@@ -43,7 +43,7 @@ export class Rect extends Mark {
       ],
       transform
     );
-    Style(this, {fill: cfill, stroke: cstroke, ...style});
+    Style(this, {fill: cfill, stroke: cstroke, className: "rect", ...style});
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -84,9 +84,9 @@ export function rect(data, options) {
 }
 
 export function rectX(data, {x, y1, y2, ...options} = {}) {
-  return new Rect(data, {...options, x1: zero, x2: x, y1, y2});
+  return new Rect(data, {className: "rectX", ...options, x1: zero, x2: x, y1, y2});
 }
 
 export function rectY(data, {x1, x2, y, ...options} = {}) {
-  return new Rect(data, {...options, x1, x2, y1: zero, y2: y});
+  return new Rect(data, {className: "rectY", ...options, x1, x2, y1: zero, y2: y});
 }

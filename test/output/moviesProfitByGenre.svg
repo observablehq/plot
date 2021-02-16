@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(120,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(120,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,36.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adventure</text>
     </g>
@@ -45,7 +45,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Other</text>
     </g>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(182.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
@@ -71,10 +71,10 @@
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,000</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Profit ($M) →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g stroke="currentColor" class="ruleX" transform="translate(0.5,0)">
     <line x1="182" x2="182" y1="20" y2="366"></line>
   </g>
-  <g fill-opacity="0.2" transform="translate(0,0)">
+  <g fill-opacity="0.2" class="bar" transform="translate(0,0)">
     <rect x="180.00059721415928" width="5.595862962831859" y="337" height="23"></rect>
     <rect x="179.83610126725665" width="17.420535900884943" y="233" height="23"></rect>
     <rect x="181.27693983716813" width="27.76421261946905" y="181" height="23"></rect>
@@ -89,7 +89,7 @@
     <rect x="180.81513755575222" width="9.83639370088494" y="259" height="23"></rect>
     <rect x="185.4513859823009" width="11.907315738053057" y="129" height="23"></rect>
   </g>
-  <g fill="none" stroke="currentColor" transform="translate(0.5,12)">
+  <g fill="none" stroke="currentColor" class="dot" transform="translate(0.5,12)">
     <circle cx="178.74981283539825" cy="337" r="3"></circle>
     <circle cx="182.0167322902655" cy="233" r="3"></circle>
     <circle cx="182.1213534442478" cy="181" r="3"></circle>
@@ -3292,7 +3292,7 @@
     <circle cx="208.6902336" cy="25" r="3"></circle>
     <circle cx="254.99610619469024" cy="25" r="3"></circle>
   </g>
-  <g stroke="red" stroke-width="2" transform="translate(0.5,0)">
+  <g stroke="red" stroke-width="2" class="tickX" transform="translate(0.5,0)">
     <line x1="182" x2="182" y1="337" y2="360"></line>
     <line x1="184" x2="184" y1="233" y2="256"></line>
     <line x1="187" x2="187" y1="181" y2="204"></line>

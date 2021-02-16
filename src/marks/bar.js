@@ -36,7 +36,7 @@ export class AbstractBar extends Mark {
       ],
       transform
     );
-    Style(this, {fill: cfill, stroke: cstroke, ...style});
+    Style(this, {fill: cfill, stroke: cstroke, className: "bar", ...style});
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);

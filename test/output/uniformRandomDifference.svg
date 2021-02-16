@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,366.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -50,7 +50,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency (%)</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">−1.0</text>
     </g>
@@ -85,7 +85,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">Difference of two uniform random variables</text>
   </g>
-  <g transform="translate(0,0)">
+  <g class="binX" transform="translate(0,0)">
     <rect x="41" y="349.37843137254896" width="28" height="16.62156862745104"></rect>
     <rect x="70" y="312.74313725490197" width="27.999999999999986" height="53.25686274509803"></rect>
     <rect x="98.99999999999999" y="282.2137254901961" width="28.00000000000003" height="83.78627450980389"></rect>
@@ -107,7 +107,7 @@
     <rect x="563" y="314.778431372549" width="28" height="51.221568627451006"></rect>
     <rect x="592" y="349.03921568627453" width="28" height="16.96078431372547"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366" y2="366"></line>
   </g>
 </svg>

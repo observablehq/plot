@@ -10,6 +10,7 @@ export function bin(data, {x, y, domain, thresholds, normalize, transform, ...op
     {
       insetTop: 1,
       insetLeft: 1,
+      className: "bin",
       ...options,
       transform: bin2({x, y, domain, thresholds}),
       fill: normalize ? normalizer(normalize, data.length) : length,
@@ -36,6 +37,7 @@ export function binX(data, {
     data,
     {
       insetLeft: 1,
+      className: "binX",
       ...options,
       transform: bin1({value: x, domain, thresholds, cumulative}),
       y: normalize ? normalizer(normalize, data.length) : length,
@@ -60,6 +62,7 @@ export function binY(data, {
     data,
     {
       insetTop: 1,
+      className: "binY",
       ...options,
       transform: bin1({value: y, domain, thresholds, cumulative}),
       x: normalize ? normalizer(normalize, data.length) : length,

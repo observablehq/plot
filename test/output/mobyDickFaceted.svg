@@ -4,7 +4,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(600,0)" fill="none" text-anchor="start">
+  <g class="axisY" transform="translate(600,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,110.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">lower</text>
     </g>
@@ -12,7 +12,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">upper</text>
     </g>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g class="axisX" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(173.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
     </g>
@@ -20,9 +20,9 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">vowel</text>
     </g>
   </g>
-  <g>
+  <g class="facet">
     <g transform="translate(0,31)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,158.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
@@ -54,7 +54,7 @@
       </g>
     </g>
     <g transform="translate(0,207)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g class="axisY" transform="translate(40,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,158.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
@@ -86,7 +86,7 @@
       </g>
     </g>
     <g transform="translate(41,0)">
-      <g transform="translate(0,366)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(7.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
         </g>
@@ -168,7 +168,7 @@
       </g>
     </g>
     <g transform="translate(335,0)">
-      <g transform="translate(0,366)" fill="none" text-anchor="middle">
+      <g class="axisX" transform="translate(0,366)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(7.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
         </g>
@@ -250,7 +250,7 @@
       </g>
     </g>
     <g transform="translate(41,31)">
-      <g transform="translate(0,0)">
+      <g class="groupX" transform="translate(0,0)">
         <rect x="23" width="9" y="130.7043189368771" height="27.295681063122913"></rect>
         <rect x="113" width="9" y="102.88372093023257" height="55.11627906976743"></rect>
         <rect x="123" width="9" y="123.61794019933554" height="34.382059800664464"></rect>
@@ -272,12 +272,12 @@
         <rect x="233" width="9" y="156.5564784053156" height="1.4435215946843982"></rect>
         <rect x="93" width="9" y="156.81893687707642" height="1.1810631229235753"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="265" y1="158" y2="158"></line>
       </g>
     </g>
     <g transform="translate(41,207)">
-      <g transform="translate(0,0)">
+      <g class="groupX" transform="translate(0,0)">
         <rect x="23" width="9" y="156.42524916943523" height="1.574750830564767"></rect>
         <rect x="113" width="9" y="157.21262458471762" height="0.7873754152823835"></rect>
         <rect x="123" width="9" y="157.6063122923588" height="0.39368770764119176"></rect>
@@ -295,12 +295,12 @@
         <rect x="53" width="9" y="156.9501661129568" height="1.0498338870432065"></rect>
         <rect x="93" width="9" y="157.7375415282392" height="0.2624584717607945"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="265" y1="158" y2="158"></line>
       </g>
     </g>
     <g transform="translate(335,31)">
-      <g transform="translate(0,0)">
+      <g class="groupX" transform="translate(0,0)">
         <rect x="3" width="9" y="56.034883720930225" height="101.96511627906978"></rect>
         <rect x="43" width="9" y="0" height="158"></rect>
         <rect x="83" width="9" y="77.68770764119601" height="80.31229235880399"></rect>
@@ -308,12 +308,12 @@
         <rect x="243" width="9" y="130.96677740863788" height="27.03322259136212"></rect>
         <rect x="203" width="9" y="123.74916943521595" height="34.25083056478405"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="265" y1="158" y2="158"></line>
       </g>
     </g>
     <g transform="translate(335,207)">
-      <g transform="translate(0,0)">
+      <g class="groupX" transform="translate(0,0)">
         <rect x="3" width="9" y="155.63787375415282" height="2.362126245847179"></rect>
         <rect x="43" width="9" y="157.21262458471762" height="0.7873754152823835"></rect>
         <rect x="83" width="9" y="150.25747508305648" height="7.742524916943523"></rect>
@@ -321,7 +321,7 @@
         <rect x="243" width="9" y="157.34385382059799" height="0.6561461794020147"></rect>
         <rect x="203" width="9" y="157.8687707641196" height="0.13122923588039725"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g stroke="currentColor" class="ruleY" transform="translate(0,0.5)">
         <line x1="0" x2="265" y1="158" y2="158"></line>
       </g>
     </g>
