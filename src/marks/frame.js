@@ -30,7 +30,7 @@ export class Frame extends Mark {
     return create("svg:rect")
         .call(applyIndirectStyles, this)
         .call(applyDirectStyles, this)
-        .attr("transform", stroke === "none" ? null : `translate(0.5,0.5)`)
+        .attr("transform", stroke === undefined ? null : `translate(0.5,0.5)`)
         .attr("x", marginLeft + this.insetLeft)
         .attr("y", marginTop + this.insetTop)
         .attr("width", width - marginLeft - marginRight - this.insetLeft - this.insetRight)
