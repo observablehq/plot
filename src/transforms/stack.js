@@ -1,4 +1,4 @@
-import {InternMap, ascending, range} from "d3-array";
+import {InternMap, ascending, cumsum, group, range, sum} from "d3-array";
 import {valueof} from "../mark";
 
 export function stackX(data, {x, y, z, ...options}) {
@@ -15,8 +15,9 @@ export function stackY(data, {x, y, z, zOrder, offset, ...options}) {
   const Y2 = new Float64Array(n);
   
   // sort
+  let Z;
   if (z) {
-    const Z = valueof(data, z);
+    Z = valueof(data, z);
     if (zOrder) I.forEach(i => Z[i] = zOrder.indexOf(Z[i]));
     I.sort((i, j) => ascending(Z[i], Z[j]));
   }
@@ -57,7 +58,28 @@ export function stackY(data, {x, y, z, zOrder, offset, ...options}) {
           Y2[i] -= m;
         }
       }
-      // todo "wiggle"
+      if (offset === "wiggle") {
+        const prev = new InternMap();
+        let y = 0;
+        for (const [, index] of group(facet, i => X[i])) {
+          let j = -1;
+          const Fi = index.map(i => Y2[i] - Y1[i]);
+          const Df = index.map(i => {
+            j = z ? Z[i] : ++j;
+            const value = Y2[i] - Y1[i];
+            const diff = prev.has(j) ? value - prev.get(j) : 0;
+            prev.set(j, value);
+            return diff;
+          });
+          const Cf1 = [0, ...cumsum(Df)];
+          for (const i of index) {
+            Y1[i] += y;
+            Y2[i] += y;
+          }
+          const s1 = sum(Fi);
+          if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
+        }
+      }
     }
 
     return {index: facets === undefined ? I : facets, data};
