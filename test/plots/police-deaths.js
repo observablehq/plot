@@ -12,6 +12,7 @@ const data = [
 ];
 
 const zOrder = ["White", "Hispanic", "Black"];
+const rank = d => zOrder.indexOf(d["race"]);
 
 export default async function() {
   return Plot.plot({
@@ -31,13 +32,15 @@ export default async function() {
       // fill
       Plot.stackAreaY(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), {
         x: "type", y: "value", fill: "race", curve: "monotone-x",
-        z: "race", zOrder
+        sort: (d,i) => i,
+        rank
       }),
       
       // dashed lines
       Plot.stackLineY(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), {
         x: "type", y: "value",
-        z: "race", zOrder,
+        z: "race",
+        rank,
         stroke: "black", curve: "monotone-x", strokeWidth: 0.5,
         position: "center",
         strokeDasharray: [5, 5]
@@ -46,7 +49,8 @@ export default async function() {
       // top black lines
       Plot.stackLineY(data.flatMap(d => d.type === "police" ? [{...d, type:"---"}, d] : [d, {...d, type:"+++"}]), {
         x: "type", y: "value",
-        z: "race", zOrder,
+        z: "race",
+        rank,
         stroke: "black", curve: "monotone-x", strokeWidth: 2
       }),
   
@@ -64,7 +68,7 @@ export default async function() {
           x: "type",
           y: "value",
           z: "race",
-          zOrder,
+          rank,
           text: d => `${d.race} ${d.value}%`
         }
       ))
