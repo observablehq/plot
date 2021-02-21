@@ -111,7 +111,3 @@ function maybeLabel(X, x) {
   if (label !== undefined) X.label = label;
   return X;
 }
-
-function keyof(value) {
-  return value !== null && typeof value === "object" ? value.valueOf() : value;
-}
