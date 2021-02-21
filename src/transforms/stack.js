@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, group, range, sum} from "d3-array";
-import {maybeSort, valueof} from "../mark.js";
+import {maybeSort, take, valueof} from "../mark.js";
 
 export function stackX(data, {x, y, ...options}) {
   const [, {x: y_, y1: x1, y2: x2, y: x_, ...rest}] = stackY(data, {x: y, y: x, ...options});
@@ -7,11 +7,6 @@ export function stackX(data, {x, y, ...options}) {
 }
 
 export function stackY(data, {x, key = x, y, z, rank = z, offset, sort, ...options}) {
-  // note: mutates {data}, in order to work with facets
-  if (sort = maybeSort(sort)) {
-    const sorted = sort(data);
-    for (let k = 0; k < data.length; k++) data[k] = sorted[k];
-  }
   const X = valueof(data, key);
   const Y = valueof(data, y);
   const Z = valueof(data, z);
@@ -20,10 +15,18 @@ export function stackY(data, {x, key = x, y, z, rank = z, offset, sort, ...optio
   const I = range(n);
   const Y1 = new Float64Array(n);
   const Y2 = new Float64Array(n);
+  sort = maybeSort(sort);
   
   const transform = (data, facets) => {
-    console.warn(facets);
     for (const index of (facets === undefined ? [I] : facets)) {
+      
+      if (sort) {
+        const facet = take(data, index);
+        const index0 = index.slice();
+        const sorted = sort(facet);
+        for (let k = 0; k < index.length; k++) index[k] = index0[facet.indexOf(sorted[k])];
+      }
+      
       const Yp = new InternMap();
       const Yn = new InternMap();
       
