@@ -11,8 +11,7 @@ const data = [
   {"type":"population","race":"All other races","value":15}
 ];
 
-const zOrder = ["White", "Hispanic", "Black"];
-const rank = d => zOrder.indexOf(d["race"]);
+const rank = ["White", "Hispanic", "Black"];
 
 export default async function() {
   return Plot.plot({

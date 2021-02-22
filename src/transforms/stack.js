@@ -1,16 +1,26 @@
-import {InternMap, ascending, cumsum, group, range, sum} from "d3-array";
-import {maybeSort, take, valueof} from "../mark.js";
+import {InternMap, ascending, cumsum, descending, group, groupSort, maxIndex, range, rollup, sum} from "d3-array";
+import {field, maybeSort, take, valueof} from "../mark.js";
 
 export function stackX(data, {x, y, ...options}) {
   const [, {x: y_, y1: x1, y2: x2, y: x_, ...rest}] = stackY(data, {x: y, y: x, ...options});
   return [data, {...rest, x1, x2, x: x_, y: y_}];
 }
 
-export function stackY(data, {x, key = x, y, z, rank = z, offset, sort, ...options}) {
+export function stackY(data, {
+  x,
+  key = x,
+  y,
+  z,
+  rank,
+  reverse = ["descending", "reverse"].includes(rank),
+  offset,
+  sort,
+  ...options
+}) {
   const X = valueof(data, key);
   const Y = valueof(data, y);
   const Z = valueof(data, z);
-  const R = valueof(data, rank);
+  const R = maybeRank(rank, data, X, Y, Z);
   const n = data.length;
   const I = range(n);
   const Y1 = new Float64Array(n);
@@ -32,8 +42,11 @@ export function stackY(data, {x, key = x, y, z, rank = z, offset, sort, ...optio
       
       const stacks = group(index, i => X[i]);
       
-      // optional vertical sort
-      if (rank) for (const [, stack] of stacks) stack.sort((i, j) => ascending(R[i], R[j]));
+      // rank sort
+      if (R) {
+        const a = reverse ? descending : ascending;
+        for (const [, stack] of stacks) stack.sort((i, j) => a(R[i], R[j]));
+      }
       
       // stack
       for (const [key, stack] of stacks) {
@@ -110,4 +123,63 @@ function maybeLabel(X, x) {
   const label = typeof x === "string" ? x : x ? x.label : undefined;
   if (label !== undefined) X.label = label;
   return X;
+}
+
+// well-known ranking strategies by series
+function maybeRank(rank, data, X, Y, Z) {
+  if (rank == null) return [null];
+  // d3.stackOrderNone, sorts series by key, ascending
+  // d3.stackOrderReverse, sorts series by key, descending
+  if (rank === "key" || rank === "none" || rank === "reverse") {
+    return Z;
+  }
+  // d3.stackOrderAscending, sorts series by sum of value, ascending
+  if (rank === "sum" || rank === "ascending" || rank === "descending") {
+    const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
+    return Z.map(z => S.indexOf(z));
+  }
+  // ranks items by value
+  if (rank === "value") {
+    return Y;
+  }
+  // d3.stackOrderAppearance, sorts series by argmax of value
+  if (rank === "appearance") {
+    const K = groupSort(
+      range(data.length),
+      v => v[maxIndex(v, i => Y[i])],
+      i => Z[i]
+    );
+    return Z.map(z => -K.indexOf(z));
+  }
+  // d3.stackOrderInsideOut, sorts series by argmax of value, then rearranges them
+  // inside out by alternating series according to the sign of a running divergence
+  // of their sums
+  if (rank === "insideOut") {
+    const K = groupSort(range(data.length), v => v[maxIndex(v, i => Y[i])], i => Z[i]);
+    const sums = rollup(range(data.length), v => sum(v, i => Y[i]), i => Z[i]);
+    const order = [];
+    let diff = 0;
+    for (const k of K) {
+      if (diff < 0) {
+        diff += sums.get(k);
+        order.push(k);
+      } else {
+        diff -= sums.get(k);
+        order.unshift(k);
+      }
+    }
+    return Z.map(z => -order.indexOf(z));
+  }
+  // any other string is a datum accessor
+  if (typeof rank === "string") {
+    return valueof(data, field(rank));
+  }
+  // rank can be an array of z (particularly useful with groupSort)
+  if (rank.indexOf) {
+    return Z.map(z => rank.indexOf(z));
+  }
+  // final case, a generic function
+  if (typeof rank === "function") {
+    return valueof(data, rank);
+  }
 }
