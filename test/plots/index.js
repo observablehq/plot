@@ -17,7 +17,6 @@ export {default as gistempAnomaly} from "./gistemp-anomaly.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
-export {default as industryUnemploymentSilhouette} from "./industry-unemployment-silhouette.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
@@ -33,6 +32,7 @@ export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.j
 export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
+export {default as musicRevenue} from "./music-revenue.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
