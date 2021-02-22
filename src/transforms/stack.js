@@ -142,20 +142,24 @@ function maybeRank(rank, data, X, Y, Z) {
   if (rank === "value") {
     return Y;
   }
-  // d3.stackOrderAppearance, sorts series by argmax of value
+  // d3.stackOrderAppearance, sorts series by x = argmax of value
   if (rank === "appearance") {
     const K = groupSort(
       range(data.length),
-      v => v[maxIndex(v, i => Y[i])],
+      v => X[v[maxIndex(v, i => Y[i])]],
       i => Z[i]
     );
-    return Z.map(z => -K.indexOf(z));
+    return Z.map(z => K.indexOf(z));
   }
-  // d3.stackOrderInsideOut, sorts series by argmax of value, then rearranges them
+  // d3.stackOrderInsideOut, sorts series by x = argmax of value, then rearranges them
   // inside out by alternating series according to the sign of a running divergence
   // of their sums
   if (rank === "insideOut") {
-    const K = groupSort(range(data.length), v => v[maxIndex(v, i => Y[i])], i => Z[i]);
+    const K = groupSort(
+      range(data.length),
+      v => X[v[maxIndex(v, i => Y[i])]],
+      i => Z[i]
+    );
     const sums = rollup(range(data.length), v => sum(v, i => Y[i]), i => Z[i]);
     const order = [];
     let diff = 0;
@@ -168,7 +172,7 @@ function maybeRank(rank, data, X, Y, Z) {
         order.unshift(k);
       }
     }
-    return Z.map(z => -order.indexOf(z));
+    return Z.map(z => order.indexOf(z));
   }
   // any other string is a datum accessor
   if (typeof rank === "string") {
