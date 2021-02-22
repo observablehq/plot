@@ -7,8 +7,8 @@
     "url": "https://observablehq.com"
   },
   "license": "ISC",
-  "main": "dist/@observablehq/plot.cjs.js",
-  "unpkg": "dist/@observablehq/plot.umd.min.js",
+  "main": "dist/plot.cjs.js",
+  "unpkg": "dist/plot.umd.min.js",
   "module": "src/index.js",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
-    "start": "snowpack dev",
+    "dev": "snowpack dev",
     "build": "snowpack build"
   },
   "_moduleAliases": {

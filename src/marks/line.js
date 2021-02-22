@@ -43,6 +43,7 @@ export class Line extends Mark {
       fill: cfill,
       stroke: cstroke,
       strokeWidth: cstroke === "none" ? undefined : 1.5,
+      strokeMiterlimit: cstroke === "none" ? undefined : 1,
       ...style
     });
   }

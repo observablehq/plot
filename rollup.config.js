@@ -1,6 +1,7 @@
 import {terser} from "rollup-plugin-terser";
 import * as meta from "./package.json";
 
+const filename = meta.name.split("/").pop();
 const external = Object.keys(meta.dependencies || {}).filter(key => /^d3-/.test(key));
 
 const config = {
@@ -19,7 +20,7 @@ export default [
     output: {
       ...config.output,
       format: "cjs",
-      file: `dist/${meta.name}.cjs.js`
+      file: `dist/${filename}.cjs.js`
     }
   },
   {
@@ -29,7 +30,7 @@ export default [
       name: "Plot",
       format: "umd",
       extend: true,
-      file: `dist/${meta.name}.umd.js`,
+      file: `dist/${filename}.umd.js`,
       globals: Object.fromEntries(external.map(key => [key, "d3"])),
       paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
     }
@@ -41,7 +42,7 @@ export default [
       name: "Plot",
       format: "umd",
       extend: true,
-      file: `dist/${meta.name}.umd.min.js`,
+      file: `dist/${filename}.umd.min.js`,
       globals: Object.fromEntries(external.map(key => [key, "d3"])),
       paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
     },

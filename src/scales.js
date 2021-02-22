@@ -7,7 +7,14 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
   const scales = {};
   for (const key of registry.keys()) {
     if (channels.has(key) || options[key]) {
-      const scale = Scale(key, channels.get(key), {inset, round, nice, align, padding, ...options[key]});
+      const scale = Scale(key, channels.get(key), {
+        inset: key === "x" || key === "y" ? inset : undefined, // not for facet
+        round,
+        nice,
+        align,
+        padding,
+        ...options[key]
+      });
       if (scale) scales[key] = scale;
     }
   }

@@ -26,9 +26,9 @@ export function cell(data, options) {
 }
 
 export function cellX(data, {x = identity, ...options} = {}) {
-  return new Cell(data, {x, ...options, y: null});
+  return new Cell(data, {...options, x, y: null});
 }
 
 export function cellY(data, {y = identity, ...options} = {}) {
-  return new Cell(data, {y, ...options, x: null});
+  return new Cell(data, {...options, y, x: null});
 }

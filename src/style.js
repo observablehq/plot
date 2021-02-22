@@ -19,7 +19,7 @@ export function Style(mark, {
   mark.strokeOpacity = impliedNumber(strokeOpacity, 1);
   mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
   mark.strokeLinecap = impliedString(strokeLinecap, "butt");
-  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 1);
+  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
   mark.strokeDasharray = string(strokeDasharray);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
 }
@@ -49,8 +49,8 @@ export function applyStyle(selection, name, value) {
 }
 
 export function applyTransform(selection, x, y, tx = 0, ty = 0) {
-  if (x.bandwidth) tx += x.bandwidth() / 2;
-  if (y.bandwidth) ty += y.bandwidth() / 2;
+  if (x && x.bandwidth) tx += x.bandwidth() / 2;
+  if (y && y.bandwidth) ty += y.bandwidth() / 2;
   selection.attr("transform", `translate(${tx},${ty})`);
 }
 

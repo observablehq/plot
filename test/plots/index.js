@@ -21,6 +21,7 @@ export {default as industryUnemploymentSilhouette} from "./industry-unemployment
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
+export {default as letterFrequencyDot} from "./letter-frequency-dot.js";
 export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js";
 export {default as metroInequalityChange} from "./metro-inequality-change.js";
 export {default as metroInequality} from "./metro-inequality.js";
