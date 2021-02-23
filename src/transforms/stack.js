@@ -2,14 +2,36 @@ import {InternMap, ascending, cumsum, descending, group, groupSort, maxIndex, ra
 import {field, maybeSort, take, valueof} from "../mark.js";
 
 export function stackX(data, {x, y, ...options}) {
-  const [, {x: y_, y1: x1, y2: x2, y: x_, ...rest}] = stackY(data, {x: y, y: x, ...options});
-  return [data, {...rest, x1, x2, x: x_, y: y_}];
-}
+  const A = stack(data, {location: y, value: x, ...options});
+  {
+    const [data, {location, value, value1, value2, ...options}] = A;
+    return [data, {
+      y: location,
+      x: value,
+      x1: value1,
+      x2: value2,
+      ...options
+    }];
+  }
+} 
 
-export function stackY(data, {
-  x,
-  key = x,
-  y,
+export function stackY(data, {x, y, ...options}) {
+  const A = stack(data, {location: x, value: y, ...options});
+  {
+    const [data, {location, value, value1, value2, ...options}] = A;
+    return [data, {
+      x: location,
+      y: value,
+      y1: value1,
+      y2: value2,
+      ...options
+    }];
+  }
+} 
+
+export function stack(data, {
+  location,
+  value,
   z,
   rank,
   reverse = ["descending", "reverse"].includes(rank),
@@ -17,8 +39,8 @@ export function stackY(data, {
   sort,
   ...options
 }) {
-  const X = valueof(data, key);
-  const Y = valueof(data, y);
+  const X = valueof(data, location);
+  const Y = valueof(data, value);
   const Z = valueof(data, z);
   const R = maybeRank(rank, data, X, Y, Z);
   const n = data.length;
@@ -49,22 +71,22 @@ export function stackY(data, {
       }
       
       // stack
-      for (const [key, stack] of stacks) {
+      for (const [x, stack] of stacks) {
         for (const i of stack) {
           const v = +Y[i];
           const [Y0, ceil, floor] = v < 0 ? [Yn, Y1, Y2] : [Yp, Y2, Y1];
-          const y1 = floor[i] = Y0.has(key) ? Y0.get(key) : 0;
+          const y1 = floor[i] = Y0.has(x) ? Y0.get(x) : 0;
           const y2 = ceil[i] = y1 + +Y[i];
-          Y0.set(key, isNaN(y2) ? y1 : y2);
+          Y0.set(x, isNaN(y2) ? y1 : y2);
         }
       }
 
       // offset
       if (offset === "expand") {
         for (const i of index) {
-          const key = X[i];
-          const floor = Yn.has(key) ? Yn.get(key) : 0;
-          const ceil = Yp.has(key) ? Yp.get(key) : 0;
+          const x = X[i];
+          const floor = Yn.has(x) ? Yn.get(x) : 0;
+          const ceil = Yp.has(x) ? Yp.get(x) : 0;
           const m = 1 / (ceil - floor || 1);
           Y1[i] = m * (-floor + Y1[i]);
           Y2[i] = m * (-floor + Y2[i]);
@@ -72,9 +94,9 @@ export function stackY(data, {
       }
       if (offset === "silhouette") {
         for (const i of index) {
-          const key = X[i];
-          const floor = Yn.has(key) ? Yn.get(key) : 0;
-          const ceil = Yp.has(key) ? Yp.get(key) : 0;
+          const x = X[i];
+          const floor = Yn.has(x) ? Yn.get(x) : 0;
+          const ceil = Yp.has(x) ? Yp.get(x) : 0;
           const m = (ceil + floor) / 2;
           Y1[i] -= m;
           Y2[i] -= m;
@@ -110,10 +132,10 @@ export function stackY(data, {
   return [data, {
     ...options,
     transform,
-    x: maybeLabel(X, x),
-    y1: maybeLabel(Y1, y),
-    y2: Y2,
-    y: (_,i) => (Y1[i] + Y2[i]) / 2,
+    location: maybeLabel(X, location),
+    value1: maybeLabel(Y1, value),
+    value2: Y2,
+    value: (_,i) => (Y1[i] + Y2[i]) / 2,
     z
   }];
 }
