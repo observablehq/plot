@@ -203,7 +203,7 @@ export function ScaleOrdinal(key, channels, {
     : schemeTableau10) : undefined,
   ...options
 }) {
-  return ScaleO(scaleOrdinal(), channels, {range, ...options});
+  return ScaleO(scaleOrdinal().unknown(undefined), channels, {range, ...options});
 }
 
 export function ScalePoint(key, channels, {
