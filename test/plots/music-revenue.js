@@ -10,7 +10,7 @@ export default async function() {
       Plot.stackAreaY(data, {
         x: "year",
         z: "format",
-        y: "value",
+        y: "revenue",
         rank: "insideOut",
         offset: "wiggle",
         fill: "group",

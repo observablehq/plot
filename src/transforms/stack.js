@@ -4,12 +4,13 @@ import {field, maybeSort, take, valueof} from "../mark.js";
 export function stackX(data, {x, y, ...options}) {
   const A = stack(data, {location: y, value: x, ...options});
   {
-    const [data, {location, value, value1, value2, ...options}] = A;
+    const [data, {location, value, low, high, mid, ...options}] = A;
     return [data, {
       y: location,
-      x: value,
-      x1: value1,
-      x2: value2,
+      value,
+      x: mid,
+      x1: low,
+      x2: high,
       ...options
     }];
   }
@@ -18,12 +19,13 @@ export function stackX(data, {x, y, ...options}) {
 export function stackY(data, {x, y, ...options}) {
   const A = stack(data, {location: x, value: y, ...options});
   {
-    const [data, {location, value, value1, value2, ...options}] = A;
+    const [data, {location, value, low, high, mid, ...options}] = A;
     return [data, {
       x: location,
-      y: value,
-      y1: value1,
-      y2: value2,
+      value,
+      y1: low,
+      y2: high,
+      y: mid,
       ...options
     }];
   }
@@ -33,10 +35,10 @@ export function stack(data, {
   location,
   value,
   z,
-  rank,
-  reverse = ["descending", "reverse"].includes(rank),
   offset,
   sort,
+  rank,
+  reverse = ["descending", "reverse"].includes(rank),
   ...options
 }) {
   const X = valueof(data, location);
@@ -44,12 +46,12 @@ export function stack(data, {
   const Z = valueof(data, z);
   const R = maybeRank(rank, data, X, Y, Z);
   const n = data.length;
-  const I = range(n);
   const Y1 = new Float64Array(n);
   const Y2 = new Float64Array(n);
-  sort = maybeSort(sort);
   
-  const transform = (data, facets) => {
+  const transform = (_, facets) => {
+    sort = maybeSort(sort);
+    const I = range(n);
     for (const index of (facets === undefined ? [I] : facets)) {
       
       if (sort) {
@@ -133,10 +135,12 @@ export function stack(data, {
     ...options,
     transform,
     location: maybeLabel(X, location),
-    value1: maybeLabel(Y1, value),
-    value2: Y2,
-    value: (_,i) => (Y1[i] + Y2[i]) / 2,
-    z
+    value: maybeLabel(Y, value),
+    low: maybeLabel(Y1, value),
+    high: maybeLabel(Y2, value),
+    mid: maybeLabel((_,i) => (Y1[i] + Y2[i]) / 2, value),
+    rank: maybeLabel(R, rank),
+    z: maybeLabel(Z, z)
   }];
 }
 
