@@ -66,7 +66,6 @@ export default async function() {
       label: null
     },
     color: {
-      type: "ordinal",
       domain: ["ACCEPTED", "REJECTED", "PENDING"],
       range: ["currentColor", "brown", "gray"]
     },

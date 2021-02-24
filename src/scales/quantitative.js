@@ -139,7 +139,8 @@ export function ScaleQ(key, scale, channels, {
   round,
   range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
   scheme,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateTurbo) : round ? interpolateRound : undefined,
+  type,
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
   invert,
   inset
 }) {

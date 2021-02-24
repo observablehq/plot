@@ -1,6 +1,45 @@
 import {reverse, sort} from "d3-array";
+import {quantize} from "d3-interpolate";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
 import {
+  interpolateBlues,
+  interpolateBrBG,
+  interpolateBuGn,
+  interpolateBuPu,
+  interpolateGnBu,
+  interpolateGreens,
+  interpolateGreys,
+  interpolateOranges,
+  interpolateOrRd,
+  interpolatePiYG,
+  interpolatePRGn,
+  interpolatePuBu,
+  interpolatePuBuGn,
+  interpolatePuOr,
+  interpolatePuRd,
+  interpolatePurples,
+  interpolateRdBu,
+  interpolateRdGy,
+  interpolateRdPu,
+  interpolateRdYlBu,
+  interpolateRdYlGn,
+  interpolateReds,
+  interpolateSpectral,
+  interpolateYlGn,
+  interpolateYlGnBu,
+  interpolateYlOrBr,
+  interpolateYlOrRd,
+  interpolateTurbo,
+  interpolateViridis,
+  interpolateMagma,
+  interpolateInferno,
+  interpolatePlasma,
+  interpolateCividis,
+  interpolateCubehelixDefault,
+  interpolateWarm,
+  interpolateCool,
+  interpolateRainbow,
+  interpolateSinebow,
   schemeAccent,
   schemeBlues,
   schemeBrBG,
@@ -57,45 +96,81 @@ const schemes = new Map([
   ["tableau10", schemeTableau10],
 
   // diverging
-  ["brbg", scheme11(schemeBrBG)],
-  ["prgn", scheme11(schemePRGn)],
-  ["piyg", scheme11(schemePiYG)],
-  ["puor", scheme11(schemePuOr)],
-  ["rdbu", scheme11(schemeRdBu)],
-  ["rdgy", scheme11(schemeRdGy)],
-  ["rdylbu", scheme11(schemeRdYlBu)],
-  ["rdylgn", scheme11(schemeRdYlGn)],
-  ["spectral", scheme11(schemeSpectral)],
+  ["brbg", scheme11(schemeBrBG, interpolateBrBG)],
+  ["prgn", scheme11(schemePRGn, interpolatePRGn)],
+  ["piyg", scheme11(schemePiYG, interpolatePiYG)],
+  ["puor", scheme11(schemePuOr, interpolatePuOr)],
+  ["rdbu", scheme11(schemeRdBu, interpolateRdBu)],
+  ["rdgy", scheme11(schemeRdGy, interpolateRdGy)],
+  ["rdylbu", scheme11(schemeRdYlBu, interpolateRdYlBu)],
+  ["rdylgn", scheme11(schemeRdYlGn, interpolateRdYlGn)],
+  ["spectral", scheme11(schemeSpectral, interpolateSpectral)],
+
+  // inverted diverging (for temperature data)
+  ["burd", scheme11r(schemeRdBu, interpolateRdBu)],
+  ["buylrd", scheme11r(schemeRdGy, interpolateRdGy)],
 
   // sequential (single-hue)
-  ["blues", scheme9(schemeBlues)],
-  ["greens", scheme9(schemeGreens)],
-  ["greys", scheme9(schemeGreys)],
-  ["oranges", scheme9(schemeOranges)],
-  ["purples", scheme9(schemePurples)],
-  ["reds", scheme9(schemeReds)],
+  ["blues", scheme9(schemeBlues, interpolateBlues)],
+  ["greens", scheme9(schemeGreens, interpolateGreens)],
+  ["greys", scheme9(schemeGreys, interpolateGreys)],
+  ["oranges", scheme9(schemeOranges, interpolateOranges)],
+  ["purples", scheme9(schemePurples, interpolatePurples)],
+  ["reds", scheme9(schemeReds, interpolateReds)],
 
   // sequential (multi-hue)
-  ["bugn", scheme9(schemeBuGn)],
-  ["bupu", scheme9(schemeBuPu)],
-  ["gnbu", scheme9(schemeGnBu)],
-  ["orrd", scheme9(schemeOrRd)],
-  ["pubu", scheme9(schemePuBu)],
-  ["pubugn", scheme9(schemePuBuGn)],
-  ["purd", scheme9(schemePuRd)],
-  ["rdpu", scheme9(schemeRdPu)],
-  ["ylgn", scheme9(schemeYlGn)],
-  ["ylgnbu", scheme9(schemeYlGnBu)],
-  ["ylorbr", scheme9(schemeYlOrBr)],
-  ["ylorrd", scheme9(schemeYlOrRd)]
+  ["turbo", schemei(interpolateTurbo)],
+  ["viridis", schemei(interpolateViridis)],
+  ["magma", schemei(interpolateMagma)],
+  ["inferno", schemei(interpolateInferno)],
+  ["plasma", schemei(interpolatePlasma)],
+  ["cividis", schemei(interpolateCividis)],
+  ["cubehelix", schemei(interpolateCubehelixDefault)],
+  ["warm", schemei(interpolateWarm)],
+  ["cool", schemei(interpolateCool)],
+  ["bugn", scheme9(schemeBuGn, interpolateBuGn)],
+  ["bupu", scheme9(schemeBuPu, interpolateBuPu)],
+  ["gnbu", scheme9(schemeGnBu, interpolateGnBu)],
+  ["orrd", scheme9(schemeOrRd, interpolateOrRd)],
+  ["pubu", scheme9(schemePuBu, interpolatePuBu)],
+  ["pubugn", scheme9(schemePuBuGn, interpolatePuBuGn)],
+  ["purd", scheme9(schemePuRd, interpolatePuRd)],
+  ["rdpu", scheme9(schemeRdPu, interpolateRdPu)],
+  ["ylgn", scheme9(schemeYlGn, interpolateYlGn)],
+  ["ylgnbu", scheme9(schemeYlGnBu, interpolateYlGnBu)],
+  ["ylorbr", scheme9(schemeYlOrBr, interpolateYlOrBr)],
+  ["ylorrd", scheme9(schemeYlOrRd, interpolateYlOrRd)],
+
+  // cyclical
+  ["rainbow", schemei(interpolateRainbow)],
+  ["sinebow", schemei(interpolateSinebow)]
 ]);
 
-function scheme9(scheme) {
-  return ({length}) => scheme[Math.max(3, Math.min(9, length))];
+function scheme9(scheme, interpolate) {
+  return ({length: n}) => {
+    n = n > 3 ? Math.floor(n) : 3;
+    return n > 9 ? quantize(interpolate, n) : scheme[n];
+  };
 }
 
-function scheme11(scheme) {
-  return ({length}) => scheme[Math.max(3, Math.min(11, length))];
+function scheme11(scheme, interpolate) {
+  return ({length: n}) => {
+    n = n > 3 ? Math.floor(n) : 3;
+    return n > 11 ? quantize(interpolate, n) : scheme[n];
+  };
+}
+
+function scheme11r(scheme, interpolate) {
+  return ({length: n}) => {
+    n = n > 3 ? Math.floor(n) : 3;
+    return n > 11 ? quantize(t => interpolate(1 - t), n) : scheme[n].slice().reverse();
+  };
+}
+
+function schemei(interpolate) {
+  return ({length: n}) => {
+    return quantize(interpolate, n > 0 ? Math.floor(n) : 0);
+  };
 }
 
 function Scheme(scheme) {
@@ -122,12 +197,13 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   scheme,
-  range = registry.get(key) === color ? (scheme !== undefined ? Scheme(scheme) : schemeTableau10) : undefined,
+  type,
+  range = registry.get(key) === color ? (scheme !== undefined ? Scheme(scheme)
+    : type === "ordinal" ? schemes.get("turbo")
+    : schemeTableau10) : undefined,
   ...options
 }) {
-  const scale = scaleOrdinal();
-  if (range !== undefined) scale.range(range);
-  return ScaleO(scale, channels, {range, ...options});
+  return ScaleO(scaleOrdinal(), channels, {range, ...options});
 }
 
 export function ScalePoint(key, channels, {

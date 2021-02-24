@@ -50,8 +50,8 @@ function autoScaleRangeY(scale, dimensions) {
 function Scale(key, channels = [], options = {}) {
   switch (inferScaleType(key, channels, options)) {
     case "diverging": return ScaleDiverging(key, channels, options);
-    case "ordinal": return ScaleOrdinal(key, channels, options);
-    case "linear": return ScaleLinear(key, channels, options);
+    case "categorical": case "ordinal": return ScaleOrdinal(key, channels, options);
+    case "cyclical": case "sequential": case "linear": return ScaleLinear(key, channels, options);
     case "sqrt": return ScalePow(key, channels, {...options, exponent: 0.5});
     case "pow": return ScalePow(key, channels, options);
     case "log": return ScaleLog(key, channels, options);

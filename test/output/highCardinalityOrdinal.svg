@@ -1,0 +1,115 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="60" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(45.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(67.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">B</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(89.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">C</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(111.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">D</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(133.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">E</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(155.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">F</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(177.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">G</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(199.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">H</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(221.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">I</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(243.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">J</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(265.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">K</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(287.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">L</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(309.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">M</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(331.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(353.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">O</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(375.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">P</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(397.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Q</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(419.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">R</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(441.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">S</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(463.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">T</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(485.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">U</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(507.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">V</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(529.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">W</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(551.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">X</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(573.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Y</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(595.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
+    </g>
+  </g>
+  <g>
+    <rect x="35" width="20" y="0" height="30" fill="rgb(35, 23, 27)"></rect>
+    <rect x="57" width="20" y="0" height="30" fill="rgb(66, 47, 133)"></rect>
+    <rect x="79" width="20" y="0" height="30" fill="rgb(75, 74, 199)"></rect>
+    <rect x="101" width="20" y="0" height="30" fill="rgb(70, 102, 235)"></rect>
+    <rect x="123" width="20" y="0" height="30" fill="rgb(59, 130, 248)"></rect>
+    <rect x="145" width="20" y="0" height="30" fill="rgb(47, 157, 245)"></rect>
+    <rect x="167" width="20" y="0" height="30" fill="rgb(39, 182, 230)"></rect>
+    <rect x="189" width="20" y="0" height="30" fill="rgb(37, 205, 208)"></rect>
+    <rect x="211" width="20" y="0" height="30" fill="rgb(43, 224, 183)"></rect>
+    <rect x="233" width="20" y="0" height="30" fill="rgb(56, 238, 157)"></rect>
+    <rect x="255" width="20" y="0" height="30" fill="rgb(77, 248, 132)"></rect>
+    <rect x="277" width="20" y="0" height="30" fill="rgb(103, 253, 109)"></rect>
+    <rect x="299" width="20" y="0" height="30" fill="rgb(133, 253, 89)"></rect>
+    <rect x="321" width="20" y="0" height="30" fill="rgb(164, 247, 73)"></rect>
+    <rect x="343" width="20" y="0" height="30" fill="rgb(195, 236, 60)"></rect>
+    <rect x="365" width="20" y="0" height="30" fill="rgb(222, 221, 50)"></rect>
+    <rect x="387" width="20" y="0" height="30" fill="rgb(244, 201, 43)"></rect>
+    <rect x="409" width="20" y="0" height="30" fill="rgb(255, 177, 37)"></rect>
+    <rect x="431" width="20" y="0" height="30" fill="rgb(255, 151, 33)"></rect>
+    <rect x="453" width="20" y="0" height="30" fill="rgb(255, 123, 28)"></rect>
+    <rect x="475" width="20" y="0" height="30" fill="rgb(246, 95, 24)"></rect>
+    <rect x="497" width="20" y="0" height="30" fill="rgb(225, 68, 18)"></rect>
+    <rect x="519" width="20" y="0" height="30" fill="rgb(199, 44, 12)"></rect>
+    <rect x="541" width="20" y="0" height="30" fill="rgb(173, 25, 5)"></rect>
+    <rect x="563" width="20" y="0" height="30" fill="rgb(152, 14, 0)"></rect>
+    <rect x="585" width="20" y="0" height="30" fill="rgb(144, 12, 0)"></rect>
+  </g>
+</svg>

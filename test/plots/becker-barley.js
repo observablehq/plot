@@ -18,7 +18,7 @@ export default async function() {
       domain: d3.groupSort(barley, g => -d3.median(g, d => d.yield), d => d.site)
     },
     color: {
-      type: "ordinal"
+      type: "categorical"
     },
     facet: {
       data: barley,
