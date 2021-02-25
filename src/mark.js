@@ -83,16 +83,18 @@ function Channel(data, {scale, type, value}) {
   return {
     scale,
     type,
-    value: typeof value === "function" ? Array.from(data, value) : arrayify(value),
+    value: valueof(data, value),
     label: value ? value.label : undefined
   };
 }
 
 // This allows transforms to behave equivalently to channels.
-export function valueof(data, value) {
-  return typeof value === "string" ? Array.from(data, field(value))
-    : typeof value === "function" ? Array.from(data, value)
-    : arrayify(value);
+export function valueof(data, value, type) {
+  const array = type === undefined ? Array : type;
+  return typeof value === "string" ? array.from(data, field(value))
+    : typeof value === "function" ? array.from(data, value)
+    : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
+    : arrayify(value, type); // preserve undefined type
 }
 
 export const field = label => Object.assign(d => d[label], {label});

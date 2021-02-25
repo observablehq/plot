@@ -13,6 +13,7 @@ export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js"
 export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as empty} from "./empty.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
+export {default as gistempAnomalyMoving} from "./gistemp-anomaly-moving.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
