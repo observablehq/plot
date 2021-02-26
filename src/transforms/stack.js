@@ -33,7 +33,7 @@ export function stackY(data, {x, y, ...options}) {
 
 export function stack(data, {
   location,
-  value,
+  value = () => 1,
   z,
   offset,
   sort,
