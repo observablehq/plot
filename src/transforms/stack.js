@@ -48,7 +48,7 @@ export function stackY({x, y, ...options}) {
       return data;
     },
     y1: transform(() => Y1, y),
-    y2: transform(() => Y2, y),
+    y2: transform(() => Y2),
     x: transform(() => X, x)
   };
 }
