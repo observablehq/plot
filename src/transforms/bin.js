@@ -1,5 +1,5 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, maybeValue, range, offsetRange, identity, maybeLabel} from "../mark.js";
+import {valueof, first, second, range, offsetRange, identity, maybeLabel} from "../mark.js";
 
 export function binX({x = identity, domain, thresholds, normalize, cumulative, ...options} = {}) {
   const y = binLength(normalize);
@@ -47,13 +47,16 @@ export function bin({x, y, out, domain, thresholds, normalize, ...options} = {})
   };
 }
 
-function bin1(options = {}) {
-  let {value, domain, thresholds, cumulative} = maybeValue(options);
+function bin1({value, domain, thresholds, cumulative} = {}) {
   const bin = binof({value, domain, thresholds});
   return (data, facets) => rebin(bin(data), facets, subset1, cumulative);
 }
 
-function bin2({x = {}, y = {}, domain, thresholds} = {}) {
+// Here x and y may each either be a standalone value (e.g., a string
+// representing a field name, a function, an array), or the value and some
+// additional per-dimension binning options as an objects of the form {value,
+// domain?, thresholds?}.
+function bin2({x, y, domain, thresholds} = {}) {
   const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
   return (data, facets) => rebin(
@@ -194,4 +197,9 @@ function maybeNormalize(transform, length) {
     length.normalize(data);
     return transform(data, facets);
   } : transform;
+}
+
+// This distinguishes between per-dimension options and a standalone value.
+function maybeValue(value) {
+  return typeof value === "object" && value && "value" in value ? value : {value};
 }

@@ -1,6 +1,6 @@
 import {groups} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, maybeValue, range, offsetRange, maybeLabel, first, second, identity} from "../mark.js";
+import {valueof, range, offsetRange, maybeLabel, first, second, identity} from "../mark.js";
 
 export function groupX({x = identity, normalize, ...options} = {}) {
   const y = groupLength(normalize);
@@ -33,17 +33,14 @@ export function group({x = first, y = second, out, ...options} = {}) {
 }
 
 function group1(x) {
-  const {value} = maybeValue({value: x});
   return (data, facets) => {
-    const values = valueof(data, value);
+    const values = valueof(data, x);
     let g = groups(range(data), i => values[i]).filter(defined1);
     return regroup(g, facets);
   };
 }
 
-function group2(vx, vy) {
-  const {value: x} = maybeValue({value: vx});
-  const {value: y} = maybeValue({value: vy});
+function group2(x, y) {
   return (data, facets) => {
     const valuesX = valueof(data, x);
     const valuesY = valueof(data, y);

@@ -130,13 +130,6 @@ export function maybeNumber(value, defaultValue) {
     : [value, undefined];
 }
 
-// The value may be defined as a string or function, rather than an object with
-// a value property. TODO Allow value to be specified as array, too? This would
-// require promoting the array to an accessor for compatibility with d3.bin.
-export function maybeValue(x) {
-  return typeof x === "string" || typeof x === "function" ? {value: x} : x;
-}
-
 // If the channel value is specified as a string, indicating a named field, this
 // wraps the specified function f with another function with the corresponding
 // label property, such that the associated axis inherits the label by default.
