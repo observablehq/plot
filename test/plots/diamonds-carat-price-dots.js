@@ -16,12 +16,7 @@ export default async function() {
       domain: [0, 100]
     },
     marks: [
-      Plot.dot(data, {
-        transform: Plot.bin2({x: "carat", y: "price", thresholds: 100}),
-        x: d => (d.x0 + d.x1) / 2,
-        y: d => (d.y0 + d.y1) / 2,
-        r: "length"
-      })
+      Plot.binDot(data, {x: "carat", y: "price", thresholds: 100})
     ]
   });
 }
