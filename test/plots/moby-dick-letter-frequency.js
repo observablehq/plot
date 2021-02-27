@@ -8,7 +8,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.groupX([...mobydick]
+      Plot.groupBarY([...mobydick]
         .filter(c => /[a-z]/i.test(c))
         .map(c => c.toUpperCase())),
       Plot.ruleY([0])
