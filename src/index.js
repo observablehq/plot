@@ -15,6 +15,6 @@ export {stackAreaX, stackAreaY, stackBarX, stackBarY} from "./marks/stack.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {bin, binX, binY, binR} from "./transforms/bin.js";
-export {groupX, groupY, group} from "./transforms/group.js";
+export {group, groupX, groupY} from "./transforms/group.js";
 export {movingAverage} from "./transforms/movingAverage.js";
 export {stackX, stackY} from "./transforms/stack.js";
