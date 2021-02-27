@@ -4,17 +4,17 @@ import {cell} from "./cell.js";
 import {dot} from "./dot.js";
 
 export function groupCell(data, options) {
-  return cell(...group(data, {out: "fill", ...options}));
+  return cell(data, group({...options, out: "fill"}));
 }
 
 export function groupDot(data, options) {
-  return dot(...group(data, {out: "r", ...options}));
+  return dot(data, group({...options, out: "r"}));
 }
 
 export function groupBarX(data, options) {
-  return barX(...groupY(data, options));
+  return barX(data, groupY(options));
 }
 
 export function groupBarY(data, options) {
-  return barY(...groupX(data, options));
+  return barY(data, groupX(options));
 }

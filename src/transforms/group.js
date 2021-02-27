@@ -1,45 +1,35 @@
 import {groups} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, maybeValue, range, offsetRange, maybeLabel, first, arrayify, second, identity} from "../mark.js";
+import {valueof, maybeValue, range, offsetRange, maybeLabel, first, second, identity} from "../mark.js";
 
-export function groupX(data, {x = identity, transform, ...options} = {}) {
-  if (transform !== undefined) data = transform(arrayify(data));
-  return [
-    data,
-    {
-      ...options,
-      transform: group1(x),
-      x: maybeLabel(first, x),
-      y: maybeLength(data, options)
-    }
-  ];
+export function groupX({x = identity, normalize, ...options} = {}) {
+  const y = groupLength(normalize);
+  return {
+    ...options,
+    transform: maybeNormalize(group1(x), y),
+    x: maybeLabel(first, x),
+    y
+  };
 }
 
-export function groupY(data, {y = identity, transform, ...options} = {}) {
-  if (transform !== undefined) data = transform(arrayify(data));
-  return [
-    data,
-    {
-      ...options,
-      transform: group1(y),
-      y: maybeLabel(first, y),
-      x: maybeLength(data, options)
-    }
-  ];
+export function groupY({y = identity, normalize, ...options} = {}) {
+  const x = groupLength(normalize);
+  return {
+    ...options,
+    transform: maybeNormalize(group1(y), x),
+    y: maybeLabel(first, y),
+    x
+  };
 }
 
-export function group(data, {x = first, y = second, out, transform, ...options} = {}) {
-  if (transform !== undefined) data = transform(arrayify(data));
-  return [
-    data,
-    {
-      ...options,
-      transform: group2(x, y),
-      x: maybeLabel(first, x),
-      y: maybeLabel(second, y),
-      [out]: length3
-    }
-  ];
+export function group({x = first, y = second, out, ...options} = {}) {
+  return {
+    ...options,
+    transform: group2(x, y),
+    x: maybeLabel(first, x),
+    y: maybeLabel(second, y),
+    [out]: length3
+  };
 }
 
 function group1(x) {
@@ -105,16 +95,25 @@ function length3([,, group]) {
 
 length2.label = length3.label = "Frequency";
 
-function maybeLength(data, {normalize}) {
-  return normalize ? normalizer(normalize, data.length) : length2;
-}
-
-// An alternative channel definition to length2 (above) that computes the
-// proportion of each bin in [0, k]. If k is true, it is treated as 100 for
+// Returns a channel definition that’s either the number of elements in the
+// given group (length2 above), or the same as a proportion of the total number
+// of elements in the data scaled by k. If k is true, it is treated as 100 for
 // percentages; otherwise, it is typically 1.
-function normalizer(k, n) {
+function groupLength(k) {
+  if (!k) return length2;
   k = k === true ? 100 : +k;
-  const value = ([, group]) => group.length * k / n;
+  let length; // set lazily by the transform
+  const value = ([, group]) => group.length * k / length;
+  value.normalize = data => void (length = data.length);
   value.label = `Frequency${k === 100 ? " (%)" : ""}`;
   return value;
+}
+
+// If the group length requires normalization (per groupLength above), this
+// wraps the specified transform to allow it.
+function maybeNormalize(transform, length) {
+  return length.normalize ? (data, facets) => {
+    length.normalize(data);
+    return transform(data, facets);
+  } : transform;
 }
