@@ -1,38 +1,21 @@
 import {InternMap} from "d3-array";
 import {valueof} from "../mark";
 
-// TODO configurable series order
 export function stackX({x, y, ...options}) {
-  let X1, X2, Y;
-  return {
-    ...options,
-    transform(data) {
-      const X = valueof(data, x);
-      Y = valueof(data, y);
-      const n = X.length;
-      const X0 = new InternMap();
-      X1 = new Float64Array(n);
-      X2 = new Float64Array(n);
-      for (let i = 0; i < n; ++i) {
-        const k = Y[i];
-        const x1 = X1[i] = X0.has(k) ? X0.get(k) : 0;
-        const x2 = X2[i] = x1 + +X[i];
-        X0.set(k, isNaN(x2) ? x1 : x2);
-      }
-      return data;
-    },
-    x1: transform(() => X1, x),
-    x2: transform(() => X2),
-    y: transform(() => Y, y)
-  };
+  const [transform, Y, x1, x2] = stack(y, x);
+  return {...options, transform, y: Y, x1, x2};
+}
+
+export function stackY({x, y, ...options}) {
+  const [transform, X, y1, y2] = stack(x, y);
+  return {...options, transform, x: X, y1, y2};
 }
 
 // TODO configurable series order
-export function stackY({x, y, ...options}) {
-  let Y1, Y2, X;
-  return {
-    ...options,
-    transform(data) {
+function stack(x, y) {
+  let X, Y1, Y2;
+  return [
+    data => {
       X = valueof(data, x);
       const Y = valueof(data, y);
       const n = X.length;
@@ -47,10 +30,10 @@ export function stackY({x, y, ...options}) {
       }
       return data;
     },
-    y1: transform(() => Y1, y),
-    y2: transform(() => Y2),
-    x: transform(() => X, x)
-  };
+    transform(() => X, x),
+    transform(() => Y1, y),
+    transform(() => Y2)
+  ];
 }
 
 // If x is labeled, propagate the label to the returned channel transform.
