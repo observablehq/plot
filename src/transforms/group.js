@@ -2,51 +2,43 @@ import {groups} from "d3-array";
 import {defined} from "../defined.js";
 import {valueof, range, offsetRange, maybeLabel, first, second, identity} from "../mark.js";
 
-export function groupX({x = identity, normalize, ...options} = {}) {
-  const y = groupLength(normalize);
-  return {
-    ...options,
-    transform: maybeNormalize(group1(x), y),
-    x: maybeLabel(first, x),
-    y
-  };
+export function groupX({x, normalize, ...options} = {}) {
+  const [transform, X, y] = group1(x, normalize);
+  return {...options, transform, x: X, y};
 }
 
-export function groupY({y = identity, normalize, ...options} = {}) {
-  const x = groupLength(normalize);
-  return {
-    ...options,
-    transform: maybeNormalize(group1(y), x),
-    y: maybeLabel(first, y),
-    x
-  };
+export function groupY({y, normalize, ...options} = {}) {
+  const [transform, Y, x] = group1(y, normalize);
+  return {...options, transform, y: Y, x};
+}
+
+function group1(x = identity, k) {
+  const y = (k = k === true ? 100 : +k) ? normalizedLength2(k) : length2;
+  return [
+    (data, facets) => {
+      if (k) y.normalize(data);
+      const X = valueof(data, x);
+      let g = groups(range(data), i => X[i]).filter(defined1);
+      return regroup(g, facets);
+    },
+    maybeLabel(first, x),
+    y
+  ];
 }
 
 export function group({x = first, y = second, out, ...options} = {}) {
   return {
     ...options,
-    transform: group2(x, y),
+    transform(data, facets) {
+      const X = valueof(data, x);
+      const Y = valueof(data, y);
+      let g = groups(range(data), i => X[i], i => Y[i]).filter(defined1);
+      g = g.flatMap(([x, xgroup]) => xgroup.filter(defined1).map(([y, ygroup]) => [x, y, ygroup]));
+      return regroup(g, facets);
+    },
     x: maybeLabel(first, x),
     y: maybeLabel(second, y),
     [out]: length3
-  };
-}
-
-function group1(x) {
-  return (data, facets) => {
-    const values = valueof(data, x);
-    let g = groups(range(data), i => values[i]).filter(defined1);
-    return regroup(g, facets);
-  };
-}
-
-function group2(x, y) {
-  return (data, facets) => {
-    const valuesX = valueof(data, x);
-    const valuesY = valueof(data, y);
-    let g = groups(range(data), i => valuesX[i], i => valuesY[i]).filter(defined1);
-    g = g.flatMap(([x, xgroup]) => xgroup.filter(defined1).map(([y, ygroup]) => [x, y, ygroup]));
-    return regroup(g, facets);
   };
 }
 
@@ -92,25 +84,14 @@ function length3([,, group]) {
 
 length2.label = length3.label = "Frequency";
 
-// Returns a channel definition that’s either the number of elements in the
-// given group (length2 above), or the same as a proportion of the total number
-// of elements in the data scaled by k. If k is true, it is treated as 100 for
-// percentages; otherwise, it is typically 1.
-function groupLength(k) {
-  if (!k) return length2;
-  k = k === true ? 100 : +k;
+// Returns a channel definition that’s the number of elements in the given group
+// (length2 above) as a proportion of the total number of elements in the data
+// scaled by k. If k is true, it is treated as 100 for percentages; otherwise,
+// it is typically 1.
+function normalizedLength2(k) {
   let length; // set lazily by the transform
   const value = ([, group]) => group.length * k / length;
   value.normalize = data => void (length = data.length);
   value.label = `Frequency${k === 100 ? " (%)" : ""}`;
   return value;
-}
-
-// If the group length requires normalization (per groupLength above), this
-// wraps the specified transform to allow it.
-function maybeNormalize(transform, length) {
-  return length.normalize ? (data, facets) => {
-    length.normalize(data);
-    return transform(data, facets);
-  } : transform;
 }
