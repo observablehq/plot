@@ -1,26 +1,25 @@
 import {bin as binner, cross} from "d3-array";
 import {valueof, first, second, range, offsetRange, identity, maybeLabel} from "../mark.js";
 
-export function binX({x = identity, domain, thresholds, normalize, cumulative, ...options} = {}) {
-  const y = binLength(normalize);
-  return {
-    ...options,
-    transform: maybeNormalize(bin1({value: x, domain, thresholds, cumulative}), y),
-    y,
-    x1: maybeLabel(x0, x),
-    x2: x1
-  };
+export function binX({x, domain, thresholds, normalize, cumulative, ...options} = {}) {
+  const [transform, y, x1, x2] = bin1(x, {domain, thresholds, normalize, cumulative});
+  return {...options, transform, y, x1, x2};
 }
 
 export function binY({y = identity, domain, thresholds, normalize, cumulative, ...options} = {}) {
-  const x = binLength(normalize);
-  return {
-    ...options,
-    transform: maybeNormalize(bin1({value: y, domain, thresholds, cumulative}), x),
-    x,
-    y1: maybeLabel(x0, y),
-    y2: x1
-  };
+  const [transform, x, y1, y2] = bin1(y, {domain, thresholds, normalize, cumulative});
+  return {...options, transform, x, y1, y2};
+}
+
+function bin1(value = identity, {domain, thresholds, normalize, cumulative} = {}) {
+  const length = binLength(normalize);
+  const bin = binof({value, domain, thresholds});
+  return [
+    maybeNormalize((data, facets) => rebin(bin(data), facets, subset1, cumulative), length),
+    length,
+    maybeLabel(x0, value),
+    x1
+  ];
 }
 
 export function binR({x, y, domain, thresholds, normalize, ...options} = {}) {
@@ -45,11 +44,6 @@ export function bin({x, y, out, domain, thresholds, normalize, ...options} = {})
     y1: maybeLabel(y0, y),
     y2: y1
   };
-}
-
-function bin1({value, domain, thresholds, cumulative} = {}) {
-  const bin = binof({value, domain, thresholds});
-  return (data, facets) => rebin(bin(data), facets, subset1, cumulative);
 }
 
 // Here x and y may each either be a standalone value (e.g., a string
