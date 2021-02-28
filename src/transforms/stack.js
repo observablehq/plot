@@ -1,5 +1,5 @@
 import {InternMap} from "d3-array";
-import {valueof} from "../mark";
+import {valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
   const [transform, Y, x1, x2] = stack(y, x);
@@ -13,15 +13,17 @@ export function stackY({x, y, ...options}) {
 
 // TODO configurable series order
 function stack(x, y) {
-  let X, Y1, Y2;
+  const [X, setX] = lazyChannel(x);
+  const [Y1, setY1] = lazyChannel(y);
+  const [Y2, setY2] = lazyChannel(y);
   return [
     data => {
-      X = valueof(data, x);
+      const X = setX(valueof(data, x));
       const Y = valueof(data, y);
       const n = X.length;
       const Y0 = new InternMap();
-      Y1 = new Float64Array(n);
-      Y2 = new Float64Array(n);
+      const Y1 = setY1(new Float64Array(n));
+      const Y2 = setY2(new Float64Array(n));
       for (let i = 0; i < n; ++i) {
         const k = X[i];
         const y1 = Y1[i] = Y0.has(k) ? Y0.get(k) : 0;
@@ -30,16 +32,24 @@ function stack(x, y) {
       }
       return data;
     },
-    transform(() => X, x),
-    transform(() => Y1, y),
-    transform(() => Y2)
+    X,
+    Y1,
+    Y2
   ];
 }
 
-// If x is labeled, propagate the label to the returned channel transform.
-function transform(transform, x) {
-  return {
-    transform,
-    label: typeof x === "string" ? x : x ? x.label : undefined
-  };
+// Defines a channel whose values are lazily populated by calling the returned
+// setter. If the given source is labeled, the label is propagated to the
+// returned channel definition.
+function lazyChannel(source) {
+  let value;
+  return [
+    {
+      transform() { return value; },
+      label: typeof source === "string" ? source
+        : source ? source.label
+        : undefined
+    },
+    v => value = v
+  ];
 }
