@@ -5,10 +5,17 @@ export default async function() {
   const data = await d3.csv("data/bls-industry-unemployment.csv", d3.autoType);
   return Plot.plot({
     y: {
-      grid: true
+      grid: true,
+      tickFormat: "%"
     },
     marks: [
-      Plot.stackAreaY(data, {x: "date", y: "unemployed", fill: "industry", title: "industry"}),
+      Plot.stackAreaY(data, {
+        x: "date",
+        y: "unemployed",
+        fill: "industry",
+        offset: "expand",
+        title: "industry"
+      }),
       Plot.ruleY([0])
     ]
   });

@@ -1,0 +1,700 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="1200" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(150,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,51.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Niger</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,62.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chad</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,73.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Madagascar</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,84.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Yemen, Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,95.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Afghanistan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,106.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Burundi</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,117.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mali</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,128.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ethiopia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,139.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Congo, Dem Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,150.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Togo</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,161.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Burkina Faso</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,172.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Congo, Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,183.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Uganda</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,194.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cote d’Ivoire</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,205.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dominican Republic</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,216.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">South Africa</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,227.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Benin</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,238.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cameroon</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,249.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Honduras</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,260.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Pakistan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,271.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Paraguay</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,282.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Senegal</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,293.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nicaragua</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,304.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Egypt, Arab Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,315.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Guatemala</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,326.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Panama</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,337.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Morocco</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,348.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tunisia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,359.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kyrgyz Republic</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ecuador</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,381.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bangladesh</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,392.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peru</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,403.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">India</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,414.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Argentina</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,425.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jordan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,436.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cambodia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,447.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kuwait</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,458.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Colombia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,469.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Brazil</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,480.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Botswana</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,491.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mexico</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,502.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oman</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,513.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Uruguay</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,524.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Saudi Arabia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,535.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chile</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,546.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Iran, Islamic Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,557.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Indonesia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,568.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Qatar</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,579.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Armenia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,590.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United Arab Emirates</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,601.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Costa Rica</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,612.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bahrain</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,623.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Malta</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,634.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Thailand</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,645.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Azerbaijan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,656.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Turkey</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,667.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trinidad and Tobago</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,678.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Romania</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,689.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">China</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,700.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cyprus</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,711.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sri Lanka</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,722.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Georgia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,733.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Malaysia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,744.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Israel</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,755.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bulgaria</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,766.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Zealand</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,777.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Australia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,788.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Slovak Republic</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,799.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Serbia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,810.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United States</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,821.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">France</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,832.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Portugal</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,843.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Belgium</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,854.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Poland</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,865.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Norway</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,876.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hungary</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,887.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Slovenia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,898.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Germany</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,909.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Spain</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,920.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Canada</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,931.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Latvia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,942.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Croatia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,953.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Macao SAR, China</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,964.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Denmark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,975.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Italy</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,986.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">United Kingdom</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,997.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Russian Federation</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1008.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hong Kong SAR, China</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1019.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lithuania</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1030.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Korea, Rep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1041.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Czech Republic</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1052.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Singapore</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1063.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Finland</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1074.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Austria</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1085.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sweden</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1096.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ireland</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1107.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kazakhstan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1118.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Japan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1129.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Vietnam</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,1140.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Netherlands</text>
+    </g><text fill="currentColor" transform="translate(-150,595) rotate(-90)" dy="0.75em" text-anchor="middle">Country Name</text>
+  </g>
+  <g transform="translate(0,1170)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(150.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(174.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(197.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(221.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(244.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(268.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(291.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(315.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(338.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(362.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(385.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(409.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(432.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(456.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(479.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(503.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(526.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(550.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(573.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(597.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-1150" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100%</text>
+    </g>
+  </g>
+  <g transform="translate(0,0)">
+    <rect x="369.49" width="15.509999999999991" y="90" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="102.93" y="90" height="10" fill="#EDD382"></rect>
+    <rect x="487.93" width="116.56" y="90" height="10" fill="#ffa69e"></rect>
+    <rect x="276.66499999999996" width="108.33500000000004" y="409" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="125.255" y="409" height="10" fill="#EDD382"></rect>
+    <rect x="510.255" width="1.410000000000025" y="409" height="10" fill="#ffa69e"></rect>
+    <rect x="232.25" width="152.75" y="574" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="65.32999999999998" y="574" height="10" fill="#EDD382"></rect>
+    <rect x="450.33" width="16.920000000000016" y="574" height="10" fill="#ffa69e"></rect>
+    <rect x="170.20999999999998" width="214.79000000000002" y="772" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="12.689999999999998" y="772" height="10" fill="#EDD382"></rect>
+    <rect x="397.69" width="7.519999999999982" y="772" height="10" fill="#ffa69e"></rect>
+    <rect x="155.64000000000001" width="229.35999999999999" y="1069" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="5.639999999999986" y="1069" height="10" fill="#EDD382"></rect>
+    <rect x="390.64" width="0" y="1069" height="10" fill="#ffa69e"></rect>
+    <rect x="204.755" width="180.245" y="640" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="43.004999999999995" y="640" height="10" fill="#EDD382"></rect>
+    <rect x="428.005" width="11.75" y="640" height="10" fill="#ffa69e"></rect>
+    <rect x="225.435" width="159.565" y="607" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="70.5" y="607" height="10" fill="#EDD382"></rect>
+    <rect x="455.5" width="4.935000000000002" y="607" height="10" fill="#ffa69e"></rect>
+    <rect x="286.53499999999997" width="98.46500000000003" y="376" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="125.01999999999998" y="376" height="10" fill="#EDD382"></rect>
+    <rect x="510.02" width="11.514999999999986" y="376" height="10" fill="#ffa69e"></rect>
+    <rect x="165.04000000000002" width="219.95999999999998" y="838" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="11.985000000000014" y="838" height="10" fill="#EDD382"></rect>
+    <rect x="396.985" width="3.055000000000007" y="838" height="10" fill="#ffa69e"></rect>
+    <rect x="333.77" width="51.23000000000002" y="222" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="175.31000000000006" y="222" height="10" fill="#EDD382"></rect>
+    <rect x="560.3100000000001" width="8.459999999999923" y="222" height="10" fill="#ffa69e"></rect>
+    <rect x="263.505" width="121.495" y="475" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="96.58500000000004" y="475" height="10" fill="#EDD382"></rect>
+    <rect x="481.58500000000004" width="16.91999999999996" y="475" height="10" fill="#ffa69e"></rect>
+    <rect x="263.74" width="121.25999999999999" y="464" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="107.39499999999998" y="464" height="10" fill="#EDD382"></rect>
+    <rect x="492.395" width="6.345000000000027" y="464" height="10" fill="#ffa69e"></rect>
+    <rect x="177.495" width="207.505" y="750" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="11.515000000000043" y="750" height="10" fill="#EDD382"></rect>
+    <rect x="396.51500000000004" width="15.979999999999961" y="750" height="10" fill="#ffa69e"></rect>
+    <rect x="350.69" width="34.31" y="156" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="126.195" y="156" height="10" fill="#EDD382"></rect>
+    <rect x="511.195" width="74.49500000000006" y="156" height="10" fill="#ffa69e"></rect>
+    <rect x="368.315" width="16.685000000000002" y="101" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="211.97000000000003" y="101" height="10" fill="#EDD382"></rect>
+    <rect x="596.97" width="6.345000000000027" y="101" height="10" fill="#ffa69e"></rect>
+    <rect x="270.085" width="114.91500000000002" y="431" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="113.97500000000002" y="431" height="10" fill="#EDD382"></rect>
+    <rect x="498.975" width="6.109999999999957" y="431" height="10" fill="#ffa69e"></rect>
+    <rect x="331.41999999999996" width="53.58000000000004" y="233" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="169.20000000000005" y="233" height="10" fill="#EDD382"></rect>
+    <rect x="554.2" width="12.219999999999914" y="233" height="10" fill="#ffa69e"></rect>
+    <rect x="160.105" width="224.895" y="915" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="10.105000000000018" y="915" height="10" fill="#EDD382"></rect>
+    <rect x="395.105" width="0" y="915" height="10" fill="#ffa69e"></rect>
+    <rect x="379.595" width="5.404999999999973" y="57" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="180.01" y="57" height="10" fill="#EDD382"></rect>
+    <rect x="565.01" width="49.585000000000036" y="57" height="10" fill="#ffa69e"></rect>
+    <rect x="236.48000000000002" width="148.51999999999998" y="530" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="64.625" y="530" height="10" fill="#EDD382"></rect>
+    <rect x="449.625" width="21.855000000000018" y="530" height="10" fill="#ffa69e"></rect>
+    <rect x="192.77" width="192.23" y="684" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="42.76999999999998" y="684" height="10" fill="#EDD382"></rect>
+    <rect x="427.77" width="0" y="684" height="10" fill="#ffa69e"></rect>
+    <rect x="264.21" width="120.79000000000002" y="453" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="97.99499999999995" y="453" height="10" fill="#EDD382"></rect>
+    <rect x="482.99499999999995" width="16.215000000000032" y="453" height="10" fill="#ffa69e"></rect>
+    <rect x="352.1" width="32.89999999999998" y="134" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="53.579999999999984" y="134" height="10" fill="#EDD382"></rect>
+    <rect x="438.58" width="148.52000000000004" y="134" height="10" fill="#ffa69e"></rect>
+    <rect x="349.985" width="35.014999999999986" y="167" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="169.90499999999997" y="167" height="10" fill="#EDD382"></rect>
+    <rect x="554.905" width="30.079999999999927" y="167" height="10" fill="#ffa69e"></rect>
+    <rect x="226.375" width="158.625" y="596" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="73.79000000000002" y="596" height="10" fill="#EDD382"></rect>
+    <rect x="458.79" width="2.5849999999999795" y="596" height="10" fill="#ffa69e"></rect>
+    <rect x="343.405" width="41.59500000000003" y="189" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="143.81999999999994" y="189" height="10" fill="#EDD382"></rect>
+    <rect x="528.8199999999999" width="49.58500000000015" y="189" height="10" fill="#ffa69e"></rect>
+    <rect x="159.4" width="225.6" y="937" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="2.3500000000000227" y="937" height="10" fill="#EDD382"></rect>
+    <rect x="387.35" width="7.050000000000011" y="937" height="10" fill="#ffa69e"></rect>
+    <rect x="188.07" width="196.93" y="695" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="32.89999999999998" y="695" height="10" fill="#EDD382"></rect>
+    <rect x="417.9" width="5.170000000000016" y="695" height="10" fill="#ffa69e"></rect>
+    <rect x="157.05" width="227.95" y="1036" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="7.050000000000011" y="1036" height="10" fill="#EDD382"></rect>
+    <rect x="392.05" width="0" y="1036" height="10" fill="#ffa69e"></rect>
+    <rect x="158.45999999999998" width="226.54000000000002" y="959" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="6.110000000000014" y="959" height="10" fill="#EDD382"></rect>
+    <rect x="391.11" width="2.3500000000000227" y="959" height="10" fill="#ffa69e"></rect>
+    <rect x="339.64500000000004" width="45.35499999999996" y="200" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="174.1350000000001" y="200" height="10" fill="#EDD382"></rect>
+    <rect x="559.1350000000001" width="15.509999999999877" y="200" height="10" fill="#ffa69e"></rect>
+    <rect x="297.58" width="87.42000000000002" y="365" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="143.115" y="365" height="10" fill="#EDD382"></rect>
+    <rect x="528.115" width="4.465000000000032" y="365" height="10" fill="#ffa69e"></rect>
+    <rect x="313.56" width="71.44" y="299" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="160.26999999999998" y="299" height="10" fill="#EDD382"></rect>
+    <rect x="545.27" width="3.2899999999999636" y="299" height="10" fill="#ffa69e"></rect>
+    <rect x="362.205" width="22.795000000000016" y="123" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="179.30500000000006" y="123" height="10" fill="#EDD382"></rect>
+    <rect x="564.3050000000001" width="32.89999999999998" y="123" height="10" fill="#ffa69e"></rect>
+    <rect x="156.10999999999999" width="228.89000000000001" y="1058" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="3.9950000000000045" y="1058" height="10" fill="#EDD382"></rect>
+    <rect x="388.995" width="2.115000000000009" y="1058" height="10" fill="#ffa69e"></rect>
+    <rect x="166.685" width="218.315" y="816" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="14.57000000000005" y="816" height="10" fill="#EDD382"></rect>
+    <rect x="399.57000000000005" width="2.1149999999999523" y="816" height="10" fill="#ffa69e"></rect>
+    <rect x="182.43" width="202.57" y="717" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="31.49000000000001" y="717" height="10" fill="#EDD382"></rect>
+    <rect x="416.49" width="0.9399999999999409" y="717" height="10" fill="#ffa69e"></rect>
+    <rect x="163.395" width="221.605" y="893" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="12.924999999999955" y="893" height="10" fill="#EDD382"></rect>
+    <rect x="397.92499999999995" width="0.4700000000000273" y="893" height="10" fill="#ffa69e"></rect>
+    <rect x="308.155" width="76.84500000000003" y="310" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="134.41999999999996" y="310" height="10" fill="#EDD382"></rect>
+    <rect x="519.42" width="23.735000000000014" y="310" height="10" fill="#ffa69e"></rect>
+    <rect x="325.545" width="59.454999999999984" y="244" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="135.3599999999999" y="244" height="10" fill="#EDD382"></rect>
+    <rect x="520.3599999999999" width="40.18500000000006" y="244" height="10" fill="#ffa69e"></rect>
+    <rect x="157.52" width="227.48" y="1003" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="3.05499999999995" y="1003" height="10" fill="#EDD382"></rect>
+    <rect x="388.05499999999995" width="4.465000000000032" y="1003" height="10" fill="#ffa69e"></rect>
+    <rect x="163.865" width="221.135" y="871" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="6.579999999999984" y="871" height="10" fill="#EDD382"></rect>
+    <rect x="391.58" width="7.285000000000082" y="871" height="10" fill="#ffa69e"></rect>
+    <rect x="278.78" width="106.22000000000003" y="398" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="123.375" y="398" height="10" fill="#EDD382"></rect>
+    <rect x="508.375" width="5.404999999999973" y="398" height="10" fill="#ffa69e"></rect>
+    <rect x="233.19" width="151.81" y="552" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="77.55000000000001" y="552" height="10" fill="#EDD382"></rect>
+    <rect x="462.55" width="5.639999999999986" y="552" height="10" fill="#ffa69e"></rect>
+    <rect x="233.895" width="151.105" y="541" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="81.78000000000003" y="541" height="10" fill="#EDD382"></rect>
+    <rect x="466.78000000000003" width="2.115000000000009" y="541" height="10" fill="#ffa69e"></rect>
+    <rect x="155.405" width="229.595" y="1091" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="5.404999999999973" y="1091" height="10" fill="#EDD382"></rect>
+    <rect x="390.405" width="0" y="1091" height="10" fill="#ffa69e"></rect>
+    <rect x="177.495" width="207.505" y="739" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="20.680000000000007" y="739" height="10" fill="#EDD382"></rect>
+    <rect x="405.68" width="6.814999999999998" y="739" height="10" fill="#ffa69e"></rect>
+    <rect x="158.225" width="226.775" y="970" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="4.935000000000002" y="970" height="10" fill="#EDD382"></rect>
+    <rect x="389.935" width="3.2899999999999636" y="970" height="10" fill="#ffa69e"></rect>
+    <rect x="155.17000000000002" width="229.82999999999998" y="1113" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="2.3500000000000227" y="1113" height="10" fill="#EDD382"></rect>
+    <rect x="387.35" width="2.8199999999999363" y="1113" height="10" fill="#ffa69e"></rect>
+    <rect x="272.20000000000005" width="112.79999999999995" y="420" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="112.80000000000001" y="420" height="10" fill="#EDD382"></rect>
+    <rect x="497.8" width="9.399999999999977" y="420" height="10" fill="#ffa69e"></rect>
+    <rect x="155.17000000000002" width="229.82999999999998" y="1102" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="4.465000000000032" y="1102" height="10" fill="#EDD382"></rect>
+    <rect x="389.46500000000003" width="0.7049999999999272" y="1102" height="10" fill="#ffa69e"></rect>
+    <rect x="157.05" width="227.95" y="1025" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="0.7049999999999272" y="1025" height="10" fill="#EDD382"></rect>
+    <rect x="385.7049999999999" width="6.345000000000084" y="1025" height="10" fill="#ffa69e"></rect>
+    <rect x="269.85" width="115.14999999999998" y="442" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="112.09499999999997" y="442" height="10" fill="#EDD382"></rect>
+    <rect x="497.09499999999997" width="7.755000000000052" y="442" height="10" fill="#ffa69e"></rect>
+    <rect x="301.57500000000005" width="83.42499999999995" y="354" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="147.1099999999999" y="354" height="10" fill="#EDD382"></rect>
+    <rect x="532.1099999999999" width="4.4650000000001455" y="354" height="10" fill="#ffa69e"></rect>
+    <rect x="159.4" width="225.6" y="926" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="1.8799999999999955" y="926" height="10" fill="#EDD382"></rect>
+    <rect x="386.88" width="7.520000000000039" y="926" height="10" fill="#ffa69e"></rect>
+    <rect x="157.05" width="227.95" y="1014" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="6.345000000000027" y="1014" height="10" fill="#EDD382"></rect>
+    <rect x="391.345" width="0.7049999999999841" y="1014" height="10" fill="#ffa69e"></rect>
+    <rect x="158.695" width="226.305" y="948" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="5.639999999999986" y="948" height="10" fill="#EDD382"></rect>
+    <rect x="390.64" width="3.055000000000007" y="948" height="10" fill="#ffa69e"></rect>
+    <rect x="377.245" width="7.7549999999999955" y="68" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="175.7800000000001" y="68" height="10" fill="#EDD382"></rect>
+    <rect x="560.7800000000001" width="51.46499999999992" y="68" height="10" fill="#ffa69e"></rect>
+    <rect x="180.315" width="204.685" y="728" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="27.024999999999977" y="728" height="10" fill="#EDD382"></rect>
+    <rect x="412.025" width="3.2900000000000205" y="728" height="10" fill="#ffa69e"></rect>
+    <rect x="363.85" width="21.149999999999977" y="112" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="136.29999999999995" y="112" height="10" fill="#EDD382"></rect>
+    <rect x="521.3" width="77.55000000000007" y="112" height="10" fill="#ffa69e"></rect>
+    <rect x="217.20999999999998" width="167.79000000000002" y="618" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="61.57000000000005" y="618" height="10" fill="#EDD382"></rect>
+    <rect x="446.57000000000005" width="5.639999999999986" y="618" height="10" fill="#ffa69e"></rect>
+    <rect x="251.52000000000004" width="133.47999999999996" y="486" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="98.69999999999999" y="486" height="10" fill="#EDD382"></rect>
+    <rect x="483.7" width="2.819999999999993" y="486" height="10" fill="#ffa69e"></rect>
+    <rect x="304.63" width="80.37" y="332" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="141.94000000000005" y="332" height="10" fill="#EDD382"></rect>
+    <rect x="526.94" width="12.68999999999994" y="332" height="10" fill="#ffa69e"></rect>
+    <rect x="153.76" width="231.24" y="1135" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="3.05499999999995" y="1135" height="10" fill="#EDD382"></rect>
+    <rect x="388.05499999999995" width="0.7050000000000409" y="1135" height="10" fill="#ffa69e"></rect>
+    <rect x="176.79000000000002" width="208.20999999999998" y="761" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="23.264999999999986" y="761" height="10" fill="#EDD382"></rect>
+    <rect x="408.265" width="3.525000000000034" y="761" height="10" fill="#ffa69e"></rect>
+    <rect x="314.03" width="70.97000000000003" y="288" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="160.26999999999998" y="288" height="10" fill="#EDD382"></rect>
+    <rect x="545.27" width="3.7600000000001046" y="288" height="10" fill="#ffa69e"></rect>
+    <rect x="381.94499999999994" width="3.0550000000000637" y="46" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="140.5300000000001" y="46" height="10" fill="#EDD382"></rect>
+    <rect x="525.5300000000001" width="91.41499999999985" y="46" height="10" fill="#ffa69e"></rect>
+    <rect x="164.1" width="220.9" y="860" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="13.629999999999995" y="860" height="10" fill="#EDD382"></rect>
+    <rect x="398.63" width="0.4700000000000273" y="860" height="10" fill="#ffa69e"></rect>
+    <rect x="248.23" width="136.77" y="497" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="94.70499999999998" y="497" height="10" fill="#EDD382"></rect>
+    <rect x="479.705" width="3.525000000000034" y="497" height="10" fill="#ffa69e"></rect>
+    <rect x="325.075" width="59.92500000000001" y="255" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="110.92000000000002" y="255" height="10" fill="#EDD382"></rect>
+    <rect x="495.92" width="64.15500000000003" y="255" height="10" fill="#ffa69e"></rect>
+    <rect x="306.51" width="78.49000000000001" y="321" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="139.82500000000005" y="321" height="10" fill="#EDD382"></rect>
+    <rect x="524.825" width="16.68499999999983" y="321" height="10" fill="#ffa69e"></rect>
+    <rect x="324.84000000000003" width="60.15999999999997" y="266" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="149.46000000000004" y="266" height="10" fill="#EDD382"></rect>
+    <rect x="534.46" width="25.379999999999995" y="266" height="10" fill="#ffa69e"></rect>
+    <rect x="280.89500000000004" width="104.10499999999996" y="387" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="121.02499999999998" y="387" height="10" fill="#EDD382"></rect>
+    <rect x="506.025" width="9.870000000000005" y="387" height="10" fill="#ffa69e"></rect>
+    <rect x="164.805" width="220.195" y="849" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="4.465000000000032" y="849" height="10" fill="#EDD382"></rect>
+    <rect x="389.46500000000003" width="10.339999999999918" y="849" height="10" fill="#ffa69e"></rect>
+    <rect x="165.275" width="219.725" y="827" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="6.815000000000055" y="827" height="10" fill="#EDD382"></rect>
+    <rect x="391.81500000000005" width="8.459999999999923" y="827" height="10" fill="#ffa69e"></rect>
+    <rect x="232.95499999999998" width="152.04500000000002" y="563" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="77.78500000000003" y="563" height="10" fill="#EDD382"></rect>
+    <rect x="462.785" width="5.170000000000016" y="563" height="10" fill="#ffa69e"></rect>
+    <rect x="197" width="188" y="673" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="30.785000000000025" y="673" height="10" fill="#EDD382"></rect>
+    <rect x="415.785" width="16.214999999999975" y="673" height="10" fill="#ffa69e"></rect>
+    <rect x="157.755" width="227.245" y="992" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="2.115000000000009" y="992" height="10" fill="#EDD382"></rect>
+    <rect x="387.115" width="5.639999999999986" y="992" height="10" fill="#ffa69e"></rect>
+    <rect x="240.005" width="144.995" y="519" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="84.13" y="519" height="10" fill="#EDD382"></rect>
+    <rect x="469.13" width="5.875" y="519" height="10" fill="#ffa69e"></rect>
+    <rect x="324.135" width="60.86500000000001" y="277" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="113.7399999999999" y="277" height="10" fill="#EDD382"></rect>
+    <rect x="498.7399999999999" width="60.39499999999998" y="277" height="10" fill="#ffa69e"></rect>
+    <rect x="169.035" width="215.965" y="794" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="17.154999999999973" y="794" height="10" fill="#EDD382"></rect>
+    <rect x="402.155" width="1.8800000000000523" y="794" height="10" fill="#ffa69e"></rect>
+    <rect x="156.57999999999998" width="228.42000000000002" y="1047" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="6.345000000000027" y="1047" height="10" fill="#EDD382"></rect>
+    <rect x="391.345" width="0.2349999999999568" y="1047" height="10" fill="#ffa69e"></rect>
+    <rect x="169.975" width="215.025" y="783" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="15.04000000000002" y="783" height="10" fill="#EDD382"></rect>
+    <rect x="400.04" width="4.934999999999945" y="783" height="10" fill="#ffa69e"></rect>
+    <rect x="163.63" width="221.37" y="882" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="8.460000000000036" y="882" height="10" fill="#EDD382"></rect>
+    <rect x="393.46000000000004" width="5.169999999999959" y="882" height="10" fill="#ffa69e"></rect>
+    <rect x="337.53" width="47.47000000000003" y="211" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="167.78999999999996" y="211" height="10" fill="#EDD382"></rect>
+    <rect x="552.79" width="19.74000000000001" y="211" height="10" fill="#ffa69e"></rect>
+    <rect x="161.51500000000001" width="223.48499999999999" y="904" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="7.990000000000009" y="904" height="10" fill="#EDD382"></rect>
+    <rect x="392.99" width="3.525000000000034" y="904" height="10" fill="#ffa69e"></rect>
+    <rect x="184.78" width="200.22" y="706" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="32.66500000000002" y="706" height="10" fill="#EDD382"></rect>
+    <rect x="417.665" width="2.1149999999999523" y="706" height="10" fill="#ffa69e"></rect>
+    <rect x="155.405" width="229.595" y="1080" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="4.465000000000032" y="1080" height="10" fill="#EDD382"></rect>
+    <rect x="389.46500000000003" width="0.9399999999999409" y="1080" height="10" fill="#ffa69e"></rect>
+    <rect x="205.225" width="179.775" y="629" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="50.525000000000034" y="629" height="10" fill="#EDD382"></rect>
+    <rect x="435.52500000000003" width="4.699999999999989" y="629" height="10" fill="#ffa69e"></rect>
+    <rect x="351.16" width="33.839999999999975" y="145" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="181.18499999999995" y="145" height="10" fill="#EDD382"></rect>
+    <rect x="566.185" width="19.975000000000023" y="145" height="10" fill="#ffa69e"></rect>
+    <rect x="198.64499999999998" width="186.35500000000002" y="662" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="45.589999999999975" y="662" height="10" fill="#EDD382"></rect>
+    <rect x="430.59" width="3.055000000000007" y="662" height="10" fill="#ffa69e"></rect>
+    <rect x="303.455" width="81.54500000000002" y="343" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="152.515" y="343" height="10" fill="#EDD382"></rect>
+    <rect x="537.515" width="0.9400000000000546" y="343" height="10" fill="#ffa69e"></rect>
+    <rect x="200.995" width="184.005" y="651" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="39.245000000000005" y="651" height="10" fill="#EDD382"></rect>
+    <rect x="424.245" width="11.75" y="651" height="10" fill="#ffa69e"></rect>
+    <rect x="344.58000000000004" width="40.41999999999996" y="178" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="173.43000000000006" y="178" height="10" fill="#EDD382"></rect>
+    <rect x="558.4300000000001" width="21.149999999999977" y="178" height="10" fill="#ffa69e"></rect>
+    <rect x="230.605" width="154.395" y="585" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="74.02499999999998" y="585" height="10" fill="#EDD382"></rect>
+    <rect x="459.025" width="6.580000000000041" y="585" height="10" fill="#ffa69e"></rect>
+    <rect x="157.99" width="227.01" y="981" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="7.519999999999982" y="981" height="10" fill="#EDD382"></rect>
+    <rect x="392.52" width="0.4700000000000273" y="981" height="10" fill="#ffa69e"></rect>
+    <rect x="168.56500000000003" width="216.43499999999997" y="805" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="8.930000000000007" y="805" height="10" fill="#EDD382"></rect>
+    <rect x="393.93" width="9.634999999999991" y="805" height="10" fill="#ffa69e"></rect>
+    <rect x="247.995" width="137.005" y="508" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="96.82" y="508" height="10" fill="#EDD382"></rect>
+    <rect x="481.82" width="1.1749999999999545" y="508" height="10" fill="#ffa69e"></rect>
+    <rect x="153.995" width="231.005" y="1124" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="2.5849999999999795" y="1124" height="10" fill="#EDD382"></rect>
+    <rect x="387.585" width="1.410000000000025" y="1124" height="10" fill="#ffa69e"></rect>
+    <rect x="372.54499999999996" width="12.455000000000041" y="79" height="10" fill="#aed9e0"></rect>
+    <rect x="385" width="178.13" y="79" height="10" fill="#EDD382"></rect>
+    <rect x="563.13" width="44.41500000000008" y="79" height="10" fill="#ffa69e"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="385" x2="385" y1="20" y2="1170"></line>
+  </g>
+</svg>
