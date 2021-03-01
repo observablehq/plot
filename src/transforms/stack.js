@@ -6,9 +6,29 @@ export function stackX({x, y, ...options}) {
   return {...options, transform, y: Y, x1, x2};
 }
 
+export function stackX1({x, y, ...options}) {
+  const [transform, Y, X] = stack(y, x, options);
+  return {...options, transform, y: Y, x: X};
+}
+
+export function stackX2({x, y, ...options}) {
+  const [transform, Y,, X] = stack(y, x, options);
+  return {...options, transform, y: Y, x: X};
+}
+
 export function stackY({x, y, ...options}) {
   const [transform, X, y1, y2] = stack(x, y, options);
   return {...options, transform, x: X, y1, y2};
+}
+
+export function stackY1({x, y, ...options}) {
+  const [transform, X, Y] = stack(x, y, options);
+  return {...options, transform, x: X, y: Y};
+}
+
+export function stackY2({x, y, ...options}) {
+  const [transform, X,, Y] = stack(x, y, options);
+  return {...options, transform, x: X, y: Y};
 }
 
 function stack(x, y = () => 1, {
@@ -108,6 +128,7 @@ function stack(x, y = () => 1, {
           }
         }
       }
+
       return {index: facets === undefined ? I : facets, data};
     },
     X,
