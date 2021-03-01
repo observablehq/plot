@@ -83,6 +83,8 @@ function stack(x, y = () => 1, {
         if (R) {
           const a = reverse ? descending : ascending;
           for (const [, stack] of stacks) stack.sort((i, j) => a(R[i], R[j]));
+        } else if (reverse) {
+          for (const [, stack] of stacks) stack.reverse();
         }
 
         // stack
@@ -179,7 +181,7 @@ function mid(x1, x2) {
 
 // well-known ranking strategies by series
 function maybeRank(rank, data, X, Y, Z) {
-  if (rank == null) return [null];
+  if (rank == null) return;
 
   // d3.stackOrderNone, sorts series by key, ascending
   // d3.stackOrderReverse, sorts series by key, descending
