@@ -5,7 +5,7 @@ export default async function() {
   const wide = await d3.csv("data/police-deaths.csv", d3.autoType);
   const columns = wide.columns.slice(1);
   const data = columns.flatMap(type => wide.map(d => ({race: d.race, type, value: d[type]})));
-  const rank = d3.sort(wide, d => d.police).map(d => d.race);
+  const stack = {x: "type", y: "value", z: "race", rank: d3.sort(wide, d => d.police).map(d => d.race)};
   return Plot.plot({
     marginLeft: 100,
     marginRight: 100,
@@ -21,20 +21,15 @@ export default async function() {
     },
     marks: [
       Plot.stackAreaY(data, {
-        x: "type",
-        y: "value",
-        fill: "race",
+        ...stack,
         curve: curveLinkHorizontal,
-        stroke: "white",
-        rank
+        fill: "race",
+        stroke: "white"
       }),
       Plot.text(
         data.filter(d => d.type === "police"),
         Plot.stackMidY({
-          x: "type",
-          y: "value",
-          z: "race",
-          rank,
+          ...stack,
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "end",
           dx: -6
@@ -43,10 +38,7 @@ export default async function() {
       Plot.text(
         data.filter(d => d.type === "population"),
         Plot.stackMidY({
-          x: "type",
-          y: "value",
-          z: "race",
-          rank,
+          ...stack,
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "start",
           dx: +6
