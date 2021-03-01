@@ -16,6 +16,11 @@ export function stackX2({x, y, ...options}) {
   return {...options, transform, y: Y, x: X};
 }
 
+export function stackMidX({x, y, ...options}) {
+  const [transform, Y, X1, X2] = stack(y, x, options);
+  return {...options, transform, y: Y, x: mid(X1, X2)};
+}
+
 export function stackY({x, y, ...options}) {
   const [transform, X, y1, y2] = stack(x, y, options);
   return {...options, transform, x: X, y1, y2};
@@ -29,6 +34,11 @@ export function stackY1({x, y, ...options}) {
 export function stackY2({x, y, ...options}) {
   const [transform, X,, Y] = stack(x, y, options);
   return {...options, transform, x: X, y: Y};
+}
+
+export function stackMidY({x, y, ...options}) {
+  const [transform, X, Y1, Y2] = stack(x, y, options);
+  return {...options, transform, x: X, y: mid(Y1, Y2)};
 }
 
 function stack(x, y = () => 1, {
@@ -151,6 +161,20 @@ function lazyChannel(source) {
     },
     v => value = v
   ];
+}
+
+// Assuming that both x1 and x2 and lazy channels (per above), this derives a
+// new a channel that’s the average of the two, and which inherits the channel
+// label (if any).
+function mid(x1, x2) {
+  return {
+    transform() {
+      const X1 = x1.transform();
+      const X2 = x2.transform();
+      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
+    },
+    label: x1.label
+  };
 }
 
 // well-known ranking strategies by series
