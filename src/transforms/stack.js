@@ -12,7 +12,10 @@ export function stackY({x, y, ...options}) {
 }
 
 function stack(x, y = () => 1, {
-  z, fill, stroke, title,
+  z,
+  fill,
+  stroke,
+  title,
   rank,
   reverse = ["descending", "reverse"].includes(rank),
   offset,
@@ -32,27 +35,27 @@ function stack(x, y = () => 1, {
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       sort = maybeSort(sort);
-    
+
       for (const index of (facets === undefined ? [I] : facets)) {
-        
+
         if (sort) {
           const facet = take(data, index);
           const index0 = index.slice();
           const sorted = sort(facet);
           for (let k = 0; k < index.length; k++) index[k] = index0[facet.indexOf(sorted[k])];
         }
-        
+
         const Yp = new InternMap();
         const Yn = new InternMap();
-        
+
         const stacks = group(index, i => X[i]);
-        
+
         // rank sort
         if (R) {
           const a = reverse ? descending : ascending;
           for (const [, stack] of stacks) stack.sort((i, j) => a(R[i], R[j]));
         }
-        
+
         // stack
         for (const [x, stack] of stacks) {
           for (const i of stack) {
@@ -63,7 +66,7 @@ function stack(x, y = () => 1, {
             Y0.set(x, isNaN(y2) ? y1 : y2);
           }
         }
-  
+
         // offset
         if (offset === "expand") {
           for (const i of index) {
