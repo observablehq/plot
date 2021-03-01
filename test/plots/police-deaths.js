@@ -74,7 +74,7 @@ function curveLinkHorizontal(context) {
           else context.moveTo(x, y);
           break;
         }
-        case 1: point = 2; // proceed
+        case 1: point = 2; // eslint-disable-line no-fallthrough
         default: {
           x0 = (x0 + x) / 2;
           context.bezierCurveTo(x0, y0, x0, y, x, y);
@@ -83,5 +83,5 @@ function curveLinkHorizontal(context) {
       }
       x0 = x, y0 = y;
     }
-  }
+  };
 }
