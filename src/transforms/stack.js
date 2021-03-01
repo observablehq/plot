@@ -54,6 +54,7 @@ function stack(x, y = () => 1, {
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
+  sort = maybeSort(sort);
   return [
     (data, facets) => {
       const X = setX(valueof(data, x));
@@ -64,7 +65,6 @@ function stack(x, y = () => 1, {
       const I = range(n);
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
-      sort = maybeSort(sort);
 
       for (const index of facets === undefined ? [I] : facets) {
 
