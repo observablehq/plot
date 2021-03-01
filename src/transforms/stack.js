@@ -36,7 +36,7 @@ function stack(x, y = () => 1, {
       const Y2 = setY2(new Float64Array(n));
       sort = maybeSort(sort);
 
-      for (const index of (facets === undefined ? [I] : facets)) {
+      for (const index of facets === undefined ? [I] : facets) {
 
         if (sort) {
           const facet = take(data, index);
@@ -47,7 +47,6 @@ function stack(x, y = () => 1, {
 
         const Yp = new InternMap();
         const Yn = new InternMap();
-
         const stacks = group(index, i => X[i]);
 
         // rank sort
@@ -77,8 +76,7 @@ function stack(x, y = () => 1, {
             Y1[i] = m * (-floor + Y1[i]);
             Y2[i] = m * (-floor + Y2[i]);
           }
-        }
-        if (offset === "silhouette") {
+        } else if (offset === "silhouette") {
           for (const i of index) {
             const x = X[i];
             const floor = Yn.has(x) ? Yn.get(x) : 0;
@@ -87,8 +85,7 @@ function stack(x, y = () => 1, {
             Y1[i] -= m;
             Y2[i] -= m;
           }
-        }
-        if (offset === "wiggle") {
+        } else if (offset === "wiggle") {
           const prev = new InternMap();
           let y = 0;
           for (const [, stack] of stacks) {
@@ -138,20 +135,24 @@ function lazyChannel(source) {
 // well-known ranking strategies by series
 function maybeRank(rank, data, X, Y, Z) {
   if (rank == null) return [null];
+
   // d3.stackOrderNone, sorts series by key, ascending
   // d3.stackOrderReverse, sorts series by key, descending
   if (rank === "key" || rank === "none" || rank === "reverse") {
     return Z;
   }
+
   // d3.stackOrderAscending, sorts series by sum of value, ascending
   if (rank === "sum" || rank === "ascending" || rank === "descending") {
     const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
     return Z.map(z => S.indexOf(z));
   }
+
   // ranks items by value
   if (rank === "value") {
     return Y;
   }
+
   // d3.stackOrderAppearance, sorts series by x = argmax of value
   if (rank === "appearance") {
     const K = groupSort(
@@ -161,6 +162,7 @@ function maybeRank(rank, data, X, Y, Z) {
     );
     return Z.map(z => K.indexOf(z));
   }
+
   // d3.stackOrderInsideOut, sorts series by x = argmax of value, then rearranges them
   // inside out by alternating series according to the sign of a running divergence
   // of their sums
@@ -184,14 +186,17 @@ function maybeRank(rank, data, X, Y, Z) {
     }
     return Z.map(z => order.indexOf(z));
   }
+
   // any other string is a datum accessor
   if (typeof rank === "string") {
     return valueof(data, field(rank));
   }
+
   // rank can be an array of z (particularly useful with groupSort)
   if (rank.indexOf) {
     return Z.map(z => rank.indexOf(z));
   }
+
   // final case, a generic function
   if (typeof rank === "function") {
     return valueof(data, rank);
