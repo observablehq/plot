@@ -79,9 +79,9 @@ function stack(x, y = () => 1, {
         for (const [x, stack] of stacks) {
           for (const i of stack) {
             const v = +Y[i];
-            const [Y0, ceil, floor] = v < 0 ? [Yn, Y1, Y2] : [Yp, Y2, Y1];
-            const y1 = floor[i] = Y0.has(x) ? Y0.get(x) : 0;
-            const y2 = ceil[i] = y1 + +Y[i];
+            const Y0 = v < 0 ? Yn : Yp;
+            const y1 = Y1[i] = Y0.has(x) ? Y0.get(x) : 0;
+            const y2 = Y2[i] = y1 + +Y[i];
             Y0.set(x, isNaN(y2) ? y1 : y2);
           }
         }

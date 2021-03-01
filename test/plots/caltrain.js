@@ -39,7 +39,7 @@ export default async function() {
       ),
       Plot.text(
         data.filter(d => d.orientation === "S"),
-        Plot.stackX1({ // TODO negative should flip x1 and x2
+        Plot.stackX2({
           x: () => -1,
           y: "hours",
           text: d => d.minutes.padStart(2, "0"),
