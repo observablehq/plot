@@ -16,7 +16,7 @@ export function stackX2({x, y, ...options}) {
   return {...options, transform, y: Y, x: X};
 }
 
-export function stackMidX({x, y, ...options}) {
+export function stackXMid({x, y, ...options}) {
   const [transform, Y, X1, X2] = stack(y, x, options);
   return {...options, transform, y: Y, x: mid(X1, X2)};
 }
@@ -36,7 +36,7 @@ export function stackY2({x, y, ...options}) {
   return {...options, transform, x: X, y: Y};
 }
 
-export function stackMidY({x, y, ...options}) {
+export function stackYMid({x, y, ...options}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
   return {...options, transform, x: X, y: mid(Y1, Y2)};
 }

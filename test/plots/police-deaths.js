@@ -28,7 +28,7 @@ export default async function() {
       }),
       Plot.text(
         data.filter(d => d.type === "police"),
-        Plot.stackMidY({
+        Plot.stackYMid({
           ...stack,
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "end",
@@ -37,7 +37,7 @@ export default async function() {
       ),
       Plot.text(
         data.filter(d => d.type === "population"),
-        Plot.stackMidY({
+        Plot.stackYMid({
           ...stack,
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "start",
