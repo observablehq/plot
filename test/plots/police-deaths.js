@@ -1,95 +1,95 @@
 import * as Plot from "@observablehq/plot";
-
-const data = [
-  {"type":"police","race":"Black","value":44},
-  {"type":"population","race":"Black","value":13},
-  {"type":"police","race":"Hispanic","value":32},
-  {"type":"population","race":"Hispanic","value":12},
-  {"type":"police","race":"White","value":18},
-  {"type":"population","race":"White","value":60},
-  {"type":"police","race":"All other races","value":6},
-  {"type":"population","race":"All other races","value":15}
-];
-
-const rank = ["White", "Hispanic", "Black"];
-
-const selectY = (({y1, y2, ...rest}, position) => ({
-  y: {
-    transform() {
-      const Y1 = y1.transform();
-      const Y2 = y2.transform();
-      return position === "top" ? Y2
-        : position === "bottom" ? Y1
-        : Float64Array.from(Y1, (_, i) => (Y1[i] + Y2[i]) / 2);
-    }
-  },
-  ...rest
-}));
+import * as d3 from "d3";
 
 export default async function() {
+  const wide = await d3.csv("data/police-deaths.csv", d3.autoType);
+  const columns = wide.columns.slice(1);
+  const data = columns.flatMap(type => wide.map(d => ({race: d.race, type, value: d[type]})));
+  const rank = d3.sort(wide, d => d.police).map(d => d.race);
   return Plot.plot({
-  
+    marginLeft: 100,
+    marginRight: 100,
     x: {
+      domain: columns,
       axis: "top",
-      domain: ["---", "--", "-", "police", "-1", "0", "1", "population", "+", "++", "+++"],
-      ticks: ["--", "++"],
       label: "",
-      tickFormat: d => d === "++" ? "share of the population" : "share of deaths by police"
+      tickFormat: d => d === "population" ? "Share of population" : "Share of deaths by police",
+      padding: 0 // see margins
     },
-    
-    y: { axis: null },
-  
+    y: {
+      axis: null
+    },
     marks: [
-      
-      // fill
-      Plot.stackAreaY(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), {
+      Plot.stackAreaY(data, {
         x: "type",
         y: "value",
         fill: "race",
-        curve: "monotone-x",
-        sort: (d,i) => i,
+        curve: curveLinkHorizontal,
+        stroke: "white",
         rank
       }),
-      
-      // dashed lines
-      Plot.line(data.flatMap(d => d.type === "police" ? [{...d, type:"-"}, d] : [d, {...d, type:"+"}]), 
-      selectY(Plot.stackY({
-        x: "type",
-        y: "value",
-        z: "race",
-        rank,
-        stroke: "black", curve: "monotone-x", strokeWidth: 0.5,
-        position: "center",
-        strokeDasharray: [5, 5]
-      }), "middle")),
-      
-      // top black lines
-      Plot.line(data.flatMap(d => d.type === "police" ? [{...d, type:"---"}, d] : [d, {...d, type:"+++"}]), selectY(Plot.stackY({
-        x: "type",
-        y: "value",
-        z: "race",
-        rank,
-        stroke: "black", curve: "monotone-x", strokeWidth: 2
-      }), "top")),
-  
-      // bottom black line
-      Plot.line([{ type:"---" }, { type: "+++" }], {
-        x: "type",
-        y: () => 0,
-        stroke: "black", strokeWidth: 2
-      }),
-  
-      // text
-      Plot.text(data.map(d => ({...d, type: d.type === "police" ? "--" : "++"})),
-        selectY(Plot.stackY({
+      Plot.text(
+        data.filter(d => d.type === "police"),
+        Plot.stackMidY({
           x: "type",
           y: "value",
           z: "race",
           rank,
-          text: d => `${d.race} ${d.value}%`
-        }), "middle")
+          text: d => `${d.race} ${d.value}%`,
+          textAnchor: "end",
+          dx: -6
+        })
+      ),
+      Plot.text(
+        data.filter(d => d.type === "population"),
+        Plot.stackMidY({
+          x: "type",
+          y: "value",
+          z: "race",
+          rank,
+          text: d => `${d.race} ${d.value}%`,
+          textAnchor: "start",
+          dx: +6
+        })
       )
-    ],
-    marginBottom: 12
+    ]
   });
+}
+
+// https://github.com/d3/d3-shape/issues/152
+function curveLinkHorizontal(context) {
+  let line, point, x0, y0;
+  return {
+    areaStart() {
+      line = 0;
+    },
+    areaEnd() {
+      line = NaN;
+    },
+    lineStart() {
+      point = 0;
+    },
+    lineEnd() {
+      if (line || (line !== 0 && point === 1)) context.closePath();
+      line = 1 - line;
+    },
+    point(x, y) {
+      x = +x, y = +y;
+      switch (point) {
+        case 0: {
+          point = 1;
+          if (line) context.lineTo(x, y);
+          else context.moveTo(x, y);
+          break;
+        }
+        case 1: point = 2; // proceed
+        default: {
+          x0 = (x0 + x) / 2;
+          context.bezierCurveTo(x0, y0, x0, y, x, y);
+          break;
+        }
+      }
+      x0 = x, y0 = y;
+    }
+  }
 }
