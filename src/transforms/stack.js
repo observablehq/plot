@@ -183,14 +183,8 @@ function mid(x1, x2) {
 function maybeRank(rank, data, X, Y, Z) {
   if (rank == null) return;
 
-  // d3.stackOrderNone, sorts series by key, ascending
-  // d3.stackOrderReverse, sorts series by key, descending
-  if (rank === "key" || rank === "none" || rank === "reverse") {
-    return Z;
-  }
-
-  // d3.stackOrderAscending, sorts series by sum of value, ascending
-  if (rank === "sum" || rank === "ascending" || rank === "descending") {
+  // d3.stackOrderAscending, sorts series by sum of value
+  if (rank === "sum") {
     const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
     return Z.map(z => S.indexOf(z));
   }
