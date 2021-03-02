@@ -46,9 +46,9 @@ function stack(x, y = () => 1, {
   fill,
   stroke,
   title,
-  rank,
-  reverse,
-  offset
+  offset,
+  rank = offset === "wiggle" ? "inside-out" : undefined,
+  reverse
 }) {
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
@@ -199,7 +199,7 @@ function maybeRank(rank, data, X, Y, Z) {
   // d3.stackOrderInsideOut, sorts series by x = argmax of value, then rearranges them
   // inside out by alternating series according to the sign of a running divergence
   // of their sums
-  if (rank === "insideOut") {
+  if (rank === "inside-out") {
     const K = groupSort(
       range(data.length),
       v => X[v[maxIndex(v, i => Y[i])]],

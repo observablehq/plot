@@ -12,7 +12,6 @@ export default async function() {
         x: "year",
         z: "format",
         y: "revenue",
-        rank: "insideOut",
         offset: "wiggle",
         fill: "group",
         curve: "cardinal",
