@@ -143,7 +143,7 @@ function stack(x, y = () => 1, {
 
       return {index: facets === undefined ? I : facets, data};
     },
-    x == null ? x : X,
+    x == null ? undefined : X,
     Y1,
     Y2
   ];
