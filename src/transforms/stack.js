@@ -58,9 +58,9 @@ function stack(x, y = () => 1, {
       const X = x == null ? [] : setX(valueof(data, x));
       const Y = valueof(data, y);
       const Z = valueof(data, z || fill || stroke || title);
-      const R = maybeRank(rank, data, X, Y, Z);
       const n = data.length;
       const I = range(data);
+      const R = maybeRank(rank, data, I, X, Y, Z);
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
 
@@ -172,7 +172,7 @@ function mid(x1, x2) {
 }
 
 // well-known ranking strategies by series
-function maybeRank(rank, data, X, Y, Z) {
+function maybeRank(rank, data, I, X, Y, Z) {
   if (rank == null) return;
 
   // either a well-known ranking method, or a field name
@@ -180,7 +180,7 @@ function maybeRank(rank, data, X, Y, Z) {
 
     // by sum of value (a.k.a. “ascending”)
     if (rank === "sum") {
-      const S = groupSort(range(data), g => sum(g, i => Y[i]), i => Z[i]);
+      const S = groupSort(I, g => sum(g, i => Y[i]), i => Z[i]);
       return positions(Z, S);
     }
 
@@ -189,15 +189,15 @@ function maybeRank(rank, data, X, Y, Z) {
 
     // by x = argmax of value
     if (rank === "appearance") {
-      const K = groupSort(range(data), I => X[greatest(I, i => Y[i])], i => Z[i]);
+      const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
       return positions(Z, K);
     }
 
     // by x = argmax of value, but rearranged inside-out by alternating series
     // according to the sign of a running divergence of sums
     if (rank === "inside-out") {
-      const K = groupSort(range(data), I => X[greatest(I, i => Y[i])], i => Z[i]);
-      const sums = rollup(range(data), I => sum(I, i => Y[i]), i => Z[i]);
+      const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
+      const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
       const order = [];
       let diff = 0;
       for (const k of K) {
