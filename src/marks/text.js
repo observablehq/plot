@@ -25,8 +25,8 @@ export class Text extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
@@ -42,7 +42,8 @@ export class Text extends Mark {
   render(
     I,
     {x, y, color},
-    {x: X, y: Y, z: Z, text: T, title: L, fill: F}
+    {x: X, y: Y, z: Z, text: T, title: L, fill: F},
+    {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -54,8 +55,8 @@ export class Text extends Mark {
           .join("text")
             .call(applyDirectStyles, this)
             .call(applyTextStyles, this)
-            .attr("x", i => x(X[i]))
-            .attr("y", i => y(Y[i]))
+            .attr("x", X ? i => x(X[i]) : (marginLeft + width - marginRight) / 2)
+            .attr("y", Y ? i => y(Y[i]) : (marginTop + height - marginBottom) / 2)
             .attr("fill", F && (i => color(F[i])))
             .text(i => T[i])
             .call(title(L)))
@@ -68,11 +69,11 @@ export function text(data, options) {
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, {...options, x, y: indexOf});
+  return new Text(data, {...options, x, y: null});
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, {...options, x: indexOf, y});
+  return new Text(data, {...options, y, x: null});
 }
 
 function applyTextStyles(selection, style) {
