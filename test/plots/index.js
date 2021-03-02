@@ -46,6 +46,7 @@ export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as sfTemperatureBand} from "./sf-temperature-band.js";
 export {default as simpsonsRatings} from "./simpsons-ratings.js";
 export {default as simpsonsViews} from "./simpsons-views.js";
+export {default as singleStackedValues} from "./single-stacked-values.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
 export {default as usCongressAge} from "./us-congress-age.js";

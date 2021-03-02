@@ -57,7 +57,7 @@ function stack(x, y = () => 1, {
   sort = maybeSort(sort);
   return [
     (data, facets) => {
-      const X = setX(valueof(data, x));
+      const X = x == null ? [] : setX(valueof(data, x));
       const Y = valueof(data, y);
       const Z = valueof(data, z || fill || stroke || title);
       const R = maybeRank(rank, data, X, Y, Z);
@@ -143,7 +143,7 @@ function stack(x, y = () => 1, {
 
       return {index: facets === undefined ? I : facets, data};
     },
-    X,
+    x == null ? x : X,
     Y1,
     Y2
   ];
