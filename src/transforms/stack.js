@@ -90,10 +90,10 @@ function stack(x, y = () => 1, {
         // stack
         for (const [x, stack] of stacks) {
           for (const i of stack) {
-            const v = +Y[i];
-            const Y0 = v < 0 ? Yn : Yp;
+            const y = +Y[i];
+            const Y0 = y < 0 ? Yn : Yp;
             const y1 = Y1[i] = Y0.has(x) ? Y0.get(x) : 0;
-            const y2 = Y2[i] = y1 + +Y[i];
+            const y2 = Y2[i] = y1 + y;
             Y0.set(x, isNaN(y2) ? y1 : y2);
           }
         }
