@@ -79,31 +79,33 @@ function stack(x, y = () => 1, {
 
         // stack
         for (const [x, stack] of stacks) {
+          let yn = 0, yp = 0;
           for (const i of stack) {
             const y = +Y[i];
-            const Y0 = y < 0 ? Yn : Yp;
-            const y1 = Y1[i] = Y0.has(x) ? Y0.get(x) : 0;
-            const y2 = Y2[i] = y1 + y;
-            Y0.set(x, isNaN(y2) ? y1 : y2);
+            if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
+            else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
+            else Y2[i] = Y1[i] = yp; // NaN or zero
           }
+          Yn.set(x, yn);
+          Yp.set(x, yp);
         }
 
         // offset
         if (offset === "expand") {
           for (const i of index) {
             const x = X[i];
-            const floor = Yn.has(x) ? Yn.get(x) : 0;
-            const ceil = Yp.has(x) ? Yp.get(x) : 0;
-            const m = 1 / (ceil - floor || 1);
-            Y1[i] = m * (-floor + Y1[i]);
-            Y2[i] = m * (-floor + Y2[i]);
+            const yn = Yn.get(x);
+            const yp = Yp.get(x);
+            const m = 1 / (yp - yn || 1);
+            Y1[i] = m * (Y1[i] - yn);
+            Y2[i] = m * (Y2[i] - yn);
           }
         } else if (offset === "silhouette") {
           for (const i of index) {
             const x = X[i];
-            const floor = Yn.has(x) ? Yn.get(x) : 0;
-            const ceil = Yp.has(x) ? Yp.get(x) : 0;
-            const m = (ceil + floor) / 2;
+            const yn = Yn.get(x);
+            const yp = Yp.get(x);
+            const m = (yp + yn) / 2;
             Y1[i] -= m;
             Y2[i] -= m;
           }
