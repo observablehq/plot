@@ -82,9 +82,9 @@ function stack(x, y = () => 1, {
         // rank sort
         if (R) {
           const a = reverse ? descending : ascending;
-          for (const [, stack] of stacks) stack.sort((i, j) => a(R[i], R[j]));
+          for (const stack of stacks.values()) stack.sort((i, j) => a(R[i], R[j]));
         } else if (reverse) {
-          for (const [, stack] of stacks) stack.reverse();
+          for (const stack of stacks.values()) stack.reverse();
         }
 
         // stack
@@ -120,7 +120,7 @@ function stack(x, y = () => 1, {
         } else if (offset === "wiggle") {
           const prev = new InternMap();
           let y = 0;
-          for (const [, stack] of stacks) {
+          for (const stack of stacks.values()) {
             let j = -1;
             const Fi = stack.map(i => Math.abs(Y2[i] - Y1[i]));
             const Df = stack.map(i => {
