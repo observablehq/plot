@@ -47,7 +47,7 @@ function stack(x, y = () => 1, {
   stroke,
   title,
   rank,
-  reverse = ["descending", "reverse"].includes(rank),
+  reverse,
   offset,
   sort
 }) {
