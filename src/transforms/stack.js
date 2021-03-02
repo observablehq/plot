@@ -178,7 +178,7 @@ function maybeRank(rank, data, X, Y, Z) {
   // d3.stackOrderAscending, sorts series by sum of value
   if (rank === "sum") {
     const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
-    return Z.map(z => S.indexOf(z));
+    return positions(Z, S);
   }
 
   // ranks items by value
@@ -193,7 +193,7 @@ function maybeRank(rank, data, X, Y, Z) {
       v => X[v[maxIndex(v, i => Y[i])]],
       i => Z[i]
     );
-    return Z.map(z => K.indexOf(z));
+    return positions(Z, K);
   }
 
   // d3.stackOrderInsideOut, sorts series by x = argmax of value, then rearranges them
@@ -217,7 +217,7 @@ function maybeRank(rank, data, X, Y, Z) {
         order.unshift(k);
       }
     }
-    return Z.map(z => order.indexOf(z));
+    return positions(Z, order);
   }
 
   // any other string is a datum accessor
@@ -227,11 +227,17 @@ function maybeRank(rank, data, X, Y, Z) {
 
   // rank can be an array of z (particularly useful with groupSort)
   if (rank.indexOf) {
-    return Z.map(z => rank.indexOf(z));
+    return positions(Z, rank);
   }
 
   // final case, a generic function
   if (typeof rank === "function") {
     return valueof(data, rank);
   }
+}
+
+// returns the positions of each element of A in B, -1 if not found
+function positions(A, B) {
+  B = new Map(B.map((d, i) => [d, i + 1]));
+  return A.map(d => (B.get(d) || 0) - 1);
 }
