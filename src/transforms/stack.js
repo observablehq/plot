@@ -218,9 +218,7 @@ function maybeRank(rank, data, I, X, Y, Z) {
   }
 
   // a generic function
-  if (typeof rank === "function") {
-    return valueof(data, rank);
-  }
+  if (typeof rank === "function") return valueof(data, rank);
 
   // an array or iterable of z (particularly useful with groupSort)
   return positions(Z, rank);
@@ -228,6 +226,6 @@ function maybeRank(rank, data, I, X, Y, Z) {
 
 // returns the positions of each element of A in B
 function positions(A, B) {
-  B = new Map(Array.from(B, (d, i) => [d, i]));
+  B = new InternMap(Array.from(B, (d, i) => [d, i]));
   return A.map(d => B.get(d));
 }
