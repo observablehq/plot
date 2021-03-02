@@ -180,7 +180,7 @@ function maybeRank(rank, data, I, X, Y, Z) {
 
     // by sum of value (a.k.a. “ascending”)
     if (rank === "sum") {
-      const S = groupSort(I, g => sum(g, i => Y[i]), i => Z[i]);
+      const S = groupSort(I, I => sum(I, i => Y[i]), i => Z[i]);
       return positions(Z, S);
     }
 
@@ -198,18 +198,18 @@ function maybeRank(rank, data, I, X, Y, Z) {
     if (rank === "inside-out") {
       const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
       const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
-      const order = [];
-      let diff = 0;
+      const Kp = [], Kn = [];
+      let s = 0;
       for (const k of K) {
-        if (diff < 0) {
-          diff += sums.get(k);
-          order.push(k);
+        if (s < 0) {
+          s += sums.get(k);
+          Kp.push(k);
         } else {
-          diff -= sums.get(k);
-          order.unshift(k);
+          s -= sums.get(k);
+          Kn.push(k);
         }
       }
-      return positions(Z, order);
+      return positions(Z, Kn.reverse().concat(Kp));
     }
 
     // any other string is a field accessor
