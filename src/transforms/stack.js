@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, descending, group, groupSort, maxIndex, range, rollup, sum} from "d3-array";
-import {field, maybeSort, take, valueof} from "../mark.js";
+import {field, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
@@ -48,13 +48,11 @@ function stack(x, y = () => 1, {
   title,
   rank,
   reverse,
-  offset,
-  sort
+  offset
 }) {
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
-  sort = maybeSort(sort);
   return [
     (data, facets) => {
       const X = x == null ? [] : setX(valueof(data, x));
@@ -67,19 +65,11 @@ function stack(x, y = () => 1, {
       const Y2 = setY2(new Float64Array(n));
 
       for (const index of facets === undefined ? [I] : facets) {
-
-        if (sort) {
-          const facet = take(data, index);
-          const index0 = index.slice();
-          const sorted = sort(facet);
-          for (let k = 0; k < index.length; k++) index[k] = index0[facet.indexOf(sorted[k])];
-        }
-
         const Yp = new InternMap();
         const Yn = new InternMap();
         const stacks = group(index, i => X[i]);
 
-        // rank sort
+        // rank
         if (R) {
           const a = reverse ? descending : ascending;
           for (const stack of stacks.values()) stack.sort((i, j) => a(R[i], R[j]));
