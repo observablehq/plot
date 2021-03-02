@@ -1,4 +1,4 @@
-import {InternMap, ascending, cumsum, descending, group, groupSort, maxIndex, range, rollup, sum} from "d3-array";
+import {InternMap, ascending, cumsum, descending, group, groupSort, greatest, range, rollup, sum} from "d3-array";
 import {field, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
@@ -189,23 +189,15 @@ function maybeRank(rank, data, X, Y, Z) {
 
     // by x = argmax of value
     if (rank === "appearance") {
-      const K = groupSort(
-        range(data.length),
-        v => X[v[maxIndex(v, i => Y[i])]],
-        i => Z[i]
-      );
+      const K = groupSort(range(data.length), I => X[greatest(I, i => Y[i])], i => Z[i]);
       return positions(Z, K);
     }
 
-    // by x = argmax of value, then rearranged inside-out by alternating series
+    // by x = argmax of value, but rearranged inside-out by alternating series
     // according to the sign of a running divergence of sums
     if (rank === "inside-out") {
-      const K = groupSort(
-        range(data.length),
-        v => X[v[maxIndex(v, i => Y[i])]],
-        i => Z[i]
-      );
-      const sums = rollup(range(data.length), v => sum(v, i => Y[i]), i => Z[i]);
+      const K = groupSort(range(data.length),I => X[greatest(I, i => Y[i])],i => Z[i]);
+      const sums = rollup(range(data.length), I => sum(I, i => Y[i]), i => Z[i]);
       const order = [];
       let diff = 0;
       for (const k of K) {
@@ -229,12 +221,12 @@ function maybeRank(rank, data, X, Y, Z) {
     return valueof(data, rank);
   }
 
-  // an array of z (particularly useful with groupSort)
+  // an array or iterable of z (particularly useful with groupSort)
   return positions(Z, rank);
 }
 
 // returns the positions of each element of A in B, -1 if not found
 function positions(A, B) {
-  B = new Map(B.map((d, i) => [d, i + 1]));
+  B = new Map(Array.from(B, (d, i) => [d, i + 1]));
   return A.map(d => (B.get(d) || 0) - 1);
 }
