@@ -19,6 +19,7 @@ export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
+export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
