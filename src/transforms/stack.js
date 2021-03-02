@@ -175,65 +175,62 @@ function mid(x1, x2) {
 function maybeRank(rank, data, X, Y, Z) {
   if (rank == null) return;
 
-  // d3.stackOrderAscending, sorts series by sum of value
-  if (rank === "sum") {
-    const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
-    return positions(Z, S);
-  }
-
-  // ranks items by value
-  if (rank === "value") {
-    return Y;
-  }
-
-  // d3.stackOrderAppearance, sorts series by x = argmax of value
-  if (rank === "appearance") {
-    const K = groupSort(
-      range(data.length),
-      v => X[v[maxIndex(v, i => Y[i])]],
-      i => Z[i]
-    );
-    return positions(Z, K);
-  }
-
-  // d3.stackOrderInsideOut, sorts series by x = argmax of value, then rearranges them
-  // inside out by alternating series according to the sign of a running divergence
-  // of their sums
-  if (rank === "inside-out") {
-    const K = groupSort(
-      range(data.length),
-      v => X[v[maxIndex(v, i => Y[i])]],
-      i => Z[i]
-    );
-    const sums = rollup(range(data.length), v => sum(v, i => Y[i]), i => Z[i]);
-    const order = [];
-    let diff = 0;
-    for (const k of K) {
-      if (diff < 0) {
-        diff += sums.get(k);
-        order.push(k);
-      } else {
-        diff -= sums.get(k);
-        order.unshift(k);
-      }
-    }
-    return positions(Z, order);
-  }
-
-  // any other string is a datum accessor
+  // either a well-known ranking method, or a field name
   if (typeof rank === "string") {
+
+    // by sum of value (a.k.a. “ascending”)
+    if (rank === "sum") {
+      const S = groupSort(range(data.length), g => sum(g, i => Y[i]), i => Z[i]);
+      return positions(Z, S);
+    }
+
+    // by value
+    if (rank === "value") return Y;
+
+    // by x = argmax of value
+    if (rank === "appearance") {
+      const K = groupSort(
+        range(data.length),
+        v => X[v[maxIndex(v, i => Y[i])]],
+        i => Z[i]
+      );
+      return positions(Z, K);
+    }
+
+    // by x = argmax of value, then rearranged inside-out by alternating series
+    // according to the sign of a running divergence of sums
+    if (rank === "inside-out") {
+      const K = groupSort(
+        range(data.length),
+        v => X[v[maxIndex(v, i => Y[i])]],
+        i => Z[i]
+      );
+      const sums = rollup(range(data.length), v => sum(v, i => Y[i]), i => Z[i]);
+      const order = [];
+      let diff = 0;
+      for (const k of K) {
+        if (diff < 0) {
+          diff += sums.get(k);
+          order.push(k);
+        } else {
+          diff -= sums.get(k);
+          order.unshift(k);
+        }
+      }
+      return positions(Z, order);
+    }
+
+    // any other string is a field accessor
     return valueof(data, field(rank));
   }
 
-  // rank can be an array of z (particularly useful with groupSort)
-  if (rank.indexOf) {
-    return positions(Z, rank);
-  }
-
-  // final case, a generic function
+  // a generic function
   if (typeof rank === "function") {
     return valueof(data, rank);
   }
+
+  // an array of z (particularly useful with groupSort)
+  return positions(Z, rank);
 }
 
 // returns the positions of each element of A in B, -1 if not found
