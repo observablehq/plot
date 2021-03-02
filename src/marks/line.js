@@ -71,10 +71,10 @@ export function line(data, {x = first, y = second, ...options} = {}) {
   return new Line(data, {...options, x, y});
 }
 
-export function lineX(data, {x = identity, ...options} = {}) {
-  return new Line(data, {...options, x, y: indexOf});
+export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
+  return new Line(data, {...options, x, y});
 }
 
-export function lineY(data, {y = identity, ...options} = {}) {
-  return new Line(data, {...options, x: indexOf, y});
+export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
+  return new Line(data, {...options, x, y});
 }
