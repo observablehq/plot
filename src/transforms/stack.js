@@ -1,4 +1,5 @@
-import {InternMap, ascending, cumsum, descending, group, groupSort, greatest, rollup, sum} from "d3-array";
+import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
+import {ascendingDefined, descendingDefined} from "../defined.js";
 import {field, range, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
@@ -71,7 +72,7 @@ function stack(x, y = () => 1, {
 
         // rank
         if (R) {
-          const a = reverse ? descending : ascending;
+          const a = reverse ? descendingDefined : ascendingDefined;
           for (const stack of stacks.values()) stack.sort((i, j) => a(R[i], R[j]));
         } else if (reverse) {
           for (const stack of stacks.values()) stack.reverse();
@@ -225,8 +226,8 @@ function maybeRank(rank, data, I, X, Y, Z) {
   return positions(Z, rank);
 }
 
-// returns the positions of each element of A in B, -1 if not found
+// returns the positions of each element of A in B
 function positions(A, B) {
-  B = new Map(Array.from(B, (d, i) => [d, i + 1]));
-  return A.map(d => (B.get(d) || 0) - 1);
+  B = new Map(Array.from(B, (d, i) => [d, i]));
+  return A.map(d => B.get(d));
 }
