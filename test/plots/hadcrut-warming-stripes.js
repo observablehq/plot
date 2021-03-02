@@ -3,6 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const hadcrut = (await d3.text("data/hadcrut-annual.txt"))
+    .trim() // trim trailing newline
     .split(/\n/g) // split into lines
     .map(line => line.split(/\s+/g)) // split each line into fields
     .map(([year, anomaly]) => ({ // extract the year and median anomaly
