@@ -66,9 +66,9 @@ function stack(x, y = () => 1, {
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       for (const index of facets === undefined ? [I] : facets) {
-        const stacks = group(index, i => X[i]);
-        if (order) order(stacks.values(), data, I, X, Y, Z);
-        for (const stack of stacks.values()) {
+        const stacks = Array.from(group(index, i => X[i]).values());
+        if (order) applyOrder(stacks, order(data, I, X, Y, Z));
+        for (const stack of stacks) {
           let yn = 0, yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
@@ -78,7 +78,7 @@ function stack(x, y = () => 1, {
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
         }
-        if (offset) offset(stacks.values(), Y1, Y2, Z);
+        if (offset) offset(stacks, Y1, Y2, Z);
       }
       return {index: facets === undefined ? I : facets, data};
     },
@@ -191,7 +191,7 @@ function maybeOrder(order) {
   if (typeof order === "string") {
     switch (order.toLowerCase()) {
      case "sum": return orderSum;
-     case "value": return orderValue;
+     case "value": return orderY;
      case "appearance": return orderAppearance;
      case "inside-out": return orderInsideOut;
     }
@@ -202,23 +202,23 @@ function maybeOrder(order) {
 }
 
 // by sum of value (a.k.a. “ascending”)
-function orderSum(stacks, data, I, X, Y, Z) {
-  applyOrder(stacks, orderZ(Z, groupSort(I, I => sum(I, i => Y[i]), i => Z[i])));
+function orderSum(data, I, X, Y, Z) {
+  return orderZ(Z, groupSort(I, I => sum(I, i => Y[i]), i => Z[i]));
 }
 
 // by value
-function orderValue(stacks, data, I, X, Y) {
-  applyOrder(stacks, Y);
+function orderY(data, I, X, Y) {
+  return Y;
 }
 
 // by x = argmax of value
-function orderAppearance(stacks, data, I, X, Y, Z) {
-  applyOrder(stacks, orderZ(Z, groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i])));
+function orderAppearance(data, I, X, Y, Z) {
+  return orderZ(Z, groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]));
 }
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
-function orderInsideOut(stacks, data, I, X, Y, Z) {
+function orderInsideOut(data, I, X, Y, Z) {
   const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
   const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
   const Kp = [], Kn = [];
@@ -232,19 +232,15 @@ function orderInsideOut(stacks, data, I, X, Y, Z) {
       Kn.push(k);
     }
   }
-  applyOrder(stacks, orderZ(Z, Kn.reverse().concat(Kp)));
+  return orderZ(Z, Kn.reverse().concat(Kp));
 }
 
 function orderFunction(f) {
-  return (stacks, data) => {
-    applyOrder(stacks, valueof(data, f));
-  };
+  return data => valueof(data, f);
 }
 
 function orderZDomain(domain) {
-  return (stacks, data, I, X, Y, Z) => {
-    applyOrder(stacks, orderZ(Z, domain));
-  };
+  return (data, I, X, Y, Z) => orderZ(Z, domain);
 }
 
 // Given an explicit ordering of distinct values in z, returns a parallel column
