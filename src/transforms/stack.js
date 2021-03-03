@@ -62,12 +62,13 @@ function stack(x, y = () => 1, {
       const X = x == null ? [] : setX(valueof(data, x));
       const Y = valueof(data, y);
       const Z = valueof(data, z);
+      const O = order && order(data, I, X, Y, Z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       for (const index of facets === undefined ? [I] : facets) {
         const stacks = Array.from(group(index, i => X[i]).values());
-        if (order) applyOrder(stacks, order(data, I, X, Y, Z));
+        if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0, yp = 0;
           if (reverse) stack.reverse();
