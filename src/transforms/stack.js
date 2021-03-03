@@ -49,8 +49,8 @@ function stack(x, y = () => 1, {
   order,
   reverse
 }) {
-  if (z === undefined && ([fill] = maybeColor(fill), fill != null)) z = fill;
-  if (z === undefined && ([stroke] = maybeColor(stroke), stroke != null)) z = stroke;
+  if (z === undefined) ([z] = maybeColor(fill));
+  if (z === undefined) ([z] = maybeColor(stroke));
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
