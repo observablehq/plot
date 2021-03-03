@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, range, valueof} from "../mark.js";
+import {field, maybeColor, range, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
@@ -45,11 +45,12 @@ function stack(x, y = () => 1, {
   z,
   fill,
   stroke,
-  title,
   offset,
   order,
   reverse
 }) {
+  if (z === undefined && ([fill] = maybeColor(fill), fill != null)) z = fill;
+  if (z === undefined && ([stroke] = maybeColor(stroke), stroke != null)) z = stroke;
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
@@ -60,7 +61,7 @@ function stack(x, y = () => 1, {
       const I = range(data);
       const X = x == null ? [] : setX(valueof(data, x));
       const Y = valueof(data, y);
-      const Z = valueof(data, z || fill || stroke || title);
+      const Z = valueof(data, z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
