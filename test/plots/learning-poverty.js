@@ -24,7 +24,7 @@ export default async function() {
     },
     color: {
       domain: ["ok", "poor", "out of school"],
-      range: ["#aed9e0", "#EDD382", "#ffa69e"]
+      range: ["#aed9e0", "#edd382", "#ffa69e"]
     },
     marks: [
       Plot.stackBarX(values, {
