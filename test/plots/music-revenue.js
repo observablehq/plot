@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const data = await d3.csv("data/riaa-us-revenue.csv", d3.autoType);
-  const stack = {x: "year", y: "revenue", z: "format", rank: "appearance", reverse: true};
+  const stack = {x: "year", y: "revenue", z: "format", order: "appearance", reverse: true};
   return Plot.plot({
     x: {
       label: null

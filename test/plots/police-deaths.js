@@ -5,7 +5,7 @@ export default async function() {
   const wide = await d3.csv("data/police-deaths.csv", d3.autoType);
   const columns = wide.columns.slice(1);
   const data = columns.flatMap(type => wide.map(d => ({race: d.race, type, value: d[type]})));
-  const stack = {x: "type", y: "value", z: "race", rank: d3.sort(wide, d => d.police).map(d => d.race)};
+  const stack = {x: "type", y: "value", z: "race", order: d3.sort(wide, d => d.police).map(d => d.race)};
   return Plot.plot({
     marginLeft: 100,
     marginRight: 100,

@@ -1,5 +1,4 @@
-import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {ascendingDefined, descendingDefined} from "../defined.js";
+import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
 import {field, range, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options}) {
@@ -48,92 +47,38 @@ function stack(x, y = () => 1, {
   stroke,
   title,
   offset,
-  rank = offset === "wiggle" ? "inside-out" : undefined,
+  order,
   reverse
 }) {
   const [X, setX] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
+  offset = maybeOffset(offset);
+  order = order === undefined && offset === offsetWiggle ? orderInsideOut : maybeOrder(order, offset);
   return [
     (data, facets) => {
+      const I = range(data);
       const X = x == null ? [] : setX(valueof(data, x));
       const Y = valueof(data, y);
       const Z = valueof(data, z || fill || stroke || title);
       const n = data.length;
-      const I = range(data);
-      const R = maybeRank(rank, data, I, X, Y, Z);
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
-
       for (const index of facets === undefined ? [I] : facets) {
-        const Yp = new InternMap();
-        const Yn = new InternMap();
         const stacks = group(index, i => X[i]);
-
-        // rank
-        if (R) {
-          const a = reverse ? descendingDefined : ascendingDefined;
-          for (const stack of stacks.values()) stack.sort((i, j) => a(R[i], R[j]));
-        } else if (reverse) {
-          for (const stack of stacks.values()) stack.reverse();
-        }
-
-        // stack
-        for (const [x, stack] of stacks) {
+        if (order) order(stacks.values(), data, I, X, Y, Z);
+        for (const stack of stacks.values()) {
           let yn = 0, yp = 0;
+          if (reverse) stack.reverse();
           for (const i of stack) {
             const y = +Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
-          Yn.set(x, yn);
-          Yp.set(x, yp);
         }
-
-        // offset
-        if (offset === "expand") {
-          for (const i of index) {
-            const x = X[i];
-            const yn = Yn.get(x);
-            const yp = Yp.get(x);
-            const m = 1 / (yp - yn || 1);
-            Y1[i] = m * (Y1[i] - yn);
-            Y2[i] = m * (Y2[i] - yn);
-          }
-        } else if (offset === "silhouette") {
-          for (const i of index) {
-            const x = X[i];
-            const yn = Yn.get(x);
-            const yp = Yp.get(x);
-            const m = (yp + yn) / 2;
-            Y1[i] -= m;
-            Y2[i] -= m;
-          }
-        } else if (offset === "wiggle") {
-          const prev = new InternMap();
-          let y = 0;
-          for (const stack of stacks.values()) {
-            let j = -1;
-            const Fi = stack.map(i => Math.abs(Y2[i] - Y1[i]));
-            const Df = stack.map(i => {
-              j = z ? Z[i] : ++j;
-              const value = Y2[i] - Y1[i];
-              const diff = prev.has(j) ? value - prev.get(j) : 0;
-              prev.set(j, value);
-              return diff;
-            });
-            const Cf1 = [0, ...cumsum(Df)];
-            for (const i of stack) {
-              Y1[i] += y;
-              Y2[i] += y;
-            }
-            const s1 = sum(Fi);
-            if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
-          }
-        }
+        if (offset) offset(stacks.values(), Y1, Y2, Z);
       }
-
       return {index: facets === undefined ? I : facets, data};
     },
     x == null ? x : X,
@@ -172,60 +117,145 @@ function mid(x1, x2) {
   };
 }
 
-// well-known ranking strategies by series
-function maybeRank(rank, data, I, X, Y, Z) {
-  if (rank == null) return;
-
-  // either a well-known ranking method, or a field name
-  if (typeof rank === "string") {
-
-    // by sum of value (a.k.a. “ascending”)
-    if (rank === "sum") {
-      const S = groupSort(I, I => sum(I, i => Y[i]), i => Z[i]);
-      return positions(Z, S);
-    }
-
-    // by value
-    if (rank === "value") return Y;
-
-    // by x = argmax of value
-    if (rank === "appearance") {
-      const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
-      return positions(Z, K);
-    }
-
-    // by x = argmax of value, but rearranged inside-out by alternating series
-    // according to the sign of a running divergence of sums
-    if (rank === "inside-out") {
-      const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
-      const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
-      const Kp = [], Kn = [];
-      let s = 0;
-      for (const k of K) {
-        if (s < 0) {
-          s += sums.get(k);
-          Kp.push(k);
-        } else {
-          s -= sums.get(k);
-          Kn.push(k);
-        }
-      }
-      return positions(Z, Kn.reverse().concat(Kp));
-    }
-
-    // any other string is a field accessor
-    return valueof(data, field(rank));
+function maybeOffset(offset) {
+  if (offset == null) return;
+  switch ((offset + "").toLowerCase()) {
+    case "expand": return offsetExpand;
+    case "silhouette": return offsetSilhouette;
+    case "wiggle": return offsetWiggle;
   }
-
-  // a generic function
-  if (typeof rank === "function") return valueof(data, rank);
-
-  // an array or iterable of z (particularly useful with groupSort)
-  return positions(Z, rank);
+  throw new Error(`unknown offset: ${offset}`);
 }
 
-// returns the positions of each element of A in B
-function positions(A, B) {
-  B = new InternMap(Array.from(B, (d, i) => [d, i]));
-  return A.map(d => B.get(d));
+// Given a single stack, returns the minimum and maximum values from the given
+// Y2 column. Note that this relies on Y2 always being the outer column for
+// diverging values.
+function extent(stack, Y2) {
+  let min = 0, max = 0;
+  for (const i of stack) {
+    const y = Y2[i];
+    if (y < min) min = y;
+    if (y > max) max = y;
+  }
+  return [min, max];
+}
+
+function offsetExpand(stacks, Y1, Y2) {
+  for (const stack of stacks) {
+    const [yn, yp] = extent(stack, Y2);
+    for (const i of stack) {
+      const m = 1 / (yp - yn || 1);
+      Y1[i] = m * (Y1[i] - yn);
+      Y2[i] = m * (Y2[i] - yn);
+    }
+  }
+}
+
+function offsetSilhouette(stacks, Y1, Y2) {
+  for (const stack of stacks) {
+    const [yn, yp] = extent(stack, Y2);
+    for (const i of stack) {
+      const m = (yp + yn) / 2;
+      Y1[i] -= m;
+      Y2[i] -= m;
+    }
+  }
+}
+
+function offsetWiggle(stacks, Y1, Y2, Z) {
+  const prev = new InternMap();
+  let y = 0;
+  for (const stack of stacks) {
+    let j = -1;
+    const Fi = stack.map(i => Math.abs(Y2[i] - Y1[i]));
+    const Df = stack.map(i => {
+      j = Z ? Z[i] : ++j;
+      const value = Y2[i] - Y1[i];
+      const diff = prev.has(j) ? value - prev.get(j) : 0;
+      prev.set(j, value);
+      return diff;
+    });
+    const Cf1 = [0, ...cumsum(Df)];
+    for (const i of stack) {
+      Y1[i] += y;
+      Y2[i] += y;
+    }
+    const s1 = sum(Fi);
+    if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
+  }
+}
+
+function maybeOrder(order) {
+  if (order == null) return;
+  if (typeof order === "string") {
+    switch (order.toLowerCase()) {
+     case "sum": return orderSum;
+     case "value": return orderValue;
+     case "appearance": return orderAppearance;
+     case "inside-out": return orderInsideOut;
+    }
+    return orderFunction(field(order));
+  }
+  if (typeof order === "function") return orderFunction(order);
+  return orderZDomain(order);
+}
+
+// by sum of value (a.k.a. “ascending”)
+function orderSum(stacks, data, I, X, Y, Z) {
+  applyOrder(stacks, orderZ(Z, groupSort(I, I => sum(I, i => Y[i]), i => Z[i])));
+}
+
+// by value
+function orderValue(stacks, data, I, X, Y) {
+  applyOrder(stacks, Y);
+}
+
+// by x = argmax of value
+function orderAppearance(stacks, data, I, X, Y, Z) {
+  applyOrder(stacks, orderZ(Z, groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i])));
+}
+
+// by x = argmax of value, but rearranged inside-out by alternating series
+// according to the sign of a running divergence of sums
+function orderInsideOut(stacks, data, I, X, Y, Z) {
+  const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
+  const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
+  const Kp = [], Kn = [];
+  let s = 0;
+  for (const k of K) {
+    if (s < 0) {
+      s += sums.get(k);
+      Kp.push(k);
+    } else {
+      s -= sums.get(k);
+      Kn.push(k);
+    }
+  }
+  applyOrder(stacks, orderZ(Z, Kn.reverse().concat(Kp)));
+}
+
+function orderFunction(f) {
+  return (stacks, data) => {
+    applyOrder(stacks, valueof(data, f));
+  };
+}
+
+function orderZDomain(domain) {
+  return (stacks, data, I, X, Y, Z) => {
+    applyOrder(stacks, orderZ(Z, domain));
+  };
+}
+
+// Given an explicit ordering of distinct values in z, returns a parallel column
+// O that can be used with applyOrder to sort stacks. Note that this is a series
+// order: it will be consistent across stacks.
+function orderZ(Z, domain) {
+  domain = new InternMap(domain.map((d, i) => [d, i]));
+  return Z.map(z => domain.get(z));
+}
+
+function applyOrder(stacks, O) {
+  for (const stack of stacks) {
+    stack.sort((i, j) => ascending(O[i], O[j]));
+  }
 }
