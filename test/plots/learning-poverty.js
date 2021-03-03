@@ -29,8 +29,8 @@ export default async function() {
     marks: [
       Plot.stackBarX(values, {
         x: d => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
-        fill: "type",
-        y: "Country Name"
+        y: "Country Name",
+        fill: "type"
       }),
       Plot.ruleX([0])
     ]
