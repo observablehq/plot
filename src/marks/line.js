@@ -17,6 +17,7 @@ export class Line extends Mark {
       fill,
       stroke,
       curve,
+      tension,
       sort,
       transform = maybeSort(sort),
       ...style
@@ -38,7 +39,7 @@ export class Line extends Mark {
       ],
       transform
     );
-    this.curve = Curve(curve);
+    this.curve = Curve(curve, tension);
     Style(this, {
       fill: cfill,
       stroke: cstroke,

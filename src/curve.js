@@ -40,10 +40,20 @@ const curves = new Map([
   ["step-before", curveStepBefore]
 ]);
 
-// TODO Tension and other parameters (e.g., curve: ["cardinal", 1])?
-export function Curve(curve = curveLinear) {
+export function Curve(curve = curveLinear, tension) {
   if (typeof curve === "function") return curve; // custom curve
-  const c = (curve + "").toLowerCase();
-  if (!curves.has(c)) throw new Error(`unknown curve: ${c}`);
-  return curves.get(c);
+  const c = curves.get((curve + "").toLowerCase());
+  if (!c) throw new Error(`unknown curve: ${curve}`);
+  if (tension !== undefined) {
+    switch (c) {
+      case curveBundle: return c.beta(tension);
+      case curveCardinalClosed:
+      case curveCardinalOpen:
+      case curveCardinal: return c.tension(tension);
+      case curveCatmullRomClosed:
+      case curveCatmullRomOpen:
+      case curveCatmullRom: return c.alpha(tension);
+    }
+  }
+  return c;
 }
