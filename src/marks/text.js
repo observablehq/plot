@@ -2,7 +2,7 @@ import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, title, maybeColor, first, second} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
   constructor(
@@ -16,6 +16,11 @@ export class Text extends Mark {
       fill,
       transform,
       textAnchor,
+      fontFamily,
+      fontSize,
+      fontStyle,
+      fontVariant,
+      fontWeight,
       dx,
       dy = "0.32em",
       ...style
@@ -36,6 +41,11 @@ export class Text extends Mark {
     );
     Style(this, {fill: cfill, ...style});
     this.textAnchor = string(textAnchor);
+    this.fontFamily = string(fontFamily);
+    this.fontSize = string(fontSize);
+    this.fontStyle = string(fontStyle);
+    this.fontVariant = string(fontVariant);
+    this.fontWeight = string(fontWeight);
     this.dx = string(dx);
     this.dy = string(dy);
   }
@@ -48,13 +58,12 @@ export class Text extends Mark {
     const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
           .data(index)
           .join("text")
-            .call(applyDirectStyles, this)
-            .call(applyTextStyles, this)
+            .call(applyDirectTextStyles, this)
             .attr("x", X ? i => x(X[i]) : (marginLeft + width - marginRight) / 2)
             .attr("y", Y ? i => y(Y[i]) : (marginTop + height - marginBottom) / 2)
             .attr("fill", F && (i => color(F[i])))
@@ -76,8 +85,18 @@ export function textY(data, {y = identity, ...options} = {}) {
   return new Text(data, {...options, y, x: null});
 }
 
-function applyTextStyles(selection, style) {
-  applyAttr(selection, "text-anchor", style.textAnchor);
-  applyAttr(selection, "dx", style.dx);
-  applyAttr(selection, "dy", style.dy);
+function applyIndirectTextStyles(selection, mark) {
+  applyIndirectStyles(selection, mark);
+  applyAttr(selection, "text-anchor", mark.textAnchor);
+  applyStyle(selection, "font-family", mark.fontFamily);
+  applyStyle(selection, "font-size", mark.fontSize);
+  applyStyle(selection, "font-style", mark.fontStyle);
+  applyStyle(selection, "font-variant", mark.fontVariant);
+  applyStyle(selection, "font-weight", mark.fontWeight);
+}
+
+function applyDirectTextStyles(selection, mark) {
+  applyDirectStyles(selection, mark);
+  applyAttr(selection, "dx", mark.dx);
+  applyAttr(selection, "dy", mark.dy);
 }

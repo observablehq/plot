@@ -54,10 +54,10 @@ export function applyTransform(selection, x, y, tx = 0, ty = 0) {
   selection.attr("transform", `translate(${tx},${ty})`);
 }
 
-function impliedString(value, impliedValue) {
+export function impliedString(value, impliedValue) {
   if ((value = string(value)) !== impliedValue) return value;
 }
 
-function impliedNumber(value, impliedValue) {
+export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
