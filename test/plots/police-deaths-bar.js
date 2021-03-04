@@ -6,7 +6,7 @@ export default async function() {
   return Plot.plot({
     marks: [
       Plot.barX(data, Plot.stackX({x: "police", fill: "race"})),
-      Plot.textX(data, Plot.stackXMid({x: "police", z: "race", text: "race"})),
+      Plot.textX(data, Plot.stackXMid({x: "police", text: "race"})),
       Plot.ruleX([0, 100])
     ]
   });

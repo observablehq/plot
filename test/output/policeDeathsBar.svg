@@ -40,7 +40,7 @@
     <rect x="476" width="108" y="0" height="30" fill="#76b7b2"></rect>
     <rect x="584" width="36" y="0" height="30" fill="#4e79a7"></rect>
   </g>
-  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="602" y="15">All other races</text><text dy="0.32em" x="152" y="15">Black</text><text dy="0.32em" x="380" y="15">Hispanic</text><text dy="0.32em" x="530" y="15">White</text></g>
+  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="152" y="15">Black</text><text dy="0.32em" x="380" y="15">Hispanic</text><text dy="0.32em" x="530" y="15">White</text><text dy="0.32em" x="602" y="15">All other races</text></g>
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>
     <line x1="620" x2="620" y1="0" y2="30"></line>
