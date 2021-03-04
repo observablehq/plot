@@ -4,9 +4,6 @@ import * as d3 from "d3";
 export default async function() {
   const temperatures = await d3.csv("data/sf-temperatures.csv", d3.autoType);
   return Plot.plot({
-    x: {
-      label: null // TODO Default to null for temporal scales?
-    },
     y: {
       grid: true,
       label: "↑ Daily temperature range (°F)"

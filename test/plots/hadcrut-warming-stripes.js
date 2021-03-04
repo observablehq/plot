@@ -12,8 +12,7 @@ export default async function() {
     }));
   return Plot.plot({
     x: {
-      round: true,
-      label: null
+      round: true
     },
     color: {
       type: "diverging",

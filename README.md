@@ -139,9 +139,6 @@ While the charts above use shorthand defaults, Plot charts are **highly configur
 ```js
 Plot.plot({
   height: 240,
-  x: {
-    label: null // hide the x-axis label
-  },
   y: {
     grid: true, // show grid lines
     label: "↑ Unemployment (%)" // custom y-axis label

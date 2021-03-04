@@ -103,6 +103,8 @@ function inferLabel(channels = [], scale, axis, key) {
   }
   if (candidate !== undefined) {
     const {invert} = scale;
+    // Ignore the implicit label for temporal scales if it’s simply “date”.
+    if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
     if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
       if (axis.labelAnchor === "center") {
         candidate = `${candidate} →`;

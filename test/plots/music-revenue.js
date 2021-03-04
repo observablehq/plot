@@ -5,9 +5,6 @@ export default async function() {
   const data = await d3.csv("data/riaa-us-revenue.csv", d3.autoType);
   const stack = {x: "year", y: "revenue", z: "format", order: "appearance", reverse: true};
   return Plot.plot({
-    x: {
-      label: null
-    },
     y: {
       grid: true,
       label: "↑ Annual revenue (billions, adj.)",

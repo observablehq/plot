@@ -6,9 +6,6 @@ export default async function() {
   return Plot.plot({
     width: 960,
     height: 1080,
-    x: {
-      label: null
-    },
     y: {
       range: [20, -40],
       axis: null

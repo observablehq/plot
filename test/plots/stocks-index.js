@@ -20,9 +20,6 @@ export default async function() {
     });
   return Plot.plot({
     style: "overflow: visible;",
-    x: {
-      label: null
-    },
     y: {
       type: "log",
       grid: true,

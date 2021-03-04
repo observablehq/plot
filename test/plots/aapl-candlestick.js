@@ -6,9 +6,6 @@ export default async function() {
   return Plot.plot({
     inset: 6,
     grid: true,
-    x: {
-      label: null
-    },
     y: {
       label: "↑ Apple stock price ($)"
     },

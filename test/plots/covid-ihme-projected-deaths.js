@@ -8,9 +8,6 @@ export default async function() {
     width: 960,
     height: 600,
     grid: true,
-    x: {
-      label: null
-    },
     y: {
       type: "log",
       label: "↑ Deaths per day to COVID-19 (projected)",
