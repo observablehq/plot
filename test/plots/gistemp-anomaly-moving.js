@@ -18,7 +18,7 @@ export default async function() {
     marks: [
       Plot.ruleY([0]),
       Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"}),
-      Plot.line(data, {x: "Date", y: Plot.movingAverage(24, "Anomaly")})
+      Plot.line(data, Plot.movingAverageY({x: "Date", y: "Anomaly", k: 24}))
     ]
   });
 }

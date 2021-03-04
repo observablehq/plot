@@ -202,3 +202,19 @@ export function offsetRange(data, k) {
 export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
+
+// Defines a channel whose values are lazily populated by calling the returned
+// setter. If the given source is labeled, the label is propagated to the
+// returned channel definition.
+export function lazyChannel(source) {
+  let value;
+  return [
+    {
+      transform: () => value,
+      label: typeof source === "string" ? source
+        : source ? source.label
+        : undefined
+    },
+    v => value = v
+  ];
+}

@@ -1,42 +1,42 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, maybeColor, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeColor, range, valueof} from "../mark.js";
 
-export function stackX({x, y, ...options}) {
+export function stackX({x, y, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
   return {...options, transform, y: Y, x1, x2};
 }
 
-export function stackX1({x, y, ...options}) {
+export function stackX1({x, y, ...options} = {}) {
   const [transform, Y, X] = stack(y, x, options);
   return {...options, transform, y: Y, x: X};
 }
 
-export function stackX2({x, y, ...options}) {
+export function stackX2({x, y, ...options} = {}) {
   const [transform, Y,, X] = stack(y, x, options);
   return {...options, transform, y: Y, x: X};
 }
 
-export function stackXMid({x, y, ...options}) {
+export function stackXMid({x, y, ...options} = {}) {
   const [transform, Y, X1, X2] = stack(y, x, options);
   return {...options, transform, y: Y, x: mid(X1, X2)};
 }
 
-export function stackY({x, y, ...options}) {
+export function stackY({x, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, options);
   return {...options, transform, x: X, y1, y2};
 }
 
-export function stackY1({x, y, ...options}) {
+export function stackY1({x, y, ...options} = {}) {
   const [transform, X, Y] = stack(x, y, options);
   return {...options, transform, x: X, y: Y};
 }
 
-export function stackY2({x, y, ...options}) {
+export function stackY2({x, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, options);
   return {...options, transform, x: X, y: Y};
 }
 
-export function stackYMid({x, y, ...options}) {
+export function stackYMid({x, y, ...options} = {}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
   return {...options, transform, x: X, y: mid(Y1, Y2)};
 }
@@ -86,22 +86,6 @@ function stack(x, y = () => 1, {
     x == null ? x : X,
     Y1,
     Y2
-  ];
-}
-
-// Defines a channel whose values are lazily populated by calling the returned
-// setter. If the given source is labeled, the label is propagated to the
-// returned channel definition.
-function lazyChannel(source) {
-  let value;
-  return [
-    {
-      transform: () => value,
-      label: typeof source === "string" ? source
-        : source ? source.label
-        : undefined
-    },
-    v => value = v
   ];
 }
 
