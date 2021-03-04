@@ -1,43 +1,43 @@
 import {greatest, group, least} from "d3-array";
 import {maybeColor, range, valueof} from "../mark.js";
 
-export function first(options = {}) {
-  return {...options, transform: select(selectFirst, undefined, options)};
+export function selectFirst(options = {}) {
+  return {...options, transform: select(first, undefined, options)};
 }
 
-export function last(options = {}) {
-  return {...options, transform: select(selectLast, undefined, options)};
+export function selectLast(options = {}) {
+  return {...options, transform: select(last, undefined, options)};
 }
 
-export function minX(options = {}) {
-  return {...options, transform: select(selectMin, "x", options)};
+export function selectMinX(options = {}) {
+  return {...options, transform: select(min, "x", options)};
 }
 
-export function minY(options = {}) {
-  return {...options, transform: select(selectMin, "y", options)};
+export function selectMinY(options = {}) {
+  return {...options, transform: select(min, "y", options)};
 }
 
-export function maxX(options = {}) {
-  return {...options, transform: select(selectMax, "x", options)};
+export function selectMaxX(options = {}) {
+  return {...options, transform: select(max, "x", options)};
 }
 
-export function maxY(options = {}) {
-  return {...options, transform: select(selectMax, "y", options)};
+export function selectMaxY(options = {}) {
+  return {...options, transform: select(max, "y", options)};
 }
 
-function* selectFirst(I) {
+function* first(I) {
   yield I[0];
 }
 
-function* selectLast(I) {
+function* last(I) {
   yield I[I.length - 1];
 }
 
-function* selectMin(I, X) {
+function* min(I, X) {
   yield least(I, i => X[i]);
 }
 
-function* selectMax(I, X) {
+function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 

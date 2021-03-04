@@ -43,7 +43,7 @@ export default async function() {
         y: "multiple",
         stroke: "symbol"
       }),
-      Plot.text(stocks, Plot.last({
+      Plot.text(stocks, Plot.selectLast({
         x: "date",
         y: "multiple",
         z: "symbol",
