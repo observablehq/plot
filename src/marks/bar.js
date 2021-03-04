@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, indexOf, title} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class AbstractBar extends Mark {
@@ -145,12 +145,12 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
+export function barX(data, {x, x1, x2, ...options} = {}) {
   ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2, y});
+  return new BarX(data, {...options, x1, x2});
 }
 
-export function barY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
+export function barY(data, {y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, x, y1, y2});
+  return new BarY(data, {...options, y1, y2});
 }

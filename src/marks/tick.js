@@ -1,7 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
 import {filter} from "../defined.js";
-import {Mark, identity, indexOf, maybeColor, title} from "../mark.js";
+import {Mark, identity, maybeColor, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 class AbstractTick extends Mark {
@@ -29,7 +29,7 @@ class AbstractTick extends Mark {
     );
     Style(this, {stroke: cstroke, ...style});
   }
-  render(I, scales, channels) {
+  render(I, scales, channels, dimensions) {
     const {color} = scales;
     const {x: X, y: Y, z: Z, title: L, stroke: S} = channels;
     const index = filter(I, X, Y, S);
@@ -41,10 +41,10 @@ class AbstractTick extends Mark {
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", this._x1(scales, channels))
-            .attr("x2", this._x2(scales, channels))
-            .attr("y1", this._y1(scales, channels))
-            .attr("y2", this._y2(scales, channels))
+            .attr("x1", this._x1(scales, channels, dimensions))
+            .attr("x2", this._x2(scales, channels, dimensions))
+            .attr("y1", this._y1(scales, channels, dimensions))
+            .attr("y2", this._y2(scales, channels, dimensions))
             .attr("stroke", S && (i => color(S[i])))
             .call(title(L)))
       .node();
@@ -52,12 +52,12 @@ class AbstractTick extends Mark {
 }
 
 export class TickX extends AbstractTick {
-  constructor(data, {x = identity, y = indexOf, ...options} = {}) {
+  constructor(data, {x, y, ...options} = {}) {
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band"}
+        {name: "y", value: y, scale: "y", type: "band", optional: true}
       ],
       options
     );
@@ -71,21 +71,21 @@ export class TickX extends AbstractTick {
   _x2({x}, {x: X}) {
     return i => Math.round(x(X[i]));
   }
-  _y1({y}, {y: Y}) {
-    return i => y(Y[i]);
+  _y1({y}, {y: Y}, {marginTop}) {
+    return Y ? i => y(Y[i]) : marginTop;
   }
-  _y2({y}, {y: Y}) {
-    return i => y(Y[i]) + y.bandwidth();
+  _y2({y}, {y: Y}, {height, marginBottom}) {
+    return Y ? i => y(Y[i]) + y.bandwidth() : height - marginBottom;
   }
 }
 
 export class TickY extends AbstractTick {
-  constructor(data, {x = indexOf, y = identity, ...options} = {}) {
+  constructor(data, {x, y, ...options} = {}) {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x", type: "band"},
-        {name: "y", value: y, scale: "y"}
+        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, scale: "x", type: "band", optional: true}
       ],
       options
     );
@@ -93,11 +93,11 @@ export class TickY extends AbstractTick {
   _transform(selection, {y}) {
     selection.call(applyTransform, false, y, 0, 0.5);
   }
-  _x1({x}, {x: X}) {
-    return i => x(X[i]);
+  _x1({x}, {x: X}, {marginLeft}) {
+    return X ? i => x(X[i]) : marginLeft;
   }
-  _x2({x}, {x: X}) {
-    return i => x(X[i]) + x.bandwidth();
+  _x2({x}, {x: X}, {width, marginRight}) {
+    return X ? i => x(X[i]) + x.bandwidth() : width - marginRight;
   }
   _y1({y}, {y: Y}) {
     return i => Math.round(y(Y[i]));
@@ -107,10 +107,10 @@ export class TickY extends AbstractTick {
   }
 }
 
-export function tickX(data, options) {
-  return new TickX(data, options);
+export function tickX(data, {x = identity, ...options} = {}) {
+  return new TickX(data, {...options, x});
 }
 
-export function tickY(data, options) {
-  return new TickY(data, options);
+export function tickY(data, {y = identity, ...options} = {}) {
+  return new TickY(data, {...options, y});
 }

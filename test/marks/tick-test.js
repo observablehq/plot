@@ -5,10 +5,9 @@ tape("tickX() has the expected defaults", test => {
   const tick = Plot.tickX();
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform("foo"), "foo");
-  test.deepEqual(tick.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo", 0]);
-  test.deepEqual(tick.channels.map(c => c.scale), ["x", "y"]);
-  test.strictEqual(tick.channels.find(c => c.name === "y").type, "band");
+  test.deepEqual(tick.channels.map(c => c.name), ["x"]);
+  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
+  test.deepEqual(tick.channels.map(c => c.scale), ["x"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);
   test.strictEqual(tick.stroke, "currentColor");
@@ -19,6 +18,14 @@ tape("tickX() has the expected defaults", test => {
   test.strictEqual(tick.strokeMiterlimit, undefined);
   test.strictEqual(tick.strokeDasharray, undefined);
   test.strictEqual(tick.mixBlendMode, undefined);
+});
+
+tape("tickX(data, {y}) uses a band scale", test => {
+  const tick = Plot.tickX(undefined, {y: "x"});
+  test.deepEqual(tick.channels.map(c => c.name), ["x", "y"]);
+  test.deepEqual(tick.channels.map(c => c.scale), ["x", "y"]);
+  test.strictEqual(tick.channels.find(c => c.name === "y").type, "band");
+  test.strictEqual(tick.channels.find(c => c.name === "y").value.label, "x");
 });
 
 tape("tickX(data, {z}) specifies an optional z channel", test => {
@@ -57,10 +64,9 @@ tape("tickY() has the expected defaults", test => {
   const tick = Plot.tickY();
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform("foo"), "foo");
-  test.deepEqual(tick.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), [0, "foo"]);
-  test.deepEqual(tick.channels.map(c => c.scale), ["x", "y"]);
-  test.strictEqual(tick.channels.find(c => c.name === "x").type, "band");
+  test.deepEqual(tick.channels.map(c => c.name), ["y"]);
+  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
+  test.deepEqual(tick.channels.map(c => c.scale), ["y"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);
   test.strictEqual(tick.stroke, "currentColor");
@@ -71,6 +77,14 @@ tape("tickY() has the expected defaults", test => {
   test.strictEqual(tick.strokeMiterlimit, undefined);
   test.strictEqual(tick.strokeDasharray, undefined);
   test.strictEqual(tick.mixBlendMode, undefined);
+});
+
+tape("tickY(data, {x}) uses a band scale", test => {
+  const tick = Plot.tickY(undefined, {x: "y"});
+  test.deepEqual(tick.channels.map(c => c.name), ["y", "x"]);
+  test.deepEqual(tick.channels.map(c => c.scale), ["y", "x"]);
+  test.strictEqual(tick.channels.find(c => c.name === "x").type, "band");
+  test.strictEqual(tick.channels.find(c => c.name === "x").value.label, "y");
 });
 
 tape("tickY(data, {z}) specifies an optional z channel", test => {

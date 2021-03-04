@@ -8,8 +8,8 @@ export class Dot extends Mark {
   constructor(
     data,
     {
-      x = first,
-      y = second,
+      x,
+      y,
       z,
       r,
       title,
@@ -69,14 +69,14 @@ export class Dot extends Mark {
   }
 }
 
-export function dot(data, options) {
-  return new Dot(data, options);
-}
-
-export function dotX(data, {x = identity, y = null, ...options} = {}) {
+export function dot(data, {x = first, y = second, ...options} = {}) {
   return new Dot(data, {...options, x, y});
 }
 
-export function dotY(data, {y = identity, x = null, ...options} = {}) {
-  return new Dot(data, {...options, y, x});
+export function dotX(data, {x = identity, ...options} = {}) {
+  return new Dot(data, {...options, x});
+}
+
+export function dotY(data, {y = identity, ...options} = {}) {
+  return new Dot(data, {...options, y});
 }

@@ -8,7 +8,7 @@ export class RuleX extends Mark {
   constructor(
     data,
     {
-      x = identity,
+      x,
       y1,
       y2,
       z,
@@ -64,7 +64,7 @@ export class RuleY extends Mark {
     {
       x1,
       x2,
-      y = identity,
+      y,
       z,
       title,
       stroke,
@@ -112,14 +112,14 @@ export class RuleY extends Mark {
   }
 }
 
-export function ruleX(data, {y, y1, y2, ...options} = {}) {
+export function ruleX(data, {x = identity, y, y1, y2, ...options} = {}) {
   ([y1, y2] = maybeOptionalZero(y, y1, y2));
-  return new RuleX(data, {...options, y1, y2});
+  return new RuleX(data, {...options, x, y1, y2});
 }
 
-export function ruleY(data, {x, x1, x2, ...options} = {}) {
+export function ruleY(data, {y = identity, x, x1, x2, ...options} = {}) {
   ([x1, x2] = maybeOptionalZero(x, x1, x2));
-  return new RuleY(data, {...options, x1, x2});
+  return new RuleY(data, {...options, y, x1, x2});
 }
 
 // For marks specified either as [0, x] or [x1, x2], or nothing.

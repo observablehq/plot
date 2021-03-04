@@ -43,6 +43,7 @@ export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
 export {default as penguinMass} from "./penguin-mass.js";
 export {default as policeDeaths} from "./police-deaths.js";
+export {default as policeDeathsBar} from "./police-deaths-bar.js";
 export {default as randomWalk} from "./random-walk.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as sfTemperatureBand} from "./sf-temperature-band.js";

@@ -8,8 +8,8 @@ export class Text extends Mark {
   constructor(
     data,
     {
-      x = first,
-      y = second,
+      x,
+      y,
       z,
       text = indexOf,
       title,
@@ -73,16 +73,16 @@ export class Text extends Mark {
   }
 }
 
-export function text(data, options) {
-  return new Text(data, options);
+export function text(data, {x = first, y = second, ...options} = {}) {
+  return new Text(data, {...options, x, y});
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, {...options, x, y: null});
+  return new Text(data, {...options, x});
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, {...options, y, x: null});
+  return new Text(data, {...options, y});
 }
 
 function applyIndirectTextStyles(selection, mark) {

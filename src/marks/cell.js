@@ -3,7 +3,6 @@ import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
   constructor(data, {x, y, ...options} = {}) {
-    if (x === undefined && y === undefined) x = first, y = second;
     super(
       data,
       [
@@ -21,14 +20,14 @@ export class Cell extends AbstractBar {
   }
 }
 
-export function cell(data, options) {
-  return new Cell(data, options);
+export function cell(data, {x = first, y = second, ...options} = {}) {
+  return new Cell(data, {...options, x, y});
 }
 
 export function cellX(data, {x = identity, ...options} = {}) {
-  return new Cell(data, {...options, x, y: null});
+  return new Cell(data, {...options, x});
 }
 
 export function cellY(data, {y = identity, ...options} = {}) {
-  return new Cell(data, {...options, y, x: null});
+  return new Cell(data, {...options, y});
 }
