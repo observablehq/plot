@@ -73,10 +73,10 @@ export function dot(data, options) {
   return new Dot(data, options);
 }
 
-export function dotX(data, {x = identity, ...options} = {}) {
-  return new Dot(data, {...options, x, y: null});
+export function dotX(data, {x = identity, y = null, ...options} = {}) {
+  return new Dot(data, {...options, x, y});
 }
 
-export function dotY(data, {y = identity, ...options} = {}) {
-  return new Dot(data, {...options, y, x: null});
+export function dotY(data, {y = identity, x = null, ...options} = {}) {
+  return new Dot(data, {...options, y, x});
 }
