@@ -8,6 +8,7 @@
   },
   "license": "ISC",
   "main": "dist/plot.cjs.js",
+  "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "module": "src/index.js",
   "repository": {
@@ -19,21 +20,23 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
-    "prepublishOnly": "rm -rf dist && rollup -c",
+    "bundle": "rm -rf dist && rollup -c",
+    "test": "yarn bundle && mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
+    "prepublishOnly": "yarn bundle",
     "postpublish": "git push && git push --tags",
-    "dev": "snowpack dev",
-    "build": "snowpack build"
+    "dev": "snowpack dev"
   },
   "_moduleAliases": {
-    "@observablehq/plot": "./src/index.js"
+    "@observablehq/plot": "./dist/plot.cjs.js"
   },
   "devDependencies": {
+    "clean-css": "^5.1.1",
     "d3": "^6.5.0",
     "eslint": "^7.12.1",
     "esm": "^3.2.25",
     "js-beautify": "^1.13.0",
     "jsdom": "^16.4.0",
+    "jsesc": "^3.0.2",
     "module-alias": "^2.2.2",
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",

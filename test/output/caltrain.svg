@@ -1,9 +1,4 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="240" height="396" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <style>
-    .plot text {
-      white-space: pre;
-    }
-  </style>
+<svg class="plot" fill="currentColor" text-anchor="middle" width="240" height="396" viewBox="0 0 240 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(0.5,0.5)"><text text-anchor="start" dy="0.32em" x="150" y="11">Northbound</text></g>
   <g transform="translate(0.5,0.5)"><text text-anchor="end" dy="0.32em" x="90" y="11">Southbound</text></g>
   <g transform="translate(0.5,0.5)"><text dy="0.32em" x="120" y="45">5a</text><text dy="0.32em" x="120" y="300">8p</text><text dy="0.32em" x="120" y="317">9p</text><text dy="0.32em" x="120" y="334">10p</text><text dy="0.32em" x="120" y="351">11p</text><text dy="0.32em" x="120" y="96">8a</text><text dy="0.32em" x="120" y="113">9a</text><text dy="0.32em" x="120" y="249">5p</text><text dy="0.32em" x="120" y="266">6p</text><text dy="0.32em" x="120" y="130">10a</text><text dy="0.32em" x="120" y="147">11a</text><text dy="0.32em" x="120" y="164">12p</text><text dy="0.32em" x="120" y="181">1p</text><text dy="0.32em" x="120" y="198">2p</text><text dy="0.32em" x="120" y="215">3p</text><text dy="0.32em" x="120" y="232">4p</text><text dy="0.32em" x="120" y="62">6a</text><text dy="0.32em" x="120" y="79">7a</text><text dy="0.32em" x="120" y="283">7p</text><text dy="0.32em" x="120" y="368">12a</text></g>

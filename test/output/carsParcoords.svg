@@ -1,9 +1,4 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" style="display: block; font-size: 10px; font-family: sans-serif; background: white; height: auto; max-width: 100%;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <style>
-    .plot text {
-      white-space: pre;
-    }
-  </style>
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,28.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">economy (mpg)</text>

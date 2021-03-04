@@ -3,15 +3,6 @@ import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
-const defaultStyle = {
-  display: "block",
-  fontSize: "10px",
-  fontFamily: "sans-serif",
-  background: "white",
-  height: "auto",
-  maxWidth: "100%"
-};
-
 export function plot(options = {}) {
   const {facet, style} = options;
 
@@ -86,10 +77,11 @@ export function plot(options = {}) {
       .attr("text-anchor", "middle")
       .attr("width", width)
       .attr("height", height)
-      .each(function() { Object.assign(this.style, defaultStyle, style); });
-
-  svg.append("style")
-      .text(`.plot text { white-space: pre; }`);
+      .attr("viewBox", `0 0 ${width} ${height}`)
+      .each(function() {
+        if (typeof style === "string") this.style = style;
+        else Object.assign(this.style, style);
+      });
 
   for (const mark of marks) {
     const channels = markChannels.get(mark);
