@@ -19,9 +19,7 @@ export default async function() {
       }));
     });
   return Plot.plot({
-    style: {
-      overflow: "visible"
-    },
+    style: "overflow: visible;",
     x: {
       label: null
     },
