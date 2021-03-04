@@ -218,3 +218,8 @@ export function lazyChannel(source) {
     v => value = v
   ];
 }
+
+// Like lazyChannel, but allows the source to be null.
+export function maybeLazyChannel(source) {
+  return source == null ? [] : lazyChannel(source);
+}
