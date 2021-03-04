@@ -1,0 +1,48 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(20.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(80.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(200.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(260.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(320.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(380.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(440.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(500.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(560.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">police →</text>
+  </g>
+  <g transform="translate(0,0)">
+    <rect x="20" width="264" y="0" height="30" fill="#f28e2c"></rect>
+    <rect x="284" width="192" y="0" height="30" fill="#e15759"></rect>
+    <rect x="476" width="108" y="0" height="30" fill="#76b7b2"></rect>
+    <rect x="584" width="36" y="0" height="30" fill="#4e79a7"></rect>
+  </g>
+  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="602" y="15">All other races</text><text dy="0.32em" x="152" y="15">Black</text><text dy="0.32em" x="380" y="15">Hispanic</text><text dy="0.32em" x="530" y="15">White</text></g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+</svg>
