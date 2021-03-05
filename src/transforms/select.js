@@ -25,6 +25,10 @@ export function selectMaxY(options = {}) {
   return {...options, transform: select(max, "y", options)};
 }
 
+export function selectFilter(f, {key, ...options} = {}) {
+  return {...options, transform: select(f, "key", {key})};
+}
+
 function* first(I) {
   yield I[0];
 }
