@@ -6,7 +6,9 @@ import {nonempty} from "./defined.js";
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 
 export class Mark {
-  constructor(data, channels = [], transform = identity) {
+  constructor(data, channels = [], transform) {
+    if (transform == null) transform = undefined;
+    else if (typeof transform !== "function") throw new Error("invalid transform");
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
@@ -29,75 +31,39 @@ export class Mark {
     });
   }
   initialize(facets) {
-    let index, data;
-    if (this.data !== undefined) {
-      if (this.transform === identity) { // optimized common case
-        data = this.data, index = facets !== undefined ? facets : range(data);
-      } else if (this.transform.length > 1) { // facet-aware transform
-        const channelMap = new Map(this.channels
-          .filter(channel => channel.name != null)
-          .map(channel => [channel.name, channel]));
-        let channels;
-        ({index, data, channels = {}} = this.transform(
-          this.data,
-          facets,
-          Object.fromEntries(Array.from(channelMap, ([name, channel]) => [name, channel.value]))
-        ));
-        for (const [name, value] of Object.entries(channels)) {
-          const channel = channelMap.get(name);
-          if (channel) channel.value = value;
-        }
-        data = arrayify(data);
-      } else if (facets !== undefined) { // basic transform, faceted
-        // Apply the transform to each facet’s data separately; since the
-        // transformed data can have different cardinality than the source
-        // data, also build up a new faceted index into the transformed data.
-        // Note that the transformed data must be a generic Array, not a typed
-        // array, for the array.flat() call to flatten the array.
-        let k = 0;
-        index = [], data = [];
-        for (const facet of facets) {
-          const facetData = arrayify(this.transform(take(this.data, facet)), Array);
-          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
-          k += facetData.length;
-          index.push(facetIndex);
-          data.push(facetData);
-        }
-        data = data.flat();
-        // Reorder any channel value arrays to match the transformed index.
-        // Since there may be zero or multiple channels that need reordering,
-        // we lazily compute the flattened transformed index.
-        let facetIndex;
-        for (const channel of this.channels) {
-          let {value} = channel;
-          if (typeof value !== "function") {
-            if (facetIndex === undefined) facetIndex = facets.flat();
-            channel.value = take(arrayify(value), facetIndex);
-          }
-        }
-      } else { // basic transform, non-faceted
-        data = arrayify(this.transform(this.data));
-        index = data === undefined ? undefined : range(data);
-      }
+    let data = this.data;
+    let index = facets === undefined && data != null ? range(data) : facets;
+    let override = {};
+    if (data !== undefined && this.transform !== undefined) {
+      if (facets === undefined) index = [index];
+      ({index, data, channels: override = {}} = this.transform(
+        data,
+        index,
+        Object.fromEntries(this.channels
+          .filter(c => c.name != null)
+          .map(c => [c.name, c.value]))
+      ));
+      data = arrayify(data);
+      if (facets === undefined) ([index] = index);
     }
     return {
       index,
       channels: this.channels.map(channel => {
-        const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, channel)];
+        let {name, scale, type, value} = channel;
+        if (name == null) name = undefined;
+        else if ((name += "") in override) value = override[name];
+        return [
+          name,
+          {
+            scale,
+            type,
+            value: valueof(data, value),
+            label: value ? value.label : undefined
+          }
+        ];
       })
     };
   }
-}
-
-// TODO Type coercion?
-function Channel(data, {scale, type, value}) {
-  return {
-    scale,
-    type,
-    value: valueof(data, value),
-    label: value ? value.label : undefined
-  };
 }
 
 // This allows transforms to behave equivalently to channels.

@@ -46,13 +46,12 @@ function select(selectIndex, key, options) {
     let {z, fill, stroke, [key]: v} = {...channels, ...options};
     if (z === undefined) ([z] = maybeColor(fill));
     if (z === undefined) ([z] = maybeColor(stroke));
-    const I = range(data);
     const Z = valueof(data, z);
     const V = key && valueof(data, v);
     const index = [];
     const selection = [];
     let k = 0;
-    for (const facet of facets === undefined ? [I] : facets) {
+    for (const facet of facets) {
       const facetIndex = [];
       index.push(facetIndex);
       for (const index of Z ? group(facet, i => Z[i]).values() : [facet]) {
@@ -63,9 +62,18 @@ function select(selectIndex, key, options) {
       }
     }
     return {
-      index: facets === undefined ? index[0] : index,
+      index,
       data: selection,
-      channels: {z: Z, [key]: V}
+      channels: {
+        ...Z && {
+          z: Z,
+          ...z === fill && {fill: Z},
+          ...z === stroke && {stroke: Z}
+        },
+        ...key && {
+          [key]: V
+        }
+      }
     };
   };
 }
