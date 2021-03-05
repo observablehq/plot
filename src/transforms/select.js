@@ -2,11 +2,11 @@ import {greatest, group, least} from "d3-array";
 import {maybeColor, valueof} from "../mark.js";
 
 export function selectFirst() {
-  return select(first, undefined);
+  return select(first);
 }
 
 export function selectLast() {
-  return select(last, undefined);
+  return select(last);
 }
 
 export function selectMinX() {
@@ -25,10 +25,12 @@ export function selectMaxY() {
   return select(max, "y");
 }
 
+// TODO If the value (for some required channel) is undefined, scan forward?
 function* first(I) {
   yield I[0];
 }
 
+// TODO If the value (for some required channel) is undefined, scan backward?
 function* last(I) {
   yield I[I.length - 1];
 }
@@ -41,7 +43,7 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selectIndex, key) {
+function select(selector, key) {
   return (data, index, {z, fill, stroke, [key]: v}) => {
     if (z === undefined) ([z] = maybeColor(fill));
     if (z === undefined) ([z] = maybeColor(stroke));
@@ -51,7 +53,7 @@ function select(selectIndex, key) {
     for (const facet of index) {
       const selectedFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selectIndex(I, V)) {
+        for (const i of selector(I, V)) {
           selectedFacet.push(i);
         }
       }

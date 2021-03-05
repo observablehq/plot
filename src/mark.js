@@ -149,6 +149,14 @@ export function maybeSort(order) {
   }
 }
 
+// A helper for extracting the z channel, if it is variable. Used by transforms
+// that require series, such as moving average and normalize.
+export function maybeZ({z, fill, stroke}) {
+  if (z === undefined) ([z] = maybeColor(fill));
+  if (z === undefined) ([z] = maybeColor(stroke));
+  return z;
+}
+
 // Applies the specified titles via selection.call.
 export function title(L) {
   return L ? selection => selection
@@ -181,27 +189,6 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
-// Defines a channel whose values are lazily populated by calling the returned
-// setter. If the given source is labeled, the label is propagated to the
-// returned channel definition.
-export function lazyChannel(source) {
-  let value;
-  return [
-    {
-      transform: () => value,
-      label: typeof source === "string" ? source
-        : source ? source.label
-        : undefined
-    },
-    v => value = v
-  ];
-}
-
-// Like lazyChannel, but allows the source to be null.
-export function maybeLazyChannel(source) {
-  return source == null ? [] : lazyChannel(source);
-}
-
 // If transform is an array (or other iterable), apply them serially.
 function transforms(transform) {
   for (const t of transform) {
@@ -213,12 +200,8 @@ function transforms(transform) {
     let change;
     for (const t of transform) {
       ({data, index, channels: change} = t(data, index, channels));
-      if (change !== undefined) {
-        console.log("override", {channels, change});
-        channels = {...channels, ...change};
-      }
+      if (change !== undefined) channels = {...channels, ...change};
     }
-    console.log("transform", {channels});
     return {data, index, channels};
   };
 }

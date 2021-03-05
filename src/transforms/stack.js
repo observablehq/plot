@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, lazyChannel, maybeColor, range, valueof} from "../mark.js";
+import {field, maybeColor, range, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
