@@ -43,7 +43,7 @@ function* max(I, X) {
 
 function select(selectIndex, key, options) {
   return (data, facets, channels) => {
-    const {z, fill, stroke, [key]: v} = {...channels, ...options};
+    let {z, fill, stroke, [key]: v} = {...channels, ...options};
     if (z === undefined) ([z] = maybeColor(fill));
     if (z === undefined) ([z] = maybeColor(stroke));
     const I = range(data);
