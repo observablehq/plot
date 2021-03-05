@@ -1,5 +1,5 @@
 import {greatest, group, least} from "d3-array";
-import {maybeColor, range, valueof} from "../mark.js";
+import {maybeColor, valueof} from "../mark.js";
 
 export function selectFirst() {
   return select(first, undefined);
