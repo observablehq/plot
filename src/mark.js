@@ -8,7 +8,7 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 export class Mark {
   constructor(data, channels = [], transform) {
     if (transform == null) transform = undefined;
-    else if (typeof transform !== "function") throw new Error("invalid transform");
+    else if (typeof transform !== "function") transform = transforms(transform);
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
@@ -35,7 +35,7 @@ export class Mark {
     let index = facets === undefined && data != null ? range(data) : facets;
     let override = {};
     if (data !== undefined && this.transform !== undefined) {
-      if (facets === undefined) index = [index];
+      if (facets === undefined) index = index.length ? [index] : [];
       ({index, data, channels: override = {}} = this.transform(
         data,
         index,
@@ -44,7 +44,7 @@ export class Mark {
           .map(c => [c.name, c.value]))
       ));
       data = arrayify(data);
-      if (facets === undefined) ([index] = index);
+      if (facets === undefined && index.length) ([index] = index);
     }
     return {
       index,
@@ -200,4 +200,25 @@ export function lazyChannel(source) {
 // Like lazyChannel, but allows the source to be null.
 export function maybeLazyChannel(source) {
   return source == null ? [] : lazyChannel(source);
+}
+
+// If transform is an array (or other iterable), apply them serially.
+function transforms(transform) {
+  for (const t of transform) {
+    if (typeof t !== "function") {
+      throw new Error("invalid transform");
+    }
+  }
+  return (data, index, channels) => {
+    let change;
+    for (const t of transform) {
+      ({data, index, channels: change} = t(data, index, channels));
+      if (change !== undefined) {
+        console.log("override", {channels, change});
+        channels = {...channels, ...change};
+      }
+    }
+    console.log("transform", {channels});
+    return {data, index, channels};
+  };
 }

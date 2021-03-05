@@ -1,28 +1,28 @@
 import {greatest, group, least} from "d3-array";
 import {maybeColor, range, valueof} from "../mark.js";
 
-export function selectFirst(options) {
-  return select(first, undefined, options);
+export function selectFirst() {
+  return select(first, undefined);
 }
 
-export function selectLast(options) {
-  return select(last, undefined, options);
+export function selectLast() {
+  return select(last, undefined);
 }
 
-export function selectMinX(options) {
-  return select(min, "x", options);
+export function selectMinX() {
+  return select(min, "x");
 }
 
-export function selectMinY(options) {
-  return select(min, "y", options);
+export function selectMinY() {
+  return select(min, "y");
 }
 
-export function selectMaxX(options) {
-  return select(max, "x", options);
+export function selectMaxX() {
+  return select(max, "x");
 }
 
-export function selectMaxY(options) {
-  return select(max, "y", options);
+export function selectMaxY() {
+  return select(max, "y");
 }
 
 function* first(I) {
@@ -41,38 +41,28 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selectIndex, key, options) {
-  return (data, facets, channels) => {
-    let {z, fill, stroke, [key]: v} = {...channels, ...options};
+function select(selectIndex, key) {
+  return (data, index, {z, fill, stroke, [key]: v}) => {
     if (z === undefined) ([z] = maybeColor(fill));
     if (z === undefined) ([z] = maybeColor(stroke));
     const Z = valueof(data, z);
     const V = key && valueof(data, v);
-    const index = [];
-    const selection = [];
-    let k = 0;
-    for (const facet of facets) {
-      const facetIndex = [];
-      index.push(facetIndex);
-      for (const index of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selectIndex(index, V)) {
-          facetIndex.push(k++);
-          selection.push(data[i]);
+    const selectedIndex = [];
+    for (const facet of index) {
+      const selectedFacet = [];
+      for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+        for (const i of selectIndex(I, V)) {
+          selectedFacet.push(i);
         }
       }
+      selectedIndex.push(selectedFacet);
     }
     return {
-      index,
-      data: selection,
+      index: selectedIndex,
+      data,
       channels: {
-        ...Z && {
-          z: Z,
-          ...z === fill && {fill: Z},
-          ...z === stroke && {stroke: Z}
-        },
-        ...key && {
-          [key]: V
-        }
+        z: Z,
+        [key]: V
       }
     };
   };

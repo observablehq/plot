@@ -7,17 +7,13 @@ function formatChange(x) {
   return format((x - 1) * 100);
 }
 
+async function loadSymbol(name) {
+  const Symbol = name.toUpperCase();
+  return d3.csv(`data/${name}.csv`, d => ({Symbol, ...d3.autoType(d)}));
+}
+
 export default async function() {
-  const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(async symbol => {
-      return [symbol.toUpperCase(), await d3.csv(`data/${symbol}.csv`, d3.autoType)];
-    }))).flatMap(([symbol, data]) => {
-      const [{Close: basis}] = data;
-      return data.map(({Date, Close}) => ({
-        symbol,
-        date: Date,
-        multiple: Close / basis
-      }));
-    });
+  const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     style: "overflow: visible;",
     y: {
@@ -29,15 +25,17 @@ export default async function() {
     marks: [
       Plot.ruleY([1]),
       Plot.line(stocks, {
-        x: "date",
-        y: "multiple",
-        stroke: "symbol"
+        transform: Plot.normalizeY(),
+        x: "Date",
+        y: "Close",
+        stroke: "Symbol"
       }),
       Plot.text(stocks, {
-        transform: Plot.selectLast({z: "symbol"}),
-        x: "date",
-        y: "multiple",
-        text: "symbol",
+        transform: [Plot.normalizeY(), Plot.selectLast()],
+        x: "Date",
+        y: "Close",
+        z: "Symbol",
+        text: d => d.Symbol.toUpperCase(),
         textAnchor: "start",
         dx: 3
       })
