@@ -48,18 +48,20 @@ function select(selector, key) {
     const Z = valueof(data, maybeZ(input));
     const V = key && valueof(data, v);
     const selectedIndex = [];
+    const selectedData = [];
     for (const facet of index) {
       const selectedFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
         for (const i of selector(I, V)) {
           selectedFacet.push(i);
+          selectedData.push(data[i]);
         }
       }
       selectedIndex.push(selectedFacet);
     }
     return {
       index: selectedIndex,
-      data,
+      data: selectedData,
       channels: {z: Z, ...key && {[key]: V}}
     };
   };
