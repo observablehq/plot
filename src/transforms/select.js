@@ -1,5 +1,5 @@
 import {greatest, group, least} from "d3-array";
-import {maybeColor, valueof} from "../mark.js";
+import {maybeZ, valueof} from "../mark.js";
 
 export function selectFirst() {
   return select(first);
@@ -44,10 +44,8 @@ function* max(I, X) {
 }
 
 function select(selector, key) {
-  return (data, index, {z, fill, stroke, [key]: v}) => {
-    if (z === undefined) ([z] = maybeColor(fill));
-    if (z === undefined) ([z] = maybeColor(stroke));
-    const Z = valueof(data, z);
+  return (data, index, input) => {
+    const Z = valueof(data, maybeZ(input));
     const V = key && valueof(data, v);
     const selectedIndex = [];
     for (const facet of index) {
@@ -62,10 +60,7 @@ function select(selector, key) {
     return {
       index: selectedIndex,
       data,
-      channels: {
-        z: Z,
-        [key]: V
-      }
+      channels: {z: Z, ...key && {[key]: V}}
     };
   };
 }

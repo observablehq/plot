@@ -17,7 +17,7 @@ function movingAverage(k, s, keys) {
   return (data, index, input) => {
     const n = data.length;
     const Z = valueof(data, maybeZ(input));
-    const output = {};
+    const output = {z: Z};
     for (const key of keys) {
       const V = valueof(data, input[key], Float64Array);
       if (!V) continue;
