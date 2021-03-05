@@ -33,14 +33,14 @@ export default async function() {
         y: "multiple",
         stroke: "symbol"
       }),
-      Plot.text(stocks, Plot.selectLast({
+      Plot.text(stocks, {
+        transform: Plot.selectLast({z: "symbol"}),
         x: "date",
         y: "multiple",
-        z: "symbol",
         text: "symbol",
         textAnchor: "start",
         dx: 3
-      }))
+      })
     ]
   });
 }

@@ -1,28 +1,28 @@
 import {greatest, group, least} from "d3-array";
 import {maybeColor, range, valueof} from "../mark.js";
 
-export function selectFirst(options = {}) {
-  return {...options, transform: select(first, undefined, options)};
+export function selectFirst(options) {
+  return select(first, undefined, options);
 }
 
-export function selectLast(options = {}) {
-  return {...options, transform: select(last, undefined, options)};
+export function selectLast(options) {
+  return select(last, undefined, options);
 }
 
-export function selectMinX(options = {}) {
-  return {...options, transform: select(min, "x", options)};
+export function selectMinX(options) {
+  return select(min, "x", options);
 }
 
-export function selectMinY(options = {}) {
-  return {...options, transform: select(min, "y", options)};
+export function selectMinY(options) {
+  return select(min, "y", options);
 }
 
-export function selectMaxX(options = {}) {
-  return {...options, transform: select(max, "x", options)};
+export function selectMaxX(options) {
+  return select(max, "x", options);
 }
 
-export function selectMaxY(options = {}) {
-  return {...options, transform: select(max, "y", options)};
+export function selectMaxY(options) {
+  return select(max, "y", options);
 }
 
 function* first(I) {
@@ -41,13 +41,14 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selectIndex, key, {z, fill, stroke, ...options}) {
-  if (z === undefined) ([z] = maybeColor(fill));
-  if (z === undefined) ([z] = maybeColor(stroke));
-  return (data, facets) => {
+function select(selectIndex, key, options) {
+  return (data, facets, channels) => {
+    const {z, fill, stroke, [key]: v} = {...channels, ...options};
+    if (z === undefined) ([z] = maybeColor(fill));
+    if (z === undefined) ([z] = maybeColor(stroke));
     const I = range(data);
     const Z = valueof(data, z);
-    const V = key && valueof(data, options[key]);
+    const V = key && valueof(data, v);
     const index = [];
     const selection = [];
     let k = 0;
@@ -63,7 +64,8 @@ function select(selectIndex, key, {z, fill, stroke, ...options}) {
     }
     return {
       index: facets === undefined ? index[0] : index,
-      data: selection
+      data: selection,
+      channels: {z: Z, [key]: V}
     };
   };
 }

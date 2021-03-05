@@ -33,8 +33,20 @@ export class Mark {
     if (this.data !== undefined) {
       if (this.transform === identity) { // optimized common case
         data = this.data, index = facets !== undefined ? facets : range(data);
-      } else if (this.transform.length === 2) { // facet-aware transform
-        ({index, data} = this.transform(this.data, facets));
+      } else if (this.transform.length > 1) { // facet-aware transform
+        const channelMap = new Map(this.channels
+          .filter(channel => channel.name != null)
+          .map(channel => [channel.name, channel]));
+        let channels;
+        ({index, data, channels = {}} = this.transform(
+          this.data,
+          facets,
+          Object.fromEntries(Array.from(channelMap, ([name, channel]) => [name, channel.value]))
+        ));
+        for (const [name, value] of Object.entries(channels)) {
+          const channel = channelMap.get(name);
+          if (channel) channel.value = value;
+        }
         data = arrayify(data);
       } else if (facets !== undefined) { // basic transform, faceted
         // Apply the transform to each facet’s data separately; since the
