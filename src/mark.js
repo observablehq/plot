@@ -40,19 +40,22 @@ export class Mark {
     }
     return {
       index,
-      channels: this.channels.map(({name, scale, type, value}) => {
-        return [
-          name == null ? undefined : name + "",
-          {
-            scale,
-            type,
-            value: valueof(data, value),
-            label: value ? value.label : undefined
-          }
-        ];
+      channels: this.channels.map(channel => {
+        const {name} = channel;
+        return [name == null ? undefined : name + "", Channel(data, channel)];
       })
     };
   }
+}
+
+// TODO Type coercion?
+function Channel(data, {scale, type, value}) {
+  return {
+    scale,
+    type,
+    value: valueof(data, value),
+    label: value ? value.label : undefined
+  };
 }
 
 // This allows transforms to behave equivalently to channels.
