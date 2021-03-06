@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("ruleX() has the expected defaults", test => {
   const rule = Plot.ruleX();
   test.strictEqual(rule.data, undefined);
-  test.strictEqual(rule.transform("foo"), "foo");
+  test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["x"]);
   test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
   test.deepEqual(rule.channels.map(c => c.scale), ["x"]);
@@ -98,7 +98,7 @@ tape("ruleX(data, {x, y1, y2}) specifies x, y1, y2", test => {
 tape("ruleY() has the expected defaults", test => {
   const rule = Plot.ruleY();
   test.strictEqual(rule.data, undefined);
-  test.strictEqual(rule.transform("foo"), "foo");
+  test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["y"]);
   test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
   test.deepEqual(rule.channels.map(c => c.scale), ["y"]);

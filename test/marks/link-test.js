@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("link(data, options) has the expected defaults", test => {
   const link = Plot.link(undefined, {x1: "0", y1: "1", x2: "2", y2: "3"});
   test.strictEqual(link.data, undefined);
-  test.strictEqual(link.transform("foo"), "foo");
+  test.strictEqual(link.transform, undefined);
   test.deepEqual(link.channels.map(c => c.name), ["x1", "y1", "x2", "y2"]);
   test.deepEqual(link.channels.map(c => c.value.label), ["0", "1", "2", "3"]);
   test.deepEqual(link.channels.map(c => c.scale), ["x", "y", "x", "y"]);

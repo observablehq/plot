@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("barX() has the expected defaults", test => {
   const bar = Plot.barX();
   test.strictEqual(bar.data, undefined);
-  test.strictEqual(bar.transform("foo"), "foo");
+  test.strictEqual(bar.transform, undefined);
   test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2"]);
   test.deepEqual(bar.channels.map(c => c.value(1, 0)), [0, 1]);
   test.deepEqual(bar.channels.map(c => c.scale), ["x", "x"]);
@@ -98,7 +98,7 @@ tape("barX(data, {x, y}) defaults x1 to zero and x2 to x", test => {
 tape("barY() has the expected defaults", test => {
   const bar = Plot.barY();
   test.strictEqual(bar.data, undefined);
-  test.strictEqual(bar.transform("foo"), "foo");
+  test.strictEqual(bar.transform, undefined);
   test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2"]);
   test.deepEqual(bar.channels.map(c => c.value(1, 0)), [0, 1]);
   test.deepEqual(bar.channels.map(c => c.scale), ["y", "y"]);

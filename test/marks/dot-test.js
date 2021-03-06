@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("dot() has the expected defaults", test => {
   const dot = Plot.dot();
   test.strictEqual(dot.data, undefined);
-  test.strictEqual(dot.transform("foo"), "foo");
+  test.strictEqual(dot.transform, undefined);
   test.deepEqual(dot.channels.map(c => c.name), ["x", "y"]);
   test.deepEqual(dot.channels.map(c => c.value([1, 2])), [1, 2]);
   test.deepEqual(dot.channels.map(c => c.scale), ["x", "y"]);

@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("tickX() has the expected defaults", test => {
   const tick = Plot.tickX();
   test.strictEqual(tick.data, undefined);
-  test.strictEqual(tick.transform("foo"), "foo");
+  test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["x"]);
   test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
   test.deepEqual(tick.channels.map(c => c.scale), ["x"]);
@@ -63,7 +63,7 @@ tape("tickX(data, {stroke}) allows stroke to be a variable color", test => {
 tape("tickY() has the expected defaults", test => {
   const tick = Plot.tickY();
   test.strictEqual(tick.data, undefined);
-  test.strictEqual(tick.transform("foo"), "foo");
+  test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["y"]);
   test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
   test.deepEqual(tick.channels.map(c => c.scale), ["y"]);

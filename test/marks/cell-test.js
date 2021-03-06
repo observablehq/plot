@@ -4,7 +4,7 @@ import tape from "tape-await";
 tape("cell() has the expected defaults", test => {
   const cell = Plot.cell();
   test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform("foo"), "foo");
+  test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x", "y"]);
   test.deepEqual(cell.channels.map(c => c.value([1, 2])), [1, 2]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x", "y"]);
@@ -79,7 +79,7 @@ tape("cell(data, {stroke}) allows stroke to be a variable color", test => {
 tape("cellX() defaults x to identity and y to null", test => {
   const cell = Plot.cellX();
   test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform("foo"), "foo");
+  test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x"]);
   test.deepEqual(cell.channels.map(c => c.value("foo")), ["foo"]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x"]);
@@ -89,7 +89,7 @@ tape("cellX() defaults x to identity and y to null", test => {
 tape("cellY() defaults y to identity and x to null", test => {
   const cell = Plot.cellY();
   test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform("foo"), "foo");
+  test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["y"]);
   test.deepEqual(cell.channels.map(c => c.value("foo")), ["foo"]);
   test.deepEqual(cell.channels.map(c => c.scale), ["y"]);
