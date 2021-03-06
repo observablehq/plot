@@ -8,13 +8,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.areaY(data, {
-        transform: Plot.stackY(),
-        x: "date",
-        y: "unemployed",
-        fill: "industry",
-        title: "industry"
-      }),
+      Plot.stackAreaY(data, {x: "date", y: "unemployed", fill: "industry", title: "industry"}),
       Plot.ruleY([0])
     ]
   });

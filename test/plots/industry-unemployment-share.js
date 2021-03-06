@@ -9,11 +9,11 @@ export default async function() {
       tickFormat: "%"
     },
     marks: [
-      Plot.areaY(data, {
-        transform: Plot.stackY({offset: "expand"}),
+      Plot.stackAreaY(data, {
         x: "date",
         y: "unemployed",
         fill: "industry",
+        offset: "expand",
         title: "industry"
       }),
       Plot.ruleY([0])

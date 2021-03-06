@@ -8,12 +8,12 @@ export default async function() {
       axis: null
     },
     marks: [
-      Plot.areaY(data, {
-        transform: Plot.stackY({offset: "wiggle"}),
+      Plot.stackAreaY(data, {
         x: "date",
         y: "unemployed",
         fill: "industry",
-        title: "industry"
+        title: "industry",
+        offset: "wiggle"
       })
     ]
   });

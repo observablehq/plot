@@ -181,23 +181,6 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
-// If transform is an array (or other iterable), apply them serially.
-function transforms(transform) {
-  for (const t of transform) {
-    if (typeof t !== "function") {
-      throw new Error("invalid transform");
-    }
-  }
-  return (data, index, channels) => {
-    let change;
-    for (const t of transform) {
-      ({data, index, channels: change} = t(data, index, channels));
-      if (change !== undefined) channels = {...channels, ...change};
-    }
-    return {data, index, channels};
-  };
-}
-
 // Defines a channel whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned channel definition.
