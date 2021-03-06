@@ -8,7 +8,6 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 export class Mark {
   constructor(data, channels = [], transform) {
     if (transform == null) transform = undefined;
-    else if (typeof transform !== "function") transform = transforms(transform);
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
@@ -33,27 +32,17 @@ export class Mark {
   initialize(facets) {
     let data = this.data;
     let index = facets === undefined && data != null ? range(data) : facets;
-    let override = {};
     if (data !== undefined && this.transform !== undefined) {
       if (facets === undefined) index = index.length ? [index] : [];
-      ({index, data, channels: override = {}} = this.transform(
-        data,
-        index,
-        Object.fromEntries(this.channels
-          .filter(c => c.name != null)
-          .map(c => [c.name, c.value]))
-      ));
+      ({index, data} = this.transform(data, index));
       data = arrayify(data);
       if (facets === undefined && index.length) ([index] = index);
     }
     return {
       index,
-      channels: this.channels.map(channel => {
-        let {name, scale, type, value} = channel;
-        if (name == null) name = undefined;
-        else if ((name += "") in override) value = override[name];
+      channels: this.channels.map(({name, scale, type, value}) => {
         return [
-          name,
+          name == null ? undefined : name + "",
           {
             scale,
             type,
@@ -151,7 +140,7 @@ export function maybeSort(order) {
 
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
-export function maybeZ({z, fill, stroke}) {
+export function maybeZ({z, fill, stroke} = {}) {
   if (z === undefined) ([z] = maybeColor(fill));
   if (z === undefined) ([z] = maybeColor(stroke));
   return z;
@@ -203,5 +192,37 @@ function transforms(transform) {
       if (change !== undefined) channels = {...channels, ...change};
     }
     return {data, index, channels};
+  };
+}
+
+// Defines a channel whose values are lazily populated by calling the returned
+// setter. If the given source is labeled, the label is propagated to the
+// returned channel definition.
+export function lazyChannel(source) {
+  let value;
+  return [
+    {
+      transform: () => value,
+      label: typeof source === "string" ? source
+        : source ? source.label
+        : undefined
+    },
+    v => value = v
+  ];
+}
+
+// Like lazyChannel, but allows the source to be null.
+export function maybeLazyChannel(source) {
+  return source == null ? [] : lazyChannel(source);
+}
+
+// If both t1 and t2 are defined, returns a composite transform that first
+// applies t1 and then applies t2.
+export function maybeComposeTransform(t1, t2) {
+  if (t1 === undefined) return t2;
+  if (t2 === undefined) return t1;
+  return (data, index) => {
+    ({data, index} = t1(data, index));
+    return t2(arrayify(data), index);
   };
 }

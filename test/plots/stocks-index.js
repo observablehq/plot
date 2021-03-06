@@ -24,21 +24,19 @@ export default async function() {
     },
     marks: [
       Plot.ruleY([1]),
-      Plot.line(stocks, {
-        transform: Plot.normalizeY(),
+      Plot.line(stocks, Plot.normalizeY({
         x: "Date",
         y: "Close",
         stroke: "Symbol"
-      }),
-      Plot.text(stocks, {
-        transform: [Plot.normalizeY(), Plot.selectLast()],
+      })),
+      Plot.text(stocks, Plot.selectLast(Plot.normalizeY({
         x: "Date",
         y: "Close",
         z: "Symbol",
         text: d => d.Symbol.toUpperCase(),
         textAnchor: "start",
         dx: 3
-      })
+      })))
     ]
   });
 }

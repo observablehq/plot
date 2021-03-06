@@ -1,28 +1,28 @@
 import {greatest, group, least} from "d3-array";
-import {maybeZ, valueof} from "../mark.js";
+import {maybeComposeTransform, maybeZ, valueof} from "../mark.js";
 
-export function selectFirst() {
-  return select(first);
+export function selectFirst(options) {
+  return {...options, transform: select(options, first)};
 }
 
-export function selectLast() {
-  return select(last);
+export function selectLast(options) {
+  return {...options, transform: select(options, last)};
 }
 
-export function selectMinX() {
-  return select(min, "x");
+export function selectMinX({x, ...options} = {}) {
+  return {...options, x, transform: select(min, x)};
 }
 
-export function selectMinY() {
-  return select(min, "y");
+export function selectMinY({y, ...options} = {}) {
+  return {...options, y, transform: select(min, y)};
 }
 
-export function selectMaxX() {
-  return select(max, "x");
+export function selectMaxX({x, ...options} = {}) {
+  return {...options, x, transform: select(max, x)};
 }
 
-export function selectMaxY() {
-  return select(max, "y");
+export function selectMaxY({y, ...options} = {}) {
+  return {...options, y, transform: select(max, y)};
 }
 
 // TODO If the value (for some required channel) is undefined, scan forward?
@@ -43,10 +43,11 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selector, key) {
-  return (data, index, input) => {
-    const Z = valueof(data, maybeZ(input));
-    const V = key && valueof(data, input[key]);
+function select({transform, ...options} = {}, selector, v) {
+  const z = maybeZ(options);
+  return maybeComposeTransform(transform, (data, index) => {
+    const Z = valueof(data, z);
+    const V = valueof(data, v);
     const selectedIndex = [];
     for (const facet of index) {
       const selectedFacet = [];
@@ -57,10 +58,6 @@ function select(selector, key) {
       }
       selectedIndex.push(selectedFacet);
     }
-    return {
-      index: selectedIndex,
-      data,
-      channels: {z: Z, ...key && {[key]: V}}
-    };
-  };
+    return {data, index: selectedIndex};
+  });
 }
