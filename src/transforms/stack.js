@@ -1,79 +1,83 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, maybeZ, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeComposeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
 
-export function stackX(options) {
-  return stack(stackInX, (y, x1, x2) => ({y, x1, x2}), options);
+export function stackX({x, y, ...options} = {}) {
+  const [transform, Y, x1, x2] = stack(y, x, options);
+  return {...options, transform, y: Y, x1, x2};
 }
 
-export function stackX1(options) {
-  return stack(stackInX, (y, x1) => ({y, x: x1}), options);
+export function stackX1({x, y, ...options} = {}) {
+  const [transform, Y, X] = stack(y, x, options);
+  return {...options, transform, y: Y, x: X};
 }
 
-export function stackX2(options) {
-  return stack(stackInX, (y, x1, x2) => ({y, x: x2}), options);
+export function stackX2({x, y, ...options} = {}) {
+  const [transform, Y,, X] = stack(y, x, options);
+  return {...options, transform, y: Y, x: X};
 }
 
-export function stackXMid(options) {
-  return stack(stackInX, (y, x1, x2) => ({y, x: mid(x1, x2)}), options);
+export function stackXMid({x, y, ...options} = {}) {
+  const [transform, Y, X1, X2] = stack(y, x, options);
+  return {...options, transform, y: Y, x: mid(X1, X2)};
 }
 
-export function stackY(options) {
-  return stack(stackInY, (x, y1, y2) => ({x, y1, y2}), options);
+export function stackY({x, y, ...options} = {}) {
+  const [transform, X, y1, y2] = stack(x, y, options);
+  return {...options, transform, x: X, y1, y2};
 }
 
-export function stackY1(options) {
-  return stack(stackInY, (x, y1) => ({x, y: y1}), options);
+export function stackY1({x, y, ...options} = {}) {
+  const [transform, X, Y] = stack(x, y, options);
+  return {...options, transform, x: X, y: Y};
 }
 
-export function stackY2(options) {
-  return stack(stackInY, (x, y1, y2) => ({x, y: y2}), options);
+export function stackY2({x, y, ...options} = {}) {
+  const [transform, X,, Y] = stack(x, y, options);
+  return {...options, transform, x: X, y: Y};
 }
 
-export function stackYMid(options) {
-  return stack(stackInY, (x, y1, y2) => ({x, y: mid(y1, y2)}), options);
+export function stackYMid({x, y, ...options} = {}) {
+  const [transform, X, Y1, Y2] = stack(x, y, options);
+  return {...options, transform, x: X, y: mid(Y1, Y2)};
 }
 
-function stackInX({y1, y = y1, x2, x = x2}) {
-  return [y, x];
-}
-
-function stackInY({x1, x = x1, y2, y = y2}) {
-  return [x, y];
-}
-
-function stack(stackIn, stackOut, {offset, order, reverse} = {}) {
+function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
+  const z = maybeZ(options);
+  const [X, setX] = maybeLazyChannel(x);
+  const [Y1, setY1] = lazyChannel(y);
+  const [Y2, setY2] = lazyChannel(y);
   offset = maybeOffset(offset);
   order = order === undefined && offset === offsetWiggle ? orderInsideOut : maybeOrder(order, offset);
-  return (data, index, input) => {
-    const [x, y] = stackIn(input);
-    const X = valueof(data, x);
-    const Y = valueof(data, y, Float64Array);
-    const Z = valueof(data, maybeZ(input));
-    const O = order && order(data, X, Y, Z);
-    const n = data.length;
-    const Y1 = new Float64Array(n);
-    const Y2 = new Float64Array(n);
-    for (const facet of index) {
-      const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
-      if (O) applyOrder(stacks, O);
-      for (const stack of stacks) {
-        let yn = 0, yp = 0;
-        if (reverse) stack.reverse();
-        for (const i of stack) {
-          const y = Y[i];
-          if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
-          else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
-          else Y2[i] = Y1[i] = yp; // NaN or zero
+  return [
+    maybeComposeTransform(options, (data, index) => {
+      const X = x == null ? undefined : setX(valueof(data, x));
+      const Y = valueof(data, y, Float64Array);
+      const Z = valueof(data, z);
+      const O = order && order(data, X, Y, Z);
+      const n = data.length;
+      const Y1 = setY1(new Float64Array(n));
+      const Y2 = setY2(new Float64Array(n));
+      for (const facet of index) {
+        const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
+        if (O) applyOrder(stacks, O);
+        for (const stack of stacks) {
+          let yn = 0, yp = 0;
+          if (reverse) stack.reverse();
+          for (const i of stack) {
+            const y = Y[i];
+            if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
+            else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
+            else Y2[i] = Y1[i] = yp; // NaN or zero
+          }
         }
+        if (offset) offset(stacks, Y1, Y2, Z);
       }
-      if (offset) offset(stacks, Y1, Y2, Z);
-    }
-    return {
-      index,
-      data,
-      channels: stackOut(X, Y1, Y2)
-    };
-  };
+      return {data, index};
+    }),
+    X,
+    Y1,
+    Y2
+  ];
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
@@ -81,9 +85,9 @@ function stack(stackIn, stackOut, {offset, order, reverse} = {}) {
 // label (if any).
 function mid(x1, x2) {
   return {
-    transform() {
-      const X1 = x1.transform();
-      const X2 = x2.transform();
+    transform(data) {
+      const X1 = x1.transform(data);
+      const X2 = x2.transform(data);
       return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
     },
     label: x1.label
