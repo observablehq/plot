@@ -18,11 +18,10 @@ export function group({x, y, out, ...options} = {}) {
 }
 
 function group1(x = identity, {normalize, ...options} = {}) {
-  normalize = normalize === true ? 100 : +normalize;
-  const y = normalize ? normalizedLength2(normalize) : length2;
+  const [y, normalizeY] = maybeNormalizeLength2(normalize);
   return [
     maybeComposeTransform(options, (data, index) => {
-      if (normalize) y.normalize(data);
+      if (normalizeY) normalizeY(data);
       const X = valueof(data, x);
       return regroup(
         groups(range(data), i => X[i]).filter(defined1),
@@ -107,10 +106,11 @@ length2.label = length2.label = "Frequency";
 // (length2 above) as a proportion of the total number of elements in the data
 // scaled by k. If k is true, it is treated as 100 for percentages; otherwise,
 // it is typically 1.
-function normalizedLength2(k) {
+function maybeNormalizeLength2(normalize) {
+  const k = normalize === true ? 100 : +normalize;
+  if (!k) return [length2];
   let n; // set lazily by the transform
   const value = ([, {length}]) => length * k / n;
-  value.normalize = data => void (n = data.length);
   value.label = `Frequency${k === 100 ? " (%)" : ""}`;
-  return value;
+  return [value, ({length}) => void (n = length)];
 }
