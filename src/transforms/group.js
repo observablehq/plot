@@ -100,7 +100,7 @@ function length3([,, {length}]) {
   return length;
 }
 
-length2.label = length2.label = "Frequency";
+length2.label = length3.label = "Frequency";
 
 // Returns a channel definition that’s the number of elements in the given group
 // (length2 above) as a proportion of the total number of elements in the data
