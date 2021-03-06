@@ -1,5 +1,5 @@
 import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeComposeTransform} from "../mark.js";
+import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform} from "../mark.js";
 
 export function binX({x, ...options} = {}) {
   const [transform, y] = maybeNormalize(options, bin1(x, options));
@@ -162,7 +162,7 @@ function maybeNormalizeLength1(normalize) {
 function maybeNormalize({normalize, ...options} = {}, transform) {
   const [length, normalizeLength] = maybeNormalizeLength1(normalize);
   return [
-    maybeComposeTransform(options, normalizeLength
+    maybeTransform(options, normalizeLength
       ? (data, index) => (normalizeLength(data), transform(data, index))
       : transform),
     length

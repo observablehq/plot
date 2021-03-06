@@ -204,7 +204,7 @@ export function maybeLazyChannel(source) {
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
-export function maybeComposeTransform({transform: t1} = {}, t2) {
+export function maybeTransform({transform: t1} = {}, t2) {
   if (t1 === undefined) return t2;
   if (t2 === undefined) return t1;
   return (data, index) => {

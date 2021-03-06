@@ -1,5 +1,5 @@
 import {greatest, group, least} from "d3-array";
-import {maybeComposeTransform, maybeZ, valueof} from "../mark.js";
+import {maybeTransform, maybeZ, valueof} from "../mark.js";
 
 export function selectFirst(options) {
   return {...options, transform: select(first, undefined, options)};
@@ -45,7 +45,7 @@ function* max(I, X) {
 
 function select(selectIndex, v, options) {
   const z = maybeZ(options);
-  return maybeComposeTransform(options, (data, index) => {
+  return maybeTransform(options, (data, index) => {
     const Z = valueof(data, z);
     const V = valueof(data, v);
     const selectedIndex = [];

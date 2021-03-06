@@ -1,5 +1,5 @@
 import {group} from "d3-array";
-import {maybeLazyChannel, valueof, maybeZ, maybeComposeTransform} from "../mark.js";
+import {maybeLazyChannel, valueof, maybeZ, maybeTransform} from "../mark.js";
 
 export function movingAverageX({x, x1, x2, ...options} = {}) {
   const [transform, X, X1, X2] = movingAverage(x, x1, x2, options);
@@ -21,7 +21,7 @@ function movingAverage(y, y1, y2, {k, ...options}) {
   const [M1, setM1] = maybeLazyChannel(y1);
   const [M2, setM2] = maybeLazyChannel(y2);
   return [
-    maybeComposeTransform(options, (data, index) => {
+    maybeTransform(options, (data, index) => {
       const n = data.length;
       const Z = valueof(data, z);
       const Y = valueof(data, y, Float64Array);

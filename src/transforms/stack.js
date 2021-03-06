@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, lazyChannel, maybeComposeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
 
 export function stackX({x, y, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
@@ -49,7 +49,7 @@ function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
   offset = maybeOffset(offset);
   order = order === undefined && offset === offsetWiggle ? orderInsideOut : maybeOrder(order, offset);
   return [
-    maybeComposeTransform(options, (data, index) => {
+    maybeTransform(options, (data, index) => {
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);

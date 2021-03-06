@@ -1,5 +1,5 @@
 import {group} from "d3-array";
-import {maybeComposeTransform, maybeLazyChannel, maybeZ, valueof} from "../mark.js";
+import {maybeTransform, maybeLazyChannel, maybeZ, valueof} from "../mark.js";
 
 export function normalizeX({x, x1, x2, ...options} = {}) {
   const [transform, X, X1, X2] = normalize([x, x1, x2], options);
@@ -24,7 +24,7 @@ function normalize(inputs, options) {
   const z = maybeZ(options);
   const normal = normalChange; // TODO option
   return [
-    maybeComposeTransform(options, (data, index) => {
+    maybeTransform(options, (data, index) => {
       const n = data.length;
       const Z = valueof(data, z);
       for (const [source,, setTarget] of channels) {

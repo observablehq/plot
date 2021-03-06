@@ -1,6 +1,6 @@
 import {groups} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, range, offsetRange, maybeLabel, first, second, identity, maybeComposeTransform} from "../mark.js";
+import {valueof, range, offsetRange, maybeLabel, first, second, identity, maybeTransform} from "../mark.js";
 
 export function groupX({x, ...options} = {}) {
   const [transform, X, L] = group1(x, options);
@@ -20,7 +20,7 @@ export function group({x, y, out, ...options} = {}) {
 function group1(x = identity, {normalize, ...options} = {}) {
   const [y, normalizeY] = maybeNormalizeLength2(normalize);
   return [
-    maybeComposeTransform(options, (data, index) => {
+    maybeTransform(options, (data, index) => {
       if (normalizeY) normalizeY(data);
       const X = valueof(data, x);
       return regroup(
@@ -37,7 +37,7 @@ function group1(x = identity, {normalize, ...options} = {}) {
 
 function group2(x = first, y = second, options) {
   return [
-    maybeComposeTransform(options, (data, index) => {
+    maybeTransform(options, (data, index) => {
       const X = valueof(data, x);
       const Y = valueof(data, y);
       return regroup(
