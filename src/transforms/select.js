@@ -46,7 +46,7 @@ function* max(I, X) {
 function select(selector, key) {
   return (data, index, input) => {
     const Z = valueof(data, maybeZ(input));
-    const V = key && valueof(data, v);
+    const V = key && valueof(data, input[key]);
     const selectedIndex = [];
     for (const facet of index) {
       const selectedFacet = [];
