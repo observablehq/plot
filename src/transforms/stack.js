@@ -21,10 +21,10 @@ export function stackXMid({x, y, ...options} = {}) {
   return {...options, transform, y: Y, x: mid(X1, X2)};
 }
 
-// TODO Accept x1 as a fallback to x, to allow stacking bins?
-export function stackY({x, y, ...options} = {}) {
+// TODO extend x1 inheritance to other stack transforms
+export function stackY({x1, x = x1, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, options);
-  return {...options, transform, x: X, y1, y2};
+  return {...options, transform, x: X, x1, y1, y2};
 }
 
 export function stackY1({x, y, ...options} = {}) {

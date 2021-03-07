@@ -22,7 +22,6 @@ export function bin({x, y, out, ...options} = {}) {
 }
 
 // TODO normalize
-// TODO z inherits fill or stroke
 function bin1(x = identity, options = {}) {
   const {z, fill, stroke, domain, thresholds, cumulative} = options;
   const [vfill] = maybeColor(fill);
@@ -45,6 +44,7 @@ function bin1(x = identity, options = {}) {
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
+      const G = Z !== undefined ? Z : F !== undefined ? F : S;
       const BZ = setZ && setZ([]);
       const BF = setF && setF([]);
       const BS = setS && setS([]);
@@ -52,7 +52,7 @@ function bin1(x = identity, options = {}) {
       if (cumulative < 0) B.reverse();
       for (const facet of index) {
         const binFacet = [];
-        for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+        for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
           const set = new Set(I);
           let offset = 0;
           for (const b of B) {
