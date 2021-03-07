@@ -1,5 +1,5 @@
-import {bin as binner, cross, group, least} from "d3-array";
-import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform, lazyChannel, maybeLazyChannel, maybeColor} from "../mark.js";
+import {bin as binner, cross, group} from "d3-array";
+import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform, lazyChannel, maybeLazyChannel, maybeColor, take} from "../mark.js";
 
 export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
@@ -21,10 +21,7 @@ export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, insetLeft, insetTop, [out]: l};
 }
 
-// TODO the returned bins should be subsets of the input data, not indexes
-// TODO the returned bins should have x1 and x2 properties (not x0 and x1)
 // TODO materialize the aggregated title channel, if any, too
-// TODO cumulative should use concat to accumulate data
 // TODO normalize
 function bin1(x = identity, options = {}) {
   const {z, fill, stroke, domain, thresholds, cumulative} = options;
@@ -58,16 +55,17 @@ function bin1(x = identity, options = {}) {
         const binFacet = [];
         for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
           const set = new Set(I);
-          let offset = 0;
+          let f;
           for (const b of B) {
-            const f = b.filter(i => set.has(i));
+            const s = b.filter(i => set.has(i));
+            f = cumulative && f !== undefined ? f.concat(s) : s;
             const l = f.length;
             if (l > 0) {
               binFacet.push(k++);
-              binData.push(f);
+              binData.push(take(data, f));
               X1.push(b.x0);
               X2.push(b.x1);
-              Y.push(cumulative ? offset += l : l);
+              Y.push(l);
               if (Z) BZ.push(Z[f[0]]);
               if (F) BF.push(F[f[0]]);
               if (S) BS.push(S[f[0]]);
