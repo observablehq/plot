@@ -41,6 +41,7 @@ export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
+export {default as penguinMassSpecies} from "./penguin-mass-species.js";
 export {default as penguinMass} from "./penguin-mass.js";
 export {default as policeDeaths} from "./police-deaths.js";
 export {default as policeDeathsBar} from "./police-deaths-bar.js";

@@ -1,14 +1,14 @@
-import {bin as binner, cross} from "d3-array";
-import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform} from "../mark.js";
+import {bin as binner, cross, group, least} from "d3-array";
+import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform, lazyChannel, maybeLazyChannel, maybeColor} from "../mark.js";
 
 export function binX({x, ...options} = {}) {
-  const [transform, y] = maybeNormalize(options, bin1(x, options));
-  return {...options, transform, y, x1: maybeLabel(x0, x), x2: x1};
+  const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
+  return {...options, transform, y, x1, x2, z, fill, stroke};
 }
 
 export function binY({y, ...options} = {}) {
-  const [transform, x] = maybeNormalize(options, bin1(y, options));
-  return {...options, transform, x, y1: maybeLabel(x0, y), y2: x1};
+  const [transform, y1, y2, x, z, fill, stroke] = bin1(y, options);
+  return {...options, transform, x, y1, y2, z, fill, stroke};
 }
 
 export function binR({x, y, ...options} = {}) {
@@ -21,9 +21,66 @@ export function bin({x, y, out, ...options} = {}) {
   return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, [out]: l};
 }
 
-function bin1(value = identity, options = {}) {
-  const {domain, thresholds} = options;
-  return rebin(binof({value, domain, thresholds}), subset1, options);
+// TODO normalize
+// TODO z inherits fill or stroke
+function bin1(x = identity, options = {}) {
+  const {z, fill, stroke, domain, thresholds, cumulative} = options;
+  const [vfill] = maybeColor(fill);
+  const [vstroke] = maybeColor(stroke);
+  const bin = binof({value: x, domain, thresholds});
+  const [X1, setX1] = lazyChannel(x);
+  const [X2, setX2] = lazyChannel(x);
+  const [Y, setY] = lazyChannel(length1);
+  const [Z, setZ] = maybeLazyChannel(z);
+  const [F = fill, setF] = maybeLazyChannel(vfill);
+  const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  return [
+    maybeTransform(options, (data, index) => {
+      const B = bin(data);
+      const binIndex = [];
+      const binData = [];
+      const X1 = setX1([]);
+      const X2 = setX2([]);
+      const Y = setY([]);
+      const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
+      const BZ = setZ && setZ([]);
+      const BF = setF && setF([]);
+      const BS = setS && setS([]);
+      let k = 0;
+      if (cumulative < 0) B.reverse();
+      for (const facet of index) {
+        const binFacet = [];
+        for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+          const set = new Set(I);
+          let offset = 0;
+          for (const b of B) {
+            const f = b.filter(i => set.has(i));
+            const l = f.length;
+            if (l > 0) {
+              binFacet.push(k++);
+              binData.push(f);
+              X1.push(b.x0);
+              X2.push(b.x1);
+              Y.push(cumulative ? offset += l : l);
+              if (Z) BZ.push(Z[f[0]]);
+              if (F) BF.push(F[f[0]]);
+              if (S) BS.push(S[f[0]]);
+            }
+          }
+        }
+        binIndex.push(binFacet);
+      }
+      return {data: binData, index: binIndex};
+    }),
+    X1,
+    X2,
+    Y,
+    Z,
+    F,
+    S
+  ];
 }
 
 // Here x and y may each either be a standalone value (e.g., a string
