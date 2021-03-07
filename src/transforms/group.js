@@ -54,6 +54,7 @@ function group2(x = first, y = second, options) {
 }
 
 // When faceting, subdivides the given groups according to the facet indexes.
+// TODO Support a z channel for overlapping groups (that can then be stacked).
 function regroup(groups, index, subset, nonempty) {
   const groupIndex = [];
   const groupData = [];

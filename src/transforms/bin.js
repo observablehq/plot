@@ -21,26 +21,27 @@ export function bin({x, y, out, ...options} = {}) {
   return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, [out]: l};
 }
 
-function bin1(value = identity, {domain, thresholds, cumulative} = {}) {
-  const bin = binof({value, domain, thresholds});
-  return (data, index) => rebin(bin(data), index, subset1, cumulative);
+function bin1(value = identity, options = {}) {
+  const {domain, thresholds} = options;
+  return rebin(binof({value, domain, thresholds}), subset1, options);
 }
 
 // Here x and y may each either be a standalone value (e.g., a string
 // representing a field name, a function, an array), or the value and some
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
-function bin2(x, y, {domain, thresholds} = {}) {
+function bin2(x, y, options = {}) {
+  const {domain, thresholds} = options;
   const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
-  return (data, index) => rebin(
-    cross(
+  return rebin(
+    data => cross(
       binX(data).filter(nonempty),
       binY(data).filter(nonempty).map(binset2),
       (x, y) => y(x)
     ),
-    index,
-    subset2
+    subset2,
+    options
   );
 }
 
@@ -55,34 +56,38 @@ function binof({value, domain, thresholds}) {
 }
 
 // When faceting, subdivides the given bins according to the facet indexes.
-function rebin(bins, index, subset, cumulative) {
-  const binIndex = [];
-  const binData = [];
-  let k = 0;
-  for (const facet of index) {
-    let b = bins.map(subset(facet));
-    if (cumulative) b = accumulate(cumulative < 0 ? b.reverse() : b);
-    b = b.filter(nonempty);
-    binIndex.push(offsetRange(b, k));
-    k = binData.push(...b);
-  }
-  return {data: binData, index: binIndex};
+// TODO Support a z channel for overlapping bins (that can then be stacked).
+function rebin(bin, subset, {cumulative} = {}) {
+  return (data, index) => {
+    const B = bin(data);
+    const binIndex = [];
+    const binData = [];
+    let k = 0;
+    for (const facet of index) {
+      let b = B.map(subset(facet));
+      if (cumulative) b = accumulate(cumulative < 0 ? b.reverse() : b);
+      b = b.filter(nonempty);
+      binIndex.push(offsetRange(b, k));
+      k = binData.push(...b);
+    }
+    return {data: binData, index: binIndex};
+  };
 }
 
-function subset1(facet) {
-  const f = new Set(facet);
+function subset1(I) {
+  I = new Set(I);
   return bin => {
-    const subbin = bin.filter(i => f.has(i));
+    const subbin = bin.filter(i => I.has(i));
     subbin.x0 = bin.x0;
     subbin.x1 = bin.x1;
     return subbin;
   };
 }
 
-function subset2(facet) {
-  const f = new Set(facet);
+function subset2(I) {
+  I = new Set(I);
   return bin => {
-    const subbin = bin.filter(i => f.has(i));
+    const subbin = bin.filter(i => I.has(i));
     subbin.x0 = bin.x0;
     subbin.x1 = bin.x1;
     subbin.y0 = bin.y0;
