@@ -36,15 +36,8 @@ function bin2(x, y, {domain, thresholds} = {}) {
   return (data, index) => rebin(
     cross(
       binX(data).filter(nonempty),
-      binY(data).filter(nonempty).map(binset),
-      (x, y) => {
-        const subbin = x.filter(i => y.has(i));
-        subbin.x0 = x.x0;
-        subbin.x1 = x.x1;
-        subbin.y0 = y.x0;
-        subbin.y1 = y.x1;
-        return subbin;
-      }
+      binY(data).filter(nonempty).map(binset2),
+      (x, y) => y(x)
     ),
     index,
     subset2
@@ -76,13 +69,6 @@ function rebin(bins, index, subset, cumulative) {
   return {data: binData, index: binIndex};
 }
 
-function binset(bin) {
-  const set = new Set(bin);
-  set.x0 = bin.x0;
-  set.x1 = bin.x1;
-  return set;
-}
-
 function subset1(facet) {
   const f = new Set(facet);
   return bin => {
@@ -101,6 +87,19 @@ function subset2(facet) {
     subbin.x1 = bin.x1;
     subbin.y0 = bin.y0;
     subbin.y1 = bin.y1;
+    return subbin;
+  };
+}
+
+function binset2(biny) {
+  const y = new Set(biny);
+  const {x0: y0, x1: y1} = biny;
+  return binx => {
+    const subbin = binx.filter(i => y.has(i));
+    subbin.x0 = binx.x0;
+    subbin.x1 = binx.x1;
+    subbin.y0 = y0;
+    subbin.y1 = y1;
     return subbin;
   };
 }
