@@ -6,7 +6,7 @@ export default async function() {
   
   return Plot.plot({
     marks: [
-      Plot.rect(data, Plot.stackX({...Plot.binY({
+      Plot.rect(data, Plot.stackX(Plot.binY({
         thresholds: 30,
         y: "body_mass_g",
         z: "species",
@@ -15,9 +15,7 @@ export default async function() {
         fill: "species",
         fillOpacity: .5,
         stroke: "black"
-      }),
-      y: "x0"
-    }))
+      })))
     ]
   });
 }

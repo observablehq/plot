@@ -3,12 +3,12 @@ import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeT
 
 export function binX({x, ...options} = {}) {
   const [transform, y] = maybeNormalize(options, bin1(x, options));
-  return {...options, transform, y, x1: maybeLabel(x0, x), x2: x1};
+  return {...options, transform, y, x1: maybeLabel(x0, x), x2: x1, x: x0};
 }
 
 export function binY({y, ...options} = {}) {
   const [transform, x] = maybeNormalize(options, bin1(y, options));
-  return {...options, transform, x, y1: maybeLabel(x0, y), y2: x1};
+  return {...options, transform, x, y1: maybeLabel(x0, y), y2: x1, y: x0};
 }
 
 export function binR({x, y, ...options} = {}) {
