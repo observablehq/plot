@@ -37,7 +37,9 @@ export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js"
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
 export {default as musicRevenue} from "./music-revenue.js";
+export {default as penguinBin2Z} from "./penguin-bin2z.js";
 export {default as penguinBinStack} from "./penguin-binstack.js";
+export {default as penguinBinStackYX} from "./penguin-binstackYX.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";

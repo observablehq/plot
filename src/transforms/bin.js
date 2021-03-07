@@ -60,7 +60,7 @@ function binof({value, domain, thresholds, z}) {
           newbins.push(Object.assign(
             I,
             { a: data[I[0]] }, // or a reducer?
-            { z, x0: b.x0, x1: b.x1, y0: b.y0, y1: b.y1 },
+            { z, x0: b.x0, x1: b.x1 },
             I
           ));
         }
@@ -72,7 +72,6 @@ function binof({value, domain, thresholds, z}) {
 }
 
 // When faceting, subdivides the given bins according to the facet indexes.
-// TODO Support a z channel for overlapping bins (that can then be stacked).
 function rebin(bin, subset, {cumulative} = {}) {
   return (data, index) => {
     const B = bin(data);
@@ -102,11 +101,7 @@ function subset2(I) {
   I = new Set(I);
   return bin => {
     const subbin = bin.filter(i => I.has(i));
-    subbin.x0 = bin.x0;
-    subbin.x1 = bin.x1;
-    subbin.y0 = bin.y0;
-    subbin.y1 = bin.y1;
-    return subbin;
+    return Object.assign([], bin.a, {z: bin.z, x0: bin.x0, x1: bin.x1, y0: bin.y0, y1: bin.y1}, subbin);
   };
 }
 
@@ -115,11 +110,7 @@ function binset2(biny) {
   const {x0: y0, x1: y1} = biny;
   return binx => {
     const subbin = binx.filter(i => y.has(i));
-    subbin.x0 = binx.x0;
-    subbin.x1 = binx.x1;
-    subbin.y0 = y0;
-    subbin.y1 = y1;
-    return subbin;
+    return Object.assign([], binx.a, {z: binx.z, x0: binx.x0, x1: binx.x1, y0, y1}, subbin);
   };
 }
 
