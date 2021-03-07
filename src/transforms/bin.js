@@ -21,6 +21,10 @@ export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, insetLeft, insetTop, [out]: l};
 }
 
+// TODO the returned bins should be subsets of the input data, not indexes
+// TODO the returned bins should have x1 and x2 properties (not x0 and x1)
+// TODO materialize the aggregated title channel, if any, too
+// TODO cumulative should use concat to accumulate data
 // TODO normalize
 function bin1(x = identity, options = {}) {
   const {z, fill, stroke, domain, thresholds, cumulative} = options;
