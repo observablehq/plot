@@ -1,8 +1,7 @@
 import {ascending} from "d3-array";
 import {create} from "d3-selection";
-import {zero} from "../mark.js";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, title} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Rect extends Mark {
@@ -84,10 +83,12 @@ export function rect(data, options) {
   return new Rect(data, options);
 }
 
-export function rectX(data, {x, y1, y2, ...options} = {}) {
-  return new Rect(data, {...options, x1: zero, x2: x, y1, y2});
+export function rectX(data, {x, x1, x2, y1, y2, ...options} = {}) {
+  ([x1, x2] = maybeZero(x, x1, x2));
+  return new Rect(data, {...options, x1, x2, y1, y2});
 }
 
-export function rectY(data, {x1, x2, y, ...options} = {}) {
-  return new Rect(data, {...options, x1, x2, y1: zero, y2: y});
+export function rectY(data, {x1, x2, y, y1, y2, ...options} = {}) {
+  ([y1, y2] = maybeZero(y, y1, y2));
+  return new Rect(data, {...options, x1, x2, y1, y2});
 }
