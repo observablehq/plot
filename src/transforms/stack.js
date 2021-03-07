@@ -1,45 +1,44 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
 import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
 
-export function stackX({x, y, ...options} = {}) {
+export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
-  return {...options, transform, y: Y, x1, x2};
+  return {...options, transform, y1, y: Y, x1, x2};
 }
 
-export function stackX1({x, y, ...options} = {}) {
+export function stackX1({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackX2({x, y, ...options} = {}) {
+export function stackX2({y1, y = y1, x, ...options} = {}) {
   const [transform, Y,, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackXMid({x, y, ...options} = {}) {
+export function stackXMid({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X1, X2] = stack(y, x, options);
-  return {...options, transform, y: Y, x: mid(X1, X2)};
+  return {...options, transform, y1, y: Y, x: mid(X1, X2)};
 }
 
-// TODO extend x1 inheritance to other stack transforms
 export function stackY({x1, x = x1, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, options);
-  return {...options, transform, x: X, x1, y1, y2};
+  return {...options, transform, x1, x: X, y1, y2};
 }
 
-export function stackY1({x, y, ...options} = {}) {
+export function stackY1({x1 = x, x, y, ...options} = {}) {
   const [transform, X, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackY2({x, y, ...options} = {}) {
+export function stackY2({x1 = x, x, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackYMid({x, y, ...options} = {}) {
+export function stackYMid({x1 = x, x, y, ...options} = {}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
-  return {...options, transform, x: X, y: mid(Y1, Y2)};
+  return {...options, transform, x1, x: X, y: mid(Y1, Y2)};
 }
 
 function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
