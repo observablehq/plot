@@ -1,4 +1,4 @@
-import {bin as binner, cross} from "d3-array";
+import {bin as binner, cross, group} from "d3-array";
 import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform} from "../mark.js";
 
 export function binX({x, ...options} = {}) {
@@ -22,8 +22,8 @@ export function bin({x, y, out, ...options} = {}) {
 }
 
 function bin1(value = identity, options = {}) {
-  const {domain, thresholds} = options;
-  return rebin(binof({value, domain, thresholds}), subset1, options);
+  const {domain, thresholds, z} = options;
+  return rebin(binof({value, domain, thresholds, z}), subset1, options);
 }
 
 // Here x and y may each either be a standalone value (e.g., a string
@@ -31,9 +31,9 @@ function bin1(value = identity, options = {}) {
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
 function bin2(x, y, options = {}) {
-  const {domain, thresholds} = options;
-  const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
-  const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
+  const {domain, thresholds, z} = options;
+  const binX = binof({domain, thresholds, value: first, ...maybeValue(x), z});
+  const binY = binof({domain, thresholds, value: second, ...maybeValue(y), z});
   return rebin(
     data => cross(
       binX(data).filter(nonempty),
@@ -45,13 +45,29 @@ function bin2(x, y, options = {}) {
   );
 }
 
-function binof({value, domain, thresholds}) {
+function binof({value, domain, thresholds, z}) {
   return data => {
     const values = valueof(data, value);
     const bin = binner().value(i => values[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    return bin(range(data));
+    let bins = bin(range(data));
+    if (z) {
+      const Z = valueof(data, z);
+      const newbins = [];
+      for (const b of bins) {
+        for (const [z, I] of group(b, i => Z[i])) {
+          newbins.push(Object.assign(
+            I,
+            { a: data[I[0]] }, // or a reducer?
+            { z, x0: b.x0, x1: b.x1, y0: b.y0, y1: b.y1 },
+            I
+          ));
+        }
+      }
+      bins = newbins;
+    }
+    return bins;
   };
 }
 
@@ -78,9 +94,7 @@ function subset1(I) {
   I = new Set(I);
   return bin => {
     const subbin = bin.filter(i => I.has(i));
-    subbin.x0 = bin.x0;
-    subbin.x1 = bin.x1;
-    return subbin;
+    return Object.assign([], bin.a, {z: bin.z, x0: bin.x0, x1: bin.x1}, subbin);
   };
 }
 
