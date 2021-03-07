@@ -1,14 +1,14 @@
 import {bin as binner, cross, group, least} from "d3-array";
 import {valueof, first, second, range, offsetRange, identity, maybeLabel, maybeTransform, lazyChannel, maybeLazyChannel, maybeColor} from "../mark.js";
 
-export function binX({x, ...options} = {}) {
+export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
-  return {...options, transform, y, x1, x2, z, fill, stroke};
+  return {...options, transform, y, x1, x2, z, fill, stroke, insetLeft};
 }
 
-export function binY({y, ...options} = {}) {
+export function binY({y, insetTop = 1, ...options} = {}) {
   const [transform, y1, y2, x, z, fill, stroke] = bin1(y, options);
-  return {...options, transform, x, y1, y2, z, fill, stroke};
+  return {...options, transform, x, y1, y2, z, fill, stroke, insetTop};
 }
 
 export function binR({x, y, ...options} = {}) {
@@ -16,9 +16,9 @@ export function binR({x, y, ...options} = {}) {
   return {...options, transform, x: maybeLabel(xMid, x), y: maybeLabel(yMid, y), r};
 }
 
-export function bin({x, y, out, ...options} = {}) {
+export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   const [transform, l] = maybeNormalize(options, bin2(x, y, options));
-  return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, [out]: l};
+  return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, insetLeft, insetTop, [out]: l};
 }
 
 // TODO normalize
