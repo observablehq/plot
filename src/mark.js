@@ -4,6 +4,7 @@ import {nonempty} from "./defined.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
+const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], transform) {
@@ -219,4 +220,9 @@ export function mid(x1, x2) {
     },
     label: x1.label
   };
+}
+
+// This distinguishes between per-dimension options and a standalone value.
+export function maybeValue(value) {
+  return typeof value === "undefined" || (value && value.toString === objectToString) ? value : {value};
 }

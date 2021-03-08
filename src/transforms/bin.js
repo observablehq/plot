@@ -1,5 +1,5 @@
 import {bin as binner, cross, group} from "d3-array";
-import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, mid, take} from "../mark.js";
+import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take} from "../mark.js";
 
 export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
@@ -21,10 +21,10 @@ export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   return {...options, transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
-function bin1(x = identity, options = {}) {
+function bin1(x, options = {}) {
   const {z, fill, stroke, domain, thresholds, normalize, cumulative} = options;
   const k = normalize === true ? 100 : +normalize;
-  const bin = binof({value: x, domain, thresholds});
+  const bin = binof(identity, {value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
   const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
@@ -92,8 +92,8 @@ function bin1(x = identity, options = {}) {
 function bin2(x, y, options = {}) {
   const {z, fill, stroke, domain, thresholds, normalize} = options;
   const k = normalize === true ? 100 : +normalize;
-  const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
-  const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
+  const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
+  const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
   const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x));
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
@@ -160,7 +160,7 @@ function bin2(x, y, options = {}) {
   ];
 }
 
-function binof({value, domain, thresholds}) {
+function binof(defaultValue, {value = defaultValue, domain, thresholds}) {
   return data => {
     const values = valueof(data, value);
     const bin = binner().value(i => values[i]);
@@ -192,8 +192,3 @@ function length1({length}) {
 }
 
 length1.label = "Frequency";
-
-// This distinguishes between per-dimension options and a standalone value.
-function maybeValue(value) {
-  return typeof value === "object" && value && "value" in value ? value : {value};
-}

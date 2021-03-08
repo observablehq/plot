@@ -1,6 +1,6 @@
-import {group as grouper, sort} from "d3-array";
+import {group as grouper, sort, InternSet} from "d3-array";
 import {defined} from "../defined.js";
-import {valueof, maybeColor, maybeTransform, maybeLazyChannel, lazyChannel, first, second, identity, take} from "../mark.js";
+import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, second, identity, take} from "../mark.js";
 
 export function groupX({x, ...options} = {}) {
   const [transform, X, y, z, fill, stroke] = group1(x, options);
@@ -18,7 +18,7 @@ export function group({x, y, out, ...options} = {}) {
 }
 
 function group1(x = identity, options = {}) {
-  const {z, fill, stroke, normalize} = options;
+  const {z, fill, stroke, domain, normalize} = options;
   const k = normalize === true ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
@@ -27,6 +27,7 @@ function group1(x = identity, options = {}) {
   const [vstroke] = maybeColor(stroke);
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const defined = maybeDomain(domain);
   return [
     maybeTransform(options, (data, index) => {
       const X = valueof(data, x);
@@ -70,8 +71,10 @@ function group1(x = identity, options = {}) {
   ];
 }
 
-function group2(x = first, y = second, options) {
-  const {z, fill, stroke, normalize} = options;
+function group2(xv, yv, options) {
+  const {z, fill, stroke, domain, normalize} = options;
+  const {value: x = first, domain: xdomain} = {domain, ...maybeValue(xv)};
+  const {value: y = second, domain: ydomain} = {domain, ...maybeValue(yv)};
   const k = normalize === true ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(y);
@@ -81,6 +84,8 @@ function group2(x = first, y = second, options) {
   const [vstroke] = maybeColor(stroke);
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const xdefined = maybeDomain(xdomain);
+  const ydefined = maybeDomain(ydomain);
   return [
     maybeTransform(options, (data, index) => {
       const X = valueof(data, x);
@@ -103,9 +108,9 @@ function group2(x = first, y = second, options) {
         const groupFacet = [];
         for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
           for (const [y, fy] of sort(grouper(I, i => Y[i]), first)) {
-            if (!defined(y)) continue;
+            if (!ydefined(y)) continue;
             for (const [x, f] of sort(grouper(fy, i => X[i]), first)) {
-              if (!defined(x)) continue;
+              if (!xdefined(x)) continue;
               const l = f.length;
               groupFacet.push(i++);
               groupData.push(take(data, f));
@@ -129,4 +134,11 @@ function group2(x = first, y = second, options) {
     F,
     S
   ];
+}
+
+function maybeDomain(domain) {
+  if (domain === undefined) return defined;
+  if (domain === null) return () => false;
+  domain = new InternSet(domain);
+  return value => domain.has(value);
 }
