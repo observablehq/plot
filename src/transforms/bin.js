@@ -17,7 +17,7 @@ export function binR({x, y, ...options} = {}) {
 }
 
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
-  const[transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
+  const [transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
   return {...options, transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
