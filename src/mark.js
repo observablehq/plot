@@ -170,12 +170,6 @@ export function range(data) {
   return Uint32Array.from(data, indexOf);
 }
 
-// Returns a Uint32Array with elements [k, k + 1, … k + data.length - 1].
-export function offsetRange(data, k) {
-  k = Math.floor(k);
-  return Uint32Array.from(data, (_, i) => i + k);
-}
-
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
   return Array.from(index, i => values[i]);
