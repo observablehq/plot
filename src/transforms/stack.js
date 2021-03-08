@@ -26,17 +26,17 @@ export function stackY({x1, x = x1, y, ...options} = {}) {
   return {...options, transform, x1, x: X, y1, y2};
 }
 
-export function stackY1({x1 = x, x, y, ...options} = {}) {
+export function stackY1({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y] = stack(x, y, options);
   return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackY2({x1 = x, x, y, ...options} = {}) {
+export function stackY2({x1, x = x1, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, options);
   return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackYMid({x1 = x, x, y, ...options} = {}) {
+export function stackYMid({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
   return {...options, transform, x1, x: X, y: mid(Y1, Y2)};
 }
