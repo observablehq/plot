@@ -1,5 +1,5 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
@@ -78,20 +78,6 @@ function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
     Y1,
     Y2
   ];
-}
-
-// Assuming that both x1 and x2 and lazy channels (per above), this derives a
-// new a channel that’s the average of the two, and which inherits the channel
-// label (if any).
-function mid(x1, x2) {
-  return {
-    transform(data) {
-      const X1 = x1.transform(data);
-      const X2 = x2.transform(data);
-      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
-    },
-    label: x1.label
-  };
 }
 
 function maybeOffset(offset) {

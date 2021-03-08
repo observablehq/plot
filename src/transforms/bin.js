@@ -1,5 +1,5 @@
 import {bin as binner, cross, group} from "d3-array";
-import {valueof, first, second, range, identity, maybeLabel, maybeTransform, lazyChannel, maybeLazyChannel, maybeColor, take} from "../mark.js";
+import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, mid, take} from "../mark.js";
 
 export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
@@ -12,13 +12,13 @@ export function binY({y, insetTop = 1, ...options} = {}) {
 }
 
 export function binR({x, y, ...options} = {}) {
-  const {transform, xMid, yMid, L: r, Z: z, F: fill, S: stroke} = bin2(x, y, options);
-  return {...options, transform, x: xMid, y: yMid, r, z, fill, stroke};
+  const [transform, x1, x2, y1, y2, r, z, fill, stroke] = bin2(x, y, options);
+  return {...options, transform, x: mid(x1, x2), y: mid(y1, y2), r, z, fill, stroke};
 }
 
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
-  const {transform, L: l, Z: z, F: fill, S: stroke, X1, X2, Y1, Y2} = bin2(x, y, options);
-  return {...options, transform, x1: X1, x2: X2, y1: Y1, y2: Y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
+  const[transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
+  return {...options, transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
 function bin1(x = identity, options = {}) {
@@ -90,15 +90,11 @@ function bin1(x = identity, options = {}) {
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
 function bin2(x, y, options = {}) {
-  const {z, fill, stroke, domain, thresholds, thresholds_x = thresholds, thresholds_y = thresholds, normalize} = options;
+  const {z, fill, stroke, domain, thresholds, normalize} = options;
   const k = normalize === true ? 100 : +normalize;
-  const binX = binof({domain, thresholds: thresholds_x, value: first, ...maybeValue(x)});
-  const binY = binof({domain, thresholds: thresholds_y, value: second, ...maybeValue(y)});
-  const bin = data => cross(
-    binX(data).filter(nonempty),
-    binY(data).filter(nonempty).map(binset2),
-    (x, y) => y(x)
-  );
+  const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
+  const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
+  const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x)); // TODO
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
@@ -109,9 +105,8 @@ function bin2(x, y, options = {}) {
   const [vstroke] = maybeColor(stroke);
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
-
-  return {
-    transform: maybeTransform(options, (data, index) => {
+  return [
+    maybeTransform(options, (data, index) => {
       const B = bin(data);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
@@ -158,27 +153,11 @@ function bin2(x, y, options = {}) {
     X2,
     Y1,
     Y2,
-    xMid: {
-      transform: () => {
-        const XX1 = X1.transform();
-        const XX2 = X2.transform();
-        return Array.from(XX1, (x1, i) => (x1 + XX2[i]) / 2);
-      },
-      label: maybeLabel(x, x).label
-    },
-    yMid: {
-      transform: () => {
-        const YY1 = Y1.transform();
-        const YY2 = Y2.transform();
-        return Array.from(YY1, (y1, i) => (y1 + YY2[i]) / 2);
-      },
-      label: maybeLabel(y, y).label
-    },
     L,
     Z,
     F,
     S
-  };
+  ];
 }
 
 function binof({value, domain, thresholds}) {
