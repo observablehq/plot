@@ -44,7 +44,7 @@ function bin1(x = identity, options = {}) {
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = Z !== undefined ? Z : F !== undefined ? F : S;
+      const G = Z || F || S;
       const BZ = Z && setZ([]);
       const BF = F && setF([]);
       const BS = S && setS([]);
