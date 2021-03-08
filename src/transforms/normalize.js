@@ -2,12 +2,12 @@ import {group} from "d3-array";
 import {maybeTransform, maybeLazyChannel, maybeZ, valueof} from "../mark.js";
 
 export function normalizeX({x, x1, x2, ...options} = {}) {
-  const [transform, X, X1, X2] = normalize([x, x1, x2], options);
+  const [transform, X, X1, X2] = normalize(options, x, x1, x2);
   return {...options, transform, x: X, x1: X1, x2: X2};
 }
 
 export function normalizeY({y, y1, y2, ...options} = {}) {
-  const [transform, Y, Y1, Y2] = normalize([y, y1, y2], options);
+  const [transform, Y, Y1, Y2] = normalize(options, y, y1, y2);
   return {...options, transform, y: Y, y1: Y1, y2: Y2};
 }
 
@@ -19,7 +19,7 @@ function normalChange(I, S, T) {
   }
 }
 
-function normalize(inputs, options) {
+function normalize(options, ...inputs) {
   const channels = inputs.map(i => [i, ...maybeLazyChannel(i)]);
   const z = maybeZ(options);
   const normal = normalChange; // TODO option
@@ -27,10 +27,10 @@ function normalize(inputs, options) {
     maybeTransform(options, (data, index) => {
       const n = data.length;
       const Z = valueof(data, z);
-      for (const [source,, setTarget] of channels) {
-        if (source == null) continue;
-        const S = valueof(data, source, Float64Array);
-        const T = setTarget(new Float64Array(n));
+      for (const [s,, setT] of channels) {
+        if (s == null) continue;
+        const S = valueof(data, s, Float64Array);
+        const T = setT(new Float64Array(n).fill());
         for (const facet of index) {
           for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
             normal(I, S, T);
@@ -39,6 +39,6 @@ function normalize(inputs, options) {
       }
       return {data, index};
     }),
-    ...channels.map(([, target]) => target)
+    ...channels.map(([, T]) => T)
   ];
 }
