@@ -10,6 +10,9 @@ export default async function() {
       x: "sex"
     },
     inset: 10,
+    grid: true,
+    x: { ticks: 10, tickFormat: "~s" },
+    y: { ticks: 10 },
     marks: [
       Plot.frame(),
       Plot.dot(data, Plot.binR({
