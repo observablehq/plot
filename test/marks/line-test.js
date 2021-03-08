@@ -5,7 +5,7 @@ import tape from "tape-await";
 tape("line() has the expected defaults", test => {
   const line = Plot.line();
   test.strictEqual(line.data, undefined);
-  test.strictEqual(line.transform("foo"), "foo");
+  test.strictEqual(line.transform, undefined);
   test.deepEqual(line.channels.map(c => c.name), ["x", "y"]);
   test.deepEqual(line.channels.map(c => c.value([1, 2])), [1, 2]);
   test.deepEqual(line.channels.map(c => c.scale), ["x", "y"]);

@@ -1,79 +1,70 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, lazyChannel, maybeColor, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
-export function stackX({x, y, ...options} = {}) {
+export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
-  return {...options, transform, y: Y, x1, x2};
+  return {...options, transform, y1, y: Y, x1, x2};
 }
 
-export function stackX1({x, y, ...options} = {}) {
+export function stackX1({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackX2({x, y, ...options} = {}) {
+export function stackX2({y1, y = y1, x, ...options} = {}) {
   const [transform, Y,, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackXMid({x, y, ...options} = {}) {
+export function stackXMid({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X1, X2] = stack(y, x, options);
-  return {...options, transform, y: Y, x: mid(X1, X2)};
+  return {...options, transform, y1, y: Y, x: mid(X1, X2)};
 }
 
-export function stackY({x, y, ...options} = {}) {
+export function stackY({x1, x = x1, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, options);
-  return {...options, transform, x: X, y1, y2};
+  return {...options, transform, x1, x: X, y1, y2};
 }
 
-export function stackY1({x, y, ...options} = {}) {
+export function stackY1({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackY2({x, y, ...options} = {}) {
+export function stackY2({x1, x = x1, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackYMid({x, y, ...options} = {}) {
+export function stackYMid({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
-  return {...options, transform, x: X, y: mid(Y1, Y2)};
+  return {...options, transform, x1, x: X, y: mid(Y1, Y2)};
 }
 
-function stack(x, y = () => 1, {
-  z,
-  fill,
-  stroke,
-  offset,
-  order,
-  reverse
-}) {
-  if (z === undefined) ([z] = maybeColor(fill));
-  if (z === undefined) ([z] = maybeColor(stroke));
-  const [X, setX] = lazyChannel(x);
+function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
+  const z = maybeZ(options);
+  const [X, setX] = maybeLazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
   offset = maybeOffset(offset);
   order = order === undefined && offset === offsetWiggle ? orderInsideOut : maybeOrder(order, offset);
   return [
-    (data, facets) => {
-      const I = range(data);
-      const X = x == null ? [] : setX(valueof(data, x));
-      const Y = valueof(data, y);
+    maybeTransform(options, (data, index) => {
+      const X = x == null ? undefined : setX(valueof(data, x));
+      const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
-      const O = order && order(data, I, X, Y, Z);
+      const O = order && order(data, X, Y, Z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
-      for (const index of facets === undefined ? [I] : facets) {
-        const stacks = Array.from(group(index, i => X[i]).values());
+      for (const facet of index) {
+        const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0, yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
-            const y = +Y[i];
+            const y = Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
             else Y2[i] = Y1[i] = yp; // NaN or zero
@@ -81,26 +72,12 @@ function stack(x, y = () => 1, {
         }
         if (offset) offset(stacks, Y1, Y2, Z);
       }
-      return {index: facets === undefined ? I : facets, data};
-    },
-    x == null ? x : X,
+      return {data, index};
+    }),
+    X,
     Y1,
     Y2
   ];
-}
-
-// Assuming that both x1 and x2 and lazy channels (per above), this derives a
-// new a channel that’s the average of the two, and which inherits the channel
-// label (if any).
-function mid(x1, x2) {
-  return {
-    transform() {
-      const X1 = x1.transform();
-      const X2 = x2.transform();
-      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
-    },
-    label: x1.label
-  };
 }
 
 function maybeOffset(offset) {
@@ -187,23 +164,24 @@ function maybeOrder(order) {
 }
 
 // by sum of value (a.k.a. “ascending”)
-function orderSum(data, I, X, Y, Z) {
-  return orderZ(Z, groupSort(I, I => sum(I, i => Y[i]), i => Z[i]));
+function orderSum(data, X, Y, Z) {
+  return orderZ(Z, groupSort(range(data), I => sum(I, i => Y[i]), i => Z[i]));
 }
 
 // by value
-function orderY(data, I, X, Y) {
+function orderY(data, X, Y) {
   return Y;
 }
 
 // by x = argmax of value
-function orderAppearance(data, I, X, Y, Z) {
-  return orderZ(Z, groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]));
+function orderAppearance(data, X, Y, Z) {
+  return orderZ(Z, groupSort(range(data), I => X[greatest(I, i => Y[i])], i => Z[i]));
 }
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
-function orderInsideOut(data, I, X, Y, Z) {
+function orderInsideOut(data, X, Y, Z) {
+  const I = range(data);
   const K = groupSort(I, I => X[greatest(I, i => Y[i])], i => Z[i]);
   const sums = rollup(I, I => sum(I, i => Y[i]), i => Z[i]);
   const Kp = [], Kn = [];
@@ -225,7 +203,7 @@ function orderFunction(f) {
 }
 
 function orderZDomain(domain) {
-  return (data, I, X, Y, Z) => orderZ(Z, domain);
+  return (data, X, Y, Z) => orderZ(Z, domain);
 }
 
 // Given an explicit ordering of distinct values in z, returns a parallel column

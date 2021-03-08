@@ -5,7 +5,7 @@ import tape from "tape-await";
 tape("area(data, options) has the expected defaults", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1"});
   test.strictEqual(area.data, undefined);
-  test.strictEqual(area.transform("foo"), "foo");
+  test.strictEqual(area.transform, undefined);
   test.deepEqual(area.channels.map(c => c.name), ["x1", "y1"]);
   test.deepEqual(area.channels.map(c => c.value.label), ["0", "1"]);
   test.deepEqual(area.channels.map(c => c.scale), ["x", "y"]);

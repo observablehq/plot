@@ -4,9 +4,11 @@ import {nonempty} from "./defined.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
+const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], transform = identity) {
+  constructor(data, channels = [], transform) {
+    if (transform == null) transform = undefined;
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;
@@ -29,44 +31,13 @@ export class Mark {
     });
   }
   initialize(facets) {
-    let index, data;
-    if (this.data !== undefined) {
-      if (this.transform === identity) { // optimized common case
-        data = this.data, index = facets !== undefined ? facets : range(data);
-      } else if (this.transform.length === 2) { // facet-aware transform
-        ({index, data} = this.transform(this.data, facets));
-        data = arrayify(data);
-      } else if (facets !== undefined) { // basic transform, faceted
-        // Apply the transform to each facet’s data separately; since the
-        // transformed data can have different cardinality than the source
-        // data, also build up a new faceted index into the transformed data.
-        // Note that the transformed data must be a generic Array, not a typed
-        // array, for the array.flat() call to flatten the array.
-        let k = 0;
-        index = [], data = [];
-        for (const facet of facets) {
-          const facetData = arrayify(this.transform(take(this.data, facet)), Array);
-          const facetIndex = facetData === undefined ? undefined : offsetRange(facetData, k);
-          k += facetData.length;
-          index.push(facetIndex);
-          data.push(facetData);
-        }
-        data = data.flat();
-        // Reorder any channel value arrays to match the transformed index.
-        // Since there may be zero or multiple channels that need reordering,
-        // we lazily compute the flattened transformed index.
-        let facetIndex;
-        for (const channel of this.channels) {
-          let {value} = channel;
-          if (typeof value !== "function") {
-            if (facetIndex === undefined) facetIndex = facets.flat();
-            channel.value = take(arrayify(value), facetIndex);
-          }
-        }
-      } else { // basic transform, non-faceted
-        data = arrayify(this.transform(this.data));
-        index = data === undefined ? undefined : range(data);
-      }
+    let data = this.data;
+    let index = facets === undefined && data != null ? range(data) : facets;
+    if (data !== undefined && this.transform !== undefined) {
+      if (facets === undefined) index = index.length ? [index] : [];
+      ({index, data} = this.transform(data, index));
+      data = arrayify(data);
+      if (facets === undefined && index.length) ([index] = index);
     }
     return {
       index,
@@ -171,6 +142,14 @@ export function maybeSort(order) {
   }
 }
 
+// A helper for extracting the z channel, if it is variable. Used by transforms
+// that require series, such as moving average and normalize.
+export function maybeZ({z, fill, stroke} = {}) {
+  if (z === undefined) ([z] = maybeColor(fill));
+  if (z === undefined) ([z] = maybeColor(stroke));
+  return z;
+}
+
 // Applies the specified titles via selection.call.
 export function title(L) {
   return L ? selection => selection
@@ -190,12 +169,6 @@ export function titleGroup(L) {
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
   return Uint32Array.from(data, indexOf);
-}
-
-// Returns a Uint32Array with elements [k, k + 1, … k + data.length - 1].
-export function offsetRange(data, k) {
-  k = Math.floor(k);
-  return Uint32Array.from(data, (_, i) => i + k);
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
@@ -222,4 +195,34 @@ export function lazyChannel(source) {
 // Like lazyChannel, but allows the source to be null.
 export function maybeLazyChannel(source) {
   return source == null ? [] : lazyChannel(source);
+}
+
+// If both t1 and t2 are defined, returns a composite transform that first
+// applies t1 and then applies t2.
+export function maybeTransform({transform: t1} = {}, t2) {
+  if (t1 === undefined) return t2;
+  if (t2 === undefined) return t1;
+  return (data, index) => {
+    ({data, index} = t1(data, index));
+    return t2(arrayify(data), index);
+  };
+}
+
+// Assuming that both x1 and x2 and lazy channels (per above), this derives a
+// new a channel that’s the average of the two, and which inherits the channel
+// label (if any).
+export function mid(x1, x2) {
+  return {
+    transform(data) {
+      const X1 = x1.transform(data);
+      const X2 = x2.transform(data);
+      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
+    },
+    label: x1.label
+  };
+}
+
+// This distinguishes between per-dimension options and a standalone value.
+export function maybeValue(value) {
+  return typeof value === "undefined" || (value && value.toString === objectToString) ? value : {value};
 }

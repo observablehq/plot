@@ -1,34 +1,36 @@
 import {greatest, group, least} from "d3-array";
-import {maybeColor, range, valueof} from "../mark.js";
+import {maybeTransform, maybeZ, valueof} from "../mark.js";
 
-export function selectFirst(options = {}) {
+export function selectFirst(options) {
   return {...options, transform: select(first, undefined, options)};
 }
 
-export function selectLast(options = {}) {
+export function selectLast(options) {
   return {...options, transform: select(last, undefined, options)};
 }
 
-export function selectMinX(options = {}) {
-  return {...options, transform: select(min, "x", options)};
+export function selectMinX({x, ...options} = {}) {
+  return {...options, x, transform: select(min, x, options)};
 }
 
-export function selectMinY(options = {}) {
-  return {...options, transform: select(min, "y", options)};
+export function selectMinY({y, ...options} = {}) {
+  return {...options, y, transform: select(min, y, options)};
 }
 
-export function selectMaxX(options = {}) {
-  return {...options, transform: select(max, "x", options)};
+export function selectMaxX({x, ...options} = {}) {
+  return {...options, x, transform: select(max, x, options)};
 }
 
-export function selectMaxY(options = {}) {
-  return {...options, transform: select(max, "y", options)};
+export function selectMaxY({y, ...options} = {}) {
+  return {...options, y, transform: select(max, y, options)};
 }
 
+// TODO If the value (for some required channel) is undefined, scan forward?
 function* first(I) {
   yield I[0];
 }
 
+// TODO If the value (for some required channel) is undefined, scan backward?
 function* last(I) {
   yield I[I.length - 1];
 }
@@ -41,29 +43,21 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selectIndex, key, {z, fill, stroke, ...options}) {
-  if (z === undefined) ([z] = maybeColor(fill));
-  if (z === undefined) ([z] = maybeColor(stroke));
-  return (data, facets) => {
-    const I = range(data);
+function select(selectIndex, v, options) {
+  const z = maybeZ(options);
+  return maybeTransform(options, (data, index) => {
     const Z = valueof(data, z);
-    const V = key && valueof(data, options[key]);
-    const index = [];
-    const selection = [];
-    let k = 0;
-    for (const facet of facets === undefined ? [I] : facets) {
-      const facetIndex = [];
-      index.push(facetIndex);
-      for (const index of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selectIndex(index, V)) {
-          facetIndex.push(k++);
-          selection.push(data[i]);
+    const V = valueof(data, v);
+    const selectedIndex = [];
+    for (const facet of index) {
+      const selectedFacet = [];
+      for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+        for (const i of selectIndex(I, V)) {
+          selectedFacet.push(i);
         }
       }
+      selectedIndex.push(selectedFacet);
     }
-    return {
-      index: facets === undefined ? index[0] : index,
-      data: selection
-    };
-  };
+    return {data, index: selectedIndex};
+  });
 }
