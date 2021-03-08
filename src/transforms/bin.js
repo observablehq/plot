@@ -21,16 +21,15 @@ export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   return {...options, transform, x1: maybeLabel(x0, x), x2: x1, y1: maybeLabel(y0, y), y2: y1, insetLeft, insetTop, [out]: l};
 }
 
-// TODO materialize the aggregated title channel, if any, too
-// TODO normalize
 function bin1(x = identity, options = {}) {
-  const {z, fill, stroke, domain, thresholds, cumulative} = options;
+  const {z, fill, stroke, domain, thresholds, normalize, cumulative} = options;
+  const k = normalize === true ? 100 : +normalize;
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
   const bin = binof({value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
-  const [Y, setY] = lazyChannel(length1);
+  const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
   const [Z, setZ] = maybeLazyChannel(z);
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
@@ -46,10 +45,11 @@ function bin1(x = identity, options = {}) {
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
       const G = Z !== undefined ? Z : F !== undefined ? F : S;
-      const BZ = setZ && setZ([]);
-      const BF = setF && setF([]);
-      const BS = setS && setS([]);
-      let k = 0;
+      const BZ = Z && setZ([]);
+      const BF = F && setF([]);
+      const BS = S && setS([]);
+      const n = data.length;
+      let i = 0;
       if (cumulative < 0) B.reverse();
       for (const facet of index) {
         const binFacet = [];
@@ -61,11 +61,11 @@ function bin1(x = identity, options = {}) {
             f = cumulative && f !== undefined ? f.concat(s) : s;
             const l = f.length;
             if (l > 0) {
-              binFacet.push(k++);
+              binFacet.push(i++);
               binData.push(take(data, f));
               X1.push(b.x0);
               X2.push(b.x1);
-              Y.push(l);
+              Y.push(k ? l * k / n : l);
               if (Z) BZ.push(Z[f[0]]);
               if (F) BF.push(F[f[0]]);
               if (S) BS.push(S[f[0]]);
@@ -130,16 +130,6 @@ function rebin(bin, subset, {cumulative} = {}) {
       k = binData.push(...b);
     }
     return {data: binData, index: binIndex};
-  };
-}
-
-function subset1(I) {
-  I = new Set(I);
-  return bin => {
-    const subbin = bin.filter(i => I.has(i));
-    subbin.x0 = bin.x0;
-    subbin.x1 = bin.x1;
-    return subbin;
   };
 }
 
