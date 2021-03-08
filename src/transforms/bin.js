@@ -36,14 +36,14 @@ function bin1(x = identity, options = {}) {
   return [
     maybeTransform(options, (data, index) => {
       const B = bin(data);
+      const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
       const binIndex = [];
       const binData = [];
       const X1 = setX1([]);
       const X2 = setX2([]);
       const Y = setY([]);
-      const Z = valueof(data, z);
-      const F = valueof(data, vfill);
-      const S = valueof(data, vstroke);
       const G = Z || F || S;
       const BZ = Z && setZ([]);
       const BF = F && setF([]);
