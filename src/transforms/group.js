@@ -33,8 +33,8 @@ function group1(x = identity, options = {}) {
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const binIndex = [];
-      const binData = [];
+      const groupIndex = [];
+      const groupData = [];
       const G = Z || F || S;
       const BX = setX([]);
       const BY = setY([]);
@@ -44,13 +44,13 @@ function group1(x = identity, options = {}) {
       const n = data.length;
       let i = 0;
       for (const facet of index) {
-        const binFacet = [];
+        const groupFacet = [];
         for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
           for (const [x, f] of sort(grouper(I, i => X[i]), first)) {
             if (!defined(x)) continue;
             const l = f.length;
-            binFacet.push(i++);
-            binData.push(take(data, f));
+            groupFacet.push(i++);
+            groupData.push(take(data, f));
             BX.push(x);
             BY.push(k ? l * k / n : l);
             if (Z) BZ.push(Z[f[0]]);
@@ -58,9 +58,9 @@ function group1(x = identity, options = {}) {
             if (S) BS.push(S[f[0]]);
           }
         }
-        binIndex.push(binFacet);
+        groupIndex.push(groupFacet);
       }
-      return {data: binData, index: binIndex};
+      return {data: groupData, index: groupIndex};
     }),
     X,
     Y,
@@ -88,8 +88,8 @@ function group2(x = first, y = second, options) {
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const binIndex = [];
-      const binData = [];
+      const groupIndex = [];
+      const groupData = [];
       const G = Z || F || S;
       const BX = setX([]);
       const BY = setY([]);
@@ -100,15 +100,15 @@ function group2(x = first, y = second, options) {
       const n = data.length;
       let i = 0;
       for (const facet of index) {
-        const binFacet = [];
+        const groupFacet = [];
         for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
           for (const [y, fy] of sort(grouper(I, i => Y[i]), first)) {
             if (!defined(y)) continue;
             for (const [x, f] of sort(grouper(fy, i => X[i]), first)) {
               if (!defined(x)) continue;
               const l = f.length;
-              binFacet.push(i++);
-              binData.push(take(data, f));
+              groupFacet.push(i++);
+              groupData.push(take(data, f));
               BX.push(x);
               BY.push(y);
               BL.push(k ? l * k / n : l);
@@ -118,9 +118,9 @@ function group2(x = first, y = second, options) {
             }
           }
         }
-        binIndex.push(binFacet);
+        groupIndex.push(groupFacet);
       }
-      return {data: binData, index: binIndex};
+      return {data: groupData, index: groupIndex};
     }),
     X,
     Y,
