@@ -94,7 +94,7 @@ function bin2(x, y, options = {}) {
   const k = normalize === true ? 100 : +normalize;
   const binX = binof({domain, thresholds, value: first, ...maybeValue(x)});
   const binY = binof({domain, thresholds, value: second, ...maybeValue(y)});
-  const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x)); // TODO
+  const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x));
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
