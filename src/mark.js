@@ -212,3 +212,17 @@ export function maybeTransform({transform: t1} = {}, t2) {
     return t2(arrayify(data), index);
   };
 }
+
+// Assuming that both x1 and x2 and lazy channels (per above), this derives a
+// new a channel that’s the average of the two, and which inherits the channel
+// label (if any).
+export function mid(x1, x2) {
+  return {
+    transform(data) {
+      const X1 = x1.transform(data);
+      const X2 = x2.transform(data);
+      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
+    },
+    label: x1.label
+  };
+}

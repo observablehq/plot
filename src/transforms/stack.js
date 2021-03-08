@@ -1,45 +1,44 @@
 import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
-import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
-export function stackX({x, y, ...options} = {}) {
+export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, options);
-  return {...options, transform, y: Y, x1, x2};
+  return {...options, transform, y1, y: Y, x1, x2};
 }
 
-export function stackX1({x, y, ...options} = {}) {
+export function stackX1({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackX2({x, y, ...options} = {}) {
+export function stackX2({y1, y = y1, x, ...options} = {}) {
   const [transform, Y,, X] = stack(y, x, options);
-  return {...options, transform, y: Y, x: X};
+  return {...options, transform, y1, y: Y, x: X};
 }
 
-export function stackXMid({x, y, ...options} = {}) {
+export function stackXMid({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, X1, X2] = stack(y, x, options);
-  return {...options, transform, y: Y, x: mid(X1, X2)};
+  return {...options, transform, y1, y: Y, x: mid(X1, X2)};
 }
 
-// TODO Accept x1 as a fallback to x, to allow stacking bins?
-export function stackY({x, y, ...options} = {}) {
+export function stackY({x1, x = x1, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, options);
-  return {...options, transform, x: X, y1, y2};
+  return {...options, transform, x1, x: X, y1, y2};
 }
 
-export function stackY1({x, y, ...options} = {}) {
+export function stackY1({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackY2({x, y, ...options} = {}) {
+export function stackY2({x1, x = x1, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, options);
-  return {...options, transform, x: X, y: Y};
+  return {...options, transform, x1, x: X, y: Y};
 }
 
-export function stackYMid({x, y, ...options} = {}) {
+export function stackYMid({x1, x = x1, y, ...options} = {}) {
   const [transform, X, Y1, Y2] = stack(x, y, options);
-  return {...options, transform, x: X, y: mid(Y1, Y2)};
+  return {...options, transform, x1, x: X, y: mid(Y1, Y2)};
 }
 
 function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
@@ -79,20 +78,6 @@ function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
     Y1,
     Y2
   ];
-}
-
-// Assuming that both x1 and x2 and lazy channels (per above), this derives a
-// new a channel that’s the average of the two, and which inherits the channel
-// label (if any).
-function mid(x1, x2) {
-  return {
-    transform(data) {
-      const X1 = x1.transform(data);
-      const X2 = x2.transform(data);
-      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
-    },
-    label: x1.label
-  };
 }
 
 function maybeOffset(offset) {

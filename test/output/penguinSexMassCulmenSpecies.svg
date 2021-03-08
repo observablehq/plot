@@ -1,0 +1,275 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="320" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,271.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">34</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,252.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">36</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,234.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">38</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,215.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,197.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">42</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,178.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">44</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,160.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">46</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,142.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">48</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,123.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,105.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">52</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,86.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">54</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,68.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">56</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,49.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">58</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
+    </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
+  </g>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(130.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(530.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em"></text>
+    </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">sex</text>
+  </g>
+  <g>
+    <g transform="translate(40,0)">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+        <g class="tick" opacity="1" transform="translate(21.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(44.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(67.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(90.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(113.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(136.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(159.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6k</text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(240,0)">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+        <g class="tick" opacity="1" transform="translate(21.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(44.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(67.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(90.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(113.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(136.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(159.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6k</text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(440,0)">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+        <g class="tick" opacity="1" transform="translate(21.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(44.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(67.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(90.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(113.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(136.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5.5k</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(159.5,0)">
+          <line stroke="currentColor" y2="6"></line>
+          <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6k</text>
+        </g><text fill="currentColor" transform="translate(200,30)" dy="-0.32em" text-anchor="end">body_mass_g →</text>
+      </g>
+    </g>
+    <g transform="translate(40,0)">
+      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g fill-opacity="0.1" stroke-width="1.5" transform="translate(0.5,0.5)">
+        <circle cx="10" cy="280" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="10" cy="261.53846153846155" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="10" cy="243.0769230769231" r="5.196152422706632" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="10" cy="224.61538461538458" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="280" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="261.53846153846155" r="9.486832980505138" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="243.0769230769231" r="12.36931687685298" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="224.61538461538458" r="9" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="206.15384615384616" r="6.708203932499369" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="280" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="261.53846153846155" r="6.708203932499369" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="243.0769230769231" r="7.937253933193772" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="224.61538461538458" r="9.486832980505138" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="206.15384615384616" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="187.6923076923077" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="10" cy="187.6923076923077" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="10" cy="150.76923076923077" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="206.15384615384616" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="187.6923076923077" r="5.196152422706632" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="169.23076923076923" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="150.76923076923077" r="5.196152422706632" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="132.3076923076923" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="113.84615384615385" r="4.242640687119286" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="187.6923076923077" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="169.23076923076923" r="7.937253933193772" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="150.76923076923077" r="8.485281374238571" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="132.3076923076923" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="113.84615384615385" r="4.242640687119286" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="40" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="78.57142857142856" cy="150.76923076923077" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="187.6923076923077" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="78.57142857142856" cy="187.6923076923077" r="6" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="78.57142857142856" cy="169.23076923076923" r="7.937253933193772" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="78.57142857142856" cy="150.76923076923077" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="78.57142857142856" cy="132.3076923076923" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="206.15384615384616" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="187.6923076923077" r="7.937253933193772" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="169.23076923076923" r="7.937253933193772" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="150.76923076923077" r="11.618950038622252" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="132.3076923076923" r="6" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="187.6923076923077" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="169.23076923076923" r="6" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="150.76923076923077" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="132.3076923076923" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="113.84615384615385" r="3" fill="#e15759" stroke="#e15759"></circle>
+      </g>
+    </g>
+    <g transform="translate(240,0)">
+      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g fill-opacity="0.1" stroke-width="1.5" transform="translate(0.5,0.5)">
+        <circle cx="32.85714285714286" cy="206.15384615384616" r="5.196152422706632" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="243.0769230769231" r="8.485281374238571" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="224.61538461538458" r="9.9498743710662" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="206.15384615384616" r="10.392304845413264" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="187.6923076923077" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="261.53846153846155" r="4.242640687119286" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="243.0769230769231" r="4.242640687119286" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="224.61538461538458" r="6" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="206.15384615384616" r="9.9498743710662" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="187.6923076923077" r="7.937253933193772" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="169.23076923076923" r="5.196152422706632" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="150.76923076923077" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="101.42857142857143" cy="224.61538461538458" r="5.196152422706632" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="101.42857142857143" cy="206.15384615384616" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="101.42857142857143" cy="187.6923076923077" r="5.196152422706632" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="101.42857142857143" cy="169.23076923076923" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="132.3076923076923" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="113.84615384615385" r="4.242640687119286" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="32.85714285714286" cy="95.38461538461537" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="132.3076923076923" r="6" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="113.84615384615385" r="9.486832980505138" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="55.714285714285715" cy="95.38461538461537" r="3" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="78.57142857142856" cy="132.3076923076923" r="5.196152422706632" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="78.57142857142856" cy="113.84615384615385" r="6.708203932499369" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="78.57142857142856" cy="95.38461538461537" r="4.242640687119286" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="78.57142857142856" cy="76.92307692307693" r="4.242640687119286" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="101.42857142857143" cy="95.38461538461537" r="5.196152422706632" fill="#f28e2c" stroke="#f28e2c"></circle>
+        <circle cx="101.42857142857143" cy="132.3076923076923" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="169.23076923076923" r="6" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="150.76923076923077" r="8.485281374238571" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="132.3076923076923" r="7.348469228349534" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="113.84615384615385" r="7.348469228349534" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="124.28571428571429" cy="95.38461538461537" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="169.23076923076923" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="150.76923076923077" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="132.3076923076923" r="9.9498743710662" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="113.84615384615385" r="9.486832980505138" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="95.38461538461537" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="147.1428571428571" cy="76.92307692307693" r="5.196152422706632" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="170" cy="132.3076923076923" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="170" cy="113.84615384615385" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="170" cy="40" r="3" fill="#e15759" stroke="#e15759"></circle>
+      </g>
+    </g>
+    <g transform="translate(440,0)">
+      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g fill-opacity="0.1" stroke-width="1.5" transform="translate(0.5,0.5)">
+        <circle cx="10" cy="243.0769230769231" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="261.53846153846155" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="32.85714285714286" cy="243.0769230769231" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="55.714285714285715" cy="243.0769230769231" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="187.6923076923077" r="3" fill="#4e79a7" stroke="#4e79a7"></circle>
+        <circle cx="78.57142857142856" cy="169.23076923076923" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="169.23076923076923" r="3" fill="#e15759" stroke="#e15759"></circle>
+        <circle cx="101.42857142857143" cy="150.76923076923077" r="4.242640687119286" fill="#e15759" stroke="#e15759"></circle>
+      </g>
+    </g>
+  </g>
+</svg>
