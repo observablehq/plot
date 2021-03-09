@@ -30,6 +30,7 @@ export {default as metroInequality} from "./metro-inequality.js";
 export {default as metroUnemploymentIndex} from "./metro-unemployment-index.js";
 export {default as metroUnemploymentHighlight} from "./metro-unemployment-highlight.js";
 export {default as metroUnemploymentMoving} from "./metro-unemployment-moving.js";
+export {default as metroUnemploymentNormalize} from "./metro-unemployment-normalize.js";
 export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
 export {default as metroUnemployment} from "./metro-unemployment.js";
 export {default as mobyDickFaceted} from "./moby-dick-faceted.js";
