@@ -23,9 +23,7 @@ export class Rect extends Mark {
       insetLeft = inset,
       rx,
       ry,
-      filter,
-      transform,
-      ...style
+      ...options
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
@@ -42,9 +40,9 @@ export class Rect extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      {filter, transform}
+      options
     );
-    Style(this, {fill: cfill, stroke: cstroke, ...style});
+    Style(this, {fill: cfill, stroke: cstroke, ...options});
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);

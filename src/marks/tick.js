@@ -12,9 +12,7 @@ class AbstractTick extends Mark {
       z,
       title,
       stroke,
-      filter,
-      transform,
-      ...style
+      ...options
     } = {}
   ) {
     const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
@@ -26,9 +24,9 @@ class AbstractTick extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      {filter, transform}
+      options
     );
-    Style(this, {stroke: cstroke, ...style});
+    Style(this, {stroke: cstroke, ...options});
   }
   render(I, scales, channels, dimensions) {
     const {color} = scales;
