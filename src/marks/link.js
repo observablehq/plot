@@ -15,8 +15,7 @@ export class Link extends Mark {
       z,
       title,
       stroke,
-      transform,
-      ...style
+      ...options
     } = {}
   ) {
     const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
@@ -31,9 +30,9 @@ export class Link extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      options
     );
-    Style(this, {stroke: cstroke, ...style});
+    Style(this, {stroke: cstroke, ...options});
   }
   render(
     I,

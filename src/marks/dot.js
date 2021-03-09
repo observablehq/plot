@@ -15,8 +15,7 @@ export class Dot extends Mark {
       title,
       fill,
       stroke,
-      transform,
-      ...style
+      ...options
     } = {}
   ) {
     const [vr, cr] = maybeNumber(r, 3);
@@ -33,14 +32,14 @@ export class Dot extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      options
     );
     this.r = cr;
     Style(this, {
       fill: cfill,
       stroke: cstroke,
       strokeWidth: cstroke === "none" ? undefined : 1.5,
-      ...style
+      ...options
     });
   }
   render(

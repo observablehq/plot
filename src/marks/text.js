@@ -14,7 +14,6 @@ export class Text extends Mark {
       text = indexOf,
       title,
       fill,
-      transform,
       textAnchor,
       fontFamily,
       fontSize,
@@ -23,7 +22,7 @@ export class Text extends Mark {
       fontWeight,
       dx,
       dy = "0.32em",
-      ...style
+      ...options
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
@@ -37,9 +36,9 @@ export class Text extends Mark {
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
       ],
-      transform
+      options
     );
-    Style(this, {fill: cfill, ...style});
+    Style(this, {fill: cfill, ...options});
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
     this.fontSize = string(fontSize);

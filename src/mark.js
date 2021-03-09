@@ -1,17 +1,15 @@
-import {sort} from "d3-array";
 import {color} from "d3-color";
-import {nonempty} from "./defined.js";
+import {ascendingDefined, nonempty} from "./defined.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], transform) {
-    if (transform == null) transform = undefined;
+  constructor(data, channels = [], options = {}) {
     const names = new Set();
     this.data = arrayify(data);
-    this.transform = transform;
+    this.transform = maybeTransform(options);
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
@@ -133,15 +131,6 @@ export function maybeZero(x, x1, x2, x3 = identity) {
   return [x1, x2];
 }
 
-// If a sort order is specified, returns a corresponding transform.
-// TODO Allow the sort order to be specified as an array.
-export function maybeSort(order) {
-  if (order !== undefined) {
-    if (typeof order !== "function") order = field(order);
-    return data => sort(data, order);
-  }
-}
-
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
 export function maybeZ({z, fill, stroke} = {}) {
@@ -199,13 +188,12 @@ export function maybeLazyChannel(source) {
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
-export function maybeTransform({transform: t1} = {}, t2) {
-  if (t1 === undefined) return t2;
-  if (t2 === undefined) return t1;
-  return (data, index) => {
-    ({data, index} = t1(data, index));
-    return t2(arrayify(data), index);
-  };
+export function maybeTransform({filter: f1, sort: s1, transform: t1} = {}, t2) {
+  if (t1 === undefined) {
+    if (f1 != null) t1 = filter(f1);
+    if (s1 != null) t1 = compose(t1, sort(s1));
+  }
+  return compose(t1, t2);
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
@@ -225,4 +213,39 @@ export function mid(x1, x2) {
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
   return typeof value === "undefined" || (value && value.toString === objectToString) ? value : {value};
+}
+
+function compose(t1, t2) {
+  if (t1 == null) return t2 === null ? undefined : t2;
+  if (t2 == null) return t1 === null ? undefined : t1;
+  return (data, index) => {
+    ({data, index} = t1(data, index));
+    return t2(arrayify(data), index);
+  };
+}
+
+function sort(value) {
+  return (typeof value === "function" && value.length !== 1 ? sortCompare : sortValue)(value);
+}
+
+function sortCompare(compare) {
+  return (data, index) => {
+    const compareData = (i, j) => compare(data[i], data[j]);
+    return {data, index: index.map(I => I.slice().sort(compareData))};
+  };
+}
+
+function sortValue(value) {
+  return (data, index) => {
+    const V = valueof(data, value);
+    const compareValue = (i, j) => ascendingDefined(V[i], V[j]);
+    return {data, index: index.map(I => I.slice().sort(compareValue))};
+  };
+}
+
+function filter(value) {
+  return (data, index) => {
+    const V = valueof(data, value);
+    return {data, index: index.map(I => I.filter(i => V[i]))};
+  };
 }

@@ -3,7 +3,7 @@ import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, maybeSort, first, second, titleGroup} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, first, second, titleGroup} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -20,9 +20,7 @@ export class Area extends Mark {
       stroke,
       curve,
       tension,
-      sort,
-      transform = maybeSort(sort),
-      ...style
+      ...options
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
@@ -41,14 +39,14 @@ export class Area extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      options
     );
     this.curve = Curve(curve, tension);
     Style(this, {
       fill: cfill,
       stroke: cstroke,
       strokeMiterlimit: cstroke === "none" ? undefined : 1,
-      ...style
+      ...options
     });
   }
   render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
