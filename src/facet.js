@@ -30,7 +30,7 @@ class Facet extends Mark {
     const facetsKeys = Array.from(facets, first);
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
-    const marksChannels = this.marksChannels = [];
+    const marksChannels = this.marksChannels = new Array(this.marks.length);
     const marksIndex = this.marksIndex = new Array(this.marks.length);
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     for (const facetKey of facetsKeys) {
@@ -58,12 +58,11 @@ class Facet extends Mark {
           marksIndex[i] = index;
         }
       }
-      const named = Object.create(null);
+      const named = marksChannels[i] = Object.create(null);
       for (const [name, channel] of channels) {
         if (name !== undefined) named[name] = channel.value;
         subchannels.push([undefined, channel]);
       }
-      marksChannels.push(named);
     }
     return {index, channels: [...channels, ...subchannels]};
   }

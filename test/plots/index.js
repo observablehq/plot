@@ -1,6 +1,7 @@
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
 export {default as aaplClose} from "./aapl-close.js";
+export {default as aaplCompose} from "./aapl-compose.js";
 export {default as aaplVolume} from "./aapl-volume.js";
 export {default as anscombeQuartet} from "./anscombe-quartet.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
