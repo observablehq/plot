@@ -1,9 +1,9 @@
+import {group, sort} from "d3-array";
 import {create} from "d3-selection";
 import {area as shapeArea} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {group} from "../group.js";
-import {Mark, indexOf, maybeColor, maybeZero, maybeSort, titleGroup} from "../mark.js";
+import {Mark, indexOf, maybeColor, maybeZero, maybeSort, first, second, titleGroup} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Area extends Mark {
@@ -56,7 +56,7 @@ export class Area extends Mark {
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
         .call(g => g.selectAll()
-          .data(Z ? group(I, Z) : [I])
+          .data(Z ? sort(group(I, i => Z[i]), first).map(second) : [I])
           .join("path")
             .call(applyDirectStyles, this)
             .attr("fill", F && (([i]) => color(F[i])))

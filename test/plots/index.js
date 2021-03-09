@@ -28,6 +28,7 @@ export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js
 export {default as metroInequalityChange} from "./metro-inequality-change.js";
 export {default as metroInequality} from "./metro-inequality.js";
 export {default as metroUnemploymentIndex} from "./metro-unemployment-index.js";
+export {default as metroUnemploymentHighlight} from "./metro-unemployment-highlight.js";
 export {default as metroUnemploymentMoving} from "./metro-unemployment-moving.js";
 export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
 export {default as metroUnemployment} from "./metro-unemployment.js";

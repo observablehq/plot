@@ -1,8 +1,8 @@
+import {group, sort} from "d3-array";
 import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {group} from "../group.js";
 import {Mark, indexOf, identity, first, second, maybeColor, maybeSort, titleGroup} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
@@ -53,7 +53,7 @@ export class Line extends Mark {
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
-          .data(Z ? group(I, Z) : [I])
+          .data(Z ? sort(group(I, i => Z[i]), first).map(second) : [I])
           .join("path")
             .call(applyDirectStyles, this)
             .attr("fill", F && (([i]) => color(F[i])))
