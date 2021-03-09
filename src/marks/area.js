@@ -21,6 +21,7 @@ export class Area extends Mark {
       curve,
       tension,
       sort,
+      filter,
       transform = maybeSort(sort),
       ...style
     } = {}
@@ -41,7 +42,7 @@ export class Area extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {filter, transform}
     );
     this.curve = Curve(curve, tension);
     Style(this, {

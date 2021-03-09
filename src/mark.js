@@ -7,8 +7,12 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], transform) {
-    if (transform == null) transform = undefined;
+  constructor(data, channels = [], {filter, transform} = {}) {
+    if (filter != null) transform = maybeTransform({transform}, (data, facets) => ({
+      data,
+      index: facets.map(I => I.filter(i => filter(data[i], i, take(data, I))))
+    }));
+
     const names = new Set();
     this.data = arrayify(data);
     this.transform = transform;

@@ -20,6 +20,7 @@ export class AbstractBar extends Mark {
       insetLeft = inset,
       rx,
       ry,
+      filter,
       transform,
       ...style
     } = {}
@@ -35,7 +36,7 @@ export class AbstractBar extends Mark {
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {filter, transform}
     );
     Style(this, {fill: cfill, stroke: cstroke, ...style});
     this.insetTop = number(insetTop);
