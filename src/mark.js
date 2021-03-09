@@ -190,8 +190,8 @@ export function maybeLazyChannel(source) {
 // applies t1 and then applies t2.
 export function maybeTransform({filter: f1, sort: s1, transform: t1} = {}, t2) {
   if (t1 === undefined) {
-    if (f1 !== undefined) t1 = filter(f1);
-    if (s1 !== undefined) t1 = compose(t1, sort(s1));
+    if (f1 != null) t1 = filter(f1);
+    if (s1 != null) t1 = compose(t1, sort(s1));
   }
   return compose(t1, t2);
 }
@@ -216,8 +216,8 @@ export function maybeValue(value) {
 }
 
 function compose(t1, t2) {
-  if (t1 === undefined) return t2;
-  if (t2 === undefined) return t1;
+  if (t1 == null) return t2 === null ? undefined : t2;
+  if (t2 == null) return t1 === null ? undefined : t1;
   return (data, index) => {
     ({data, index} = t1(data, index));
     return t2(arrayify(data), index);
