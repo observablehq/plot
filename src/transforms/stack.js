@@ -3,52 +3,52 @@ import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, x1, x2] = stack(y, x, options);
+  const [transform, Y, x1, x2] = stack(y, x, "x", options);
   return {...options, transform, y1, y: Y, x1, x2};
 }
 
 export function stackX1({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, X] = stack(y, x, options);
+  const [transform, Y, X] = stack(y, x, "x", options);
   return {...options, transform, y1, y: Y, x: X};
 }
 
 export function stackX2({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y,, X] = stack(y, x, options);
+  const [transform, Y,, X] = stack(y, x, "x", options);
   return {...options, transform, y1, y: Y, x: X};
 }
 
 export function stackXMid({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, X1, X2] = stack(y, x, options);
+  const [transform, Y, X1, X2] = stack(y, x, "x", options);
   return {...options, transform, y1, y: Y, x: mid(X1, X2)};
 }
 
 export function stackY({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, y1, y2] = stack(x, y, options);
+  const [transform, X, y1, y2] = stack(x, y, "y", options);
   return {...options, transform, x1, x: X, y1, y2};
 }
 
 export function stackY1({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, Y] = stack(x, y, options);
+  const [transform, X, Y] = stack(x, y, "y", options);
   return {...options, transform, x1, x: X, y: Y};
 }
 
 export function stackY2({x1, x = x1, y, ...options} = {}) {
-  const [transform, X,, Y] = stack(x, y, options);
+  const [transform, X,, Y] = stack(x, y, "y", options);
   return {...options, transform, x1, x: X, y: Y};
 }
 
 export function stackYMid({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, Y1, Y2] = stack(x, y, options);
+  const [transform, X, Y1, Y2] = stack(x, y, "y", options);
   return {...options, transform, x1, x: X, y: mid(Y1, Y2)};
 }
 
-function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
+function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   const z = maybeZ(options);
   const [X, setX] = maybeLazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
   offset = maybeOffset(offset);
-  order = maybeOrder(order, offset);
+  order = maybeOrder(order, offset, ky);
   return [
     maybeTransform(options, (data, index) => {
       const X = x == null ? undefined : setX(valueof(data, x));
@@ -149,12 +149,12 @@ function offsetWiggle(stacks, Y1, Y2, Z) {
   }
 }
 
-function maybeOrder(order, offset) {
+function maybeOrder(order, offset, ky) {
   if (order === undefined && offset === offsetWiggle) return orderInsideOut;
   if (order == null) return;
   if (typeof order === "string") {
     switch (order.toLowerCase()) {
-      case "value": return orderY;
+      case "value": case ky: return orderY;
       case "z": return orderZ;
       case "sum": return orderSum;
       case "appearance": return orderAppearance;
@@ -173,7 +173,6 @@ function orderY(data, X, Y) {
 
 // by location
 function orderZ(order, X, Y, Z) {
-  console.log("orderZ", Z);
   return Z;
 }
 
