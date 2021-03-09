@@ -18,7 +18,8 @@ export default async function() {
       Plot.line(bls, {
         x: "date",
         y: "unemployment",
-        z: d => `${highlight(d)}/${d.division}`,
+        z: "division",
+        sort: highlight,
         stroke: highlight
       })
     ]

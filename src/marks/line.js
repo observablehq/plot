@@ -1,4 +1,4 @@
-import {group, sort} from "d3-array";
+import {group} from "d3-array";
 import {create} from "d3-selection";
 import {line as shapeLine} from "d3-shape";
 import {Curve} from "../curve.js";
@@ -51,7 +51,7 @@ export class Line extends Mark {
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
-          .data(Z ? sort(group(I, i => Z[i]), first).map(second) : [I])
+          .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
             .attr("fill", F && (([i]) => color(F[i])))
