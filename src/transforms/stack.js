@@ -1,4 +1,5 @@
-import {InternMap, ascending, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
+import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
+import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
@@ -47,7 +48,7 @@ function stack(x, y = () => 1, {offset, order, reverse, ...options} = {}) {
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
   offset = maybeOffset(offset);
-  order = order === undefined && offset === offsetWiggle ? orderInsideOut : maybeOrder(order, offset);
+  order = maybeOrder(order, offset);
   return [
     maybeTransform(options, (data, index) => {
       const X = x == null ? undefined : setX(valueof(data, x));
@@ -148,24 +149,21 @@ function offsetWiggle(stacks, Y1, Y2, Z) {
   }
 }
 
-function maybeOrder(order) {
+function maybeOrder(order, offset) {
+  if (order === undefined && offset === offsetWiggle) return orderInsideOut;
   if (order == null) return;
   if (typeof order === "string") {
     switch (order.toLowerCase()) {
-     case "sum": return orderSum;
-     case "value": return orderY;
-     case "appearance": return orderAppearance;
-     case "inside-out": return orderInsideOut;
+      case "value": return orderY;
+      case "z": return orderZ;
+      case "sum": return orderSum;
+      case "appearance": return orderAppearance;
+      case "inside-out": return orderInsideOut;
     }
     return orderFunction(field(order));
   }
   if (typeof order === "function") return orderFunction(order);
-  return orderZDomain(order);
-}
-
-// by sum of value (a.k.a. “ascending”)
-function orderSum(data, X, Y, Z) {
-  return orderZ(Z, groupSort(range(data), I => sum(I, i => Y[i]), i => Z[i]));
+  return orderGiven(order);
 }
 
 // by value
@@ -173,9 +171,20 @@ function orderY(data, X, Y) {
   return Y;
 }
 
+// by location
+function orderZ(order, X, Y, Z) {
+  console.log("orderZ", Z);
+  return Z;
+}
+
+// by sum of value (a.k.a. “ascending”)
+function orderSum(data, X, Y, Z) {
+  return orderZDomain(Z, groupSort(range(data), I => sum(I, i => Y[i]), i => Z[i]));
+}
+
 // by x = argmax of value
 function orderAppearance(data, X, Y, Z) {
-  return orderZ(Z, groupSort(range(data), I => X[greatest(I, i => Y[i])], i => Z[i]));
+  return orderZDomain(Z, groupSort(range(data), I => X[greatest(I, i => Y[i])], i => Z[i]));
 }
 
 // by x = argmax of value, but rearranged inside-out by alternating series
@@ -195,27 +204,27 @@ function orderInsideOut(data, X, Y, Z) {
       Kn.push(k);
     }
   }
-  return orderZ(Z, Kn.reverse().concat(Kp));
+  return orderZDomain(Z, Kn.reverse().concat(Kp));
 }
 
 function orderFunction(f) {
   return data => valueof(data, f);
 }
 
-function orderZDomain(domain) {
-  return (data, X, Y, Z) => orderZ(Z, domain);
+function orderGiven(domain) {
+  return (data, X, Y, Z) => orderZDomain(Z, domain);
 }
 
 // Given an explicit ordering of distinct values in z, returns a parallel column
 // O that can be used with applyOrder to sort stacks. Note that this is a series
 // order: it will be consistent across stacks.
-function orderZ(Z, domain) {
+function orderZDomain(Z, domain) {
   domain = new InternMap(domain.map((d, i) => [d, i]));
   return Z.map(z => domain.get(z));
 }
 
 function applyOrder(stacks, O) {
   for (const stack of stacks) {
-    stack.sort((i, j) => ascending(O[i], O[j]));
+    stack.sort((i, j) => ascendingDefined(O[i], O[j]));
   }
 }
