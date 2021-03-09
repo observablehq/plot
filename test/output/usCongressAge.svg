@@ -1,2938 +1,2739 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="950" height="400" viewBox="0 0 950 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <g transform="translate(0,370)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(46.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">32</text>
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="300" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,270.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(59.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">33</text>
+    <g class="tick" opacity="1" transform="translate(0,230.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(72.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">34</text>
+    <g class="tick" opacity="1" transform="translate(0,189.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(85.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
+    <g class="tick" opacity="1" transform="translate(0,149.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">15</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(98.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">36</text>
+    <g class="tick" opacity="1" transform="translate(0,109.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(111.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">37</text>
+    <g class="tick" opacity="1" transform="translate(0,68.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">25</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(124.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">38</text>
+    <g class="tick" opacity="1" transform="translate(0,28.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  </g>
+  <g transform="translate(0,270)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(137.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">39</text>
+    <g class="tick" opacity="1" transform="translate(130.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(150.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+    <g class="tick" opacity="1" transform="translate(170.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">45</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(163.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">41</text>
+    <g class="tick" opacity="1" transform="translate(210.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(176.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">42</text>
+    <g class="tick" opacity="1" transform="translate(250.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">55</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(189.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">43</text>
+    <g class="tick" opacity="1" transform="translate(290.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(202.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">44</text>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">65</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(215.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">45</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(228.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">46</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(241.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">47</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(254.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">48</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(267.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">49</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(280.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(293.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">51</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(306.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">52</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(319.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">53</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(332.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">54</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(345.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">55</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(358.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">56</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(371.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">57</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(384.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">58</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(397.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">59</text>
+    <g class="tick" opacity="1" transform="translate(370.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
     </g>
     <g class="tick" opacity="1" transform="translate(410.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">75</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(423.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">61</text>
+    <g class="tick" opacity="1" transform="translate(450.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(436.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">62</text>
+    <g class="tick" opacity="1" transform="translate(490.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">85</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(449.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">63</text>
+    <g class="tick" opacity="1" transform="translate(530.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(462.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">64</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(475.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">65</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(488.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">66</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(501.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">67</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(514.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">68</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(527.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">69</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(540.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(553.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">71</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(566.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">72</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(579.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">73</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(592.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">74</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(605.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">75</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(618.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">76</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(631.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">77</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(644.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">78</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(657.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">79</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(670.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(683.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">81</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(696.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">82</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(709.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">83</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(722.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">84</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(735.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">85</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(748.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">86</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(761.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">87</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(774.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">88</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(787.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">89</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(800.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(813.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">91</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(826.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">92</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(839.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">93</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(852.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">94</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(865.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">95</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(878.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">96</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(891.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">97</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(904.5,0)">
-      <line stroke="currentColor" y2="0"></line>
-      <line stroke="currentColor" y2="-370" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">98</text>
-    </g>
+    <g class="tick" opacity="1" transform="translate(570.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">95</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Age →</text>
   </g>
-  <g stroke="currentColor" stroke-dasharray="2,2" transform="translate(6.5,0)">
-    <line x1="456" x2="456" y1="0" y2="370"></line>
-  </g>
-  <g stroke="white" stroke-width="2" transform="translate(0,0)">
-    <rect x="40" width="12" y="358.06451612903226" height="11.935483870967744">
+  <g transform="translate(0.5,0.5)">
+    <circle cx="66" cy="261.93548387096774" r="3">
       <title>Alexandria Ocasio-Cortez</title>
-    </rect>
-    <rect x="53" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="74" cy="261.93548387096774" r="3">
       <title>Abby Finkenauer</title>
-    </rect>
-    <rect x="66" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="82" cy="261.93548387096774" r="3">
       <title>Katie Hill</title>
-    </rect>
-    <rect x="79" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="90" cy="261.93548387096774" r="3">
       <title>Josh Harder</title>
-    </rect>
-    <rect x="79" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="90" cy="253.8709677419355" r="3">
       <title>Lauren Underwood</title>
-    </rect>
-    <rect x="79" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="90" cy="245.80645161290323" r="3">
       <title>Max Rose</title>
-    </rect>
-    <rect x="105" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="261.93548387096774" r="3">
       <title>Elise M. Stefanik</title>
-    </rect>
-    <rect x="105" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="253.8709677419355" r="3">
       <title>Mike Gallagher</title>
-    </rect>
-    <rect x="105" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="245.80645161290323" r="3">
       <title>Conor Lamb</title>
-    </rect>
-    <rect x="105" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="237.74193548387098" r="3">
       <title>Joe Neguse</title>
-    </rect>
-    <rect x="105" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="229.67741935483872" r="3">
       <title>Xochitl Torres Small</title>
-    </rect>
-    <rect x="105" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="221.61290322580643" r="3">
       <title>Anthony Gonzalez</title>
-    </rect>
-    <rect x="105" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="213.5483870967742" r="3">
       <title>William R. Timmons IV</title>
-    </rect>
-    <rect x="105" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="106" cy="205.48387096774192" r="3">
       <title>Dan Crenshaw</title>
-    </rect>
-    <rect x="118" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="114" cy="261.93548387096774" r="3">
       <title>Patrick Murphy</title>
-    </rect>
-    <rect x="118" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="114" cy="253.8709677419355" r="3">
       <title>Trey Hollingsworth</title>
-    </rect>
-    <rect x="118" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="114" cy="245.80645161290323" r="3">
       <title>Haley M. Stevens</title>
-    </rect>
-    <rect x="118" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="114" cy="237.74193548387098" r="3">
       <title>Guy Reschenthaler</title>
-    </rect>
-    <rect x="118" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="114" cy="229.67741935483872" r="3">
       <title>Colin Z. Allred</title>
-    </rect>
-    <rect x="131" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="122" cy="261.93548387096774" r="3">
       <title>Matt Gaetz</title>
-    </rect>
-    <rect x="131" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="122" cy="253.8709677419355" r="3">
       <title>Andy Kim</title>
-    </rect>
-    <rect x="131" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="122" cy="245.80645161290323" r="3">
       <title>Joe Cunningham</title>
-    </rect>
-    <rect x="131" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="122" cy="237.74193548387098" r="3">
       <title>Lance Gooden</title>
-    </rect>
-    <rect x="131" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="122" cy="229.67741935483872" r="3">
       <title>Jared F. Golden</title>
-    </rect>
-    <rect x="144" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="130" cy="261.93548387096774" r="3">
       <title>Aaron Schock</title>
-    </rect>
-    <rect x="144" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="130" cy="253.8709677419355" r="3">
       <title>Tulsi Gabbard</title>
-    </rect>
-    <rect x="144" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="130" cy="245.80645161290323" r="3">
       <title>Michael F. Q. San Nicolas</title>
-    </rect>
-    <rect x="144" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="130" cy="237.74193548387098" r="3">
       <title>Ilhan Omar</title>
-    </rect>
-    <rect x="144" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="130" cy="229.67741935483872" r="3">
       <title>Bryan Steil</title>
-    </rect>
-    <rect x="157" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="261.93548387096774" r="3">
       <title>Carlos Curbelo</title>
-    </rect>
-    <rect x="157" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="253.8709677419355" r="3">
       <title>Ruben J. Kihuen</title>
-    </rect>
-    <rect x="157" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="245.80645161290323" r="3">
       <title>Justin Amash</title>
-    </rect>
-    <rect x="157" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="237.74193548387098" r="3">
       <title>Eric Swalwell</title>
-    </rect>
-    <rect x="157" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="229.67741935483872" r="3">
       <title>Joseph P. Kennedy III</title>
-    </rect>
-    <rect x="157" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="221.61290322580643" r="3">
       <title>Jason Smith</title>
-    </rect>
-    <rect x="157" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="213.5483870967742" r="3">
       <title>Lee M. Zeldin</title>
-    </rect>
-    <rect x="157" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="138" cy="205.48387096774192" r="3">
       <title>Brian J. Mast</title>
-    </rect>
-    <rect x="157" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="138" cy="197.4193548387097" r="3">
       <title>Sharice Davids</title>
-    </rect>
-    <rect x="157" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="138" cy="189.35483870967744" r="3">
       <title>Chris Pappas</title>
-    </rect>
-    <rect x="170" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="261.93548387096774" r="3">
       <title>Scott Taylor</title>
-    </rect>
-    <rect x="170" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="253.8709677419355" r="3">
       <title>Ruben Gallego</title>
-    </rect>
-    <rect x="170" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="245.80645161290323" r="3">
       <title>Pete Aguilar</title>
-    </rect>
-    <rect x="170" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="237.74193548387098" r="3">
       <title>Jim Banks</title>
-    </rect>
-    <rect x="170" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="229.67741935483872" r="3">
       <title>Jason Crow</title>
-    </rect>
-    <rect x="170" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="221.61290322580643" r="3">
       <title>Abigail Davis Spanberger</title>
-    </rect>
-    <rect x="170" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="146" cy="213.5483870967742" r="3">
       <title>Josh Hawley</title>
-    </rect>
-    <rect x="183" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="261.93548387096774" r="3">
       <title>Ron DeSantis</title>
-    </rect>
-    <rect x="183" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="253.8709677419355" r="3">
       <title>Jaime Herrera Beutler</title>
-    </rect>
-    <rect x="183" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="245.80645161290323" r="3">
       <title>Adam Kinzinger</title>
-    </rect>
-    <rect x="183" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="237.74193548387098" r="3">
       <title>Seth Moulton</title>
-    </rect>
-    <rect x="183" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="229.67741935483872" r="3">
       <title>Stephanie N. Murphy</title>
-    </rect>
-    <rect x="183" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="221.61290322580643" r="3">
       <title>Darren Soto</title>
-    </rect>
-    <rect x="183" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="213.5483870967742" r="3">
       <title>Mike Levin</title>
-    </rect>
-    <rect x="183" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="154" cy="205.48387096774192" r="3">
       <title>W. Gregory Steube</title>
-    </rect>
-    <rect x="183" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="154" cy="197.4193548387097" r="3">
       <title>Anthony Brindisi</title>
-    </rect>
-    <rect x="196" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="261.93548387096774" r="3">
       <title>David G. Valadao</title>
-    </rect>
-    <rect x="196" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="253.8709677419355" r="3">
       <title>Tom Cotton</title>
-    </rect>
-    <rect x="196" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="245.80645161290323" r="3">
       <title>Markwayne Mullin</title>
-    </rect>
-    <rect x="196" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="237.74193548387098" r="3">
       <title>Brendan F. Boyle</title>
-    </rect>
-    <rect x="196" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="229.67741935483872" r="3">
       <title>Will Hurd</title>
-    </rect>
-    <rect x="196" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="162" cy="221.61290322580643" r="3">
       <title>Antonio Delgado</title>
-    </rect>
-    <rect x="209" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="261.93548387096774" r="3">
       <title>Benjamin Quayle</title>
-    </rect>
-    <rect x="209" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="253.8709677419355" r="3">
       <title>Trey Radel</title>
-    </rect>
-    <rect x="209" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="245.80645161290323" r="3">
       <title>Marlin A. Stutzman</title>
-    </rect>
-    <rect x="209" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="237.74193548387098" r="3">
       <title>Kevin Yoder</title>
-    </rect>
-    <rect x="209" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="229.67741935483872" r="3">
       <title>Ryan A. Costello</title>
-    </rect>
-    <rect x="209" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="221.61290322580643" r="3">
       <title>Duncan Hunter</title>
-    </rect>
-    <rect x="209" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="213.5483870967742" r="3">
       <title>Martha Roby</title>
-    </rect>
-    <rect x="209" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="205.48387096774192" r="3">
       <title>Kyrsten Sinema</title>
-    </rect>
-    <rect x="209" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="170" cy="197.4193548387097" r="3">
       <title>Ro Khanna</title>
-    </rect>
-    <rect x="209" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="170" cy="189.35483870967744" r="3">
       <title>Nanette Diaz Barragán</title>
-    </rect>
-    <rect x="209" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="170" cy="181.29032258064515" r="3">
       <title>Jenniffer González-Colón</title>
-    </rect>
-    <rect x="209" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="170" cy="173.22580645161293" r="3">
       <title>Steve Watkins</title>
-    </rect>
-    <rect x="209" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="170" cy="165.1612903225806" r="3">
       <title>Elissa Slotkin</title>
-    </rect>
-    <rect x="209" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="157.09677419354838" r="3">
       <title>Rashida Tlaib</title>
-    </rect>
-    <rect x="209" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="170" cy="149.03225806451613" r="3">
       <title>Kelly Armstrong</title>
-    </rect>
-    <rect x="209" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="170" cy="140.96774193548387" r="3">
       <title>Kendra S. Horn</title>
-    </rect>
-    <rect x="209" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="170" cy="132.90322580645162" r="3">
       <title>Dusty Johnson</title>
-    </rect>
-    <rect x="209" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="170" cy="124.83870967741935" r="3">
       <title>Mike Garcia</title>
-    </rect>
-    <rect x="222" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="261.93548387096774" r="3">
       <title>Jim Bridenstine</title>
-    </rect>
-    <rect x="222" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="253.8709677419355" r="3">
       <title>Jared Polis</title>
-    </rect>
-    <rect x="222" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="245.80645161290323" r="3">
       <title>Mia B. Love</title>
-    </rect>
-    <rect x="222" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="237.74193548387098" r="3">
       <title>Patrick T. McHenry</title>
-    </rect>
-    <rect x="222" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="229.67741935483872" r="3">
       <title>Grace Meng</title>
-    </rect>
-    <rect x="222" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="221.61290322580643" r="3">
       <title>Josh Gottheimer</title>
-    </rect>
-    <rect x="222" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="213.5483870967742" r="3">
       <title>Michael Cloud</title>
-    </rect>
-    <rect x="222" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="178" cy="205.48387096774192" r="3">
       <title>Lizzie Fletcher</title>
-    </rect>
-    <rect x="222" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="178" cy="197.4193548387097" r="3">
       <title>Elaine G. Luria</title>
-    </rect>
-    <rect x="235" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="261.93548387096774" r="3">
       <title>Vance M. McAllister</title>
-    </rect>
-    <rect x="235" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="253.8709677419355" r="3">
       <title>André Carson</title>
-    </rect>
-    <rect x="235" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="245.80645161290323" r="3">
       <title>Cory Gardner</title>
-    </rect>
-    <rect x="235" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="237.74193548387098" r="3">
       <title>Joaquin Castro</title>
-    </rect>
-    <rect x="235" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="229.67741935483872" r="3">
       <title>Derek Kilmer</title>
-    </rect>
-    <rect x="235" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="221.61290322580643" r="3">
       <title>Jimmy Gomez</title>
-    </rect>
-    <rect x="235" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="213.5483870967742" r="3">
       <title>Katie Porter</title>
-    </rect>
-    <rect x="235" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="186" cy="205.48387096774192" r="3">
       <title>Michael Waltz</title>
-    </rect>
-    <rect x="235" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="186" cy="197.4193548387097" r="3">
       <title>Ayanna Pressley</title>
-    </rect>
-    <rect x="235" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="186" cy="189.35483870967744" r="3">
       <title>Ben McAdams</title>
-    </rect>
-    <rect x="248" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="261.93548387096774" r="3">
       <title>Dan Boren</title>
-    </rect>
-    <rect x="248" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="253.8709677419355" r="3">
       <title>Jon Runyan</title>
-    </rect>
-    <rect x="248" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="245.80645161290323" r="3">
       <title>Stephen Lee Fincher</title>
-    </rect>
-    <rect x="248" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="237.74193548387098" r="3">
       <title>Christopher Murphy</title>
-    </rect>
-    <rect x="248" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="229.67741935483872" r="3">
       <title>Devin Nunes</title>
-    </rect>
-    <rect x="248" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="221.61290322580643" r="3">
       <title>Cedric L. Richmond</title>
-    </rect>
-    <rect x="248" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="213.5483870967742" r="3">
       <title>Tim Ryan</title>
-    </rect>
-    <rect x="248" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="205.48387096774192" r="3">
       <title>Andy Barr</title>
-    </rect>
-    <rect x="248" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="194" cy="197.4193548387097" r="3">
       <title>Raja Krishnamoorthi</title>
-    </rect>
-    <rect x="248" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="194" cy="189.35483870967744" r="3">
       <title>Brian K. Fitzpatrick</title>
-    </rect>
-    <rect x="248" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="194" cy="181.29032258064515" r="3">
       <title>Steven Horsford</title>
-    </rect>
-    <rect x="248" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="194" cy="173.22580645161293" r="3">
       <title>Jahana Hayes</title>
-    </rect>
-    <rect x="248" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="194" cy="165.1612903225806" r="3">
       <title>Russ Fulcher</title>
-    </rect>
-    <rect x="248" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="194" cy="157.09677419354838" r="3">
       <title>Lori Trahan</title>
-    </rect>
-    <rect x="261" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="261.93548387096774" r="3">
       <title>David W. Jolly</title>
-    </rect>
-    <rect x="261" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="253.8709677419355" r="3">
       <title>Beto O’Rourke</title>
-    </rect>
-    <rect x="261" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="245.80645161290323" r="3">
       <title>Thomas A. Garrett, Jr.</title>
-    </rect>
-    <rect x="261" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="237.74193548387098" r="3">
       <title>Ben Ray Luján</title>
-    </rect>
-    <rect x="261" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="229.67741935483872" r="3">
       <title>Todd Young</title>
-    </rect>
-    <rect x="261" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="221.61290322580643" r="3">
       <title>Brian Schatz</title>
-    </rect>
-    <rect x="261" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="213.5483870967742" r="3">
       <title>Raul Ruiz</title>
-    </rect>
-    <rect x="261" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="205.48387096774192" r="3">
       <title>Garret Graves</title>
-    </rect>
-    <rect x="261" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="202" cy="197.4193548387097" r="3">
       <title>David Rouzer</title>
-    </rect>
-    <rect x="261" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="202" cy="189.35483870967744" r="3">
       <title>Ben Sasse</title>
-    </rect>
-    <rect x="261" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="202" cy="181.29032258064515" r="3">
       <title>James Comer</title>
-    </rect>
-    <rect x="261" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="202" cy="173.22580645161293" r="3">
       <title>Mike Johnson</title>
-    </rect>
-    <rect x="261" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="202" cy="165.1612903225806" r="3">
       <title>Jodey C. Arrington</title>
-    </rect>
-    <rect x="261" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="157.09677419354838" r="3">
       <title>Angie Craig</title>
-    </rect>
-    <rect x="261" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="202" cy="149.03225806451613" r="3">
       <title>Mikie Sherrill</title>
-    </rect>
-    <rect x="261" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="202" cy="140.96774193548387" r="3">
       <title>Van Taylor</title>
-    </rect>
-    <rect x="261" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="202" cy="132.90322580645162" r="3">
       <title>Chip Roy</title>
-    </rect>
-    <rect x="261" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="202" cy="124.83870967741935" r="3">
       <title>Ben Cline</title>
-    </rect>
-    <rect x="274" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="261.93548387096774" r="3">
       <title>Heath Shuler</title>
-    </rect>
-    <rect x="274" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="253.8709677419355" r="3">
       <title>Kristi L. Noem</title>
-    </rect>
-    <rect x="274" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="245.80645161290323" r="3">
       <title>Sean P. Duffy</title>
-    </rect>
-    <rect x="274" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="237.74193548387098" r="3">
       <title>Martin Heinrich</title>
-    </rect>
-    <rect x="274" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="229.67741935483872" r="3">
       <title>Mike Lee</title>
-    </rect>
-    <rect x="274" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="221.61290322580643" r="3">
       <title>Tom Reed</title>
-    </rect>
-    <rect x="274" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="213.5483870967742" r="3">
       <title>Marco Rubio</title>
-    </rect>
-    <rect x="274" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="205.48387096774192" r="3">
       <title>Thomas Massie</title>
-    </rect>
-    <rect x="274" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="210" cy="197.4193548387097" r="3">
       <title>Richard Hudson</title>
-    </rect>
-    <rect x="274" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="210" cy="189.35483870967744" r="3">
       <title>Marc A. Veasey</title>
-    </rect>
-    <rect x="274" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="210" cy="181.29032258064515" r="3">
       <title>Alexander X. Mooney</title>
-    </rect>
-    <rect x="274" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="210" cy="173.22580645161293" r="3">
       <title>Ted Budd</title>
-    </rect>
-    <rect x="274" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="210" cy="165.1612903225806" r="3">
       <title>Gilbert Ray Cisneros, Jr.</title>
-    </rect>
-    <rect x="274" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="210" cy="157.09677419354838" r="3">
       <title>Debbie Mucarsel-Powell</title>
-    </rect>
-    <rect x="274" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="210" cy="149.03225806451613" r="3">
       <title>Sean Casten</title>
-    </rect>
-    <rect x="287" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="261.93548387096774" r="3">
       <title>Jeffrey M. Landry</title>
-    </rect>
-    <rect x="287" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="253.8709677419355" r="3">
       <title>Michael G. Grimm</title>
-    </rect>
-    <rect x="287" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="245.80645161290323" r="3">
       <title>Frank C. Guinta</title>
-    </rect>
-    <rect x="287" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="237.74193548387098" r="3">
       <title>Todd Rokita</title>
-    </rect>
-    <rect x="287" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="229.67741935483872" r="3">
       <title>Thomas J. Rooney</title>
-    </rect>
-    <rect x="287" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="221.61290322580643" r="3">
       <title>Paul D. Ryan</title>
-    </rect>
-    <rect x="287" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="213.5483870967742" r="3">
       <title>Tom Graves</title>
-    </rect>
-    <rect x="287" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="205.48387096774192" r="3">
       <title>Steven M. Palazzo</title>
-    </rect>
-    <rect x="287" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="218" cy="197.4193548387097" r="3">
       <title>Adrian Smith</title>
-    </rect>
-    <rect x="287" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="218" cy="189.35483870967744" r="3">
       <title>Rob Woodall</title>
-    </rect>
-    <rect x="287" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="218" cy="181.29032258064515" r="3">
       <title>Rodney Davis</title>
-    </rect>
-    <rect x="287" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="218" cy="173.22580645161293" r="3">
       <title>Hakeem S. Jeffries</title>
-    </rect>
-    <rect x="287" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="218" cy="165.1612903225806" r="3">
       <title>Ted Cruz</title>
-    </rect>
-    <rect x="287" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="157.09677419354838" r="3">
       <title>Joni Ernst</title>
-    </rect>
-    <rect x="287" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="218" cy="149.03225806451613" r="3">
       <title>Warren Davidson</title>
-    </rect>
-    <rect x="287" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="140.96774193548387" r="3">
       <title>Greg Stanton</title>
-    </rect>
-    <rect x="287" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="218" cy="132.90322580645162" r="3">
       <title>Michael Guest</title>
-    </rect>
-    <rect x="287" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="218" cy="124.83870967741935" r="3">
       <title>Denver Riggleman</title>
-    </rect>
-    <rect x="287" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="218" cy="116.7741935483871" r="3">
       <title>Kelly Loeffler</title>
-    </rect>
-    <rect x="300" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="261.93548387096774" r="3">
       <title>William M. Cowan</title>
-    </rect>
-    <rect x="300" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="253.8709677419355" r="3">
       <title>Robert Hurt</title>
-    </rect>
-    <rect x="300" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="245.80645161290323" r="3">
       <title>Robert J. Dold</title>
-    </rect>
-    <rect x="300" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="237.74193548387098" r="3">
       <title>Luke Messer</title>
-    </rect>
-    <rect x="300" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="229.67741935483872" r="3">
       <title>Bill Huizenga</title>
-    </rect>
-    <rect x="300" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="221.61290322580643" r="3">
       <title>Cathy McMorris Rodgers</title>
-    </rect>
-    <rect x="300" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="213.5483870967742" r="3">
       <title>Austin Scott</title>
-    </rect>
-    <rect x="300" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="205.48387096774192" r="3">
       <title>Linda T. Sánchez</title>
-    </rect>
-    <rect x="300" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="226" cy="197.4193548387097" r="3">
       <title>Cory A. Booker</title>
-    </rect>
-    <rect x="300" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="226" cy="189.35483870967744" r="3">
       <title>Ted Lieu</title>
-    </rect>
-    <rect x="300" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="226" cy="181.29032258064515" r="3">
       <title>Mark Walker</title>
-    </rect>
-    <rect x="300" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="226" cy="173.22580645161293" r="3">
       <title>Jimmy Panetta</title>
-    </rect>
-    <rect x="300" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="226" cy="165.1612903225806" r="3">
       <title>Dean Phillips</title>
-    </rect>
-    <rect x="300" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="226" cy="157.09677419354838" r="3">
       <title>Veronica Escobar</title>
-    </rect>
-    <rect x="313" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="261.93548387096774" r="3">
       <title>Jason Altmire</title>
-    </rect>
-    <rect x="313" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="253.8709677419355" r="3">
       <title>Tim Griffin</title>
-    </rect>
-    <rect x="313" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="245.80645161290323" r="3">
       <title>Daniel B. Maffei</title>
-    </rect>
-    <rect x="313" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="237.74193548387098" r="3">
       <title>Kelly Ayotte</title>
-    </rect>
-    <rect x="313" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="229.67741935483872" r="3">
       <title>Tim Huelskamp</title>
-    </rect>
-    <rect x="313" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="221.61290322580643" r="3">
       <title>David Young</title>
-    </rect>
-    <rect x="313" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="213.5483870967742" r="3">
       <title>James Lankford</title>
-    </rect>
-    <rect x="313" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="234" cy="205.48387096774192" r="3">
       <title>Tammy Duckworth</title>
-    </rect>
-    <rect x="313" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="234" cy="197.4193548387097" r="3">
       <title>George Holding</title>
-    </rect>
-    <rect x="313" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="234" cy="189.35483870967744" r="3">
       <title>Darin LaHood</title>
-    </rect>
-    <rect x="313" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="234" cy="181.29032258064515" r="3">
       <title>Jennifer Wexton</title>
-    </rect>
-    <rect x="313" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="234" cy="173.22580645161293" r="3">
       <title>Kim Schrier</title>
-    </rect>
-    <rect x="326" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="261.93548387096774" r="3">
       <title>Connie Mack</title>
-    </rect>
-    <rect x="326" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="253.8709677419355" r="3">
       <title>Mark Takai</title>
-    </rect>
-    <rect x="326" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="245.80645161290323" r="3">
       <title>Mick Mulvaney</title>
-    </rect>
-    <rect x="326" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="237.74193548387098" r="3">
       <title>Jason Chaffetz</title>
-    </rect>
-    <rect x="326" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="229.67741935483872" r="3">
       <title>Jeff Denham</title>
-    </rect>
-    <rect x="326" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="221.61290322580643" r="3">
       <title>Raúl R. Labrador</title>
-    </rect>
-    <rect x="326" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="213.5483870967742" r="3">
       <title>Mike Bishop</title>
-    </rect>
-    <rect x="326" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="242" cy="205.48387096774192" r="3">
       <title>Bruce Westerman</title>
-    </rect>
-    <rect x="326" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="242" cy="197.4193548387097" r="3">
       <title>Vicente Gonzalez</title>
-    </rect>
-    <rect x="326" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="242" cy="189.35483870967744" r="3">
       <title>Chrissy Houlahan</title>
-    </rect>
-    <rect x="339" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="261.93548387096774" r="3">
       <title>Randy Hultgren</title>
-    </rect>
-    <rect x="339" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="253.8709677419355" r="3">
       <title>Stephen Knight</title>
-    </rect>
-    <rect x="339" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="245.80645161290323" r="3">
       <title>Kirsten E. Gillibrand</title>
-    </rect>
-    <rect x="339" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="237.74193548387098" r="3">
       <title>Kathy Castor</title>
-    </rect>
-    <rect x="339" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="229.67741935483872" r="3">
       <title>Eric A. "Rick" Crawford</title>
-    </rect>
-    <rect x="339" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="221.61290322580643" r="3">
       <title>Theodore E. Deutch</title>
-    </rect>
-    <rect x="339" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="213.5483870967742" r="3">
       <title>Jeff Duncan</title>
-    </rect>
-    <rect x="339" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="205.48387096774192" r="3">
       <title>James A. Himes</title>
-    </rect>
-    <rect x="339" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="250" cy="197.4193548387097" r="3">
       <title>Daniel Lipinski</title>
-    </rect>
-    <rect x="339" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="250" cy="189.35483870967744" r="3">
       <title>Debbie Wasserman Schultz</title>
-    </rect>
-    <rect x="339" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="250" cy="181.29032258064515" r="3">
       <title>Doug Collins</title>
-    </rect>
-    <rect x="339" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="250" cy="173.22580645161293" r="3">
       <title>Sean Patrick Maloney</title>
-    </rect>
-    <rect x="339" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="250" cy="165.1612903225806" r="3">
       <title>Stacey E. Plaskett</title>
-    </rect>
-    <rect x="339" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="157.09677419354838" r="3">
       <title>Trent Kelly</title>
-    </rect>
-    <rect x="339" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="250" cy="149.03225806451613" r="3">
       <title>A. Drew Ferguson IV</title>
-    </rect>
-    <rect x="339" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="140.96774193548387" r="3">
       <title>David Kustoff</title>
-    </rect>
-    <rect x="339" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="250" cy="132.90322580645162" r="3">
       <title>Liz Cheney</title>
-    </rect>
-    <rect x="339" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="250" cy="124.83870967741935" r="3">
       <title>Ross Spano</title>
-    </rect>
-    <rect x="339" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="116.7741935483871" r="3">
       <title>Pete Stauber</title>
-    </rect>
-    <rect x="339" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="250" cy="108.70967741935485" r="3">
       <title>Susie Lee</title>
-    </rect>
-    <rect x="339" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="250" cy="100.64516129032259" r="3">
       <title>Martha McSally</title>
-    </rect>
-    <rect x="339" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="250" cy="92.5806451612903" r="3">
       <title>Chris Jacobs</title>
-    </rect>
-    <rect x="352" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="261.93548387096774" r="3">
       <title>Jesse L. Jackson Jr.</title>
-    </rect>
-    <rect x="352" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="253.8709677419355" r="3">
       <title>David Rivera</title>
-    </rect>
-    <rect x="352" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="245.80645161290323" r="3">
       <title>John Sullivan</title>
-    </rect>
-    <rect x="352" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="237.74193548387098" r="3">
       <title>Jeff Chiesa</title>
-    </rect>
-    <rect x="352" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="229.67741935483872" r="3">
       <title>Steve Southerland II</title>
-    </rect>
-    <rect x="352" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="221.61290322580643" r="3">
       <title>Erik Paulsen</title>
-    </rect>
-    <rect x="352" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="213.5483870967742" r="3">
       <title>John Ratcliffe</title>
-    </rect>
-    <rect x="352" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="205.48387096774192" r="3">
       <title>Robert B. Aderholt</title>
-    </rect>
-    <rect x="352" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="258" cy="197.4193548387097" r="3">
       <title>Rick Larsen</title>
-    </rect>
-    <rect x="352" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="258" cy="189.35483870967744" r="3">
       <title>Kevin McCarthy</title>
-    </rect>
-    <rect x="352" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="258" cy="181.29032258064515" r="3">
       <title>Steve Scalise</title>
-    </rect>
-    <rect x="352" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="258" cy="173.22580645161293" r="3">
       <title>Tim Scott</title>
-    </rect>
-    <rect x="352" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="258" cy="165.1612903225806" r="3">
       <title>Terri A. Sewell</title>
-    </rect>
-    <rect x="352" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="157.09677419354838" r="3">
       <title>Adam Smith</title>
-    </rect>
-    <rect x="352" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="258" cy="149.03225806451613" r="3">
       <title>Steve Stivers</title>
-    </rect>
-    <rect x="352" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="140.96774193548387" r="3">
       <title>Ami Bera</title>
-    </rect>
-    <rect x="352" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="258" cy="132.90322580645162" r="3">
       <title>Norma J. Torres</title>
-    </rect>
-    <rect x="352" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="258" cy="124.83870967741935" r="3">
       <title>Kathleen M. Rice</title>
-    </rect>
-    <rect x="352" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="116.7741935483871" r="3">
       <title>Pramila Jayapal</title>
-    </rect>
-    <rect x="352" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="258" cy="108.70967741935485" r="3">
       <title>Cynthia Axne</title>
-    </rect>
-    <rect x="352" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="258" cy="100.64516129032259" r="3">
       <title>Tom Malinowski</title>
-    </rect>
-    <rect x="352" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="258" cy="92.5806451612903" r="3">
       <title>John W. Rose</title>
-    </rect>
-    <rect x="352" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="258" cy="84.51612903225806" r="3">
       <title>Fred Keller</title>
-    </rect>
-    <rect x="365" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="261.93548387096774" r="3">
       <title>Robert T. Schilling</title>
-    </rect>
-    <rect x="365" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="253.8709677419355" r="3">
       <title>Renee L. Ellmers</title>
-    </rect>
-    <rect x="365" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="245.80645161290323" r="3">
       <title>Christopher P. Gibson</title>
-    </rect>
-    <rect x="365" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="237.74193548387098" r="3">
       <title>Trey Gowdy</title>
-    </rect>
-    <rect x="365" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="229.67741935483872" r="3">
       <title>Timothy J. Walz</title>
-    </rect>
-    <rect x="365" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="221.61290322580643" r="3">
       <title>Dave Brat</title>
-    </rect>
-    <rect x="365" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="213.5483870967742" r="3">
       <title>Michael F. Bennet</title>
-    </rect>
-    <rect x="365" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="205.48387096774192" r="3">
       <title>Yvette D. Clarke</title>
-    </rect>
-    <rect x="365" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="266" cy="197.4193548387097" r="3">
       <title>Scott DesJarlais</title>
-    </rect>
-    <rect x="365" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="266" cy="189.35483870967744" r="3">
       <title>Brett Guthrie</title>
-    </rect>
-    <rect x="365" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="266" cy="181.29032258064515" r="3">
       <title>Jim Jordan</title>
-    </rect>
-    <rect x="365" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="266" cy="173.22580645161293" r="3">
       <title>James R. Langevin</title>
-    </rect>
-    <rect x="365" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="266" cy="165.1612903225806" r="3">
       <title>Jared Huffman</title>
-    </rect>
-    <rect x="365" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="157.09677419354838" r="3">
       <title>Mark Pocan</title>
-    </rect>
-    <rect x="365" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="266" cy="149.03225806451613" r="3">
       <title>Dan Sullivan</title>
-    </rect>
-    <rect x="365" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="140.96774193548387" r="3">
       <title>Kamala D. Harris</title>
-    </rect>
-    <rect x="365" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="266" cy="132.90322580645162" r="3">
       <title>Catherine Cortez Masto</title>
-    </rect>
-    <rect x="365" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="266" cy="124.83870967741935" r="3">
       <title>Salud O. Carbajal</title>
-    </rect>
-    <rect x="365" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="116.7741935483871" r="3">
       <title>Lloyd Smucker</title>
-    </rect>
-    <rect x="365" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="266" cy="108.70967741935485" r="3">
       <title>Daniel Meuser</title>
-    </rect>
-    <rect x="365" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="266" cy="100.64516129032259" r="3">
       <title>Tim Burchett</title>
-    </rect>
-    <rect x="365" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="266" cy="92.5806451612903" r="3">
       <title>Mark E. Green</title>
-    </rect>
-    <rect x="365" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="266" cy="84.51612903225806" r="3">
       <title>Dan Bishop</title>
-    </rect>
-    <rect x="378" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="261.93548387096774" r="3">
       <title>Betty Sutton</title>
-    </rect>
-    <rect x="378" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="253.8709677419355" r="3">
       <title>Eric Cantor</title>
-    </rect>
-    <rect x="378" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="245.80645161290323" r="3">
       <title>Mark L. Pryor</title>
-    </rect>
-    <rect x="378" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="237.74193548387098" r="3">
       <title>Mike Rogers</title>
-    </rect>
-    <rect x="378" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="229.67741935483872" r="3">
       <title>Joe Garcia</title>
-    </rect>
-    <rect x="378" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="221.61290322580643" r="3">
       <title>Michael G. Fitzpatrick</title>
-    </rect>
-    <rect x="378" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="213.5483870967742" r="3">
       <title>Gwen Graham</title>
-    </rect>
-    <rect x="378" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="205.48387096774192" r="3">
       <title>Mike Pompeo</title>
-    </rect>
-    <rect x="378" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="274" cy="197.4193548387097" r="3">
       <title>Keith Ellison</title>
-    </rect>
-    <rect x="378" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="274" cy="189.35483870967744" r="3">
       <title>Lynn Jenkins</title>
-    </rect>
-    <rect x="378" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="274" cy="181.29032258064515" r="3">
       <title>John K. Delaney</title>
-    </rect>
-    <rect x="378" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="274" cy="173.22580645161293" r="3">
       <title>Steve Russell</title>
-    </rect>
-    <rect x="378" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="274" cy="165.1612903225806" r="3">
       <title>Christopher A. Coons</title>
-    </rect>
-    <rect x="378" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="157.09677419354838" r="3">
       <title>Gus M. Bilirakis</title>
-    </rect>
-    <rect x="378" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="274" cy="149.03225806451613" r="3">
       <title>Sam Graves</title>
-    </rect>
-    <rect x="378" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="140.96774193548387" r="3">
       <title>Ron Kind</title>
-    </rect>
-    <rect x="378" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="274" cy="132.90322580645162" r="3">
       <title>Rand Paul</title>
-    </rect>
-    <rect x="378" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="274" cy="124.83870967741935" r="3">
       <title>Tony Cárdenas</title>
-    </rect>
-    <rect x="378" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="116.7741935483871" r="3">
       <title>Jackie Walorski</title>
-    </rect>
-    <rect x="378" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="274" cy="108.70967741935485" r="3">
       <title>Filemon Vela</title>
-    </rect>
-    <rect x="378" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="274" cy="100.64516129032259" r="3">
       <title>Katherine M. Clark</title>
-    </rect>
-    <rect x="378" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="274" cy="92.5806451612903" r="3">
       <title>Barry Loudermilk</title>
-    </rect>
-    <rect x="378" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="274" cy="84.51612903225806" r="3">
       <title>Don Bacon</title>
-    </rect>
-    <rect x="378" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="274" cy="76.45161290322582" r="3">
       <title>TJ Cox</title>
-    </rect>
-    <rect x="378" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="274" cy="68.38709677419357" r="3">
       <title>Gregory F. Murphy</title>
-    </rect>
-    <rect x="391" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="261.93548387096774" r="3">
       <title>Mark S. Critz</title>
-    </rect>
-    <rect x="391" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="253.8709677419355" r="3">
       <title>Todd Russell Platts</title>
-    </rect>
-    <rect x="391" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="245.80645161290323" r="3">
       <title>Laura Richardson</title>
-    </rect>
-    <rect x="391" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="237.74193548387098" r="3">
       <title>Mark Begich</title>
-    </rect>
-    <rect x="391" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="229.67741935483872" r="3">
       <title>Lee Terry</title>
-    </rect>
-    <rect x="391" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="221.61290322580643" r="3">
       <title>Patrick J. Tiberi</title>
-    </rect>
-    <rect x="391" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="213.5483870967742" r="3">
       <title>Joseph Crowley</title>
-    </rect>
-    <rect x="391" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="205.48387096774192" r="3">
       <title>Jeff Flake</title>
-    </rect>
-    <rect x="391" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="282" cy="197.4193548387097" r="3">
       <title>Keith J. Rothfus</title>
-    </rect>
-    <rect x="391" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="282" cy="189.35483870967744" r="3">
       <title>Mimi Walters</title>
-    </rect>
-    <rect x="391" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="282" cy="181.29032258064515" r="3">
       <title>Karen C. Handel</title>
-    </rect>
-    <rect x="391" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="282" cy="173.22580645161293" r="3">
       <title>Tammy Baldwin</title>
-    </rect>
-    <rect x="391" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="282" cy="165.1612903225806" r="3">
       <title>Larry Bucshon</title>
-    </rect>
-    <rect x="391" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="157.09677419354838" r="3">
       <title>Charles J. "Chuck" Fleischmann</title>
-    </rect>
-    <rect x="391" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="282" cy="149.03225806451613" r="3">
       <title>Michael T. McCaul</title>
-    </rect>
-    <rect x="391" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="140.96774193548387" r="3">
       <title>Pete Olson</title>
-    </rect>
-    <rect x="391" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="282" cy="132.90322580645162" r="3">
       <title>John P. Sarbanes</title>
-    </rect>
-    <rect x="391" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="282" cy="124.83870967741935" r="3">
       <title>David Schweikert</title>
-    </rect>
-    <rect x="391" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="116.7741935483871" r="3">
       <title>Suzan K. DelBene</title>
-    </rect>
-    <rect x="391" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="282" cy="108.70967741935485" r="3">
       <title>Ann Wagner</title>
-    </rect>
-    <rect x="391" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="282" cy="100.64516129032259" r="3">
       <title>Steve Daines</title>
-    </rect>
-    <rect x="391" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="282" cy="92.5806451612903" r="3">
       <title>Scott Perry</title>
-    </rect>
-    <rect x="391" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="282" cy="84.51612903225806" r="3">
       <title>John Katko</title>
-    </rect>
-    <rect x="391" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="282" cy="76.45161290322582" r="3">
       <title>Lisa Blunt Rochester</title>
-    </rect>
-    <rect x="391" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="282" cy="68.38709677419357" r="3">
       <title>Jamie Raskin</title>
-    </rect>
-    <rect x="391" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="282" cy="60.32258064516128" r="3">
       <title>Thomas R. Suozzi</title>
-    </rect>
-    <rect x="391" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="282" cy="52.258064516129025" r="3">
       <title>Troy Balderson</title>
-    </rect>
-    <rect x="391" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="282" cy="44.19354838709678" r="3">
       <title>Jim Hagedorn</title>
-    </rect>
-    <rect x="404" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="261.93548387096774" r="3">
       <title>Mary Bono Mack</title>
-    </rect>
-    <rect x="404" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="253.8709677419355" r="3">
       <title>Mike Ross</title>
-    </rect>
-    <rect x="404" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="245.80645161290323" r="3">
       <title>Joe Walsh</title>
-    </rect>
-    <rect x="404" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="237.74193548387098" r="3">
       <title>Allen B. West</title>
-    </rect>
-    <rect x="404" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="229.67741935483872" r="3">
       <title>Pete P. Gallego</title>
-    </rect>
-    <rect x="404" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="221.61290322580643" r="3">
       <title>David Vitter</title>
-    </rect>
-    <rect x="404" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="213.5483870967742" r="3">
       <title>Joseph J. Heck</title>
-    </rect>
-    <rect x="404" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="205.48387096774192" r="3">
       <title>Ryan K. Zinke</title>
-    </rect>
-    <rect x="404" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="290" cy="197.4193548387097" r="3">
       <title>Blake Farenthold</title>
-    </rect>
-    <rect x="404" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="290" cy="189.35483870967744" r="3">
       <title>Peter J. Roskam</title>
-    </rect>
-    <rect x="404" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="290" cy="181.29032258064515" r="3">
       <title>Bill Shuster</title>
-    </rect>
-    <rect x="404" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="290" cy="173.22580645161293" r="3">
       <title>Claudia Tenney</title>
-    </rect>
-    <rect x="404" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="290" cy="165.1612903225806" r="3">
       <title>David N. Cicilline</title>
-    </rect>
-    <rect x="404" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="157.09677419354838" r="3">
       <title>Mario Diaz-Balart</title>
-    </rect>
-    <rect x="404" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="290" cy="149.03225806451613" r="3">
       <title>John Thune</title>
-    </rect>
-    <rect x="404" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="140.96774193548387" r="3">
       <title>Patrick J. Toomey</title>
-    </rect>
-    <rect x="404" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="290" cy="132.90322580645162" r="3">
       <title>Juan Vargas</title>
-    </rect>
-    <rect x="404" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="290" cy="124.83870967741935" r="3">
       <title>Cheri Bustos</title>
-    </rect>
-    <rect x="404" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="116.7741935483871" r="3">
       <title>Kevin Cramer</title>
-    </rect>
-    <rect x="404" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="290" cy="108.70967741935485" r="3">
       <title>Matt Cartwright</title>
-    </rect>
-    <rect x="404" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="290" cy="100.64516129032259" r="3">
       <title>John R. Moolenaar</title>
-    </rect>
-    <rect x="404" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="290" cy="92.5806451612903" r="3">
       <title>Tom Emmer</title>
-    </rect>
-    <rect x="404" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="290" cy="84.51612903225806" r="3">
       <title>Bradley Scott Schneider</title>
-    </rect>
-    <rect x="404" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="290" cy="76.45161290322582" r="3">
       <title>Clay Higgins</title>
-    </rect>
-    <rect x="404" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="290" cy="68.38709677419357" r="3">
       <title>Anthony G. Brown</title>
-    </rect>
-    <rect x="404" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="290" cy="60.32258064516128" r="3">
       <title>Paul Mitchell</title>
-    </rect>
-    <rect x="404" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="290" cy="52.258064516129025" r="3">
       <title>A. Donald McEachin</title>
-    </rect>
-    <rect x="404" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="290" cy="44.19354838709678" r="3">
       <title>Greg Gianforte</title>
-    </rect>
-    <rect x="404" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="290" cy="36.12903225806453" r="3">
       <title>Kevin Hern</title>
-    </rect>
-    <rect x="404" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="290" cy="28.06451612903225" r="3">
       <title>Harley Rouda</title>
-    </rect>
-    <rect x="417" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="261.93548387096774" r="3">
       <title>Jim Matheson</title>
-    </rect>
-    <rect x="417" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="253.8709677419355" r="3">
       <title>John E. Walsh</title>
-    </rect>
-    <rect x="417" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="245.80645161290323" r="3">
       <title>E. Scott Rigell</title>
-    </rect>
-    <rect x="417" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="237.74193548387098" r="3">
       <title>Loretta Sanchez</title>
-    </rect>
-    <rect x="417" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="229.67741935483872" r="3">
       <title>Charles W. Dent</title>
-    </rect>
-    <rect x="417" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="221.61290322580643" r="3">
       <title>Evan H. Jenkins</title>
-    </rect>
-    <rect x="417" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="213.5483870967742" r="3">
       <title>Dean Heller</title>
-    </rect>
-    <rect x="417" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="205.48387096774192" r="3">
       <title>Mark Sanford</title>
-    </rect>
-    <rect x="417" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="298" cy="197.4193548387097" r="3">
       <title>David A. Trott</title>
-    </rect>
-    <rect x="417" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="298" cy="189.35483870967744" r="3">
       <title>Thomas MacArthur</title>
-    </rect>
-    <rect x="417" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="298" cy="181.29032258064515" r="3">
       <title>Robert P. Casey, Jr.</title>
-    </rect>
-    <rect x="417" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="298" cy="173.22580645161293" r="3">
       <title>Amy Klobuchar</title>
-    </rect>
-    <rect x="417" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="298" cy="165.1612903225806" r="3">
       <title>Jeff Fortenberry</title>
-    </rect>
-    <rect x="417" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="157.09677419354838" r="3">
       <title>Vicky Hartzler</title>
-    </rect>
-    <rect x="417" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="298" cy="149.03225806451613" r="3">
       <title>Frank D. Lucas</title>
-    </rect>
-    <rect x="417" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="140.96774193548387" r="3">
       <title>Adam B. Schiff</title>
-    </rect>
-    <rect x="417" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="298" cy="132.90322580645162" r="3">
       <title>Michael R. Turner</title>
-    </rect>
-    <rect x="417" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="298" cy="124.83870967741935" r="3">
       <title>Doug LaMalfa</title>
-    </rect>
-    <rect x="417" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="116.7741935483871" r="3">
       <title>Mark Takano</title>
-    </rect>
-    <rect x="417" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="298" cy="108.70967741935485" r="3">
       <title>Susan W. Brooks</title>
-    </rect>
-    <rect x="417" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="298" cy="100.64516129032259" r="3">
       <title>Chris Stewart</title>
-    </rect>
-    <rect x="417" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="298" cy="92.5806451612903" r="3">
       <title>Jody B. Hice</title>
-    </rect>
-    <rect x="417" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="298" cy="84.51612903225806" r="3">
       <title>Mike Bost</title>
-    </rect>
-    <rect x="417" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="298" cy="76.45161290322582" r="3">
       <title>Thom Tillis</title>
-    </rect>
-    <rect x="417" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="298" cy="68.38709677419357" r="3">
       <title>Roger W. Marshall</title>
-    </rect>
-    <rect x="417" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="298" cy="60.32258064516128" r="3">
       <title>John R. Curtis</title>
-    </rect>
-    <rect x="417" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="298" cy="52.258064516129025" r="3">
       <title>Lucy McBath</title>
-    </rect>
-    <rect x="417" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="298" cy="44.19354838709678" r="3">
       <title>Andy Levin</title>
-    </rect>
-    <rect x="417" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="298" cy="36.12903225806453" r="3">
       <title>Debra A. Haaland</title>
-    </rect>
-    <rect x="430" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="261.93548387096774" r="3">
       <title>Scott P. Brown</title>
-    </rect>
-    <rect x="430" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="253.8709677419355" r="3">
       <title>Rick Berg</title>
-    </rect>
-    <rect x="430" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="245.80645161290323" r="3">
       <title>Ben Chandler</title>
-    </rect>
-    <rect x="430" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="237.74193548387098" r="3">
       <title>Chip Cravaack</title>
-    </rect>
-    <rect x="430" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="229.67741935483872" r="3">
       <title>Nan A. S. Hayworth</title>
-    </rect>
-    <rect x="430" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="221.61290322580643" r="3">
       <title>Mike Pence</title>
-    </rect>
-    <rect x="430" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="213.5483870967742" r="3">
       <title>Jo Bonner</title>
-    </rect>
-    <rect x="430" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="205.48387096774192" r="3">
       <title>Mark Kirk</title>
-    </rect>
-    <rect x="430" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="306" cy="197.4193548387097" r="3">
       <title>Scott Garrett</title>
-    </rect>
-    <rect x="430" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="306" cy="189.35483870967744" r="3">
       <title>Jeff Miller</title>
-    </rect>
-    <rect x="430" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="306" cy="181.29032258064515" r="3">
       <title>Pedro R. Pierluisi</title>
-    </rect>
-    <rect x="430" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="306" cy="173.22580645161293" r="3">
       <title>Curt Clawson</title>
-    </rect>
-    <rect x="430" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="306" cy="165.1612903225806" r="3">
       <title>Michelle Lujan Grisham</title>
-    </rect>
-    <rect x="430" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="157.09677419354838" r="3">
       <title>Dennis A. Ross</title>
-    </rect>
-    <rect x="430" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="306" cy="149.03225806451613" r="3">
       <title>Elizabeth H. Esty</title>
-    </rect>
-    <rect x="430" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="140.96774193548387" r="3">
       <title>Barbara Comstock</title>
-    </rect>
-    <rect x="430" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="306" cy="132.90322580645162" r="3">
       <title>Brenda Jones</title>
-    </rect>
-    <rect x="430" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="306" cy="124.83870967741935" r="3">
       <title>Mark Meadows</title>
-    </rect>
-    <rect x="430" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="116.7741935483871" r="3">
       <title>Brian Higgins</title>
-    </rect>
-    <rect x="430" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="306" cy="108.70967741935485" r="3">
       <title>James P. McGovern</title>
-    </rect>
-    <rect x="430" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="306" cy="100.64516129032259" r="3">
       <title>Glenn Thompson</title>
-    </rect>
-    <rect x="430" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="306" cy="92.5806451612903" r="3">
       <title>Chris Van Hollen</title>
-    </rect>
-    <rect x="430" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="306" cy="84.51612903225806" r="3">
       <title>Robert J. Wittman</title>
-    </rect>
-    <rect x="430" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="306" cy="76.45161290322582" r="3">
       <title>Ken Buck</title>
-    </rect>
-    <rect x="430" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="306" cy="68.38709677419357" r="3">
       <title>Cindy Hyde-Smith</title>
-    </rect>
-    <rect x="430" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="306" cy="60.32258064516128" r="3">
       <title>Mary Gay Scanlon</title>
-    </rect>
-    <rect x="430" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="306" cy="52.258064516129025" r="3">
       <title>Madeleine Dean</title>
-    </rect>
-    <rect x="443" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="261.93548387096774" r="3">
       <title>Enid Greene Waldholtz</title>
-    </rect>
-    <rect x="443" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="253.8709677419355" r="3">
       <title>Steve Austria</title>
-    </rect>
-    <rect x="443" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="245.80645161290323" r="3">
       <title>Russ Carnahan</title>
-    </rect>
-    <rect x="443" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="237.74193548387098" r="3">
       <title>Kathleen C. Hochul</title>
-    </rect>
-    <rect x="443" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="229.67741935483872" r="3">
       <title>Alan Nunnelee</title>
-    </rect>
-    <rect x="443" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="221.61290322580643" r="3">
       <title>Donna F. Edwards</title>
-    </rect>
-    <rect x="443" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="213.5483870967742" r="3">
       <title>Steve Israel</title>
-    </rect>
-    <rect x="443" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="205.48387096774192" r="3">
       <title>Matt Salmon</title>
-    </rect>
-    <rect x="443" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="314" cy="197.4193548387097" r="3">
       <title>Alan Grayson</title>
-    </rect>
-    <rect x="443" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="314" cy="189.35483870967744" r="3">
       <title>Xavier Becerra</title>
-    </rect>
-    <rect x="443" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="314" cy="181.29032258064515" r="3">
       <title>James B. Renacci</title>
-    </rect>
-    <rect x="443" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="314" cy="173.22580645161293" r="3">
       <title>Maria Cantwell</title>
-    </rect>
-    <rect x="443" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="314" cy="165.1612903225806" r="3">
       <title>Paul A. Gosar</title>
-    </rect>
-    <rect x="443" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="157.09677419354838" r="3">
       <title>H. Morgan Griffith</title>
-    </rect>
-    <rect x="443" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="314" cy="149.03225806451613" r="3">
       <title>Gary C. Peters</title>
-    </rect>
-    <rect x="443" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="140.96774193548387" r="3">
       <title>Mike Quigley</title>
-    </rect>
-    <rect x="443" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="314" cy="132.90322580645162" r="3">
       <title>Mike Rogers</title>
-    </rect>
-    <rect x="443" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="314" cy="124.83870967741935" r="3">
       <title>John Shimkus</title>
-    </rect>
-    <rect x="443" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="116.7741935483871" r="3">
       <title>Mac Thornberry</title>
-    </rect>
-    <rect x="443" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="314" cy="108.70967741935485" r="3">
       <title>Mark E. Amodei</title>
-    </rect>
-    <rect x="443" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="314" cy="100.64516129032259" r="3">
       <title>Donald M. Payne, Jr.</title>
-    </rect>
-    <rect x="443" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="314" cy="92.5806451612903" r="3">
       <title>Scott H. Peters</title>
-    </rect>
-    <rect x="443" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="314" cy="84.51612903225806" r="3">
       <title>Daniel T. Kildee</title>
-    </rect>
-    <rect x="443" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="314" cy="76.45161290322582" r="3">
       <title>Brad R. Wenstrup</title>
-    </rect>
-    <rect x="443" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="314" cy="68.38709677419357" r="3">
       <title>Tim Kaine</title>
-    </rect>
-    <rect x="443" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="314" cy="60.32258064516128" r="3">
       <title>Donald Norcross</title>
-    </rect>
-    <rect x="443" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="314" cy="52.258064516129025" r="3">
       <title>Margaret Wood Hassan</title>
-    </rect>
-    <rect x="443" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="314" cy="44.19354838709678" r="3">
       <title>Andy Biggs</title>
-    </rect>
-    <rect x="443" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="314" cy="36.12903225806453" r="3">
       <title>J. Luis Correa</title>
-    </rect>
-    <rect x="443" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="314" cy="28.06451612903225" r="3">
       <title>Tina Smith</title>
-    </rect>
-    <rect x="443" width="12" y="0" height="11.935483870967731">
+    </circle>
+    <circle cx="314" cy="20" r="3">
       <title>Debbie Lesko</title>
-    </rect>
-    <rect x="456" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="261.93548387096774" r="3">
       <title>Hansen Clarke</title>
-    </rect>
-    <rect x="456" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="253.8709677419355" r="3">
       <title>Tim Holden</title>
-    </rect>
-    <rect x="456" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="245.80645161290323" r="3">
       <title>Robert E. Andrews</title>
-    </rect>
-    <rect x="456" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="237.74193548387098" r="3">
       <title>Bruce L. Braley</title>
-    </rect>
-    <rect x="456" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="229.67741935483872" r="3">
       <title>Cresent Hardy</title>
-    </rect>
-    <rect x="456" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="221.61290322580643" r="3">
       <title>Trent Franks</title>
-    </rect>
-    <rect x="456" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="213.5483870967742" r="3">
       <title>Jeb Hensarling</title>
-    </rect>
-    <rect x="456" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="205.48387096774192" r="3">
       <title>Bill Cassidy</title>
-    </rect>
-    <rect x="456" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="322" cy="197.4193548387097" r="3">
       <title>Diana DeGette</title>
-    </rect>
-    <rect x="456" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="322" cy="189.35483870967744" r="3">
       <title>Andy Harris</title>
-    </rect>
-    <rect x="456" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="322" cy="181.29032258064515" r="3">
       <title>John Hoeven</title>
-    </rect>
-    <rect x="456" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="322" cy="173.22580645161293" r="3">
       <title>Lisa Murkowski</title>
-    </rect>
-    <rect x="456" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="322" cy="165.1612903225806" r="3">
       <title>Greg Walden</title>
-    </rect>
-    <rect x="456" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="157.09677419354838" r="3">
       <title>Steve Womack</title>
-    </rect>
-    <rect x="456" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="322" cy="149.03225806451613" r="3">
       <title>David P. Joyce</title>
-    </rect>
-    <rect x="456" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="140.96774193548387" r="3">
       <title>Tom Rice</title>
-    </rect>
-    <rect x="456" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="322" cy="132.90322580645162" r="3">
       <title>Earl L. "Buddy" Carter</title>
-    </rect>
-    <rect x="456" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="322" cy="124.83870967741935" r="3">
       <title>Val Butler Demings</title>
-    </rect>
-    <rect x="456" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="116.7741935483871" r="3">
       <title>Jacky Rosen</title>
-    </rect>
-    <rect x="456" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="322" cy="108.70967741935485" r="3">
       <title>Joseph D. Morelle</title>
-    </rect>
-    <rect x="456" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="322" cy="100.64516129032259" r="3">
       <title>Susan Wild</title>
-    </rect>
-    <rect x="456" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="322" cy="92.5806451612903" r="3">
       <title>John Joyce</title>
-    </rect>
-    <rect x="456" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="322" cy="84.51612903225806" r="3">
       <title>Thomas P. Tiffany</title>
-    </rect>
-    <rect x="469" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="261.93548387096774" r="3">
       <title>Sandy Adams</title>
-    </rect>
-    <rect x="469" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="253.8709677419355" r="3">
       <title>Michele Bachmann</title>
-    </rect>
-    <rect x="469" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="245.80645161290323" r="3">
       <title>Mike McIntyre</title>
-    </rect>
-    <rect x="469" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="237.74193548387098" r="3">
       <title>Steve Stockman</title>
-    </rect>
-    <rect x="469" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="229.67741935483872" r="3">
       <title>Chaka Fattah</title>
-    </rect>
-    <rect x="469" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="221.61290322580643" r="3">
       <title>Charles W. Boustany Jr.</title>
-    </rect>
-    <rect x="469" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="213.5483870967742" r="3">
       <title>John C. Carney Jr.</title>
-    </rect>
-    <rect x="469" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="205.48387096774192" r="3">
       <title>Reid J. Ribble</title>
-    </rect>
-    <rect x="469" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="330" cy="197.4193548387097" r="3">
       <title>Lou Barletta</title>
-    </rect>
-    <rect x="469" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="330" cy="189.35483870967744" r="3">
       <title>John Abney Culberson</title>
-    </rect>
-    <rect x="469" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="330" cy="181.29032258064515" r="3">
       <title>Gregg Harper</title>
-    </rect>
-    <rect x="469" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="330" cy="173.22580645161293" r="3">
       <title>Daniel M. Donovan, Jr.</title>
-    </rect>
-    <rect x="469" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="330" cy="165.1612903225806" r="3">
       <title>Jon Tester</title>
-    </rect>
-    <rect x="469" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="157.09677419354838" r="3">
       <title>Jeff Merkley</title>
-    </rect>
-    <rect x="469" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="330" cy="149.03225806451613" r="3">
       <title>Wm. Lacy Clay</title>
-    </rect>
-    <rect x="469" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="140.96774193548387" r="3">
       <title>Robert E. Latta</title>
-    </rect>
-    <rect x="469" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="330" cy="132.90322580645162" r="3">
       <title>Tom McClintock</title>
-    </rect>
-    <rect x="469" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="330" cy="124.83870967741935" r="3">
       <title>Scott R. Tipton</title>
-    </rect>
-    <rect x="469" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="116.7741935483871" r="3">
       <title>Ann M. Kuster</title>
-    </rect>
-    <rect x="469" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="330" cy="108.70967741935485" r="3">
       <title>Robin L. Kelly</title>
-    </rect>
-    <rect x="469" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="330" cy="100.64516129032259" r="3">
       <title>J. French Hill</title>
-    </rect>
-    <rect x="469" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="330" cy="92.5806451612903" r="3">
       <title>Charlie Crist</title>
-    </rect>
-    <rect x="469" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="330" cy="84.51612903225806" r="3">
       <title>Ron Estes</title>
-    </rect>
-    <rect x="469" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="330" cy="76.45161290322582" r="3">
       <title>Jesús G. "Chuy" García</title>
-    </rect>
-    <rect x="469" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="330" cy="68.38709677419357" r="3">
       <title>Greg Pence</title>
-    </rect>
-    <rect x="482" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="261.93548387096774" r="3">
       <title>Denny Rehberg</title>
-    </rect>
-    <rect x="482" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="253.8709677419355" r="3">
       <title>Mary L. Landrieu</title>
-    </rect>
-    <rect x="482" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="245.80645161290323" r="3">
       <title>John Barrow</title>
-    </rect>
-    <rect x="482" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="237.74193548387098" r="3">
       <title>John Campbell</title>
-    </rect>
-    <rect x="482" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="229.67741935483872" r="3">
       <title>Jim Gerlach</title>
-    </rect>
-    <rect x="482" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="221.61290322580643" r="3">
       <title>Jack Kingston</title>
-    </rect>
-    <rect x="482" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="213.5483870967742" r="3">
       <title>Michael H. Michaud</title>
-    </rect>
-    <rect x="482" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="205.48387096774192" r="3">
       <title>Patrick Meehan</title>
-    </rect>
-    <rect x="482" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="338" cy="197.4193548387097" r="3">
       <title>Mike Coffman</title>
-    </rect>
-    <rect x="482" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="338" cy="189.35483870967744" r="3">
       <title>Joe Donnelly</title>
-    </rect>
-    <rect x="482" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="338" cy="181.29032258064515" r="3">
       <title>Pete Sessions</title>
-    </rect>
-    <rect x="482" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="338" cy="173.22580645161293" r="3">
       <title>Heidi Heitkamp</title>
-    </rect>
-    <rect x="482" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="338" cy="165.1612903225806" r="3">
       <title>Rod Blum</title>
-    </rect>
-    <rect x="482" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="157.09677419354838" r="3">
       <title>Jason Lewis</title>
-    </rect>
-    <rect x="482" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="338" cy="149.03225806451613" r="3">
       <title>Sheldon Whitehouse</title>
-    </rect>
-    <rect x="482" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="140.96774193548387" r="3">
       <title>Lindsey Graham</title>
-    </rect>
-    <rect x="482" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="338" cy="132.90322580645162" r="3">
       <title>Kevin Brady</title>
-    </rect>
-    <rect x="482" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="338" cy="124.83870967741935" r="3">
       <title>Richard Burr</title>
-    </rect>
-    <rect x="482" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="116.7741935483871" r="3">
       <title>Henry Cuellar</title>
-    </rect>
-    <rect x="482" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="338" cy="108.70967741935485" r="3">
       <title>Ron Johnson</title>
-    </rect>
-    <rect x="482" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="338" cy="100.64516129032259" r="3">
       <title>Billy Long</title>
-    </rect>
-    <rect x="482" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="338" cy="92.5806451612903" r="3">
       <title>Stephen F. Lynch</title>
-    </rect>
-    <rect x="482" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="338" cy="84.51612903225806" r="3">
       <title>Chellie Pingree</title>
-    </rect>
-    <rect x="482" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="338" cy="76.45161290322582" r="3">
       <title>Rob Portman</title>
-    </rect>
-    <rect x="482" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="338" cy="68.38709677419357" r="3">
       <title>Gregorio Kilili Camacho Sablan</title>
-    </rect>
-    <rect x="482" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="338" cy="60.32258064516128" r="3">
       <title>Bill Foster</title>
-    </rect>
-    <rect x="482" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="338" cy="52.258064516129025" r="3">
       <title>Ted S. Yoho</title>
-    </rect>
-    <rect x="482" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="338" cy="44.19354838709678" r="3">
       <title>Bradley Byrne</title>
-    </rect>
-    <rect x="482" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="338" cy="36.12903225806453" r="3">
       <title>Dan Newhouse</title>
-    </rect>
-    <rect x="482" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="338" cy="28.06451612903225" r="3">
       <title>Glenn Grothman</title>
-    </rect>
-    <rect x="482" width="12" y="0" height="11.935483870967731">
+    </circle>
+    <circle cx="338" cy="20" r="3">
       <title>David J. Trone</title>
-    </rect>
-    <rect x="495" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="261.93548387096774" r="3">
       <title>Steven C. LaTourette</title>
-    </rect>
-    <rect x="495" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="253.8709677419355" r="3">
       <title>Candice S. Miller</title>
-    </rect>
-    <rect x="495" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="245.80645161290323" r="3">
       <title>Cynthia M. Lummis</title>
-    </rect>
-    <rect x="495" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="237.74193548387098" r="3">
       <title>Tom Price</title>
-    </rect>
-    <rect x="495" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="229.67741935483872" r="3">
       <title>Robert Menendez</title>
-    </rect>
-    <rect x="495" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="221.61290322580643" r="3">
       <title>Mark R. Warner</title>
-    </rect>
-    <rect x="495" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="213.5483870967742" r="3">
       <title>Mo Brooks</title>
-    </rect>
-    <rect x="495" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="205.48387096774192" r="3">
       <title>Jim Cooper</title>
-    </rect>
-    <rect x="495" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="346" cy="197.4193548387097" r="3">
       <title>Bill Flores</title>
-    </rect>
-    <rect x="495" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="346" cy="189.35483870967744" r="3">
       <title>Bob Gibbs</title>
-    </rect>
-    <rect x="495" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="346" cy="181.29032258064515" r="3">
       <title>Bill Johnson</title>
-    </rect>
-    <rect x="495" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="346" cy="173.22580645161293" r="3">
       <title>Henry C. "Hank" Johnson, Jr.</title>
-    </rect>
-    <rect x="495" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="346" cy="165.1612903225806" r="3">
       <title>Doug Lamborn</title>
-    </rect>
-    <rect x="495" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="157.09677419354838" r="3">
       <title>Betty McCollum</title>
-    </rect>
-    <rect x="495" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="346" cy="149.03225806451613" r="3">
       <title>Jerry Moran</title>
-    </rect>
-    <rect x="495" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="140.96774193548387" r="3">
       <title>Brad Sherman</title>
-    </rect>
-    <rect x="495" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="346" cy="132.90322580645162" r="3">
       <title>Suzanne Bonamici</title>
-    </rect>
-    <rect x="495" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="346" cy="124.83870967741935" r="3">
       <title>Gary J. Palmer</title>
-    </rect>
-    <rect x="495" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="116.7741935483871" r="3">
       <title>Ralph Lee Abraham</title>
-    </rect>
-    <rect x="495" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="346" cy="108.70967741935485" r="3">
       <title>Brenda L. Lawrence</title>
-    </rect>
-    <rect x="495" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="346" cy="100.64516129032259" r="3">
       <title>Mike Rounds</title>
-    </rect>
-    <rect x="495" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="346" cy="92.5806451612903" r="3">
       <title>Dwight Evans</title>
-    </rect>
-    <rect x="495" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="346" cy="84.51612903225806" r="3">
       <title>Adriano Espaillat</title>
-    </rect>
-    <rect x="495" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="346" cy="76.45161290322582" r="3">
       <title>Doug Jones</title>
-    </rect>
-    <rect x="495" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="346" cy="68.38709677419357" r="3">
       <title>Mike Braun</title>
-    </rect>
-    <rect x="508" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="261.93548387096774" r="3">
       <title>Brad Miller</title>
-    </rect>
-    <rect x="508" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="253.8709677419355" r="3">
       <title>Kay R. Hagan</title>
-    </rect>
-    <rect x="508" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="245.80645161290323" r="3">
       <title>Dave Camp</title>
-    </rect>
-    <rect x="508" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="237.74193548387098" r="3">
       <title>Luther Strange</title>
-    </rect>
-    <rect x="508" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="229.67741935483872" r="3">
       <title>Claire McCaskill</title>
-    </rect>
-    <rect x="508" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="221.61290322580643" r="3">
       <title>Luis V. Gutiérrez</title>
-    </rect>
-    <rect x="508" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="213.5483870967742" r="3">
       <title>Darrell E. Issa</title>
-    </rect>
-    <rect x="508" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="205.48387096774192" r="3">
       <title>Bruce Poliquin</title>
-    </rect>
-    <rect x="508" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="354" cy="197.4193548387097" r="3">
       <title>Karen Bass</title>
-    </rect>
-    <rect x="508" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="354" cy="189.35483870967744" r="3">
       <title>Ken Calvert</title>
-    </rect>
-    <rect x="508" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="354" cy="181.29032258064515" r="3">
       <title>Shelley Moore Capito</title>
-    </rect>
-    <rect x="508" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="354" cy="173.22580645161293" r="3">
       <title>Steve Chabot</title>
-    </rect>
-    <rect x="508" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="354" cy="165.1612903225806" r="3">
       <title>Judy Chu</title>
-    </rect>
-    <rect x="508" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="157.09677419354838" r="3">
       <title>Joe Courtney</title>
-    </rect>
-    <rect x="508" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="354" cy="149.03225806451613" r="3">
       <title>Michael F. Doyle</title>
-    </rect>
-    <rect x="508" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="140.96774193548387" r="3">
       <title>Louie Gohmert</title>
-    </rect>
-    <rect x="508" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="354" cy="132.90322580645162" r="3">
       <title>Gregory W. Meeks</title>
-    </rect>
-    <rect x="508" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="354" cy="124.83870967741935" r="3">
       <title>Ed Perlmutter</title>
-    </rect>
-    <rect x="508" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="116.7741935483871" r="3">
       <title>Christopher H. Smith</title>
-    </rect>
-    <rect x="508" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="354" cy="108.70967741935485" r="3">
       <title>Fred Upton</title>
-    </rect>
-    <rect x="508" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="354" cy="100.64516129032259" r="3">
       <title>Nydia M. Velázquez</title>
-    </rect>
-    <rect x="508" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="354" cy="92.5806451612903" r="3">
       <title>Randy K. Weber, Sr.</title>
-    </rect>
-    <rect x="508" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="354" cy="84.51612903225806" r="3">
       <title>Debbie Dingell</title>
-    </rect>
-    <rect x="508" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="354" cy="76.45161290322582" r="3">
       <title>Neal P. Dunn</title>
-    </rect>
-    <rect x="508" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="354" cy="68.38709677419357" r="3">
       <title>Francis Rooney</title>
-    </rect>
-    <rect x="508" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="354" cy="60.32258064516128" r="3">
       <title>Ralph Norman</title>
-    </rect>
-    <rect x="508" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="354" cy="52.258064516129025" r="3">
       <title>Jefferson Van Drew</title>
-    </rect>
-    <rect x="508" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="354" cy="44.19354838709678" r="3">
       <title>Ron Wright</title>
-    </rect>
-    <rect x="521" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="261.93548387096774" r="3">
       <title>Charles F. Bass</title>
-    </rect>
-    <rect x="521" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="253.8709677419355" r="3">
       <title>David Dreier</title>
-    </rect>
-    <rect x="521" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="245.80645161290323" r="3">
       <title>Steven R. Rothman</title>
-    </rect>
-    <rect x="521" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="237.74193548387098" r="3">
       <title>Janice Hahn</title>
-    </rect>
-    <rect x="521" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="229.67741935483872" r="3">
       <title>Dan Benishek</title>
-    </rect>
-    <rect x="521" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="221.61290322580643" r="3">
       <title>J. Randy Forbes</title>
-    </rect>
-    <rect x="521" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="213.5483870967742" r="3">
       <title>Tim Murphy</title>
-    </rect>
-    <rect x="521" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="205.48387096774192" r="3">
       <title>Bob Corker</title>
-    </rect>
-    <rect x="521" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="362" cy="197.4193548387097" r="3">
       <title>Michael E. Capuano</title>
-    </rect>
-    <rect x="521" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="362" cy="189.35483870967744" r="3">
       <title>Bob Goodlatte</title>
-    </rect>
-    <rect x="521" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="362" cy="181.29032258064515" r="3">
       <title>Leonard Lance</title>
-    </rect>
-    <rect x="521" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="362" cy="173.22580645161293" r="3">
       <title>Ileana Ros-Lehtinen</title>
-    </rect>
-    <rect x="521" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="362" cy="165.1612903225806" r="3">
       <title>Carol Shea-Porter</title>
-    </rect>
-    <rect x="521" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="157.09677419354838" r="3">
       <title>John J. Faso</title>
-    </rect>
-    <rect x="521" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="362" cy="149.03225806451613" r="3">
       <title>Tom Marino</title>
-    </rect>
-    <rect x="521" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="140.96774193548387" r="3">
       <title>Sherrod Brown</title>
-    </rect>
-    <rect x="521" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="362" cy="132.90322580645162" r="3">
       <title>John Barrasso</title>
-    </rect>
-    <rect x="521" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="362" cy="124.83870967741935" r="3">
       <title>Susan M. Collins</title>
-    </rect>
-    <rect x="521" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="116.7741935483871" r="3">
       <title>John Cornyn</title>
-    </rect>
-    <rect x="521" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="362" cy="108.70967741935485" r="3">
       <title>Marsha Blackburn</title>
-    </rect>
-    <rect x="521" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="362" cy="100.64516129032259" r="3">
       <title>Jim Costa</title>
-    </rect>
-    <rect x="521" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="362" cy="92.5806451612903" r="3">
       <title>Marcia L. Fudge</title>
-    </rect>
-    <rect x="521" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="362" cy="84.51612903225806" r="3">
       <title>William R. Keating</title>
-    </rect>
-    <rect x="521" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="362" cy="76.45161290322582" r="3">
       <title>David Loebsack</title>
-    </rect>
-    <rect x="521" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="362" cy="68.38709677419357" r="3">
       <title>Blaine Luetkemeyer</title>
-    </rect>
-    <rect x="521" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="362" cy="60.32258064516128" r="3">
       <title>Julia Brownley</title>
-    </rect>
-    <rect x="521" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="362" cy="52.258064516129025" r="3">
       <title>Denny Heck</title>
-    </rect>
-    <rect x="521" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="362" cy="44.19354838709678" r="3">
       <title>Mark DeSaulnier</title>
-    </rect>
-    <rect x="521" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="362" cy="36.12903225806453" r="3">
       <title>John H. Rutherford</title>
-    </rect>
-    <rect x="521" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="362" cy="28.06451612903225" r="3">
       <title>Ed Case</title>
-    </rect>
-    <rect x="521" width="12" y="0" height="11.935483870967731">
+    </circle>
+    <circle cx="362" cy="20" r="3">
       <title>Rick Scott</title>
-    </rect>
-    <rect x="534" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="261.93548387096774" r="3">
       <title>Shelley Berkley</title>
-    </rect>
-    <rect x="534" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="253.8709677419355" r="3">
       <title>Brian P. Bilbray</title>
-    </rect>
-    <rect x="534" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="245.80645161290323" r="3">
       <title>Ann Marie Buerkle</title>
-    </rect>
-    <rect x="534" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="237.74193548387098" r="3">
       <title>Larry Kissell</title>
-    </rect>
-    <rect x="534" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="229.67741935483872" r="3">
       <title>Jean Schmidt</title>
-    </rect>
-    <rect x="534" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="221.61290322580643" r="3">
       <title>Jim DeMint</title>
-    </rect>
-    <rect x="534" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="213.5483870967742" r="3">
       <title>John F. Tierney</title>
-    </rect>
-    <rect x="534" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="205.48387096774192" r="3">
       <title>Kerry L. Bentivolio</title>
-    </rect>
-    <rect x="534" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="370" cy="197.4193548387097" r="3">
       <title>John Fleming</title>
-    </rect>
-    <rect x="534" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="370" cy="189.35483870967744" r="3">
       <title>Richard L. Hanna</title>
-    </rect>
-    <rect x="534" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="370" cy="181.29032258064515" r="3">
       <title>Richard B. Nugent</title>
-    </rect>
-    <rect x="534" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="370" cy="173.22580645161293" r="3">
       <title>Al Franken</title>
-    </rect>
-    <rect x="534" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="370" cy="165.1612903225806" r="3">
       <title>Diane Black</title>
-    </rect>
-    <rect x="534" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="157.09677419354838" r="3">
       <title>Edward R. Royce</title>
-    </rect>
-    <rect x="534" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="370" cy="149.03225806451613" r="3">
       <title>Colleen Hanabusa</title>
-    </rect>
-    <rect x="534" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="140.96774193548387" r="3">
       <title>Elijah E. Cummings</title>
-    </rect>
-    <rect x="534" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="370" cy="132.90322580645162" r="3">
       <title>Roger F. Wicker</title>
-    </rect>
-    <rect x="534" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="370" cy="124.83870967741935" r="3">
       <title>Rob Bishop</title>
-    </rect>
-    <rect x="534" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="116.7741935483871" r="3">
       <title>Vern Buchanan</title>
-    </rect>
-    <rect x="534" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="370" cy="108.70967741935485" r="3">
       <title>Mike Crapo</title>
-    </rect>
-    <rect x="534" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="370" cy="100.64516129032259" r="3">
       <title>Kenny Marchant</title>
-    </rect>
-    <rect x="534" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="370" cy="92.5806451612903" r="3">
       <title>Jerry McNerney</title>
-    </rect>
-    <rect x="534" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="370" cy="84.51612903225806" r="3">
       <title>Gwen Moore</title>
-    </rect>
-    <rect x="534" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="370" cy="76.45161290322582" r="3">
       <title>Frank Pallone, Jr.</title>
-    </rect>
-    <rect x="534" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="370" cy="68.38709677419357" r="3">
       <title>Kurt Schrader</title>
-    </rect>
-    <rect x="534" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="370" cy="60.32258064516128" r="3">
       <title>Albio Sires</title>
-    </rect>
-    <rect x="534" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="370" cy="52.258064516129025" r="3">
       <title>Mike Thompson</title>
-    </rect>
-    <rect x="534" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="370" cy="44.19354838709678" r="3">
       <title>Tim Walberg</title>
-    </rect>
-    <rect x="534" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="370" cy="36.12903225806453" r="3">
       <title>Deb Fischer</title>
-    </rect>
-    <rect x="534" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="370" cy="28.06451612903225" r="3">
       <title>Rick W. Allen</title>
-    </rect>
-    <rect x="534" width="12" y="0" height="11.935483870967731">
+    </circle>
+    <circle cx="370" cy="20" r="3">
       <title>John Kennedy</title>
-    </rect>
-    <rect x="547" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="261.93548387096774" r="3">
       <title>Jo Ann Emerson</title>
-    </rect>
-    <rect x="547" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="253.8709677419355" r="3">
       <title>Mark Udall</title>
-    </rect>
-    <rect x="547" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="245.80645161290323" r="3">
       <title>Timothy H. Bishop</title>
-    </rect>
-    <rect x="547" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="237.74193548387098" r="3">
       <title>Mike Johanns</title>
-    </rect>
-    <rect x="547" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="229.67741935483872" r="3">
       <title>Lynn A. Westmoreland</title>
-    </rect>
-    <rect x="547" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="221.61290322580643" r="3">
       <title>David G. Reichert</title>
-    </rect>
-    <rect x="547" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="213.5483870967742" r="3">
       <title>Chris Collins</title>
-    </rect>
-    <rect x="547" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="205.48387096774192" r="3">
       <title>Debbie Stabenow</title>
-    </rect>
-    <rect x="547" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="378" cy="197.4193548387097" r="3">
       <title>Roy Blunt</title>
-    </rect>
-    <rect x="547" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="378" cy="189.35483870967744" r="3">
       <title>John Boozman</title>
-    </rect>
-    <rect x="547" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="378" cy="181.29032258064515" r="3">
       <title>Michael C. Burgess</title>
-    </rect>
-    <rect x="547" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="378" cy="173.22580645161293" r="3">
       <title>Gerald E. Connolly</title>
-    </rect>
-    <rect x="547" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="378" cy="165.1612903225806" r="3">
       <title>Sheila Jackson Lee</title>
-    </rect>
-    <rect x="547" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="157.09677419354838" r="3">
       <title>Patty Murray</title>
-    </rect>
-    <rect x="547" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="378" cy="149.03225806451613" r="3">
       <title>Charles E. Schumer</title>
-    </rect>
-    <rect x="547" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="140.96774193548387" r="3">
       <title>Michael K. Simpson</title>
-    </rect>
-    <rect x="547" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="378" cy="132.90322580645162" r="3">
       <title>Jackie Speier</title>
-    </rect>
-    <rect x="547" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="378" cy="124.83870967741935" r="3">
       <title>Dina Titus</title>
-    </rect>
-    <rect x="547" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="116.7741935483871" r="3">
       <title>Joyce Beatty</title>
-    </rect>
-    <rect x="547" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="378" cy="108.70967741935485" r="3">
       <title>Donald S. Beyer, Jr.</title>
-    </rect>
-    <rect x="547" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="378" cy="100.64516129032259" r="3">
       <title>Ann Kirkpatrick</title>
-    </rect>
-    <rect x="547" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="378" cy="92.5806451612903" r="3">
       <title>Sylvia R. Garcia</title>
-    </rect>
-    <rect x="547" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="378" cy="84.51612903225806" r="3">
       <title>Carol D. Miller</title>
-    </rect>
-    <rect x="560" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="261.93548387096774" r="3">
       <title>Francisco "Quico" Canseco</title>
-    </rect>
-    <rect x="560" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="253.8709677419355" r="3">
       <title>Jerry F. Costello</title>
-    </rect>
-    <rect x="560" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="245.80645161290323" r="3">
       <title>William L. Owens</title>
-    </rect>
-    <rect x="560" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="237.74193548387098" r="3">
       <title>Nick J. Rahall II</title>
-    </rect>
-    <rect x="560" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="229.67741935483872" r="3">
       <title>William L. Enyart</title>
-    </rect>
-    <rect x="560" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="221.61290322580643" r="3">
       <title>John A. Boehner</title>
-    </rect>
-    <rect x="560" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="213.5483870967742" r="3">
       <title>Randy Neugebauer</title>
-    </rect>
-    <rect x="560" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="205.48387096774192" r="3">
       <title>Brad Ashford</title>
-    </rect>
-    <rect x="560" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="386" cy="197.4193548387097" r="3">
       <title>Joe Barton</title>
-    </rect>
-    <rect x="560" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="386" cy="189.35483870967744" r="3">
       <title>Jack Reed</title>
-    </rect>
-    <rect x="560" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="386" cy="181.29032258064515" r="3">
       <title>Steve Cohen</title>
-    </rect>
-    <rect x="560" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="386" cy="173.22580645161293" r="3">
       <title>Tom Cole</title>
-    </rect>
-    <rect x="560" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="386" cy="165.1612903225806" r="3">
       <title>Steve King</title>
-    </rect>
-    <rect x="560" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="157.09677419354838" r="3">
       <title>Richard E. Neal</title>
-    </rect>
-    <rect x="560" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="386" cy="149.03225806451613" r="3">
       <title>Paul Tonko</title>
-    </rect>
-    <rect x="560" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="140.96774193548387" r="3">
       <title>Peter J. Visclosky</title>
-    </rect>
-    <rect x="560" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="386" cy="132.90322580645162" r="3">
       <title>Daniel Webster</title>
-    </rect>
-    <rect x="560" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="386" cy="124.83870967741935" r="3">
       <title>Ron Wyden</title>
-    </rect>
-    <rect x="560" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="116.7741935483871" r="3">
       <title>Elizabeth Warren</title>
-    </rect>
-    <rect x="560" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="386" cy="108.70967741935485" r="3">
       <title>Roger Williams</title>
-    </rect>
-    <rect x="560" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="386" cy="100.64516129032259" r="3">
       <title>David Perdue</title>
-    </rect>
-    <rect x="573" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="261.93548387096774" r="3">
       <title>Kent Conrad</title>
-    </rect>
-    <rect x="573" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="253.8709677419355" r="3">
       <title>David Alan Curson</title>
-    </rect>
-    <rect x="573" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="245.80645161290323" r="3">
       <title>Tom Coburn</title>
-    </rect>
-    <rect x="573" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="237.74193548387098" r="3">
       <title>Rush Holt</title>
-    </rect>
-    <rect x="573" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="229.67741935483872" r="3">
       <title>Tom Latham</title>
-    </rect>
-    <rect x="573" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="221.61290322580643" r="3">
       <title>Gary G. Miller</title>
-    </rect>
-    <rect x="573" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="213.5483870967742" r="3">
       <title>Allyson Y. Schwartz</title>
-    </rect>
-    <rect x="573" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="205.48387096774192" r="3">
       <title>Ted Poe</title>
-    </rect>
-    <rect x="573" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="394" cy="197.4193548387097" r="3">
       <title>Robert Pittenger</title>
-    </rect>
-    <rect x="573" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="394" cy="189.35483870967744" r="3">
       <title>Tom Udall</title>
-    </rect>
-    <rect x="573" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="394" cy="181.29032258064515" r="3">
       <title>Earl Blumenauer</title>
-    </rect>
-    <rect x="573" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="394" cy="173.22580645161293" r="3">
       <title>K. Michael Conaway</title>
-    </rect>
-    <rect x="573" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="394" cy="165.1612903225806" r="3">
       <title>Raúl M. Grijalva</title>
-    </rect>
-    <rect x="573" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="157.09677419354838" r="3">
       <title>Mike Kelly</title>
-    </rect>
-    <rect x="573" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="394" cy="149.03225806451613" r="3">
       <title>John B. Larson</title>
-    </rect>
-    <rect x="573" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="140.96774193548387" r="3">
       <title>Bennie G. Thompson</title>
-    </rect>
-    <rect x="573" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="394" cy="132.90322580645162" r="3">
       <title>Lois Frankel</title>
-    </rect>
-    <rect x="573" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="394" cy="124.83870967741935" r="3">
       <title>Brian Babin</title>
-    </rect>
-    <rect x="573" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="394" cy="116.7741935483871" r="3">
       <title>Al Lawson, Jr.</title>
-    </rect>
-    <rect x="573" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="394" cy="108.70967741935485" r="3">
       <title>Kweisi Mfume</title>
-    </rect>
-    <rect x="586" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="261.93548387096774" r="3">
       <title>Olympia J. Snowe</title>
-    </rect>
-    <rect x="586" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="253.8709677419355" r="3">
       <title>W. Todd Akin</title>
-    </rect>
-    <rect x="586" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="245.80645161290323" r="3">
       <title>Joe Baca</title>
-    </rect>
-    <rect x="586" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="237.74193548387098" r="3">
       <title>Spencer Bachus</title>
-    </rect>
-    <rect x="586" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="229.67741935483872" r="3">
       <title>John Kline</title>
-    </rect>
-    <rect x="586" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="221.61290322580643" r="3">
       <title>John J. Duncan, Jr.</title>
-    </rect>
-    <rect x="586" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="213.5483870967742" r="3">
       <title>Gene Green</title>
-    </rect>
-    <rect x="586" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="205.48387096774192" r="3">
       <title>Stevan Pearce</title>
-    </rect>
-    <rect x="586" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="402" cy="197.4193548387097" r="3">
       <title>Dana Rohrabacher</title>
-    </rect>
-    <rect x="586" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="402" cy="189.35483870967744" r="3">
       <title>Lamar Smith</title>
-    </rect>
-    <rect x="586" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="402" cy="181.29032258064515" r="3">
       <title>Thomas R. Carper</title>
-    </rect>
-    <rect x="586" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="402" cy="173.22580645161293" r="3">
       <title>Jeanne Shaheen</title>
-    </rect>
-    <rect x="586" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="402" cy="165.1612903225806" r="3">
       <title>Joe Manchin, III</title>
-    </rect>
-    <rect x="586" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="157.09677419354838" r="3">
       <title>Sanford D. Bishop, Jr.</title>
-    </rect>
-    <rect x="586" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="402" cy="149.03225806451613" r="3">
       <title>G. K. Butterfield</title>
-    </rect>
-    <rect x="586" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="140.96774193548387" r="3">
       <title>Peter A. DeFazio</title>
-    </rect>
-    <rect x="586" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="402" cy="132.90322580645162" r="3">
       <title>Eliot L. Engel</title>
-    </rect>
-    <rect x="586" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="402" cy="124.83870967741935" r="3">
       <title>Al Green</title>
-    </rect>
-    <rect x="586" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="116.7741935483871" r="3">
       <title>Mazie K. Hirono</title>
-    </rect>
-    <rect x="586" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="402" cy="108.70967741935485" r="3">
       <title>Zoe Lofgren</title>
-    </rect>
-    <rect x="586" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="402" cy="100.64516129032259" r="3">
       <title>David B. McKinley</title>
-    </rect>
-    <rect x="586" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="402" cy="92.5806451612903" r="3">
       <title>Jerrold Nadler</title>
-    </rect>
-    <rect x="586" width="12" y="95.48387096774194" height="11.93548387096773">
+    </circle>
+    <circle cx="402" cy="84.51612903225806" r="3">
       <title>Bill Posey</title>
-    </rect>
-    <rect x="586" width="12" y="83.5483870967742" height="11.93548387096773">
+    </circle>
+    <circle cx="402" cy="76.45161290322582" r="3">
       <title>Robert C. "Bobby" Scott</title>
-    </rect>
-    <rect x="586" width="12" y="71.61290322580648" height="11.93548387096773">
+    </circle>
+    <circle cx="402" cy="68.38709677419357" r="3">
       <title>Peter Welch</title>
-    </rect>
-    <rect x="586" width="12" y="59.6774193548387" height="11.93548387096778">
+    </circle>
+    <circle cx="402" cy="60.32258064516128" r="3">
       <title>Joe Wilson</title>
-    </rect>
-    <rect x="586" width="12" y="47.74193548387097" height="11.93548387096773">
+    </circle>
+    <circle cx="402" cy="52.258064516129025" r="3">
       <title>John A. Yarmuth</title>
-    </rect>
-    <rect x="586" width="12" y="35.80645161290324" height="11.93548387096773">
+    </circle>
+    <circle cx="402" cy="44.19354838709678" r="3">
       <title>Aumua Amata Coleman Radewagen</title>
-    </rect>
-    <rect x="586" width="12" y="23.870967741935505" height="11.935483870967733">
+    </circle>
+    <circle cx="402" cy="36.12903225806453" r="3">
       <title>Jack Bergman</title>
-    </rect>
-    <rect x="586" width="12" y="11.935483870967731" height="11.935483870967774">
+    </circle>
+    <circle cx="402" cy="28.06451612903225" r="3">
       <title>Mitt Romney</title>
-    </rect>
-    <rect x="599" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="261.93548387096774" r="3">
       <title>Jim Webb</title>
-    </rect>
-    <rect x="599" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="253.8709677419355" r="3">
       <title>Timothy V. Johnson</title>
-    </rect>
-    <rect x="599" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="245.80645161290323" r="3">
       <title>Dennis J. Kucinich</title>
-    </rect>
-    <rect x="599" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="237.74193548387098" r="3">
       <title>Daniel E. Lungren</title>
-    </rect>
-    <rect x="599" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="229.67741935483872" r="3">
       <title>Rodney Alexander</title>
-    </rect>
-    <rect x="599" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="221.61290322580643" r="3">
       <title>Tim Johnson</title>
-    </rect>
-    <rect x="599" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="213.5483870967742" r="3">
       <title>Paul C. Broun</title>
-    </rect>
-    <rect x="599" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="205.48387096774192" r="3">
       <title>Corrine Brown</title>
-    </rect>
-    <rect x="599" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="410" cy="197.4193548387097" r="3">
       <title>Jeff Sessions</title>
-    </rect>
-    <rect x="599" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="410" cy="189.35483870967744" r="3">
       <title>Rodney P. Frelinghuysen</title>
-    </rect>
-    <rect x="599" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="410" cy="181.29032258064515" r="3">
       <title>Frank A. LoBiondo</title>
-    </rect>
-    <rect x="599" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="410" cy="173.22580645161293" r="3">
       <title>Niki Tsongas</title>
-    </rect>
-    <rect x="599" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="410" cy="165.1612903225806" r="3">
       <title>Richard Blumenthal</title>
-    </rect>
-    <rect x="599" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="157.09677419354838" r="3">
       <title>Lloyd Doggett</title>
-    </rect>
-    <rect x="599" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="410" cy="149.03225806451613" r="3">
       <title>Marcy Kaptur</title>
-    </rect>
-    <rect x="599" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="140.96774193548387" r="3">
       <title>Barbara Lee</title>
-    </rect>
-    <rect x="599" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="410" cy="132.90322580645162" r="3">
       <title>Carolyn B. Maloney</title>
-    </rect>
-    <rect x="599" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="410" cy="124.83870967741935" r="3">
       <title>Edward J. Markey</title>
-    </rect>
-    <rect x="599" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="116.7741935483871" r="3">
       <title>C. A. Dutch Ruppersberger</title>
-    </rect>
-    <rect x="599" width="12" y="131.29032258064518" height="11.935483870967715">
+    </circle>
+    <circle cx="410" cy="108.70967741935485" r="3">
       <title>Bobby L. Rush</title>
-    </rect>
-    <rect x="599" width="12" y="119.35483870967744" height="11.935483870967744">
+    </circle>
+    <circle cx="410" cy="100.64516129032259" r="3">
       <title>Alma S. Adams</title>
-    </rect>
-    <rect x="599" width="12" y="107.41935483870967" height="11.935483870967772">
+    </circle>
+    <circle cx="410" cy="92.5806451612903" r="3">
       <title>Tom O’Halleran</title>
-    </rect>
-    <rect x="612" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="261.93548387096774" r="3">
       <title>Charles A. Gonzalez</title>
-    </rect>
-    <rect x="612" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="253.8709677419355" r="3">
       <title>Wally Herger</title>
-    </rect>
-    <rect x="612" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="245.80645161290323" r="3">
       <title>Melvin L. Watt</title>
-    </rect>
-    <rect x="612" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="237.74193548387098" r="3">
       <title>Donna M. Christensen</title>
-    </rect>
-    <rect x="612" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="229.67741935483872" r="3">
       <title>George Miller</title>
-    </rect>
-    <rect x="612" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="221.61290322580643" r="3">
       <title>James P. Moran</title>
-    </rect>
-    <rect x="612" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="213.5483870967742" r="3">
       <title>Ron Barber</title>
-    </rect>
-    <rect x="612" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="418" cy="205.48387096774192" r="3">
       <title>Robert A. Brady</title>
-    </rect>
-    <rect x="612" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="418" cy="197.4193548387097" r="3">
       <title>John Garamendi</title>
-    </rect>
-    <rect x="612" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="418" cy="189.35483870967744" r="3">
       <title>David P. Roe</title>
-    </rect>
-    <rect x="612" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="418" cy="181.29032258064515" r="3">
       <title>David Scott</title>
-    </rect>
-    <rect x="612" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="418" cy="173.22580645161293" r="3">
       <title>Bonnie Watson Coleman</title>
-    </rect>
-    <rect x="612" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="418" cy="165.1612903225806" r="3">
       <title>James R. Baird</title>
-    </rect>
-    <rect x="625" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="261.93548387096774" r="3">
       <title>Elton Gallegly</title>
-    </rect>
-    <rect x="625" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="253.8709677419355" r="3">
       <title>Donald A. Manzullo</title>
-    </rect>
-    <rect x="625" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="245.80645161290323" r="3">
       <title>Silvestre Reyes</title>
-    </rect>
-    <rect x="625" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="237.74193548387098" r="3">
       <title>Carolyn McCarthy</title>
-    </rect>
-    <rect x="625" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="229.67741935483872" r="3">
       <title>Ander Crenshaw</title>
-    </rect>
-    <rect x="625" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="221.61290322580643" r="3">
       <title>Johnny Isakson</title>
-    </rect>
-    <rect x="625" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="213.5483870967742" r="3">
       <title>Richard J. Durbin</title>
-    </rect>
-    <rect x="625" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="205.48387096774192" r="3">
       <title>Michael B. Enzi</title>
-    </rect>
-    <rect x="625" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="426" cy="197.4193548387097" r="3">
       <title>Emanuel Cleaver</title>
-    </rect>
-    <rect x="625" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="426" cy="189.35483870967744" r="3">
       <title>Susan A. Davis</title>
-    </rect>
-    <rect x="625" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="426" cy="181.29032258064515" r="3">
       <title>Peter T. King</title>
-    </rect>
-    <rect x="625" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="426" cy="173.22580645161293" r="3">
       <title>Doris O. Matsui</title>
-    </rect>
-    <rect x="625" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="426" cy="165.1612903225806" r="3">
       <title>Collin C. Peterson</title>
-    </rect>
-    <rect x="625" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="426" cy="157.09677419354838" r="3">
       <title>Janice D. Schakowsky</title>
-    </rect>
-    <rect x="625" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="426" cy="149.03225806451613" r="3">
       <title>Angus S. King, Jr.</title>
-    </rect>
-    <rect x="638" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="261.93548387096774" r="3">
       <title>Jeff Bingaman</title>
-    </rect>
-    <rect x="638" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="253.8709677419355" r="3">
       <title>Kay Bailey Hutchison</title>
-    </rect>
-    <rect x="638" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="245.80645161290323" r="3">
       <title>John F. Kerry</title>
-    </rect>
-    <rect x="638" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="237.74193548387098" r="3">
       <title>Saxby Chambliss</title>
-    </rect>
-    <rect x="638" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="229.67741935483872" r="3">
       <title>Eni F. H. Faleomavaega</title>
-    </rect>
-    <rect x="638" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="221.61290322580643" r="3">
       <title>Ed Pastor</title>
-    </rect>
-    <rect x="638" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="213.5483870967742" r="3">
       <title>Ed Whitfield</title>
-    </rect>
-    <rect x="638" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="205.48387096774192" r="3">
       <title>Daniel Coats</title>
-    </rect>
-    <rect x="638" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="434" cy="197.4193548387097" r="3">
       <title>John L. Mica</title>
-    </rect>
-    <rect x="638" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="434" cy="189.35483870967744" r="3">
       <title>Richard M. Nolan</title>
-    </rect>
-    <rect x="638" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="434" cy="181.29032258064515" r="3">
       <title>Walter B. Jones</title>
-    </rect>
-    <rect x="638" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="434" cy="173.22580645161293" r="3">
       <title>Benjamin L. Cardin</title>
-    </rect>
-    <rect x="638" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="434" cy="165.1612903225806" r="3">
       <title>James E. Risch</title>
-    </rect>
-    <rect x="638" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="157.09677419354838" r="3">
       <title>Rosa L. DeLauro</title>
-    </rect>
-    <rect x="638" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="434" cy="149.03225806451613" r="3">
       <title>Virginia Foxx</title>
-    </rect>
-    <rect x="638" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="140.96774193548387" r="3">
       <title>Kay Granger</title>
-    </rect>
-    <rect x="638" width="12" y="167.0967741935484" height="11.935483870967715">
+    </circle>
+    <circle cx="434" cy="132.90322580645162" r="3">
       <title>F. James Sensenbrenner, Jr.</title>
-    </rect>
-    <rect x="638" width="12" y="155.16129032258064" height="11.935483870967772">
+    </circle>
+    <circle cx="434" cy="124.83870967741935" r="3">
       <title>José E. Serrano</title>
-    </rect>
-    <rect x="638" width="12" y="143.2258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="434" cy="116.7741935483871" r="3">
       <title>Paul Cook</title>
-    </rect>
-    <rect x="651" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="261.93548387096774" r="3">
       <title>Bob Filner</title>
-    </rect>
-    <rect x="651" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="253.8709677419355" r="3">
       <title>Joseph I. Lieberman</title>
-    </rect>
-    <rect x="651" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="245.80645161290323" r="3">
       <title>Gary L. Ackerman</title>
-    </rect>
-    <rect x="651" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="237.74193548387098" r="3">
       <title>Phil Gingrey</title>
-    </rect>
-    <rect x="651" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="229.67741935483872" r="3">
       <title>Jon Kyl</title>
-    </rect>
-    <rect x="651" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="221.61290322580643" r="3">
       <title>Bill Nelson</title>
-    </rect>
-    <rect x="651" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="213.5483870967742" r="3">
       <title>Mitch McConnell</title>
-    </rect>
-    <rect x="651" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="442" cy="205.48387096774192" r="3">
       <title>Anna G. Eshoo</title>
-    </rect>
-    <rect x="651" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="442" cy="197.4193548387097" r="3">
       <title>Frederica S. Wilson</title>
-    </rect>
-    <rect x="664" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="261.93548387096774" r="3">
       <title>Ben Nelson</title>
-    </rect>
-    <rect x="664" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="253.8709677419355" r="3">
       <title>Howard L. Berman</title>
-    </rect>
-    <rect x="664" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="245.80645161290323" r="3">
       <title>Sue Wilkins Myrick</title>
-    </rect>
-    <rect x="664" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="237.74193548387098" r="3">
       <title>Cliff Stearns</title>
-    </rect>
-    <rect x="664" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="229.67741935483872" r="3">
       <title>Robert L. Turner</title>
-    </rect>
-    <rect x="664" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="221.61290322580643" r="3">
       <title>Max Baucus</title>
-    </rect>
-    <rect x="664" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="213.5483870967742" r="3">
       <title>Doc Hastings</title>
-    </rect>
-    <rect x="664" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="205.48387096774192" r="3">
       <title>Gloria Negrete McLeod</title>
-    </rect>
-    <rect x="664" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="450" cy="197.4193548387097" r="3">
       <title>Sam Farr</title>
-    </rect>
-    <rect x="664" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="450" cy="189.35483870967744" r="3">
       <title>Michael M. Honda</title>
-    </rect>
-    <rect x="664" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="450" cy="181.29032258064515" r="3">
       <title>Bernard Sanders</title>
-    </rect>
-    <rect x="664" width="12" y="226.7741935483871" height="11.935483870967715">
+    </circle>
+    <circle cx="450" cy="173.22580645161293" r="3">
       <title>John R. Carter</title>
-    </rect>
-    <rect x="664" width="12" y="214.83870967741933" height="11.935483870967772">
+    </circle>
+    <circle cx="450" cy="165.1612903225806" r="3">
       <title>Danny K. Davis</title>
-    </rect>
-    <rect x="664" width="12" y="202.9032258064516" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="157.09677419354838" r="3">
       <title>Lucille Roybal-Allard</title>
-    </rect>
-    <rect x="664" width="12" y="190.96774193548387" height="11.935483870967715">
+    </circle>
+    <circle cx="450" cy="149.03225806451613" r="3">
       <title>Alan S. Lowenthal</title>
-    </rect>
-    <rect x="664" width="12" y="179.03225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="450" cy="140.96774193548387" r="3">
       <title>Donna E. Shalala</title>
-    </rect>
-    <rect x="677" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="261.93548387096774" r="3">
       <title>Norman D. Dicks</title>
-    </rect>
-    <rect x="677" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="253.8709677419355" r="3">
       <title>Barney Frank</title>
-    </rect>
-    <rect x="677" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="245.80645161290323" r="3">
       <title>Thomas E. Petri</title>
-    </rect>
-    <rect x="677" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="237.74193548387098" r="3">
       <title>Barbara Boxer</title>
-    </rect>
-    <rect x="677" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="229.67741935483872" r="3">
       <title>Rubén Hinojosa</title>
-    </rect>
-    <rect x="677" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="221.61290322580643" r="3">
       <title>John Lewis</title>
-    </rect>
-    <rect x="677" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="213.5483870967742" r="3">
       <title>Lamar Alexander</title>
-    </rect>
-    <rect x="677" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="458" cy="205.48387096774192" r="3">
       <title>James E. Clyburn</title>
-    </rect>
-    <rect x="677" width="12" y="262.58064516129036" height="11.935483870967687">
+    </circle>
+    <circle cx="458" cy="197.4193548387097" r="3">
       <title>Patrick J. Leahy</title>
-    </rect>
-    <rect x="677" width="12" y="250.6451612903226" height="11.935483870967772">
+    </circle>
+    <circle cx="458" cy="189.35483870967744" r="3">
       <title>Nancy Pelosi</title>
-    </rect>
-    <rect x="677" width="12" y="238.70967741935482" height="11.935483870967772">
+    </circle>
+    <circle cx="458" cy="181.29032258064515" r="3">
       <title>David E. Price</title>
-    </rect>
-    <rect x="690" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="261.93548387096774" r="3">
       <title>Tom Harkin</title>
-    </rect>
-    <rect x="690" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="253.8709677419355" r="3">
       <title>Henry A. Waxman</title>
-    </rect>
-    <rect x="690" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="245.80645161290323" r="3">
       <title>Frank R. Wolf</title>
-    </rect>
-    <rect x="690" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="237.74193548387098" r="3">
       <title>Harry Reid</title>
-    </rect>
-    <rect x="690" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="229.67741935483872" r="3">
       <title>Joseph R. Pitts</title>
-    </rect>
-    <rect x="690" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="466" cy="221.61290322580643" r="3">
       <title>Steny H. Hoyer</title>
-    </rect>
-    <rect x="703" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="474" cy="261.93548387096774" r="3">
       <title>Dan Burton</title>
-    </rect>
-    <rect x="703" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="474" cy="253.8709677419355" r="3">
       <title>Maurice D. Hinchey</title>
-    </rect>
-    <rect x="703" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="474" cy="245.80645161290323" r="3">
       <title>Howard P. "Buck" McKeon</title>
-    </rect>
-    <rect x="703" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="474" cy="237.74193548387098" r="3">
       <title>Lois Capps</title>
-    </rect>
-    <rect x="703" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="474" cy="229.67741935483872" r="3">
       <title>Maxine Waters</title>
-    </rect>
-    <rect x="716" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="261.93548387096774" r="3">
       <title>Judy Biggert</title>
-    </rect>
-    <rect x="716" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="253.8709677419355" r="3">
       <title>Lynn C. Woolsey</title>
-    </rect>
-    <rect x="716" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="245.80645161290323" r="3">
       <title>John D. Rockefeller, IV</title>
-    </rect>
-    <rect x="716" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="237.74193548387098" r="3">
       <title>Thad Cochran</title>
-    </rect>
-    <rect x="716" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="229.67741935483872" r="3">
       <title>Nita M. Lowey</title>
-    </rect>
-    <rect x="716" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="221.61290322580643" r="3">
       <title>Eleanor Holmes Norton</title>
-    </rect>
-    <rect x="716" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="213.5483870967742" r="3">
       <title>Bill Pascrell, Jr.</title>
-    </rect>
-    <rect x="716" width="12" y="274.51612903225805" height="11.935483870967744">
+    </circle>
+    <circle cx="482" cy="205.48387096774192" r="3">
       <title>Harold Rogers</title>
-    </rect>
-    <rect x="729" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="261.93548387096774" r="3">
       <title>John W. Olver</title>
-    </rect>
-    <rect x="729" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="253.8709677419355" r="3">
       <title>Barbara A. Mikulski</title>
-    </rect>
-    <rect x="729" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="245.80645161290323" r="3">
       <title>Jim McDermott</title>
-    </rect>
-    <rect x="729" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="237.74193548387098" r="3">
       <title>John McCain</title>
-    </rect>
-    <rect x="729" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="229.67741935483872" r="3">
       <title>Pat Roberts</title>
-    </rect>
-    <rect x="729" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="221.61290322580643" r="3">
       <title>Alcee L. Hastings</title>
-    </rect>
-    <rect x="729" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="490" cy="213.5483870967742" r="3">
       <title>Grace F. Napolitano</title>
-    </rect>
-    <rect x="742" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="498" cy="261.93548387096774" r="3">
       <title>Herb Kohl</title>
-    </rect>
-    <rect x="742" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="498" cy="253.8709677419355" r="3">
       <title>Ron Paul</title>
-    </rect>
-    <rect x="742" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="498" cy="245.80645161290323" r="3">
       <title>Eddie Bernice Johnson</title>
-    </rect>
-    <rect x="755" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="261.93548387096774" r="3">
       <title>Leonard L. Boswell</title>
-    </rect>
-    <rect x="755" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="253.8709677419355" r="3">
       <title>Jerry Lewis</title>
-    </rect>
-    <rect x="755" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="245.80645161290323" r="3">
       <title>Edolphus Towns</title>
-    </rect>
-    <rect x="755" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="237.74193548387098" r="3">
       <title>Carl Levin</title>
-    </rect>
-    <rect x="755" width="12" y="310.3225806451613" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="229.67741935483872" r="3">
       <title>Orrin G. Hatch</title>
-    </rect>
-    <rect x="755" width="12" y="298.38709677419354" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="221.61290322580643" r="3">
       <title>James M. Inhofe</title>
-    </rect>
-    <rect x="755" width="12" y="286.4516129032258" height="11.935483870967744">
+    </circle>
+    <circle cx="506" cy="213.5483870967742" r="3">
       <title>Richard C. Shelby</title>
-    </rect>
-    <rect x="768" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="514" cy="261.93548387096774" r="3">
       <title>Madeleine Z. Bordallo</title>
-    </rect>
-    <rect x="768" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="514" cy="253.8709677419355" r="3">
       <title>Dianne Feinstein</title>
-    </rect>
-    <rect x="768" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="514" cy="245.80645161290323" r="3">
       <title>Chuck Grassley</title>
-    </rect>
-    <rect x="768" width="12" y="322.258064516129" height="11.935483870967744">
+    </circle>
+    <circle cx="514" cy="237.74193548387098" r="3">
       <title>Don Young</title>
-    </rect>
-    <rect x="781" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="522" cy="261.93548387096774" r="3">
       <title>Richard G. Lugar</title>
-    </rect>
-    <rect x="794" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="530" cy="261.93548387096774" r="3">
       <title>Fortney Pete Stark</title>
-    </rect>
-    <rect x="794" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="530" cy="253.8709677419355" r="3">
       <title>Howard Coble</title>
-    </rect>
-    <rect x="794" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="530" cy="245.80645161290323" r="3">
       <title>Sander M. Levin</title>
-    </rect>
-    <rect x="807" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="538" cy="261.93548387096774" r="3">
       <title>C. W. Bill Young</title>
-    </rect>
-    <rect x="807" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="538" cy="253.8709677419355" r="3">
       <title>Charles B. Rangel</title>
-    </rect>
-    <rect x="807" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="538" cy="245.80645161290323" r="3">
       <title>Sam Johnson</title>
-    </rect>
-    <rect x="820" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="546" cy="261.93548387096774" r="3">
       <title>Dale E. Kildee</title>
-    </rect>
-    <rect x="820" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="546" cy="253.8709677419355" r="3">
       <title>John Conyers, Jr.</title>
-    </rect>
-    <rect x="820" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="546" cy="245.80645161290323" r="3">
       <title>Louise McIntosh Slaughter</title>
-    </rect>
-    <rect x="859" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="570" cy="261.93548387096774" r="3">
       <title>Roscoe G. Bartlett</title>
-    </rect>
-    <rect x="859" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="570" cy="253.8709677419355" r="3">
       <title>John D. Dingell</title>
-    </rect>
-    <rect x="885" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="586" cy="261.93548387096774" r="3">
       <title>Daniel K. Inouye</title>
-    </rect>
-    <rect x="885" width="12" y="346.1290322580645" height="11.935483870967744">
+    </circle>
+    <circle cx="586" cy="253.8709677419355" r="3">
       <title>Daniel K. Akaka</title>
-    </rect>
-    <rect x="885" width="12" y="334.19354838709677" height="11.935483870967744">
+    </circle>
+    <circle cx="586" cy="245.80645161290323" r="3">
       <title>Frank R. Lautenberg</title>
-    </rect>
-    <rect x="898" width="12" y="358.06451612903226" height="11.935483870967744">
+    </circle>
+    <circle cx="594" cy="261.93548387096774" r="3">
       <title>Ralph M. Hall</title>
-    </rect>
+    </circle>
+  </g>
+  <g stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="270" y2="270"></line>
   </g>
 </svg>
