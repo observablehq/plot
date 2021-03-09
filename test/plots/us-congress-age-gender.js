@@ -12,10 +12,17 @@ export default async function() {
     },
     y: {
       grid: true,
-      label: "↑ Frequency"
+      label: "← Women · Men →",
+      labelAnchor: "center",
+      tickFormat: Math.abs
     },
     marks: [
-      Plot.dotY(data, Plot.stackY2({x: d => 2021 - d.birth, fill: "currentColor", title: "full_name"})),
+      Plot.dotY(data, Plot.stackY2({
+        x: d => 2021 - d.birth,
+        y: d => d.gender === "M" ? 1 : d.gender === "F" ? -1 : 0,
+        fill: "gender",
+        title: "full_name"
+      })),
       Plot.ruleY([0])
     ]
   });

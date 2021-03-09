@@ -58,7 +58,7 @@ export {default as stocksIndex} from "./stocks-index.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
 export {default as usCongressAge} from "./us-congress-age.js";
-export {default as usCongressGender} from "./us-congress-gender.js";
+export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPresidentialElection2020} from "./us-presidential-election-2020.js";
 export {default as usRetailSales} from "./us-retail-sales.js";
