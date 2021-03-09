@@ -34,25 +34,26 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100%</text>
     </g>
   </g>
-  <g stroke="black" transform="translate(0,0)">
-    <rect x="20" width="8.571428571428573" y="0" height="30" fill="rgb(103, 0, 31)"></rect>
-    <rect x="28.571428571428573" width="16.240601503759404" y="0" height="30" fill="rgb(216, 102, 85)"></rect>
-    <rect x="44.81203007518798" width="23.00751879699247" y="0" height="30" fill="rgb(250, 213, 193)"></rect>
-    <rect x="67.81954887218045" width="28.872180451127832" y="0" height="30" fill="rgb(225, 236, 242)"></rect>
-    <rect x="96.69172932330828" width="33.83458646616542" y="0" height="30" fill="rgb(149, 197, 222)"></rect>
-    <rect x="130.5263157894737" width="37.89473684210526" y="0" height="30" fill="rgb(73, 147, 195)"></rect>
-    <rect x="168.42105263157896" width="41.05263157894737" y="0" height="30" fill="rgb(37, 106, 168)"></rect>
-    <rect x="209.47368421052633" width="43.308270676691706" y="0" height="30" fill="rgb(19, 74, 133)"></rect>
-    <rect x="252.78195488721803" width="44.66165413533838" y="0" height="30" fill="rgb(8, 55, 106)"></rect>
-    <rect x="297.4436090225564" width="45.11278195488728" y="0" height="30" fill="rgb(5, 48, 97)"></rect>
-    <rect x="342.5563909774437" width="44.66165413533821" y="0" height="30" fill="rgb(8, 55, 106)"></rect>
-    <rect x="387.2180451127819" width="43.30827067669179" y="0" height="30" fill="rgb(19, 74, 133)"></rect>
-    <rect x="430.5263157894737" width="41.0526315789474" y="0" height="30" fill="rgb(37, 106, 168)"></rect>
-    <rect x="471.5789473684211" width="37.89473684210526" y="0" height="30" fill="rgb(73, 147, 195)"></rect>
-    <rect x="509.47368421052636" width="33.83458646616543" y="0" height="30" fill="rgb(149, 197, 222)"></rect>
-    <rect x="543.3082706766918" width="28.872180451127747" y="0" height="30" fill="rgb(225, 236, 242)"></rect>
-    <rect x="572.1804511278195" width="23.007518796992485" y="0" height="30" fill="rgb(250, 213, 193)"></rect>
-    <rect x="595.187969924812" width="16.240601503759535" y="0" height="30" fill="rgb(216, 102, 85)"></rect>
-    <rect x="611.4285714285716" width="8.571428571428442" y="0" height="30" fill="rgb(103, 0, 31)"></rect>
+  <g transform="translate(0,0)">
+    <rect x="21" width="0" y="0" height="30" fill="rgb(35, 23, 27)"></rect>
+    <rect x="21" width="2.157894736842106" y="0" height="30" fill="rgb(71, 56, 158)"></rect>
+    <rect x="24.157894736842106" width="5.315789473684209" y="0" height="30" fill="rgb(73, 92, 225)"></rect>
+    <rect x="30.473684210526315" width="8.473684210526315" y="0" height="30" fill="rgb(59, 129, 248)"></rect>
+    <rect x="39.94736842105263" width="11.631578947368425" y="0" height="30" fill="rgb(44, 164, 242)"></rect>
+    <rect x="52.578947368421055" width="14.78947368421052" y="0" height="30" fill="rgb(37, 196, 218)"></rect>
+    <rect x="68.36842105263158" width="17.947368421052644" y="0" height="30" fill="rgb(42, 222, 186)"></rect>
+    <rect x="87.31578947368422" width="21.105263157894726" y="0" height="30" fill="rgb(60, 241, 151)"></rect>
+    <rect x="109.42105263157895" width="24.263157894736835" y="0" height="30" fill="rgb(90, 251, 119)"></rect>
+    <rect x="134.68421052631578" width="27.42105263157896" y="0" height="30" fill="rgb(128, 253, 92)"></rect>
+    <rect x="163.10526315789474" width="30.57894736842107" y="0" height="30" fill="rgb(169, 246, 71)"></rect>
+    <rect x="194.6842105263158" width="33.73684210526312" y="0" height="30" fill="rgb(208, 230, 55)"></rect>
+    <rect x="229.42105263157893" width="36.89473684210529" y="0" height="30" fill="rgb(240, 205, 44)"></rect>
+    <rect x="267.3157894736842" width="40.05263157894734" y="0" height="30" fill="rgb(255, 175, 37)"></rect>
+    <rect x="308.36842105263156" width="43.21052631578948" y="0" height="30" fill="rgb(255, 139, 31)"></rect>
+    <rect x="352.57894736842104" width="46.36842105263156" y="0" height="30" fill="rgb(250, 102, 25)"></rect>
+    <rect x="399.9473684210526" width="49.5263157894737" y="0" height="30" fill="rgb(224, 66, 18)"></rect>
+    <rect x="450.4736842105263" width="52.68421052631578" y="0" height="30" fill="rgb(190, 36, 9)"></rect>
+    <rect x="504.1578947368421" width="55.84210526315792" y="0" height="30" fill="rgb(158, 16, 1)"></rect>
+    <rect x="561" width="59" y="0" height="30" fill="rgb(144, 12, 0)"></rect>
   </g>
 </svg>
