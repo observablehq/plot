@@ -14,6 +14,7 @@ export class Text extends Mark {
       text = indexOf,
       title,
       fill,
+      filter,
       transform,
       textAnchor,
       fontFamily,
@@ -37,7 +38,7 @@ export class Text extends Mark {
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
       ],
-      transform
+      {filter, transform}
     );
     Style(this, {fill: cfill, ...style});
     this.textAnchor = string(textAnchor);

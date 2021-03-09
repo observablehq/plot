@@ -14,6 +14,7 @@ export class RuleX extends Mark {
       z,
       title,
       stroke,
+      filter,
       transform,
       ...style
     } = {}
@@ -29,7 +30,7 @@ export class RuleX extends Mark {
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
-      transform
+      {filter, transform}
     );
     Style(this, {stroke: cstroke, ...style});
   }
