@@ -3,26 +3,26 @@ import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, 
 
 export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
-  return {...options, transform, y, x1, x2, z, fill, stroke, insetLeft};
+  return {...transform, y, x1, x2, z, fill, stroke, insetLeft};
 }
 
 export function binY({y, insetTop = 1, ...options} = {}) {
   const [transform, y1, y2, x, z, fill, stroke] = bin1(y, options);
-  return {...options, transform, x, y1, y2, z, fill, stroke, insetTop};
+  return {...transform, x, y1, y2, z, fill, stroke, insetTop};
 }
 
 export function binR({x, y, ...options} = {}) {
   const [transform, x1, x2, y1, y2, r, z, fill, stroke] = bin2(x, y, options);
-  return {...options, transform, x: mid(x1, x2), y: mid(y1, y2), r, z, fill, stroke};
+  return {...transform, x: mid(x1, x2), y: mid(y1, y2), r, z, fill, stroke};
 }
 
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   const [transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
-  return {...options, transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
+  return {...transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
-function bin1(x, options = {}) {
-  const {z, fill, stroke, domain, thresholds, normalize, cumulative} = options;
+function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
+  const {z, fill, stroke} = options;
   const k = normalize === true ? 100 : +normalize;
   const bin = binof(identity, {value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
@@ -34,48 +34,51 @@ function bin1(x, options = {}) {
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
   return [
-    maybeTransform(options, (data, index) => {
-      const B = bin(data);
-      const Z = valueof(data, z);
-      const F = valueof(data, vfill);
-      const S = valueof(data, vstroke);
-      const binIndex = [];
-      const binData = [];
-      const X1 = setX1([]);
-      const X2 = setX2([]);
-      const Y = setY([]);
-      const G = Z || F || S;
-      const BZ = Z && setZ([]);
-      const BF = F && setF([]);
-      const BS = S && setS([]);
-      const n = data.length;
-      let i = 0;
-      if (cumulative < 0) B.reverse();
-      for (const facet of index) {
-        const binFacet = [];
-        for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
-          const set = new Set(I);
-          let f;
-          for (const b of B) {
-            const s = b.filter(i => set.has(i));
-            f = cumulative && f !== undefined ? f.concat(s) : s;
-            const l = f.length;
-            if (l > 0) {
-              binFacet.push(i++);
-              binData.push(take(data, f));
-              X1.push(b.x0);
-              X2.push(b.x1);
-              Y.push(k ? l * k / n : l);
-              if (Z) BZ.push(Z[f[0]]);
-              if (F) BF.push(F[f[0]]);
-              if (S) BS.push(S[f[0]]);
+    {
+      ...options,
+      transform: maybeTransform(options, (data, index) => {
+        const B = bin(data);
+        const Z = valueof(data, z);
+        const F = valueof(data, vfill);
+        const S = valueof(data, vstroke);
+        const binIndex = [];
+        const binData = [];
+        const X1 = setX1([]);
+        const X2 = setX2([]);
+        const Y = setY([]);
+        const G = Z || F || S;
+        const BZ = Z && setZ([]);
+        const BF = F && setF([]);
+        const BS = S && setS([]);
+        const n = data.length;
+        let i = 0;
+        if (cumulative < 0) B.reverse();
+        for (const facet of index) {
+          const binFacet = [];
+          for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
+            const set = new Set(I);
+            let f;
+            for (const b of B) {
+              const s = b.filter(i => set.has(i));
+              f = cumulative && f !== undefined ? f.concat(s) : s;
+              const l = f.length;
+              if (l > 0) {
+                binFacet.push(i++);
+                binData.push(take(data, f));
+                X1.push(b.x0);
+                X2.push(b.x1);
+                Y.push(k ? l * k / n : l);
+                if (Z) BZ.push(Z[f[0]]);
+                if (F) BF.push(F[f[0]]);
+                if (S) BS.push(S[f[0]]);
+              }
             }
           }
+          binIndex.push(binFacet);
         }
-        binIndex.push(binFacet);
-      }
-      return {data: binData, index: binIndex};
-    }),
+        return {data: binData, index: binIndex};
+      })
+    },
     X1,
     X2,
     Y,
@@ -89,8 +92,8 @@ function bin1(x, options = {}) {
 // representing a field name, a function, an array), or the value and some
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
-function bin2(x, y, options = {}) {
-  const {z, fill, stroke, domain, thresholds, normalize} = options;
+function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
+  const {z, fill, stroke} = options;
   const k = normalize === true ? 100 : +normalize;
   const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
   const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
@@ -106,49 +109,52 @@ function bin2(x, y, options = {}) {
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
   return [
-    maybeTransform(options, (data, index) => {
-      const B = bin(data);
-      const Z = valueof(data, z);
-      const F = valueof(data, vfill);
-      const S = valueof(data, vstroke);
-      const binIndex = [];
-      const binData = [];
-      const X1 = setX1([]);
-      const X2 = setX2([]);
-      const Y1 = setY1([]);
-      const Y2 = setY2([]);
-      const L = setL([]);
-      const G = Z || F || S;
-      const BZ = Z && setZ([]);
-      const BF = F && setF([]);
-      const BS = S && setS([]);
-      const n = data.length;
-      let i = 0;
-      for (const facet of index) {
-        const binFacet = [];
-        for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
-          const set = new Set(I);
-          for (const b of B) {
-            const f = b.filter(i => set.has(i));
-            const l = f.length;
-            if (l > 0) {
-              binFacet.push(i++);
-              binData.push(take(data, f));
-              X1.push(b.x0);
-              X2.push(b.x1);
-              Y1.push(b.y0);
-              Y2.push(b.y1);
-              L.push(k ? l * k / n : l);
-              if (Z) BZ.push(Z[f[0]]);
-              if (F) BF.push(F[f[0]]);
-              if (S) BS.push(S[f[0]]);
+    {
+      ...options,
+      transform: maybeTransform(options, (data, index) => {
+        const B = bin(data);
+        const Z = valueof(data, z);
+        const F = valueof(data, vfill);
+        const S = valueof(data, vstroke);
+        const binIndex = [];
+        const binData = [];
+        const X1 = setX1([]);
+        const X2 = setX2([]);
+        const Y1 = setY1([]);
+        const Y2 = setY2([]);
+        const L = setL([]);
+        const G = Z || F || S;
+        const BZ = Z && setZ([]);
+        const BF = F && setF([]);
+        const BS = S && setS([]);
+        const n = data.length;
+        let i = 0;
+        for (const facet of index) {
+          const binFacet = [];
+          for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
+            const set = new Set(I);
+            for (const b of B) {
+              const f = b.filter(i => set.has(i));
+              const l = f.length;
+              if (l > 0) {
+                binFacet.push(i++);
+                binData.push(take(data, f));
+                X1.push(b.x0);
+                X2.push(b.x1);
+                Y1.push(b.y0);
+                Y2.push(b.y1);
+                L.push(k ? l * k / n : l);
+                if (Z) BZ.push(Z[f[0]]);
+                if (F) BF.push(F[f[0]]);
+                if (S) BS.push(S[f[0]]);
+              }
             }
           }
+          binIndex.push(binFacet);
         }
-        binIndex.push(binFacet);
-      }
-      return {data: binData, index: binIndex};
-    }),
+        return {data: binData, index: binIndex};
+      })
+    },
     X1,
     X2,
     Y1,
