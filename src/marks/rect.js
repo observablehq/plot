@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, title} from "../mark.js";
+import {Mark, number, maybeColor, maybeZero, title, string} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Rect extends Mark {
@@ -47,8 +47,8 @@ export class Rect extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
-    this.rx = number(rx);
-    this.ry = number(ry);
+    this.rx = string(rx); // number of percentage
+    this.ry = string(ry);
   }
   render(
     I,
