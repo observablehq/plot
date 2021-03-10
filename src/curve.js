@@ -19,7 +19,7 @@ import {
   curveStep,
   curveStepAfter,
   curveStepBefore
-} from "d3-shape";
+} from "d3";
 
 const curves = new Map([
   ["basis", curveBasis],

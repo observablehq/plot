@@ -1,4 +1,4 @@
-import {group as grouper, sort, InternSet} from "d3-array";
+import {group as grouper, sort, InternSet} from "d3";
 import {defined} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, second, identity, take} from "../mark.js";
 

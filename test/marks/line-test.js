@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import {curveLinear, curveStep} from "d3-shape";
+import {curveLinear, curveStep} from "d3";
 import tape from "tape-await";
 
 tape("line() has the expected defaults", test => {

@@ -1,6 +1,6 @@
-import {axisTop, axisBottom, axisRight, axisLeft} from "d3-axis";
-import {interpolateRound} from "d3-interpolate";
-import {create} from "d3-selection";
+import {axisTop, axisBottom, axisRight, axisLeft} from "d3";
+import {interpolateRound} from "d3";
+import {create} from "d3";
 
 export class AxisX {
   constructor({

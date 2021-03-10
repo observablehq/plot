@@ -1,5 +1,5 @@
-import {cross, groups, InternMap} from "d3-array";
-import {create} from "d3-selection";
+import {cross, groups, InternMap} from "d3";
+import {create} from "d3";
 import {Mark, first, second} from "./mark.js";
 
 export function facets(data, {x, y, ...options}, marks) {

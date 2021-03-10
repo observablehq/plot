@@ -1,4 +1,4 @@
-import {bin as binner, cross, group} from "d3-array";
+import {bin as binner, cross, group} from "d3";
 import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take} from "../mark.js";
 
 export function binX({x, insetLeft = 1, ...options} = {}) {

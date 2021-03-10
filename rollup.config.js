@@ -6,7 +6,11 @@ import CleanCSS from "clean-css";
 import * as meta from "./package.json";
 
 const filename = meta.name.split("/").pop();
-const external = Object.keys(meta.dependencies || {}).filter(key => /^d3-/.test(key));
+
+// Resolve D3 dependency.
+const d3 = require("d3/package.json");
+if (typeof d3.jsdelivr === "undefined") throw new Error("unable to resolve d3");
+const d3Path = `d3@${d3.version}/${d3.jsdelivr}`;
 
 // A lil’ Rollup plugin to allow importing of style.css.
 const cssPath = path.resolve("./src/style.css");
@@ -30,7 +34,7 @@ const css = {
 
 const config = {
   input: "src/index.js",
-  external,
+  external: ["d3"],
   output: {
     indent: false,
     banner: `// ${meta.name} v${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}`
@@ -57,8 +61,8 @@ export default [
       format: "umd",
       extend: true,
       file: `dist/${filename}.umd.js`,
-      globals: Object.fromEntries(external.map(key => [key, "d3"])),
-      paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
+      globals: {"d3": "d3"},
+      paths: {"d3": d3Path}
     }
   },
   {
@@ -69,8 +73,8 @@ export default [
       format: "umd",
       extend: true,
       file: `dist/${filename}.umd.min.js`,
-      globals: Object.fromEntries(external.map(key => [key, "d3"])),
-      paths: Object.fromEntries(external.map(key => [key, "d3@6"]))
+      globals: {"d3": "d3"},
+      paths: {"d3": d3Path}
     },
     plugins: [
       ...config.plugins,

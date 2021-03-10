@@ -1,4 +1,4 @@
-import {group} from "d3-array";
+import {group} from "d3";
 import {maybeLazyChannel, valueof, maybeZ, maybeTransform} from "../mark.js";
 
 export function movingAverageX({x, x1, x2, ...options} = {}) {

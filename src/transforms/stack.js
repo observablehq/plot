@@ -1,4 +1,4 @@
-import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3-array";
+import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 

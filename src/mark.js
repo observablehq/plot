@@ -1,4 +1,4 @@
-import {color} from "d3-color";
+import {color} from "d3";
 import {ascendingDefined, nonempty} from "./defined.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray

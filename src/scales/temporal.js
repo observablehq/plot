@@ -1,4 +1,4 @@
-import {scaleTime, scaleUtc} from "d3-scale";
+import {scaleTime, scaleUtc} from "d3";
 import {ScaleQ} from "./quantitative.js";
 
 function ScaleT(key, scale, channels, options) {

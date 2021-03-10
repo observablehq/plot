@@ -1,4 +1,4 @@
-import {greatest, group, least} from "d3-array";
+import {greatest, group, least} from "d3";
 import {maybeTransform, maybeZ, valueof} from "../mark.js";
 
 export function selectFirst(options) {

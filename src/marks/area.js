@@ -1,6 +1,6 @@
-import {group} from "d3-array";
-import {create} from "d3-selection";
-import {area as shapeArea} from "d3-shape";
+import {group} from "d3";
+import {create} from "d3";
+import {area as shapeArea} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, maybeColor, maybeZero, titleGroup} from "../mark.js";

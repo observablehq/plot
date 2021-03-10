@@ -1,4 +1,4 @@
-import {create} from "d3-selection";
+import {create} from "d3";
 import {Mark, number} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
 

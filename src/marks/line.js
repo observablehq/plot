@@ -1,6 +1,6 @@
-import {group} from "d3-array";
-import {create} from "d3-selection";
-import {line as shapeLine} from "d3-shape";
+import {group} from "d3";
+import {create} from "d3";
+import {line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, first, second, maybeColor, titleGroup} from "../mark.js";

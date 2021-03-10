@@ -1,6 +1,6 @@
-import {reverse, sort} from "d3-array";
-import {quantize} from "d3-interpolate";
-import {scaleBand, scaleOrdinal, scalePoint} from "d3-scale";
+import {reverse, sort} from "d3";
+import {quantize} from "d3";
+import {scaleBand, scaleOrdinal, scalePoint} from "d3";
 import {
   interpolateBlues,
   interpolateBrBG,
@@ -77,7 +77,7 @@ import {
   schemeYlGnBu,
   schemeYlOrBr,
   schemeYlOrRd
-} from "d3-scale-chromatic";
+} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
 

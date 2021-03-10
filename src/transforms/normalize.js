@@ -1,4 +1,4 @@
-import {group, mean, median} from "d3-array";
+import {group, mean, median} from "d3";
 import {defined} from "../defined.js";
 import {maybeTransform, maybeLazyChannel, maybeZ, take, valueof} from "../mark.js";
 

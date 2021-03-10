@@ -1,4 +1,4 @@
-import {ascending, descending} from "d3-array";
+import {ascending, descending} from "d3";
 
 export function defined(x) {
   return x != null && !Number.isNaN(x);

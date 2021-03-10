@@ -1,4 +1,4 @@
-import {min, max, quantile, reverse} from "d3-array";
+import {min, max, quantile, reverse} from "d3";
 import {
   interpolateHcl,
   interpolateHsl,
@@ -7,7 +7,7 @@ import {
   interpolateRgb,
   interpolateRound,
   piecewise
-} from "d3-interpolate";
+} from "d3";
 import {
   interpolateBlues,
   interpolateBrBG,
@@ -47,8 +47,8 @@ import {
   interpolateYlGnBu,
   interpolateYlOrBr,
   interpolateYlOrRd
-} from "d3-scale-chromatic";
-import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3-scale";
+} from "d3";
+import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3";
 import {registry, radius, color} from "./index.js";
 import {positive} from "../defined.js";
 

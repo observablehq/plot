@@ -1,5 +1,5 @@
-import {ascending} from "d3-array";
-import {create} from "d3-selection";
+import {ascending} from "d3";
+import {create} from "d3";
 import {filter, positive} from "../defined.js";
 import {Mark, identity, first, second, maybeColor, maybeNumber, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
