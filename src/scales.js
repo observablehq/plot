@@ -76,31 +76,35 @@ function inferScaleType(key, channels, {type, domain, range}) {
   }
   if (registry.get(key) === radius) return "sqrt";
   for (const {type} of channels) if (type !== undefined) return type;
-  if ((domain || range || []).length > 2) return inferOrdinalType(key);
+  if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
-    type = inferScaleTypeFromValues(key, domain);
-    if (type !== undefined) return type;
+    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isTemporal(domain)) return "utc";
+    return "linear";
   }
-  channels = channels.filter(({value}) => value !== undefined);
-  if (!channels.length) return;
-  for (const {value} of channels) {
-    type = inferScaleTypeFromValues(key, value);
-    if (type !== undefined) return type;
-  }
+  // If any channel is ordinal or temporal, it takes priority.
+  const values = channels.map(({value}) => value).filter(value => value !== undefined);
+  if (values.some(isOrdinal)) return asOrdinalType(key);
+  if (values.some(isTemporal)) return "utc";
   return "linear";
 }
 
-function inferScaleTypeFromValues(key, values) {
+function isOrdinal(values) {
   for (const value of values) {
     if (value == null) continue;
-    if (typeof value === "string") return inferOrdinalType(key);
-    if (typeof value === "boolean") return inferOrdinalType(key);
-    if (value instanceof Date) return "utc";
-    return "linear";
+    const type = typeof value;
+    return type === "string" || type === "boolean";
+  }
+}
+
+function isTemporal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return value instanceof Date;
   }
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function inferOrdinalType(key) {
+function asOrdinalType(key) {
   return registry.get(key) === position ? "point" : "ordinal";
 }
