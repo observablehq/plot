@@ -26,8 +26,8 @@ export class Rect extends Mark {
       ...options
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill, "currentColor");
     const [vstroke, cstroke] = maybeColor(stroke, "none");
+    const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
     super(
       data,
       [

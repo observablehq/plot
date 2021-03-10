@@ -23,8 +23,8 @@ export class Area extends Mark {
       ...options
     } = {}
   ) {
-    const [vfill, cfill] = maybeColor(fill, "currentColor");
     const [vstroke, cstroke] = maybeColor(stroke, "none");
+    const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
     if (z === undefined && vfill != null) z = vfill;
     if (z === undefined && vstroke != null) z = vstroke;
     super(
