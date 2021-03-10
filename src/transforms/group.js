@@ -1,6 +1,6 @@
 import {group as grouper, sort, InternSet} from "d3";
 import {defined} from "../defined.js";
-import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, second, identity, take} from "../mark.js";
+import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple} from "../mark.js";
 
 export function groupX({x, ...options} = {}) {
   const [transform, X, y, z, fill, stroke] = group1(x, options);
@@ -84,8 +84,9 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
 
 function group2(xv, yv, {domain, normalize, ...options} = {}) {
   const {z, fill, stroke} = options;
-  const {value: x = first, domain: xdomain} = {domain, ...maybeValue(xv)};
-  const {value: y = second, domain: ydomain} = {domain, ...maybeValue(yv)};
+  let {value: x, domain: xdomain} = {domain, ...maybeValue(xv)};
+  let {value: y, domain: ydomain} = {domain, ...maybeValue(yv)};
+  ([x, y] = maybeTuple(x, y));
   const k = normalize === true ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(y);

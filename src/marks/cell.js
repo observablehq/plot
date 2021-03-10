@@ -1,4 +1,4 @@
-import {identity, first, second} from "../mark.js";
+import {identity, maybeTuple} from "../mark.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
@@ -20,7 +20,8 @@ export class Cell extends AbstractBar {
   }
 }
 
-export function cell(data, {x = first, y = second, ...options} = {}) {
+export function cell(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
   return new Cell(data, {...options, x, y});
 }
 

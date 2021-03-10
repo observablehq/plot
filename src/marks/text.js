@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, first, second} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, maybeTuple} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
@@ -72,7 +72,8 @@ export class Text extends Mark {
   }
 }
 
-export function text(data, {x = first, y = second, ...options} = {}) {
+export function text(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
   return new Text(data, {...options, x, y});
 }
 

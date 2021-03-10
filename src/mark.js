@@ -131,6 +131,11 @@ export function maybeZero(x, x1, x2, x3 = identity) {
   return [x1, x2];
 }
 
+// For marks that have x and y channels (e.g., cell, dot, line, text).
+export function maybeTuple(x, y) {
+  return x === undefined && y === undefined ? [first, second] : [x, y];
+}
+
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
 export function maybeZ({z, fill, stroke} = {}) {

@@ -3,7 +3,7 @@ import {create} from "d3";
 import {line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity, first, second, maybeColor, titleGroup} from "../mark.js";
+import {Mark, indexOf, identity, maybeColor, maybeTuple, titleGroup} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Line extends Mark {
@@ -66,7 +66,8 @@ export class Line extends Mark {
   }
 }
 
-export function line(data, {x = first, y = second, ...options} = {}) {
+export function line(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
   return new Line(data, {...options, x, y});
 }
 

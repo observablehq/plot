@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, identity, first, second, maybeColor, maybeNumber, title} from "../mark.js";
+import {Mark, identity, maybeColor, maybeNumber, maybeTuple, title} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Dot extends Mark {
@@ -68,7 +68,8 @@ export class Dot extends Mark {
   }
 }
 
-export function dot(data, {x = first, y = second, ...options} = {}) {
+export function dot(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
   return new Dot(data, {...options, x, y});
 }
 
