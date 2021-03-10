@@ -9,14 +9,14 @@ export function facets(data, {x, y, ...options}, marks) {
 }
 
 class Facet extends Mark {
-  constructor(data, {x, y, transform} = {}, marks = []) {
+  constructor(data, {x, y, ...options} = {}, marks = []) {
     super(
       data,
       [
         {name: "fx", value: x, scale: "fx", type: "band", optional: true},
         {name: "fy", value: y, scale: "fy", type: "band", optional: true}
       ],
-      transform
+      options
     );
     this.marks = marks;
     // The following fields are set by initialize:
