@@ -27,11 +27,11 @@ export default async function() {
       range: ["#aed9e0", "#edd382", "#ffa69e"]
     },
     marks: [
-      Plot.stackBarX(values, {
+      Plot.barX(values, Plot.stackX({
         x: d => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
         y: "Country Name",
         fill: "type"
-      }),
+      })),
       Plot.ruleX([0])
     ]
   });

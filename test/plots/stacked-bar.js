@@ -6,7 +6,12 @@ export default async function() {
       tickFormat: "%"
     },
     marks: [
-      Plot.stackBarX({length: 20}, {x: (d, i) => i, fill: (d, i) => i, insetLeft: 1, offset: "expand"})
+      Plot.barX({length: 20}, Plot.stackX({
+        x: (d, i) => i,
+        fill: (d, i) => i,
+        insetLeft: 1,
+        offset: "expand"
+      }))
     ]
   });
 }

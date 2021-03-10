@@ -20,12 +20,12 @@ export default async function() {
       axis: null
     },
     marks: [
-      Plot.stackAreaY(data, {
+      Plot.areaY(data, Plot.stackY({
         ...stack,
         curve: curveLinkHorizontal,
         fill: "race",
         stroke: "white"
-      }),
+      })),
       Plot.text(
         data.filter(d => d.type === "police"),
         Plot.stackYMid({

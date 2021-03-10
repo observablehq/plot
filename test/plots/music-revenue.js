@@ -11,7 +11,7 @@ export default async function() {
       transform: d => d / 1000
     },
     marks: [
-      Plot.stackAreaY(data, {...stack, fill: "group", title: d => `${d.format}\n${d.group}`}),
+      Plot.areaY(data, Plot.stackY({...stack, fill: "group", title: d => `${d.format}\n${d.group}`})),
       Plot.lineY(data, Plot.stackY2({...stack, stroke: "white", strokeWidth: 1})),
       Plot.ruleY([0])
     ]

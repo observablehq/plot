@@ -120,7 +120,7 @@ It’s not just line charts, of course. Here’s another useful chart type, the 
 Plot.plot({
   height: 240,
   marks: [
-    Plot.binRectY(data, {x: "Volume"}),
+    Plot.rectY(data, Plot.binX({x: "Volume"})),
     Plot.ruleY([0]) // add a rule at y = 0
   ]
 })
