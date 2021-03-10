@@ -42,7 +42,7 @@ export class RuleX extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, false, 0.5, 0)
+        .call(applyTransform, X && x, false, 0.5, 0)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
@@ -95,7 +95,7 @@ export class RuleY extends Mark {
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, false, y, 0, 0.5)
+        .call(applyTransform, false, Y && y, 0, 0.5)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
