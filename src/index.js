@@ -15,6 +15,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {bin, binX, binY, binR, binFill} from "./transforms/bin.js";
 export {group, groupX, groupY, groupR, groupFill} from "./transforms/group.js";
+export {extentX, iqrX, minX, maxX, medianX, extentY, iqrY, minY, maxY, medianY} from "./transforms/aggregate.js";
 export {normalizeX, normalizeY} from "./transforms/normalize.js";
 export {movingAverageX, movingAverageY} from "./transforms/movingAverage.js";
 export {selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
