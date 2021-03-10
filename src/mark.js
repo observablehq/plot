@@ -183,7 +183,7 @@ export function lazyChannel(source) {
 
 // Like lazyChannel, but allows the source to be null.
 export function maybeLazyChannel(source) {
-  return source == null ? [] : lazyChannel(source);
+  return source == null ? [source] : lazyChannel(source);
 }
 
 // If both t1 and t2 are defined, returns a composite transform that first
