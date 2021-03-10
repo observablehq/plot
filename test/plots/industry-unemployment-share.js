@@ -9,13 +9,13 @@ export default async function() {
       tickFormat: "%"
     },
     marks: [
-      Plot.stackAreaY(data, {
+      Plot.areaY(data, Plot.stackY({
         x: "date",
         y: "unemployed",
         fill: "industry",
         offset: "expand",
         title: "industry"
-      }),
+      })),
       Plot.ruleY([0])
     ]
   });
