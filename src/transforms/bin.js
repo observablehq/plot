@@ -3,22 +3,22 @@ import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, 
 
 export function binX({x, insetLeft = 1, ...options} = {}) {
   const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
-  return {...transform, y, x1, x2, z, fill, stroke, insetLeft};
+  return {y, x1, x2, ...transform, z, fill, stroke, insetLeft};
 }
 
 export function binY({y, insetTop = 1, ...options} = {}) {
   const [transform, y1, y2, x, z, fill, stroke] = bin1(y, options);
-  return {...transform, x, y1, y2, z, fill, stroke, insetTop};
+  return {x, y1, y2, ...transform, z, fill, stroke, insetTop};
 }
 
 export function binR({x, y, ...options} = {}) {
   const [transform, x1, x2, y1, y2, r, z, fill, stroke] = bin2(x, y, options);
-  return {...transform, x: mid(x1, x2), y: mid(y1, y2), r, z, fill, stroke};
+  return {x: mid(x1, x2), y: mid(y1, y2), r, ...transform, z, fill, stroke};
 }
 
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   const [transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
-  return {...transform, x1, x2, y1, y2, z, fill, stroke, insetLeft, insetTop, [out]: l};
+  return {x1, x2, y1, y2, ...transform, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
 function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
