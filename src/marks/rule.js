@@ -21,7 +21,7 @@ export class RuleX extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
+        {name: "x", value: x, scale: "x", optional: true},
         {name: "y1", value: y1, scale: "y", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
@@ -36,7 +36,7 @@ export class RuleX extends Mark {
     I,
     {x, y, color},
     {x: X, y1: Y1, y2: Y2, z: Z, title: L, stroke: S},
-    {marginTop, height, marginBottom}
+    {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
     const index = filter(I, X, Y1, Y2, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -47,8 +47,8 @@ export class RuleX extends Mark {
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", i => Math.round(x(X[i])))
-            .attr("x2", i => Math.round(x(X[i])))
+            .attr("x1", X ? i => Math.round(x(X[i])) : (marginLeft + width - marginRight) / 2)
+            .attr("x2", X ? i => Math.round(x(X[i])) : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 ? i => y(Y1[i]) : marginTop)
             .attr("y2", Y2 ? (y.bandwidth ? i => y(Y2[i]) + y.bandwidth() : i => y(Y2[i])) : height - marginBottom)
             .attr("stroke", S && (i => color(S[i])))
@@ -74,7 +74,7 @@ export class RuleY extends Mark {
     super(
       data,
       [
-        {name: "y", value: y, scale: "y"},
+        {name: "y", value: y, scale: "y", optional: true},
         {name: "x1", value: x1, scale: "x", optional: true},
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "z", value: z, optional: true},
@@ -89,7 +89,7 @@ export class RuleY extends Mark {
     I,
     {x, y, color},
     {y: Y, x1: X1, x2: X2, z: Z, title: L, stroke: S},
-    {width, marginLeft, marginRight}
+    {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
     const index = filter(I, Y, X1, X2);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -102,8 +102,8 @@ export class RuleY extends Mark {
             .call(applyDirectStyles, this)
             .attr("x1", X1 ? i => x(X1[i]) : marginLeft)
             .attr("x2", X2 ? (x.bandwidth ? i => x(X2[i]) + x.bandwidth() : i => x(X2[i])) : width - marginRight)
-            .attr("y1", i => Math.round(y(Y[i])))
-            .attr("y2", i => Math.round(y(Y[i])))
+            .attr("y1", Y ? i => Math.round(y(Y[i])) : (marginTop + height - marginBottom) / 2)
+            .attr("y2", Y ? i => Math.round(y(Y[i])) : (marginTop + height - marginBottom) / 2)
             .attr("stroke", S && (i => color(S[i])))
             .call(title(L)))
       .node();
