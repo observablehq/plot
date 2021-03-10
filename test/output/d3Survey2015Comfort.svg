@@ -62,7 +62,7 @@
       <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
     </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
   </g>
-  <g fill="steelblue" transform="translate(0,0)">
+  <g fill="steelblue">
     <rect x="300" width="150.70336391437309" y="71" height="19"></rect>
     <rect x="300" width="56.75840978593271" y="91" height="19"></rect>
     <rect x="300" width="254.43425076452604" y="31" height="19"></rect>

@@ -63,7 +63,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8.4</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Trade volume (log₁₀) →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="41" y="364.3285024154589" width="38" height="1.6714975845411004"></rect>
     <rect x="80" y="345.94202898550725" width="37" height="20.05797101449275"></rect>
     <rect x="118" y="280.7536231884058" width="38" height="85.24637681159419"></rect>

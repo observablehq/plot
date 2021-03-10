@@ -69,7 +69,7 @@
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="182" x2="182" y1="20" y2="366"></line>
   </g>
-  <g fill-opacity="0.2" transform="translate(0,0)">
+  <g fill-opacity="0.2">
     <rect x="180.00059721415928" width="5.595862962831859" y="337" height="23"></rect>
     <rect x="179.83610126725665" width="17.420535900884943" y="233" height="23"></rect>
     <rect x="181.27693983716813" width="27.76421261946905" y="181" height="23"></rect>

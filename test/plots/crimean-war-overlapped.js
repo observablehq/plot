@@ -11,8 +11,8 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.ruleY([0]),
-      Plot.barY(data, {x: "date", y: "deaths", z: d => -d.deaths, fill: "cause"})
+      Plot.barY(data, {x: "date", y: "deaths", z: d => -d.deaths, fill: "cause"}),
+      Plot.ruleY([0])
     ]
   });
 }

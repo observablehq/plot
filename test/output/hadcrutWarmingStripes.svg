@@ -28,7 +28,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2020</text>
     </g>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="20" width="4" y="0" height="30" fill="rgb(54, 128, 185)"></rect>
     <rect x="24" width="3" y="0" height="30" fill="rgb(143, 194, 220)"></rect>
     <rect x="27" width="4" y="0" height="30" fill="rgb(136, 190, 218)"></rect>

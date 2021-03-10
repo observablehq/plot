@@ -80,7 +80,7 @@
       </g>
     </g>
     <g transform="translate(0,20)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="41" y="90.84905660377359" width="65" height="16.15094339622641"></rect>
         <rect x="107" y="0" width="66" height="107"></rect>
         <rect x="174" y="14.13207547169811" width="65" height="92.86792452830188"></rect>
@@ -93,7 +93,7 @@
       </g>
     </g>
     <g transform="translate(0,139)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="107" y="92.86792452830188" width="66" height="14.132075471698116"></rect>
         <rect x="174" y="12.113207547169809" width="65" height="94.88679245283019"></rect>
         <rect x="240" y="22.207547169811317" width="65" height="84.79245283018868"></rect>
@@ -107,7 +107,7 @@
       </g>
     </g>
     <g transform="translate(0,258)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="41" y="104.98113207547169" width="65" height="2.0188679245283083"></rect>
         <rect x="107" y="102.9622641509434" width="66" height="4.037735849056602"></rect>
         <rect x="174" y="104.98113207547169" width="65" height="2.0188679245283083"></rect>

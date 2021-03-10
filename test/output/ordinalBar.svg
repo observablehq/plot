@@ -49,7 +49,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
     </g>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="50" width="86" y="46" height="49"></rect>
     <rect x="145" width="86" y="46" height="98"></rect>
     <rect x="240" width="86" y="46" height="147"></rect>

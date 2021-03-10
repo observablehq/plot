@@ -245,7 +245,7 @@
       </g>
     </g>
     <g transform="translate(41,31)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="13" width="9" y="141.72757475083057" height="16.27242524916943"></rect>
         <rect x="23" width="9" y="130.7043189368771" height="27.295681063122913"></rect>
         <rect x="33" width="9" y="113.25083056478405" height="44.74916943521595"></rect>
@@ -272,7 +272,7 @@
       </g>
     </g>
     <g transform="translate(41,207)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="13" width="9" y="156.1627906976744" height="1.83720930232559"></rect>
         <rect x="23" width="9" y="156.42524916943523" height="1.574750830564767"></rect>
         <rect x="33" width="9" y="157.6063122923588" height="0.39368770764119176"></rect>
@@ -295,7 +295,7 @@
       </g>
     </g>
     <g transform="translate(335,31)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="3" width="9" y="56.034883720930225" height="101.96511627906978"></rect>
         <rect x="43" width="9" y="0" height="158"></rect>
         <rect x="83" width="9" y="77.68770764119601" height="80.31229235880399"></rect>
@@ -308,7 +308,7 @@
       </g>
     </g>
     <g transform="translate(335,207)">
-      <g transform="translate(0,0)">
+      <g>
         <rect x="3" width="9" y="155.63787375415282" height="2.362126245847179"></rect>
         <rect x="43" width="9" y="157.21262458471762" height="0.7873754152823835"></rect>
         <rect x="83" width="9" y="150.25747508305648" height="7.742524916943523"></rect>

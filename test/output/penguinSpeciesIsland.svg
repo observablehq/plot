@@ -44,7 +44,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Gentoo</text>
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">species</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="59" width="168" y="247.63157894736844" height="118.36842105263156" fill="#e15759"></rect>
     <rect x="59" width="168" y="147.47368421052633" height="100.15789473684211" fill="#4e79a7"></rect>
     <rect x="433" width="168" y="83.73684210526316" height="282.2631578947368" fill="#4e79a7"></rect>

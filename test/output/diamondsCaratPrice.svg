@@ -90,7 +90,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5.0</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">carat →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="41" y="604.7234042553191" width="4.979381443298969" height="5.27659574468089" fill="rgb(143, 151, 199)"></rect>
     <rect x="41" y="598.4468085106383" width="4.979381443298969" height="5.276595744680776" fill="rgb(136, 72, 160)"></rect>
     <rect x="41" y="592.1702127659574" width="4.979381443298969" height="5.27659574468089" fill="rgb(152, 172, 210)"></rect>

@@ -247,7 +247,7 @@
       <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+3.5</text>
     </g><text fill="currentColor" transform="translate(360,-30)" dy="1em" text-anchor="middle">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="168" width="261" y="70" height="13" fill="rgb(78, 121, 167)"></rect>
     <rect x="168" width="446" y="42" height="13" fill="rgb(78, 121, 167)"></rect>
     <rect x="168" width="310" y="56" height="13" fill="rgb(78, 121, 167)"></rect>

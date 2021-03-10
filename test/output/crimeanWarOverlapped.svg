@@ -117,10 +117,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mar</text>
     </g>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="366" y2="366"></line>
-  </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="259" width="22" y="20" height="346" fill="#4e79a7"></rect>
     <rect x="283" width="22" y="100.32814197754438" height="265.67185802245564" fill="#4e79a7"></rect>
     <rect x="235" width="22" y="149.82832307135095" height="216.17167692864905" fill="#4e79a7"></rect>
@@ -193,5 +190,8 @@
     <rect x="115" width="22" y="366" height="0" fill="#e15759"></rect>
     <rect x="571" width="22" y="366" height="0" fill="#e15759"></rect>
     <rect x="595" width="22" y="366" height="0" fill="#e15759"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="366" y2="366"></line>
   </g>
 </svg>

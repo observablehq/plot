@@ -89,7 +89,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">14</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Word length →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="45" width="37" y="281.5729847494554" height="84.42701525054463"></rect>
     <rect x="86" width="37" y="46.38344226579521" height="319.6165577342048"></rect>
     <rect x="127" width="37" y="20" height="346"></rect>

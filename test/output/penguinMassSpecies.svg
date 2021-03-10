@@ -70,7 +70,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,500</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="41" y="340.2340425531915" width="72" height="25.7659574468085" fill="#4e79a7"></rect>
     <rect x="114" y="193" width="71" height="173" fill="#4e79a7"></rect>
     <rect x="186" y="152.51063829787233" width="72" height="213.48936170212767" fill="#4e79a7"></rect>

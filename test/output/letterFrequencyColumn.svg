@@ -133,7 +133,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
     </g>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="133" width="20" y="20" height="346"></rect>
     <rect x="463" width="20" y="119.31632813730118" height="246.68367186269882"></rect>
     <rect x="45" width="20" y="143.5325145646355" height="222.4674854353645"></rect>

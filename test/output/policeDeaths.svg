@@ -7,7 +7,7 @@
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">Share of population</text>
     </g><text fill="currentColor" transform="translate(320,-30)" dy="1em" text-anchor="middle"></text>
   </g>
-  <g stroke="white" stroke-miterlimit="1" transform="translate(0,0)">
+  <g stroke="white" stroke-miterlimit="1">
     <path fill="#f28e2c" d="M100,30C320,30,320,30,540,30L540,77.58000000000001C320,77.58000000000001,320,191.04,100,191.04Z"></path>
     <path fill="#e15759" d="M100,191.04C320,191.04,320,77.58000000000001,540,77.58000000000001L540,121.5C320,121.5,320,308.15999999999997,100,308.15999999999997Z"></path>
     <path fill="#76b7b2" d="M100,308.15999999999997C320,308.15999999999997,320,121.5,540,121.5L540,341.09999999999997C320,341.09999999999997,320,374.03999999999996,100,374.03999999999996Z"></path>

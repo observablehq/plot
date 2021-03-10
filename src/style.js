@@ -1,5 +1,7 @@
 import {string, number} from "./mark.js";
 
+const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+
 export function Style(mark, {
   fill,
   fillOpacity,
@@ -48,10 +50,12 @@ export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform(selection, x, y, tx = 0, ty = 0) {
+export function applyTransform(selection, x, y, tx, ty) {
+  tx = tx ? offset : 0;
+  ty = ty ? offset : 0;
   if (x && x.bandwidth) tx += x.bandwidth() / 2;
   if (y && y.bandwidth) ty += y.bandwidth() / 2;
-  selection.attr("transform", `translate(${tx},${ty})`);
+  if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);
 }
 
 export function impliedString(value, impliedValue) {

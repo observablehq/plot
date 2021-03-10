@@ -347,7 +347,7 @@
       <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
     </g>
   </g>
-  <g transform="translate(0,0)">
+  <g>
     <rect x="353.5" width="16.5" y="80" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="109.5" y="80" height="10" fill="#edd382"></rect>
     <rect x="479.5" width="124.00000000000011" y="80" height="10" fill="#ffa69e"></rect>
