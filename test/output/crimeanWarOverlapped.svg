@@ -1,0 +1,197 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,366.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,341.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,316.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,291.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,266.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,241.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,216.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,191.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,165.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,600</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,140.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,115.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,90.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,65.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,600</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ deaths</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(54.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Apr</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(78.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(102.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jun</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(126.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(150.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Aug</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(174.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Sep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(198.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Oct</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(222.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Nov</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(246.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(270.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(294.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(318.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mar</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(342.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Apr</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(366.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(390.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jun</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(414.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(438.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Aug</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(462.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Sep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(486.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Oct</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(510.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Nov</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(534.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(558.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(582.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(606.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mar</text>
+    </g>
+  </g>
+  <g stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="366" y2="366"></line>
+  </g>
+  <g transform="translate(0,0)">
+    <rect x="259" width="22" y="20" height="346" fill="#4e79a7"></rect>
+    <rect x="283" width="22" y="100.32814197754438" height="265.67185802245564" fill="#4e79a7"></rect>
+    <rect x="235" width="22" y="149.82832307135095" height="216.17167692864905" fill="#4e79a7"></rect>
+    <rect x="307" width="22" y="214.9931184353495" height="151.0068815646505" fill="#4e79a7"></rect>
+    <rect x="211" width="22" y="260.2325244476639" height="105.76747555233612" fill="#4e79a7"></rect>
+    <rect x="139" width="22" y="262.2375950742485" height="103.76240492575153" fill="#4e79a7"></rect>
+    <rect x="379" width="22" y="265.4958348424484" height="100.5041651575516" fill="#4e79a7"></rect>
+    <rect x="163" width="22" y="267.2502716407099" height="98.74972835929009" fill="#4e79a7"></rect>
+    <rect x="355" width="22" y="302.33900760593986" height="63.660992394060145" fill="#4e79a7"></rect>
+    <rect x="187" width="22" y="302.9655921767475" height="63.03440782325248" fill="#4e79a7"></rect>
+    <rect x="427" width="22" y="305.47193045997824" height="60.52806954002176" fill="#4e79a7"></rect>
+    <rect x="331" width="22" y="306.2238319449475" height="59.776168055052494" fill="#4e79a7"></rect>
+    <rect x="403" width="22" y="318.1289387902934" height="47.871061209706625" fill="#4e79a7"></rect>
+    <rect x="283" width="22" y="320.76059398768564" height="45.23940601231436" fill="#f28e2c"></rect>
+    <rect x="115" width="22" y="321.01122781600867" height="44.98877218399133" fill="#4e79a7"></rect>
+    <rect x="259" width="22" y="325.39731981166244" height="40.60268018833756" fill="#f28e2c"></rect>
+    <rect x="211" width="22" y="330.03404563563925" height="35.965954364360755" fill="#e15759"></rect>
+    <rect x="451" width="22" y="331.4125316914162" height="34.58746830858382" fill="#e15759"></rect>
+    <rect x="379" width="22" y="339.80876494023903" height="26.19123505976097" fill="#e15759"></rect>
+    <rect x="451" width="22" y="342.31510322346975" height="23.684896776530252" fill="#4e79a7"></rect>
+    <rect x="499" width="22" y="343.6935892792466" height="22.306410720753377" fill="#4e79a7"></rect>
+    <rect x="307" width="22" y="344.4454907642159" height="21.55450923578411" fill="#f28e2c"></rect>
+    <rect x="427" width="22" y="345.4480260775082" height="20.55197392249181" fill="#e15759"></rect>
+    <rect x="403" width="22" y="349.20753350235424" height="16.792466497645762" fill="#e15759"></rect>
+    <rect x="187" width="22" y="349.4581673306773" height="16.541832669322673" fill="#e15759"></rect>
+    <rect x="235" width="22" y="349.58348424483887" height="16.41651575516113" fill="#f28e2c"></rect>
+    <rect x="475" width="22" y="349.95943498732345" height="16.040565012676552" fill="#4e79a7"></rect>
+    <rect x="187" width="22" y="349.95943498732345" height="16.040565012676552" fill="#f28e2c"></rect>
+    <rect x="235" width="22" y="351.7138717855849" height="14.2861282144151" fill="#e15759"></rect>
+    <rect x="211" width="22" y="352.71640709887726" height="13.283592901122745" fill="#f28e2c"></rect>
+    <rect x="523" width="22" y="354.59616081130025" height="11.403839188699749" fill="#4e79a7"></rect>
+    <rect x="259" width="22" y="355.59869612459255" height="10.40130387540745" fill="#e15759"></rect>
+    <rect x="163" width="22" y="355.8493299529156" height="10.150670047084418" fill="#e15759"></rect>
+    <rect x="163" width="22" y="357.2278160086925" height="8.772183991307486" fill="#f28e2c"></rect>
+    <rect x="331" width="22" y="358.8569358927925" height="7.143064107207522" fill="#f28e2c"></rect>
+    <rect x="475" width="22" y="359.3582035494386" height="6.641796450561401" fill="#e15759"></rect>
+    <rect x="355" width="22" y="359.8594712060847" height="6.14052879391528" fill="#e15759"></rect>
+    <rect x="331" width="22" y="359.98478812024626" height="6.0152118797537355" fill="#e15759"></rect>
+    <rect x="547" width="22" y="359.98478812024626" height="6.0152118797537355" fill="#f28e2c"></rect>
+    <rect x="547" width="22" y="360.73668960521553" height="5.263310394784469" fill="#4e79a7"></rect>
+    <rect x="283" width="22" y="360.73668960521553" height="5.263310394784469" fill="#e15759"></rect>
+    <rect x="355" width="22" y="361.3632741760232" height="4.636725823976803" fill="#f28e2c"></rect>
+    <rect x="595" width="22" y="361.6139080043463" height="4.3860919956537145" fill="#f28e2c"></rect>
+    <rect x="499" width="22" y="361.8645418326693" height="4.1354581673306825" fill="#e15759"></rect>
+    <rect x="403" width="22" y="361.8645418326693" height="4.1354581673306825" fill="#f28e2c"></rect>
+    <rect x="307" width="22" y="361.98985874683086" height="4.010141253169138" fill="#e15759"></rect>
+    <rect x="499" width="22" y="361.98985874683086" height="4.010141253169138" fill="#f28e2c"></rect>
+    <rect x="379" width="22" y="362.1151756609924" height="3.8848243390075936" fill="#f28e2c"></rect>
+    <rect x="139" width="22" y="362.24049257515395" height="3.759507424846049" fill="#f28e2c"></rect>
+    <rect x="523" width="22" y="362.491126403477" height="3.508873596523017" fill="#f28e2c"></rect>
+    <rect x="427" width="22" y="362.8670771459616" height="3.1329228540383838" fill="#f28e2c"></rect>
+    <rect x="571" width="22" y="362.99239406012316" height="3.0076059398768393" fill="#4e79a7"></rect>
+    <rect x="115" width="22" y="363.11771097428465" height="2.8822890257153517" fill="#f28e2c"></rect>
+    <rect x="451" width="22" y="363.4936617167693" height="2.5063382832307184" fill="#f28e2c"></rect>
+    <rect x="571" width="22" y="363.6189786309308" height="2.381021369069174" fill="#f28e2c"></rect>
+    <rect x="523" width="22" y="363.7442955450923" height="2.2557044549076863" fill="#e15759"></rect>
+    <rect x="475" width="22" y="363.7442955450923" height="2.2557044549076863" fill="#f28e2c"></rect>
+    <rect x="595" width="22" y="364.120246287577" height="1.8797537124229962" fill="#4e79a7"></rect>
+    <rect x="67" width="22" y="364.4961970300616" height="1.5038029699384197" fill="#4e79a7"></rect>
+    <rect x="91" width="22" y="364.6215139442231" height="1.3784860557768752" fill="#4e79a7"></rect>
+    <rect x="67" width="22" y="364.8721477725462" height="1.1278522274537863" fill="#f28e2c"></rect>
+    <rect x="91" width="22" y="365.2480985150308" height="0.7519014849692098" fill="#f28e2c"></rect>
+    <rect x="43" width="22" y="365.37341542919233" height="0.6265845708076654" fill="#f28e2c"></rect>
+    <rect x="547" width="22" y="365.7493661716769" height="0.2506338283230889" fill="#e15759"></rect>
+    <rect x="43" width="22" y="365.87468308583846" height="0.12531691416154445" fill="#4e79a7"></rect>
+    <rect x="139" width="22" y="365.87468308583846" height="0.12531691416154445" fill="#e15759"></rect>
+    <rect x="43" width="22" y="366" height="0" fill="#e15759"></rect>
+    <rect x="67" width="22" y="366" height="0" fill="#e15759"></rect>
+    <rect x="91" width="22" y="366" height="0" fill="#e15759"></rect>
+    <rect x="115" width="22" y="366" height="0" fill="#e15759"></rect>
+    <rect x="571" width="22" y="366" height="0" fill="#e15759"></rect>
+    <rect x="595" width="22" y="366" height="0" fill="#e15759"></rect>
+  </g>
+</svg>
