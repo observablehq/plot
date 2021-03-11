@@ -13,7 +13,8 @@ export default async function() {
       label: "↑ Price ($)"
     },
     r: {
-      domain: [0, 100]
+      domain: [0, 100],
+      range: [0, 3]
     },
     marks: [
       Plot.dot(data, Plot.binR({x: "carat", y: "price", thresholds: 100}))
