@@ -137,7 +137,7 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
-  range = registry.get(key) === radius ? [0, 3] : undefined, // see inferRadialDomain
+  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : undefined,
   scheme,
   type,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
@@ -219,11 +219,13 @@ function inferDomain(channels) {
   ];
 }
 
+function inferRadialDomain(channels) {
+  return [0, max(channels, ({value}) => value === undefined ? value : max(value))];
+}
+
 // We don’t want the upper bound of the radial domain to be zero, as this would
 // be degenerate, so we ignore nonpositive values.
-function inferRadialDomain(channels) {
-  return [
-    0,
-    quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive))
-  ];
+function inferRadialRange(channels, domain) {
+  const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
+  return domain.map(d => 3 * Math.sqrt(d / h25));
 }
