@@ -135,7 +135,7 @@ function Scheme(scheme) {
 export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
-  domain = inferDomain(channels),
+  domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : undefined,
   scheme,
@@ -217,6 +217,10 @@ function inferDomain(channels) {
     min(channels, ({value}) => value === undefined ? value : min(value)),
     max(channels, ({value}) => value === undefined ? value : max(value))
   ];
+}
+
+function inferRadialDomain(channels) {
+  return [0, max(channels, ({value}) => value === undefined ? value : max(value))];
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
