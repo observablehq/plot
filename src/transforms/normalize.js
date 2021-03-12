@@ -1,4 +1,4 @@
-import {group, mean, median} from "d3";
+import {group, mean, median, sum} from "d3";
 import {defined} from "../defined.js";
 import {maybeTransform, maybeLazyChannel, maybeZ, take, valueof} from "../mark.js";
 
@@ -50,6 +50,7 @@ function maybeBasis(basis) {
     case "last": return basisLast;
     case "mean": return basisMean;
     case "median": return basisMedian;
+    case "sum": return basisSum;
   }
   throw new Error("invalid basis");
 }
@@ -74,4 +75,8 @@ function basisMean(I, S) {
 
 function basisMedian(I, S) {
   return median(I, i => S[i]);
+}
+
+function basisSum(I, S) {
+  return sum(I, i => S[i]);
 }
