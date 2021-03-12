@@ -32,7 +32,7 @@ function boxX(data, {
 }
 
 // Returns a filter transform that returns outliers in x, optionally grouped by
-// z. The minimum and maxmimum normal values (i.e., non-outliers) are defined by
+// z. The minimum and maximum normal values (i.e., non-outliers) are defined by
 // the specified arguments, and default to 1.5× the interquartile range.
 function boxOutliers(x, z, min = iqr1, max = iqr2) {
   return (data, index) => {
