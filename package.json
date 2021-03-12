@@ -30,8 +30,8 @@
     "@observablehq/plot": "./dist/plot.cjs.js"
   },
   "devDependencies": {
-    "clean-css": "^5.1.1",
     "canvas": "^2.6.1",
+    "clean-css": "^5.1.1",
     "eslint": "^7.12.1",
     "esm": "^3.2.25",
     "js-beautify": "^1.13.0",

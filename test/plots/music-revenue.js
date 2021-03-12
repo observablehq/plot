@@ -10,6 +10,10 @@ export default async function() {
       label: "↑ Annual revenue (billions, adj.)",
       transform: d => d / 1000
     },
+    color: {
+      domain: d3.groupSort(data, g => d3.sum(g, d => d.revenue), d => d.group).reverse(),
+      legend: { ticks: 6 }
+    },
     marks: [
       Plot.areaY(data, Plot.stackY({...stack, fill: "group", title: d => `${d.format}\n${d.group}`})),
       Plot.lineY(data, Plot.stackY2({...stack, stroke: "white", strokeWidth: 1})),

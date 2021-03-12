@@ -137,8 +137,8 @@ function legend(svg, {
     tickFormat = i => thresholdFormat(thresholds[i], i);
   }
 
-  // Ordinal
-  else {
+  // Ordinal, bar
+  else if (false) {
     x = scaleBand()
         .domain(color.domain())
         .rangeRound([marginLeft, width - marginRight]);
@@ -155,6 +155,23 @@ function legend(svg, {
 
     tickAdjust = () => {};
   }
+  // ordinal, swatches
+  else {
+    return swatches(svg, {
+      color,
+      title,
+      // tickSize,
+      width, 
+      height,
+      marginTop,
+      marginRight,
+      marginBottom,
+      marginLeft,
+      ticks,
+      tickFormat
+      //, tickValues
+    });
+  }
 
   svg.append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
@@ -165,14 +182,14 @@ function legend(svg, {
         .tickValues(tickValues))
       .call(tickAdjust)
       .call(g => g.select(".domain").remove())
-      .call(g => g.append("text")
+      .call(title ? (g => g.append("text")
         .attr("x", marginLeft)
         .attr("y", marginTop + marginBottom - height - 6)
         .attr("fill", "currentColor")
         .attr("text-anchor", "start")
         .attr("font-weight", "bold")
         .attr("class", "title")
-        .text(title));
+        .text(title)) : () => {});
 
   return svg.node();
 }
@@ -189,4 +206,60 @@ function ramp(color, n = 256) {
     context.fillRect(i, 0, 1, 1);
   }
   return canvas;
+}
+
+function swatches(svg, {
+  color,
+  title,
+//  tickSize,
+  width, 
+  height,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  ticks,
+  tickFormat
+  // , tickValues
+}) {
+  const l = svg.append("g").attr("transform", `translate(0,${height - marginBottom})`);
+  const n = ticks; // maximum swatches per row (maybe we shouldn't use ticks?)
+  const cwidth = (width - marginLeft - marginRight) / Math.max(1, Math.min(n, color.domain().length));
+  
+  if (tickFormat === undefined) tickFormat = d => shorten(d, cwidth / 7);
+  
+  const domain = color.domain().map(d => ({
+    d,
+    fill: color(d),
+    text: tickFormat(d)
+  }))
+  .filter(d => d.text);
+  
+  const cheight = 20;
+  const swatches = l.append("g")
+    .selectAll()
+    .data(domain)
+    .join("g")
+      .attr("transform", (_,i) => `translate(${(i % n) * cwidth},${Math.floor(i/n) * cheight})`);
+  swatches.append("rect").attr("y", -5).attr("height", 10).attr("width", 10).attr("fill", d => d.fill);
+  swatches.append("text").attr("dx", 13).attr("text-anchor", "start").attr("dy", "0.35em").text(d => d.text);
+  
+  if (title) {
+    l.append("text")
+      .attr("x", marginLeft)
+      .attr("y", marginTop + marginBottom - height - 6)
+      .attr("fill", "currentColor")
+      .attr("text-anchor", "start")
+      .attr("font-weight", "bold")
+      .attr("class", "title")
+      .text(title);
+  }
+   
+ 
+ return svg.node();
+}
+
+function shorten(text, l = 20) {
+  text = String(text);
+  return (text.length > l) ? text.substring(0, l - 3).concat("…") : text;
 }
