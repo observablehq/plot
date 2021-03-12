@@ -1,16 +1,16 @@
 import {group, min, max, mean, median} from "d3";
 import {identity, lazyChannel, maybeColor, maybeLazyChannel, maybeTransform, take, valueof} from "../mark.js";
 
-// Group on x if present.
-export function reduceX(outputs, {x, ...options} = {}) {
-  const [transform, X] = reduce1(x, outputs, options);
-  return {x: X, ...transform};
-}
-
 // Group on y if present.
-export function reduceY(outputs, {y, ...options} = {}) {
+export function reduceX(outputs, {y, ...options} = {}) {
   const [transform, Y] = reduce1(y, outputs, options);
   return {y: Y, ...transform};
+}
+
+// Group on x if present.
+export function reduceY(outputs, {x, ...options} = {}) {
+  const [transform, X] = reduce1(x, outputs, options);
+  return {x: X, ...transform};
 }
 
 // Group on z, fill, or stroke if present.
