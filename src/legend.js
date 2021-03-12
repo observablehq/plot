@@ -223,10 +223,11 @@ function swatches(svg, {
   // , tickValues
 }) {
   const l = svg.append("g").attr("transform", `translate(0,${height - marginBottom})`);
-  const n = ticks; // maximum swatches per row (maybe we shouldn't use ticks?)
-  const cwidth = (width - marginLeft - marginRight) / Math.max(1, Math.min(n, color.domain().length));
+  const n = Math.round(ticks); // maximum swatches per row (maybe we shouldn't use ticks?)
+  const cwidth = Math.floor((width - marginLeft - marginRight) / Math.max(1, Math.min(n, color.domain().length)));
+  const cheight = 20;
   
-  if (tickFormat === undefined) tickFormat = d => shorten(d, cwidth / 7);
+  if (tickFormat === undefined) tickFormat = d => shorten(d, (cwidth - 14) / 5);
   
   const domain = color.domain().map(d => ({
     d,
@@ -235,12 +236,11 @@ function swatches(svg, {
   }))
   .filter(d => d.text);
   
-  const cheight = 20;
   const swatches = l.append("g")
     .selectAll()
     .data(domain)
     .join("g")
-      .attr("transform", (_,i) => `translate(${(i % n) * cwidth},${Math.floor(i/n) * cheight})`);
+      .attr("transform", (_, i) => `translate(${(i % n) * cwidth},${Math.floor(i / n) * cheight})`);
   swatches.append("rect").attr("y", -5).attr("height", 10).attr("width", 10).attr("fill", d => d.fill);
   swatches.append("text").attr("dx", 13).attr("text-anchor", "start").attr("dy", "0.35em").text(d => d.text);
   

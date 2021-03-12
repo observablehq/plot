@@ -206,19 +206,19 @@
         <g transform="translate(0,0)">
           <rect y="-5" height="10" width="10" fill="#4e79a7"></rect><text dx="13" text-anchor="start" dy="0.35em">Disc</text>
         </g>
-        <g transform="translate(53.333333333333336,0)">
+        <g transform="translate(53,0)">
           <rect y="-5" height="10" width="10" fill="#f28e2c"></rect><text dx="13" text-anchor="start" dy="0.35em">Tape</text>
         </g>
-        <g transform="translate(106.66666666666667,0)">
+        <g transform="translate(106,0)">
           <rect y="-5" height="10" width="10" fill="#e15759"></rect><text dx="13" text-anchor="start" dy="0.35em">Vinyl</text>
         </g>
-        <g transform="translate(160,0)">
+        <g transform="translate(159,0)">
           <rect y="-5" height="10" width="10" fill="#76b7b2"></rect><text dx="13" text-anchor="start" dy="0.35em">Stre…</text>
         </g>
-        <g transform="translate(213.33333333333334,0)">
+        <g transform="translate(212,0)">
           <rect y="-5" height="10" width="10" fill="#59a14f"></rect><text dx="13" text-anchor="start" dy="0.35em">Down…</text>
         </g>
-        <g transform="translate(266.6666666666667,0)">
+        <g transform="translate(265,0)">
           <rect y="-5" height="10" width="10" fill="#edc949"></rect><text dx="13" text-anchor="start" dy="0.35em">Other</text>
         </g>
       </g>

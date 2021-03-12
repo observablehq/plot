@@ -658,10 +658,10 @@
         <g transform="translate(0,0)">
           <rect y="-5" height="10" width="10" fill="#aed9e0"></rect><text dx="13" text-anchor="start" dy="0.35em">doing well</text>
         </g>
-        <g transform="translate(106.66666666666667,0)">
+        <g transform="translate(106,0)">
           <rect y="-5" height="10" width="10" fill="#edd382"></rect><text dx="13" text-anchor="start" dy="0.35em">poor</text>
         </g>
-        <g transform="translate(213.33333333333334,0)">
+        <g transform="translate(212,0)">
           <rect y="-5" height="10" width="10" fill="#ffa69e"></rect><text dx="13" text-anchor="start" dy="0.35em">out of school</text>
         </g>
       </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold" class="title">Students</text>
