@@ -1727,7 +1727,7 @@
       </g>
       <g class="tick" opacity="1" transform="translate(279.5,0)">
         <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
-      </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold" class="title"></text>
+      </g>
     </g>
   </g>
 </svg>
