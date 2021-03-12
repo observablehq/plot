@@ -9,9 +9,10 @@ export default async function() {
       inset: 6
     },
     marks: [
-      Plot.ruleY(morley, Plot.extentX({x: "Speed", y: "Expt"})),
-      Plot.barX(morley, Plot.iqrX({x: "Speed", y: "Expt", fill: "#ccc"})),
-      Plot.tickX(morley, Plot.medianX({x: "Speed", y: "Expt", strokeWidth: 2}))
+      Plot.ruleY(morley, Plot.reduceY({x1: "min", x2: "max"}, {x: "Speed", y: "Expt"})),
+      Plot.barX(morley, Plot.reduceY({x1: x => d3.quantile(x, 0.25), x2: x => d3.quantile(x, 0.75)}, {x: "Speed", y: "Expt", fill: "#ccc"})),
+      Plot.tickX(morley, Plot.reduceY({x: "median"}, {x: "Speed", y: "Expt", strokeWidth: 2})),
+      Plot.dot(morley, {x: "Speed", y: "Expt"})
     ]
   });
 }
