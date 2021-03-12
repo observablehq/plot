@@ -39,16 +39,6 @@ export class ColorLegend {
         tickValues
       } = {}
     } = {} } = this;
-    console.warn({
-      title,
-      tickSize,
-      width,
-      height,
-      top,
-      bottom,
-      left,
-      right
-    });
     const tx = left !== undefined ? left : canvasWidth - width + right;
     const ty = bottom !== undefined ? canvasHeight - bottom - height : top;
     return create("svg:g")
