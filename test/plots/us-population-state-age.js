@@ -8,14 +8,14 @@ export default async function() {
   return Plot.plot({
     marginLeft: 50,
     grid: true,
-    y: {
-      domain: ages,
-      label: "Age"
-    },
     x: {
       axis: "top",
       label: "Percent (%) →",
       transform: d => d * 100
+    },
+    y: {
+      domain: ages,
+      label: "Age"
     },
     marks: [
       Plot.ruleX([0]),
