@@ -50,7 +50,6 @@ function reduce1(z, outputs, options) {
           }
           reduceIndex.push(reduceFacet);
         }
-        // console.log(channels);
         return {data: reduceData, index: reduceIndex};
       }),
       ...Object.fromEntries(channels.map(({key, output}) => [key, output]))
