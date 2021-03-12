@@ -18,7 +18,7 @@ class Facet extends Mark {
       ],
       options
     );
-    this.marks = marks;
+    this.marks = marks.flat(Infinity);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)

@@ -13,7 +13,8 @@ export function plot(options = {}) {
     options = {...options, marks: facets(data, facet, marks)};
   }
 
-  const {marks = []} = options;
+  // Flatten any nested marks.
+  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity);
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();
