@@ -18,8 +18,8 @@ export default async function() {
   });
 }
 
-function box(data, accessor = x => x) {
-  const values = Float64Array.from(data, accessor);
+function box(data, value = x => x) {
+  const values = Float64Array.from(data, value);
   const q2 = d3.median(values);
   const q1 = d3.quantile(values, 0.25); // first quartile
   const q3 = d3.quantile(values, 0.75); // second quartile
