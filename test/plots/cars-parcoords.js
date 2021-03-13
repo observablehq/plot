@@ -8,8 +8,8 @@ export default async function() {
   // Reshape wide data to make it tidy.
   // TODO Instead of normalizing, separate scales for each dimension.
   const data = dimensions.flatMap(dimension => {
-    return cars.map(({name, [dimension]: value}) => {
-      return {name, dimension, value};
+    return cars.map(({name, year, [dimension]: value}) => {
+      return {name: `${name}-${year}`, dimension, value};
     });
   });
 
