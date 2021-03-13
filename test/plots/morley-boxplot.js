@@ -27,7 +27,7 @@ function boxX(data, {
     Plot.ruleY(data, Plot.reduceX({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
     Plot.barX(data, Plot.reduceX({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
     Plot.tickX(data, Plot.reduceX({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
-    Plot.dot(data, Plot.map({x: outliers}, {x, y, stroke, ...options}))
+    Plot.dot(data, Plot.map({x: outliers}, {x, y, z: y, stroke, ...options}))
   ];
 }
 
