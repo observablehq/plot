@@ -1,4 +1,4 @@
-import {mean, median, sum} from "d3";
+import {extent, mean, median, sum} from "d3";
 import {defined} from "../defined.js";
 import {take} from "../mark.js";
 import {mapi} from "./map.js";
@@ -22,6 +22,7 @@ function normalize({basis} = {}) {
     case "mean": return normalizeMean;
     case "median": return normalizeMedian;
     case "sum": return normalizeSum;
+    case "extent": return normalizeExtent;
   }
   throw new Error("invalid basis");
 }
@@ -31,6 +32,13 @@ function normalizeBasis(basis) {
     const b = +basis(I, S);
     for (const i of I) T[i] = S[i] / b;
   };
+}
+
+function normalizeExtent(I, S, T) {
+  const [s1, s2] = extent(I, i => S[i]), d = s2 - s1;
+  for (const i of I) {
+    T[i] = (S[i] - s1) / d;
+  }
 }
 
 const normalizeFirst = normalizeBasis((I, S) => {
