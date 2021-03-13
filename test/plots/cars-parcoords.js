@@ -14,6 +14,7 @@ export default async function() {
   });
 
   return Plot.plot({
+    marginLeft: 100,
     x: {
       domain: [0, 1]
     },
@@ -23,22 +24,15 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.ruleY(data, {
-        y: "dimension"
-      }),
+      Plot.ruleY(data, {y: "dimension"}),
       Plot.line(data, {
-        ...Plot.normalizeX({
-          basis: "extent",
-          x: "value",
-          y: "dimension",
-          z: "dimension",
-          stroke: "#444",
-          strokeWidth: 0.5,
-          strokeOpacity: 0.5
-        }),
-        z: "name"
+        ...Plot.normalizeX({basis: "extent", x: "value", z: "dimension"}),
+        y: "dimension",
+        z: "name",
+        stroke: "#444",
+        strokeWidth: 0.5,
+        strokeOpacity: 0.5
       })
-    ],
-    marginLeft: 100
+    ]
   });
 }
