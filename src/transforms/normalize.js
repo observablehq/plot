@@ -47,14 +47,6 @@ const normalizeLast = normalizeBasis((I, S) => {
   }
 });
 
-const normalizeMean = normalizeBasis((I, S) => {
-  return mean(I, i => S[i]);
-});
-
-const normalizeMedian = normalizeBasis((I, S) => {
-  return median(I, i => S[i]);
-});
-
-const normalizeSum = normalizeBasis((I, S) => {
-  return sum(I, i => S[i]);
-});
+const normalizeMean = normalizeBasis((I, S) => mean(I, i => S[i]));
+const normalizeMedian = normalizeBasis((I, S) => median(I, i => S[i]));
+const normalizeSum = normalizeBasis((I, S) => sum(I, i => S[i]));
