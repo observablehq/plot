@@ -30,14 +30,16 @@ function normalize({basis} = {}) {
 function normalizeBasis(basis) {
   return (I, S, T) => {
     const b = +basis(I, S);
-    for (const i of I) T[i] = S[i] / b;
+    for (const i of I) {
+      T[i] = S[i] === null ? NaN : S[i] / b;
+    }
   };
 }
 
 function normalizeExtent(I, S, T) {
   const [s1, s2] = extent(I, i => S[i]), d = s2 - s1;
   for (const i of I) {
-    T[i] = (S[i] - s1) / d;
+    T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
   }
 }
 
