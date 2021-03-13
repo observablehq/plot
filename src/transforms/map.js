@@ -12,16 +12,16 @@ export function map(outputs = {}, options = {}) {
   return {
     ...options,
     ...Object.fromEntries(channels.map(({key, output}) => [key, output])),
-    transform: maybeTransform(options, (data, index) => {
+    transform: maybeTransform(options, (data, facets) => {
       const Z = valueof(data, z);
       const X = channels.map(({input}) => valueof(data, input));
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
-      for (const facet of index) {
+      for (const facet of facets) {
         for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
           channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
         }
       }
-      return {data, index};
+      return {data, facets};
     })
   };
 }

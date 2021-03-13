@@ -49,8 +49,8 @@ function reducen(
     stroke: RS,
     ...options,
     ...Object.fromEntries(channels.map(({key, output}) => [key, output])),
-    transform: maybeTransform(options, (data, index) => {
-      const outIndex = [];
+    transform: maybeTransform(options, (data, facets) => {
+      const outFacets = [];
       const outData = [];
       const X = channels.map(({input}) => valueof(data, input));
       const RX = channels.map(({setOutput}) => setOutput([]));
@@ -64,7 +64,7 @@ function reducen(
       const RF = F && setRF([]);
       const RS = S && setRS([]);
       let i = 0;
-      for (const facet of index) {
+      for (const facet of facets) {
         const outFacet = [];
         for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
           outFacet.push(i++);
@@ -75,9 +75,9 @@ function reducen(
           if (F) RF.push(F[I[0]]);
           if (S) RS.push(S[I[0]]);
         }
-        outIndex.push(outFacet);
+        outFacets.push(outFacet);
       }
-      return {data: outData, index: outIndex};
+      return {data: outData, facets: outFacets};
     })
   };
 }

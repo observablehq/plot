@@ -39,12 +39,12 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
   return [
     {
       ...options,
-      transform: maybeTransform(options, (data, index) => {
+      transform: maybeTransform(options, (data, facets) => {
         const X = valueof(data, x);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
-        const groupIndex = [];
+        const groupFacets = [];
         const groupData = [];
         const G = Z || F || S;
         const BX = setX([]);
@@ -54,7 +54,7 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
         const BS = S && setS([]);
         const n = data.length;
         let i = 0;
-        for (const facet of index) {
+        for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
             for (const [x, f] of sort(grouper(I, i => X[i]), first)) {
@@ -69,9 +69,9 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
               if (S) BS.push(S[f[0]]);
             }
           }
-          groupIndex.push(groupFacet);
+          groupFacets.push(groupFacet);
         }
-        return {data: groupData, index: groupIndex};
+        return {data: groupData, facets: groupFacets};
       })
     },
     X,
@@ -101,13 +101,13 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
   return [
     {
       ...options,
-      transform: maybeTransform(options, (data, index) => {
+      transform: maybeTransform(options, (data, facets) => {
         const X = valueof(data, x);
         const Y = valueof(data, y);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
-        const groupIndex = [];
+        const groupFacets = [];
         const groupData = [];
         const G = Z || F || S;
         const BX = setX([]);
@@ -118,7 +118,7 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
         const BS = S && setS([]);
         const n = data.length;
         let i = 0;
-        for (const facet of index) {
+        for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
             for (const [y, fy] of sort(grouper(I, i => Y[i]), first)) {
@@ -137,9 +137,9 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
               }
             }
           }
-          groupIndex.push(groupFacet);
+          groupFacets.push(groupFacet);
         }
-        return {data: groupData, index: groupIndex};
+        return {data: groupData, facets: groupFacets};
       })
     },
     X,

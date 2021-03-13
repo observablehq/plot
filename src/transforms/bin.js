@@ -40,12 +40,12 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
   return [
     {
       ...options,
-      transform: maybeTransform(options, (data, index) => {
+      transform: maybeTransform(options, (data, facets) => {
         const B = bin(data);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
-        const binIndex = [];
+        const binFacets = [];
         const binData = [];
         const X1 = setX1([]);
         const X2 = setX2([]);
@@ -57,7 +57,7 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
         const n = data.length;
         let i = 0;
         if (cumulative < 0) B.reverse();
-        for (const facet of index) {
+        for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
             const set = new Set(I);
@@ -78,9 +78,9 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
               }
             }
           }
-          binIndex.push(binFacet);
+          binFacets.push(binFacet);
         }
-        return {data: binData, index: binIndex};
+        return {data: binData, facets: binFacets};
       })
     },
     X1,
@@ -115,12 +115,12 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
   return [
     {
       ...options,
-      transform: maybeTransform(options, (data, index) => {
+      transform: maybeTransform(options, (data, facets) => {
         const B = bin(data);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
-        const binIndex = [];
+        const binFacets = [];
         const binData = [];
         const X1 = setX1([]);
         const X2 = setX2([]);
@@ -133,7 +133,7 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
         const BS = S && setS([]);
         const n = data.length;
         let i = 0;
-        for (const facet of index) {
+        for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
             const set = new Set(I);
@@ -154,9 +154,9 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
               }
             }
           }
-          binIndex.push(binFacet);
+          binFacets.push(binFacet);
         }
-        return {data: binData, index: binIndex};
+        return {data: binData, facets: binFacets};
       })
     },
     X1,

@@ -52,7 +52,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   return [
     {
       ...options,
-      transform: maybeTransform(options, (data, index) => {
+      transform: maybeTransform(options, (data, facets) => {
         const X = x == null ? undefined : setX(valueof(data, x));
         const Y = valueof(data, y, Float64Array);
         const Z = valueof(data, z);
@@ -60,7 +60,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
         const n = data.length;
         const Y1 = setY1(new Float64Array(n));
         const Y2 = setY2(new Float64Array(n));
-        for (const facet of index) {
+        for (const facet of facets) {
           const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
           if (O) applyOrder(stacks, O);
           for (const stack of stacks) {
@@ -75,7 +75,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
           }
           if (offset) offset(stacks, Y1, Y2, Z);
         }
-        return {data, index};
+        return {data, facets};
       })
     },
     X,
