@@ -5,6 +5,7 @@ export default async function() {
   const states = await d3.csv("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
   const stateage = ages.flatMap(age => states.map(d => ({state: d.name, age, population: d[age]})));
+  const position = Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state"});
   return Plot.plot({
     height: 660,
     grid: true,
@@ -22,9 +23,9 @@ export default async function() {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.ruleY(stateage, Plot.reduceX({x1: "min", x2: "max"}, Plot.normalizeX({basis: "sum", x: "population", z: "state", y: "state"}))),
-      Plot.dot(stateage, Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state", fill: "age"})),
-      Plot.text(stateage, Plot.selectMinX(Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "state", textAnchor: "end", dx: -6, text: "state"})))
+      Plot.ruleY(stateage, Plot.reduceX({x1: "min", x2: "max"}, position)),
+      Plot.dot(stateage, {...position, fill: "age"}),
+      Plot.text(stateage, Plot.selectMinX({...position, textAnchor: "end", dx: -6, text: "state"}))
     ]
   });
 }
