@@ -12,6 +12,7 @@ export function movingAverageY(options) {
 
 // TODO allow partially-defined data
 // TODO expose shift option (leading, trailing, centered)
+// TODO rolling minimum and maximum
 function movingAverage({k} = {}) {
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
   const m = k >> 1;
