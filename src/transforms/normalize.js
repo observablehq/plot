@@ -1,18 +1,19 @@
 import {mean, median, sum} from "d3";
 import {defined} from "../defined.js";
+import {take} from "../mark.js";
 import {mapi} from "./map.js";
 
-export function normalizeX({basis, ...options} = {}) {
-  const normalize = maybeBasis(basis);
-  return mapi([["x", normalize], ["x1", normalize], ["x2", normalize]], options);
+export function normalizeX(options) {
+  const map = normalize(options);
+  return mapi([["x", map], ["x1", map], ["x2", map]], options);
 }
 
-export function normalizeY({basis, ...options} = {}) {
-  const normalize = maybeBasis(basis);
-  return mapi([["y", normalize], ["y1", normalize], ["y2", normalize]], options);
+export function normalizeY(options) {
+  const map = normalize(options);
+  return mapi([["y", map], ["y1", map], ["y2", map]], options);
 }
 
-function maybeBasis(basis) {
+function normalize({basis} = {}) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   switch ((basis + "").toLowerCase()) {
