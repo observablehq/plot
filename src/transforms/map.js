@@ -32,10 +32,10 @@ function maybeMap(map) {
   throw new Error("invalid map");
 }
 
-function mapFunction(map) {
+function mapFunction(f) {
   return {
     map(I, S, T) {
-      const M = map(take(S, I));
+      const M = f(take(S, I));
       if (M.length !== I.length) throw new Error("mismatched length");
       for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
     }
