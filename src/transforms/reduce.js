@@ -1,5 +1,5 @@
 import {group, min, max, mean, median} from "d3";
-import {identity, lazyChannel, maybeColor, maybeLazyChannel, maybeInput, maybeTransform, take, valueof} from "../mark.js";
+import {lazyChannel, maybeColor, maybeLazyChannel, maybeInput, maybeTransform, take, valueof} from "../mark.js";
 
 // Group on y, z, fill, or stroke, if any, then reduce.
 export function reduceX(outputs, options) {
@@ -18,7 +18,7 @@ export function reduce(outputs, options) {
 
 function reducen(
   key, // an optional additional group channel (x or y, typically)
-  {data: reduceData = identity, ...outputs} = {}, // channels to reduce
+  {data: reduceData = reduceIdentity, ...outputs} = {}, // channels to reduce
   {[key]: k, z, fill, stroke, ...options} = {} // channels to group, and options
 ) {
   reduceData = maybeReduce(reduceData);
@@ -68,8 +68,8 @@ function reducen(
         const outFacet = [];
         for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
           outFacet.push(i++);
-          outData.push(reduceData(I, data));
-          channels.forEach(({reduce}, i) => RX[i].push(reduce(I, X[i])));
+          outData.push(reduceData.reduce(I, data));
+          channels.forEach(({reduce}, i) => RX[i].push(reduce.reduce(I, X[i])));
           if (K) RK.push(K[I[0]]);
           if (Z) RZ.push(Z[I[0]]);
           if (F) RF.push(F[I[0]]);
@@ -83,7 +83,8 @@ function reducen(
 }
 
 function maybeReduce(reduce) {
-  if (typeof reduce === "function") return (I, X) => reduce(take(X, I));
+  if (reduce && typeof reduce.reduce === "function") return reduce;
+  if (typeof reduce === "function") return reduceFunction(reduce);
   switch ((reduce + "").toLowerCase()) {
     case "min": return reduceMin;
     case "max": return reduceMax;
@@ -93,18 +94,40 @@ function maybeReduce(reduce) {
   throw new Error("invalid reduce");
 }
 
-function reduceMin(I, X) {
-  return min(I, i => X[i]);
+function reduceFunction(f) {
+  return {
+    reduce(I, X) {
+      return f(take(X, I));
+    }
+  };
 }
 
-function reduceMax(I, X) {
-  return max(I, i => X[i]);
-}
+const reduceIdentity = {
+  reduce(I, X) {
+    return take(X, I);
+  }
+};
 
-function reduceMedian(I, X) {
-  return median(I, i => X[i]);
-}
+const reduceMin = {
+  reduce(I, X) {
+    return min(I, i => X[i]);
+  }
+};
 
-function reduceMean(I, X) {
-  return mean(I, i => X[i]);
-}
+const reduceMax = {
+  reduce(I, X) {
+    return max(I, i => X[i]);
+  }
+};
+
+const reduceMedian = {
+  reduce(I, X) {
+    return median(I, i => X[i]);
+  }
+};
+
+const reduceMean = {
+  reduce(I, X) {
+    return mean(I, i => X[i]);
+  }
+};

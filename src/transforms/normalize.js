@@ -1,19 +1,19 @@
 import {extent, mean, median, sum} from "d3";
 import {defined} from "../defined.js";
 import {take} from "../mark.js";
-import {mapi} from "./map.js";
+import {map} from "./map.js";
 
-export function normalizeX(options) {
-  const map = normalize(options);
-  return mapi([["x", map], ["x1", map], ["x2", map]], options);
+export function normalizeX({basis, ...options} = {}) {
+  const m = normalize(basis);
+  return map({x: m, x1: m, x2: m}, options);
 }
 
-export function normalizeY(options) {
-  const map = normalize(options);
-  return mapi([["y", map], ["y1", map], ["y2", map]], options);
+export function normalizeY({basis, ...options} = {}) {
+  const m = normalize(basis);
+  return map({y: m, y1: m, y2: m}, options);
 }
 
-function normalize({basis} = {}) {
+function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   switch ((basis + "").toLowerCase()) {
@@ -28,20 +28,24 @@ function normalize({basis} = {}) {
 }
 
 function normalizeBasis(basis) {
-  return (I, S, T) => {
-    const b = +basis(I, S);
-    for (const i of I) {
-      T[i] = S[i] === null ? NaN : S[i] / b;
+  return {
+    map(I, S, T) {
+      const b = +basis(I, S);
+      for (const i of I) {
+        T[i] = S[i] === null ? NaN : S[i] / b;
+      }
     }
   };
 }
 
-function normalizeExtent(I, S, T) {
-  const [s1, s2] = extent(I, i => S[i]), d = s2 - s1;
-  for (const i of I) {
-    T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
+const normalizeExtent = {
+  map(I, S, T) {
+    const [s1, s2] = extent(I, i => S[i]), d = s2 - s1;
+    for (const i of I) {
+      T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
+    }
   }
-}
+};
 
 const normalizeFirst = normalizeBasis((I, S) => {
   for (let i = 0; i < I.length; ++i) {

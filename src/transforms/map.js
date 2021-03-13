@@ -2,16 +2,12 @@ import {group} from "d3";
 import {maybeTransform, maybeZ, take, valueof, maybeInput, lazyChannel} from "../mark.js";
 
 export function map(outputs = {}, options = {}) {
-  return mapi(Object.entries(outputs).map(([key, map]) => [key, maybeMap(map)]), options);
-}
-
-export function mapi(outputs = [], options = {}) {
   const z = maybeZ(options);
-  const channels = outputs.map(([key, map]) => {
+  const channels = Object.entries(outputs).map(([key, map]) => {
     const input = maybeInput(key, options);
     if (input == null) throw new Error(`missing channel: ${key}`);
     const [output, setOutput] = lazyChannel(input);
-    return {key, input, output, setOutput, map};
+    return {key, input, output, setOutput, map: maybeMap(map)};
   });
   return {
     ...options,
@@ -22,7 +18,7 @@ export function mapi(outputs = [], options = {}) {
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
       for (const facet of index) {
         for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-          channels.forEach(({map}, i) => map(I, X[i], MX[i]));
+          channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
         }
       }
       return {data, index};
@@ -31,14 +27,17 @@ export function mapi(outputs = [], options = {}) {
 }
 
 function maybeMap(map) {
+  if (map && typeof map.map === "function") return map;
   if (typeof map === "function") return mapFunction(map);
   throw new Error("invalid map");
 }
 
 function mapFunction(map) {
-  return (I, S, T) => {
-    const M = map(take(S, I));
-    if (M.length !== I.length) throw new Error("mismatched length");
-    for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
+  return {
+    map(I, S, T) {
+      const M = map(take(S, I));
+      if (M.length !== I.length) throw new Error("mismatched length");
+      for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
+    }
   };
 }
