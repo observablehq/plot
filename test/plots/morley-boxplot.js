@@ -27,29 +27,18 @@ function boxX(data, {
     Plot.ruleY(data, Plot.reduceX({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
     Plot.barX(data, Plot.reduceX({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
     Plot.tickX(data, Plot.reduceX({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
-    Plot.dot(data, {x, y, stroke, ...options, transform: boxOutliers(x, y)})
+    Plot.dot(data, Plot.map({x: outliers(iqr1, iqr2)}, {x, y, stroke, ...options}))
   ];
 }
 
-// Returns a filter transform that returns outliers in x, optionally grouped by
-// z. The minimum and maximum normal values (i.e., non-outliers) are defined by
-// the specified arguments, and default to 1.5× the interquartile range.
-function boxOutliers(x, z, min = iqr1, max = iqr2) {
-  return (data, index) => {
-    const X = Plot.valueof(data, x);
-    const Z = Plot.valueof(data, z);
-    return {
-      data,
-      index: index.map(I => {
-        const F = [];
-        for (const Iz of Z ? d3.group(I, i => Z[i]).values() : [I]) {
-          const r1 = min(Iz, i => X[i]);
-          const r2 = max(Iz, i => X[i]);
-          for (const i of Iz) if (X[i] < r1 || X[i] > r2) F.push(i);
-        }
-        return F;
-      })
-    };
+// Returns a map function that returns only outliers, returning NaN for
+// non-outliers. The minimum and maximum non-outlier values are defined by the
+// specified arguments.
+function outliers(min, max) {
+  return values => {
+    const r1 = min(values);
+    const r2 = max(values);
+    return values.map(v => v < r1 || v > r2 ? v : NaN);
   };
 }
 
