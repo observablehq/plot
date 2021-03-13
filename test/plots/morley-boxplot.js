@@ -27,19 +27,16 @@ function boxX(data, {
     Plot.ruleY(data, Plot.reduceX({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
     Plot.barX(data, Plot.reduceX({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
     Plot.tickX(data, Plot.reduceX({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
-    Plot.dot(data, Plot.map({x: outliers(iqr1, iqr2)}, {x, y, stroke, ...options}))
+    Plot.dot(data, Plot.map({x: outliers}, {x, y, stroke, ...options}))
   ];
 }
 
 // Returns a map function that returns only outliers, returning NaN for
-// non-outliers. The minimum and maximum non-outlier values are defined by the
-// specified arguments.
-function outliers(min, max) {
-  return values => {
-    const r1 = min(values);
-    const r2 = max(values);
-    return values.map(v => v < r1 || v > r2 ? v : NaN);
-  };
+// non-outliers (values within 1.5× of the interquartile range).
+function outliers(values) {
+  const r1 = iqr1(values);
+  const r2 = iqr2(values);
+  return values.map(v => v < r1 || v > r2 ? v : NaN);
 }
 
 function iqr1(values, value) {
