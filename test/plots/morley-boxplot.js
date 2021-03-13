@@ -31,8 +31,8 @@ function boxX(data, {
   ];
 }
 
-// Returns a map function that returns only outliers, returning NaN for
-// non-outliers (values within 1.5× of the interquartile range).
+// A map function that returns only outliers, returning NaN for non-outliers
+// (values within 1.5× of the interquartile range).
 function outliers(values) {
   const r1 = iqr1(values);
   const r2 = iqr2(values);
