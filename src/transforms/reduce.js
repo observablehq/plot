@@ -1,5 +1,5 @@
 import {group, min, max, mean, median} from "d3";
-import {identity, lazyChannel, maybeColor, maybeLazyChannel, maybeTransform, take, valueof} from "../mark.js";
+import {identity, lazyChannel, maybeColor, maybeLazyChannel, maybeInput, maybeTransform, take, valueof} from "../mark.js";
 
 // Group on y, z, fill, or stroke, if any, then reduce.
 export function reduceX(outputs, options) {
@@ -34,9 +34,7 @@ function reducen(
   const [RS = stroke, setRS] = maybeLazyChannel(zstroke);
 
   // All output channels are aggregated by applying the corresponding specified
-  // reducer on the associated input values for each group. (This would probably
-  // be more efficient as parallel arrays rather than objects but the number of
-  // channels is typically small so it shouldn’t matter.)
+  // reducer on the associated input values for each group.
   const channels = Object.entries(outputs).map(([key, reduce]) => {
     const input = maybeInput(key, options);
     if (input == null) throw new Error(`missing channel: ${key}`);
@@ -82,15 +80,6 @@ function reducen(
       return {data: outData, index: outIndex};
     })
   };
-}
-
-function maybeInput(key, options) {
-  if (options[key] !== undefined) return options[key];
-  switch (key) {
-    case "x1": case "x2": key = "x"; break;
-    case "y1": case "y2": key = "y"; break;
-  }
-  return options[key];
 }
 
 function maybeReduce(reduce) {

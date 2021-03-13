@@ -1,82 +1,59 @@
-import {group, mean, median, sum} from "d3";
+import {mean, median, sum} from "d3";
 import {defined} from "../defined.js";
-import {maybeTransform, maybeLazyChannel, maybeZ, take, valueof} from "../mark.js";
+import {mapi} from "./map.js";
 
-export function normalizeX({x, x1, x2, ...options} = {}) {
-  const [transform, X, X1, X2] = normalize(options, x, x1, x2);
-  return {...transform, x: X, x1: X1, x2: X2};
+export function normalizeX({basis, ...options} = {}) {
+  const normalize = maybeBasis(basis);
+  return mapi([["x", normalize], ["x1", normalize], ["x2", normalize]], options);
 }
 
-export function normalizeY({y, y1, y2, ...options} = {}) {
-  const [transform, Y, Y1, Y2] = normalize(options, y, y1, y2);
-  return {...transform, y: Y, y1: Y1, y2: Y2};
-}
-
-function normalize({basis, ...options} = {}, ...inputs) {
-  const channels = inputs.map(i => [i, ...maybeLazyChannel(i)]);
-  const z = maybeZ(options);
-  basis = maybeBasis(basis);
-  return [
-    {
-      ...options,
-      transform: maybeTransform(options, (data, index) => {
-        const n = data.length;
-        const Z = valueof(data, z);
-        for (const [s,, setT] of channels) {
-          if (s == null) continue;
-          const S = valueof(data, s, Float64Array);
-          const T = setT(new Float64Array(n).fill());
-          for (const facet of index) {
-            for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-              const b = +basis(I, S);
-              for (const i of I) {
-                T[i] = S[i] / b;
-              }
-            }
-          }
-        }
-        return {data, index};
-      })
-    },
-    ...channels.map(([, T]) => T)
-  ];
+export function normalizeY({basis, ...options} = {}) {
+  const normalize = maybeBasis(basis);
+  return mapi([["y", normalize], ["y1", normalize], ["y2", normalize]], options);
 }
 
 function maybeBasis(basis) {
-  if (basis === undefined) return basisFirst;
-  if (typeof basis === "function") return (I, S) => basis(take(S, I));
+  if (basis === undefined) return normalizeFirst;
+  if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   switch ((basis + "").toLowerCase()) {
-    case "first": return basisFirst;
-    case "last": return basisLast;
-    case "mean": return basisMean;
-    case "median": return basisMedian;
-    case "sum": return basisSum;
+    case "first": return normalizeFirst;
+    case "last": return normalizeLast;
+    case "mean": return normalizeMean;
+    case "median": return normalizeMedian;
+    case "sum": return normalizeSum;
   }
   throw new Error("invalid basis");
 }
 
-function basisFirst(I, S) {
+function normalizeBasis(basis) {
+  return (I, S, T) => {
+    const b = +basis(I, S);
+    for (const i of I) T[i] = S[i] / b;
+  };
+}
+
+const normalizeFirst = normalizeBasis((I, S) => {
   for (let i = 0; i < I.length; ++i) {
     const s = S[I[i]];
     if (defined(s)) return s;
   }
-}
+});
 
-function basisLast(I, S) {
+const normalizeLast = normalizeBasis((I, S) => {
   for (let i = I.length - 1; i >= 0; --i) {
     const s = S[I[i]];
     if (defined(s)) return s;
   }
-}
+});
 
-function basisMean(I, S) {
+const normalizeMean = normalizeBasis((I, S) => {
   return mean(I, i => S[i]);
-}
+});
 
-function basisMedian(I, S) {
+const normalizeMedian = normalizeBasis((I, S) => {
   return median(I, i => S[i]);
-}
+});
 
-function basisSum(I, S) {
+const normalizeSum = normalizeBasis((I, S) => {
   return sum(I, i => S[i]);
-}
+});

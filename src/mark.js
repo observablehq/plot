@@ -170,6 +170,15 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
+export function maybeInput(key, options) {
+  if (options[key] !== undefined) return options[key];
+  switch (key) {
+    case "x1": case "x2": key = "x"; break;
+    case "y1": case "y2": key = "y"; break;
+  }
+  return options[key];
+}
+
 // Defines a channel whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned channel definition.
