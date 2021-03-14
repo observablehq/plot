@@ -13,8 +13,8 @@ class Facet extends Mark {
     super(
       data,
       [
-        {name: "fx", value: x, scale: "fx", type: "band", optional: true},
-        {name: "fy", value: y, scale: "fy", type: "band", optional: true}
+        {name: "fx", value: x, scale: "fx", optional: true},
+        {name: "fy", value: y, scale: "fy", optional: true}
       ],
       options
     );
