@@ -66,6 +66,7 @@ function Scale(key, channels = [], options = {}) {
 }
 
 function inferScaleType(key, channels, {type, domain, range}) {
+  if (key === "fx" || key === "fy") return "band";
   if (type !== undefined) {
     for (const {type: t} of channels) {
       if (t !== undefined && type !== t) {
