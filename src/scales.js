@@ -25,8 +25,8 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
 export function autoScaleRange({x, y, fx, fy}, dimensions) {
   if (fx) autoScaleRangeX(fx, dimensions);
   if (fy) autoScaleRangeY(fy, dimensions);
-  if (x) autoScaleRangeX(x, fx ? {width: fx.scale.bandwidth()} : dimensions);
-  if (y) autoScaleRangeY(y, fy ? {height: fy.scale.bandwidth()} : dimensions);
+  if (x) autoScaleRangeX(x, fx?.scale?.bandwidth ? {width: fx.scale.bandwidth()} : dimensions);
+  if (y) autoScaleRangeY(y, fy?.scale?.bandwidth ? {height: fy.scale.bandwidth()} : dimensions);
 }
 
 function autoScaleRangeX(scale, dimensions) {
