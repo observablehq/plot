@@ -19,7 +19,8 @@ export default async function() {
       axis: null
     },
     color: {
-      scheme: "spectral"
+      scheme: "spectral",
+      domain: stateage.ages
     },
     marks: [
       Plot.ruleX([0]),
