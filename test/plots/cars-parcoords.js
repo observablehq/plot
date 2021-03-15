@@ -6,33 +6,39 @@ export default async function() {
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  // TODO Instead of normalizing, separate scales for each dimension.
   const data = dimensions.flatMap(dimension => {
     return cars.map(({name, year, [dimension]: value}) => {
       return {name: `${name}-${year}`, dimension, value};
     });
   });
 
+  // Compute ticks for each dimension.
+  const ticks = dimensions.flatMap(dimension => {
+    return d3.ticks(...d3.extent(cars, d => d[dimension]), 7).map(value => {
+      return {dimension, value};
+    });
+  });
+
+  // Normalize the x-position based on the extent for each dimension.
+  const xy = Plot.normalizeX({basis: "extent", x: "value", y: "dimension", z: "dimension"});
+
   return Plot.plot({
     marginLeft: 100,
+    marginRight: 20,
     x: {
-      domain: [0, 1]
+      axis: null
     },
     y: {
       padding: 0.1,
       domain: dimensions,
-      label: null
+      label: null,
+      tickPadding: 9
     },
     marks: [
-      Plot.ruleY(data, {y: "dimension"}),
-      Plot.line(data, {
-        ...Plot.normalizeX({basis: "extent", x: "value", z: "dimension"}),
-        y: "dimension",
-        z: "name",
-        stroke: "#444",
-        strokeWidth: 0.5,
-        strokeOpacity: 0.5
-      })
+      Plot.ruleY(dimensions),
+      Plot.line(data, {...xy, z: "name", stroke: "#444", strokeWidth: 0.5, strokeOpacity: 0.5}),
+      Plot.text(ticks, {...xy, fill: null, stroke: "white", strokeWidth: 3, strokeLinejoin: "round", text: "value"}),
+      Plot.text(ticks, {...xy, text: "value"})
     ]
   });
 }
