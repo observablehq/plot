@@ -33,7 +33,7 @@ export class Mark {
     let index = facets === undefined && data != null ? range(data) : facets;
     if (data !== undefined && this.transform !== undefined) {
       if (facets === undefined) index = index.length ? [index] : [];
-      ({index, data} = this.transform(data, index));
+      ({facets: index, data} = this.transform(data, index));
       data = arrayify(data);
       if (facets === undefined && index.length) ([index] = index);
     }
@@ -170,6 +170,15 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
+export function maybeInput(key, options) {
+  if (options[key] !== undefined) return options[key];
+  switch (key) {
+    case "x1": case "x2": key = "x"; break;
+    case "y1": case "y2": key = "y"; break;
+  }
+  return options[key];
+}
+
 // Defines a channel whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned channel definition.
@@ -223,9 +232,9 @@ export function maybeValue(value) {
 function compose(t1, t2) {
   if (t1 == null) return t2 === null ? undefined : t2;
   if (t2 == null) return t1 === null ? undefined : t1;
-  return (data, index) => {
-    ({data, index} = t1(data, index));
-    return t2(arrayify(data), index);
+  return (data, facets) => {
+    ({data, facets} = t1(data, facets));
+    return t2(arrayify(data), facets);
   };
 }
 
@@ -234,23 +243,23 @@ function sort(value) {
 }
 
 function sortCompare(compare) {
-  return (data, index) => {
+  return (data, facets) => {
     const compareData = (i, j) => compare(data[i], data[j]);
-    return {data, index: index.map(I => I.slice().sort(compareData))};
+    return {data, facets: facets.map(I => I.slice().sort(compareData))};
   };
 }
 
 function sortValue(value) {
-  return (data, index) => {
+  return (data, facets) => {
     const V = valueof(data, value);
     const compareValue = (i, j) => ascendingDefined(V[i], V[j]);
-    return {data, index: index.map(I => I.slice().sort(compareValue))};
+    return {data, facets: facets.map(I => I.slice().sort(compareValue))};
   };
 }
 
 function filter(value) {
-  return (data, index) => {
+  return (data, facets) => {
     const V = valueof(data, value);
-    return {data, index: index.map(I => I.filter(i => V[i]))};
+    return {data, facets: facets.map(I => I.filter(i => V[i]))};
   };
 }

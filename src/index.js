@@ -1,7 +1,7 @@
 import "./style.css";
 
 export {plot} from "./plot.js";
-export {Mark} from "./mark.js";
+export {Mark, valueof} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
@@ -17,5 +17,7 @@ export {bin, binX, binY, binR, binFill} from "./transforms/bin.js";
 export {group, groupX, groupY, groupR, groupFill} from "./transforms/group.js";
 export {normalizeX, normalizeY} from "./transforms/normalize.js";
 export {movingAverageX, movingAverageY} from "./transforms/movingAverage.js";
+export {map} from "./transforms/map.js";
+export {reduceX, reduceY, reduce} from "./transforms/reduce.js";
 export {selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackXMid, stackY, stackY1, stackY2, stackYMid} from "./transforms/stack.js";

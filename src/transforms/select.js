@@ -45,19 +45,19 @@ function* max(I, X) {
 
 function select(selectIndex, v, options) {
   const z = maybeZ(options);
-  return maybeTransform(options, (data, index) => {
+  return maybeTransform(options, (data, facets) => {
     const Z = valueof(data, z);
     const V = valueof(data, v);
-    const selectedIndex = [];
-    for (const facet of index) {
-      const selectedFacet = [];
+    const selectFacets = [];
+    for (const facet of facets) {
+      const selectFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
         for (const i of selectIndex(I, V)) {
-          selectedFacet.push(i);
+          selectFacet.push(i);
         }
       }
-      selectedIndex.push(selectedFacet);
+      selectFacets.push(selectFacet);
     }
-    return {data, index: selectedIndex};
+    return {data, facets: selectFacets};
   });
 }
