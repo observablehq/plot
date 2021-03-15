@@ -1,16 +1,14 @@
 import {extent, mean, median, sum} from "d3";
 import {defined} from "../defined.js";
 import {take} from "../mark.js";
-import {map} from "./map.js";
+import {mapX, mapY} from "./map.js";
 
 export function normalizeX({basis, ...options} = {}) {
-  const m = normalize(basis);
-  return map({x: m, x1: m, x2: m}, options);
+  return mapX(normalize(basis), options);
 }
 
 export function normalizeY({basis, ...options} = {}) {
-  const m = normalize(basis);
-  return map({y: m, y1: m, y2: m}, options);
+  return mapY(normalize(basis), options);
 }
 
 function normalize(basis) {

@@ -1,13 +1,11 @@
-import {map} from "./map.js";
+import {mapX, mapY} from "./map.js";
 
 export function movingAverageX({k, ...options} = {}) {
-  const m = rollmean(k);
-  return map({x: m, x1: m, x2: m}, options);
+  return mapX(rollmean(k), options);
 }
 
 export function movingAverageY({k, ...options} = {}) {
-  const m = rollmean(k);
-  return map({y: m, y1: m, y2: m}, options);
+  return mapY(rollmean(k), options);
 }
 
 // TODO allow partially-defined data

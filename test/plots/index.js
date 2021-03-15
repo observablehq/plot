@@ -55,6 +55,7 @@ export {default as policeDeathsBar} from "./police-deaths-bar.js";
 export {default as randomWalk} from "./random-walk.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as sfTemperatureBand} from "./sf-temperature-band.js";
+export {default as sfTemperatureBandArea} from "./sf-temperature-band-area.js";
 export {default as simpsonsRatings} from "./simpsons-ratings.js";
 export {default as simpsonsRatingsDots} from "./simpsons-ratings-dots.js";
 export {default as simpsonsViews} from "./simpsons-views.js";

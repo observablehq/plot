@@ -1,6 +1,18 @@
 import {group} from "d3";
 import {maybeTransform, maybeZ, take, valueof, maybeInput, lazyChannel} from "../mark.js";
 
+export function mapX(m, options = {}) {
+  return map(Object.fromEntries(["x", "x1", "x2"]
+    .filter(key => options[key] != null)
+    .map(key => [key, m])), options);
+}
+
+export function mapY(m, options = {}) {
+  return map(Object.fromEntries(["y", "y1", "y2"]
+    .filter(key => options[key] != null)
+    .map(key => [key, m])), options);
+}
+
 export function map(outputs = {}, options = {}) {
   const z = maybeZ(options);
   const channels = Object.entries(outputs).map(([key, map]) => {
