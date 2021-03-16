@@ -16,11 +16,7 @@ export function groupR(options) {
   return group({...options, out: "r"});
 }
 
-export function groupFill(options) {
-  return group({...options, out: "fill"});
-}
-
-export function group({x, y, out, ...options} = {}) {
+export function group({x, y, out = "fill", ...options} = {}) {
   const [transform, X, Y, L, z, fill, stroke] = group2(x, y, options);
   return {x: X, y: Y, ...transform, z, fill, stroke, [out]: L};
 }

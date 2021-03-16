@@ -24,16 +24,11 @@ export function binR({x, y, ...options} = {}) {
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
-export function binFill({inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+export function bin({x, y, out = "fill", inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  return bin({inset, insetTop, insetRight, insetBottom, insetLeft, ...options, out: "fill"});
-}
-
-// Group on z, fill, or stroke, if any, then bin on x and y.
-export function bin({x, y, out, ...options} = {}) {
   const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
-  return {x1, x2, y1, y2, ...transform, [out]: l};
+  return {x1, x2, y1, y2, ...transform, inset, insetTop, insetRight, insetBottom, insetLeft, [out]: l};
 }
 
 function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {

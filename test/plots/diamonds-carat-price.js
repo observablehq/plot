@@ -10,7 +10,7 @@ export default async function() {
       type: "symlog"
     },
     marks: [
-      Plot.rect(data, Plot.binFill({x: "carat", y: "price", thresholds: 100}))
+      Plot.rect(data, Plot.bin({x: "carat", y: "price", thresholds: 100}))
     ]
   });
 }
