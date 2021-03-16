@@ -20,8 +20,9 @@ export function reduce(outputs, options) {
 function reducen(
   key, // an optional additional group channel (x or y, typically)
   {data: reduceData = reduceIdentity, ...outputs} = {}, // channels to reduce
-  {[key]: k, z, fill, stroke, ...options} = {} // channels to group, and options
+  options = {} // channels to group, and options
 ) {
+  const {[key]: k, z, fill, stroke, ...rest} = options;
   reduceData = maybeReduce(reduceData);
 
   // All channels that are candidates for grouping are aggregated by picking the
@@ -48,7 +49,7 @@ function reducen(
     z: RZ,
     fill: RF,
     stroke: RS,
-    ...options,
+    ...rest,
     ...Object.fromEntries(channels.map(({key, output}) => [key, output])),
     transform: maybeTransform(options, (data, facets) => {
       const outFacets = [];
