@@ -1,17 +1,20 @@
 import {bin as binner, cross, group} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take} from "../mark.js";
+import {offset} from "../style.js";
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
-export function binX({x, out = "y", insetLeft = 1, ...options} = {}) {
+export function binX({x, out = "y", inset, insetLeft, insetRight, ...options} = {}) {
+  ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   const [transform, x1, x2, l] = bin1(x, "y", options);
-  return {x1, x2, ...transform, insetLeft, [out]: l};
+  return {x1, x2, ...transform, inset, insetLeft, insetRight, [out]: l};
 }
 
 // Group on x, z, fill, or stroke, if any, then bin on y.
-export function binY({y, out = "x", insetTop = 1, ...options} = {}) {
+export function binY({y, out = "x", inset, insetTop, insetBottom, ...options} = {}) {
+  ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   const [transform, y1, y2, l] = bin1(y, "x", options);
-  return {y1, y2, ...transform, insetTop, [out]: l};
+  return {y1, y2, ...transform, inset, insetTop, insetBottom, [out]: l};
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
@@ -21,14 +24,16 @@ export function binR({x, y, ...options} = {}) {
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
-export function binFill(options) {
-  return bin({...options, out: "fill"});
+export function binFill({inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+  ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
+  ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
+  return bin({inset, insetTop, insetRight, insetBottom, insetLeft, ...options, out: "fill"});
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
-export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
+export function bin({x, y, out, ...options} = {}) {
   const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
-  return {x1, x2, y1, y2, ...transform, insetLeft, insetTop, [out]: l};
+  return {x1, x2, y1, y2, ...transform, [out]: l};
 }
 
 function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {
@@ -213,3 +218,9 @@ function length1({length}) {
 }
 
 length1.label = "Frequency";
+
+function maybeInset(inset, inset1, inset2) {
+  return inset === undefined && inset1 === undefined && inset2 === undefined
+    ? (offset ? [1, 0] : [0.5, 0.5])
+    : [inset1, inset2];
+}
