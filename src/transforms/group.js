@@ -1,5 +1,5 @@
 import {group as grouper, sort, InternSet} from "d3";
-import {defined} from "../defined.js";
+import {defined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple} from "../mark.js";
 
 export function groupX({x, ...options} = {}) {
@@ -46,7 +46,7 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
         const S = valueof(data, vstroke);
         const groupFacets = [];
         const groupData = [];
-        const G = Z || F || S;
+        const G = firstof(Z, F, S);
         const BX = setX([]);
         const BY = setY([]);
         const BZ = Z && setZ([]);
@@ -109,7 +109,7 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
         const S = valueof(data, vstroke);
         const groupFacets = [];
         const groupData = [];
-        const G = Z || F || S;
+        const G = firstof(Z, F, S);
         const BX = setX([]);
         const BY = setY([]);
         const BL = setL([]);

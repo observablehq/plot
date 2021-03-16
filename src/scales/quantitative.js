@@ -135,6 +135,7 @@ function Scheme(scheme) {
 export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
+  zero,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : undefined,
@@ -144,6 +145,7 @@ export function ScaleQ(key, scale, channels, {
   invert,
   inset
 }) {
+  if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
   if (invert = !!invert) domain = reverse(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);

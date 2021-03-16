@@ -1,47 +1,58 @@
 import {bin as binner, cross, group} from "d3";
+import {firstof} from "../defined.js";
 import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take} from "../mark.js";
 
-export function binX({x, insetLeft = 1, ...options} = {}) {
-  const [transform, x1, x2, y, z, fill, stroke] = bin1(x, options);
-  return {y, x1, x2, ...transform, z, fill, stroke, insetLeft};
+// Group on y, z, fill, or stroke, if any, then bin on x.
+export function binX({x, out = "y", insetLeft = 1, ...options} = {}) {
+  const [transform, x1, x2, l] = bin1(x, "y", options);
+  return {x1, x2, ...transform, insetLeft, [out]: l};
 }
 
-export function binY({y, insetTop = 1, ...options} = {}) {
-  const [transform, y1, y2, x, z, fill, stroke] = bin1(y, options);
-  return {x, y1, y2, ...transform, z, fill, stroke, insetTop};
+// Group on x, z, fill, or stroke, if any, then bin on y.
+export function binY({y, out = "x", insetTop = 1, ...options} = {}) {
+  const [transform, y1, y2, l] = bin1(y, "x", options);
+  return {y1, y2, ...transform, insetTop, [out]: l};
 }
 
+// Group on z, fill, or stroke, if any, then bin on x and y.
 export function binR({x, y, ...options} = {}) {
   const [transform, x1, x2, y1, y2, r, z, fill, stroke] = bin2(x, y, options);
   return {x: mid(x1, x2), y: mid(y1, y2), r, ...transform, z, fill, stroke};
 }
 
+// Group on z, fill, or stroke, if any, then bin on x and y.
 export function binFill(options) {
   return bin({...options, out: "fill"});
 }
 
+// Group on z, fill, or stroke, if any, then bin on x and y.
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
   const [transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
   return {x1, x2, y1, y2, ...transform, z, fill, stroke, insetLeft, insetTop, [out]: l};
 }
 
-function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
-  const {z, fill, stroke} = options;
-  const k = normalize === true ? 100 : +normalize;
+function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {
+  const m = normalize === true ? 100 : +normalize;
   const bin = binof(identity, {value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
-  const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
-  const [Z, setZ] = maybeLazyChannel(z);
+  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
-  const [F = fill, setF] = maybeLazyChannel(vfill);
-  const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const [BK, setBK] = maybeLazyChannel(k);
+  const [BZ, setBZ] = maybeLazyChannel(z);
+  const [BF = fill, setBF] = maybeLazyChannel(vfill);
+  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
   return [
     {
+      ...key && {[key]: BK},
+      z: BZ,
+      fill: BF,
+      stroke: BS,
       ...options,
       transform: maybeTransform(options, (data, facets) => {
         const B = bin(data);
+        const K = valueof(data, k);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
@@ -49,11 +60,12 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
         const binData = [];
         const X1 = setX1([]);
         const X2 = setX2([]);
-        const Y = setY([]);
-        const G = Z || F || S;
-        const BZ = Z && setZ([]);
-        const BF = F && setF([]);
-        const BS = S && setS([]);
+        const L = setL([]);
+        const G = firstof(K, Z, F, S);
+        const BK = K && setBK([]);
+        const BZ = Z && setBZ([]);
+        const BF = F && setBF([]);
+        const BS = S && setBS([]);
         const n = data.length;
         let i = 0;
         if (cumulative < 0) B.reverse();
@@ -71,7 +83,8 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
                 binData.push(take(data, f));
                 X1.push(b.x0);
                 X2.push(b.x1);
-                Y.push(k ? l * k / n : l);
+                L.push(m ? l * m / n : l);
+                if (K) BK.push(K[I[0]]);
                 if (Z) BZ.push(Z[f[0]]);
                 if (F) BF.push(F[f[0]]);
                 if (S) BS.push(S[f[0]]);
@@ -85,10 +98,7 @@ function bin1(x, {domain, thresholds, normalize, cumulative, ...options} = {}) {
     },
     X1,
     X2,
-    Y,
-    Z,
-    F,
-    S
+    L
   ];
 }
 
@@ -127,7 +137,7 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
         const Y1 = setY1([]);
         const Y2 = setY2([]);
         const L = setL([]);
-        const G = Z || F || S;
+        const G = firstof(Z, F, S);
         const BZ = Z && setZ([]);
         const BF = F && setF([]);
         const BS = S && setS([]);

@@ -1,4 +1,5 @@
 import {group, min, max, mean, median} from "d3";
+import {firstof} from "../defined.js";
 import {lazyChannel, maybeColor, maybeLazyChannel, maybeInput, maybeTransform, take, valueof} from "../mark.js";
 
 // Group on y, z, fill, or stroke, if any, then reduce.
@@ -58,7 +59,7 @@ function reducen(
       const Z = valueof(data, z);
       const F = valueof(data, zfill);
       const S = valueof(data, zstroke);
-      const G = K || Z || F || S;
+      const G = firstof(K, Z, F, S);
       const RK = K && setRK([]);
       const RZ = Z && setRZ([]);
       const RF = F && setRF([]);
