@@ -16,8 +16,8 @@ export function binY({y, out = "x", insetTop = 1, ...options} = {}) {
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
 export function binR({x, y, ...options} = {}) {
-  const [transform, x1, x2, y1, y2, r, z, fill, stroke] = bin2(x, y, options);
-  return {x: mid(x1, x2), y: mid(y1, y2), r, ...transform, z, fill, stroke};
+  const [transform, x1, x2, y1, y2, r] = bin2(x, y, options);
+  return {x: mid(x1, x2), y: mid(y1, y2), r, ...transform};
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
@@ -27,8 +27,8 @@ export function binFill(options) {
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
 export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
-  const [transform, x1, x2, y1, y2, l, z, fill, stroke] = bin2(x, y, options);
-  return {x1, x2, y1, y2, ...transform, z, fill, stroke, insetLeft, insetTop, [out]: l};
+  const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
+  return {x1, x2, y1, y2, ...transform, insetLeft, insetTop, [out]: l};
 }
 
 function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {
@@ -85,7 +85,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
                 X1.push(b.x0);
                 X2.push(b.x1);
                 L.push(m ? l * m / n : l);
-                if (K) BK.push(K[I[0]]);
+                if (K) BK.push(K[f[0]]);
                 if (Z) BZ.push(Z[f[0]]);
                 if (F) BF.push(F[f[0]]);
                 if (S) BS.push(S[f[0]]);
@@ -107,8 +107,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
 // representing a field name, a function, an array), or the value and some
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
-function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
-  const {z, fill, stroke} = options;
+function bin2(x, y, {domain, thresholds, normalize, z, fill, stroke, ...options} = {}) {
   const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
   const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
@@ -118,13 +117,16 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
   const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
-  const [Z, setZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
-  const [F = fill, setF] = maybeLazyChannel(vfill);
-  const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const [BZ, setBZ] = maybeLazyChannel(z);
+  const [BF = fill, setBF] = maybeLazyChannel(vfill);
+  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
   return [
     {
+      z: BZ,
+      fill: BF,
+      stroke: BS,
       ...options,
       transform: maybeTransform(options, (data, facets) => {
         const B = bin(data);
@@ -139,9 +141,9 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
         const Y2 = setY2([]);
         const L = setL([]);
         const G = firstof(Z, F, S);
-        const BZ = Z && setZ([]);
-        const BF = F && setF([]);
-        const BS = S && setS([]);
+        const BZ = Z && setBZ([]);
+        const BF = F && setBF([]);
+        const BS = S && setBS([]);
         let n = data.length;
         let i = 0;
         for (const facet of facets) {
@@ -175,10 +177,7 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
     X2,
     Y1,
     Y2,
-    L,
-    Z,
-    F,
-    S
+    L
   ];
 }
 
