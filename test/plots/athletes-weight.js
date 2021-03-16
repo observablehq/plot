@@ -7,15 +7,14 @@ export default async function() {
     marginLeft: 100,
     height: 640,
     x: {
-      round: true,
       grid: true
     },
     color: {
-      scheme: "blues",
+      scheme: "YlGnBu",
       zero: true
     },
     marks: [
-      Plot.barX(athletes, Plot.binX({x: "weight", y: "sport", thresholds: 80, out: "fill"}))
+      Plot.barX(athletes, Plot.binX({x: "weight", y: "sport", thresholds: 60, normalize: "z", out: "fill"}))
     ]
   });
 }

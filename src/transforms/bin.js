@@ -32,7 +32,7 @@ export function bin({x, y, insetLeft = 1, insetTop = 1, out, ...options} = {}) {
 }
 
 function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {
-  const m = normalize === true ? 100 : +normalize;
+  const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const bin = binof(identity, {value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
@@ -66,12 +66,13 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
         const BZ = Z && setBZ([]);
         const BF = F && setBF([]);
         const BS = S && setBS([]);
-        const n = data.length;
+        let n = data.length;
         let i = 0;
         if (cumulative < 0) B.reverse();
         for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
+            if (normalize === "z") n = I.length;
             const set = new Set(I);
             let f;
             for (const b of B) {
@@ -108,7 +109,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
 // domain?, thresholds?}.
 function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
   const {z, fill, stroke} = options;
-  const k = normalize === true ? 100 : +normalize;
+  const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
   const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
   const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x));
@@ -116,7 +117,7 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
   const [X2, setX2] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
-  const [L, setL] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
   const [Z, setZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -141,11 +142,12 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
         const BZ = Z && setZ([]);
         const BF = F && setF([]);
         const BS = S && setS([]);
-        const n = data.length;
+        let n = data.length;
         let i = 0;
         for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
+            if (normalize === "z") n = I.length;
             const set = new Set(I);
             for (const b of B) {
               const f = b.filter(i => set.has(i));
@@ -157,7 +159,7 @@ function bin2(x, y, {domain, thresholds, normalize, ...options} = {}) {
                 X2.push(b.x1);
                 Y1.push(b.y0);
                 Y2.push(b.y1);
-                L.push(k ? l * k / n : l);
+                L.push(m ? l * m / n : l);
                 if (Z) BZ.push(Z[f[0]]);
                 if (F) BF.push(F[f[0]]);
                 if (S) BS.push(S[f[0]]);
