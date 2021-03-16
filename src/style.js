@@ -1,6 +1,6 @@
 import {string, number} from "./mark.js";
 
-const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
 export function Style(mark, {
   fill,
