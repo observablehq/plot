@@ -2,34 +2,30 @@ import {mapX, mapY} from "./map.js";
 import {max, mean, min} from "d3";
 
 export function movingAverageX({k, shift, ...options} = {}) {
-  return mapX(roll(k, meanDefined, shift), options);
+  return mapX(roll(k, mean, shift), options);
 }
 
 export function movingAverageY({k, shift, ...options} = {}) {
-  return mapY(roll(k, meanDefined, shift), options);
+  return mapY(roll(k, mean, shift), options);
 }
 
 export function movingMaxX({k, shift, ...options} = {}) {
-  return mapX(roll(k, max, shift, true), options);
+  return mapX(roll(k, max, shift), options);
 }
 
 export function movingMaxY({k, shift, ...options} = {}) {
-  return mapY(roll(k, max, shift, true), options);
+  return mapY(roll(k, max, shift), options);
 }
 
 export function movingMinX({k, shift, ...options} = {}) {
-  return mapX(roll(k, min, shift, true), options);
+  return mapX(roll(k, min, shift), options);
 }
 
 export function movingMinY({k, shift, ...options} = {}) {
-  return mapY(roll(k, min, shift, true), options);
+  return mapY(roll(k, min, shift), options);
 }
 
-function meanDefined(d) {
-  return d.some(isNaN) ? undefined : mean(d);
-}
-
-function roll(k, f, shift = "centered", fill) {
+function roll(k, f, shift = "centered") {
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
   shift = shift.toLowerCase();
   const m1 = shift === "leading" ? 1
@@ -38,21 +34,21 @@ function roll(k, f, shift = "centered", fill) {
   return {
     map(I, S, T) {
       const C = new Float64Array(k).fill(NaN);
+      let nans = k;
       const n = I.length;
       for (let i = 0; i < n; ++i) {
-        const v = S[I[i]];
-        C[i % k] = (v === +v) ? v : NaN;
-        const j = i - k;
-        if (j >= -1) {
-          const w = f(C);
-          if (w !== undefined) {
-            T[I[j + m1]] = w;
+        const v = C[i % k] = S[I[i]];
+        if (v === +v) {
+          nans--;
+        } else {
+          nans = k;
+        }
+        if (nans <= 0) {
+          const j = i - k;
+          if (j >= -1) {
+            T[I[j + m1]] = f(C);
           }
         }
-      }
-      if (fill) {
-        for (let j = 0; j < m1 - 1; j++) T[I[j]] = T[I[m1 - 1]];
-        for (let j = n - k + m1; j < n; j++) T[I[j]] = T[I[n - 1 - k + m1]];
       }
     }
   };
