@@ -2,16 +2,19 @@ import {group as grouper, sort, InternSet} from "d3";
 import {defined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple} from "../mark.js";
 
-export function groupX({x, ...options} = {}) {
-  const [transform, X, y] = group1(x, options);
-  return {x: X, y, ...transform};
+// Group on y, z, fill, or stroke, if any, then group on x.
+export function groupX({x, y, out = y == null ? "y" : "fill", ...options} = {}) {
+  const [transform, X, l] = group1(x, "y", {y, ...options});
+  return {x: X, ...transform, [out]: l};
 }
 
-export function groupY({y, ...options} = {}) {
-  const [transform, Y, x] = group1(y, options);
-  return {y: Y, x, ...transform};
+// Group on x, z, fill, or stroke, if any, then group on y.
+export function groupY({y, x, out = x == null ? "x" : "fill", ...options} = {}) {
+  const [transform, Y, l] = group1(y, "x", {x, ...options});
+  return {y: Y, ...transform, [out]: l};
 }
 
+// Group on z, fill, or stroke, if any.
 export function groupR(options) {
   return group({...options, out: "r"});
 }
@@ -21,35 +24,39 @@ export function group({x, y, out = "fill", ...options} = {}) {
   return {x: X, y: Y, ...transform, [out]: L};
 }
 
-function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} = {}) {
-  const k = normalize === true || normalize === "z" ? 100 : +normalize;
+function group1(x = identity, key, {[key]: k, domain, normalize, z, fill, stroke, ...options} = {}) {
+  const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
-  const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
-  const [Z, setZ] = maybeLazyChannel(z);
+  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
-  const [F = fill, setF] = maybeLazyChannel(vfill);
-  const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const [BK, setBK] = maybeLazyChannel(k);
+  const [BZ, setBZ] = maybeLazyChannel(z);
+  const [BF = fill, setBF] = maybeLazyChannel(vfill);
+  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
   const defined = maybeDomain(domain);
   return [
     {
-      z: Z,
-      fill: F,
-      stroke: S,
+      ...key && {[key]: BK},
+      z: BZ,
+      fill: BF,
+      stroke: BS,
       ...options,
       transform: maybeTransform(options, (data, facets) => {
         const X = valueof(data, x);
+        const K = valueof(data, k);
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
         const groupFacets = [];
         const groupData = [];
-        const G = firstof(Z, F, S);
         const BX = setX([]);
-        const BY = setY([]);
-        const BZ = Z && setZ([]);
-        const BF = F && setF([]);
-        const BS = S && setS([]);
+        const L = setL([]);
+        const G = firstof(K, Z, F, S);
+        const BK = K && setBK([]);
+        const BZ = Z && setBZ([]);
+        const BF = F && setBF([]);
+        const BS = S && setBS([]);
         let n = data.length;
         let i = 0;
         for (const facet of facets) {
@@ -62,7 +69,8 @@ function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} =
               groupFacet.push(i++);
               groupData.push(take(data, f));
               BX.push(x);
-              BY.push(k ? l * k / n : l);
+              L.push(m ? l * m / n : l);
+              if (K) BK.push(K[f[0]]);
               if (Z) BZ.push(Z[f[0]]);
               if (F) BF.push(F[f[0]]);
               if (S) BS.push(S[f[0]]);
@@ -74,7 +82,7 @@ function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} =
       })
     },
     X,
-    Y
+    L
   ];
 }
 
