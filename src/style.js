@@ -32,7 +32,9 @@ export function styles(
   {
     ariaLabel: cariaLabel,
     fill: defaultFill = "currentColor",
+    fillOpacity: defaultFillOpacity,
     stroke: defaultStroke = "none",
+    strokeOpacity: defaultStrokeOpacity,
     strokeWidth: defaultStrokeWidth,
     strokeLinecap: defaultStrokeLinecap,
     strokeLinejoin: defaultStrokeLinejoin,
@@ -66,9 +68,9 @@ export function styles(
   }
 
   const [vfill, cfill] = maybeColorChannel(fill, defaultFill);
-  const [vfillOpacity, cfillOpacity] = maybeNumberChannel(fillOpacity);
+  const [vfillOpacity, cfillOpacity] = maybeNumberChannel(fillOpacity, defaultFillOpacity);
   const [vstroke, cstroke] = maybeColorChannel(stroke, defaultStroke);
-  const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(strokeOpacity);
+  const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(strokeOpacity, defaultStrokeOpacity);
   const [vopacity, copacity] = maybeNumberChannel(opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
