@@ -22,7 +22,7 @@ export function group({x, y, out = "fill", ...options} = {}) {
 }
 
 function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} = {}) {
-  const k = normalize === true ? 100 : +normalize;
+  const k = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
   const [Z, setZ] = maybeLazyChannel(z);
@@ -50,11 +50,12 @@ function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} =
         const BZ = Z && setZ([]);
         const BF = F && setF([]);
         const BS = S && setS([]);
-        const n = data.length;
+        let n = data.length;
         let i = 0;
         for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
+            if (normalize === "z") n = I.length;
             for (const [x, f] of sort(grouper(I, i => X[i]), first)) {
               if (!defined(x)) continue;
               const l = f.length;
@@ -81,7 +82,7 @@ function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
   let {value: x, domain: xdomain} = {domain, ...maybeValue(xv)};
   let {value: y, domain: ydomain} = {domain, ...maybeValue(yv)};
   ([x, y] = maybeTuple(x, y));
-  const k = normalize === true ? 100 : +normalize;
+  const k = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(y);
   const [L, setL] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
@@ -113,11 +114,12 @@ function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
         const BZ = Z && setZ([]);
         const BF = F && setF([]);
         const BS = S && setS([]);
-        const n = data.length;
+        let n = data.length;
         let i = 0;
         for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
+            if (normalize === "z") n = I.length;
             for (const [y, fy] of sort(grouper(I, i => Y[i]), first)) {
               if (!ydefined(y)) continue;
               for (const [x, f] of sort(grouper(fy, i => X[i]), first)) {
