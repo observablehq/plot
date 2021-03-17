@@ -47,14 +47,18 @@ export class Brush extends Mark {
         let index = filter(I, X, Y);
         if (selection) {
           if (x) {
-            const e = y ? [selection[0][0], selection[1][0]] : selection;
-            const [x0, x1] = extent(e.map(x.invert));
-            index = index.filter(i => X[i] >= x0 && X[i] <= x1);
+            const [x0, x1] = y ? [selection[0][0], selection[1][0]] : selection;
+            index = index.filter(i => {
+              const c = x(X[i]);
+              return c >= x0 && c <= x1;
+            });
           }
           if (y) {
-            const e = x ? [selection[0][1], selection[1][1]] : selection;
-            const [y0, y1] = extent(e.map(y.invert));
-            index = index.filter(i => Y[i] >= y0 && Y[i] <= y1);
+            const [y0, y1] = x ? [selection[0][1], selection[1][1]] : selection;
+            index = index.filter(i => {
+              const c = y(Y[i]);
+              return c >= y0 && c <= y1;
+            });
           }
         }
         const dots = selection ? Array.from(index, i => J[i]) : data;
