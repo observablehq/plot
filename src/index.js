@@ -2,6 +2,7 @@ export {plot, Mark, marks} from "./plot.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {Arrow, arrow} from "./marks/arrow.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
+export {brush, brushX, brushY} from "./marks/brush.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
