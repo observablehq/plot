@@ -8,7 +8,7 @@ const objectToString = Object.prototype.toString;
 export class Mark {
   constructor(data, channels = [], options = {}) {
     const names = new Set();
-    this.data = arrayify(data);
+    this.data = data;
     this.transform = maybeTransform(options);
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
@@ -29,7 +29,7 @@ export class Mark {
     });
   }
   initialize(facets) {
-    let data = this.data;
+    let data = arrayify(this.data);
     let index = facets === undefined && data != null ? range(data) : facets;
     if (data !== undefined && this.transform !== undefined) {
       if (facets === undefined) index = index.length ? [index] : [];
