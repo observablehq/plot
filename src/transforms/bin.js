@@ -1,6 +1,6 @@
-import {bin as binner, cross, group} from "d3";
+import {bin as binner, cross, group, sum} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take} from "../mark.js";
+import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take, labelof} from "../mark.js";
 import {offset} from "../style.js";
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
@@ -43,12 +43,12 @@ export function bin({x, y, out = "fill", inset, insetTop, insetRight, insetBotto
   return {x1, x2, y1, y2, ...transform, inset, insetTop, insetRight, insetBottom, insetLeft, [out]: l};
 }
 
-function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize, cumulative, ...options} = {}) {
+function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, normalize, cumulative, ...options} = {}) {
   const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const bin = binof(identity, {value: x, domain, thresholds});
   const [X1, setX1] = lazyChannel(x);
   const [X2, setX2] = lazyChannel(x);
-  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
   const [BK, setBK] = maybeLazyChannel(k);
@@ -68,6 +68,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
+        const W = valueof(data, weight);
         const binFacets = [];
         const binData = [];
         const X1 = setX1([]);
@@ -78,19 +79,19 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
         const BZ = Z && setBZ([]);
         const BF = F && setBF([]);
         const BS = S && setBS([]);
-        let n = data.length;
+        let n = W ? sum(W) : data.length;
         let i = 0;
         if (cumulative < 0) B.reverse();
         for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
-            if (normalize === "z") n = I.length;
+            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             const set = new Set(I);
             let f;
             for (const b of B) {
               const s = b.filter(i => set.has(i));
               f = cumulative && f !== undefined ? f.concat(s) : s;
-              const l = f.length;
+              const l = W ? sum(f, i => W[i]) : f.length;
               if (l > 0) {
                 binFacet.push(i++);
                 binData.push(take(data, f));
@@ -119,7 +120,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, domain, thresholds, normalize,
 // representing a field name, a function, an array), or the value and some
 // additional per-dimension binning options as an objects of the form {value,
 // domain?, thresholds?}.
-function bin2(x, y, {domain, thresholds, normalize, z, fill, stroke, ...options} = {}) {
+function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...options} = {}) {
   const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
   const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
@@ -128,7 +129,7 @@ function bin2(x, y, {domain, thresholds, normalize, z, fill, stroke, ...options}
   const [X2, setX2] = lazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
-  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
   const [BZ, setBZ] = maybeLazyChannel(z);
@@ -145,6 +146,7 @@ function bin2(x, y, {domain, thresholds, normalize, z, fill, stroke, ...options}
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
+        const W = valueof(data, weight);
         const binFacets = [];
         const binData = [];
         const X1 = setX1([]);
@@ -156,16 +158,16 @@ function bin2(x, y, {domain, thresholds, normalize, z, fill, stroke, ...options}
         const BZ = Z && setBZ([]);
         const BF = F && setBF([]);
         const BS = S && setBS([]);
-        let n = data.length;
+        let n = W ? sum(W) : data.length;
         let i = 0;
         for (const facet of facets) {
           const binFacet = [];
           for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
-            if (normalize === "z") n = I.length;
+            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             const set = new Set(I);
             for (const b of B) {
               const f = b.filter(i => set.has(i));
-              const l = f.length;
+              const l = W ? sum(f, i => W[i]) : f.length;
               if (l > 0) {
                 binFacet.push(i++);
                 binData.push(take(data, f));

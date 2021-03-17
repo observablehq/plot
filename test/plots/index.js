@@ -16,6 +16,7 @@ export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
 export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
 export {default as empty} from "./empty.js";
+export {default as fruitSales} from "./fruit-sales.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
 export {default as gistempAnomalyMoving} from "./gistemp-anomaly-moving.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";

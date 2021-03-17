@@ -1,6 +1,6 @@
-import {group as grouper, sort, InternSet} from "d3";
+import {group as grouper, sort, sum, InternSet} from "d3";
 import {defined, firstof} from "../defined.js";
-import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple} from "../mark.js";
+import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof} from "../mark.js";
 
 // Group on y, z, fill, or stroke, if any, then group on x.
 export function groupX({x, y, out = y == null ? "y" : "fill", ...options} = {}) {
@@ -24,10 +24,10 @@ export function group({x, y, out = "fill", ...options} = {}) {
   return {x: X, y: Y, ...transform, [out]: L};
 }
 
-function group1(x = identity, key, {[key]: k, domain, normalize, z, fill, stroke, ...options} = {}) {
+function group1(x = identity, key, {[key]: k, weight, domain, normalize, z, fill, stroke, ...options} = {}) {
   const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
-  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
   const [BK, setBK] = maybeLazyChannel(k);
@@ -48,6 +48,7 @@ function group1(x = identity, key, {[key]: k, domain, normalize, z, fill, stroke
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
+        const W = valueof(data, weight);
         const groupFacets = [];
         const groupData = [];
         const BX = setX([]);
@@ -57,15 +58,15 @@ function group1(x = identity, key, {[key]: k, domain, normalize, z, fill, stroke
         const BZ = Z && setBZ([]);
         const BF = F && setBF([]);
         const BS = S && setBS([]);
-        let n = data.length;
+        let n = W ? sum(W) : data.length;
         let i = 0;
         for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
-            if (normalize === "z") n = I.length;
+            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             for (const [x, f] of sort(grouper(I, i => X[i]), first)) {
               if (!defined(x)) continue;
-              const l = f.length;
+              const l = W ? sum(f, i => W[i]) : f.length;
               groupFacet.push(i++);
               groupData.push(take(data, f));
               BX.push(x);
@@ -86,14 +87,14 @@ function group1(x = identity, key, {[key]: k, domain, normalize, z, fill, stroke
   ];
 }
 
-function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
+function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options} = {}) {
   let {value: x, domain: xdomain} = {domain, ...maybeValue(xv)};
   let {value: y, domain: ydomain} = {domain, ...maybeValue(yv)};
   ([x, y] = maybeTuple(x, y));
-  const k = normalize === true || normalize === "z" ? 100 : +normalize;
+  const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(y);
-  const [L, setL] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
   const [Z, setZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -113,6 +114,7 @@ function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
         const Z = valueof(data, z);
         const F = valueof(data, vfill);
         const S = valueof(data, vstroke);
+        const W = valueof(data, weight);
         const groupFacets = [];
         const groupData = [];
         const G = firstof(Z, F, S);
@@ -122,22 +124,22 @@ function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
         const BZ = Z && setZ([]);
         const BF = F && setF([]);
         const BS = S && setS([]);
-        let n = data.length;
+        let n = W ? sum(W) : data.length;
         let i = 0;
         for (const facet of facets) {
           const groupFacet = [];
           for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
-            if (normalize === "z") n = I.length;
+            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             for (const [y, fy] of sort(grouper(I, i => Y[i]), first)) {
               if (!ydefined(y)) continue;
               for (const [x, f] of sort(grouper(fy, i => X[i]), first)) {
                 if (!xdefined(x)) continue;
-                const l = f.length;
+                const l = W ? sum(f, i => W[i]) : f.length;
                 groupFacet.push(i++);
                 groupData.push(take(data, f));
                 BX.push(x);
                 BY.push(y);
-                BL.push(k ? l * k / n : l);
+                BL.push(m ? l * m / n : l);
                 if (Z) BZ.push(Z[f[0]]);
                 if (F) BF.push(F[f[0]]);
                 if (S) BS.push(S[f[0]]);

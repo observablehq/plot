@@ -187,12 +187,16 @@ export function lazyChannel(source) {
   return [
     {
       transform: () => value,
-      label: typeof source === "string" ? source
-        : source ? source.label
-        : undefined
+      label: labelof(source)
     },
     v => value = v
   ];
+}
+
+export function labelof(value, defaultValue) {
+  return typeof value === "string" ? value
+    : value && value.label !== undefined ? value.label
+    : defaultValue;
 }
 
 // Like lazyChannel, but allows the source to be null.
