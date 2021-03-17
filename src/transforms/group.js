@@ -3,13 +3,13 @@ import {defined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple} from "../mark.js";
 
 export function groupX({x, ...options} = {}) {
-  const [transform, X, y, z, fill, stroke] = group1(x, options);
-  return {x: X, y, ...transform, z, fill, stroke};
+  const [transform, X, y] = group1(x, options);
+  return {x: X, y, ...transform};
 }
 
 export function groupY({y, ...options} = {}) {
-  const [transform, Y, x, z, fill, stroke] = group1(y, options);
-  return {y: Y, x, ...transform, z, fill, stroke};
+  const [transform, Y, x] = group1(y, options);
+  return {y: Y, x, ...transform};
 }
 
 export function groupR(options) {
@@ -17,12 +17,11 @@ export function groupR(options) {
 }
 
 export function group({x, y, out = "fill", ...options} = {}) {
-  const [transform, X, Y, L, z, fill, stroke] = group2(x, y, options);
-  return {x: X, y: Y, ...transform, z, fill, stroke, [out]: L};
+  const [transform, X, Y, L] = group2(x, y, options);
+  return {x: X, y: Y, ...transform, [out]: L};
 }
 
-function group1(x = identity, {domain, normalize, ...options} = {}) {
-  const {z, fill, stroke} = options;
+function group1(x = identity, {domain, normalize, z, fill, stroke, ...options} = {}) {
   const k = normalize === true ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(`Frequency${k === 100 ? " (%)" : ""}`);
@@ -34,6 +33,9 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
   const defined = maybeDomain(domain);
   return [
     {
+      z: Z,
+      fill: F,
+      stroke: S,
       ...options,
       transform: maybeTransform(options, (data, facets) => {
         const X = valueof(data, x);
@@ -71,15 +73,11 @@ function group1(x = identity, {domain, normalize, ...options} = {}) {
       })
     },
     X,
-    Y,
-    Z,
-    F,
-    S
+    Y
   ];
 }
 
-function group2(xv, yv, {domain, normalize, ...options} = {}) {
-  const {z, fill, stroke} = options;
+function group2(xv, yv, {z, fill, stroke, domain, normalize, ...options} = {}) {
   let {value: x, domain: xdomain} = {domain, ...maybeValue(xv)};
   let {value: y, domain: ydomain} = {domain, ...maybeValue(yv)};
   ([x, y] = maybeTuple(x, y));
@@ -96,6 +94,9 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
   const ydefined = maybeDomain(ydomain);
   return [
     {
+      z: Z,
+      fill: F,
+      stroke: S,
       ...options,
       transform: maybeTransform(options, (data, facets) => {
         const X = valueof(data, x);
@@ -140,10 +141,7 @@ function group2(xv, yv, {domain, normalize, ...options} = {}) {
     },
     X,
     Y,
-    L,
-    Z,
-    F,
-    S
+    L
   ];
 }
 
