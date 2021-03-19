@@ -45,9 +45,12 @@ function reduceSubarray(f) {
   return (k, s) => ({
     map(I, S, T) {
       const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
+      let nans = 0;
+      for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        const W = C.subarray(i, i + k);
-        T[I[i + s]] = W.some(w => w === null || isNaN(w)) ? NaN : f(W);
+        if (isNaN(C[i + k - 1])) ++nans;
+        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
+        if (isNaN(C[i])) --nans;
       }
     }
   });
