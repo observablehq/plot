@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
-tape("reduce sum reduces as expected", test => {
+tape("baked-in reducer reduce as expected", test => {
   const data = [0, 1, 2, 4, 5, 9];
   testReducer(test, data, "deviation", Math.sqrt(10.7));
   testReducer(test, data, "max", 9);
@@ -10,6 +10,12 @@ tape("reduce sum reduces as expected", test => {
   testReducer(test, data, "min", 0);
   testReducer(test, data, "sum", 21);
   testReducer(test, data, "variance", 10.7);
+});
+
+tape("function reducers reduce as expected", test => {
+  const data = [0, 1, 2, 4, 5, 9];
+  testReducer(test, data, v => v.length, 6);
+  testReducer(test, data, v => v.join(", "), "0, 1, 2, 4, 5, 9");
 });
 
 function testReducer(test, data, x, r) {
