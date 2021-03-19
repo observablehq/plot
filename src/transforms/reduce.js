@@ -1,4 +1,4 @@
-import {group, min, max, mean, median} from "d3";
+import {deviation, group, min, max, mean, median, sum, variance} from "d3";
 import {firstof} from "../defined.js";
 import {lazyChannel, maybeColor, maybeLazyChannel, maybeInput, maybeTransform, take, valueof} from "../mark.js";
 
@@ -88,10 +88,13 @@ function maybeReduce(reduce) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
   switch ((reduce + "").toLowerCase()) {
-    case "min": return reduceMin;
-    case "max": return reduceMax;
-    case "mean": return reduceMean;
-    case "median": return reduceMedian;
+    case "deviation": return reduceFunction2(deviation);
+    case "min": return reduceFunction2(min);
+    case "max": return reduceFunction2(max);
+    case "mean": return reduceFunction2(mean);
+    case "median": return reduceFunction2(median);
+    case "sum": return reduceFunction2(sum);
+    case "variance": return reduceFunction2(variance);
   }
   throw new Error("invalid reduce");
 }
@@ -104,32 +107,16 @@ function reduceFunction(f) {
   };
 }
 
+function reduceFunction2(f) {
+  return {
+    reduce(I, X) {
+      return f(I, i => X[i]);
+    }
+  };
+}
+
 const reduceIdentity = {
   reduce(I, X) {
     return take(X, I);
-  }
-};
-
-const reduceMin = {
-  reduce(I, X) {
-    return min(I, i => X[i]);
-  }
-};
-
-const reduceMax = {
-  reduce(I, X) {
-    return max(I, i => X[i]);
-  }
-};
-
-const reduceMedian = {
-  reduce(I, X) {
-    return median(I, i => X[i]);
-  }
-};
-
-const reduceMean = {
-  reduce(I, X) {
-    return mean(I, i => X[i]);
   }
 };
