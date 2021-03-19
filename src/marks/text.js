@@ -58,14 +58,14 @@ export class Text extends Mark {
     {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
+    const index = filter(I, X, Y, F, R).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
-    const X0 = (marginLeft + width - marginRight) / 2;
-    const Y0 = (marginTop + height - marginBottom) / 2;
+    const cx = (marginLeft + width - marginRight) / 2;
+    const cy = (marginTop + height - marginBottom) / 2;
 
     const {rotate} = this;
-    const tr = R ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0})${R[i] ? ` rotate(${R[i]})` : ""}`)
-      : rotate ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0}) rotate(${rotate})`)
+    const rotateTransform = R ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy})${R[i] ? ` rotate(${+R[i]})` : ""}`)
+      : rotate ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy}) rotate(${rotate})`)
       : null;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
@@ -74,9 +74,9 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectTextStyles, this)
-            .attr("transform", tr)
-            .attr("x", tr ? null : X ? i => x(X[i]) : X0)
-            .attr("y", tr ? null : Y ? i => y(Y[i]) : Y0)
+            .attr("transform", rotateTransform)
+            .attr("x", rotateTransform ? null : X ? i => x(X[i]) : cx)
+            .attr("y", rotateTransform ? null : Y ? i => y(Y[i]) : cy)
             .attr("fill", F && (i => color(F[i])))
             .text(i => T[i])
             .call(title(L)))
