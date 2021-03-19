@@ -1,5 +1,5 @@
 import {mapX, mapY} from "./map.js";
-import {deviation, max, mean, min, sum, variance} from "d3";
+import {deviation, max, min, variance} from "d3";
 
 export function windowX({k, reduce, shift, ...options} = {}) {
   return mapX(window(k, reduce, shift), options);
@@ -11,24 +11,10 @@ export function windowY({k, reduce, shift, ...options} = {}) {
 
 function window(k, reduce, shift) {
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
-  let acceptNaN; // TODO consolidate into reducer function
-  ([reduce, acceptNaN] = maybeReduce(reduce));
-  shift = maybeShift(shift, k);
-  return {
-    map(I, S, T) {
-      let v;
-      const C = Float64Array.from(I, i => (v = S[i]) === +v ? v : NaN);
-      const n = I.length;
-      let nans = k;
-      for (let i = 0; i < n; ++i) {
-        if ((acceptNaN || (nans = isNaN(C[i]) ? k : nans - 1) <= 0) && i >= k - 1) {
-          T[I[i - k + shift + 1]] = reduce(C.subarray(i - k + 1, i + 1));
-        }
-      }
-    }
-  };
+  return maybeReduce(reduce)(k, maybeShift(shift, k));
 }
 
+// TODO rename to anchor = {start, center, end}?
 function maybeShift(shift = "centered", k) {
   switch ((shift + "").toLowerCase()) {
     case "centered": return (k >> 1) + (k % 2) - 1;
@@ -41,24 +27,86 @@ function maybeShift(shift = "centered", k) {
 function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
     switch (reduce.toLowerCase()) {
-      case "deviation": return [deviation, false];
-      case "max": return [max, false];
-      case "mean": return [mean, false];
-      case "min": return [min, false];
-      case "sum": return [sum, false];
-      case "variance": return [variance, false];
-      case "difference": return [difference, true];
-      case "ratio": return [ratio, true];
+      case "deviation": return reduceSubarray(deviation);
+      case "max": return reduceSubarray(max);
+      case "mean": return reduceMean;
+      case "min": return reduceSubarray(min);
+      case "sum": return reduceSum;
+      case "variance": return reduceSubarray(variance);
+      case "difference": return reduceDifference;
+      case "ratio": return reduceRatio;
     }
   }
   if (typeof reduce !== "function") throw new Error("invalid reduce");
-  return [reduce, true];
+  return reduceSubarray(reduce);
 }
 
-function difference(A) {
-  return A[A.length - 1] - A[0];
+function reduceSubarray(f) {
+  return (k, s) => ({
+    map(I, S, T) {
+      const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
+      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+        const W = C.subarray(i, i + k);
+        T[I[i + s]] = W.some(w => w === null || isNaN(w)) ? NaN : f(W);
+      }
+    }
+  });
 }
 
-function ratio(A) {
-  return A[A.length - 1] / A[0];
+function reduceSum(k, s) {
+  return {
+    map(I, S, T) {
+      let sum = NaN;
+      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+        if (isNaN(sum)) {
+          sum = 0;
+          for (let j = 0; j < k; ++j) {
+            const v = S[I[i + j]];
+            sum += v === null ? NaN : +v;
+          }
+        } else {
+          const a = S[I[i - 1]];
+          const b = S[I[i + k - 1]];
+          sum = a === null || b === null ? NaN : sum + (b - a);
+        }
+        T[I[i + s]] = sum;
+      }
+    }
+  };
+}
+
+function reduceMean(k, s) {
+  const sum = reduceSum(k, s);
+  return {
+    map(I, S, T) {
+      sum.map(I, S, T);
+      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+        T[I[i + s]] /= k;
+      }
+    }
+  };
+}
+
+function reduceDifference(k, s) {
+  return {
+    map(I, S, T) {
+      for (let i = 0, n = I.length - k; i < n; ++i) {
+        const a = S[I[i]];
+        const b = S[I[i + k - 1]];
+        T[I[i + s]] = a === null || b === null ? NaN : b - a;
+      }
+    }
+  };
+}
+
+function reduceRatio(k, s) {
+  return {
+    map(I, S, T) {
+      for (let i = 0, n = I.length - k; i < n; ++i) {
+        const a = S[I[i]];
+        const b = S[I[i + k - 1]];
+        T[I[i + s]] = a == null || b == null ? NaN : b / a;
+      }
+    }
+  };
 }

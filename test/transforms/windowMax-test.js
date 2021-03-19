@@ -24,14 +24,14 @@ tape("window max skips NaN", test => {
   const data = [1, 1, 1, NaN, 1, 1, 1, 1, 1, NaN, NaN, NaN, NaN, 1];
   const m3 = Plot.windowX({reduce: "max", k: 3, x: d => d});
   m3.transform(data, [range(data.length)]);
-  test.deepEqual(m3.x.transform(), [ , 1, , , , 1, 1, 1, , , , , , ]);
+  test.deepEqual(m3.x.transform(), [ , 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN, ]);
 });
 
 tape("window max treats null as NaN", test => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, null, null, null, 1];
   const m3 = Plot.windowX({reduce: "max", k: 3, x: d => d});
   m3.transform(data, [range(data.length)]);
-  test.deepEqual(m3.x.transform(), [ , 1, , , , 1, 1, 1, , , , , , ]);
+  test.deepEqual(m3.x.transform(), [ , 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN, ]);
 });
 
 tape("window max respects shift", test => {
