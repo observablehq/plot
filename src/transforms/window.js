@@ -60,20 +60,21 @@ function reduceSubarray(f) {
 function reduceSum(k, s) {
   return {
     map(I, S, T) {
-      let sum = NaN;
+      let nans = 0;
+      let sum = 0;
+      for (let i = 0; i < k - 1; ++i) {
+        const v = S[I[i]];
+        if (v === null || isNaN(v)) ++nans;
+        else sum += +v;
+      }
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        if (isNaN(sum)) {
-          sum = 0;
-          for (let j = 0; j < k; ++j) {
-            const v = S[I[i + j]];
-            sum += v === null ? NaN : +v;
-          }
-        } else {
-          const a = S[I[i - 1]];
-          const b = S[I[i + k - 1]];
-          sum = a === null || b === null ? NaN : sum + (b - a);
-        }
-        T[I[i + s]] = sum;
+        const a = S[I[i]];
+        const b = S[I[i + k - 1]];
+        if (b === null || isNaN(b)) ++nans;
+        else sum += +b;
+        T[I[i + s]] = nans === 0 ? sum : NaN;
+        if (a === null || isNaN(a)) --nans;
+        else sum -= +a;
       }
     }
   };
