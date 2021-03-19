@@ -109,7 +109,7 @@ function reduceRatio(k, s) {
       for (let i = 0, n = I.length - k; i < n; ++i) {
         const a = S[I[i]];
         const b = S[I[i + k - 1]];
-        T[I[i + s]] = a == null || b == null ? NaN : b / a;
+        T[I[i + s]] = a === null || b === null ? NaN : b / a;
       }
     }
   };
