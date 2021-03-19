@@ -17,7 +17,7 @@ function window(k, reduce, shift) {
 // TODO rename to anchor = {start, center, end}?
 function maybeShift(shift = "centered", k) {
   switch ((shift + "").toLowerCase()) {
-    case "centered": return (k >> 1) + (k % 2) - 1;
+    case "centered": return (k - 1) >> 1;
     case "leading": return 0;
     case "trailing": return k - 1;
   }
