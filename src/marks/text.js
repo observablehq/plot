@@ -64,8 +64,8 @@ export class Text extends Mark {
     const Y0 = (marginTop + height - marginBottom) / 2;
 
     const {rotate} = this;
-    const tr = R ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0})${R[i] ? `rotate(${R[i]})` : ""}`)
-      : rotate ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0})rotate(${rotate})`)
+    const tr = R ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0})${R[i] ? ` rotate(${R[i]})` : ""}`)
+      : rotate ? (i => `translate(${X ? x(X[i]) : X0},${Y ? y(Y[i]) : Y0}) rotate(${rotate})`)
       : null;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
