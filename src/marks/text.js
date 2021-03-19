@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, maybeTuple} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
@@ -27,14 +27,12 @@ export class Text extends Mark {
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
-    const [vrotate, crotate] = maybeNumber(rotate, 0);
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
-        {name: "rotate", value: vrotate, optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
@@ -42,7 +40,7 @@ export class Text extends Mark {
       options
     );
     Style(this, {fill: cfill, ...options});
-    this.rotate = crotate;
+    this.rotate = rotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
     this.fontSize = string(fontSize);
@@ -55,17 +53,16 @@ export class Text extends Mark {
   render(
     I,
     {x, y, color},
-    {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
+    {x: X, y: Y, z: Z, text: T, title: L, fill: F},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const index = filter(I, X, Y, F, R).filter(i => nonempty(T[i]));
+    const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
 
     const {rotate} = this;
-    const rotateTransform = R ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy})${R[i] ? ` rotate(${+R[i]})` : ""}`)
-      : rotate ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy}) rotate(${rotate})`)
+    const rotateTransform = rotate ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy}) rotate(${rotate})`)
       : null;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
