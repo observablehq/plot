@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
@@ -34,7 +34,7 @@ export class Text extends Mark {
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
-        {name: "rotate", value: vrotate, optional: true}, // TODO force Float64Array
+        {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
