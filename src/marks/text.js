@@ -34,7 +34,7 @@ export class Text extends Mark {
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
-        {name: "rotate", value: vrotate, optional: true},
+        {name: "rotate", value: vrotate, optional: true}, // TODO force Float64Array
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
@@ -58,15 +58,11 @@ export class Text extends Mark {
     {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
+    const {rotate} = this;
     const index = filter(I, X, Y, F, R).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
-
-    const {rotate} = this;
-    const rotateTransform = R ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy})${R[i] ? ` rotate(${+R[i]})` : ""}`)
-      : rotate ? (i => `translate(${X ? x(X[i]) : cx},${Y ? y(Y[i]) : cy}) rotate(${rotate})`)
-      : null;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -74,9 +70,15 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectTextStyles, this)
-            .attr("transform", rotateTransform)
-            .attr("x", rotateTransform ? null : X ? i => x(X[i]) : cx)
-            .attr("y", rotateTransform ? null : Y ? i => y(Y[i]) : cy)
+            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${R[i]})`
+                : X ? i => `translate(${x(X[i])},${cy}) rotate(${R[i]})`
+                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${R[i]})`
+                : i => `translate(${cx},${cy}) rotate(${R[i]})`)
+              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${rotate})`
+                : X ? i => `translate(${x(X[i])},${cy}) rotate(${rotate})`
+                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${rotate})`
+                : `translate(${cx},${cy}) rotate(${rotate})`)
+              : text => text.attr("x", X ? i => x(X[i]) : cx).attr("y", Y ? i => y(Y[i]) : cy))
             .attr("fill", F && (i => color(F[i])))
             .text(i => T[i])
             .call(title(L)))
