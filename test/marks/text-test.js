@@ -6,7 +6,7 @@ tape("text() has the expected defaults", test => {
   test.strictEqual(text.data, undefined);
   test.strictEqual(text.transform, undefined);
   test.deepEqual(text.channels.map(c => c.name), ["x", "y", "text"]);
-  test.deepEqual(text.channels.map(c => c.value([1, 2], 0)), [1, 2, 0]);
+  test.deepEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
   test.deepEqual(text.channels.map(c => c.scale), ["x", "y", undefined]);
   test.strictEqual(text.fill, undefined);
   test.strictEqual(text.fillOpacity, undefined);

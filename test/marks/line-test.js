@@ -7,7 +7,7 @@ tape("line() has the expected defaults", test => {
   test.strictEqual(line.data, undefined);
   test.strictEqual(line.transform, undefined);
   test.deepEqual(line.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(line.channels.map(c => c.value([1, 2])), [1, 2]);
+  test.deepEqual(line.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
   test.deepEqual(line.channels.map(c => c.scale), ["x", "y"]);
   test.strictEqual(line.curve, curveLinear);
   test.strictEqual(line.fill, "none");
