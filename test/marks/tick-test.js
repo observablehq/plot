@@ -6,7 +6,7 @@ tape("tickX() has the expected defaults", test => {
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["x"]);
-  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
+  test.deepEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(tick.channels.map(c => c.scale), ["x"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);
@@ -65,7 +65,7 @@ tape("tickY() has the expected defaults", test => {
   test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["y"]);
-  test.deepEqual(tick.channels.map(c => c.value("foo", 0)), ["foo"]);
+  test.deepEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(tick.channels.map(c => c.scale), ["y"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);

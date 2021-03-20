@@ -6,7 +6,7 @@ tape("dot() has the expected defaults", test => {
   test.strictEqual(dot.data, undefined);
   test.strictEqual(dot.transform, undefined);
   test.deepEqual(dot.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(dot.channels.map(c => c.value([1, 2])), [1, 2]);
+  test.deepEqual(dot.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
   test.deepEqual(dot.channels.map(c => c.scale), ["x", "y"]);
   test.strictEqual(dot.r, 3);
   test.strictEqual(dot.fill, "none");
