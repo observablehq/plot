@@ -21,6 +21,7 @@ tape("text() has the expected defaults", test => {
   test.strictEqual(text.textAnchor, undefined);
   test.strictEqual(text.dx, undefined);
   test.strictEqual(text.dy, "0.32em");
+  test.strictEqual(text.rotate, 0);
 });
 
 tape("text(data, {z}) specifies an optional z channel", test => {
