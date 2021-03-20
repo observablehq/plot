@@ -41,6 +41,9 @@ export function map(outputs = {}, options = {}) {
 function maybeMap(map) {
   if (map && typeof map.map === "function") return map;
   if (typeof map === "function") return mapFunction(map);
+  switch ((map + "").toLowerCase()) {
+    case "cumsum": return mapCumsum;
+  }
   throw new Error("invalid map");
 }
 
@@ -53,3 +56,10 @@ function mapFunction(f) {
     }
   };
 }
+
+const mapCumsum = {
+  map(I, S, T) {
+    let sum = 0;
+    for (const i of I) T[i] = sum += S[i];
+  }
+};
