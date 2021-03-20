@@ -10,8 +10,8 @@ export default async function() {
     },
     marks: [
       Plot.areaY(temperatures, {x: "date", y1: "low", y2: "high", curve: "step", fill: "#ccc"}),
-      Plot.line(temperatures, Plot.movingAverageY({x: "date", y: "low", k: 7, curve: "step", stroke: "blue"})),
-      Plot.line(temperatures, Plot.movingAverageY({x: "date", y: "high", k: 7, curve: "step", stroke: "red"}))
+      Plot.line(temperatures, Plot.windowY({x: "date", y: "low", k: 7, curve: "step", stroke: "blue"})),
+      Plot.line(temperatures, Plot.windowY({x: "date", y: "high", k: 7, curve: "step", stroke: "red"}))
     ],
     width: 960
   });

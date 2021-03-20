@@ -94,7 +94,7 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
   const m = normalize === true || normalize === "z" ? 100 : +normalize;
   const [X, setX] = lazyChannel(x);
   const [Y, setY] = lazyChannel(y);
-  const [L, setL] = lazyChannel(`Frequency${m === 100 ? " (%)" : ""}`);
+  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
   const [Z, setZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);

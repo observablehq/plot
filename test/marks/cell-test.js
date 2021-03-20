@@ -6,7 +6,7 @@ tape("cell() has the expected defaults", test => {
   test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(cell.channels.map(c => c.value([1, 2])), [1, 2]);
+  test.deepEqual(cell.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x", "y"]);
   test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
   test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
@@ -81,7 +81,7 @@ tape("cellX() defaults x to identity and y to null", test => {
   test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x"]);
-  test.deepEqual(cell.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x"]);
   test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
 });
@@ -91,7 +91,7 @@ tape("cellY() defaults y to identity and x to null", test => {
   test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["y"]);
-  test.deepEqual(cell.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(cell.channels.map(c => c.scale), ["y"]);
   test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
 });

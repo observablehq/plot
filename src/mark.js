@@ -68,7 +68,7 @@ export function valueof(data, value, type) {
 
 export const field = label => Object.assign(d => d[label], {label});
 export const indexOf = (d, i) => i;
-export const identity = d => d;
+export const identity = {transform: d => d};
 export const zero = () => 0;
 export const string = x => x == null ? undefined : x + "";
 export const number = x => x == null ? undefined : +x;

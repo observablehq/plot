@@ -6,7 +6,7 @@ tape("ruleX() has the expected defaults", test => {
   test.strictEqual(rule.data, undefined);
   test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["x"]);
-  test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(rule.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(rule.channels.map(c => c.scale), ["x"]);
   test.strictEqual(rule.fill, undefined);
   test.strictEqual(rule.fillOpacity, undefined);
@@ -100,7 +100,7 @@ tape("ruleY() has the expected defaults", test => {
   test.strictEqual(rule.data, undefined);
   test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["y"]);
-  test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(rule.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(rule.channels.map(c => c.scale), ["y"]);
   test.strictEqual(rule.fill, undefined);
   test.strictEqual(rule.fillOpacity, undefined);
