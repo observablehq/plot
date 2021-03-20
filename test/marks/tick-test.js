@@ -2,11 +2,11 @@ import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
 tape("tickX() has the expected defaults", test => {
-  const tick = Plot.tickX([42]);
-  test.deepEqual(tick.data, [42]);
+  const tick = Plot.tickX();
+  test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["x"]);
-  test.deepEqual(tick.initialize().channels.map(d => d[1].value), [[ 42 ]]);
+  test.deepEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(tick.channels.map(c => c.scale), ["x"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);
@@ -61,11 +61,11 @@ tape("tickX(data, {stroke}) allows stroke to be a variable color", test => {
 });
 
 tape("tickY() has the expected defaults", test => {
-  const tick = Plot.tickY([42]);
-  test.deepEqual(tick.data, [42]);
+  const tick = Plot.tickY();
+  test.strictEqual(tick.data, undefined);
   test.strictEqual(tick.transform, undefined);
   test.deepEqual(tick.channels.map(c => c.name), ["y"]);
-  test.deepEqual(tick.initialize().channels.map(d => d[1].value), [[ 42 ]]);
+  test.deepEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(tick.channels.map(c => c.scale), ["y"]);
   test.strictEqual(tick.fill, undefined);
   test.strictEqual(tick.fillOpacity, undefined);

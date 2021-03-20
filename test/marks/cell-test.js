@@ -2,11 +2,11 @@ import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
 tape("cell() has the expected defaults", test => {
-  const cell = Plot.cell([[0, 1], [0, 2]]);
-  test.deepEqual(cell.data, [[0, 1], [0, 2]]);
+  const cell = Plot.cell();
+  test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(cell.initialize().channels.map(d => d[1].value), [[0, 0], [1, 2]]);
+  test.deepEqual(cell.channels.map(c => c.value([1, 2])), [1, 2]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x", "y"]);
   test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
   test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
@@ -77,21 +77,21 @@ tape("cell(data, {stroke}) allows stroke to be a variable color", test => {
 });
 
 tape("cellX() defaults x to identity and y to null", test => {
-  const cell = Plot.cellX([12]);
-  test.deepEqual(cell.data, [12]);
+  const cell = Plot.cellX();
+  test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["x"]);
-  test.deepEqual(cell.initialize().channels.map(d => d[1].value), [[ 12 ]]);
+  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(cell.channels.map(c => c.scale), ["x"]);
   test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
 });
 
 tape("cellY() defaults y to identity and x to null", test => {
-  const cell = Plot.cellY([12]);
-  test.deepEqual(cell.data, [12]);
+  const cell = Plot.cellY();
+  test.strictEqual(cell.data, undefined);
   test.strictEqual(cell.transform, undefined);
   test.deepEqual(cell.channels.map(c => c.name), ["y"]);
-  test.deepEqual(cell.initialize().channels.map(d => d[1].value), [[ 12 ]]);
+  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
   test.deepEqual(cell.channels.map(c => c.scale), ["y"]);
   test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
 });

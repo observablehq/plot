@@ -2,11 +2,11 @@ import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
 tape("barX() has the expected defaults", test => {
-  const bar = Plot.barX([1, 2, 3]);
-  test.deepEqual(bar.data, [1, 2, 3]);
+  const bar = Plot.barX();
+  test.strictEqual(bar.data, undefined);
   test.strictEqual(bar.transform, undefined);
   test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2"]);
-  test.deepEqual(bar.initialize().channels.map(d => d[1].value), [ [ 0, 0, 0 ], [ 1, 2, 3 ] ]);
+  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
   test.deepEqual(bar.channels.map(c => c.scale), ["x", "x"]);
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
@@ -96,11 +96,11 @@ tape("barX(data, {x, y}) defaults x1 to zero and x2 to x", test => {
 });
 
 tape("barY() has the expected defaults", test => {
-  const bar = Plot.barY([1, 2, 3]);
-  test.deepEqual(bar.data, [1, 2, 3]);
+  const bar = Plot.barY();
+  test.strictEqual(bar.data, undefined);
   test.strictEqual(bar.transform, undefined);
   test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2"]);
-  test.deepEqual(bar.initialize().channels.map(d => d[1].value), [ [ 0, 0, 0 ], [ 1, 2, 3 ] ]);
+  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
   test.deepEqual(bar.channels.map(c => c.scale), ["y", "y"]);
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
