@@ -2,11 +2,11 @@ import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
 tape("ruleX() has the expected defaults", test => {
-  const rule = Plot.ruleX();
-  test.strictEqual(rule.data, undefined);
+  const rule = Plot.ruleX([42]);
+  test.deepEqual(rule.data, [42]);
   test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["x"]);
-  test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(rule.initialize().channels.map(d => d[1].value), [[ 42 ]]);
   test.deepEqual(rule.channels.map(c => c.scale), ["x"]);
   test.strictEqual(rule.fill, undefined);
   test.strictEqual(rule.fillOpacity, undefined);
@@ -96,11 +96,11 @@ tape("ruleX(data, {x, y1, y2}) specifies x, y1, y2", test => {
 });
 
 tape("ruleY() has the expected defaults", test => {
-  const rule = Plot.ruleY();
-  test.strictEqual(rule.data, undefined);
+  const rule = Plot.ruleY([42]);
+  test.deepEqual(rule.data, [42]);
   test.strictEqual(rule.transform, undefined);
   test.deepEqual(rule.channels.map(c => c.name), ["y"]);
-  test.deepEqual(rule.channels.map(c => c.value("foo")), ["foo"]);
+  test.deepEqual(rule.initialize().channels.map(d => d[1].value), [[ 42 ]]);
   test.deepEqual(rule.channels.map(c => c.scale), ["y"]);
   test.strictEqual(rule.fill, undefined);
   test.strictEqual(rule.fillOpacity, undefined);
