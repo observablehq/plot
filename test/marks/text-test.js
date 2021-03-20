@@ -5,9 +5,9 @@ tape("text() has the expected defaults", test => {
   const text = Plot.text();
   test.strictEqual(text.data, undefined);
   test.strictEqual(text.transform, undefined);
-  test.deepEqual(text.channels.map(c => c.name), ["x", "y", "text"]);
-  test.deepEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
-  test.deepEqual(text.channels.map(c => c.scale), ["x", "y", undefined]);
+  test.deepEqual(text.channels.map(c => c.name), ["x", "y", "rotate", "text"]);
+  test.deepEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], undefined, [0, 1]]);
+  test.deepEqual(text.channels.map(c => c.scale), ["x", "y", undefined, undefined]);
   test.strictEqual(text.fill, undefined);
   test.strictEqual(text.fillOpacity, undefined);
   test.strictEqual(text.stroke, undefined);
@@ -21,6 +21,7 @@ tape("text() has the expected defaults", test => {
   test.strictEqual(text.textAnchor, undefined);
   test.strictEqual(text.dx, undefined);
   test.strictEqual(text.dy, "0.32em");
+  test.strictEqual(text.rotate, 0);
 });
 
 tape("text(data, {z}) specifies an optional z channel", test => {

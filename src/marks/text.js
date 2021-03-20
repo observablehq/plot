@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, maybeTuple} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
@@ -22,16 +22,19 @@ export class Text extends Mark {
       fontWeight,
       dx,
       dy = "0.32em",
+      rotate,
       ...options
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
+    const [vrotate, crotate] = maybeNumber(rotate, 0);
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
+        {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true}
@@ -39,6 +42,7 @@ export class Text extends Mark {
       options
     );
     Style(this, {fill: cfill, ...options});
+    this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
     this.fontSize = string(fontSize);
@@ -51,11 +55,14 @@ export class Text extends Mark {
   render(
     I,
     {x, y, color},
-    {x: X, y: Y, z: Z, text: T, title: L, fill: F},
+    {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const index = filter(I, X, Y, F).filter(i => nonempty(T[i]));
+    const {rotate} = this;
+    const index = filter(I, X, Y, F, R).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
+    const cx = (marginLeft + width - marginRight) / 2;
+    const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -63,8 +70,15 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectTextStyles, this)
-            .attr("x", X ? i => x(X[i]) : (marginLeft + width - marginRight) / 2)
-            .attr("y", Y ? i => y(Y[i]) : (marginTop + height - marginBottom) / 2)
+            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${R[i]})`
+                : X ? i => `translate(${x(X[i])},${cy}) rotate(${R[i]})`
+                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${R[i]})`
+                : i => `translate(${cx},${cy}) rotate(${R[i]})`)
+              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${rotate})`
+                : X ? i => `translate(${x(X[i])},${cy}) rotate(${rotate})`
+                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${rotate})`
+                : `translate(${cx},${cy}) rotate(${rotate})`)
+              : text => text.attr("x", X ? i => x(X[i]) : cx).attr("y", Y ? i => y(Y[i]) : cy))
             .attr("fill", F && (i => color(F[i])))
             .text(i => T[i])
             .call(title(L)))

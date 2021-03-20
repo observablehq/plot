@@ -267,3 +267,10 @@ function filter(value) {
     return {data, facets: facets.map(I => I.filter(i => V[i]))};
   };
 }
+
+export function numberChannel(source) {
+  return {
+    transform: data => valueof(data, source, Float64Array),
+    label: labelof(source)
+  };
+}
