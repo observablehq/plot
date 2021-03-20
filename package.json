@@ -21,13 +21,13 @@
   ],
   "scripts": {
     "bundle": "rm -rf dist && rollup -c",
-    "test": "yarn bundle && mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
+    "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
     "prepublishOnly": "yarn bundle",
     "postpublish": "git push && git push --tags",
     "dev": "snowpack dev"
   },
   "_moduleAliases": {
-    "@observablehq/plot": "./dist/plot.cjs.js"
+    "@observablehq/plot": "./src/index.js"
   },
   "devDependencies": {
     "clean-css": "^5.1.1",

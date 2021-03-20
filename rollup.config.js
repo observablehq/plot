@@ -33,7 +33,7 @@ const css = {
 };
 
 const config = {
-  input: "src/index.js",
+  input: "bundle.js",
   external: ["d3"],
   output: {
     indent: false,

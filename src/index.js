@@ -1,5 +1,3 @@
-import "./style.css";
-
 export {plot} from "./plot.js";
 export {Mark, valueof} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
