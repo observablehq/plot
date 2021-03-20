@@ -30,6 +30,7 @@
     "@observablehq/plot": "./src/index.js"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "^4.1.0",
     "clean-css": "^5.1.1",
     "eslint": "^7.12.1",
     "esm": "^3.2.25",

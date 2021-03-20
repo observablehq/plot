@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {terser} from "rollup-plugin-terser";
+import json from "@rollup/plugin-json";
 import jsesc from "jsesc";
 import CleanCSS from "clean-css";
 import * as meta from "./package.json";
@@ -40,7 +41,8 @@ const config = {
     banner: `// ${meta.name} v${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}`
   },
   plugins: [
-    css
+    css,
+    json()
   ]
 };
 
