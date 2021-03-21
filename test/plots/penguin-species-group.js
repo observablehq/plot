@@ -8,7 +8,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barX(penguins, Plot.stackX(Plot.groupY({y: null, fill: "species", normalize: true}))),
+      Plot.barX(penguins, Plot.stackX(Plot.groupZX({fill: "species", normalize: true}))),
       Plot.ruleX([0, 100])
     ]
   });

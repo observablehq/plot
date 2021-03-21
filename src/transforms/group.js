@@ -2,7 +2,13 @@ import {group as grouper, sort, sum, InternSet} from "d3";
 import {defined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof} from "../mark.js";
 
-// Group on z, fill, or stroke, if any, then on x (optionally).
+// Group on {z, fill, stroke}.
+export function groupZ({out = "fill", ...options} = {}) {
+  const [transform, L] = group2(null, null, options);
+  return {...transform, [out]: L};
+}
+
+// Group on {z, fill, stroke}, then on x (optionally).
 export function groupX({out = "y", ...options} = {}) {
   const {x = identity} = options;
   if (x == null) {
@@ -13,7 +19,7 @@ export function groupX({out = "y", ...options} = {}) {
   return {...transform, x: X, [out]: L};
 }
 
-// Group on z, fill, or stroke, if any, then on y (optionally).
+// Group on {z, fill, stroke}, then on y (optionally).
 export function groupY({out = "x", ...options} = {}) {
   const {y = identity} = options;
   if (y == null) {
@@ -24,12 +30,7 @@ export function groupY({out = "x", ...options} = {}) {
   return {...transform, y: Y, [out]: L};
 }
 
-// Group on z, fill, or stroke, if any, then on x and y (optionally).
-export function groupR(options) {
-  return group({...options, out: "r"});
-}
-
-// Group on z, fill, or stroke, if any, then on x and y (optionally).
+// Group on {z, fill, stroke}, then on x and y (optionally).
 export function group({out = "fill", ...options} = {}) {
   let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
@@ -47,6 +48,22 @@ export function group({out = "fill", ...options} = {}) {
   }
   const [transform, L, X, Y] = group2(x, y, options);
   return {...transform, x: X, y: Y, [out]: L};
+}
+
+export function groupZX(options) {
+  return groupZ({...options, out: "x"});
+}
+
+export function groupZY(options) {
+  return groupZ({...options, out: "y"});
+}
+
+export function groupZR(options) {
+  return groupZ({...options, out: "r"});
+}
+
+export function groupR(options) {
+  return group({...options, out: "r"});
 }
 
 function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options} = {}) {

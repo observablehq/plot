@@ -12,7 +12,7 @@ export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {bin, binX, binY, binXMid, binYMid, binR} from "./transforms/bin.js";
-export {group, groupX, groupY, groupR} from "./transforms/group.js";
+export {group, groupX, groupY, groupR, groupZ, groupZX, groupZY, groupZR} from "./transforms/group.js";
 export {normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
 export {reduce, reduceX, reduceY} from "./transforms/reduce.js";
