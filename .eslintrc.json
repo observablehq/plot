@@ -12,6 +12,7 @@
   "rules": {
     "no-cond-assign": 0,
     "no-constant-condition": 0,
+    "no-sparse-arrays": 0,
     "no-unexpected-multiline": 0,
     "comma-dangle": ["error", "never"],
     "semi": [2, "always"]
