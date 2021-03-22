@@ -8,6 +8,18 @@ export function groupZ({out = "fill", ...options} = {}) {
   return {...transform, [out]: L};
 }
 
+export function groupZX(options) {
+  return groupZ({...options, out: "x"});
+}
+
+export function groupZY(options) {
+  return groupZ({...options, out: "y"});
+}
+
+export function groupZR(options) {
+  return groupZ({...options, out: "r"});
+}
+
 // Group on {z, fill, stroke}, then on x (optionally).
 export function groupX({x = identity, out = "y", ...options} = {}) {
   const [transform, L, X] = group2(x, null, options);
@@ -25,18 +37,6 @@ export function group({x, y, out = "fill", ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   const [transform, L, X, Y] = group2(x, y, options);
   return {...transform, x: X, y: Y, [out]: L};
-}
-
-export function groupZX(options) {
-  return groupZ({...options, out: "x"});
-}
-
-export function groupZY(options) {
-  return groupZ({...options, out: "y"});
-}
-
-export function groupZR(options) {
-  return groupZ({...options, out: "r"});
 }
 
 export function groupR(options) {
