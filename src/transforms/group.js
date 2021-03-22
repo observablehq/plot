@@ -9,43 +9,20 @@ export function groupZ({out = "fill", ...options} = {}) {
 }
 
 // Group on {z, fill, stroke}, then on x (optionally).
-export function groupX({out = "y", ...options} = {}) {
-  const {x = identity} = options;
-  if (x == null) {
-    const [transform, L] = group2(null, null, options);
-    return {...transform, [out]: L};
-  }
+export function groupX({x = identity, out = "y", ...options} = {}) {
   const [transform, L, X] = group2(x, null, options);
   return {...transform, x: X, [out]: L};
 }
 
 // Group on {z, fill, stroke}, then on y (optionally).
-export function groupY({out = "x", ...options} = {}) {
-  const {y = identity} = options;
-  if (y == null) {
-    const [transform, L] = group2(null, null, options);
-    return {...transform, [out]: L};
-  }
+export function groupY({y = identity, out = "x", ...options} = {}) {
   const [transform, L, Y] = group2(y, null, options);
   return {...transform, y: Y, [out]: L};
 }
 
 // Group on {z, fill, stroke}, then on x and y (optionally).
-export function group({out = "fill", ...options} = {}) {
-  let {x, y} = options;
+export function group({x, y, out = "fill", ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  if (x == null && y == null) {
-    const [transform, L] = group2(null, null, options);
-    return {...transform, [out]: L};
-  }
-  if (x == null) {
-    const [transform, L, X] = group2(x, null, options);
-    return {...transform, x: X, [out]: L};
-  }
-  if (y == null) {
-    const [transform, L, Y] = group2(y, null, options);
-    return {...transform, y: Y, [out]: L};
-  }
   const [transform, L, X, Y] = group2(x, y, options);
   return {...transform, x: X, y: Y, [out]: L};
 }
