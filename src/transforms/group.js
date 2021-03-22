@@ -28,7 +28,7 @@ export function groupX({x = identity, out = "y", ...options} = {}) {
 
 // Group on {z, fill, stroke}, then on y (optionally).
 export function groupY({y = identity, out = "x", ...options} = {}) {
-  const [transform, L, Y] = group2(y, null, options);
+  const [transform, L,, Y] = group2(null, y, options);
   return {...transform, y: Y, [out]: L};
 }
 
