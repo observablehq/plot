@@ -51,6 +51,7 @@ export {default as penguinMassSex} from "./penguin-mass-sex.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
 export {default as penguinMassSpecies} from "./penguin-mass-species.js";
 export {default as penguinSexMassCulmenSpecies} from "./penguin-sex-mass-culmen-species.js";
+export {default as penguinSpeciesGroup} from "./penguin-species-group.js";
 export {default as penguinSpeciesIsland} from "./penguin-species-island.js";
 export {default as policeDeaths} from "./police-deaths.js";
 export {default as policeDeathsBar} from "./police-deaths-bar.js";

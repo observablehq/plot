@@ -230,7 +230,9 @@ export function mid(x1, x2) {
 
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
-  return typeof value === "undefined" || (value && value.toString === objectToString) ? value : {value};
+  return value === undefined || (value &&
+    value.toString === objectToString &&
+    typeof value.transform !== "function") ? value : {value};
 }
 
 function compose(t1, t2) {
