@@ -16,6 +16,7 @@ export class Rect extends Mark {
       title,
       fill,
       stroke,
+      picker = d => d,
       inset = 0,
       insetTop = inset,
       insetRight = inset,
@@ -38,7 +39,8 @@ export class Rect extends Mark {
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true}
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "picker", value: picker, optional: true}
       ],
       options
     );
@@ -53,7 +55,7 @@ export class Rect extends Mark {
   render(
     I,
     {x, y, color},
-    {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, fill: F, stroke: S}
+    {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, fill: F, stroke: S, picker: J}
   ) {
     const {rx, ry} = this;
     const index = filter(I, X1, Y2, X2, Y2, F, S);
@@ -64,6 +66,10 @@ export class Rect extends Mark {
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
+            .call(J ? rect => rect
+              .on("click", (event, i) => super.update(event.currentTarget, J[i]))
+              : () => {}
+            )
             .call(applyDirectStyles, this)
             .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + this.insetLeft)
             .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + this.insetTop)

@@ -4,14 +4,14 @@ import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyC
 
 // Group on y, z, fill, or stroke, if any, then group on x.
 export function groupX({x, y, out = y == null ? "y" : "fill", ...options} = {}) {
-  const [transform, X, l] = group1(x, "y", {y, ...options});
-  return {x: X, ...transform, [out]: l};
+  const [transform, X, l, picker] = group1(x, "y", {y, ...options});
+  return {x: X, ...transform, picker, [out]: l};
 }
 
 // Group on x, z, fill, or stroke, if any, then group on y.
 export function groupY({y, x, out = x == null ? "x" : "fill", ...options} = {}) {
-  const [transform, Y, l] = group1(y, "x", {x, ...options});
-  return {y: Y, ...transform, [out]: l};
+  const [transform, Y, l, picker] = group1(y, "x", {x, ...options});
+  return {y: Y, ...transform, picker, [out]: l};
 }
 
 // Group on z, fill, or stroke, if any.
@@ -20,8 +20,8 @@ export function groupR(options) {
 }
 
 export function group({x, y, out = "fill", ...options} = {}) {
-  const [transform, X, Y, L] = group2(x, y, options);
-  return {x: X, y: Y, ...transform, [out]: L};
+  const [transform, X, Y, L, picker] = group2(x, y, options);
+  return {x: X, y: Y, ...transform, picker, [out]: L};
 }
 
 function group1(x = identity, key, {[key]: k, weight, domain, normalize, z, fill, stroke, ...options} = {}) {
@@ -34,6 +34,7 @@ function group1(x = identity, key, {[key]: k, weight, domain, normalize, z, fill
   const [BZ, setBZ] = maybeLazyChannel(z);
   const [BF = fill, setBF] = maybeLazyChannel(vfill);
   const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
+  const [J, setJ] = lazyChannel();
   const defined = maybeDomain(domain);
   return [
     {
@@ -79,11 +80,13 @@ function group1(x = identity, key, {[key]: k, weight, domain, normalize, z, fill
           }
           groupFacets.push(groupFacet);
         }
+        setJ(groupData);
         return {data: groupData, facets: groupFacets};
       })
     },
     X,
-    L
+    L,
+    J
   ];
 }
 
@@ -100,6 +103,7 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
   const [vstroke] = maybeColor(stroke);
   const [F = fill, setF] = maybeLazyChannel(vfill);
   const [S = stroke, setS] = maybeLazyChannel(vstroke);
+  const [J, setJ] = lazyChannel();
   const xdefined = maybeDomain(xdomain);
   const ydefined = maybeDomain(ydomain);
   return [
@@ -148,12 +152,14 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
           }
           groupFacets.push(groupFacet);
         }
+        setJ(groupData);
         return {data: groupData, facets: groupFacets};
       })
     },
     X,
     Y,
-    L
+    L,
+    J
   ];
 }
 

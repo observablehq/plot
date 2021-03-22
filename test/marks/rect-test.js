@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
 tape("rect(data, options) has the expected defaults", test => {
-  const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3"});
+  const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", picker: null});
   test.strictEqual(rect.data, undefined);
   test.strictEqual(rect.transform, undefined);
   test.deepEqual(rect.channels.map(c => c.name), ["x1", "y1", "x2", "y2"]);

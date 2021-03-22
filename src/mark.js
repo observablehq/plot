@@ -45,6 +45,12 @@ export class Mark {
       })
     };
   }
+  update(g, values) {
+    const svg = g.ownerSVGElement;
+    console.log(values);
+    svg.value = values;
+    svg.dispatchEvent(new CustomEvent('input'));
+  }
 }
 
 // TODO Type coercion?

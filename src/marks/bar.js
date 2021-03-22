@@ -47,7 +47,7 @@ export class AbstractBar extends Mark {
   render(I, scales, channels, dimensions) {
     const {rx, ry} = this;
     const {color} = scales;
-    const {z: Z, title: L, fill: F, stroke: S} = channels;
+    const {z: Z, title: L, fill: F, stroke: S, picker: J} = channels;
     const index = filter(I, ...this._positions(channels), F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
@@ -56,6 +56,10 @@ export class AbstractBar extends Mark {
         .call(g => g.selectAll()
           .data(index)
           .join("rect")
+            .call(J ? rect => rect
+              .on("click", (event, i) => super.update(event.currentTarget, J[i]))
+              : () => {}
+            )
             .call(applyDirectStyles, this)
             .attr("x", this._x(scales, channels, dimensions))
             .attr("width", this._width(scales, channels, dimensions))
@@ -89,13 +93,14 @@ export class AbstractBar extends Mark {
 }
 
 export class BarX extends AbstractBar {
-  constructor(data, {x1, x2, y, ...options} = {}) {
+  constructor(data, {x1, x2, y, picker = d => d, ...options} = {}) {
     super(
       data,
       [
         {name: "x1", value: x1, scale: "x"},
         {name: "x2", value: x2, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band", optional: true}
+        {name: "y", value: y, scale: "y", type: "band", optional: true},
+        {name: "picker", value: picker, optional: true}
       ],
       options
     );
@@ -117,13 +122,14 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, {x, y1, y2, ...options} = {}) {
+  constructor(data, {x, y1, y2, picker = d => d, ...options} = {}) {
     super(
       data,
       [
         {name: "y1", value: y1, scale: "y"},
         {name: "y2", value: y2, scale: "y"},
-        {name: "x", value: x, scale: "x", type: "band", optional: true}
+        {name: "x", value: x, scale: "x", type: "band", optional: true},
+        {name: "picker", value: picker, optional: true}
       ],
       options
     );

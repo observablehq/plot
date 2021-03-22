@@ -5,9 +5,9 @@ tape("barX() has the expected defaults", test => {
   const bar = Plot.barX();
   test.strictEqual(bar.data, undefined);
   test.strictEqual(bar.transform, undefined);
-  test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2"]);
-  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  test.deepEqual(bar.channels.map(c => c.scale), ["x", "x"]);
+  test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2", "picker"]);
+  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3], [1, 2, 3]]);
+  test.deepEqual(bar.channels.map(c => c.scale), ["x", "x", undefined]);
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
   test.strictEqual(bar.stroke, undefined);
@@ -26,8 +26,8 @@ tape("barX() has the expected defaults", test => {
 
 tape("barX(data, {y}) uses a band scale", test => {
   const bar = Plot.barX(undefined, {y: "x"});
-  test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2", "y"]);
-  test.deepEqual(bar.channels.map(c => c.scale), ["x", "x", "y"]);
+  test.deepEqual(bar.channels.map(c => c.name), ["x1", "x2", "y", "picker"]);
+  test.deepEqual(bar.channels.map(c => c.scale), ["x", "x", "y", undefined]);
   test.strictEqual(bar.channels.find(c => c.name === "y").type, "band");
   test.strictEqual(bar.channels.find(c => c.name === "y").value.label, "x");
 });
@@ -99,9 +99,9 @@ tape("barY() has the expected defaults", test => {
   const bar = Plot.barY();
   test.strictEqual(bar.data, undefined);
   test.strictEqual(bar.transform, undefined);
-  test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2"]);
-  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  test.deepEqual(bar.channels.map(c => c.scale), ["y", "y"]);
+  test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2", "picker"]);
+  test.deepEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3], [1, 2, 3]]);
+  test.deepEqual(bar.channels.map(c => c.scale), ["y", "y", undefined]);
   test.strictEqual(bar.fill, undefined);
   test.strictEqual(bar.fillOpacity, undefined);
   test.strictEqual(bar.stroke, undefined);
@@ -119,7 +119,7 @@ tape("barY() has the expected defaults", test => {
 });
 
 tape("barY(data, {x}) uses a band scale", test => {
-  const bar = Plot.barY(undefined, {x: "y"});
+  const bar = Plot.barY(undefined, {x: "y", picker: null});
   test.deepEqual(bar.channels.map(c => c.name), ["y1", "y2", "x"]);
   test.deepEqual(bar.channels.map(c => c.scale), ["y", "y", "x"]);
   test.strictEqual(bar.channels.find(c => c.name === "x").type, "band");

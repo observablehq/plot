@@ -6,27 +6,27 @@ import {offset} from "../style.js";
 // Group on y, z, fill, or stroke, if any, then bin on x.
 export function binX({x, y, out = y == null ? "y" : "fill", inset, insetLeft, insetRight, ...options} = {}) {
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  const [transform, x1, x2, l] = bin1(x, "y", {y, ...options});
-  return {x1, x2, ...transform, inset, insetLeft, insetRight, [out]: l};
+  const [transform, x1, x2, l, picker] = bin1(x, "y", {y, ...options});
+  return {x1, x2, ...transform, picker, inset, insetLeft, insetRight, [out]: l};
 }
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
 export function binXMid({x, out = "r", ...options} = {}) {
-  const [transform, x1, x2, l] = bin1(x, "y", options);
-  return {x: mid(x1, x2), ...transform, [out]: l};
+  const [transform, x1, x2, l, picker] = bin1(x, "y", options);
+  return {x: mid(x1, x2), ...transform, picker, [out]: l};
 }
 
 // Group on x, z, fill, or stroke, if any, then bin on y.
 export function binY({y, x, out = x == null ? "x" : "fill", inset, insetTop, insetBottom, ...options} = {}) {
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
-  const [transform, y1, y2, l] = bin1(y, "x", {x, ...options});
-  return {y1, y2, ...transform, inset, insetTop, insetBottom, [out]: l};
+  const [transform, y1, y2, l, picker] = bin1(y, "x", {x, ...options});
+  return {y1, y2, ...transform, picker, inset, insetTop, insetBottom, [out]: l};
 }
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
 export function binYMid({y, out = "r", ...options} = {}) {
-  const [transform, y1, y2, l] = bin1(y, "x", options);
-  return {y: mid(y1, y2), ...transform, [out]: l};
+  const [transform, y1, y2, l, picker] = bin1(y, "x", options);
+  return {y: mid(y1, y2), ...transform, picker, [out]: l};
 }
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
@@ -39,8 +39,8 @@ export function binR({x, y, ...options} = {}) {
 export function bin({x, y, out = "fill", inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
-  return {x1, x2, y1, y2, ...transform, inset, insetTop, insetRight, insetBottom, insetLeft, [out]: l};
+  const [transform, x1, x2, y1, y2, l, picker] = bin2(x, y, options);
+  return {x1, x2, y1, y2, ...transform, picker, inset, insetTop, insetRight, insetBottom, insetLeft, [out]: l};
 }
 
 function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, normalize, cumulative, ...options} = {}) {
@@ -55,6 +55,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, no
   const [BZ, setBZ] = maybeLazyChannel(z);
   const [BF = fill, setBF] = maybeLazyChannel(vfill);
   const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
+  const [J, setJ] = lazyChannel();
   return [
     {
       ...key && {[key]: BK},
@@ -107,12 +108,14 @@ function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, no
           }
           binFacets.push(binFacet);
         }
+        setJ(binData);
         return {data: binData, facets: binFacets};
       })
     },
     X1,
     X2,
-    L
+    L,
+    J
   ];
 }
 
@@ -135,6 +138,7 @@ function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...
   const [BZ, setBZ] = maybeLazyChannel(z);
   const [BF = fill, setBF] = maybeLazyChannel(vfill);
   const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
+  const [J, setJ] = lazyChannel();
   return [
     {
       z: BZ,
@@ -184,6 +188,7 @@ function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...
           }
           binFacets.push(binFacet);
         }
+        setJ(binData);
         return {data: binData, facets: binFacets};
       })
     },
@@ -191,7 +196,8 @@ function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...
     X2,
     Y1,
     Y2,
-    L
+    L,
+    J
   ];
 }
 
