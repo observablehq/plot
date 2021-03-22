@@ -113,10 +113,14 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
 }
 
 function maybeDomain(domain) {
-  if (domain === undefined) return defined;
+  if (domain === undefined) return defined1;
   if (domain === null) return () => false;
   domain = new InternSet(domain);
   return ([key]) => domain.has(key);
+}
+
+function defined1([key]) {
+  return defined(key);
 }
 
 function maybeNormalize(normalize) {
