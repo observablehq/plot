@@ -13,7 +13,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.rectY({length: 10000}, Plot.binX({x: () => random() - random(), normalize: true})),
+      Plot.rectY({length: 10000}, Plot.binY({x: () => random() - random(), normalize: true})),
       Plot.ruleY([0])
     ]
   });

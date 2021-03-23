@@ -9,12 +9,24 @@ export default async function() {
     x: {
       grid: true
     },
+    y: {
+      label: "sport"
+    },
     color: {
       scheme: "YlGnBu",
       zero: true
     },
     marks: [
-      Plot.barX(athletes, Plot.binX({x: "weight", y: "sport", thresholds: 60, normalize: "z", out: "fill"}))
+      Plot.barX(athletes, {
+        ...Plot.binY({
+          x: "weight",
+          z: "sport",
+          thresholds: 60,
+          normalize: "z",
+          out: "fill"
+        }),
+        y: ([d]) => d["sport"]
+      })
     ]
   });
 }

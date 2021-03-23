@@ -12,7 +12,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.rectY(data, Plot.binX({x: d => Math.log10(d.Volume), normalize: true})),
+      Plot.rectY(data, Plot.binY({x: d => Math.log10(d.Volume), normalize: true})),
       Plot.ruleY([0])
     ]
   });
