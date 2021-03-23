@@ -101,7 +101,7 @@ export class BarX extends AbstractBar {
     );
   }
   _transform(selection, {x}) {
-    selection.call(applyTransform, x, false);
+    selection.call(applyTransform, x, null);
   }
   _positions({x1: X1, x2: X2, y: Y}) {
     return [X1, X2, Y];
@@ -129,7 +129,7 @@ export class BarY extends AbstractBar {
     );
   }
   _transform(selection, {y}) {
-    selection.call(applyTransform, false, y);
+    selection.call(applyTransform, null, y);
   }
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];

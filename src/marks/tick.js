@@ -62,7 +62,7 @@ export class TickX extends AbstractTick {
     );
   }
   _transform(selection, {x}) {
-    selection.call(applyTransform, x, false, 0.5, 0);
+    selection.call(applyTransform, x, null, 0.5, 0);
   }
   _x1({x}, {x: X}) {
     return i => Math.round(x(X[i]));
@@ -90,7 +90,7 @@ export class TickY extends AbstractTick {
     );
   }
   _transform(selection, {y}) {
-    selection.call(applyTransform, false, y, 0, 0.5);
+    selection.call(applyTransform, null, y, 0, 0.5);
   }
   _x1({x}, {x: X}, {marginLeft}) {
     return X ? i => x(X[i]) : marginLeft;
