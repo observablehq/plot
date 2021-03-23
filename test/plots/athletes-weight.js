@@ -18,12 +18,12 @@ export default async function() {
     },
     marks: [
       Plot.barX(athletes, {
-        ...Plot.binY({
+        ...Plot.bin({
           x: "weight",
+          y: null,
           z: "sport",
           thresholds: 60,
-          normalize: "z",
-          out: "fill"
+          normalize: "z"
         }),
         y: ([d]) => d["sport"]
       })

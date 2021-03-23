@@ -38,6 +38,8 @@ export function binR({x, y, ...options} = {}) {
 
 // Group on z, fill, or stroke, if any, then bin on x and y.
 export function bin({x, y, out = "fill", inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+  if (!x) return binX({y, out, inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
+  if (!y) return binY({x, out, inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
