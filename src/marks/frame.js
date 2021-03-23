@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {Mark, number} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 export class Frame extends Mark {
   constructor({
@@ -26,11 +26,10 @@ export class Frame extends Mark {
     channels,
     {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
-    const {stroke} = this;
     return create("svg:rect")
         .call(applyIndirectStyles, this)
         .call(applyDirectStyles, this)
-        .attr("transform", stroke === undefined ? null : `translate(0.5,0.5)`)
+        .call(applyTransform, null, null, 0.5, 0.5)
         .attr("x", marginLeft + this.insetLeft)
         .attr("y", marginTop + this.insetTop)
         .attr("width", width - marginLeft - marginRight - this.insetLeft - this.insetRight)
