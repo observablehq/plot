@@ -45,11 +45,11 @@
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">species</text>
   </g>
   <g>
-    <rect x="59" width="168" y="247.63157894736844" height="118.36842105263156" fill="#e15759"></rect>
-    <rect x="59" width="168" y="147.47368421052633" height="100.15789473684211" fill="#4e79a7"></rect>
+    <rect x="59" width="168" y="265.84210526315786" height="100.15789473684214" fill="#4e79a7"></rect>
     <rect x="433" width="168" y="83.73684210526316" height="282.2631578947368" fill="#4e79a7"></rect>
-    <rect x="59" width="168" y="20" height="127.47368421052633" fill="#f28e2c"></rect>
+    <rect x="59" width="168" y="138.36842105263156" height="127.4736842105263" fill="#f28e2c"></rect>
     <rect x="246" width="168" y="211.21052631578945" height="154.78947368421055" fill="#f28e2c"></rect>
+    <rect x="59" width="168" y="20" height="118.36842105263156" fill="#e15759"></rect>
   </g>
   <g stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="366" y2="366"></line>

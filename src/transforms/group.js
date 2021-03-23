@@ -85,10 +85,10 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
         for (const facet of facets) {
           const groupFacet = [];
           if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length;
-          for (const I of G ? grouper(facet, i => G[i]).values() : [facet]) {
+          for (const [, I] of groups(facet, G, defined1)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
-            for (const [y, fy] of Y ? sort(grouper(I, i => Y[i]), first).filter(ydefined) : [[, I]]) {
-              for (const [x, f] of X ? sort(grouper(fy, i => X[i]), first).filter(xdefined) : [[, fy]]) {
+            for (const [y, fy] of groups(I, Y, ydefined)) {
+              for (const [x, f] of groups(fy, X, xdefined)) {
                 const l = W ? sum(f, i => W[i]) : f.length;
                 groupFacet.push(i++);
                 groupData.push(take(data, f));
@@ -119,10 +119,6 @@ function maybeDomain(domain) {
   return ([key]) => domain.has(key);
 }
 
-function defined1([key]) {
-  return defined(key);
-}
-
 function maybeNormalize(normalize) {
   if (!normalize) return;
   if (normalize === true) return 100;
@@ -131,4 +127,12 @@ function maybeNormalize(normalize) {
     case "facet": case "z": return 100;
   }
   throw new Error("invalid normalize");
+}
+
+function defined1([key]) {
+  return defined(key);
+}
+
+export function groups(I, X, defined = defined1) {
+  return X ? sort(grouper(I, i => X[i]), first).filter(defined) : [[, I]];
 }
