@@ -2,32 +2,14 @@ import {group as grouper, sort, sum, InternSet} from "d3";
 import {defined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof} from "../mark.js";
 
-// Group on {z, fill, stroke}.
-export function groupZ({out = "fill", ...options} = {}) {
-  const [transform, L] = group2(null, null, options);
-  return {...transform, [out]: L};
-}
-
-export function groupZX(options) {
-  return groupZ({...options, out: "x"});
-}
-
-export function groupZY(options) {
-  return groupZ({...options, out: "y"});
-}
-
-export function groupZR(options) {
-  return groupZ({...options, out: "r"});
-}
-
 // Group on {z, fill, stroke}, then on x (optionally).
-export function groupX({x = identity, out = "y", ...options} = {}) {
+export function groupY({x = identity, out = "y", ...options} = {}) {
   const [transform, L, X] = group2(x, null, options);
   return {...transform, x: X, [out]: L};
 }
 
 // Group on {z, fill, stroke}, then on y (optionally).
-export function groupY({y = identity, out = "x", ...options} = {}) {
+export function groupX({y = identity, out = "x", ...options} = {}) {
   const [transform, L,, Y] = group2(null, y, options);
   return {...transform, y: Y, [out]: L};
 }
