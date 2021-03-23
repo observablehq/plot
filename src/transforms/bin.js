@@ -5,27 +5,27 @@ import {offset} from "../style.js";
 import {groups} from "./group.js";
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
-export function binX({x, y, out = y == null ? "y" : "fill", inset, insetLeft, insetRight, ...options} = {}) {
+export function binY({x, y, out = y == null ? "y" : "fill", inset, insetLeft, insetRight, ...options} = {}) {
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   const [transform, x1, x2, l] = bin1(x, "y", {y, ...options});
   return {x1, x2, ...transform, inset, insetLeft, insetRight, [out]: l};
 }
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
-export function binXMid({x, out = "r", ...options} = {}) {
+export function binYMid({x, out = "r", ...options} = {}) {
   const [transform, x1, x2, l] = bin1(x, "y", options);
   return {x: mid(x1, x2), ...transform, [out]: l};
 }
 
 // Group on x, z, fill, or stroke, if any, then bin on y.
-export function binY({y, x, out = x == null ? "x" : "fill", inset, insetTop, insetBottom, ...options} = {}) {
+export function binX({y, x, out = x == null ? "x" : "fill", inset, insetTop, insetBottom, ...options} = {}) {
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   const [transform, y1, y2, l] = bin1(y, "x", {x, ...options});
   return {y1, y2, ...transform, inset, insetTop, insetBottom, [out]: l};
 }
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
-export function binYMid({y, out = "r", ...options} = {}) {
+export function binXMid({y, out = "r", ...options} = {}) {
   const [transform, y1, y2, l] = bin1(y, "x", options);
   return {y: mid(y1, y2), ...transform, [out]: l};
 }
