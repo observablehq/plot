@@ -87,8 +87,8 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
           if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length;
           for (const [, I] of groups(facet, G, defined1)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
-            for (const [y, fy] of groups(I, Y, ydefined)) {
-              for (const [x, f] of groups(fy, X, xdefined)) {
+            for (const [y, fy] of groups(I, Y, ydefined, ydomain)) {
+              for (const [x, f] of groups(fy, X, xdefined, xdomain)) {
                 const l = W ? sum(f, i => W[i]) : f.length;
                 groupFacet.push(i++);
                 groupData.push(take(data, f));
@@ -133,6 +133,9 @@ function defined1([key]) {
   return defined(key);
 }
 
-export function groups(I, X, defined = defined1) {
-  return X ? sort(grouper(I, i => X[i]), first).filter(defined) : [[, I]];
+export function groups(I, X, defined = defined1, domain) {
+  if (!X) return [[, I]];
+  const G = grouper(I, i => X[i]);
+  return domain ? domain.map(x => [x, G.has(x) ? G.get(x) : []])
+                : sort(G, first).filter(defined);
 }
