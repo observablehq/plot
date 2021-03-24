@@ -1,5 +1,5 @@
 import {group as grouper, sort, sum, InternSet} from "d3";
-import {defined, firstof} from "../defined.js";
+import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof} from "../mark.js";
 
 // Group on {z, fill, stroke}.
@@ -85,7 +85,7 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
         for (const facet of facets) {
           const groupFacet = [];
           if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length;
-          for (const [, I] of groups(facet, G, defined1)) {
+          for (const [, I] of groups(facet, G)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             for (const [y, fy] of groups(I, Y, ydefined)) {
               for (const [x, f] of groups(fy, X, xdefined)) {
@@ -113,7 +113,7 @@ function group2(xv, yv, {z, fill, stroke, weight, domain, normalize, ...options}
 }
 
 function maybeDomain(domain) {
-  if (domain === undefined) return defined1;
+  if (domain === undefined) return () => true;
   if (domain === null) return () => false;
   domain = new InternSet(domain);
   return ([key]) => domain.has(key);
@@ -129,10 +129,8 @@ function maybeNormalize(normalize) {
   throw new Error("invalid normalize");
 }
 
-function defined1([key]) {
-  return defined(key);
-}
-
-export function groups(I, X, defined = defined1) {
-  return X ? sort(grouper(I, i => X[i]), first).filter(defined) : [[, I]];
+export function groups(I, X, defined) {
+  if (!X) return [[, I]];
+  const G = grouper(I, i => X[i]);
+  return sort(defined ? Array.from(G).filter(defined) : G, first);
 }

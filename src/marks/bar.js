@@ -48,7 +48,11 @@ export class AbstractBar extends Mark {
     const {rx, ry} = this;
     const {color} = scales;
     const {z: Z, title: L, fill: F, stroke: S} = channels;
-    const index = filter(I, ...this._positions(channels), F, S);
+    const [X, vx] = maybeCoords(this._x(scales, channels, dimensions), I);
+    const [Y, vy] = maybeCoords(this._y(scales, channels, dimensions), I);
+    const [W, vw] = maybeCoords(this._width(scales, channels, dimensions), I);
+    const [H, vh] = maybeCoords(this._height(scales, channels, dimensions), I);
+    const index = filter(I, X, Y, W, H, F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -57,10 +61,10 @@ export class AbstractBar extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", this._x(scales, channels, dimensions))
-            .attr("width", this._width(scales, channels, dimensions))
-            .attr("y", this._y(scales, channels, dimensions))
-            .attr("height", this._height(scales, channels, dimensions))
+            .attr("x", X ? i => X[i] : vx)
+            .attr("width", W ? i => W[i] : vw)
+            .attr("y", Y ? i => Y[i] : vy)
+            .attr("height", H ? i => H[i] : vh)
             .attr("fill", F && (i => color(F[i])))
             .attr("stroke", S && (i => color(S[i])))
             .call(rx != null ? rect => rect.attr("rx", rx) : () => {})
@@ -88,6 +92,17 @@ export class AbstractBar extends Mark {
   }
 }
 
+function maybeCoords(x, I) {
+  if (typeof x === "function") {
+    const X = [];
+    for (const i of I) {
+      X[i] = x(i);
+    }
+    return [X, undefined];
+  }
+  return [undefined, x];
+}
+
 export class BarX extends AbstractBar {
   constructor(data, {x1, x2, y, ...options} = {}) {
     super(
@@ -102,9 +117,6 @@ export class BarX extends AbstractBar {
   }
   _transform(selection, {x}) {
     selection.call(applyTransform, x, null);
-  }
-  _positions({x1: X1, x2: X2, y: Y}) {
-    return [X1, X2, Y];
   }
   _x({x}, {x1: X1, x2: X2}) {
     const {insetLeft} = this;
@@ -130,9 +142,6 @@ export class BarY extends AbstractBar {
   }
   _transform(selection, {y}) {
     selection.call(applyTransform, null, y);
-  }
-  _positions({y1: Y1, y2: Y2, x: X}) {
-    return [Y1, Y2, X];
   }
   _y({y}, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
