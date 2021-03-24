@@ -129,10 +129,10 @@ function maybeNormalize(normalize) {
   throw new Error("invalid normalize");
 }
 
-export function groups(I, X, defined, domain) {
+export function groups(I, X, filter, domain) {
   if (!X) return [[, I]];
   const G = grouper(I, i => X[i]);
   return domain
     ? domain.map(x => [x, G.has(x) ? G.get(x) : []])
-    : sort(defined ? Array.from(G).filter(defined) : G, first);
+    : sort(filter ? Array.from(G).filter(filter) : G, first);
 }
