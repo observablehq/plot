@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
-tape("baked-in reducer reduce as expected", test => {
+tape("baked-in reducers reduce as expected", test => {
   const data = [0, 1, 2, 4, 5, 9];
   testReducer(test, data, "deviation", Math.sqrt(10.7));
   testReducer(test, data, "max", 9);
