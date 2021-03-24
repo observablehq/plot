@@ -95,7 +95,7 @@ export function plot(options = {}) {
 }
 
 function Dimensions(
-  {y, fy},
+  {y, fy, fx},
   {
     x: {axis: xAxis} = {},
     y: {axis: yAxis} = {},
@@ -104,7 +104,7 @@ function Dimensions(
   },
   {
     width = 640,
-    height = y || fy ? 396 : 60,
+    height = y || fy ? 396 : fx ? 90 : 60,
     facet: {
       marginTop: facetMarginTop = fxAxis === "top" ? 30 :0,
       marginRight: facetMarginRight = fyAxis === "right" ? 40 : 0,
