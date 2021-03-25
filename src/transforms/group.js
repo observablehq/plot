@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof} from "../mark.js";
+import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -30,8 +30,9 @@ function groupn(
   x, // optionally group on x
   y, // optionally group on y
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
-  inputs = {} // input channels and options
+  {normalize, ...inputs} = {} // input channels and options
 ) {
+  normalize = maybeNormalize(normalize);
 
   // Prepare the output channels: detect the corresponding inputs and reducers.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
@@ -39,7 +40,7 @@ function groupn(
     const value = reducer.value === null ? identity : maybeInput(name, inputs);
     if (value == null) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
-    let V, O;
+    let V, O, b = 1;
     return {
       name,
       output,
@@ -47,8 +48,11 @@ function groupn(
         V = valueof(data, value);
         O = setOutput([]);
       },
-      reduce(group, context, facet) {
-        O.push(reducer.reduce(group, V, context, facet));
+      basis(group) {
+        b = reducer.reduce(group, V);
+      },
+      reduce(group) {
+        O.push(reducer.reduce(group, V) / b);
       }
     };
   });
@@ -91,30 +95,24 @@ function groupn(
       const BZ = Z && setBZ([]);
       const BF = F && setBF([]);
       const BS = S && setBS([]);
-      // let n = W ? sum(W) : data.length; // TODO
       let i = 0;
-      for (const output of outputs) {
-        output.initialize(data);
-      }
+      for (const o of outputs) o.initialize(data);
+      if (normalize === true) for (const o of outputs) o.basis(range(data));
       for (const facet of facets) {
         const groupFacet = [];
-        // if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length; // TODO
+        if (normalize === "facet") for (const o of outputs) o.basis(facet);
         for (const [, I] of maybeGroup(facet, G)) {
-          // if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length; // TODO
+          if (normalize === "z") for (const o of outputs) o.basis(I);
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
-              // const l = W ? sum(f, i => W[i]) : f.length; // TODO
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
-              // BL.push(m ? l * m / n : l);
               if (X) BX.push(x);
               if (Y) BY.push(y);
               if (Z) BZ.push(Z[g[0]]);
               if (F) BF.push(F[g[0]]);
               if (S) BS.push(S[g[0]]);
-              for (const output of outputs) {
-                output.reduce(g, I, facet);
-              }
+              for (const o of outputs) o.reduce(g);
             }
           }
         }
@@ -129,6 +127,15 @@ export function maybeGroup(I, X) {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 
+function maybeNormalize(normalize) {
+  if (!normalize) return;
+  if (normalize === true) return;
+  switch ((normalize + "").toLowerCase()) {
+    case "z": case "facet": return normalize;
+  }
+  throw new Error("invalid normalize");
+}
+
 function maybeReduce(reduce) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
@@ -136,10 +143,6 @@ function maybeReduce(reduce) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
     case "count": return reduceCount;
-    case "percent": return reducePercent;
-    case "percent-facet": return reducePercentFacet; // TODO cleaner
-    case "percent-z": return reducePercentZ; // TODO cleaner
-    case "proportion": return reduceProportion;
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);
@@ -190,37 +193,5 @@ const reduceCount = {
   label: "Frequency",
   reduce(I) {
     return I.length;
-  }
-};
-
-const reduceProportion = {
-  value: null,
-  label: "Frequency",
-  reduce(I, X) {
-    return I.length / X.length;
-  }
-};
-
-const reducePercent = {
-  value: null,
-  label: "Frequency (%)",
-  reduce(I, X) {
-    return 100 * I.length / X.length;
-  }
-};
-
-const reducePercentFacet = {
-  value: null,
-  label: "Frequency (%)",
-  reduce(I, X, context, facet) {
-    return 100 * I.length / facet.length;
-  }
-};
-
-const reducePercentZ = {
-  value: null,
-  label: "Frequency (%)",
-  reduce(I, X, context) {
-    return 100 * I.length / context.length;
   }
 };
