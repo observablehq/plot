@@ -47,7 +47,7 @@ function groupn(
   if (outputs.stroke === undefined && maybeColor(options.stroke)[0]) outputs = {...outputs, stroke: reduceFirst};
 
   // Reconstitute the outputs.
-  outputs = Object.entries(outputs).filter(([, reduce]) => reduce != null).map(([name, reduce]) => {
+  outputs = Object.entries(outputs).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
     const value = maybeInput(name, options);
     if (value == null && reducer.reduce.length > 1) throw new Error(`missing channel: ${name}`);
