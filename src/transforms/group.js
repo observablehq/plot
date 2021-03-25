@@ -50,7 +50,7 @@ function groupn(
   outputs = Object.entries(outputs).filter(([, reduce]) => reduce != null).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
     const value = maybeInput(name, options);
-    if (value == null && reducer !== reduceCount) throw new Error(`missing channel: ${name}`);
+    if (value == null && reducer.reduce.length > 1) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(value);
     let V, O;
     return {
