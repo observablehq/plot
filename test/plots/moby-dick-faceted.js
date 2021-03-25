@@ -17,7 +17,7 @@ export default async function() {
       y: cases
     },
     marks: [
-      Plot.barY(letters, Plot.groupX({x: uppers})),
+      Plot.barY(letters, Plot.groupX({y: "count"}, {x: uppers})),
       Plot.ruleY([0])
     ]
   });

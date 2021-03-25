@@ -11,7 +11,7 @@ export default async function() {
     },
     marks: [
       Plot.cell(seattle, {
-        ...Plot.group({
+        ...Plot.group({fill: "count"}, {
           x: d => d.date.getUTCDate(),
           y: d => d.date.getUTCMonth()
         }),
