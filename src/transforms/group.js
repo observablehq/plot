@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take} from "../mark.js";
 
 // Group on {z, fill, stroke}.
