@@ -29,23 +29,15 @@ export function group(outputs, options = {}) {
 function groupn(
   x, // optionally group on x
   y, // optionally group on y
-  {
-    data: reduceData = reduceIdentity,
-    ...outputs
-  } = {}, // channels to aggregate
-  {
-    domain,
-    // normalize, TODO
-    ...inputs
-  } = {}
+  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {domain, ...inputs} = {} // input channels and options
 ) {
-  const {z, fill, stroke, ...options} = inputs;
 
-  // Reconstitute the outputs.
+  // Prepare the output channels: detect the corresponding inputs and reducers.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
-    const value = maybeInput(name, inputs);
-    if (value == null && reducer.reduce.length > 1) throw new Error(`missing channel: ${name}`);
+    const value = reducer === reduceCount || reducer === reduceProportion ? identity : maybeInput(name, inputs); // TODO
+    if (value == null) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(value);
     let V, O;
     return {
@@ -61,15 +53,22 @@ function groupn(
     };
   });
 
-  // const m = maybeNormalize(normalize); // TODO
-  // const [BL, setBL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
+  // The x and y channels are used for grouping. Note that the passed-through
+  // options may also include x and y channels which are ignored, so we only
+  // want to generate these as output channels if they were used for grouping.
   const [BX, setBX] = maybeLazyChannel(x);
   const [BY, setBY] = maybeLazyChannel(y);
+
+  // The z, fill, and stroke channels (if channels and not constants) are
+  // greedily materialized by the transform so that we can reference them for
+  // subdividing groups without having to compute them more than once.
+  const {z, fill, stroke, ...options} = inputs;
   const [BZ, setBZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
   const [BF = fill, setBF] = maybeLazyChannel(vfill);
   const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
+
   return {
     z: BZ,
     fill: BF,
@@ -85,10 +84,8 @@ function groupn(
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
       const G = firstof(Z, F, S);
-      // const W = valueof(data, weight); // TODO
       const groupFacets = [];
       const groupData = [];
-      // const BL = setBL([]);
       const BX = X && setBX([]);
       const BY = Y && setBY([]);
       const BZ = Z && setBZ([]);
@@ -148,7 +145,8 @@ function maybeReduce(reduce) {
   switch ((reduce + "").toLowerCase()) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
-    case "count": return reduceCount; // TODO normalized proportion
+    case "count": return reduceCount;
+    case "proportion": return reduceProportion;
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);
@@ -197,5 +195,11 @@ const reduceLast = {
 const reduceCount = {
   reduce(I) {
     return I.length;
+  }
+};
+
+const reduceProportion = {
+  reduce(I, X) {
+    return I.length / X.length;
   }
 };
