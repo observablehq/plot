@@ -47,8 +47,8 @@ function groupn(
         V = valueof(data, value);
         O = setOutput([]);
       },
-      reduce(I) {
-        O.push(reducer.reduce(I, V));
+      reduce(group, context, facet) {
+        O.push(reducer.reduce(group, V, context, facet));
       }
     };
   });
@@ -101,19 +101,19 @@ function groupn(
         // if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length; // TODO
         for (const [, I] of maybeGroup(facet, G)) {
           // if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length; // TODO
-          for (const [y, fy] of maybeGroup(I, Y)) {
-            for (const [x, f] of maybeGroup(fy, X)) {
+          for (const [y, gg] of maybeGroup(I, Y)) {
+            for (const [x, g] of maybeGroup(gg, X)) {
               // const l = W ? sum(f, i => W[i]) : f.length; // TODO
               groupFacet.push(i++);
-              groupData.push(reduceData.reduce(f, data));
+              groupData.push(reduceData.reduce(g, data));
               // BL.push(m ? l * m / n : l);
               if (X) BX.push(x);
               if (Y) BY.push(y);
-              if (Z) BZ.push(Z[f[0]]);
-              if (F) BF.push(F[f[0]]);
-              if (S) BS.push(S[f[0]]);
+              if (Z) BZ.push(Z[g[0]]);
+              if (F) BF.push(F[g[0]]);
+              if (S) BS.push(S[g[0]]);
               for (const output of outputs) {
-                output.reduce(f);
+                output.reduce(g, I, facet);
               }
             }
           }
@@ -137,6 +137,8 @@ function maybeReduce(reduce) {
     case "last": return reduceLast;
     case "count": return reduceCount;
     case "percent": return reducePercent;
+    case "percent-facet": return reducePercentFacet; // TODO cleaner
+    case "percent-z": return reducePercentZ; // TODO cleaner
     case "proportion": return reduceProportion;
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
@@ -204,5 +206,21 @@ const reducePercent = {
   label: "Frequency (%)",
   reduce(I, X) {
     return 100 * I.length / X.length;
+  }
+};
+
+const reducePercentFacet = {
+  value: null,
+  label: "Frequency (%)",
+  reduce(I, X, context, facet) {
+    return 100 * I.length / facet.length;
+  }
+};
+
+const reducePercentZ = {
+  value: null,
+  label: "Frequency (%)",
+  reduce(I, X, context) {
+    return 100 * I.length / context.length;
   }
 };
