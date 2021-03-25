@@ -17,12 +17,10 @@ export default async function() {
       labelAnchor: "right"
     },
     y: {
-      grid: true,
-      transform: d => d * 100,
-      label: "↑ Frequency (%)"
+      grid: true
     },
     marks: [
-      Plot.barY(words, Plot.groupX({y: "proportion"}, {x: d => d.length}))
+      Plot.barY(words, Plot.groupX({y: "percent"}, {x: d => d.length}))
     ]
   });
 }

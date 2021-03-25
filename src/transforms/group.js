@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take} from "../mark.js";
+import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof} from "../mark.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -36,9 +36,9 @@ function groupn(
   // Prepare the output channels: detect the corresponding inputs and reducers.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
-    const value = reducer === reduceCount || reducer === reduceProportion ? identity : maybeInput(name, inputs); // TODO
+    const value = reducer.value == null ? identity : maybeInput(name, inputs);
     if (value == null) throw new Error(`missing channel: ${name}`);
-    const [output, setOutput] = lazyChannel(value);
+    const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
     let V, O;
     return {
       name,
@@ -146,6 +146,7 @@ function maybeReduce(reduce) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
     case "count": return reduceCount;
+    case "percent": return reducePercent;
     case "proportion": return reduceProportion;
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
@@ -193,13 +194,25 @@ const reduceLast = {
 };
 
 const reduceCount = {
+  value: null,
+  label: "Frequency",
   reduce(I) {
     return I.length;
   }
 };
 
 const reduceProportion = {
+  value: null,
+  label: "Frequency",
   reduce(I, X) {
     return I.length / X.length;
+  }
+};
+
+const reducePercent = {
+  value: null,
+  label: "Frequency (%)",
+  reduce(I, X) {
+    return 100 * I.length / X.length;
   }
 };
