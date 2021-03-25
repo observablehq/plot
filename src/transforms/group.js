@@ -112,12 +112,12 @@ function groupn(
               // BL.push(m ? l * m / n : l);
               if (X) BX.push(x);
               if (Y) BY.push(y);
-              for (const output of outputs) {
-                output.reduce(f);
-              }
               if (Z) BZ.push(Z[f[0]]);
               if (F) BF.push(F[f[0]]);
               if (S) BS.push(S[f[0]]);
+              for (const output of outputs) {
+                output.reduce(f);
+              }
             }
           }
         }
