@@ -8,15 +8,15 @@ export function Axes(
   let {axis: yAxis = true} = y;
   let {axis: fxAxis = true} = fx;
   let {axis: fyAxis = true} = fy;
-  if (xAxis === true) xAxis = "bottom";
-  if (yAxis === true) yAxis = "left";
-  if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-  if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+  if (!xScale) xAxis = null; else if (xAxis === true) xAxis = "bottom";
+  if (!yScale) yAxis = null; else if (yAxis === true) yAxis = "left";
+  if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
+  if (!fyScale) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xScale && xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
-    ...yScale && yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
-    ...fxScale && fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
-    ...fyScale && fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
+    ...xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
+    ...yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
+    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
+    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
   };
 }
 
