@@ -1,46 +1,39 @@
 import {group as grouper, sort, sum, InternSet} from "d3";
 import {defined} from "../defined.js";
-import {valueof, maybeZ, maybeInput, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof} from "../mark.js";
+import {valueof, maybeZ, maybeInput, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof, maybeColor} from "../mark.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ({x, y, ...options} = {}) {
-  return {
-    ...x !== undefined && {x},
-    ...y !== undefined && {y},
-    ...groupn(outputs, options)
-  };
+export function groupZ(outputs, options) {
+  return groupn(null, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x (optionally).
-export function groupX(outputs, {x = identity, y, ...options} = {}) {
-  return {
-    ...y !== undefined && {y},
-    ...groupn(outputs, {x, ...options})
-  };
+export function groupX(outputs, options = {}) {
+  const {x = identity} = options;
+  return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y (optionally).
-export function groupY(outputs, {x, y = identity, ...options} = {}) {
-  return {
-    ...x !== undefined && {x},
-    ...groupn(outputs, {y, ...options})
-  };
+export function groupY(outputs, options = {}) {
+  const {y = identity} = options;
+  return groupn(null, y, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y (optionally).
-export function group(outputs, {x, y, ...options} = {}) {
+export function group(outputs, options = {}) {
+  let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
-  return groupn(outputs, {x, y, ...options});
+  return groupn(x, y, outputs, options);
 }
 
 function groupn(
+  x, // optionally group on x (either a value or {value, domain})
+  y, // optionally group on y (either a value or {value, domain})
   {
     data: reduceData = reduceIdentity,
     ...outputs
   } = {}, // channels to aggregate
   {
-    x, // optionally group on x (either a value or {value, domain})
-    y, // optionally group on y (either a value or {value, domain})
     domain,
     // normalize, TODO
     // weight, TODO
@@ -49,41 +42,39 @@ function groupn(
 ) {
 
   // Implicit firsts.
-  for (const key of ["z", "fill", "stroke"]) {
-    if (outputs[key] === undefined && options[key] != null) {
-      outputs = {...outputs, [key]: reduceFirst};
-    }
-  }
+  if (outputs.z === undefined && options.z != null) outputs = {...outputs, z: reduceFirst};
+  if (outputs.fill === undefined && maybeColor(options.fill)[0]) outputs = {...outputs, fill: reduceFirst};
+  if (outputs.stroke === undefined && maybeColor(options.stroke)[0]) outputs = {...outputs, stroke: reduceFirst};
 
   // Reconstitute the outputs.
   outputs = Object.entries(outputs).filter(([, reduce]) => reduce != null).map(([name, reduce]) => {
-    // const input = maybeInput(name, options);
-    // if (input == null) throw new Error(`missing channel: ${name}`);
-    const [output, setOutput] = lazyChannel();
-    const r = maybeReduce(reduce);
-    let O;
+    const reducer = maybeReduce(reduce);
+    const value = maybeInput(name, options);
+    if (value == null && reducer !== reduceCount) throw new Error(`missing channel: ${name}`);
+    const [output, setOutput] = lazyChannel(value);
+    let V, O;
     return {
       name,
       output,
       initialize(data) {
-        // O = valueof(data, input);
+        V = valueof(data, value);
         O = setOutput([]);
       },
-      reduce(I, data) {
-        O.push(r.reduce(I, data)); // TODO configurable channel, e.g., min(x)
+      reduce(I) {
+        O.push(reducer.reduce(I, V));
       }
     };
   });
 
   // Handle per-dimension domains.
   // TODO This should be derived from the scale’s domain instead.
-  let xdomain, ydomain;
-  ({value: x, domain: xdomain} = {domain, ...maybeValue(x)});
-  ({value: y, domain: ydomain} = {domain, ...maybeValue(y)});
+  // let xdomain, ydomain;
+  // ({value: x, domain: xdomain} = {domain, ...maybeValue(x)});
+  // ({value: y, domain: ydomain} = {domain, ...maybeValue(y)});
 
   // Handle both x and y being undefined.
   // TODO Move to group? Needs to handle per-dimension domain with default.
-  ([x, y] = maybeTuple(x, y));
+  // ([x, y] = maybeTuple(x, y));
 
   // Determine the z dimension (subgroups within x and y), if any. Note that
   // this requires that the z dimension be defined deterministically.
@@ -98,12 +89,12 @@ function groupn(
   // const [vstroke] = maybeColor(stroke);
   // const [BF = fill, setBF] = maybeLazyChannel(vfill);
   // const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
-  const xdefined = BX && maybeDomain(xdomain);
-  const ydefined = BY && maybeDomain(ydomain);
+  const xdefined = defined1; // TODO BX && maybeDomain(xdomain);
+  const ydefined = defined1; // TODO BY && maybeDomain(ydomain);
   return {
+    ...options,
     ...BX && {x: BX},
     ...BY && {y: BY},
-    ...options,
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
     transform: maybeTransform(options, (data, facets) => {
       const X = valueof(data, x);
@@ -137,7 +128,7 @@ function groupn(
               if (X) BX.push(x);
               if (Y) BY.push(y);
               for (const output of outputs) {
-                output.reduce(f, data);
+                output.reduce(f);
               }
               // if (Z) BZ.push(Z[f[0]]);
               // if (F) BF.push(F[f[0]]);
