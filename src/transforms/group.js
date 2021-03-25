@@ -99,10 +99,10 @@ function groupn(
       for (const facet of facets) {
         const groupFacet = [];
         // if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length; // TODO
-        for (const [, I] of groups(facet, G)) {
+        for (const [, I] of maybeGroup(facet, G)) {
           // if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length; // TODO
-          for (const [y, fy] of groups(I, Y)) {
-            for (const [x, f] of groups(fy, X)) {
+          for (const [y, fy] of maybeGroup(I, Y)) {
+            for (const [x, f] of maybeGroup(fy, X)) {
               // const l = W ? sum(f, i => W[i]) : f.length; // TODO
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(f, data));
@@ -135,7 +135,7 @@ function groupn(
 //   throw new Error("invalid normalize");
 // }
 
-export function groups(I, X) {
+export function maybeGroup(I, X) {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 

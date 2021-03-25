@@ -2,7 +2,7 @@ import {bin as binner, cross, group, sum} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take, labelof} from "../mark.js";
 import {offset} from "../style.js";
-import {groups} from "./group.js";
+import {maybeGroup} from "./group.js";
 
 // Group on y, z, fill, or stroke, if any, then bin on x.
 export function binX({x, y, out = y == null ? "y" : "fill", inset, insetLeft, insetRight, ...options} = {}) {
@@ -85,7 +85,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, no
         if (cumulative < 0) B.reverse();
         for (const facet of facets) {
           const binFacet = [];
-          for (const [, I] of groups(facet, G)) {
+          for (const [, I] of maybeGroup(facet, G)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             const set = new Set(I);
             let f;
@@ -163,7 +163,7 @@ function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...
         let i = 0;
         for (const facet of facets) {
           const binFacet = [];
-          for (const [, I] of groups(facet, G)) {
+          for (const [, I] of maybeGroup(facet, G)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             const set = new Set(I);
             for (const b of B) {
