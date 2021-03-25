@@ -1,4 +1,4 @@
-import {bin as binner, cross, group, sum} from "d3";
+import {bin as binner, cross, sum} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take, labelof} from "../mark.js";
 import {offset} from "../style.js";

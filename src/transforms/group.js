@@ -30,7 +30,7 @@ function groupn(
   x, // optionally group on x
   y, // optionally group on y
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
-  {domain, ...inputs} = {} // input channels and options
+  inputs = {} // input channels and options
 ) {
 
   // Prepare the output channels: detect the corresponding inputs and reducers.
@@ -124,16 +124,6 @@ function groupn(
     })
   };
 }
-
-// function maybeNormalize(normalize) {
-//   if (!normalize) return;
-//   if (normalize === true) return 100;
-//   if (typeof normalize === "number") return normalize;
-//   switch ((normalize + "").toLowerCase()) {
-//     case "facet": case "z": return 100;
-//   }
-//   throw new Error("invalid normalize");
-// }
 
 export function maybeGroup(I, X) {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
