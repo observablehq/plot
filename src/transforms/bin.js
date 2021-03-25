@@ -85,7 +85,7 @@ function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, no
         if (cumulative < 0) B.reverse();
         for (const facet of facets) {
           const binFacet = [];
-          for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
+          for (const [, I] of groups(facet, G)) {
             if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
             const set = new Set(I);
             let f;
