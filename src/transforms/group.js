@@ -40,7 +40,7 @@ function groupn(
     const value = reducer.value === null ? identity : maybeInput(name, inputs);
     if (value == null) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
-    let V, O, b = 1;
+    let V, O, b;
     return {
       name,
       output,
@@ -52,7 +52,8 @@ function groupn(
         b = reducer.reduce(group, V);
       },
       reduce(group) {
-        O.push(reducer.reduce(group, V) / b);
+        const v = reducer.reduce(group, V);
+        O.push(b === undefined ? v : v / b);
       }
     };
   });
@@ -129,7 +130,7 @@ export function maybeGroup(I, X) {
 
 function maybeNormalize(normalize) {
   if (!normalize) return;
-  if (normalize === true) return;
+  if (normalize === true) return true;
   switch ((normalize + "").toLowerCase()) {
     case "z": case "facet": return normalize;
   }
