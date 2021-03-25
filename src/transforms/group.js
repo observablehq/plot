@@ -1,6 +1,5 @@
-import {group as grouper, sort, sum, InternSet} from "d3";
-import {defined} from "../defined.js";
-import {valueof, maybeZ, maybeInput, maybeTransform, maybeValue, maybeLazyChannel, lazyChannel, first, identity, take, maybeTuple, labelof, maybeColor} from "../mark.js";
+import {group as grouper, sort, sum} from "d3";
+import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take} from "../mark.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -27,8 +26,8 @@ export function group(outputs, options = {}) {
 }
 
 function groupn(
-  x, // optionally group on x (either a value or {value, domain})
-  y, // optionally group on y (either a value or {value, domain})
+  x, // optionally group on x
+  y, // optionally group on y
   {
     data: reduceData = reduceIdentity,
     ...outputs
@@ -36,15 +35,12 @@ function groupn(
   {
     domain,
     // normalize, TODO
-    // weight, TODO
+    z,
+    fill,
+    stroke,
     ...options
   } = {}
 ) {
-
-  // Implicit firsts.
-  if (outputs.z === undefined && options.z != null) outputs = {...outputs, z: reduceFirst};
-  if (outputs.fill === undefined && maybeColor(options.fill)[0]) outputs = {...outputs, fill: reduceFirst};
-  if (outputs.stroke === undefined && maybeColor(options.stroke)[0]) outputs = {...outputs, stroke: reduceFirst};
 
   // Reconstitute the outputs.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
@@ -66,32 +62,19 @@ function groupn(
     };
   });
 
-  // Handle per-dimension domains.
-  // TODO This should be derived from the scale’s domain instead.
-  // let xdomain, ydomain;
-  // ({value: x, domain: xdomain} = {domain, ...maybeValue(x)});
-  // ({value: y, domain: ydomain} = {domain, ...maybeValue(y)});
-
-  // Handle both x and y being undefined.
-  // TODO Move to group? Needs to handle per-dimension domain with default.
-  // ([x, y] = maybeTuple(x, y));
-
-  // Determine the z dimension (subgroups within x and y), if any. Note that
-  // this requires that the z dimension be defined deterministically.
-  const z = maybeZ(options);
-
   // const m = maybeNormalize(normalize); // TODO
   // const [BL, setBL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
   const [BX, setBX] = maybeLazyChannel(x);
   const [BY, setBY] = maybeLazyChannel(y);
-  // const [BZ, setBZ] = maybeLazyChannel(z);
-  // const [vfill] = maybeColor(fill);
-  // const [vstroke] = maybeColor(stroke);
-  // const [BF = fill, setBF] = maybeLazyChannel(vfill);
-  // const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
-  const xdefined = defined1; // TODO BX && maybeDomain(xdomain);
-  const ydefined = defined1; // TODO BY && maybeDomain(ydomain);
+  const [BZ, setBZ] = maybeLazyChannel(z);
+  const [vfill] = maybeColor(fill);
+  const [vstroke] = maybeColor(stroke);
+  const [BF = fill, setBF] = maybeLazyChannel(vfill);
+  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
   return {
+    z: BZ,
+    fill: BF,
+    stroke: BS,
     ...options,
     ...BX && {x: BX},
     ...BY && {y: BY},
@@ -100,15 +83,17 @@ function groupn(
       const X = valueof(data, x);
       const Y = valueof(data, y);
       const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
       // const W = valueof(data, weight); // TODO
       const groupFacets = [];
       const groupData = [];
       // const BL = setBL([]);
       const BX = X && setBX([]);
       const BY = Y && setBY([]);
-      // const BZ = Z && setBZ([]);
-      // const BF = F && setBF([]);
-      // const BS = S && setBS([]);
+      const BZ = Z && setBZ([]);
+      const BF = F && setBF([]);
+      const BS = S && setBS([]);
       // let n = W ? sum(W) : data.length; // TODO
       let i = 0;
       for (const output of outputs) {
@@ -117,10 +102,10 @@ function groupn(
       for (const facet of facets) {
         const groupFacet = [];
         // if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length; // TODO
-        for (const [, I] of groups(facet, Z, defined1)) {
+        for (const [, I] of groups(facet, Z)) {
           // if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length; // TODO
-          for (const [y, fy] of groups(I, Y, ydefined)) {
-            for (const [x, f] of groups(fy, X, xdefined)) {
+          for (const [y, fy] of groups(I, Y)) {
+            for (const [x, f] of groups(fy, X)) {
               // const l = W ? sum(f, i => W[i]) : f.length; // TODO
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(f, data));
@@ -130,9 +115,9 @@ function groupn(
               for (const output of outputs) {
                 output.reduce(f);
               }
-              // if (Z) BZ.push(Z[f[0]]);
-              // if (F) BF.push(F[f[0]]);
-              // if (S) BS.push(S[f[0]]);
+              if (Z) BZ.push(Z[f[0]]);
+              if (F) BF.push(F[f[0]]);
+              if (S) BS.push(S[f[0]]);
             }
           }
         }
@@ -141,13 +126,6 @@ function groupn(
       return {data: groupData, facets: groupFacets};
     })
   };
-}
-
-function maybeDomain(domain) {
-  if (domain === undefined) return defined1;
-  if (domain === null) return () => false;
-  domain = new InternSet(domain);
-  return ([key]) => domain.has(key);
 }
 
 // function maybeNormalize(normalize) {
@@ -160,12 +138,8 @@ function maybeDomain(domain) {
 //   throw new Error("invalid normalize");
 // }
 
-function defined1([key]) {
-  return defined(key);
-}
-
-export function groups(I, X, defined = defined1) {
-  return X ? sort(grouper(I, i => X[i]), first).filter(defined) : [[, I]];
+export function groups(I, X) {
+  return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 
 function maybeReduce(reduce) {
