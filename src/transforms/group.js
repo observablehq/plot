@@ -36,7 +36,7 @@ function groupn(
   // Prepare the output channels: detect the corresponding inputs and reducers.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
-    const value = reducer.value == null ? identity : maybeInput(name, inputs);
+    const value = reducer.value === null ? identity : maybeInput(name, inputs);
     if (value == null) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
     let V, O;
