@@ -1,4 +1,5 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take} from "../mark.js";
 
 // Group on {z, fill, stroke}.
@@ -35,17 +36,15 @@ function groupn(
   {
     domain,
     // normalize, TODO
-    z,
-    fill,
-    stroke,
-    ...options
+    ...inputs
   } = {}
 ) {
+  const {z, fill, stroke, ...options} = inputs;
 
   // Reconstitute the outputs.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
     const reducer = maybeReduce(reduce);
-    const value = maybeInput(name, options);
+    const value = maybeInput(name, inputs);
     if (value == null && reducer.reduce.length > 1) throw new Error(`missing channel: ${name}`);
     const [output, setOutput] = lazyChannel(value);
     let V, O;
@@ -85,6 +84,7 @@ function groupn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
+      const G = firstof(Z, F, S);
       // const W = valueof(data, weight); // TODO
       const groupFacets = [];
       const groupData = [];
@@ -102,7 +102,7 @@ function groupn(
       for (const facet of facets) {
         const groupFacet = [];
         // if (normalize === "facet") n = W ? sum(facet, i => W[i]) : facet.length; // TODO
-        for (const [, I] of groups(facet, Z)) {
+        for (const [, I] of groups(facet, G)) {
           // if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length; // TODO
           for (const [y, fy] of groups(I, Y)) {
             for (const [x, f] of groups(fy, X)) {
