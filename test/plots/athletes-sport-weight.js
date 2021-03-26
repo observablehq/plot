@@ -5,6 +5,7 @@ export default async function() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.plot({
     height: 640,
+    marginLeft: 100,
     x: {
       grid: true
     },
@@ -12,13 +13,8 @@ export default async function() {
       scheme: "YlGnBu",
       zero: true
     },
-    facet: {
-      data: athletes,
-      marginLeft: 100,
-      y: "sport"
-    },
     marks: [
-      Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", thresholds: 60}))
+      Plot.barX(athletes, Plot.binX({fill: "proportion-z"}, {x: "weight", y: "sport", thresholds: 60}))
     ]
   });
 }
