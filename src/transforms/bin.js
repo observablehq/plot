@@ -37,20 +37,18 @@ export function binYMid(outputs, options = {}) {
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function binMid(outputs, options) {
-  const {x1, x2, y1, y2, ...transform} = bin(outputs, options);
-  return {...transform, x: mid(x1, x2), y: mid(y1, y2)}; // TODO don’t set insets
-}
-
-// Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
-  let {x, y} = options;
-  x = maybeBinValue(x, options);
-  y = maybeBinValue(y, options);
-  ([x.value, y.value] = maybeTuple(x.value, y.value));
+  const {x, y} = maybeBinValueTuple(options);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   return binn(x, y, null, null, outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
+}
+
+// Group on {z, fill, stroke}, then bin on x and y.
+export function binMid(outputs, options) {
+  const {x, y} = maybeBinValueTuple(options);
+  const {x1, x2, y1, y2, ...transform} = binn(x, y, null, null, outputs, options);
+  return {...transform, x: mid(x1, x2), y: mid(y1, y2)};
 }
 
 function binn(
@@ -153,6 +151,14 @@ function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValu
   if (value.thresholds === undefined) value.thresholds = thresholds;
   if (value.value === undefined) value.value = defaultValue;
   return value;
+}
+
+function maybeBinValueTuple(options = {}) {
+  let {x, y} = options;
+  x = maybeBinValue(x, options);
+  y = maybeBinValue(y, options);
+  ([x.value, y.value] = maybeTuple(x.value, y.value));
+  return {x, y};
 }
 
 function maybeBin(options) {
