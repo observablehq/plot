@@ -27,7 +27,7 @@ export function binY(outputs, {domain, thresholds, inset, insetTop, insetBottom,
   let {x, y} = options;
   y = maybeBinValue(y, {domain, thresholds}, identity);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
-  return binn(null, y, x, null, outputs, {inset, insetLeft, insetRight, ...options});
+  return binn(null, y, x, null, outputs, {inset, insetTop, insetBottom, ...options});
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
