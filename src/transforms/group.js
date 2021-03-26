@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, variance, curveBasis} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
@@ -38,25 +38,24 @@ function groupn(
     const value = maybeInput(name, inputs);
     const reducer = maybeReduce(reduce, value);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
-    let V, O, basis;
+    let V, O, context;
     return {
       name,
       output,
       initialize(data) {
         V = valueof(data, value);
         O = setOutput([]);
-        if (reducer.scope === SCOPE_DATA) {
-          basis = reducer.reduce(range(data), V);
+        if (reducer.scope === "data") {
+          context = reducer.reduce(range(data), V);
         }
       },
       scope(scope, I) {
         if (reducer.scope === scope) {
-          basis = reducer.reduce(I, V);
+          context = reducer.reduce(I, V);
         }
       },
       reduce(I) {
-        const v = reducer.reduce(I, V);
-        O.push(reducer.scope ? v / basis : v);
+        O.push(reducer.reduce(I, V, context));
       }
     };
   });
@@ -103,9 +102,9 @@ function groupn(
       for (const o of outputs) o.initialize(data);
       for (const facet of facets) {
         const groupFacet = [];
-        for (const o of outputs) o.scope(SCOPE_FACET, facet);
+        for (const o of outputs) o.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
-          for (const o of outputs) o.scope(SCOPE_Z, facet);
+          for (const o of outputs) o.scope("z", facet);
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
               groupFacet.push(i++);
@@ -138,9 +137,9 @@ function maybeReduce(reduce, value) {
     case "last": return reduceLast;
     case "count": return reduceCount;
     case "sum": return value == null ? reduceCount : reduceSum;
-    case "proportion": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_DATA};
-    case "proportion-facet": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_FACET};
-    case "proportion-z": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_Z};
+    case "proportion": return reduceProportion(value, "data");
+    case "proportion-facet": return reduceProportion(value, "facet");
+    case "proportion-z": return reduceProportion(value, "z");
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);
@@ -194,6 +193,8 @@ const reduceCount = {
 
 const reduceSum = reduceAccessor(sum);
 
-const SCOPE_DATA = Symbol("data");
-const SCOPE_FACET = Symbol("facet");
-const SCOPE_Z = Symbol("z");
+function reduceProportion(value, scope) {
+  return value == null
+      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
+      : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
+}
