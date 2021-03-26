@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance, curveBasis} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
