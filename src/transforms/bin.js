@@ -4,36 +4,34 @@ import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, 
 import {offset} from "../style.js";
 import {maybeGroup, maybeGroupOutputs, reduceIdentity} from "./group.js";
 
-// TODO remove optional group dimension, and rely on facet instead
-
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binX(outputs, {domain, thresholds, inset, insetLeft, insetRight, ...options} = {}) {
+export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
   let {x, y} = options;
-  x = maybeBinValue(x, {domain, thresholds}, identity);
+  x = maybeBinValue(x, options, identity);
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   return binn(x, null, null, y, outputs, {inset, insetLeft, insetRight, ...options});
 }
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binXMid(outputs, {domain, thresholds, ...options} = {}) {
+export function binXMid(outputs, options = {}) {
   let {x, y} = options;
-  x = maybeBinValue(x, {domain, thresholds}, identity);
+  x = maybeBinValue(x, options, identity);
   const {x1, x2, ...transform} = binn(x, null, null, y, outputs, options);
   return {...transform, x: mid(x1, x2)};
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binY(outputs, {domain, thresholds, inset, insetTop, insetBottom, ...options} = {}) {
+export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
   let {x, y} = options;
-  y = maybeBinValue(y, {domain, thresholds}, identity);
+  y = maybeBinValue(y, options, identity);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   return binn(null, y, x, null, outputs, {inset, insetTop, insetBottom, ...options});
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binYMid(outputs, {domain, thresholds, ...options} = {}) {
+export function binYMid(outputs, options = {}) {
   let {x, y} = options;
-  y = maybeBinValue(y, {domain, thresholds}, identity);
+  y = maybeBinValue(y, options, identity);
   const {y1, y2, ...transform} = binn(null, x, y, null, outputs, options);
   return {...transform, y: mid(y1, y2)};
 }
@@ -45,17 +43,16 @@ export function binMid(outputs, options) {
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function bin(outputs, {domain, thresholds, inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+export function bin(outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   let {x, y} = options;
-  x = maybeBinValue(x, {domain, thresholds});
-  y = maybeBinValue(y, {domain, thresholds});
+  x = maybeBinValue(x, options);
+  y = maybeBinValue(y, options);
   ([x.value, y.value] = maybeTuple(x.value, y.value));
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   return binn(x, y, null, null, outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
 }
 
-// TODO cumulative (per dimension)
 function binn(
   bx, // optionally bin on x (exclusive with gx)
   by, // optionally bin on y (exclusive with gy)
@@ -109,8 +106,8 @@ function binn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
-      const BX = bx ? bx(data).filter(nonempty).map(binset) : [[,, I => I]];
-      const BY = by ? by(data).filter(nonempty).map(binset) : [[,, I => I]];
+      const BX = bx ? bx(data) : [[,, I => I]];
+      const BY = by ? by(data) : [[,, I => I]];
       const BX1 = bx && setBX1([]);
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
@@ -149,10 +146,10 @@ function binn(
   };
 }
 
-function maybeBinValue(value, {domain, thresholds} = {}, defaultValue) {
+function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValue) {
   value = {...maybeValue(value)};
-  // console.log(value, thresholds);
   if (value.domain === undefined) value.domain = domain;
+  if (value.cumulative === undefined) value.cumulative = cumulative;
   if (value.thresholds === undefined) value.thresholds = thresholds;
   if (value.value === undefined) value.value = defaultValue;
   return value;
@@ -160,31 +157,53 @@ function maybeBinValue(value, {domain, thresholds} = {}, defaultValue) {
 
 function maybeBin(options) {
   if (options == null) return;
-  const {value, domain, thresholds} = options;
+  const {value, cumulative, domain, thresholds} = options;
   return data => {
     const V = valueof(data, value);
     const bin = binner().value(i => V[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    return bin(range(data));
+    let bins = bin.value(i => V[i])(range(data)).map(binset);
+    if (cumulative) bins = bins.map(bincumset);
+    return bins.filter(nonempty2).map(binfilter);
   };
 }
 
 function binset(bin) {
-  const S = [];
-  for (const i of bin) S[i] = 1;
-  return [bin.x0, bin.x1, I => I.filter(i => S[i])];
+  return [bin, new Set(bin)];
 }
 
-function nonempty({length}) {
-  return length > 0;
+function bincumset([bin], j, bins) {
+  return [
+    bin,
+    {
+      get size() {
+        for (let k = 0; k <= j; ++k) {
+          if (bins[k][1].size) {
+            return 1; // a non-empty value
+          }
+        }
+        return 0;
+      },
+      has(i) {
+        for (let k = 0; k <= j; ++k) {
+          if (bins[k][1].has(i)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+  ];
 }
 
-function length1({length}) {
-  return length;
+function binfilter([{x0, x1}, set]) {
+  return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
 }
 
-length1.label = "Frequency";
+function nonempty2([, {size}]) {
+  return size > 0;
+}
 
 function maybeInset(inset, inset1, inset2) {
   return inset === undefined && inset1 === undefined && inset2 === undefined

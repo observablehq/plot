@@ -70,7 +70,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">180</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
+    </g>
   </g>
   <g>
     <rect x="41" y="364.06433566433566" width="37.66666666666667" height="1.9356643356643417"></rect>

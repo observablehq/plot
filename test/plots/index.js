@@ -9,6 +9,7 @@ export {default as athletesNationality} from "./athletes-nationality.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
 export {default as athletesSportWeight} from "./athletes-sport-weight.js";
 export {default as athletesWeight} from "./athletes-weight.js";
+export {default as athletesWeightCumulative} from "./athletes-weight-cumulative.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as beckerBarley} from "./becker-barley.js";
 export {default as caltrain} from "./caltrain.js";
