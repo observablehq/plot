@@ -222,6 +222,7 @@ export function mid(x1, x2) {
     transform(data) {
       const X1 = x1.transform(data);
       const X2 = x2.transform(data);
+      console.log(X1, X2);
       return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
     },
     label: x1.label

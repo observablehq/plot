@@ -7,21 +7,21 @@ export function groupZ(outputs, options) {
   return groupn(null, null, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on x (optionally).
+// Group on {z, fill, stroke}, then on x.
 export function groupX(outputs, options = {}) {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on y (optionally).
+// Group on {z, fill, stroke}, then on y.
 export function groupY(outputs, options = {}) {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on x and y (optionally).
+// Group on {z, fill, stroke}, then on x and y.
 export function group(outputs, options = {}) {
   let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
@@ -36,9 +36,73 @@ function groupn(
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
   inputs = {} // input channels and options
 ) {
+  outputs = maybeGroupOutputs(outputs, inputs);
 
-  // Prepare the output channels: detect the corresponding inputs and reducers.
-  outputs = Object.entries(outputs).map(([name, reduce]) => {
+  // Produce x and y output channels as appropriate.
+  const [GX, setGX] = maybeLazyChannel(x);
+  const [GY, setGY] = maybeLazyChannel(y);
+
+  // Greedily materialize the z, fill, and stroke channels (if channels and not
+  // constants) so that we can reference them for subdividing groups without
+  // computing them more than once.
+  const {z, fill, stroke, ...options} = inputs;
+  const [GZ, setGZ] = maybeLazyChannel(z);
+  const [vfill] = maybeColor(fill);
+  const [vstroke] = maybeColor(stroke);
+  const [GF = fill, setGF] = maybeLazyChannel(vfill);
+  const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
+
+  return {
+    z: GZ,
+    fill: GF,
+    stroke: GS,
+    ...options,
+    ...GX && {x: GX},
+    ...GY && {y: GY},
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
+    transform: maybeTransform(options, (data, facets) => {
+      const X = valueof(data, x);
+      const Y = valueof(data, y);
+      const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
+      const G = firstof(Z, F, S);
+      const groupFacets = [];
+      const groupData = [];
+      const GX = X && setGX([]);
+      const GY = Y && setGY([]);
+      const GZ = Z && setGZ([]);
+      const GF = F && setGF([]);
+      const GS = S && setGS([]);
+      let i = 0;
+      for (const o of outputs) o.initialize(data);
+      for (const facet of facets) {
+        const groupFacet = [];
+        for (const o of outputs) o.scope("facet", facet);
+        for (const [, I] of maybeGroup(facet, G)) {
+          for (const o of outputs) o.scope("z", I);
+          for (const [y, gg] of maybeGroup(I, Y)) {
+            for (const [x, g] of maybeGroup(gg, X)) {
+              groupFacet.push(i++);
+              groupData.push(reduceData.reduce(g, data));
+              if (X) GX.push(x);
+              if (Y) GY.push(y);
+              if (Z) GZ.push(Z[g[0]]);
+              if (F) GF.push(F[g[0]]);
+              if (S) GS.push(S[g[0]]);
+              for (const o of outputs) o.reduce(g);
+            }
+          }
+        }
+        groupFacets.push(groupFacet);
+      }
+      return {data: groupData, facets: groupFacets};
+    })
+  };
+}
+
+export function maybeGroupOutputs(outputs, inputs) {
+  return Object.entries(outputs).map(([name, reduce]) => {
     const value = maybeInput(name, inputs);
     const reducer = maybeReduce(reduce, value);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
@@ -63,70 +127,6 @@ function groupn(
       }
     };
   });
-
-  // The x and y channels are used for grouping. Note that the passed-through
-  // options may also include x and y channels which are ignored, so we only
-  // want to generate these as output channels if they were used for grouping.
-  const [BX, setBX] = maybeLazyChannel(x);
-  const [BY, setBY] = maybeLazyChannel(y);
-
-  // The z, fill, and stroke channels (if channels and not constants) are
-  // greedily materialized by the transform so that we can reference them for
-  // subdividing groups without having to compute them more than once.
-  const {z, fill, stroke, ...options} = inputs;
-  const [BZ, setBZ] = maybeLazyChannel(z);
-  const [vfill] = maybeColor(fill);
-  const [vstroke] = maybeColor(stroke);
-  const [BF = fill, setBF] = maybeLazyChannel(vfill);
-  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
-
-  return {
-    z: BZ,
-    fill: BF,
-    stroke: BS,
-    ...options,
-    ...BX && {x: BX},
-    ...BY && {y: BY},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
-    transform: maybeTransform(options, (data, facets) => {
-      const X = valueof(data, x);
-      const Y = valueof(data, y);
-      const Z = valueof(data, z);
-      const F = valueof(data, vfill);
-      const S = valueof(data, vstroke);
-      const G = firstof(Z, F, S);
-      const groupFacets = [];
-      const groupData = [];
-      const BX = X && setBX([]);
-      const BY = Y && setBY([]);
-      const BZ = Z && setBZ([]);
-      const BF = F && setBF([]);
-      const BS = S && setBS([]);
-      let i = 0;
-      for (const o of outputs) o.initialize(data);
-      for (const facet of facets) {
-        const groupFacet = [];
-        for (const o of outputs) o.scope("facet", facet);
-        for (const [, I] of maybeGroup(facet, G)) {
-          for (const o of outputs) o.scope("z", facet);
-          for (const [y, gg] of maybeGroup(I, Y)) {
-            for (const [x, g] of maybeGroup(gg, X)) {
-              groupFacet.push(i++);
-              groupData.push(reduceData.reduce(g, data));
-              if (X) BX.push(x);
-              if (Y) BY.push(y);
-              if (Z) BZ.push(Z[g[0]]);
-              if (F) BF.push(F[g[0]]);
-              if (S) BS.push(S[g[0]]);
-              for (const o of outputs) o.reduce(g);
-            }
-          }
-        }
-        groupFacets.push(groupFacet);
-      }
-      return {data: groupData, facets: groupFacets};
-    })
-  };
 }
 
 export function maybeGroup(I, X) {
@@ -170,7 +170,7 @@ function reduceAccessor(f) {
   };
 }
 
-const reduceIdentity = {
+export const reduceIdentity = {
   reduce(I, X) {
     return take(X, I);
   }
