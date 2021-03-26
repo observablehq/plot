@@ -10,12 +10,14 @@ export function groupZ(outputs, options) {
 // Group on {z, fill, stroke}, then on x (optionally).
 export function groupX(outputs, options = {}) {
   const {x = identity} = options;
+  if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y (optionally).
 export function groupY(outputs, options = {}) {
   const {y = identity} = options;
+  if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
@@ -23,6 +25,8 @@ export function groupY(outputs, options = {}) {
 export function group(outputs, options = {}) {
   let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
+  if (x == null) throw new Error("missing channel: x");
+  if (y == null) throw new Error("missing channel: y");
   return groupn(x, y, outputs, options);
 }
 
