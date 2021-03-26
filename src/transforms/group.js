@@ -80,7 +80,7 @@ function groupn(
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
-          for (const o of outputs) o.scope("z", I);
+          for (const o of outputs) o.scope("group", I);
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
               groupFacet.push(i++);
@@ -143,7 +143,7 @@ function maybeReduce(reduce, value) {
     case "sum": return value == null ? reduceCount : reduceSum;
     case "proportion": return reduceProportion(value, "data");
     case "proportion-facet": return reduceProportion(value, "facet");
-    case "proportion-z": return reduceProportion(value, "z");
+    case "proportion-group": return reduceProportion(value, "group");
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);

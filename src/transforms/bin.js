@@ -116,8 +116,8 @@ function binn(
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
-          for (const o of outputs) o.scope("z", I);
           for (const [k, g] of maybeGroup(I, K)) {
+            for (const o of outputs) o.scope("group", g);
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               if (bb.length === 0) continue;

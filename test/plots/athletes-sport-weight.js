@@ -14,7 +14,7 @@ export default async function() {
       zero: true
     },
     marks: [
-      Plot.barX(athletes, Plot.binX({fill: "proportion-z"}, {x: "weight", y: "sport", thresholds: 60}))
+      Plot.barX(athletes, Plot.binX({fill: "proportion-group"}, {x: "weight", y: "sport", thresholds: 60}))
     ]
   });
 }
