@@ -1,6 +1,6 @@
 import {bin as binner} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid} from "../mark.js";
+import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
 import {offset} from "../style.js";
 import {maybeGroup, maybeGroupOutputs, reduceIdentity} from "./group.js";
 
@@ -164,7 +164,7 @@ function maybeBinValueTuple(options = {}) {
 function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain, thresholds} = options;
-  return data => {
+  const bin = data => {
     const V = valueof(data, value);
     const bin = binner().value(i => V[i]);
     if (domain !== undefined) bin.domain(domain);
@@ -173,6 +173,8 @@ function maybeBin(options) {
     if (cumulative) bins = bins.map(bincumset);
     return bins.filter(nonempty2).map(binfilter);
   };
+  bin.label = labelof(value);
+  return bin;
 }
 
 function binset(bin) {

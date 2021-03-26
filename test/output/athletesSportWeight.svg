@@ -113,7 +113,7 @@
     <g class="tick" opacity="1" transform="translate(576.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
-    </g>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
   </g>
   <g>
     <g transform="translate(0,22)">

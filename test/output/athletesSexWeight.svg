@@ -66,7 +66,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(560.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
-    </g>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
   </g>
   <g>
     <rect style="mix-blend-mode: multiply;" x="41" y="364.64579256360076" width="19" height="1.3542074363992356" fill="#4e79a7"></rect>
