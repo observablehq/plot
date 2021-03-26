@@ -20,7 +20,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barY(words, Plot.groupX({y: "count"}, {normalize: true, x: d => d.length}))
+      Plot.barY(words, Plot.groupX({y: "proportion"}, {x: "length"}))
     ]
   });
 }

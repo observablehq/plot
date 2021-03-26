@@ -30,30 +30,33 @@ function groupn(
   x, // optionally group on x
   y, // optionally group on y
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
-  {normalize, ...inputs} = {} // input channels and options
+  inputs = {} // input channels and options
 ) {
-  normalize = maybeNormalize(normalize);
 
   // Prepare the output channels: detect the corresponding inputs and reducers.
   outputs = Object.entries(outputs).map(([name, reduce]) => {
-    const reducer = maybeReduce(reduce);
-    const value = reducer.value === null ? identity : maybeInput(name, inputs);
-    if (value == null) throw new Error(`missing channel: ${name}`);
+    const value = maybeInput(name, inputs);
+    const reducer = maybeReduce(reduce, value);
     const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
-    let V, O, b;
+    let V, O, basis;
     return {
       name,
       output,
       initialize(data) {
         V = valueof(data, value);
         O = setOutput([]);
+        if (reducer.scope === SCOPE_DATA) {
+          basis = reducer.reduce(range(data), V);
+        }
       },
-      basis(group) {
-        b = reducer.reduce(group, V);
+      scope(scope, I) {
+        if (reducer.scope === scope) {
+          basis = reducer.reduce(I, V);
+        }
       },
-      reduce(group) {
-        const v = reducer.reduce(group, V);
-        O.push(b === undefined ? v : v / b);
+      reduce(I) {
+        const v = reducer.reduce(I, V);
+        O.push(reducer.scope ? v / basis : v);
       }
     };
   });
@@ -98,12 +101,11 @@ function groupn(
       const BS = S && setBS([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
-      if (normalize === true) for (const o of outputs) o.basis(range(data));
       for (const facet of facets) {
         const groupFacet = [];
-        if (normalize === "facet") for (const o of outputs) o.basis(facet);
+        for (const o of outputs) o.scope(SCOPE_FACET, facet);
         for (const [, I] of maybeGroup(facet, G)) {
-          if (normalize === "z") for (const o of outputs) o.basis(I);
+          for (const o of outputs) o.scope(SCOPE_Z, facet);
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
               groupFacet.push(i++);
@@ -128,28 +130,22 @@ export function maybeGroup(I, X) {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 
-function maybeNormalize(normalize) {
-  if (!normalize) return;
-  if (normalize === true) return true;
-  switch ((normalize + "").toLowerCase()) {
-    case "z": case "facet": return normalize;
-  }
-  throw new Error("invalid normalize");
-}
-
-function maybeReduce(reduce) {
+function maybeReduce(reduce, value) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
   switch ((reduce + "").toLowerCase()) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
     case "count": return reduceCount;
+    case "sum": return value == null ? reduceCount : reduceSum;
+    case "proportion": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_DATA};
+    case "proportion-facet": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_FACET};
+    case "proportion-z": return {...value == null ? reduceCount : reduceSum, scope: SCOPE_Z};
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);
     case "mean": return reduceAccessor(mean);
     case "median": return reduceAccessor(median);
-    case "sum": return reduceAccessor(sum);
     case "variance": return reduceAccessor(variance);
   }
   throw new Error("invalid reduce");
@@ -190,9 +186,14 @@ const reduceLast = {
 };
 
 const reduceCount = {
-  value: null,
   label: "Frequency",
   reduce(I) {
     return I.length;
   }
 };
+
+const reduceSum = reduceAccessor(sum);
+
+const SCOPE_DATA = Symbol("data");
+const SCOPE_FACET = Symbol("facet");
+const SCOPE_Z = Symbol("z");
