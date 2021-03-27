@@ -37,7 +37,7 @@ function groupn(
   inputs = {} // input channels and options
 ) {
   reduceData = maybeReduce(reduceData, identity);
-  outputs = maybeGroupOutputs(outputs, inputs);
+  outputs = maybeOutputs(outputs, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeLazyChannel(x);
@@ -67,7 +67,7 @@ function groupn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = firstof(Z, F, S);
+      const G = maybeSubgroup(outputs, Z, F, S);
       const groupFacets = [];
       const groupData = [];
       const GX = X && setGX([]);
@@ -102,7 +102,7 @@ function groupn(
   };
 }
 
-export function maybeGroupOutputs(outputs, inputs) {
+export function maybeOutputs(outputs, inputs) {
   return Object.entries(outputs).map(([name, reduce]) => {
     const value = maybeInput(name, inputs);
     const reducer = maybeReduce(reduce, value);
@@ -153,6 +153,14 @@ export function maybeReduce(reduce, value) {
     case "variance": return reduceAccessor(variance);
   }
   throw new Error("invalid reduce");
+}
+
+export function maybeSubgroup(outputs, Z, F, S) {
+  return firstof(
+    outputs.some(o => o.name === "z") ? undefined : Z,
+    outputs.some(o => o.name === "fill") ? undefined : F,
+    outputs.some(o => o.name === "stroke") ? undefined : S
+  );
 }
 
 function reduceFunction(f) {
