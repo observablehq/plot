@@ -170,7 +170,7 @@ function maybeBin(options) {
     const bin = binner().value(i => V[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    let bins = bin.value(i => V[i])(range(data)).map(binset);
+    let bins = bin(range(data)).map(binset);
     if (cumulative) {
       if (cumulative < 0) bins.reverse();
       bins = bins.map(bincumset);
