@@ -102,10 +102,11 @@ function inferLabel(channels = [], scale, axis, key) {
     else if (candidate !== label) return;
   }
   if (candidate !== undefined) {
-    const {invert} = scale;
+    const {percent, invert} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
     if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
     if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
+      if (percent) candidate = `${candidate} (%)`;
       if (axis.labelAnchor === "center") {
         candidate = `${candidate} →`;
       } else if (key === "x") {

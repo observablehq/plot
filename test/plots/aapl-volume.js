@@ -9,7 +9,8 @@ export default async function() {
       label: "Trade volume (log₁₀) →"
     },
     y: {
-      grid: true
+      grid: true,
+      percent: true
     },
     marks: [
       Plot.rectY(data, Plot.binX({y: "proportion"}, {x: d => Math.log10(d.Volume)})),
