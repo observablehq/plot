@@ -2,7 +2,7 @@ import {bin as binner} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
 import {offset} from "../style.js";
-import {maybeGroup, maybeGroupOutputs, reduceIdentity} from "./group.js";
+import {maybeGroup, maybeGroupOutputs, maybeReduce, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -61,6 +61,7 @@ function binn(
 ) {
   bx = maybeBin(bx);
   by = maybeBin(by);
+  reduceData = maybeReduce(reduceData, identity);
   outputs = maybeGroupOutputs(outputs, inputs);
 
   // Produce x1, x2, y1, and y2 output channels as appropriate (when binning).

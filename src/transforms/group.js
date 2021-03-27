@@ -36,6 +36,7 @@ function groupn(
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
   inputs = {} // input channels and options
 ) {
+  reduceData = maybeReduce(reduceData, identity);
   outputs = maybeGroupOutputs(outputs, inputs);
 
   // Produce x and y output channels as appropriate.
@@ -133,7 +134,7 @@ export function maybeGroup(I, X) {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 
-function maybeReduce(reduce, value) {
+export function maybeReduce(reduce, value) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
   switch ((reduce + "").toLowerCase()) {
