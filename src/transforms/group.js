@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {InternSet, group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
@@ -34,7 +34,7 @@ function groupn(
   x, // optionally group on x
   y, // optionally group on y
   {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
-  inputs = {} // input channels and options
+  {domain, xdomain = domain, ydomain = domain, ...inputs} = {} // input channels and options
 ) {
   reduceData = maybeReduce(reduceData, identity);
   outputs = maybeOutputs(outputs, inputs);
@@ -53,6 +53,9 @@ function groupn(
   const [GF = fill, setGF] = maybeLazyChannel(vfill);
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
+  // Only return groups that belong to the domain
+  const xdefined = GX && maybeDomain(xdomain);
+  const ydefined = GY && maybeDomain(ydomain);
   return {
     z: GZ,
     fill: GF,
@@ -82,8 +85,8 @@ function groupn(
         for (const o of outputs) o.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
           for (const o of outputs) o.scope("group", I);
-          for (const [y, gg] of maybeGroup(I, Y)) {
-            for (const [x, g] of maybeGroup(gg, X)) {
+          for (const [y, gg] of maybeGroup(I, Y, ydefined, ydomain)) {
+            for (const [x, g] of maybeGroup(gg, X, xdefined, xdomain)) {
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
               if (X) GX.push(x);
@@ -130,8 +133,12 @@ export function maybeOutputs(outputs, inputs) {
   });
 }
 
-export function maybeGroup(I, X) {
-  return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
+export function maybeGroup(I, X, filter, domain) {
+  if (!X) return [[, I]];
+  const G = grouper(I, i => X[i]);
+  return domain
+    ? domain.map(x => [x, G.has(x) ? G.get(x) : []])
+    : sort(filter ? Array.from(G).filter(filter) : G, first);
 }
 
 export function maybeReduce(reduce, value) {
@@ -210,4 +217,11 @@ function reduceProportion(value, scope) {
   return value == null
       ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
       : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
+}
+
+function maybeDomain(domain) {
+  if (domain === undefined) return;
+  if (domain === null) return () => false;
+  domain = new InternSet(domain);
+  return ([key]) => domain.has(key);
 }
