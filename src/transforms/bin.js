@@ -171,10 +171,7 @@ function maybeBin(options) {
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
     let bins = bin(range(data)).map(binset);
-    if (cumulative) {
-      if (cumulative < 0) bins.reverse();
-      bins = bins.map(bincumset);
-    }
+    if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.filter(nonempty2).map(binfilter);
   };
   bin.label = labelof(value);
