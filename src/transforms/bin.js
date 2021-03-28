@@ -1,233 +1,216 @@
-import {bin as binner, cross, group, sum} from "d3";
-import {firstof} from "../defined.js";
-import {valueof, first, second, range, identity, lazyChannel, maybeLazyChannel, maybeTransform, maybeColor, maybeValue, mid, take, labelof} from "../mark.js";
+import {bin as binner} from "d3";
+import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
 import {offset} from "../style.js";
-import {groups} from "./group.js";
+import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
 
-// Group on y, z, fill, or stroke, if any, then bin on x.
-export function binX({x, y, out = y == null ? "y" : "fill", inset, insetLeft, insetRight, ...options} = {}) {
+// Group on {z, fill, stroke}, then optionally on y, then bin x.
+export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
+  let {x, y} = options;
+  x = maybeBinValue(x, options, identity);
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  const [transform, x1, x2, l] = bin1(x, "y", {y, ...options});
-  return {x1, x2, ...transform, inset, insetLeft, insetRight, [out]: l};
+  return binn(x, null, null, y, outputs, {inset, insetLeft, insetRight, ...options});
 }
 
-// Group on y, z, fill, or stroke, if any, then bin on x.
-export function binXMid({x, out = "r", ...options} = {}) {
-  const [transform, x1, x2, l] = bin1(x, "y", options);
-  return {x: mid(x1, x2), ...transform, [out]: l};
+// Group on {z, fill, stroke}, then optionally on y, then bin x.
+export function binXMid(outputs, options = {}) {
+  let {x, y} = options;
+  x = maybeBinValue(x, options, identity);
+  const {x1, x2, ...transform} = binn(x, null, null, y, outputs, options);
+  return {...transform, x: mid(x1, x2)};
 }
 
-// Group on x, z, fill, or stroke, if any, then bin on y.
-export function binY({y, x, out = x == null ? "x" : "fill", inset, insetTop, insetBottom, ...options} = {}) {
+// Group on {z, fill, stroke}, then optionally on x, then bin y.
+export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
+  let {x, y} = options;
+  y = maybeBinValue(y, options, identity);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
-  const [transform, y1, y2, l] = bin1(y, "x", {x, ...options});
-  return {y1, y2, ...transform, inset, insetTop, insetBottom, [out]: l};
+  return binn(null, y, x, null, outputs, {inset, insetTop, insetBottom, ...options});
 }
 
-// Group on y, z, fill, or stroke, if any, then bin on x.
-export function binYMid({y, out = "r", ...options} = {}) {
-  const [transform, y1, y2, l] = bin1(y, "x", options);
-  return {y: mid(y1, y2), ...transform, [out]: l};
+// Group on {z, fill, stroke}, then optionally on x, then bin y.
+export function binYMid(outputs, options = {}) {
+  let {x, y} = options;
+  y = maybeBinValue(y, options, identity);
+  const {y1, y2, ...transform} = binn(null, x, y, null, outputs, options);
+  return {...transform, y: mid(y1, y2)};
 }
 
-// Group on z, fill, or stroke, if any, then bin on x and y.
-export function binR({x, y, ...options} = {}) {
-  const [transform, x1, x2, y1, y2, r] = bin2(x, y, options);
-  return {x: mid(x1, x2), y: mid(y1, y2), r, ...transform};
-}
-
-// Group on z, fill, or stroke, if any, then bin on x and y.
-export function bin({x, y, out = "fill", inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+// Group on {z, fill, stroke}, then bin on x and y.
+export function bin(outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+  const {x, y} = maybeBinValueTuple(options);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  const [transform, x1, x2, y1, y2, l] = bin2(x, y, options);
-  return {x1, x2, y1, y2, ...transform, inset, insetTop, insetRight, insetBottom, insetLeft, [out]: l};
+  return binn(x, y, null, null, outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
 }
 
-function bin1(x, key, {[key]: k, z, fill, stroke, weight, domain, thresholds, normalize, cumulative, ...options} = {}) {
-  const m = normalize === true || normalize === "z" ? 100 : +normalize;
-  const bin = binof(identity, {value: x, domain, thresholds});
-  const [X1, setX1] = lazyChannel(x);
-  const [X2, setX2] = lazyChannel(x);
-  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
+// Group on {z, fill, stroke}, then bin on x and y.
+export function binMid(outputs, options) {
+  const {x, y} = maybeBinValueTuple(options);
+  const {x1, x2, y1, y2, ...transform} = binn(x, y, null, null, outputs, options);
+  return {...transform, x: mid(x1, x2), y: mid(y1, y2)};
+}
+
+function binn(
+  bx, // optionally bin on x (exclusive with gx)
+  by, // optionally bin on y (exclusive with gy)
+  gx, // optionally group on x (exclusive with bx and gy)
+  gy, // optionally group on y (exclusive with by and gx)
+  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  inputs = {} // input channels and options
+) {
+  bx = maybeBin(bx);
+  by = maybeBin(by);
+  reduceData = maybeReduce(reduceData, identity);
+  outputs = maybeOutputs(outputs, inputs);
+
+  // Produce x1, x2, y1, and y2 output channels as appropriate (when binning).
+  const [BX1, setBX1] = maybeLazyChannel(bx);
+  const [BX2, setBX2] = maybeLazyChannel(bx);
+  const [BY1, setBY1] = maybeLazyChannel(by);
+  const [BY2, setBY2] = maybeLazyChannel(by);
+
+  // Produce x or y output channels as appropriate (when grouping).
+  const [k, gk] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
+  const [GK, setGK] = maybeLazyChannel(k);
+
+  // Greedily materialize the z, fill, and stroke channels (if channels and not
+  // constants) so that we can reference them for subdividing groups without
+  // computing them more than once.
+  const {x, y, z, fill, stroke, ...options} = inputs;
+  const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
-  const [BK, setBK] = maybeLazyChannel(k);
-  const [BZ, setBZ] = maybeLazyChannel(z);
-  const [BF = fill, setBF] = maybeLazyChannel(vfill);
-  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
-  return [
-    {
-      ...key && {[key]: BK},
-      z: BZ,
-      fill: BF,
-      stroke: BS,
-      ...options,
-      transform: maybeTransform(options, (data, facets) => {
-        const B = bin(data);
-        const K = valueof(data, k);
-        const Z = valueof(data, z);
-        const F = valueof(data, vfill);
-        const S = valueof(data, vstroke);
-        const W = valueof(data, weight);
-        const binFacets = [];
-        const binData = [];
-        const X1 = setX1([]);
-        const X2 = setX2([]);
-        const L = setL([]);
-        const G = firstof(K, Z, F, S);
-        const BK = K && setBK([]);
-        const BZ = Z && setBZ([]);
-        const BF = F && setBF([]);
-        const BS = S && setBS([]);
-        let n = W ? sum(W) : data.length;
-        let i = 0;
-        if (cumulative < 0) B.reverse();
-        for (const facet of facets) {
-          const binFacet = [];
-          for (const I of G ? group(facet, i => G[i]).values() : [facet]) {
-            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
-            const set = new Set(I);
-            let f;
-            for (const b of B) {
-              const s = b.filter(i => set.has(i));
-              f = cumulative && f !== undefined ? f.concat(s) : s;
-              const l = W ? sum(f, i => W[i]) : f.length;
-              if (l > 0) {
-                binFacet.push(i++);
-                binData.push(take(data, f));
-                X1.push(b.x0);
-                X2.push(b.x1);
-                L.push(m ? l * m / n : l);
-                if (K) BK.push(K[f[0]]);
-                if (Z) BZ.push(Z[f[0]]);
-                if (F) BF.push(F[f[0]]);
-                if (S) BS.push(S[f[0]]);
+  const [GF = fill, setGF] = maybeLazyChannel(vfill);
+  const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
+
+  return {
+    z: GZ,
+    fill: GF,
+    stroke: GS,
+    ...options,
+    ...BX1 ? {x1: BX1, x2: BX2} : {x},
+    ...BY1 ? {y1: BY1, y2: BY2} : {y},
+    ...GK && {[gk]: GK},
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
+    transform: maybeTransform(options, (data, facets) => {
+      const K = valueof(data, k);
+      const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
+      const G = maybeSubgroup(outputs, Z, F, S);
+      const groupFacets = [];
+      const groupData = [];
+      const GK = K && setGK([]);
+      const GZ = Z && setGZ([]);
+      const GF = F && setGF([]);
+      const GS = S && setGS([]);
+      const BX = bx ? bx(data) : [[,, I => I]];
+      const BY = by ? by(data) : [[,, I => I]];
+      const BX1 = bx && setBX1([]);
+      const BX2 = bx && setBX2([]);
+      const BY1 = by && setBY1([]);
+      const BY2 = by && setBY2([]);
+      let i = 0;
+      for (const o of outputs) o.initialize(data);
+      for (const facet of facets) {
+        const groupFacet = [];
+        for (const o of outputs) o.scope("facet", facet);
+        for (const [, I] of maybeGroup(facet, G)) {
+          for (const [k, g] of maybeGroup(I, K)) {
+            for (const [x1, x2, fx] of BX) {
+              const bb = fx(g);
+              if (bb.length === 0) continue;
+              for (const [y1, y2, fy] of BY) {
+                const b = fy(bb);
+                if (b.length === 0) continue;
+                groupFacet.push(i++);
+                groupData.push(reduceData.reduce(b, data));
+                if (K) GK.push(k);
+                if (Z) GZ.push(Z[b[0]]);
+                if (F) GF.push(F[b[0]]);
+                if (S) GS.push(S[b[0]]);
+                if (BX1) BX1.push(x1), BX2.push(x2);
+                if (BY1) BY1.push(y1), BY2.push(y2);
+                for (const o of outputs) o.reduce(b);
               }
             }
           }
-          binFacets.push(binFacet);
         }
-        return {data: binData, facets: binFacets};
-      })
-    },
-    X1,
-    X2,
-    L
-  ];
+        groupFacets.push(groupFacet);
+      }
+      return {data: groupData, facets: groupFacets};
+    })
+  };
 }
 
-// Here x and y may each either be a standalone value (e.g., a string
-// representing a field name, a function, an array), or the value and some
-// additional per-dimension binning options as an objects of the form {value,
-// domain?, thresholds?}.
-function bin2(x, y, {weight, domain, thresholds, normalize, z, fill, stroke, ...options} = {}) {
-  const m = normalize === true || normalize === "z" ? 100 : +normalize;
-  const binX = binof(first, {domain, thresholds, ...maybeValue(x)});
-  const binY = binof(second, {domain, thresholds, ...maybeValue(y)});
-  const bin = data => cross(binX(data).filter(nonempty), binY(data).filter(nonempty).map(binset2), (x, y) => y(x));
-  const [X1, setX1] = lazyChannel(x);
-  const [X2, setX2] = lazyChannel(x);
-  const [Y1, setY1] = lazyChannel(y);
-  const [Y2, setY2] = lazyChannel(y);
-  const [L, setL] = lazyChannel(`${labelof(weight, "Frequency")}${m === 100 ? " (%)" : ""}`);
-  const [vfill] = maybeColor(fill);
-  const [vstroke] = maybeColor(stroke);
-  const [BZ, setBZ] = maybeLazyChannel(z);
-  const [BF = fill, setBF] = maybeLazyChannel(vfill);
-  const [BS = stroke, setBS] = maybeLazyChannel(vstroke);
-  return [
-    {
-      z: BZ,
-      fill: BF,
-      stroke: BS,
-      ...options,
-      transform: maybeTransform(options, (data, facets) => {
-        const B = bin(data);
-        const Z = valueof(data, z);
-        const F = valueof(data, vfill);
-        const S = valueof(data, vstroke);
-        const W = valueof(data, weight);
-        const binFacets = [];
-        const binData = [];
-        const X1 = setX1([]);
-        const X2 = setX2([]);
-        const Y1 = setY1([]);
-        const Y2 = setY2([]);
-        const L = setL([]);
-        const G = firstof(Z, F, S);
-        const BZ = Z && setBZ([]);
-        const BF = F && setBF([]);
-        const BS = S && setBS([]);
-        let n = W ? sum(W) : data.length;
-        let i = 0;
-        for (const facet of facets) {
-          const binFacet = [];
-          for (const [, I] of groups(facet, G)) {
-            if (normalize === "z") n = W ? sum(I, i => W[i]) : I.length;
-            const set = new Set(I);
-            for (const b of B) {
-              const f = b.filter(i => set.has(i));
-              const l = W ? sum(f, i => W[i]) : f.length;
-              if (l > 0) {
-                binFacet.push(i++);
-                binData.push(take(data, f));
-                X1.push(b.x0);
-                X2.push(b.x1);
-                Y1.push(b.y0);
-                Y2.push(b.y1);
-                L.push(m ? l * m / n : l);
-                if (Z) BZ.push(Z[f[0]]);
-                if (F) BF.push(F[f[0]]);
-                if (S) BS.push(S[f[0]]);
-              }
-            }
-          }
-          binFacets.push(binFacet);
-        }
-        return {data: binData, facets: binFacets};
-      })
-    },
-    X1,
-    X2,
-    Y1,
-    Y2,
-    L
-  ];
+function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValue) {
+  value = {...maybeValue(value)};
+  if (value.domain === undefined) value.domain = domain;
+  if (value.cumulative === undefined) value.cumulative = cumulative;
+  if (value.thresholds === undefined) value.thresholds = thresholds;
+  if (value.value === undefined) value.value = defaultValue;
+  return value;
 }
 
-function binof(defaultValue, {value = defaultValue, domain, thresholds}) {
-  return data => {
-    const values = valueof(data, value);
-    const bin = binner().value(i => values[i]);
+function maybeBinValueTuple(options = {}) {
+  let {x, y} = options;
+  x = maybeBinValue(x, options);
+  y = maybeBinValue(y, options);
+  ([x.value, y.value] = maybeTuple(x.value, y.value));
+  return {x, y};
+}
+
+function maybeBin(options) {
+  if (options == null) return;
+  const {value, cumulative, domain, thresholds} = options;
+  const bin = data => {
+    const V = valueof(data, value);
+    const bin = binner().value(i => V[i]);
     if (domain !== undefined) bin.domain(domain);
     if (thresholds !== undefined) bin.thresholds(thresholds);
-    return bin(range(data));
+    let bins = bin(range(data)).map(binset);
+    if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
+    return bins.filter(nonempty2).map(binfilter);
   };
+  bin.label = labelof(value);
+  return bin;
 }
 
-function binset2(biny) {
-  const y = new Set(biny);
-  const {x0: y0, x1: y1} = biny;
-  return binx => {
-    const subbin = binx.filter(i => y.has(i));
-    subbin.x0 = binx.x0;
-    subbin.x1 = binx.x1;
-    subbin.y0 = y0;
-    subbin.y1 = y1;
-    return subbin;
-  };
+function binset(bin) {
+  return [bin, new Set(bin)];
 }
 
-function nonempty({length}) {
-  return length > 0;
+function bincumset([bin], j, bins) {
+  return [
+    bin,
+    {
+      get size() {
+        for (let k = 0; k <= j; ++k) {
+          if (bins[k][1].size) {
+            return 1; // a non-empty value
+          }
+        }
+        return 0;
+      },
+      has(i) {
+        for (let k = 0; k <= j; ++k) {
+          if (bins[k][1].has(i)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    }
+  ];
 }
 
-function length1({length}) {
-  return length;
+function binfilter([{x0, x1}, set]) {
+  return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
 }
 
-length1.label = "Frequency";
+function nonempty2([, {size}]) {
+  return size > 0;
+}
 
 function maybeInset(inset, inset1, inset2) {
   return inset === undefined && inset1 === undefined && inset2 === undefined

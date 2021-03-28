@@ -10,10 +10,11 @@ export default async function() {
       labelAnchor: "center"
     },
     y: {
-      grid: true
+      grid: true,
+      percent: true
     },
     marks: [
-      Plot.rectY({length: 10000}, Plot.binX({x: () => random() - random(), normalize: true})),
+      Plot.rectY({length: 10000}, Plot.binX({y: "proportion"}, {x: () => random() - random()})),
       Plot.ruleY([0])
     ]
   });

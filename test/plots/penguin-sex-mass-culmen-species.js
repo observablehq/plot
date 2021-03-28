@@ -20,7 +20,7 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(data, Plot.binR({
+      Plot.dot(data, Plot.binMid({r: "count"}, {
         x: "body_mass_g",
         y: "culmen_length_mm",
         stroke: "species",

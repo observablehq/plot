@@ -6,10 +6,11 @@ export default async function() {
   const letters = [...mobydick].filter(c => /[a-z]/i.test(c)).map(c => c.toUpperCase());
   return Plot.plot({
     y: {
-      grid: true
+      grid: true,
+      percent: true
     },
     marks: [
-      Plot.barY(letters, Plot.groupX({y: "count"})),
+      Plot.barY(letters, Plot.groupX({y: "proportion"})),
       Plot.ruleY([0])
     ]
   });

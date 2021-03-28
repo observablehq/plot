@@ -2,14 +2,13 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function() {
-  const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
-  const letters = [...mobydick].filter(c => /[a-z]/i.test(c)).map(c => c.toUpperCase());
+  const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.plot({
     y: {
       grid: true
     },
     marks: [
-      Plot.barY(letters, Plot.groupX({y: "count"})),
+      Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight", fill: "sex", mixBlendMode: "multiply", thresholds: 30})),
       Plot.ruleY([0])
     ]
   });

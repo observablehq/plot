@@ -60,7 +60,7 @@ class Facet extends Mark {
       }
       const named = Object.create(null);
       for (const [name, channel] of channels) {
-        if (name !== undefined) named[name] = channel.value;
+        if (name !== undefined) Object.defineProperty(named, name, {get: () => channel.value}); // scale transform
         subchannels.push([undefined, channel]);
       }
       marksChannels.push(named);

@@ -30,7 +30,7 @@ export default async function() {
       scheme: "blues"
     },
     marks: [
-      Plot.cell(positions, Plot.group({insetTop: 1, insetLeft: 1}))
+      Plot.cell(positions, Plot.group({fill: "count"}, {inset: 0.5}))
     ]
   });
 }

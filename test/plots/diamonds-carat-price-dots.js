@@ -17,7 +17,7 @@ export default async function() {
       range: [0, 3]
     },
     marks: [
-      Plot.dot(data, Plot.binR({x: "carat", y: "price", thresholds: 100}))
+      Plot.dot(data, Plot.binMid({r: "count"}, {x: "carat", y: "price", thresholds: 100}))
     ]
   });
 }

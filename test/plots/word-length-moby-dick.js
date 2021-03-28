@@ -17,10 +17,11 @@ export default async function() {
       labelAnchor: "right"
     },
     y: {
-      grid: true
+      grid: true,
+      percent: true
     },
     marks: [
-      Plot.barY(words, Plot.groupX({x: d => d.length, normalize: true}))
+      Plot.barY(words, Plot.groupX({y: "proportion"}, {x: "length"}))
     ]
   });
 }

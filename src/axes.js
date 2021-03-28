@@ -8,15 +8,15 @@ export function Axes(
   let {axis: yAxis = true} = y;
   let {axis: fxAxis = true} = fx;
   let {axis: fyAxis = true} = fy;
-  if (xAxis === true) xAxis = "bottom";
-  if (yAxis === true) yAxis = "left";
-  if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-  if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+  if (!xScale) xAxis = null; else if (xAxis === true) xAxis = "bottom";
+  if (!yScale) yAxis = null; else if (yAxis === true) yAxis = "left";
+  if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
+  if (!fyScale) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xScale && xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
-    ...yScale && yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
-    ...fxScale && fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
-    ...fyScale && fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
+    ...xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
+    ...yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
+    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
+    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
   };
 }
 
@@ -102,10 +102,11 @@ function inferLabel(channels = [], scale, axis, key) {
     else if (candidate !== label) return;
   }
   if (candidate !== undefined) {
-    const {invert} = scale;
+    const {percent, invert} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
     if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
     if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
+      if (percent) candidate = `${candidate} (%)`;
       if (axis.labelAnchor === "center") {
         candidate = `${candidate} →`;
       } else if (key === "x") {

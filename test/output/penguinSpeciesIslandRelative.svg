@@ -1,0 +1,76 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,366.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,331.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,297.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,262.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,228.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,193.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,158.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,124.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">70</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,89.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,55.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,20.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency (%)</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(130.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Adelie</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Chinstrap</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(530.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Gentoo</text>
+    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">species</text>
+  </g>
+  <g>
+    <g transform="translate(40,0)">
+      <g>
+        <rect x="0" width="180" y="265.84210526315786" height="100.15789473684214" fill="#4e79a7"></rect>
+        <rect x="0" width="180" y="138.36842105263156" height="127.4736842105263" fill="#f28e2c"></rect>
+        <rect x="0" width="180" y="20" height="118.36842105263156" fill="#e15759"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="180" y1="366" y2="366"></line>
+      </g>
+    </g>
+    <g transform="translate(240,0)">
+      <g>
+        <rect x="0" width="180" y="20" height="346" fill="#f28e2c"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="180" y1="366" y2="366"></line>
+      </g>
+    </g>
+    <g transform="translate(440,0)">
+      <g>
+        <rect x="0" width="180" y="20" height="346" fill="#4e79a7"></rect>
+      </g>
+      <g stroke="currentColor" transform="translate(0,0.5)">
+        <line x1="0" x2="180" y1="366" y2="366"></line>
+      </g>
+    </g>
+  </g>
+</svg>

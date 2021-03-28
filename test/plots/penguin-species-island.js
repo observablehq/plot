@@ -8,7 +8,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barY(data, Plot.stackY(Plot.groupX({x: "species", fill: "island"}))),
+      Plot.barY(data, Plot.stackY(Plot.groupX({y: "count"}, {x: "species", fill: "island"}))),
       Plot.ruleY([0])
     ]
   });

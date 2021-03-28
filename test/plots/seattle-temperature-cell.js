@@ -10,14 +10,12 @@ export default async function() {
       tickFormat: i => "JFMAMJJASOND"[i]
     },
     marks: [
-      Plot.cell(seattle, {
-        ...Plot.group({
-          x: d => d.date.getUTCDate(),
-          y: d => d.date.getUTCMonth()
-        }),
-        fill: d => d3.max(d, d => d.temp_max),
+      Plot.cell(seattle, Plot.group({fill: "max"}, {
+        x: d => d.date.getUTCDate(),
+        y: d => d.date.getUTCMonth(),
+        fill: "temp_max",
         inset: 0.5
-      })
+      }))
     ]
   });
 }

@@ -137,6 +137,7 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
+  percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : undefined,
   scheme,
@@ -167,7 +168,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type: "quantitative", invert, domain, range, scale, inset};
+  return {type: "quantitative", invert, domain, range, scale, inset, percent};
 }
 
 export function ScaleLinear(key, channels, options) {

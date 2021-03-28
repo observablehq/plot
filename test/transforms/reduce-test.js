@@ -19,7 +19,7 @@ tape("function reducers reduce as expected", test => {
 });
 
 function testReducer(test, data, x, r) {
-  const mark = Plot.dot(data, Plot.reduceX({x}, {x: d => d}));
+  const mark = Plot.dot(data, Plot.groupZ({x}, {x: d => d}));
   const c = new Map(mark.initialize().channels);
   test.deepEqual(c.get("x").value, [r]);
 }
