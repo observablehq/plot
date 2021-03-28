@@ -50,7 +50,7 @@ import {
 } from "d3";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3";
 import {registry, radius, color} from "./index.js";
-import {positive} from "../defined.js";
+import {positive, negative} from "../defined.js";
 
 const constant = x => () => x;
 const flip = i => t => i(1 - t);
@@ -179,8 +179,8 @@ export function ScalePow(key, channels, {exponent = 1, ...options}) {
   return ScaleQ(key, scalePow().exponent(exponent), channels, options);
 }
 
-export function ScaleLog(key, channels, {base = 10, ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, options);
+export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
+  return ScaleQ(key, scaleLog().base(base), channels, {domain, ...options});
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
@@ -215,10 +215,10 @@ export function ScaleDiverging(key, channels, {
   return {type: "quantitative", invert, domain, scale};
 }
 
-function inferDomain(channels) {
+function inferDomain(channels, f) {
   return [
-    min(channels, ({value}) => value === undefined ? value : min(value)),
-    max(channels, ({value}) => value === undefined ? value : max(value))
+    min(channels, ({value}) => value === undefined ? value : min(value, f)),
+    max(channels, ({value}) => value === undefined ? value : max(value, f))
   ];
 }
 
@@ -231,4 +231,17 @@ function inferRadialDomain(channels) {
 function inferRadialRange(channels, domain) {
   const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
   return domain.map(d => 3 * Math.sqrt(d / h25));
+}
+
+function inferLogDomain(channels) {
+  for (const {value} of channels) {
+    if (value !== undefined) {
+      for (let v of value) {
+        v = +v;
+        if (v > 0) return inferDomain(channels, positive);
+        if (v < 0) return inferDomain(channels, negative);
+      }
+    }
+  }
+  return [1, 10];
 }

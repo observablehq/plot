@@ -27,6 +27,10 @@ export function positive(x) {
   return x > 0 ? x : NaN;
 }
 
+export function negative(x) {
+  return x < 0 ? x : NaN;
+}
+
 export function firstof(...values) {
   for (const v of values) {
     if (v !== undefined) {
