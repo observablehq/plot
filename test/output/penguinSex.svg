@@ -1,0 +1,49 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,366.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,325.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,284.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,242.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,201.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,160.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,119.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,78.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,36.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(143.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(517.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">sex</text>
+  </g>
+  <g>
+    <rect x="59" width="168" y="26.178571428571445" height="339.82142857142856"></rect>
+    <rect x="246" width="168" y="20" height="346"></rect>
+  </g>
+  <g stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="366" y2="366"></line>
+  </g>
+</svg>
