@@ -1,6 +1,6 @@
 .plot {
   display: block;
-  font: 10px sans-serif;
+  font: 10px system-ui, sans-serif;
   background: white;
   height: auto;
   height: intrinsic;
