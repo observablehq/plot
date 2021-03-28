@@ -46,7 +46,6 @@ export class AbstractBar extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {rx, ry} = this;
-    const {color} = scales;
     const {z: Z, title: L, fill: F, stroke: S} = channels;
     const index = filter(I, ...this._positions(channels), F, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -61,20 +60,20 @@ export class AbstractBar extends Mark {
             .attr("width", this._width(scales, channels, dimensions))
             .attr("y", this._y(scales, channels, dimensions))
             .attr("height", this._height(scales, channels, dimensions))
-            .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("fill", F && (i => F[i]))
+            .attr("stroke", S && (i => S[i]))
             .call(rx != null ? rect => rect.attr("rx", rx) : () => {})
             .call(ry != null ? rect => rect.attr("ry", ry) : () => {})
             .call(title(L)))
       .node();
   }
-  _x({x}, {x: X}, {marginLeft}) {
+  _x(scales, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X ? i => x(X[i]) + insetLeft : marginLeft + insetLeft;
+    return X ? i => X[i] + insetLeft : marginLeft + insetLeft;
   }
-  _y({y}, {y: Y}, {marginTop}) {
+  _y(scales, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y ? i => y(Y[i]) + insetTop : marginTop + insetTop;
+    return Y ? i => Y[i] + insetTop : marginTop + insetTop;
   }
   _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
@@ -106,13 +105,13 @@ export class BarX extends AbstractBar {
   _positions({x1: X1, x2: X2, y: Y}) {
     return [X1, X2, Y];
   }
-  _x({x}, {x1: X1, x2: X2}) {
+  _x(scales, {x1: X1, x2: X2}) {
     const {insetLeft} = this;
-    return i => Math.min(x(X1[i]), x(X2[i])) + insetLeft;
+    return i => Math.min(X1[i], X2[i]) + insetLeft;
   }
-  _width({x}, {x1: X1, x2: X2}) {
+  _width(scales, {x1: X1, x2: X2}) {
     const {insetLeft, insetRight} = this;
-    return i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - insetLeft - insetRight);
+    return i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
   }
 }
 
@@ -134,13 +133,13 @@ export class BarY extends AbstractBar {
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];
   }
-  _y({y}, {y1: Y1, y2: Y2}) {
+  _y(scales, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
-    return i => Math.min(y(Y1[i]), y(Y2[i])) + insetTop;
+    return i => Math.min(Y1[i], Y2[i]) + insetTop;
   }
-  _height({y}, {y1: Y1, y2: Y2}) {
+  _height(scales, {y1: Y1, y2: Y2}) {
     const {insetTop, insetBottom} = this;
-    return i => Math.max(0, Math.abs(y(Y2[i]) - y(Y1[i])) - insetTop - insetBottom);
+    return i => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
   }
 }
 

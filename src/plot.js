@@ -38,9 +38,13 @@ export function plot(options = {}) {
         if (scaled) scaled.push(channel);
         else scaleChannels.set(scale, [channel]);
       }
-      if (name !== undefined) {
-        named[name] = channel.value;
-      }
+      if (name !== undefined) Object.defineProperty(named, name, {
+        get: () => {
+          const value = scale === undefined ? channel.value : Array.from(channel.value, scales[scale]); // TODO type
+          console.log({name, value});
+          return value;
+        }
+      });
     }
     markChannels.set(mark, named);
     markIndex.set(mark, index);
