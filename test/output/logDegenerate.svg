@@ -59,7 +59,6 @@
     </g>
   </g>
   <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="NaN" cy="15" r="3"></circle>
     <circle cx="20" cy="15" r="3"></circle>
     <circle cx="319.99999999999994" cy="15" r="3"></circle>
     <circle cx="410.3089986991943" cy="15" r="3"></circle>

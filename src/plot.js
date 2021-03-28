@@ -127,5 +127,12 @@ function Dimensions(
 }
 
 function ScaleFunctions(scales) {
-  return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+  return Object.fromEntries(Object.entries(scales).map(([name, scale]) => [name, nullsafe(scale)]));
+}
+
+// TODO fix d3-scale to treat null as undefined instead of coercing to zero
+function nullsafe({type, scale}) {
+  return type === "quantitative"
+    ? Object.assign(x => x === null ? NaN : scale(x), scale)
+    : scale;
 }
