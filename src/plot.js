@@ -38,13 +38,14 @@ export function plot(options = {}) {
         if (scaled) scaled.push(channel);
         else scaleChannels.set(scale, [channel]);
       }
-      if (name !== undefined) Object.defineProperty(named, name, {
-        get: () => {
-          const value = scale === undefined ? channel.value : Array.from(channel.value, scales[scale]); // TODO type
-          console.log({name, value});
-          return value;
-        }
-      });
+      // TODO use Float64Array.from for position and radius scales?
+      // TODO don’t use a getter, and instead re-assign the channel.value after construcing scales
+      // TODO test that this works with faceting
+      if (name !== undefined) {
+        Object.defineProperty(named, name, {
+          get: () => scale === undefined ? channel.value : Array.from(channel.value, scales[scale])
+        });
+      }
     }
     markChannels.set(mark, named);
     markIndex.set(mark, index);
