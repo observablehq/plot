@@ -49,7 +49,7 @@ export class Area extends Mark {
       ...options
     });
   }
-  render(I, {x, y, color}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
+  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
@@ -57,15 +57,15 @@ export class Area extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .attr("fill", F && (([i]) => color(F[i])))
-            .attr("stroke", S && (([i]) => color(S[i])))
+            .attr("fill", F && (([i]) => F[i]))
+            .attr("stroke", S && (([i]) => S[i]))
             .attr("d", shapeArea()
               .curve(this.curve)
               .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
-              .x0(i => x(X1[i]))
-              .y0(i => y(Y1[i]))
-              .x1(i => x(X2[i]))
-              .y1(i => y(Y2[i])))
+              .x0(i => X1[i])
+              .y0(i => Y1[i])
+              .x1(i => X2[i])
+              .y1(i => Y2[i]))
             .call(titleGroup(L)))
       .node();
   }

@@ -46,7 +46,7 @@ export class Line extends Mark {
       ...options
     });
   }
-  render(I, {x, y, color}, {x: X, y: Y, z: Z, title: L, fill: F, stroke: S}) {
+  render(I, {x, y}, {x: X, y: Y, z: Z, title: L, fill: F, stroke: S}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -54,13 +54,13 @@ export class Line extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .attr("fill", F && (([i]) => color(F[i])))
-            .attr("stroke", S && (([i]) => color(S[i])))
+            .attr("fill", F && (([i]) => F[i]))
+            .attr("stroke", S && (([i]) => S[i]))
             .attr("d", shapeLine()
               .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
-              .x(i => x(X[i]))
-              .y(i => y(Y[i])))
+              .x(i => X[i])
+              .y(i => Y[i]))
             .call(titleGroup(L)))
       .node();
   }

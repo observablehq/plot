@@ -44,7 +44,7 @@ export class Dot extends Mark {
   }
   render(
     I,
-    {x, y, r, color},
+    {x, y},
     {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
@@ -58,11 +58,11 @@ export class Dot extends Mark {
           .data(index)
           .join("circle")
             .call(applyDirectStyles, this)
-            .attr("cx", X ? i => x(X[i]) : (marginLeft + width - marginRight) / 2)
-            .attr("cy", Y ? i => y(Y[i]) : (marginTop + height - marginBottom) / 2)
-            .attr("r", R ? i => r(R[i]) : this.r)
-            .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("cx", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
+            .attr("cy", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
+            .attr("r", R ? i => R[i] : this.r)
+            .attr("fill", F && (i => F[i]))
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }

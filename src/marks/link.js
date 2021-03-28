@@ -36,7 +36,7 @@ export class Link extends Mark {
   }
   render(
     I,
-    {x, y, color},
+    {x, y},
     {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, stroke: S}
   ) {
     const index = filter(I, X1, Y1, X2, Y2, S);
@@ -48,11 +48,11 @@ export class Link extends Mark {
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", i => x(X1[i]))
-            .attr("y1", i => y(Y1[i]))
-            .attr("x2", i => x(X2[i]))
-            .attr("y2", i => y(Y2[i]))
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("x1", i => X1[i])
+            .attr("y1", i => Y1[i])
+            .attr("x2", i => X2[i])
+            .attr("y2", i => Y2[i])
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }
