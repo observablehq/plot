@@ -34,7 +34,7 @@ export class RuleX extends Mark {
   }
   render(
     I,
-    {x, y, color},
+    {x, y},
     {x: X, y1: Y1, y2: Y2, z: Z, title: L, stroke: S},
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
@@ -47,11 +47,11 @@ export class RuleX extends Mark {
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", X ? i => Math.round(x(X[i])) : (marginLeft + width - marginRight) / 2)
-            .attr("x2", X ? i => Math.round(x(X[i])) : (marginLeft + width - marginRight) / 2)
-            .attr("y1", Y1 ? i => y(Y1[i]) : marginTop)
-            .attr("y2", Y2 ? (y.bandwidth ? i => y(Y2[i]) + y.bandwidth() : i => y(Y2[i])) : height - marginBottom)
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("x1", X ? i => Math.round(X[i]) : (marginLeft + width - marginRight) / 2)
+            .attr("x2", X ? i => Math.round(X[i]) : (marginLeft + width - marginRight) / 2)
+            .attr("y1", Y1 ? i => Y1[i] : marginTop)
+            .attr("y2", Y2 ? (y.bandwidth ? i => Y2[i] + y.bandwidth() : i => Y2[i]) : height - marginBottom)
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }
@@ -87,7 +87,7 @@ export class RuleY extends Mark {
   }
   render(
     I,
-    {x, y, color},
+    {x, y},
     {y: Y, x1: X1, x2: X2, z: Z, title: L, stroke: S},
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
@@ -100,11 +100,11 @@ export class RuleY extends Mark {
           .data(index)
           .join("line")
             .call(applyDirectStyles, this)
-            .attr("x1", X1 ? i => x(X1[i]) : marginLeft)
-            .attr("x2", X2 ? (x.bandwidth ? i => x(X2[i]) + x.bandwidth() : i => x(X2[i])) : width - marginRight)
-            .attr("y1", Y ? i => Math.round(y(Y[i])) : (marginTop + height - marginBottom) / 2)
-            .attr("y2", Y ? i => Math.round(y(Y[i])) : (marginTop + height - marginBottom) / 2)
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("x1", X1 ? i => X1[i] : marginLeft)
+            .attr("x2", X2 ? (x.bandwidth ? i => X2[i] + x.bandwidth() : i => X2[i]) : width - marginRight)
+            .attr("y1", Y ? i => Math.round(Y[i]) : (marginTop + height - marginBottom) / 2)
+            .attr("y2", Y ? i => Math.round(Y[i]) : (marginTop + height - marginBottom) / 2)
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }

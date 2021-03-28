@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
+import {values} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
@@ -27,9 +28,8 @@ export function plot(options = {}) {
   // Also apply any scale transforms.
   for (const mark of marks) {
     if (markChannels.has(mark)) throw new Error("duplicate mark");
-    const named = Object.create(null);
     const {index, channels} = mark.initialize();
-    for (const [name, channel] of channels) {
+    for (const [, channel] of channels) {
       const {scale} = channel;
       if (scale !== undefined) {
         const scaled = scaleChannels.get(scale);
@@ -38,16 +38,8 @@ export function plot(options = {}) {
         if (scaled) scaled.push(channel);
         else scaleChannels.set(scale, [channel]);
       }
-      // TODO use Float64Array.from for position and radius scales?
-      // TODO don’t use a getter, and instead re-assign the channel.value after construcing scales
-      // TODO test that this works with faceting
-      if (name !== undefined) {
-        Object.defineProperty(named, name, {
-          get: () => scale === undefined ? channel.value : Array.from(channel.value, scales[scale])
-        });
-      }
     }
-    markChannels.set(mark, named);
+    markChannels.set(mark, channels);
     markIndex.set(mark, index);
   }
 
@@ -90,7 +82,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
-    const node = mark.render(index, scales, channels, dimensions, axes);
+    const node = mark.render(index, scales, values(channels, scales), dimensions, axes);
     if (node != null) svg.append(() => node);
   }
 
