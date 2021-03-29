@@ -13,7 +13,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: "count"}, {filter: d => top.has(d.nationality), y: "nationality"})) // TODO remove filter
+      Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality"}))
     ]
   });
 }
