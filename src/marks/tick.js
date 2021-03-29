@@ -29,7 +29,6 @@ class AbstractTick extends Mark {
     Style(this, {stroke: cstroke, ...options});
   }
   render(I, scales, channels, dimensions) {
-    const {color} = scales;
     const {x: X, y: Y, z: Z, title: L, stroke: S} = channels;
     const index = filter(I, X, Y, S);
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
@@ -44,7 +43,7 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels, dimensions))
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }
@@ -64,17 +63,17 @@ export class TickX extends AbstractTick {
   _transform(selection, {x}) {
     selection.call(applyTransform, x, null, 0.5, 0);
   }
-  _x1({x}, {x: X}) {
-    return i => Math.round(x(X[i]));
+  _x1(scales, {x: X}) {
+    return i => Math.round(X[i]);
   }
-  _x2({x}, {x: X}) {
-    return i => Math.round(x(X[i]));
+  _x2(scales, {x: X}) {
+    return i => Math.round(X[i]);
   }
-  _y1({y}, {y: Y}, {marginTop}) {
-    return Y ? i => y(Y[i]) : marginTop;
+  _y1(scales, {y: Y}, {marginTop}) {
+    return Y ? i => Y[i] : marginTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
-    return Y ? i => y(Y[i]) + y.bandwidth() : height - marginBottom;
+    return Y ? i => Y[i] + y.bandwidth() : height - marginBottom;
   }
 }
 
@@ -92,17 +91,17 @@ export class TickY extends AbstractTick {
   _transform(selection, {y}) {
     selection.call(applyTransform, null, y, 0, 0.5);
   }
-  _x1({x}, {x: X}, {marginLeft}) {
-    return X ? i => x(X[i]) : marginLeft;
+  _x1(scales, {x: X}, {marginLeft}) {
+    return X ? i => X[i] : marginLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
-    return X ? i => x(X[i]) + x.bandwidth() : width - marginRight;
+    return X ? i => X[i] + x.bandwidth() : width - marginRight;
   }
-  _y1({y}, {y: Y}) {
-    return i => Math.round(y(Y[i]));
+  _y1(scales, {y: Y}) {
+    return i => Math.round(Y[i]);
   }
-  _y2({y}, {y: Y}) {
-    return i => Math.round(y(Y[i]));
+  _y2(scales, {y: Y}) {
+    return i => Math.round(Y[i]);
   }
 }
 

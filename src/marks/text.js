@@ -54,7 +54,7 @@ export class Text extends Mark {
   }
   render(
     I,
-    {x, y, color},
+    {x, y},
     {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
@@ -70,16 +70,16 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectTextStyles, this)
-            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${R[i]})`
-                : X ? i => `translate(${x(X[i])},${cy}) rotate(${R[i]})`
-                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${R[i]})`
+            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
+                : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
+                : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
                 : i => `translate(${cx},${cy}) rotate(${R[i]})`)
-              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${x(X[i])},${y(Y[i])}) rotate(${rotate})`
-                : X ? i => `translate(${x(X[i])},${cy}) rotate(${rotate})`
-                : Y ? i => `translate(${cx},${y(Y[i])}) rotate(${rotate})`
+              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
+                : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
+                : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
-              : text => text.attr("x", X ? i => x(X[i]) : cx).attr("y", Y ? i => y(Y[i]) : cy))
-            .attr("fill", F && (i => color(F[i])))
+              : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
+            .attr("fill", F && (i => F[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();

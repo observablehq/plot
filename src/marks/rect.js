@@ -52,7 +52,7 @@ export class Rect extends Mark {
   }
   render(
     I,
-    {x, y, color},
+    {x, y},
     {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, fill: F, stroke: S}
   ) {
     const {rx, ry} = this;
@@ -65,14 +65,14 @@ export class Rect extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", i => Math.min(x(X1[i]), x(X2[i])) + this.insetLeft)
-            .attr("y", i => Math.min(y(Y1[i]), y(Y2[i])) + this.insetTop)
-            .attr("width", i => Math.max(0, Math.abs(x(X2[i]) - x(X1[i])) - this.insetLeft - this.insetRight))
-            .attr("height", i => Math.max(0, Math.abs(y(Y1[i]) - y(Y2[i])) - this.insetTop - this.insetBottom))
+            .attr("x", i => Math.min(X1[i], X2[i]) + this.insetLeft)
+            .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
+            .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
+            .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
             .call(rx != null ? rect => rect.attr("rx", rx) : () => {})
             .call(ry != null ? rect => rect.attr("ry", ry) : () => {})
-            .attr("fill", F && (i => color(F[i])))
-            .attr("stroke", S && (i => color(S[i])))
+            .attr("fill", F && (i => F[i]))
+            .attr("stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }

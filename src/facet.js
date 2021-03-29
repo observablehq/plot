@@ -1,6 +1,6 @@
 import {cross, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second} from "./mark.js";
+import {Mark, values, first, second} from "./mark.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -58,12 +58,10 @@ class Facet extends Mark {
           marksIndex[i] = index;
         }
       }
-      const named = Object.create(null);
-      for (const [name, channel] of channels) {
-        if (name !== undefined) Object.defineProperty(named, name, {get: () => channel.value}); // scale transform
-        subchannels.push([undefined, channel]);
+      for (const [, channel] of channels) {
+        subchannels.push([, channel]);
       }
-      marksChannels.push(named);
+      marksChannels.push(channels);
     }
     return {index, channels: [...channels, ...subchannels]};
   }
@@ -73,6 +71,7 @@ class Facet extends Mark {
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+    const marksValues = marksChannels.map(channels => values(channels, scales));
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -109,7 +108,7 @@ class Facet extends Mark {
                 const node = marks[i].render(
                   marksFacetIndex[i],
                   scales,
-                  marksChannels[i],
+                  marksValues[i],
                   subdimensions
                 );
                 if (node != null) this.appendChild(node);
