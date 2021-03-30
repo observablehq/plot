@@ -1,4 +1,4 @@
-import {bin as binner} from "d3";
+import {bin as binner, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
 import {offset} from "../style.js";
 import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
@@ -149,6 +149,7 @@ function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValu
   if (value.cumulative === undefined) value.cumulative = cumulative;
   if (value.thresholds === undefined) value.thresholds = thresholds;
   if (value.value === undefined) value.value = defaultValue;
+  value.thresholds = maybeThresholds(value.thresholds);
   return value;
 }
 
@@ -174,6 +175,18 @@ function maybeBin(options) {
   };
   bin.label = labelof(value);
   return bin;
+}
+
+function maybeThresholds(thresholds) {
+  if (typeof thresholds === "string") {
+    switch (thresholds.toLowerCase()) {
+      case "freedman-diaconis": return thresholdFreedmanDiaconis;
+      case "scott": return thresholdScott;
+      case "sturges": return thresholdSturges;
+    }
+    throw new Error("invalid thresholds");
+  }
+  return thresholds; // pass array, count, or function to bin.thresholds
 }
 
 function binset(bin) {
