@@ -5,6 +5,10 @@ tape("formatMonth(locale, format) does the right thing", test => {
   test.equal(Plot.formatMonth("en", "long")(0), "January");
   test.equal(Plot.formatMonth("en", "short")(0), "Jan");
   test.equal(Plot.formatMonth("en", "narrow")(0), "J");
+});
+
+// GitHub Actions does not support locales.
+tape.skip("formatMonth('fr', format) does the right thing", test => {
   test.equal(Plot.formatMonth("fr", "long")(11), "décembre");
   test.equal(Plot.formatMonth("fr", "short")(11), "déc.");
   test.equal(Plot.formatMonth("fr", "narrow")(11), "D");
@@ -20,8 +24,11 @@ tape("formatMonth(locale, format) handles undefined input", test => {
 
 tape("formatMonth(locale) has the expected default", test => {
   test.equal(Plot.formatMonth("en")(0), "Jan");
-  test.equal(Plot.formatMonth("fr")(11), "déc.");
   test.equal(Plot.formatMonth("en", undefined)(0), "Jan");
+});
+
+tape.skip("formatMonth('fr') has the expected default", test => {
+  test.equal(Plot.formatMonth("fr")(11), "déc.");
   test.equal(Plot.formatMonth("fr", undefined)(11), "déc.");
 });
 
@@ -36,6 +43,9 @@ tape("formatWeekday(locale, format) does the right thing", test => {
   test.equal(Plot.formatWeekday("en", "long")(0), "Sunday");
   test.equal(Plot.formatWeekday("en", "short")(0), "Sun");
   test.equal(Plot.formatWeekday("en", "narrow")(0), "S");
+});
+
+tape.skip("formatWeekday('fr', format) does the right thing", test => {
   test.equal(Plot.formatWeekday("fr", "long")(6), "samedi");
   test.equal(Plot.formatWeekday("fr", "short")(6), "sam.");
   test.equal(Plot.formatWeekday("fr", "narrow")(6), "S");
@@ -43,8 +53,11 @@ tape("formatWeekday(locale, format) does the right thing", test => {
 
 tape("formatWeekday(locale) has the expected default", test => {
   test.equal(Plot.formatWeekday("en")(0), "Sun");
-  test.equal(Plot.formatWeekday("fr")(6), "sam.");
   test.equal(Plot.formatWeekday("en", undefined)(0), "Sun");
+});
+
+tape.skip("formatWeekday('fr') has the expected default", test => {
+  test.equal(Plot.formatWeekday("fr")(6), "sam.");
   test.equal(Plot.formatWeekday("fr", undefined)(6), "sam.");
 });
 
