@@ -166,9 +166,8 @@ function maybeBin(options) {
   const {value, cumulative, domain, thresholds} = options;
   const bin = data => {
     const V = valueof(data, value);
-    const bin = binner().value(i => V[i]);
+    const bin = binner().value(i => V[i]).thresholds(thresholds);
     if (domain !== undefined) bin.domain(domain);
-    if (thresholds !== undefined) bin.thresholds(thresholds);
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.filter(nonempty2).map(binfilter);
@@ -177,7 +176,7 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds) {
+function maybeThresholds(thresholds = thresholdScott) {
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
