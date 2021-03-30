@@ -1,4 +1,4 @@
-import {InternMap, cumsum, group, groupSort, greatest, rollup, sum} from "d3";
+import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
 
@@ -127,6 +127,7 @@ function offsetSilhouette(stacks, Y1, Y2) {
       Y2[i] -= m;
     }
   }
+  offsetZero(stacks, Y1, Y2);
 }
 
 function offsetWiggle(stacks, Y1, Y2, Z) {
@@ -149,6 +150,17 @@ function offsetWiggle(stacks, Y1, Y2, Z) {
     }
     const s1 = sum(Fi);
     if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
+  }
+  offsetZero(stacks, Y1, Y2);
+}
+
+function offsetZero(stacks, Y1, Y2) {
+  const m = min(stacks, stack => min(stack, i => Y1[i]));
+  for (const stack of stacks) {
+    for (const i of stack) {
+      Y1[i] -= m;
+      Y2[i] -= m;
+    }
   }
 }
 
