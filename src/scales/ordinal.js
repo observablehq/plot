@@ -1,4 +1,4 @@
-import {reverse, sort} from "d3";
+import {reverse as reverseof, sort} from "d3";
 import {quantize} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3";
 import {
@@ -106,7 +106,7 @@ const schemes = new Map([
   ["rdylgn", scheme11(schemeRdYlGn, interpolateRdYlGn)],
   ["spectral", scheme11(schemeSpectral, interpolateSpectral)],
 
-  // inverted diverging (for temperature data)
+  // reversed diverging (for temperature data)
   ["burd", scheme11r(schemeRdBu, interpolateRdBu)],
   ["buylrd", scheme11r(schemeRdGy, interpolateRdGy)],
 
@@ -182,17 +182,17 @@ function Scheme(scheme) {
 export function ScaleO(scale, channels, {
   domain = inferDomain(channels),
   range,
-  invert,
+  reverse,
   inset
 }) {
-  if (invert = !!invert) domain = reverse(domain);
+  if (reverse = !!reverse) domain = reverseof(domain);
   scale.domain(domain);
   if (range !== undefined) {
     // If the range is specified as a function, pass it the domain.
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type: "ordinal", invert, domain, range, scale, inset};
+  return {type: "ordinal", reverse, domain, range, scale, inset};
 }
 
 export function ScaleOrdinal(key, channels, {

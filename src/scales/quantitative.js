@@ -1,4 +1,4 @@
-import {min, max, quantile, reverse} from "d3";
+import {min, max, quantile, reverse as reverseof} from "d3";
 import {
   interpolateHcl,
   interpolateHsl,
@@ -80,7 +80,7 @@ const schemes = new Map([
   ["rdylgn", interpolateRdYlGn],
   ["spectral", interpolateSpectral],
 
-  // inverted diverging (for temperature data)
+  // reversed diverging (for temperature data)
   ["burd", t => interpolateRdBu(1 - t)],
   ["buylrd", t => interpolateRdYlBu(1 - t)],
 
@@ -143,11 +143,11 @@ export function ScaleQ(key, scale, channels, {
   scheme,
   type,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
-  invert,
+  reverse,
   inset
 }) {
   if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
-  if (invert = !!invert) domain = reverse(domain);
+  if (reverse = !!reverse) domain = reverseof(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
 
@@ -160,7 +160,7 @@ export function ScaleQ(key, scale, channels, {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
-      if (invert) interpolate = flip(interpolate);
+      if (reverse) interpolate = flip(interpolate);
       interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
@@ -168,7 +168,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type: "quantitative", invert, domain, range, scale, inset, percent};
+  return {type: "quantitative", reverse, domain, range, scale, inset, percent};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -195,10 +195,10 @@ export function ScaleDiverging(key, channels, {
   range,
   scheme,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateRdBu) : undefined,
-  invert
+  reverse
 }) {
   domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
-  if (invert = !!invert) domain = reverse(domain);
+  if (reverse = !!reverse) domain = reverseof(domain);
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
   // space; other times it is a function that takes t in [0, 1].
@@ -212,7 +212,7 @@ export function ScaleDiverging(key, channels, {
   const scale = scaleDiverging(domain, interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type: "quantitative", invert, domain, scale};
+  return {type: "quantitative", reverse, domain, scale};
 }
 
 function inferDomain(channels, f) {

@@ -11,7 +11,7 @@ export default async function() {
     },
     color: {
       scheme: "RdBu",
-      invert: true
+      reverse: true
     },
     marks: [
       Plot.ruleX(

@@ -16,7 +16,7 @@ export default async function() {
     },
     color: {
       type: "diverging",
-      invert: true
+      reverse: true
     },
     marks: [
       Plot.link(data, {

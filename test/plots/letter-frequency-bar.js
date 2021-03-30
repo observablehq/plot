@@ -11,7 +11,7 @@ export default async function() {
     },
     y: {
       domain: d3.sort(alphabet, d => -d.frequency).map(d => d.letter),
-      invert: true, // TODO implicitly invert when band or point in y
+      reverse: true, // TODO implicitly reverse when band or point in y
       label: null
     },
     marks: [
