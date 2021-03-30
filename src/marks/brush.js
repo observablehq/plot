@@ -37,6 +37,11 @@ export class Brush extends Mark {
     const g = create("svg:g");
     const data = this.data;
 
+    // compute the scaled channels
+    if (x && this.X === undefined) this.X = X.map(x);
+    if (y && this.Y === undefined) this.Y = Y.map(y);
+    ({X, Y} = this);
+
     const bounds = [
       [Math.floor(marginLeft), Math.floor(marginTop)],
       [Math.ceil(width - marginRight), Math.ceil(height - marginBottom)]
@@ -48,17 +53,11 @@ export class Brush extends Mark {
         if (selection) {
           if (x) {
             const [x0, x1] = y ? [selection[0][0], selection[1][0]] : selection;
-            index = index.filter(i => {
-              const c = x(X[i]);
-              return c >= x0 && c <= x1;
-            });
+            index = index.filter(i => X[i] >= x0 && X[i] <= x1);
           }
           if (y) {
             const [y0, y1] = x ? [selection[0][1], selection[1][1]] : selection;
-            index = index.filter(i => {
-              const c = y(Y[i]);
-              return c >= y0 && c <= y1;
-            });
+            index = index.filter(i => Y[i] >= y0 && Y[i] <= y1);
           }
         }
         const dots = selection ? Array.from(index, i => J[i]) : data;
