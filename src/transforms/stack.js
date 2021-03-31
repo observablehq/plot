@@ -113,8 +113,8 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
 function maybeOffset(offset) {
   if (offset == null) return;
   switch ((offset + "").toLowerCase()) {
-    case "expand": return offsetExpand;
-    case "silhouette": return offsetSilhouette;
+    case "normalize": case "expand": return offsetExpand;
+    case "center": case "silhouette": return offsetSilhouette;
     case "wiggle": return offsetWiggle;
   }
   throw new Error(`unknown offset: ${offset}`);
