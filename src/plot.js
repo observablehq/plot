@@ -15,7 +15,11 @@ export function plot(options = {}) {
   }
 
   // Flatten any nested marks.
-  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity);
+  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity)
+    .map(mark => typeof mark === "function" ? {
+      initialize: () => ({ index: [], channels: [] }),
+      render: mark
+    } : mark);
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();
