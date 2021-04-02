@@ -83,7 +83,12 @@ class Facet extends Mark {
               .data(domain)
               .join("g")
               .attr("transform", ky => `translate(0,${fy(ky)})`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fyDimensions));
+              .append((ky, i) => (i === j ? axis1 : axis2).render(
+                fx && fx.domain().filter(kx => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fyDimensions
+              ));
           }
           if (fx && axes.x) {
             const domain = fx.domain();
@@ -95,7 +100,12 @@ class Facet extends Mark {
               .data(domain)
               .join("g")
               .attr("transform", kx => `translate(${fx(kx)},0)`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fxDimensions));
+              .append((kx, i) => (i === j ? axis1 : axis2).render(
+                fy && fy.domain().filter(ky => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fxDimensions
+              ));
           }
         })
         .call(g => g.selectAll()
@@ -103,15 +113,17 @@ class Facet extends Mark {
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
-              for (let i = 0; i < marks.length; ++i) {
-                const node = marks[i].render(
-                  marksFacetIndex[i],
-                  scales,
-                  marksValues[i],
-                  subdimensions
-                );
-                if (node != null) this.appendChild(node);
+              if (marksIndexByFacet.has(key)) {
+                const marksFacetIndex = marksIndexByFacet.get(key);
+                for (let i = 0; i < marks.length; ++i) {
+                  const node = marks[i].render(
+                    marksFacetIndex[i],
+                    scales,
+                    marksValues[i],
+                    subdimensions
+                  );
+                  if (node != null) this.appendChild(node);
+                }
               }
             }))
       .node();
