@@ -11,6 +11,10 @@ export const color = Symbol("color");
 // default domain from 0 to the median first quartile of associated channels.
 export const radius = Symbol("radius");
 
+// Opacity scales have a default range of [0, 1], and a default domain from 0 to
+// the maximum value of associated channels.
+export const opacity = Symbol("opacity");
+
 // TODO Rather than hard-coding the list of known scale names, collect the names
 // and categories for each plot specification, so that custom marks can register
 // custom scales.
@@ -20,5 +24,6 @@ export const registry = new Map([
   ["fx", position],
   ["fy", position],
   ["r", radius],
-  ["color", color]
+  ["color", color],
+  ["opacity", opacity]
 ]);

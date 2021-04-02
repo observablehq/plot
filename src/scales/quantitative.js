@@ -49,7 +49,7 @@ import {
   interpolateYlOrRd
 } from "d3";
 import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3";
-import {registry, radius, color} from "./index.js";
+import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 
 const constant = x => () => x;
@@ -136,10 +136,10 @@ export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
   zero,
-  domain = (registry.get(key) === radius ? inferRadialDomain : inferDomain)(channels),
+  domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
   percent,
   round,
-  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : undefined,
+  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   scheme,
   type,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
@@ -222,7 +222,7 @@ function inferDomain(channels, f) {
   ];
 }
 
-function inferRadialDomain(channels) {
+function inferZeroDomain(channels) {
   return [0, max(channels, ({value}) => value === undefined ? value : max(value))];
 }
 

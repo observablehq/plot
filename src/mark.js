@@ -74,6 +74,7 @@ export const string = x => x == null ? undefined : x + "";
 export const number = x => x == null ? undefined : +x;
 export const first = d => d[0];
 export const second = d => d[1];
+export const noop = () => {};
 
 // A few extra color keywords not known to d3-color.
 const colors = new Set(["currentColor", "none"]);
