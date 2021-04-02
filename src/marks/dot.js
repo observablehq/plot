@@ -2,7 +2,7 @@ import {ascending} from "d3";
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
 import {Mark, identity, maybeColor, maybeNumber, maybeTuple, title} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Dot extends Mark {
   constructor(
@@ -14,13 +14,17 @@ export class Dot extends Mark {
       r,
       title,
       fill,
+      fillOpacity,
       stroke,
+      strokeOpacity,
       ...options
     } = {}
   ) {
     const [vr, cr] = maybeNumber(r, 3);
     const [vfill, cfill] = maybeColor(fill, "none");
+    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vstroke, cstroke] = maybeColor(stroke, cfill === "none" ? "currentColor" : "none");
+    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     super(
       data,
       [
@@ -30,14 +34,18 @@ export class Dot extends Mark {
         {name: "r", value: vr, scale: "r", optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true}
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
     this.r = cr;
     Style(this, {
       fill: cfill,
+      fillOpacity: cfillOpacity,
       stroke: cstroke,
+      strokeOpacity: cstrokeOpacity,
       strokeWidth: cstroke === "none" ? undefined : 1.5,
       ...options
     });
@@ -45,10 +53,10 @@ export class Dot extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, z: Z, r: R, title: L, fill: F, stroke: S},
+    {x: X, y: Y, z: Z, r: R, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    let index = filter(I, X, Y, F, S);
+    let index = filter(I, X, Y, F, FO, S, SO);
     if (R) index = index.filter(i => positive(R[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
@@ -61,8 +69,10 @@ export class Dot extends Mark {
             .attr("cx", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("cy", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("r", R ? i => R[i] : this.r)
-            .attr("fill", F && (i => F[i]))
-            .attr("stroke", S && (i => S[i]))
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(title(L)))
       .node();
   }

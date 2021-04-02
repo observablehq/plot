@@ -14,6 +14,7 @@ export class Text extends Mark {
       text = indexOf,
       title,
       fill,
+      fillOpacity,
       textAnchor,
       fontFamily,
       fontSize,
@@ -27,6 +28,7 @@ export class Text extends Mark {
     } = {}
   ) {
     const [vfill, cfill] = maybeColor(fill, "currentColor");
+    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vrotate, crotate] = maybeNumber(rotate, 0);
     super(
       data,
@@ -37,11 +39,12 @@ export class Text extends Mark {
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true}
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true}
       ],
       options
     );
-    Style(this, {fill: cfill, ...options});
+    Style(this, {fill: cfill, fillOpacity: cfillOpacity, ...options});
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
@@ -55,11 +58,11 @@ export class Text extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F},
+    {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F, fillOpacity: FO},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {rotate} = this;
-    const index = filter(I, X, Y, F, R).filter(i => nonempty(T[i]));
+    const index = filter(I, X, Y, F, FO, R).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
@@ -79,7 +82,8 @@ export class Text extends Mark {
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
-            .attr("fill", F && (i => F[i]))
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();

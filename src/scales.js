@@ -9,7 +9,7 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
     if (channels.has(key) || options[key]) {
       const scale = Scale(key, channels.get(key), {
         inset: key === "x" || key === "y" ? inset : undefined, // not for facet
-        round,
+        round: registry.get(key) === position ? round : undefined, // only for position
         nice,
         align,
         padding,

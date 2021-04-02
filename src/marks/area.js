@@ -3,8 +3,8 @@ import {create} from "d3";
 import {area as shapeArea} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, titleGroup} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Mark, indexOf, maybeColor, maybeZero, titleGroup, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Area extends Mark {
   constructor(
@@ -17,14 +17,18 @@ export class Area extends Mark {
       z, // optional grouping for multiple series
       title,
       fill,
+      fillOpacity,
       stroke,
+      strokeOpacity,
       curve,
       tension,
       ...options
     } = {}
   ) {
     const [vstroke, cstroke] = maybeColor(stroke, "none");
+    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
+    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     if (z === undefined && vfill != null) z = vfill;
     if (z === undefined && vstroke != null) z = vstroke;
     super(
@@ -37,19 +41,23 @@ export class Area extends Mark {
         {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true}
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
     this.curve = Curve(curve, tension);
     Style(this, {
       fill: cfill,
+      fillOpacity: cfillOpacity,
       stroke: cstroke,
       strokeMiterlimit: cstroke === "none" ? undefined : 1,
+      strokeOpacity: cstrokeOpacity,
       ...options
     });
   }
-  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, stroke: S}) {
+  render(I, {x, y}, {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
@@ -57,8 +65,10 @@ export class Area extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .attr("fill", F && (([i]) => F[i]))
-            .attr("stroke", S && (([i]) => S[i]))
+            .call(applyAttr, "fill", F && (([i]) => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (([i]) => FO[i]))
+            .call(applyAttr, "stroke", S && (([i]) => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (([i]) => SO[i]))
             .attr("d", shapeArea()
               .curve(this.curve)
               .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
