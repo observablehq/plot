@@ -1,8 +1,8 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, title, maybeNumber, noop} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {Mark, number, maybeColor, maybeZero, title, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
 
 export class Rect extends Mark {
   constructor(
@@ -81,12 +81,12 @@ export class Rect extends Mark {
             .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
             .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
             .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
-            .call(F ? rect => rect.attr("fill", i => F[i]) : noop)
-            .call(FO ? rect => rect.attr("fill-opacity", i => FO[i]) : noop)
-            .call(S ? rect => rect.attr("stroke", i => S[i]) : noop)
-            .call(SO ? rect => rect.attr("stroke-opacity", i => SO[i]) : noop)
-            .call(rx != null ? rect => rect.attr("rx", rx) : noop)
-            .call(ry != null ? rect => rect.attr("ry", ry) : noop)
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
+            .call(applyAttr, "rx", rx)
+            .call(applyAttr, "ry", ry)
             .call(title(L)))
       .node();
   }

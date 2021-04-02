@@ -1,8 +1,8 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, title, maybeNumber, noop} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
+import {Mark, number, maybeColor, maybeZero, title, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
 
 export class AbstractBar extends Mark {
   constructor(
@@ -72,12 +72,12 @@ export class AbstractBar extends Mark {
             .attr("width", this._width(scales, channels, dimensions))
             .attr("y", this._y(scales, channels, dimensions))
             .attr("height", this._height(scales, channels, dimensions))
-            .call(F ? rect => rect.attr("fill", i => F[i]) : noop)
-            .call(FO ? rect => rect.attr("fill-opacity", i => FO[i]) : noop)
-            .call(S ? rect => rect.attr("stroke", i => S[i]) : noop)
-            .call(SO ? rect => rect.attr("stroke-opacity", i => SO[i]) : noop)
-            .call(rx != null ? rect => rect.attr("rx", rx) : noop)
-            .call(ry != null ? rect => rect.attr("ry", ry) : noop)
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
+            .call(applyAttr, "rx", rx)
+            .call(applyAttr, "ry", ry)
             .call(title(L)))
       .node();
   }

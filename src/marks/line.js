@@ -3,8 +3,8 @@ import {create} from "d3";
 import {line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity, maybeColor, maybeTuple, titleGroup, noop, maybeNumber} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Mark, indexOf, identity, maybeColor, maybeTuple, titleGroup, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Line extends Mark {
   constructor(
@@ -62,10 +62,10 @@ export class Line extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .call(F ? path => path.attr("fill", ([i]) => F[i]) : noop)
-            .call(FO ? path => path.attr("fill-opacity", ([i]) => FO[i]) : noop)
-            .call(S ? path => path.attr("stroke", ([i]) => S[i]) : noop)
-            .call(SO ? path => path.attr("stroke-opacity", ([i]) => SO[i]) : noop)
+            .call(applyAttr, "fill", F && (([i]) => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (([i]) => FO[i]))
+            .call(applyAttr, "stroke", S && (([i]) => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (([i]) => SO[i]))
             .attr("d", shapeLine()
               .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))

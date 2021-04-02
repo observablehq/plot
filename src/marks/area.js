@@ -3,8 +3,8 @@ import {create} from "d3";
 import {area as shapeArea} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, titleGroup, maybeNumber, noop} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Mark, indexOf, maybeColor, maybeZero, titleGroup, maybeNumber} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Area extends Mark {
   constructor(
@@ -65,10 +65,10 @@ export class Area extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .call(F ? path => path.attr("fill", ([i]) => F[i]) : noop)
-            .call(FO ? path => path.attr("fill-opacity", ([i]) => FO[i]) : noop)
-            .call(S ? path => path.attr("stroke", ([i]) => S[i]) : noop)
-            .call(SO ? path => path.attr("stroke-opacity", ([i]) => SO[i]) : noop)
+            .call(applyAttr, "fill", F && (([i]) => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (([i]) => FO[i]))
+            .call(applyAttr, "stroke", S && (([i]) => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (([i]) => SO[i]))
             .attr("d", shapeArea()
               .curve(this.curve)
               .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))

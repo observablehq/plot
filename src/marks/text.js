@@ -1,7 +1,7 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel, noop} from "../mark.js";
+import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
 
 export class Text extends Mark {
@@ -82,8 +82,8 @@ export class Text extends Mark {
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
-            .call(F ? text => text.attr("fill", i => F[i]) : noop)
-            .call(FO ? text => text.attr("fill-opacity", i => FO[i]) : noop)
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();

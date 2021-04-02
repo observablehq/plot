@@ -1,8 +1,8 @@
 import {ascending} from "d3";
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, identity, maybeColor, maybeNumber, maybeTuple, title, noop} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Mark, identity, maybeColor, maybeNumber, maybeTuple, title} from "../mark.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Dot extends Mark {
   constructor(
@@ -69,10 +69,10 @@ export class Dot extends Mark {
             .attr("cx", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("cy", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("r", R ? i => R[i] : this.r)
-            .call(F ? circle => circle.attr("fill", i => F[i]) : noop)
-            .call(FO ? circle => circle.attr("fill-opacity", i => FO[i]) : noop)
-            .call(S ? circle => circle.attr("stroke", i => S[i]) : noop)
-            .call(SO ? circle => circle.attr("stroke-opacity", i => SO[i]) : noop)
+            .call(applyAttr, "fill", F && (i => F[i]))
+            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(title(L)))
       .node();
   }
