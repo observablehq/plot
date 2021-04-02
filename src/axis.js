@@ -70,7 +70,7 @@ export class AxisX {
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
         .call(!grid ? () => {}
-          : fy ? gridFacetX(fy, -ty)
+          : fy ? gridFacetX(index, fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
@@ -155,7 +155,7 @@ export class AxisY {
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
         .call(!grid ? () => {}
-          : fx ? gridFacetY(fx, -tx)
+          : fx ? gridFacetY(index, fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(label == null ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
@@ -189,20 +189,20 @@ function gridY(x2) {
       .attr("x2", x2);
 }
 
-function gridFacetX(fy, ty) {
+function gridFacetX(index, fy, ty) {
   const dy = fy.bandwidth();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", fy.domain().map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
+      .attr("d", (index || fy.domain()).map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
 }
 
-function gridFacetY(fx, tx) {
+function gridFacetY(index, fx, tx) {
   const dx = fx.bandwidth();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
+      .attr("d", (index || fx.domain()).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
