@@ -15,6 +15,7 @@ export function plot(options = {}) {
   }
 
   // Flatten any nested marks.
+  const legends = options.legends === undefined ? [] : options.legends.flat(Infinity);
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity);
 
   // A Map from Mark instance to an object of named channel values.
@@ -62,8 +63,8 @@ export function plot(options = {}) {
   // When faceting, render axes for fx and fy instead of x and y.
   const x = facet !== undefined && scales.fx ? "fx" : "x";
   const y = facet !== undefined && scales.fy ? "fy" : "y";
-  if (axes[x]) marks.unshift(axes[x]);
-  if (axes[y]) marks.unshift(axes[y]);
+  if (axes[x]) legends.unshift(axes[x]);
+  if (axes[y]) legends.unshift(axes[y]);
 
   const {width, height} = dimensions;
 
@@ -79,6 +80,10 @@ export function plot(options = {}) {
         else Object.assign(this.style, style);
       });
 
+  for (const legend of legends) {
+    const node = legend.render([], scales, [], dimensions, axes);
+    if (node != null) svg.append(() => node);
+  }
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
