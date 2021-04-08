@@ -35,6 +35,7 @@ function autoScaleRangeX(scale, dimensions) {
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
     scale.scale.range([marginLeft + inset, width - marginRight - inset]);
   }
+  autoScaleRound(scale);
 }
 
 function autoScaleRangeY(scale, dimensions) {
@@ -44,6 +45,13 @@ function autoScaleRangeY(scale, dimensions) {
     const range = [height - marginBottom - inset, marginTop + inset];
     if (scale.type === "ordinal") range.reverse();
     scale.scale.range(range);
+  }
+  autoScaleRound(scale);
+}
+
+function autoScaleRound(scale) {
+  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+    scale.scale.round(true);
   }
 }
 
