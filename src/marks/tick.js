@@ -64,10 +64,10 @@ export class TickX extends AbstractTick {
     selection.call(applyTransform, x, null, 0.5, 0);
   }
   _x1(scales, {x: X}) {
-    return i => Math.round(X[i]);
+    return i => X[i];
   }
   _x2(scales, {x: X}) {
-    return i => Math.round(X[i]);
+    return i => X[i];
   }
   _y1(scales, {y: Y}, {marginTop}) {
     return Y ? i => Y[i] : marginTop;
@@ -98,10 +98,10 @@ export class TickY extends AbstractTick {
     return X ? i => X[i] + x.bandwidth() : width - marginRight;
   }
   _y1(scales, {y: Y}) {
-    return i => Math.round(Y[i]);
+    return i => Y[i];
   }
   _y2(scales, {y: Y}) {
-    return i => Math.round(Y[i]);
+    return i => Y[i];
   }
 }
 

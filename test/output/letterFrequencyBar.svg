@@ -84,27 +84,27 @@
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(131.5,0)">
+    <g class="tick" opacity="1" transform="translate(131.824200913242,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(223.5,0)">
+    <g class="tick" opacity="1" transform="translate(223.14840182648402,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(314.5,0)">
+    <g class="tick" opacity="1" transform="translate(314.472602739726,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(405.5,0)">
+    <g class="tick" opacity="1" transform="translate(405.79680365296804,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(497.5,0)">
+    <g class="tick" opacity="1" transform="translate(497.12100456621,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(588.5,0)">
+    <g class="tick" opacity="1" transform="translate(588.445205479452,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-530" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">12</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>

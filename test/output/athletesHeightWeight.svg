@@ -1,112 +1,112 @@
 <svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,586.5)">
+    <g class="tick" opacity="1" transform="translate(0,586.9)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.25</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,557.5)">
+    <g class="tick" opacity="1" transform="translate(0,557.3999999999999)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.30</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,527.5)">
+    <g class="tick" opacity="1" transform="translate(0,527.8999999999999)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.35</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,498.5)">
+    <g class="tick" opacity="1" transform="translate(0,498.40000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,468.5)">
+    <g class="tick" opacity="1" transform="translate(0,468.90000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.45</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,439.5)">
+    <g class="tick" opacity="1" transform="translate(0,439.4)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.50</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,409.5)">
+    <g class="tick" opacity="1" transform="translate(0,409.9)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.55</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,380.5)">
+    <g class="tick" opacity="1" transform="translate(0,380.3999999999999)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.60</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,350.5)">
+    <g class="tick" opacity="1" transform="translate(0,350.90000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.65</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,321.5)">
+    <g class="tick" opacity="1" transform="translate(0,321.40000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.70</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,291.5)">
+    <g class="tick" opacity="1" transform="translate(0,291.9)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.75</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,262.5)">
+    <g class="tick" opacity="1" transform="translate(0,262.3999999999999)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.80</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,232.5)">
+    <g class="tick" opacity="1" transform="translate(0,232.89999999999995)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.85</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,203.5)">
+    <g class="tick" opacity="1" transform="translate(0,203.40000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.90</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,173.5)">
+    <g class="tick" opacity="1" transform="translate(0,173.9)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.95</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,144.5)">
+    <g class="tick" opacity="1" transform="translate(0,144.39999999999998)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.00</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,114.5)">
+    <g class="tick" opacity="1" transform="translate(0,114.90000000000008)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.05</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,85.5)">
+    <g class="tick" opacity="1" transform="translate(0,85.39999999999992)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
+    <g class="tick" opacity="1" transform="translate(0,55.90000000000003)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.15</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,26.5)">
+    <g class="tick" opacity="1" transform="translate(0,26.399999999999874)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.20</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ height</text>
   </g>
   <g transform="translate(0,610)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(78.5,0)">
+    <g class="tick" opacity="1" transform="translate(78.05395683453237,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(161.5,0)">
+    <g class="tick" opacity="1" transform="translate(161.5071942446043,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(244.5,0)">
+    <g class="tick" opacity="1" transform="translate(244.96043165467623,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(328.5,0)">
+    <g class="tick" opacity="1" transform="translate(328.4136690647482,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(411.5,0)">
+    <g class="tick" opacity="1" transform="translate(411.86690647482015,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(495.5,0)">
+    <g class="tick" opacity="1" transform="translate(495.3201438848921,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">140</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(578.5,0)">
+    <g class="tick" opacity="1" transform="translate(578.7733812949641,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>

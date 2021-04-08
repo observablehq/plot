@@ -41,23 +41,23 @@
     </g>
   </g>
   <g transform="translate(0,366)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(182.5,0)">
+    <g class="tick" opacity="1" transform="translate(182.641592920354,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(269.5,0)">
+    <g class="tick" opacity="1" transform="translate(269.0132743362832,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(355.5,0)">
+    <g class="tick" opacity="1" transform="translate(355.38495575221236,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(441.5,0)">
+    <g class="tick" opacity="1" transform="translate(441.7566371681416,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">600</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(528.5,0)">
+    <g class="tick" opacity="1" transform="translate(528.1283185840707,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">800</text>
     </g>
@@ -67,7 +67,7 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Profit ($M) →</text>
   </g>
   <g stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="182" x2="182" y1="20" y2="366"></line>
+    <line x1="182.141592920354" x2="182.141592920354" y1="20" y2="366"></line>
   </g>
   <g fill-opacity="0.2">
     <rect x="180.00059721415928" width="5.595862962831859" y="337" height="23"></rect>
@@ -3288,18 +3288,18 @@
     <circle cx="254.99610619469024" cy="25" r="3"></circle>
   </g>
   <g stroke="red" stroke-width="2" transform="translate(0.5,0)">
-    <line x1="182" x2="182" y1="337" y2="360"></line>
-    <line x1="184" x2="184" y1="233" y2="256"></line>
-    <line x1="187" x2="187" y1="181" y2="204"></line>
-    <line x1="188" x2="188" y1="155" y2="178"></line>
-    <line x1="186" x2="186" y1="207" y2="230"></line>
-    <line x1="212" x2="212" y1="25" y2="48"></line>
-    <line x1="197" x2="197" y1="51" y2="74"></line>
-    <line x1="189" x2="189" y1="103" y2="126"></line>
-    <line x1="192" x2="192" y1="77" y2="100"></line>
-    <line x1="182" x2="182" y1="311" y2="334"></line>
-    <line x1="182" x2="182" y1="285" y2="308"></line>
-    <line x1="183" x2="183" y1="259" y2="282"></line>
-    <line x1="189" x2="189" y1="129" y2="152"></line>
+    <line x1="182.158308" x2="182.158308" y1="337" y2="360"></line>
+    <line x1="183.541448559292" x2="183.541448559292" y1="233" y2="256"></line>
+    <line x1="187.26911040707964" x2="187.26911040707964" y1="181" y2="204"></line>
+    <line x1="188.4467256637168" x2="188.4467256637168" y1="155" y2="178"></line>
+    <line x1="186.0857933238938" x2="186.0857933238938" y1="207" y2="230"></line>
+    <line x1="212.00386178053094" x2="212.00386178053094" y1="25" y2="48"></line>
+    <line x1="196.84637427256638" x2="196.84637427256638" y1="51" y2="74"></line>
+    <line x1="189.19660632920355" x2="189.19660632920355" y1="103" y2="126"></line>
+    <line x1="191.5760070938053" x2="191.5760070938053" y1="77" y2="100"></line>
+    <line x1="182.21101588672565" x2="182.21101588672565" y1="311" y2="334"></line>
+    <line x1="182.24617693451327" x2="182.24617693451327" y1="285" y2="308"></line>
+    <line x1="183.2920233380531" x2="183.2920233380531" y1="259" y2="282"></line>
+    <line x1="189.13114350442476" x2="189.13114350442476" y1="129" y2="152"></line>
   </g>
 </svg>

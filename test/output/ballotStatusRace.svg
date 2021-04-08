@@ -30,15 +30,15 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(314.5,0)">
+    <g class="tick" opacity="1" transform="translate(314.2351997640493,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(417.5,0)">
+    <g class="tick" opacity="1" transform="translate(417.97039952809854,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(521.5,0)">
+    <g class="tick" opacity="1" transform="translate(521.7055992921478,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>
