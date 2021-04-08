@@ -280,9 +280,15 @@ export function numberChannel(source) {
 // TODO use Float64Array.from for position and radius scales?
 export function values(channels = [], scales) {
   const values = Object.create(null);
-  for (const [name, {value, scale}] of channels) {
+  for (let [name, {value, scale}] of channels) {
     if (name !== undefined) {
-      values[name] = scale === undefined ? value : Array.from(value, scales[scale]);
+      if (scale !== undefined) {
+        scale = scales[scale];
+        if (scale !== undefined) {
+          value = Array.from(value, scale);
+        }
+      }
+      values[name] = value;
     }
   }
   return values;

@@ -60,7 +60,7 @@ function Scale(key, channels = [], options = {}) {
     case "time": return ScaleTime(key, channels, options);
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
-    case undefined: return;
+    case "identity": case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
 }
