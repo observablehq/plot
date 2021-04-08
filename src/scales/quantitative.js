@@ -1,14 +1,15 @@
-import {min, max, quantile, reverse as reverseof} from "d3";
 import {
+  min,
+  max,
+  quantile,
+  reverse as reverseof,
+  piecewise,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
   interpolateNumber,
   interpolateRgb,
   interpolateRound,
-  piecewise
-} from "d3";
-import {
   interpolateBlues,
   interpolateBrBG,
   interpolateBuGn,
@@ -46,9 +47,14 @@ import {
   interpolateYlGn,
   interpolateYlGnBu,
   interpolateYlOrBr,
-  interpolateYlOrRd
+  interpolateYlOrRd,
+  scaleDiverging,
+  scaleLinear,
+  scaleLog,
+  scalePow,
+  scaleSymlog,
+  scaleIdentity
 } from "d3";
-import {scaleDiverging, scaleLinear, scaleLog, scalePow, scaleSymlog} from "d3";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 
@@ -185,6 +191,10 @@ export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(chan
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
   return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+}
+
+export function ScaleIdentity() {
+  return {type: "identity", scale: scaleIdentity()};
 }
 
 export function ScaleDiverging(key, channels, {

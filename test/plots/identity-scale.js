@@ -5,7 +5,6 @@ const random = d3.randomLcg(42);
 
 export default async function() {
   return Plot.plot({
-    height: 396,
     x: {
       type: "identity"
     },
