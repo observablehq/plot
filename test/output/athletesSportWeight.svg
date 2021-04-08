@@ -86,31 +86,31 @@
     </g><text fill="currentColor" transform="translate(-100,315) rotate(-90)" dy="0.75em" text-anchor="middle">sport</text>
   </g>
   <g transform="translate(0,610)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(137.5,0)">
+    <g class="tick" opacity="1" transform="translate(137.11971830985914,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(210.5,0)">
+    <g class="tick" opacity="1" transform="translate(210.35915492957747,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(283.5,0)">
+    <g class="tick" opacity="1" transform="translate(283.59859154929575,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(356.5,0)">
+    <g class="tick" opacity="1" transform="translate(356.83802816901414,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(430.5,0)">
+    <g class="tick" opacity="1" transform="translate(430.0774647887324,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(503.5,0)">
+    <g class="tick" opacity="1" transform="translate(503.3169014084507,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">140</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(576.5,0)">
+    <g class="tick" opacity="1" transform="translate(576.556338028169,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-588v19M0,-567v19M0,-546v19M0,-525v19M0,-504v19M0,-483v19M0,-462v19M0,-441v19M0,-420v19M0,-399v19M0,-378v19M0,-357v19M0,-336v19M0,-315v19M0,-294v19M0,-273v19M0,-252v19M0,-231v19M0,-210v19M0,-189v19M0,-168v19M0,-147v19M0,-126v19M0,-105v19M0,-84v19M0,-63v19M0,-42v19M0,-21v19"></path>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>

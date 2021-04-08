@@ -3,28 +3,28 @@
     <g class="tick" opacity="1" transform="translate(0,366.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,324.5)">
+    <g class="tick" opacity="1" transform="translate(0,324.4118094272681)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,282.5)">
+    <g class="tick" opacity="1" transform="translate(0,282.3236188545362)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,240.5)">
+    <g class="tick" opacity="1" transform="translate(0,240.23542828180433)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,198.5)">
+    <g class="tick" opacity="1" transform="translate(0,198.14723770907247)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,156.5)">
+    <g class="tick" opacity="1" transform="translate(0,156.0590471363406)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,113.5)">
+    <g class="tick" opacity="1" transform="translate(0,113.97085656360869)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,71.5)">
+    <g class="tick" opacity="1" transform="translate(0,71.88266599087683)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,29.5)">
+    <g class="tick" opacity="1" transform="translate(0,29.79447541814493)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ unemployment</text>
   </g>
@@ -32,22 +32,22 @@
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(124.5,0)">
+    <g class="tick" opacity="1" transform="translate(124.92453205894066,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2002</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(209.5,0)">
+    <g class="tick" opacity="1" transform="translate(209.23357228195937,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2004</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(293.5,0)">
+    <g class="tick" opacity="1" transform="translate(293.6581043409,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2006</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(377.5,0)">
+    <g class="tick" opacity="1" transform="translate(377.96714456391874,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2008</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(462.5,0)">
+    <g class="tick" opacity="1" transform="translate(462.3916766228594,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(546.5,0)">
+    <g class="tick" opacity="1" transform="translate(546.7007168458781,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2012</text>
     </g>
   </g>

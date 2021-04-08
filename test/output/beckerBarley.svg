@@ -24,11 +24,11 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(183.5,0)">
+    <g class="tick" opacity="1" transform="translate(183.83333333333331,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(257.5,0)">
+    <g class="tick" opacity="1" transform="translate(257.16666666666663,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
@@ -36,11 +36,11 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(403.5,0)">
+    <g class="tick" opacity="1" transform="translate(403.8333333333333,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
-    <g class="tick" opacity="1" transform="translate(477.5,0)">
+    <g class="tick" opacity="1" transform="translate(477.1666666666667,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>

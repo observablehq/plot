@@ -1,5 +1,4 @@
 import {axisTop, axisBottom, axisRight, axisLeft} from "d3";
-import {interpolateRound} from "d3";
 import {create} from "d3";
 
 export class AxisX {
@@ -60,7 +59,7 @@ export class AxisX {
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
         .attr("transform", `translate(0,${ty})`)
-        .call((axis === "top" ? axisTop : axisBottom)(round(x))
+        .call((axis === "top" ? axisTop : axisBottom)(x)
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
@@ -145,7 +144,7 @@ export class AxisY {
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
         .attr("transform", `translate(${tx},0)`)
-        .call((axis === "right" ? axisRight : axisLeft)(round(y))
+        .call((axis === "right" ? axisRight : axisLeft)(y)
             .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
             .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
             .tickSizeInner(tickSize)
@@ -174,12 +173,6 @@ export class AxisY {
             .text(label))
       .node();
   }
-}
-
-function round(scale) {
-  return scale.interpolate // TODO round band and point scales?
-      ? scale.copy().interpolate(interpolateRound)
-      : scale;
 }
 
 function gridX(y2) {

@@ -22,27 +22,27 @@
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,132.5)">
+        <g class="tick" opacity="1" transform="translate(0,132.25415282392026)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,106.5)">
+        <g class="tick" opacity="1" transform="translate(0,106.00830564784054)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,79.5)">
+        <g class="tick" opacity="1" transform="translate(0,79.76245847176081)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,53.5)">
+        <g class="tick" opacity="1" transform="translate(0,53.51661129568106)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,27.5)">
+        <g class="tick" opacity="1" transform="translate(0,27.270764119601328)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,1.5)">
+        <g class="tick" opacity="1" transform="translate(0,1.0249169435215981)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g><text fill="currentColor" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ Frequency</text>
@@ -54,27 +54,27 @@
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,132.5)">
+        <g class="tick" opacity="1" transform="translate(0,132.25415282392026)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,106.5)">
+        <g class="tick" opacity="1" transform="translate(0,106.00830564784054)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,79.5)">
+        <g class="tick" opacity="1" transform="translate(0,79.76245847176081)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,53.5)">
+        <g class="tick" opacity="1" transform="translate(0,53.51661129568106)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,27.5)">
+        <g class="tick" opacity="1" transform="translate(0,27.270764119601328)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
-        <g class="tick" opacity="1" transform="translate(0,1.5)">
+        <g class="tick" opacity="1" transform="translate(0,1.0249169435215981)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
