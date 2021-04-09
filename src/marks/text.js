@@ -18,7 +18,6 @@ export class Text extends Mark {
       textAnchor,
       fontFamily,
       fontSize,
-      fontSizeAdjust = 1,
       fontStyle,
       fontVariant,
       fontWeight,
@@ -38,7 +37,7 @@ export class Text extends Mark {
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true},
-        {name: "fontSize", value: vfontSize, scale: "r", optional: true},
+        {name: "fontSize", value: numberChannel(vfontSize), optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
@@ -51,8 +50,7 @@ export class Text extends Mark {
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
-    this.fontSize = string(cfontSize / fontSizeAdjust);
-    this.fontSizeAdjust = fontSizeAdjust;
+    this.fontSize = string(cfontSize);
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
@@ -65,7 +63,7 @@ export class Text extends Mark {
     {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const {fontSizeAdjust, rotate} = this;
+    const {rotate} = this;
     const index = filter(I, X, Y, F, FO, R).filter(i => nonempty(T[i]));
     if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     const cx = (marginLeft + width - marginRight) / 2;
@@ -88,7 +86,7 @@ export class Text extends Mark {
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
-            .call(applyAttr, "font-size", FS && (i => FS[i] / fontSizeAdjust))
+            .call(applyAttr, "font-size", FS && (i => FS[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();
