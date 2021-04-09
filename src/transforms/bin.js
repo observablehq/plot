@@ -151,15 +151,17 @@ function maybeBin(options) {
     const V = valueof(data, value);
     const bin = binner().value(i => V[i]);
     if (isTemporal(V)) {
-      let d = typeof domain === "function" ? domain(V) : domain;
-      let t = typeof thresholds === "function" && !isTimeInterval(thresholds) ? thresholds(V, ...d) : thresholds;
+      let [min, max] = typeof domain === "function" ? domain(V) : domain;
+      let t = typeof thresholds === "function" && !isTimeInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number"); // TODO d3.utcTickInterval
       else if (isTimeInterval(t)) {
-        let [min, max] = d;
-        if (domain === extent) d = [t.floor(min), t.ceil(new Date(+max + 1))];
+        if (domain === extent) {
+          min = t.floor(min);
+          max = t.ceil(new Date(+max + 1));
+        }
         t = t.range(min, max);
       }
-      bin.thresholds(t).domain(d);
+      bin.thresholds(t).domain([min, max]);
     } else {
       bin.thresholds(thresholds).domain(domain);
     }
