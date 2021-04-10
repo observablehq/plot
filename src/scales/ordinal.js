@@ -209,14 +209,12 @@ export function ScaleOrdinal(key, channels, {
 export function ScalePoint(key, channels, {
   align = 0.5,
   padding = 0.5,
-  round = true,
   ...options
 }) {
-  return ScaleO(
+  return maybeRound(
     scalePoint()
       .align(align)
-      .padding(padding)
-      .round(round),
+      .padding(padding),
     channels,
     options
   );
@@ -227,18 +225,24 @@ export function ScaleBand(key, channels, {
   padding = 0.1,
   paddingInner = padding,
   paddingOuter = key === "fx" || key === "fy" ? 0 : padding,
-  round = true,
   ...options
 }) {
-  return ScaleO(
+  return maybeRound(
     scaleBand()
       .align(align)
       .paddingInner(paddingInner)
-      .paddingOuter(paddingOuter)
-      .round(round),
+      .paddingOuter(paddingOuter),
     channels,
     options
   );
+}
+
+function maybeRound(scale, channels, options = {}) {
+  const {round} = options;
+  if (round !== undefined) scale.round(round);
+  scale = ScaleO(scale, channels, options);
+  scale.round = round;
+  return scale;
 }
 
 function inferDomain(channels) {
