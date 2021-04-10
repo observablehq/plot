@@ -1,0 +1,147 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,350.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">350</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,300.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,250.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">250</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,200.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,150.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">150</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,100.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,50.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
+    </g>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(100.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(200.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(300.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">300</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(400.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(500.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(600.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">600</text>
+    </g>
+  </g>
+  <g stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="151.40710487030447" cy="241.5861143032089" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="52.87502724677324" cy="344.9445351958275" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="346.368718938902" cy="520.4808211652562" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="133.5325595922768" cy="556.884084502235" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="225.39611826650798" cy="198.79006922710687" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="15.398342907428741" cy="258.0142364837229" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="268.36877153255045" cy="365.0170553242788" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="71.07600225135684" cy="232.04763154499233" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="524.2882234510034" cy="301.9314147764817" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="596.7805651947856" cy="106.21480960398912" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="511.92163419909775" cy="423.99006641935557" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="299.80603689327836" cy="283.34066425450146" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="385.2005678694695" cy="337.2022104682401" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="516.873712465167" cy="227.41363374516368" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="357.88186588324606" cy="396.74365499522537" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="54.4500938616693" cy="450.36491393111646" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="84.12587880156934" cy="376.3951780507341" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="570.0529659166932" cy="401.77888460457325" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="554.7332674730569" cy="215.93041371088475" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="533.6813737638295" cy="289.9160968605429" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="330.30502195470035" cy="309.1607815818861" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="108.30993130803108" cy="567.9965754039586" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="330.0512841437012" cy="217.7082605427131" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="155.38007793948054" cy="560.4138459544629" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="565.8729975577444" cy="574.9713387573138" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="492.9005881771445" cy="385.6790041550994" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="93.17634520120919" cy="562.4252532375976" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="497.6368264295161" cy="112.67929864116013" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="280.15337395481765" cy="227.60466348845512" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="36.42292656004429" cy="370.5271071754396" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="13.473141426220536" cy="351.1051850160584" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="322.3732634447515" cy="576.1228410061449" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="497.97615869902074" cy="589.9597397306934" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="507.199271209538" cy="453.8092188537121" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="408.55083991773427" cy="508.04646152537316" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="228.45485033467412" cy="254.40450818277895" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="351.3941071461886" cy="382.01692656148225" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="417.8382933139801" cy="442.7187376655638" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="426.8192364368588" cy="124.84675904270262" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="431.1708460561931" cy="269.62954099290073" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="594.1724685486406" cy="329.7551945084706" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="269.851709716022" cy="483.17319843918085" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="58.75584525056183" cy="586.1659639282152" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="114.95647514238954" cy="119.14159883745015" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="268.42716964893043" cy="387.83889312762767" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="76.20066963136196" cy="251.61725087091327" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="461.2589264754206" cy="422.5398933282122" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="356.2322831712663" cy="433.9761288370937" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="482.78643577359617" cy="333.88654983136803" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="233.64682886749506" cy="227.39204429090023" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="129.46145092137158" cy="460.5572971282527" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="163.23567973449826" cy="353.0363912228495" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="11.450849426910281" cy="117.13419996667653" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="166.7831115424633" cy="522.233518678695" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="200.3810024354607" cy="465.71264115627855" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="529.719668906182" cy="552.0546409767121" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="573.5268463846296" cy="469.30574814323336" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="115.61915930360556" cy="368.46210192888975" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="522.7806177455932" cy="598.2471716357395" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="349.39376721158624" cy="591.4009657222778" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="202.00864928774536" cy="410.502860811539" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="188.59646804630756" cy="492.42631336674094" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="77.61556380428374" cy="127.29076088871807" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="587.9821090959013" cy="371.8022798653692" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="61.783638736233115" cy="407.92689009103924" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="552.9082121327519" cy="224.76277351379395" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="483.44105263240635" cy="473.6170342890546" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="259.7737398929894" cy="112.03397498466074" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="426.03616188280284" cy="570.2453288482502" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="183.99875611066818" cy="324.03512010350823" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="71.15589366294444" cy="276.32427846547216" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="305.54009629413486" cy="387.64672647230327" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="70.42477852664888" cy="385.41529702488333" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="146.11785393208265" cy="115.31433034688234" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="362.45708358474076" cy="303.7546307547018" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="418.6946743167937" cy="394.7909564245492" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="294.40794470719993" cy="134.77655921597034" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="125.8045356720686" cy="170.26294944807887" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="136.38033368624747" cy="153.96404990460724" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="416.5698847733438" cy="228.2014527823776" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="529.0931337978691" cy="241.22657349798828" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="490.1756817474961" cy="380.2857253700495" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="418.3015346992761" cy="315.0555680273101" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="503.686096239835" cy="587.404644722119" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="240.9843950998038" cy="434.29007150698453" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="91.89428463578224" cy="399.3091498501599" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="75.77415914274752" cy="280.6883238023147" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="323.887865524739" cy="450.21103429608047" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="391.0033499356359" cy="239.89566976670176" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="592.6923980936408" cy="557.7524056658149" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="255.57760116644204" cy="541.0748769296333" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="448.22235563769937" cy="377.5552843231708" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="258.15862524323165" cy="427.67201226670295" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="27.323773875832558" cy="474.2522201500833" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="46.351453894749284" cy="394.77930383291095" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="495.43494125828147" cy="238.74646252952516" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="587.2387246694416" cy="173.5759442904964" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="479.8211859539151" cy="216.70412495732307" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="101.19072427041829" cy="151.62857461255044" r="3" fill="red" stroke="blue"></circle>
+    <circle cx="231.95700170472264" cy="271.1909419391304" r="3" fill="red" stroke="blue"></circle>
+  </g>
+</svg>

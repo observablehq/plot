@@ -1,5 +1,5 @@
 import {registry, position, radius} from "./scales/index.js";
-import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog} from "./scales/quantitative.js";
+import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 
@@ -60,6 +60,7 @@ function Scale(key, channels = [], options = {}) {
     case "time": return ScaleTime(key, channels, options);
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
+    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
     case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
