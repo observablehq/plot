@@ -5,7 +5,7 @@ import {values} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
 
 export function plot(options = {}) {
-  const {facet, style} = options;
+  const {facet, style, caption} = options;
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
@@ -77,16 +77,23 @@ export function plot(options = {}) {
       .each(function() {
         if (typeof style === "string") this.style = style;
         else Object.assign(this.style, style);
-      });
+      })
+    .node();
 
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const index = markIndex.get(mark);
     const node = mark.render(index, scales, values(channels, scales), dimensions, axes);
-    if (node != null) svg.append(() => node);
+    if (node != null) svg.appendChild(node);
   }
 
-  return svg.node();
+  // Wrap the plot in a figure with a caption, if desired.
+  if (caption == null) return svg;
+  const figure = document.createElement("figure");
+  figure.appendChild(svg);
+  const figcaption = figure.appendChild(document.createElement("figcaption"));
+  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  return figure;
 }
 
 function Dimensions(

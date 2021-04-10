@@ -10,16 +10,19 @@ import * as plots from "./plots/index.js";
     tape(`plot ${name}`, async test => {
       try {
         // Not recommended, but this is only our test code, so should be fine?
-        global.document = new JSDOM("").window.document;
+        const {window} = new JSDOM("");
+        global.document = window.document;
+        global.Node = window.Node;
 
         // Not fully functional, but only used to fetch data files, so should be fine?
         global.fetch = async (href) => new Response(path.resolve("./test", href));
 
-        const svg = await plot();
+        const root = await plot();
+        const [ext, svg] = root.tagName === "svg" ? ["svg", root] : ["html", root.querySelector("svg")];
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
-        const actual = beautify(svg.outerHTML, {indent_size: 2});
-        const outfile = path.resolve("./test/output", path.basename(name, ".js") + ".svg");
+        const actual = beautify(root.outerHTML, {indent_size: 2});
+        const outfile = path.resolve("./test/output", path.basename(name, ".js") + "." + ext);
         let expected;
 
         try {
@@ -36,8 +39,9 @@ import * as plots from "./plots/index.js";
 
         test.ok(actual === expected, `${name} must match snapshot`);
       } finally {
-        global.document = undefined;
-        global.fetch = undefined;
+        delete global.document;
+        delete global.Node;
+        delete global.fetch;
       }
     });
   }
