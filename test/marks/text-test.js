@@ -5,9 +5,9 @@ tape("text() has the expected defaults", test => {
   const text = Plot.text();
   test.strictEqual(text.data, undefined);
   test.strictEqual(text.transform, undefined);
-  test.deepEqual(text.channels.map(c => c.name), ["x", "y", "rotate", "text"]);
-  test.deepEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], undefined, [0, 1]]);
-  test.deepEqual(text.channels.map(c => c.scale), ["x", "y", undefined, undefined]);
+  test.deepEqual(text.channels.map(c => c.name), ["x", "y", "fontSize", "rotate", "text"]);
+  test.deepEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], undefined, undefined, [0, 1]]);
+  test.deepEqual(text.channels.map(c => c.scale), ["x", "y", undefined, undefined, undefined]);
   test.strictEqual(text.fill, undefined);
   test.strictEqual(text.fillOpacity, undefined);
   test.strictEqual(text.stroke, undefined);

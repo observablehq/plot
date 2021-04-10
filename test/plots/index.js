@@ -34,6 +34,7 @@ export {default as industryUnemploymentShare} from "./industry-unemployment-shar
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
+export {default as letterFrequencyCloud} from "./letter-frequency-cloud.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
 export {default as letterFrequencyDot} from "./letter-frequency-dot.js";
 export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js";
