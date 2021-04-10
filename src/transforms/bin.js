@@ -11,14 +11,6 @@ export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
   return binn(x, null, null, y, outputs, {inset, insetLeft, insetRight, ...options});
 }
 
-// Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binXMid(outputs, options = {}) {
-  let {x, y} = options;
-  x = maybeBinValue(x, options, identity);
-  const {x1, x2, ...transform} = binn(x, null, null, y, outputs, options);
-  return {...transform, x: mid(x1, x2)};
-}
-
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
   let {x, y} = options;
@@ -27,27 +19,12 @@ export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
   return binn(null, y, x, null, outputs, {inset, insetTop, insetBottom, ...options});
 }
 
-// Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binYMid(outputs, options = {}) {
-  let {x, y} = options;
-  y = maybeBinValue(y, options, identity);
-  const {y1, y2, ...transform} = binn(null, x, y, null, outputs, options);
-  return {...transform, y: mid(y1, y2)};
-}
-
 // Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   const {x, y} = maybeBinValueTuple(options);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
   return binn(x, y, null, null, outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
-}
-
-// Group on {z, fill, stroke}, then bin on x and y.
-export function binMid(outputs, options) {
-  const {x, y} = maybeBinValueTuple(options);
-  const {x1, x2, y1, y2, ...transform} = binn(x, y, null, null, outputs, options);
-  return {...transform, x: mid(x1, x2), y: mid(y1, y2)};
 }
 
 function binn(
@@ -88,8 +65,8 @@ function binn(
     fill: GF,
     stroke: GS,
     ...options,
-    ...BX1 ? {x1: BX1, x2: BX2} : {x},
-    ...BY1 ? {y1: BY1, y2: BY2} : {y},
+    ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
+    ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
     ...GK && {[gk]: GK},
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
     transform: maybeTransform(options, (data, facets) => {

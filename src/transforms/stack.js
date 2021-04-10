@@ -4,7 +4,7 @@ import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, "x", options);
-  return {y1, y: Y, x1, x2, ...transform};
+  return {y1, y: Y, x1, x2, x: mid(x1, x2), ...transform};
 }
 
 export function stackX1({y1, y = y1, x, ...options} = {}) {
@@ -17,14 +17,9 @@ export function stackX2({y1, y = y1, x, ...options} = {}) {
   return {y1, y: Y, x: X, ...transform};
 }
 
-export function stackXMid({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, X1, X2] = stack(y, x, "x", options);
-  return {y1, y: Y, x: mid(X1, X2), ...transform};
-}
-
 export function stackY({x1, x = x1, y, ...options} = {}) {
   const [transform, X, y1, y2] = stack(x, y, "y", options);
-  return {x1, x: X, y1, y2, ...transform};
+  return {x1, x: X, y1, y2, y: mid(y1, y2), ...transform};
 }
 
 export function stackY1({x1, x = x1, y, ...options} = {}) {
@@ -35,11 +30,6 @@ export function stackY1({x1, x = x1, y, ...options} = {}) {
 export function stackY2({x1, x = x1, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, "y", options);
   return {x1, x: X, y: Y, ...transform};
-}
-
-export function stackYMid({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, Y1, Y2] = stack(x, y, "y", options);
-  return {x1, x: X, y: mid(Y1, Y2), ...transform};
 }
 
 function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
