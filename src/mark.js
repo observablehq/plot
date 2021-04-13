@@ -75,6 +75,7 @@ export const number = x => x == null ? x : +x;
 export const boolean = x => x == null ? x : !!x;
 export const first = d => d[0];
 export const second = d => d[1];
+export const constant = x => () => x;
 
 // A few extra color keywords not known to d3-color.
 const colors = new Set(["currentColor", "none"]);

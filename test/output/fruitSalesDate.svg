@@ -1,0 +1,43 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,366.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,312.4375)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,258.375)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,204.3125)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,150.25)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,96.1875)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,42.125)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ units</text>
+  </g>
+  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(192.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2021-03-15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(468.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2021-03-16</text>
+    </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">date</text>
+  </g>
+  <g>
+    <rect x="68" width="248" y="301.125" height="64.875" fill="#4e79a7"></rect>
+    <rect x="68" width="248" y="279.5" height="21.625" fill="#76b7b2"></rect>
+    <rect x="68" width="248" y="247.0625" height="32.4375" fill="#e15759"></rect>
+    <rect x="344" width="248" y="214.625" height="151.375" fill="#4e79a7"></rect>
+    <rect x="344" width="248" y="138.9375" height="75.6875" fill="#76b7b2"></rect>
+    <rect x="344" width="248" y="63.25" height="75.6875" fill="#e15759"></rect>
+    <rect x="344" width="248" y="20" height="43.25" fill="#f28e2c"></rect>
+  </g>
+  <g transform="translate(124.5,0.5)"><text dy="0.32em" x="68" y="333.5625">apples</text><text dy="0.32em" x="68" y="290.3125">oranges</text><text dy="0.32em" x="68" y="263.28125">grapes</text><text dy="0.32em" x="344" y="290.3125">apples</text><text dy="0.32em" x="344" y="176.78125">oranges</text><text dy="0.32em" x="344" y="101.09375">grapes</text><text dy="0.32em" x="344" y="41.625">bananas</text></g>
+</svg>
