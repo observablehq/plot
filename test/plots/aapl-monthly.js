@@ -14,7 +14,7 @@ export default async function() {
     },
     marks: [
       Plot.ruleY([0]),
-      Plot.ruleX(data, Plot.binXMid({y1: "min", y2: "max"}, {...bin, stroke: "#999"})),
+      Plot.ruleX(data, Plot.binX({y1: "min", y2: "max"}, {...bin, stroke: "#999"})),
       Plot.rect(data, Plot.binX({y1: q1, y2: q3}, {...bin, fill: "#bbb"})),
       Plot.ruleY(data, Plot.binX({y: "median"}, {...bin, strokeWidth: 2}))
     ]
