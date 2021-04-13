@@ -23,8 +23,6 @@ export default async function() {
       y: "sport",
       rows: 4
     },
-    fx: { axis: null },
-    fy: { axis: null },
     marks: [
       Plot.frame(),
       Plot.dot(athletes, {x: "weight", y: "height", r: 1, fill: "sex"}),
