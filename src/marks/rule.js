@@ -2,7 +2,7 @@ import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor, zero, title} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class RuleX extends Mark {
   constructor(
@@ -51,7 +51,7 @@ export class RuleX extends Mark {
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 ? i => Y1[i] : marginTop)
             .attr("y2", Y2 ? (y.bandwidth ? i => Y2[i] + y.bandwidth() : i => Y2[i]) : height - marginBottom)
-            .attr("stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }
@@ -104,7 +104,7 @@ export class RuleY extends Mark {
             .attr("x2", X2 ? (x.bandwidth ? i => X2[i] + x.bandwidth() : i => X2[i]) : width - marginRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .attr("stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }

@@ -2,7 +2,7 @@ import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, maybeColor, title} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Link extends Mark {
   constructor(
@@ -52,7 +52,7 @@ export class Link extends Mark {
             .attr("y1", i => Y1[i])
             .attr("x2", i => X2[i])
             .attr("y2", i => Y2[i])
-            .attr("stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }
