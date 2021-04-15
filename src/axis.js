@@ -225,7 +225,7 @@ function maybeTickRotate(g, rotate) {
     const s = Math.sign(x);
     labels
       .attr("x", null)
-      .attr("transform", `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0)rotate(${rotate})`)
+      .attr("transform", `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0) rotate(${rotate})`)
       .attr("text-anchor", Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end");
   } else {
     const s = Math.sign(y);
