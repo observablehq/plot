@@ -23,10 +23,11 @@ export function formatIsoDate(date) {
   const seconds = date.getUTCSeconds();
   const milliseconds = date.getUTCMilliseconds();
   return `${formatIsoYear(date.getUTCFullYear(), 4)}-${pad(date.getUTCMonth() + 1, 2)}-${pad(date.getUTCDate(), 2)}${
-    milliseconds ? `T${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}.${pad(milliseconds, 3)}Z`
-      : seconds ? `T${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}Z`
-      : minutes || hours ? `T${pad(hours, 2)}:${pad(minutes, 2)}Z`
-      : ``
+    hours || minutes || seconds || milliseconds ? `T${pad(hours, 2)}:${pad(minutes, 2)}${
+      seconds || milliseconds ? `:${pad(seconds, 2)}${
+        milliseconds ? `.${pad(milliseconds, 3)}` : ``
+      }` : ``
+    }Z` : ``
   }`;
 }
 
