@@ -96,7 +96,7 @@ export class Text extends Mark {
 function maybeMultiline(text, T) {
   text.each(function(i) {
     const lines = String(T[i]).trim().split("\n");
-    if (lines.length >= 1) {
+    if (lines.length > 1) {
       const t = select(this);
       const x = t.attr("x");
       const dx = t.attr("dx");
