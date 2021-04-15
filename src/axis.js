@@ -69,7 +69,7 @@ export class AxisX {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
-        .call(g => rotateTicks(g, tickRotate))
+        .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
