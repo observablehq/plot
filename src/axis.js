@@ -218,7 +218,7 @@ function gridFacetY(fx, tx) {
 function maybeTickRotate(g, rotate) {
   if (!(rotate = +rotate)) return;
   const radians = Math.PI / 180;
-  const labels = g.selectAll("text").attr("dy", "0.38em");
+  const labels = g.selectAll("text").attr("dy", "0.32em");
   const y = +labels.attr("y");
   if (y == 0) {
     const x = +labels.attr("x");
