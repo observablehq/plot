@@ -1,5 +1,5 @@
 import {ascending} from "d3";
-import {create} from "d3";
+import {create, select} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
@@ -87,10 +87,31 @@ export class Text extends Mark {
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
-            .text(i => T[i])
+            .call(maybeMultiline, T)
             .call(title(L)))
       .node();
   }
+}
+
+function maybeMultiline(text, T) {
+  text.each(function(i) {
+    const lines = String(T[i]).trim().split("\n");
+    if (lines.length >= 1) {
+      const t = select(this);
+      const x = t.attr("x");
+      const dx = t.attr("dx");
+      t
+        .selectAll()
+        .data(lines)
+        .join("tspan")
+        .attr("dx", dx)
+        .attr("x", x)
+        .attr("dy", (_,i) => i ? "1em" : "0.32em")
+        .text(d => d);
+    } else {
+      select(this).text(T[i]);
+    }
+  });
 }
 
 export function text(data, {x, y, ...options} = {}) {
