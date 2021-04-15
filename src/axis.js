@@ -75,7 +75,7 @@ export class AxisX {
         .call(!grid ? () => {}
           : fy ? gridFacetX(fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
-        .call(label == null ? () => {} : g => g.append("text")
+        .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
                 labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
@@ -163,7 +163,7 @@ export class AxisY {
         .call(!grid ? () => {}
           : fx ? gridFacetY(fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
-        .call(label == null ? () => {} : g => g.append("text")
+        .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
                 labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
@@ -218,7 +218,7 @@ function maybeTickRotate(g, rotate) {
   const radians = Math.PI / 180;
   const labels = g.selectAll("text").attr("dy", "0.32em");
   const y = +labels.attr("y");
-  if (y == 0) {
+  if (y) {
     const x = +labels.attr("x");
     const s = Math.sign(x);
     labels
