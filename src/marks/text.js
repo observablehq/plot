@@ -107,7 +107,7 @@ function maybeMultiline(text, T) {
         .attr("dx", dx)
         .attr("x", x)
         .attr("dy", (_,i) => i ? "1em" : "0.32em")
-        .text(d => d);
+        .text(d => d.length ? d : " ");
     } else {
       select(this).text(T[i]);
     }
