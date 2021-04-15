@@ -158,7 +158,7 @@ export class AxisY {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
-        .call(g => rotateTicks(g, tickRotate))
+        .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
@@ -215,7 +215,7 @@ function gridFacetY(fx, tx) {
       .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
-function rotateTicks(g, rotate) {
+function maybeTickRotate(g, rotate) {
   if (!(rotate = +rotate)) return;
   const radians = Math.PI / 180;
   const labels = g.selectAll("text").attr("dy", "0.38em");
