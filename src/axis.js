@@ -13,7 +13,7 @@ export class AxisX {
     label,
     labelAnchor,
     labelOffset,
-    rotate
+    tickRotate
   } = {}) {
     this.name = name;
     this.axis = (axis + "").toLowerCase();
@@ -26,7 +26,7 @@ export class AxisX {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
-    this.rotate = rotate;
+    this.tickRotate = tickRotate;
   }
   render(
     index,
@@ -55,7 +55,7 @@ export class AxisX {
       label,
       labelAnchor,
       labelOffset,
-      rotate
+      tickRotate
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
@@ -69,7 +69,7 @@ export class AxisX {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
-        .call(g => tickRotate(g, rotate))
+        .call(g => rotateTicks(g, tickRotate))
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
@@ -104,7 +104,7 @@ export class AxisY {
     label,
     labelAnchor,
     labelOffset,
-    rotate
+    tickRotate
   } = {}) {
     this.name = name;
     this.axis = axis = (axis + "").toLowerCase();
@@ -117,7 +117,7 @@ export class AxisY {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
-    this.rotate = rotate;
+    this.tickRotate = tickRotate;
   }
   render(
     index,
@@ -144,7 +144,7 @@ export class AxisY {
       label,
       labelAnchor,
       labelOffset,
-      rotate
+      tickRotate
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
@@ -158,7 +158,7 @@ export class AxisY {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
-        .call(g => tickRotate(g, rotate))
+        .call(g => rotateTicks(g, tickRotate))
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
@@ -215,7 +215,7 @@ function gridFacetY(fx, tx) {
       .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
-function tickRotate(g, rotate) {
+function rotateTicks(g, rotate) {
   if (!(rotate = +rotate)) return;
   const radians = Math.PI / 180;
   const labels = g.selectAll("text").attr("dy", "0.38em");
