@@ -1,5 +1,5 @@
-import {axisTop, axisBottom, axisRight, axisLeft} from "d3";
-import {create} from "d3";
+import {axisTop, axisBottom, axisRight, axisLeft, create} from "d3";
+import {boolean, number, string, keyword, maybeKeyword} from "./mark.js";
 
 export class AxisX {
   constructor({
@@ -16,17 +16,16 @@ export class AxisX {
     tickRotate
   } = {}) {
     this.name = name;
-    this.axis = (axis + "").toLowerCase();
-    if (!["top", "bottom"].includes(axis)) throw new Error(`invalid x-axis: ${axis}`);
+    this.axis = keyword(axis, "axis", ["top", "bottom"]);
     this.ticks = ticks;
-    this.tickSize = tickSize;
-    this.tickPadding = tickPadding;
+    this.tickSize = number(tickSize);
+    this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
-    this.grid = grid;
-    this.label = label;
-    this.labelAnchor = labelAnchor;
-    this.labelOffset = labelOffset;
-    this.tickRotate = tickRotate;
+    this.grid = boolean(grid);
+    this.label = string(label);
+    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
+    this.labelOffset = number(labelOffset);
+    this.tickRotate = number(tickRotate);
   }
   render(
     index,
@@ -107,17 +106,16 @@ export class AxisY {
     tickRotate
   } = {}) {
     this.name = name;
-    this.axis = axis = (axis + "").toLowerCase();
-    if (!["left", "right"].includes(axis)) throw new Error(`invalid y-axis: ${axis}`);
+    this.axis = keyword(axis, "axis", ["left", "right"]);
     this.ticks = ticks;
-    this.tickSize = tickSize;
-    this.tickPadding = tickPadding;
+    this.tickSize = number(tickSize);
+    this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
-    this.grid = grid;
-    this.label = label;
-    this.labelAnchor = labelAnchor;
-    this.labelOffset = labelOffset;
-    this.tickRotate = tickRotate;
+    this.grid = boolean(grid);
+    this.label = string(label);
+    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
+    this.labelOffset = number(labelOffset);
+    this.tickRotate = number(tickRotate);
   }
   render(
     index,
