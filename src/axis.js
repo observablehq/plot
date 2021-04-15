@@ -12,7 +12,8 @@ export class AxisX {
     grid,
     label,
     labelAnchor,
-    labelOffset
+    labelOffset,
+    rotate
   } = {}) {
     this.name = name;
     this.axis = (axis + "").toLowerCase();
@@ -25,6 +26,7 @@ export class AxisX {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
+    this.rotate = rotate;
   }
   render(
     index,
@@ -52,7 +54,8 @@ export class AxisX {
       grid,
       label,
       labelAnchor,
-      labelOffset
+      labelOffset,
+      rotate
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
@@ -66,6 +69,7 @@ export class AxisX {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
+        .call(g => tickRotate(g, rotate))
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
@@ -99,7 +103,8 @@ export class AxisY {
     grid,
     label,
     labelAnchor,
-    labelOffset
+    labelOffset,
+    rotate
   } = {}) {
     this.name = name;
     this.axis = axis = (axis + "").toLowerCase();
@@ -112,6 +117,7 @@ export class AxisY {
     this.label = label;
     this.labelAnchor = labelAnchor;
     this.labelOffset = labelOffset;
+    this.rotate = rotate;
   }
   render(
     index,
@@ -137,7 +143,8 @@ export class AxisY {
       grid,
       label,
       labelAnchor,
-      labelOffset
+      labelOffset,
+      rotate
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
@@ -151,6 +158,7 @@ export class AxisY {
             .tickSizeOuter(0)
             .tickPadding(tickPadding)
             .tickValues(Array.isArray(ticks) ? ticks : null))
+        .call(g => tickRotate(g, rotate))
         .attr("font-size", null)
         .attr("font-family", null)
         .call(g => g.select(".domain").remove())
@@ -205,4 +213,25 @@ function gridFacetY(fx, tx) {
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
       .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
+}
+
+function tickRotate(g, rotate) {
+  if (!(rotate = +rotate)) return;
+  const radians = Math.PI / 180;
+  const labels = g.selectAll("text").attr("dy", "0.38em");
+  const y = +labels.attr("y");
+  if (y == 0) {
+    const x = +labels.attr("x");
+    const s = Math.sign(x);
+    labels
+      .attr("x", null)
+      .attr("transform", `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0)rotate(${rotate})`)
+      .attr("text-anchor", Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end");
+  } else {
+    const s = Math.sign(y);
+    labels
+      .attr("y", null)
+      .attr("transform", `translate(0, ${y + s * 4 * Math.cos(rotate * radians)})rotate(${rotate})`)
+      .attr("text-anchor", Math.abs(rotate) < 10 ? "middle" : (rotate < 0) ^ (s > 0) ? "start" : "end");
+  }
 }
