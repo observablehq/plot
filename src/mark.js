@@ -70,8 +70,9 @@ export const field = label => Object.assign(d => d[label], {label});
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
-export const string = x => x == null ? undefined : x + "";
-export const number = x => x == null ? undefined : +x;
+export const string = x => x == null ? x : x + "";
+export const number = x => x == null ? x : +x;
+export const boolean = x => x == null ? x : !!x;
 export const first = d => d[0];
 export const second = d => d[1];
 
@@ -107,6 +108,18 @@ export function maybeLabel(f, value) {
     : typeof value === "function" ? value.label
     : undefined;
   return label === undefined ? f : Object.assign(d => f(d), {label});
+}
+
+// Validates the specified optional string against the allowed list of keywords.
+export function maybeKeyword(input, name, allowed) {
+  if (input != null) return keyword(input, name, allowed);
+}
+
+// Validates the specified required string against the allowed list of keywords.
+export function keyword(input, name, allowed) {
+  const i = (input + "").toLowerCase();
+  if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
+  return i;
 }
 
 // Promotes the specified data to an array or typed array as needed. If an array
