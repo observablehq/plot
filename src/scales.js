@@ -100,7 +100,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   return "linear";
 }
 
-function isOrdinal(values) {
+export function isOrdinal(values) {
   for (const value of values) {
     if (value == null) continue;
     const type = typeof value;
@@ -108,7 +108,7 @@ function isOrdinal(values) {
   }
 }
 
-function isTemporal(values) {
+export function isTemporal(values) {
   for (const value of values) {
     if (value == null) continue;
     return value instanceof Date;

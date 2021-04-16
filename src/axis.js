@@ -1,5 +1,7 @@
-import {axisTop, axisBottom, axisRight, axisLeft, create} from "d3";
-import {boolean, number, string, keyword, maybeKeyword} from "./mark.js";
+import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
+import {formatIsoDate} from "./format.js";
+import {boolean, number, string, keyword, maybeKeyword, constant} from "./mark.js";
+import {isTemporal} from "./scales.js";
 
 export class AxisX {
   constructor({
@@ -46,10 +48,6 @@ export class AxisX {
   ) {
     const {
       axis,
-      ticks,
-      tickSize,
-      tickPadding,
-      tickFormat,
       grid,
       label,
       labelAnchor,
@@ -61,13 +59,7 @@ export class AxisX {
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
         .attr("transform", `translate(0,${ty})`)
-        .call((axis === "top" ? axisTop : axisBottom)(x)
-            .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
-            .tickFormat(typeof tickFormat === "function" || !x.tickFormat ? tickFormat : null)
-            .tickSizeInner(tickSize)
-            .tickSizeOuter(0)
-            .tickPadding(tickPadding)
-            .tickValues(Array.isArray(ticks) ? ticks : null))
+        .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
@@ -134,10 +126,6 @@ export class AxisY {
   ) {
     const {
       axis,
-      ticks,
-      tickSize,
-      tickPadding,
-      tickFormat,
       grid,
       label,
       labelAnchor,
@@ -149,13 +137,7 @@ export class AxisY {
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
         .attr("transform", `translate(${tx},0)`)
-        .call((axis === "right" ? axisRight : axisLeft)(y)
-            .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
-            .tickFormat(typeof tickFormat === "function" || !y.tickFormat ? tickFormat : null)
-            .tickSizeInner(tickSize)
-            .tickSizeOuter(0)
-            .tickPadding(tickPadding)
-            .tickValues(Array.isArray(ticks) ? ticks : null))
+        .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
@@ -211,6 +193,24 @@ function gridFacetY(fx, tx) {
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
       .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
+}
+
+function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
+  if (!scale.tickFormat && typeof tickFormat !== "function") {
+    // D3 doesn’t provide a tick format for ordinal scales; we want shorthand
+    // when an ordinal domain is numbers or dates, and we want null to mean the
+    // empty string, not the default identity format.
+    tickFormat = tickFormat === undefined ? (isTemporal(scale.domain()) ? formatIsoDate : string)
+      : (typeof tickFormat === "string" ? (isTemporal(scale.domain()) ? utcFormat : format)
+      : constant)(tickFormat);
+  }
+  return axis(scale)
+    .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
+    .tickFormat(typeof tickFormat === "function" ? tickFormat : null)
+    .tickSizeInner(tickSize)
+    .tickSizeOuter(0)
+    .tickPadding(tickPadding)
+    .tickValues(Array.isArray(ticks) ? ticks : null);
 }
 
 function maybeTickRotate(g, rotate) {
