@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "bundle": "rm -rf dist && rollup -c",
-    "test": "mkdir -p test/output && tape -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
+    "test": "mkdir -p test/output && tape -r ./esm.js -r esm -r module-alias/register 'test/**/*-test.js' | tap-dot && node -r ./esm.js -r esm -r module-alias/register test/plot.js | tap-dot && eslint src test",
     "prepublishOnly": "yarn bundle",
     "postpublish": "git push && git push --tags",
     "dev": "snowpack dev"
@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
     "clean-css": "^5.1.1",
     "eslint": "^7.12.1",
     "esm": "^3.2.25",
@@ -47,7 +48,8 @@
     "tape-await": "^0.1.2"
   },
   "dependencies": {
-    "d3": "^6.7.0"
+    "d3": "^6.7.0",
+    "isoformat": "^0.1.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"

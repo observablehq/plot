@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import {terser} from "rollup-plugin-terser";
 import json from "@rollup/plugin-json";
+import node from "@rollup/plugin-node-resolve";
 import jsesc from "jsesc";
 import CleanCSS from "clean-css";
 import * as meta from "./package.json";
@@ -42,7 +43,8 @@ const config = {
   },
   plugins: [
     css,
-    json()
+    json(),
+    node()
   ]
 };
 
