@@ -1,6 +1,6 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
-import {boolean, number, string, keyword, maybeKeyword} from "./mark.js";
+import {boolean, number, string, keyword, maybeKeyword, constant} from "./mark.js";
 import {isTemporal} from "./scales.js";
 
 export class AxisX {
@@ -196,18 +196,17 @@ function gridFacetY(fx, tx) {
 }
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
-  if (!scale.tickFormat) {
+  if (!scale.tickFormat && typeof tickFormat !== "function") {
     // D3 doesn’t provide a tick format for ordinal scales; we want shorthand
     // when an ordinal domain is numbers or dates, and we want null to mean the
     // empty string, not the default identity format.
-    tickFormat = tickFormat === null ? ""
-      : tickFormat === undefined ? (isTemporal(scale.domain()) ? formatIsoDate : string)
-      : typeof tickFormat === "string" ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
-      : tickFormat;
+    tickFormat = tickFormat === undefined ? (isTemporal(scale.domain()) ? formatIsoDate : string)
+      : (typeof tickFormat === "string" ? (isTemporal(scale.domain()) ? utcFormat : format)
+      : constant)(tickFormat);
   }
   return axis(scale)
     .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
-    .tickFormat(typeof tickFormat === "function" || !scale.tickFormat ? tickFormat : null)
+    .tickFormat(typeof tickFormat === "function" ? tickFormat : null)
     .tickSizeInner(tickSize)
     .tickSizeOuter(0)
     .tickPadding(tickPadding)
