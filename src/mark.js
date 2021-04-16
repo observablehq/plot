@@ -1,6 +1,5 @@
 import {color} from "d3";
 import {ascendingDefined, nonempty} from "./defined.js";
-import {isTemporal} from "./scales.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -315,4 +314,19 @@ export function values(channels = [], scales) {
     }
   }
   return values;
+}
+
+export function isOrdinal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    const type = typeof value;
+    return type === "string" || type === "boolean";
+  }
+}
+
+export function isTemporal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return value instanceof Date;
+  }
 }
