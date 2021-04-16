@@ -2,6 +2,7 @@ import {registry, position, radius, opacity} from "./scales/index.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
+import {isOrdinal, isTemporal} from "./mark.js";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
@@ -98,21 +99,6 @@ function inferScaleType(key, channels, {type, domain, range}) {
   if (values.some(isOrdinal)) return asOrdinalType(key);
   if (values.some(isTemporal)) return "utc";
   return "linear";
-}
-
-export function isOrdinal(values) {
-  for (const value of values) {
-    if (value == null) continue;
-    const type = typeof value;
-    return type === "string" || type === "boolean";
-  }
-}
-
-export function isTemporal(values) {
-  for (const value of values) {
-    if (value == null) continue;
-    return value instanceof Date;
-  }
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.

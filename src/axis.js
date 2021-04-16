@@ -1,7 +1,6 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
-import {boolean, number, string, keyword, maybeKeyword, constant} from "./mark.js";
-import {isTemporal} from "./scales.js";
+import {boolean, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
 
 export class AxisX {
   constructor({

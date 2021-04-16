@@ -1,5 +1,5 @@
-import {bin as binner, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
+import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
+import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
 
@@ -38,7 +38,12 @@ function binn(
   bx = maybeBin(bx);
   by = maybeBin(by);
   reduceData = maybeReduce(reduceData, identity);
+
+  // Compute the outputs. Don’t group on a channel if one of the output channels
+  // requires it as an input!
   outputs = maybeOutputs(outputs, inputs);
+  if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
+  if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
 
   // Produce x1, x2, y1, and y2 output channels as appropriate (when binning).
   const [BX1, setBX1] = maybeLazyChannel(bx);
@@ -140,11 +145,25 @@ function maybeBinValueTuple(options = {}) {
 
 function maybeBin(options) {
   if (options == null) return;
-  const {value, cumulative, domain, thresholds} = options;
+  const {value, cumulative, domain = extent, thresholds} = options;
   const bin = data => {
     const V = valueof(data, value);
-    const bin = binner().value(i => V[i]).thresholds(thresholds);
-    if (domain !== undefined) bin.domain(domain);
+    const bin = binner().value(i => V[i]);
+    if (isTemporal(V)) {
+      let [min, max] = typeof domain === "function" ? domain(V) : domain;
+      let t = typeof thresholds === "function" && !isTimeInterval(thresholds) ? thresholds(V, min, max) : thresholds;
+      if (typeof t === "number") t = utcTickInterval(min, max, t);
+      if (isTimeInterval(t)) {
+        if (domain === extent) {
+          min = t.floor(min);
+          max = t.ceil(new Date(+max + 1));
+        }
+        t = t.range(min, max);
+      }
+      bin.thresholds(t).domain([min, max]);
+    } else {
+      bin.thresholds(thresholds).domain(domain);
+    }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.filter(nonempty2).map(binfilter);
@@ -163,6 +182,19 @@ function maybeThresholds(thresholds = thresholdScott) {
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
+}
+
+function isTimeInterval(t) {
+  return t ? typeof t.range === "function" : false;
+}
+
+function hasOutput(outputs, ...names) {
+  for (const {name} of outputs) {
+    if (names.includes(name)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function binset(bin) {

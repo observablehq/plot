@@ -231,13 +231,16 @@ export function maybeTransform({filter: f1, sort: s1, reverse: r1, transform: t1
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
 // new a channel that’s the average of the two, and which inherits the channel
-// label (if any).
+// label (if any). Both input channels are assumed to be quantitative. If either
+// channel is temporal, the returned channel is also temporal.
 export function mid(x1, x2) {
   return {
     transform(data) {
       const X1 = x1.transform(data);
       const X2 = x2.transform(data);
-      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
+      return isTemporal(X1) || isTemporal(X2)
+        ? Array.from(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
+        : Float64Array.from(X1, (_, i) => (+X1[i] + +X2[i]) / 2);
     },
     label: x1.label
   };
@@ -311,4 +314,19 @@ export function values(channels = [], scales) {
     }
   }
   return values;
+}
+
+export function isOrdinal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    const type = typeof value;
+    return type === "string" || type === "boolean";
+  }
+}
+
+export function isTemporal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return value instanceof Date;
+  }
 }
