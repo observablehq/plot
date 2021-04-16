@@ -1,4 +1,4 @@
-import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges} from "d3";
+import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof} from "../mark.js";
 import {isTemporal} from "../scales.js";
 import {offset} from "../style.js";
@@ -153,8 +153,8 @@ function maybeBin(options) {
     if (isTemporal(V)) {
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
       let t = typeof thresholds === "function" && !isTimeInterval(thresholds) ? thresholds(V, min, max) : thresholds;
-      if (typeof t === "number"); // TODO d3.utcTickInterval
-      else if (isTimeInterval(t)) {
+      if (typeof t === "number") t = utcTickInterval(min, max, t);
+      if (isTimeInterval(t)) {
         if (domain === extent) {
           min = t.floor(min);
           max = t.ceil(new Date(+max + 1));

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const data = await d3.csv("data/aapl.csv", d3.autoType);
-  const bin = {x: "Date", y: "Volume", thresholds: d3.utcMonth};
+  const bin = {x: "Date", y: "Volume", thresholds: 40};
   const q1 = data => d3.quantile(data, 0.25);
   const q3 = data => d3.quantile(data, 0.75);
   return Plot.plot({

@@ -47,7 +47,7 @@
     "tape-await": "^0.1.2"
   },
   "dependencies": {
-    "d3": "^6.6.2"
+    "d3": "^6.7.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
