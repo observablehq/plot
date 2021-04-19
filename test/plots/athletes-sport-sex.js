@@ -19,7 +19,7 @@ export default async function() {
       domain: d3.groupSort(athletes, female, d => d.sport)
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: female}, {y: "sport"}))
+      Plot.barX(athletes, Plot.groupY({y: "sport", reduce: {x: female}}))
     ]
   });
 }

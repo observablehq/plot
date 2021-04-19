@@ -10,10 +10,11 @@ export default async function() {
       tickFormat: i => "JFMAMJJASOND"[i]
     },
     marks: [
-      Plot.cell(seattle, Plot.group({fill: "max"}, {
+      Plot.cell(seattle, Plot.group({
         x: d => d.date.getUTCDate(),
         y: d => d.date.getUTCMonth(),
         fill: "temp_max",
+        reduce: {fill: "max"},
         inset: 0.5
       }))
     ]

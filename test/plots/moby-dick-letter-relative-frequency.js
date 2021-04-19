@@ -10,7 +10,7 @@ export default async function() {
       percent: true
     },
     marks: [
-      Plot.barY(letters, Plot.groupX({y: "proportion"})),
+      Plot.barY(letters, Plot.groupX({reduce: {y: "proportion"}})),
       Plot.ruleY([0])
     ]
   });

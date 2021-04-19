@@ -24,9 +24,9 @@ function boxX(data, {
   ...options
 } = {}) {
   return [
-    Plot.ruleY(data, Plot.groupY({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
-    Plot.barX(data, Plot.groupY({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
-    Plot.tickX(data, Plot.groupY({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
+    Plot.ruleY(data, Plot.groupY({x, y, stroke, reduce: {x1: iqr1, x2: iqr2}, ...options})),
+    Plot.barX(data, Plot.groupY({x, y, fill, reduce: {x1: quartile1, x2: quartile3}, ...options})),
+    Plot.tickX(data, Plot.groupY({x, y, stroke, strokeWidth: 2, reduce: {x: median}, ...options})),
     Plot.dot(data, Plot.map({x: outliers}, {x, y, z: y, stroke, ...options}))
   ];
 }

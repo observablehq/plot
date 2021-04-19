@@ -9,7 +9,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barY(letters, Plot.groupX({y: "count"})),
+      Plot.barY(letters, Plot.groupX()),
       Plot.ruleY([0])
     ]
   });

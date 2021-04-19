@@ -13,7 +13,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: "count"}, {y: "nationality"}))
+      Plot.barX(athletes, Plot.groupY({y: "nationality"}))
     ]
   });
 }

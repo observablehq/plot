@@ -9,7 +9,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barX(sales, Plot.groupY({x: "sum"}, {x: "units", y: "fruit"})),
+      Plot.barX(sales, Plot.groupY({x: "units", y: "fruit"})),
       Plot.ruleX([0])
     ]
   });

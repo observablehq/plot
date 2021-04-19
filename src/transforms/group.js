@@ -3,31 +3,31 @@ import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ(outputs, options) {
-  return groupn(null, null, outputs, options);
+export function groupZ({reduce = {fill: "sum"}, ...options}) {
+  return groupn(null, null, reduce, options);
 }
 
 // Group on {z, fill, stroke}, then on x.
-export function groupX(outputs, options = {}) {
+export function groupX({reduce = {y: "sum"}, ...options} = {}) {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
-  return groupn(x, null, outputs, options);
+  return groupn(x, null, reduce, options);
 }
 
 // Group on {z, fill, stroke}, then on y.
-export function groupY(outputs, options = {}) {
+export function groupY({reduce = {x: "sum"}, ...options} = {}) {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
-  return groupn(null, y, outputs, options);
+  return groupn(null, y, reduce, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y.
-export function group(outputs, options = {}) {
+export function group({reduce = {fill: "sum"}, ...options} = {}) {
   let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
   if (x == null) throw new Error("missing channel: x");
   if (y == null) throw new Error("missing channel: y");
-  return groupn(x, y, outputs, options);
+  return groupn(x, y, reduce, options);
 }
 
 function groupn(

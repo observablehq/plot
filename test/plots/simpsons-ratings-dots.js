@@ -13,8 +13,8 @@ export default async function() {
       label: "↑ IMDb rating"
     },
     marks: [
-      Plot.ruleX(simpsons, Plot.groupX({y1: "min", y2: "max"}, {x: "season", y: "imdb_rating"})),
-      Plot.line(simpsons, Plot.groupX({y: "median"}, {x: "season", y: "imdb_rating", stroke: "red"})),
+      Plot.ruleX(simpsons, Plot.groupX({x: "season", y: "imdb_rating", reduce: {y1: "min", y2: "max"}})),
+      Plot.line(simpsons, Plot.groupX({x: "season", y: "imdb_rating", stroke: "red", reduce: {y: "median"}})),
       Plot.dot(simpsons, {x: "season", y: "imdb_rating"})
     ]
   });
