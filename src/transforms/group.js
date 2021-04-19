@@ -3,7 +3,7 @@ import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ({reduce = {fill: "sum"}, ...options}) {
+export function groupZ({reduce = {fill: "sum"}, ...options} = {}) {
   return groupn(null, null, reduce, options);
 }
 
