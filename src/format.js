@@ -1,3 +1,5 @@
+export {default as formatIsoDate} from "isoformat";
+
 export function formatMonth(locale = "en-US", month = "short") {
   const format = new Intl.DateTimeFormat(locale, {timeZone: "UTC", month});
   return i => {

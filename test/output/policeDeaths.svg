@@ -5,7 +5,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(540.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">Share of population</text>
-    </g><text fill="currentColor" transform="translate(320,-30)" dy="1em" text-anchor="middle"></text>
+    </g>
   </g>
   <g stroke="white" stroke-miterlimit="1">
     <path fill="#f28e2c" d="M100,30C320,30,320,30,540,30L540,77.58000000000001C320,77.58000000000001,320,191.04,100,191.04Z"></path>

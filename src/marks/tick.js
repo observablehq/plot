@@ -2,7 +2,7 @@ import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor, title} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 class AbstractTick extends Mark {
   constructor(
@@ -43,7 +43,7 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels, dimensions))
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
-            .attr("stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
             .call(title(L)))
       .node();
   }

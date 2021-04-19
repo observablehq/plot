@@ -111,7 +111,7 @@ export function maybeOutputs(outputs, inputs) {
       name,
       output,
       initialize(data) {
-        V = valueof(data, value);
+        V = value === undefined ? data : valueof(data, value);
         O = setOutput([]);
         if (reducer.scope === "data") {
           context = reducer.reduce(range(data), V);
