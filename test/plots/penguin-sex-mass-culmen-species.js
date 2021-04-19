@@ -20,12 +20,13 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(data, Plot.bin({r: "count"}, {
+      Plot.dot(data, Plot.bin({
         x: "body_mass_g",
         y: "culmen_length_mm",
         stroke: "species",
         fill: "species",
-        fillOpacity: 0.1
+        fillOpacity: 0.1,
+        reduce: {r: "count"}
       }))
     ]
   });

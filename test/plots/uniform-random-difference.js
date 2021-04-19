@@ -14,7 +14,7 @@ export default async function() {
       percent: true
     },
     marks: [
-      Plot.rectY({length: 10000}, Plot.binX({y: "proportion"}, {x: () => random() - random()})),
+      Plot.rectY({length: 10000}, Plot.binX({x: () => random() - random(), reduce: {y: "proportion"}})),
       Plot.ruleY([0])
     ]
   });

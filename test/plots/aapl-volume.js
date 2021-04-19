@@ -13,7 +13,7 @@ export default async function() {
       percent: true
     },
     marks: [
-      Plot.rectY(data, Plot.binX({y: "proportion"}, {x: d => Math.log10(d.Volume)})),
+      Plot.rectY(data, Plot.binX({x: d => Math.log10(d.Volume), reduce: {y: "proportion"}})),
       Plot.ruleY([0])
     ]
   });
