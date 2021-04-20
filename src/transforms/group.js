@@ -47,7 +47,7 @@ function groupn(
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
   // computing them more than once.
-  const {z, fill, stroke, ...options} = inputs;
+  const {z, fill, stroke, order, reverse, ...options} = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -93,6 +93,13 @@ function groupn(
         }
         groupFacets.push(groupFacet);
       }
+     if (order !== undefined) {
+        const r = outputs.find(o => o.name === order);
+        if (r === undefined) throw "invalid order";
+        const R = r.output.transform();
+        groupFacets.forEach(f => f.sort((i, j) => R[i] - R[j]));
+      }
+      if (reverse) groupFacets.forEach(f => f.reverse());
       return {data: groupData, facets: groupFacets};
     }),
     ...GX && {x: GX},
