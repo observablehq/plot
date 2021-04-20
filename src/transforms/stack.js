@@ -114,7 +114,7 @@ function maybeOffset(offset) {
   if (offset == null) return;
   switch ((offset + "").toLowerCase()) {
     case "expand": return offsetExpand;
-    case "silhouette": return offsetSilhouette;
+    case "center": return offsetCenter;
     case "wiggle": return offsetWiggle;
   }
   throw new Error(`unknown offset: ${offset}`);
@@ -144,7 +144,7 @@ function offsetExpand(stacks, Y1, Y2) {
   }
 }
 
-function offsetSilhouette(stacks, Y1, Y2) {
+function offsetCenter(stacks, Y1, Y2) {
   for (const stack of stacks) {
     const [yn, yp] = extent(stack, Y2);
     for (const i of stack) {
