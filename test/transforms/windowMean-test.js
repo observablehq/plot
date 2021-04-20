@@ -34,16 +34,15 @@ it("movingAverage treats null as NaN", () => {
   assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1,, ]);
 });
 
-it("movingAverage respects shift", () => {
+it("movingAverage respects anchor", () => {
   const data = [0, 1, 2, 3, 4, 5];
-  const mc = Plot.windowX({k: 3, x: d => d});
+  const mc = Plot.windowX({k: 3, anchor: "center", x: d => d});
   mc.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(mc.x.transform(), [, 1, 2, 3, 4,, ]);
-  const ml = Plot.windowX({k: 3, shift: "leading", x: d => d});
+  const ml = Plot.windowX({k: 3, anchor: "start", x: d => d});
   ml.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(ml.x.transform(), [1, 2, 3, 4,,, ]);
-  const mt = Plot.windowX({k: 3, shift: "trailing", x: d => d});
+  const mt = Plot.windowX({k: 3, anchor: "end", x: d => d});
   mt.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(mt.x.transform(), [,, 1, 2, 3, 4]);
 });
-
