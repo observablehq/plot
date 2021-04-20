@@ -3,10 +3,8 @@ import * as d3 from "d3";
 
 export default async function() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  const female = data => d3.mean(data, d => d.sex === "female");
   return Plot.plot({
     marginLeft: 100,
-    height: 500,
     x: {
       label: "Women (%) →",
       domain: [0, 100],
@@ -16,10 +14,13 @@ export default async function() {
     },
     y: {
       label: null,
-      domain: d3.groupSort(athletes, female, d => d.sport)
+      domain: d3.groupSort(athletes, g => d3.mean(g, d => d.sex === "female"), d => d.sport),
+      round: true
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: female}, {y: "sport"}))
+      Plot.ruleX([.5], {strokeDasharray: [2, 2]}),
+      Plot.dot(athletes, Plot.groupY({x: g => d3.mean(g, d => d === "female")}, {y: "sport", x: "sex", r: 2, fill: "black"})),
+      Plot.ruleY(athletes, Plot.groupY({x: g => d3.mean(g, d => d === "female")}, {y: "sport", x: "sex", x1: () => .5}))
     ]
   });
 }
