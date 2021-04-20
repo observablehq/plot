@@ -25,7 +25,9 @@ export default async function() {
         y: "culmen_length_mm",
         stroke: "species",
         fill: "species",
-        fillOpacity: 0.1
+        fillOpacity: 0.2,
+        order: "r",
+        reverse: true
       }))
     ]
   });
