@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6/dist/d3.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+const url = "https://unpkg.com/visionscarto-world-atlas@0.0.6/world/110m_land.geojson";
+
+(async function() {
+  const world = await d3.json(url);
+  
+  document.body.appendChild(Plot.plot({
+    marks: [
+      // 🚀 the very first mark defines the region of interest (TODO: design this)
+      Plot.carto([{type: "Sphere"}], { fill: "none" }),
+      Plot.carto([world], { fill: "black" }),
+      Plot.carto([{type: "Sphere"}], { strokeWidth: 2 }),
+    ],
+    width: 600,
+    height: 600,
+  }));
+
+})();
+
+</script>

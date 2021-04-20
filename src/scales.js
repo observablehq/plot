@@ -1,8 +1,9 @@
-import {registry, position, radius, opacity} from "./scales/index.js";
+import {registry, projection, position, radius, opacity} from "./scales/index.js";
 import {ScaleDiverging, ScaleLinear, ScalePow, ScaleLog, ScaleSymlog, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
+import {ScaleProjection} from "./scales/projection.js";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
@@ -70,6 +71,7 @@ function Scale(key, channels = [], options = {}) {
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
     case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
+    case "projection": return ScaleProjection(key, channels, options);
     case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
@@ -87,6 +89,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   }
   if (registry.get(key) === radius) return "sqrt";
   if (registry.get(key) === opacity) return "linear";
+  if (registry.get(key) === projection) return "projection";
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {

@@ -45,7 +45,9 @@
     "snowpack": "^3.0.11",
     "tap-dot": "^2.0.0",
     "tape": "^4.13.3",
-    "tape-await": "^0.1.2"
+    "tape-await": "^0.1.2",
+    "topojson-client": "3",
+    "world-atlas": "2"
   },
   "dependencies": {
     "d3": "^6.7.0",

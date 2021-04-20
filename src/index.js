@@ -3,6 +3,7 @@ export {Mark, valueof} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
+export {Carto, carto} from "./marks/carto.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";

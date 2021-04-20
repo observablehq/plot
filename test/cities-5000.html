@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="https://cdn.jsdelivr.net/npm/d3@6/dist/d3.js"></script>
+<script src="../dist/@observablehq/plot.umd.js"></script>
+<script>
+
+const url = "https://unpkg.com/visionscarto-world-atlas@0.0.6/world/110m_countries.geojson";
+
+(async function() {
+  const world = await d3.json(url);
+  const cities = await d3.csv("data/cities-5000.csv");
+  
+  document.body.appendChild(Plot.plot({
+    projection: {
+      projection: "equalEarth",
+      rotate: [-10, 0]
+    },
+    r: { domain: [0, 5e6] },
+    marks: [
+      // 🚀 the very first mark defines the region of interest (TODO: design this)
+      Plot.carto([{type: "Sphere"}], { fill: "none" }),
+      Plot.carto([world], { fill: "black" }),
+      Plot.carto(cities, {
+        transform: data => data.map(({lng, lat, ...properties}) => ({
+          type: "Point", coordinates: [lng, lat], properties
+        })),
+        fill: "orange",
+        title: d => d.properties.city,
+        r: d => d.properties.population
+      }),
+      Plot.carto([{type: "Sphere"}], { strokeWidth: 2 }),
+    ],
+    width: 600,
+    height: 600,
+    marginLeft: 1,
+    marginRight: 1,
+    marginTop: 1,
+    marginBottom: 1,
+    width: document.body.offsetWidth,
+    height: document.body.offsetWidth / 2,
+  }));
+
+})();
+
+</script>
