@@ -1,6 +1,8 @@
-# Observable Plot - Development
+# Observable Plot - Contributing
 
-To develop Observable Plot, clone this repository and install its dependencies:
+Observable Plot is released under the ISC license. You are welcome to fork this repository and to send us pull requests to contribute bug fixes or new features.
+
+To develop Observable Plot locally, clone this repository and install its dependencies:
 
 ```
 git clone git@github.com:observablehq/plot.git

@@ -4,7 +4,7 @@
 
 * [Introduction](https://observablehq.com/@data-workflows/plot)
 * [API Reference](#API-Reference)
-* [Development](./DEVELOPMENT.md)
+* [Contributing](./CONTRIBUTING.md)
 
 ## Installing
 
