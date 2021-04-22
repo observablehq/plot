@@ -106,7 +106,7 @@ function Dimensions(
   },
   {
     width = 640,
-    height = y || fy ? 396 : fx ? 90 : 60,
+    height = autoHeight(y, fy, fx),
     facet: {
       marginTop: facetMarginTop = fxAxis === "top" ? 30 :0,
       marginRight: facetMarginRight = fyAxis === "right" ? 40 : 0,
@@ -135,4 +135,18 @@ function Dimensions(
 
 function ScaleFunctions(scales) {
   return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+}
+
+function autoHeight(y, fy, fx) {
+  const ny = y && ["ordinal", "point"].includes(y.type) && length(y.domain) || 1;
+  const nfy = fy && ["ordinal", "point"].includes(fy.type) && length(fy.domain) || 1;
+  return !!(y || fy) * clamp(ny * nfy * 16, 336, 1200) + !!fx * 30 + 60;
+}
+
+function clamp(x, lo, hi) {
+  return x < lo ? lo : x > hi ? hi : x;
+}
+
+function length(iterator) {
+  return Array.from(iterator).length;
 }
