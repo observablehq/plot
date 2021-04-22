@@ -46,7 +46,7 @@ Separate options may be passed for each scale:
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
 
-The following scale options are supported:
+The following options are supported for each scale:
 
 * *scale*.**type** -
 * *scale*.**domain** -
@@ -66,6 +66,85 @@ The following scale options are supported:
 * *scale*.**paddingOuter** -
 * *scale*.**percent** -
 * *scale*.**transform** -
+
+The following scale types are supported:
+
+* *diverging* -
+* *categorical* -
+* *ordinal* -
+* *cyclical* -
+* *sequential* -
+* *linear* -
+* *sqrt* -
+* *pow* -
+* *log* -
+* *symlog* -
+* *utc* -
+* *time* -
+* *point* -
+* *band* -
+* *identity* -
+
+The following scale schemes are supported:
+
+* *brbg* -
+* *prgn* -
+* *piyg* -
+* *puor* -
+* *rdbu* -
+* *rdgy* -
+* *rdylbu* -
+* *rdylgn* -
+* *spectral* -
+* *burd* -
+* *buylrd* -
+* *blues* -
+* *greens* -
+* *greys* -
+* *purples* -
+* *reds* -
+* *oranges* -
+* *turbo* -
+* *viridis* -
+* *magma* -
+* *inferno* -
+* *plasma* -
+* *cividis* -
+* *cubehelix* -
+* *warm* -
+* *cool* -
+* *bugn* -
+* *bupu* -
+* *gnbu* -
+* *orrd* -
+* *pubugn* -
+* *pubu* -
+* *purd* -
+* *rdpu* -
+* *ylgnbu* -
+* *ylgn* -
+* *ylorbr* -
+* *ylorrd* -
+* *rainbow* -
+* *sinebow* -
+* *accent* -
+* *category10* -
+* *dark2* -
+* *paired* -
+* *pastel1* -
+* *pastel2* -
+* *set1* -
+* *set2* -
+* *set3* -
+* *tableau10* -
+
+The following scale interpolators are supported:
+
+* *number* -
+* *rgb* -
+* *hsl* -
+* *hcl* -
+* *lab* -
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
 
