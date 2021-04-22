@@ -26,45 +26,75 @@ Plot can then be imported as a namespace:
 import * as Plot from "@observablehq/plot";
 ```
 
+Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observablehq/plot/dist/) which is published to npm.
+
 ## API Reference
 
 <a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i>, ...<i>options</i>})
 
 Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element.
 
-The *marks* option specifies the types of shapes to draw and the associated data. Each mark in the *marks* array is typically an instance of [Plot.Mark](#Mark) (such as the result of calling [Plot.barY](#barY) or [Plot.dot](#dot)) which renders SVG elements (such as SVG rect or circle elements). Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing functions to compose marks (*marks* is recursively flattened prior to rendering); see the [boxplot example](#).
+The *marks* option specifies the types of graphical shapes to draw and their associated data. Each mark in the *marks* array is typically an instance of [Plot.Mark](#Mark) (such as the result of calling [Plot.barY](#barY) or [Plot.dot](#dot)) which renders SVG elements (such as SVG rect or circle elements). Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing mark composition. Each mark has its own data and options; see [Marks](#marks) for which options are supported for each mark class.
 
-Each mark has its own data and options; see [Marks](#marks) for which options are supported for each mark class.
+Within a given plot, marks share the same scales. For example, if there are two Plot.barY marks, both sets of bars will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are also [not advised](https://blog.datawrapper.de/dualaxis/).) Scales’ domains are automatically inferred from associated mark channel values, while scales’ ranges similarly have suitable automatic defaults.
 
-For a given plot, marks share the same scales. For example, if there are two Plot.barY marks with different data, then both sets of bars will share the same *x* and *y* scales for a consistent representation of data. Plot does not currently support dual-axis charts (which are [not recommended](https://blog.datawrapper.de/dualaxis/)). Scales’ domains are automatically inferred from associated channels, while scales’ ranges similarly have suitable automatic defaults.
+Separate options may be passed for each scale:
 
-Separate [scale options](#) may be passed for each scale:
+* **x** - (horizontal) *x*-position
+* **y** - (vertical) *y*-position
+* **r** - size or radius
+* **color** - fill or stroke
+* **opacity** - fill or stroke opacity
 
-* *x* - (horizontal) *x*-position
-* *y* - (vertical) *y*-position
-* *r* - size or radius
-* *color* - fill or stroke
-* *opacity* - fill or stroke opacity
+The following scale options are supported:
 
-Faceting options…
+* *scale*.**type** -
+* *scale*.**domain** -
+* *scale*.**pivot** -
+* *scale*.**clamp** -
+* *scale*.**nice** -
+* *scale*.**zero** -
+* *scale*.**range** -
+* *scale*.**scheme** -
+* *scale*.**interpolate** -
+* *scale*.**reverse** -
+* *scale*.**inset** -
+* *scale*.**round** -
+* *scale*.**align** -
+* *scale*.**padding** -
+* *scale*.**paddingInner** -
+* *scale*.**paddingOuter** -
+* *scale*.**percent** -
+* *scale*.**transform** -
 
-* *facet* - see
-* *fx* - facet (horizontal) *x*-position
-* *fy* - facet (vertical) *y*-position
+The *facet* option enables faceting. When faceting, two additional band scales may be configured:
+
+* **fx** - facet (horizontal) *x*-position
+* **fy** - facet (vertical) *y*-position
+
+The following *facet* options are supported:
+
+* facet.**data** -
+* facet.**x** -
+* facet.**y** -
+* facet.**marginTop** -
+* facet.**marginRight** -
+* facet.**marginBottom** -
+* facet.**marginLeft** -
 
 Chart dimension options…
 
-* *marginTop* -
-* *marginRight* -
-* *marginBottom* -
-* *marginLeft* -
-* *width* -
-* *height* -
+* **marginTop** -
+* **marginRight** -
+* **marginBottom** -
+* **marginLeft** -
+* **width** -
+* **height** -
 
 Other chart options…
 
-* *style* - custom styles, either a string or object (*e.g.*, `"color: red"` or `{color: "red"}`)
-* *caption* - a figure caption, either a string, HTML element, or Text node
+* **style** - custom styles, either a string or object (*e.g.*, `"color: red"` or `{color: "red"}`)
+* **caption** - a figure caption, either a string, HTML element, or Text node
 
 ### Marks
 
