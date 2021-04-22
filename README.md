@@ -28,9 +28,9 @@ import * as Plot from "@observablehq/plot";
 
 ## API Reference
 
-<a href="#plot" name="plot">#</a> Plot.<b>plot</b>(<i>options</i>)
+<a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i>, ...<i>options</i>})
 
-Renders a new plot given the specified <i>options</i> and returns the corresponding SVG or HTML figure element.
+Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element.
 
 The *marks* option specifies the types of shapes to draw and the associated data. Each mark in the *marks* array is typically an instance of [Plot.Mark](#Mark) (such as the result of calling [Plot.barY](#barY) or [Plot.dot](#dot)) which renders SVG elements (such as SVG rect or circle elements). Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing functions to compose marks (*marks* is recursively flattened prior to rendering); see the [boxplot example](#).
 
