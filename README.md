@@ -2,165 +2,292 @@
 
 **Observable Plot** is a JavaScript library for exploratory data visualization.
 
-* [Introduction](#introduction)
-* Reference (TODO)
+* [Introduction](https://observablehq.com/@data-workflows/plot)
+* [API Reference](#API-Reference)
 * [Development](./DEVELOPMENT.md)
 
-## Introduction
+## Installing
 
-(TODO) Something about the Grammar of Graphics (scales, marks, composition,
-automatic axes; similar to Vega-Lite and ggplot2). Something about D3 (Plot’s
-development is led by the author of D3, Mike Bostock, and builds on D3, but is
-intended more for fast exploration than bespoke presentation). Something about
-extensibility.
-
-Observable Plot adheres to several principles:
-
-* Be concise and memorable for common tasks.
-* Be flexible regarding input data.
-* Provide good defaults, but allow configuration.
-* Support faceting (small multiples) in all charts.
-* Support interaction (selection) in all charts.
-* Provide an open, extensible foundation for visualization.
-
-Plot tries to be **concise and memorable** for common tasks. This makes Plot easier to learn, easier to remember, and faster for exploring data. For example, given a tabular dataset loaded from a CSV file with columns *Date* and *Close*, here’s a line chart of Apple’s stock price:
-
-<img src="./img/line-aapl-date-close.png" width="640" height="240" alt="A line chart of the daily closing price of Apple stock, 2013–2018">
+Plot can be imported into an Observable notebook like so:
 
 ```js
-Plot.plot({
-  height: 240,
-  marks: [
-    Plot.line(data, {x: "Date", y: "Close"})
-  ]
-})
+import {Plot} from "@observablehq/plot"
 ```
 
-And here’s a line chart of unemployment rates across metropolitan area:
+In Node.js, Plot is typically first installed via a package manager such as Yarn or npm.
 
-<img src="./img/line-bls-date-unemployment-division.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+```bash
+yarn add @observablehq/plot
+```
+
+Plot can then be imported as a namespace:
 
 ```js
-Plot.plot({
-  height: 240,
-  marks: [
-    Plot.line(data, {x: "date", y: "unemployment", z: "division"})
-  ]
-})
+import * as Plot from "@observablehq/plot";
 ```
 
-A chart created by Plot is simply an SVG element that you can put anywhere on the page.
+## API Reference
 
-```js
-const chart = Plot.plot(…); // create the plot
-document.body.append(chart); // add it to the DOM
-```
+<a href="#plot" name="plot">#</a> Plot.<b>plot</b>(<i>options</i>)
 
-Data in the wild comes in all shapes, so Plot is **flexible regarding input data**: data can be an array of objects with named properties (rows, as above), parallel “flat” arrays or iterables of values (columns), or even functions to compute values on-the-fly.
+Renders a new plot given the specified <i>options</i> and returns the corresponding SVG or HTML figure element.
 
-```js
-// As rows…
-Plot.line(data, {x: "Date", y: "Close"}) // named fields
-Plot.line(data, {x: d => d.Date, y: d => d.Close}) // accessor functions
-```
+The *marks* option specifies the types of shapes to draw and the associated data. Each mark in the *marks* array is typically an instance of [Plot.Mark](#Mark) (such as the result of calling [Plot.barY](#barY) or [Plot.dot](#dot)) which renders SVG elements (such as SVG rect or circle elements). Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing functions to compose marks (*marks* is recursively flattened prior to rendering); see the [boxplot example](#).
 
-```js
-// As columns…
-Plot.line(null, {x: dates, y: closes}) // explicit values
-Plot.line({length}, {x: (_, i) => dates[i], y: (_, i) => closes[i]}) // accessor functions
-Plot.line(index, {x: i => dates[i], y: i => closes[i]}) // as function of index
-```
+Each mark has its own data and options; see [Marks](#marks) for which options are supported for each mark class.
 
-Above, the columns might be computed from rows as:
+For a given plot, marks share the same scales. For example, if there are two Plot.barY marks with different data, then both sets of bars will share the same *x* and *y* scales for a consistent representation of data. Plot does not currently support dual-axis charts (which are [not recommended](https://blog.datawrapper.de/dualaxis/)). Scales’ domains are automatically inferred from associated channels, while scales’ ranges similarly have suitable automatic defaults.
 
-```js
-const length = data.length;
-const dates = data.map(d => d.Date);
-const closes = data.map(d => d.Close);
-const index = data.map((d, i) => i);
-```
+Separate [scale options](#) may be passed for each scale:
 
-For example, here’s a line chart of random *y*-values where *x* encodes the index of the input data:
+* *x* - (horizontal) *x*-position
+* *y* - (vertical) *y*-position
+* *r* - size or radius
+* *color* - fill or stroke
+* *opacity* - fill or stroke opacity
 
-<img src="./img/line-random.png" width="640" height="240" alt="A line chart of a uniform random variable">
+Faceting options…
 
-```js
-Plot.plot({
-  height: 240,
-  x: {axis: null}, // hide the x-axis
-  y: {ticks: 10}, // show about 10 ticks on the y-axis
-  marks: [
-    Plot.lineY({length: 500}, {y: Math.random})
-  ]
-})
-```
+* *facet* - see
+* *fx* - facet (horizontal) *x*-position
+* *fy* - facet (vertical) *y*-position
 
-And similarly here’s a line chart of a random walk using [d3.cumsum](https://github.com/d3/d3-array/blob/master/README.md#cumsum) and [d3.randomNormal](https://github.com/d3/d3-random/blob/master/README.md#randomNormal):
+Chart dimension options…
 
-<img src="./img/line-random-walk.png" width="640" height="240" alt="A line chart of a random walk">
+* *marginTop* -
+* *marginRight* -
+* *marginBottom* -
+* *marginLeft* -
+* *width* -
+* *height* -
 
-```js
-Plot.plot({
-  height: 240,
-  x: {axis: null}, // hide the x-axis
-  y: {ticks: 10}, // show about 10 ticks on the y-axis
-  marks: [
-    Plot.lineY(d3.cumsum({length: 500}, d3.randomNormal()))
-  ]
-})
-```
+Other chart options…
 
-If you don’t specify a scale type explicitly, Plot will try to infer a suitable one based on the input values. For example, a UTC (temporal) scale is used for Date instances, a point (ordinal) scale is used for strings, and a linear (quantitative) scale is used for numbers.
+* *style* - custom styles, either a string or object (*e.g.*, `"color: red"` or `{color: "red"}`)
+* *caption* - a figure caption, either a string, HTML element, or Text node
 
-It’s not just line charts, of course. Here’s another useful chart type, the histogram:
+### Marks
 
-<img src="./img/histogram-aapl-volume.png" width="640" height="240" alt="A histogram of daily trading volume for Apple stock, 2013–2018">
+<a href="#area" name="area">#</a> Plot.<b>area</b>(<i>data</i>, <i>options</i>)
 
-```js
-Plot.plot({
-  height: 240,
-  marks: [
-    Plot.rectY(data, Plot.binX({y: "count"}, {x: "Volume"})),
-    Plot.ruleY([0]) // add a rule at y = 0
-  ]
-})
-```
+…
 
-The bin mark is shorthand for a rect mark with a bin transform; the bin
-transform [bins](https://github.com/d3/d3-array/blob/master/README.md#bins)
-quantitative data into discrete bins, then the rect mark visualizes the number
-of data points in each bin as filled rectangles that extend up from the
-*x*-axis.
+<a href="#areaX" name="areaX">#</a> Plot.<b>areaX</b>(<i>data</i>, <i>options</i>)
 
-While the charts above use shorthand defaults, Plot charts are **highly configurable**. Here’s a more longhand representation of the unemployment chart above, with a dash of customization:
+…
 
-<img src="./img/line-bls-date-unemployment-division-custom.png" width="640" height="240" alt="A line chart of the unemployment rate for various U.S. metropolitan areas, 2000–2013">
+<a href="#areaY" name="areaY">#</a> Plot.<b>areaY</b>(<i>data</i>, <i>options</i>)
 
-```js
-Plot.plot({
-  height: 240,
-  y: {
-    grid: true, // show grid lines
-    label: "↑ Unemployment (%)" // custom y-axis label
-  },
-  marks: [
-    Plot.line(data, {
-      x: "date",
-      y: "unemployment",
-      z: "division",
-      strokeWidth: 1, // thinner stroke
-      strokeOpacity: 0.5 // allow blending
-    }),
-    Plot.ruleY([0]) // add a rule at y = 0
-  ]
-})
-```
+…
 
-(TODO) With Plot, **all charts are interactive inputs**. A Plot chart element exposes a *value* property that represents the currently-selected data, and emits an *input* event whenever the selection changes in response to user interaction. This makes it easy to pipe the selection from one chart into another chart (or table) for coordinated views, and it works beautifully with [Observable’s reactive views](https://observablehq.com/@observablehq/introduction-to-views).
+<a href="#barX" name="barX">#</a> Plot.<b>barX</b>(<i>data</i>, <i>options</i>)
 
-```js
-const chart = Plot.plot(…);
-chart.oninput = () => console.log(chart.value);
-```
+…
 
-Lastly, Plot provides **an open, extensible foundation** for visualization. While Plot includes a variety of standard mark types out of the box, it is designed to be extended. New mark types can be used to create one-off custom charts, or for reuse, without needing to fork Plot’s internals. Plot can be extended over time by the community to make a wide variety of visualization techniques more accessible. To learn how to extend Plot, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+<a href="#barY" name="barY">#</a> Plot.<b>barY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#cell" name="cell">#</a> Plot.<b>cell</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#cellX" name="cellX">#</a> Plot.<b>cellX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#cellY" name="cellY">#</a> Plot.<b>cellY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#dot" name="dot">#</a> Plot.<b>dot</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#dotX" name="dotX">#</a> Plot.<b>dotX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#dotY" name="dotY">#</a> Plot.<b>dotY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#frame" name="frame">#</a> Plot.<b>frame</b>(<i>options</i>)
+
+…
+
+<a href="#line" name="line">#</a> Plot.<b>line</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#lineX" name="lineX">#</a> Plot.<b>lineX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#lineY" name="lineY">#</a> Plot.<b>lineY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#link" name="link">#</a> Plot.<b>link</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#rect" name="rect">#</a> Plot.<b>rect</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#rectX" name="rectX">#</a> Plot.<b>rectX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#rectY" name="rectY">#</a> Plot.<b>rectY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#ruleX" name="ruleX">#</a> Plot.<b>ruleX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#ruleY" name="ruleY">#</a> Plot.<b>ruleY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#text" name="text">#</a> Plot.<b>text</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#textX" name="textX">#</a> Plot.<b>textX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#textY" name="textY">#</a> Plot.<b>textY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#tickX" name="tickX">#</a> Plot.<b>tickX</b>(<i>data</i>, <i>options</i>)
+
+…
+
+<a href="#tickY" name="tickY">#</a> Plot.<b>tickY</b>(<i>data</i>, <i>options</i>)
+
+…
+
+### Transforms
+
+<a href="#bin" name="bin">#</a> Plot.<b>bin</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#binX" name="binX">#</a> Plot.<b>binX</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#binY" name="binY">#</a> Plot.<b>binY</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#group" name="group">#</a> Plot.<b>group</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#groupX" name="groupX">#</a> Plot.<b>groupX</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#groupY" name="groupY">#</a> Plot.<b>groupY</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#groupZ" name="groupZ">#</a> Plot.<b>groupZ</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#map" name="map">#</a> Plot.<b>map</b>(<i>outputs</i>, <i>options</i>)
+
+…
+
+<a href="#mapX" name="mapX">#</a> Plot.<b>mapX</b>(<i>map</i>, <i>options</i>)
+
+…
+
+<a href="#mapY" name="mapY">#</a> Plot.<b>mapY</b>(<i>map</i>, <i>options</i>)
+
+…
+
+<a href="#normalizeX" name="normalizeX">#</a> Plot.<b>normalizeX</b>(<i>options</i>)
+
+…
+
+<a href="#normalizeY" name="normalizeY">#</a> Plot.<b>normalizeY</b>(<i>options</i>)
+
+…
+
+<a href="#selectFirst" name="selectFirst">#</a> Plot.<b>selectFirst</b>(<i>options</i>)
+
+…
+
+<a href="#selectLast" name="selectLast">#</a> Plot.<b>selectLast</b>(<i>options</i>)
+
+…
+
+<a href="#selectMinX" name="selectMinX">#</a> Plot.<b>selectMinX</b>(<i>options</i>)
+
+…
+
+<a href="#selectMinY" name="selectMinY">#</a> Plot.<b>selectMinY</b>(<i>options</i>)
+
+…
+
+<a href="#selectMaxX" name="selectMaxX">#</a> Plot.<b>selectMaxX</b>(<i>options</i>)
+
+…
+
+<a href="#selectMaxY" name="selectMaxY">#</a> Plot.<b>selectMaxY</b>(<i>options</i>)
+
+…
+
+<a href="#stackX" name="stackX">#</a> Plot.<b>stackX</b>(<i>options</i>)
+
+…
+
+<a href="#stackX1" name="stackX1">#</a> Plot.<b>stackX1</b>(<i>options</i>)
+
+…
+
+<a href="#stackX2" name="stackX2">#</a> Plot.<b>stackX2</b>(<i>options</i>)
+
+…
+
+<a href="#stackY" name="stackY">#</a> Plot.<b>stackY</b>(<i>options</i>)
+
+…
+
+<a href="#stackY1" name="stackY1">#</a> Plot.<b>stackY1</b>(<i>options</i>)
+
+…
+
+<a href="#stackY2" name="stackY2">#</a> Plot.<b>stackY2</b>(<i>options</i>)
+
+…
+
+<a href="#windowX" name="windowX">#</a> Plot.<b>windowX</b>(<i>options</i>)
+
+…
+
+<a href="#windowY" name="windowY">#</a> Plot.<b>windowY</b>(<i>options</i>)
+
+…
+
+### Formats
+
+<a href="#formatIsoDate" name="formatIsoDate">#</a> Plot.<b>formatIsoDate</b>(<i>date</i>)
+
+…
+
+<a href="#formatWeekday" name="formatWeekday">#</a> Plot.<b>formatWeekday</b>(<i>locale</i>, <i>format</i>)
+
+…
+
+<a href="#formatMonth" name="formatMonth">#</a> Plot.<b>formatMonth</b>(<i>locale</i>, <i>format</i>)
+
+…
