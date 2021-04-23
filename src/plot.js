@@ -138,15 +138,11 @@ function ScaleFunctions(scales) {
 }
 
 function autoHeight(y, fy, fx) {
-  const ny = y && ["ordinal", "point"].includes(y.type) && length(y.domain) || 6;
-  const nfy = fy && ["ordinal", "point"].includes(fy.type) && length(fy.domain) || 1;
+  const ny = y && y.type === "ordinal" && y.scale.domain().length || 6;
+  const nfy = fy && fy.scale.domain().length || 1;
   return !!(y || fy) * clamp(ny * nfy * 16, 336, 1200) + !!fx * 30 + 60;
 }
 
 function clamp(x, lo, hi) {
   return x < lo ? lo : x > hi ? hi : x;
-}
-
-function length(iterator) {
-  return Array.from(iterator).length;
 }
