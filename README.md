@@ -58,7 +58,7 @@ Renders a new plot given the specified *marks* and other *options* and returns t
 
 #### Mark options
 
-The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars are drawn on top of a single rule at *y* = 0.
+The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
@@ -82,7 +82,7 @@ These options determine the overall layout of the plot; all are specified as num
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
-The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (TODO The default *height* will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
+The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (The default *height* will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
 
 TODO Describe the default margins based on the plot’s axes. Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
 
@@ -97,7 +97,16 @@ If a *caption* is specified, then Plot.plot returns an HTML figure element inste
 
 #### Scale options
 
-Within a given plot, marks share the same scales. For example, if there are two Plot.barY marks, both sets of bars will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).) Scales’ domains are automatically inferred from associated mark channel values, while scales’ ranges similarly have suitable automatic defaults.
+Before Plot can render a mark, data must be passed through scales: scales map an abstract value, such as time or temperature, to a visual value, such as *x*- or *y*-position or color. Scales define a plot’s coordinate system. Within a given plot, marks share the same scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+
+```js
+Plot.plot({
+  marks: [
+    Plot.line(aapl, {x: "Date", y: "Close"}),
+    Plot.line(goog, {x: "Date", y: "Close"})
+  ]
+})
+```
 
 Each scale’s options are specified as a nested options object within the top-level plot *options* whose name corresponds to the scale:
 
@@ -120,30 +129,32 @@ Plot.plot({
 })
 ```
 
-TODO Plot supports several different types of scales. The most common is *linear* for a quantitative scale, but several other types of quantitative scale are also supported:
+Plot supports many different types of scales. While you can set the scale type explicitly via the *scale*.**type** option, often the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, d3.autoType or Observable’s FileAttachment). Certain mark types also imply a corresponding scale type; for example, the [Plot.barY](#barY) mark implies that the *x* scale is a band scale.
 
-* *linear* -
-* *sqrt* -
-* *pow* -
-* *log* -
-* *symlog* -
+The following numeric quantitative scale types are supported:
 
-For time:
+* *linear* - a linear scale
+* *pow* - an exponential (power) scale
+* *sqrt* - an exponential scale with *exponent* = 0.5
+* *log* - a logarithmic (log) scale
+* *symlog* - a bi-symmetric logarithmic scale for wide-range data
 
-* *utc* -
-* *time* -
+For time (temporal quantitative), two variants of a linear scale are supported:
 
-For ordinal data:
+* *utc* - UTC time
+* *time* - local time
 
-* *ordinal* -
+UTC is recommended over local time, as charts in UTC time are guaranteed to appear consistently to all viewers, whereas charts in local time will depend on the viewer’s time zone. (Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.)
 
-For ordinal position:
+Not all data is continuous and quantitative; some data is merely ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing). For such data, you can specify an *ordinal* scale. For a position encoding (*i.e.*, for the *x* or *y* scale), you can chose either a *point* or *band* scale.
 
-* *ordinal* -
-* *point* -
-* *band* -
+* *ordinal* - map a discrete domain to a discrete range
+* *point* - map a discrete domain to a continuous range
+* *band* - map a discrete domain to a continuous range
 
-For color:
+If the associated mark has a width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
+
+Plot similarly supports special scale types for both encoding quantitative and ordinal data as color:
 
 * *categorical* - defaults to the *tableau10* scheme
 * *ordinal* - equivalent to *categorical*, but defaults to the *turbo* scheme
@@ -157,13 +168,11 @@ Lastly, you can disable a scale using the *identity* scale type:
 
 Identity scales are useful to opt-out of Plot’s normal scale behavior, for example if you wish to return literal colors or pixel positions within a mark channel, rather than relying on Plot’s scales to convert abstract values into visual values automatically. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis; but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
-TODO Describe how the scale’s default type is chosen based on data and marks.
-
 The following options are supported for each scale:
 
 * *scale*.**type** -
 * *scale*.**domain** -
-* *scale*.**pivot** -
+* *scale*.**pivot** - for diverging scales
 * *scale*.**clamp** -
 * *scale*.**nice** -
 * *scale*.**zero** -
@@ -179,8 +188,14 @@ The following options are supported for each scale:
 * *scale*.**paddingOuter** -
 * *scale*.**percent** -
 * *scale*.**transform** -
+* *scale*.**exponent** - for pow scales
+* *scale*.**base** - for log scales
+* *scale*.**constant** - for symlog scales
+
 
 TODO Not all options are supported on all scale types.
+
+Scales’ domains are automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults.
 
 The following scale schemes are supported:
 
