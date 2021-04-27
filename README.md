@@ -144,23 +144,23 @@ For time (temporal quantitative), two variants of a linear scale are supported:
 * *utc* - UTC time
 * *time* - local time
 
-UTC is recommended over local time, as charts in UTC time are guaranteed to appear consistently to all viewers, whereas charts in local time will depend on the viewer’s time zone. (Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.)
+UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. (Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.)
 
-Not all data is continuous and quantitative; some data is merely ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing). For such data, you can specify an *ordinal* scale. For a position encoding (*i.e.*, for the *x* or *y* scale), you can chose either a *point* or *band* scale.
+For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. For a position encoding (*i.e.*, for the *x* or *y* scale), you can chose either a *point* or *band* scale.
 
 * *ordinal* - map a discrete domain to a discrete range
 * *point* - map a discrete domain to a continuous range
 * *band* - map a discrete domain to a continuous range
 
-If the associated mark has a width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
+If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
 
-Plot similarly supports special scale types for both encoding quantitative and ordinal data as color:
+Plot similarly supports special scale types for encoding both quantitative and ordinal data as color:
 
-* *categorical* - defaults to the *tableau10* scheme
-* *ordinal* - equivalent to *categorical*, but defaults to the *turbo* scheme
-* *sequential* - equivalent to *linear*
-* *diverging* - defaults to the *rdbu* scheme
+* *sequential* - equivalent to *linear*; defaults to the *turbo* scheme
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
+* *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
+* *ordinal* - defaults to the *turbo*
+* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 
 Lastly, you can disable a scale using the *identity* scale type:
 
