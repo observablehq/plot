@@ -30,9 +30,9 @@ Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observabl
 
 ## API Reference
 
-<a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i>, ...<i>options</i>})
+<a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i> = [], ...<i>options</i>} = {})
 
-Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element.
+Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element. As the name suggests, all *options* are optional.
 
 #### Mark options
 
@@ -49,7 +49,9 @@ The following options determine the overall layout of the plot; all are specifie
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
-All of these options are optional. TODO Describe the default layout behavior based on the plot’s scales and axes. TODO Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
+The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (TODO The default *height* will be changing for better behavior with ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
+
+TODO Describe the default margins based on the plot’s axes. TODO Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
 
 Two additional options allow further customization:
 
