@@ -36,7 +36,18 @@ Renders a new plot given the specified *marks* and other *options* and returns t
 
 #### Mark options
 
-The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing mark composition.
+The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars are drawn on top of a single rule at *y* = 0.
+
+```js
+Plot.plot({
+  marks: [
+    Plot.ruleY([0]),
+    Plot.barY(alphabet, {x: "letter", y: "frequency"})
+  ]
+})
+```
+
+Each mark may also be a nested array of marks, allowing mark composition.
 
 #### Layout options
 
@@ -49,9 +60,9 @@ These options determine the overall layout of the plot; all are specified as num
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
-The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (TODO The default *height* will be changing for better behavior with ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
+The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (TODO The default *height* will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
 
-TODO Describe the default margins based on the plot’s axes. TODO Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
+TODO Describe the default margins based on the plot’s axes. Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
 
 Two additional options allow further customization:
 
@@ -68,8 +79,8 @@ Within a given plot, marks share the same scales. For example, if there are two 
 
 Each scale’s options are specified as a nested options object within the top-level plot *options* whose name corresponds to the scale:
 
-* **x** - (horizontal) *x*-position
-* **y** - (vertical) *y*-position
+* **x** - horizontal position
+* **y** - vertical position
 * **r** - size or radius
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
@@ -86,6 +97,45 @@ Plot.plot({
   }
 })
 ```
+
+TODO Plot supports several different types of scales. The most common is *linear* for a quantitative scale, but several other types of quantitative scale are also supported:
+
+* *linear* -
+* *sqrt* -
+* *pow* -
+* *log* -
+* *symlog* -
+
+For time:
+
+* *utc* -
+* *time* -
+
+For ordinal data:
+
+* *ordinal* -
+
+For ordinal position:
+
+* *ordinal* -
+* *point* -
+* *band* -
+
+For color:
+
+* *categorical* - defaults to the *tableau10* scheme
+* *ordinal* - equivalent to *categorical*, but defaults to the *turbo* scheme
+* *sequential* - equivalent to *linear*
+* *diverging* - defaults to the *rdbu* scheme
+* *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
+
+Lastly, you can disable a scale using the *identity* scale type:
+
+* *identity* - disables the scale, rendering values as given
+
+Identity scales are useful to opt-out of Plot’s normal scale behavior, for example if you wish to return literal colors or pixel positions within a mark channel, rather than relying on Plot’s scales to convert abstract values into visual values automatically. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis; but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
+
+TODO Describe how the scale’s default type is chosen based on data and marks.
 
 The following options are supported for each scale:
 
@@ -109,24 +159,6 @@ The following options are supported for each scale:
 * *scale*.**transform** -
 
 TODO Not all options are supported on all scale types.
-
-The following scale types are supported:
-
-* *diverging* -
-* *categorical* -
-* *ordinal* -
-* *cyclical* -
-* *sequential* -
-* *linear* -
-* *sqrt* -
-* *pow* -
-* *log* -
-* *symlog* -
-* *utc* -
-* *time* -
-* *point* -
-* *band* -
-* *identity* -
 
 The following scale schemes are supported:
 
