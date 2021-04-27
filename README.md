@@ -26,7 +26,19 @@ Plot can then be imported as a namespace:
 import * as Plot from "@observablehq/plot";
 ```
 
-Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observablehq/plot/dist/) which is published to npm.
+In modern browsers, Plot can be imported as an ES module, say from Skypack:
+
+```html
+<script type="module">
+
+import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.1";
+
+document.body.appendChild(Plot.plot(options));
+
+</script>
+```
+
+Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observablehq/plot/dist/) for legacy browsers.
 
 ## API Reference
 
