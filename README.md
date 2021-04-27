@@ -166,36 +166,50 @@ Lastly, you can disable a scale using the *identity* scale type:
 
 * *identity* - disables the scale, rendering values as given
 
-Identity scales are useful to opt-out of Plot’s normal scale behavior, for example if you wish to return literal colors or pixel positions within a mark channel, rather than relying on Plot’s scales to convert abstract values into visual values automatically. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis; but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
+Identity scales are useful to opt-out of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
-The following options are supported for each scale:
+Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
 
-* *scale*.**type** -
 * *scale*.**domain** -
-* *scale*.**pivot** - for diverging scales
+* *scale*.**range** -
+* *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
+
+TODO Describe the values for *domain* and *range* are expected based on the scale type.
+
+For diverging scales…
+
+* *scale*.**pivot** -
+
+For quantitative scales…
+
 * *scale*.**clamp** -
 * *scale*.**nice** -
 * *scale*.**zero** -
-* *scale*.**range** -
-* *scale*.**scheme** -
 * *scale*.**interpolate** -
-* *scale*.**reverse** -
-* *scale*.**inset** -
-* *scale*.**round** -
-* *scale*.**align** -
-* *scale*.**padding** -
-* *scale*.**paddingInner** -
-* *scale*.**paddingOuter** -
-* *scale*.**percent** -
-* *scale*.**transform** -
 * *scale*.**exponent** - for pow scales
 * *scale*.**base** - for log scales
 * *scale*.**constant** - for symlog scales
 
+For color scales…
 
-TODO Not all options are supported on all scale types.
+* *scale*.**scheme** -
 
-Scales’ domains are automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults.
+For position scales…
+
+* *scale*.**inset** -
+* *scale*.**round** -
+
+For ordinal position scales (*point* or *band*)…
+
+* *scale*.**align** -
+* *scale*.**padding** -
+* *scale*.**paddingInner** -
+* *scale*.**paddingOuter** -
+
+Additional scale options…
+
+* *scale*.**percent** -
+* *scale*.**transform** -
 
 The following scale schemes are supported:
 
