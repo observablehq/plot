@@ -34,11 +34,35 @@ Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observabl
 
 Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element.
 
-The *marks* option specifies the types of graphical shapes to draw and their associated data. Each mark in the *marks* array is typically an instance of [Plot.Mark](#Mark) (such as the result of calling [Plot.barY](#barY) or [Plot.dot](#dot)) which renders SVG elements (such as SVG rect or circle elements). Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing mark composition. Each mark has its own data and options; see [Marks](#marks) for which options are supported for each mark class.
+#### Mark options
+
+The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. Each mark may also be a nested array of marks, allowing mark composition.
+
+#### Layout options
+
+The following options determine the overall layout of the plot; all are specified as numbers representing pixels:
+
+* **marginTop** - the top margin
+* **marginRight** - the right margin
+* **marginBottom** - the bottom margin
+* **marginLeft** - the left margin
+* **width** - the outer width of the plot (including margins)
+* **height** - the outer height of the plot (including margins)
+
+All of these options are optional. TODO Describe the default layout behavior based on the plot’s scales and axes. TODO Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
+
+Two additional options allow further customization:
+
+* **style** - custom styles (*e.g.*, `"color: red"` or `{color: "red"}`)
+* **caption** - a figure caption, either a string or HTML element
+
+If a *caption* is specified, then Plot.plot returns an HTML figure element instead of an SVG element. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
+
+#### Scale options
 
 Within a given plot, marks share the same scales. For example, if there are two Plot.barY marks, both sets of bars will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are also [not advised](https://blog.datawrapper.de/dualaxis/).) Scales’ domains are automatically inferred from associated mark channel values, while scales’ ranges similarly have suitable automatic defaults.
 
-Separate options may be passed for each scale:
+Each scale’s options are specified as a nested options object within the top-level plot *options* whose name corresponds to the scale:
 
 * **x** - (horizontal) *x*-position
 * **y** - (vertical) *y*-position
@@ -66,6 +90,8 @@ The following options are supported for each scale:
 * *scale*.**paddingOuter** -
 * *scale*.**percent** -
 * *scale*.**transform** -
+
+TODO Not all options are supported on all scale types.
 
 The following scale types are supported:
 
@@ -146,6 +172,8 @@ The following scale interpolators are supported:
 * *hcl* -
 * *lab* -
 
+#### Facet options
+
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
 
 * **fx** - facet (horizontal) *x*-position
@@ -160,20 +188,6 @@ The following *facet* options are supported:
 * facet.**marginRight** -
 * facet.**marginBottom** -
 * facet.**marginLeft** -
-
-Chart dimension options…
-
-* **marginTop** -
-* **marginRight** -
-* **marginBottom** -
-* **marginLeft** -
-* **width** -
-* **height** -
-
-Other chart options…
-
-* **style** - custom styles, either a string or object (*e.g.*, `"color: red"` or `{color: "red"}`)
-* **caption** - a figure caption, either a string, HTML element, or Text node
 
 ### Marks
 
