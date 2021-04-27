@@ -38,7 +38,17 @@ document.body.appendChild(Plot.plot(options));
 </script>
 ```
 
-Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observablehq/plot/dist/) for legacy browsers.
+Plot is also available as a UMD bundle for legacy browsers.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/d3@6"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.1"></script>
+<script>
+
+document.body.appendChild(Plot.plot(options));
+
+</script>
+```
 
 ## API Reference
 
