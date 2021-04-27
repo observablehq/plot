@@ -32,7 +32,7 @@ Plot is also available as a [UMD bundle](https://cdn.jsdelivr.net/npm/@observabl
 
 <a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i> = [], ...<i>options</i>} = {})
 
-Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element. As the name suggests, all *options* are optional.
+Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
 
 #### Mark options
 
@@ -40,7 +40,7 @@ The *marks* option specifies the array of [marks](#Mark) to render. Each mark ha
 
 #### Layout options
 
-These options determine the overall layout of the plot; all are specified as numbers representing pixels:
+These options determine the overall layout of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
 * **marginRight** - the right margin
@@ -79,16 +79,10 @@ For example, to set the domain for the *x* and *y* scales, you might say:
 ```js
 Plot.plot({
   x: {
-    domain: [
-      new Date(Date.UTC(1880, 0, 1)), // x-min
-      new Date(Date.UTC(2016, 11, 1)) // x-max
-    ]
+    domain: [new Date("1880-01-01"), new Date("2016-11-01")]
   },
   y: {
-    domain: [
-      -0.78, // y-min
-      1.35 // y-max
-    ]
+    domain: [-0.78, 1.35]
   }
 })
 ```
