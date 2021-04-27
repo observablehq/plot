@@ -58,13 +58,13 @@ Two additional options allow further customization:
 * **style** - custom styles (*e.g.*, `"color: red"` or `{color: "red"}`)
 * **caption** - a figure caption, either a string or HTML element
 
-TODO Describe the default styles: the background is white, the max-width is 10)%, the font is system-ui, the fill is currentColor to allow the CSS color to be inherited by marks and axes.
+TODO Describe the default styles: the background is white, the max-width is 100%, the font is system-ui, the fill is currentColor to allow the CSS color to be inherited by marks and axes.
 
 If a *caption* is specified, then Plot.plot returns an HTML figure element instead of an SVG element. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
 
 #### Scale options
 
-Within a given plot, marks share the same scales. For example, if there are two Plot.barY marks, both sets of bars will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are also [not advised](https://blog.datawrapper.de/dualaxis/).) Scales’ domains are automatically inferred from associated mark channel values, while scales’ ranges similarly have suitable automatic defaults.
+Within a given plot, marks share the same scales. For example, if there are two Plot.barY marks, both sets of bars will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).) Scales’ domains are automatically inferred from associated mark channel values, while scales’ ranges similarly have suitable automatic defaults.
 
 Each scale’s options are specified as a nested options object within the top-level plot *options* whose name corresponds to the scale:
 
@@ -73,6 +73,25 @@ Each scale’s options are specified as a nested options object within the top-l
 * **r** - size or radius
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
+
+For example, to set the domain for the *x* and *y* scales, you might say:
+
+```js
+Plot.plot({
+  x: {
+    domain: [
+      new Date(Date.UTC(1880, 0, 1)), // x-min
+      new Date(Date.UTC(2016, 11, 1)) // x-max
+    ]
+  },
+  y: {
+    domain: [
+      -0.78, // y-min
+      1.35 // y-max
+    ]
+  }
+})
+```
 
 The following options are supported for each scale:
 
@@ -176,6 +195,20 @@ The following scale interpolators are supported:
 * *hcl* -
 * *lab* -
 
+#### Axis options
+
+* **grid** -
+* *scale*.**axis** -
+* *scale*.**ticks** -
+* *scale*.**tickSize** -
+* *scale*.**tickPadding** -
+* *scale*.**tickFormat** -
+* *scale*.**tickRotate** -
+* *scale*.**grid** -
+* *scale*.**label** -
+* *scale*.**labelAnchor** -
+* *scale*.**labelOffset** -
+
 #### Facet options
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
@@ -192,6 +225,7 @@ The following *facet* options are supported:
 * facet.**marginRight** -
 * facet.**marginBottom** -
 * facet.**marginLeft** -
+* facet.**grid** -
 
 ### Marks
 
