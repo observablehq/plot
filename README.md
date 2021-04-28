@@ -142,11 +142,11 @@ Plot.plot({
 })
 ```
 
-TODO Introduce the concept of quantitative vs. ordinal vs. categorical data?
+Plot supports many scale types. Some scale types are for quantitative data — values that can be subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. And some scale types are intended for specific visual encodings — for example, there are special scale types for position and color.
 
-Plot supports many scale types. You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a band scale.
+You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly coercing types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
 
-The following numeric quantitative scale types are supported:
+For quantitative data (*i.e.* numbers), a *linear* scale is used by default, but an optional mathematical transform may be applied to the data by changing the scale type:
 
 * *linear* - a linear scale
 * *pow* - an exponential (power) scale
@@ -154,7 +154,9 @@ The following numeric quantitative scale types are supported:
 * *log* - a logarithmic (log) scale
 * *symlog* - a bi-symmetric logarithmic scale for wide-range data
 
-For time (temporal quantitative), two variants of a linear scale are supported:
+A *sqrt* transform exaggerates differences between small values at the expense of diminishing differences between large values. A *log* transform is even more extreme, suitable for comparing orders of magnitude, but note that a *log* scale’s domain may not include zero. A *symlog* transform is a more elaborate transform that similarly works well with widely-varying values, and whose domain may include zero.
+
+For temporal data (*i.e.* dates, which are also considered quantitative), two special variants of a *linear* scale are also supported:
 
 * *utc* - UTC time (recommended)
 * *time* - local time
