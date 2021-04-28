@@ -165,24 +165,32 @@ UTC is recommended over local time as charts in UTC time are guaranteed to appea
 
 You can disable a scale using the *identity* scale type. Identity scales are useful to “opt-out” of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
-Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults. You can also set the domain and range explicitly using the following options:
+A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using the following options:
 
 * *scale*.**domain** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the domain defaults to the [*min*, *max*] of all values associated with the scale (across mark channels). For the *radius* and *opacity* scales, the domain defaults to [0, *max*] to ensure a meaningful encoding. For ordinal scales, the domain defaults to the set of distinct values associated with the scale in natural ascending order. The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale (across mark channels). For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order. The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
 
-For quantitative scales…
+Quantitative scales can be further customized with a few additional options:
 
 * *scale*.**clamp** - if true, clamp input values to the scale’s domain
 * *scale*.**nice** - if true (or a tick count), extend the domain to nice round values
 * *scale*.**zero** - if true, extend the domain to include zero if needed
+* *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-Additional scale options…
+Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert Celsius to Fahrenheit.
 
-* *scale*.**percent** -
-* *scale*.**transform** -
+```js
+Plot.plot({
+  y: {
+    label: "↑ Temperature (°F)",
+    transform: f => f * 9 / 5 + 32 // convert from Celsius
+  },
+  marks: …
+})
+```
 
 #### Position options
 
