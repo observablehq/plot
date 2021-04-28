@@ -130,26 +130,28 @@ Plot.plot({
 })
 ```
 
-Plot supports many scale types. You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, d3.autoType or Observable’s FileAttachment). Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a band scale.
+TODO Introduce the concept of quantitative vs. ordinal vs. categorical data?
+
+Plot supports many scale types. You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a band scale.
 
 The following numeric quantitative scale types are supported:
 
 * *linear* - a linear scale
 * *pow* - an exponential (power) scale
-* *sqrt* - an exponential scale with *exponent* = 0.5
+* *sqrt* - an exponential scale with exponent = 0.5
 * *log* - a logarithmic (log) scale
 * *symlog* - a bi-symmetric logarithmic scale for wide-range data
 
 For time (temporal quantitative), two variants of a linear scale are supported:
 
-* *utc* - UTC time
+* *utc* - UTC time (recommended)
 * *time* - local time
 
-UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. (Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.)
+UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
-For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. There are also two special types of ordinal scale, *band* and *point*, for encoding ordinal data as position; see [position scale options](#position-scale-options).
+For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. There are special types of ordinal scale, *band* and *point*, for encoding ordinal data as position; see [position scale options](#position-scale-options).
 
-You can disable a scale using the *identity* scale type. Identity scales are useful to opt-out of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
+You can disable a scale using the *identity* scale type. Identity scales are useful to “opt-out” of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
 Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
 
@@ -168,16 +170,14 @@ For quantitative scales…
 * *scale*.**base** - for log scales
 * *scale*.**constant** - for symlog scales
 
-#### Position scale options…
+Additional scale options…
+
+* *scale*.**percent** -
+* *scale*.**transform** -
+
+#### Position options
 
 For position scales (*x* and *y*)…
-
-In addition to the normal scale types above, Plot supports special scale types for encoding ordinal data as position:
-
-* *point* - map a discrete domain to a continuous range
-* *band* - map a discrete domain to a continuous range
-
-If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
 
 * *scale*.**inset** -
 * *scale*.**round** -
@@ -189,14 +189,8 @@ For ordinal position scales (*point* or *band*)…
 * *scale*.**paddingInner** -
 * *scale*.**paddingOuter** -
 
-Additional scale options…
+Plot automatically generates axes for position scales (*x*, *y*, *fx*, and *fy*). You can configure these axes with the following options:
 
-* *scale*.**percent** -
-* *scale*.**transform** -
-
-Axis options
-
-* **grid** -
 * *scale*.**axis** -
 * *scale*.**ticks** -
 * *scale*.**tickSize** -
@@ -208,7 +202,16 @@ Axis options
 * *scale*.**labelAnchor** -
 * *scale*.**labelOffset** -
 
-#### Color scale options
+If *x*.grid or *y*.grid is not set, then the top-level **grid** option can be used as shorthand for enabling grid lines on both scales.
+
+In addition to the normal scale types above, Plot supports special scale types for encoding ordinal data as position:
+
+* *point* - map a discrete domain to a continuous range
+* *band* - map a discrete domain to a continuous range
+
+If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
+
+#### Color options
 
 Plot supports special scale types for encoding data as color:
 
