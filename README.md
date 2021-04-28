@@ -186,6 +186,41 @@ For quantitative scales…
 * *scale*.**base** - for log scales
 * *scale*.**constant** - for symlog scales
 
+#### Position scale options…
+
+For position scales (*x* and *y*)…
+
+* *scale*.**inset** -
+* *scale*.**round** -
+
+For ordinal position scales (*point* or *band*)…
+
+* *scale*.**align** -
+* *scale*.**padding** -
+* *scale*.**paddingInner** -
+* *scale*.**paddingOuter** -
+
+Additional scale options…
+
+* *scale*.**percent** -
+* *scale*.**transform** -
+
+Axis options
+
+* **grid** -
+* *scale*.**axis** -
+* *scale*.**ticks** -
+* *scale*.**tickSize** -
+* *scale*.**tickPadding** -
+* *scale*.**tickFormat** -
+* *scale*.**tickRotate** -
+* *scale*.**grid** -
+* *scale*.**label** -
+* *scale*.**labelAnchor** -
+* *scale*.**labelOffset** -
+
+#### Color scale options
+
 For color scales…
 
 * *scale*.**scheme** - a named color scheme, *e.g.*  `"reds"`
@@ -235,6 +270,8 @@ The following diverging scale schemes are supported:
 * *burd* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub>
 * *buylrd* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub>
 
+TODO For diverging color scales, you can specify *scale*.**pivot**…
+
 The following cylical color schemes are supported:
 
 * *rainbow* <sub><img src="./img/rainbow.png" width="120" height="16" alt="rainbow"></sub>
@@ -259,41 +296,6 @@ The following color interpolators are supported:
 * *hsl* - HSL (hue, saturation, lightness)
 * *lab* - CIELAB (*a.k.a.* “Lab”)
 * *hcl* - CIELCh<sub>ab</sub> (*a.k.a.* “LCh” or “HCL”)
-
-For diverging color scales…
-
-* *scale*.**pivot** -
-
-For position scales…
-
-* *scale*.**inset** -
-* *scale*.**round** -
-
-For ordinal position scales (*point* or *band*)…
-
-* *scale*.**align** -
-* *scale*.**padding** -
-* *scale*.**paddingInner** -
-* *scale*.**paddingOuter** -
-
-Additional scale options…
-
-* *scale*.**percent** -
-* *scale*.**transform** -
-
-#### Axis options
-
-* **grid** -
-* *scale*.**axis** -
-* *scale*.**ticks** -
-* *scale*.**tickSize** -
-* *scale*.**tickPadding** -
-* *scale*.**tickFormat** -
-* *scale*.**tickRotate** -
-* *scale*.**grid** -
-* *scale*.**label** -
-* *scale*.**labelAnchor** -
-* *scale*.**labelOffset** -
 
 #### Facet options
 
