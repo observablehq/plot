@@ -193,65 +193,65 @@ For color scales…
 
 The following sequential scale schemes are supported:
 
-* <sub><img src="./img/blues.png" width="120" height="16" alt="blues"></sub> blues
-* <sub><img src="./img/greens.png" width="120" height="16" alt="greens"></sub> greens
-* <sub><img src="./img/greys.png" width="120" height="16" alt="greys"></sub> greys
-* <sub><img src="./img/oranges.png" width="120" height="16" alt="oranges"></sub> oranges
-* <sub><img src="./img/purples.png" width="120" height="16" alt="purples"></sub> purples
-* <sub><img src="./img/reds.png" width="120" height="16" alt="reds"></sub> reds
-* <sub><img src="./img/bugn.png" width="120" height="16" alt="bugn"></sub> bugn
-* <sub><img src="./img/bupu.png" width="120" height="16" alt="bupu"></sub> bupu
-* <sub><img src="./img/gnbu.png" width="120" height="16" alt="gnbu"></sub> gnbu
-* <sub><img src="./img/orrd.png" width="120" height="16" alt="orrd"></sub> orrd
-* <sub><img src="./img/pubu.png" width="120" height="16" alt="pubu"></sub> pubu
-* <sub><img src="./img/pubugn.png" width="120" height="16" alt="pubugn"></sub> pubugn
-* <sub><img src="./img/purd.png" width="120" height="16" alt="purd"></sub> purd
-* <sub><img src="./img/rdpu.png" width="120" height="16" alt="rdpu"></sub> rdpu
-* <sub><img src="./img/ylgn.png" width="120" height="16" alt="ylgn"></sub> ylgn
-* <sub><img src="./img/ylgnbu.png" width="120" height="16" alt="ylgnbu"></sub> ylgnbu
-* <sub><img src="./img/ylorbr.png" width="120" height="16" alt="ylorbr"></sub> ylorbr
-* <sub><img src="./img/ylorrd.png" width="120" height="16" alt="ylorrd"></sub> ylorrd
-* <sub><img src="./img/cividis.png" width="120" height="16" alt="cividis"></sub> cividis
-* <sub><img src="./img/inferno.png" width="120" height="16" alt="inferno"></sub> inferno
-* <sub><img src="./img/magma.png" width="120" height="16" alt="magma"></sub> magma
-* <sub><img src="./img/plasma.png" width="120" height="16" alt="plasma"></sub> plasma
-* <sub><img src="./img/viridis.png" width="120" height="16" alt="viridis"></sub> viridis
-* <sub><img src="./img/cubehelix.png" width="120" height="16" alt="cubehelix"></sub> cubehelix
-* <sub><img src="./img/turbo.png" width="120" height="16" alt="turbo"></sub> turbo
-* <sub><img src="./img/warm.png" width="120" height="16" alt="warm"></sub> warm
-* <sub><img src="./img/cool.png" width="120" height="16" alt="cool"></sub> cool
+* *blues* <sub><img src="./img/blues.png" width="120" height="16" alt="blues"></sub>
+* *greens* <sub><img src="./img/greens.png" width="120" height="16" alt="greens"></sub>
+* *greys* <sub><img src="./img/greys.png" width="120" height="16" alt="greys"></sub>
+* *oranges* <sub><img src="./img/oranges.png" width="120" height="16" alt="oranges"></sub>
+* *purples* <sub><img src="./img/purples.png" width="120" height="16" alt="purples"></sub>
+* *reds* <sub><img src="./img/reds.png" width="120" height="16" alt="reds"></sub>
+* *bugn* <sub><img src="./img/bugn.png" width="120" height="16" alt="bugn"></sub>
+* *bupu* <sub><img src="./img/bupu.png" width="120" height="16" alt="bupu"></sub>
+* *gnbu* <sub><img src="./img/gnbu.png" width="120" height="16" alt="gnbu"></sub>
+* *orrd* <sub><img src="./img/orrd.png" width="120" height="16" alt="orrd"></sub>
+* *pubu* <sub><img src="./img/pubu.png" width="120" height="16" alt="pubu"></sub>
+* *pubugn* <sub><img src="./img/pubugn.png" width="120" height="16" alt="pubugn"></sub>
+* *purd* <sub><img src="./img/purd.png" width="120" height="16" alt="purd"></sub>
+* *rdpu* <sub><img src="./img/rdpu.png" width="120" height="16" alt="rdpu"></sub>
+* *ylgn* <sub><img src="./img/ylgn.png" width="120" height="16" alt="ylgn"></sub>
+* *ylgnbu* <sub><img src="./img/ylgnbu.png" width="120" height="16" alt="ylgnbu"></sub>
+* *ylorbr* <sub><img src="./img/ylorbr.png" width="120" height="16" alt="ylorbr"></sub>
+* *ylorrd* <sub><img src="./img/ylorrd.png" width="120" height="16" alt="ylorrd"></sub>
+* *cividis* <sub><img src="./img/cividis.png" width="120" height="16" alt="cividis"></sub>
+* *inferno* <sub><img src="./img/inferno.png" width="120" height="16" alt="inferno"></sub>
+* *magma* <sub><img src="./img/magma.png" width="120" height="16" alt="magma"></sub>
+* *plasma* <sub><img src="./img/plasma.png" width="120" height="16" alt="plasma"></sub>
+* *viridis* <sub><img src="./img/viridis.png" width="120" height="16" alt="viridis"></sub>
+* *cubehelix* <sub><img src="./img/cubehelix.png" width="120" height="16" alt="cubehelix"></sub>
+* *turbo* <sub><img src="./img/turbo.png" width="120" height="16" alt="turbo"></sub>
+* *warm* <sub><img src="./img/warm.png" width="120" height="16" alt="warm"></sub>
+* *cool* <sub><img src="./img/cool.png" width="120" height="16" alt="cool"></sub>
 
 The following diverging scale schemes are supported:
 
-* <sub><img src="./img/brbg.png" width="120" height="16" alt="brbg"></sub> brbg
-* <sub><img src="./img/prgn.png" width="120" height="16" alt="prgn"></sub> prgn
-* <sub><img src="./img/piyg.png" width="120" height="16" alt="piyg"></sub> piyg
-* <sub><img src="./img/puor.png" width="120" height="16" alt="puor"></sub> puor
-* <sub><img src="./img/rdbu.png" width="120" height="16" alt="rdbu"></sub> rdbu
-* <sub><img src="./img/rdgy.png" width="120" height="16" alt="rdgy"></sub> rdgy
-* <sub><img src="./img/rdylbu.png" width="120" height="16" alt="rdylbu"></sub> rdylbu
-* <sub><img src="./img/rdylgn.png" width="120" height="16" alt="rdylgn"></sub> rdylgn
-* <sub><img src="./img/spectral.png" width="120" height="16" alt="spectral"></sub> spectral
-* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub> burd
-* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub> buylrd
+* *brbg* <sub><img src="./img/brbg.png" width="120" height="16" alt="brbg"></sub>
+* *prgn* <sub><img src="./img/prgn.png" width="120" height="16" alt="prgn"></sub>
+* *piyg* <sub><img src="./img/piyg.png" width="120" height="16" alt="piyg"></sub>
+* *puor* <sub><img src="./img/puor.png" width="120" height="16" alt="puor"></sub>
+* *rdbu* <sub><img src="./img/rdbu.png" width="120" height="16" alt="rdbu"></sub>
+* *rdgy* <sub><img src="./img/rdgy.png" width="120" height="16" alt="rdgy"></sub>
+* *rdylbu* <sub><img src="./img/rdylbu.png" width="120" height="16" alt="rdylbu"></sub>
+* *rdylgn* <sub><img src="./img/rdylgn.png" width="120" height="16" alt="rdylgn"></sub>
+* *spectral* <sub><img src="./img/spectral.png" width="120" height="16" alt="spectral"></sub>
+* *burd* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub>
+* *buylrd* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub>
 
 The following cylical color schemes are supported:
 
-* *rainbow* -
-* *sinebow* -
+* *rainbow* <sub><img src="./img/rainbow.png" width="120" height="16" alt="rainbow"></sub>
+* *sinebow* <sub><img src="./img/sinebow.png" width="120" height="16" alt="sinebow"></sub>
 
 The following categorical color schemes are supported:
 
-* *accent* -
-* *category10* -
-* *dark2* -
-* *paired* -
-* *pastel1* -
-* *pastel2* -
-* *set1* -
-* *set2* -
-* *set3* -
-* *tableau10* -
+* *accent* <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub> (8 colors)
+* *category10* <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub> (10 colors)
+* *dark2* <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub> (8 colors)
+* *paired* <sub><img src="./img/paired.png" width="144" height="16" alt="paired"></sub> (12 colors)
+* *pastel1* <sub><img src="./img/pastel1.png" width="108" height="16" alt="pastel1"></sub> (9 colors)
+* *pastel2* <sub><img src="./img/pastel2.png" width="96" height="16" alt="pastel2"></sub> (8 colors)
+* *set1* <sub><img src="./img/set1.png" width="108" height="16" alt="set1"></sub> (9 colors)
+* *set2* <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub> (8 colors)
+* *set3* <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub> (12 colors)
+* *tableau10* <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub> (10 colors)
 
 The following scale interpolators are supported:
 
