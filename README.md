@@ -59,7 +59,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 #### Mark options
 
-The **marks** option specifies the array of [marks](#mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The **marks** option specifies the array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#plotbarydata-options) or [Plot.dot](#plotdotdata-options)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
@@ -98,7 +98,7 @@ If a *caption* is specified, then Plot.plot returns an HTML figure element inste
 
 #### Scale options
 
-Before Plot can render a mark, data must be passed through scales: scales map an abstract value, such as time or temperature, to a visual value, such as *x*- or *y*-position or color. Scales define a plot’s coordinate system. Within a given plot, marks share the same scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Before Plot renders a mark, data is passed through [scales](): scales map an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
@@ -109,7 +109,7 @@ Plot.plot({
 })
 ```
 
-Each scale’s options are specified as a nested options object within the top-level plot *options* whose name corresponds to the scale:
+Each scale’s options are specified as a nested options object, within the top-level plot *options*, whose name corresponds to the scale:
 
 * **x** - horizontal position
 * **y** - vertical position
@@ -117,7 +117,7 @@ Each scale’s options are specified as a nested options object within the top-l
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
 
-For example, to set the domain for the *x* and *y* scales, you might say:
+For example, to set the domain for the *x* and *y* scales:
 
 ```js
 Plot.plot({
@@ -130,7 +130,7 @@ Plot.plot({
 })
 ```
 
-Plot supports many different types of scales. While you can set the scale type explicitly via the *scale*.**type** option, often the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, d3.autoType or Observable’s FileAttachment). Certain mark types also imply a corresponding scale type; for example, the [Plot.barY](#barY) mark implies that the *x* scale is a band scale.
+Plot supports many scale types. You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. We recommend explicitly coercing types when loading data (*e.g.*, d3.autoType or Observable’s FileAttachment). Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a band scale.
 
 The following numeric quantitative scale types are supported:
 
@@ -155,7 +155,7 @@ For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nomina
 
 If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
 
-Plot similarly supports special scale types for encoding both quantitative and ordinal data as color:
+Plot similarly supports special scale types for encoding data as color:
 
 * *sequential* - equivalent to *linear*; defaults to the *turbo* scheme
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
@@ -171,89 +171,81 @@ Identity scales are useful to opt-out of a scale, for example if you wish to ret
 
 Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
 
-* *scale*.**domain** -
-* *scale*.**range** -
+* *scale*.**domain** - typically [*min*, *max*] for quantitative scales, or an array of ordinal values
+* *scale*.**range** - typically [*min*, *max*], or an array of values for ordinal scales
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
 TODO Describe the values for *domain* and *range* are expected based on the scale type.
 
-For diverging scales…
-
-* *scale*.**pivot** -
-
 For quantitative scales…
 
-* *scale*.**clamp** -
-* *scale*.**nice** -
-* *scale*.**zero** -
-* *scale*.**interpolate** -
+* *scale*.**clamp** - if true, clamp input values to the scale’s domain
+* *scale*.**nice** - if true (or a tick count), extend the domain to nice round values
+* *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**exponent** - for pow scales
 * *scale*.**base** - for log scales
 * *scale*.**constant** - for symlog scales
 
 For color scales…
 
-* *scale*.**scheme** -
+* *scale*.**scheme** - a named color scheme, *e.g.*  `"reds"`
+* *scale*.**interpolate** -
 
-For position scales…
+The following sequential scale schemes are supported:
 
-* *scale*.**inset** -
-* *scale*.**round** -
+| scheme |  |
+|---|---|
+| blues | <img src="./img/blues.png" width="480" height="20" style="display: block;" alt="blues"> |
+| greens | <img src="./img/greens.png" width="480" height="20" style="display: block;" alt="greens"> |
+| greys | <img src="./img/greys.png" width="480" height="20" style="display: block;" alt="greys"> |
+| oranges | <img src="./img/oranges.png" width="480" height="20" style="display: block;" alt="oranges"> |
+| purples | <img src="./img/purples.png" width="480" height="20" style="display: block;" alt="purples"> |
+| reds | <img src="./img/reds.png" width="480" height="20" style="display: block;" alt="reds"> |
+| bugn | <img src="./img/bugn.png" width="480" height="20" style="display: block;" alt="bugn"> |
+| bupu | <img src="./img/bupu.png" width="480" height="20" style="display: block;" alt="bupu"> |
+| gnbu | <img src="./img/gnbu.png" width="480" height="20" style="display: block;" alt="gnbu"> |
+| orrd | <img src="./img/orrd.png" width="480" height="20" style="display: block;" alt="orrd"> |
+| pubu | <img src="./img/pubu.png" width="480" height="20" style="display: block;" alt="pubu"> |
+| pubugn | <img src="./img/pubugn.png" width="480" height="20" style="display: block;" alt="pubugn"> |
+| purd | <img src="./img/purd.png" width="480" height="20" style="display: block;" alt="purd"> |
+| rdpu | <img src="./img/rdpu.png" width="480" height="20" style="display: block;" alt="rdpu"> |
+| ylgn | <img src="./img/ylgn.png" width="480" height="20" style="display: block;" alt="ylgn"> |
+| ylgnbu | <img src="./img/ylgnbu.png" width="480" height="20" style="display: block;" alt="ylgnbu"> |
+| ylorbr | <img src="./img/ylorbr.png" width="480" height="20" style="display: block;" alt="ylorbr"> |
+| ylorrd | <img src="./img/ylorrd.png" width="480" height="20" style="display: block;" alt="ylorrd"> |
+| cividis | <img src="./img/cividis.png" width="480" height="20" style="display: block;" alt="cividis"> |
+| inferno | <img src="./img/inferno.png" width="480" height="20" style="display: block;" alt="inferno"> |
+| magma | <img src="./img/magma.png" width="480" height="20" style="display: block;" alt="magma"> |
+| plasma | <img src="./img/plasma.png" width="480" height="20" style="display: block;" alt="plasma"> |
+| viridis | <img src="./img/viridis.png" width="480" height="20" style="display: block;" alt="viridis"> |
+| cubehelix | <img src="./img/cubehelix.png" width="480" height="20" style="display: block;" alt="cubehelix"> |
+| turbo | <img src="./img/turbo.png" width="480" height="20" style="display: block;" alt="turbo"> |
+| warm | <img src="./img/warm.png" width="480" height="20" style="display: block;" alt="warm"> |
+| cool | <img src="./img/cool.png" width="480" height="20" style="display: block;" alt="cool"> |
 
-For ordinal position scales (*point* or *band*)…
+The following diverging scale schemes are supported:
 
-* *scale*.**align** -
-* *scale*.**padding** -
-* *scale*.**paddingInner** -
-* *scale*.**paddingOuter** -
+| scheme |  |
+|---|---|
+| brbg | <img src="./img/brbg.png" width="480" height="20" style="display: block;" alt="brbg"> |
+| prgn | <img src="./img/prgn.png" width="480" height="20" style="display: block;" alt="prgn"> |
+| piyg | <img src="./img/piyg.png" width="480" height="20" style="display: block;" alt="piyg"> |
+| puor | <img src="./img/puor.png" width="480" height="20" style="display: block;" alt="puor"> |
+| rdbu | <img src="./img/rdbu.png" width="480" height="20" style="display: block;" alt="rdbu"> |
+| rdgy | <img src="./img/rdgy.png" width="480" height="20" style="display: block;" alt="rdgy"> |
+| rdylbu | <img src="./img/rdylbu.png" width="480" height="20" style="display: block;" alt="rdylbu"> |
+| rdylgn | <img src="./img/rdylgn.png" width="480" height="20" style="display: block;" alt="rdylgn"> |
+| spectral | <img src="./img/spectral.png" width="480" height="20" style="display: block;" alt="spectral"> |
+| burd | <img src="./img/burd.png" width="480" height="20" style="display: block;" alt="burd"> |
+| buylrd | <img src="./img/buylrd.png" width="480" height="20" style="display: block;" alt="buylrd"> |
 
-Additional scale options…
+The following cylical color schemes are supported:
 
-* *scale*.**percent** -
-* *scale*.**transform** -
-
-The following scale schemes are supported:
-
-* *brbg* -
-* *prgn* -
-* *piyg* -
-* *puor* -
-* *rdbu* -
-* *rdgy* -
-* *rdylbu* -
-* *rdylgn* -
-* *spectral* -
-* *burd* -
-* *buylrd* -
-* *blues* -
-* *greens* -
-* *greys* -
-* *purples* -
-* *reds* -
-* *oranges* -
-* *turbo* -
-* *viridis* -
-* *magma* -
-* *inferno* -
-* *plasma* -
-* *cividis* -
-* *cubehelix* -
-* *warm* -
-* *cool* -
-* *bugn* -
-* *bupu* -
-* *gnbu* -
-* *orrd* -
-* *pubugn* -
-* *pubu* -
-* *purd* -
-* *rdpu* -
-* *ylgnbu* -
-* *ylgn* -
-* *ylorbr* -
-* *ylorrd* -
 * *rainbow* -
 * *sinebow* -
+
+The following categorical color schemes are supported:
+
 * *accent* -
 * *category10* -
 * *dark2* -
@@ -272,6 +264,27 @@ The following scale interpolators are supported:
 * *hsl* -
 * *hcl* -
 * *lab* -
+
+For diverging color scales…
+
+* *scale*.**pivot** -
+
+For position scales…
+
+* *scale*.**inset** -
+* *scale*.**round** -
+
+For ordinal position scales (*point* or *band*)…
+
+* *scale*.**align** -
+* *scale*.**padding** -
+* *scale*.**paddingInner** -
+* *scale*.**paddingOuter** -
+
+Additional scale options…
+
+* *scale*.**percent** -
+* *scale*.**transform** -
 
 #### Axis options
 
