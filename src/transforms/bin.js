@@ -33,7 +33,7 @@ function binn(
   by, // optionally bin on y (exclusive with gy)
   gx, // optionally group on x (exclusive with bx and gy)
   gy, // optionally group on y (exclusive with by and gx)
-  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {data: reduceData = reduceIdentity, reverse, ...outputs} = {}, // output channel definitions
   inputs = {} // input channels and options
 ) {
   bx = maybeBin(bx);
@@ -59,7 +59,7 @@ function binn(
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
   // computing them more than once.
-  const {x, y, z, fill, stroke, order, reverse, ...options} = inputs;
+  const {x, y, z, fill, stroke, ...options} = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -116,11 +116,10 @@ function binn(
         }
         groupFacets.push(groupFacet);
       }
-      if (order !== undefined) {
-        const r = outputs.find(o => o.name === order);
-        if (r === undefined) throw "invalid order";
-        const R = r.output.transform();
-        groupFacets.forEach(f => f.sort((i, j) => R[i] - R[j]));
+      const sort = outputs.find(o => o.name === "sort");
+      if (sort) {
+        const S = sort.output.transform();
+        groupFacets.forEach(f => f.sort((i, j) => S[i] - S[j]));
       }
       if (reverse) groupFacets.forEach(f => f.reverse());
       return {data: groupData, facets: groupFacets};

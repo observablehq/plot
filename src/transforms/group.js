@@ -34,7 +34,7 @@ export function group(outputs, options = {}) {
 function groupn(
   x, // optionally group on x
   y, // optionally group on y
-  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {data: reduceData = reduceIdentity, reverse, ...outputs} = {}, // output channel definitions
   inputs = {} // input channels and options
 ) {
   reduceData = maybeReduce(reduceData, identity);
@@ -47,7 +47,7 @@ function groupn(
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
   // computing them more than once.
-  const {z, fill, stroke, order, reverse, ...options} = inputs;
+  const {z, fill, stroke, ...options} = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -93,11 +93,10 @@ function groupn(
         }
         groupFacets.push(groupFacet);
       }
-     if (order !== undefined) {
-        const r = outputs.find(o => o.name === order);
-        if (r === undefined) throw "invalid order";
-        const R = r.output.transform();
-        groupFacets.forEach(f => f.sort((i, j) => R[i] - R[j]));
+      const sort = outputs.find(o => o.name === "sort");
+      if (sort) {
+        const S = sort.output.transform();
+        groupFacets.forEach(f => f.sort((i, j) => S[i] - S[j]));
       }
       if (reverse) groupFacets.forEach(f => f.reverse());
       return {data: groupData, facets: groupFacets};

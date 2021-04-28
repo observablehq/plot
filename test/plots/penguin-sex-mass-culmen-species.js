@@ -20,14 +20,16 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(data, Plot.bin({r: "count"}, {
+      Plot.dot(data, Plot.bin({
+        r: "count",
+        sort: "count",
+        reverse: true
+      }, {
         x: "body_mass_g",
         y: "culmen_length_mm",
         stroke: "species",
         fill: "species",
-        fillOpacity: 0.2,
-        order: "r",
-        reverse: true
+        fillOpacity: 0.2
       }))
     ]
   });
