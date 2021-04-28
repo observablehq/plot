@@ -195,49 +195,49 @@ The following sequential scale schemes are supported:
 
 | scheme |  |
 |---|---|
-| blues | <img src="./img/blues.png" width="480" height="20" style="display: block;" alt="blues"> |
-| greens | <img src="./img/greens.png" width="480" height="20" style="display: block;" alt="greens"> |
-| greys | <img src="./img/greys.png" width="480" height="20" style="display: block;" alt="greys"> |
-| oranges | <img src="./img/oranges.png" width="480" height="20" style="display: block;" alt="oranges"> |
-| purples | <img src="./img/purples.png" width="480" height="20" style="display: block;" alt="purples"> |
-| reds | <img src="./img/reds.png" width="480" height="20" style="display: block;" alt="reds"> |
-| bugn | <img src="./img/bugn.png" width="480" height="20" style="display: block;" alt="bugn"> |
-| bupu | <img src="./img/bupu.png" width="480" height="20" style="display: block;" alt="bupu"> |
-| gnbu | <img src="./img/gnbu.png" width="480" height="20" style="display: block;" alt="gnbu"> |
-| orrd | <img src="./img/orrd.png" width="480" height="20" style="display: block;" alt="orrd"> |
-| pubu | <img src="./img/pubu.png" width="480" height="20" style="display: block;" alt="pubu"> |
-| pubugn | <img src="./img/pubugn.png" width="480" height="20" style="display: block;" alt="pubugn"> |
-| purd | <img src="./img/purd.png" width="480" height="20" style="display: block;" alt="purd"> |
-| rdpu | <img src="./img/rdpu.png" width="480" height="20" style="display: block;" alt="rdpu"> |
-| ylgn | <img src="./img/ylgn.png" width="480" height="20" style="display: block;" alt="ylgn"> |
-| ylgnbu | <img src="./img/ylgnbu.png" width="480" height="20" style="display: block;" alt="ylgnbu"> |
-| ylorbr | <img src="./img/ylorbr.png" width="480" height="20" style="display: block;" alt="ylorbr"> |
-| ylorrd | <img src="./img/ylorrd.png" width="480" height="20" style="display: block;" alt="ylorrd"> |
-| cividis | <img src="./img/cividis.png" width="480" height="20" style="display: block;" alt="cividis"> |
-| inferno | <img src="./img/inferno.png" width="480" height="20" style="display: block;" alt="inferno"> |
-| magma | <img src="./img/magma.png" width="480" height="20" style="display: block;" alt="magma"> |
-| plasma | <img src="./img/plasma.png" width="480" height="20" style="display: block;" alt="plasma"> |
-| viridis | <img src="./img/viridis.png" width="480" height="20" style="display: block;" alt="viridis"> |
-| cubehelix | <img src="./img/cubehelix.png" width="480" height="20" style="display: block;" alt="cubehelix"> |
-| turbo | <img src="./img/turbo.png" width="480" height="20" style="display: block;" alt="turbo"> |
-| warm | <img src="./img/warm.png" width="480" height="20" style="display: block;" alt="warm"> |
-| cool | <img src="./img/cool.png" width="480" height="20" style="display: block;" alt="cool"> |
+| blues | <sub><img src="./img/blues.png" width="480" height="17" alt="blues"></sub> |
+| greens | <sub><img src="./img/greens.png" width="480" height="17" alt="greens"></sub> |
+| greys | <sub><img src="./img/greys.png" width="480" height="17" alt="greys"></sub> |
+| oranges | <sub><img src="./img/oranges.png" width="480" height="17" alt="oranges"></sub> |
+| purples | <sub><img src="./img/purples.png" width="480" height="17" alt="purples"></sub> |
+| reds | <sub><img src="./img/reds.png" width="480" height="17" alt="reds"></sub> |
+| bugn | <sub><img src="./img/bugn.png" width="480" height="17" alt="bugn"></sub> |
+| bupu | <sub><img src="./img/bupu.png" width="480" height="17" alt="bupu"></sub> |
+| gnbu | <sub><img src="./img/gnbu.png" width="480" height="17" alt="gnbu"></sub> |
+| orrd | <sub><img src="./img/orrd.png" width="480" height="17" alt="orrd"></sub> |
+| pubu | <sub><img src="./img/pubu.png" width="480" height="17" alt="pubu"></sub> |
+| pubugn | <sub><img src="./img/pubugn.png" width="480" height="17" alt="pubugn"></sub> |
+| purd | <sub><img src="./img/purd.png" width="480" height="17" alt="purd"></sub> |
+| rdpu | <sub><img src="./img/rdpu.png" width="480" height="17" alt="rdpu"></sub> |
+| ylgn | <sub><img src="./img/ylgn.png" width="480" height="17" alt="ylgn"></sub> |
+| ylgnbu | <sub><img src="./img/ylgnbu.png" width="480" height="17" alt="ylgnbu"></sub> |
+| ylorbr | <sub><img src="./img/ylorbr.png" width="480" height="17" alt="ylorbr"></sub> |
+| ylorrd | <sub><img src="./img/ylorrd.png" width="480" height="17" alt="ylorrd"></sub> |
+| cividis | <sub><img src="./img/cividis.png" width="480" height="17" alt="cividis"></sub> |
+| inferno | <sub><img src="./img/inferno.png" width="480" height="17" alt="inferno"></sub> |
+| magma | <sub><img src="./img/magma.png" width="480" height="17" alt="magma"></sub> |
+| plasma | <sub><img src="./img/plasma.png" width="480" height="17" alt="plasma"></sub> |
+| viridis | <sub><img src="./img/viridis.png" width="480" height="17" alt="viridis"></sub> |
+| cubehelix | <sub><img src="./img/cubehelix.png" width="480" height="17" alt="cubehelix"></sub> |
+| turbo | <sub><img src="./img/turbo.png" width="480" height="17" alt="turbo"></sub> |
+| warm | <sub><img src="./img/warm.png" width="480" height="17" alt="warm"></sub> |
+| cool | <sub><img src="./img/cool.png" width="480" height="17" alt="cool"></sub> |
 
 The following diverging scale schemes are supported:
 
 | scheme |  |
 |---|---|
-| brbg | <img src="./img/brbg.png" width="480" height="20" style="display: block;" alt="brbg"> |
-| prgn | <img src="./img/prgn.png" width="480" height="20" style="display: block;" alt="prgn"> |
-| piyg | <img src="./img/piyg.png" width="480" height="20" style="display: block;" alt="piyg"> |
-| puor | <img src="./img/puor.png" width="480" height="20" style="display: block;" alt="puor"> |
-| rdbu | <img src="./img/rdbu.png" width="480" height="20" style="display: block;" alt="rdbu"> |
-| rdgy | <img src="./img/rdgy.png" width="480" height="20" style="display: block;" alt="rdgy"> |
-| rdylbu | <img src="./img/rdylbu.png" width="480" height="20" style="display: block;" alt="rdylbu"> |
-| rdylgn | <img src="./img/rdylgn.png" width="480" height="20" style="display: block;" alt="rdylgn"> |
-| spectral | <img src="./img/spectral.png" width="480" height="20" style="display: block;" alt="spectral"> |
-| burd | <img src="./img/burd.png" width="480" height="20" style="display: block;" alt="burd"> |
-| buylrd | <img src="./img/buylrd.png" width="480" height="20" style="display: block;" alt="buylrd"> |
+| brbg | <sub><img src="./img/brbg.png" width="480" height="17" alt="brbg"></sub> |
+| prgn | <sub><img src="./img/prgn.png" width="480" height="17" alt="prgn"></sub> |
+| piyg | <sub><img src="./img/piyg.png" width="480" height="17" alt="piyg"></sub> |
+| puor | <sub><img src="./img/puor.png" width="480" height="17" alt="puor"></sub> |
+| rdbu | <sub><img src="./img/rdbu.png" width="480" height="17" alt="rdbu"></sub> |
+| rdgy | <sub><img src="./img/rdgy.png" width="480" height="17" alt="rdgy"></sub> |
+| rdylbu | <sub><img src="./img/rdylbu.png" width="480" height="17" alt="rdylbu"></sub> |
+| rdylgn | <sub><img src="./img/rdylgn.png" width="480" height="17" alt="rdylgn"></sub> |
+| spectral | <sub><img src="./img/spectral.png" width="480" height="17" alt="spectral"></sub> |
+| burd | <sub><img src="./img/burd.png" width="480" height="17" alt="burd"></sub> |
+| buylrd | <sub><img src="./img/buylrd.png" width="480" height="17" alt="buylrd"></sub> |
 
 The following cylical color schemes are supported:
 
