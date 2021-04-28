@@ -307,226 +307,226 @@ The following *facet* options are supported:
 
 ### Marks
 
-<a href="#area" name="area">#</a> Plot.<b>area</b>(<i>data</i>, <i>options</i>)
+#### Plot.area(*data*, *options*)
 
 …
 
-<a href="#areaX" name="areaX">#</a> Plot.<b>areaX</b>(<i>data</i>, <i>options</i>)
+#### Plot.areaX(*data*, *options*)
 
 …
 
-<a href="#areaY" name="areaY">#</a> Plot.<b>areaY</b>(<i>data</i>, <i>options</i>)
+#### Plot.areaY(*data*, *options*)
 
 …
 
-<a href="#barX" name="barX">#</a> Plot.<b>barX</b>(<i>data</i>, <i>options</i>)
+#### Plot.barX(*data*, *options*)
 
 …
 
-<a href="#barY" name="barY">#</a> Plot.<b>barY</b>(<i>data</i>, <i>options</i>)
+#### Plot.barY(*data*, *options*)
 
 …
 
-<a href="#cell" name="cell">#</a> Plot.<b>cell</b>(<i>data</i>, <i>options</i>)
+#### Plot.cell(*data*, *options*)
 
 …
 
-<a href="#cellX" name="cellX">#</a> Plot.<b>cellX</b>(<i>data</i>, <i>options</i>)
+#### Plot.cellX(*data*, *options*)
 
 …
 
-<a href="#cellY" name="cellY">#</a> Plot.<b>cellY</b>(<i>data</i>, <i>options</i>)
+#### Plot.cellY(*data*, *options*)
 
 …
 
-<a href="#dot" name="dot">#</a> Plot.<b>dot</b>(<i>data</i>, <i>options</i>)
+#### Plot.dot(*data*, *options*)
 
 …
 
-<a href="#dotX" name="dotX">#</a> Plot.<b>dotX</b>(<i>data</i>, <i>options</i>)
+#### Plot.dotX(*data*, *options*)
 
 …
 
-<a href="#dotY" name="dotY">#</a> Plot.<b>dotY</b>(<i>data</i>, <i>options</i>)
+#### Plot.dotY(*data*, *options*)
 
 …
 
-<a href="#frame" name="frame">#</a> Plot.<b>frame</b>(<i>options</i>)
+#### Plot.frame(*options*)
 
 …
 
-<a href="#line" name="line">#</a> Plot.<b>line</b>(<i>data</i>, <i>options</i>)
+#### Plot.line(*data*, *options*)
 
 …
 
-<a href="#lineX" name="lineX">#</a> Plot.<b>lineX</b>(<i>data</i>, <i>options</i>)
+#### Plot.lineX(*data*, *options*)
 
 …
 
-<a href="#lineY" name="lineY">#</a> Plot.<b>lineY</b>(<i>data</i>, <i>options</i>)
+#### Plot.lineY(*data*, *options*)
 
 …
 
-<a href="#link" name="link">#</a> Plot.<b>link</b>(<i>data</i>, <i>options</i>)
+#### Plot.link(*data*, *options*)
 
 …
 
-<a href="#rect" name="rect">#</a> Plot.<b>rect</b>(<i>data</i>, <i>options</i>)
+#### Plot.rect(*data*, *options*)
 
 …
 
-<a href="#rectX" name="rectX">#</a> Plot.<b>rectX</b>(<i>data</i>, <i>options</i>)
+#### Plot.rectX(*data*, *options*)
 
 …
 
-<a href="#rectY" name="rectY">#</a> Plot.<b>rectY</b>(<i>data</i>, <i>options</i>)
+#### Plot.rectY(*data*, *options*)
 
 …
 
-<a href="#ruleX" name="ruleX">#</a> Plot.<b>ruleX</b>(<i>data</i>, <i>options</i>)
+#### Plot.ruleX(*data*, *options*)
 
 …
 
-<a href="#ruleY" name="ruleY">#</a> Plot.<b>ruleY</b>(<i>data</i>, <i>options</i>)
+#### Plot.ruleY(*data*, *options*)
 
 …
 
-<a href="#text" name="text">#</a> Plot.<b>text</b>(<i>data</i>, <i>options</i>)
+#### Plot.text(*data*, *options*)
 
 …
 
-<a href="#textX" name="textX">#</a> Plot.<b>textX</b>(<i>data</i>, <i>options</i>)
+#### Plot.textX(*data*, *options*)
 
 …
 
-<a href="#textY" name="textY">#</a> Plot.<b>textY</b>(<i>data</i>, <i>options</i>)
+#### Plot.textY(*data*, *options*)
 
 …
 
-<a href="#tickX" name="tickX">#</a> Plot.<b>tickX</b>(<i>data</i>, <i>options</i>)
+#### Plot.tickX(*data*, *options*)
 
 …
 
-<a href="#tickY" name="tickY">#</a> Plot.<b>tickY</b>(<i>data</i>, <i>options</i>)
+#### Plot.tickY(*data*, *options*)
 
 …
 
 ### Transforms
 
-<a href="#bin" name="bin">#</a> Plot.<b>bin</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.bin(*outputs*, *options*)
 
 …
 
-<a href="#binX" name="binX">#</a> Plot.<b>binX</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.binX(*outputs*, *options*)
 
 …
 
-<a href="#binY" name="binY">#</a> Plot.<b>binY</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.binY(*outputs*, *options*)
 
 …
 
-<a href="#group" name="group">#</a> Plot.<b>group</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.group(*outputs*, *options*)
 
 …
 
-<a href="#groupX" name="groupX">#</a> Plot.<b>groupX</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.groupX(*outputs*, *options*)
 
 …
 
-<a href="#groupY" name="groupY">#</a> Plot.<b>groupY</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.groupY(*outputs*, *options*)
 
 …
 
-<a href="#groupZ" name="groupZ">#</a> Plot.<b>groupZ</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.groupZ(*outputs*, *options*)
 
 …
 
-<a href="#map" name="map">#</a> Plot.<b>map</b>(<i>outputs</i>, <i>options</i>)
+#### Plot.map(*outputs*, *options*)
 
 …
 
-<a href="#mapX" name="mapX">#</a> Plot.<b>mapX</b>(<i>map</i>, <i>options</i>)
+#### Plot.mapX(<i>map</i>, *options*)
 
 …
 
-<a href="#mapY" name="mapY">#</a> Plot.<b>mapY</b>(<i>map</i>, <i>options</i>)
+#### Plot.mapY(<i>map</i>, *options*)
 
 …
 
-<a href="#normalizeX" name="normalizeX">#</a> Plot.<b>normalizeX</b>(<i>options</i>)
+#### Plot.normalizeX(*options*)
 
 …
 
-<a href="#normalizeY" name="normalizeY">#</a> Plot.<b>normalizeY</b>(<i>options</i>)
+#### Plot.normalizeY(*options*)
 
 …
 
-<a href="#selectFirst" name="selectFirst">#</a> Plot.<b>selectFirst</b>(<i>options</i>)
+#### Plot.selectFirst(*options*)
 
 …
 
-<a href="#selectLast" name="selectLast">#</a> Plot.<b>selectLast</b>(<i>options</i>)
+#### Plot.selectLast(*options*)
 
 …
 
-<a href="#selectMinX" name="selectMinX">#</a> Plot.<b>selectMinX</b>(<i>options</i>)
+#### Plot.selectMinX(*options*)
 
 …
 
-<a href="#selectMinY" name="selectMinY">#</a> Plot.<b>selectMinY</b>(<i>options</i>)
+#### Plot.selectMinY(*options*)
 
 …
 
-<a href="#selectMaxX" name="selectMaxX">#</a> Plot.<b>selectMaxX</b>(<i>options</i>)
+#### Plot.selectMaxX(*options*)
 
 …
 
-<a href="#selectMaxY" name="selectMaxY">#</a> Plot.<b>selectMaxY</b>(<i>options</i>)
+#### Plot.selectMaxY(*options*)
 
 …
 
-<a href="#stackX" name="stackX">#</a> Plot.<b>stackX</b>(<i>options</i>)
+#### Plot.stackX(*options*)
 
 …
 
-<a href="#stackX1" name="stackX1">#</a> Plot.<b>stackX1</b>(<i>options</i>)
+#### Plot.stackX1(*options*)
 
 …
 
-<a href="#stackX2" name="stackX2">#</a> Plot.<b>stackX2</b>(<i>options</i>)
+#### Plot.stackX2(*options*)
 
 …
 
-<a href="#stackY" name="stackY">#</a> Plot.<b>stackY</b>(<i>options</i>)
+#### Plot.stackY(*options*)
 
 …
 
-<a href="#stackY1" name="stackY1">#</a> Plot.<b>stackY1</b>(<i>options</i>)
+#### Plot.stackY1(*options*)
 
 …
 
-<a href="#stackY2" name="stackY2">#</a> Plot.<b>stackY2</b>(<i>options</i>)
+#### Plot.stackY2(*options*)
 
 …
 
-<a href="#windowX" name="windowX">#</a> Plot.<b>windowX</b>(<i>options</i>)
+#### Plot.windowX(*options*)
 
 …
 
-<a href="#windowY" name="windowY">#</a> Plot.<b>windowY</b>(<i>options</i>)
+#### Plot.windowY(*options*)
 
 …
 
 ### Formats
 
-<a href="#formatIsoDate" name="formatIsoDate">#</a> Plot.<b>formatIsoDate</b>(<i>date</i>)
+#### Plot.formatIsoDate(*date*)
 
 …
 
-<a href="#formatWeekday" name="formatWeekday">#</a> Plot.<b>formatWeekday</b>(<i>locale</i>, <i>format</i>)
+#### Plot.formatWeekday(*locale*, *format*)
 
 …
 
-<a href="#formatMonth" name="formatMonth">#</a> Plot.<b>formatMonth</b>(<i>locale</i>, <i>format</i>)
+#### Plot.formatMonth(*locale*, *format*)
 
 …
