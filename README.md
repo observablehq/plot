@@ -3,7 +3,8 @@
 **Observable Plot** is a JavaScript library for exploratory data visualization.
 
 * [Introduction](https://observablehq.com/@data-workflows/plot)
-* [API Reference](#API-Reference)
+* [Installing](#installing)
+* [API Reference](#api-reference)
 * [Contributing](./CONTRIBUTING.md)
 
 ## Installing
@@ -52,13 +53,13 @@ document.body.appendChild(Plot.plot(options));
 
 ## API Reference
 
-<a href="#plot" name="plot">#</a> Plot.<b>plot</b>({<i>marks</i> = [], ...<i>options</i>} = {})
+### Plot.plot({<i>marks</i> = [], ...<i>options</i>} = {})
 
 Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
 
 #### Mark options
 
-The *marks* option specifies the array of [marks](#Mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The *marks* option specifies the array of [marks](#mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
