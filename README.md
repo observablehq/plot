@@ -59,7 +59,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 #### Mark options
 
-The **marks** option specifies the array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#plotbarydata-options) or [Plot.dot](#plotdotdata-options)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#plotbarydata-options) or [Plot.dot](#plotdotdata-options)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
@@ -70,7 +70,7 @@ Plot.plot({
 })
 ```
 
-Each mark may also be a nested array of marks, allowing mark composition.
+Each mark may also be a nested array of marks, allowing composition.
 
 #### Layout options
 
@@ -180,7 +180,7 @@ Quantitative scales can be further customized with a few additional options:
 * *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert Celsius to Fahrenheit.
+A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales. Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert Celsius to Fahrenheit.
 
 ```js
 Plot.plot({
@@ -219,7 +219,13 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** -
 * *scale*.**labelOffset** -
 
-If *x*.grid or *y*.grid is not set, then the top-level **grid** option can be used as shorthand for enabling grid lines on both scales.
+Shorthand top-level options:
+
+* **grid** -
+* **inset** -
+* **round** -
+* **align** -
+* **padding** -
 
 In addition to the normal scale types above, Plot supports special scale types for encoding ordinal data as position:
 
