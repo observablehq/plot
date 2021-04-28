@@ -92,9 +92,26 @@ Two additional options allow further customization:
 * **style** - custom styles (*e.g.*, `"color: red"` or `{color: "red"}`)
 * **caption** - a figure caption, either a string or HTML element
 
-TODO Describe the default styles: the background is white, the max-width is 100%, the font is system-ui, the fill is currentColor to allow the CSS color to be inherited by marks and axes.
+TODO Describe the default styles: the background is white, the max-width is 100%, the font is system-ui, the fill is currentColor to allow the CSS color to be inherited by marks and axes. For example, for a dark theme:
 
-If a *caption* is specified, then Plot.plot returns an HTML figure element instead of an SVG element. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
+```js
+Plot.plot({
+  marks: […],
+  style: {
+    background: "black",
+    color: "white"
+  }
+})
+```
+
+If a *caption* is specified, then Plot.plot returns an HTML figure element instead of an SVG element. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed. For example:
+
+```js
+Plot.plot({
+  marks: […],
+  caption: html`Figure 1. This chart has a <i>fancy</i> caption.`
+})
+```
 
 #### Scale options
 
