@@ -253,13 +253,12 @@ The following categorical color schemes are supported:
 * *set3* (12 colors) <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub>
 * *tableau10* (10 colors) <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub>
 
-The following scale interpolators are supported:
+The following color interpolators are supported:
 
-* *number* -
-* *rgb* -
-* *hsl* -
-* *hcl* -
-* *lab* -
+* *rgb* - RGB (red, green, blue)
+* *hsl* - HSL (hue, saturation, lightness)
+* *lab* - CIELAB (*a.k.a.* “Lab”)
+* *hcl* - CIELCh<sub>ab</sub> (*a.k.a.* “LCh” or “HCL”)
 
 For diverging color scales…
 
