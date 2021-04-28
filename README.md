@@ -193,49 +193,47 @@ For color scales…
 
 The following sequential scale schemes are supported:
 
-* <img src="./img/blues.png" width="480" height="16" alt="blues"> blues
-* <img src="./img/greens.png" width="480" height="16" alt="greens"> greens
-* <img src="./img/greys.png" width="480" height="16" alt="greys"> greys
-* <img src="./img/oranges.png" width="480" height="16" alt="oranges"> oranges
-* <img src="./img/purples.png" width="480" height="16" alt="purples"> purples
-* <img src="./img/reds.png" width="480" height="16" alt="reds"> reds
-* <img src="./img/bugn.png" width="480" height="16" alt="bugn"> bugn
-* <img src="./img/bupu.png" width="480" height="16" alt="bupu"> bupu
-* <img src="./img/gnbu.png" width="480" height="16" alt="gnbu"> gnbu
-* <img src="./img/orrd.png" width="480" height="16" alt="orrd"> orrd
-* <img src="./img/pubu.png" width="480" height="16" alt="pubu"> pubu
-* <img src="./img/pubugn.png" width="480" height="16" alt="pubugn"> pubugn
-* <img src="./img/purd.png" width="480" height="16" alt="purd"> purd
-* <img src="./img/rdpu.png" width="480" height="16" alt="rdpu"> rdpu
-* <img src="./img/ylgn.png" width="480" height="16" alt="ylgn"> ylgn
-* <img src="./img/ylgnbu.png" width="480" height="16" alt="ylgnbu"> ylgnbu
-* <img src="./img/ylorbr.png" width="480" height="16" alt="ylorbr"> ylorbr
-* <img src="./img/ylorrd.png" width="480" height="16" alt="ylorrd"> ylorrd
-* <img src="./img/cividis.png" width="480" height="16" alt="cividis"> cividis
-* <img src="./img/inferno.png" width="480" height="16" alt="inferno"> inferno
-* <img src="./img/magma.png" width="480" height="16" alt="magma"> magma
-* <img src="./img/plasma.png" width="480" height="16" alt="plasma"> plasma
-* <img src="./img/viridis.png" width="480" height="16" alt="viridis"> viridis
-* <img src="./img/cubehelix.png" width="480" height="16" alt="cubehelix"> cubehelix
-* <img src="./img/turbo.png" width="480" height="16" alt="turbo"> turbo
-* <img src="./img/warm.png" width="480" height="16" alt="warm"> warm
-* <img src="./img/cool.png" width="480" height="16" alt="cool"> cool
+* <sub><img src="./img/blues.png" width="120" height="16" alt="blues"></sub> blues
+* <sub><img src="./img/greens.png" width="120" height="16" alt="greens"></sub> greens
+* <sub><img src="./img/greys.png" width="120" height="16" alt="greys"></sub> greys
+* <sub><img src="./img/oranges.png" width="120" height="16" alt="oranges"></sub> oranges
+* <sub><img src="./img/purples.png" width="120" height="16" alt="purples"></sub> purples
+* <sub><img src="./img/reds.png" width="120" height="16" alt="reds"></sub> reds
+* <sub><img src="./img/bugn.png" width="120" height="16" alt="bugn"></sub> bugn
+* <sub><img src="./img/bupu.png" width="120" height="16" alt="bupu"></sub> bupu
+* <sub><img src="./img/gnbu.png" width="120" height="16" alt="gnbu"></sub> gnbu
+* <sub><img src="./img/orrd.png" width="120" height="16" alt="orrd"></sub> orrd
+* <sub><img src="./img/pubu.png" width="120" height="16" alt="pubu"></sub> pubu
+* <sub><img src="./img/pubugn.png" width="120" height="16" alt="pubugn"></sub> pubugn
+* <sub><img src="./img/purd.png" width="120" height="16" alt="purd"></sub> purd
+* <sub><img src="./img/rdpu.png" width="120" height="16" alt="rdpu"></sub> rdpu
+* <sub><img src="./img/ylgn.png" width="120" height="16" alt="ylgn"></sub> ylgn
+* <sub><img src="./img/ylgnbu.png" width="120" height="16" alt="ylgnbu"></sub> ylgnbu
+* <sub><img src="./img/ylorbr.png" width="120" height="16" alt="ylorbr"></sub> ylorbr
+* <sub><img src="./img/ylorrd.png" width="120" height="16" alt="ylorrd"></sub> ylorrd
+* <sub><img src="./img/cividis.png" width="120" height="16" alt="cividis"></sub> cividis
+* <sub><img src="./img/inferno.png" width="120" height="16" alt="inferno"></sub> inferno
+* <sub><img src="./img/magma.png" width="120" height="16" alt="magma"></sub> magma
+* <sub><img src="./img/plasma.png" width="120" height="16" alt="plasma"></sub> plasma
+* <sub><img src="./img/viridis.png" width="120" height="16" alt="viridis"></sub> viridis
+* <sub><img src="./img/cubehelix.png" width="120" height="16" alt="cubehelix"></sub> cubehelix
+* <sub><img src="./img/turbo.png" width="120" height="16" alt="turbo"></sub> turbo
+* <sub><img src="./img/warm.png" width="120" height="16" alt="warm"></sub> warm
+* <sub><img src="./img/cool.png" width="120" height="16" alt="cool"></sub> cool
 
 The following diverging scale schemes are supported:
 
-| scheme |  |
-|---|---|
-| brbg | <sub><img src="./img/brbg.png" width="480" height="17" alt="brbg"></sub> |
-| prgn | <sub><img src="./img/prgn.png" width="480" height="17" alt="prgn"></sub> |
-| piyg | <sub><img src="./img/piyg.png" width="480" height="17" alt="piyg"></sub> |
-| puor | <sub><img src="./img/puor.png" width="480" height="17" alt="puor"></sub> |
-| rdbu | <sub><img src="./img/rdbu.png" width="480" height="17" alt="rdbu"></sub> |
-| rdgy | <sub><img src="./img/rdgy.png" width="480" height="17" alt="rdgy"></sub> |
-| rdylbu | <sub><img src="./img/rdylbu.png" width="480" height="17" alt="rdylbu"></sub> |
-| rdylgn | <sub><img src="./img/rdylgn.png" width="480" height="17" alt="rdylgn"></sub> |
-| spectral | <sub><img src="./img/spectral.png" width="480" height="17" alt="spectral"></sub> |
-| burd | <sub><img src="./img/burd.png" width="480" height="17" alt="burd"></sub> |
-| buylrd | <sub><img src="./img/buylrd.png" width="480" height="17" alt="buylrd"></sub> |
+* <sub><img src="./img/brbg.png" width="120" height="16" alt="brbg"></sub> brbg
+* <sub><img src="./img/prgn.png" width="120" height="16" alt="prgn"></sub> prgn
+* <sub><img src="./img/piyg.png" width="120" height="16" alt="piyg"></sub> piyg
+* <sub><img src="./img/puor.png" width="120" height="16" alt="puor"></sub> puor
+* <sub><img src="./img/rdbu.png" width="120" height="16" alt="rdbu"></sub> rdbu
+* <sub><img src="./img/rdgy.png" width="120" height="16" alt="rdgy"></sub> rdgy
+* <sub><img src="./img/rdylbu.png" width="120" height="16" alt="rdylbu"></sub> rdylbu
+* <sub><img src="./img/rdylgn.png" width="120" height="16" alt="rdylgn"></sub> rdylgn
+* <sub><img src="./img/spectral.png" width="120" height="16" alt="spectral"></sub> spectral
+* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub> burd
+* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub> buylrd
 
 The following cylical color schemes are supported:
 
