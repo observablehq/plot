@@ -110,7 +110,7 @@ Plot.plot({
 
 #### Scale options
 
-Before Plot renders a mark, data is passed through [scales](https://observablehq.com/@data-workflows/plot-scales). A scale maps an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Before Plot renders a mark, data is passed through [scales](https://observablehq.com/@data-workflows/plot-scales). A scale maps an abstract value such as time or temperature to a visual value such as position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
@@ -121,11 +121,11 @@ Plot.plot({
 })
 ```
 
-Each scale’s options are specified as a nested options object, within the top-level plot *options*, whose name corresponds to the scale:
+Each scale’s options are specified as a nested options object, within the top-level plot *options*, with the corresponding scale name:
 
 * **x** - horizontal position
 * **y** - vertical position
-* **r** - size or radius
+* **r** - radius (size)
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
 
@@ -142,9 +142,9 @@ Plot.plot({
 })
 ```
 
-Plot supports many scale types. Some scale types are for quantitative data — values that can be subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. And some scale types are intended for specific visual encodings — for example, there are special scale types for position and color.
+Plot supports many scale types. Some scale types are for quantitative data — values that can be subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings — for example, there are special scale types for [position](#position-options) and [color](#color-options).
 
-You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from the associated data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly coercing types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Plot assumes that your data is consistently typed, so inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
+You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Plot assumes that data is consistently typed; inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
 
 For quantitative data (*i.e.* numbers), a *linear* scale is used by default, but an optional mathematical transform may be applied to the data by changing the scale type:
 
@@ -163,14 +163,12 @@ For temporal data (*i.e.* dates, which are also considered quantitative), two sp
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
-For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. There are special types of ordinal scale, *band* and *point*, for encoding ordinal data as position; see [position scale options](#position-scale-options).
-
 You can disable a scale using the *identity* scale type. Identity scales are useful to “opt-out” of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
 Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
 
-* *scale*.**domain** - typically [*min*, *max*] for quantitative scales, or an array of ordinal values
-* *scale*.**range** - typically [*min*, *max*], or an array of values for ordinal scales
+* *scale*.**domain** - typically [*min*, *max*], or an array of ordinal or categorical values
+* *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
 TODO Describe the values for *domain* and *range* are expected based on the scale type.
@@ -191,7 +189,7 @@ Additional scale options…
 
 #### Position options
 
-For position scales (*x* and *y*)…
+For position scales (*x*, *y*, *fx*, and *fy*)…
 
 * *scale*.**inset** -
 * *scale*.**round** -
@@ -203,7 +201,7 @@ For ordinal position scales (*point* or *band*)…
 * *scale*.**paddingInner** -
 * *scale*.**paddingOuter** -
 
-Plot automatically generates axes for position scales (*x*, *y*, *fx*, and *fy*). You can configure these axes with the following options:
+Plot automatically generates axes for position scales. You can configure these axes with the following options:
 
 * *scale*.**axis** -
 * *scale*.**ticks** -
