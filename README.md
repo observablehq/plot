@@ -242,16 +242,16 @@ The following cylical color schemes are supported:
 
 The following categorical color schemes are supported:
 
-* *accent* <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub> (8 colors)
-* *category10* <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub> (10 colors)
-* *dark2* <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub> (8 colors)
-* *paired* <sub><img src="./img/paired.png" width="144" height="16" alt="paired"></sub> (12 colors)
-* *pastel1* <sub><img src="./img/pastel1.png" width="108" height="16" alt="pastel1"></sub> (9 colors)
-* *pastel2* <sub><img src="./img/pastel2.png" width="96" height="16" alt="pastel2"></sub> (8 colors)
-* *set1* <sub><img src="./img/set1.png" width="108" height="16" alt="set1"></sub> (9 colors)
-* *set2* <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub> (8 colors)
-* *set3* <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub> (12 colors)
-* *tableau10* <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub> (10 colors)
+* *accent* (8 colors) <sub><img src="./img/accent.png" width="96" height="16" alt="accent"></sub>
+* *category10* (10 colors) <sub><img src="./img/category10.png" width="120" height="16" alt="category10"></sub>
+* *dark2* (8 colors) <sub><img src="./img/dark2.png" width="96" height="16" alt="dark2"></sub>
+* *paired* (12 colors) <sub><img src="./img/paired.png" width="144" height="16" alt="paired"></sub>
+* *pastel1* (9 colors) <sub><img src="./img/pastel1.png" width="108" height="16" alt="pastel1"></sub>
+* *pastel2* (8 colors) <sub><img src="./img/pastel2.png" width="96" height="16" alt="pastel2"></sub>
+* *set1* (9 colors) <sub><img src="./img/set1.png" width="108" height="16" alt="set1"></sub>
+* *set2* (8 colors) <sub><img src="./img/set2.png" width="96" height="16" alt="set2"></sub>
+* *set3* (12 colors) <sub><img src="./img/set3.png" width="144" height="16" alt="set3"></sub>
+* *tableau10* (10 colors) <sub><img src="./img/tableau10.png" width="120" height="16" alt="tableau10"></sub>
 
 The following scale interpolators are supported:
 
