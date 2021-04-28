@@ -144,34 +144,34 @@ Plot.plot({
 
 Plot supports many scale types. Some scale types are for quantitative data — values that can be subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings — for example, there are special scale types for [position](#position-options) and [color](#color-options).
 
-You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). Plot assumes that data is consistently typed; inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
+You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
 
-For quantitative data (*i.e.* numbers), a *linear* scale is used by default, but an optional mathematical transform may be applied to the data by changing the scale type:
+For quantitative data (*i.e.* numbers), an optional mathematical transform may be applied to the data by changing the scale type:
 
-* *linear* - a linear scale
-* *pow* - an exponential (power) scale
-* *sqrt* - an exponential scale with exponent = 0.5
-* *log* - a logarithmic (log) scale
-* *symlog* - a bi-symmetric logarithmic scale for wide-range data
+* *linear* (default) - linear transform (translate and scale)
+* *pow* - power (exponential) transform
+* *sqrt* - square-root transform (*pow* transform with exponent = 0.5)
+* *log* - logarithmic transform
+* *symlog* - bi-symmetric logarithmic transform (per [Webber *et al.*](https://www.researchgate.net/publication/233967063_A_bi-symmetric_log_transformation_for_wide-range_data))
 
-A *sqrt* transform exaggerates differences between small values at the expense of diminishing differences between large values. A *log* transform is even more extreme, suitable for comparing orders of magnitude, but note that a *log* scale’s domain may not include zero. A *symlog* transform is a more elaborate transform that similarly works well with widely-varying values, and whose domain may include zero.
+A *sqrt* transform exaggerates differences between small values at the expense of distinguishing large values. A *log* transform is more extreme, suitable for comparing orders of magnitude, but a *log* scale’s domain may not include zero. A *symlog* transform is more elaborate, but works well with widely-varying values which may include zero.
 
-For temporal data (*i.e.* dates, which are also considered quantitative), two special variants of a *linear* scale are also supported:
+For temporal data (*i.e.* dates, which are also considered quantitative), two variants of a *linear* scale are also supported:
 
-* *utc* - UTC time (recommended)
+* *utc* (default) - UTC time
 * *time* - local time
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
 You can disable a scale using the *identity* scale type. Identity scales are useful to “opt-out” of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
-Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
+Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults. You can also set the domain and range explicitly using the following options:
 
 * *scale*.**domain** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-TODO Describe the values for *domain* and *range* are expected based on the scale type.
+For most quantitative scales, the domain defaults to the [*min*, *max*] of all values associated with the scale (across mark channels). For the *radius* and *opacity* scales, the domain defaults to [0, *max*] to ensure a meaningful encoding. For ordinal scales, the domain defaults to the set of distinct values associated with the scale in natural ascending order. The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
 
 For quantitative scales…
 
