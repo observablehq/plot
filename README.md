@@ -110,7 +110,7 @@ Plot.plot({
 
 #### Scale options
 
-Before Plot renders a mark, data is passed through [scales](): scales map an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Before Plot renders a mark, data is passed through [scales](https://observablehq.com/@data-workflows/plot-scales). A scale maps an abstract value such as time or temperature to a visual value such as *x*- or *y*-position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
