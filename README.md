@@ -87,16 +87,11 @@ The default *width* is 640. On Observable, it can be set to the [standard width]
 
 TODO Describe the default margins based on the plot’s axes. Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
 
-Two additional options allow further customization:
-
-* **style** - custom styles (*e.g.*, `"color: red"` or `{color: "red"}`)
-* **caption** - a figure caption, either a string or HTML element
-
-TODO Describe the default styles: the background is white, the max-width is 100%, the font is system-ui, the fill is currentColor to allow the CSS color to be inherited by marks and axes. For example, for a dark theme:
+The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string or an object of properties (*e.g.*, `"color: red"` or `{color: "red"}`). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, for a dark theme:
 
 ```js
 Plot.plot({
-  marks: […],
+  marks: …,
   style: {
     background: "black",
     color: "white"
@@ -104,11 +99,11 @@ Plot.plot({
 })
 ```
 
-If a *caption* is specified, then Plot.plot returns an HTML figure element instead of an SVG element. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed. For example:
+If a **caption** is specified, then Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed. For example:
 
 ```js
 Plot.plot({
-  marks: […],
+  marks: …,
   caption: html`Figure 1. This chart has a <i>fancy</i> caption.`
 })
 ```
