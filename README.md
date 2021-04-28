@@ -53,13 +53,13 @@ document.body.appendChild(Plot.plot(options));
 
 ## API Reference
 
-### Plot.plot({<i>marks</i> = [], ...<i>options</i>} = {})
+### Plot.plot(*options*)
 
-Renders a new plot given the specified *marks* and other *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
+Renders a new plot given the specified *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
 
 #### Mark options
 
-The *marks* option specifies the array of [marks](#mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The **marks** option specifies the array of [marks](#mark) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#barY) or [Plot.dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
