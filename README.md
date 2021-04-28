@@ -152,9 +152,9 @@ For quantitative data (*i.e.* numbers), an optional mathematical transform may b
 * *pow* - power (exponential) transform
 * *sqrt* - square-root transform (*pow* transform with exponent = 0.5)
 * *log* - logarithmic transform
-* *symlog* - bi-symmetric logarithmic transform (per [Webber *et al.*](https://www.researchgate.net/publication/233967063_A_bi-symmetric_log_transformation_for_wide-range_data))
+* *symlog* - bi-symmetric logarithmic transform per [Webber *et al.*](https://www.researchgate.net/publication/233967063_A_bi-symmetric_log_transformation_for_wide-range_data)
 
-A *sqrt* transform exaggerates differences between small values at the expense of distinguishing large values. A *log* transform is more extreme, suitable for comparing orders of magnitude, but a *log* scale’s domain may not include zero. A *symlog* transform is more elaborate, but works well with widely-varying values which may include zero.
+A *sqrt* transform exaggerates differences between small values at the expense of large values. A *pow* transform is a generalization of the square-root transform with a configurable *scale*.**exponent**. A *log* transform is more extreme, suitable for comparing orders of magnitude, but a *log* scale’s domain may not include zero. The base can be specified with the *scale*.**base** option; though note that this only affects the generated axis ticks, not the scale’s behavior. A *symlog* transform is more elaborate, but works well with widely-varying values which may include zero; it may be configured with the *scale*.**constant** option.
 
 For temporal data (*i.e.* dates, which are also considered quantitative), two variants of a *linear* scale are also supported:
 
@@ -178,9 +178,6 @@ For quantitative scales…
 * *scale*.**clamp** - if true, clamp input values to the scale’s domain
 * *scale*.**nice** - if true (or a tick count), extend the domain to nice round values
 * *scale*.**zero** - if true, extend the domain to include zero if needed
-* *scale*.**exponent** - for pow scales
-* *scale*.**base** - for log scales
-* *scale*.**constant** - for symlog scales
 
 Additional scale options…
 
