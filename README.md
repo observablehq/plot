@@ -147,27 +147,9 @@ For time (temporal quantitative), two variants of a linear scale are supported:
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. (Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.)
 
-For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. For a position encoding (*i.e.*, for the *x* or *y* scale), you can chose either a *point* or *band* scale.
+For data that is ordinal (such as t-shirt sizes) or categorical (*a.k.a.* nominal, such as brands of clothing), you can specify an *ordinal* scale type. There are also two special types of ordinal scale, *band* and *point*, for encoding ordinal data as position; see [position scale options](#position-scale-options).
 
-* *ordinal* - map a discrete domain to a discrete range
-* *point* - map a discrete domain to a continuous range
-* *band* - map a discrete domain to a continuous range
-
-If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
-
-Plot similarly supports special scale types for encoding data as color:
-
-* *sequential* - equivalent to *linear*; defaults to the *turbo* scheme
-* *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
-* *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
-* *ordinal* - defaults to the *turbo*
-* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
-
-Lastly, you can disable a scale using the *identity* scale type:
-
-* *identity* - disables the scale, rendering values as given
-
-Identity scales are useful to opt-out of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
+You can disable a scale using the *identity* scale type. Identity scales are useful to opt-out of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
 
 Scales’ domains are typically automatically inferred from associated data, while scales’ ranges similarly have suitable automatic defaults based on the chart dimensions. However, you can set the domain and range explicitly using the following options.
 
@@ -189,6 +171,13 @@ For quantitative scales…
 #### Position scale options…
 
 For position scales (*x* and *y*)…
+
+In addition to the normal scale types above, Plot supports special scale types for encoding ordinal data as position:
+
+* *point* - map a discrete domain to a continuous range
+* *band* - map a discrete domain to a continuous range
+
+If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
 
 * *scale*.**inset** -
 * *scale*.**round** -
@@ -220,6 +209,14 @@ Axis options
 * *scale*.**labelOffset** -
 
 #### Color scale options
+
+Plot supports special scale types for encoding data as color:
+
+* *sequential* - equivalent to *linear*; defaults to the *turbo* scheme
+* *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
+* *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
+* *ordinal* - defaults to the *turbo*
+* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 
 For color scales…
 
