@@ -432,9 +432,7 @@ All marks support the following style options:
 
 ### Area
 
-#### Plot.area(*data*, *options*)
-
-[Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. It is rarely used directly; [Plot.areaY](#plotareaydata-options) tends to be used instead, or less commonly [Plot.areaX](#plotareaxdata-options).
+[Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart.
 
 The following channels are required:
 
@@ -478,6 +476,10 @@ The following curves are supported:
 * *step-before* -
 
 The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
+
+#### Plot.area(*data*, *options*)
+
+Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) tends to be used instead (as in the more common horizontal orientation where the baseline and topline share *x* values), or less commonly [Plot.areaX](#plotareaxdata-options) (as in the less common vertical orientation where the baseline and topline share *y* values).
 
 #### Plot.areaX(*data*, *options*)
 
