@@ -163,7 +163,7 @@ For temporal data (*i.e.* dates), two variants of a *linear* scale are also supp
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
-For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* [position scale types](#position-options). The *categorical* scale type is also supported; it is equivalent to *ordinal*, except as a [color scale](#color-options), where it provides a different default color scheme. (Categorical data must often be assigned an arbitrary order during visualization, so outside of color, *categorical* and *ordinal* are synonymous.)
+For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* [position scale types](#position-options). The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a [color scale](#color-options), where it provides a different default color scheme. (Categorical data must often be assigned an arbitrary order during visualization, so outside of color, *categorical* and *ordinal* are synonymous.)
 
 You can disable (or “opt-out of”) a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
