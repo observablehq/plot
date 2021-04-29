@@ -163,6 +163,8 @@ For temporal data (*i.e.* dates), two variants of a *linear* scale are also supp
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
+For ordinal data (*e.g.*, strings), use the *ordinal* scale type, or the special *point* or *band* [position scale types](#position-options). The *categorical* scale type is also supported as an alias for *ordinal*. (Categorical data must often be assigned an arbitrary order during visualization, so outside of [color scales](#color-options), *categorical* and *ordinal* are often considered synonymous.)
+
 You can disable (or “opt-out of”) a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
 A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using these options:
@@ -171,9 +173,9 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly to choose a different order. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
-The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
+The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
 
 Quantitative scales can be further customized with additional options:
 
@@ -182,9 +184,9 @@ Quantitative scales can be further customized with additional options:
 * *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-Clamping is typically used in conjunction with setting an explicit domain (since if the domain is inferred, no values will be outside the domain). Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible inside the plot, but use caution: clamped values may need an annotation to avoid misinterpretation. A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales.
+Clamping is typically used in conjunction with setting an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. A top-level **nice** option is supported as shorthand for setting *scale*.nice on all scales.
 
-The *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is convenient for transforming all data associated with a scale, say to convert to thousands or between temperature units.
+The *scale*.**transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
 ```js
 Plot.plot({
@@ -236,13 +238,11 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 #### Color options
 
-Plot supports special scale types for encoding data as color:
+The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — work with color and default to the *turbo* scheme. In addition, Plot supports special scale types for encoding data as color:
 
-* *linear* - defaults to the *turbo* scheme
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
-* *ordinal* - defaults to the *turbo*
 * *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 
 Color scales support two additional options:
