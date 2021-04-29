@@ -432,7 +432,7 @@ All marks support the following style options:
 
 ### Area
 
-<img src="./img/area.png" width="320" height="198" alt="an area chart">
+[<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area) · The area mark)
 
 [Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not required, typically the *x* and *y* scales are both quantitative.
 
@@ -493,7 +493,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Bar
 
-<img src="./img/bar.png" width="320" height="198" alt="a bar chart">
+[<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@data-workflows/plot-bar)
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar)
 
@@ -507,7 +507,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Cell
 
-<img src="./img/cell.png" width="320" height="320" alt="a heatmap">
+[<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
 [Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell)
 
@@ -525,7 +525,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Dot
 
-<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">
+[<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@data-workflows/plot-dot)
 
 [Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot)
 
@@ -543,7 +543,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Line
 
-<img src="./img/line.png" width="320" height="198" alt="a line chart">
+[<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@data-workflows/plot-line)
 
 [Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line)
 
@@ -561,7 +561,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Link
 
-<img src="./img/link.png" width="320" height="198" alt="a chart with links">
+[<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@data-workflows/plot-link)
 
 [Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link)
 
@@ -571,7 +571,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Rect
 
-<img src="./img/rect.png" width="320" height="198" alt="a histogram">
+[<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
 
 [Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect)
 
@@ -589,7 +589,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Rule
 
-<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">
+[<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@data-workflows/plot-rule)
 
 [Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule)
 
@@ -603,7 +603,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Text
 
-<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">
+[<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@data-workflows/plot-text)
 
 [Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text)
 
@@ -621,7 +621,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Tick
 
-<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">
+[<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
 
 [Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick)
 
