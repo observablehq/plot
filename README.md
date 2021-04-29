@@ -83,7 +83,7 @@ These options determine the overall layout of the plot; all are specified as num
 
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make responsive plots. The default **height** is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, or 60 if it does not. (The default height will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
 
-The default margins depend on the plot’s axes: for example, the top and bottom margins are at least 30 if there is a corresponding top or bottom *x* axis, and the left and right margins are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
+The default margins depend on the plot’s axes: for example, **marginTop** and **marginBottom** are at least 30 if there is a corresponding top or bottom *x* axis, and **marginLeft** and **marginRight** are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
 
 The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string or an object of properties (*e.g.*, `"color: red;"` or `{color: "red"}`). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, a dark theme:
 
@@ -97,7 +97,7 @@ Plot.plot({
 })
 ```
 
-If a **caption** is specified, then Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
+If a **caption** is specified, Plot.plot wraps the generated SVG element in an HTML figure element with a figcaption, returning the figure. To specify an HTML caption, consider using the [`html` tagged template literal](http://github.com/observablehq/htl); otherwise, the specified string represents text that will be escaped as needed.
 
 ```js
 Plot.plot({
@@ -108,7 +108,7 @@ Plot.plot({
 
 ### Scale options
 
-Plot passes data through [scales](https://observablehq.com/@data-workflows/plot-scales) before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Plot passes data through [scales](https://observablehq.com/@data-workflows/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
@@ -387,7 +387,7 @@ Plot.plot({
 })
 ```
 
-Channels can also be specified as functions, affording greater flexibility if your data is not structured in a way that is so readily visualized, or if you want to visualize computed values. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
+Channels can also be specified as functions, affording greater flexibility if your data is not structured in a way that is readily visualized, or if you want to visualize computed values. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
 
 ```js
 Plot.plot({
@@ -452,30 +452,30 @@ The following channels are optional:
 * **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
 * **title** - a tooltip per series (a string of text, possibly with newlines)
 
-To distinguish a *fill* channel from a constant *fill*, the area mark tests whether the provided *fill* is a valid CSS color…
+Note that the **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** channels can also be specified as constant styles. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 In addition to the [standard style options](#marks), the following additional options are supported:
 
-* **curve** -
-* **tension** -
+* **curve** - how to connect data points in the baseline and topline
+* **tension** - to fine-tune the curve between points
 
-The following curves are supported:
+The following curve methods from [d3-shape](https://github.com/d3/d3-shape/blob/master/README.md#curves) are supported:
 
-* *basis* -
-* *basis-open* -
-* *bump-x* -
-* *bump-y* -
-* *cardinal* -
-* *cardinal-open* -
-* *catmull-rom* -
-* *catmull-rom-open* -
-* *linear* -
-* *monotone-x* -
-* *monotone-y* -
-* *natural* -
-* *step* -
-* *step-after* -
-* *step-before* -
+* *basis* - a cubic basis spline (repeating the end points)
+* *basis-open* - a cubic basis spline
+* *bump-x* - a Bézier curve with horizontal tangents
+* *bump-y* - a Bézier curve with vertical tangents
+* *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
+* *cardinal-open* - a cubic cardinal spline
+* *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
+* *catmull-rom-open* - a cubic Catmull–Rom spline
+* *linear* - a piecewise linear curve (*i.e.*, straight line segments)
+* *monotone-x* - a cubic spline that preserves monotonicity in *x*
+* *monotone-y* - a cubic spline that preserves monotonicity in *y*
+* *natural* - a natural cubic spline
+* *step* - a piecewise constant function where *y* changes at the midpoint of *x*
+* *step-after* - a piecewise constant function where *y* changes after *x*
+* *step-before* - a piecewise constant function where *x* changes after *y*
 
 The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
 
