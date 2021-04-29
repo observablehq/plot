@@ -432,17 +432,17 @@ All marks support the following style options:
 
 ### Area
 
-[Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not strictly required, typically both *x* and *y* scales are quantitative.
+[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not required, typically the *x* and *y* scales are both quantitative.
 
 The following channels are required:
 
 * **x1** - the horizontal position of the baseline; bound to the *x* scale
 * **y1** - the vertical position of the baseline; bound to the *y* scale
-* **x2** - the horizontal position of the topline; bound to the *x* scale
-* **y2** - the vertical position of the topline; bound to the *y* scale
 
 The following channels are optional:
 
+* **x2** - the horizontal position of the topline; bound to the *x* scale
+* **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - an ordinal value to group data into series
 * **fill** - a fill color per series; bound to the *color* scale
 * **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
@@ -450,7 +450,7 @@ The following channels are optional:
 * **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
 * **title** - a tooltip per series (a string of text, possibly with newlines)
 
-To distinguish a *fill* channel from a constant *fill*, the area mark tests whether the provided *fill* is a valid CSS color;
+To distinguish a *fill* channel from a constant *fill*, the area mark tests whether the provided *fill* is a valid CSS color…
 
 In addition to the [standard style options](#marks), the following additional options are supported:
 
@@ -479,15 +479,15 @@ The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmu
 
 #### Plot.area(*data*, *options*)
 
-Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the more common horizontal orientation where the baseline and topline share *x* values, and [Plot.areaX](#plotareaxdata-options) is used in the less common vertical orientation where the baseline and topline share *y* values.
+Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
 
 #### Plot.areaX(*data*, *options*)
 
-Equivalent to [Plot.area](#plotareadata-options), except…
+Equivalent to [Plot.area](#plotareadata-options), except that the *y* option specifies the *y1* channel, and if the *x* option is specified, it corresponds to the *x2* channel while the *x1* channel defaults to zero. This constructor is typically used for vertically-oriented area charts (*e.g.*, when time goes up↑).
 
 #### Plot.areaY(*data*, *options*)
 
-Equivalent to [Plot.area](#plotareadata-options), except…
+Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero.This constructor is typically used for horizontal-oriented area charts (*e.g.*, when time goes right→).
 
 ### Bar
 
