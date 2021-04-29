@@ -211,13 +211,13 @@ In addition to the generic *ordinal* scale type, which requires an explicit outp
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 
-* *scale*.**padding** - proportion of range to reserve to inset first and last point or band
-* *scale*.**align** - how to distribute padding (0 = start, 0.5 = middle, 1 = end)
+* *scale*.**padding** - how much of the range to reserve to inset first and last point or band
+* *scale*.**align** - where to distribute points or bands (0 = at start, 0.5 = at middle, 1 = at end)
 
 For a *band* scale, you can further fine-tune padding:
 
-* *scale*.**paddingInner** - proportion of range to reserve to separate adjacent bands
-* *scale*.**paddingOuter** - proportion of range to reserve to inset first and last band
+* *scale*.**paddingInner** - how much of the range to reserve to separate adjacent bands
+* *scale*.**paddingOuter** - how much of the range to reserve to inset first and last band
 
 Plot automatically generates axes for position scales. You can configure these axes with the following options:
 
