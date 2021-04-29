@@ -506,6 +506,8 @@ The following channels are optional:
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 
+Note that the **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** channels can also be specified as constant styles. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
+
 In addition to the [standard style options](#marks), the following additional options are supported:
 
 * **insetTop** -
