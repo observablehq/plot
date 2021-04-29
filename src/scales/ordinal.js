@@ -1,4 +1,4 @@
-import {reverse as reverseof, sort} from "d3";
+import {InternSet, reverse as reverseof, sort} from "d3";
 import {quantize} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3";
 import {
@@ -246,7 +246,7 @@ function maybeRound(scale, channels, options = {}) {
 }
 
 function inferDomain(channels) {
-  const domain = new Set();
+  const domain = new InternSet();
   for (const {value} of channels) {
     if (value === undefined) continue;
     for (const v of value) domain.add(v);
