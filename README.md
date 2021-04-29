@@ -432,7 +432,7 @@ All marks support the following style options:
 
 ### Area
 
-[<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area) · The area mark)
+[<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
 
 [Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not required, typically the *x* and *y* scales are both quantitative.
 
