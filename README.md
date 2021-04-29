@@ -479,7 +479,7 @@ The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmu
 
 #### Plot.area(*data*, *options*)
 
-Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) tends to be used instead (as in the more common horizontal orientation where the baseline and topline share *x* values), or less commonly [Plot.areaX](#plotareaxdata-options) (as in the less common vertical orientation where the baseline and topline share *y* values).
+Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the more common horizontal orientation where the baseline and topline share *x* values, and [Plot.areaX](#plotareaxdata-options) is used in the less common vertical orientation where the baseline and topline share *y* values.
 
 #### Plot.areaX(*data*, *options*)
 
