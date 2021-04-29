@@ -252,56 +252,56 @@ Color scales support two additional options:
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
-* *blues* <sub><img src="./img/blues.png" width="120" height="16" alt="blues"></sub>
-* *greens* <sub><img src="./img/greens.png" width="120" height="16" alt="greens"></sub>
-* *greys* <sub><img src="./img/greys.png" width="120" height="16" alt="greys"></sub>
-* *oranges* <sub><img src="./img/oranges.png" width="120" height="16" alt="oranges"></sub>
-* *purples* <sub><img src="./img/purples.png" width="120" height="16" alt="purples"></sub>
-* *reds* <sub><img src="./img/reds.png" width="120" height="16" alt="reds"></sub>
-* *bugn* <sub><img src="./img/bugn.png" width="120" height="16" alt="bugn"></sub>
-* *bupu* <sub><img src="./img/bupu.png" width="120" height="16" alt="bupu"></sub>
-* *gnbu* <sub><img src="./img/gnbu.png" width="120" height="16" alt="gnbu"></sub>
-* *orrd* <sub><img src="./img/orrd.png" width="120" height="16" alt="orrd"></sub>
-* *pubu* <sub><img src="./img/pubu.png" width="120" height="16" alt="pubu"></sub>
-* *pubugn* <sub><img src="./img/pubugn.png" width="120" height="16" alt="pubugn"></sub>
-* *purd* <sub><img src="./img/purd.png" width="120" height="16" alt="purd"></sub>
-* *rdpu* <sub><img src="./img/rdpu.png" width="120" height="16" alt="rdpu"></sub>
-* *ylgn* <sub><img src="./img/ylgn.png" width="120" height="16" alt="ylgn"></sub>
-* *ylgnbu* <sub><img src="./img/ylgnbu.png" width="120" height="16" alt="ylgnbu"></sub>
-* *ylorbr* <sub><img src="./img/ylorbr.png" width="120" height="16" alt="ylorbr"></sub>
-* *ylorrd* <sub><img src="./img/ylorrd.png" width="120" height="16" alt="ylorrd"></sub>
-* *cividis* <sub><img src="./img/cividis.png" width="120" height="16" alt="cividis"></sub>
-* *inferno* <sub><img src="./img/inferno.png" width="120" height="16" alt="inferno"></sub>
-* *magma* <sub><img src="./img/magma.png" width="120" height="16" alt="magma"></sub>
-* *plasma* <sub><img src="./img/plasma.png" width="120" height="16" alt="plasma"></sub>
-* *viridis* <sub><img src="./img/viridis.png" width="120" height="16" alt="viridis"></sub>
-* *cubehelix* <sub><img src="./img/cubehelix.png" width="120" height="16" alt="cubehelix"></sub>
-* *turbo* <sub><img src="./img/turbo.png" width="120" height="16" alt="turbo"></sub>
-* *warm* <sub><img src="./img/warm.png" width="120" height="16" alt="warm"></sub>
-* *cool* <sub><img src="./img/cool.png" width="120" height="16" alt="cool"></sub>
+* *blues* <sub><img src="./img/blues.png" width="32" height="16" alt="blues"></sub>
+* *greens* <sub><img src="./img/greens.png" width="32" height="16" alt="greens"></sub>
+* *greys* <sub><img src="./img/greys.png" width="32" height="16" alt="greys"></sub>
+* *oranges* <sub><img src="./img/oranges.png" width="32" height="16" alt="oranges"></sub>
+* *purples* <sub><img src="./img/purples.png" width="32" height="16" alt="purples"></sub>
+* *reds* <sub><img src="./img/reds.png" width="32" height="16" alt="reds"></sub>
+* *bugn* <sub><img src="./img/bugn.png" width="32" height="16" alt="bugn"></sub>
+* *bupu* <sub><img src="./img/bupu.png" width="32" height="16" alt="bupu"></sub>
+* *gnbu* <sub><img src="./img/gnbu.png" width="32" height="16" alt="gnbu"></sub>
+* *orrd* <sub><img src="./img/orrd.png" width="32" height="16" alt="orrd"></sub>
+* *pubu* <sub><img src="./img/pubu.png" width="32" height="16" alt="pubu"></sub>
+* *pubugn* <sub><img src="./img/pubugn.png" width="32" height="16" alt="pubugn"></sub>
+* *purd* <sub><img src="./img/purd.png" width="32" height="16" alt="purd"></sub>
+* *rdpu* <sub><img src="./img/rdpu.png" width="32" height="16" alt="rdpu"></sub>
+* *ylgn* <sub><img src="./img/ylgn.png" width="32" height="16" alt="ylgn"></sub>
+* *ylgnbu* <sub><img src="./img/ylgnbu.png" width="32" height="16" alt="ylgnbu"></sub>
+* *ylorbr* <sub><img src="./img/ylorbr.png" width="32" height="16" alt="ylorbr"></sub>
+* *ylorrd* <sub><img src="./img/ylorrd.png" width="32" height="16" alt="ylorrd"></sub>
+* *cividis* <sub><img src="./img/cividis.png" width="32" height="16" alt="cividis"></sub>
+* *inferno* <sub><img src="./img/inferno.png" width="32" height="16" alt="inferno"></sub>
+* *magma* <sub><img src="./img/magma.png" width="32" height="16" alt="magma"></sub>
+* *plasma* <sub><img src="./img/plasma.png" width="32" height="16" alt="plasma"></sub>
+* *viridis* <sub><img src="./img/viridis.png" width="32" height="16" alt="viridis"></sub>
+* *cubehelix* <sub><img src="./img/cubehelix.png" width="32" height="16" alt="cubehelix"></sub>
+* *turbo* <sub><img src="./img/turbo.png" width="32" height="16" alt="turbo"></sub>
+* *warm* <sub><img src="./img/warm.png" width="32" height="16" alt="warm"></sub>
+* *cool* <sub><img src="./img/cool.png" width="32" height="16" alt="cool"></sub>
 
 The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility; color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
-* *brbg* <sub><img src="./img/brbg.png" width="120" height="16" alt="brbg"></sub>
-* *prgn* <sub><img src="./img/prgn.png" width="120" height="16" alt="prgn"></sub>
-* *piyg* <sub><img src="./img/piyg.png" width="120" height="16" alt="piyg"></sub>
-* *puor* <sub><img src="./img/puor.png" width="120" height="16" alt="puor"></sub>
-* *rdbu* <sub><img src="./img/rdbu.png" width="120" height="16" alt="rdbu"></sub>
-* *rdgy* <sub><img src="./img/rdgy.png" width="120" height="16" alt="rdgy"></sub>
-* *rdylbu* <sub><img src="./img/rdylbu.png" width="120" height="16" alt="rdylbu"></sub>
-* *rdylgn* <sub><img src="./img/rdylgn.png" width="120" height="16" alt="rdylgn"></sub>
-* *spectral* <sub><img src="./img/spectral.png" width="120" height="16" alt="spectral"></sub>
-* *burd* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub>
-* *buylrd* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub>
+* *brbg* <sub><img src="./img/brbg.png" width="32" height="16" alt="brbg"></sub>
+* *prgn* <sub><img src="./img/prgn.png" width="32" height="16" alt="prgn"></sub>
+* *piyg* <sub><img src="./img/piyg.png" width="32" height="16" alt="piyg"></sub>
+* *puor* <sub><img src="./img/puor.png" width="32" height="16" alt="puor"></sub>
+* *rdbu* <sub><img src="./img/rdbu.png" width="32" height="16" alt="rdbu"></sub>
+* *rdgy* <sub><img src="./img/rdgy.png" width="32" height="16" alt="rdgy"></sub>
+* *rdylbu* <sub><img src="./img/rdylbu.png" width="32" height="16" alt="rdylbu"></sub>
+* *rdylgn* <sub><img src="./img/rdylgn.png" width="32" height="16" alt="rdylgn"></sub>
+* *spectral* <sub><img src="./img/spectral.png" width="32" height="16" alt="spectral"></sub>
+* *burd* <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub>
+* *buylrd* <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub>
 
 Diverging color scales accept a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
-* *rainbow* <sub><img src="./img/rainbow.png" width="120" height="16" alt="rainbow"></sub>
-* *sinebow* <sub><img src="./img/sinebow.png" width="120" height="16" alt="sinebow"></sub>
+* *rainbow* <sub><img src="./img/rainbow.png" width="32" height="16" alt="rainbow"></sub>
+* *sinebow* <sub><img src="./img/sinebow.png" width="32" height="16" alt="sinebow"></sub>
 
 The following categorical color schemes are supported:
 
