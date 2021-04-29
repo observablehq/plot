@@ -559,7 +559,7 @@ Decorations are special mark types that do not represent data, but are still use
 
 ### Formats
 
-These helper functions are provided for use as a *scale*.tickFormat scale option, as a *text*.text mark option, or for general use. See also [d3-time-format](https://github.com/d3/d3-time-format) and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
+These helper functions are provided for use as a *scale*.tickFormat [axis option](#position-options), as the text option for [Plot.text](#plottextdata-options), or for general use. See also [d3-time-format](https://github.com/d3/d3-time-format) and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
 #### Plot.formatIsoDate(*date*)
 
