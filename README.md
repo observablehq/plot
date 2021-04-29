@@ -83,9 +83,9 @@ These options determine the overall layout of the plot; all are specified as num
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
-The default *width* is 640. On Observable, it can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make full-width responsive plots. The default *height* is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, and 60 if it does not. (The default *height* will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
+The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make responsive plots. The default **height** is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, or 60 if it does not. (The default height will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
 
-TODO Describe the default margins based on the plot’s axes. Mention that margins are not automatically sized to make room for tick labels, as this would lead to inconsistent layout across plots; instead, you are expected to shorten your tick labels or increase the margins as needed.
+The default margins depend on the plot’s axes: for example, the top and bottom margins are at least 30 if there is a corresponding top or bottom *x* axis, and the left and right margins are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
 
 The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string or an object of properties (*e.g.*, `"color: red"` or `{color: "red"}`). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, for a dark theme:
 
@@ -180,13 +180,13 @@ Quantitative scales can be further customized with a few additional options:
 * *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales. Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert Celsius to Fahrenheit.
+A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales. Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert units.
 
 ```js
 Plot.plot({
   y: {
     label: "↑ Temperature (°F)",
-    transform: f => f * 9 / 5 + 32 // convert from Celsius
+    transform: f => f * 9 / 5 + 32 // convert Celsius to Fahrenheit
   },
   marks: …
 })
