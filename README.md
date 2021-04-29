@@ -444,10 +444,10 @@ The following channels are required:
 The following channels are optional:
 
 * **z** - an ordinal value to group data into series
-* **fill** - a fill color per series
-* **fillOpacity** - a fill opacity per series (a number between 0 and 1)
-* **stroke** - a stroke color per series
-* **strokeOpacity** - a stroke opacity per series (a number between 0 and 1)
+* **fill** - a fill color per series; bound to the *color* scale
+* **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
+* **stroke** - a stroke color per series; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
 * **title** - a tooltip per series (a string of text, possibly with newlines)
 
 To distinguish a *fill* channel from a constant *fill*, the area mark tests whether the provided *fill* is a valid CSS color;
