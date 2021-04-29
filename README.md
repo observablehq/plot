@@ -382,7 +382,7 @@ All marks support the following generic style options:
 
 #### Plot.area(*data*, *options*)
 
-<small>[Source](./src/area.js) • [Examples](https://observablehq.com/@data-workflows/plot-area)</small>
+<sup>[Source](./src/area.js) • [Examples](https://observablehq.com/@data-workflows/plot-area)</sup>
 
 The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. It is rarely used directly; [Plot.areaY](#plotareaydata-options) tends to be used instead, or less commonly [Plot.areaX](#plotareaxdata-options).
 
