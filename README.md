@@ -165,7 +165,7 @@ UTC is recommended over local time as charts in UTC time are guaranteed to appea
 
 For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* [position scale types](#position-options). The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a [color scale](#color-options), where it provides a different default color scheme. (Since position is inherently ordinal or even quantitative, categorical data must be assigned an effective order when represented as position, and hence *categorical* and *ordinal* may be considered synonymous in context.)
 
-You can disable (or “opt-out of”) a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
+You can opt-out of a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), an *identity* scale is still quantitative and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
 A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using these options:
 
@@ -238,7 +238,7 @@ Plot does not currently generate a legend for the *color*, *radius*, or *opacity
 
 #### Color options
 
-The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — work with color and default to the *turbo* scheme. In addition, Plot supports special scale types for encoding data as color:
+The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color and default to the *turbo* scheme. In addition, Plot supports special scale types for encoding data as color:
 
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
@@ -296,7 +296,7 @@ The following diverging scale schemes are supported:
 * <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub> *burd*
 * <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub> *buylrd*
 
-Diverging color scales accept a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
+Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
@@ -367,17 +367,73 @@ The following *facet* options are supported:
 
 ### Marks
 
+All marks support the following generic style options:
+
+* **fill**
+* **fillOpacity**
+* **stroke**
+* **strokeWidth**
+* **strokeOpacity**
+* **strokeLinejoin**
+* **strokeLinecap**
+* **strokeMiterlimit**
+* **strokeDasharray**
+* **mixBlendMode**
+
 #### Plot.area(*data*, *options*)
 
-…
+<small>[Source](./src/area.js) • [Examples](https://observablehq.com/@data-workflows/plot-area)</small>
+
+The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. It is rarely used directly; [Plot.areaY](#plotareaydata-options) tends to be used instead, or less commonly [Plot.areaX](#plotareaxdata-options).
+
+The following channels are required:
+
+* **x1** - the horizontal position of the baseline; bound to the *x* scale
+* **y1** - the vertical position of the baseline; bound to the *y* scale
+* **x2** - the horizontal position of the topline; bound to the *x* scale
+* **y2** - the vertical position of the topline; bound to the *y* scale
+
+The following channels are optional:
+
+* **z** - an ordinal value to group data into series
+* **title** - a tooltip per series
+* **fill** - a fill color per series
+* **fillOpacity** - a fill opacity per series (in [0, 1])
+* **stroke** - a stroke color per series
+* **strokeOpacity** - a stroke opacity per series (in [0, 1])
+
+In addition to the [standard style options](#marks), the following additional options are supported:
+
+* **curve** -
+* **tension** -
+
+The following curves are supported:
+
+* *basis* -
+* *basis-open* -
+* *bump-x* -
+* *bump-y* -
+* *cardinal* -
+* *cardinal-open* -
+* *catmull-rom* -
+* *catmull-rom-open* -
+* *linear* -
+* *monotone-x* -
+* *monotone-y* -
+* *natural* -
+* *step* -
+* *step-after* -
+* *step-before* -
+
+The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
 
 #### Plot.areaX(*data*, *options*)
 
-…
+Equivalent to [Plot.area](#plotareadata-options), except…
 
 #### Plot.areaY(*data*, *options*)
 
-…
+Equivalent to [Plot.area](#plotareadata-options), except…
 
 #### Plot.barX(*data*, *options*)
 
