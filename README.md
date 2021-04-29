@@ -367,7 +367,68 @@ The following *facet* options are supported:
 
 ### Marks
 
-Plot doesn’t have chart types; instead, it has marks: geometric shapes such as bars, dots, and lines that are [layered](#mark-options) and bound to [scales](#scale-options) to produce [plots](#plotplotoptions).
+Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data.
+
+Mark constructors take two arguments: **data** and **options**. Together, the *data* and *options* describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically specified as abstract values such as time or temperature rather than visual values such as position or color; this is because most channels are bound to [scales](#scale-options).
+
+A mark’s *data* is commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while *options* binds mark channels (such as *x* and *y*) to named columns in the data (such as *units* and *fruit*).
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(
+      [
+        {units: 10, fruit: "fig"},
+        {units: 20, fruit: "date"},
+        {units: 40, fruit: "plum"},
+        {units: 30, fruit: "plum"}
+      ],
+      {
+        x: "units",
+        y: "fruit"
+      }
+    )
+  ]
+})
+```
+
+Channels can also be specified as functions, affording greater flexibility if your data is not structured in a way that is so readily visualized, or if you want to visualize computed values. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(
+      [
+        {units: 10, fruit: "fig"},
+        {units: 20, fruit: "date"},
+        {units: 40, fruit: "plum"},
+        {units: 30, fruit: "plum"}
+      ],
+      {
+        x: d => d.units,
+        y: d => d.fruit
+      }
+    )
+  ]
+})
+```
+
+Plot also supports columnar data; for example, data can be specified as an object `{length}` (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then arrays of values can be passed as individual *options*.
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(
+      {length: 4},
+      {
+        x: [10, 20, 40, 30],
+        y: ["fig", "date", "plum", "plum"]
+      }
+    )
+  ]
+})
+```
+
 
 All marks support the following style options:
 
@@ -401,6 +462,8 @@ The following channels are optional:
 * **stroke** - a stroke color per series
 * **strokeOpacity** - a stroke opacity per series (a number between 0 and 1)
 * **title** - a tooltip per series (a string of text, possibly with newlines)
+
+To distinguish a *fill* channel from a constant *fill*, the area mark tests whether the provided *fill* is a valid CSS color;
 
 In addition to the [standard style options](#marks), the following additional options are supported:
 
