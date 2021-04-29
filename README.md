@@ -367,18 +367,20 @@ The following *facet* options are supported:
 
 ### Marks
 
-All marks support the following generic style options:
+Plot doesn’t have chart types; instead, it has marks: geometric shapes such as bars, dots, and lines that are [layered](#mark-options) and bound to [scales](#scale-options) to produce [plots](#plotplotoptions).
 
-* **fill** -
-* **fillOpacity** -
-* **stroke** -
-* **strokeWidth** -
-* **strokeOpacity** -
-* **strokeLinejoin** -
-* **strokeLinecap** -
-* **strokeMiterlimit** -
-* **strokeDasharray** -
-* **mixBlendMode** -
+All marks support the following style options:
+
+* **fill** - fill color
+* **fillOpacity** - fill opacity (a number between 0 and 1)
+* **stroke** - stroke color
+* **strokeWidth** - stroke width (in pixels)
+* **strokeOpacity** - stroke opacity (a number between 0 and 1)
+* **strokeLinejoin** - how to join lines (*bevel*, *miter*, *miter-clip*, or *round*)
+* **strokeLinecap** - how to cap lines (*butt*, *round*, or *square*)
+* **strokeMiterlimit** - to limit the length of *miter* joins
+* **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
+* **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 
 #### Plot.area(*data*, *options*)
 
@@ -394,11 +396,11 @@ The following channels are required:
 The following channels are optional:
 
 * **z** - an ordinal value to group data into series
-* **title** - a tooltip per series
 * **fill** - a fill color per series
-* **fillOpacity** - a fill opacity per series (in [0, 1])
+* **fillOpacity** - a fill opacity per series (a number between 0 and 1)
 * **stroke** - a stroke color per series
-* **strokeOpacity** - a stroke opacity per series (in [0, 1])
+* **strokeOpacity** - a stroke opacity per series (a number between 0 and 1)
+* **title** - a tooltip per series (a string of text, possibly with newlines)
 
 In addition to the [standard style options](#marks), the following additional options are supported:
 
