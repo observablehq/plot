@@ -400,7 +400,7 @@ Plot.plot({
 
 ```
 
-Plot also supports columnar data; for example, data can be specified any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate flat arrays of values can be passed as *options*.
+Plot also supports columnar data for greater efficiency with bigger datasets; for example, data can be specified as any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate arrays of values can be passed as *options*.
 
 ```js
 index = [0, 1, 2, 3]
@@ -431,6 +431,8 @@ All marks support the following style options:
 * **strokeMiterlimit** - to limit the length of *miter* joins
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
+
+---
 
 #### Plot.area(*data*, *options*)
 
@@ -487,6 +489,8 @@ Equivalent to [Plot.area](#plotareadata-options), except…
 
 Equivalent to [Plot.area](#plotareadata-options), except…
 
+---
+
 #### Plot.barX(*data*, *options*)
 
 …
@@ -494,6 +498,8 @@ Equivalent to [Plot.area](#plotareadata-options), except…
 #### Plot.barY(*data*, *options*)
 
 …
+
+---
 
 #### Plot.cell(*data*, *options*)
 
