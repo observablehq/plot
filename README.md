@@ -432,7 +432,7 @@ All marks support the following style options:
 
 ### Area
 
-[Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart.
+[Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not strictly required, typically both *x* and *y* scales are quantitative.
 
 The following channels are required:
 
