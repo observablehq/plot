@@ -394,7 +394,7 @@ Channels can also be specified as functions, affording greater flexibility if yo
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(sales, {x: d => d.units, y: d => d.fruit})
+    Plot.dot(sales, {x: d => d.units * 1000, y: d => d.fruit})
   ]
 })
 
