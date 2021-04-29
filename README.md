@@ -87,7 +87,7 @@ The default **width** is 640. On Observable, the width can be set to the [standa
 
 The default margins depend on the plot’s axes: for example, the top and bottom margins are at least 30 if there is a corresponding top or bottom *x* axis, and the left and right margins are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
 
-The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string or an object of properties (*e.g.*, `"color: red"` or `{color: "red"}`). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, for a dark theme:
+The **style** option allows custom styles to override Plot’s defaults. It may be specified either as a string or an object of properties (*e.g.*, `"color: red"` or `{color: "red"}`). By default, the returned plot has a white background, a max-width of 100%, and the system-ui font. Plot’s marks and axes default to [currentColor](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#currentcolor_keyword), meaning that they will inherit the surrounding content’s color. For example, a dark theme:
 
 ```js
 Plot.plot({
@@ -110,7 +110,7 @@ Plot.plot({
 
 #### Scale options
 
-Before Plot renders a mark, data is passed through [scales](https://observablehq.com/@data-workflows/plot-scales). A scale maps an abstract value such as time or temperature to a visual value such as position or color. Within a given plot, marks share scales. For example, if there are two Plot.line marks, both lines will share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Plot passes data through [scales](https://observablehq.com/@data-workflows/plot-scales) before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
@@ -121,7 +121,7 @@ Plot.plot({
 })
 ```
 
-Each scale’s options are specified as a nested options object, within the top-level plot *options*, with the corresponding scale name:
+Each scale’s options are specified as a nested options object with the corresponding scale name within the top-level plot *options*:
 
 * **x** - horizontal position
 * **y** - vertical position
@@ -142,11 +142,11 @@ Plot.plot({
 })
 ```
 
-Plot supports many scale types. Some scale types are for quantitative data — values that can be subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings — for example, there are special scale types for [position](#position-options) and [color](#color-options).
+Plot supports many scale types. Some scale types are for quantitative data — values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings — for example, as [position](#position-options) or [color](#color-options).
 
-You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. We recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
+You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
 
-For quantitative data (*i.e.* numbers), an optional mathematical transform may be applied to the data by changing the scale type:
+For quantitative data (*i.e.* numbers), a mathematical transform may be applied to the data by changing the scale type:
 
 * *linear* (default) - linear transform (translate and scale)
 * *pow* - power (exponential) transform
@@ -154,33 +154,37 @@ For quantitative data (*i.e.* numbers), an optional mathematical transform may b
 * *log* - logarithmic transform
 * *symlog* - bi-symmetric logarithmic transform per [Webber *et al.*](https://www.researchgate.net/publication/233967063_A_bi-symmetric_log_transformation_for_wide-range_data)
 
-A *sqrt* transform exaggerates differences between small values at the expense of large values. A *pow* transform is a generalization of the square-root transform with a configurable *scale*.**exponent**. A *log* transform is more extreme, suitable for comparing orders of magnitude, but a *log* scale’s domain may not include zero. The base can be specified with the *scale*.**base** option; though note that this only affects the generated axis ticks, not the scale’s behavior. A *symlog* transform is more elaborate, but works well with widely-varying values which may include zero; it may be configured with the *scale*.**constant** option.
+The appropriate transform depends on the distribution and what you wish to know. A *sqrt* transform exaggerates differences between small values at the expense of large values; it is a special case of the *pow* transform which has a configurable *scale*.**exponent** (0.5 for *sqrt*). A *log* transform is suitable for comparing orders of magnitude and can only be used when the domain does not include zero. The base, which defaults to 10, can be specified with the *scale*.**base** option; though note that this only affects the axis ticks and not the scale’s behavior. A *symlog* transform is more elaborate, but works well with wide-range values which include zero; its can be configured with the *scale*.**constant** option (default 1).
 
-For temporal data (*i.e.* dates, which are also considered quantitative), two variants of a *linear* scale are also supported:
+For temporal data (*i.e.* dates), two variants of a *linear* scale are also supported:
 
-* *utc* (default) - UTC time
+* *utc* (default, recommended) - UTC time
 * *time* - local time
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
-You can disable a scale using the *identity* scale type. Identity scales are useful to “opt-out” of a scale, for example if you wish to return literal colors or pixel positions within a mark channel rather than relying on a scale to convert abstract values into visual values. In the case of position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, but unlike a linear scale, the domain and range are fixed based on the chart’s dimensions (representing pixels) and may not be configured.
+You can disable (or “opt-out of”) a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), the *identity* scale type is still a quantitative scale and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
-A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using the following options:
+A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using these options:
 
 * *scale*.**domain** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale (across mark channels). For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order. The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly to choose a different order. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
-Quantitative scales can be further customized with a few additional options:
+The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the [plot’s dimensions](#layout-options); for [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data; for opacity, the default range is [0, 1]; and for radius, the default range is designed to produce dots of reasonable size.
+
+Quantitative scales can be further customized with additional options:
 
 * *scale*.**clamp** - if true, clamp input values to the scale’s domain
 * *scale*.**nice** - if true (or a tick count), extend the domain to nice round values
 * *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales. Lastly a *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is useful for transforming a scale’s associated data, say to convert units.
+Clamping is typically used in conjunction with setting an explicit domain (since if the domain is inferred, no values will be outside the domain). Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible inside the plot, but use caution: clamped values may need an annotation to avoid misinterpretation. A top-level **nice** option is also supported as shorthand for setting *scale*.nice on all scales.
+
+The *scale*.**transform** option allows you to specify a function to apply to all values before they are passed through the scale. This is convenient for transforming all data associated with a scale, say to convert to thousands or between temperature units.
 
 ```js
 Plot.plot({
@@ -194,45 +198,46 @@ Plot.plot({
 
 #### Position options
 
-For position scales (*x*, *y*, *fx*, and *fy*)…
+The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
-* *scale*.**inset** -
-* *scale*.**round** -
+* *scale*.**inset** - inset the default range by the specified amount in pixels
+* *scale*.**round** - round the output value to the nearest integer (whole pixel)
 
-For ordinal position scales (*point* or *band*)…
+The *scale*.inset option is useful in ensure that marks are drawn entirely within the chart area. For example, in a scatterplot with a Plot.dot with the default radius of 3 pixels, an inset of 5 pixels will prevent the dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-* *scale*.**align** -
-* *scale*.**padding** -
-* *scale*.**paddingInner** -
-* *scale*.**paddingOuter** -
-
-Plot automatically generates axes for position scales. You can configure these axes with the following options:
-
-* *scale*.**axis** -
-* *scale*.**ticks** -
-* *scale*.**tickSize** -
-* *scale*.**tickPadding** -
-* *scale*.**tickFormat** -
-* *scale*.**tickRotate** -
-* *scale*.**grid** -
-* *scale*.**label** -
-* *scale*.**labelAnchor** -
-* *scale*.**labelOffset** -
-
-Shorthand top-level options:
-
-* **grid** -
-* **inset** -
-* **round** -
-* **align** -
-* **padding** -
-
-In addition to the normal scale types above, Plot supports special scale types for encoding ordinal data as position:
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special scale types for encoding ordinal data as position:
 
 * *point* - map a discrete domain to a continuous range
 * *band* - map a discrete domain to a continuous range
 
-If the associated mark has a non-zero width along the ordinal dimension, such as a bar, then use a *band* scale; otherwise, say for a dot, use a *point* scale.
+If the associated mark has a zero width along the ordinal dimension, such as a dot, rule, or tick, then use a *point* scale; otherwise, say for a bar, use a *bar* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
+
+<img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
+
+Ordinal position scales support additional options, all specified as proportions in [0, 1]:
+
+* *scale*.**padding** - proportion of range to reserve to inset first and last point or band
+* *scale*.**align** - how to distribute padding (0 = start, 0.5 = middle, 1 = end)
+
+For a *band* scale, you can further fine-tune padding:
+
+* *scale*.**paddingInner** - proportion of range to reserve to separate adjacent bands
+* *scale*.**paddingOuter** - proportion of range to reserve to inset first and last band
+
+Plot automatically generates axes for position scales. You can configure these axes with the following options:
+
+* *scale*.**axis** - the orientation: *top* or *bottom* for *x*; *left* or *right* for *y*; null to suppress
+* *scale*.**ticks** - the approximate number of ticks to generate
+* *scale*.**tickSize** - the size of each tick (in pixels; default 6)
+* *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
+* *scale*.**tickFormat** - how to format tick values as a string (a function or format specifier)
+* *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
+* *scale*.**grid** - if true, draw grid lines across the plot for each tick
+* *scale*.**label** - a string to label the axis
+* *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
+* *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
+
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
 
 #### Color options
 
