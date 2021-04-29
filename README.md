@@ -430,7 +430,9 @@ All marks support the following style options:
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 
-### Plot.area(*data*, *options*)
+### Area
+
+#### Plot.area(*data*, *options*)
 
 [Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. It is rarely used directly; [Plot.areaY](#plotareaydata-options) tends to be used instead, or less commonly [Plot.areaX](#plotareaxdata-options).
 
@@ -477,205 +479,237 @@ The following curves are supported:
 
 The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
 
-### Plot.areaX(*data*, *options*)
+#### Plot.areaX(*data*, *options*)
 
 Equivalent to [Plot.area](#plotareadata-options), except…
 
-### Plot.areaY(*data*, *options*)
+#### Plot.areaY(*data*, *options*)
 
 Equivalent to [Plot.area](#plotareadata-options), except…
 
-### Plot.barX(*data*, *options*)
+### Bar
+
+#### Plot.barX(*data*, *options*)
 
 …
 
-### Plot.barY(*data*, *options*)
+#### Plot.barY(*data*, *options*)
 
 …
 
-### Plot.cell(*data*, *options*)
+### Cell
+
+#### Plot.cell(*data*, *options*)
 
 …
 
-### Plot.cellX(*data*, *options*)
+#### Plot.cellX(*data*, *options*)
 
 …
 
-### Plot.cellY(*data*, *options*)
+#### Plot.cellY(*data*, *options*)
 
 …
 
-### Plot.dot(*data*, *options*)
+### Dot
+
+#### Plot.dot(*data*, *options*)
 
 …
 
-### Plot.dotX(*data*, *options*)
+#### Plot.dotX(*data*, *options*)
 
 …
 
-### Plot.dotY(*data*, *options*)
+#### Plot.dotY(*data*, *options*)
 
 …
 
-### Plot.line(*data*, *options*)
+### Line
+
+#### Plot.line(*data*, *options*)
 
 …
 
-### Plot.lineX(*data*, *options*)
+#### Plot.lineX(*data*, *options*)
 
 …
 
-### Plot.lineY(*data*, *options*)
+#### Plot.lineY(*data*, *options*)
 
 …
 
-### Plot.link(*data*, *options*)
+### Link
+
+#### Plot.link(*data*, *options*)
 
 …
 
-### Plot.rect(*data*, *options*)
+### Rect
+
+#### Plot.rect(*data*, *options*)
 
 …
 
-### Plot.rectX(*data*, *options*)
+#### Plot.rectX(*data*, *options*)
 
 …
 
-### Plot.rectY(*data*, *options*)
+#### Plot.rectY(*data*, *options*)
 
 …
 
-### Plot.ruleX(*data*, *options*)
+### Rule
+
+#### Plot.ruleX(*data*, *options*)
 
 …
 
-### Plot.ruleY(*data*, *options*)
+#### Plot.ruleY(*data*, *options*)
 
 …
 
-### Plot.text(*data*, *options*)
+### Text
+
+#### Plot.text(*data*, *options*)
 
 …
 
-### Plot.textX(*data*, *options*)
+#### Plot.textX(*data*, *options*)
 
 …
 
-### Plot.textY(*data*, *options*)
+#### Plot.textY(*data*, *options*)
 
 …
 
-### Plot.tickX(*data*, *options*)
+### Tick
+
+#### Plot.tickX(*data*, *options*)
 
 …
 
-### Plot.tickY(*data*, *options*)
+#### Plot.tickY(*data*, *options*)
 
 …
 
 ## Transforms
 
-### Plot.bin(*outputs*, *options*)
+### Bin
+
+#### Plot.bin(*outputs*, *options*)
 
 …
 
-### Plot.binX(*outputs*, *options*)
+#### Plot.binX(*outputs*, *options*)
 
 …
 
-### Plot.binY(*outputs*, *options*)
+#### Plot.binY(*outputs*, *options*)
 
 …
 
-### Plot.group(*outputs*, *options*)
+### Group
+
+#### Plot.group(*outputs*, *options*)
 
 …
 
-### Plot.groupX(*outputs*, *options*)
+#### Plot.groupX(*outputs*, *options*)
 
 …
 
-### Plot.groupY(*outputs*, *options*)
+#### Plot.groupY(*outputs*, *options*)
 
 …
 
-### Plot.groupZ(*outputs*, *options*)
+#### Plot.groupZ(*outputs*, *options*)
 
 …
 
-### Plot.map(*outputs*, *options*)
+### Map
+
+#### Plot.map(*outputs*, *options*)
 
 …
 
-### Plot.mapX(<i>map</i>, *options*)
+#### Plot.mapX(<i>map</i>, *options*)
 
 …
 
-### Plot.mapY(<i>map</i>, *options*)
+#### Plot.mapY(<i>map</i>, *options*)
 
 …
 
-### Plot.normalizeX(*options*)
+### Normalize
+
+#### Plot.normalizeX(*options*)
 
 …
 
-### Plot.normalizeY(*options*)
+#### Plot.normalizeY(*options*)
 
 …
 
-### Plot.selectFirst(*options*)
+### Select
+
+#### Plot.selectFirst(*options*)
 
 …
 
-### Plot.selectLast(*options*)
+#### Plot.selectLast(*options*)
 
 …
 
-### Plot.selectMinX(*options*)
+#### Plot.selectMinX(*options*)
 
 …
 
-### Plot.selectMinY(*options*)
+#### Plot.selectMinY(*options*)
 
 …
 
-### Plot.selectMaxX(*options*)
+#### Plot.selectMaxX(*options*)
 
 …
 
-### Plot.selectMaxY(*options*)
+#### Plot.selectMaxY(*options*)
 
 …
 
-### Plot.stackX(*options*)
+### Stack
+
+#### Plot.stackX(*options*)
 
 …
 
-### Plot.stackX1(*options*)
+#### Plot.stackX1(*options*)
 
 …
 
-### Plot.stackX2(*options*)
+#### Plot.stackX2(*options*)
 
 …
 
-### Plot.stackY(*options*)
+#### Plot.stackY(*options*)
 
 …
 
-### Plot.stackY1(*options*)
+#### Plot.stackY1(*options*)
 
 …
 
-### Plot.stackY2(*options*)
+#### Plot.stackY2(*options*)
 
 …
 
-### Plot.windowX(*options*)
+### Window
+
+#### Plot.windowX(*options*)
 
 …
 
-### Plot.windowY(*options*)
+#### Plot.windowY(*options*)
 
 …
 
