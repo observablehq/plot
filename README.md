@@ -495,13 +495,49 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@data-workflows/plot-bar)
 
-[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar)
+[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative, or *vice versa*.
+
+The following channels are optional:
+
+* **z** - an ordinal value to control *z*-order (for overlapping bars)
+* **fill** - a fill color; bound to the *color* scale
+* **fillOpacity** - a fill opacity; bound to the *opacity* scale
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
+
+In addition to the [standard style options](#marks), the following additional options are supported:
+
+* **insetTop** -
+* **insetRight** -
+* **insetBottom** -
+* **insetLeft** -
+* **rx** -
+* **ry** -
 
 #### Plot.barX(*data*, *options*)
+
+The following channels are required:
+
+* **x1** -
+* **x2** -
+
+In addition to the [standard bar channels](#bar), the following channels are optional:
+
+* **y** - (band scale)
 
 …
 
 #### Plot.barY(*data*, *options*)
+
+The following channels are required:
+
+* **y1** -
+* **y2** -
+
+In addition to the [standard bar channels](#bar), the following channels are optional:
+
+* **x** - (band scale)
 
 …
 
@@ -509,7 +545,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell)
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal.
 
 #### Plot.cell(*data*, *options*)
 
@@ -573,7 +609,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
 
-[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect)
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative.
 
 #### Plot.rect(*data*, *options*)
 
