@@ -4,7 +4,7 @@
 
 * [Introduction](https://observablehq.com/@data-workflows/plot)
 * [Installing](#installing)
-* [API Reference](#api-reference)
+* [API Reference](#plotplotoptions)
 * [Contributing](./CONTRIBUTING.md)
 
 ## Installing
@@ -51,13 +51,11 @@ document.body.appendChild(Plot.plot(options));
 </script>
 ```
 
-## API Reference
-
-### Plot.plot(*options*)
+## Plot.plot(*options*)
 
 Renders a new plot given the specified *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
 
-#### Mark options
+### Mark options
 
 The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#plotbarydata-options) or [Plot.dot](#plotdotdata-options)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
@@ -72,7 +70,7 @@ Plot.plot({
 
 Each mark may also be a nested array of marks, allowing composition.
 
-#### Layout options
+### Layout options
 
 These options determine the overall layout of the plot; all are specified as numbers in pixels:
 
@@ -108,7 +106,7 @@ Plot.plot({
 })
 ```
 
-#### Scale options
+### Scale options
 
 Plot passes data through [scales](https://observablehq.com/@data-workflows/plot-scales) before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
@@ -198,7 +196,7 @@ Plot.plot({
 })
 ```
 
-#### Position options
+### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
@@ -236,7 +234,7 @@ Plot automatically generates axes for position scales. You can configure these a
 
 Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
 
-#### Color options
+### Color options
 
 The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color and default to the *turbo* scheme. In addition, Plot supports special scale types for encoding data as color:
 
@@ -347,7 +345,7 @@ Plot.plot({
 })
 ```
 
-#### Facet options
+### Facet options
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
 
@@ -365,7 +363,7 @@ The following *facet* options are supported:
 * facet.**marginLeft** -
 * facet.**grid** -
 
-### Marks
+## Marks
 
 Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
 
@@ -432,9 +430,7 @@ All marks support the following style options:
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 
----
-
-#### Plot.area(*data*, *options*)
+### Plot.area(*data*, *options*)
 
 [Source](./src/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws the region formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. It is rarely used directly; [Plot.areaY](#plotareaydata-options) tends to be used instead, or less commonly [Plot.areaX](#plotareaxdata-options).
 
@@ -481,232 +477,228 @@ The following curves are supported:
 
 The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
 
-#### Plot.areaX(*data*, *options*)
+### Plot.areaX(*data*, *options*)
 
 Equivalent to [Plot.area](#plotareadata-options), except…
 
-#### Plot.areaY(*data*, *options*)
+### Plot.areaY(*data*, *options*)
 
 Equivalent to [Plot.area](#plotareadata-options), except…
 
----
-
-#### Plot.barX(*data*, *options*)
+### Plot.barX(*data*, *options*)
 
 …
 
-#### Plot.barY(*data*, *options*)
+### Plot.barY(*data*, *options*)
 
 …
 
----
-
-#### Plot.cell(*data*, *options*)
+### Plot.cell(*data*, *options*)
 
 …
 
-#### Plot.cellX(*data*, *options*)
+### Plot.cellX(*data*, *options*)
 
 …
 
-#### Plot.cellY(*data*, *options*)
+### Plot.cellY(*data*, *options*)
 
 …
 
-#### Plot.dot(*data*, *options*)
+### Plot.dot(*data*, *options*)
 
 …
 
-#### Plot.dotX(*data*, *options*)
+### Plot.dotX(*data*, *options*)
 
 …
 
-#### Plot.dotY(*data*, *options*)
+### Plot.dotY(*data*, *options*)
 
 …
 
-#### Plot.line(*data*, *options*)
+### Plot.line(*data*, *options*)
 
 …
 
-#### Plot.lineX(*data*, *options*)
+### Plot.lineX(*data*, *options*)
 
 …
 
-#### Plot.lineY(*data*, *options*)
+### Plot.lineY(*data*, *options*)
 
 …
 
-#### Plot.link(*data*, *options*)
+### Plot.link(*data*, *options*)
 
 …
 
-#### Plot.rect(*data*, *options*)
+### Plot.rect(*data*, *options*)
 
 …
 
-#### Plot.rectX(*data*, *options*)
+### Plot.rectX(*data*, *options*)
 
 …
 
-#### Plot.rectY(*data*, *options*)
+### Plot.rectY(*data*, *options*)
 
 …
 
-#### Plot.ruleX(*data*, *options*)
+### Plot.ruleX(*data*, *options*)
 
 …
 
-#### Plot.ruleY(*data*, *options*)
+### Plot.ruleY(*data*, *options*)
 
 …
 
-#### Plot.text(*data*, *options*)
+### Plot.text(*data*, *options*)
 
 …
 
-#### Plot.textX(*data*, *options*)
+### Plot.textX(*data*, *options*)
 
 …
 
-#### Plot.textY(*data*, *options*)
+### Plot.textY(*data*, *options*)
 
 …
 
-#### Plot.tickX(*data*, *options*)
+### Plot.tickX(*data*, *options*)
 
 …
 
-#### Plot.tickY(*data*, *options*)
+### Plot.tickY(*data*, *options*)
 
 …
 
-### Transforms
+## Transforms
 
-#### Plot.bin(*outputs*, *options*)
-
-…
-
-#### Plot.binX(*outputs*, *options*)
+### Plot.bin(*outputs*, *options*)
 
 …
 
-#### Plot.binY(*outputs*, *options*)
+### Plot.binX(*outputs*, *options*)
 
 …
 
-#### Plot.group(*outputs*, *options*)
+### Plot.binY(*outputs*, *options*)
 
 …
 
-#### Plot.groupX(*outputs*, *options*)
+### Plot.group(*outputs*, *options*)
 
 …
 
-#### Plot.groupY(*outputs*, *options*)
+### Plot.groupX(*outputs*, *options*)
 
 …
 
-#### Plot.groupZ(*outputs*, *options*)
+### Plot.groupY(*outputs*, *options*)
 
 …
 
-#### Plot.map(*outputs*, *options*)
+### Plot.groupZ(*outputs*, *options*)
 
 …
 
-#### Plot.mapX(<i>map</i>, *options*)
+### Plot.map(*outputs*, *options*)
 
 …
 
-#### Plot.mapY(<i>map</i>, *options*)
+### Plot.mapX(<i>map</i>, *options*)
 
 …
 
-#### Plot.normalizeX(*options*)
+### Plot.mapY(<i>map</i>, *options*)
 
 …
 
-#### Plot.normalizeY(*options*)
+### Plot.normalizeX(*options*)
 
 …
 
-#### Plot.selectFirst(*options*)
+### Plot.normalizeY(*options*)
 
 …
 
-#### Plot.selectLast(*options*)
+### Plot.selectFirst(*options*)
 
 …
 
-#### Plot.selectMinX(*options*)
+### Plot.selectLast(*options*)
 
 …
 
-#### Plot.selectMinY(*options*)
+### Plot.selectMinX(*options*)
 
 …
 
-#### Plot.selectMaxX(*options*)
+### Plot.selectMinY(*options*)
 
 …
 
-#### Plot.selectMaxY(*options*)
+### Plot.selectMaxX(*options*)
 
 …
 
-#### Plot.stackX(*options*)
+### Plot.selectMaxY(*options*)
 
 …
 
-#### Plot.stackX1(*options*)
+### Plot.stackX(*options*)
 
 …
 
-#### Plot.stackX2(*options*)
+### Plot.stackX1(*options*)
 
 …
 
-#### Plot.stackY(*options*)
+### Plot.stackX2(*options*)
 
 …
 
-#### Plot.stackY1(*options*)
+### Plot.stackY(*options*)
 
 …
 
-#### Plot.stackY2(*options*)
+### Plot.stackY1(*options*)
 
 …
 
-#### Plot.windowX(*options*)
+### Plot.stackY2(*options*)
 
 …
 
-#### Plot.windowY(*options*)
+### Plot.windowX(*options*)
 
 …
 
-### Decorations
+### Plot.windowY(*options*)
+
+…
+
+## Decorations
 
 Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#plotframeoptions), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
 
-#### Plot.frame(*options*)
+### Plot.frame(*options*)
 
 …
 
-### Formats
+## Formats
 
 These helper functions are provided for use as a *scale*.tickFormat [axis option](#position-options), as the text option for [Plot.text](#plottextdata-options), or for general use. See also [d3-time-format](https://github.com/d3/d3-time-format) and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
-#### Plot.formatIsoDate(*date*)
+### Plot.formatIsoDate(*date*)
 
 …
 
-#### Plot.formatWeekday(*locale*, *format*)
+### Plot.formatWeekday(*locale*, *format*)
 
 …
 
-#### Plot.formatMonth(*locale*, *format*)
+### Plot.formatMonth(*locale*, *format*)
 
 …
