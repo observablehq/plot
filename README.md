@@ -493,6 +493,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Bar
 
+[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar)
+
 #### Plot.barX(*data*, *options*)
 
 …
@@ -502,6 +504,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Cell
+
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell)
 
 #### Plot.cell(*data*, *options*)
 
@@ -517,6 +521,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Dot
 
+[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot)
+
 #### Plot.dot(*data*, *options*)
 
 …
@@ -530,6 +536,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Line
+
+[Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line)
 
 #### Plot.line(*data*, *options*)
 
@@ -545,11 +553,15 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Link
 
+[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link)
+
 #### Plot.link(*data*, *options*)
 
 …
 
 ### Rect
+
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect)
 
 #### Plot.rect(*data*, *options*)
 
@@ -565,6 +577,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Rule
 
+[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule)
+
 #### Plot.ruleX(*data*, *options*)
 
 …
@@ -574,6 +588,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Text
+
+[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text)
 
 #### Plot.text(*data*, *options*)
 
@@ -589,6 +605,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Tick
 
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick)
+
 #### Plot.tickX(*data*, *options*)
 
 …
@@ -600,6 +618,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 ## Transforms
 
 ### Bin
+
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin)
 
 #### Plot.bin(*outputs*, *options*)
 
@@ -614,6 +634,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Group
+
+[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group)
 
 #### Plot.group(*outputs*, *options*)
 
@@ -633,6 +655,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Map
 
+[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map)
+
 #### Plot.map(*outputs*, *options*)
 
 …
@@ -647,6 +671,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Normalize
 
+[Source](./src/transforms/normalize.js) · [Examples](https://observablehq.com/@data-workflows/plot-normalize)
+
 #### Plot.normalizeX(*options*)
 
 …
@@ -656,6 +682,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Select
+
+[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select)
 
 #### Plot.selectFirst(*options*)
 
@@ -683,6 +711,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Stack
 
+[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
+
 #### Plot.stackX(*options*)
 
 …
@@ -708,6 +738,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Window
+
+[Source](./src/transforms/window.js) · [Examples](https://observablehq.com/@data-workflows/plot-window)
 
 #### Plot.windowX(*options*)
 
