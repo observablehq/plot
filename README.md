@@ -367,27 +367,24 @@ The following *facet* options are supported:
 
 ### Marks
 
-Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data.
+Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
 
-Mark constructors take two arguments: **data** and **options**. Together, the *data* and *options* describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically specified as abstract values such as time or temperature rather than visual values such as position or color; this is because most channels are bound to [scales](#scale-options).
+Mark constructors take two arguments: **data** and **options**. Together, the *data* and *options* describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically specified as abstract values such as time or temperature rather than visual values such as position or color because most channels are bound to [scales](#scale-options).
 
-A mark’s *data* is commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while *options* binds mark channels (such as *x* and *y*) to named columns in the data (such as *units* and *fruit*).
+A mark’s *data* is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while *options* binds mark channels (such as *x* and *y*) to named columns in the data (such as *units* and *fruit*).
 
+```js
+sales = [
+  {units: 10, fruit: "fig"},
+  {units: 20, fruit: "date"},
+  {units: 40, fruit: "plum"},
+  {units: 30, fruit: "plum"}
+]
+```
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(
-      [
-        {units: 10, fruit: "fig"},
-        {units: 20, fruit: "date"},
-        {units: 40, fruit: "plum"},
-        {units: 30, fruit: "plum"}
-      ],
-      {
-        x: "units",
-        y: "fruit"
-      }
-    )
+    Plot.dot(sales, {x: "units", y: "fruit"})
   ]
 })
 ```
@@ -397,38 +394,30 @@ Channels can also be specified as functions, affording greater flexibility if yo
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(
-      [
-        {units: 10, fruit: "fig"},
-        {units: 20, fruit: "date"},
-        {units: 40, fruit: "plum"},
-        {units: 30, fruit: "plum"}
-      ],
-      {
-        x: d => d.units,
-        y: d => d.fruit
-      }
-    )
+    Plot.dot(sales, {x: d => d.units, y: d => d.fruit})
   ]
 })
+
 ```
 
-Plot also supports columnar data; for example, data can be specified as an object `{length}` (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then arrays of values can be passed as individual *options*.
+Plot also supports columnar data; for example, data can be specified any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate flat arrays of values can be passed as *options*.
 
+```js
+index = [0, 1, 2, 3]
+```
+```js
+units = [10, 20, 40, 30]
+```
+```js
+fruits = ["fig", "date", "plum", "plum"]
+```
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(
-      {length: 4},
-      {
-        x: [10, 20, 40, 30],
-        y: ["fig", "date", "plum", "plum"]
-      }
-    )
+    Plot.dot(index, {x: units, y: fruits})
   ]
 })
 ```
-
 
 All marks support the following style options:
 
