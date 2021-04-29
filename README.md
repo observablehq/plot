@@ -323,6 +323,30 @@ The following color interpolators are supported:
 * *lab* - CIELAB (*a.k.a.* “Lab”)
 * *hcl* - CIELCh<sub>ab</sub> (*a.k.a.* “LCh” or “HCL”)
 
+For example, to use CIELCh<sub>ab</sub>:
+
+```js
+Plot.plot({
+  color: {
+    range: ["red", "blue"],
+    interpolate: "hcl"
+  },
+  marks: …
+})
+```
+
+Or to use gamma-corrected RGB:
+
+```js
+Plot.plot({
+  color: {
+    range: ["red", "blue"],
+    interpolate: d3.interpolateRgb.gamma(2.2)
+  },
+  marks: …
+})
+```
+
 #### Facet options
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
