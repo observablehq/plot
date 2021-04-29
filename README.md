@@ -203,14 +203,9 @@ The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 * *scale*.**inset** - inset the default range by the specified amount in pixels
 * *scale*.**round** - round the output value to the nearest integer (whole pixel)
 
-The *scale*.inset option is useful in ensure that marks are drawn entirely within the chart area. For example, in a scatterplot with a Plot.dot with the default radius of 3 pixels, an inset of 5 pixels will prevent the dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
+The *scale*.inset option can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special scale types for encoding ordinal data as position:
-
-* *point* - map a discrete domain to a continuous range
-* *band* - map a discrete domain to a continuous range
-
-If the associated mark has a zero width along the ordinal dimension, such as a dot, rule, or tick, then use a *point* scale; otherwise, say for a bar, use a *bar* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitiatve scales, but divide this continuous interval into discrete points or bands based on the number of values in (the cardinality of) the domain. If the associated mark has a zero width along the ordinal dimension, such as a dot, rule, or tick, then use a *point* scale; otherwise, say for a bar, use a *bar* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
 
 <img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
 
