@@ -238,18 +238,19 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 Plot supports special scale types for encoding data as color:
 
-* *sequential* - equivalent to *linear*; defaults to the *turbo* scheme
+* *linear* - defaults to the *turbo* scheme
+* *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
 * *ordinal* - defaults to the *turbo*
 * *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 
-For color scales…
+Color scales support two additional options:
 
-* *scale*.**scheme** - a named color scheme, *e.g.*  `"reds"`
-* *scale*.**interpolate** -
+* *scale*.**scheme** - a named color scheme in lieu of a range, such as *reds*
+* *scale*.**interpolate** - in conjunction with a range, how to interpolate colors
 
-The following sequential scale schemes are supported:
+The following sequential scale schemes are supported for both quantitative and ordinal data:
 
 * *blues* <sub><img src="./img/blues.png" width="120" height="16" alt="blues"></sub>
 * *greens* <sub><img src="./img/greens.png" width="120" height="16" alt="greens"></sub>
@@ -279,6 +280,8 @@ The following sequential scale schemes are supported:
 * *warm* <sub><img src="./img/warm.png" width="120" height="16" alt="warm"></sub>
 * *cool* <sub><img src="./img/cool.png" width="120" height="16" alt="cool"></sub>
 
+The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility; color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
+
 The following diverging scale schemes are supported:
 
 * *brbg* <sub><img src="./img/brbg.png" width="120" height="16" alt="brbg"></sub>
@@ -293,7 +296,7 @@ The following diverging scale schemes are supported:
 * *burd* <sub><img src="./img/burd.png" width="120" height="16" alt="burd"></sub>
 * *buylrd* <sub><img src="./img/buylrd.png" width="120" height="16" alt="buylrd"></sub>
 
-TODO For diverging color scales, you can specify *scale*.**pivot**…
+Diverging color scales accept a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
