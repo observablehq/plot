@@ -493,6 +493,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Bar
 
+<img src="./img/bar.png" width="320" height="198" alt="a bar chart">
+
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar)
 
 #### Plot.barX(*data*, *options*)
@@ -504,6 +506,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Cell
+
+<img src="./img/cell.png" width="320" height="320" alt="a heatmap">
 
 [Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell)
 
@@ -521,6 +525,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Dot
 
+<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">
+
 [Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot)
 
 #### Plot.dot(*data*, *options*)
@@ -536,6 +542,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Line
+
+<img src="./img/line.png" width="320" height="198" alt="a line chart">
 
 [Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line)
 
@@ -553,6 +561,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Link
 
+<img src="./img/link.png" width="320" height="198" alt="a chart with links">
+
 [Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link)
 
 #### Plot.link(*data*, *options*)
@@ -560,6 +570,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Rect
+
+<img src="./img/rect.png" width="320" height="198" alt="a histogram">
 
 [Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect)
 
@@ -577,6 +589,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 ### Rule
 
+<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">
+
 [Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule)
 
 #### Plot.ruleX(*data*, *options*)
@@ -588,6 +602,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Text
+
+<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">
 
 [Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text)
 
@@ -604,6 +620,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 …
 
 ### Tick
+
+<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">
 
 [Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick)
 
