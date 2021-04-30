@@ -493,7 +493,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *y* option spe
 
 #### Plot.areaY(*data*, *options*)
 
-Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero.This constructor is typically used for horizontal-oriented area charts (*e.g.*, when time goes right→).
+Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontal-oriented area charts (*e.g.*, when time goes right→).
 
 ### Bar
 
