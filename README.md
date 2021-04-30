@@ -505,7 +505,7 @@ For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY
 
 The following optional channels are also supported:
 
-* **z** - an ordinal value to control *z*-order (for overlapping bars)
+* **z** - an ordinal value to control *z*-order (when overlapping)
 * **fill** - a fill color; bound to the *color* scale
 * **fillOpacity** - a fill opacity; bound to the *opacity* scale
 * **stroke** - a stroke color; bound to the *color* scale
@@ -527,7 +527,7 @@ In addition to the [standard style options](#marks), the following additional op
 * **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
-Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets.
+Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [band scale padding](#position-options) defaults to 0.1 which also provides separation.
 
 #### Plot.barX(*data*, *options*)
 
@@ -540,7 +540,7 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 * **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
 
-If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero. This is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
+If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
 #### Plot.barY(*data*, *options*)
 
@@ -553,13 +553,41 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 * **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 
-If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero. This is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
+If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero; this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
 ### Cell
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
 [Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal.
+
+The following channels are optional:
+
+* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
+* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
+* **z** - an ordinal value to control *z*-order (when overlapping)
+* **fill** - a fill color; bound to the *color* scale
+* **fillOpacity** - a fill opacity; bound to the *opacity* scale
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
+
+The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
+
+TODO Describe the defaults for fill and stroke.
+
+TODO Describe how missing data is handled.
+
+In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
+
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+
+Insets are typically used to ensure a one-pixel gap between adjacent cells; note that the [band scale padding](#position-options) defaults to 0.1 which also provides separation.
 
 #### Plot.cell(*data*, *options*)
 
