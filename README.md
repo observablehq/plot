@@ -510,10 +510,10 @@ The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be 
 
 In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
 
-* **insetTop** - inset the top edge by the specified amount
-* **insetRight** - inset the right edge by the specified amount
-* **insetBottom** - inset the bottom edge by the specified amount
-* **insetLeft** - inset the left edge by the specified amount
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
 * **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
