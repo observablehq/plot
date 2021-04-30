@@ -574,11 +574,11 @@ Returns a new cell with the given *data* and *options*. If both the **x** and **
 
 #### Plot.cellX(*data*, *options*)
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Dot
 
@@ -612,11 +612,11 @@ Returns a new dot with the given *data* and *options. If both the **x** and **y*
 
 #### Plot.dotX(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.dotY(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
@@ -652,11 +652,11 @@ Returns a new line with the given *data* and *options*. If both the **x** and **
 
 #### Plot.lineX(*data*, *options*)
 
-Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 #### Plot.lineY(*data*, *options*)
 
-Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
 ### Link
 
