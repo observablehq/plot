@@ -445,7 +445,7 @@ The following optional channels are also supported:
 
 * **x2** - the horizontal position of the topline; bound to the *x* scale
 * **y2** - the vertical position of the topline; bound to the *y* scale
-* **z** - an ordinal value to group data into series
+* **z** - a categorical value to group data into series
 * **fill** - a fill color per series; bound to the *color* scale
 * **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
 * **stroke** - a stroke color per series; bound to the *color* scale
@@ -631,7 +631,7 @@ The following channels are required:
 
 The following optional channels are also supported:
 
-* **z** - an ordinal value to group data into series
+* **z** - a categorical value to group data into series
 * **fill** - a fill color per series; bound to the *color* scale
 * **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
 * **stroke** - a stroke color per series; bound to the *color* scale
