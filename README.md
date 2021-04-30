@@ -9,7 +9,7 @@
 
 ## Installing
 
-In Node.js, Plot is typically first installed via a package manager such as Yarn or npm.
+For use with Webpack, Rollup, or other Node-based bundlers, Plot is typically installed via a package manager such as Yarn or npm.
 
 ```bash
 yarn add @observablehq/plot
