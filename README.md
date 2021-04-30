@@ -607,19 +607,39 @@ If the **y** option is not specified, it defaults to the identity function assum
 
 [<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@data-workflows/plot-dot)
 
-[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot)
+[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
+
+The following channels are optional:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **z** - an ordinal value to control *z*-order (when overlapping)
+* **r** - the radius (area); bound to the *radius* scale
+* **fill** - a fill color; bound to the *color* scale
+* **fillOpacity** - a fill opacity; bound to the *opacity* scale
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
+
+If the **x** channel is not specified, the dot will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, the dot will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
+
+The **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, and **r** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interperted as a channel.
+
+TODO Describe the defaults for fill and stroke.
+
+TODO Describe how missing data is handled. Dots with a nonpositive radius are not drawn.
 
 #### Plot.dot(*data*, *options*)
 
-…
+If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
 
 #### Plot.dotX(*data*, *options*)
 
-…
+If the **x** option is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
 
 #### Plot.dotY(*data*, *options*)
 
-…
+If the **y** option is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
 
 ### Line
 
