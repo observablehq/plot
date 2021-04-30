@@ -434,7 +434,7 @@ All marks support the following style options:
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
 
-[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. While not required, typically the *x* and *y* scales are both quantitative.
+[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
 
 The following channels are required:
 
@@ -538,7 +538,7 @@ The following channels are required:
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
-* **y** - the vertical position; bound to the *y* scale, which must be band
+* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
 
 If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero. This is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
@@ -551,7 +551,7 @@ The following channels are required:
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
-* **x** - the horizontal position; bound to the *x* scale, which must be band
+* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 
 If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero. This is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
