@@ -1,4 +1,4 @@
-import {identity, maybeTuple} from "../mark.js";
+import {identity, indexOf, maybeTuple} from "../mark.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
@@ -25,10 +25,10 @@ export function cell(data, {x, y, ...options} = {}) {
   return new Cell(data, {...options, x, y});
 }
 
-export function cellX(data, {x = identity, ...options} = {}) {
-  return new Cell(data, {...options, x});
+export function cellX(data, {x = indexOf, fill = identity, ...options} = {}) {
+  return new Cell(data, {...options, x, fill});
 }
 
-export function cellY(data, {y = identity, ...options} = {}) {
-  return new Cell(data, {...options, y});
+export function cellY(data, {y = indexOf, fill = identity, ...options} = {}) {
+  return new Cell(data, {...options, y, fill});
 }
