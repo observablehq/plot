@@ -687,19 +687,43 @@ If a **y** option is specified, it is shorthand for the **y2** option with **y1*
 
 ### Bin
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin)
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · The bin transform groups quantitative data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
 
 #### Plot.bin(*outputs*, *options*)
 
 …
 
+```js
+Plot.plot({
+  marks: [
+    Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
+  ]
+})
+```
+
 #### Plot.binX(*outputs*, *options*)
 
 …
 
+```js
+Plot.plot({
+  marks: [
+    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+  ]
+})
+```
+
 #### Plot.binY(*outputs*, *options*)
 
 …
+
+```js
+Plot.plot({
+  marks: [
+    Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+  ]
+})
+```
 
 ### Group
 
