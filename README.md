@@ -462,7 +462,7 @@ In addition to the [standard style options](#marks), the area mark supports the 
 
 #### Plot.area(*data*, *options*)
 
-Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
+Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
 
 #### Plot.areaX(*data*, *options*)
 
@@ -508,7 +508,7 @@ Insets are typically used to ensure a one-pixel gap between adjacent bars; note 
 
 #### Plot.barX(*data*, *options*)
 
-The following channels are required:
+Returns a new horizontal bar with the given *data* and *options*. The following channels are required:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
@@ -521,7 +521,7 @@ If an **x** option is specified, it is shorthand for the **x2** option with **x1
 
 #### Plot.barY(*data*, *options*)
 
-The following channels are required:
+Returns a new vertical bar with the given *data* and *options*. The following channels are required:
 
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
@@ -570,15 +570,15 @@ Insets are typically used to ensure a one-pixel gap between adjacent cells; note
 
 #### Plot.cell(*data*, *options*)
 
-If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new cell with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.cellX(*data*, *options*)
 
-If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to Plot.cell, except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
 
-If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to Plot.cell, except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Dot
 
@@ -608,15 +608,15 @@ TODO Describe how missing or invalid data is handled. Dots with a nonpositive ra
 
 #### Plot.dot(*data*, *options*)
 
-If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new dot with the given *data* and *options. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
-If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to Plot.dot except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.dotY(*data*, *options*)
 
-If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to Plot.dot except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
@@ -648,25 +648,47 @@ In addition to the [standard style options](#marks), the line mark supports the 
 
 #### Plot.line(*data*, *options*)
 
-If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new line with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.lineX(*data*, *options*)
 
-If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to Plot.line except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 #### Plot.lineY(*data*, *options*)
 
-If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to Plot.line except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
 ### Link
 
 [<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@data-workflows/plot-link)
 
-[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link)
+[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link) · Draws line segments connecting pairs of points.
+
+The following channels are required:
+
+* **x1** - the starting horizontal position of the link; bound to the *x* scale
+* **y1** - the starting vertical position of the link; bound to the *y* scale
+* **x2** - the ending horizontal position of the link; bound to the *x* scale
+* **y2** - the ending vertical position of the link; bound to the *y* scale
+
+The following optional channels are also supported:
+
+* **z** - an ordinal value to control *z*-order (when overlapping)
+* **stroke** - a stroke color per series; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
+* **title** - a tooltip per series (a string of text, possibly with newlines)
+
+The **stroke** and **strokeOpacity** options can be specified as either channels or constants. When the stroke is specified as a function or array, it is interpreted as a channel; when the stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
+
+TODO Describe the defaults for stroke.
+
+TODO Describe how missing or invalid data is handled.
+
+The link mark supports the [standard style options](#marks).
 
 #### Plot.link(*data*, *options*)
 
-…
+Returns a new link with the given *data* and *options*.
 
 ### Rect
 
