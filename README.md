@@ -470,7 +470,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *y* option spe
 
 #### Plot.areaY(*data*, *options*)
 
-Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontal-oriented area charts (*e.g.*, when time goes right→).
+Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontally-oriented area charts (*e.g.*, when time goes right→).
 
 ### Bar
 
@@ -574,11 +574,11 @@ Returns a new cell with the given *data* and *options*. If both the **x** and **
 
 #### Plot.cellX(*data*, *options*)
 
-Equivalent to Plot.cell, except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
 
-Equivalent to Plot.cell, except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Dot
 
@@ -612,11 +612,11 @@ Returns a new dot with the given *data* and *options. If both the **x** and **y*
 
 #### Plot.dotX(*data*, *options*)
 
-Equivalent to Plot.dot except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.dotY(*data*, *options*)
 
-Equivalent to Plot.dot except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
@@ -652,11 +652,11 @@ Returns a new line with the given *data* and *options*. If both the **x** and **
 
 #### Plot.lineX(*data*, *options*)
 
-Equivalent to Plot.line except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 #### Plot.lineY(*data*, *options*)
 
-Equivalent to Plot.line except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
+Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
 ### Link
 
@@ -666,17 +666,17 @@ Equivalent to Plot.line except that if the **y** option is not specified, it def
 
 The following channels are required:
 
-* **x1** - the starting horizontal position of the link; bound to the *x* scale
-* **y1** - the starting vertical position of the link; bound to the *y* scale
-* **x2** - the ending horizontal position of the link; bound to the *x* scale
-* **y2** - the ending vertical position of the link; bound to the *y* scale
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
 
 The following optional channels are also supported:
 
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **stroke** - a stroke color per series; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
-* **title** - a tooltip per series (a string of text, possibly with newlines)
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
 
 The **stroke** and **strokeOpacity** options can be specified as either channels or constants. When the stroke is specified as a function or array, it is interpreted as a channel; when the stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
@@ -694,19 +694,52 @@ Returns a new link with the given *data* and *options*.
 
 [<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
 
-[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative.
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero.
+
+The following channels are required:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+The following optional channels are also supported:
+
+* **z** - an ordinal value to control *z*-order (when overlapping)
+* **fill** - a fill color; bound to the *color* scale
+* **fillOpacity** - a fill opacity; bound to the *opacity* scale
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
+
+The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
+
+TODO Describe the defaults for fill and stroke.
+
+TODO Describe how missing or invalid data is handled.
+
+In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
+
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+
+Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets.
 
 #### Plot.rect(*data*, *options*)
 
-…
+Returns a new rect with the given *data* and *options*.
 
 #### Plot.rectX(*data*, *options*)
 
-…
+Equivalent to [Plot.rect](#plotrectdata-options), except that if the *x* option is specified, it corresponds to the *x2* channel while the *x1* channel defaults to zero. This constructor is typically used for vertically-oriented histograms (*e.g.*, where bins extend right→).
 
 #### Plot.rectY(*data*, *options*)
 
-…
+Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontally-oriented histograms (*e.g.*, where bins extend up↑).
 
 ### Rule
 
