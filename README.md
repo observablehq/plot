@@ -236,7 +236,7 @@ Plot does not currently generate a legend for the *color*, *radius*, or *opacity
 
 ### Color options
 
-The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color and default to the *turbo* scheme. In addition, Plot supports special scale types for encoding data as color:
+The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
