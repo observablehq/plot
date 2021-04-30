@@ -417,6 +417,8 @@ Plot.plot({
 })
 ```
 
+TODO Describe how missing or invalid data is handled.
+
 All marks support the following style options:
 
 * **fill** - fill color
@@ -451,6 +453,15 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 
 Insets are specified in pixels, which corner radii are specified in either pixels or percentages (strings). Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
+TODO All marks support the following transforms:
+
+* **filter** -
+* **sort** -
+* **reverse** -
+* **transform** -
+
+The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the custom transform.
+
 ### Area
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
@@ -462,7 +473,7 @@ The following channels are required:
 * **x1** - the horizontal position of the baseline; bound to the *x* scale
 * **y1** - the vertical position of the baseline; bound to the *y* scale
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
+In addition to the [standard mark options](#marks), the following optional channels are supported:
 
 * **x2** - the horizontal position of the topline; bound to the *x* scale
 * **y2** - the vertical position of the topline; bound to the *y* scale
@@ -470,9 +481,9 @@ In addition to the [standard mark channels](#marks), the following optional chan
 
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
 
-TODO Describe how missing or invalid data is handled.
+TODO Describe how missing or invalid data is handled (broken areas).
 
-In addition to the [standard style options](#marks), the area mark supports the [standard curve options](#curves) to control interpolation between points.
+The area mark supports [curve options](#curves) to control interpolation between points.
 
 #### Plot.area(*data*, *options*)
 
@@ -494,15 +505,9 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options).
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
-
-* **z** - an ordinal value to control *z*-order (when overlapping)
+The bar mark supports the [standard mark options](#marks), including insets and rounded corners.
 
 TODO Describe the defaults for fill and stroke.
-
-TODO Describe how missing or invalid data is handled.
-
-Bars support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.barX(*data*, *options*)
 
@@ -536,19 +541,14 @@ If a **y** option is specified, it is shorthand for the **y2** option with **y1*
 
 [Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value.
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
+In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 * **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
-* **z** - an ordinal value to control *z*-order (when overlapping)
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#plotframeoptions) if you want a simple frame decoration around the plot.)
 
 TODO Describe the defaults for fill and stroke.
-
-TODO Describe how missing or invalid data is handled.
-
-Cells support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.cell(*data*, *options*)
 
@@ -568,12 +568,11 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 [Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
+In addition to the [standard mark options](#marks), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale
-* **z** - an ordinal value to control *z*-order (when overlapping)
 
 If the **x** channel is not specified, the dot will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, the dot will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
 
@@ -581,7 +580,7 @@ The **r** option can be specified as either a channel or constant. When the radi
 
 TODO Describe the defaults for fill and stroke.
 
-TODO Describe how missing or invalid data is handled. Dots with a nonpositive radius are not drawn.
+TODO Dots with a nonpositive radius are not drawn.
 
 #### Plot.dot(*data*, *options*)
 
@@ -606,15 +605,15 @@ The following channels are required:
 * **x** - the horizontal position of the line; bound to the *x* scale
 * **y** - the vertical position of the line; bound to the *y* scale
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
+In addition to the [standard mark options](#marks), the following optional channels are supported:
 
 * **z** - a categorical value to group data into series
 
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
 
-TODO Describe how missing or invalid data is handled.
+TODO Describe how missing or invalid data is handled (broken lines).
 
-In addition to the [standard style options](#marks), the line mark supports the [standard curve options](#curves) to control interpolation between points.
+The line mark supports [curve options](#curves) to control interpolation between points.
 
 #### Plot.line(*data*, *options*)
 
@@ -641,15 +640,9 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
-
-* **z** - an ordinal value to control *z*-order (when overlapping)
+The link mark supports the [standard mark options](#marks).
 
 TODO Describe the defaults for stroke. A link never has a fill (although that might change if we support curved links).
-
-TODO Describe how missing or invalid data is handled.
-
-The link mark supports the [standard style options](#marks).
 
 #### Plot.link(*data*, *options*)
 
@@ -668,15 +661,9 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-In addition to the [standard mark channels](#marks), the following optional channels are supported:
-
-* **z** - an ordinal value to control *z*-order (when overlapping)
+The rect mark supports the [standard mark options](#marks), including insets and rounded corners.
 
 TODO Describe the defaults for fill and stroke.
-
-TODO Describe how missing or invalid data is handled.
-
-Rects support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.rect(*data*, *options*)
 
