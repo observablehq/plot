@@ -434,7 +434,7 @@ All marks support the following style options:
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
 
-[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · The area mark draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
+[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
 
 The following channels are required:
 
@@ -454,34 +454,11 @@ The following optional channels are also supported:
 
 The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
-TODO Describe the defaults for fill, stroke, and z.
+TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
 
-TODO Describe how missing data is handled.
+TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), the following additional options are supported:
-
-* **curve** - how to connect data points in the baseline and topline
-* **tension** - to fine-tune the curve between points
-
-The following curve methods from [d3-shape](https://github.com/d3/d3-shape/blob/master/README.md#curves) are supported:
-
-* *basis* - a cubic basis spline (repeating the end points)
-* *basis-open* - a cubic basis spline
-* *bump-x* - a Bézier curve with horizontal tangents
-* *bump-y* - a Bézier curve with vertical tangents
-* *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
-* *cardinal-open* - a cubic cardinal spline
-* *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
-* *catmull-rom-open* - a cubic Catmull–Rom spline
-* *linear* - a piecewise linear curve (*i.e.*, straight line segments)
-* *monotone-x* - a cubic spline that preserves monotonicity in *x*
-* *monotone-y* - a cubic spline that preserves monotonicity in *y*
-* *natural* - a natural cubic spline
-* *step* - a piecewise constant function where *y* changes at the midpoint of *x*
-* *step-after* - a piecewise constant function where *y* changes after *x*
-* *step-before* - a piecewise constant function where *x* changes after *y*
-
-The tension option only has an effect on the *cardinal*, *cardinal-open*, *catmull-rom*, and *catmull-rom-open* curves.
+In addition to the [standard style options](#marks), the area mark supports [curve options](#curves) to control interpolation between points.
 
 #### Plot.area(*data*, *options*)
 
@@ -516,7 +493,7 @@ The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be 
 
 TODO Describe the defaults for fill and stroke.
 
-TODO Describe how missing data is handled.
+TODO Describe how missing or invalid data is handled.
 
 In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
 
@@ -578,7 +555,7 @@ The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be 
 
 TODO Describe the defaults for fill and stroke.
 
-TODO Describe how missing data is handled.
+TODO Describe how missing or invalid data is handled.
 
 In addition to the [standard style options](#marks), and like [bars](#bar), the following additional options are supported, expressed in pixels:
 
@@ -593,15 +570,15 @@ Insets are typically used to ensure a one-pixel gap between adjacent cells; note
 
 #### Plot.cell(*data*, *options*)
 
-If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
+If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.cellX(*data*, *options*)
 
-If the **x** option is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
+If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
 
-If the **y** option is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
+If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Dot
 
@@ -613,8 +590,8 @@ The following channels are optional:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **z** - an ordinal value to control *z*-order (when overlapping)
 * **r** - the radius (area); bound to the *radius* scale
+* **z** - an ordinal value to control *z*-order (when overlapping)
 * **fill** - a fill color; bound to the *color* scale
 * **fillOpacity** - a fill opacity; bound to the *opacity* scale
 * **stroke** - a stroke color; bound to the *color* scale
@@ -627,25 +604,47 @@ The **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, and **r** options 
 
 TODO Describe the defaults for fill and stroke.
 
-TODO Describe how missing data is handled. Dots with a nonpositive radius are not drawn.
+TODO Describe how missing or invalid data is handled. Dots with a nonpositive radius are not drawn.
 
 #### Plot.dot(*data*, *options*)
 
-If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
+If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
-If the **x** option is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
+If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.dotY(*data*, *options*)
 
-If the **y** option is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
+If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
 [<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@data-workflows/plot-line)
 
-[Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line)
+[Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line) · Draws two-dimensional lines as in a line chart.
+
+The following channels are required:
+
+* **x** - the horizontal position of the line; bound to the *x* scale
+* **y** - the vertical position of the line; bound to the *y* scale
+
+The following optional channels are also supported:
+
+* **z** - an ordinal value to group data into series
+* **fill** - a fill color per series; bound to the *color* scale
+* **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
+* **stroke** - a stroke color per series; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
+* **title** - a tooltip per series (a string of text, possibly with newlines)
+
+The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
+
+TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
+
+TODO Describe how missing or invalid data is handled.
+
+In addition to the [standard style options](#marks), the line mark supports [curve options](#curves) to control interpolation between points.
 
 #### Plot.line(*data*, *options*)
 
@@ -870,6 +869,39 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 #### Plot.stackY2(*options*)
 
 …
+
+## Curves
+
+A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](#line) and [area](#area) mark and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/master/README.md#curves).
+
+The supported curve options are:
+
+* **curve** - how to connect data points in the line
+* **tension** - how to fine-tune the curve between points
+
+The following curve methods from are supported:
+
+* *basis* - a cubic basis spline (repeating the end points)
+* *basis-open* - an open cubic basis spline
+* *basis-closed* - a closed cubic basis spline
+* *bump-x* - a Bézier curve with horizontal tangents
+* *bump-y* - a Bézier curve with vertical tangents
+* *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
+* *cardinal-open* - an open cubic cardinal spline
+* *cardinal-closed* - an closed cubic cardinal spline
+* *catmull-rom* - a cubic Catmull–Rom spline (with one-sided differences at the ends)
+* *catmull-rom-open* - an open cubic Catmull–Rom spline
+* *catmull-rom-closed* - a closed cubic Catmull–Rom spline
+* *linear* - a piecewise linear curve (*i.e.*, straight line segments)
+* *linear-closed* - a closed piecewise linear curve (*i.e.*, straight line segments)
+* *monotone-x* - a cubic spline that preserves monotonicity in *x*
+* *monotone-y* - a cubic spline that preserves monotonicity in *y*
+* *natural* - a natural cubic spline
+* *step* - a piecewise constant function where *y* changes at the midpoint of *x*
+* *step-after* - a piecewise constant function where *y* changes after *x*
+* *step-before* - a piecewise constant function where *x* changes after *y*
+
+The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to the tension parameter; for Catmull–Rom splines, the alpha parameter.
 
 ## Decorations
 
