@@ -349,8 +349,8 @@ Plot.plot({
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
 
-* **fx** - facet (horizontal) *x*-position
-* **fy** - facet (vertical) *y*-position
+* **fx** - horizontal position
+* **fy** - vertical position
 
 The following *facet* options are supported:
 
@@ -534,7 +534,7 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 * **y** - the vertical position; bound to the *y* scale, which must be band
 
-If the **y** channel is not specified, then the bar will span the full vertical extent of the plot (or facet).
+If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
 #### Plot.barY(*data*, *options*)
 
@@ -549,7 +549,7 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 * **x** - the horizontal position; bound to the *x* scale, which must be band
 
-If the **x** channel is not specified, then the bar will span the full horizontal extent of the plot (or facet).
+If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
 ### Cell
 
@@ -733,15 +733,19 @@ If the **x** channel is not specified, then the bar will span the full horizonta
 
 …
 
-### Normalize
-
-[Source](./src/transforms/normalize.js) · [Examples](https://observablehq.com/@data-workflows/plot-normalize)
-
 #### Plot.normalizeX(*options*)
 
 …
 
 #### Plot.normalizeY(*options*)
+
+…
+
+#### Plot.windowX(*options*)
+
+…
+
+#### Plot.windowY(*options*)
 
 …
 
@@ -798,18 +802,6 @@ If the **x** channel is not specified, then the bar will span the full horizonta
 …
 
 #### Plot.stackY2(*options*)
-
-…
-
-### Window
-
-[Source](./src/transforms/window.js) · [Examples](https://observablehq.com/@data-workflows/plot-window)
-
-#### Plot.windowX(*options*)
-
-…
-
-#### Plot.windowY(*options*)
 
 …
 
