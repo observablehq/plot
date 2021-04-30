@@ -430,6 +430,16 @@ All marks support the following style options:
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 
+Where it makes sense, all marks support the following optional channels:
+
+* **fill** - a fill color; bound to the *color* scale
+* **fillOpacity** - a fill opacity; bound to the *opacity* scale
+* **stroke** - a stroke color; bound to the *color* scale
+* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **title** - a tooltip (a string of text, possibly with newlines)
+
+The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+
 ### Area
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
@@ -441,18 +451,11 @@ The following channels are required:
 * **x1** - the horizontal position of the baseline; bound to the *x* scale
 * **y1** - the vertical position of the baseline; bound to the *y* scale
 
-The following optional channels are also supported:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **x2** - the horizontal position of the topline; bound to the *x* scale
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
-* **fill** - a fill color per series; bound to the *color* scale
-* **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
-* **stroke** - a stroke color per series; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
-* **title** - a tooltip per series (a string of text, possibly with newlines)
-
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
 
@@ -480,16 +483,9 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options).
 
-The following optional channels are also supported:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **fill** - a fill color; bound to the *color* scale
-* **fillOpacity** - a fill opacity; bound to the *opacity* scale
-* **stroke** - a stroke color; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
-
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill and stroke.
 
@@ -538,20 +534,13 @@ If a **y** option is specified, it is shorthand for the **y2** option with **y1*
 
 [Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value.
 
-The following channels are optional:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 * **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **fill** - a fill color; bound to the *color* scale
-* **fillOpacity** - a fill opacity; bound to the *opacity* scale
-* **stroke** - a stroke color; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#plotframeoptions) if you want a simple frame decoration around the plot.)
-
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill and stroke.
 
@@ -586,21 +575,16 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 [Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
 
-The following channels are optional:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **fill** - a fill color; bound to the *color* scale
-* **fillOpacity** - a fill opacity; bound to the *opacity* scale
-* **stroke** - a stroke color; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
 
 If the **x** channel is not specified, the dot will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, the dot will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
 
-The **fill**, **fillOpacity**, **stroke**, **strokeOpacity**, and **r** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interperted as a channel.
+The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 TODO Describe the defaults for fill and stroke.
 
@@ -629,16 +613,9 @@ The following channels are required:
 * **x** - the horizontal position of the line; bound to the *x* scale
 * **y** - the vertical position of the line; bound to the *y* scale
 
-The following optional channels are also supported:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **z** - a categorical value to group data into series
-* **fill** - a fill color per series; bound to the *color* scale
-* **fillOpacity** - a fill opacity per series; bound to the *opacity* scale
-* **stroke** - a stroke color per series; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity per series; bound to the *opacity* scale
-* **title** - a tooltip per series (a string of text, possibly with newlines)
-
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
 
@@ -671,16 +648,11 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The following optional channels are also supported:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **stroke** - a stroke color; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
 
-The **stroke** and **strokeOpacity** options can be specified as either channels or constants. When the stroke is specified as a function or array, it is interpreted as a channel; when the stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
-
-TODO Describe the defaults for stroke.
+TODO Describe the defaults for stroke. A link never has a fill (although that might change if we support curved links).
 
 TODO Describe how missing or invalid data is handled.
 
@@ -703,16 +675,9 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The following optional channels are also supported:
+In addition to the [standard mark channels](#marks), the following optional channels are supported:
 
 * **z** - an ordinal value to control *z*-order (when overlapping)
-* **fill** - a fill color; bound to the *color* scale
-* **fillOpacity** - a fill opacity; bound to the *opacity* scale
-* **stroke** - a stroke color; bound to the *color* scale
-* **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
-* **title** - a tooltip (a string of text, possibly with newlines)
-
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill and stroke.
 
