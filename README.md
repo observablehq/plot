@@ -57,7 +57,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 ### Mark options
 
-The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [Plot.barY](#plotbarydata-options) or [Plot.dot](#plotdotdata-options)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
@@ -491,13 +491,25 @@ The area mark supports [curve options](#curves) to control interpolation between
 
 #### Plot.area(*data*, *options*)
 
+```js
+Plot.area(AAPL, {x1: "Date", y1: () => 0, y2: "Close"})
+```
+
 Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
 
 #### Plot.areaX(*data*, *options*)
 
+```js
+Plot.areaX(AAPL, {y: "Date", x: "Close"})
+```
+
 Equivalent to [Plot.area](#plotareadata-options), except that the *y* option specifies the *y1* channel, and if the *x* option is specified, it corresponds to the *x2* channel while the *x1* channel defaults to zero. This constructor is typically used for vertically-oriented area charts (*e.g.*, when time goes up↑).
 
 #### Plot.areaY(*data*, *options*)
+
+```js
+Plot.areaY(AAPL, {x: "Date", y: "Close"})
+```
 
 Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontally-oriented area charts (*e.g.*, when time goes right→).
 
@@ -515,6 +527,10 @@ TODO Describe the defaults for fill and stroke.
 
 #### Plot.barX(*data*, *options*)
 
+```js
+Plot.barX(alphabet, {y: "letter", x: "frequency"})
+```
+
 Returns a new horizontal bar with the given *data* and *options*. The following channels are required:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
@@ -527,6 +543,10 @@ In addition to the [standard bar channels](#bar), the following optional channel
 If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
 #### Plot.barY(*data*, *options*)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency"})
+```
 
 Returns a new vertical bar with the given *data* and *options*. The following channels are required:
 
@@ -556,13 +576,25 @@ TODO Describe the defaults for fill and stroke.
 
 #### Plot.cell(*data*, *options*)
 
+```js
+Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
+```
+
 Returns a new cell with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.cellX(*data*, *options*)
 
+```js
+Plot.cellX("ABCDEFGH", {fill: d => d})
+```
+
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
+
+```js
+Plot.cellY("ABCDEFGH", {fill: d => d})
+```
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
@@ -588,13 +620,25 @@ TODO Dots with a nonpositive radius are not drawn.
 
 #### Plot.dot(*data*, *options*)
 
+```js
+Plot.dot(sales, {x: "units", y: "fruit"})
+```
+
 Returns a new dot with the given *data* and *options. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
+```js
+Plot.dotX("ABCDEFGH", {stroke: d => d})
+```
+
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.dotY(*data*, *options*)
+
+```js
+Plot.dotY("ABCDEFGH", {stroke: d => d})
+```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
@@ -623,13 +667,25 @@ The line mark supports [curve options](#curves) to control interpolation between
 
 #### Plot.line(*data*, *options*)
 
+```js
+Plot.line(AAPL, {x: "Date", y: "Close"})
+```
+
 Returns a new line with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.lineX(*data*, *options*)
 
+```js
+Plot.lineX(Array.from({length: 100}, Math.random))
+```
+
 Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 #### Plot.lineY(*data*, *options*)
+
+```js
+Plot.lineY(Array.from({length: 100}, Math.random))
+```
 
 Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
@@ -652,6 +708,10 @@ TODO Describe the defaults for stroke. A link never has a fill (although that mi
 
 #### Plot.link(*data*, *options*)
 
+```js
+Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
+```
+
 Returns a new link with the given *data* and *options*.
 
 ### Rect
@@ -671,15 +731,29 @@ The rect mark supports the [standard mark options](#marks), including insets and
 
 TODO Describe the defaults for fill and stroke.
 
+TODO Mention that rect is often used in conjunction with the [bin transform](#bin).
+
 #### Plot.rect(*data*, *options*)
+
+```js
+Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+```
 
 Returns a new rect with the given *data* and *options*.
 
 #### Plot.rectX(*data*, *options*)
 
+```js
+Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+```
+
 Equivalent to [Plot.rect](#plotrectdata-options), except that if the *x* option is specified, it corresponds to the *x2* channel while the *x1* channel defaults to zero. This constructor is typically used for vertically-oriented histograms (*e.g.*, where bins extend right→).
 
 #### Plot.rectY(*data*, *options*)
+
+```js
+Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+```
 
 Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontally-oriented histograms (*e.g.*, where bins extend up↑).
 
