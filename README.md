@@ -694,11 +694,7 @@ If a **y** option is specified, it is shorthand for the **y2** option with **y1*
 …
 
 ```js
-Plot.plot({
-  marks: [
-    Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
-  ]
-})
+Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
 #### Plot.binX(*outputs*, *options*)
@@ -706,11 +702,7 @@ Plot.plot({
 …
 
 ```js
-Plot.plot({
-  marks: [
-    Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
-  ]
-})
+Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 #### Plot.binY(*outputs*, *options*)
@@ -718,11 +710,7 @@ Plot.plot({
 …
 
 ```js
-Plot.plot({
-  marks: [
-    Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
-  ]
-})
+Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
 ### Group
