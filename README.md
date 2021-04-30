@@ -441,7 +441,7 @@ The following channels are required:
 * **x1** - the horizontal position of the baseline; bound to the *x* scale
 * **y1** - the vertical position of the baseline; bound to the *y* scale
 
-The following optional channels are also supported:
+The following optional channels are supported:
 
 * **x2** - the horizontal position of the topline; bound to the *x* scale
 * **y2** - the vertical position of the topline; bound to the *y* scale
@@ -497,7 +497,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)).
 
-The following optional channels are also supported:
+The following optional channels are supported:
 
 * **z** - an ordinal value to control *z*-order (for overlapping bars)
 * **fill** - a fill color; bound to the *color* scale
