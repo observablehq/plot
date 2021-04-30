@@ -593,15 +593,15 @@ Insets are typically used to ensure a one-pixel gap between adjacent cells; note
 
 #### Plot.cell(*data*, *options*)
 
-If both **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
+If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
 
 #### Plot.cellX(*data*, *options*)
 
-If **x** is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
+If the **x** option is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
 
 #### Plot.cellY(*data*, *options*)
 
-If **y** is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
+If the **y** option is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
 
 ### Dot
 
