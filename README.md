@@ -497,6 +497,8 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)).
 
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options).
+
 The following optional channels are supported:
 
 * **z** - an ordinal value to control *z*-order (for overlapping bars)
