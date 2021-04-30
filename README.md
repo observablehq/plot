@@ -876,7 +876,7 @@ A curve defines how to turn a discrete representation of a line as a sequence of
 
 The supported curve options are:
 
-* **curve** - the curve method (either a name or a function)
+* **curve** - the curve method (either a string name or a function)
 * **tension** - the curve tension (for fine-tuning)
 
 The following named curve methods are supported:
@@ -903,7 +903,7 @@ The following named curve methods are supported:
 
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/master/README.md#custom-curves).
 
-The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to the tension parameter; for Catmull–Rom splines, the alpha parameter.
+The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/master/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/master/README.md#curveCatmullRom_alpha).
 
 ## Decorations
 
