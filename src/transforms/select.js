@@ -9,20 +9,20 @@ export function selectLast(options) {
   return select(last, undefined, options);
 }
 
-export function selectMinX({x, ...options} = {}) {
-  return {x, ...select(min, x, options)};
+export function selectMinX(options = {}) {
+  return select(min, options.x, options);
 }
 
-export function selectMinY({y, ...options} = {}) {
-  return {y, ...select(min, y, options)};
+export function selectMinY(options = {}) {
+  return select(min, options.y, options);
 }
 
-export function selectMaxX({x, ...options} = {}) {
-  return {x, ...select(max, x, options)};
+export function selectMaxX(options = {}) {
+  return select(max, options.x, options);
 }
 
-export function selectMaxY({y, ...options} = {}) {
-  return {y, ...select(max, y, options)};
+export function selectMaxY(options = {}) {
+  return select(max, options.y, options);
 }
 
 // TODO If the value (for some required channel) is undefined, scan forward?
