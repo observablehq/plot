@@ -458,7 +458,7 @@ TODO Describe the defaults for fill, stroke, and z. Describe how varying color a
 
 TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), the area mark supports [curve options](#curves) to control interpolation between points.
+In addition to the [standard style options](#marks), the area mark supports the [standard curve options](#curves) to control interpolation between points.
 
 #### Plot.area(*data*, *options*)
 
@@ -644,7 +644,7 @@ TODO Describe the defaults for fill, stroke, and z. Describe how varying color a
 
 TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), the line mark supports [curve options](#curves) to control interpolation between points.
+In addition to the [standard style options](#marks), the line mark supports the [standard curve options](#curves) to control interpolation between points.
 
 #### Plot.line(*data*, *options*)
 
@@ -876,10 +876,10 @@ A curve defines how to turn a discrete representation of a line as a sequence of
 
 The supported curve options are:
 
-* **curve** - how to connect data points in the line
-* **tension** - how to fine-tune the curve between points
+* **curve** - the curve method (either a name or a function)
+* **tension** - the curve tension (for fine-tuning)
 
-The following curve methods from are supported:
+The following named curve methods are supported:
 
 * *basis* - a cubic basis spline (repeating the end points)
 * *basis-open* - an open cubic basis spline
@@ -900,6 +900,8 @@ The following curve methods from are supported:
 * *step* - a piecewise constant function where *y* changes at the midpoint of *x*
 * *step-after* - a piecewise constant function where *y* changes after *x*
 * *step-before* - a piecewise constant function where *x* changes after *y*
+
+If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/master/README.md#custom-curves).
 
 The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to the tension parameter; for Catmull–Rom splines, the alpha parameter.
 
