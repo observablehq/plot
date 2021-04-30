@@ -233,8 +233,7 @@ export function maybeTransform({
     if (s1 != null) t1 = compose(t1, sort(s1));
     if (r1) t1 = compose(t1, reverse);
   }
-  const transform = compose(t1, t2);
-  return transform === undefined ? options : {...options, transform};
+  return {...options, transform: compose(t1, t2)};
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
