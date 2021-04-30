@@ -24,13 +24,6 @@ tape("text() has the expected defaults", test => {
   test.strictEqual(text.rotate, 0);
 });
 
-tape("text(data, {z}) specifies an optional z channel", test => {
-  const text = Plot.text(undefined, {z: "x"});
-  const z = text.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("text(data, {title}) specifies an optional title channel", test => {
   const text = Plot.text(undefined, {title: "x"});
   const title = text.channels.find(c => c.name === "title");

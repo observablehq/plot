@@ -30,6 +30,7 @@ export default async function() {
         data.filter(d => d.type === "police"),
         Plot.stackY({
           ...stack,
+          sort: "race",
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "end",
           dx: -6
@@ -39,6 +40,7 @@ export default async function() {
         data.filter(d => d.type === "population"),
         Plot.stackY({
           ...stack,
+          sort: "race",
           text: d => `${d.race} ${d.value}%`,
           textAnchor: "start",
           dx: +6

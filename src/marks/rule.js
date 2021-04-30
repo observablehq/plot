@@ -1,4 +1,3 @@
-import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor, zero, title, number} from "../mark.js";
@@ -11,7 +10,6 @@ export class RuleX extends Mark {
       x,
       y1,
       y2,
-      z,
       title,
       stroke,
       inset = 0,
@@ -27,7 +25,6 @@ export class RuleX extends Mark {
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y1", value: y1, scale: "y", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true},
-        {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
@@ -40,11 +37,10 @@ export class RuleX extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y1: Y1, y2: Y2, z: Z, title: L, stroke: S},
+    {x: X, y1: Y1, y2: Y2, title: L, stroke: S},
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
     const index = filter(I, X, Y1, Y2, S);
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, X && x, null, 0.5, 0)
@@ -69,7 +65,6 @@ export class RuleY extends Mark {
       x1,
       x2,
       y,
-      z,
       title,
       stroke,
       inset = 0,
@@ -85,7 +80,6 @@ export class RuleY extends Mark {
         {name: "y", value: y, scale: "y", optional: true},
         {name: "x1", value: x1, scale: "x", optional: true},
         {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
@@ -98,11 +92,10 @@ export class RuleY extends Mark {
   render(
     I,
     {x, y},
-    {y: Y, x1: X1, x2: X2, z: Z, title: L, stroke: S},
+    {y: Y, x1: X1, x2: X2, title: L, stroke: S},
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
     const index = filter(I, Y, X1, X2);
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, null, Y && y, 0, 0.5)

@@ -69,12 +69,7 @@ function binn(
     z: GZ,
     fill: GF,
     stroke: GS,
-    ...options,
-    ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
-    ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
-    ...GK && {[gk]: GK},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
-    transform: maybeTransform(options, (data, facets) => {
+    ...maybeTransform(options, (data, facets) => {
       const K = valueof(data, k);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
@@ -121,7 +116,11 @@ function binn(
         groupFacets.push(groupFacet);
       }
       return {data: groupData, facets: groupFacets};
-    })
+    }),
+    ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
+    ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
+    ...GK && {[gk]: GK},
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 
