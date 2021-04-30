@@ -648,15 +648,15 @@ In addition to the [standard style options](#marks), the line mark supports the 
 
 #### Plot.line(*data*, *options*)
 
-…
+If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.lineX(*data*, *options*)
 
-…
+If the **x** option is not specified, it defaults to the identity function assuming that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
 #### Plot.lineY(*data*, *options*)
 
-…
+If the **y** option is not specified, it defaults to the identity function assuming that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
 ### Link
 
