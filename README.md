@@ -508,7 +508,7 @@ The following optional channels are supported:
 
 The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
-In addition to the [standard style options](#marks), the following additional options are supported, all expressed in pixels:
+In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
 
 * **insetTop** - inset the top edge by the specified amount
 * **insetRight** - inset the right edge by the specified amount
