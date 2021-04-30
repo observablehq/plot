@@ -476,7 +476,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@data-workflows/plot-bar)
 
-[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values, such as a minimum and a maximum. The minimum is often not specified explicitly because it defaults to zero as in a conventional bar chart.
+[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
 For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options).
 
