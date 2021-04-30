@@ -15,7 +15,7 @@ export default async function() {
       label: "↑ Frequency"
     },
     marks: [
-      Plot.dotY(data, Plot.stackY2({x: d => 2021 - d.birth, fill: "currentColor", title: "full_name"})),
+      Plot.dot(data, Plot.stackY2({x: d => 2021 - d.birth, fill: "currentColor", title: "full_name"})),
       Plot.ruleY([0])
     ]
   });
