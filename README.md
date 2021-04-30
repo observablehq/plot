@@ -440,6 +440,17 @@ Where it makes sense, all marks support the following optional channels:
 
 The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
+The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
+
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
+* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+
+Insets are specified in pixels, which corner radii are specified in either pixels or percentages (strings). Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
+
 ### Area
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
@@ -491,16 +502,7 @@ TODO Describe the defaults for fill and stroke.
 
 TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
-
-* **insetTop** - inset the top edge
-* **insetRight** - inset the right edge
-* **insetBottom** - inset the bottom edge
-* **insetLeft** - inset the left edge
-* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
-
-Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [band scale padding](#position-options) defaults to 0.1 which also provides separation.
+Bars support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.barX(*data*, *options*)
 
@@ -546,16 +548,7 @@ TODO Describe the defaults for fill and stroke.
 
 TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), and like [bars](#bar), the following additional options are supported, expressed in pixels:
-
-* **insetTop** - inset the top edge
-* **insetRight** - inset the right edge
-* **insetBottom** - inset the bottom edge
-* **insetLeft** - inset the left edge
-* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
-
-Insets are typically used to ensure a one-pixel gap between adjacent cells; note that the [band scale padding](#position-options) defaults to 0.1 which also provides separation.
+Cells support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.cell(*data*, *options*)
 
@@ -683,16 +676,7 @@ TODO Describe the defaults for fill and stroke.
 
 TODO Describe how missing or invalid data is handled.
 
-In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
-
-* **insetTop** - inset the top edge
-* **insetRight** - inset the right edge
-* **insetBottom** - inset the bottom edge
-* **insetLeft** - inset the left edge
-* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
-
-Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets.
+Rects support the [standard style options](#marks), including insets and rounded corners.
 
 #### Plot.rect(*data*, *options*)
 
