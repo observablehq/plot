@@ -526,13 +526,13 @@ The following channels are required:
 * **x1** - the starting horizontal position
 * **x2** - the ending horizontal position
 
-If an *x* option is specified, it is shorthand for the *x2* option with *x1* equal to zero. This is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0.
+If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero. This is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0.
 
 In addition optional to the also [standard bar channels](#bar), the following channels are supported:
 
 * **y** - the vertical position (band scale)
 
-If the *y* channel is not specified, then the bar will span the full vertical extent of the plot (or facet).
+If the **y** channel is not specified, then the bar will span the full vertical extent of the plot (or facet).
 
 #### Plot.barY(*data*, *options*)
 
@@ -541,13 +541,13 @@ The following channels are required:
 * **y1** - the starting vertical position
 * **y2** - the ending vertical position
 
-If a *y* option is specified, it is shorthand for the *y2* option with *y1* equal to zero. This is the typical configuration for a vertical bar chart with bars aligned at *y* = 0.
+If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero. This is the typical configuration for a vertical bar chart with bars aligned at *y* = 0.
 
 In addition optional to the also [standard bar channels](#bar), the following channels are supported:
 
 * **x** - the horizontal position (band scale)
 
-If the *x* channel is not specified, then the bar will span the full horizontal extent of the plot (or facet).
+If the **x** channel is not specified, then the bar will span the full horizontal extent of the plot (or facet).
 
 ### Cell
 
