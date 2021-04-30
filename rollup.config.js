@@ -14,6 +14,12 @@ const d3 = require("d3/package.json");
 if (typeof d3.jsdelivr === "undefined") throw new Error("unable to resolve d3");
 const d3Path = `d3@${d3.version}/${d3.jsdelivr}`;
 
+// Extract copyrights from the LICENSE.
+const copyrights = fs.readFileSync("./LICENSE", "utf-8")
+  .split(/\n/g)
+  .filter(line => /^copyright\s+/i.test(line))
+  .map(line => line.replace(/^copyright\s+/i, ""));
+
 // A lil’ Rollup plugin to allow importing of style.css.
 const cssPath = path.resolve("./src/style.css");
 const css = {
@@ -39,7 +45,7 @@ const config = {
   external: ["d3"],
   output: {
     indent: false,
-    banner: `// ${meta.name} v${meta.version} Copyright ${(new Date).getFullYear()} ${meta.author.name}`
+    banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
   },
   plugins: [
     css,
