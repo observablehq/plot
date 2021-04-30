@@ -559,7 +559,7 @@ If a **y** option is specified, it is shorthand for the **y2** option with **y1*
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal.
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value.
 
 The following channels are optional:
 
@@ -572,13 +572,15 @@ The following channels are optional:
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 
+If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#plotframeoptions) if you want a simple frame decoration around the plot.)
+
 The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
 TODO Describe the defaults for fill and stroke.
 
 TODO Describe how missing data is handled.
 
-In addition to the [standard style options](#marks), the following additional options are supported, expressed in pixels:
+In addition to the [standard style options](#marks), and like [bars](#bar), the following additional options are supported, expressed in pixels:
 
 * **insetTop** - inset the top edge
 * **insetRight** - inset the right edge
@@ -591,15 +593,15 @@ Insets are typically used to ensure a one-pixel gap between adjacent cells; note
 
 #### Plot.cell(*data*, *options*)
 
-…
+If both **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[x₀, y₀], [x₁, y₁], [x₂, y₂], …] such that **x** = [x₀, x₁, x₂, …] and **y** = [y₀, y₁, y₂, …].
 
 #### Plot.cellX(*data*, *options*)
 
-…
+If **x** is not specified, it defaults to the identity function assuming that *data* = [x₀, x₁, x₂, …].
 
 #### Plot.cellY(*data*, *options*)
 
-…
+If **y** is not specified, it defaults to the identity function assuming that *data* = [y₀, y₁, y₂, …].
 
 ### Dot
 
