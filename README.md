@@ -454,6 +454,8 @@ The following optional channels are also supported:
 
 The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel.
 
+TODO Describe the defaults for fill, stroke, and z.
+
 In addition to the [standard style options](#marks), the following additional options are supported:
 
 * **curve** - how to connect data points in the baseline and topline
