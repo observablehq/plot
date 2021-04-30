@@ -528,7 +528,7 @@ The following channels are required:
 
 If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero. This is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0.
 
-In addition optional to the also [standard bar channels](#bar), the following channels are supported:
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **y** - the vertical position; bound to the *y* scale, which must be band
 
@@ -543,7 +543,7 @@ The following channels are required:
 
 If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero. This is the typical configuration for a vertical bar chart with bars aligned at *y* = 0.
 
-In addition optional to the also [standard bar channels](#bar), the following channels are supported:
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be band
 
