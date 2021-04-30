@@ -432,7 +432,7 @@ All marks support the following style options:
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 
-Where it makes sense, all marks support the following optional channels:
+All marks support the following optional channels:
 
 * **fill** - a fill color; bound to the *color* scale
 * **fillOpacity** - a fill opacity; bound to the *opacity* scale
@@ -451,9 +451,9 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
-Insets are specified in pixels, which corner radii are specified in either pixels or percentages (strings). Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
+Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
-TODO All marks support the following transforms:
+TODO All marks support the following [transforms](#transforms):
 
 * **filter** -
 * **sort** -
@@ -479,7 +479,11 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
 
+If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. If **z** is not specified, the data is assumed to represent a single series.
+
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
+
+TODO Describe the importance of data order and the **sort** transform.
 
 TODO Describe how missing or invalid data is handled (broken areas).
 
@@ -610,6 +614,8 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **z** - a categorical value to group data into series
 
 TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
+
+TODO Describe the importance of data order and the **sort** transform.
 
 TODO Describe how missing or invalid data is handled (broken lines).
 
