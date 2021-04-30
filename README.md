@@ -9,12 +9,6 @@
 
 ## Installing
 
-Plot can be imported into an Observable notebook like so:
-
-```js
-import {Plot} from "@observablehq/plot"
-```
-
 In Node.js, Plot is typically first installed via a package manager such as Yarn or npm.
 
 ```bash
@@ -27,7 +21,13 @@ Plot can then be imported as a namespace:
 import * as Plot from "@observablehq/plot";
 ```
 
-In modern browsers, Plot can be imported as an ES module, say from Skypack:
+In an Observable notebook, Plot (and optionally D3) can be imported like so:
+
+```js
+import {Plot, d3} from "@observablehq/plot"
+```
+
+In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
 
 ```html
 <script type="module">
@@ -333,7 +333,7 @@ Plot.plot({
 })
 ```
 
-Or to use gamma-corrected RGB:
+Or to use gamma-corrected RGB (via [d3-interpolate](https://github.com/d3/d3-interpolate)):
 
 ```js
 Plot.plot({
