@@ -1,4 +1,3 @@
-import {ascending} from "d3";
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
@@ -10,7 +9,6 @@ export class Text extends Mark {
     {
       x,
       y,
-      z,
       text = indexOf,
       title,
       fill,
@@ -36,7 +34,6 @@ export class Text extends Mark {
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "z", value: z, optional: true},
         {name: "fontSize", value: numberChannel(vfontSize), optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text},
@@ -60,12 +57,11 @@ export class Text extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, z: Z, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS},
+    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {rotate} = this;
     const index = filter(I, X, Y, F, FO, R).filter(i => nonempty(T[i]));
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")

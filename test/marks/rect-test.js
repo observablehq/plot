@@ -24,13 +24,6 @@ tape("rect(data, options) has the expected defaults", test => {
   test.strictEqual(rect.insetLeft, 0);
 });
 
-tape("rect(data, {z}) specifies an optional z channel", test => {
-  const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", z: "4"});
-  const z = rect.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "4");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("rect(data, {title}) specifies an optional title channel", test => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", title: "4"});
   const title = rect.channels.find(c => c.name === "title");

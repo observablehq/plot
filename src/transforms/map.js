@@ -22,9 +22,7 @@ export function map(outputs = {}, options = {}) {
     return {key, input, output, setOutput, map: maybeMap(map)};
   });
   return {
-    ...options,
-    ...Object.fromEntries(channels.map(({key, output}) => [key, output])),
-    transform: maybeTransform(options, (data, facets) => {
+    ...maybeTransform(options, (data, facets) => {
       const Z = valueof(data, z);
       const X = channels.map(({input}) => valueof(data, input));
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
@@ -34,7 +32,8 @@ export function map(outputs = {}, options = {}) {
         }
       }
       return {data, facets};
-    })
+    }),
+    ...Object.fromEntries(channels.map(({key, output}) => [key, output]))
   };
 }
 

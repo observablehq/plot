@@ -28,13 +28,6 @@ tape("tickX(data, {y}) uses a band scale", test => {
   test.strictEqual(tick.channels.find(c => c.name === "y").value.label, "x");
 });
 
-tape("tickX(data, {z}) specifies an optional z channel", test => {
-  const tick = Plot.tickX(undefined, {z: "x"});
-  const z = tick.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("tickX(data, {title}) specifies an optional title channel", test => {
   const tick = Plot.tickX(undefined, {title: "x"});
   const title = tick.channels.find(c => c.name === "title");
@@ -85,13 +78,6 @@ tape("tickY(data, {x}) uses a band scale", test => {
   test.deepEqual(tick.channels.map(c => c.scale), ["y", "x"]);
   test.strictEqual(tick.channels.find(c => c.name === "x").type, "band");
   test.strictEqual(tick.channels.find(c => c.name === "x").value.label, "y");
-});
-
-tape("tickY(data, {z}) specifies an optional z channel", test => {
-  const tick = Plot.tickY(undefined, {z: "x"});
-  const z = tick.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
 });
 
 tape("tickY(data, {title}) specifies an optional title channel", test => {

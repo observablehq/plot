@@ -9,7 +9,8 @@ export class Mark {
   constructor(data, channels = [], options = {}) {
     const names = new Set();
     this.data = data;
-    this.transform = maybeTransform(options);
+    const {transform} = maybeTransform(options);
+    this.transform = transform;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
@@ -220,13 +221,19 @@ export function maybeLazyChannel(source) {
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
-export function maybeTransform({filter: f1, sort: s1, reverse: r1, transform: t1} = {}, t2) {
+export function maybeTransform({
+  filter: f1,
+  sort: s1,
+  reverse: r1,
+  transform: t1,
+  ...options
+} = {}, t2) {
   if (t1 === undefined) {
     if (f1 != null) t1 = filter(f1);
     if (s1 != null) t1 = compose(t1, sort(s1));
     if (r1) t1 = compose(t1, reverse);
   }
-  return compose(t1, t2);
+  return {...options, transform: compose(t1, t2)};
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a

@@ -1,4 +1,3 @@
-import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, maybeColor, title} from "../mark.js";
@@ -9,7 +8,6 @@ class AbstractTick extends Mark {
     data,
     channels,
     {
-      z,
       title,
       stroke,
       ...options
@@ -20,7 +18,6 @@ class AbstractTick extends Mark {
       data,
       [
         ...channels,
-        {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true}
       ],
@@ -29,9 +26,8 @@ class AbstractTick extends Mark {
     Style(this, {stroke: cstroke, ...options});
   }
   render(I, scales, channels, dimensions) {
-    const {x: X, y: Y, z: Z, title: L, stroke: S} = channels;
+    const {x: X, y: Y, title: L, stroke: S} = channels;
     const index = filter(I, X, Y, S);
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)

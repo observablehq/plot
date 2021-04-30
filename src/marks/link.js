@@ -1,4 +1,3 @@
-import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
@@ -12,7 +11,6 @@ export class Link extends Mark {
       y1,
       x2,
       y2,
-      z,
       title,
       stroke,
       strokeOpacity,
@@ -28,7 +26,6 @@ export class Link extends Mark {
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x"},
         {name: "y2", value: y2, scale: "y"},
-        {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true},
         {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
@@ -44,10 +41,9 @@ export class Link extends Mark {
   render(
     I,
     {x, y},
-    {x1: X1, y1: Y1, x2: X2, y2: Y2, z: Z, title: L, stroke: S, strokeOpacity: SO}
+    {x1: X1, y1: Y1, x2: X2, y2: Y2, title: L, stroke: S, strokeOpacity: SO}
   ) {
     const index = filter(I, X1, Y1, X2, Y2, S, SO);
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
