@@ -876,7 +876,7 @@ A curve defines how to turn a discrete representation of a line as a sequence of
 
 The supported curve options are:
 
-* **curve** - the curve method (either a string name or a function)
+* **curve** - the curve method, either a string or a function
 * **tension** - the curve tension (for fine-tuning)
 
 The following named curve methods are supported:
