@@ -26,7 +26,7 @@ export default async function() {
         textAnchor: "end"
       }),
       Plot.text(new Set(caltrain.map(d => d.hours)), {
-        x: () => 0,
+        x: 0,
         y: d => d,
         text: d => `${(d - 1) % 12 + 1}${(d % 24) >= 12 ? "p": "a"}`
       }),

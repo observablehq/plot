@@ -78,7 +78,7 @@ tape("barX(data, {stroke}) allows stroke to be a variable color", test => {
 tape("barX(data, {x, y}) defaults x1 to zero and x2 to x", test => {
   const bar = Plot.barX(undefined, {x: "0", y: "1"});
   const x1 = bar.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value(), 0);
+  test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = bar.channels.find(c => c.name === "x2");
   test.strictEqual(x2.value.label, "0");
@@ -168,7 +168,7 @@ tape("barY(data, {x, y}) defaults y1 to zero and y2 to y", test => {
   test.strictEqual(x.value.label, "0");
   test.strictEqual(x.scale, "x");
   const y1 = bar.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value(), 0);
+  test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = bar.channels.find(c => c.name === "y2");
   test.strictEqual(y2.value.label, "1");

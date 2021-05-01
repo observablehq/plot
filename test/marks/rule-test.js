@@ -48,7 +48,7 @@ tape("ruleX(data, {stroke}) allows stroke to be a variable color", test => {
 tape("ruleX(data, {x, y}) specifies y1 = zero, y2 = y", test => {
   const rule = Plot.ruleX(undefined, {x: "0", y: "1"});
   const y1 = rule.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value(), 0);
+  test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
   test.strictEqual(y2.value.label, "1");
@@ -58,7 +58,7 @@ tape("ruleX(data, {x, y}) specifies y1 = zero, y2 = y", test => {
 tape("ruleX(data, {x, y1}) specifies y1 = zero, y2 = y1", test => {
   const rule = Plot.ruleX(undefined, {x: "0", y1: "1"});
   const y1 = rule.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value(), 0);
+  test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
   test.strictEqual(y2.value.label, "1");
@@ -68,7 +68,7 @@ tape("ruleX(data, {x, y1}) specifies y1 = zero, y2 = y1", test => {
 tape("ruleX(data, {x, y2}) specifies y1 = zero, y2 = y2", test => {
   const rule = Plot.ruleX(undefined, {x: "0", y2: "1"});
   const y1 = rule.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value(), 0);
+  test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
   test.strictEqual(y2.value.label, "1");
@@ -135,7 +135,7 @@ tape("ruleY(data, {stroke}) allows stroke to be a variable color", test => {
 tape("ruleY(data, {x, y}) specifies x1 = zero, x2 = x", test => {
   const rule = Plot.ruleY(undefined, {x: "0", y: "1"});
   const x1 = rule.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value(), 0);
+  test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
   test.strictEqual(x2.value.label, "0");
@@ -145,7 +145,7 @@ tape("ruleY(data, {x, y}) specifies x1 = zero, x2 = x", test => {
 tape("ruleY(data, {y, x1}) specifies x1 = zero, x2 = x1", test => {
   const rule = Plot.ruleY(undefined, {x1: "0", y: "1"});
   const x1 = rule.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value(), 0);
+  test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
   test.strictEqual(x2.value.label, "0");
@@ -155,7 +155,7 @@ tape("ruleY(data, {y, x1}) specifies x1 = zero, x2 = x1", test => {
 tape("ruleY(data, {y, x2}) specifies x1 = zero, x2 = x2", test => {
   const rule = Plot.ruleY(undefined, {x2: "0", y: "1"});
   const x1 = rule.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value(), 0);
+  test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
   test.strictEqual(x2.value.label, "0");

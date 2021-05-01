@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, zero, title, number} from "../mark.js";
+import {Mark, identity, maybeColor, title, number} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class RuleX extends Mark {
@@ -127,12 +127,12 @@ export function ruleY(data, {y = identity, x, x1, x2, ...options} = {}) {
 function maybeOptionalZero(x, x1, x2) {
   if (x === undefined) {
     if (x1 === undefined) {
-      if (x2 !== undefined) return [zero, x2];
+      if (x2 !== undefined) return [0, x2];
     } else {
-      if (x2 === undefined) return [zero, x1];
+      if (x2 === undefined) return [0, x1];
     }
   } else if (x1 === undefined) {
-    return x2 === undefined ? [zero, x] : [x, x2];
+    return x2 === undefined ? [0, x] : [x, x2];
   } else if (x2 === undefined) {
     return [x, x1];
   }
