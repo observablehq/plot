@@ -881,7 +881,7 @@ Decorations are special mark types that do not represent data, but are still use
 
 ## Transforms
 
-TODO Describe how transforms derive channels and mark indexes.
+TODO Describe how transforms derive channels and mark indexes. Transforms compute new mark options. Some transforms take a mark’s *options*, while other transforms take transform-specific options as the first argument. In all cases, the transform returns a new *options* object you can pass to a mark — or another transform, when you wish to compose transforms.
 
 TODO All marks support the following basic transforms:
 
