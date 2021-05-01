@@ -827,11 +827,11 @@ Returns a new text mark with the given *data* and *options*. If both the **x** a
 
 #### Plot.textX(*data*, *options*)
 
-Equivalent to Plot.text, except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.text](#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.textY(*data*, *options*)
 
-Equivalent to Plot.text, except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Tick
 
@@ -1027,11 +1027,11 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 #### Plot.stackX1(*options*)
 
-Equivalent to Plot.stackX, except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
 #### Plot.stackX2(*options*)
 
-Equivalent to Plot.stackX, except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the top of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
 #### Plot.stackY(*options*)
 
@@ -1039,11 +1039,11 @@ Equivalent to Plot.stackX, except that the **x2** channel is returned as the **x
 
 #### Plot.stackY1(*options*)
 
-Equivalent to Plot.stackY, except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
 #### Plot.stackY2(*options*)
 
-Equivalent to Plot.stackY, except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
 ## Curves
 
