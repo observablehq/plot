@@ -807,7 +807,33 @@ If the **y** option is not specified, it defaults to the identity function and a
 
 [<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@data-workflows/plot-text)
 
-[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text)
+[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position.
+
+The following channels are required:
+
+* **text** - the text contents (a string)
+
+TODO The text defaults to the index [0, 1, 2, …] so that something is displayed by default.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **fontSize** - the font size in pixels
+* **rotate** - the rotation in degrees clockwise
+
+The following text-specific constant options are also supported:
+
+* **fontFamily** - the font name; defaults to system-ui
+* **fontSize** - the font size in pixels; defaults to 10
+* **fontStyle** - the font style; defaults to normal
+* **fontVariant** - the font variant; defaults to normal
+* **fontWeight** - the font weight; defaults to normal
+* **dx** - the horizontal offset; defaults to 0
+* **dy** - the vertical offset; defaults to 0
+* **rotate** - the rotation in degrees clockwise; defaults to 0
+
+The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 #### Plot.text(*data*, *options*)
 
