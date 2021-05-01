@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof} from "../mark.js";
+import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero} from "../mark.js";
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, "x", options);
@@ -30,6 +30,24 @@ export function stackY1({x1, x = x1, y, ...options} = {}) {
 export function stackY2({x1, x = x1, y, ...options} = {}) {
   const [transform, X,, Y] = stack(x, y, "y", options);
   return {x1, x: X, y: Y, ...transform};
+}
+
+export function maybeStackX({x, x1, x2, ...options} = {}) {
+  if (x1 === undefined && x2 == undefined) {
+    if (x === undefined) x = identity;
+    return stackX({x, ...options});
+  }
+  ([x1, x2] = maybeZero(x, x1, x2));
+  return {...options, x1, x2};
+}
+
+export function maybeStackY({y, y1, y2, ...options} = {}) {
+  if (y1 === undefined && y2 == undefined) {
+    if (y === undefined) y = identity;
+    return stackY({y, ...options});
+  }
+  ([y1, y2] = maybeZero(y, y1, y2));
+  return {...options, y1, y2};
 }
 
 function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
