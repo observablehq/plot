@@ -6,7 +6,7 @@ export default async function() {
       type: "ordinal"
     },
     marks: [
-      Plot.cellX("ABCDEFGHIJKLMNOPQRSTUVWXYZ", {x: d => d})
+      Plot.cellX("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     ]
   });
 }
