@@ -15,7 +15,7 @@ export default async function() {
       x: "species"
     },
     marks: [
-      Plot.barY(penguins, Plot.stackY(Plot.groupX({y: "count"}, {x: "sex", fill: "island"}))),
+      Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "sex", fill: "island"})),
       Plot.ruleY([0])
     ]
   });
