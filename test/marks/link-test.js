@@ -11,7 +11,7 @@ tape("link(data, options) has the expected defaults", test => {
   test.strictEqual(link.fill, "none");
   test.strictEqual(link.fillOpacity, undefined);
   test.strictEqual(link.stroke, "currentColor");
-  test.strictEqual(link.strokeWidth, 1.5);
+  test.strictEqual(link.strokeWidth, undefined);
   test.strictEqual(link.strokeOpacity, undefined);
   test.strictEqual(link.strokeLinejoin, undefined);
   test.strictEqual(link.strokeLinecap, undefined);
