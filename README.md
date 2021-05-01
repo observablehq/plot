@@ -873,6 +873,12 @@ The following optional channels are supported:
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
+### Decorations
+
+Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#plotframeoptions), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
+
+#### Plot.frame(*options*)
+
 ## Transforms
 
 TODO Describe how transforms derive channels and mark indexes.
@@ -1060,26 +1066,20 @@ If *curve* is a function, it will be invoked with a given *context* in the same 
 
 The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/master/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/master/README.md#curveCatmullRom_alpha).
 
-## Decorations
-
-Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#plotframeoptions), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
-
-### Plot.frame(*options*)
-
 …
 
 ## Formats
 
 These helper functions are provided for use as a *scale*.tickFormat [axis option](#position-options), as the text option for [Plot.text](#plottextdata-options), or for general use. See also [d3-time-format](https://github.com/d3/d3-time-format) and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
-### Plot.formatIsoDate(*date*)
+#### Plot.formatIsoDate(*date*)
 
 …
 
-### Plot.formatWeekday(*locale*, *format*)
+#### Plot.formatWeekday(*locale*, *format*)
 
 …
 
-### Plot.formatMonth(*locale*, *format*)
+#### Plot.formatMonth(*locale*, *format*)
 
 …
