@@ -2,27 +2,27 @@ import {greatest, group, least} from "d3";
 import {maybeTransform, maybeZ, valueof} from "../mark.js";
 
 export function selectFirst(options) {
-  return {...options, transform: select(first, undefined, options)};
+  return select(first, undefined, options);
 }
 
 export function selectLast(options) {
-  return {...options, transform: select(last, undefined, options)};
+  return select(last, undefined, options);
 }
 
-export function selectMinX({x, ...options} = {}) {
-  return {...options, x, transform: select(min, x, options)};
+export function selectMinX(options = {}) {
+  return select(min, options.x, options);
 }
 
-export function selectMinY({y, ...options} = {}) {
-  return {...options, y, transform: select(min, y, options)};
+export function selectMinY(options = {}) {
+  return select(min, options.y, options);
 }
 
-export function selectMaxX({x, ...options} = {}) {
-  return {...options, x, transform: select(max, x, options)};
+export function selectMaxX(options = {}) {
+  return select(max, options.x, options);
 }
 
-export function selectMaxY({y, ...options} = {}) {
-  return {...options, y, transform: select(max, y, options)};
+export function selectMaxY(options = {}) {
+  return select(max, options.y, options);
 }
 
 // TODO If the value (for some required channel) is undefined, scan forward?

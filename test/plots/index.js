@@ -1,6 +1,7 @@
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
 export {default as aaplClose} from "./aapl-close.js";
+export {default as aaplMonthly} from "./aapl-monthly.js";
 export {default as aaplVolume} from "./aapl-volume.js";
 export {default as anscombeQuartet} from "./anscombe-quartet.js";
 export {default as athletesHeightWeight} from "./athletes-height-weight.js";
@@ -28,6 +29,7 @@ export {default as empty} from "./empty.js";
 export {default as figcaption} from "./figcaption.js";
 export {default as figcaptionHtml} from "./figcaption-html.js";
 export {default as fruitSales} from "./fruit-sales.js";
+export {default as fruitSalesDate} from "./fruit-sales-date.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
 export {default as gistempAnomalyMoving} from "./gistemp-anomaly-moving.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";

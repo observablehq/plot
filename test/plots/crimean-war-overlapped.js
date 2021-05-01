@@ -7,11 +7,11 @@ export default async function() {
   const data = causes.flatMap(cause => crimea.map(({date, [cause]: deaths}) => ({date, cause, deaths})));
   return Plot.plot({
     x: {
-      tickFormat: d3.utcFormat("%b"),
+      tickFormat: "%b",
       label: null
     },
     marks: [
-      Plot.barY(data, {x: "date", y: "deaths", z: d => -d.deaths, fill: "cause"}),
+      Plot.barY(data, {x: "date", y: "deaths", sort: d => -d.deaths, fill: "cause"}),
       Plot.ruleY([0])
     ]
   });

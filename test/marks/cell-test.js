@@ -26,13 +26,6 @@ tape("cell() has the expected defaults", test => {
   test.strictEqual(cell.insetLeft, 0);
 });
 
-tape("cell(data, {z}) specifies an optional z channel", test => {
-  const cell = Plot.cell(undefined, {z: "x"});
-  const z = cell.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("cell(data, {title}) specifies an optional title channel", test => {
   const cell = Plot.cell(undefined, {title: "x"});
   const title = cell.channels.find(c => c.name === "title");

@@ -57,8 +57,8 @@ import {
 } from "d3";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
+import {constant} from "../mark.js";
 
-const constant = x => () => x;
 const flip = i => t => i(1 - t);
 
 // TODO Allow this to be extended.

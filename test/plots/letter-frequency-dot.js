@@ -5,7 +5,7 @@ export default async function() {
   const alphabet = await d3.csv("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.dotX(alphabet, {x: "letter", r: "frequency"})
+      Plot.dot(alphabet, {x: "letter", r: "frequency"})
     ]
   });
 }

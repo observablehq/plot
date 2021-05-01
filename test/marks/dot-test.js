@@ -21,13 +21,6 @@ tape("dot() has the expected defaults", test => {
   test.strictEqual(dot.mixBlendMode, undefined);
 });
 
-tape("dot(data, {z}) specifies an optional z channel", test => {
-  const dot = Plot.dot(undefined, {z: "x"});
-  const z = dot.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("dot(data, {r}) allows r to be a constant radius", test => {
   const dot = Plot.dot(undefined, {r: 42});
   test.strictEqual(dot.r, 42);

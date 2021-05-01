@@ -20,13 +20,6 @@ tape("ruleX() has the expected defaults", test => {
   test.strictEqual(rule.mixBlendMode, undefined);
 });
 
-tape("ruleX(data, {z}) specifies an optional z channel", test => {
-  const rule = Plot.ruleX(undefined, {z: "x"});
-  const z = rule.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("ruleX(data, {title}) specifies an optional title channel", test => {
   const rule = Plot.ruleX(undefined, {title: "x"});
   const title = rule.channels.find(c => c.name === "title");
@@ -112,13 +105,6 @@ tape("ruleY() has the expected defaults", test => {
   test.strictEqual(rule.strokeMiterlimit, undefined);
   test.strictEqual(rule.strokeDasharray, undefined);
   test.strictEqual(rule.mixBlendMode, undefined);
-});
-
-tape("ruleY(data, {z}) specifies an optional z channel", test => {
-  const rule = Plot.ruleY(undefined, {z: "x"});
-  const z = rule.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
 });
 
 tape("ruleY(data, {title}) specifies an optional title channel", test => {

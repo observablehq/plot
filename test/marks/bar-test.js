@@ -32,13 +32,6 @@ tape("barX(data, {y}) uses a band scale", test => {
   test.strictEqual(bar.channels.find(c => c.name === "y").value.label, "x");
 });
 
-tape("barX(data, {z}) specifies an optional z channel", test => {
-  const bar = Plot.barX(undefined, {z: "x"});
-  const z = bar.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
-});
-
 tape("barX(data, {title}) specifies an optional title channel", test => {
   const bar = Plot.barX(undefined, {title: "x"});
   const title = bar.channels.find(c => c.name === "title");
@@ -124,13 +117,6 @@ tape("barY(data, {x}) uses a band scale", test => {
   test.deepEqual(bar.channels.map(c => c.scale), ["y", "y", "x"]);
   test.strictEqual(bar.channels.find(c => c.name === "x").type, "band");
   test.strictEqual(bar.channels.find(c => c.name === "x").value.label, "y");
-});
-
-tape("barY(data, {z}) specifies an optional z channel", test => {
-  const bar = Plot.barY(undefined, {z: "x"});
-  const z = bar.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "x");
-  test.strictEqual(z.scale, undefined);
 });
 
 tape("barY(data, {title}) specifies an optional title channel", test => {

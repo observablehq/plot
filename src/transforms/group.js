@@ -57,11 +57,7 @@ function groupn(
     z: GZ,
     fill: GF,
     stroke: GS,
-    ...options,
-    ...GX && {x: GX},
-    ...GY && {y: GY},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output])),
-    transform: maybeTransform(options, (data, facets) => {
+    ...maybeTransform(options, (data, facets) => {
       const X = valueof(data, x);
       const Y = valueof(data, y);
       const Z = valueof(data, z);
@@ -97,7 +93,10 @@ function groupn(
         groupFacets.push(groupFacet);
       }
       return {data: groupData, facets: groupFacets};
-    })
+    }),
+    ...GX && {x: GX},
+    ...GY && {y: GY},
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 

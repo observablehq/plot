@@ -9,7 +9,8 @@ export class Mark {
   constructor(data, channels = [], options = {}) {
     const names = new Set();
     this.data = data;
-    this.transform = maybeTransform(options);
+    const {transform} = maybeTransform(options);
+    this.transform = transform;
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
@@ -70,10 +71,12 @@ export const field = label => Object.assign(d => d[label], {label});
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
-export const string = x => x == null ? undefined : x + "";
-export const number = x => x == null ? undefined : +x;
+export const string = x => x == null ? x : x + "";
+export const number = x => x == null ? x : +x;
+export const boolean = x => x == null ? x : !!x;
 export const first = d => d[0];
 export const second = d => d[1];
+export const constant = x => () => x;
 
 // A few extra color keywords not known to d3-color.
 const colors = new Set(["currentColor", "none"]);
@@ -107,6 +110,18 @@ export function maybeLabel(f, value) {
     : typeof value === "function" ? value.label
     : undefined;
   return label === undefined ? f : Object.assign(d => f(d), {label});
+}
+
+// Validates the specified optional string against the allowed list of keywords.
+export function maybeKeyword(input, name, allowed) {
+  if (input != null) return keyword(input, name, allowed);
+}
+
+// Validates the specified required string against the allowed list of keywords.
+export function keyword(input, name, allowed) {
+  const i = (input + "").toLowerCase();
+  if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
+  return i;
 }
 
 // Promotes the specified data to an array or typed array as needed. If an array
@@ -206,24 +221,33 @@ export function maybeLazyChannel(source) {
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
-export function maybeTransform({filter: f1, sort: s1, reverse: r1, transform: t1} = {}, t2) {
+export function maybeTransform({
+  filter: f1,
+  sort: s1,
+  reverse: r1,
+  transform: t1,
+  ...options
+} = {}, t2) {
   if (t1 === undefined) {
     if (f1 != null) t1 = filter(f1);
     if (s1 != null) t1 = compose(t1, sort(s1));
     if (r1) t1 = compose(t1, reverse);
   }
-  return compose(t1, t2);
+  return {...options, transform: compose(t1, t2)};
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
 // new a channel that’s the average of the two, and which inherits the channel
-// label (if any).
+// label (if any). Both input channels are assumed to be quantitative. If either
+// channel is temporal, the returned channel is also temporal.
 export function mid(x1, x2) {
   return {
     transform(data) {
       const X1 = x1.transform(data);
       const X2 = x2.transform(data);
-      return Float64Array.from(X1, (_, i) => (X1[i] + X2[i]) / 2);
+      return isTemporal(X1) || isTemporal(X2)
+        ? Array.from(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
+        : Float64Array.from(X1, (_, i) => (+X1[i] + +X2[i]) / 2);
     },
     label: x1.label
   };
@@ -297,4 +321,19 @@ export function values(channels = [], scales) {
     }
   }
   return values;
+}
+
+export function isOrdinal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    const type = typeof value;
+    return type === "string" || type === "boolean";
+  }
+}
+
+export function isTemporal(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return value instanceof Date;
+  }
 }

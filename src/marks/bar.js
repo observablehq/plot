@@ -1,4 +1,3 @@
-import {ascending} from "d3";
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, number, maybeColor, maybeZero, title, maybeNumber} from "../mark.js";
@@ -9,7 +8,6 @@ export class AbstractBar extends Mark {
     data,
     channels,
     {
-      z,
       title,
       fill,
       fillOpacity,
@@ -33,7 +31,6 @@ export class AbstractBar extends Mark {
       data,
       [
         ...channels,
-        {name: "z", value: z, optional: true},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
         {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
@@ -58,9 +55,8 @@ export class AbstractBar extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {rx, ry} = this;
-    const {z: Z, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = channels;
+    const {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = channels;
     const index = filter(I, ...this._positions(channels), F, FO, S, SO);
-    if (Z) index.sort((i, j) => ascending(Z[i], Z[j]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)

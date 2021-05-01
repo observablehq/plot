@@ -40,34 +40,31 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    {
-      ...options,
-      transform: maybeTransform(options, (data, facets) => {
-        const X = x == null ? undefined : setX(valueof(data, x));
-        const Y = valueof(data, y, Float64Array);
-        const Z = valueof(data, z);
-        const O = order && order(data, X, Y, Z);
-        const n = data.length;
-        const Y1 = setY1(new Float64Array(n));
-        const Y2 = setY2(new Float64Array(n));
-        for (const facet of facets) {
-          const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
-          if (O) applyOrder(stacks, O);
-          for (const stack of stacks) {
-            let yn = 0, yp = 0;
-            if (reverse) stack.reverse();
-            for (const i of stack) {
-              const y = Y[i];
-              if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
-              else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
-              else Y2[i] = Y1[i] = yp; // NaN or zero
-            }
+    maybeTransform(options, (data, facets) => {
+      const X = x == null ? undefined : setX(valueof(data, x));
+      const Y = valueof(data, y, Float64Array);
+      const Z = valueof(data, z);
+      const O = order && order(data, X, Y, Z);
+      const n = data.length;
+      const Y1 = setY1(new Float64Array(n));
+      const Y2 = setY2(new Float64Array(n));
+      for (const facet of facets) {
+        const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
+        if (O) applyOrder(stacks, O);
+        for (const stack of stacks) {
+          let yn = 0, yp = 0;
+          if (reverse) stack.reverse();
+          for (const i of stack) {
+            const y = Y[i];
+            if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
+            else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
+            else Y2[i] = Y1[i] = yp; // NaN or zero
           }
-          if (offset) offset(stacks, Y1, Y2, Z);
         }
-        return {data, facets};
-      })
-    },
+        if (offset) offset(stacks, Y1, Y2, Z);
+      }
+      return {data, facets};
+    }),
     X,
     Y1,
     Y2
