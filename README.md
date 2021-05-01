@@ -518,11 +518,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
-For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options).
-
-The bar mark supports the [standard mark options](#marks), including insets and rounded corners.
-
-TODO Describe the defaults for fill and stroke.
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. TODO Describe the defaults for fill and stroke.
 
 #### Plot.barX(*data*, *options*)
 
@@ -848,15 +844,41 @@ Equivalent to Plot.text, except **y** defaults to the identity function and assu
 
 [<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
 
-[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary ordinal position dimension. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary ordinal position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
+
+For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. TODO Describe the default stroke.
 
 #### Plot.tickX(*data*, *options*)
 
-…
+```js
+Plot.tickX(stateage, {x: "population", y: "age"})
+```
+
+Returns a new tick with the given *data* and *options*. The following channels are required:
+
+* **x** - the horizontal position; bound to the *x* scale
+
+The following optional channels are supported:
+
+* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
+
+If the **y** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
 #### Plot.tickY(*data*, *options*)
 
-…
+```js
+Plot.tickY(stateage, {y: "population", x: "age"})
+```
+
+Returns a new tick with the given *data* and *options*. The following channels are required:
+
+* **y** - the vertical position; bound to the *y* scale
+
+The following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
+
+If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
 ## Transforms
 
