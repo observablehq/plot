@@ -28,7 +28,7 @@ export default async function() {
         x: Profit,
         strokeWidth: 1
       }),
-      Plot.tickX(movies, Plot.groupY({ x: "median" }, {
+      Plot.tickX(movies, Plot.groupY({x: "median"}, {
         y: Genre,
         x: Profit,
         stroke: "red",
