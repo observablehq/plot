@@ -623,7 +623,7 @@ TODO Dots with a nonpositive radius are not drawn.
 Plot.dot(sales, {x: "units", y: "fruit"})
 ```
 
-Returns a new dot with the given *data* and *options. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new dot with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
@@ -804,13 +804,13 @@ If the **y** option is not specified, it defaults to the identity function and a
 
 [<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@data-workflows/plot-text)
 
-[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327)
+[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position.
 
 The following channels are required:
 
 * **text** - the text contents (a string)
 
-TODO The text defaults to the index [0, 1, 2, …] so that something is displayed by default.
+If **text** is not specified, it defaults to [0, 1, 2, …] so that at least something is displayed by default. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327)
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -821,7 +821,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 The following text-specific constant options are also supported:
 
-* **fontFamily** - the font name; defaults to system-ui
+* **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
 * **fontStyle** - the font style; defaults to normal
 * **fontVariant** - the font variant; defaults to normal
@@ -834,15 +834,15 @@ The **fontSize** and **rotate** options can be specified as either channels or c
 
 #### Plot.text(*data*, *options*)
 
-…
+Returns a new text mark with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.textX(*data*, *options*)
 
-…
+Equivalent to Plot.text, except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.textY(*data*, *options*)
 
-…
+Equivalent to Plot.text, except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Tick
 
