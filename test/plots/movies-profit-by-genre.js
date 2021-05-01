@@ -18,7 +18,7 @@ export default async function() {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.barX(movies, Plot.groupY({ x1: quartile1, x2: quartile3 }, {
+      Plot.barX(movies, Plot.groupY({x1: quartile1, x2: quartile3}, {
         y: Genre,
         x: Profit,
         fillOpacity: 0.2
