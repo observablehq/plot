@@ -763,7 +763,7 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option spe
 
 [<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@data-workflows/plot-rule)
 
-[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws a horizontal ([Plot.ruleY](#plotruleydata-options)) or vertical ([Plot.ruleX](#plotrulexdata-options)) line, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
+[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws an axis-aligned line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
 
 For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options).
 
