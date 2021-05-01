@@ -47,7 +47,6 @@ export class Link extends Mark {
       stroke: cstroke,
       strokeMiterlimit: cstroke === "none" ? undefined : 1,
       strokeOpacity: cstrokeOpacity,
-      strokeWidth: cstroke === "none" ? undefined : 1.5,
       ...options
     });
   }
