@@ -556,7 +556,7 @@ In addition to the [standard mark options](#marks), including insets and rounded
 * **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 * **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
 
-If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#plotframeoptions) if you want a simple frame decoration around the plot.)
+If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.)
 
 TODO Describe the defaults for fill and stroke.
 
@@ -875,9 +875,23 @@ If the **x** channel is not specified, the tick will span the full vertical exte
 
 ### Decorations
 
-Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#plotframeoptions), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
+Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
+
+### Frame
+
+[<img src="./img/frame.png" width="320" height="198" alt="a faceted scatterplot with a frame around each facet">](https://observablehq.com/@data-workflows/plot-frame)
+
+[Source](./src/marks/frame.js) · [Examples](https://observablehq.com/@data-workflows/plot-frame) · Draws a simple frame around the entire plot (or facet).
+
+The frame mark supports the [standard mark options](#marks), but not channels, and does not accept any data. The default **stroke** is currentColor, and the default **fill** is none.
 
 #### Plot.frame(*options*)
+
+```js
+Plot.frame()
+```
+
+Returns a new frame with the specified *options*.
 
 ## Transforms
 
@@ -897,7 +911,7 @@ The basic transforms are composable: the filter transform is applied first, then
 
 ### Bin
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · The bin transform groups quantitative data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · The bin transform aggregates quantitative data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
 
 #### Plot.bin(*outputs*, *options*)
 
