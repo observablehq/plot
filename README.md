@@ -881,7 +881,7 @@ Decorations are special mark types that do not represent data, but are still use
 
 ## Transforms
 
-TODO Describe how transforms derive channels and mark indexes. Transforms compute new mark options. Some transforms take a mark’s *options*, while other transforms take transform-specific options as the first argument. In all cases, the transform returns a new *options* object you can pass to a mark — or another transform, when you wish to compose transforms.
+TODO Describe how transforms derive channels and mark indexes. Transforms compute new mark options. Some transforms take a mark’s *options*, while other transforms take transform-specific options as the first argument. In all cases, the transform returns a new *options* object you can pass to a mark — or another transform, as when composing transforms.
 
 TODO All marks support the following basic transforms:
 
@@ -889,11 +889,11 @@ TODO All marks support the following basic transforms:
 * **sort** -
 * **reverse** -
 
-In addition, you can specify a general transform, either as a custom function or by using one of the built-in transforms described below:
+You can also specify a custom transform function:
 
 * **transform** -
 
-The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the general transform.
+The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the custom transform. The custom transform is rarely specified directly; instead it is applied using one of the built-in transforms described below.
 
 ### Bin
 
