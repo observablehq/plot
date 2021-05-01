@@ -3,6 +3,7 @@ import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {values} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
+import {offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -108,15 +109,15 @@ function Dimensions(
     width = 640,
     height = y || fy ? 396 : fx ? 90 : 60,
     facet: {
-      marginTop: facetMarginTop = fxAxis === "top" ? 30 :0,
+      marginTop: facetMarginTop = fxAxis === "top" ? 30 : 0,
       marginRight: facetMarginRight = fyAxis === "right" ? 40 : 0,
       marginBottom: facetMarginBottom = fxAxis === "bottom" ? 30 : 0,
       marginLeft: facetMarginLeft = fyAxis === "left" ? 40 : 0
     } = {},
-    marginTop = Math.max((xAxis === "top" ? 30 : 0) + facetMarginTop, yAxis || fyAxis ? 20 : 0),
-    marginRight = Math.max((yAxis === "right" ? 40 : 0) + facetMarginRight, xAxis || fxAxis ? 20 : 0),
-    marginBottom = Math.max((xAxis === "bottom" ? 30 : 0) + facetMarginBottom, yAxis || fyAxis ? 20 : 0),
-    marginLeft = Math.max((yAxis === "left" ? 40 : 0) + facetMarginLeft, xAxis || fxAxis ? 20 : 0)
+    marginTop = Math.max((xAxis === "top" ? 30 : 0) + facetMarginTop, yAxis || fyAxis ? 20 : 0.5 - offset),
+    marginRight = Math.max((yAxis === "right" ? 40 : 0) + facetMarginRight, xAxis || fxAxis ? 20 : 0.5 + offset),
+    marginBottom = Math.max((xAxis === "bottom" ? 30 : 0) + facetMarginBottom, yAxis || fyAxis ? 20 : 0.5 + offset),
+    marginLeft = Math.max((yAxis === "left" ? 40 : 0) + facetMarginLeft, xAxis || fxAxis ? 20 : 0.5 - offset)
   } = {}
 ) {
   return {
