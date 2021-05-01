@@ -1,6 +1,7 @@
-import {create} from "d3";
+import {create, path} from "d3";
 import {filter} from "../defined.js";
 import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
+import {Curve} from "../curve.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Link extends Mark {
@@ -12,11 +13,16 @@ export class Link extends Mark {
       x2,
       y2,
       title,
+      fill,
+      fillOpacity,
       stroke,
       strokeOpacity,
+      curve,
       ...options
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill, "none");
+    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
     const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     super(
@@ -27,13 +33,19 @@ export class Link extends Mark {
         {name: "x2", value: x2, scale: "x"},
         {name: "y2", value: y2, scale: "y"},
         {name: "title", value: title, optional: true},
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true},
         {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
+    this.curve = Curve(curve);
     Style(this, {
+      fill: cfill,
+      fillOpacity: cfillOpacity,
       stroke: cstroke,
+      strokeMiterlimit: cstroke === "none" ? undefined : 1,
       strokeOpacity: cstrokeOpacity,
       ...options
     });
@@ -49,12 +61,17 @@ export class Link extends Mark {
         .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
           .data(index)
-          .join("line")
+          .join("path")
             .call(applyDirectStyles, this)
-            .attr("x1", i => X1[i])
-            .attr("y1", i => Y1[i])
-            .attr("x2", i => X2[i])
-            .attr("y2", i => Y2[i])
+            .attr("d", i => {
+              const p = path();
+              const c = this.curve(p);
+              c.lineStart();
+              c.point(X1[i], Y1[i]);
+              c.point(X2[i], Y2[i]);
+              c.lineEnd();
+              return p + "";
+            })
             .call(applyAttr, "stroke", S && (i => S[i]))
             .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(title(L)))
