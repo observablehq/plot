@@ -688,7 +688,7 @@ Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option
 
 [<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@data-workflows/plot-link)
 
-[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link) · Draws line segments connecting pairs of points.
+[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link) · Draws line segments (or curves) connecting pairs of points.
 
 The following channels are required:
 
@@ -700,6 +700,8 @@ The following channels are required:
 The link mark supports the [standard mark options](#marks).
 
 TODO Describe the defaults for stroke. A link never has a fill (although that might change if we support curved links).
+
+The link mark supports [curve options](#curves) to control interpolation between points.
 
 #### Plot.link(*data*, *options*)
 
@@ -844,9 +846,9 @@ Equivalent to Plot.text, except **y** defaults to the identity function and assu
 
 [<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
 
-[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary ordinal position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
 
-For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. TODO Describe the default stroke.
+For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** option defaults to currentColor.
 
 #### Plot.tickX(*data*, *options*)
 
@@ -1020,7 +1022,7 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 ## Curves
 
-A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](#line) and [area](#area) mark and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/master/README.md#curves).
+A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](#line), [area](#area), and [link](#link) mark, and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/master/README.md#curves).
 
 The supported curve options are:
 
