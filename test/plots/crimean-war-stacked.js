@@ -11,7 +11,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barY(data, Plot.stackY({x: "date", y: "deaths", fill: "cause", reverse: true})),
+      Plot.barY(data, {x: "date", y: "deaths", fill: "cause", reverse: true}),
       Plot.ruleY([0])
     ]
   });

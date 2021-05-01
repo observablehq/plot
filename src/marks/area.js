@@ -3,8 +3,9 @@ import {create} from "d3";
 import {area as shapeArea} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeColor, maybeZero, titleGroup, maybeNumber} from "../mark.js";
+import {Mark, indexOf, maybeColor, titleGroup, maybeNumber} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
+import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 export class Area extends Mark {
   constructor(
@@ -85,12 +86,10 @@ export function area(data, options) {
   return new Area(data, options);
 }
 
-export function areaX(data, {x, x1, x2, y = indexOf, ...options} = {}) {
-  ([x1, x2] = maybeZero(x, x1, x2));
-  return new Area(data, {...options, x1, x2, y1: y, y2: undefined});
+export function areaX(data, {y = indexOf, ...options} = {}) {
+  return new Area(data, maybeStackX({...options, y1: y, y2: undefined}));
 }
 
-export function areaY(data, {x = indexOf, y, y1, y2, ...options} = {}) {
-  ([y1, y2] = maybeZero(y, y1, y2));
-  return new Area(data, {...options, x1: x, x2: undefined, y1, y2});
+export function areaY(data, {x = indexOf, ...options} = {}) {
+  return new Area(data, maybeStackY({...options, x1: x, x2: undefined}));
 }

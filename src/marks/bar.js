@@ -1,7 +1,8 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, maybeZero, title, maybeNumber} from "../mark.js";
+import {Mark, number, maybeColor, title, maybeNumber} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
+import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 export class AbstractBar extends Mark {
   constructor(
@@ -153,12 +154,10 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, {x, x1, x2, ...options} = {}) {
-  ([x1, x2] = maybeZero(x, x1, x2));
-  return new BarX(data, {...options, x1, x2});
+export function barX(data, options) {
+  return new BarX(data, maybeStackX(options));
 }
 
-export function barY(data, {y, y1, y2, ...options} = {}) {
-  ([y1, y2] = maybeZero(y, y1, y2));
-  return new BarY(data, {...options, y1, y2});
+export function barY(data, options) {
+  return new BarY(data, maybeStackY(options));
 }
