@@ -6,7 +6,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barY("ABCDEF", {x: (d, i) => i, y1: () => 0, y2: d => d}),
+      Plot.barY("ABCDEF", {x: (d, i) => i, y2: d => d}),
       Plot.ruleY([0])
     ]
   });
