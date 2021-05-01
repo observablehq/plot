@@ -1,5 +1,6 @@
 import {color} from "d3";
 import {ascendingDefined, nonempty} from "./defined.js";
+import {plot} from "./plot.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -45,6 +46,9 @@ export class Mark {
         return [name == null ? undefined : name + "", Channel(data, channel)];
       })
     };
+  }
+  plot({marks = [], ...options} = {}) {
+    return plot({...options, marks: [...marks, this]});
   }
 }
 
