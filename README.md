@@ -875,7 +875,7 @@ If the **x** channel is not specified, the tick will span the full vertical exte
 
 ## Decorations
 
-Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
+Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
 
 ### Frame
 
@@ -883,12 +883,12 @@ Decorations are special mark types that do not represent data, but are still use
 
 [Source](./src/marks/frame.js) · [Examples](https://observablehq.com/@data-workflows/plot-frame) · Draws a simple frame around the entire plot (or facet).
 
-The frame mark supports the [standard mark options](#marks), but not channels, and does not accept any data. The default **stroke** is currentColor, and the default **fill** is none.
+The frame mark supports the [standard mark options](#marks), but does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
 
 #### Plot.frame(*options*)
 
 ```js
-Plot.frame()
+Plot.frame({stroke: "red"})
 ```
 
 Returns a new frame with the specified *options*.
