@@ -1,4 +1,4 @@
-import {identity, maybeTuple} from "../mark.js";
+import {identity, indexOf, maybeColor, maybeTuple} from "../mark.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
@@ -25,10 +25,12 @@ export function cell(data, {x, y, ...options} = {}) {
   return new Cell(data, {...options, x, y});
 }
 
-export function cellX(data, {x = identity, ...options} = {}) {
-  return new Cell(data, {...options, x});
+export function cellX(data, {x = indexOf, fill, stroke, ...options} = {}) {
+  if (fill === undefined && maybeColor(stroke)[0] === undefined) fill = identity;
+  return new Cell(data, {...options, x, fill, stroke});
 }
 
-export function cellY(data, {y = identity, ...options} = {}) {
-  return new Cell(data, {...options, y});
+export function cellY(data, {y = indexOf, fill, stroke, ...options} = {}) {
+  if (fill === undefined && maybeColor(stroke)[0] === undefined) fill = identity;
+  return new Cell(data, {...options, y, fill, stroke});
 }
