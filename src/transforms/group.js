@@ -54,9 +54,9 @@ function groupn(
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
   return {
-    z: GZ,
-    fill: GF,
-    stroke: GS,
+    ...z && {z: GZ},
+    ...fill && {fill: GF},
+    ...stroke && {stroke: GS},
     ...maybeTransform(options, (data, facets) => {
       const X = valueof(data, x);
       const Y = valueof(data, y);
