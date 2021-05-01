@@ -873,7 +873,7 @@ The following optional channels are supported:
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
-### Decorations
+## Decorations
 
 Decorations are special mark types that do not represent data, but are still used to draw on the plot. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decoration marks and may in the future be exposed here for more flexible configuration.
 
