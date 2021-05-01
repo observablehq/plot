@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, title} from "../mark.js";
+import {Mark, identity, maybeColor, title, maybeNumber} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 class AbstractTick extends Mark {
@@ -10,24 +10,27 @@ class AbstractTick extends Mark {
     {
       title,
       stroke,
+      strokeOpacity,
       ...options
     } = {}
   ) {
     const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
+    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     super(
       data,
       [
         ...channels,
         {name: "title", value: title, optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true}
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
-    Style(this, {stroke: cstroke, ...options});
+    Style(this, {stroke: cstroke, strokeOpacity: cstrokeOpacity, ...options});
   }
   render(I, scales, channels, dimensions) {
-    const {x: X, y: Y, title: L, stroke: S} = channels;
-    const index = filter(I, X, Y, S);
+    const {x: X, y: Y, title: L, stroke: S, strokeOpacity: SO} = channels;
+    const index = filter(I, X, Y, S, SO);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)
@@ -40,6 +43,7 @@ class AbstractTick extends Mark {
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
             .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(title(L)))
       .node();
   }
