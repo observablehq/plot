@@ -494,7 +494,7 @@ The area mark supports [curve options](#curves) to control interpolation between
 #### Plot.area(*data*, *options*)
 
 ```js
-Plot.area(AAPL, {x1: "Date", y1: () => 0, y2: "Close"})
+Plot.area(aapl, {x1: "Date", y1: () => 0, y2: "Close"})
 ```
 
 Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
@@ -502,7 +502,7 @@ Returns a new area with the given *data* and *options*. Plot.area is rarely used
 #### Plot.areaX(*data*, *options*)
 
 ```js
-Plot.areaX(AAPL, {y: "Date", x: "Close"})
+Plot.areaX(aapl, {y: "Date", x: "Close"})
 ```
 
 Equivalent to [Plot.area](#plotareadata-options), except that the *y* option specifies the *y1* channel, and if the *x* option is specified, it corresponds to the *x2* channel while the *x1* channel defaults to zero. This constructor is typically used for vertically-oriented area charts (*e.g.*, when time goes up↑).
@@ -510,7 +510,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *y* option spe
 #### Plot.areaY(*data*, *options*)
 
 ```js
-Plot.areaY(AAPL, {x: "Date", y: "Close"})
+Plot.areaY(aapl, {x: "Date", y: "Close"})
 ```
 
 Equivalent to [Plot.area](#plotareadata-options), except that the *x* option specifies the *x1* channel, and if the *y* option is specified, it corresponds to the *y2* channel while the *y1* channel defaults to zero. This constructor is typically used for horizontally-oriented area charts (*e.g.*, when time goes right→).
@@ -763,15 +763,47 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option spe
 
 [<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@data-workflows/plot-rule)
 
-[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule)
+[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws a horizontal ([Plot.ruleY](#plotruleydata-options)) or vertical ([Plot.ruleX](#plotrulexdata-options)) line, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
+
+For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options).
+
+The rule mark supports the [standard mark options](#marks), including insets.
+
+TODO Describe the default stroke.
 
 #### Plot.ruleX(*data*, *options*)
 
-…
+```js
+Plot.ruleX([0]) // as annotation
+```
+```js
+Plot.ruleX(alphabet, {x: "letter", y: "frequency"}) // like barY
+```
+
+Returns a new vertical rule with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero; this is the typical configuration for a vertical lollipop chart with rules aligned at *y* = 0. If the **y1** channel is not specified, the rule will start at the top of the plot (or facet). If the **y2** channel is not specified, the rule will end at the bottom of the plot (or facet).
 
 #### Plot.ruleY(*data*, *options*)
 
-…
+```js
+Plot.ruleY([0]) // as annotation
+```
+```js
+Plot.ruleY(alphabet, {y: "letter", x: "frequency"}) // like barX
+```
+
+Returns a new horizontal rule with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
+
+* **y** - the vertical position; bound to the *y* scale
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+
+If a **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal lollipop chart with rules aligned at *x* = 0. If the **x1** channel is not specified, the rule will start at the left edge of the plot (or facet). If the **x2** channel is not specified, the rule will end at the right edge of the plot (or facet).
 
 ### Text
 
