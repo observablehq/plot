@@ -1,27 +1,28 @@
 import * as Plot from "@observablehq/plot";
 import tape from "tape-await";
 
-tape("the bin transform doesn't return undefined channels", test => {
+tape("Plot.bin does not return unspecified channels", test => {
   const A = Plot.bin({});
-  test.assert(!("z" in A));
-  test.assert(!("fill" in A));
-  test.assert(!("stroke" in A));
+  test.strictEqual("z" in A, false);
+  test.strictEqual("fill" in A, false);
+  test.strictEqual("stroke" in A, false);
+  const B = Plot.bin({}, {fill: "red"});
+  test.strictEqual(B.fill, "red");
+  test.strictEqual("z" in B, false);
+  test.strictEqual("stroke" in B, false);
+  const C = Plot.bin({}, {stroke: "red"});
+  test.strictEqual(C.stroke, "red");
+  test.strictEqual("z" in C, false);
+  test.strictEqual("fill" in C, false);
+  const D = Plot.bin({}, {fill: "red", stroke: "x"});
+  test.strictEqual(D.fill, "red");
+  test.strictEqual(D.stroke.label, "x");
+  test.strictEqual("z" in D, false);
 });
 
-tape("the bin transform doesn't return undefined channels for constants", test => {
-  const A = Plot.bin({}, {fill: "red"});
-  test.assert(A.fill === "red");
-  test.assert(!("z" in A));
-  test.assert(!("stroke" in A));
-  const B = Plot.bin({}, {stroke: "red"});
-  test.assert(B.stroke === "red");
-  test.assert(!("z" in B));
-  test.assert(!("fill" in B));
-});
-
-tape("the bin transform doesn't return undefined channels for constants", test => {
-  const A = Plot.bin({}, {fill: "red", stroke: "x"});
-  test.assert(A.fill === "red");
-  test.assert(A.stroke.label === "x");
-  test.assert(!("z" in A));
+tape("Plot.bin does return speCified options", test => {
+  const A = Plot.bin({}, {fill: null});
+  test.strictEqual(A.fill, null);
+  test.strictEqual("z" in A, false);
+  test.strictEqual("stroke" in A, false);
 });
