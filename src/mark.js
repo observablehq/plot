@@ -67,6 +67,7 @@ export function valueof(data, value, type) {
   const array = type === undefined ? Array : type;
   return typeof value === "string" ? array.from(data, field(value))
     : typeof value === "function" ? array.from(data, value)
+    : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
     : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
     : arrayify(value, type); // preserve undefined type
 }
