@@ -1,6 +1,7 @@
-import {create} from "d3";
+import {create, line as shapeLine} from "d3";
 import {filter} from "../defined.js";
 import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
+import {Curve} from "../curve.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 export class Link extends Mark {
@@ -14,6 +15,7 @@ export class Link extends Mark {
       title,
       stroke,
       strokeOpacity,
+      curve,
       ...options
     } = {}
   ) {
@@ -32,9 +34,11 @@ export class Link extends Mark {
       ],
       options
     );
+    this.curve = Curve(curve);
     Style(this, {
       stroke: cstroke,
       strokeOpacity: cstrokeOpacity,
+      fill: curve ? "none" : undefined,
       ...options
     });
   }
@@ -44,17 +48,15 @@ export class Link extends Mark {
     {x1: X1, y1: Y1, x2: X2, y2: Y2, title: L, stroke: S, strokeOpacity: SO}
   ) {
     const index = filter(I, X1, Y1, X2, Y2, S, SO);
+    const line = shapeLine().curve(this.curve);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
         .call(g => g.selectAll()
           .data(index)
-          .join("line")
+          .join("path")
             .call(applyDirectStyles, this)
-            .attr("x1", i => X1[i])
-            .attr("y1", i => Y1[i])
-            .attr("x2", i => X2[i])
-            .attr("y2", i => Y2[i])
+            .attr("d", i => line([[X1[i], Y1[i]], [X2[i], Y2[i]]]))
             .call(applyAttr, "stroke", S && (i => S[i]))
             .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(title(L)))
