@@ -13,12 +13,16 @@ export class Link extends Mark {
       x2,
       y2,
       title,
+      fill,
+      fillOpacity,
       stroke,
       strokeOpacity,
       curve,
       ...options
     } = {}
   ) {
+    const [vfill, cfill] = maybeColor(fill, "none");
+    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
     const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     super(
@@ -29,6 +33,8 @@ export class Link extends Mark {
         {name: "x2", value: x2, scale: "x"},
         {name: "y2", value: y2, scale: "y"},
         {name: "title", value: title, optional: true},
+        {name: "fill", value: vfill, scale: "color", optional: true},
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
         {name: "stroke", value: vstroke, scale: "color", optional: true},
         {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
@@ -36,9 +42,12 @@ export class Link extends Mark {
     );
     this.curve = Curve(curve);
     Style(this, {
+      fill: cfill,
+      fillOpacity: cfillOpacity,
       stroke: cstroke,
+      strokeMiterlimit: cstroke === "none" ? undefined : 1,
       strokeOpacity: cstrokeOpacity,
-      fill: curve ? "none" : undefined,
+      strokeWidth: cstroke === "none" ? undefined : 1.5,
       ...options
     });
   }

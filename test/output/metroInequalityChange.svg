@@ -123,7 +123,7 @@
       <line stroke="currentColor" y2="-346" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20M</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Population →</text>
   </g>
-  <g transform="translate(0.5,0.5)">
+  <g fill="none" stroke-width="1.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M577.0231512318791,295.6296296296296L610,132.62962962962962" stroke="rgb(193, 58, 59)"></path>
     <path d="M529.808311059836,289.59259259259255L566.5284089581303,138.6666666666666" stroke="rgb(203, 75, 68)"></path>
     <path d="M509.0104304423192,325.81481481481484L530.6411534518993,192.99999999999997" stroke="rgb(216, 103, 85)"></path>
