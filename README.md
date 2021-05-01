@@ -804,7 +804,7 @@ If the **y** option is not specified, it defaults to the identity function and a
 
 [<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@data-workflows/plot-text)
 
-[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position.
+[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327)
 
 The following channels are required:
 
