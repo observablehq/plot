@@ -760,11 +760,9 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option spe
 
 [<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@data-workflows/plot-rule)
 
-[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws an axis-aligned line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
+[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws an orthogonal line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
 
-For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options).
-
-The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** option defaults to currentColor.
+For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options). The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** option defaults to currentColor.
 
 #### Plot.ruleX(*data*, *options*)
 
@@ -810,7 +808,7 @@ The following channels are required:
 
 * **text** - the text contents (a string)
 
-If **text** is not specified, it defaults to [0, 1, 2, …] so that at least something is displayed by default. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327)
+If **text** is not specified, it defaults to [0, 1, 2, …] so that something is visible by default. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327) For embedding numbers and dates into text, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format).
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -830,7 +828,7 @@ The following text-specific constant options are also supported:
 * **dy** - the vertical offset; defaults to 0
 * **rotate** - the rotation in degrees clockwise; defaults to 0
 
-The **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), a unit which is proportional to the **fontSize**.
+The **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**.
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
@@ -850,7 +848,7 @@ Equivalent to Plot.text, except **y** defaults to the identity function and assu
 
 [<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
 
-[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick)
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary ordinal position dimension. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
 
 #### Plot.tickX(*data*, *options*)
 
