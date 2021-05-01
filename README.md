@@ -587,7 +587,7 @@ Returns a new cell with the given *data* and *options*. If both the **x** and **
 #### Plot.cellX(*data*, *options*)
 
 ```js
-Plot.cellX(simpsons, {fill: "imdb_rating"})
+Plot.cellX(simpsons.map(d => d.imdb_rating))
 ```
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
@@ -595,7 +595,7 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** optio
 #### Plot.cellY(*data*, *options*)
 
 ```js
-Plot.cellY(simpsons, {fill: "imdb_rating"})
+Plot.cellY(simpsons.map(d => d.imdb_rating))
 ```
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
@@ -631,7 +631,7 @@ Returns a new dot with the given *data* and *options. If both the **x** and **y*
 #### Plot.dotX(*data*, *options*)
 
 ```js
-Plot.dotX("ABCDEFGH", {stroke: d => d})
+Plot.dotX(cars.map(d => d["economy (mpg)"]))
 ```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
@@ -639,7 +639,7 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option i
 #### Plot.dotY(*data*, *options*)
 
 ```js
-Plot.dotY("ABCDEFGH", {stroke: d => d})
+Plot.dotY(cars.map(d => d["economy (mpg)"]))
 ```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
@@ -670,7 +670,7 @@ The line mark supports [curve options](#curves) to control interpolation between
 #### Plot.line(*data*, *options*)
 
 ```js
-Plot.line(AAPL, {x: "Date", y: "Close"})
+Plot.line(aapl, {x: "Date", y: "Close"})
 ```
 
 Returns a new line with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
@@ -678,7 +678,7 @@ Returns a new line with the given *data* and *options*. If both the **x** and **
 #### Plot.lineX(*data*, *options*)
 
 ```js
-Plot.lineX(Array.from({length: 100}, Math.random))
+Plot.lineX(aapl.map(d => d.Close))
 ```
 
 Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
@@ -686,7 +686,7 @@ Equivalent to [Plot.line](#plotlinedata-options) except that if the **x** option
 #### Plot.lineY(*data*, *options*)
 
 ```js
-Plot.lineY(Array.from({length: 100}, Math.random))
+Plot.lineY(aapl.map(d => d.Close))
 ```
 
 Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
