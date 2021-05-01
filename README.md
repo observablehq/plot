@@ -587,18 +587,18 @@ Returns a new cell with the given *data* and *options*. If both the **x** and **
 #### Plot.cellX(*data*, *options*)
 
 ```js
-Plot.cellX("ABCDEFGH", {fill: d => d})
+Plot.cellX(simpsons, {fill: "imdb_rating"})
 ```
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 #### Plot.cellY(*data*, *options*)
 
 ```js
-Plot.cellY("ABCDEFGH", {fill: d => d})
+Plot.cellY(simpsons, {fill: "imdb_rating"})
 ```
 
-Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 ### Dot
 
