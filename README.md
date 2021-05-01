@@ -452,15 +452,6 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
-TODO All marks support the following [transforms](#transforms):
-
-* **filter** -
-* **sort** -
-* **reverse** -
-* **transform** -
-
-The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the custom transform.
-
 ### Area
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
@@ -883,6 +874,20 @@ The following optional channels are supported:
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
 ## Transforms
+
+TODO Describe how transforms derive channels and mark indexes.
+
+TODO All marks support the following basic transforms:
+
+* **filter** -
+* **sort** -
+* **reverse** -
+
+In addition, you can specify a general transform, either as a custom function or by using one of the built-in transforms described below:
+
+* **transform** -
+
+The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the general transform.
 
 ### Bin
 
