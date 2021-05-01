@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, title, maybeNumber} from "../mark.js";
+import {Mark, identity, maybeColor, title, maybeNumber, number} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
 
 class AbstractTick extends Mark {
@@ -50,7 +50,17 @@ class AbstractTick extends Mark {
 }
 
 export class TickX extends AbstractTick {
-  constructor(data, {x, y, ...options} = {}) {
+  constructor(
+    data,
+    {
+      x,
+      y,
+      inset = 0,
+      insetTop = inset,
+      insetBottom = inset,
+      ...options
+    } = {}
+  ) {
     super(
       data,
       [
@@ -59,6 +69,8 @@ export class TickX extends AbstractTick {
       ],
       options
     );
+    this.insetTop = number(insetTop);
+    this.insetBottom = number(insetBottom);
   }
   _transform(selection, {x}) {
     selection.call(applyTransform, x, null, 0.5, 0);
@@ -70,15 +82,25 @@ export class TickX extends AbstractTick {
     return i => X[i];
   }
   _y1(scales, {y: Y}, {marginTop}) {
-    return Y ? i => Y[i] : marginTop;
+    return Y ? i => Y[i] + this.insetTop : marginTop + this.insetTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
-    return Y ? i => Y[i] + y.bandwidth() : height - marginBottom;
+    return Y ? i => Y[i] + y.bandwidth() - this.insetBottom : height - marginBottom - this.insetBottom;
   }
 }
 
 export class TickY extends AbstractTick {
-  constructor(data, {x, y, ...options} = {}) {
+  constructor(
+    data,
+    {
+      x,
+      y,
+      inset = 0,
+      insetRight = inset,
+      insetLeft = inset,
+      ...options
+    } = {}
+  ) {
     super(
       data,
       [
@@ -87,15 +109,17 @@ export class TickY extends AbstractTick {
       ],
       options
     );
+    this.insetRight = number(insetRight);
+    this.insetLeft = number(insetLeft);
   }
   _transform(selection, {y}) {
     selection.call(applyTransform, null, y, 0, 0.5);
   }
   _x1(scales, {x: X}, {marginLeft}) {
-    return X ? i => X[i] : marginLeft;
+    return X ? i => X[i] + this.insetLeft : marginLeft + this.insetLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
-    return X ? i => X[i] + x.bandwidth() : width - marginRight;
+    return X ? i => X[i] + x.bandwidth() - this.insetRight : width - marginRight - this.insetRight;
   }
   _y1(scales, {y: Y}) {
     return i => Y[i];
