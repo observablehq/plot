@@ -6,6 +6,9 @@ export default async function() {
   return Plot.plot({
     height: 300,
     padding: 0,
+    color: {
+      scheme: "burd"
+    },
     y: {
       tickFormat: i => "JFMAMJJASOND"[i]
     },

@@ -199,7 +199,7 @@ export function ScaleOrdinal(key, channels, {
   scheme,
   type,
   range = registry.get(key) === color ? (scheme !== undefined ? Scheme(scheme)
-    : type === "ordinal" ? schemes.get("turbo")
+    : type === "ordinal" ? schemes.get("ylgnbu")
     : schemeTableau10) : undefined,
   ...options
 }) {
