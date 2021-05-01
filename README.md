@@ -363,6 +363,8 @@ The following *facet* options are supported:
 * facet.**marginLeft** -
 * facet.**grid** -
 
+TODO Describe how data is faceted according to strict equality (`===`): if a mark’s data is strictly equal to the facet data, the mark is faceted; otherwise, the mark is repeated for each facet. You can disable faceting for a specific mark by giving it a shallow copy of the data.
+
 ## Marks
 
 Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
