@@ -5,7 +5,6 @@ export default async function() {
   const movies = await d3.json("data/movies.json");
   const Genre = d => d["Major Genre"] || "Other";
   const Profit = d => (d["Worldwide Gross"] - d["Production Budget"]) / 1e6;
-  const genres = d3.group(movies, Genre);
   return Plot.plot({
     marginLeft: 120,
     x: {
@@ -19,23 +18,31 @@ export default async function() {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.barX(genres, {
-        y: ([genre]) => genre,
-        x1: ([, movies]) => d3.quantile(movies, 0.25, Profit),
-        x2: ([, movies]) => d3.quantile(movies, 0.75, Profit),
+      Plot.barX(movies, Plot.groupY({x1: quartile1, x2: quartile3}, {
+        y: Genre,
+        x: Profit,
         fillOpacity: 0.2
-      }),
+      })),
       Plot.dot(movies, {
         y: Genre,
         x: Profit,
         strokeWidth: 1
       }),
-      Plot.tickX(genres, {
-        y: ([genre]) => genre,
-        x: ([, movies]) => d3.median(movies, Profit),
+      Plot.tickX(movies, Plot.groupY({x: "median"}, {
+        y: Genre,
+        x: Profit,
         stroke: "red",
-        strokeWidth: 2
-      })
+        strokeWidth: 2,
+        order: "x"
+      }))
     ]
   });
+}
+
+function quartile1(values, value) {
+  return d3.quantile(values, 0.25, value);
+}
+
+function quartile3(values, value) {
+  return d3.quantile(values, 0.75, value);
 }
