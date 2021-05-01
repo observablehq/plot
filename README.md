@@ -823,12 +823,14 @@ The following text-specific constant options are also supported:
 
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
-* **fontStyle** - the font style; defaults to normal
-* **fontVariant** - the font variant; defaults to normal
-* **fontWeight** - the font weight; defaults to normal
+* **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
+* **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
+* **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
 * **dx** - the horizontal offset; defaults to 0
 * **dy** - the vertical offset; defaults to 0
 * **rotate** - the rotation in degrees clockwise; defaults to 0
+
+The **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), a unit which is proportional to the **fontSize**.
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
