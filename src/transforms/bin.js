@@ -66,9 +66,9 @@ function binn(
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
   return {
-    z: GZ,
-    fill: GF,
-    stroke: GS,
+    ..."z" in inputs && {z: GZ || z},
+    ..."fill" in inputs && {fill: GF || fill},
+    ..."stroke" in inputs && {stroke: GS || stroke},
     ...maybeTransform(options, (data, facets) => {
       const K = valueof(data, k);
       const Z = valueof(data, z);
