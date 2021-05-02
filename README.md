@@ -572,7 +572,7 @@ If the **x** channel is not specified, the bar will span the full horizontal ext
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with the [Plot.group](#plotgroupoutputs-options) transform.
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group).
 
 In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
@@ -725,7 +725,7 @@ Returns a new link with the given *data* and *options*.
 
 [<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
 
-[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero.
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. Rects are often used in conjunction with a [bin transform](#bin).
 
 The following channels are required:
 
@@ -734,11 +734,7 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The rect mark supports the [standard mark options](#marks), including insets and rounded corners.
-
-The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
-
-TODO Mention that rect is often used in conjunction with the [bin transform](#bin).
+The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.rect(*data*, *options*)
 
