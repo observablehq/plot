@@ -899,7 +899,7 @@ Plot’s transforms provide a convenient mechanism for transforming data as part
 * **sort** - sorts data according to the specified comparator, accessor, or values
 * **reverse** - reverses the sorted (or if not sorted, the input) data order
 
-For example, to draw bars for only vowels:
+For example, to draw bars only for letters that commonly form vowels:
 
 ```js
 Plot.barY(alphabet, {filter: d => /[aeiou]/i.test(d.letter), x: "letter", y: "frequency"})
@@ -962,7 +962,7 @@ TODO Describe default insets.
 Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
-Bins on *x* and *y*. If a *z*, *fill*, or *stroke* channel is present, it must contain ordinal values, and bins will be further subdivided by the first of these channels.
+Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.binX(*outputs*, *options*)
 
@@ -970,11 +970,15 @@ Bins on *x* and *y*. If a *z*, *fill*, or *stroke* channel is present, it must c
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
+Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if present.
+
 #### Plot.binY(*outputs*, *options*)
 
 ```js
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
+
+Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if present.
 
 ### Group
 
