@@ -988,19 +988,19 @@ Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.group(*outputs*, *options*)
 
-…
+Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.groupX(*outputs*, *options*)
 
-…
+Groups on *x* and the first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.groupY(*outputs*, *options*)
 
-…
+Groups on *y* and the first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.groupZ(*outputs*, *options*)
 
-…
+Groups on the first of *z*, *fill*, or *stroke*; if none are channels, then all data (within each facet) is placed into a single group.
 
 ### Map
 
