@@ -236,7 +236,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
 
-Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
+Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facets)), **inset**, **round**, **align**, and **padding**.
 
 ### Color options
 
@@ -349,7 +349,9 @@ Plot.plot({
 })
 ```
 
-### Facet options
+## Facets
+
+[<img src="./img/frame.png" width="320" height="198" alt="a faceted scatterplot with a frame around each facet">](https://observablehq.com/@data-workflows/plot-facets)
 
 The *facet* option enables faceting. When faceting, two additional band scales may be configured:
 
@@ -358,7 +360,7 @@ The *facet* option enables faceting. When faceting, two additional band scales m
 
 The following *facet* options are supported:
 
-* facet.**data** - the data to be split into multiple facets 
+* facet.**data** - the data to be split into multiple facets
 * facet.**x** - horizontal facet channel
 * facet.**y** - vertical facet channel
 * facet.**marginTop** - the top margin
@@ -367,18 +369,18 @@ The following *facet* options are supported:
 * facet.**marginLeft** - the left margin
 * facet.**grid** - if true, draw grid lines for each facet
 
-Marks that consume the same *data* as the facet will use on each facet the subset of this data that corresponds to the facet channels. Data is faceted according to strict equality (`===`): if a mark’s data is strictly equal to the facet data, the mark is faceted; otherwise, the mark is repeated for each facet. You can disable faceting for a specific mark by giving it a shallow copy of the data.
+Marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. You can disable faceting for an individual mark by giving it a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
 
 ```js
 Plot.plot({
   facet: {
     data: penguins,
     x: "sex"
-  }
+  },
   marks: {
-    Plot.frame(), // draws a frame on all facets
-    Plot.dot(penguins.slice(), {fill: "grey", x:… }), // shallow copy, draws all individuals on each facet 
-    Plot.dot(penguins,         {fill: "blue", x:… }), // draws the facet's data subset in blue
+    Plot.frame(), // draws a outline around each facet
+    Plot.dot(penguins.slice(), {fill: "grey", x: …}), // draws all penguins on each facet
+    Plot.dot(penguins, {fill: "blue", x: …}), // draws only the current facet’s subset
   }
 })
 ```
