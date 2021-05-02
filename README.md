@@ -619,13 +619,11 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale
 
-If the **x** channel is not specified, the dot will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, the dot will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
+If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
 
-The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **r** option defaults to 3 (three pixels) and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
 
-**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
-
-TODO Dots with a nonpositive radius are not drawn.
+Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
 #### Plot.dot(*data*, *options*)
 
@@ -774,7 +772,7 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that the *x* option spe
 
 [Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws an orthogonal line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
 
-For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options). The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** option defaults to currentColor.
+For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options). The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** defaults to currentColor.
 
 #### Plot.ruleX(*data*, *options*)
 
@@ -860,7 +858,7 @@ Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the i
 
 [Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions as in a “barcode” plot.
 
-For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** option defaults to currentColor.
+For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** defaults to currentColor.
 
 #### Plot.tickX(*data*, *options*)
 
