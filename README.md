@@ -483,13 +483,17 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
 
-If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. If **z** is not specified, the data is assumed to represent a single series.
+If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**.
 
-TODO Describe the defaults for fill, stroke, and z. Describe how varying color and opacity within a series is not recommended.
+A path is created for each series in the data. If **z** is not specified, series can be defined implicitly by the **fill** or *stroke* channels, in that order of priority. If neither **z**, **fill** and **stroke** are specified as channels, the data is assumed to represent a single series.
 
-TODO Describe the importance of data order and the **sort** transform.
+**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
-TODO Describe how missing or invalid data is handled (broken areas).
+TODO Describe how varying color and opacity within a series is not recommended.
+
+Each area is drawn in input order; consider [sorting](#Transforms) if the original data is not already sorted along the *x* axis.
+
+Areas will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points.
 
 The area mark supports [curve options](#curves) to control interpolation between points.
 
@@ -523,7 +527,7 @@ Equivalent to [Plot.area](#plotareadata-options), except that the *x* option spe
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
-For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. TODO Describe the defaults for fill and stroke.
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. **stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 #### Plot.barX(*data*, *options*)
 
@@ -572,7 +576,7 @@ In addition to the [standard mark options](#marks), including insets and rounded
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.)
 
-TODO Describe the defaults for fill and stroke.
+**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 #### Plot.cell(*data*, *options*)
 
@@ -614,7 +618,7 @@ If the **x** channel is not specified, the dot will be horizontally centered in 
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
-TODO Describe the defaults for fill and stroke.
+**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 TODO Dots with a nonpositive radius are not drawn.
 
@@ -704,9 +708,9 @@ The following channels are required:
 
 The link mark supports the [standard mark options](#marks).
 
-TODO Describe the defaults for stroke. A link never has a fill (although that might change if we support curved links).
+**stroke** defaults to currentColor, and **fill** defaults to none (only curved links might show a fill).
 
-The link mark supports [curve options](#curves) to control interpolation between points.
+The link mark supports [curve options](#curves) to control interpolation between points (e.g., curve: step, step-after, step-before, bump-x, bump-y).
 
 #### Plot.link(*data*, *options*)
 
@@ -731,7 +735,7 @@ The following channels are required:
 
 The rect mark supports the [standard mark options](#marks), including insets and rounded corners.
 
-TODO Describe the defaults for fill and stroke.
+**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 TODO Mention that rect is often used in conjunction with the [bin transform](#bin).
 
