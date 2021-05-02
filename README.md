@@ -962,7 +962,7 @@ TODO Describe default insets.
 Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
-Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if present.
+Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.binX(*outputs*, *options*)
 
@@ -970,7 +970,7 @@ Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if pr
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if present.
+Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.binY(*outputs*, *options*)
 
@@ -978,7 +978,7 @@ Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if pr
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if present.
+Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if any.
 
 ### Group
 
@@ -988,19 +988,19 @@ Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if present.
 
 #### Plot.group(*outputs*, *options*)
 
-Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if present.
+Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupX(*outputs*, *options*)
 
-Groups on *x* and the first of *z*, *fill*, or *stroke*, if present.
+Groups on *x* and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupY(*outputs*, *options*)
 
-Groups on *y* and the first of *z*, *fill*, or *stroke*, if present.
+Groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupZ(*outputs*, *options*)
 
-Groups on the first of *z*, *fill*, or *stroke*; if none are channels, then all data (within each facet) is placed into a single group.
+Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
 
 ### Map
 
