@@ -528,7 +528,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
-For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise.
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.barX(*data*, *options*)
 
@@ -581,7 +581,7 @@ In addition to the [standard mark options](#marks), including insets and rounded
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.
 
-The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise.
+The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.cell(*data*, *options*)
 
@@ -621,7 +621,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
-The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
+The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
 
 Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
@@ -738,7 +738,7 @@ The following channels are required:
 
 The rect mark supports the [standard mark options](#marks), including insets and rounded corners.
 
-**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
+The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 TODO Mention that rect is often used in conjunction with the [bin transform](#bin).
 
