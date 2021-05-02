@@ -1019,36 +1019,55 @@ Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if any.
 
 [Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group)
 
-TODO Describe output aggregation. Supported reducers:
+The group transforms take two arguments: *outputs* and *inputs*. The input data is grouped on one or several input channels (for example on *x*), and a new data array is created for each group. Each property set in the *outputs* object creates an aggregation channel, that receives as input the groups, and reduces them to a value for each group. A value channel is defined for each aggregation channel, for example *y* when grouping on *x*.
 
-* *first* -
-* *last* -
-* *count* -
-* *sum* -
-* *proportion* -
-* *proportion-facet* -
-* *deviation* -
-* *min* -
-* *max* -
-* *mean* -
-* *median* -
-* *variance* -
+Supported reducers:
+
+* *first* - first element of the group, in input order
+* *last* - last element of the group, in input order
+* *count* - number of elements in the group
+* *sum* - sum of the values of the elements in the group; defaults to* the *count* if the value channel is not defined
+* *proportion* - *sum* of the group divided by the total *sum* of all groups
+* *proportion-facet* - *sum* of the group divided by the total *sum* of groups in the current facet
+* *deviation* - standard deviation of the values in the group
+* *min* - minimum of the values in the group
+* *max* - maximum of the values in the group
+* *mean* - mean of the values in the group
+* *median* - median of the values in the group
+* *variance* - variance of the values in the group
 
 #### Plot.group(*outputs*, *options*)
 
-Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any. The value channel is the input with the same name as the aggregation channel.
+
+Examples:
+
+```js
+Plot.group({fill: "count"}, {
+  x: "island",
+  y: "species"
+})
+```
+
+```js
+Plot.group({fill: "max"}, {
+  x: d => d.date.getUTCDate(),
+  y: d => d.date.getUTCMonth(),
+  fill: "temp_max"
+})
+```
 
 #### Plot.groupX(*outputs*, *options*)
 
-Groups on *x* and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *x* and the first of *z*, *fill*, or *stroke*, if any. The value channel is *y*.
 
 #### Plot.groupY(*outputs*, *options*)
 
-Groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *y* and the first of *z*, *fill*, or *stroke*, if any. The value channel is *x*.
 
 #### Plot.groupZ(*outputs*, *options*)
 
-Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
+Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group. The value channel is the input with the same name as the aggregation channel.
 
 ### Map
 
