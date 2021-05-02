@@ -353,8 +353,8 @@ Plot.plot({
 
 The *facet* option enables [faceting](https://observablehq.com/@data-workflows/plot-facets). When faceting, two additional band scales may be configured:
 
-* **fx** - horizontal position
-* **fy** - vertical position
+* **fx** - the horizontal position, a *band* scale
+* **fy** - the vertical position, a *band* scale
 
 Similar to [marks](#marks), faceting requires specifying data and at least one of two optional channels:
 
