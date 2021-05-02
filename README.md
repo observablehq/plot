@@ -952,6 +952,21 @@ TODO Describe threshold functions:
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
 
+TODO Describe output aggregation. Supported reducers:
+
+* *first* -
+* *last* -
+* *count* -
+* *sum* -
+* *proportion* -
+* *proportion-facet* -
+* *deviation* -
+* *min* -
+* *max* -
+* *mean* -
+* *median* -
+* *variance* -
+
 TODO Describe grouping and faceting. Describe what happens to the group-eligible channels (*z*, *fill*, *stroke*).
 
 TODO Describe default insets.
@@ -985,6 +1000,21 @@ Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if any.
 [<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@data-workflows/plot-group)
 
 [Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group)
+
+TODO Describe output aggregation. Supported reducers:
+
+* *first* -
+* *last* -
+* *count* -
+* *sum* -
+* *proportion* -
+* *proportion-facet* -
+* *deviation* -
+* *min* -
+* *max* -
+* *mean* -
+* *median* -
+* *variance* -
 
 #### Plot.group(*outputs*, *options*)
 
