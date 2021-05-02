@@ -1187,12 +1187,50 @@ These helper functions are provided for use as a *scale*.tickFormat [axis option
 
 #### Plot.formatIsoDate(*date*)
 
-…
+Given a Date, returns the [shortest equivalent ISO 8601 UTC string](https://github.com/mbostock/isoformat/).
+
+```js
+Plot.formatIsoDate(new Date(Date.UTC(2001, 0, 1))) // "2001-01-01"
+Plot.formatIsoDate(new Date(Date.UTC(2020, 0, 1, 12, 23))) // "2020-01-01T12:23Z"
+```
 
 #### Plot.formatWeekday(*locale*, *format*)
 
-…
+Returns a function that formats a week day (numbered from 0—Sunday to 6—Saturday) according to the *locale* and *format*.
+- *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
+- *format*: any valid [weekday format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "narrow", "short", "long"; defaults to "short".
+
+```js
+x: { tickFormat: Plot.formatWeekday() } // Sun, Mon…
+```
+
+```js
+Plot.formatWeekday("es-MX", "long") // domingo, lunes…
+```
+
+```js
+Plot.formatWeekday(navigator.language, "long") // depends on the browser’s settings
+```
+
+This function is periodic: day -1 is Saturday, and day 8 is Sunday.
 
 #### Plot.formatMonth(*locale*, *format*)
 
-…
+Returns a function that formats a month (numbered from 0—January to 11—December) according to the *locale* and *format*.
+- *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
+- *format*: any valid [month format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "2-digit", "numeric", "narrow", "short", "long"; defaults to "short".
+
+```js
+x: { tickFormat: Plot.formatMonth() } // Jan, Feb…
+```
+
+```js
+Plot.formatMonth("es-MX", "long") // enero, febrero…
+```
+
+```js
+Plot.formatMonth(navigator.language, "long") // depends on the browser’s settings
+```
+
+This function is periodic: month -1 is December, and month 12 is January.
+
