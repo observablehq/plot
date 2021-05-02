@@ -572,7 +572,7 @@ If the **x** channel is not specified, the bar will span the full horizontal ext
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value.
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with the [Plot.group](#plotgroupoutputs-options) transform.
 
 In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
@@ -581,7 +581,7 @@ In addition to the [standard mark options](#marks), including insets and rounded
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.)
 
-**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
+The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 #### Plot.cell(*data*, *options*)
 
