@@ -359,8 +359,8 @@ The *facet* option enables [faceting](https://observablehq.com/@data-workflows/p
 Similar to [marks](#marks), faceting requires specifying data and at least one of two optional channels:
 
 * facet.**data** - the data to be faceted
-* facet.**x** - the horizontal position; bound to the *fx* scale, which must be a *band* scale
-* facet.**y** - the vertical position; bound to the *fy* scale, which must be a *band* scale
+* facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
+* facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
 
 The facet.**x** and facet.**y** channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. Automatic binning for quantitative data may be added in the future. [#14](https://github.com/observablehq/plot/issues/14)
 
@@ -545,7 +545,7 @@ If neither the **x1** nor **x2** option is specified, a **x** option may be spec
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
-* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
+* **y** - the vertical position; bound to the *y* scale, which must be *band*
 
 If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
@@ -564,7 +564,7 @@ If neither the **y1** nor **y2** option is specified, a **y** option may be spec
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
-* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
+* **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
@@ -576,8 +576,8 @@ If the **x** channel is not specified, the bar will span the full horizontal ext
 
 In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
-* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
-* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
+* **x** - the horizontal position; bound to the *x* scale, which must be *band*
+* **y** - the vertical position; bound to the *y* scale, which must be *band*
 
 If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.)
 
@@ -617,7 +617,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **r** - the radius (area); bound to the *radius* scale
+* **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
 
 If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
 
@@ -872,7 +872,7 @@ Returns a new tick↕︎ with the given *data* and *options*. The following chan
 
 The following optional channels are supported:
 
-* **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
+* **y** - the vertical position; bound to the *y* scale, which must be *band*
 
 If the **y** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
@@ -888,7 +888,7 @@ Returns a new tick↔︎ with the given *data* and *options*. The following chan
 
 The following optional channels are supported:
 
-* **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
+* **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
