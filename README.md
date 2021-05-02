@@ -913,6 +913,8 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 ### Bin
 
+[<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@data-workflows/plot-bin)
+
 [Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous, quantitative data — such as temperatures or times — into discrete bins. You can then compute summary statistics for each bin, such as a count or sum. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
 
 TODO Describe how the binning dimensions and output channels are specified. Describe the resulting binned data.
@@ -966,6 +968,8 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 ### Group
 
+[<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@data-workflows/plot-group)
+
 [Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group)
 
 #### Plot.group(*outputs*, *options*)
@@ -985,6 +989,8 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 …
 
 ### Map
+
+[<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@data-workflows/plot-map)
 
 [Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map)
 
@@ -1018,6 +1024,8 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 
 ### Select
 
+[<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@data-workflows/plot-select)
+
 [Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select)
 
 #### Plot.selectFirst(*options*)
@@ -1045,6 +1053,8 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 …
 
 ### Stack
+
+[<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@data-workflows/plot-stack)
 
 [Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
 
