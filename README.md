@@ -1148,7 +1148,7 @@ Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel 
 
 Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
-#### Stack options · [Example](https://observablehq.com/@data-workflows/plot-stack-options)
+#### Stack options
 
 The supported stack options are:
 
