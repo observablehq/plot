@@ -236,7 +236,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
 
-Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facets)), **inset**, **round**, **align**, and **padding**.
+Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
 
 ### Color options
 
@@ -349,11 +349,9 @@ Plot.plot({
 })
 ```
 
-## Facets
+### Facet options
 
-[<img src="./img/frame.png" width="320" height="198" alt="a faceted scatterplot with a frame around each facet">](https://observablehq.com/@data-workflows/plot-facets)
-
-The *facet* option enables faceting. When faceting, two additional band scales may be configured:
+The *facet* option enables [faceting](https://observablehq.com/@data-workflows/plot-facets). When faceting, two additional band scales may be configured:
 
 * **fx** - horizontal position
 * **fy** - vertical position
@@ -379,15 +377,15 @@ Plot.plot({
   },
   marks: {
     Plot.frame(), // draws a outline around each facet
-    Plot.dot(penguins.slice(), {fill: "grey", x: …}), // draws all penguins on each facet
-    Plot.dot(penguins, {fill: "blue", x: …}), // draws only the current facet’s subset
+    Plot.dot(penguins.slice(), {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee"}), // draws all penguins on each facet
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
   }
 })
 ```
 
 ## Marks
 
-Marks visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
+[Marks](https://observablehq.com/@data-workflows/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
 
 Mark constructors take two arguments: **data** and **options**. Together, the *data* and *options* describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically specified as abstract values such as time or temperature rather than visual values such as position or color because most channels are bound to [scales](#scale-options).
 
