@@ -390,9 +390,9 @@ Plot.plot({
 
 ## Marks
 
-[Marks](https://observablehq.com/@data-workflows/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into plots.
+[Marks](https://observablehq.com/@data-workflows/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](#plotplotoptions).
 
-Mark constructors take two arguments: **data** and **options**. Together, the *data* and *options* describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically specified as abstract values such as time or temperature rather than visual values such as position or color because most channels are bound to [scales](#scale-options).
+Mark constructors take two arguments: **data** and **options**. Together, these describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically bound to [scales](#scale-options) and encode abstract values, such as time or temperature, as visual values, such as position or color.
 
 A mark’s *data* is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while *options* binds mark channels (such as *x* and *y*) to named columns in the data (such as *units* and *fruit*).
 
