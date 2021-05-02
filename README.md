@@ -762,7 +762,7 @@ Plot.ruleX([0]) // as annotation
 Plot.ruleX(alphabet, {x: "letter", y: "frequency"}) // like barY
 ```
 
-Returns a new vertical rule with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
+Returns a new rule↕︎ with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
@@ -779,7 +779,7 @@ Plot.ruleY([0]) // as annotation
 Plot.ruleY(alphabet, {y: "letter", x: "frequency"}) // like barX
 ```
 
-Returns a new horizontal rule with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
+Returns a new rule↔︎ with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
 
 * **y** - the vertical position; bound to the *y* scale
 * **x1** - the starting horizontal position; bound to the *x* scale
@@ -817,9 +817,7 @@ The following text-specific constant options are also supported:
 * **dy** - the vertical offset; defaults to 0
 * **rotate** - the rotation in degrees clockwise; defaults to 0
 
-The **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**.
-
-The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**. The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 #### Plot.text(*data*, *options*)
 
@@ -847,7 +845,7 @@ For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.ti
 Plot.tickX(stateage, {x: "population", y: "age"})
 ```
 
-Returns a new tick with the given *data* and *options*. The following channels are required:
+Returns a new tick↕︎ with the given *data* and *options*. The following channels are required:
 
 * **x** - the horizontal position; bound to the *x* scale
 
@@ -863,7 +861,7 @@ If the **y** channel is not specified, the tick will span the full vertical exte
 Plot.tickY(stateage, {y: "population", x: "age"})
 ```
 
-Returns a new tick with the given *data* and *options*. The following channels are required:
+Returns a new tick↔︎ with the given *data* and *options*. The following channels are required:
 
 * **y** - the vertical position; bound to the *y* scale
 
@@ -952,7 +950,7 @@ TODO Describe default insets.
 Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
-Bins on *x* and *y*. If a *z*, *fill*, or *stroke* channel is present, it must be ordinal values, and bins will be further subdivided by the first of these channels.
+Bins on *x* and *y*. If a *z*, *fill*, or *stroke* channel is present, it must contain ordinal values, and bins will be further subdivided by the first of these channels.
 
 #### Plot.binX(*outputs*, *options*)
 
