@@ -356,11 +356,16 @@ The *facet* option enables [faceting](https://observablehq.com/@data-workflows/p
 * **fx** - horizontal position
 * **fy** - vertical position
 
-The following *facet* options are supported:
+Similar to [marks](#marks), faceting requires specifying data and at least one of two optional channels:
 
-* facet.**data** - the data to be split into multiple facets
-* facet.**x** - horizontal facet channel
-* facet.**y** - vertical facet channel
+* facet.**data** - the data to be faceted
+* facet.**x** - the horizontal position; bound to the *fx* scale, which must be a *band* scale
+* facet.**y** - the vertical position; bound to the *fy* scale, which must be a *band* scale
+
+The facet.**x** and facet.**y** channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. Automatic binning for quantitative data may be added in the future. [#14](https://github.com/observablehq/plot/issues/14)
+
+The following *facet* constant options are also supported:
+
 * facet.**marginTop** - the top margin
 * facet.**marginRight** - the right margin
 * facet.**marginBottom** - the bottom margin
