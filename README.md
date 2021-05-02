@@ -376,7 +376,7 @@ Plot.plot({
     x: "sex"
   },
   marks: {
-    Plot.frame(), // draws a outline around each facet
+    Plot.frame(), // draws an outline around each facet
     Plot.dot(penguins.slice(), {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee"}), // draws all penguins on each facet
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
   }
@@ -483,19 +483,15 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
 
-If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**.
+If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. These defaults facilitate sharing *x* or *y* coordinates between the baseline and topline, as is commonly the case (with [Plot.areaY](#plotareaydata-options) and [Plot.areaX](#plotareaxdata-options), respectively).
 
-A path is created for each series in the data. If **z** is not specified, series can be defined implicitly by the **fill** or *stroke* channels, in that order of priority. If neither **z**, **fill** and **stroke** are specified as channels, the data is assumed to represent a single series.
+By default, the data is assumed to represent a single series (*e.g.*, a single value over time). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **fill** if a channel, or **stroke** if a channel.
 
-**stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
+The **stroke** color defaults to none. The **fill** color defaults to currentColor if the stroke is none, and to none otherwise. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible that the stroke or fill could vary within a series. Varying color within a series is not supported, so only the first value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels.
 
-TODO Describe how varying color and opacity within a series is not recommended.
+Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, series are drawn in input order such that the last series is drawn on top. Typically, the given data is already in sorted order, such as chronological for time series; to sort the data, use a [sort transform](#transforms).
 
-Each area is drawn in input order; consider [sorting](#Transforms) if the original data is not already sorted along the *x* axis.
-
-Areas will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points.
-
-The area mark supports [curve options](#curves) to control interpolation between points.
+The area mark supports [curve options](#curves) to control interpolation between points. If any of the *x1*, *y1*, *x2*, or *y2* values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted at this point, resulting in a break that separates the series’ shape into multiple segments. (See [d3-shape’s *area*.defined](https://github.com/d3/d3-shape/blob/master/README.md#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
 #### Plot.area(*data*, *options*)
 
