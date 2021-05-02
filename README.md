@@ -895,43 +895,70 @@ Returns a new frame with the specified *options*.
 
 ## Transforms
 
-TODO Describe how transforms derive channels and mark indexes. Transforms compute new mark options. Some transforms take a mark’s *options*, while other transforms take transform-specific options as the first argument. In all cases, the transform returns a new *options* object you can pass to a mark — or another transform, as when composing transforms.
+Plot’s transforms provide a convenient mechanism for transforming data as part of a plot specification. All marks support the following basic transforms:
 
-TODO All marks support the following basic transforms:
+* **filter** - filters data according to the specified accessor or values
+* **sort** - sorts data according to the specified comparator, accessor, or values
+* **reverse** - reverses the sorted (or if not sorted, the input) data order
 
-* **filter** -
-* **sort** -
-* **reverse** -
+Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
 
-You can also specify a custom transform function:
+For greater control, you can also implement a custom transform function:
 
-* **transform** -
+* **transform** - a function that returns transformed *data* and *index*
 
-The basic transforms are composable: the filter transform is applied first, then sort, reverse, and lastly the custom transform. The custom transform is rarely specified directly; instead it is applied using one of the built-in transforms described below.
+The basic transforms are composable: the *filter* transform is applied first, then *sort*, *reverse*, and lastly the custom *transform*, if any. A custom transform is rarely specified directly; instead it is typically specified via one of an option transform.
+
+Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
 ### Bin
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · The bin transform aggregates quantitative data — continuous measurements such as heights, weights, or temperatures — into discrete bins. You can then compute summary statistics for each bin, such as a count, sum, or proportion. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous, quantitative data — such as temperatures or times — into discrete bins. You can then compute summary statistics for each bin, such as a count or sum. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
+
+TODO Describe how the binning dimensions and output channels are specified. Describe the resulting binned data.
+
+TODO Describe binning options:
+
+* **thresholds** -
+* **domain** -
+* **cumulative** -
+
+For separate dimensions *x* and *y*:
+
+* *scale*.**thresholds** -
+* *scale*.**domain** -
+* *scale*.**cumulative** -
+* *scale*.**value** -
+
+TODO Describe threshold functions:
+
+* *freedman-diaconis* -
+* *scott* -
+* *sturges* -
+* a count (hint) representing the desired number of bins
+* an array of *n* threshold values for *n* + 1 bins
+* a time interval (for temporal binning)
+* a function that returns an array, count, or time interval
+
+TODO Describe grouping and faceting. Describe what happens to the group-eligible channels (*z*, *fill*, *stroke*).
+
+TODO Describe default insets.
 
 #### Plot.bin(*outputs*, *options*)
-
-…
 
 ```js
 Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
-#### Plot.binX(*outputs*, *options*)
+Bins on *x* and *y*. If a *z*, *fill*, or *stroke* channel is present, it must be ordinal values, and bins will be further subdivided by the first of these channels.
 
-…
+#### Plot.binX(*outputs*, *options*)
 
 ```js
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
 #### Plot.binY(*outputs*, *options*)
-
-…
 
 ```js
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
