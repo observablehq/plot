@@ -905,7 +905,7 @@ For example, to draw bars for only vowels:
 Plot.barY(alphabet, {filter: d => /[aeiou]/i.test(d.letter), x: "letter", y: "frequency"})
 ```
 
-The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](#faceting) and will not affect inferred [scale domains](#scale-options), which are inferred from the unfiltered channel values.
+The **filter** transform is similar to filtering the data with [*array*.filter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), except that it will preserve [faceting](#faceting) and will not affect inferred [scale domains](#scale-options); domains are inferred from the unfiltered channel values.
 
 ```js
 Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "frequency"})
