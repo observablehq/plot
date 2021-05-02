@@ -1134,29 +1134,61 @@ Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*,
 
 [Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
 
-#### Plot.stackX(*options*)
+#### Plot.stackY(_options_)
 
-…
+Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points.
 
-#### Plot.stackX1(*options*)
+The stacking options are detailed below.
 
-Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
-
-#### Plot.stackX2(*options*)
-
-Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
-
-#### Plot.stackY(*options*)
-
-…
-
-#### Plot.stackY1(*options*)
+#### Plot.stackY1(_options_)
 
 Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
-#### Plot.stackY2(*options*)
+#### Plot.stackY2(_options_)
 
 Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+
+#### Stack options · [Example](https://observablehq.com/@data-workflows/plot-stack-options)
+
+The supported stack options are:
+
+- **order** - the order in which the data points are stacked
+- **reverse** - true to reverse order
+- **offset** - sets the offset (or baseline) method
+
+The following order methods are supported:
+- null - default, stack the data points in input order
+- *value* - stack the data points in value order (from smaller to larger). These two methods do not ensure consistency of the series order across the stacks, and can lead to criss-crossing paths. The following methods, on the contrary, maintain a consistent order of series:
+- [array of *z* values] - stack the series in the order given by this arbitrary array of *z* values; the array will usually be defined manually or with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort)
+- *sum* - stack the series in the order given by the sums of their values; equivalent to [d3.stackOrderAscending](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderAscending), and [d3.stackOrderDescending](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderDescending) if combined with *reverse*.
+- *appearance* - stack the series in the order given by the location (*x*) of their maximum value; equivalent to [d3.stackOrderAppearance](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderAppearance].
+- *inside-out* - stack the series in an order such that the earliest series (according to the maximum value) are on the inside and the later series are on the outside. This order is recommended for streamgraphs in conjunction with the wiggle offset. See [Stacked Graphs—Geometry & Aesthetics](http://leebyron.com/streamgraph/) by Byron & Wattenberg for more information. Equivalent to [d3.stackOrderInsideOut](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderInsideOut]
+
+The **reverse** option reverses the order.
+
+The stacking algorithm tracks two values, lo and hi, both starting at zero, for each stack. Considering the values in the given *order*, it progresses by adding non-negative values to the current *hi*, and negative values to the current *lo*. The value of *lo* or *hi* before adding is saved in *y1*, and the new value is saved in *y2*.
+ 
+When all the values have been added in all the stacks, an optional **offset** strategy is applied to rescale *y1* and *y2*.
+
+The following **offset** options are supported:
+- null - default, keeps *y1* and *y2* unchanged. Equivalent to [d3.stackOffsetNone](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetNone), and to [d3.stackOffsetDiverging](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetDiverging) if some values are non-positive.
+- *expand* - rescales the values *y1* and *y2* between 0 (for *lo*) and 1 (for *hi*), resulting in stacks that all cover the same range (except in cases for which all the values were zero). Equivalent to [d3.stackOffsetExpand](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetExpand).
+- *silhouette* - shifts the baseline such that *lo* and *hi* are symmetrically distributed around zero. The whole stacks are then shifted globally of the same amount, so that the smallest *lo* is equal to 0. Similar to [d3.stackOffsetSilhouette](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetSilhouette).
+- *wiggle* - shifts the baseline so as to minimize the weighted wiggle of series. This offset is recommended for streamgraphs in conjunction with the [inside-out order](#stackOrderInsideOut). See [Stacked Graphs—Geometry & Aesthetics](http://leebyron.com/streamgraph/) by Bryon & Wattenberg for more information. The baseline is floored globally so that the smallest *lo* is equal to 0. Similar to [d3.stackOffsetWiggle](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetWiggle).
+
+A new **y** channel is eventually returned, which lazily computes the middle value of **y1** and **y2**. It can be used to position a label or a dot in the middle of the corresponding interval.
+
+#### Plot.stackX(_options_)
+
+See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
+
+#### Plot.stackX1(_options_)
+
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+
+#### Plot.stackX2(_options_)
+
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
 ## Curves
 
