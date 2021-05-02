@@ -488,7 +488,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y2** - the vertical position of the topline; bound to the *y* scale
 * **z** - a categorical value to group data into series
 
-If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. These defaults facilitate sharing *x* or *y* coordinates between the baseline and topline, as is commonly the case (with [Plot.areaY](#plotareaydata-options) and [Plot.areaX](#plotareaxdata-options), respectively).
+If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, it defaults to **y1**. These defaults facilitate sharing *x* or *y* coordinates between the baseline and topline. See also the implicit stack transform and shorthand **x** and **y** options supported by [Plot.areaY](#plotareaydata-options) and [Plot.areaX](#plotareaxdata-options).
 
 By default, the data is assumed to represent a single series (*e.g.*, a single value over time). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **fill** if a channel, or **stroke** if a channel.
 
