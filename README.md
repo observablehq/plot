@@ -408,16 +408,10 @@ sales = [
 Plot.dot(sales, {x: "units", y: "fruit"}).plot()
 ```
 
-While named columns such as the string `"units"` are the most concise, channel values can also be specified as functions for greater flexibility, say to transform data or derive new values for visualization. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
+While a column name such as `"units"` is the most concise way of specifying channel values, values can also be specified as functions for greater flexibility, say to transform data or derive a new column on the fly. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
 
 ```js
 Plot.dot(sales, {x: d => d.units * 1000, y: d => d.fruit}).plot()
-```
-
-Channel values can be specified as numbers for constant values, say for a fixed baseline with an [area](#area).
-
-```js
-Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"}).plot()
 ```
 
 Plot also supports columnar data for greater efficiency with bigger datasets; for example, data can be specified as any array of the appropriate length (or any iterable or value compatible with [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from)), and then separate arrays of values can be passed as *options*.
@@ -433,6 +427,12 @@ fruits = ["fig", "date", "plum", "plum"]
 ```
 ```js
 Plot.dot(index, {x: units, y: fruits}).plot()
+```
+
+Channel values can also be specified as numbers for constant values, say for a fixed baseline with an [area](#area).
+
+```js
+Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"}).plot()
 ```
 
 Missing and invalid data are handled specifically for each mark type and channel. Plot.dot will not generate circles with null, undefined or negative radius, or null or undefined coordinates. Similarly, Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points; Plot.link, Plot.rect will only create shapes where x1, x2, y1 and y2 are not null or undefined. Marks will not generate elements for null or undefined fill or stroke, stroke width, fill or stroke opacity. Titles will only be added if they are non-empty.
