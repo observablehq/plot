@@ -579,7 +579,7 @@ In addition to the [standard mark options](#marks), including insets and rounded
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
 
-If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). (Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.)
+If the **x** channel is not specified, the cell will span the full horizontal extent of the plot (or facet). Likewise if the **y** channel is not specified, the cell will span the full vertical extent of the plot (or facet). Typically either *x*, *y*, or both are specified; see [Plot.frame](#frame) if you want a simple frame decoration around the plot.
 
 The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
@@ -589,7 +589,7 @@ The **stroke** defaults to none. The **fill** defaults to currentColor if stroke
 Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
 ```
 
-Returns a new cell with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new cell with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.cellX(*data*, *options*)
 
@@ -619,9 +619,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
 
-If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). (Typically either *x*, *y*, or both are specified.)
+If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
-The **r** option defaults to 3 (three pixels) and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
+The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
 
 Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
@@ -631,7 +631,7 @@ Dots are drawn in input order, with the last data drawn on top. If sorting is ne
 Plot.dot(sales, {x: "units", y: "fruit"})
 ```
 
-Returns a new dot with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
@@ -678,7 +678,7 @@ The line mark supports [curve options](#curves) to control interpolation between
 Plot.line(aapl, {x: "Date", y: "Close"})
 ```
 
-Returns a new line with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new line with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.lineX(*data*, *options*)
 
@@ -842,7 +842,7 @@ The **dx** and **dy** options can be specified either as numbers representing pi
 
 #### Plot.text(*data*, *options*)
 
-Returns a new text mark with the given *data* and *options*. If both the **x** and **y** options are not specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.textX(*data*, *options*)
 
