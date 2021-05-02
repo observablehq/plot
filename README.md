@@ -520,7 +520,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 Plot.areaY(aapl, {x: "Date", y: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, a **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
+Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
 
 ### Bar
 
@@ -560,7 +560,7 @@ Returns a new vertical bar↕︎ with the given *data* and *options*. The follow
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-If neither the **y1** nor **y2** option is specified, a **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
@@ -758,7 +758,7 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, a **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
 
 ### Rule
 
@@ -1174,7 +1174,7 @@ These two methods do not ensure consistency of the series order across the stack
 The **reverse** option reverses the order.
 
 The stacking algorithm tracks two values, *lo* and *hi*, both starting at zero for each stack. Considering the values in the given *order*, it progresses by adding non-negative values to the current *hi*, and negative values to the current *lo*. The value of *lo* or *hi* before adding is saved in *y1*, and the new value is saved in *y2*.
- 
+
 When all the values have been added in all the stacks, an optional **offset** strategy is applied to rescale *y1* and *y2*.
 
 The following **offset** options are supported:
