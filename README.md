@@ -358,16 +358,30 @@ The *facet* option enables faceting. When faceting, two additional band scales m
 
 The following *facet* options are supported:
 
-* facet.**data** -
-* facet.**x** -
-* facet.**y** -
-* facet.**marginTop** -
-* facet.**marginRight** -
-* facet.**marginBottom** -
-* facet.**marginLeft** -
-* facet.**grid** -
+* facet.**data** - the data to be split into multiple facets 
+* facet.**x** - horizontal facet channel
+* facet.**y** - vertical facet channel
+* facet.**marginTop** - the top margin
+* facet.**marginRight** - the right margin
+* facet.**marginBottom** - the bottom margin
+* facet.**marginLeft** - the left margin
+* facet.**grid** - if true, draw grid lines for each facet
 
-TODO Describe how data is faceted according to strict equality (`===`): if a mark’s data is strictly equal to the facet data, the mark is faceted; otherwise, the mark is repeated for each facet. You can disable faceting for a specific mark by giving it a shallow copy of the data.
+Marks that consume the same *data* as the facet will use on each facet the subset of this data that corresponds to the facet channels. Data is faceted according to strict equality (`===`): if a mark’s data is strictly equal to the facet data, the mark is faceted; otherwise, the mark is repeated for each facet. You can disable faceting for a specific mark by giving it a shallow copy of the data.
+
+```js
+Plot.plot({
+  facet: {
+    data: penguins,
+    x: "sex"
+  }
+  marks: {
+    Plot.frame(), // draws a frame on all facets
+    Plot.dot(penguins.slice(), {fill: "grey", x:… }), // shallow copy, draws all individuals on each facet 
+    Plot.dot(penguins,         {fill: "blue", x:… }), // draws the facet's data subset in blue
+  }
+})
+```
 
 ## Marks
 
@@ -416,7 +430,7 @@ fruits = ["fig", "date", "plum", "plum"]
 Plot.dot(index, {x: units, y: fruits}).plot()
 ```
 
-TODO Describe how missing or invalid data is handled.
+Missing and invalid data are handled specifically for each mark type and channel. Plot.dot will not generate circles with null, undefined or negative radius, or null or undefined coordinates. Similarly, Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points; Plot.link, Plot.rect will only create shapes where x1, x2, y1 and y2 are not null or undefined. Marks will not generate elements for null or undefined fill or stroke, stroke width, fill or stroke opacity. Titles will only be added if they are non-empty.
 
 All marks support the following style options:
 
