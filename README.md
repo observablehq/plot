@@ -1104,35 +1104,40 @@ Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*,
 
 [Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select)
 
+The select transforms extract one (or possibly several) data points from a series. They can be used to label a line, or annotate an extremal value. Series are defined by *facet* and *z* (or *fill* or *stroke*).
+
 #### Plot.selectFirst(*options*)
 
-…
+Selects the first point of the series, in input order.
 
 #### Plot.selectLast(*options*)
 
-…
+Selects the last point of the series, in input order.
 
 #### Plot.selectMinX(*options*)
 
-…
+Selects the left-most point of the series.
 
 #### Plot.selectMinY(*options*)
 
-…
+Selects the lowest point of the series.
 
 #### Plot.selectMaxX(*options*)
 
-…
+Selects the right-most point of the series.
 
 #### Plot.selectMaxY(*options*)
 
-…
+Selects the highest point of the series.
+
 
 ### Stack
 
 [<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@data-workflows/plot-stack)
 
 [Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
+
+TODO stack intro
 
 #### Plot.stackY(_options_)
 
