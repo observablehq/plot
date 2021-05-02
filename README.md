@@ -394,7 +394,7 @@ Plot.plot({
 
 Mark constructors take two arguments: **data** and **options**. Together, these describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically bound to [scales](#scale-options) and encode abstract values, such as time or temperature, as visual values, such as position or color.
 
-A mark’s *data* is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while *options* binds mark channels (such as *x* and *y*) to named columns in the data (such as *units* and *fruit*).
+A mark’s data is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while a mark’s options bind channels (such as *x* and *y*) to columns in the data (such as *units* and *fruit*).
 
 ```js
 sales = [
@@ -408,7 +408,7 @@ sales = [
 Plot.dot(sales, {x: "units", y: "fruit"}).plot()
 ```
 
-Channel values can also be specified as functions, affording greater flexibility if your data is not structured in a way that is readily visualized, or if you want to visualize computed values. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
+While named columns such as the string `"units"` are the most concise, channel values can also be specified as functions for greater flexibility, say to transform data or derive new values for visualization. Channel functions are invoked for each datum (*d*) in the data and return the corresponding channel value. (This is similar to how D3’s [*selection*.attr](https://github.com/d3/d3-selection/blob/master/README.md#selection_attr) accepts functions, though note that Plot channel functions should return abstract values, not visual values.)
 
 ```js
 Plot.dot(sales, {x: d => d.units * 1000, y: d => d.fruit}).plot()
