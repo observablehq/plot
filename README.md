@@ -709,11 +709,9 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The link mark supports the [standard mark options](#marks).
+The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
 
-The **stroke** defaults to currentColor. The **fill** defaults to none. (Only curved links can show a fill.)
-
-The link mark supports [curve options](#curves) to control interpolation between points (*e.g.*, curve: step, step-after, step-before, bump-x, bump-y).
+The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area.
 
 #### Plot.link(*data*, *options*)
 
