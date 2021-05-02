@@ -725,7 +725,7 @@ Returns a new link with the given *data* and *options*.
 
 [<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
 
-[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. Rects are often used in conjunction with a [bin transform](#bin).
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
 
 The following channels are required:
 
