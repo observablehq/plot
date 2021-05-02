@@ -392,7 +392,7 @@ Plot.plot({
 
 [Marks](https://observablehq.com/@data-workflows/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](#plotplotoptions).
 
-Mark constructors take two arguments: **data** and **options**. Together, these describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically bound to [scales](#scale-options) and encode abstract values, such as time or temperature, as visual values, such as position or color.
+Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically bound to [scales](#scale-options) and encode abstract values, such as time or temperature, as visual values, such as position or color.
 
 A mark’s data is most commonly an array of objects representing a tabular dataset, such as the result of loading a CSV file, while a mark’s options bind channels (such as *x* and *y*) to columns in the data (such as *units* and *fruit*).
 
@@ -475,7 +475,7 @@ Insets are specified in pixels. Corner radii are specified in either pixels or p
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
 
-[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*), as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
+[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*) as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
 
 The following channels are required:
 
@@ -536,16 +536,18 @@ For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY
 Plot.barX(alphabet, {y: "letter", x: "frequency"})
 ```
 
-Returns a new horizontal bar with the given *data* and *options*. The following channels are required:
+Returns a new horizontal bar↔︎ with the given *data* and *options*. The following channels are required:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
+
+If neither the **x1** nor **x2** option is specified, a **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxoptions); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **y** - the vertical position; bound to the *y* scale, which must be a *band* scale
 
-If an **x** option is specified, it is shorthand for the **x2** option with **x1** equal to zero; this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
+If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
 
 #### Plot.barY(*data*, *options*)
 
@@ -553,16 +555,18 @@ If an **x** option is specified, it is shorthand for the **x2** option with **x1
 Plot.barY(alphabet, {x: "letter", y: "frequency"})
 ```
 
-Returns a new vertical bar with the given *data* and *options*. The following channels are required:
+Returns a new vertical bar↕︎ with the given *data* and *options*. The following channels are required:
 
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
+
+If neither the **y1** nor **y2** option is specified, a **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackyoptions); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
 
 In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be a *band* scale
 
-If a **y** option is specified, it is shorthand for the **y2** option with **y1** equal to zero; this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
+If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
 ### Cell
 
@@ -854,7 +858,7 @@ Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the i
 
 [<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
 
-[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions, as in a “barcode” plot.
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions as in a “barcode” plot.
 
 For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** option defaults to currentColor.
 
