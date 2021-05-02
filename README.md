@@ -494,7 +494,7 @@ By default, the data is assumed to represent a single series (a single value tha
 
 The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels.
 
-Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the given data is already in sorted order, such as chronological for time series; to sort the data, use a [sort transform](#transforms).
+Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
 The area mark supports [curve options](#curves) to control interpolation between points. If any of the *x1*, *y1*, *x2*, or *y2* values are invalid (undefined, null, or NaN), the baseline and topline will be interrupted, resulting in a break that divides the area shape into multiple segments. (See [d3-shape’s *area*.defined](https://github.com/d3/d3-shape/blob/master/README.md#area_defined) for more.) If an area segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
@@ -659,8 +659,8 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option i
 
 The following channels are required:
 
-* **x** - the horizontal position of the line; bound to the *x* scale
-* **y** - the vertical position of the line; bound to the *y* scale
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -668,9 +668,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **stroke** if a channel, or **fill** if a channel.
 
-The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels.
+The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
 
-Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the given data is already in sorted order, such as chronological for time series; to sort the data, use a [sort transform](#transforms).
+Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
 The line mark supports [curve options](#curves) to control interpolation between points. If any of the *x* or *y* values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
