@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(100.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">Share of deaths by police</text>
@@ -8,11 +8,11 @@
     </g>
   </g>
   <g stroke="white" stroke-miterlimit="1">
-    <path fill="#f28e2c" d="M100,30C320,30,320,30,540,30L540,77.45C320,77.45,320,190.6,100,190.6Z"></path>
-    <path fill="#e15759" d="M100,190.6C320,190.6,320,77.45,540,77.45L540,121.25C320,121.25,320,307.4,100,307.4Z"></path>
-    <path fill="#76b7b2" d="M100,307.4C320,307.4,320,121.25,540,121.25L540,340.25C320,340.25,320,373.09999999999997,100,373.09999999999997Z"></path>
-    <path fill="#4e79a7" d="M100,373.09999999999997C320,373.09999999999997,320,340.25,540,340.25L540,395C320,395,320,395,100,395Z"></path>
+    <path fill="#f28e2c" d="M100,30C320,30,320,30,540,30L540,77.97C320,77.97,320,192.35999999999999,100,192.35999999999999Z"></path>
+    <path fill="#e15759" d="M100,192.35999999999999C320,192.35999999999999,320,77.97,540,77.97L540,122.25C320,122.25,320,310.44,100,310.44Z"></path>
+    <path fill="#76b7b2" d="M100,310.44C320,310.44,320,122.25,540,122.25L540,343.65C320,343.65,320,376.86,100,376.86Z"></path>
+    <path fill="#4e79a7" d="M100,376.86C320,376.86,320,343.65,540,343.65L540,399C320,399,320,399,100,399Z"></path>
   </g>
-  <g text-anchor="end" transform="translate(0.5,0.5)"><text dx="-6" dy="0.32em" x="100" y="110.3">Black 44%</text><text dx="-6" dy="0.32em" x="100" y="249">Hispanic 32%</text><text dx="-6" dy="0.32em" x="100" y="340.25">White 18%</text><text dx="-6" dy="0.32em" x="100" y="384.04999999999995">All other races 6%</text></g>
-  <g text-anchor="start" transform="translate(0.5,0.5)"><text dx="6" dy="0.32em" x="540" y="53.72499999999998">Black 13%</text><text dx="6" dy="0.32em" x="540" y="99.34999999999998">Hispanic 12%</text><text dx="6" dy="0.32em" x="540" y="230.75000000000003">White 60%</text><text dx="6" dy="0.32em" x="540" y="367.625">All other races 15%</text></g>
+  <g text-anchor="end" transform="translate(0.5,0.5)"><text dx="-6" dy="0.32em" x="100" y="111.17999999999999">Black 44%</text><text dx="-6" dy="0.32em" x="100" y="251.39999999999998">Hispanic 32%</text><text dx="-6" dy="0.32em" x="100" y="343.65">White 18%</text><text dx="-6" dy="0.32em" x="100" y="387.92999999999995">All other races 6%</text></g>
+  <g text-anchor="start" transform="translate(0.5,0.5)"><text dx="6" dy="0.32em" x="540" y="53.98499999999998">Black 13%</text><text dx="6" dy="0.32em" x="540" y="100.10999999999997">Hispanic 12%</text><text dx="6" dy="0.32em" x="540" y="232.95000000000002">White 60%</text><text dx="6" dy="0.32em" x="540" y="371.32500000000005">All other races 15%</text></g>
 </svg>

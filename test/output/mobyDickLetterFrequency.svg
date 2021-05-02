@@ -1,59 +1,59 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,366.5)">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,337.904958677686)">
+    <g class="tick" opacity="1" transform="translate(0,341.5743801652893)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,309.3099173553719)">
+    <g class="tick" opacity="1" transform="translate(0,312.6487603305785)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,280.71487603305786)">
+    <g class="tick" opacity="1" transform="translate(0,283.72314049586777)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,252.1198347107438)">
+    <g class="tick" opacity="1" transform="translate(0,254.79752066115702)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,223.52479338842977)">
+    <g class="tick" opacity="1" transform="translate(0,225.87190082644628)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,194.9297520661157)">
+    <g class="tick" opacity="1" transform="translate(0,196.94628099173553)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,166.33471074380168)">
+    <g class="tick" opacity="1" transform="translate(0,168.02066115702482)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">700</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,137.7396694214876)">
+    <g class="tick" opacity="1" transform="translate(0,139.09504132231405)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,109.14462809917356)">
+    <g class="tick" opacity="1" transform="translate(0,110.16942148760333)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">900</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,80.5495867768595)">
+    <g class="tick" opacity="1" transform="translate(0,81.24380165289256)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,51.95454545454546)">
+    <g class="tick" opacity="1" transform="translate(0,52.31818181818183)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1,100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,23.359504132231397)">
+    <g class="tick" opacity="1" transform="translate(0,23.392561983471065)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g transform="translate(0,370)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(55.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
     </g>
@@ -134,34 +134,34 @@
     </g>
   </g>
   <g>
-    <rect x="45" width="20" y="138.6694214876033" height="227.3305785123967"></rect>
-    <rect x="67" width="20" y="326.53884297520665" height="39.46115702479335"></rect>
-    <rect x="89" width="20" y="303.09090909090907" height="62.909090909090935"></rect>
-    <rect x="111" width="20" y="267.63305785123964" height="98.36694214876036"></rect>
-    <rect x="133" width="20" y="20" height="346"></rect>
-    <rect x="155" width="20" y="306.2363636363636" height="59.76363636363641"></rect>
-    <rect x="177" width="20" y="303.9487603305785" height="62.05123966942148"></rect>
-    <rect x="199" width="20" y="207.0115702479339" height="158.9884297520661"></rect>
-    <rect x="221" width="20" y="174.12727272727273" height="191.87272727272727"></rect>
-    <rect x="243" width="20" y="362.8545454545455" height="3.145454545454527"></rect>
-    <rect x="265" width="20" y="350.2727272727273" height="15.727272727272691"></rect>
-    <rect x="287" width="20" y="244.18512396694214" height="121.81487603305786"></rect>
-    <rect x="309" width="20" y="290.2231404958677" height="75.77685950413229"></rect>
-    <rect x="331" width="20" y="179.84628099173554" height="186.15371900826446"></rect>
-    <rect x="353" width="20" y="152.6809917355372" height="213.3190082644628"></rect>
-    <rect x="375" width="20" y="311.95537190082644" height="54.044628099173565"></rect>
-    <rect x="397" width="20" y="363.42644628099174" height="2.5735537190082596"></rect>
-    <rect x="419" width="20" y="212.7305785123967" height="153.2694214876033"></rect>
-    <rect x="441" width="20" y="169.2661157024793" height="196.7338842975207"></rect>
-    <rect x="463" width="20" y="112.64793388429753" height="253.35206611570248"></rect>
-    <rect x="485" width="20" y="291.08099173553717" height="74.91900826446283"></rect>
-    <rect x="507" width="20" y="336.26115702479336" height="29.738842975206637"></rect>
-    <rect x="529" width="20" y="307.3801652892562" height="58.61983471074382"></rect>
-    <rect x="551" width="20" y="362.8545454545455" height="3.145454545454527"></rect>
-    <rect x="573" width="20" y="305.6644628099173" height="60.335537190082675"></rect>
-    <rect x="595" width="20" y="363.998347107438" height="2.0016528925619923"></rect>
+    <rect x="45" width="20" y="140.04132231404958" height="229.95867768595042"></rect>
+    <rect x="67" width="20" y="330.0826446280992" height="39.91735537190078"></rect>
+    <rect x="89" width="20" y="306.3636363636363" height="63.63636363636368"></rect>
+    <rect x="111" width="20" y="270.495867768595" height="99.50413223140498"></rect>
+    <rect x="133" width="20" y="20" height="350"></rect>
+    <rect x="155" width="20" y="309.5454545454545" height="60.454545454545496"></rect>
+    <rect x="177" width="20" y="307.2314049586777" height="62.76859504132233"></rect>
+    <rect x="199" width="20" y="209.17355371900825" height="160.82644628099175"></rect>
+    <rect x="221" width="20" y="175.9090909090909" height="194.0909090909091"></rect>
+    <rect x="243" width="20" y="366.81818181818187" height="3.18181818181813"></rect>
+    <rect x="265" width="20" y="354.0909090909091" height="15.909090909090878"></rect>
+    <rect x="287" width="20" y="246.7768595041322" height="123.2231404958678"></rect>
+    <rect x="309" width="20" y="293.3471074380165" height="76.65289256198349"></rect>
+    <rect x="331" width="20" y="181.69421487603307" height="188.30578512396693"></rect>
+    <rect x="353" width="20" y="154.21487603305783" height="215.78512396694217"></rect>
+    <rect x="375" width="20" y="315.3305785123967" height="54.6694214876033"></rect>
+    <rect x="397" width="20" y="367.39669421487605" height="2.6033057851239505"></rect>
+    <rect x="419" width="20" y="214.95867768595042" height="155.04132231404958"></rect>
+    <rect x="441" width="20" y="170.99173553719007" height="199.00826446280993"></rect>
+    <rect x="463" width="20" y="113.71900826446283" height="256.28099173553716"></rect>
+    <rect x="485" width="20" y="294.21487603305786" height="75.78512396694214"></rect>
+    <rect x="507" width="20" y="339.91735537190084" height="30.08264462809916"></rect>
+    <rect x="529" width="20" y="310.702479338843" height="59.29752066115702"></rect>
+    <rect x="551" width="20" y="366.81818181818187" height="3.18181818181813"></rect>
+    <rect x="573" width="20" y="308.9669421487603" height="61.033057851239676"></rect>
+    <rect x="595" width="20" y="367.97520661157023" height="2.024793388429771"></rect>
   </g>
   <g stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="366" y2="366"></line>
+    <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>
