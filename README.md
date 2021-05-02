@@ -528,7 +528,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 
 [Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
-For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. **stroke** defaults to none, and **fill** defaults to currentColor if stroke is none, and to none otherwise.
+For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if stroke is none, and to none otherwise.
 
 #### Plot.barX(*data*, *options*)
 
@@ -711,9 +711,9 @@ The following channels are required:
 
 The link mark supports the [standard mark options](#marks).
 
-**stroke** defaults to currentColor, and **fill** defaults to none (only curved links might show a fill).
+The **stroke** defaults to currentColor. The **fill** defaults to none. (Only curved links can show a fill.)
 
-The link mark supports [curve options](#curves) to control interpolation between points (e.g., curve: step, step-after, step-before, bump-x, bump-y).
+The link mark supports [curve options](#curves) to control interpolation between points (*e.g.*, curve: step, step-after, step-before, bump-x, bump-y).
 
 #### Plot.link(*data*, *options*)
 
