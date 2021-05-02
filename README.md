@@ -430,7 +430,7 @@ fruits = ["fig", "date", "plum", "plum"]
 Plot.dot(index, {x: units, y: fruits}).plot()
 ```
 
-TODO Describe how missing or invalid data is handled.
+Missing and invalid data are handled specifically for each mark type and channel. Plot.dot will not generate circles with null, undefined or negative radius, or null or undefined coordinates. Similarly, Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points; Plot.link, Plot.rect will only create shapes where x1, x2, y1 and y2 are not null or undefined. Marks will not generate elements for null or undefined fill or stroke, stroke width, fill or stroke opacity. Titles will only be added if they are non-empty.
 
 All marks support the following style options:
 
