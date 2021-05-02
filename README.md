@@ -1036,8 +1036,6 @@ Supported reducers:
 
 Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any. The value channel is the input with the same name as the aggregation channel.
 
-Examples:
-
 ```js
 Plot.group({fill: "count"}, {
   x: "island",
@@ -1141,11 +1139,11 @@ Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*,
 
 #### Plot.stackX1(*options*)
 
-Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
 #### Plot.stackX2(*options*)
 
-Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the top of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
 #### Plot.stackY(*options*)
 
@@ -1153,11 +1151,11 @@ Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel 
 
 #### Plot.stackY1(*options*)
 
-Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
 #### Plot.stackY2(*options*)
 
-Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
 ## Curves
 
