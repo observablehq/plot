@@ -944,7 +944,7 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the binned data is computed.
 
-While it is possible to compute channel values on the binned data by defining channel values as a function, more commonly channel values are computed directly by the bin transform, either implicitly or explicitly. In addition to data, the following channels are automatically binned:
+While it is possible to compute channel values on the binned data by defining channel values as a function, more commonly channel values are computed directly by the bin transform, either implicitly or explicitly. In addition to data, the following channels are automatically aggregated:
 
 * **x1** - the starting horizontal position of the bin
 * **x2** - the ending horizontal position of the bin
@@ -956,9 +956,9 @@ While it is possible to compute channel values on the binned data by defining ch
 * **fill** - the first value of the *fill* channel, if any
 * **stroke** - the first value of the *stroke* channel, if any
 
-The **x1**, **x2**, and **x** output channels are only computed by the Plot.binX and Plot.bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the Plot.binY and Plot.bin transform.
+The **x1**, **x2**, and **x** output channels are only computed by the Plot.binX and Plot.bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the Plot.binY and Plot.bin transform. The **x** and **y** output channels are lazily computed: they are only computed if needed by a downstream mark or transform.
 
-You can declare additional channels to bin by specifying the desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.binX](#plotbinxoutputs-options) to generate a **y** channel of bin counts as in a frequency histogram:
+You can declare additional channels to aggregate by specifying the channel name and desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.binX](#plotbinxoutputs-options) to generate a **y** channel of bin counts as in a frequency histogram:
 
 ```js
 Plot.binX({y: "count"}, {x: "culmen_length_mm"})
@@ -993,9 +993,9 @@ To control how the quantitative dimensions *x* and *y* are divided into bins, th
 * **domain** - values outside the domain will be omitted
 * **cumulative** - if positive, each bin will contain all lesser bins
 
-If **cumulative** is negative (typically -1 by convention), each bin will contain all *greater* bins rather than all *lesser* bins, representing the [complementary cumulative distribution](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29).
+If the **domain** option is not specified, it defaults to the minimum and maximum of the corresponding dimension (*x* or *y*), possibly niced to match the threshold interval to ensure that the first and last bin have the same width as other bins. If **cumulative** is negative (-1 by convention), each bin will contain all *greater* bins rather than all *lesser* bins, representing the [complementary cumulative distribution](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29).
 
-For Plot.bin, you may wish to separate binning options for *x* and *y*. To allow this, the **x** and **y** input channels can be specified as an object with the options above and a **value** option to specify the input channel values.
+To pass separate binning options for *x* and *y*, the **x** and **y** input channels can be specified as an object with the options above and a **value** option to specify the input channel values.
 
 ```js
 Plot.binX({y: "count"}, {x: {thresholds: 20, value: "culmen_length_mm"}})
@@ -1011,7 +1011,7 @@ The **thresholds** option may specified as a named method or a variety of other 
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is not specified, it defaults to *freedman-diaconis*. If a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
+If the **thresholds** option is not specified, it defaults to *scott*. If a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
 
 TODO Describe grouping and faceting. Describe what happens to the group-eligible channels (*z*, *fill*, *stroke*).
 
