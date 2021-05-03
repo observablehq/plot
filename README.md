@@ -940,7 +940,7 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 [<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@data-workflows/plot-bin)
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins, and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
 
 Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the binned data is computed.
 
@@ -1013,14 +1013,18 @@ The **thresholds** option may specified as a named method or a variety of other 
 
 If the **thresholds** option is not specified, it defaults to *scott*. If a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
 
-TODO Describe grouping and faceting. Describe what happens to the group-eligible channels (*z*, *fill*, *stroke*).
+The bin transform supports grouping in addition to binning: you can subdivide bins by up to two additional ordinal or categorical dimensions (not including faceting). If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. Similarly, Plot.binX will group on **y** if **y** is not an output channel, and Plot.binY will group on **x** if **x** is not an output channel. For example, for a stacked histogram:
 
-TODO Describe default insets.
+```js
+Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})
+```
+
+Lastly, the bin transform changes the default [mark insets](#marks): rather than defaulting to zero, a pixel is reserved to separate adjacent bins. Plot.binX changes the defaults for **insetLeft** and **insetRight**; Plot.binY changes the defaults for **insetTop** and **insetBottom**; Plot.bin changes all four.
 
 #### Plot.bin(*outputs*, *options*)
 
 ```js
-Plot.rectY(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
+Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
 Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if any.
