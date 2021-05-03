@@ -6,7 +6,6 @@ export default async function() {
   const female = data => d3.mean(data, d => d.sex === "female");
   return Plot.plot({
     marginLeft: 100,
-    height: 500,
     x: {
       label: "Women (%) →",
       domain: [0, 100],

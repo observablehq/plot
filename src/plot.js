@@ -98,7 +98,7 @@ export function plot(options = {}) {
 }
 
 function Dimensions(
-  {y, fy, fx},
+  scales,
   {
     x: {axis: xAxis} = {},
     y: {axis: yAxis} = {},
@@ -107,7 +107,7 @@ function Dimensions(
   },
   {
     width = 640,
-    height = y || fy ? 396 : fx ? 90 : 60,
+    height = autoHeight(scales),
     facet: {
       marginTop: facetMarginTop = fxAxis === "top" ? 30 : 0,
       marginRight: facetMarginRight = fyAxis === "right" ? 40 : 0,
@@ -136,4 +136,10 @@ function Dimensions(
 
 function ScaleFunctions(scales) {
   return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+}
+
+function autoHeight({y, fy, fx}) {
+  const nfy = fy ? fy.scale.domain().length : 1;
+  const ny = y && y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy);
+  return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }

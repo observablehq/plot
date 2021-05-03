@@ -1,172 +1,172 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="540" viewBox="0 0 640 540" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(210,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
+    <g class="tick" opacity="1" transform="translate(0,48.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">WHITE</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,85.5)">
+    <g class="tick" opacity="1" transform="translate(0,110.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">UNDESIGNATED</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,128.5)">
+    <g class="tick" opacity="1" transform="translate(0,172.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">ASIAN</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,171.5)">
+    <g class="tick" opacity="1" transform="translate(0,234.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">OTHER</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,214.5)">
+    <g class="tick" opacity="1" transform="translate(0,296.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">TWO or MORE RACES</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,257.5)">
+    <g class="tick" opacity="1" transform="translate(0,358.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">INDIAN AMERICAN or ALASKA NATIVE</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,300.5)">
+    <g class="tick" opacity="1" transform="translate(0,420.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">BLACK or AFRICAN AMERICAN</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,343.5)">
+    <g class="tick" opacity="1" transform="translate(0,482.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g transform="translate(0,510)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(210.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-490v56M0,-428v56M0,-366v56M0,-304v56M0,-242v56M0,-180v56M0,-118v56M0,-56v56"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(314.2351997640493,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-490v56M0,-428v56M0,-366v56M0,-304v56M0,-242v56M0,-180v56M0,-118v56M0,-56v56"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(417.97039952809854,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-490v56M0,-428v56M0,-366v56M0,-304v56M0,-242v56M0,-180v56M0,-118v56M0,-56v56"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(521.7055992921478,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-343v39M0,-300v39M0,-257v39M0,-214v39M0,-171v39M0,-128v39M0,-85v39M0,-42v39"></path>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-490v56M0,-428v56M0,-366v56M0,-304v56M0,-242v56M0,-180v56M0,-118v56M0,-56v56"></path>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>
   </g>
   <g>
-    <g transform="translate(0,23)">
+    <g transform="translate(0,20)">
       <g>
-        <rect x="210" width="410" y="2" height="11" fill="currentColor">
+        <rect x="210" width="410" y="2" height="16" fill="currentColor">
           <title>79.0%</title>
         </rect>
-        <rect x="210" width="2.1016100611808213" y="26" height="11" fill="gray">
+        <rect x="210" width="2.1016100611808213" y="38" height="16" fill="gray">
           <title>0.4%</title>
         </rect>
-        <rect x="210" width="106.57438875906558" y="14" height="11" fill="brown">
+        <rect x="210" width="106.57438875906558" y="20" height="16" fill="brown">
           <title>20.5%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,66)">
+    <g transform="translate(0,82)">
       <g>
-        <rect x="210" width="405.8914002270852" y="2" height="11" fill="currentColor">
+        <rect x="210" width="405.8914002270852" y="2" height="16" fill="currentColor">
           <title>78.3%</title>
         </rect>
-        <rect x="210" width="3.1538887637774167" y="26" height="11" fill="gray">
+        <rect x="210" width="3.1538887637774167" y="38" height="16" fill="gray">
           <title>0.6%</title>
         </rect>
-        <rect x="210" width="109.6307098293837" y="14" height="11" fill="brown">
+        <rect x="210" width="109.6307098293837" y="20" height="16" fill="brown">
           <title>21.1%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,109)">
+    <g transform="translate(0,144)">
       <g>
-        <rect x="210" width="404.1524922619212" y="2" height="11" fill="currentColor">
+        <rect x="210" width="404.1524922619212" y="2" height="16" fill="currentColor">
           <title>77.9%</title>
         </rect>
-        <rect x="210" width="111.33160490494879" y="14" height="11" fill="brown">
+        <rect x="210" width="111.33160490494879" y="20" height="16" fill="brown">
           <title>21.5%</title>
         </rect>
-        <rect x="210" width="3.191901653376277" y="26" height="11" fill="gray">
+        <rect x="210" width="3.191901653376277" y="38" height="16" fill="gray">
           <title>0.6%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,152)">
+    <g transform="translate(0,206)">
       <g>
-        <rect x="210" width="384.322276007396" y="2" height="11" fill="currentColor">
+        <rect x="210" width="384.322276007396" y="2" height="16" fill="currentColor">
           <title>74.1%</title>
         </rect>
-        <rect x="210" width="4.279084943956519" y="26" height="11" fill="gray">
+        <rect x="210" width="4.279084943956519" y="38" height="16" fill="gray">
           <title>0.8%</title>
         </rect>
-        <rect x="210" width="130.07463786889394" y="14" height="11" fill="brown">
+        <rect x="210" width="130.07463786889394" y="20" height="16" fill="brown">
           <title>25.1%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,195)">
+    <g transform="translate(0,268)">
       <g>
-        <rect x="210" width="383.5206680329693" y="2" height="11" fill="currentColor">
+        <rect x="210" width="383.5206680329693" y="2" height="16" fill="currentColor">
           <title>73.9%</title>
         </rect>
-        <rect x="210" width="131.04493670663305" y="14" height="11" fill="brown">
+        <rect x="210" width="131.04493670663305" y="20" height="16" fill="brown">
           <title>25.3%</title>
         </rect>
-        <rect x="210" width="4.110394080643971" y="26" height="11" fill="gray">
+        <rect x="210" width="4.110394080643971" y="38" height="16" fill="gray">
           <title>0.8%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,238)">
+    <g transform="translate(0,330)">
       <g>
-        <rect x="210" width="132.02293626031644" y="14" height="11" fill="brown">
+        <rect x="210" width="132.02293626031644" y="20" height="16" fill="brown">
           <title>25.5%</title>
         </rect>
-        <rect x="210" width="374.6049571803459" y="2" height="11" fill="currentColor">
+        <rect x="210" width="374.6049571803459" y="2" height="16" fill="currentColor">
           <title>72.2%</title>
         </rect>
-        <rect x="210" width="12.048105379584086" y="26" height="11" fill="gray">
+        <rect x="210" width="12.048105379584086" y="38" height="16" fill="gray">
           <title>2.3%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,281)">
+    <g transform="translate(0,392)">
       <g>
-        <rect x="210" width="349.7813163559978" y="2" height="11" fill="currentColor">
+        <rect x="210" width="349.7813163559978" y="2" height="16" fill="currentColor">
           <title>67.4%</title>
         </rect>
-        <rect x="210" width="163.32285937333586" y="14" height="11" fill="brown">
+        <rect x="210" width="163.32285937333586" y="20" height="16" fill="brown">
           <title>31.5%</title>
         </rect>
-        <rect x="210" width="5.571823090912687" y="26" height="11" fill="gray">
+        <rect x="210" width="5.571823090912687" y="38" height="16" fill="gray">
           <title>1.1%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
-    <g transform="translate(0,324)">
+    <g transform="translate(0,454)">
       <g>
-        <rect x="210" width="216.11499950843603" y="14" height="11" fill="brown">
+        <rect x="210" width="216.11499950843603" y="20" height="16" fill="brown">
           <title>41.7%</title>
         </rect>
-        <rect x="210" width="302.5609993118104" y="2" height="11" fill="currentColor">
+        <rect x="210" width="302.5609993118104" y="2" height="16" fill="currentColor">
           <title>58.3%</title>
         </rect>
       </g>
       <g stroke="currentColor" transform="translate(0.5,0)">
-        <line x1="210" x2="210" y1="0" y2="39"></line>
+        <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
   </g>

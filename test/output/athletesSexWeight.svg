@@ -1,51 +1,51 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="396" viewBox="0 0 640 396" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,366.5)">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,332.64481409001957)">
+    <g class="tick" opacity="1" transform="translate(0,336.25342465753425)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,298.78962818003913)">
+    <g class="tick" opacity="1" transform="translate(0,302.0068493150685)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,264.9344422700587)">
+    <g class="tick" opacity="1" transform="translate(0,267.76027397260276)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,231.0792563600783)">
+    <g class="tick" opacity="1" transform="translate(0,233.513698630137)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,197.22407045009786)">
+    <g class="tick" opacity="1" transform="translate(0,199.26712328767124)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,163.36888454011745)">
+    <g class="tick" opacity="1" transform="translate(0,165.0205479452055)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,129.51369863013701)">
+    <g class="tick" opacity="1" transform="translate(0,130.77397260273975)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">700</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,95.65851272015657)">
+    <g class="tick" opacity="1" transform="translate(0,96.52739726027399)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,61.803326810176145)">
+    <g class="tick" opacity="1" transform="translate(0,62.28082191780824)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">900</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,27.94814090019571)">
+    <g class="tick" opacity="1" transform="translate(0,28.034246575342486)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,366)" fill="none" text-anchor="middle">
+  <g transform="translate(0,370)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(80.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g>
@@ -69,59 +69,59 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
   </g>
   <g>
-    <rect style="mix-blend-mode: multiply;" x="41" y="364.64579256360076" width="19" height="1.3542074363992356" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="61" y="362.2759295499021" width="19" height="3.7240704500978836" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="81" y="345.00978473581216" width="19" height="20.99021526418784" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="101" y="255.29354207436398" width="19" height="110.70645792563602" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="121" y="131.72211350293543" width="19" height="234.27788649706457" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="141" y="20" width="19" height="346" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="161" y="27.10958904109588" width="19" height="338.8904109589041" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="181" y="102.60665362035223" width="19" height="263.39334637964777" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="201" y="188.2602739726027" width="19" height="177.7397260273973" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="221" y="268.1585127201566" width="19" height="97.84148727984342" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="241" y="327.7436399217221" width="19" height="38.25636007827791" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="261" y="345.68688845401175" width="19" height="20.31311154598825" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="281" y="352.7964774951076" width="19" height="13.203522504892419" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="301" y="356.85909980430523" width="19" height="9.140900195694769" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="321" y="359.9060665362035" width="19.000000000000057" height="6.093933463796475" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="363.2915851272016" width="18.999999999999943" height="2.7084148727984143" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="361" y="363.63013698630135" width="19" height="2.369863013698648" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="381" y="364.307240704501" width="19" height="1.6927592954990018" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="401" y="363.63013698630135" width="19" height="2.369863013698648" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="421" y="364.307240704501" width="19" height="1.6927592954990018" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="441" y="365.3228962818004" width="19" height="0.6771037181995894" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="461" y="365.6614481409002" width="18.999999999999943" height="0.3385518590998231" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="365.6614481409002" width="19.000000000000057" height="0.3385518590998231" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="521" y="365.3228962818004" width="19" height="0.6771037181995894" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="61" y="365.6614481409002" width="19" height="0.3385518590998231" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="101" y="363.63013698630135" width="19" height="2.369863013698648" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="121" y="344.3326810176126" width="19" height="21.667318982387428" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="141" y="283.73189823874753" width="19" height="82.26810176125247" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="161" y="212.97455968688845" width="19" height="153.02544031311155" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="181" y="153.05088062622306" width="19" height="212.94911937377694" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="201" y="68.41291585127203" width="19" height="297.58708414872797" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="221" y="79.58512720156556" width="19" height="286.41487279843443" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="241" y="92.11154598825831" width="19" height="273.8884540117417" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="261" y="177.7651663405088" width="19" height="188.2348336594912" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="281" y="204.1722113502935" width="19" height="161.8277886497065" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="301" y="255.63209393346378" width="19" height="110.36790606653622" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="321" y="290.16438356164383" width="19.000000000000057" height="75.83561643835617" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="325.3737769080235" width="18.999999999999943" height="40.6262230919765" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="361" y="349.07240704500975" width="19" height="16.927592954990246" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="381" y="350.7651663405088" width="19" height="15.234833659491187" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="401" y="352.119373776908" width="19" height="13.880626223092008" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="421" y="355.8434442270058" width="19" height="10.156555772994182" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="441" y="356.18199608610564" width="19" height="9.818003913894358" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="461" y="361.2602739726027" width="18.999999999999943" height="4.739726027397296" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="362.614481409002" width="19.000000000000057" height="3.3855185909980037" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="501" y="363.9686888454012" width="19" height="2.031311154598825" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="521" y="364.9843444227006" width="19" height="1.0156555772994125" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="541" y="364.307240704501" width="19" height="1.6927592954990018" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="561" y="364.9843444227006" width="18.999999999999886" height="1.0156555772994125" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="580.9999999999999" y="365.6614481409002" width="19.000000000000114" height="0.3385518590998231" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="601" y="365.3228962818004" width="19" height="0.6771037181995894" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="41" y="368.63013698630135" width="19" height="1.369863013698648" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="366.23287671232873" width="19" height="3.767123287671268" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="81" y="348.7671232876712" width="19" height="21.23287671232879" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="101" y="258.01369863013696" width="19" height="111.98630136986304" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="121" y="133.01369863013701" width="19" height="236.98630136986299" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="141" y="20" width="19" height="350" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="161" y="27.1917808219178" width="19" height="342.8082191780822" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="181" y="103.56164383561642" width="19" height="266.43835616438355" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201" y="190.20547945205476" width="19" height="179.79452054794524" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="221" y="271.027397260274" width="19" height="98.97260273972603" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="241" y="331.3013698630137" width="19" height="38.69863013698631" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="261" y="349.45205479452056" width="19" height="20.547945205479436" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="281" y="356.6438356164383" width="19" height="13.35616438356169" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="301" y="360.7534246575342" width="19" height="9.246575342465803" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="321" y="363.83561643835617" width="19.000000000000057" height="6.164383561643831" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="367.26027397260276" width="18.999999999999943" height="2.7397260273972392" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="361" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="381" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="401" y="367.6027397260274" width="19" height="2.39726027397262" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="421" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="441" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="461" y="369.6575342465754" width="18.999999999999943" height="0.3424657534246194" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="369.6575342465754" width="19.000000000000057" height="0.3424657534246194" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="521" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#4e79a7"></rect>
+    <rect style="mix-blend-mode: multiply;" x="61" y="369.6575342465754" width="19" height="0.3424657534246194" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="101" y="367.6027397260274" width="19" height="2.39726027397262" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="121" y="348.0821917808219" width="19" height="21.917808219178085" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="141" y="286.78082191780817" width="19" height="83.21917808219183" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="161" y="215.20547945205482" width="19" height="154.79452054794518" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="181" y="154.5890410958904" width="19" height="215.4109589041096" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="201" y="68.97260273972603" width="19" height="301.027397260274" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="221" y="80.27397260273972" width="19" height="289.7260273972603" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="241" y="92.94520547945204" width="19" height="277.05479452054794" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="261" y="179.58904109589042" width="19" height="190.41095890410958" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="281" y="206.3013698630137" width="19" height="163.6986301369863" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="301" y="258.35616438356163" width="19" height="111.64383561643837" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="321" y="293.28767123287673" width="19.000000000000057" height="76.71232876712327" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="341.00000000000006" y="328.90410958904107" width="18.999999999999943" height="41.09589041095893" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="361" y="352.8767123287671" width="19" height="17.1232876712329" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="381" y="354.5890410958904" width="19" height="15.410958904109577" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="401" y="355.958904109589" width="19" height="14.041095890410986" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="421" y="359.7260273972602" width="19" height="10.273972602739775" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="441" y="360.0684931506849" width="19" height="9.931506849315099" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="461" y="365.20547945205476" width="18.999999999999943" height="4.79452054794524" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="480.99999999999994" y="366.57534246575347" width="19.000000000000057" height="3.424657534246535" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="501" y="367.94520547945206" width="19" height="2.0547945205479436" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="521" y="368.972602739726" width="19" height="1.0273972602739718" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="541" y="368.28767123287673" width="19" height="1.7123287671232674" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="561" y="368.972602739726" width="18.999999999999886" height="1.0273972602739718" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="580.9999999999999" y="369.6575342465754" width="19.000000000000114" height="0.3424657534246194" fill="#f28e2c"></rect>
+    <rect style="mix-blend-mode: multiply;" x="601" y="369.3150684931507" width="19" height="0.6849315068492956" fill="#f28e2c"></rect>
   </g>
   <g stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="366" y2="366"></line>
+    <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

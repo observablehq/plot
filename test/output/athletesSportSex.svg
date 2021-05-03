@@ -1,164 +1,164 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="500" viewBox="0 0 640 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="620" viewBox="0 0 640 620" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(100,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,29.5)">
+    <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">boxing</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,45.5)">
+    <g class="tick" opacity="1" transform="translate(0,55.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">wrestling</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,61.5)">
+    <g class="tick" opacity="1" transform="translate(0,75.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">canoe</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,77.5)">
+    <g class="tick" opacity="1" transform="translate(0,95.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">cycling</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,93.5)">
+    <g class="tick" opacity="1" transform="translate(0,115.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">equestrian</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,109.5)">
+    <g class="tick" opacity="1" transform="translate(0,135.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">shooting</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,125.5)">
+    <g class="tick" opacity="1" transform="translate(0,155.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">judo</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,141.5)">
+    <g class="tick" opacity="1" transform="translate(0,175.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">rowing</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,157.5)">
+    <g class="tick" opacity="1" transform="translate(0,195.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">weightlifting</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,173.5)">
+    <g class="tick" opacity="1" transform="translate(0,215.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">sailing</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,189.5)">
+    <g class="tick" opacity="1" transform="translate(0,235.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">football</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,205.5)">
+    <g class="tick" opacity="1" transform="translate(0,255.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">tennis</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,221.5)">
+    <g class="tick" opacity="1" transform="translate(0,275.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">athletics</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,237.5)">
+    <g class="tick" opacity="1" transform="translate(0,295.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">golf</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,253.5)">
+    <g class="tick" opacity="1" transform="translate(0,315.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">rugby sevens</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,269.5)">
+    <g class="tick" opacity="1" transform="translate(0,335.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">aquatics</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,285.5)">
+    <g class="tick" opacity="1" transform="translate(0,355.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">handball</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,301.5)">
+    <g class="tick" opacity="1" transform="translate(0,375.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">archery</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,317.5)">
+    <g class="tick" opacity="1" transform="translate(0,395.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">badminton</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,333.5)">
+    <g class="tick" opacity="1" transform="translate(0,415.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">basketball</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,349.5)">
+    <g class="tick" opacity="1" transform="translate(0,435.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">hockey</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,365.5)">
+    <g class="tick" opacity="1" transform="translate(0,455.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">modern pentathlon</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,381.5)">
+    <g class="tick" opacity="1" transform="translate(0,475.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">table tennis</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,397.5)">
+    <g class="tick" opacity="1" transform="translate(0,495.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">taekwondo</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,413.5)">
+    <g class="tick" opacity="1" transform="translate(0,515.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">triathlon</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,429.5)">
+    <g class="tick" opacity="1" transform="translate(0,535.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">volleyball</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,445.5)">
+    <g class="tick" opacity="1" transform="translate(0,555.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">fencing</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,461.5)">
+    <g class="tick" opacity="1" transform="translate(0,575.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">gymnastics</text>
     </g>
   </g>
-  <g transform="translate(0,470)" fill="none" text-anchor="middle">
+  <g transform="translate(0,590)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(100.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(152.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(204.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
     </g>
     <g class="tick" opacity="1" transform="translate(256.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
     </g>
     <g class="tick" opacity="1" transform="translate(308.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g>
     <g class="tick" opacity="1" transform="translate(360.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
     </g>
     <g class="tick" opacity="1" transform="translate(412.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
     </g>
     <g class="tick" opacity="1" transform="translate(464.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
     </g>
     <g class="tick" opacity="1" transform="translate(516.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
     </g>
     <g class="tick" opacity="1" transform="translate(568.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">90</text>
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
       <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-450" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
+      <line stroke="currentColor" y2="-570" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Women (%) →</text>
   </g>
   <g>
-    <rect x="100" width="257.66089965397924" y="262" height="14"></rect>
-    <rect x="100" width="260" y="294" height="14"></rect>
-    <rect x="100" width="250.20736352094798" y="214" height="14"></rect>
-    <rect x="100" width="260" y="310" height="14"></rect>
-    <rect x="100" width="260" y="326" height="14"></rect>
-    <rect x="100" width="65.45454545454547" y="22" height="14"></rect>
-    <rect x="100" width="174.380664652568" y="54" height="14"></rect>
-    <rect x="100" width="198.09523809523807" y="70" height="14"></rect>
-    <rect x="100" width="199.09909909909908" y="86" height="14"></rect>
-    <rect x="100" width="262.1138211382114" y="438" height="14"></rect>
-    <rect x="100" width="224.68085106382972" y="182" height="14"></rect>
-    <rect x="100" width="255.66666666666663" y="230" height="14"></rect>
-    <rect x="100" width="337.037037037037" y="454" height="14"></rect>
-    <rect x="100" width="257.8512396694215" y="278" height="14"></rect>
-    <rect x="100" width="260" y="342" height="14"></rect>
-    <rect x="100" width="202.9591836734694" y="118" height="14"></rect>
-    <rect x="100" width="260" y="358" height="14"></rect>
-    <rect x="100" width="205.33820840950642" y="134" height="14"></rect>
-    <rect x="100" width="256.5333333333333" y="246" height="14"></rect>
-    <rect x="100" width="223.05263157894734" y="166" height="14"></rect>
-    <rect x="100" width="201.33333333333337" y="102" height="14"></rect>
-    <rect x="100" width="260" y="374" height="14"></rect>
-    <rect x="100" width="260" y="390" height="14"></rect>
-    <rect x="100" width="241.42857142857144" y="198" height="14"></rect>
-    <rect x="100" width="260" y="406" height="14"></rect>
-    <rect x="100" width="260" y="422" height="14"></rect>
-    <rect x="100" width="209.61240310077517" y="150" height="14"></rect>
-    <rect x="100" width="167.93201133144476" y="38" height="14"></rect>
+    <rect x="100" width="257.66089965397924" y="326" height="18"></rect>
+    <rect x="100" width="260" y="366" height="18"></rect>
+    <rect x="100" width="250.20736352094798" y="266" height="18"></rect>
+    <rect x="100" width="260" y="386" height="18"></rect>
+    <rect x="100" width="260" y="406" height="18"></rect>
+    <rect x="100" width="65.45454545454547" y="26" height="18"></rect>
+    <rect x="100" width="174.380664652568" y="66" height="18"></rect>
+    <rect x="100" width="198.09523809523807" y="86" height="18"></rect>
+    <rect x="100" width="199.09909909909908" y="106" height="18"></rect>
+    <rect x="100" width="262.1138211382114" y="546" height="18"></rect>
+    <rect x="100" width="224.68085106382972" y="226" height="18"></rect>
+    <rect x="100" width="255.66666666666663" y="286" height="18"></rect>
+    <rect x="100" width="337.037037037037" y="566" height="18"></rect>
+    <rect x="100" width="257.8512396694215" y="346" height="18"></rect>
+    <rect x="100" width="260" y="426" height="18"></rect>
+    <rect x="100" width="202.9591836734694" y="146" height="18"></rect>
+    <rect x="100" width="260" y="446" height="18"></rect>
+    <rect x="100" width="205.33820840950642" y="166" height="18"></rect>
+    <rect x="100" width="256.5333333333333" y="306" height="18"></rect>
+    <rect x="100" width="223.05263157894734" y="206" height="18"></rect>
+    <rect x="100" width="201.33333333333337" y="126" height="18"></rect>
+    <rect x="100" width="260" y="466" height="18"></rect>
+    <rect x="100" width="260" y="486" height="18"></rect>
+    <rect x="100" width="241.42857142857144" y="246" height="18"></rect>
+    <rect x="100" width="260" y="506" height="18"></rect>
+    <rect x="100" width="260" y="526" height="18"></rect>
+    <rect x="100" width="209.61240310077517" y="186" height="18"></rect>
+    <rect x="100" width="167.93201133144476" y="46" height="18"></rect>
   </g>
 </svg>
