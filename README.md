@@ -1300,25 +1300,49 @@ A new **y** channel is eventually returned, which lazily computes the middle val
 
 #### Plot.stackY(*options*)
 
+```js
+Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
+```
+
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points.
 
 #### Plot.stackY1(*options*)
+
+```js
+Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
+```
 
 Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
 #### Plot.stackY2(*options*)
 
+```js
+Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
+```
+
 Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
 #### Plot.stackX(*options*)
+
+```js
+Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
+```
 
 See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
 #### Plot.stackX1(*options*)
 
+```js
+Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
+```
+
 Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
 #### Plot.stackX2(*options*)
+
+```js
+Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
+```
 
 Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
