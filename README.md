@@ -1357,58 +1357,30 @@ If *curve* is a function, it will be invoked with a given *context* in the same 
 
 The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/master/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/master/README.md#curveCatmullRom_alpha).
 
-…
-
 ## Formats
 
 These helper functions are provided for use as a *scale*.tickFormat [axis option](#position-options), as the text option for [Plot.text](#plottextdata-options), or for general use. See also [d3-time-format](https://github.com/d3/d3-time-format) and JavaScript’s built-in [date formatting](https://observablehq.com/@mbostock/date-formatting) and [number formatting](https://observablehq.com/@mbostock/number-formatting).
 
 #### Plot.formatIsoDate(*date*)
 
-Given a Date, returns the [shortest equivalent ISO 8601 UTC string](https://github.com/mbostock/isoformat/).
-
 ```js
-Plot.formatIsoDate(new Date(Date.UTC(2001, 0, 1))) // "2001-01-01"
-Plot.formatIsoDate(new Date(Date.UTC(2020, 0, 1, 12, 23))) // "2020-01-01T12:23Z"
+Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
 ```
+
+Given a *date*, returns the shortest equivalent ISO 8601 UTC string.
 
 #### Plot.formatWeekday(*locale*, *format*)
 
-Returns a function that formats a week day number (from 0 = Sunday to 6 = Saturday) according to the *locale* and *format*.
-- *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
-- *format*: any valid [weekday format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "narrow", "short", "long"; defaults to "short".
-
 ```js
-x: { tickFormat: Plot.formatWeekday() } // Sun, Mon…
+Plot.formatWeekday("es-MX", "long")(0) // "domingo"
 ```
 
-```js
-Plot.formatWeekday("es-MX", "long") // domingo, lunes…
-```
-
-```js
-Plot.formatWeekday(navigator.language, "long") // depends on the browser’s settings
-```
-
-This function is periodic: day -1 is Saturday, and day 8 is Sunday.
+Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
 
 #### Plot.formatMonth(*locale*, *format*)
 
-Returns a function that formats a month number (from 0 = January to 11 = December) according to the *locale* and *format*.
-- *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
-- *format*: any valid [month format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "2-digit", "numeric", "narrow", "short", "long"; defaults to "short".
-
 ```js
-x: { tickFormat: Plot.formatMonth() } // Jan, Feb…
+Plot.formatMonth("es-MX", "long")(0) // "enero"
 ```
 
-```js
-Plot.formatMonth("es-MX", "long") // enero, febrero…
-```
-
-```js
-Plot.formatMonth(navigator.language, "long") // depends on the browser’s settings
-```
-
-This function is periodic: month -1 is December, and month 12 is January.
-
+Returns a function that formats a given month number (from 0 = January to 11 = December) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [month format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*, *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to *short*.
