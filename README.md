@@ -956,7 +956,7 @@ While it is possible to compute channel values on the binned data by defining ch
 * **fill** - the first value of the *fill* channel, if any
 * **stroke** - the first value of the *stroke* channel, if any
 
-The **x1**, **x2**, and **x** output channels are only computed by the Plot.binX and Plot.bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the Plot.binY and Plot.bin transform. The **x** and **y** output channels are lazily computed: they are only computed if needed by a downstream mark or transform.
+The **x1**, **x2**, and **x** output channels are only computed by the Plot.binX and Plot.bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the Plot.binY and Plot.bin transform. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
 
 You can declare additional channels to aggregate by specifying the channel name and desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.binX](#plotbinxoutputs-options) to generate a **y** channel of bin counts as in a frequency histogram:
 
@@ -1276,28 +1276,29 @@ The supported stack options are:
 
 The following order methods are supported:
 
-- null - input order
+- null - input order (default)
 - *value* - ascending value order (or descending with **reverse**)
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
 - *inside-out* - order the earliest-appearing series on the inside
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value whereas Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value, and Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should correspond to the *z* values for all series, and specify the order of those series; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort). This *inside-out* order is recommended for streamgraphs in conjunction with the *wiggle* offset; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value whereas Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value, and Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should correspond to the *z* values for all series, and specify the order of those series; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort).
 
-The input order (null) and *value* order can lead to criss-crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
+The input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
 
-The stacking algorithm tracks two values, *lo* and *hi*, both starting at zero for each stack. Considering the values in the given *order*, it progresses by adding non-negative values to the current *hi*, and negative values to the current *lo*. The value of *lo* or *hi* before adding is saved in *y1*, and the new value is saved in *y2*.
+The stack transform supports diverging stacks: negative values are stacked below zero, while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero), while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 
-When all the values have been added in all the stacks, an optional **offset** strategy is applied to rescale *y1* and *y2*.
+After all values have been stacked from zero, an optional **offset** strategy can be applied to translate or scale the stacks. The following **offset** options are supported:
 
-The following **offset** options are supported:
-- null - default, keeps *y1* and *y2* unchanged. Equivalent to [d3.stackOffsetNone](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetNone), and to [d3.stackOffsetDiverging](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetDiverging) if some values are non-positive.
-- *expand* - rescales the values *y1* and *y2* between 0 (for *lo*) and 1 (for *hi*), resulting in stacks that all cover the same range (except in cases for which all the values were zero). Equivalent to [d3.stackOffsetExpand](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetExpand).
-- *silhouette* - shifts the baseline such that *lo* and *hi* are symmetrically distributed around zero. The whole stacks are then shifted globally of the same amount, so that the smallest *lo* is equal to 0. Similar to [d3.stackOffsetSilhouette](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetSilhouette).
-- *wiggle* - shifts the baseline so as to minimize the weighted wiggle of series. This offset is recommended for streamgraphs in conjunction with the [inside-out order](#stackOrderInsideOut). See [Stacked Graphs—Geometry & Aesthetics](http://leebyron.com/streamgraph/) by Bryon & Wattenberg for more information. The baseline is floored globally so that the smallest *lo* is equal to 0. Similar to [d3.stackOffsetWiggle](https://github.com/d3/d3-shape/blob/master/README.md#stackOffsetWiggle).
+- null - a zero baseline
+- *expand* - rescale each stack to fill [0, 1]
+- *silhouette* - align the centers of all stacks
+- *wiggle* - translate stacks to minimize apparent movement
 
-A new **y** channel is eventually returned, which lazily computes the middle value of **y1** and **y2**. It can be used to position a label or a dot in the middle of the corresponding interval.
+If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the minimum positive value across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+
+In addition to the **y1** and **y2** output channels, Plot.stackY computers a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
 
 #### Plot.stackY(*options*)
 
