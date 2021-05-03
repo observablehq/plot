@@ -1049,55 +1049,82 @@ Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if any.
 
 [<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@data-workflows/plot-group)
 
-[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group)
+[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group) · Aggregates ordinal or categorical data — such as names — into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
 
-The group transforms take two arguments: *outputs* and *inputs*. The input data is grouped on one or several input channels (for example on *x*), and a new data array is created for each group. Each property set in the *outputs* object creates an aggregation channel, that receives as input the groups, and reduces them to a value for each group. A value channel is defined for each aggregation channel, for example *y* when grouping on *x*.
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*). Empty groups are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the grouped data is computed.
 
-Supported reducers:
+While it is possible to compute channel values on the grouped data by defining channel values as a function, more commonly channel values are computed directly by the group transform, either implicitly or explicitly. In addition to data, the following channels are automatically aggregated:
 
-* *first* - first element of the group, in input order
-* *last* - last element of the group, in input order
-* *count* - number of elements in the group
-* *sum* - sum of the values of the elements in the group; defaults to* the *count* if the value channel is not defined
-* *proportion* - *sum* of the group divided by the total *sum* of all groups
-* *proportion-facet* - *sum* of the group divided by the total *sum* of groups in the current facet
-* *deviation* - standard deviation of the values in the group
-* *min* - minimum of the values in the group
-* *max* - maximum of the values in the group
-* *mean* - mean of the values in the group
-* *median* - median of the values in the group
-* *variance* - variance of the values in the group
+* **x** - the horizontal position of the group
+* **y** - the vertical position of the group
+* **z** - the first value of the *z* channel, if any
+* **fill** - the first value of the *fill* channel, if any
+* **stroke** - the first value of the *stroke* channel, if any
+
+The **x** output channel is only computed by the Plot.groupX and Plot.group transform; similarly the **y** output channel is only computed by the Plot.groupY and Plot.group transform.
+
+You can declare additional channels to aggregate by specifying the channel name and desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.groupX](#plotgroupxoutputs-options) to generate a **y** channel of group counts as in a frequency histogram:
+
+```js
+Plot.groupX({y: "count"}, {x: "species"})
+```
+
+The following aggregation methods are supported:
+
+* *first* - the first value, in input order
+* *last* - the last value, in input order
+* *count* - the number of elements (frequency)
+* *sum* - the sum of values
+* *proportion* - the sum proportional to the overall total (weighted frequency)
+* *proportion-facet* - the sum proportional to the facet total
+* *deviation* - the standard deviation
+* *min* - the minimum value
+* *max* - the maximum value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* a function - passed the array of values for each group
+* an object with a *reduce* method - passed the index for each group, and all values
+
+Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
+
+```js
+Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```
+
+If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
 
 #### Plot.group(*outputs*, *options*)
 
-Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any. The value channel is the input with the same name as the aggregation channel.
-
 ```js
-Plot.group({fill: "count"}, {
-  x: "island",
-  y: "species"
-})
+Plot.group({fill: "count"}, {x: "island", y: "species"})
 ```
 
-```js
-Plot.group({fill: "max"}, {
-  x: d => d.date.getUTCDate(),
-  y: d => d.date.getUTCMonth(),
-  fill: "temp_max"
-})
-```
+Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupX(*outputs*, *options*)
 
-Groups on *x* and the first of *z*, *fill*, or *stroke*, if any. The value channel is *y*.
+```js
+Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```
+
+Groups on *x* and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupY(*outputs*, *options*)
 
-Groups on *y* and the first of *z*, *fill*, or *stroke*, if any. The value channel is *x*.
+```js
+Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
+```
+
+Groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupZ(*outputs*, *options*)
 
-Groups on the first of *z*, *fill*, or *stroke*, if any; if none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group. The value channel is the input with the same name as the aggregation channel.
+```js
+Plot.groupZ({x: "proportion"}, {fill: "species"})
+```
+
+Groups on the first of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
 
 ### Map
 
@@ -1284,7 +1311,7 @@ Plot.formatIsoDate(new Date(Date.UTC(2020, 0, 1, 12, 23))) // "2020-01-01T12:23Z
 
 #### Plot.formatWeekday(*locale*, *format*)
 
-Returns a function that formats a week day (numbered from 0—Sunday to 6—Saturday) according to the *locale* and *format*.
+Returns a function that formats a week day number (from 0 = Sunday to 6 = Saturday) according to the *locale* and *format*.
 - *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
 - *format*: any valid [weekday format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "narrow", "short", "long"; defaults to "short".
 
@@ -1304,7 +1331,7 @@ This function is periodic: day -1 is Saturday, and day 8 is Sunday.
 
 #### Plot.formatMonth(*locale*, *format*)
 
-Returns a function that formats a month (numbered from 0—January to 11—December) according to the *locale* and *format*.
+Returns a function that formats a month number (from 0 = January to 11 = December) according to the *locale* and *format*.
 - *locale*: any valid [BCP 47 language tag](https://tools.ietf.org/html/bcp47); defaults to "en-US". Use navigator.language to respect the browser’s setting.
 - *format*: any valid [month format](https://tc39.es/ecma402/#datetimeformat-objects), *i.e.* one of "2-digit", "numeric", "narrow", "short", "long"; defaults to "short".
 
