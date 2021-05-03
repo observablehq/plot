@@ -1146,7 +1146,7 @@ The following map methods are supported:
 
 If a function is used, it must return an array of the same length as the given input. If a *map* method is used, it is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
 
-The Plot.normalizeX and Plot.normalizeY transforms normalize series values relative to the given basis. For example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as in an index chart. The normalize transforms take an additional **basis** option which specifies how to normalize the series values. The following normalization methods are supported:
+The Plot.normalizeX and Plot.normalizeY transforms normalize series values relative to the given basis. For example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as in an index chart. The **basis** option specifies how to normalize the series values. The following basis methods are supported:
 
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
@@ -1156,7 +1156,7 @@ The Plot.normalizeX and Plot.normalizeY transforms normalize series values relat
 * *extent* - the minimum is mapped to zero, and the maximum to one
 * a function to be passed an array of values, returning the desired basis
 
-The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window. Most commonly, the window transforms are used to compute rolling averages (or rolling minimums or maximums). These transforms also take additional options:
+The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums. These transforms also take additional options:
 
 * **k** - the window size (the number of elements in the window)
 * **shift** - how to align the window: *centered*, *leading*, or *trailing*
