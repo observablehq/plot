@@ -1264,9 +1264,7 @@ Selects the highest point of the series.
 
 [<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@data-workflows/plot-stack)
 
-[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
-
-TODO stack intro
+[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack) · Arranges groups of data sharing a same location (*e.g.* **x**) into a pile, computing the starting and ending levels of each value in that pile, so that the starting level of an element is equal to the ending level of the element that precedes it in the pile. A channel (*e.g.* **y**) can be used to indicate the height of each element (defaults to 1).
 
 #### Plot.stackY(_options_)
 
