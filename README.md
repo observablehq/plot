@@ -940,9 +940,54 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 [<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@data-workflows/plot-bin)
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous, quantitative data — such as temperatures or times — into discrete bins. You can then compute summary statistics for each bin, such as a count or sum. The bin transform is like a [group transform](#group) for quantitative data, and is most often used to make histograms or heatmaps.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins, and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms.
 
-TODO Describe how the binning dimensions and output channels are specified. Describe the resulting binned data.
+There are several variants of the bin transform depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both.
+
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order, while the outer array is in natural order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described next, you can change how the binned data is computed.
+
+While it is possible to compute channel values on the binned data by defining channel values as a function, more commonly channel values are computed by the bin transform, either implicitly or explicitly. The following channels are automatically computed by the bin transform:
+
+* **x1** - the starting horizontal position of the bin
+* **x2** - the ending horizontal position of the bin
+* **x** - the horizontal center of the bin
+* **y1** - the starting vertical position of the bin
+* **y2** - the ending vertical position of the bin
+* **y** - the vertical center of the bin
+* **z** - the first value of the *z* channel, if any
+* **fill** - the first value of the *fill* channel, if any
+* **stroke** - the first value of the *stroke* channel, if any
+
+The **x1**, **x2**, and **x** output channels are only computed by the Plot.binX and Plot.bin transform; similarly the **y1**, **y2**, and **y** output channels are only computed by the Plot.binY and Plot.bin transform.
+
+In addition to the automatically binned channels, you can declare additional channels to bin by specifying the desired aggregation method in the *outputs* object which is the first argument to the transform. For example, to use [Plot.binX](#plotbinxoutputs-options) to generate a **y** channel of bin counts as in a frequency histogram:
+
+```js
+Plot.binX({y: "count"}, {x: "culmen_length_mm"})
+```
+
+The following aggregation methods are supported:
+
+* *first* - the first value, in input order
+* *last* - the last value, in input order
+* *count* - the number of elements (frequency)
+* *sum* - the sum of values
+* *proportion* - the sum proportional to the overall total (weighted frequency)
+* *proportion-facet* - the sum proportional to the facet total
+* *deviation* - the standard deviation
+* *min* - the minimum value
+* *max* - the maximum value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* a function - passed the array of values for each bin
+* an object with a *reduce* method - passed the index for each bin, and all values
+
+Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
+
+```js
+Plot.binX({y: "sum"}, {x: "culmen_length_mm", y: "body_mass_g"})
+```
 
 TODO Describe binning options:
 
@@ -966,21 +1011,6 @@ TODO Describe threshold functions:
 * an array of *n* threshold values for *n* + 1 bins
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
-
-TODO Describe output aggregation. Supported reducers:
-
-* *first* -
-* *last* -
-* *count* -
-* *sum* -
-* *proportion* -
-* *proportion-facet* -
-* *deviation* -
-* *min* -
-* *max* -
-* *mean* -
-* *median* -
-* *variance* -
 
 TODO Describe grouping and faceting. Describe what happens to the group-eligible channels (*z*, *fill*, *stroke*).
 
