@@ -978,8 +978,10 @@ The following aggregation methods are supported:
 * *mean* - the mean value (average)
 * *median* - the median value
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-* a function - passed the array of values for each bin
-* an object with a *reduce* method - passed the index for each bin, and all values
+* a function to be passed the array of values for each bin
+* an object with a *reduce* method
+
+The *reduce* method is repeatedly passed the index for each bin (an array of integers) and the corresponding input channel’s array of values; it must then return the corresponding aggregate value for the bin.
 
 Most aggregation methods require binding the output channel to an input channel; for example, if you want the **y** output channel to be a *sum* (not merely a count), there should be a corresponding **y** input channel specifying which values to sum. If there is not, *sum* will be equivalent to *count*.
 
@@ -1027,7 +1029,7 @@ Lastly, the bin transform changes the default [mark insets](#marks): rather than
 Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
 ```
 
-Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if any.
+Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.binX(*outputs*, *options*)
 
@@ -1035,7 +1037,7 @@ Bins on *x* and *y*. Also groups on the first of *z*, *fill*, or *stroke*, if an
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
+Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.binY(*outputs*, *options*)
 
@@ -1043,7 +1045,7 @@ Bins on *x*. Also groups on *y* and the first of *z*, *fill*, or *stroke*, if an
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Bins on *y*. Groups on on *x* and first of *z*, *fill*, or *stroke*, if any.
+Bins on *y*. Groups on on *x* and first channel of *z*, *fill*, or *stroke*, if any.
 
 ### Group
 
@@ -1100,7 +1102,7 @@ If any of **z**, **fill**, or **stroke** is a channel, the first of these channe
 Plot.group({fill: "count"}, {x: "island", y: "species"})
 ```
 
-Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupX(*outputs*, *options*)
 
@@ -1108,7 +1110,7 @@ Groups on *x*, *y*, and the first of *z*, *fill*, or *stroke*, if any.
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 ```
 
-Groups on *x* and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupY(*outputs*, *options*)
 
@@ -1116,7 +1118,7 @@ Groups on *x* and the first of *z*, *fill*, or *stroke*, if any.
 Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 ```
 
-Groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
+Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
 #### Plot.groupZ(*outputs*, *options*)
 
@@ -1124,41 +1126,109 @@ Groups on *y* and the first of *z*, *fill*, or *stroke*, if any.
 Plot.groupZ({x: "proportion"}, {fill: "species"})
 ```
 
-Groups on the first of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
+Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
 
 ### Map
 
 [<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@data-workflows/plot-map)
 
-[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map)
+[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map) · Groups data into series along the *z* dimension, and then applies a mapping function to the values for each series, say to normalize them relative to some basis or to apply a moving average.
+
+The map transform derives new output channels from corresponding input channels. The output channels have the same length as the input channels; the map transform does not affect the mark’s data or index. The map transform is similar to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given function; however, the map transform is series-aware: the data is first grouped into series along the *z* dimension in the same fashion as the [area](#area) and [line](#line) marks so that series are processed independently. (You wouldn’t want a moving average to bleed between series, would you?)
+
+Like the [group](#group) and [bin](#bin) transforms, the base [Plot.map](#plotmapoutputs-options) takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options to propagate. The other map transforms, such as [Plot.normalizeX](#plotnormalizexoptions) and [Plot.windowX](#plotwindowxoptions), call Plot.map internally.
+
+The following map methods are supported:
+
+* *cumsum* - a cumulative sum
+* a function to be passed an array of values, returning new values
+* an object that implements the *map* method
+
+The *map* method is repeatedly passed the index for each series (an array of integers), the corresponding input channel’s array of values, and the output channel’s array of values; it must populate the slots specified by the index in the output array.
+
+The Plot.normalizeX and Plot.normalizeY transforms take an additional **basis** option which specifies how to normalize the series values. The following normalization methods are supported:
+
+* *first* - the first value, as in an index chart; the default
+* *last* - the last value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *sum* - the sum of values
+* *extent* - the minimum is mapped to zero, and the maximum to one
+* a function to be passed an array of values, returning the desired basis
+
+The Plot.windowX and Plot.windowY transforms take additional options:
+
+* **k** - the window size
+* **shift** - how to align the window: *centered*, *leading*, or *trailing*
+* **reduce** - the aggregation method (window reducer)
+
+The following window reducers are supported:
+
+* *deviation* - the standard deviation
+* *min* - the minimum
+* *max* - the maximum
+* *mean* - the mean (average)
+* *median* - the median
+* *sum* - the sum of values
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *difference* - the difference between the last and first window value
+* *ratio* - the ratio of the last and first window value
 
 #### Plot.map(*outputs*, *options*)
 
-…
+```js
+Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
+```
 
-#### Plot.mapX(<i>map</i>, *options*)
+Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for each channel declared in the specified *outputs* object, applies the corresponding map method. Each channel in *outputs* must have a corresponding input channel in *options*.
 
-…
+#### Plot.mapX(*map*, *options*)
 
-#### Plot.mapY(<i>map</i>, *options*)
+```js
+Plot.mapX("cumsum", {x: d3.randomNormal()})
+```
 
-…
+Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*.
+
+#### Plot.mapY(*map*, *options*)
+
+```js
+Plot.mapY("cumsum", {y: d3.randomNormal()})
+```
+
+Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
 #### Plot.normalizeX(*options*)
 
-…
+```js
+Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
+```
+
+Similar to [Plot.mapX](#plotmapxmap-options), …
 
 #### Plot.normalizeY(*options*)
 
-…
+```js
+Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
+```
+
+Similar to [Plot.mapY](#plotmapymap-options), …
 
 #### Plot.windowX(*options*)
 
-…
+```js
+Plot.windowX({y: "Date", x: "Anomaly", k: 24})
+```
+
+Similar to [Plot.mapX](#plotmapxmap-options), …
 
 #### Plot.windowY(*options*)
 
-…
+```js
+Plot.windowY({x: "Date", y: "Anomaly", k: 24})
+```
+
+Similar to [Plot.mapY](#plotmapymap-options), …
 
 ### Select
 
@@ -1191,7 +1261,6 @@ Selects the right-most point of the series.
 #### Plot.selectMaxY(*options*)
 
 Selects the highest point of the series.
-
 
 ### Stack
 
