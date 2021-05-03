@@ -1234,7 +1234,7 @@ Like [Plot.mapY](#plotmapymap-options), but applies the window map method with t
 
 [<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@data-workflows/plot-select)
 
-[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects one (or possibly several) values from a series. The select transforms can be used to label a line or to annotate extreme values.
+[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects one (or possibly several) values from a series, say to label a line or annotate extremes.
 
 #### Plot.selectFirst(*options*)
 
