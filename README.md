@@ -1276,7 +1276,7 @@ The supported stack options are:
 - **order** - the order in which stacks are layered
 - **reverse** - true to reverse order
 
-The following order methods are supported:
+The following **order** methods are supported:
 
 - null - input order (default)
 - *value* - ascending value order (or descending with **reverse**)
@@ -1285,20 +1285,18 @@ The following order methods are supported:
 - *inside-out* - order the earliest-appearing series on the inside
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value whereas Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value, and Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should correspond to the *z* values for all series, and specify the order of those series; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort).
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
 
-The input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
+The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 
-The stack transform supports diverging stacks: negative values are stacked below zero, while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero), while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
+After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
-After all values have been stacked from zero, an optional **offset** strategy can be applied to translate or scale the stacks. The following **offset** options are supported:
-
-- null - a zero baseline
+- null - a zero baseline (default)
 - *expand* - rescale each stack to fill [0, 1]
 - *silhouette* - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
 
-If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the minimum positive value across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
 
 In addition to the **y1** and **y2** output channels, Plot.stackY computers a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
 
