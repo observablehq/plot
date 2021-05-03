@@ -1266,7 +1266,9 @@ Selects the highest point of each series.
 
 [<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@data-workflows/plot-stack)
 
-[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack) · Arranges groups of data sharing a same location (*e.g.* **x**) into a pile, computing the starting and ending levels of each value in that pile, so that the starting level of an element is equal to the ending level of the element that precedes it in the pile. A channel (*e.g.* **y**) can be used to indicate the height of each element (defaults to 1).
+[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack) · Transforms a length into a starting and ending position by “stacking” elements that share a given position, such as transforming the **y** input channel into **y1** and **y2** output channels after grouping on **x** as in a stacked area chart. The starting position of each element equals the ending position of the preceding element in the stack.
+
+The Plot.stackY transform groups on **x** and transforms **y** into **y1** and **y2**; the Plot.stackX transform groups on **y** and transforms **x** into **x1** and **x2**. If **y** is not specified for Plot.stackY, or if **x** is not specified for Plot.stackX, it defaults to the constant one, which is useful for constructing simple isotype charts (*e.g.*, stacked dots).
 
 The supported stack options are:
 
