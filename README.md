@@ -972,11 +972,11 @@ The following aggregation methods are supported:
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
-* *deviation* - the standard deviation
 * *min* - the minimum value
 * *max* - the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * a function to be passed the array of values for each bin
 * an object with a *reduce* method
@@ -1079,11 +1079,11 @@ The following aggregation methods are supported:
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
-* *deviation* - the standard deviation
 * *min* - the minimum value
 * *max* - the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * a function - passed the array of values for each group
 * an object with a *reduce* method - passed the index for each group, and all values
@@ -1164,12 +1164,12 @@ The Plot.windowX and Plot.windowY transforms compute a moving window around each
 
 The following window reducers are supported:
 
-* *deviation* - the standard deviation
 * *min* - the minimum
 * *max* - the maximum
 * *mean* - the mean (average)
 * *median* - the median
 * *sum* - the sum of values
+* *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
@@ -1204,7 +1204,7 @@ Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores
 Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Similar to [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
 
 #### Plot.normalizeY(*options*)
 
@@ -1212,7 +1212,7 @@ Similar to [Plot.mapX](#plotmapxmap-options), but applies the normalize map meth
 Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Similar to [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
 
 #### Plot.windowX(*options*)
 
@@ -1220,7 +1220,7 @@ Similar to [Plot.mapY](#plotmapymap-options), but applies the normalize map meth
 Plot.windowX({y: "Date", x: "Anomaly", k: 24})
 ```
 
-Similar to [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
 
 #### Plot.windowY(*options*)
 
@@ -1228,15 +1228,13 @@ Similar to [Plot.mapX](#plotmapxmap-options), but applies the window map method 
 Plot.windowY({x: "Date", y: "Anomaly", k: 24})
 ```
 
-Similar to [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
 
 ### Select
 
 [<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@data-workflows/plot-select)
 
-[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select)
-
-The select transforms extract one (or possibly several) data points from a series. They can be used to label a line, or annotate an extremal value. Series are defined by *facet* and *z* (or *fill* or *stroke*).
+[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects one (or possibly several) values from a series. The select transforms can be used to label a line or to annotate extreme values.
 
 #### Plot.selectFirst(*options*)
 
