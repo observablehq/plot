@@ -1156,9 +1156,9 @@ The Plot.normalizeX and Plot.normalizeY transforms take an additional **basis** 
 * *extent* - the minimum is mapped to zero, and the maximum to one
 * a function to be passed an array of values, returning the desired basis
 
-The Plot.windowX and Plot.windowY transforms take additional options:
+The Plot.windowX and Plot.windowY transforms likewise take additional options:
 
-* **k** - the window size
+* **k** - the window size (the number of elements in the window)
 * **shift** - how to align the window: *centered*, *leading*, or *trailing*
 * **reduce** - the aggregation method (window reducer)
 
@@ -1204,7 +1204,7 @@ Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores
 Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Similar to [Plot.mapX](#plotmapxmap-options), …
+Similar to [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
 
 #### Plot.normalizeY(*options*)
 
@@ -1212,7 +1212,7 @@ Similar to [Plot.mapX](#plotmapxmap-options), …
 Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Similar to [Plot.mapY](#plotmapymap-options), …
+Similar to [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
 
 #### Plot.windowX(*options*)
 
@@ -1220,7 +1220,7 @@ Similar to [Plot.mapY](#plotmapymap-options), …
 Plot.windowX({y: "Date", x: "Anomaly", k: 24})
 ```
 
-Similar to [Plot.mapX](#plotmapxmap-options), …
+Similar to [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
 
 #### Plot.windowY(*options*)
 
@@ -1228,7 +1228,7 @@ Similar to [Plot.mapX](#plotmapxmap-options), …
 Plot.windowY({x: "Date", y: "Anomaly", k: 24})
 ```
 
-Similar to [Plot.mapY](#plotmapymap-options), …
+Similar to [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
 
 ### Select
 
