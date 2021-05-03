@@ -1003,7 +1003,7 @@ To pass separate binning options for *x* and *y*, the **x** and **y** input chan
 Plot.binX({y: "count"}, {x: {thresholds: 20, value: "culmen_length_mm"}})
 ```
 
-The **thresholds** option may specified as a named method or a variety of other ways:
+The **thresholds** option may be specified as a named method or a variety of other ways:
 
 * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
 * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
