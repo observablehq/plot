@@ -1270,21 +1270,22 @@ Selects the highest point of each series.
 
 The supported stack options are:
 
-- **order** - the order in which the data points are stacked
+- **offset** - the offset (or baseline) method
+- **order** - the order in which stacks are layered
 - **reverse** - true to reverse order
-- **offset** - sets the offset (or baseline) method
 
 The following order methods are supported:
-- null - default, stack the data points in input order
-- *value* - stack the data points in value order (from smaller to larger).
 
-These two methods do not ensure consistency of the series order across the stacks, and can lead to criss-crossing paths. The following methods, on the contrary, maintain a consistent order of series:
-- [array of *z* values] - stack the series in the order given by this arbitrary array of *z* values; the array will usually be defined manually or with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort)
-- *sum* - stack the series in the order given by the sums of their values; equivalent to [d3.stackOrderAscending](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderAscending), and [d3.stackOrderDescending](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderDescending) if combined with *reverse*.
-- *appearance* - stack the series in the order given by the location (*x*) of their maximum value; equivalent to [d3.stackOrderAppearance](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderAppearance).
-- *inside-out* - stack the series in an order such that the earliest series (according to the maximum value) are on the inside and the later series are on the outside. This order is recommended for streamgraphs in conjunction with the wiggle offset. See [Stacked Graphs—Geometry & Aesthetics](http://leebyron.com/streamgraph/) by Byron & Wattenberg for more information. Equivalent to [d3.stackOrderInsideOut](https://github.com/d3/d3-shape/blob/master/README.md#stackOrderInsideOut).
+- null - input order
+- *value* - ascending value order (or descending with **reverse**)
+- *sum* - order series by their total value
+- *appearance* - order series by the position of their maximum value
+- *inside-out* - order the earliest-appearing series on the inside
+- an array of *z* values
 
-The **reverse** option reverses the order.
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value whereas Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value, and Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should correspond to the *z* values for all series, and specify the order of those series; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort). This *inside-out* order is recommended for streamgraphs in conjunction with the *wiggle* offset; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+
+The input order (null) and *value* order can lead to criss-crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
 
 The stacking algorithm tracks two values, *lo* and *hi*, both starting at zero for each stack. Considering the values in the given *order*, it progresses by adding non-negative values to the current *hi*, and negative values to the current *lo*. The value of *lo* or *hi* before adding is saved in *y1*, and the new value is saved in *y2*.
 
