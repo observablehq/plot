@@ -1132,11 +1132,11 @@ Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*,
 
 [<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@data-workflows/plot-map)
 
-[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map) · Groups data into series along the *z* dimension and then applies a mapping function to each series’ values, say to normalize them relative to some basis or to apply a moving average.
+[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map) · Groups data into series and then applies a mapping function to each series’ values, say to normalize them relative to some basis or to apply a moving average.
 
-The map transform derives new output channels from corresponding input channels. The output channels have strictly the same length as the input channels; the map transform does not affect the mark’s data or index. The map transform is similar to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given function; however, the map transform is series-aware: the data are first grouped into series along the *z* dimension in the same fashion as the [area](#area) and [line](#line) marks so that series can be processed independently. (You wouldn’t want a moving average to bleed between series, right?)
+The map transform derives new output channels from corresponding input channels. The output channels have strictly the same length as the input channels; the map transform does not affect the mark’s data or index. The map transform is akin to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given function. However, the map transform is series-aware: the data are first grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks so that series are processed independently.
 
-Like the [group](#group) and [bin](#bin) transforms, the [Plot.map](#plotmapoutputs-options) transform takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and additional options to propagate. The other map transforms, such as [Plot.normalizeX](#plotnormalizexoptions) and [Plot.windowX](#plotwindowxoptions), call Plot.map internally.
+Like the [group](#group) and [bin](#bin) transforms, the [Plot.map](#plotmapoutputs-options) transform takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and any additional options. The other map transforms, such as [Plot.normalizeX](#plotnormalizexoptions) and [Plot.windowX](#plotwindowxoptions), call Plot.map internally.
 
 The following map methods are supported:
 
@@ -1234,31 +1234,33 @@ Like [Plot.mapY](#plotmapymap-options), but applies the window map method with t
 
 [<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@data-workflows/plot-select)
 
-[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects one (or possibly several) values from a series, say to label a line or annotate extremes.
+[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects a value from each series, say to label a line or annotate extremes.
+
+The select transform derives a filtered mark index; it does not affect the mark’s data or channels. It is similar to the basic [filter transform](#transforms) except that provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks.
 
 #### Plot.selectFirst(*options*)
 
-Selects the first point of the series, in input order.
+Selects the first point of each series according to input order.
 
 #### Plot.selectLast(*options*)
 
-Selects the last point of the series, in input order.
+Selects the last point of each series according to input order.
 
 #### Plot.selectMinX(*options*)
 
-Selects the left-most point of the series.
+Selects the leftmost point of each series.
 
 #### Plot.selectMinY(*options*)
 
-Selects the lowest point of the series.
+Selects the lowest point of each series.
 
 #### Plot.selectMaxX(*options*)
 
-Selects the right-most point of the series.
+Selects the rightmost point of each series.
 
 #### Plot.selectMaxY(*options*)
 
-Selects the highest point of the series.
+Selects the highest point of each series.
 
 ### Stack
 
@@ -1267,22 +1269,6 @@ Selects the highest point of the series.
 [Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack)
 
 TODO stack intro
-
-#### Plot.stackY(_options_)
-
-Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points.
-
-The stacking options are detailed below.
-
-#### Plot.stackY1(_options_)
-
-Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
-
-#### Plot.stackY2(_options_)
-
-Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
-
-#### Stack options
 
 The supported stack options are:
 
@@ -1314,15 +1300,27 @@ The following **offset** options are supported:
 
 A new **y** channel is eventually returned, which lazily computes the middle value of **y1** and **y2**. It can be used to position a label or a dot in the middle of the corresponding interval.
 
-#### Plot.stackX(_options_)
+#### Plot.stackY(*options*)
+
+Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points.
+
+#### Plot.stackY1(*options*)
+
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+
+#### Plot.stackY2(*options*)
+
+Equivalent to [Plot.stackY](#plotstackyoptions), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+
+#### Plot.stackX(*options*)
 
 See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
-#### Plot.stackX1(_options_)
+#### Plot.stackX1(*options*)
 
 Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
-#### Plot.stackX2(_options_)
+#### Plot.stackX2(*options*)
 
 Equivalent to [Plot.stackX](#plotstackxoptions), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
