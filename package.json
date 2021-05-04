@@ -50,8 +50,5 @@
   "dependencies": {
     "d3": "^6.7.0",
     "isoformat": "^0.1.0"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
