@@ -4,7 +4,6 @@ import * as d3 from "d3";
 export default async function() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.plot({
-    height: 640,
     x: {
       grid: true
     },

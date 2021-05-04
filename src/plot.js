@@ -140,6 +140,6 @@ function ScaleFunctions(scales) {
 
 function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y && y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy);
+  const ny = y ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }
