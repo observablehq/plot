@@ -989,6 +989,24 @@ Most aggregation methods require binding the output channel to an input channel;
 Plot.binX({y: "sum"}, {x: "culmen_length_mm", y: "body_mass_g"})
 ```
 
+You can control whether a channel is computed before or after binning. If a channel is declared only in *options*, it will be computed after binning and be passed the binned data: each datum is the array of input data correpsonding to the current bin.
+
+```js
+Plot.binX({y: "count"}, {x: "economy (mpg)", title: bin => bin.map(d => d.name).join("\n")})
+```
+
+This is equivalent to declaring the channel only in *outputs*.
+
+```js
+Plot.binX({y: "count", title: bin => bin.map(d => d.name).join("\n")}, {x: "economy (mpg)"})
+```
+
+However, if a channel is declared in both *outputs* and *options*, then the channel in *options* is computed prior to binning and can then be aggregated using any built-in reducer (or a custom reducer function) during the bin transform.
+
+```js
+Plot.binX({y: "count", title: names => names.join("\n")}, {x: "economy (mpg)", title: "name"})
+```
+
 To control how the quantitative dimensions *x* and *y* are divided into bins, the following options are supported:
 
 * **thresholds** - the threshold values; see below
@@ -1092,6 +1110,24 @@ Most aggregation methods require binding the output channel to an input channel;
 
 ```js
 Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+```
+
+You can control whether a channel is computed before or after grouping. If a channel is declared only in *options*, it will be computed after grouping and be passed the grouped data: each datum is the array of input data correpsonding to the current group.
+
+```js
+Plot.groupX({y: "count"}, {x: "species", title: group => group.map(d => d.body_mass_g).join("\n")})
+```
+
+This is equivalent to declaring the channel only in *outputs*.
+
+```js
+Plot.groupX({y: "count", title: group => group.map(d => d.body_mass_g).join("\n")}, {x: "species"})
+```
+
+However, if a channel is declared in both *outputs* and *options*, then the channel in *options* is computed prior to grouping and can then be aggregated using any built-in reducer (or a custom reducer function) during the group transform.
+
+```js
+Plot.groupX({y: "count", title: masses => masses.join("\n")}, {x: "species", title: "body_mass_g"})
 ```
 
 If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
