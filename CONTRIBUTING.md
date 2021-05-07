@@ -15,7 +15,7 @@ development; this means that you can edit the Plot source code and examples, and
 they’ll update live as you save changes. To start Snowpack:
 
 ```
-yarn start
+yarn dev
 ```
 
 This should open http://localhost:8008/ where you can browse the tests.
