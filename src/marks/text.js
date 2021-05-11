@@ -47,7 +47,7 @@ export class Text extends Mark {
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
-    this.fontSize = string(cfontSize);
+    this.fontSize = cfontSize;
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
