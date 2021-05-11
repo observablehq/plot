@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
 
 export class Text extends Mark {
   constructor(
@@ -105,11 +105,11 @@ export function textY(data, {y = identity, ...options} = {}) {
 function applyIndirectTextStyles(selection, mark) {
   applyIndirectStyles(selection, mark);
   applyAttr(selection, "text-anchor", mark.textAnchor);
-  applyStyle(selection, "font-family", mark.fontFamily);
-  applyStyle(selection, "font-size", mark.fontSize);
-  applyStyle(selection, "font-style", mark.fontStyle);
-  applyStyle(selection, "font-variant", mark.fontVariant);
-  applyStyle(selection, "font-weight", mark.fontWeight);
+  applyAttr(selection, "font-family", mark.fontFamily);
+  applyAttr(selection, "font-size", mark.fontSize);
+  applyAttr(selection, "font-style", mark.fontStyle);
+  applyAttr(selection, "font-variant", mark.fontVariant);
+  applyAttr(selection, "font-weight", mark.fontWeight);
 }
 
 function applyDirectTextStyles(selection, mark) {
