@@ -246,7 +246,7 @@ export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
   return ScaleD(key, scaleDivergingPow().exponent(exponent), channels, options);
 }
 
-export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain = inferLogDomain(channels), ...options}) {
+export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}) {
   return ScaleD(key, scaleDivergingLog().base(base), channels, {domain, pivot, ...options});
 }
 
