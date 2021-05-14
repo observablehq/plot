@@ -164,6 +164,7 @@ export function maybeSubgroup(outputs, Z, F, S) {
 
 function reduceFunction(f) {
   return {
+    label: f.label,
     reduce(I, X) {
       return f(take(X, I));
     }
@@ -217,5 +218,11 @@ const reduceSum = reduceAccessor(sum);
 function reduceProportion(value, scope) {
   return value == null
       ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
-      : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
+      : {scope, reduce: (I, V, basis = 1) => sumOrCount(I, V) / basis};
+}
+
+function sumOrCount(I, V) {
+  return typeof V.find(v => v != null) === "number"
+    ? sum(I, i => V[i])
+    : I.length;
 }
