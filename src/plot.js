@@ -35,7 +35,7 @@ export function plot(options = {}) {
       if (scale !== undefined) {
         const scaled = scaleChannels.get(scale);
         const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
-        if (transform !== undefined) channel.value = Array.from(channel.value, transform);
+        if (transform != null) channel.value = Array.from(channel.value, transform);
         if (scaled) scaled.push(channel);
         else scaleChannels.set(scale, [channel]);
       }
