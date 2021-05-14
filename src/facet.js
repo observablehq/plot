@@ -97,7 +97,7 @@ class Facet extends Mark {
             const axis1 = axes.x, axis2 = nolabel(axis1);
             const j = axis1.labelAnchor === "right" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
             const {marginLeft, marginRight} = dimensions;
-            const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
+            const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, marginLeft: 0, marginRight: 0};
             g.selectAll()
               .data(domain)
               .join("g")

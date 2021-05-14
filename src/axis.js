@@ -43,8 +43,8 @@ export class AxisX {
       marginLeft,
       facetMarginTop,
       facetMarginBottom,
-      labelMarginLeft = 0,
-      labelMarginRight = 0
+      labelMarginLeft = 20,
+      labelMarginRight = 20
     }
   ) {
     const {
@@ -73,8 +73,8 @@ export class AxisX {
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
                 labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
-                  : labelAnchor === "right" ? width + labelMarginRight
-                  : -labelMarginLeft
+                  : labelAnchor === "right" ? width - marginRight + labelMarginRight
+                  : marginLeft - labelMarginLeft
               },${labelOffset * offsetSign})`)
             .attr("dy", axis === "top" ? "1em" : "-0.32em")
             .attr("text-anchor", labelAnchor === "center" ? "middle"
