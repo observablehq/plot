@@ -10,22 +10,22 @@ export function selectLast(options) {
 }
 
 export function selectMinX(options = {}) {
-  if (options.x === undefined) throw "missing channel x";
+  if (options.x === undefined) throw new Error("missing channel: x");
   return select(min, options.x, options);
 }
 
 export function selectMinY(options = {}) {
-  if (options.y === undefined) throw "missing channel y";
+  if (options.y === undefined) throw new Error("missing channel: y");
   return select(min, options.y, options);
 }
 
 export function selectMaxX(options = {}) {
-  if (options.x === undefined) throw "missing channel x";
+  if (options.x === undefined) throw new Error("missing channel: x");
   return select(max, options.x, options);
 }
 
 export function selectMaxY(options = {}) {
-  if (options.y === undefined) throw "missing channel y";
+  if (options.y === undefined) throw new Error("missing channel: y");
   return select(max, options.y, options);
 }
 
