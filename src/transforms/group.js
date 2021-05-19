@@ -222,7 +222,6 @@ function reduceProportion(value, scope) {
 }
 
 function sumOrCount(I, V) {
-  return typeof V.find(v => v != null) === "number"
-    ? sum(I, i => V[i])
-    : I.length;
+  if (!("type" in V)) V.type = typeof V.find(v => v != null) === "number";
+  return V.type ? sum(I, i => V[i]) : I.length;
 }
