@@ -1,6 +1,6 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {group as grouper, sum, deviation, min, max, mean, median, variance} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
+import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, identity, take, labelof, range} from "../mark.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -129,7 +129,7 @@ export function maybeOutputs(outputs, inputs) {
 }
 
 export function maybeGroup(I, X) {
-  return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
+  return X ? grouper(I, i => X[i]) : [[, I]];
 }
 
 export function maybeReduce(reduce, value) {
