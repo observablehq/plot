@@ -1,4 +1,4 @@
-import {InternSet, reverse as reverseof, sort} from "d3";
+import {InternMap, InternSet, reverse as reverseof, sort as sorter} from "d3";
 import {quantize} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3";
 import {
@@ -180,7 +180,8 @@ function Scheme(scheme) {
 }
 
 export function ScaleO(scale, channels, {
-  domain = inferDomain(channels),
+  sort,
+  domain = inferDomain(channels, sort),
   range,
   reverse,
   inset
@@ -245,11 +246,23 @@ function maybeRound(scale, channels, options = {}) {
   return scale;
 }
 
-function inferDomain(channels) {
+function inferDomain(channels, sort = "ascending") {
   const domain = new InternSet();
+  if (sort === "count") {
+    const counts = new InternMap();
+    for (const {value} of channels) {
+      if (value === undefined) continue;
+      for (const v of value) {
+        domain.add(v);
+        counts.set(v, counts.has(v) ? counts.get(v) + 1 : 1);
+      }
+    }
+    return sorter(domain, key => counts.get(key));
+  }
   for (const {value} of channels) {
     if (value === undefined) continue;
     for (const v of value) domain.add(v);
   }
-  return sort(domain, ascendingDefined);
+  if (sort === "ascending") return sorter(domain, ascendingDefined);
+  return domain;
 }
