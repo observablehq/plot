@@ -114,14 +114,14 @@
     </g>
     <g transform="translate(40,0)">
       <g>
-        <rect x="6" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-        <rect x="64" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
-        <rect x="6" width="52" y="151.64383561643834" height="136.84931506849315" fill="#f28e2c"></rect>
-        <rect x="64" width="52" y="146.57534246575344" height="141.91780821917806" fill="#f28e2c"></rect>
-        <rect x="122" width="52" y="394.93150684931504" height="5.068493150684958" fill="#f28e2c"></rect>
-        <rect x="6" width="52" y="30" height="121.64383561643834" fill="#e15759"></rect>
-        <rect x="64" width="52" y="30" height="116.57534246575344" fill="#e15759"></rect>
-        <rect x="122" width="52" y="369.5890410958904" height="25.34246575342462" fill="#e15759"></rect>
+        <rect x="64" width="52" y="283.42465753424665" height="116.57534246575335" fill="#e15759"></rect>
+        <rect x="6" width="52" y="278.35616438356163" height="121.64383561643837" fill="#e15759"></rect>
+        <rect x="122" width="52" y="374.6575342465753" height="25.342465753424676" fill="#e15759"></rect>
+        <rect x="6" width="52" y="166.84931506849315" height="111.50684931506848" fill="#4e79a7"></rect>
+        <rect x="64" width="52" y="171.91780821917808" height="111.50684931506856" fill="#4e79a7"></rect>
+        <rect x="6" width="52" y="30" height="136.84931506849315" fill="#f28e2c"></rect>
+        <rect x="64" width="52" y="30" height="141.91780821917808" fill="#f28e2c"></rect>
+        <rect x="122" width="52" y="369.5890410958904" height="5.068493150684901" fill="#f28e2c"></rect>
       </g>
       <g stroke="currentColor" transform="translate(0,0.5)">
         <line x1="0" x2="180" y1="400" y2="400"></line>

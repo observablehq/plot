@@ -40,8 +40,8 @@
     </g><text fill="currentColor" transform="translate(330,30)" dy="-0.32em" text-anchor="middle">sex</text>
   </g>
   <g>
-    <rect x="59" width="168" y="26.250000000000018" height="343.75"></rect>
     <rect x="246" width="168" y="20" height="350"></rect>
+    <rect x="59" width="168" y="26.250000000000018" height="343.75"></rect>
     <rect x="433" width="168" y="347.0833333333333" height="22.916666666666686"></rect>
   </g>
   <g stroke="currentColor" transform="translate(0,0.5)">
