@@ -252,6 +252,8 @@ The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordina
 * *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
+* *threshold* - given a *domain* of *n* = 1 or more values and a *range* of *n* + 1 colors, returns the *i*th color of the *range* for values that are smaller than the *i*th element of the domain. Returns the *n*th color for values above the highest threshold
+* *quantile* - given a number of *quantiles*, bins the channels into ordered *quantiles* having roughly the same number of values, then returns a threshold scale based on the bins’ limits
 
 Color scales support two additional options:
 
