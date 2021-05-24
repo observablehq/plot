@@ -359,6 +359,31 @@ Plot.plot({
 })
 ```
 
+#### Extending schemes
+
+Ordinal and quantitative color schemes are exposed as Plot.ordinalSchemes and Plot.quantitativeSchemes, respectively, two Maps indexed by the scheme name in lowercase.
+
+Ordinal schemes are either an array of colors, or a function that receives an object with a length and returns an array of colors.
+
+To add an ordinal scheme, you can thus call:
+```js
+Plot.ordinalSchemes.set("sepia", ["#fff2eb", "#ebd4cd", "#cfb8b2", "#a7918b", "#836e69", "#614e48", "#31211c"]);
+```
+or
+```js
+Plot.ordinalSchemes.set("sepia", ({length}) => {
+  if (length === 3) return ["#fff2eb", "#a7918b", "#31211c"];
+  else return ["#fff2eb", "#ebd4cd", "#cfb8b2", "#a7918b", "#836e69", "#614e48", "#31211c"];
+});
+```
+
+Quantitative schemes are color interpolators, functions that receive a number between 0 and 1, and return a color.
+
+To add a quantitative scheme, you can call:
+```js
+Plot.ordinalSchemes.set("sepia", d3.piecewise(["#fff2eb", "#ebd4cd", "#cfb8b2", "#a7918b", "#836e69", "#614e48", "#31211c"]));
+```
+
 ### Facet options
 
 The *facet* option enables [faceting](https://observablehq.com/@data-workflows/plot-facets). When faceting, two additional band scales may be configured:

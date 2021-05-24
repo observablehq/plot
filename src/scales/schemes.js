@@ -77,7 +77,7 @@ import {
   schemeYlOrRd
 } from "d3";
 
-const ordinalSchemes = new Map([
+export const ordinalSchemes = new Map([
   // categorical
   ["accent", schemeAccent],
   ["category10", schemeCategory10],
@@ -182,7 +182,7 @@ export function ordinalRange(scheme, length) {
   return r.length !== length ? r.slice(length) : r;
 }
 
-const quantitativeSchemes = new Map([
+export const quantitativeSchemes = new Map([
   // diverging
   ["brbg", interpolateBrBG],
   ["prgn", interpolatePRGn],

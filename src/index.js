@@ -16,6 +16,7 @@ export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
 export {windowX, windowY} from "./transforms/window.js";
+export {ordinalSchemes, quantitativeSchemes} from "./scales/schemes.js";
 export {selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";
 export {formatIsoDate, formatWeekday, formatMonth} from "./format.js";
