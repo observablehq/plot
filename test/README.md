@@ -1,3 +1,3 @@
 # Observable Plot - Tests
 
-See [DEVELOPMENT.md](../DEVELOPMENT.md#testing).
+See [CONTRIBUTING.md](../CONTRIBUTING.md#testing).
