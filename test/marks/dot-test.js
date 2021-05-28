@@ -19,6 +19,7 @@ it("dot() has the expected defaults", () => {
   assert.strictEqual(dot.strokeMiterlimit, undefined);
   assert.strictEqual(dot.strokeDasharray, undefined);
   assert.strictEqual(dot.mixBlendMode, undefined);
+  assert.strictEqual(dot.shapeRendering, undefined);
 });
 
 it("dot(data, {r}) allows r to be a constant radius", () => {

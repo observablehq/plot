@@ -18,6 +18,7 @@ it("tickX() has the expected defaults", () => {
   assert.strictEqual(tick.strokeMiterlimit, undefined);
   assert.strictEqual(tick.strokeDasharray, undefined);
   assert.strictEqual(tick.mixBlendMode, undefined);
+  assert.strictEqual(tick.shapeRendering, undefined);
 });
 
 it("tickX(data, {y}) uses a band scale", () => {
@@ -70,6 +71,7 @@ it("tickY() has the expected defaults", () => {
   assert.strictEqual(tick.strokeMiterlimit, undefined);
   assert.strictEqual(tick.strokeDasharray, undefined);
   assert.strictEqual(tick.mixBlendMode, undefined);
+  assert.strictEqual(tick.shapeRendering, undefined);
 });
 
 it("tickY(data, {x}) uses a band scale", () => {
