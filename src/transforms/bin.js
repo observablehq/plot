@@ -172,9 +172,7 @@ function maybeBin(options) {
 }
 
 function maybeThresholds(thresholds) {
-  if (thresholds === undefined) {
-    return (...args) => Math.min(200, thresholdScott(...args));
-  }
+  if (thresholds === undefined) return thresholdDefault;
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
@@ -184,6 +182,10 @@ function maybeThresholds(thresholds) {
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
+}
+
+function thresholdDefault(values, min, max) {
+  return Math.min(200, thresholdScott(values, min, max));
 }
 
 function isTimeInterval(t) {
