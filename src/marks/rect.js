@@ -76,8 +76,8 @@ export class Rect extends Mark {
             .call(applyDirectStyles, this)
             .attr("x", i => Math.min(X1[i], X2[i]) + this.insetLeft)
             .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
-            .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
-            .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
+            .attr("width", i => sliver(X2[i] - X1[i], this.insetLeft + this.insetRight))
+            .attr("height", i => sliver(Y1[i] - Y2[i], this.insetTop + this.insetBottom))
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "stroke", S && (i => S[i]))
@@ -87,6 +87,10 @@ export class Rect extends Mark {
             .call(title(L)))
       .node();
   }
+}
+
+function sliver(x, inset) {
+  return Math.max((x = Math.abs(x)) ? 0.1 : 0, x - inset);
 }
 
 export function rect(data, options) {
