@@ -198,6 +198,22 @@ Plot.plot({
 })
 ```
 
+All the scales are exposed as the *scales* property of the plot. We recommend using *scale*.copy if making any use of these scales that might mutate them. 
+
+```js
+color = Plot.plot({…}).scales.color;
+color.range() // ["red", "blue"]
+```
+
+And, to reuse the scale in another plot:
+
+```js
+Plot.plot({
+  color: { domain: color.copy().domain(), range: color.copy().range() }
+})
+```
+
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
