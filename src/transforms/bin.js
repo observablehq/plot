@@ -171,8 +171,7 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds) {
-  if (thresholds === undefined) return thresholdDefault;
+function maybeThresholds(thresholds = thresholdDefault) {
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
