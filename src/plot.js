@@ -88,12 +88,8 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
-  if (caption == null) return svg;
-  const figure = document.createElement("figure");
-  figure.appendChild(svg);
-  const figcaption = figure.appendChild(document.createElement("figcaption"));
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  const figure = wrap(svg, {caption});
+  figure.scales = scales;
   return figure;
 }
 
@@ -142,4 +138,14 @@ function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
   const ny = y ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+}
+
+// Wrap the plot in a figure with a caption, if desired.
+function wrap(svg, {caption}) {
+  if (caption == null) return svg;
+  const figure = document.createElement("figure");
+  figure.appendChild(svg);
+  const figcaption = figure.appendChild(document.createElement("figcaption"));
+  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  return figure;
 }
