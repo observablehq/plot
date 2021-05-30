@@ -5,8 +5,8 @@ export default async function() {
   const data = await d3.csv("data/us-presidential-forecast-2016-histogram.csv", d3.autoType);
   return Plot.plot({
     x: {
-      label: 'Electoral votes for Hillary Clinton →',
-      labelAnchor: 'left',
+      label: "Electoral votes for Hillary Clinton →",
+      labelAnchor: "left",
       ticks: [100, 200, 300, 400, 500]
     },
     y: {
