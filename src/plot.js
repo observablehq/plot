@@ -6,7 +6,7 @@ import {Scales, autoScaleRange} from "./scales.js";
 import {offset} from "./style.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption} = options;
+  const {facet, style, caption, title, subtitle} = options;
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
@@ -88,12 +88,28 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
-  if (caption == null) return svg;
+  // Wrap the plot in a figure with a caption, a title or a subtitle, if desired.
+  if (caption == null && title == null && subtitle == null) return svg;
+
   const figure = document.createElement("figure");
+
+  if (title) {
+    const figtitle = figure.appendChild(document.createElement("h1"));
+    figtitle.appendChild(title instanceof Node ? title : document.createTextNode(title));
+  }
+
+  if (subtitle) {
+    const figsubtitle = figure.appendChild(document.createElement("h2"));
+    figsubtitle.appendChild(subtitle instanceof Node ? subtitle : document.createTextNode(subtitle));
+  }
+
   figure.appendChild(svg);
-  const figcaption = figure.appendChild(document.createElement("figcaption"));
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+
+  if (caption) {
+    const figcaption = figure.appendChild(document.createElement("figcaption"));
+    figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  }
+
   return figure;
 }
 
