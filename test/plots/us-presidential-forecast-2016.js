@@ -14,7 +14,7 @@ export default async function() {
       tickFormat: '%'
     },
     marks: [
-      Plot.barY(data, {x: "dem_ev", y: "prob", shapeRendering: 'crispEdges', fill:'dem_ev', stroke:'dem_ev' }),
+      Plot.barY(data, {x: "dem_ev", y: "prob", shapeRendering: "crispEdges", fill: "dem_ev", stroke: "dem_ev" }),
       Plot.ruleY([0]),
       Plot.ruleX([270])
     ]
