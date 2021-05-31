@@ -93,9 +93,9 @@ function autoAxisLabelsY(axis, opposite, scale, channels) {
   scale.label = axis.label;
 }
 
-export function autoScaleLabel(scale, channels, {color} = {}) {
+export function autoScaleLabel(scale, channels, options) {
   if (scale === undefined) return;
-  if (color !== undefined) scale.label = color.label;
+  if (options !== undefined) scale.label = options.label;
   if (scale.label === undefined) {
     scale.label = inferLabel(channels, scale, {});
   }

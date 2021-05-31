@@ -53,7 +53,7 @@ export function plot(options = {}) {
   autoAxisTicks(scaleDescriptors, axes);
   autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
   for (const key of ["color", "r", "opacity"]) {
-    autoScaleLabel(scaleDescriptors[key], scaleChannels.get(key), options);
+    autoScaleLabel(scaleDescriptors[key], scaleChannels.get(key), options[key]);
   }
 
   // Normalize the options.
