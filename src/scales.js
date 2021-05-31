@@ -57,22 +57,26 @@ function autoScaleRound(scale) {
 }
 
 function Scale(key, channels = [], options = {}) {
-  switch (inferScaleType(key, channels, options)) {
-    case "diverging": return ScaleDiverging(key, channels, options);
-    case "categorical": case "ordinal": return ScaleOrdinal(key, channels, options);
-    case "cyclical": case "sequential": case "linear": return ScaleLinear(key, channels, options);
-    case "sqrt": return ScalePow(key, channels, {...options, exponent: 0.5});
-    case "pow": return ScalePow(key, channels, options);
-    case "log": return ScaleLog(key, channels, options);
-    case "symlog": return ScaleSymlog(key, channels, options);
-    case "utc": return ScaleUtc(key, channels, options);
-    case "time": return ScaleTime(key, channels, options);
-    case "point": return ScalePoint(key, channels, options);
-    case "band": return ScaleBand(key, channels, options);
-    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
-    case undefined: return;
+  const type = inferScaleType(key, channels, options);
+  let scale;
+  switch (type) {
+    case "diverging": scale = ScaleDiverging(key, channels, options); break;
+    case "categorical": case "ordinal":  scale = ScaleOrdinal(key, channels, options); break;
+    case "cyclical": case "sequential": case "linear": scale =  ScaleLinear(key, channels, options); break;
+    case "sqrt":  scale = ScalePow(key, channels, {...options, exponent: 0.5}); break;
+    case "pow": scale = ScalePow(key, channels, options); break;
+    case "log": scale = ScaleLog(key, channels, options); break;
+    case "symlog": scale = ScaleSymlog(key, channels, options); break;
+    case "utc": scale = ScaleUtc(key, channels, options); break;
+    case "time": scale = ScaleTime(key, channels, options); break;
+    case "point": scale = ScalePoint(key, channels, options); break;
+    case "band": scale = ScaleBand(key, channels, options); break;
+    case "identity": scale = registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined; break;
+    case undefined: break;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
+  if (scale) scale.scale.type = type;
+  return scale;
 }
 
 function inferScaleType(key, channels, {type, domain, range}) {
@@ -104,4 +108,29 @@ function inferScaleType(key, channels, {type, domain, range}) {
 // Positional scales default to a point scale instead of an ordinal scale.
 function asOrdinalType(key) {
   return registry.get(key) === position ? "point" : "ordinal";
+}
+
+// prepare scales for exposure through the plot's scales() function
+export function exposeScales(scaleDescriptors, key) {
+  if (key === undefined) {
+    return Object.fromEntries(
+      Object.entries(scaleDescriptors)
+      .map(([key, descriptor]) => [key, exposeScale(descriptor)])
+    );
+  }
+  if (key in scaleDescriptors) {
+    return exposeScale(scaleDescriptors[key]);
+  }
+}
+
+function exposeScale({scale, label}) {
+  return {
+    domain: scale.domain(),
+    range: scale.range(),
+    ...scale.interpolate && {interpolate: scale.interpolate()},
+    ...label !== undefined && {label},
+    ...scale.type && {type: scale.type},
+    ...scale.clamp && scale.clamp() && {clamp: true},
+    scale
+  };
 }
