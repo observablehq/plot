@@ -91,9 +91,7 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  const figure = wrap(svg, {caption});
-  figure.scales = (key) => exposeScales(scaleDescriptors, key);
-  return figure;
+  return wrap(svg, scaleDescriptors, {caption});
 }
 
 function Dimensions(
@@ -144,11 +142,25 @@ function autoHeight({y, fy, fx}) {
 }
 
 // Wrap the plot in a figure with a caption, if desired.
-function wrap(svg, {caption}) {
-  if (caption == null) return svg;
-  const figure = document.createElement("figure");
-  figure.appendChild(svg);
-  const figcaption = figure.appendChild(document.createElement("figcaption"));
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
-  return figure;
+function wrap(svg, scaleDescriptors, {caption} = {}) {
+  const scales = (key) => exposeScales(scaleDescriptors, key);
+  const legends = [];
+  for (let key in scaleDescriptors) {
+    const {legend} = scaleDescriptors[key];
+    if (typeof legend === "function") {
+      const l = legend(scales(key));
+      if (l instanceof Node) legends.push(l);
+    }
+  }
+  if (caption == null && legends.length === 0) {
+    return svg.scales = scales, svg;
+  }
+  const figure = create("figure");
+  for (const legend of legends) figure.append(() => legend);
+  figure.append(() => svg);
+  if (caption != null) {
+    figure.append("figcaption")
+    .append(() => caption instanceof Node ? caption : document.createTextNode(caption));
+  }
+  return Object.assign(figure.node(), {scales});
 }

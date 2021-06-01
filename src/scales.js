@@ -75,7 +75,10 @@ function Scale(key, channels = [], options = {}) {
     case undefined: break;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
-  if (scale) scale.scale.type = type;
+  if (scale) {
+    if (options.legend) scale.legend = options.legend;
+    scale.scale.type = type;
+  }
   return scale;
 }
 
