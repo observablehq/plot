@@ -114,16 +114,11 @@ function asOrdinalType(key) {
 }
 
 // prepare scales for exposure through the plot's scales() function
-export function exposeScales(scaleDescriptors, key) {
-  if (key === undefined) {
-    return Object.fromEntries(
-      Object.entries(scaleDescriptors)
-      .map(([key, descriptor]) => [key, exposeScale(descriptor)])
-    );
-  }
-  if (key in scaleDescriptors) {
-    return exposeScale(scaleDescriptors[key]);
-  }
+export function exposeScales(scaleDescriptors) {
+  return Object.fromEntries(
+    Object.entries(scaleDescriptors)
+    .map(([key, descriptor]) => [key, exposeScale(descriptor)])
+  );
 }
 
 function exposeScale({scale, label}) {

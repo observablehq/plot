@@ -143,12 +143,12 @@ function autoHeight({y, fy, fx}) {
 
 // Wrap the plot in a figure with a caption, if desired.
 function wrap(svg, scaleDescriptors, {caption} = {}) {
-  const scales = (key) => exposeScales(scaleDescriptors, key);
+  const scales = exposeScales(scaleDescriptors);
   const legends = [];
   for (let key in scaleDescriptors) {
     const {legend} = scaleDescriptors[key];
     if (typeof legend === "function") {
-      const l = legend(scales(key));
+      const l = legend(scales[key]);
       if (l instanceof Node) legends.push(l);
     }
   }
