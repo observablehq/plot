@@ -56,6 +56,7 @@ export {default as metroUnemploymentNormalize} from "./metro-unemployment-normal
 export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
 export {default as mobyDickFaceted} from "./moby-dick-faceted.js";
 export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.js";
+export {default as mobyDickLetterPairs} from "./moby-dick-letter-pairs.js";
 export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
 export {default as mobyDickLetterRelativeFrequency} from "./moby-dick-letter-relative-frequency.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
