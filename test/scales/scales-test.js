@@ -19,7 +19,7 @@ tape("plot(…).scales.x exposes the plot’s x scale", test => {
   test.deepEqual(x.range, [20, 620]);
   test.equal(typeof x.interpolate, "function");
   test.equal(x.type, "linear");
-  test.equal(x.clamp, undefined);
+  test.equal(x.clamp, false);
   test.equal(typeof Plot.scale(x), "function");
 });
 
@@ -31,7 +31,7 @@ tape("plot(…).scales.y exposes the plot’s y scale", test => {
   test.deepEqual(y.range, [380, 20]);
   test.equal(typeof y.interpolate, "function");
   test.equal(y.type, "linear");
-  test.equal(y.clamp, undefined);
+  test.equal(y.clamp, false);
   test.equal(typeof Plot.scale(y), "function");
 });
 
@@ -70,7 +70,7 @@ tape("plot(…).scales.color exposes a continuous color scale", test => {
   test.deepEqual(color.range, [0, 1]);
   test.equal(typeof color.interpolate, "function");
   test.equal(color.type, "linear");
-  test.equal(color.clamp, undefined);
+  test.equal(color.clamp, false);
   test.equal(typeof Plot.scale(color), "function");
 });
 
@@ -94,7 +94,7 @@ tape("plot(…).scales.r exposes a radius scale", test => {
   test.deepEqual(r.range, [0, Math.sqrt(40.5)]);
   test.equal(typeof r.interpolate, "function");
   test.equal(r.type, "sqrt");
-  test.equal(r.clamp, undefined);
+  test.equal(r.clamp, false);
   test.equal(typeof Plot.scale(r), "function");
 });
 
@@ -107,7 +107,7 @@ tape("plot(…).scales.opacity exposes a linear scale", test => {
   test.deepEqual(opacity.range, [0, 1]);
   test.equal(typeof opacity.interpolate, "function");
   test.equal(opacity.type, "linear");
-  test.equal(opacity.clamp, undefined);
+  test.equal(opacity.clamp, false);
   test.equal(typeof Plot.scale(opacity), "function");
 });
 
@@ -117,7 +117,7 @@ tape("plot(…).scales expose inset domain", test => {
 });
 
 tape("plot(…).scales expose clamp", test => {
-  test.equal(scaleOpt({clamp: false}).clamp, undefined);
+  test.equal(scaleOpt({clamp: false}).clamp, false);
   test.equal(scaleOpt({clamp: true}).clamp, true);
 });
 
