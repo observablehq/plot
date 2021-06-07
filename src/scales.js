@@ -132,6 +132,6 @@ function exposeScale({scale, label}) {
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...label !== undefined && {label},
     ...scale.type && {type: scale.type},
-    ...scale.clamp && scale.clamp() && {clamp: true}
+    ...scale.clamp && {clamp: scale.clamp()}
   };
 }
