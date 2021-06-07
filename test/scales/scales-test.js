@@ -20,7 +20,7 @@ tape("plot(…).scales.x exposes the plot’s x scale", test => {
   test.equal(typeof x.interpolate, "function");
   test.equal(x.type, "linear");
   test.equal(x.clamp, undefined);
-  test.equal(typeof x.scale, "function");
+  test.equal(typeof Plot.scale(x), "function");
 });
 
 tape("plot(…).scales.y exposes the plot’s y scale", test => {
@@ -32,7 +32,7 @@ tape("plot(…).scales.y exposes the plot’s y scale", test => {
   test.equal(typeof y.interpolate, "function");
   test.equal(y.type, "linear");
   test.equal(y.clamp, undefined);
-  test.equal(typeof y.scale, "function");
+  test.equal(typeof Plot.scale(y), "function");
 });
 
 tape("plot(…).scales.fx exposes the plot’s fx scale", test => {
@@ -45,7 +45,7 @@ tape("plot(…).scales.fx exposes the plot’s fx scale", test => {
   test.equal(typeof fx.interpolate, "undefined");
   test.equal(fx.type, "band");
   test.equal(fx.clamp, undefined);
-  test.equal(typeof fx.scale, "function");
+  test.equal(typeof Plot.scale(fx), "function");
 });
 
 tape("plot(…).scales.fy exposes the plot’s fy scale", test => {
@@ -58,7 +58,7 @@ tape("plot(…).scales.fy exposes the plot’s fy scale", test => {
   test.equal(typeof fy.interpolate, "undefined");
   test.equal(fy.type, "band");
   test.equal(fy.clamp, undefined);
-  test.equal(typeof fy.scale, "function");
+  test.equal(typeof Plot.scale(fy), "function");
 });
 
 tape("plot(…).scales.color exposes a continuous color scale", test => {
@@ -71,7 +71,7 @@ tape("plot(…).scales.color exposes a continuous color scale", test => {
   test.equal(typeof color.interpolate, "function");
   test.equal(color.type, "linear");
   test.equal(color.clamp, undefined);
-  test.equal(typeof color.scale, "function");
+  test.equal(typeof Plot.scale(color), "function");
 });
 
 tape("plot(…).scales.color exposes an ordinal color scale", test => {
@@ -82,7 +82,7 @@ tape("plot(…).scales.color exposes an ordinal color scale", test => {
   test.equal(typeof color.interpolate, "undefined");
   test.equal(color.type, "ordinal");
   test.equal(color.clamp, undefined);
-  test.equal(typeof color.scale, "function");
+  test.equal(typeof Plot.scale(color), "function");
 });
 
 tape("plot(…).scales.r exposes a radius scale", test => {
@@ -95,7 +95,7 @@ tape("plot(…).scales.r exposes a radius scale", test => {
   test.equal(typeof r.interpolate, "function");
   test.equal(r.type, "sqrt");
   test.equal(r.clamp, undefined);
-  test.equal(typeof r.scale, "function");
+  test.equal(typeof Plot.scale(r), "function");
 });
 
 tape("plot(…).scales.opacity exposes a linear scale", test => {
@@ -108,7 +108,7 @@ tape("plot(…).scales.opacity exposes a linear scale", test => {
   test.equal(typeof opacity.interpolate, "function");
   test.equal(opacity.type, "linear");
   test.equal(opacity.clamp, undefined);
-  test.equal(typeof opacity.scale, "function");
+  test.equal(typeof Plot.scale(opacity), "function");
 });
 
 tape("plot(…).scales expose inset domain", test => {
@@ -122,8 +122,8 @@ tape("plot(…).scales expose clamp", test => {
 });
 
 tape("plot(…).scales expose rounded scales", test => {
-  test.equal(scaleOpt({round: false}).scale(Math.SQRT2), 144.26406871192853);
-  test.equal(scaleOpt({round: true}).scale(Math.SQRT2), 144);
+  test.equal(Plot.scale(scaleOpt({round: false}))(Math.SQRT2), 144.26406871192853);
+  test.equal(Plot.scale(scaleOpt({round: true}))(Math.SQRT2), 144);
   test.equal(scaleOpt({round: true}).interpolate(0, 100)(Math.SQRT1_2), 71);
 });
 
