@@ -82,6 +82,10 @@ function Scale(key, channels = [], options = {}) {
   return scale;
 }
 
+export function scale(options) {
+  return Scale(undefined, undefined, options).scale;
+}
+
 function inferScaleType(key, channels, {type, domain, range}) {
   if (key === "fx" || key === "fy") return "band";
   if (type !== undefined) {
@@ -128,7 +132,6 @@ function exposeScale({scale, label}) {
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...label !== undefined && {label},
     ...scale.type && {type: scale.type},
-    ...scale.clamp && scale.clamp() && {clamp: true},
-    scale
+    ...scale.clamp && scale.clamp() && {clamp: true}
   };
 }

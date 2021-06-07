@@ -200,21 +200,24 @@ Plot.plot({
 })
 ```
 
-All the scales are exposed as the *scales* property of the plot. We recommend using *scale*.copy if making any use of these scales that might mutate them. 
+All the scale definitions are exposed as the *scales* property of the plot.
 
 ```js
 color = Plot.plot({…}).scales.color;
-color.range() // ["red", "blue"]
+color.range // ["red", "blue"]
 ```
 
 And, to reuse the scale in another plot:
 
 ```js
+const plot1 = Plot.plot(…);
+
 Plot.plot({
-  color: { domain: color.copy().domain(), range: color.copy().range() }
+  color: plot:.scales.color
 })
 ```
 
+Plot.*scale*(*options*) returns a [D3 scale](https://github.com/d3/d3-scale) that matches the Plot *options* object.
 
 ### Position options
 
