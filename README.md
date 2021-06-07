@@ -213,7 +213,7 @@ And, to reuse the scale in another plot:
 const plot1 = Plot.plot(…);
 
 Plot.plot({
-  color: plot:.scales.color
+  color: plot1.scales.color
 })
 ```
 
