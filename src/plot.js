@@ -91,7 +91,7 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  return wrap(svg, scaleDescriptors, {caption});
+  return exposeScales(wrap(svg, {caption}), scaleDescriptors);
 }
 
 function Dimensions(
@@ -142,16 +142,12 @@ function autoHeight({y, fy, fx}) {
 }
 
 // Wrap the plot in a figure with a caption, if desired.
-function wrap(svg, scaleDescriptors, {caption} = {}) {
-  const scales = exposeScales(scaleDescriptors);
-  if (caption == null) {
-    return svg.scales = scales, svg;
-  }
-  const figure = create("figure");
-  figure.append(() => svg);
-  if (caption != null) {
-    figure.append("figcaption")
-    .append(() => caption instanceof Node ? caption : document.createTextNode(caption));
-  }
-  return Object.assign(figure.node(), {scales});
+function wrap(svg, {caption} = {}) {
+  if (caption == null) return svg;
+  const figure = document.createElement("figure");
+  figure.appendChild(svg);
+  const figcaption = document.createElement("figcaption");
+  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  figure.appendChild(figcaption);
+  return figure;
 }

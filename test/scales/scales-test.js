@@ -13,6 +13,16 @@ tape("plot(…).scales exposes the plot’s scales", test => {
   test.assert("y" in scales);
 });
 
+tape("plot(…).scales[key] is computed once", test => {
+  const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
+  test.assert(plot.scales.x === plot.scales.x);
+});
+
+tape("plot(…).scales[key] is computed lazily", test => {
+  const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
+  test.assert(plot.scales.x === plot.scales.x);
+});
+
 tape("plot(…).scales.x exposes the plot’s x scale", test => {
   const x = Plot.dot([1, 2], {x: d => d}).plot().scales.x;
   test.deepEqual(x.domain, [1, 2]);

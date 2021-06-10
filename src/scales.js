@@ -76,7 +76,6 @@ function Scale(key, channels = [], options = {}) {
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
   if (scale) {
-    if (options.legend) scale.legend = options.legend;
     scale.scale.type = type;
   }
   return scale;
@@ -118,11 +117,16 @@ function asOrdinalType(key) {
 }
 
 // prepare scales for exposure through the plot's scales() function
-export function exposeScales(scaleDescriptors) {
-  return Object.fromEntries(
-    Object.entries(scaleDescriptors)
-    .map(([key, descriptor]) => [key, exposeScale(descriptor)])
-  );
+export function exposeScales(figure, scaleDescriptors) {
+  const scales = figure.scales = {};
+  for (const key in scaleDescriptors) {
+    let cache;
+    Object.defineProperty(scales, key, {
+      enumerable: true,
+      get: () => cache = cache || exposeScale(scaleDescriptors[key])
+    });
+  }
+  return figure;
 }
 
 function exposeScale({scale, label}) {
@@ -130,8 +134,8 @@ function exposeScale({scale, label}) {
     domain: scale.domain(),
     range: scale.range(),
     ...scale.interpolate && {interpolate: scale.interpolate()},
-    ...label !== undefined && {label},
-    ...scale.type && {type: scale.type},
+    label,
+    type: scale.type,
     ...scale.clamp && {clamp: scale.clamp()}
   };
 }
