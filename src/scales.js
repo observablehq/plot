@@ -116,7 +116,6 @@ function asOrdinalType(key) {
   return registry.get(key) === position ? "point" : "ordinal";
 }
 
-// prepare scales for exposure through the plot's scales() function
 export function exposeScales(figure, scaleDescriptors) {
   const scales = figure.scales = {};
   for (const key in scaleDescriptors) {
