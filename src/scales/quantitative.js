@@ -143,14 +143,13 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
-  percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   scheme,
   type,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
   reverse,
-  inset
+  ...rest
 }) {
   if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
   if (reverse = !!reverse) domain = reverseof(domain);
@@ -174,7 +173,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {family: "quantitative", reverse, domain, range, scale, inset, percent};
+  return {family: "quantitative", reverse, domain, range, scale, type, ...rest};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -182,15 +181,15 @@ export function ScaleLinear(key, channels, options) {
 }
 
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, options);
+  return ScaleQ(key, scalePow().exponent(exponent), channels, options.type === "sqrt" ? options : {exponent, ...options});
 }
 
 export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {domain, ...options});
+  return ScaleQ(key, scaleLog().base(base), channels, {base, domain, ...options});
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+  return ScaleQ(key, scaleSymlog().constant(constant), channels, {constant, ...options});
 }
 
 export function ScaleIdentity() {
@@ -205,7 +204,8 @@ export function ScaleDiverging(key, channels, {
   range,
   scheme,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateRdBu) : undefined,
-  reverse
+  reverse,
+  ...rest
 }) {
   domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
   if (reverse = !!reverse) domain = reverseof(domain);
@@ -222,7 +222,7 @@ export function ScaleDiverging(key, channels, {
   const scale = scaleDiverging(domain, interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {family: "quantitative", reverse, domain, scale};
+  return {family: "quantitative", scale, ...rest};
 }
 
 function inferDomain(channels, f) {

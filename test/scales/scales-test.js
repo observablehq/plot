@@ -86,11 +86,22 @@ tape("plot(…).scales.color exposes a continuous color scale", test => {
 
 tape("plot(…).scales.color exposes an ordinal color scale", test => {
   const data = ["a", "b", "c", "d"];
-  const color = Plot.dot(data, {y: d => d, fill: d => d}).plot().scales.color;
+  const color = Plot.dot(data, {y: d => d, fill: d => d}).plot({ color: { type: "ordinal" }}).scales.color;
+  test.deepEqual(color.domain, data);
+  test.deepEqual(color.range, ['rgb(35, 23, 27)', 'rgb(46, 229, 174)', 'rgb(254, 185, 39)', 'rgb(144, 12, 0)']);
+  test.equal(typeof color.interpolate, "undefined");
+  test.equal(color.type, "ordinal");
+  test.equal(color.clamp, undefined);
+  test.equal(typeof Plot.scale(color), "function");
+});
+
+tape("plot(…).scales.color exposes a categorical color scale", test => {
+  const data = ["a", "b", "c", "d"];
+  const color = Plot.dot(data, {y: d => d, fill: d => d}).plot({ color: { type: "categorical" }}).scales.color;
   test.deepEqual(color.domain, data);
   test.deepEqual(color.range, ['#4e79a7', '#f28e2c', '#e15759', '#76b7b2', '#59a14f', '#edc949', '#af7aa1', '#ff9da7', '#9c755f', '#bab0ab']);
   test.equal(typeof color.interpolate, "undefined");
-  test.equal(color.type, "ordinal");
+  test.equal(color.type, "categorical");
   test.equal(color.clamp, undefined);
   test.equal(typeof Plot.scale(color), "function");
 });
@@ -154,6 +165,41 @@ tape("plot(…).scales expose radius label", test => {
   test.equal(x.label, "x");
   const r = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"}).plot({r: {label: "radius"}}).scales.r;
   test.equal(r.label, "radius");
+});
+
+tape("plot(…).scales expose pow exponent", test => {
+  const x = Plot.dotX([]).plot({x: { type: "pow", exponent: 0.3 }}).scales.x;
+  test.equal(x.type, "pow");
+  test.equal(x.exponent, 0.3);
+  const y = Plot.dotX([]).plot({x: { type: "sqrt" }}).scales.x;
+  test.equal(y.type, "sqrt");
+  test.equal(y.exponent, undefined);
+});
+
+tape("plot(…).scales expose log base", test => {
+  const x = Plot.dotX([]).plot({x: { type: "log", base: 2 }}).scales.x;
+  test.equal(x.type, "log");
+  test.equal(x.base, 2);
+});
+
+tape("plot(…).scales expose symlog constant", test => {
+  const x = Plot.dotX([]).plot({x: { type: "symlog", constant: 42 }}).scales.x;
+  test.equal(x.type, "symlog");
+  test.equal(x.constant, 42);
+});
+
+tape("plot(…).scales expose align, paddingInner and paddingOuter", test => {
+  const x = Plot.cellX(["A", "B"]).plot({x: { paddingOuter: -0.2, align: 1 }}).scales.x;
+  test.equal(x.type, "band");
+  test.equal(x.align, 1);
+  test.equal(x.paddingInner, 0.1);
+  test.equal(x.paddingOuter, -0.2);
+});
+
+tape("plot(…).scales expose unexpected scale options", test => {
+  const x = Plot.dotX([]).plot({x: { lala: 42, width: 420 }}).scales.x;
+  test.equal(x.lala, 42);
+  test.equal(x.width, 420);
 });
 
 function scaleOpt(x) {
