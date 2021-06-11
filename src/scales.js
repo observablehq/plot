@@ -44,14 +44,14 @@ function autoScaleRangeY(scale, dimensions) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.type === "ordinal") range.reverse();
+    if (scale.family === "ordinal") range.reverse();
     scale.scale.range(range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && scale.family === "ordinal" && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }

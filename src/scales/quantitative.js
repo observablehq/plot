@@ -174,7 +174,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type: "quantitative", reverse, domain, range, scale, inset, percent};
+  return {family: "quantitative", reverse, domain, range, scale, inset, percent};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -194,7 +194,7 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 }
 
 export function ScaleIdentity() {
-  return {type: "identity", scale: scaleIdentity()};
+  return {family: "identity", scale: scaleIdentity(), type: "identity"};
 }
 
 export function ScaleDiverging(key, channels, {
@@ -222,7 +222,7 @@ export function ScaleDiverging(key, channels, {
   const scale = scaleDiverging(domain, interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type: "quantitative", reverse, domain, scale};
+  return {family: "quantitative", reverse, domain, scale};
 }
 
 function inferDomain(channels, f) {
