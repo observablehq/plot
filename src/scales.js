@@ -78,7 +78,7 @@ function Scale(key, channels = [], options = {}) {
 }
 
 export function scale(options) {
-  return Scale(undefined, undefined, options).scale;
+  return Scale(options.key, undefined, options).scale;
 }
 
 function inferScaleType(key, channels, {type, domain, range}) {
@@ -112,8 +112,8 @@ function asOrdinalType(key, type = "categorical") {
   return registry.get(key) === position ? "point" : type;
 }
 
-export function exposeScales(figure, scaleDescriptors) {
-  const scales = figure.scales = {};
+export function exposeScales(scaleDescriptors) {
+  const scales = {};
   for (const key in scaleDescriptors) {
     let cache;
     Object.defineProperty(scales, key, {
@@ -121,7 +121,7 @@ export function exposeScales(figure, scaleDescriptors) {
       get: () => cache = cache || exposeScale(scaleDescriptors[key])
     });
   }
-  return figure;
+  return scales;
 }
 
 function exposeScale({scale, ...options}) {

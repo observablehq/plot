@@ -11,7 +11,9 @@ export default async function() {
       ticks: 10
     },
     color: {
-      scheme: "YlGnBu"
+      scheme: "YlGnBu",
+      legend: true,
+      nice: true
     },
     marks: [
       Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height", thresholds: 50}))

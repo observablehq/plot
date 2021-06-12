@@ -13,6 +13,8 @@ import * as plots from "./plots/index.js";
         const {window} = new JSDOM("");
         global.document = window.document;
         global.Node = window.Node;
+        global.NodeList = window.NodeList;
+        global.HTMLCollection = window.HTMLCollection;
 
         // Not fully functional, but only used to fetch data files, so should be fine?
         global.fetch = async (href) => new Response(path.resolve("./test", href));

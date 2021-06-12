@@ -7,6 +7,9 @@ export default async function() {
     y: {
       grid: true
     },
+    color: {
+      legend: true
+    },
     marks: [
       Plot.barY(data, Plot.groupX({y: "count"}, {x: "species", fill: "island"})),
       Plot.ruleY([0])

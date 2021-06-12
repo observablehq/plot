@@ -3,6 +3,8 @@ import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
 import {facets} from "./facet.js";
 import {values} from "./mark.js";
 import {Scales, autoScaleRange, exposeScales} from "./scales.js";
+import {figureWrap} from "./figure.js";
+import {createLegends} from "./legends.js";
 import {offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -91,7 +93,11 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  return exposeScales(wrap(svg, {caption}), scaleDescriptors);
+  const descriptors = exposeScales(scaleDescriptors);
+  const legends = createLegends(descriptors, dimensions);
+  const figure = figureWrap(svg, caption, legends);
+  figure.scales = descriptors;
+  return figure;
 }
 
 function Dimensions(
@@ -139,15 +145,4 @@ function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
   const ny = y ? (y.family === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
-}
-
-// Wrap the plot in a figure with a caption, if desired.
-function wrap(svg, {caption} = {}) {
-  if (caption == null) return svg;
-  const figure = document.createElement("figure");
-  figure.appendChild(svg);
-  const figcaption = document.createElement("figcaption");
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
-  figure.appendChild(figcaption);
-  return figure;
 }
