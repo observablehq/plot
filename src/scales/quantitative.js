@@ -207,7 +207,7 @@ export function ScaleDiverging(key, channels, {
   reverse,
   ...rest
 }) {
-  domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
+  if (domain.length === 2) domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
   if (reverse = !!reverse) domain = reverseof(domain);
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
