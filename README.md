@@ -225,6 +225,37 @@ Plot.scale(plot1.scales.color)
 
 Returns a [D3 scale](https://github.com/d3/d3-scale) that matches the given Plot scale *options* object.
 
+### Legends
+
+Plot will add a color legend to the figure if the *color*.*legend* option is given.
+
+* *color*.**legend** - a function that is passed the color options, and returns a DOM element to inserted at the top of the figure. If *color.legend* is true, defaults to Plot.legendColor.
+
+#### Plot.legendColor(*scaleOptions*)
+
+Generates a color legend, with swatches for categorical and ordinal scales, and a ramp for continuous scales.
+
+The color swatches can be configured with the following options:
+* *color*.**columns** - the number of swatches per row
+* *color*.**format** - a format function for the labels
+* *color*.**swatchSize** - the size of the swatch (if square)
+* *color*.**swatchWidth** - the swatches’ width
+* *color*.**swatchHeight** - the swatches’ height 
+* *color*.**marginLeft** - the legend’s left margin
+
+The continuous color legends can be configured with the following options:
+* *color*.**label** - the scale’s label
+* *color*.**tickSize** - the tick size
+* *color*.**width** - the legend’s width
+* *color*.**height** - the legend’s height
+* *color*.**marginTop** - the legend’s top margin
+* *color*.**marginRight** - the legend’s right margin
+* *color*.**marginBottom** - the legend’s bottom margin
+* *color*.**marginLeft** - the legend’s left margin
+* *color*.**ticks** - number of ticks
+* *color*.**tickFormat** - a format function for the legend’s ticks
+* *color*.**tickValues** - the legend’s tick values
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
@@ -260,34 +291,6 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
-
-
-Plot can generate a color legend:
-
-* *color*.**legend** - a function that is passed the color scale and the color options, and returns a color legend that will be inserted at the top of the figure.
-
-If *color.legend* is true, a default color legend is created, with swatches for categorical and ordinal scales, and a ramp for continuous scales.
-
-The color swatches can be configured with the following options:
-* *color*.**columns** - the number of swatches per row
-* *color*.**format** - a format function for the labels
-* *color*.**swatchSize** - the size of the swatch (if square)
-* *color*.**swatchWidth** - the swatches’ width
-* *color*.**swatchHeight** - the swatches’ height 
-* *color*.**marginLeft** - the legend’s left margin
-
-The continuous color legends can be configured with the following options:
-* *color*.**label** - the scale’s label
-* *color*.**tickSize** - the tick size
-* *color*.**width** - the legend’s width
-* *color*.**height** - the legend’s height
-* *color*.**marginTop** - the legend’s top margin
-* *color*.**marginRight** - the legend’s right margin
-* *color*.**marginBottom** - the legend’s bottom margin
-* *color*.**marginLeft** - the legend’s left margin
-* *color*.**ticks** - number of ticks
-* *color*.**tickFormat** - a format function for the legend’s ticks
-* *color*.**tickValues** - the legend’s tick values
 
 Plot does not currently generate a legend for the *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
 

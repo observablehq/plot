@@ -2,8 +2,9 @@ import {scale} from "../scales.js";
 import {legendRamp} from "./ramp.js";
 import {legendSwatches} from "./swatches.js";
 
-export function legendColor({width, ...options}, {width: maxWidth}) {
-  switch(options.type) {
+export function legendColor({width, ...options}, {width: maxWidth = 640} = {}) {
+  options.key = "color"; // for diverging
+  switch (options.type) {
     case "ordinal":
     case "categorical":
       return legendSwatches(scale(options), options);
