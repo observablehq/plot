@@ -256,11 +256,13 @@ The continuous color legends can be configured with the following options:
 * *color*.**tickFormat** - a format function for the legend’s ticks
 * *color*.**tickValues** - the legend’s tick values
 
-Plot will add an opacity legend to the figure if the *opacity*.*legend* option is given.
-
 #### Plot.legendOpacity(*scaleOptions*)
 
-The default opacity legend—rendered as a grayscale color legend.
+The default opacity legend—rendered as a grayscale color legend. Plot will add an opacity legend to the figure if the *opacity*.*legend* option is given. If *opacity*.*legend* is true, uses the default opacity legend; if *opacity*.*legend* is a function, it is called with the scale’s options and should return a DOM element.
+
+#### Plot.legendRadius(*scaleOptions*)
+
+The default radius legend—rendered as a circles on a common base. Plot will add a radius legend to the figure if the *r*.*legend* option is given. If *r*.*legend* is true, uses the default radius legend; if *r*.*legend* is a function, it is called with the scale’s options and should return a DOM element.
 
 ### Position options
 
@@ -298,7 +300,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
 
-Plot does not currently generate a legend for the *radius* scale, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **inset**, **round**, **align**, and **padding**.
 
 ### Color options
 
