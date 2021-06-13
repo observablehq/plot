@@ -130,6 +130,7 @@ function exposeScale({scale, ...options}) {
     domain: scale.domain(),
     range: scale.range(),
     ...scale.interpolate && {interpolate: scale.interpolate()},
+    ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
     ...scale.clamp && {clamp: scale.clamp()},
     ...options
   };
