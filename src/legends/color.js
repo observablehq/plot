@@ -2,7 +2,11 @@ import {scale} from "../scales.js";
 import {legendRamp} from "./ramp.js";
 import {legendSwatches} from "./swatches.js";
 
-export function legendColor({width, ...options}, {width: maxWidth = 640} = {}) {
+export function legendColor(plotOrScale, {width: maxWidth = 640} = {}) {
+  if (!plotOrScale) return;
+  const color = "scales" in plotOrScale ? plotOrScale.scales.color : plotOrScale;
+  if (!color) return;
+  const {width, ...options} = color;
   options.key = "color"; // for diverging
   switch (options.type) {
     case "ordinal":
