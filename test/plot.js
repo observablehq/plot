@@ -43,6 +43,8 @@ import * as plots from "./plots/index.js";
       } finally {
         delete global.document;
         delete global.Node;
+        delete global.NodeList;
+        delete global.HTMLCollection;
         delete global.fetch;
       }
     });
