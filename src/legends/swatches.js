@@ -1,6 +1,6 @@
 import {create} from "d3";
 
-export function swatches(color, {
+export function legendSwatches(color, {
   columns = null,
   format = x => x,
   swatchSize = 15,
