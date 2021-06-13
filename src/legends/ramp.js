@@ -26,16 +26,23 @@ export function legendRamp(color, {
   // Continuous
   if (color.interpolate) {
     const n = Math.min(color.domain().length, color.range().length);
-
     x = color.copy().rangeRound(quantize(interpolate(marginLeft, width - marginRight), n));
-
+    let color2 = color.copy().domain(quantize(interpolate(0, 1), n));
+    // special case for log scales
+    if (color.base) {
+      const p = scaleLinear(
+        quantize(interpolate(0, 1), color.domain().length),
+        color.domain().map(d => Math.log(d))
+      );
+      color2 = t => color(Math.exp(p(t)));
+    }
     svg.append("image")
         .attr("x", marginLeft)
         .attr("y", marginTop)
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
         .attr("preserveAspectRatio", "none")
-        .attr("xlink:href", ramp(color.copy().domain(quantize(interpolate(0, 1), n))).toDataURL());
+        .attr("xlink:href", ramp(color2).toDataURL());
   }
 
   // Sequential
