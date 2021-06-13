@@ -11,7 +11,7 @@
   white-space: pre;
 }
 
-.legends .swatches {
+.plot-swatches {
   display: flex;
   align-items: center;
   margin-left: var(--marginLeft);
@@ -20,37 +20,37 @@
   margin-bottom: 0.5em;
 }
 
-.legends .swatches > div {
+.plot-swatches > div {
   width: 100%;
 }
 
-.legends .swatch-item {
+.plot-swatches .swatch-item {
   break-inside: avoid;
   display: flex;
   align-items: center;
   padding-bottom: 1px;
 }
 
-.legends .swatch-label {
+.plot-swatches .swatch-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - var(--swatchWidth) - 0.5em);
 }
 
-.legends .swatch-block {
+.plot-swatches .swatch-block {
   width: var(--swatchWidth);
   height: var(--swatchHeight);
   margin: 0 0.5em 0 0;
 }
 
-.legends .swatch {
+.plot-swatch {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
 }
 
-.legends .swatch::before {
+.plot-swatch::before {
   content: "";
   width: var(--swatchWidth);
   height: var(--swatchHeight);

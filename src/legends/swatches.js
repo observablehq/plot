@@ -9,7 +9,7 @@ export function legendSwatches(color, {
   marginLeft = 0
 } = {}) {
   const swatches = create("div")
-    .classed("swatches", true)
+    .classed("plot-swatches", true)
     .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px`);
 
   if (columns !== null) {
@@ -31,7 +31,7 @@ export function legendSwatches(color, {
       .selectAll()
       .data(color.domain())
       .join("span")
-      .classed("swatch", true)
+      .classed("plot-swatch", true)
       .style("--color", color)
       .text(format);
   }
