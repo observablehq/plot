@@ -95,7 +95,7 @@ export function plot(options = {}) {
 
   const descriptors = exposeScales(scaleDescriptors);
   const legends = createLegends(descriptors, dimensions);
-  const figure = figureWrap(svg, caption, legends);
+  const figure = figureWrap(svg, dimensions, caption, legends);
   figure.scales = descriptors;
   return figure;
 }
