@@ -6,11 +6,14 @@ export function legendSwatches(color, {
   swatchSize = 15,
   swatchWidth = swatchSize,
   swatchHeight = swatchSize,
-  marginLeft = 0
+  marginLeft = 0,
+  width
 } = {}) {
   const swatches = create("div")
     .classed("plot-swatches", true)
-    .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px`);
+    .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px;${
+      width === undefined ? "" : ` width: ${width}px;`
+    }`);
 
   if (columns !== null) {
     const elems = swatches.append("div")
