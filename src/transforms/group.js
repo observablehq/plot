@@ -215,7 +215,9 @@ export function maybeSort(facets, sort, reverse) {
 function reduceFunction(f) {
   return {
     reduce(I, X) {
-      return f(take(X, I));
+      const x = take(X, I);
+      if ("x1" in I) { x.x1 = I.x1; x.x2 = I.x2; x.y1 = I.y1; x.y2 = I.y2; }
+      return f(x);
     }
   };
 }

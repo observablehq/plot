@@ -111,7 +111,7 @@ function binn(
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
-                const b = fy(bb);
+                const b = Object.assign(fy(bb), {x1, x2, y1, y2});
                 if (filter && !filter.reduce(b)) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
