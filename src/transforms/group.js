@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
@@ -148,6 +148,7 @@ export function maybeReduce(reduce, value) {
     case "mean": return reduceAccessor(mean);
     case "median": return reduceAccessor(median);
     case "variance": return reduceAccessor(variance);
+    case "mode": return reduceAccessor(mode);
   }
   throw new Error("invalid reduce");
 }
