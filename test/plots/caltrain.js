@@ -27,13 +27,13 @@ export default async function() {
       }),
       Plot.text(new Set(caltrain.map(d => d.hours)), {
         x: 0,
-        y: d => d,
+        y: d => +d,
         text: d => `${(d - 1) % 12 + 1}${(d % 24) >= 12 ? "p": "a"}`
       }),
       Plot.text(caltrain, Plot.stackX2({
         filter: d => d.orientation === "N",
         x: () => 1,
-        y: "hours",
+        y: d => +d.hours,
         text: d => d.minutes.padStart(2, "0"),
         fill: "type",
         textAnchor: "start"
@@ -41,7 +41,7 @@ export default async function() {
       Plot.text(caltrain, Plot.stackX2({
         filter: d => d.orientation === "S",
         x: () => -1,
-        y: "hours",
+        y: d => +d.hours,
         text: d => d.minutes.padStart(2, "0"),
         fill: "type",
         textAnchor: "end"

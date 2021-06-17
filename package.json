@@ -48,7 +48,7 @@
     "tape-await": "^0.1.2"
   },
   "dependencies": {
-    "d3": "^6.7.0",
+    "d3": "^7.0.0",
     "isoformat": "^0.1.0"
   }
 }
