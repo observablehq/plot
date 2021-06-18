@@ -225,6 +225,7 @@ function bincumset([bin], j, bins) {
 }
 
 function binfilter([{x0, x1}, set]) {
+  if (x0 === x1) x0 -= .5, x1 += .5;
   return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
 }
 
