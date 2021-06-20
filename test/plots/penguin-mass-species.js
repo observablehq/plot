@@ -12,7 +12,7 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})),
+      Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", order: "value", reverse: true})),
       Plot.ruleY([0])
     ]
   });

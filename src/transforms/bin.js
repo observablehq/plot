@@ -58,7 +58,7 @@ function binn(
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
   // computing them more than once.
-  const {x, y, z, fill, stroke, ...options} = inputs;
+  const {x, y, z, fill, stroke, reverse, ...options} = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -69,6 +69,7 @@ function binn(
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
     ..."stroke" in inputs && {stroke: GS || stroke},
+    ..."reverse" in inputs && {reverse},
     ...maybeTransform(options, (data, facets) => {
       const K = valueof(data, k);
       const Z = valueof(data, z);
