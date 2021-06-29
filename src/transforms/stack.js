@@ -1,4 +1,4 @@
-import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
+import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybeZero, isOptions, maybeValue} from "../mark.js";
 import {basic} from "./basic.js";
@@ -106,7 +106,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
         }
-        if (offset) offset(stacks, Y1, Y2, Z);
+        if (offset) offset(stacks, Y1, Y2, Z, facets);
       }
       return {data, facets};
     }),
@@ -150,7 +150,7 @@ function offsetExpand(stacks, Y1, Y2) {
   }
 }
 
-function offsetCenter(stacks, Y1, Y2) {
+function offsetCenter(stacks, Y1, Y2, Z, facets) {
   for (const stack of stacks) {
     const [yn, yp] = extent(stack, Y2);
     for (const i of stack) {
@@ -159,10 +159,10 @@ function offsetCenter(stacks, Y1, Y2) {
       Y2[i] -= m;
     }
   }
-  offsetZero(stacks, Y1, Y2);
+  offsetCenterFacets(Y1, Y2, facets);
 }
 
-function offsetWiggle(stacks, Y1, Y2, Z) {
+function offsetWiggle(stacks, Y1, Y2, Z, facets) {
   const prev = new InternMap();
   let y = 0;
   for (const stack of stacks) {
@@ -183,15 +183,15 @@ function offsetWiggle(stacks, Y1, Y2, Z) {
     const s1 = sum(Fi);
     if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
   }
-  offsetZero(stacks, Y1, Y2);
+  offsetCenterFacets(Y1, Y2, facets);
 }
 
-function offsetZero(stacks, Y1, Y2) {
-  const m = min(stacks, stack => min(stack, i => Y1[i]));
-  for (const stack of stacks) {
-    for (const i of stack) {
-      Y1[i] -= m;
-      Y2[i] -= m;
+function offsetCenterFacets(Y1, Y2, facets) {
+  for (const I of facets) {
+    const m = (-min(I, i => Y1[i]) - max(I, i => Y2[i])) / 2;
+    for (const i of I) {
+      Y1[i] += m;
+      Y2[i] += m;
     }
   }
 }

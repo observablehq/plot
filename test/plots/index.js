@@ -36,6 +36,7 @@ export {default as emptyX} from "./empty-x.js";
 export {default as figcaption} from "./figcaption.js";
 export {default as figcaptionHtml} from "./figcaption-html.js";
 export {default as firstLadies} from "./first-ladies.js";
+export {default as footballCoverage} from "./football-coverage.js";
 export {default as fruitSales} from "./fruit-sales.js";
 export {default as fruitSalesDate} from "./fruit-sales-date.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
