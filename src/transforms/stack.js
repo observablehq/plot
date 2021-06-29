@@ -106,7 +106,10 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
         }
-        if (offset) offset(stacks, Y1, Y2, Z, facets);
+        if (offset) offset(stacks, Y1, Y2, Z);
+      }
+      if (offset === offsetWiggle || offset === offsetCenter) {
+        offsetCenterFacets(Y1, Y2, facets);
       }
       return {data, facets};
     }),
@@ -150,7 +153,7 @@ function offsetExpand(stacks, Y1, Y2) {
   }
 }
 
-function offsetCenter(stacks, Y1, Y2, Z, facets) {
+function offsetCenter(stacks, Y1, Y2) {
   for (const stack of stacks) {
     const [yn, yp] = extent(stack, Y2);
     for (const i of stack) {
@@ -159,10 +162,10 @@ function offsetCenter(stacks, Y1, Y2, Z, facets) {
       Y2[i] -= m;
     }
   }
-  offsetCenterFacets(Y1, Y2, facets);
+  offsetZero(stacks, Y1, Y2);
 }
 
-function offsetWiggle(stacks, Y1, Y2, Z, facets) {
+function offsetWiggle(stacks, Y1, Y2, Z) {
   const prev = new InternMap();
   let y = 0;
   for (const stack of stacks) {
@@ -183,15 +186,29 @@ function offsetWiggle(stacks, Y1, Y2, Z, facets) {
     const s1 = sum(Fi);
     if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
   }
-  offsetCenterFacets(Y1, Y2, facets);
+  offsetZero(stacks, Y1, Y2);
+}
+
+function offsetZero(stacks, Y1, Y2) {
+  const m = min(stacks, stack => min(stack, i => Y1[i]));
+  for (const stack of stacks) {
+    for (const i of stack) {
+      Y1[i] -= m;
+      Y2[i] -= m;
+    }
+  }
 }
 
 function offsetCenterFacets(Y1, Y2, facets) {
-  for (const I of facets) {
-    const m = (-min(I, i => Y1[i]) - max(I, i => Y2[i])) / 2;
-    for (const i of I) {
-      Y1[i] += m;
-      Y2[i] += m;
+  const n = facets.length;
+  if (n === 1) return;
+  const m = facets.map(I => (min(I, i => Y1[i]) + max(I, i => Y2[i])) / 2);
+  const m0 = min(m);
+  for (let j = 0; j < n; j++) {
+    const p = m0 - m[j];
+    for (const i of facets[j]) {
+      Y1[i] += p;
+      Y2[i] += p;
     }
   }
 }
