@@ -20,7 +20,7 @@ export function binY(outputs = {x: "count"}, {inset, insetTop, insetBottom, ...o
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function bin(outputs = {r: "count", fill: "count"}, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+export function bin(outputs = {fill: "count"}, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   const {x, y} = maybeBinValueTuple(options);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
