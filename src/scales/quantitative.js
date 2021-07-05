@@ -1,4 +1,5 @@
 import {
+  ascending,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -108,8 +109,10 @@ export function ScaleQuantile(key, channels, {
   scheme,
   domain = inferFullDomain(channels),
   range = ordinalScheme(scheme === undefined ? "rdylbu" : scheme)({length: quantiles}).slice(0, quantiles),
+  reverse,
   ...options
 }) {
+  if (reverse) range = reverseof(range);
   return ScaleQ(key, scaleQuantile(), [], {domain, range, ...options});
 }
 
@@ -121,8 +124,11 @@ export function ScaleThreshold(key, channels, {
   domain = inferDomain(channels),
   scheme,
   range = ordinalScheme(scheme === undefined ? "rdylbu" : scheme)({length: domain.length + 1}),
+  reverse,
   ...options
 }) {
+  if (ascending(domain[domain.length-1], domain[0]) < 0) domain.sort(ascending), reverse = !reverse;
+  if (reverse) range = reverseof(range);
   return ScaleQ(key, scaleThreshold(), channels, {domain, range, ...options});
 }
 
