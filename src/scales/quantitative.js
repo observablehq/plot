@@ -152,24 +152,26 @@ export function ScaleQ(key, scale, channels, {
   ...rest
 }) {
   if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
-  if (reverse = !!reverse) domain = reverseof(domain);
-  scale.domain(domain);
-  if (nice) scale.nice(nice === true ? undefined : nice);
+  reverse = !!reverse;
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
   // is used in conjunction with the range. And other times the interpolate
   // function is a “fixed” interpolator independent of the range, as when a
   // color scheme such as interpolateRdBu is used.
-  if (interpolate !== undefined) {
+  if (scale.interpolate && interpolate !== undefined) {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
-      if (reverse) interpolate = flip(interpolate);
+      if (reverse) interpolate = flip(interpolate), reverse = null;
       interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
   }
+
+  if (reverse) domain = reverseof(domain);
+  scale.domain(domain);
+  if (nice) scale.nice(nice === true ? undefined : nice);
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
