@@ -7,9 +7,10 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], options = {}) {
+  constructor(data, channels = [], {facet, ...options} = {}) {
     const names = new Set();
     this.data = data;
+    this.facet = facet;
     const {transform} = maybeTransform(options);
     this.transform = transform;
     this.channels = channels.filter(channel => {

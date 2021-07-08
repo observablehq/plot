@@ -372,7 +372,7 @@ The following *facet* constant options are also supported:
 * facet.**marginLeft** - the left margin
 * facet.**grid** - if true, draw grid lines for each facet
 
-Marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. You can disable faceting for an individual mark by giving it a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
+Marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. You can disable faceting for an individual mark by giving it a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice). 
 
 ```js
 Plot.plot({
@@ -387,6 +387,29 @@ Plot.plot({
   }
 })
 ```
+
+Additionally, you can enable or disable faceting explicitly on a mark with the facet option, which accepts the following values:
+
+* *false* - disable faceting for this mark
+* *true* - enable faceting for this mark
+* *"exclude"* - enable exclusion faceting for this mark (each facet receives all the data except those of the facet’s subset)  
+
+If faceting is enabled, the *data* must have the same cardinality as the faceted data (and should match its order).
+
+```js
+Plot.plot({
+  facet: {
+    x: Plot.values(penguins, "sex"),
+    y: Plot.values(penguins, "island")
+  },
+  marks: {
+    Plot.frame(), // draws an outline around each facet
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee", facet: "exclude"}), // draws excluded penguins on each facet
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", facet: true}) // draws only the current facet’s subset
+  }
+})
+```
+
 
 ## Marks
 
