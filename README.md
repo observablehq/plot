@@ -374,13 +374,10 @@ The following *facet* constant options are also supported:
 
 Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
 
-* *null* - (or false) disable faceting for this mark
+* *auto* (default) - marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (see *include*), whereas other marks will be repeated across facets.
 * *include* - enable faceting for this mark (shorthand: *true*)
 * *exclude* - enable exclusion faceting for this mark (each facet receives all the data except the facet’s subset)
-
-By default, marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (*include*), whereas other marks will be repeated across facets (*null*).
-
-The data in faceted marks must have the same cardinality as the facet data (and should match its order).
+* null - (or false) disable faceting for this mark
 
 ```js
 Plot.plot({
