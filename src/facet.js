@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, range, values, first, second} from "./mark.js";
+import {Mark, values, first, second} from "./mark.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
