@@ -44,9 +44,6 @@ class Facet extends Mark {
         : facet === "include" ? facetsIndex
         : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
         : undefined;
-      if (markFacets && range(mark.data).length !== index.length) {
-        throw new Error("faceted mark data must match facet data length");
-      }
       const {index: I, channels} = mark.initialize(markFacets);
       // If an index is returned by mark.initialize, its structure depends on
       // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
