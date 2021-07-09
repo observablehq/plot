@@ -38,7 +38,7 @@ class Facet extends Mark {
     }
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
-      const markFacets = mark.facet === undefined ? mark.data === this.data ? facetsIndex : undefined
+      const markFacets = mark.facet == null ? mark.data === this.data ? facetsIndex : undefined
         : mark.facet === "exclude" ? facetsIndex.map(facet => Uint32Array.from(difference(index, facet)))
         : mark.facet === true ? facetsIndex
         : undefined;
