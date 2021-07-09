@@ -14,7 +14,8 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(data.slice(), {
+      Plot.dot(data, {
+        facet: "exclude",
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
         r: 2,

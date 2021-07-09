@@ -372,16 +372,15 @@ The following *facet* constant options are also supported:
 * facet.**marginLeft** - the left margin
 * facet.**grid** - if true, draw grid lines for each facet
 
-By default, marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. 
-
 Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
 
-* *null* (default) - facet this mark if its data is strictly equal to the facet data
-* *false* - disable faceting for this mark
-* *true* - enable faceting for this mark
+* *null* - (or false) disable faceting for this mark
+* *include* - enable faceting for this mark (shorthand: *true*)
 * *exclude* - enable exclusion faceting for this mark (each facet receives all the data except the facet’s subset)
 
-If faceting is enabled, the mark’s data must have the same cardinality as the facet data (and should match its order).
+By default, marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (*include*), whereas other marks will be repeated across facets (*null*).
+
+The data in faceted marks must have the same cardinality as the facet data (and should match its order).
 
 ```js
 Plot.plot({

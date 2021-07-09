@@ -15,7 +15,8 @@ export default async function() {
       marginRight: 80
     },
     marks: [
-      Plot.dot(data.slice(), {
+      Plot.dot(data, {
+        facet: null,
         x: culmen_depth_mm,
         y: culmen_length_mm,
         r: 2,
