@@ -11,7 +11,6 @@ export class Mark {
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
-
     const {transform} = maybeTransform(options);
     this.transform = transform;
     this.channels = channels.filter(channel => {
