@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, keyword, range, values, first, second} from "./mark.js";
+import {Mark, range, values, first, second} from "./mark.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -36,12 +36,13 @@ class Facet extends Mark {
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
+    let facetsExclude;
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
-      const facet = mark.facet && keyword(mark.facet, "facet", ["include", "exclude"]);
-      const markFacets = facet === undefined ? mark.data === this.data ? facetsIndex : undefined
+      const {facet} = mark;
+      const markFacets = facet === "auto" ? mark.data === this.data ? facetsIndex : undefined
         : facet === "include" ? facetsIndex
-        : facet === "exclude" ? facetsIndex.map(f => Uint32Array.from(difference(index, f)))
+        : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
         : undefined;
       if (markFacets && range(mark.data).length !== index.length) {
         throw new Error("faceted mark data must match facet data length");
