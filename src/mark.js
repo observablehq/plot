@@ -10,7 +10,7 @@ export class Mark {
   constructor(data, channels = [], {facet = "auto", ...options} = {}) {
     const names = new Set();
     this.data = data;
-    this.facet = facet && keyword(facet, "facet", ["auto", "include", "exclude"]);
+    this.facet = !!facet && keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
 
     const {transform} = maybeTransform(options);
     this.transform = transform;
