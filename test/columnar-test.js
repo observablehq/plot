@@ -14,6 +14,28 @@ tape("Plot uses the data.column accessor", test => {
         case "x": return columnX;
         case "y": return columnY;
       } 
+    }
+  };
+  const A = Plot.dot(data, {x: "x", y: "y"}).initialize();
+  test.deepEqual(A.index, d3.range(data.length));
+  test.deepEqual(columnChecks, ["x", "y"]);
+  test.strictEqual(A.channels.find(([c]) => c === "x")[1].value, columnX);
+  test.strictEqual(A.channels.find(([c]) => c === "y")[1].value, columnY);
+});
+
+tape("Plot uses the data.indices accessor", test => {
+  const columnChecks = [];
+  const columnX = ["A", "B", "C", "D"];
+  const columnY = [1, 1, 2];
+  const index = [0, 1, 2, 3, 4];
+  const data = {
+    indices: () => index,
+    column: function(field) {
+      columnChecks.push(field);
+      switch(field) {
+        case "x": return columnX;
+        case "y": return columnY;
+      } 
     },
     *[Symbol.iterator] () {
       /* eslint require-yield: 0 */
@@ -21,7 +43,7 @@ tape("Plot uses the data.column accessor", test => {
     }
   };
   const A = Plot.dot(data, {x: "x", y: "y"}).initialize();
-  test.deepEqual(A.index, d3.range(data.length));
+  test.deepEqual(A.index, index);
   test.deepEqual(columnChecks, ["x", "y"]);
   test.strictEqual(A.channels.find(([c]) => c === "x")[1].value, columnX);
   test.strictEqual(A.channels.find(([c]) => c === "y")[1].value, columnY);

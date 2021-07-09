@@ -179,7 +179,7 @@ export function titleGroup(L) {
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  return Uint32Array.from(data.length ? {length: data.length} : data, indexOf);
+  return typeof data.indices === "function" ? data.indices() : Uint32Array.from(data, indexOf);
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
