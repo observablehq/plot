@@ -38,6 +38,11 @@ import * as plots from "./plots/index.js";
         }
 
         test.ok(actual === expected, `${name} must match snapshot`);
+        if (actual !== expected) {
+          const outfile = path.resolve("./test/output", path.basename(name, ".js") + "-changed." + ext);
+          console.warn(`! generating ${outfile}`);
+          await fs.writeFile(outfile, actual, "utf8");
+        }
       } finally {
         delete global.document;
         delete global.Node;
