@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
+import {valueof, isNumeric, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -222,6 +222,5 @@ function reduceProportion(value, scope) {
 }
 
 function sumOrCount(I, V) {
-  if (!("type" in V)) V.type = typeof V.find(v => v != null) === "number";
-  return V.type ? sum(I, i => V[i]) : I.length;
+  return isNumeric(V) ? sum(I, i => V[i]) : I.length;
 }

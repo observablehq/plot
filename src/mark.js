@@ -326,17 +326,28 @@ export function values(channels = [], scales) {
   return values;
 }
 
-export function isOrdinal(values) {
+const typeCache = new WeakMap();
+function typeDetection(values) {
+  if (typeCache.has(values)) return typeCache.get(values);
+  let type;
   for (const value of values) {
     if (value == null) continue;
-    const type = typeof value;
-    return type === "string" || type === "boolean";
+    type = typeof value;
+    if (type === "object") type = value instanceof Date ? "temporal" : "object";
+    typeCache.set(values, type);
+    return type;
   }
 }
 
+export function isOrdinal(values) {
+  const t = typeDetection(values);
+  return t === "string" || t === "boolean";
+}
+
 export function isTemporal(values) {
-  for (const value of values) {
-    if (value == null) continue;
-    return value instanceof Date;
-  }
+  return typeDetection(values) === "temporal";
+}
+
+export function isNumeric(values) {
+  return typeDetection(values) === "number";
 }
