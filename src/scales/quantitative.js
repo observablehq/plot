@@ -49,9 +49,14 @@ import {
   interpolateYlOrBr,
   interpolateYlOrRd,
   scaleDiverging,
+  scaleDivergingLog,
+  scaleDivergingPow,
+  scaleDivergingSqrt,
+  scaleDivergingSymlog,
   scaleLinear,
   scaleLog,
   scalePow,
+  scaleSqrt,
   scaleSymlog,
   scaleIdentity
 } from "d3";
@@ -181,6 +186,10 @@ export function ScaleLinear(key, channels, options) {
   return ScaleQ(key, scaleLinear(), channels, options);
 }
 
+export function ScaleSqrt(key, channels, options) {
+  return ScaleQ(key, scaleSqrt(), channels, options);
+}
+
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
   return ScaleQ(key, scalePow().exponent(exponent), channels, options);
 }
@@ -197,7 +206,7 @@ export function ScaleIdentity() {
   return {type: "identity", scale: scaleIdentity()};
 }
 
-export function ScaleDiverging(key, channels, {
+function ScaleD(key, scale, channels, {
   nice,
   clamp,
   domain = inferDomain(channels),
@@ -219,10 +228,30 @@ export function ScaleDiverging(key, channels, {
   // If an explicit range is specified, promote it to a piecewise interpolator.
   if (range !== undefined) interpolate = piecewise(interpolate, range);
 
-  const scale = scaleDiverging(domain, interpolate);
+  scale.domain(domain).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
   return {type: "quantitative", reverse, domain, scale};
+}
+
+export function ScaleDiverging(key, channels, options) {
+  return ScaleD(key, scaleDiverging(), channels, options);
+}
+
+export function ScaleDivergingSqrt(key, channels, options) {
+  return ScaleD(key, scaleDivergingSqrt(), channels, options);
+}
+
+export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
+  return ScaleD(key, scaleDivergingPow().exponent(exponent), channels, options);
+}
+
+export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}) {
+  return ScaleD(key, scaleDivergingLog().base(base), channels, {domain, pivot, ...options});
+}
+
+export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
+  return ScaleD(key, scaleDivergingSymlog().constant(constant), channels, options);
 }
 
 function inferDomain(channels, f) {
