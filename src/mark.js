@@ -326,23 +326,25 @@ export function values(channels = [], scales) {
   return values;
 }
 
-function typeDetection(values) {
+export function isOrdinal(values) {
   for (const value of values) {
     if (value == null) continue;
     const type = typeof value;
-    return type === "object" ? value instanceof Date ? "temporal" : "object" : type;
+    return type === "string" || type === "boolean";
   }
 }
 
-export function isOrdinal(values) {
-  const t = typeDetection(values);
-  return t === "string" || t === "boolean";
-}
-
 export function isTemporal(values) {
-  return typeDetection(values) === "temporal";
+  for (const value of values) {
+    if (value == null) continue;
+    return value instanceof Date;
+  }
 }
 
 export function isNumeric(values) {
-  return typeDetection(values) === "number";
+  for (const value of values) {
+    if (value == null) continue;
+    const type = typeof value;
+    return type === "number";
+  }
 }
