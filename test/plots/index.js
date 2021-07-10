@@ -56,6 +56,7 @@ export {default as metroUnemploymentNormalize} from "./metro-unemployment-normal
 export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
 export {default as mobyDickFaceted} from "./moby-dick-faceted.js";
 export {default as mobyDickLetterFrequency} from "./moby-dick-letter-frequency.js";
+export {default as mobyDickLetterPairs} from "./moby-dick-letter-pairs.js";
 export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js";
 export {default as mobyDickLetterRelativeFrequency} from "./moby-dick-letter-relative-frequency.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
@@ -76,6 +77,8 @@ export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-
 export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.js";
 export {default as policeDeaths} from "./police-deaths.js";
 export {default as policeDeathsBar} from "./police-deaths-bar.js";
+export {default as randomBins} from "./random-bins.js";
+export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomWalk} from "./random-walk.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as seattleTemperatureCell} from "./seattle-temperature-cell.js";

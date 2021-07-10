@@ -4,7 +4,7 @@ import {offset} from "../style.js";
 import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
+export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
   let {x, y} = options;
   x = maybeBinValue(x, options, identity);
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
@@ -12,7 +12,7 @@ export function binX(outputs, {inset, insetLeft, insetRight, ...options} = {}) {
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
+export function binY(outputs = {x: "count"}, {inset, insetTop, insetBottom, ...options} = {}) {
   let {x, y} = options;
   y = maybeBinValue(y, options, identity);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
@@ -20,7 +20,7 @@ export function binY(outputs, {inset, insetTop, insetBottom, ...options} = {}) {
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function bin(outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+export function bin(outputs = {fill: "count"}, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
   const {x, y} = maybeBinValueTuple(options);
   ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
   ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));

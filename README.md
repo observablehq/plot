@@ -242,10 +242,14 @@ Plot does not currently generate a legend for the *color*, *radius*, or *opacity
 
 The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
+* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
-* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
+* *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to the *rdbu* scheme
+* *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
 
 Color scales support two additional options:
 
@@ -372,7 +376,12 @@ The following *facet* constant options are also supported:
 * facet.**marginLeft** - the left margin
 * facet.**grid** - if true, draw grid lines for each facet
 
-Marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. You can disable faceting for an individual mark by giving it a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
+Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
+
+* *auto* (default) - marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (see *include*), whereas other marks will be repeated across facets.
+* *include* - enable faceting for this mark (shorthand: *true*)
+* *exclude* - enable exclusion faceting for this mark (each facet receives all the data except the facet’s subset)
+* null - (or false) disable faceting for this mark
 
 ```js
 Plot.plot({
@@ -382,11 +391,13 @@ Plot.plot({
   },
   marks: {
     Plot.frame(), // draws an outline around each facet
-    Plot.dot(penguins.slice(), {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee"}), // draws all penguins on each facet
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee", facet: "exclude"}), // draws excluded penguins on each facet
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
   }
 })
 ```
+
+The strict equality check means that an individual mark that receives a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) or [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) has faceting disabled by default.
 
 ## Marks
 
@@ -969,6 +980,7 @@ The following aggregation methods are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
+* *distinct* - the number of distinct values
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
