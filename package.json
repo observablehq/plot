@@ -48,6 +48,7 @@
     "tape-await": "^0.1.2"
   },
   "dependencies": {
+    "arquero": "^4.8.4",
     "d3": "^6.7.0",
     "isoformat": "^0.1.0"
   }
