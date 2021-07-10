@@ -55,14 +55,14 @@ export class Mark {
 // TODO Type coercion?
 function Channel(data, {scale, type, value}) {
   const label = value ? value.label : undefined;
-  value = value._column !== undefined && isColumnar(data) ? data.column(value._column) : valueof(data, value);
+  value = value._column !== undefined && isColumnar(data) ? column(data, value._column) : valueof(data, value);
   return {scale, type, value, label};
 }
 
 // This allows transforms to behave equivalently to channels.
 export function valueof(data, value, type) {
   const array = type === undefined ? Array : type;
-  return typeof value === "string" ? isColumnar(data) ? data.column(value) : array.from(data, field(value))
+  return typeof value === "string" ? isColumnar(data) ? column(data, value) : array.from(data, field(value))
     : typeof value === "function" ? array.from(data, value)
     : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
     : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
@@ -342,4 +342,10 @@ export function isTemporal(values) {
 
 function isColumnar(data) {
   return typeof data.column === "function";
+}
+
+function column(data, field) {
+  data = data.column(field);
+  // arquero's columns have a get method; we need the indexed array syntax L[i]
+  return "get" in data ? new Proxy(data, {get: (_, i) => i in _ ? _[i] : _.get(i)}) : data;
 }
