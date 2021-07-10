@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, variance} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, variance, InternSet} from "d3";
 import {firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 
@@ -139,6 +139,7 @@ export function maybeReduce(reduce, value) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
     case "count": return reduceCount;
+    case "distinct": return reduceDistinct;
     case "sum": return value == null ? reduceCount : reduceSum;
     case "proportion": return reduceProportion(value, "data");
     case "proportion-facet": return reduceProportion(value, "facet");
@@ -198,6 +199,15 @@ const reduceCount = {
   label: "Frequency",
   reduce(I) {
     return I.length;
+  }
+};
+
+const reduceDistinct = {
+  label: "Distinct",
+  reduce: (I, X) => {
+    const s = new InternSet();
+    for (const i of I) s.add(X[i]);
+    return s.size;
   }
 };
 

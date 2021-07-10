@@ -973,6 +973,7 @@ The following aggregation methods are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
+* *distinct* - the number of distinct values
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
