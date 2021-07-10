@@ -1,4 +1,4 @@
-import {cross, groups, InternMap} from "d3";
+import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
 import {Mark, values, first, second} from "./mark.js";
 
@@ -36,26 +36,30 @@ class Facet extends Mark {
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
+    let facetsExclude;
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
-      const markFacets = mark.data === this.data ? facetsIndex : undefined;
-      const {index, channels} = mark.initialize(markFacets);
+      const {facet} = mark;
+      const markFacets = facet === "auto" ? mark.data === this.data ? facetsIndex : undefined
+        : facet === "include" ? facetsIndex
+        : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
+        : undefined;
+      const {index: I, channels} = mark.initialize(markFacets);
       // If an index is returned by mark.initialize, its structure depends on
       // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
       // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
-      // when faceted. Faceting is only applied if the mark data is the same as
-      // the facet’s data.
-      if (index !== undefined) {
+      // when faceted.
+      if (I !== undefined) {
         if (markFacets) {
           for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = index[j];
+            marksIndexByFacet.get(facetsKeys[j])[i] = I[j];
           }
           marksIndex[i] = []; // implicit empty index for sparse facets
         } else {
           for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = index;
+            marksIndexByFacet.get(facetsKeys[j])[i] = I;
           }
-          marksIndex[i] = index;
+          marksIndex[i] = I;
         }
       }
       for (const [, channel] of channels) {
