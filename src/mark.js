@@ -326,16 +326,11 @@ export function values(channels = [], scales) {
   return values;
 }
 
-const typeCache = new WeakMap();
 function typeDetection(values) {
-  if (typeCache.has(values)) return typeCache.get(values);
-  let type;
   for (const value of values) {
     if (value == null) continue;
-    type = typeof value;
-    if (type === "object") type = value instanceof Date ? "temporal" : "object";
-    typeCache.set(values, type);
-    return type;
+    const type = typeof value;
+    return type === "object" ? value instanceof Date ? "temporal" : "object" : type;
   }
 }
 
