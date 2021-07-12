@@ -23,7 +23,7 @@ tape("ruleX() has the expected defaults", test => {
 tape("ruleX(data, {title}) specifies an optional title channel", test => {
   const rule = Plot.ruleX(undefined, {title: "x"});
   const title = rule.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -41,7 +41,7 @@ tape("ruleX(data, {stroke}) allows stroke to be a variable color", test => {
   const rule = Plot.ruleX(undefined, {stroke: "x"});
   test.strictEqual(rule.stroke, undefined);
   const stroke = rule.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
@@ -51,7 +51,7 @@ tape("ruleX(data, {x, y}) specifies y1 = zero, y2 = y", test => {
   test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value.label, "1");
+  test.strictEqual(y2.value, "1");
   test.strictEqual(y2.scale, "y");
 });
 
@@ -61,7 +61,7 @@ tape("ruleX(data, {x, y1}) specifies y1 = zero, y2 = y1", test => {
   test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value.label, "1");
+  test.strictEqual(y2.value, "1");
   test.strictEqual(y2.scale, "y");
 });
 
@@ -71,20 +71,20 @@ tape("ruleX(data, {x, y2}) specifies y1 = zero, y2 = y2", test => {
   test.strictEqual(y1.value, 0);
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value.label, "1");
+  test.strictEqual(y2.value, "1");
   test.strictEqual(y2.scale, "y");
 });
 
 tape("ruleX(data, {x, y1, y2}) specifies x, y1, y2", test => {
   const rule = Plot.ruleX(undefined, {x: "0", y1: "1", y2: "2"});
   const x = rule.channels.find(c => c.name === "x");
-  test.strictEqual(x.value.label, "0");
+  test.strictEqual(x.value, "0");
   test.strictEqual(x.scale, "x");
   const y1 = rule.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value.label, "1");
+  test.strictEqual(y1.value, "1");
   test.strictEqual(y1.scale, "y");
   const y2 = rule.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value.label, "2");
+  test.strictEqual(y2.value, "2");
   test.strictEqual(y2.scale, "y");
 });
 
@@ -110,7 +110,7 @@ tape("ruleY() has the expected defaults", test => {
 tape("ruleY(data, {title}) specifies an optional title channel", test => {
   const rule = Plot.ruleY(undefined, {title: "x"});
   const title = rule.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -128,7 +128,7 @@ tape("ruleY(data, {stroke}) allows stroke to be a variable color", test => {
   const rule = Plot.ruleY(undefined, {stroke: "x"});
   test.strictEqual(rule.stroke, undefined);
   const stroke = rule.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
@@ -138,7 +138,7 @@ tape("ruleY(data, {x, y}) specifies x1 = zero, x2 = x", test => {
   test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value.label, "0");
+  test.strictEqual(x2.value, "0");
   test.strictEqual(x2.scale, "x");
 });
 
@@ -148,7 +148,7 @@ tape("ruleY(data, {y, x1}) specifies x1 = zero, x2 = x1", test => {
   test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value.label, "0");
+  test.strictEqual(x2.value, "0");
   test.strictEqual(x2.scale, "x");
 });
 
@@ -158,19 +158,19 @@ tape("ruleY(data, {y, x2}) specifies x1 = zero, x2 = x2", test => {
   test.strictEqual(x1.value, 0);
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value.label, "0");
+  test.strictEqual(x2.value, "0");
   test.strictEqual(x2.scale, "x");
 });
 
 tape("ruleY(data, {x1, x2, y}) specifies x1, x2, y", test => {
   const rule = Plot.ruleY(undefined, {x1: "0", x2: "1", y: "2"});
   const x1 = rule.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value.label, "0");
+  test.strictEqual(x1.value, "0");
   test.strictEqual(x1.scale, "x");
   const x2 = rule.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value.label, "1");
+  test.strictEqual(x2.value, "1");
   test.strictEqual(x2.scale, "x");
   const y = rule.channels.find(c => c.name === "y");
-  test.strictEqual(y.value.label, "2");
+  test.strictEqual(y.value, "2");
   test.strictEqual(y.scale, "y");
 });

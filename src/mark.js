@@ -19,9 +19,6 @@ export class Mark {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
-      if (typeof value === "string") {
-        channel.value = field(value);
-      }
       if (name !== undefined) {
         const key = name + "";
         if (key === "__proto__") throw new Error("illegal channel name");
@@ -59,7 +56,7 @@ function Channel(data, {scale, type, value}) {
     scale,
     type,
     value: valueof(data, value),
-    label: value ? value.label : undefined
+    label: labelof(value)
   };
 }
 
@@ -73,7 +70,7 @@ export function valueof(data, value, type) {
     : arrayify(value, type); // preserve undefined type
 }
 
-export const field = label => Object.assign(d => d[label], {label});
+export const field = name => d => d[name];
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;

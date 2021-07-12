@@ -27,7 +27,7 @@ tape("text() has the expected defaults", test => {
 tape("text(data, {title}) specifies an optional title channel", test => {
   const text = Plot.text(undefined, {title: "x"});
   const title = text.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -45,6 +45,6 @@ tape("text(data, {fill}) allows fill to be a variable color", test => {
   const text = Plot.text(undefined, {fill: "x"});
   test.strictEqual(text.fill, undefined);
   const fill = text.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });

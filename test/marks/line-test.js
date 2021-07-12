@@ -25,14 +25,14 @@ tape("line() has the expected defaults", test => {
 tape("line(data, {z}) specifies an optional z channel", test => {
   const line = Plot.line(undefined, {z: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("line(data, {title}) specifies an optional title channel", test => {
   const line = Plot.line(undefined, {title: "2"});
   const title = line.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "2");
+  test.strictEqual(title.value, "2");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -50,14 +50,14 @@ tape("line(data, {fill}) allows fill to be a variable color", test => {
   const line = Plot.line(undefined, {fill: "x"});
   test.strictEqual(line.fill, undefined);
   const fill = line.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
 tape("line(data, {fill}) implies a default z channel if fill is variable", test => {
   const line = Plot.line(undefined, {fill: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
@@ -80,14 +80,14 @@ tape("line(data, {stroke}) allows stroke to be a variable color", test => {
   const line = Plot.line(undefined, {stroke: "x", fill: "3"}); // stroke takes priority
   test.strictEqual(line.stroke, undefined);
   const stroke = line.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
 tape("line(data, {stroke}) implies a default z channel if stroke is variable", test => {
   const line = Plot.line(undefined, {stroke: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 

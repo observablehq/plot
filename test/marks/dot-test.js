@@ -30,14 +30,14 @@ tape("dot(data, {r}) allows r to be a variable radius", test => {
   const dot = Plot.dot(undefined, {r: "x"});
   test.strictEqual(dot.r, undefined);
   const r = dot.channels.find(c => c.name === "r");
-  test.strictEqual(r.value.label, "x");
+  test.strictEqual(r.value, "x");
   test.strictEqual(r.scale, "r");
 });
 
 tape("dot(data, {title}) specifies an optional title channel", test => {
   const dot = Plot.dot(undefined, {title: "x"});
   const title = dot.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -55,7 +55,7 @@ tape("dot(data, {fill}) allows fill to be a variable color", test => {
   const dot = Plot.dot(undefined, {fill: "x"});
   test.strictEqual(dot.fill, undefined);
   const fill = dot.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -79,7 +79,7 @@ tape("dot(data, {stroke}) allows stroke to be a variable color", test => {
   const dot = Plot.dot(undefined, {stroke: "x"});
   test.strictEqual(dot.stroke, undefined);
   const stroke = dot.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 

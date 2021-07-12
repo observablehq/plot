@@ -7,7 +7,7 @@ tape("area(data, options) has the expected defaults", test => {
   test.strictEqual(area.data, undefined);
   // test.strictEqual(area.transform, undefined);
   test.deepEqual(area.channels.map(c => c.name), ["x1", "y1"]);
-  test.deepEqual(area.channels.map(c => c.value.label), ["0", "1"]);
+  test.deepEqual(area.channels.map(c => c.value), ["0", "1"]);
   test.deepEqual(area.channels.map(c => c.scale), ["x", "y"]);
   test.strictEqual(area.curve, curveLinear);
   test.strictEqual(area.fill, undefined);
@@ -25,28 +25,28 @@ tape("area(data, options) has the expected defaults", test => {
 tape("area(data, {x1, y1, y2}) specifies an optional y2 channel", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", y2: "2"});
   const y2 = area.channels.find(c => c.name === "y2");
-  test.strictEqual(y2.value.label, "2");
+  test.strictEqual(y2.value, "2");
   test.strictEqual(y2.scale, "y");
 });
 
 tape("area(data, {x1, x2, y1}) specifies an optional x2 channel", test => {
   const area = Plot.area(undefined, {x1: "0", x2: "1", y1: "2"});
   const x2 = area.channels.find(c => c.name === "x2");
-  test.strictEqual(x2.value.label, "1");
+  test.strictEqual(x2.value, "1");
   test.strictEqual(x2.scale, "x");
 });
 
 tape("area(data, {z}) specifies an optional z channel", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", z: "2"});
   const z = area.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
 tape("area(data, {title}) specifies an optional title channel", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", title: "2"});
   const title = area.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "2");
+  test.strictEqual(title.value, "2");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -64,14 +64,14 @@ tape("area(data, {fill}) allows fill to be a variable color", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", fill: "x"});
   test.strictEqual(area.fill, undefined);
   const fill = area.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
 tape("area(data, {fill}) implies a default z channel if fill is variable", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", fill: "2", stroke: "3"}); // fill takes priority
   const z = area.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
@@ -89,14 +89,14 @@ tape("area(data, {stroke}) allows stroke to be a variable color", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", stroke: "x"});
   test.strictEqual(area.stroke, undefined);
   const stroke = area.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
 tape("area(data, {stroke}) implies a default z channel if stroke is variable", test => {
   const area = Plot.area(undefined, {x1: "0", y1: "1", stroke: "2"});
   const z = area.channels.find(c => c.name === "z");
-  test.strictEqual(z.value.label, "2");
+  test.strictEqual(z.value, "2");
   test.strictEqual(z.scale, undefined);
 });
 
@@ -114,14 +114,14 @@ tape("areaX(data, {x, y}) defaults x1 to zero, x2 to x, and y1 to y", test => {
   test.strictEqual(x2.value.label, "0");
   test.strictEqual(x2.scale, "x");
   const y1 = area.channels.find(c => c.name === "y1");
-  test.strictEqual(y1.value.label, "1");
+  test.strictEqual(y1.value, "1");
   test.strictEqual(y1.scale, "y");
 });
 
 tape("areaY(data, {x, y}) defaults x1 to x, y1 to zero, and y2 to y", test => {
   const area = Plot.areaY(undefined, {x: "0", y: "1"});
   const x1 = area.channels.find(c => c.name === "x1");
-  test.strictEqual(x1.value.label, "0");
+  test.strictEqual(x1.value, "0");
   test.strictEqual(x1.scale, "x");
   const y1 = area.channels.find(c => c.name === "y1");
   // test.strictEqual(y1.value, 0);

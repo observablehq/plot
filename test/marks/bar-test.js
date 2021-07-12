@@ -35,7 +35,7 @@ tape("barX(data, {y}) uses a band scale", test => {
 tape("barX(data, {title}) specifies an optional title channel", test => {
   const bar = Plot.barX(undefined, {title: "x"});
   const title = bar.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -53,7 +53,7 @@ tape("barX(data, {fill}) allows fill to be a variable color", test => {
   const bar = Plot.barX(undefined, {fill: "x"});
   test.strictEqual(bar.fill, undefined);
   const fill = bar.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -71,7 +71,7 @@ tape("barX(data, {stroke}) allows stroke to be a variable color", test => {
   const bar = Plot.barX(undefined, {stroke: "x"});
   test.strictEqual(bar.stroke, undefined);
   const stroke = bar.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
@@ -122,7 +122,7 @@ tape("barY(data, {x}) uses a band scale", test => {
 tape("barY(data, {title}) specifies an optional title channel", test => {
   const bar = Plot.barY(undefined, {title: "x"});
   const title = bar.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "x");
+  test.strictEqual(title.value, "x");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -140,7 +140,7 @@ tape("barY(data, {fill}) allows fill to be a variable color", test => {
   const bar = Plot.barY(undefined, {fill: "x"});
   test.strictEqual(bar.fill, undefined);
   const fill = bar.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "x");
+  test.strictEqual(fill.value, "x");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -158,7 +158,7 @@ tape("barY(data, {stroke}) allows stroke to be a variable color", test => {
   const bar = Plot.barY(undefined, {stroke: "x"});
   test.strictEqual(bar.stroke, undefined);
   const stroke = bar.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "x");
+  test.strictEqual(stroke.value, "x");
   test.strictEqual(stroke.scale, "color");
 });
 
