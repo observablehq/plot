@@ -63,7 +63,7 @@ function Channel(data, {scale, type, value}) {
 // This allows transforms to behave equivalently to channels.
 export function valueof(data, value, type) {
   const array = type === undefined ? Array : type;
-  return typeof value === "string" ? array.from(data, field(value))
+  return typeof value === "string" ? isColumnar(data) ? data.column(value) : array.from(data, field(value))
     : typeof value === "function" ? array.from(data, value)
     : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
     : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
@@ -133,7 +133,7 @@ export function keyword(input, name, allowed) {
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify(data, type) {
   return data == null ? data : (type === undefined
-    ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
+    ? (data instanceof Array || data instanceof TypedArray || isColumnar(data)) ? data : Array.from(data)
     : (data instanceof type ? data : type.from(data)));
 }
 
@@ -180,7 +180,7 @@ export function titleGroup(L) {
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  return Uint32Array.from(data, indexOf);
+  return Uint32Array.from(data.length ? {length: data.length} : data, indexOf);
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
@@ -339,4 +339,8 @@ export function isTemporal(values) {
     if (value == null) continue;
     return value instanceof Date;
   }
+}
+
+function isColumnar(data) {
+  return typeof data.column === "function";
 }
