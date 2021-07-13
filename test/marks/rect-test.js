@@ -6,7 +6,7 @@ tape("rect(data, options) has the expected defaults", test => {
   test.strictEqual(rect.data, undefined);
   test.strictEqual(rect.transform, undefined);
   test.deepEqual(rect.channels.map(c => c.name), ["x1", "y1", "x2", "y2"]);
-  test.deepEqual(rect.channels.map(c => c.value.label), ["0", "1", "2", "3"]);
+  test.deepEqual(rect.channels.map(c => c.value), ["0", "1", "2", "3"]);
   test.deepEqual(rect.channels.map(c => c.scale), ["x", "y", "x", "y"]);
   test.strictEqual(rect.fill, undefined);
   test.strictEqual(rect.fillOpacity, undefined);
@@ -27,7 +27,7 @@ tape("rect(data, options) has the expected defaults", test => {
 tape("rect(data, {title}) specifies an optional title channel", test => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", title: "4"});
   const title = rect.channels.find(c => c.name === "title");
-  test.strictEqual(title.value.label, "4");
+  test.strictEqual(title.value, "4");
   test.strictEqual(title.scale, undefined);
 });
 
@@ -45,7 +45,7 @@ tape("rect(data, {fill}) allows fill to be a variable color", test => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", fill: "4"});
   test.strictEqual(rect.fill, undefined);
   const fill = rect.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value.label, "4");
+  test.strictEqual(fill.value, "4");
   test.strictEqual(fill.scale, "color");
 });
 
@@ -63,6 +63,6 @@ tape("rect(data, {stroke}) allows stroke to be a variable color", test => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", stroke: "4"});
   test.strictEqual(rect.stroke, undefined);
   const stroke = rect.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value.label, "4");
+  test.strictEqual(stroke.value, "4");
   test.strictEqual(stroke.scale, "color");
 });
