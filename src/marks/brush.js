@@ -12,6 +12,7 @@ export class Brush extends Mark {
       y = second,
       selection,
       transform,
+      onbrush,
       ...style
     } = {}
   ) {
@@ -26,6 +27,7 @@ export class Brush extends Mark {
     );
     Style(this, style);
     this.initialSelection = selection;
+    this.onbrush = onbrush;
   }
   render(
     I,
@@ -34,6 +36,7 @@ export class Brush extends Mark {
     {marginLeft, width, marginRight, marginTop, height, marginBottom}
   ) {
     let svg;
+    const {onbrush} = this;
     const g = create("svg:g");
     const data = this.data;
 
@@ -62,10 +65,14 @@ export class Brush extends Mark {
           }
         }
         const dots = selection ? Array.from(index, i => J[i]) : data;
-      
-        if (svg) {
+
+        if (typeof onbrush === "function") {
+          onbrush(event, dots);
+        } else if (svg) {
           svg.value = dots;
           svg.dispatchEvent(new CustomEvent('input'));
+        }
+        if (svg) {
           if (sourceEvent && type === "start") {
             for (const {b, g} of svg.__brushes) {
               if (b !== brush) g.call(b.clear);
