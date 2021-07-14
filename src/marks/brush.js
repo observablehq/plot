@@ -38,25 +38,26 @@ export class Brush extends Mark {
     const data = this.data;
 
     // compute the scaled channels
-    if (x && this.X === undefined) this.X = X.map(x);
-    if (y && this.Y === undefined) this.Y = Y.map(y);
+    if (X && this.X === undefined) this.X = X.map(x);
+    if (Y && this.Y === undefined) this.Y = Y.map(y);
     ({X, Y} = this);
 
     const bounds = [
       [Math.floor(marginLeft), Math.floor(marginTop)],
       [Math.ceil(width - marginRight), Math.ceil(height - marginBottom)]
     ];
-    const brush = (x && y ? brusher : x ? brusherX : brusherY)()
+    const brush = (X && Y ? brusher : X ? brusherX : brusherY)()
       .extent(bounds)
-      .on("start brush end", ({type, selection, sourceEvent}) => {
+      .on("start brush end", (event) => {
+        const {type, selection, sourceEvent} = event;
         let index = filter(I, X, Y);
         if (selection) {
-          if (x) {
-            const [x0, x1] = y ? [selection[0][0], selection[1][0]] : selection;
+          if (X) {
+            const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
             index = index.filter(i => X[i] >= x0 && X[i] <= x1);
           }
-          if (y) {
-            const [y0, y1] = x ? [selection[0][1], selection[1][1]] : selection;
+          if (Y) {
+            const [y0, y1] = X ? [selection[0][1], selection[1][1]] : selection;
             index = index.filter(i => Y[i] >= y0 && Y[i] <= y1);
           }
         }
@@ -89,17 +90,17 @@ export class Brush extends Mark {
       if (svg.__brushes.length === 1) {
         if (this.initialSelection) {
           const s = this.initialSelection;
-          if (x && y) {
+          if (X && Y) {
             const [x0, x1] = extent([x(s[0][0]), x(s[1][0])]);
             const [y0, y1] = extent([y(s[0][1]), y(s[1][1])]);
             g.call(brush.move, [
               [ max(x0, bounds[0][0]), max(y0, bounds[0][1]) ],
               [ min(x1, bounds[1][0]), min(y1, bounds[1][1]) ]
             ]);
-          } else if (x) {
+          } else if (X) {
             const [x0, x1] = extent(s.map(x));
             g.call(brush.move, [ max(x0, bounds[0][0]), min(x1, bounds[1][0]) ]);
-          } else if (y) {
+          } else if (Y) {
             const [y0, y1] = extent(s.map(y));
             g.call(brush.move, [ max(y0, bounds[0][1]), min(y1, bounds[1][1]) ]);
           }
