@@ -1,0 +1,140 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,332.264705882353)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,295.79411764705884)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,259.3235294117647)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,222.85294117647058)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,186.3823529411765)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,149.91176470588235)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,113.44117647058826)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,76.97058823529413)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">24</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ awayWins</text>
+  </g>
+  <g transform="translate(0,370)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(85.04545454545455,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(207.77272727272725,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(453.22727272727275,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(575.9545454545455,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">homeWins →</text>
+  </g>
+  <g transform="translate(0.5,0.5)">
+    <image x="477.27272727272725" y="112.94117647058826" width="46" height="46" href="https://a.espncdn.com/i/teamlogos/nba/500/mil.png" transform="translate(-23,-23)">
+      <title>MIL</title>
+    </image>
+    <image x="158.1818181818182" y="295.29411764705884" width="23" height="23" href="https://a.espncdn.com/i/teamlogos/nba/500/min.png" transform="translate(-11.5,-11.5)">
+      <title>MIN</title>
+    </image>
+    <image x="354.5454545454545" y="131.17647058823528" width="40" height="40" href="https://a.espncdn.com/i/teamlogos/nba/500/mia.png" transform="translate(-20,-20)">
+      <title>MIA</title>
+    </image>
+    <image x="305.45454545454544" y="204.1176470588235" width="34" height="34" href="https://a.espncdn.com/i/teamlogos/nba/500/wsh.png" transform="translate(-17,-17)">
+      <title>WSH</title>
+    </image>
+    <image x="452.72727272727275" y="185.8823529411765" width="41" height="41" href="https://a.espncdn.com/i/teamlogos/nba/500/atl.png" transform="translate(-20.5,-20.5)">
+      <title>ATL</title>
+    </image>
+    <image x="354.5454545454545" y="204.1176470588235" width="36" height="36" href="https://a.espncdn.com/i/teamlogos/nba/500/bos.png" transform="translate(-18,-18)">
+      <title>BOS</title>
+    </image>
+    <image x="158.1818181818182" y="350" width="20" height="20" href="https://a.espncdn.com/i/teamlogos/nba/500/det.png" transform="translate(-10,-10)">
+      <title>DET</title>
+    </image>
+    <image x="452.72727272727275" y="76.47058823529413" width="47" height="47" href="https://a.espncdn.com/i/teamlogos/nba/500/den.png" transform="translate(-23.5,-23.5)">
+      <title>DEN</title>
+    </image>
+    <image x="452.72727272727275" y="185.8823529411765" width="41" height="41" href="https://a.espncdn.com/i/teamlogos/nba/500/ny.png" transform="translate(-20.5,-20.5)">
+      <title>NY</title>
+    </image>
+    <image x="354.5454545454545" y="94.70588235294119" width="42" height="42" href="https://a.espncdn.com/i/teamlogos/nba/500/dal.png" transform="translate(-21,-21)">
+      <title>DAL</title>
+    </image>
+    <image x="526.3636363636364" y="112.94117647058826" width="48" height="48" href="https://a.espncdn.com/i/teamlogos/nba/500/bkn.png" transform="translate(-24,-24)">
+      <title>BKN</title>
+    </image>
+    <image x="330" y="76.47058823529413" width="42" height="42" href="https://a.espncdn.com/i/teamlogos/nba/500/por.png" transform="translate(-21,-21)">
+      <title>POR</title>
+    </image>
+    <image x="84.54545454545455" y="258.8235294117647" width="22" height="22" href="https://a.espncdn.com/i/teamlogos/nba/500/okc.png" transform="translate(-11,-11)">
+      <title>OKC</title>
+    </image>
+    <image x="231.8181818181818" y="277.05882352941177" width="27" height="27" href="https://a.espncdn.com/i/teamlogos/nba/500/tor.png" transform="translate(-13.5,-13.5)">
+      <title>TOR</title>
+    </image>
+    <image x="207.27272727272725" y="185.8823529411765" width="31" height="31" href="https://a.espncdn.com/i/teamlogos/nba/500/chi.png" transform="translate(-15.5,-15.5)">
+      <title>CHI</title>
+    </image>
+    <image x="280.90909090909093" y="204.1176470588235" width="33" height="33" href="https://a.espncdn.com/i/teamlogos/nba/500/cha.png" transform="translate(-16.5,-16.5)">
+      <title>CHA</title>
+    </image>
+    <image x="600" y="94.70588235294119" width="52" height="52" href="https://a.espncdn.com/i/teamlogos/nba/500/utah.png" transform="translate(-26,-26)">
+      <title>UTA</title>
+    </image>
+    <image x="452.72727272727275" y="222.35294117647058" width="39" height="39" href="https://a.espncdn.com/i/teamlogos/nba/500/gs.png" transform="translate(-19.5,-19.5)">
+      <title>GS</title>
+    </image>
+    <image x="158.1818181818182" y="313.52941176470586" width="22" height="22" href="https://a.espncdn.com/i/teamlogos/nba/500/cle.png" transform="translate(-11,-11)">
+      <title>CLE</title>
+    </image>
+    <image x="60" y="331.764705882353" width="17" height="17" href="https://a.espncdn.com/i/teamlogos/nba/500/hou.png" transform="translate(-8.5,-8.5)">
+      <title>HOU</title>
+    </image>
+    <image x="354.5454545454545" y="94.70588235294119" width="42" height="42" href="https://a.espncdn.com/i/teamlogos/nba/500/lal.png" transform="translate(-21,-21)">
+      <title>LAL</title>
+    </image>
+    <image x="550.9090909090909" y="112.94117647058826" width="49" height="49" href="https://a.espncdn.com/i/teamlogos/nba/500/phi.png" transform="translate(-24.5,-24.5)">
+      <title>PHI</title>
+    </image>
+    <image x="280.90909090909093" y="112.94117647058826" width="38" height="38" href="https://a.espncdn.com/i/teamlogos/nba/500/mem.png" transform="translate(-19,-19)">
+      <title>MEM</title>
+    </image>
+    <image x="280.90909090909093" y="240.58823529411762" width="31" height="31" href="https://a.espncdn.com/i/teamlogos/nba/500/no.png" transform="translate(-15.5,-15.5)">
+      <title>NO</title>
+    </image>
+    <image x="477.27272727272725" y="94.70588235294119" width="47" height="47" href="https://a.espncdn.com/i/teamlogos/nba/500/lac.png" transform="translate(-23.5,-23.5)">
+      <title>LAC</title>
+    </image>
+    <image x="231.8181818181818" y="204.1176470588235" width="31" height="31" href="https://a.espncdn.com/i/teamlogos/nba/500/sac.png" transform="translate(-15.5,-15.5)">
+      <title>SAC</title>
+    </image>
+    <image x="109.0909090909091" y="295.29411764705884" width="21" height="21" href="https://a.espncdn.com/i/teamlogos/nba/500/orl.png" transform="translate(-10.5,-10.5)">
+      <title>ORL</title>
+    </image>
+    <image x="501.81818181818187" y="40" width="51" height="51" href="https://a.espncdn.com/i/teamlogos/nba/500/phx.png" transform="translate(-25.5,-25.5)">
+      <title>PHX</title>
+    </image>
+    <image x="158.1818181818182" y="94.70588235294119" width="34" height="34" href="https://a.espncdn.com/i/teamlogos/nba/500/ind.png" transform="translate(-17,-17)">
+      <title>IND</title>
+    </image>
+    <image x="182.7272727272727" y="131.17647058823528" width="33" height="33" href="https://a.espncdn.com/i/teamlogos/nba/500/sa.png" transform="translate(-16.5,-16.5)">
+      <title>SA</title>
+    </image>
+  </g>
+</svg>
