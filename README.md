@@ -70,6 +70,11 @@ When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
+#### Sorting *y* by *x*
+
+If the mark accepts an ordinal dimension for *y*, a common task is to sort the *y* domain according to the descending value of the opposite dimension *x*. Although this can be done by setting *y.domain*, you can specify a reducer in *mark.sortY*—the default *y* domain will then be sorted according to the corresponding *x* (or *x2*) reduced over all the elements sharing the same *y*. Baked-in reducers are "count", "max" (default when setting *sortY = true*), "min", "mean", "median", and "sum", the latter being useful when summing across facets.
+
+Symmetrically, set *mark.sortX = true* to sort an ordinal *x* by the *y* (or *y2*) channel.
 
 ### Layout options
 
@@ -172,7 +177,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a sortX or sortY option to a mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 

@@ -10,7 +10,7 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto"} = options;
+    const {facet = "auto", sortX, sortY} = options;
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
@@ -31,6 +31,8 @@ export class Mark {
       }
       return true;
     });
+    this.sortX = sortX;
+    this.sortY = sortY;
   }
   initialize(facets) {
     let data = arrayify(this.data);
