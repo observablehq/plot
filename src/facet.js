@@ -10,6 +10,7 @@ export function facets(data, {x, y, ...options}, marks) {
 
 class Facet extends Mark {
   constructor(data, {x, y, ...options} = {}, marks = []) {
+    if (data === undefined) throw new Error("missing facet data");
     super(
       data,
       [
