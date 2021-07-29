@@ -25,10 +25,8 @@ This should open http://localhost:8008/ where you can browse the tests.
 Plot has both unit tests and snapshot tests.
 
 **Unit tests** live in `test` and have the `-test.js` extension. These tests are
-written using [Tape](https://github.com/substack/tape) (more precisely,
-[tape-await](https://github.com/mbostock/tape-await) for easier async testing).
-Generally speaking, unit tests make specific assertions about the behavior of
-Plot’s internals and helper methods.
+written using [Mocha](https://mochajs.org). Generally speaking, unit tests make
+specific assertions about the behavior of Plot’s internals and helper methods.
 
 **Snapshot tests** live in `test/plots`; these also serve as examples of how to
 use the Plot API. Each snapshot test defines a plot by exporting a default async

@@ -9,7 +9,7 @@ export default async function() {
       axis: null
     },
     y: {
-      domain: d3.range(3, 26),
+      domain: d3.range(3, 26).map(String),
       axis: null
     },
     color: {
@@ -17,11 +17,11 @@ export default async function() {
       range: ["currentColor", "peru", "brown"]
     },
     marks: [
-      Plot.text([[1, 3]], {
+      Plot.text([[1, "3"]], {
         text: ["Northbound"],
         textAnchor: "start"
       }),
-      Plot.text([[-1, 3]], {
+      Plot.text([[-1, "3"]], {
         text: ["Southbound"],
         textAnchor: "end"
       }),

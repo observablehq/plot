@@ -1,68 +1,68 @@
 import * as Plot from "@observablehq/plot";
-import tape from "tape-await";
+import assert from "assert";
 
-tape("rect(data, options) has the expected defaults", test => {
+it("rect(data, options) has the expected defaults", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3"});
-  test.strictEqual(rect.data, undefined);
-  test.strictEqual(rect.transform, undefined);
-  test.deepEqual(rect.channels.map(c => c.name), ["x1", "y1", "x2", "y2"]);
-  test.deepEqual(rect.channels.map(c => c.value), ["0", "1", "2", "3"]);
-  test.deepEqual(rect.channels.map(c => c.scale), ["x", "y", "x", "y"]);
-  test.strictEqual(rect.fill, undefined);
-  test.strictEqual(rect.fillOpacity, undefined);
-  test.strictEqual(rect.stroke, undefined);
-  test.strictEqual(rect.strokeWidth, undefined);
-  test.strictEqual(rect.strokeOpacity, undefined);
-  test.strictEqual(rect.strokeLinejoin, undefined);
-  test.strictEqual(rect.strokeLinecap, undefined);
-  test.strictEqual(rect.strokeMiterlimit, undefined);
-  test.strictEqual(rect.strokeDasharray, undefined);
-  test.strictEqual(rect.mixBlendMode, undefined);
-  test.strictEqual(rect.insetTop, 0);
-  test.strictEqual(rect.insetRight, 0);
-  test.strictEqual(rect.insetBottom, 0);
-  test.strictEqual(rect.insetLeft, 0);
+  assert.strictEqual(rect.data, undefined);
+  assert.strictEqual(rect.transform, undefined);
+  assert.deepStrictEqual(rect.channels.map(c => c.name), ["x1", "y1", "x2", "y2"]);
+  assert.deepStrictEqual(rect.channels.map(c => c.value), ["0", "1", "2", "3"]);
+  assert.deepStrictEqual(rect.channels.map(c => c.scale), ["x", "y", "x", "y"]);
+  assert.strictEqual(rect.fill, undefined);
+  assert.strictEqual(rect.fillOpacity, undefined);
+  assert.strictEqual(rect.stroke, undefined);
+  assert.strictEqual(rect.strokeWidth, undefined);
+  assert.strictEqual(rect.strokeOpacity, undefined);
+  assert.strictEqual(rect.strokeLinejoin, undefined);
+  assert.strictEqual(rect.strokeLinecap, undefined);
+  assert.strictEqual(rect.strokeMiterlimit, undefined);
+  assert.strictEqual(rect.strokeDasharray, undefined);
+  assert.strictEqual(rect.mixBlendMode, undefined);
+  assert.strictEqual(rect.insetTop, 0);
+  assert.strictEqual(rect.insetRight, 0);
+  assert.strictEqual(rect.insetBottom, 0);
+  assert.strictEqual(rect.insetLeft, 0);
 });
 
-tape("rect(data, {title}) specifies an optional title channel", test => {
+it("rect(data, {title}) specifies an optional title channel", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", title: "4"});
   const title = rect.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "4");
-  test.strictEqual(title.scale, undefined);
+  assert.strictEqual(title.value, "4");
+  assert.strictEqual(title.scale, undefined);
 });
 
-tape("rect(data, {fill}) allows fill to be a constant color", test => {
+it("rect(data, {fill}) allows fill to be a constant color", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", fill: "red"});
-  test.strictEqual(rect.fill, "red");
+  assert.strictEqual(rect.fill, "red");
 });
 
-tape("rect(data, {fill}) allows fill to be null", test => {
+it("rect(data, {fill}) allows fill to be null", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", fill: null});
-  test.strictEqual(rect.fill, "none");
+  assert.strictEqual(rect.fill, "none");
 });
 
-tape("rect(data, {fill}) allows fill to be a variable color", test => {
+it("rect(data, {fill}) allows fill to be a variable color", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", fill: "4"});
-  test.strictEqual(rect.fill, undefined);
+  assert.strictEqual(rect.fill, undefined);
   const fill = rect.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "4");
-  test.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.value, "4");
+  assert.strictEqual(fill.scale, "color");
 });
 
-tape("rect(data, {stroke}) allows stroke to be a constant color", test => {
+it("rect(data, {stroke}) allows stroke to be a constant color", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", stroke: "red"});
-  test.strictEqual(rect.stroke, "red");
+  assert.strictEqual(rect.stroke, "red");
 });
 
-tape("rect(data, {stroke}) allows stroke to be null", test => {
+it("rect(data, {stroke}) allows stroke to be null", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", stroke: null});
-  test.strictEqual(rect.stroke, undefined);
+  assert.strictEqual(rect.stroke, undefined);
 });
 
-tape("rect(data, {stroke}) allows stroke to be a variable color", test => {
+it("rect(data, {stroke}) allows stroke to be a variable color", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3", stroke: "4"});
-  test.strictEqual(rect.stroke, undefined);
+  assert.strictEqual(rect.stroke, undefined);
   const stroke = rect.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "4");
-  test.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.value, "4");
+  assert.strictEqual(stroke.scale, "color");
 });

@@ -1,90 +1,90 @@
 import * as Plot from "@observablehq/plot";
-import tape from "tape-await";
+import assert from "assert";
 
-tape("cell() has the expected defaults", test => {
+it("cell() has the expected defaults", () => {
   const cell = Plot.cell();
-  test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform, undefined);
-  test.deepEqual(cell.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(cell.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  test.deepEqual(cell.channels.map(c => c.scale), ["x", "y"]);
-  test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
-  test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
-  test.strictEqual(cell.fill, undefined);
-  test.strictEqual(cell.fillOpacity, undefined);
-  test.strictEqual(cell.stroke, undefined);
-  test.strictEqual(cell.strokeWidth, undefined);
-  test.strictEqual(cell.strokeOpacity, undefined);
-  test.strictEqual(cell.strokeLinejoin, undefined);
-  test.strictEqual(cell.strokeLinecap, undefined);
-  test.strictEqual(cell.strokeMiterlimit, undefined);
-  test.strictEqual(cell.strokeDasharray, undefined);
-  test.strictEqual(cell.mixBlendMode, undefined);
-  test.strictEqual(cell.insetTop, 0);
-  test.strictEqual(cell.insetRight, 0);
-  test.strictEqual(cell.insetBottom, 0);
-  test.strictEqual(cell.insetLeft, 0);
+  assert.strictEqual(cell.data, undefined);
+  assert.strictEqual(cell.transform, undefined);
+  assert.deepStrictEqual(cell.channels.map(c => c.name), ["x", "y"]);
+  assert.deepStrictEqual(cell.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
+  assert.deepStrictEqual(cell.channels.map(c => c.scale), ["x", "y"]);
+  assert.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
+  assert.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
+  assert.strictEqual(cell.fill, undefined);
+  assert.strictEqual(cell.fillOpacity, undefined);
+  assert.strictEqual(cell.stroke, undefined);
+  assert.strictEqual(cell.strokeWidth, undefined);
+  assert.strictEqual(cell.strokeOpacity, undefined);
+  assert.strictEqual(cell.strokeLinejoin, undefined);
+  assert.strictEqual(cell.strokeLinecap, undefined);
+  assert.strictEqual(cell.strokeMiterlimit, undefined);
+  assert.strictEqual(cell.strokeDasharray, undefined);
+  assert.strictEqual(cell.mixBlendMode, undefined);
+  assert.strictEqual(cell.insetTop, 0);
+  assert.strictEqual(cell.insetRight, 0);
+  assert.strictEqual(cell.insetBottom, 0);
+  assert.strictEqual(cell.insetLeft, 0);
 });
 
-tape("cell(data, {title}) specifies an optional title channel", test => {
+it("cell(data, {title}) specifies an optional title channel", () => {
   const cell = Plot.cell(undefined, {title: "x"});
   const title = cell.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "x");
-  test.strictEqual(title.scale, undefined);
+  assert.strictEqual(title.value, "x");
+  assert.strictEqual(title.scale, undefined);
 });
 
-tape("cell(data, {fill}) allows fill to be a constant color", test => {
+it("cell(data, {fill}) allows fill to be a constant color", () => {
   const cell = Plot.cell(undefined, {fill: "red"});
-  test.strictEqual(cell.fill, "red");
+  assert.strictEqual(cell.fill, "red");
 });
 
-tape("cell(data, {fill}) allows fill to be null", test => {
+it("cell(data, {fill}) allows fill to be null", () => {
   const cell = Plot.cell(undefined, {fill: null});
-  test.strictEqual(cell.fill, "none");
+  assert.strictEqual(cell.fill, "none");
 });
 
-tape("cell(data, {fill}) allows fill to be a variable color", test => {
+it("cell(data, {fill}) allows fill to be a variable color", () => {
   const cell = Plot.cell(undefined, {fill: "x"});
-  test.strictEqual(cell.fill, undefined);
+  assert.strictEqual(cell.fill, undefined);
   const fill = cell.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "x");
-  test.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.value, "x");
+  assert.strictEqual(fill.scale, "color");
 });
 
-tape("cell(data, {stroke}) allows stroke to be a constant color", test => {
+it("cell(data, {stroke}) allows stroke to be a constant color", () => {
   const cell = Plot.cell(undefined, {stroke: "red"});
-  test.strictEqual(cell.stroke, "red");
+  assert.strictEqual(cell.stroke, "red");
 });
 
-tape("cell(data, {stroke}) allows stroke to be null", test => {
+it("cell(data, {stroke}) allows stroke to be null", () => {
   const cell = Plot.cell(undefined, {stroke: null});
-  test.strictEqual(cell.stroke, undefined);
+  assert.strictEqual(cell.stroke, undefined);
 });
 
-tape("cell(data, {stroke}) allows stroke to be a variable color", test => {
+it("cell(data, {stroke}) allows stroke to be a variable color", () => {
   const cell = Plot.cell(undefined, {stroke: "x"});
-  test.strictEqual(cell.stroke, undefined);
+  assert.strictEqual(cell.stroke, undefined);
   const stroke = cell.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "x");
-  test.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.value, "x");
+  assert.strictEqual(stroke.scale, "color");
 });
 
-tape("cellX() defaults x to identity and y to null", test => {
+it("cellX() defaults x to identity and y to null", () => {
   const cell = Plot.cellX();
-  test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform, undefined);
-  test.deepEqual(cell.channels.map(c => c.name), ["x", "fill"]);
-  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[ 0, 1, 2 ], [ 1, 2, 3 ]]);
-  test.deepEqual(cell.channels.map(c => c.scale), ["x", "color"]);
-  test.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
+  assert.strictEqual(cell.data, undefined);
+  assert.strictEqual(cell.transform, undefined);
+  assert.deepStrictEqual(cell.channels.map(c => c.name), ["x", "fill"]);
+  assert.deepStrictEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[ 0, 1, 2 ], [ 1, 2, 3 ]]);
+  assert.deepStrictEqual(cell.channels.map(c => c.scale), ["x", "color"]);
+  assert.strictEqual(cell.channels.find(c => c.name === "x").type, "band");
 });
 
-tape("cellY() defaults y to identity and x to null", test => {
+it("cellY() defaults y to identity and x to null", () => {
   const cell = Plot.cellY();
-  test.strictEqual(cell.data, undefined);
-  test.strictEqual(cell.transform, undefined);
-  test.deepEqual(cell.channels.map(c => c.name), ["y", "fill"]);
-  test.deepEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[ 0, 1, 2 ], [ 1, 2, 3 ]]);
-  test.deepEqual(cell.channels.map(c => c.scale), ["y", "color"]);
-  test.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
+  assert.strictEqual(cell.data, undefined);
+  assert.strictEqual(cell.transform, undefined);
+  assert.deepStrictEqual(cell.channels.map(c => c.name), ["y", "fill"]);
+  assert.deepStrictEqual(cell.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[ 0, 1, 2 ], [ 1, 2, 3 ]]);
+  assert.deepStrictEqual(cell.channels.map(c => c.scale), ["y", "color"]);
+  assert.strictEqual(cell.channels.find(c => c.name === "y").type, "band");
 });
