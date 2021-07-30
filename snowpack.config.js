@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: {
     "@observablehq/plot": "./src/index.js"
   },

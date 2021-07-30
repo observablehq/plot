@@ -1,13 +1,13 @@
+import assert from "assert";
 import {promises as fs} from "fs";
 import * as path from "path";
 import {JSDOM} from "jsdom";
-import {html as beautify} from "js-beautify";
-import tape from "tape-await";
+import beautify from "js-beautify";
 import * as plots from "./plots/index.js";
 
 (async () => {
   for (const [name, plot] of Object.entries(plots)) {
-    tape(`plot ${name}`, async test => {
+    it(`plot ${name}`, async () => {
       try {
         // Not recommended, but this is only our test code, so should be fine?
         const {window} = new JSDOM("");
@@ -21,7 +21,7 @@ import * as plots from "./plots/index.js";
         const [ext, svg] = root.tagName === "svg" ? ["svg", root] : ["html", root.querySelector("svg")];
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
-        const actual = beautify(root.outerHTML, {indent_size: 2});
+        const actual = beautify.html(root.outerHTML, {indent_size: 2});
         const outfile = path.resolve("./test/output", path.basename(name, ".js") + "." + ext);
         let expected;
 
@@ -37,7 +37,7 @@ import * as plots from "./plots/index.js";
           }
         }
 
-        test.ok(actual === expected, `${name} must match snapshot`);
+        assert(actual === expected, `${name} must match snapshot`);
         if (actual !== expected) {
           const outfile = path.resolve("./test/output", path.basename(name, ".js") + "-changed." + ext);
           console.warn(`! generating ${outfile}`);

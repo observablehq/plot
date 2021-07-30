@@ -1,97 +1,97 @@
 import * as Plot from "@observablehq/plot";
 import {curveLinear, curveStep} from "d3";
-import tape from "tape-await";
+import assert from "assert";
 
-tape("line() has the expected defaults", test => {
+it("line() has the expected defaults", () => {
   const line = Plot.line();
-  test.strictEqual(line.data, undefined);
-  test.strictEqual(line.transform, undefined);
-  test.deepEqual(line.channels.map(c => c.name), ["x", "y"]);
-  test.deepEqual(line.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  test.deepEqual(line.channels.map(c => c.scale), ["x", "y"]);
-  test.strictEqual(line.curve, curveLinear);
-  test.strictEqual(line.fill, "none");
-  test.strictEqual(line.fillOpacity, undefined);
-  test.strictEqual(line.stroke, "currentColor");
-  test.strictEqual(line.strokeWidth, 1.5);
-  test.strictEqual(line.strokeOpacity, undefined);
-  test.strictEqual(line.strokeLinejoin, undefined);
-  test.strictEqual(line.strokeLinecap, undefined);
-  test.strictEqual(line.strokeMiterlimit, 1);
-  test.strictEqual(line.strokeDasharray, undefined);
-  test.strictEqual(line.mixBlendMode, undefined);
+  assert.strictEqual(line.data, undefined);
+  assert.strictEqual(line.transform, undefined);
+  assert.deepStrictEqual(line.channels.map(c => c.name), ["x", "y"]);
+  assert.deepStrictEqual(line.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
+  assert.deepStrictEqual(line.channels.map(c => c.scale), ["x", "y"]);
+  assert.strictEqual(line.curve, curveLinear);
+  assert.strictEqual(line.fill, "none");
+  assert.strictEqual(line.fillOpacity, undefined);
+  assert.strictEqual(line.stroke, "currentColor");
+  assert.strictEqual(line.strokeWidth, 1.5);
+  assert.strictEqual(line.strokeOpacity, undefined);
+  assert.strictEqual(line.strokeLinejoin, undefined);
+  assert.strictEqual(line.strokeLinecap, undefined);
+  assert.strictEqual(line.strokeMiterlimit, 1);
+  assert.strictEqual(line.strokeDasharray, undefined);
+  assert.strictEqual(line.mixBlendMode, undefined);
 });
 
-tape("line(data, {z}) specifies an optional z channel", test => {
+it("line(data, {z}) specifies an optional z channel", () => {
   const line = Plot.line(undefined, {z: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "2");
-  test.strictEqual(z.scale, undefined);
+  assert.strictEqual(z.value, "2");
+  assert.strictEqual(z.scale, undefined);
 });
 
-tape("line(data, {title}) specifies an optional title channel", test => {
+it("line(data, {title}) specifies an optional title channel", () => {
   const line = Plot.line(undefined, {title: "2"});
   const title = line.channels.find(c => c.name === "title");
-  test.strictEqual(title.value, "2");
-  test.strictEqual(title.scale, undefined);
+  assert.strictEqual(title.value, "2");
+  assert.strictEqual(title.scale, undefined);
 });
 
-tape("line(data, {fill}) allows fill to be a constant color", test => {
+it("line(data, {fill}) allows fill to be a constant color", () => {
   const line = Plot.line(undefined, {fill: "red"});
-  test.strictEqual(line.fill, "red");
+  assert.strictEqual(line.fill, "red");
 });
 
-tape("line(data, {fill}) allows fill to be null", test => {
+it("line(data, {fill}) allows fill to be null", () => {
   const line = Plot.line(undefined, {fill: null});
-  test.strictEqual(line.fill, "none");
+  assert.strictEqual(line.fill, "none");
 });
 
-tape("line(data, {fill}) allows fill to be a variable color", test => {
+it("line(data, {fill}) allows fill to be a variable color", () => {
   const line = Plot.line(undefined, {fill: "x"});
-  test.strictEqual(line.fill, undefined);
+  assert.strictEqual(line.fill, undefined);
   const fill = line.channels.find(c => c.name === "fill");
-  test.strictEqual(fill.value, "x");
-  test.strictEqual(fill.scale, "color");
+  assert.strictEqual(fill.value, "x");
+  assert.strictEqual(fill.scale, "color");
 });
 
-tape("line(data, {fill}) implies a default z channel if fill is variable", test => {
+it("line(data, {fill}) implies a default z channel if fill is variable", () => {
   const line = Plot.line(undefined, {fill: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "2");
-  test.strictEqual(z.scale, undefined);
+  assert.strictEqual(z.value, "2");
+  assert.strictEqual(z.scale, undefined);
 });
 
-tape("line(data, {stroke}) allows stroke to be a constant color", test => {
+it("line(data, {stroke}) allows stroke to be a constant color", () => {
   const line = Plot.line(undefined, {stroke: "red"});
-  test.strictEqual(line.stroke, "red");
+  assert.strictEqual(line.stroke, "red");
 });
 
-tape("line(data, {stroke}) allows stroke to be null", test => {
+it("line(data, {stroke}) allows stroke to be null", () => {
   const line = Plot.line(undefined, {stroke: null});
-  test.strictEqual(line.stroke, undefined);
+  assert.strictEqual(line.stroke, undefined);
 });
 
-tape("line(data, {stroke}) implies no stroke width if stroke is null", test => {
+it("line(data, {stroke}) implies no stroke width if stroke is null", () => {
   const line = Plot.line(undefined, {stroke: null});
-  test.strictEqual(line.strokeWidth, undefined);
+  assert.strictEqual(line.strokeWidth, undefined);
 });
 
-tape("line(data, {stroke}) allows stroke to be a variable color", test => {
+it("line(data, {stroke}) allows stroke to be a variable color", () => {
   const line = Plot.line(undefined, {stroke: "x", fill: "3"}); // stroke takes priority
-  test.strictEqual(line.stroke, undefined);
+  assert.strictEqual(line.stroke, undefined);
   const stroke = line.channels.find(c => c.name === "stroke");
-  test.strictEqual(stroke.value, "x");
-  test.strictEqual(stroke.scale, "color");
+  assert.strictEqual(stroke.value, "x");
+  assert.strictEqual(stroke.scale, "color");
 });
 
-tape("line(data, {stroke}) implies a default z channel if stroke is variable", test => {
+it("line(data, {stroke}) implies a default z channel if stroke is variable", () => {
   const line = Plot.line(undefined, {stroke: "2"});
   const z = line.channels.find(c => c.name === "z");
-  test.strictEqual(z.value, "2");
-  test.strictEqual(z.scale, undefined);
+  assert.strictEqual(z.value, "2");
+  assert.strictEqual(z.scale, undefined);
 });
 
-tape("line(data, {curve}) specifies a named curve or function", test => {
-  test.strictEqual(Plot.line(undefined, {curve: "step"}).curve, curveStep);
-  test.strictEqual(Plot.line(undefined, {curve: curveStep}).curve, curveStep);
+it("line(data, {curve}) specifies a named curve or function", () => {
+  assert.strictEqual(Plot.line(undefined, {curve: "step"}).curve, curveStep);
+  assert.strictEqual(Plot.line(undefined, {curve: curveStep}).curve, curveStep);
 });

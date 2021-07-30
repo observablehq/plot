@@ -992,6 +992,7 @@ The following aggregation methods are supported:
 * *median* - the median value
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *mode* - the value with the most occurrences
 * a function to be passed the array of values for each bin
 * an object with a *reduce* method
 
