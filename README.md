@@ -223,6 +223,8 @@ For a *band* scale, you can further fine-tune padding:
 * *scale*.**paddingInner** - how much of the range to reserve to separate adjacent bands
 * *scale*.**paddingOuter** - how much of the range to reserve to inset first and last band
 
+Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
+
 Plot automatically generates axes for position scales. You can configure these axes with the following options:
 
 * *scale*.**axis** - the orientation: *top* or *bottom* for *x*; *left* or *right* for *y*; null to suppress
