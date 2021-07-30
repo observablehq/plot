@@ -13,7 +13,6 @@
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
-    "require": "./dist/plot.cjs.js",
     "umd": "./dist/plot.umd.min.js",
     "default": "./src/index.js"
   },

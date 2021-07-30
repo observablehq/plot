@@ -59,14 +59,6 @@ export default [
     ...config,
     output: {
       ...config.output,
-      format: "cjs",
-      file: `dist/${filename}.cjs.js`
-    }
-  },
-  {
-    ...config,
-    output: {
-      ...config.output,
       name: "Plot",
       format: "umd",
       extend: true,
