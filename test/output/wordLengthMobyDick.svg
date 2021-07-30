@@ -90,19 +90,47 @@
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Word length →</text>
   </g>
   <g>
-    <rect x="45" width="37" y="284.59694989106754" height="85.40305010893246"></rect>
-    <rect x="86" width="37" y="46.688453159041444" height="323.31154684095856"></rect>
-    <rect x="127" width="37" y="20" height="350"></rect>
-    <rect x="168" width="37" y="42.11328976034861" height="327.8867102396514"></rect>
-    <rect x="209" width="37" y="180.89324618736387" height="189.10675381263613"></rect>
-    <rect x="250" width="37" y="231.98257080610028" height="138.01742919389972"></rect>
-    <rect x="291" width="37" y="258.6710239651416" height="111.32897603485839"></rect>
-    <rect x="332" width="37" y="307.4727668845316" height="62.52723311546839"></rect>
-    <rect x="373" width="37" y="315.86056644880176" height="54.13943355119824"></rect>
-    <rect x="414" width="37" y="338.73638344226583" height="31.263616557734167"></rect>
-    <rect x="455" width="37" y="357.79956427015253" height="12.20043572984747"></rect>
-    <rect x="496" width="37" y="357.03703703703707" height="12.962962962962933"></rect>
-    <rect x="537" width="37" y="363.89978213507624" height="6.1002178649237635"></rect>
-    <rect x="578" width="37" y="368.4749455337691" height="1.5250544662309267"></rect>
+    <rect x="45" width="37" y="284.59694989106754" height="85.40305010893246">
+      <title>a</title>
+    </rect>
+    <rect x="86" width="37" y="46.688453159041444" height="323.31154684095856">
+      <title>of</title>
+    </rect>
+    <rect x="127" width="37" y="20" height="350">
+      <title>the</title>
+    </rect>
+    <rect x="168" width="37" y="42.11328976034861" height="327.8867102396514">
+      <title>that</title>
+    </rect>
+    <rect x="209" width="37" y="180.89324618736387" height="189.10675381263613">
+      <title>there</title>
+    </rect>
+    <rect x="250" width="37" y="231.98257080610028" height="138.01742919389972">
+      <title>though</title>
+    </rect>
+    <rect x="291" width="37" y="258.6710239651416" height="111.32897603485839">
+      <title>because</title>
+    </rect>
+    <rect x="332" width="37" y="307.4727668845316" height="62.52723311546839">
+      <title>whenever</title>
+    </rect>
+    <rect x="373" width="37" y="315.86056644880176" height="54.13943355119824">
+      <title>passenger</title>
+    </rect>
+    <rect x="414" width="37" y="338.73638344226583" height="31.263616557734167">
+      <title>passengers</title>
+    </rect>
+    <rect x="455" width="37" y="357.79956427015253" height="12.20043572984747">
+      <title>circulation</title>
+    </rect>
+    <rect x="496" width="37" y="357.03703703703707" height="12.962962962962933">
+      <title>metaphysical</title>
+    </rect>
+    <rect x="537" width="37" y="363.89978213507624" height="6.1002178649237635">
+      <title>involuntarily</title>
+    </rect>
+    <rect x="578" width="37" y="368.4749455337691" height="1.5250544662309267">
+      <title>Circumambulate</title>
+    </rect>
   </g>
 </svg>
