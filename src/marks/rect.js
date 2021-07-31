@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, title, maybeNumber} from "../mark.js";
+import {Mark, number, maybeColor, title, maybeNumber, isCollapsed} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -63,7 +63,8 @@ export class Rect extends Mark {
   render(
     I,
     {x, y},
-    {x1: X1, y1: Y1, x2: X2, y2: Y2, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}
+    {x1: X1, y1: Y1, x2: X2, y2: Y2, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO},
+    {marginTop, marginRight, marginBottom, marginLeft, width, height}
   ) {
     const {rx, ry} = this;
     const index = filter(I, X1, Y2, X2, Y2, F, FO, S, SO);
@@ -74,10 +75,10 @@ export class Rect extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", i => Math.min(X1[i], X2[i]) + this.insetLeft)
-            .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
-            .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
-            .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
+            .attr("x", isCollapsed(x) ? marginLeft + this.insetLeft : i => Math.min(X1[i], X2[i]) + this.insetLeft)
+            .attr("y", isCollapsed(y) ? marginTop + this.insetTop : i => Math.min(Y1[i], Y2[i]) + this.insetTop)
+            .attr("width", isCollapsed(x) ? width - marginLeft - marginRight - this.insetLeft - this.insetRight : i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
+            .attr("height", isCollapsed(y) ? height - marginTop - marginBottom - this.insetTop - this.insetBottom : i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "stroke", S && (i => S[i]))
