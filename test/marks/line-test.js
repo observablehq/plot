@@ -20,6 +20,7 @@ it("line() has the expected defaults", () => {
   assert.strictEqual(line.strokeMiterlimit, 1);
   assert.strictEqual(line.strokeDasharray, undefined);
   assert.strictEqual(line.mixBlendMode, undefined);
+  assert.strictEqual(line.shapeRendering, undefined);
 });
 
 it("line(data, {z}) specifies an optional z channel", () => {

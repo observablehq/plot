@@ -18,6 +18,7 @@ it("barX() has the expected defaults", () => {
   assert.strictEqual(bar.strokeMiterlimit, undefined);
   assert.strictEqual(bar.strokeDasharray, undefined);
   assert.strictEqual(bar.mixBlendMode, undefined);
+  assert.strictEqual(bar.shapeRendering, undefined);
   assert.strictEqual(bar.insetTop, 0);
   assert.strictEqual(bar.insetRight, 0);
   assert.strictEqual(bar.insetBottom, 0);
@@ -88,6 +89,11 @@ it("barX(data, {x, y}) defaults x1 to zero and x2 to x", () => {
   assert.strictEqual(y.scale, "y");
 });
 
+it("barX(data, {shapeRendering}) allows shapeRendering to have a constant value", () => {
+  const bar = Plot.barX(undefined, {shapeRendering: "crispEdges"});
+  assert.strictEqual(bar.shapeRendering, "crispEdges");
+});
+
 it("barY() has the expected defaults", () => {
   const bar = Plot.barY();
   assert.strictEqual(bar.data, undefined);
@@ -105,6 +111,7 @@ it("barY() has the expected defaults", () => {
   assert.strictEqual(bar.strokeMiterlimit, undefined);
   assert.strictEqual(bar.strokeDasharray, undefined);
   assert.strictEqual(bar.mixBlendMode, undefined);
+  assert.strictEqual(bar.shapeRendering, undefined);
   assert.strictEqual(bar.insetTop, 0);
   assert.strictEqual(bar.insetRight, 0);
   assert.strictEqual(bar.insetBottom, 0);
@@ -173,4 +180,9 @@ it("barY(data, {x, y}) defaults y1 to zero and y2 to y", () => {
   const y2 = bar.channels.find(c => c.name === "y2");
   assert.strictEqual(y2.value.label, "1");
   assert.strictEqual(y2.scale, "y");
+});
+
+it("barY(data, {shapeRendering}) allows shapeRendering to have a constant value", () => {
+  const bar = Plot.barY(undefined, {shapeRendering: "crispEdges"});
+  assert.strictEqual(bar.shapeRendering, "crispEdges");
 });

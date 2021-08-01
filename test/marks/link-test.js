@@ -18,6 +18,7 @@ it("link(data, options) has the expected defaults", () => {
   assert.strictEqual(link.strokeMiterlimit, 1);
   assert.strictEqual(link.strokeDasharray, undefined);
   assert.strictEqual(link.mixBlendMode, undefined);
+  assert.strictEqual(link.shapeRendering, undefined);
 });
 
 it("link(data, {title}) specifies an optional title channel", () => {

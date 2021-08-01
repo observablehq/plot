@@ -18,6 +18,7 @@ it("rect(data, options) has the expected defaults", () => {
   assert.strictEqual(rect.strokeMiterlimit, undefined);
   assert.strictEqual(rect.strokeDasharray, undefined);
   assert.strictEqual(rect.mixBlendMode, undefined);
+  assert.strictEqual(rect.shapeRendering, undefined);
   assert.strictEqual(rect.insetTop, 0);
   assert.strictEqual(rect.insetRight, 0);
   assert.strictEqual(rect.insetBottom, 0);

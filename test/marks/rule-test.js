@@ -18,6 +18,7 @@ it("ruleX() has the expected defaults", () => {
   assert.strictEqual(rule.strokeMiterlimit, undefined);
   assert.strictEqual(rule.strokeDasharray, undefined);
   assert.strictEqual(rule.mixBlendMode, undefined);
+  assert.strictEqual(rule.shapeRendering, undefined);
 });
 
 it("ruleX(data, {title}) specifies an optional title channel", () => {
@@ -105,6 +106,7 @@ it("ruleY() has the expected defaults", () => {
   assert.strictEqual(rule.strokeMiterlimit, undefined);
   assert.strictEqual(rule.strokeDasharray, undefined);
   assert.strictEqual(rule.mixBlendMode, undefined);
+  assert.strictEqual(rule.shapeRendering, undefined);
 });
 
 it("ruleY(data, {title}) specifies an optional title channel", () => {

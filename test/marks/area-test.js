@@ -20,6 +20,7 @@ it("area(data, options) has the expected defaults", () => {
   assert.strictEqual(area.strokeMiterlimit, undefined);
   assert.strictEqual(area.strokeDasharray, undefined);
   assert.strictEqual(area.mixBlendMode, undefined);
+  assert.strictEqual(area.shapeRendering, undefined);
 });
 
 it("area(data, {x1, y1, y2}) specifies an optional y2 channel", () => {

@@ -20,6 +20,7 @@ it("cell() has the expected defaults", () => {
   assert.strictEqual(cell.strokeMiterlimit, undefined);
   assert.strictEqual(cell.strokeDasharray, undefined);
   assert.strictEqual(cell.mixBlendMode, undefined);
+  assert.strictEqual(cell.shapeRendering, undefined);
   assert.strictEqual(cell.insetTop, 0);
   assert.strictEqual(cell.insetRight, 0);
   assert.strictEqual(cell.insetBottom, 0);
