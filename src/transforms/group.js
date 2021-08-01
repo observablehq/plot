@@ -164,7 +164,6 @@ export function maybeSubgroup(outputs, Z, F, S) {
 
 function reduceFunction(f) {
   return {
-    label: f.label,
     reduce(I, X) {
       return f(take(X, I));
     }
