@@ -1,7 +1,8 @@
 import {color} from "d3";
-import {ascendingDefined, nonempty} from "./defined.js";
+import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
 import {styles} from "./style.js";
+import {basic} from "./transforms/basic.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -13,7 +14,7 @@ export class Mark {
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
-    const {transform} = maybeTransform(options);
+    const {transform} = basic(options);
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
@@ -225,23 +226,6 @@ export function maybeLazyChannel(source) {
   return source == null ? [source] : lazyChannel(source);
 }
 
-// If both t1 and t2 are defined, returns a composite transform that first
-// applies t1 and then applies t2.
-export function maybeTransform({
-  filter: f1,
-  sort: s1,
-  reverse: r1,
-  transform: t1,
-  ...options
-} = {}, t2) {
-  if (t1 === undefined) {
-    if (f1 != null) t1 = filter(f1);
-    if (s1 != null) t1 = compose(t1, sort(s1));
-    if (r1) t1 = compose(t1, reverse);
-  }
-  return {...options, transform: compose(t1, t2)};
-}
-
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
 // new a channel that’s the average of the two, and which inherits the channel
 // label (if any). Both input channels are assumed to be quantitative. If either
@@ -264,45 +248,6 @@ export function maybeValue(value) {
   return value === undefined || (value &&
     value.toString === objectToString &&
     typeof value.transform !== "function") ? value : {value};
-}
-
-function compose(t1, t2) {
-  if (t1 == null) return t2 === null ? undefined : t2;
-  if (t2 == null) return t1 === null ? undefined : t1;
-  return (data, facets) => {
-    ({data, facets} = t1(data, facets));
-    return t2(arrayify(data), facets);
-  };
-}
-
-function sort(value) {
-  return (typeof value === "function" && value.length !== 1 ? sortCompare : sortValue)(value);
-}
-
-function sortCompare(compare) {
-  return (data, facets) => {
-    const compareData = (i, j) => compare(data[i], data[j]);
-    return {data, facets: facets.map(I => I.slice().sort(compareData))};
-  };
-}
-
-function sortValue(value) {
-  return (data, facets) => {
-    const V = valueof(data, value);
-    const compareValue = (i, j) => ascendingDefined(V[i], V[j]);
-    return {data, facets: facets.map(I => I.slice().sort(compareValue))};
-  };
-}
-
-function filter(value) {
-  return (data, facets) => {
-    const V = valueof(data, value);
-    return {data, facets: facets.map(I => I.filter(i => V[i]))};
-  };
-}
-
-function reverse(data, facets) {
-  return {data, facets: facets.map(I => I.slice().reverse())};
 }
 
 export function numberChannel(source) {
