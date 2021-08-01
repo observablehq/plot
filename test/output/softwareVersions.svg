@@ -32,19 +32,20 @@
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">key (%) →</text>
-  </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="20" x2="20" y1="0" y2="30"></line>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency (%) →</text>
   </g>
   <g>
-    <rect x="20" width="12.95348837209302" y="0" height="30" fill="#4e79a7"></rect>
-    <rect x="33.95348837209302" width="15.74418604651163" y="0" height="30" fill="#edc949"></rect>
-    <rect x="50.69767441860465" width="28.30232558139535" y="0" height="30" fill="#59a14f"></rect>
-    <rect x="80" width="35.27906976744188" y="0" height="30" fill="#e15759"></rect>
-    <rect x="116.27906976744188" width="65.97674418604649" y="0" height="30" fill="#af7aa1"></rect>
-    <rect x="183.25581395348837" width="135.74418604651163" y="0" height="30" fill="#76b7b2"></rect>
-    <rect x="320" width="299" y="0" height="30" fill="#f28e2c"></rect>
+    <rect x="20.5" width="12.95348837209302" y="0" height="30" fill="#4e79a7"></rect>
+    <rect x="34.45348837209302" width="299" y="0" height="30" fill="#f28e2c"></rect>
+    <rect x="334.45348837209303" width="35.27906976744191" y="0" height="30" fill="#e15759"></rect>
+    <rect x="370.73255813953494" width="135.74418604651163" y="0" height="30" fill="#76b7b2"></rect>
+    <rect x="507.4767441860466" width="28.302325581395337" y="0" height="30" fill="#59a14f"></rect>
+    <rect x="536.7790697674419" width="15.744186046511572" y="0" height="30" fill="#edc949"></rect>
+    <rect x="553.5232558139535" width="65.97674418604652" y="0" height="30" fill="#af7aa1"></rect>
   </g>
-  <g fill="#000" transform="translate(0.5,0.5)"><text dy="0.32em" x="26.97674418604651" y="15">v324</text><text dy="0.32em" x="42.325581395348834" y="15">v381</text><text dy="0.32em" x="65.34883720930232" y="15">v369</text><text dy="0.32em" x="98.13953488372093" y="15">v359</text><text dy="0.32em" x="149.7674418604651" y="15">v429</text><text dy="0.32em" x="251.62790697674416" y="15">v368</text><text dy="0.32em" x="470" y="15">v348</text></g>
+  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="26.97674418604651" y="15">v324</text><text dy="0.32em" x="183.95348837209303" y="15">v348</text><text dy="0.32em" x="352.093023255814" y="15">v359</text><text dy="0.32em" x="438.6046511627908" y="15">v368</text><text dy="0.32em" x="521.6279069767443" y="15">v369</text><text dy="0.32em" x="544.6511627906978" y="15">v381</text><text dy="0.32em" x="586.5116279069767" y="15">v429</text></g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
 </svg>
