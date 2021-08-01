@@ -10,19 +10,27 @@ export function selectLast(options) {
 }
 
 export function selectMinX(options = {}) {
-  return select(min, options.x, options);
+  const x = options.x;
+  if (x == null) throw new Error("missing channel: x");
+  return select(min, x, options);
 }
 
 export function selectMinY(options = {}) {
-  return select(min, options.y, options);
+  const y = options.y;
+  if (y == null) throw new Error("missing channel: y");
+  return select(min, y, options);
 }
 
 export function selectMaxX(options = {}) {
-  return select(max, options.x, options);
+  const x = options.x;
+  if (x == null) throw new Error("missing channel: x");
+  return select(max, x, options);
 }
 
 export function selectMaxY(options = {}) {
-  return select(max, options.y, options);
+  const y = options.y;
+  if (y == null) throw new Error("missing channel: y");
+  return select(max, y, options);
 }
 
 // TODO If the value (for some required channel) is undefined, scan forward?
