@@ -25,7 +25,7 @@ export function Style(mark, {
   mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
   mark.strokeDasharray = string(strokeDasharray);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
-  mark.shapeRendering = string(shapeRendering);
+  mark.shapeRendering = impliedString(shapeRendering, "auto");
 }
 
 export function applyIndirectStyles(selection, mark) {
