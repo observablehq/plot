@@ -5,16 +5,14 @@ export default async function() {
   const data = await d3.csv("data/us-presidential-forecast-2016-histogram.csv", d3.autoType);
   return Plot.plot({
     x: {
-      label: "Electoral votes for Hillary Clinton →",
-      labelAnchor: "left",
-      ticks: [100, 200, 300, 400, 500]
+      label: "Electoral votes for Hillary Clinton →"
     },
     y: {
       ticks: 5,
-      tickFormat: "%"
+      percent: true
     },
     marks: [
-      Plot.barY(data, {x: "dem_ev", y: "prob", shapeRendering: "crispEdges", fill: "dem_ev", stroke: "dem_ev" }),
+      Plot.ruleX(data, {x: "dem_electoral_votes", y: "probability", shapeRendering: "crispEdges", stroke: "dem_electoral_votes", strokeWidth: 1.5}),
       Plot.ruleY([0]),
       Plot.ruleX([270])
     ]
