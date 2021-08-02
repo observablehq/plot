@@ -100,4 +100,5 @@ export {default as usPresidentialElection2020} from "./us-presidential-election-
 export {default as usPresidentialForecast2016} from "./us-presidential-forecast-2016.js";
 export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
+export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";

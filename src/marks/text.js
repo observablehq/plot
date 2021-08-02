@@ -13,6 +13,8 @@ export class Text extends Mark {
       title,
       fill,
       fillOpacity,
+      stroke,
+      strokeOpacity,
       textAnchor,
       fontFamily,
       fontSize,
@@ -25,6 +27,8 @@ export class Text extends Mark {
       ...options
     } = {}
   ) {
+    const [vstroke, cstroke] = maybeColor(stroke, "none");
+    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     const [vfill, cfill] = maybeColor(fill, "currentColor");
     const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vrotate, crotate] = maybeNumber(rotate, 0);
@@ -39,11 +43,19 @@ export class Text extends Mark {
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true}
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
-    Style(this, {fill: cfill, fillOpacity: cfillOpacity, ...options});
+    Style(this, {
+      fill: cfill,
+      fillOpacity: cfillOpacity,
+      stroke: cstroke,
+      strokeOpacity: cstrokeOpacity,
+      ...options
+    });
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
@@ -57,7 +69,7 @@ export class Text extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS},
+    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS, stroke: S, strokeOpacity: SO},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {rotate} = this;
@@ -83,6 +95,8 @@ export class Text extends Mark {
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();
