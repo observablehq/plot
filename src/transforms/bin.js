@@ -177,6 +177,7 @@ function maybeThresholds(thresholds = thresholdDefault) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
       case "scott": return thresholdScott;
       case "sturges": return thresholdSturges;
+      case "auto": return thresholdDefault;
     }
     throw new Error("invalid thresholds");
   }
