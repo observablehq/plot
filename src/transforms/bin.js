@@ -171,20 +171,20 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds = thresholdDefault) {
+function maybeThresholds(thresholds = thresholdAuto) {
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
       case "scott": return thresholdScott;
       case "sturges": return thresholdSturges;
-      case "auto": return thresholdDefault;
+      case "auto": return thresholdAuto;
     }
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
 }
 
-function thresholdDefault(values, min, max) {
+function thresholdAuto(values, min, max) {
   return Math.min(200, thresholdScott(values, min, max));
 }
 
