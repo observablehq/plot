@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, title, maybeNumber, isCollapsed} from "../mark.js";
+import {Mark, number, maybeColor, title, maybeNumber} from "../mark.js";
 import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -116,13 +116,13 @@ export class BarX extends AbstractBar {
   _positions({x1: X1, x2: X2, y: Y}) {
     return [X1, X2, Y];
   }
-  _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
+  _x(scales, {x1: X1, x2: X2}) {
     const {insetLeft} = this;
-    return isCollapsed(x) ? marginLeft + insetLeft : i => Math.min(X1[i], X2[i]) + insetLeft;
+    return i => Math.min(X1[i], X2[i]) + insetLeft;
   }
-  _width({x}, {x1: X1, x2: X2}, {marginRight, marginLeft, width}) {
+  _width(scales, {x1: X1, x2: X2}) {
     const {insetLeft, insetRight} = this;
-    return isCollapsed(x) ? width - marginRight - marginLeft - insetLeft - insetRight : i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
+    return i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
   }
 }
 
@@ -144,13 +144,13 @@ export class BarY extends AbstractBar {
   _positions({y1: Y1, y2: Y2, x: X}) {
     return [Y1, Y2, X];
   }
-  _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
+  _y(scales, {y1: Y1, y2: Y2}) {
     const {insetTop} = this;
-    return isCollapsed(y) ? marginTop + insetTop : i => Math.min(Y1[i], Y2[i]) + insetTop;
+    return i => Math.min(Y1[i], Y2[i]) + insetTop;
   }
-  _height({y}, {y1: Y1, y2: Y2}, {marginTop, marginBottom, height}) {
+  _height(scales, {y1: Y1, y2: Y2}) {
     const {insetTop, insetBottom} = this;
-    return isCollapsed(y) ? height - marginTop - marginBottom - insetTop - insetBottom : i => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
+    return i => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
   }
 }
 

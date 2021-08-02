@@ -1,4 +1,4 @@
-import {color} from "d3";
+import {color, max, min} from "d3";
 import {ascendingDefined, nonempty} from "./defined.js";
 import {plot} from "./plot.js";
 
@@ -317,7 +317,20 @@ export function values(channels = [], scales) {
       if (scale !== undefined) {
         scale = scales[scale];
         if (scale !== undefined) {
-          value = Array.from(value, scale);
+          if (scale.isCollapsed) {
+            switch(name) {
+              case "x1":
+              case "y1":
+                value = Array.from(value).fill(min(scale.range())); break;
+              case "x2":
+              case "y2":
+                value = Array.from(value).fill(max(scale.range())); break;
+              default:
+                value = Array.from(value, scale); break;
+            }
+          } else {
+            value = Array.from(value, scale);
+          }
         }
       }
       values[name] = value;
@@ -339,19 +352,4 @@ export function isTemporal(values) {
     if (value == null) continue;
     return value instanceof Date;
   }
-}
-
-// Certain marks have special behavior if a scale is collapsed, i.e. if the
-// domain is degenerate and represents only a single value such as [3, 3]; for
-// example, a rect will span the full extent of the chart along a collapsed
-// dimension (whereas a dot will simply be drawn in the center).
-export function isCollapsed(scale) {
-  const domain = scale.domain();
-  const value = scale(domain[0]);
-  for (let i = 1, n = domain.length; i < n; ++i) {
-    if (scale(domain[i]) - value) {
-      return false;
-    }
-  }
-  return true;
 }

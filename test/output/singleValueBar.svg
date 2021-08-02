@@ -15,4 +15,8 @@
   <g stroke="red" transform="translate(237.5,0)">
     <line x1="93" x2="93" y1="20" y2="370"></line>
   </g>
+  <g fill="white" transform="translate(237.5,0.5)">
+    <circle cx="93" cy="195" r="100"></circle>
+  </g>
+  <g font-size="180" transform="translate(237.5,0.5)"><text dy="0.32em" x="93" y="195">♜</text></g>
 </svg>

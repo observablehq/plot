@@ -179,6 +179,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
+  scale.isCollapsed = isCollapsed(scale);
   return {type: "quantitative", reverse, domain, range, scale, inset, percent};
 }
 
@@ -283,4 +284,19 @@ function inferLogDomain(channels) {
     }
   }
   return [1, 10];
+}
+
+// Certain marks have special behavior if a scale is collapsed, i.e. if the
+// domain is degenerate and represents only a single value such as [3, 3]; for
+// example, a rect will span the full extent of the chart along a collapsed
+// dimension (whereas a dot will simply be drawn in the center).
+export function isCollapsed(scale) {
+  const domain = scale.domain();
+  const value = scale(domain[0]);
+  for (let i = 1, n = domain.length; i < n; ++i) {
+    if (scale(domain[i]) - value) {
+      return false;
+    }
+  }
+  return true;
 }
