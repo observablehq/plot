@@ -13,8 +13,7 @@ export default async function() {
     },
     color: {
       type: "threshold",
-      domain: [270],
-      range: ["red", "blue"] // TODO rdbu?
+      domain: [270]
     },
     marks: [
       Plot.ruleX(data, {x: "dem_electoral_votes", y: "probability", shapeRendering: "crispEdges", stroke: "dem_electoral_votes", strokeWidth: 1.5}),

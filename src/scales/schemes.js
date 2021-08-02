@@ -150,6 +150,7 @@ function scheme9(scheme, interpolate) {
 
 function scheme11(scheme, interpolate) {
   return ({length: n}) => {
+    if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor diverging extrema
     n = n > 3 ? Math.floor(n) : 3;
     return n > 11 ? quantize(interpolate, n) : scheme[n];
   };
@@ -157,6 +158,7 @@ function scheme11(scheme, interpolate) {
 
 function scheme11r(scheme, interpolate) {
   return ({length: n}) => {
+    if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor diverging extrema
     n = n > 3 ? Math.floor(n) : 3;
     return n > 11 ? quantize(t => interpolate(1 - t), n) : scheme[n].slice().reverse();
   };
