@@ -74,7 +74,7 @@ export function ScaleQ(key, scale, channels, {
   // is used in conjunction with the range. And other times the interpolate
   // function is a “fixed” interpolator independent of the range, as when a
   // color scheme such as interpolateRdBu is used.
-  if (scale.interpolate && interpolate !== undefined) {
+  if (interpolate !== undefined) {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
@@ -122,15 +122,15 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 }
 
 export function ScaleThreshold(key, channels, {
-  domain = [0], // you must specify the thresholds explicitly, and in ascending order!
+  domain = [0], // explicit thresholds in ascending order
   scheme = "rdylbu",
   range = ordinalRange(scheme, domain.length + 1),
   reverse,
-  ...options
+  percent
 }) {
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
-  if (reverse) range = reverseof(range);
-  return ScaleQ(key, scaleThreshold(), channels, {domain, range, ...options});
+  if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
+  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range, percent};
 }
 
 export function ScaleIdentity() {
