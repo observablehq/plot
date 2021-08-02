@@ -74,7 +74,7 @@ function inferDomain(channels) {
   const domain = new InternSet();
   for (const {value} of channels) {
     if (value === undefined) continue;
-    for (const v of value) domain.add(v);
+    for (const v of value) domain.add(v); // TODO skip nullish?
   }
   return sort(domain, ascendingDefined);
 }

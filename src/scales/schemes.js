@@ -176,6 +176,12 @@ export function ordinalScheme(scheme) {
   return ordinalSchemes.get(s);
 }
 
+export function ordinalRange(scheme, length) {
+  const s = ordinalScheme(scheme);
+  const r = typeof s === "function" ? s({length}) : s;
+  return r.length !== length ? r.slice(length) : r;
+}
+
 export const quantitativeSchemes = new Map([
   // diverging
   ["brbg", interpolateBrBG],

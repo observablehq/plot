@@ -25,7 +25,7 @@ import {
   scaleThreshold,
   scaleIdentity
 } from "d3";
-import {ordinalScheme, quantitativeScheme, quantitativeSchemes} from "./schemes.js";
+import {ordinalRange, quantitativeScheme, quantitativeSchemes} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {defined, positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
@@ -106,9 +106,9 @@ export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(chan
 
 export function ScaleQuantile(key, channels, {
   quantiles = 5,
-  scheme,
-  domain = inferFullDomain(channels),
-  range = ordinalScheme(scheme === undefined ? "rdylbu" : scheme)({length: quantiles}).slice(0, quantiles),
+  scheme = "rdylbu",
+  domain = inferQuantileDomain(channels),
+  range = ordinalRange(scheme, quantiles),
   reverse,
   ...options
 }) {
@@ -121,13 +121,12 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 }
 
 export function ScaleThreshold(key, channels, {
-  domain = inferDomain(channels),
-  scheme,
-  range = ordinalScheme(scheme === undefined ? "rdylbu" : scheme)({length: domain.length + 1}),
+  domain = [0], // you must specify the thresholds explicitly, and in ascending order!
+  scheme = "rdylbu",
+  range = ordinalRange(scheme, domain.length + 1),
   reverse,
   ...options
 }) {
-  if (ascending(domain[domain.length-1], domain[0]) < 0) domain.sort(ascending), reverse = !reverse;
   if (reverse) range = reverseof(range);
   return ScaleQ(key, scaleThreshold(), channels, {domain, range, ...options});
 }
@@ -215,10 +214,11 @@ function inferLogDomain(channels) {
   return [1, 10];
 }
 
-function inferFullDomain(channels) {
-  let domain = [];
+function inferQuantileDomain(channels) {
+  const domain = [];
   for (const {value} of channels) {
-    if (value !== undefined) domain = domain.concat(value);
+    if (value === undefined) continue;
+    for (const v of value) if (defined(v)) domain.push(v);
   }
-  return domain.filter(defined);
+  return domain;
 }
