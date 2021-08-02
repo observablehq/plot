@@ -1039,7 +1039,7 @@ Plot.binX({y: "count"}, {x: {thresholds: 20, value: "culmen_length_mm"}})
 
 The **thresholds** option may be specified as a named method or a variety of other ways:
 
-* *auto* (default) - Scott’s rule, capped at 200.
+* *auto* (default) - Scott’s rule, capped at 200
 * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
 * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
 * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
