@@ -1,4 +1,5 @@
 import {
+  ascending,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -9,6 +10,7 @@ import {
   max,
   quantile,
   reverse as reverseof,
+  pairs,
   piecewise,
   scaleDiverging,
   scaleDivergingLog,
@@ -126,6 +128,7 @@ export function ScaleThreshold(key, channels, {
   reverse,
   ...options
 }) {
+  if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
   if (reverse) range = reverseof(range);
   return ScaleQ(key, scaleThreshold(), channels, {domain, range, ...options});
 }
