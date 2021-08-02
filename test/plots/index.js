@@ -98,4 +98,5 @@ export {default as usPopulationStateAgeDots} from "./us-population-state-age-dot
 export {default as usPresidentialElection2020} from "./us-presidential-election-2020.js";
 export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
+export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
