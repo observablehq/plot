@@ -1,5 +1,4 @@
 import {
-  ascending,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -25,7 +24,7 @@ import {
   scaleThreshold,
   scaleIdentity
 } from "d3";
-import {ordinalRange, quantitativeScheme, quantitativeSchemes} from "./schemes.js";
+import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {defined, positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
@@ -59,7 +58,7 @@ export function ScaleQ(key, scale, channels, {
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   scheme,
   type,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? quantitativeScheme(scheme) : quantitativeSchemes.get(type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : undefined,
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : undefined,
   reverse,
   inset
 }) {

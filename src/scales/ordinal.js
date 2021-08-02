@@ -1,6 +1,6 @@
 import {InternSet, reverse as reverseof, sort} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3";
-import {ordinalScheme, ordinalSchemes} from "./schemes.js";
+import {ordinalScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
 
@@ -23,9 +23,7 @@ export function ScaleO(scale, channels, {
 export function ScaleOrdinal(key, channels, {
   scheme,
   type,
-  range = registry.get(key) === color ? (scheme !== undefined ? ordinalScheme(scheme)
-    : ordinalSchemes.get(type === "ordinal" ? "turbo" : "tableau10"))
-    : undefined,
+  range = registry.get(key) === color ? (ordinalScheme(scheme !== undefined ? scheme : type === "ordinal" ? "turbo" : "tableau10")) : undefined,
   ...options
 }) {
   return ScaleO(scaleOrdinal().unknown(undefined), channels, {range, ...options});
