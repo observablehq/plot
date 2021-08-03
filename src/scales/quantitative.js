@@ -28,7 +28,7 @@ import {
 } from "d3";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
-import {defined, positive, negative} from "../defined.js";
+import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
 
 const flip = i => t => i(1 - t);
@@ -58,9 +58,9 @@ export function ScaleQ(key, scale, channels, {
   percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
-  scheme,
   type,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : undefined,
+  scheme = type === "cyclical" ? "rainbow" : "turbo", // ignored if not color
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
   inset
 }) {
@@ -109,12 +109,12 @@ export function ScaleQuantile(key, channels, {
   quantiles = 5,
   scheme = "rdylbu",
   domain = inferQuantileDomain(channels),
-  range = ordinalRange(scheme, quantiles),
+  range = registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
   reverse,
-  ...options
+  percent
 }) {
-  if (reverse) range = reverseof(range);
-  return ScaleQ(key, scaleQuantile(), [], {domain, range, ...options});
+  if (reverse = !!reverse) range = reverseof(range); // domain unordered, so reverse range
+  return {type: "quantitative", scale: scaleQuantile(domain, range), reverse, domain, range, percent};
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
@@ -123,8 +123,8 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 
 export function ScaleThreshold(key, channels, {
   domain = [0], // explicit thresholds in ascending order
-  scheme = "rdylbu",
-  range = ordinalRange(scheme, domain.length + 1),
+  scheme = "rdylbu", // ignored if not color
+  range = registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse,
   percent
 }) {
@@ -143,8 +143,8 @@ function ScaleD(key, scale, channels, {
   domain = inferDomain(channels),
   pivot = 0,
   range,
-  scheme,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : "rdbu")) : undefined,
+  scheme = "rdbu", // ignored if not color
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : undefined,
   reverse
 }) {
   domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
@@ -220,7 +220,7 @@ function inferQuantileDomain(channels) {
   const domain = [];
   for (const {value} of channels) {
     if (value === undefined) continue;
-    for (const v of value) if (defined(v)) domain.push(v);
+    for (const v of value) domain.push(v);
   }
   return domain;
 }

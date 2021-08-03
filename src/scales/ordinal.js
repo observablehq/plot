@@ -21,9 +21,9 @@ export function ScaleO(scale, channels, {
 }
 
 export function ScaleOrdinal(key, channels, {
-  scheme,
   type,
-  range = registry.get(key) === color ? (ordinalScheme(scheme !== undefined ? scheme : type === "ordinal" ? "turbo" : "tableau10")) : undefined,
+  scheme = type === "ordinal" ? "turbo" : "tableau10", // ignored if not color
+  range = registry.get(key) === color ? ordinalScheme(scheme) : undefined,
   ...options
 }) {
   return ScaleO(scaleOrdinal().unknown(undefined), channels, {range, ...options});
