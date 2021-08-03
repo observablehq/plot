@@ -1239,21 +1239,21 @@ Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for each channel declared in the specified *outputs* object, applies the corresponding map method. Each channel in *outputs* must have a corresponding input channel in *options*.
 
-#### Plot.mapX(*map*, *options*)
+#### Plot.mapX(*options*)
 
 ```js
-Plot.mapX("cumsum", {x: d3.randomNormal()})
+Plot.mapX({map: "cumsum", x: d3.randomNormal()})
 ```
 
-Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*.
+Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*. The **map** option is required.
 
-#### Plot.mapY(*map*, *options*)
+#### Plot.mapY(*options*)
 
 ```js
-Plot.mapY("cumsum", {y: d3.randomNormal()})
+Plot.mapY({map: "cumsum", y: d3.randomNormal()})
 ```
 
-Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
+Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*. The **map** option is required.
 
 #### Plot.normalizeX(*options*)
 
@@ -1261,7 +1261,7 @@ Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores
 Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*. If the **basiss** option is not specified, it defaults to *first*.
 
 #### Plot.normalizeY(*options*)
 
@@ -1269,7 +1269,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method wit
 Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*. If the **basiss** option is not specified, it defaults to *first*.
 
 #### Plot.windowX(*options*)
 
@@ -1277,7 +1277,7 @@ Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method wit
 Plot.windowX({y: "Date", x: "Anomaly", k: 24})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*. The **k** option is required to define the window size, while the **reduce** and **shift** options default to *mean* and *centered* respectively.
 
 #### Plot.windowY(*options*)
 
@@ -1285,7 +1285,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with t
 Plot.windowY({x: "Date", y: "Anomaly", k: 24})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*. The **k** option is required to define the window size, while the **reduce** and **shift** options default to *mean* and *centered* respectively.
 
 ### Select
 
