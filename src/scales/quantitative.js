@@ -114,7 +114,7 @@ export function ScaleQuantile(key, channels, {
   percent
 }) {
   if (reverse = !!reverse) range = reverseof(range); // domain unordered, so reverse range
-  return {type: "quantitative", scale: scaleQuantile(domain, range), reverse, domain, range, percent};
+  return {type: "quantile", scale: scaleQuantile(domain, range), reverse, domain, range, percent};
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
