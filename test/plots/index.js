@@ -88,6 +88,7 @@ export {default as sfTemperatureBandArea} from "./sf-temperature-band-area.js";
 export {default as simpsonsRatings} from "./simpsons-ratings.js";
 export {default as simpsonsRatingsDots} from "./simpsons-ratings-dots.js";
 export {default as simpsonsViews} from "./simpsons-views.js";
+export {default as softwareVersions} from "./software-versions.js";
 export {default as stackedBar} from "./stacked-bar.js";
 export {default as stocksIndex} from "./stocks-index.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
