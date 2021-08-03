@@ -59,7 +59,7 @@ export function ScaleQ(key, scale, channels, {
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
-  scheme = type === "cyclical" ? "rainbow" : "turbo", // ignored if not color
+  scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
   inset
@@ -123,7 +123,7 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 
 export function ScaleThreshold(key, channels, {
   domain = [0], // explicit thresholds in ascending order
-  scheme = "rdylbu", // ignored if not color
+  scheme = "rdylbu",
   range = registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse,
   percent
@@ -143,7 +143,7 @@ function ScaleD(key, scale, channels, {
   domain = inferDomain(channels),
   pivot = 0,
   range,
-  scheme = "rdbu", // ignored if not color
+  scheme = "rdbu",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : undefined,
   reverse
 }) {
