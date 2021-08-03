@@ -1,53 +1,17 @@
 import {
-  min,
-  max,
-  quantile,
-  reverse as reverseof,
-  piecewise,
+  ascending,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
   interpolateNumber,
   interpolateRgb,
   interpolateRound,
-  interpolateBlues,
-  interpolateBrBG,
-  interpolateBuGn,
-  interpolateBuPu,
-  interpolateCividis,
-  interpolateCool,
-  interpolateCubehelixDefault,
-  interpolateGnBu,
-  interpolateGreens,
-  interpolateGreys,
-  interpolateInferno,
-  interpolateMagma,
-  interpolateOranges,
-  interpolateOrRd,
-  interpolatePiYG,
-  interpolatePlasma,
-  interpolatePRGn,
-  interpolatePuBu,
-  interpolatePuBuGn,
-  interpolatePuOr,
-  interpolatePuRd,
-  interpolatePurples,
-  interpolateRainbow,
-  interpolateRdBu,
-  interpolateRdGy,
-  interpolateRdPu,
-  interpolateRdYlBu,
-  interpolateRdYlGn,
-  interpolateReds,
-  interpolateSinebow,
-  interpolateSpectral,
-  interpolateTurbo,
-  interpolateViridis,
-  interpolateWarm,
-  interpolateYlGn,
-  interpolateYlGnBu,
-  interpolateYlOrBr,
-  interpolateYlOrRd,
+  min,
+  max,
+  quantile,
+  reverse as reverseof,
+  pairs,
+  piecewise,
   scaleDiverging,
   scaleDivergingLog,
   scaleDivergingPow,
@@ -57,16 +21,18 @@ import {
   scaleLog,
   scalePow,
   scaleSqrt,
+  scaleQuantile,
   scaleSymlog,
+  scaleThreshold,
   scaleIdentity
 } from "d3";
+import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
 
 const flip = i => t => i(1 - t);
 
-// TODO Allow this to be extended.
 const interpolators = new Map([
   // numbers
   ["number", interpolateNumber],
@@ -78,69 +44,10 @@ const interpolators = new Map([
   ["lab", interpolateLab]
 ]);
 
-// TODO Allow this to be extended.
-const schemes = new Map([
-  // diverging
-  ["brbg", interpolateBrBG],
-  ["prgn", interpolatePRGn],
-  ["piyg", interpolatePiYG],
-  ["puor", interpolatePuOr],
-  ["rdbu", interpolateRdBu],
-  ["rdgy", interpolateRdGy],
-  ["rdylbu", interpolateRdYlBu],
-  ["rdylgn", interpolateRdYlGn],
-  ["spectral", interpolateSpectral],
-
-  // reversed diverging (for temperature data)
-  ["burd", t => interpolateRdBu(1 - t)],
-  ["buylrd", t => interpolateRdYlBu(1 - t)],
-
-  // sequential (single-hue)
-  ["blues", interpolateBlues],
-  ["greens", interpolateGreens],
-  ["greys", interpolateGreys],
-  ["purples", interpolatePurples],
-  ["reds", interpolateReds],
-  ["oranges", interpolateOranges],
-
-  // sequential (multi-hue)
-  ["turbo", interpolateTurbo],
-  ["viridis", interpolateViridis],
-  ["magma", interpolateMagma],
-  ["inferno", interpolateInferno],
-  ["plasma", interpolatePlasma],
-  ["cividis", interpolateCividis],
-  ["cubehelix", interpolateCubehelixDefault],
-  ["warm", interpolateWarm],
-  ["cool", interpolateCool],
-  ["bugn", interpolateBuGn],
-  ["bupu", interpolateBuPu],
-  ["gnbu", interpolateGnBu],
-  ["orrd", interpolateOrRd],
-  ["pubugn", interpolatePuBuGn],
-  ["pubu", interpolatePuBu],
-  ["purd", interpolatePuRd],
-  ["rdpu", interpolateRdPu],
-  ["ylgnbu", interpolateYlGnBu],
-  ["ylgn", interpolateYlGn],
-  ["ylorbr", interpolateYlOrBr],
-  ["ylorrd", interpolateYlOrRd],
-
-  // cyclical
-  ["rainbow", interpolateRainbow],
-  ["sinebow", interpolateSinebow]
-]);
-
 function Interpolator(interpolate) {
   const i = (interpolate + "").toLowerCase();
   if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
   return interpolators.get(i);
-}
-
-function Scheme(scheme) {
-  const s = (scheme + "").toLowerCase();
-  if (!schemes.has(s)) throw new Error(`unknown scheme: ${s}`);
-  return schemes.get(s);
 }
 
 export function ScaleQ(key, scale, channels, {
@@ -151,9 +58,9 @@ export function ScaleQ(key, scale, channels, {
   percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
-  scheme,
   type,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : type === "cyclical" ? interpolateRainbow : interpolateTurbo) : round ? interpolateRound : undefined,
+  scheme = type === "cyclical" ? "rainbow" : "turbo",
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
   inset
 }) {
@@ -198,8 +105,32 @@ export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(chan
   return ScaleQ(key, scaleLog().base(base), channels, {domain, ...options});
 }
 
+export function ScaleQuantile(key, channels, {
+  quantiles = 5,
+  scheme = "rdylbu",
+  domain = inferQuantileDomain(channels),
+  range = registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
+  reverse,
+  percent
+}) {
+  if (reverse = !!reverse) range = reverseof(range); // domain unordered, so reverse range
+  return {type: "quantile", scale: scaleQuantile(domain, range), reverse, domain, range, percent};
+}
+
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
   return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+}
+
+export function ScaleThreshold(key, channels, {
+  domain = [0], // explicit thresholds in ascending order
+  scheme = "rdylbu",
+  range = registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
+  reverse,
+  percent
+}) {
+  if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
+  if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
+  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range, percent};
 }
 
 export function ScaleIdentity() {
@@ -212,8 +143,8 @@ function ScaleD(key, scale, channels, {
   domain = inferDomain(channels),
   pivot = 0,
   range,
-  scheme,
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : scheme !== undefined ? Scheme(scheme) : interpolateRdBu) : undefined,
+  scheme = "rdbu",
+  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : undefined,
   reverse
 }) {
   domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
@@ -283,4 +214,13 @@ function inferLogDomain(channels) {
     }
   }
   return [1, 10];
+}
+
+function inferQuantileDomain(channels) {
+  const domain = [];
+  for (const {value} of channels) {
+    if (value === undefined) continue;
+    for (const v of value) domain.push(v);
+  }
+  return domain;
 }

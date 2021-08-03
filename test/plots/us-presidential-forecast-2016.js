@@ -11,6 +11,10 @@ export default async function() {
       ticks: 5,
       percent: true
     },
+    color: {
+      type: "threshold",
+      domain: [270]
+    },
     marks: [
       Plot.ruleX(data, {x: "dem_electoral_votes", y: "probability", shapeRendering: "crispEdges", stroke: "dem_electoral_votes", strokeWidth: 1.5}),
       Plot.ruleY([0]),

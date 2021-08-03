@@ -175,7 +175,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
@@ -252,11 +252,15 @@ The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordina
 * *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
+* *threshold* - given a *domain* of *n* = 1 or more values and a *range* of *n* + 1 colors, returns the *i*th color of the *range* for values that are smaller than the *i*th element of the domain. Returns the *n*th color for values above the highest threshold
+* *quantile* - given a number of *quantiles*, bins the channels into ordered *quantiles* having roughly the same number of values, then returns a threshold scale based on the bins’ limits
 
 Color scales support two additional options:
 
 * *scale*.**scheme** - a named color scheme in lieu of a range, such as *reds*
 * *scale*.**interpolate** - in conjunction with a range, how to interpolate colors
+
+For quantile color scales, the *scale*.scheme option is used in conjunction with *scale*.**quantiles**, which determines how many quantiles to compute, and thus the number of elements in the scale’s range; it defaults to 5 for quintiles.
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
