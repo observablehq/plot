@@ -260,6 +260,8 @@ Color scales support two additional options:
 * *scale*.**scheme** - a named color scheme in lieu of a range, such as *reds*
 * *scale*.**interpolate** - in conjunction with a range, how to interpolate colors
 
+For quantile color scales, the *scale*.scheme option is used in conjunction with *scale*.**quantiles**, which determines how many quantiles to compute, and thus the number of elements in the scale’s range; it defaults to 5 for quintiles.
+
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
 * <sub><img src="./img/blues.png" width="32" height="16" alt="blues"></sub> *blues*
