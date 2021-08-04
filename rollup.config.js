@@ -10,7 +10,7 @@ import * as meta from "./package.json";
 const filename = meta.name.split("/").pop();
 
 // Resolve D3 dependency.
-const d3 = require("d3/package.json");
+const d3 = JSON.parse(fs.readFileSync("./node_modules/d3/package.json", "utf-8"));
 if (typeof d3.jsdelivr === "undefined") throw new Error("unable to resolve d3");
 const d3Path = `d3@${d3.version}/${d3.jsdelivr}`;
 
@@ -55,14 +55,6 @@ const config = {
 };
 
 export default [
-  {
-    ...config,
-    output: {
-      ...config.output,
-      format: "cjs",
-      file: `dist/${filename}.cjs.js`
-    }
-  },
   {
     ...config,
     output: {

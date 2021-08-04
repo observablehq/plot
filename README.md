@@ -175,7 +175,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
@@ -234,7 +234,7 @@ The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
 The *scale*.inset option can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitiatve scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
 
 <img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
 
@@ -247,6 +247,8 @@ For a *band* scale, you can further fine-tune padding:
 
 * *scale*.**paddingInner** - how much of the range to reserve to separate adjacent bands
 * *scale*.**paddingOuter** - how much of the range to reserve to inset first and last band
+
+Align defaults to 0.5 (centered). Band scale padding defaults to 0.1 (10% of available space reserved for separating bands), while point scale padding defaults to 0.5 (the gap between the first point and the edge is half the distance of the gap between points, and likewise for the gap between the last point and the opposite edge). Note that rounding and mark insets (e.g., for bars and rects) also affect separation between adjacent marks.
 
 Plot automatically generates axes for position scales. You can configure these axes with the following options:
 
@@ -267,15 +269,23 @@ Plot does not currently generate a legend for the *color*, *radius*, or *opacity
 
 The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
 
+* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
-* *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
+* *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to the *rdbu* scheme
+* *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
+* *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
+* *threshold* - given a *domain* of *n* = 1 or more values and a *range* of *n* + 1 colors, returns the *i*th color of the *range* for values that are smaller than the *i*th element of the domain. Returns the *n*th color for values above the highest threshold
+* *quantile* - given a number of *quantiles*, bins the channels into ordered *quantiles* having roughly the same number of values, then returns a threshold scale based on the bins’ limits
 
 Color scales support two additional options:
 
 * *scale*.**scheme** - a named color scheme in lieu of a range, such as *reds*
 * *scale*.**interpolate** - in conjunction with a range, how to interpolate colors
+
+For quantile color scales, the *scale*.scheme option is used in conjunction with *scale*.**quantiles**, which determines how many quantiles to compute, and thus the number of elements in the scale’s range; it defaults to 5 for quintiles.
 
 The following sequential scale schemes are supported for both quantitative and ordinal data:
 
@@ -397,7 +407,12 @@ The following *facet* constant options are also supported:
 * facet.**marginLeft** - the left margin
 * facet.**grid** - if true, draw grid lines for each facet
 
-Marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset, whereas other marks will be repeated across facets. You can disable faceting for an individual mark by giving it a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice).
+Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
+
+* *auto* (default) - marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (see *include*), whereas other marks will be repeated across facets.
+* *include* - enable faceting for this mark (shorthand: *true*)
+* *exclude* - enable exclusion faceting for this mark (each facet receives all the data except the facet’s subset)
+* null - (or false) disable faceting for this mark
 
 ```js
 Plot.plot({
@@ -407,11 +422,13 @@ Plot.plot({
   },
   marks: {
     Plot.frame(), // draws an outline around each facet
-    Plot.dot(penguins.slice(), {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee"}), // draws all penguins on each facet
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee", facet: "exclude"}), // draws excluded penguins on each facet
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
   }
 })
 ```
+
+The strict equality check means that an individual mark that receives a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) or [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) has faceting disabled by default.
 
 ## Marks
 
@@ -474,6 +491,7 @@ All marks support the following style options:
 * **strokeMiterlimit** - to limit the length of *miter* joins
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
+* **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 
 All marks support the following optional channels:
 
@@ -994,6 +1012,7 @@ The following aggregation methods are supported:
 * *first* - the first value, in input order
 * *last* - the last value, in input order
 * *count* - the number of elements (frequency)
+* *distinct* - the number of distinct values
 * *sum* - the sum of values
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
@@ -1003,6 +1022,7 @@ The following aggregation methods are supported:
 * *median* - the median value
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *mode* - the value with the most occurrences
 * a function to be passed the array of values for each bin
 * an object with a *reduce* method
 
@@ -1048,6 +1068,7 @@ Plot.binX({y: "count"}, {x: {thresholds: 20, value: "culmen_length_mm"}})
 
 The **thresholds** option may be specified as a named method or a variety of other ways:
 
+* *auto* (default) - Scott’s rule, capped at 200
 * *freedman-diaconis* - the [Freedman–Diaconis rule](https://en.wikipedia.org/wiki/Freedman–Diaconis_rule)
 * *scott* - [Scott’s normal reference rule](https://en.wikipedia.org/wiki/Histogram#Scott.27s_normal_reference_rule)
 * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
@@ -1056,7 +1077,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is not specified, it defaults to *scott*. If a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
+If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
 
 The bin transform supports grouping in addition to binning: you can subdivide bins by up to two additional ordinal or categorical dimensions (not including faceting). If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. Similarly, Plot.binX will group on **y** if **y** is not an output channel, and Plot.binY will group on **x** if **x** is not an output channel. For example, for a stacked histogram:
 

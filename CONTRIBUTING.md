@@ -10,9 +10,7 @@ cd plot
 yarn
 ```
 
-Plot is written in ES modules and uses [Snowpack](https://snowpack.dev/) for
-development; this means that you can edit the Plot source code and examples, and
-they’ll update live as you save changes. To start Snowpack:
+Plot is written in ES modules and uses [Snowpack](https://snowpack.dev/) for development; this means that you can edit the Plot source code and examples, and they’ll update live as you save changes. To start Snowpack:
 
 ```
 yarn dev
@@ -24,15 +22,9 @@ This should open http://localhost:8008/ where you can browse the tests.
 
 Plot has both unit tests and snapshot tests.
 
-**Unit tests** live in `test` and have the `-test.js` extension. These tests are
-written using [Tape](https://github.com/substack/tape) (more precisely,
-[tape-await](https://github.com/mbostock/tape-await) for easier async testing).
-Generally speaking, unit tests make specific assertions about the behavior of
-Plot’s internals and helper methods.
+**Unit tests** live in `test` and have the `-test.js` extension. These tests are written using [Mocha](https://mochajs.org). Generally speaking, unit tests make specific assertions about the behavior of Plot’s internals and helper methods.
 
-**Snapshot tests** live in `test/plots`; these also serve as examples of how to
-use the Plot API. Each snapshot test defines a plot by exporting a default async
-function. For example, here’s a line chart using BLS unemployment data:
+**Snapshot tests** live in `test/plots`; these also serve as examples of how to use the Plot API. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
 
 ```js
 import * as Plot from "@observablehq/plot";
@@ -49,18 +41,9 @@ export default async function() {
 }
 ```
 
-When a snapshot test is run, its output is compared against the SVG snapshot
-saved in the `test/output` folder. This makes it easier to see the effect of
-code changes and to catch unintended changes.
+When a snapshot test is run, its output is compared against the SVG snapshot saved in the `test/output` folder. This makes it easier to see the effect of code changes and to catch unintended changes.
 
-To add a new snapshot test, create a new JavaScript file in the `test/plots`
-folder. Then register your test in the test registry, `test/plots/index.js`.
-Once you’ve registered your test, it will also appear automatically in the test
-browser (http://localhost:8008), where you can inspect and debug the output.
-(Snapshot tests must have deterministic, reproducible behavior; they should not
-depend on live data, external servers, the current time, the weather, etc. To
-use randomness in a test, use a seeded random number generator such as
-[d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).)
+To add a new snapshot test, create a new JavaScript file in the `test/plots` folder. Then register your test in the test registry, `test/plots/index.js`. Once you’ve registered your test, it will also appear automatically in the test browser (http://localhost:8008), where you can inspect and debug the output. (Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).)
 
 To run the tests:
 
@@ -68,13 +51,9 @@ To run the tests:
 yarn test
 ```
 
-This will automatically generate any missing snapshots in `test/output`, which
-you should remember to `git add` before committing your changes. (If you forget,
-your PR will fail in CI, and you’ll get a reminder.)
+This will automatically generate any missing snapshots in `test/output`, which you should remember to `git add` before committing your changes. (If you forget, your PR will fail in CI, and you’ll get a reminder.)
 
-If your code intentionally changes some of the existing snapshots, simply blow
-away the existing snapshots and run the tests again. You can then review what’s
-changed using `git diff`.
+If your code intentionally changes some of the existing snapshots, simply blow away the existing snapshots and run the tests again. You can then review what’s changed using `git diff`.
 
 ```
 rm -rf test/output

@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyStyle, applyTransform} from "../style.js";
+import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
 
 export class Text extends Mark {
   constructor(
@@ -13,6 +13,8 @@ export class Text extends Mark {
       title,
       fill,
       fillOpacity,
+      stroke,
+      strokeOpacity,
       textAnchor,
       fontFamily,
       fontSize,
@@ -25,6 +27,8 @@ export class Text extends Mark {
       ...options
     } = {}
   ) {
+    const [vstroke, cstroke] = maybeColor(stroke, "none");
+    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
     const [vfill, cfill] = maybeColor(fill, "currentColor");
     const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
     const [vrotate, crotate] = maybeNumber(rotate, 0);
@@ -39,15 +43,23 @@ export class Text extends Mark {
         {name: "text", value: text},
         {name: "title", value: title, optional: true},
         {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true}
+        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
+        {name: "stroke", value: vstroke, scale: "color", optional: true},
+        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
       ],
       options
     );
-    Style(this, {fill: cfill, fillOpacity: cfillOpacity, ...options});
+    Style(this, {
+      fill: cfill,
+      fillOpacity: cfillOpacity,
+      stroke: cstroke,
+      strokeOpacity: cstrokeOpacity,
+      ...options
+    });
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
-    this.fontSize = string(cfontSize);
+    this.fontSize = cfontSize;
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
@@ -57,7 +69,7 @@ export class Text extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS},
+    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS, stroke: S, strokeOpacity: SO},
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {rotate} = this;
@@ -83,6 +95,8 @@ export class Text extends Mark {
             .call(applyAttr, "fill", F && (i => F[i]))
             .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
+            .call(applyAttr, "stroke", S && (i => S[i]))
+            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .text(i => T[i])
             .call(title(L)))
       .node();
@@ -105,11 +119,11 @@ export function textY(data, {y = identity, ...options} = {}) {
 function applyIndirectTextStyles(selection, mark) {
   applyIndirectStyles(selection, mark);
   applyAttr(selection, "text-anchor", mark.textAnchor);
-  applyStyle(selection, "font-family", mark.fontFamily);
-  applyStyle(selection, "font-size", mark.fontSize);
-  applyStyle(selection, "font-style", mark.fontStyle);
-  applyStyle(selection, "font-variant", mark.fontVariant);
-  applyStyle(selection, "font-weight", mark.fontWeight);
+  applyAttr(selection, "font-family", mark.fontFamily);
+  applyAttr(selection, "font-size", mark.fontSize);
+  applyAttr(selection, "font-style", mark.fontStyle);
+  applyAttr(selection, "font-variant", mark.fontVariant);
+  applyAttr(selection, "font-weight", mark.fontWeight);
 }
 
 function applyDirectTextStyles(selection, mark) {

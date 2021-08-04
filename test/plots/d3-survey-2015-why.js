@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import {chooseMany} from "./d3-survey-2015";
+import {chooseMany} from "./d3-survey-2015.js";
 
 export default async function() {
   const responses = await d3.json("data/d3-survey-2015.json");

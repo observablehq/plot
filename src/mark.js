@@ -7,9 +7,10 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], options = {}) {
+  constructor(data, channels = [], {facet = "auto", ...options} = {}) {
     const names = new Set();
     this.data = data;
+    this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = maybeTransform(options);
     this.transform = transform;
     this.channels = channels.filter(channel => {
@@ -17,9 +18,6 @@ export class Mark {
       if (value == null) {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
-      }
-      if (typeof value === "string") {
-        channel.value = field(value);
       }
       if (name !== undefined) {
         const key = name + "";
@@ -58,7 +56,7 @@ function Channel(data, {scale, type, value}) {
     scale,
     type,
     value: valueof(data, value),
-    label: value ? value.label : undefined
+    label: labelof(value)
   };
 }
 
@@ -72,7 +70,7 @@ export function valueof(data, value, type) {
     : arrayify(value, type); // preserve undefined type
 }
 
-export const field = label => Object.assign(d => d[label], {label});
+export const field = name => d => d[name];
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
