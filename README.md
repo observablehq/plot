@@ -1261,7 +1261,7 @@ Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores
 Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*. If the **basiss** option is not specified, it defaults to *first*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*. If the **basis** option is not specified, it defaults to *first*.
 
 #### Plot.normalizeY(*options*)
 
@@ -1269,7 +1269,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method wit
 Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*. If the **basiss** option is not specified, it defaults to *first*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*. If the **basis** option is not specified, it defaults to *first*.
 
 #### Plot.windowX(*options*)
 
