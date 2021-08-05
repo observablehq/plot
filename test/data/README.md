@@ -63,10 +63,6 @@ https://github.com/vincentarelbundock/Rdatasets/blob/master/csv/datasets/morley.
 Vega
 https://github.com/vega/vega-datasets/blob/master/SOURCES.md#moviesjson
 
-## nba-2021-data.csv
-ESPN
-https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/MIA
-
 ## nc-absentee-votes.csv
 unknown
 
