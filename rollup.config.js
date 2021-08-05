@@ -30,6 +30,7 @@ const css = {
   transform(input, id) {
     if (id !== cssPath) return;
     return {
+      moduleSideEffects: true,
       code: `if (typeof document !== 'undefined') {
   const style = document.createElement('style');
   style.textContent = '${jsesc(new CleanCSS().minify(input).styles)}';
