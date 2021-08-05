@@ -45,20 +45,22 @@ function autoScaleRangeY(scale, dimensions) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.type === "ordinal") range.reverse();
+    if (scale.family === "ordinal") range.reverse();
     scale.scale.range(range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && scale.family === "ordinal" && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }
 
 function Scale(key, channels = [], options = {}) {
-  switch (inferScaleType(key, channels, options)) {
+  const type = options.type;
+  options.type = inferScaleType(key, channels, options);
+  switch (options.type) {
     case "diverging": return ScaleDiverging(key, channels, options);
     case "diverging-sqrt": return ScaleDivergingSqrt(key, channels, options);
     case "diverging-pow": return ScaleDivergingPow(key, channels, options);
@@ -77,9 +79,13 @@ function Scale(key, channels = [], options = {}) {
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
     case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
-    case undefined: return;
-    default: throw new Error(`unknown scale type: ${options.type}`);
+    case undefined: break;
+    default: throw new Error(`unknown scale type: ${type}`);
   }
+}
+
+export function scale(options) {
+  return Scale(options.key, undefined, options).scale;
 }
 
 function inferScaleType(key, channels, {type, domain, range}) {
@@ -97,7 +103,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isOrdinal(domain)) return asOrdinalType(key, type);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
@@ -109,6 +115,30 @@ function inferScaleType(key, channels, {type, domain, range}) {
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key) {
-  return registry.get(key) === position ? "point" : "ordinal";
+function asOrdinalType(key, type = "categorical") {
+  return registry.get(key) === position ? "point" : type;
+}
+
+export function exposeScales(scaleDescriptors) {
+  const scales = {};
+  for (const key in scaleDescriptors) {
+    let cache;
+    Object.defineProperty(scales, key, {
+      enumerable: true,
+      get: () => cache = cache || exposeScale(scaleDescriptors[key])
+    });
+  }
+  return scales;
+}
+
+function exposeScale({scale, ...options}) {
+  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse"]) delete options[remove];
+  return {
+    domain: scale.domain(),
+    range: scale.range(),
+    ...scale.interpolate && {interpolate: scale.interpolate()},
+    ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
+    ...scale.clamp && {clamp: scale.clamp()},
+    ...options
+  };
 }

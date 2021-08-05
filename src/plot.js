@@ -1,8 +1,10 @@
 import {create} from "d3";
-import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
 import {facets} from "./facet.js";
 import {values} from "./mark.js";
-import {Scales, autoScaleRange} from "./scales.js";
+import {Scales, autoScaleRange, exposeScales} from "./scales.js";
+import {figureWrap} from "./figure.js";
+import {createLegends} from "./legends.js";
 import {offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -52,6 +54,9 @@ export function plot(options = {}) {
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
   autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
+  for (const key of ["color", "r", "opacity"]) {
+    autoScaleLabel(scaleDescriptors[key], scaleChannels.get(key), options[key]);
+  }
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
@@ -88,12 +93,10 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
-  if (caption == null) return svg;
-  const figure = document.createElement("figure");
-  figure.appendChild(svg);
-  const figcaption = figure.appendChild(document.createElement("figcaption"));
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  const descriptors = exposeScales(scaleDescriptors);
+  const legends = createLegends(descriptors, dimensions);
+  const figure = figureWrap(svg, dimensions, caption, legends);
+  figure.scales = descriptors;
   return figure;
 }
 
@@ -140,6 +143,6 @@ function ScaleFunctions(scales) {
 
 function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  const ny = y ? (y.family === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }

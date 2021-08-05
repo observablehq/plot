@@ -3,7 +3,7 @@ import {ScaleQ} from "./quantitative.js";
 
 function ScaleT(key, scale, channels, options) {
   const s = ScaleQ(key, scale, channels, options);
-  s.type = "temporal";
+  s.family = "temporal";
   return s;
 }
 

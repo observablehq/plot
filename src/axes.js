@@ -37,6 +37,7 @@ function autoAxisTicksK(scale, axis, k) {
 }
 
 // Mutates axis.{label,labelAnchor,labelOffset}!
+// Mutates scale.label!
 export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
@@ -70,23 +71,33 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
 
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
+    axis.labelAnchor = scale.family === "ordinal" ? "center"
       : scale.reverse ? "left"
       : "right";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "x");
   }
+  scale.label = axis.label;
 }
 
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
+    axis.labelAnchor = scale.family === "ordinal" ? "center"
       : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
       : "top";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "y");
+  }
+  scale.label = axis.label;
+}
+
+export function autoScaleLabel(scale, channels, options) {
+  if (scale === undefined) return;
+  if (options !== undefined) scale.label = options.label;
+  if (scale.label === undefined) {
+    scale.label = inferLabel(channels, scale, {});
   }
 }
 
@@ -104,8 +115,8 @@ function inferLabel(channels = [], scale, axis, key) {
   if (candidate !== undefined) {
     const {percent, reverse} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
-    if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
-    if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
+    if (scale.family === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
+    if (scale.family !== "ordinal" && (key === "x" || key === "y")) {
       if (percent) candidate = `${candidate} (%)`;
       if (axis.labelAnchor === "center") {
         candidate = `${candidate} →`;
