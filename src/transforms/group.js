@@ -29,7 +29,8 @@ import {
   range,
   second,
   percentile,
-  isTemporal
+  isTemporal,
+  isWeaklyNumeric
 } from "../options.js";
 import {basic} from "./basic.js";
 
@@ -253,7 +254,7 @@ export function maybeReduce(reduce, value) {
     case "proportion-facet":
       return reduceProportion(value, "facet");
     case "deviation":
-      return reduceAccessor(deviation);
+      return reduceNumbers(deviation);
     case "min":
       return reduceAccessor(min);
     case "min-index":
@@ -267,7 +268,7 @@ export function maybeReduce(reduce, value) {
     case "median":
       return reduceMaybeTemporalAccessor(median);
     case "variance":
-      return reduceAccessor(variance);
+      return reduceNumbers(variance);
     case "mode":
       return reduceAccessor(mode);
     case "x":
@@ -322,9 +323,19 @@ function reduceAccessor(f) {
   };
 }
 
+function reduceNumbers(f) {
+  return {
+    reduce(I, X) {
+      if (!isWeaklyNumeric(X)) throw new Error("non-numeric data");
+      return f(I, (i) => X[i]);
+    }
+  };
+}
+
 function reduceMaybeTemporalAccessor(f) {
   return {
     reduce(I, X) {
+      if (!isWeaklyNumeric(X)) throw new Error("non-numeric data");
       const x = f(I, (i) => X[i]);
       return isTemporal(X) ? new Date(x) : x;
     }
@@ -385,7 +396,7 @@ const reduceDistinct = {
   }
 };
 
-const reduceSum = reduceAccessor(sum);
+const reduceSum = reduceNumbers(sum);
 
 function reduceProportion(value, scope) {
   return value == null

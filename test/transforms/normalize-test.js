@@ -41,6 +41,16 @@ it("Plot.normalize deviation doesn’t crash on equal values", () => {
   testNormalize([1, 1], "deviation", [0, 0]);
 });
 
+it("normalizeX throws on non-numeric values", () => {
+  const data = [null, "A", 10, 8];
+  testNormalizeThrows(data);
+  testNormalizeThrows(data, "first");
+  testNormalizeThrows(data, "last");
+  testNormalizeThrows(data, "mean");
+  testNormalizeThrows(data, "sum");
+  testNormalizeThrows(data, "deviation");
+});
+
 function testNormalize(data, basis, r) {
   const mark = Plot.dot(data, Plot.normalizeY(basis, {y: data}));
   const {
@@ -49,4 +59,9 @@ function testNormalize(data, basis, r) {
     }
   } = mark.initialize();
   assert.deepStrictEqual(Y, r);
+}
+
+function testNormalizeThrows(data, basis) {
+  const mark = Plot.dot(data, Plot.normalizeX({x: data, basis}));
+  assert.throws(() => mark.initialize());
 }

@@ -307,6 +307,14 @@ export function isTemporal(values) {
   }
 }
 
+export function isWeaklyNumeric(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    if (typeof value === "number") return true; // note: includes NaN!
+    return !isNaN(+value);
+  }
+}
+
 // Are these strings that might represent dates? This is stricter than ISO 8601
 // because we want to ignore false positives on numbers; for example, the string
 // "1192" is more likely to represent a number than a date even though it is
