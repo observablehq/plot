@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset} from "../style.js";
 
 const defaults = {};
 
@@ -54,7 +54,7 @@ export class Text extends Mark {
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
-        .call(applyTransform, x, y, 0.5, 0.5)
+        .call(applyTransform, x, y, offset, offset)
         .call(g => g.selectAll()
           .data(index)
           .join("text")

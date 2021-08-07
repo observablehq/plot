@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
 import {Mark, identity, maybeNumber, maybeTuple} from "../mark.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
   fill: "none",
@@ -32,11 +32,12 @@ export class Dot extends Mark {
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {x: X, y: Y, r: R} = channels;
+    const {dx, dy} = this;
     let index = filter(I, X, Y);
     if (R) index = index.filter(i => positive(R[i]));
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y, 0.5, 0.5)
+        .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
           .join("circle")

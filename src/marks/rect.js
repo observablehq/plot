@@ -43,11 +43,11 @@ export class Rect extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
+    const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry} = this;
     const index = filter(I, X1, Y2, X2, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y)
+        .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
           .data(index)
           .join("rect")

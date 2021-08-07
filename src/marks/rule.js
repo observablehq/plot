@@ -2,7 +2,7 @@ import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, number} from "../mark.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
   fill: null,
@@ -39,7 +39,7 @@ export class RuleX extends Mark {
     const index = filter(I, X, Y1, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, X && x, null, 0.5, 0)
+        .call(applyTransform, X && x, null, offset, 0)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
@@ -79,11 +79,11 @@ export class RuleY extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {y: Y, x1: X1, x2: X2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetLeft, insetRight} = this;
+    const {insetLeft, insetRight, dx, dy} = this;
     const index = filter(I, Y, X1, X2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, null, Y && y, 0, 0.5)
+        .call(applyTransform, null, Y && y, dx, offset + dy)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")

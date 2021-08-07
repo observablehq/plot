@@ -2,7 +2,7 @@ import {create, group, line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, maybeTuple, maybeZ} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset} from "../style.js";
 
 const defaults = {
   fill: "none",
@@ -28,9 +28,10 @@ export class Line extends Mark {
   }
   render(I, {x, y}, channels) {
     const {x: X, y: Y, z: Z} = channels;
+    const {dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y, 0.5, 0.5)
+        .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")

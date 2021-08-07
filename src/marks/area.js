@@ -29,9 +29,10 @@ export class Area extends Mark {
   }
   render(I, {x, y}, channels) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z} = channels;
+    const {dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y)
+        .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")

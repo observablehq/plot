@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, number} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
   fill: null,
@@ -14,10 +14,11 @@ class AbstractTick extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {x: X, y: Y} = channels;
+    const {dx, dy} = this;
     const index = filter(I, X, Y);
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(this._transform, scales)
+        .call(this._transform, scales, dx, dy)
         .call(g => g.selectAll("line")
           .data(index)
           .join("line")
@@ -51,8 +52,8 @@ export class TickX extends AbstractTick {
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
   }
-  _transform(selection, {x}) {
-    selection.call(applyTransform, x, null, 0.5, 0);
+  _transform(selection, {x}, dx, dy) {
+    selection.call(applyTransform, x, null, offset + dx, dy);
   }
   _x1(scales, {x: X}) {
     return i => X[i];
@@ -90,8 +91,8 @@ export class TickY extends AbstractTick {
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
   }
-  _transform(selection, {y}) {
-    selection.call(applyTransform, null, y, 0, 0.5);
+  _transform(selection, {y}, dx, dy) {
+    selection.call(applyTransform, null, y, dx, offset + dy);
   }
   _x1(scales, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
