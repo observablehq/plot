@@ -1032,6 +1032,7 @@ To control how the quantitative dimensions *x* and *y* are divided into bins, th
 * **thresholds** - the threshold values; see below
 * **domain** - values outside the domain will be omitted
 * **cumulative** - if positive, each bin will contain all lesser bins
+* **skip** - skip empty bins (default: true)
 
 If the **domain** option is not specified, it defaults to the minimum and maximum of the corresponding dimension (*x* or *y*), possibly niced to match the threshold interval to ensure that the first and last bin have the same width as other bins. If **cumulative** is negative (-1 by convention), each bin will contain all *greater* bins rather than all *lesser* bins, representing the [complementary cumulative distribution](https://en.wikipedia.org/wiki/Cumulative_distribution_function#Complementary_cumulative_distribution_function_.28tail_distribution.29).
 

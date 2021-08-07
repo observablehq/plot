@@ -96,10 +96,10 @@ function binn(
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
-              if (bb.length === 0) continue;
+              if (bx && bx.skip && bb.length === 0) continue;
               for (const [y1, y2, fy] of BY) {
                 const b = fy(bb);
-                if (b.length === 0) continue;
+                if (by && by.skip && b.length === 0) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
@@ -124,12 +124,13 @@ function binn(
   };
 }
 
-function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValue) {
+function maybeBinValue(value, {cumulative, domain, thresholds, skip = true} = {}, defaultValue) {
   value = {...maybeValue(value)};
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
   if (value.thresholds === undefined) value.thresholds = thresholds;
   if (value.value === undefined) value.value = defaultValue;
+  value.skip = skip;
   value.thresholds = maybeThresholds(value.thresholds);
   return value;
 }
@@ -144,7 +145,7 @@ function maybeBinValueTuple(options = {}) {
 
 function maybeBin(options) {
   if (options == null) return;
-  const {value, cumulative, domain = extent, thresholds} = options;
+  const {value, cumulative, domain = extent, thresholds, skip} = options;
   const bin = data => {
     const V = valueof(data, value);
     const bin = binner().value(i => V[i]);
@@ -165,7 +166,8 @@ function maybeBin(options) {
     }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
-    return bins.filter(nonempty2).map(binfilter);
+    if (skip) bins = bins.filter(nonempty2);
+    return bins.map(binfilter);
   };
   bin.label = labelof(value);
   return bin;
