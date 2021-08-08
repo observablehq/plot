@@ -23,7 +23,7 @@ export default async function() {
             d['Very Unfavorable %'] - 
             d['Somewhat Unfavorable %'],
           href: 'Portrait URL',
-          size: 60,
+          r: 30,
           title: 'Name'
         }
       )
