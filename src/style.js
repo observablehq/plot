@@ -27,16 +27,27 @@ export function styles(
   }
 ) {
   const [vstroke, cstroke] = maybeColor(stroke, defaultStroke);
+
+  // some styles only apply if there is a stroke (either constant non-none, or channel)
   if (cstroke !== "none") {
     if (defaultFill === "currentColor") defaultFill = "none";
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
     if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
   }
+
+  // some marks don’t support fill (e.g., tick)
+  if (defaultFill === null) {
+    fill = null;
+    fillOpacity = null;
+  }
+
   const [vfill, cfill] = maybeColor(fill, defaultFill);
   const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
   const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-  mark.fill = impliedString(cfill, "currentColor");
-  mark.fillOpacity = impliedNumber(cfillOpacity, 1);
+  if (defaultFill !== null) {
+    mark.fill = impliedString(cfill, "currentColor");
+    mark.fillOpacity = impliedNumber(cfillOpacity, 1);
+  }
   mark.stroke = impliedString(cstroke, "none");
   mark.strokeWidth = impliedNumber(strokeWidth, 1);
   mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
