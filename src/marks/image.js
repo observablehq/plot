@@ -1,6 +1,6 @@
 import { create } from "d3";
 import { filter, positive } from "../defined.js";
-import { Mark, identity, maybeNumber, maybeTuple, title } from "../mark.js";
+import { Mark, maybeNumber, maybeTuple, title } from "../mark.js";
 import {
   Style,
   applyDirectStyles,
@@ -64,12 +64,4 @@ export class Image extends Mark {
 export function image(data, { x, y, ...options } = {}) {
   [x, y] = maybeTuple(x, y);
   return new Image(data, { ...options, x, y });
-}
-
-export function imageX(data, { x = identity, ...options } = {}) {
-  return new Image(data, { ...options, x });
-}
-
-export function imageY(data, { y = identity, ...options } = {}) {
-  return new Image(data, { ...options, y });
 }
