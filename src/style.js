@@ -1,4 +1,4 @@
-import {string, number, maybeColor, maybeNumber, titleGroup} from "./mark.js";
+import {string, number, maybeColor, maybeNumber, title, titleGroup} from "./mark.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -56,12 +56,12 @@ export function styles(
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
   return [
+    ...channels,
     {name: "title", value: title, optional: true},
     {name: "fill", value: vfill, scale: "color", optional: true},
     {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
     {name: "stroke", value: vstroke, scale: "color", optional: true},
-    {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true},
-    ...channels
+    {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
   ];
 }
 
@@ -92,7 +92,14 @@ export function Style(mark, {
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 }
 
-// TODO This works for Area and Line, but Dot needs to be applied to individual elements.
+export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
+  applyAttr(selection, "fill", F && (i => F[i]));
+  applyAttr(selection, "fill-opacity", FO && (i => FO[i]));
+  applyAttr(selection, "stroke", S && (i => S[i]));
+  applyAttr(selection, "stroke-opacity", SO && (i => SO[i]));
+  title(L)(selection);
+}
+
 export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
   applyAttr(selection, "fill", F && (([i]) => F[i]));
   applyAttr(selection, "fill-opacity", FO && (([i]) => FO[i]));
