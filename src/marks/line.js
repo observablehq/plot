@@ -2,7 +2,14 @@ import {create, group, line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, maybeTuple, maybeZ} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, primaryStroke} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+
+const defaults = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeMiterlimit: 1
+};
 
 export class Line extends Mark {
   constructor(data, options = {}) {
@@ -15,7 +22,7 @@ export class Line extends Mark {
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,
-      primaryStroke
+      defaults
     );
     this.curve = Curve(curve, tension);
   }

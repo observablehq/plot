@@ -1,12 +1,14 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark, number} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, primaryFill, applyChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+
+const defaults = {};
 
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}) {
-    super(data, channels, options, primaryFill);
+    super(data, channels, options, defaults);
     const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);

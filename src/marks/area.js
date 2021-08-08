@@ -2,8 +2,13 @@ import {area as shapeArea, create, group} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, maybeZ} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, primaryFill} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
+
+const defaults = {
+  strokeWidth: 1,
+  strokeMiterlimit: 1
+};
 
 export class Area extends Mark {
   constructor(data, options = {}) {
@@ -18,7 +23,7 @@ export class Area extends Mark {
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,
-      primaryFill
+      defaults
     );
     this.curve = Curve(curve, tension);
   }

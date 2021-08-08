@@ -8,13 +8,14 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], {facet = "auto", ...options} = {}, primary) {
+  constructor(data, channels = [], options = {}, defaults) {
+    const {facet = "auto"} = options;
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = maybeTransform(options);
     this.transform = transform;
-    if (primary !== undefined) channels = styles(this, options, channels, primary);
+    if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
