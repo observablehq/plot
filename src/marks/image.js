@@ -10,20 +10,20 @@ import {
 } from "../style.js";
 
 export class Image extends Mark {
-  constructor(data, { x, y, href, size, title, ...options } = {}) {
-    const [vsize, csize] = maybeNumber(size, 20);
+  constructor(data, { x, y, href, r, title, ...options } = {}) {
+    const [vr, cr] = maybeNumber(r, 15);
     super(
       data,
       [
         { name: "x", value: x, scale: "x", optional: true },
         { name: "y", value: y, scale: "y", optional: true },
+        {name: "r", value: vr, scale: "r", optional: true},
         { name: 'href', value: href, optional: false },
-        { name: "size", value: vsize, optional: true },
         { name: "title", value: title, optional: true }
       ],
       options
     );
-    this.size = csize;
+    this.r = cr;
     Style(this, {
       ...options
     });
@@ -31,11 +31,11 @@ export class Image extends Mark {
   render(
     I,
     { x, y },
-    { x: X, y: Y, href: H, size: S, title: L },
+    { x: X, y: Y, href: H, r: R, title: L },
     { width, height, marginTop, marginRight, marginBottom, marginLeft }
   ) {
-    let index = filter(I, X, Y, S, H);
-    if (S) index = index.filter((i) => positive(S[i]));
+    let index = filter(I, X, Y, R, H);
+    if (R) index = index.filter((i) => positive(R[i]));
     return create("svg:g")
       .call(applyIndirectStyles, this)
       .call(applyTransform, x, y, 0.5, 0.5)
@@ -47,13 +47,13 @@ export class Image extends Mark {
           .call(applyDirectStyles, this)
           .attr("x", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
           .attr("y", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
-          .attr("width", S ? (i) => S[i] : this.size)
-          .attr("height", S ? (i) => S[i] : this.size)
+          .attr("width", R ? (i) => R[i] * 2 : this.r * 2)
+          .attr("height", R ? (i) => R[i] * 2 : this.r * 2)
           .call(applyAttr, "href", H && (i => H[i]))
           .call(
             applyAttr,
             "transform",
-            i => `translate(${[-(S ? S[i] : this.size) / 2, -(S ? S[i] : this.size) / 2]})`
+            i => `translate(${[-(R ? R[i] : this.r), -(R ? R[i] : this.r)]})`
           )
           .call(title(L))
       )
