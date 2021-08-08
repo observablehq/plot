@@ -169,6 +169,7 @@ function maybeBin(options) {
     if (!empty) bins = bins.filter(nonempty2);
     return bins.map(binfilter);
   };
+  bin.empty = empty;
   bin.label = labelof(value);
   return bin;
 }
