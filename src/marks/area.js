@@ -1,22 +1,13 @@
 import {area as shapeArea, create, group} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf} from "../mark.js";
-import {styles, findStyle, applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {Mark, indexOf, maybeZ} from "../mark.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 export class Area extends Mark {
   constructor(data, options = {}) {
-    const [constants, channels] = styles(options);
-    const {
-      x1,
-      y1,
-      x2,
-      y2,
-      z = findStyle(channels, "fill", "stroke"), // optional grouping for multiple series
-      curve,
-      tension
-    } = options;
+    const {x1, y1, x2, y2, curve, tension} = options;
     super(
       data,
       [
@@ -24,12 +15,11 @@ export class Area extends Mark {
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x", optional: true},
         {name: "y2", value: y2, scale: "y", optional: true},
-        {name: "z", value: z, optional: true},
-        ...channels
+        {name: "z", value: maybeZ(options), optional: true}
       ],
-      options
+      options,
+      true // TODO always support common styles
     );
-    Object.assign(this, constants);
     this.curve = Curve(curve, tension);
   }
   render(I, {x, y}, channels) {
