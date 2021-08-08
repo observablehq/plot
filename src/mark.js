@@ -8,13 +8,13 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], {facet = "auto", ...options} = {}, commonStyles) { // TODO always support common styles
+  constructor(data, channels = [], {facet = "auto", ...options} = {}, primary) {
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = maybeTransform(options);
     this.transform = transform;
-    if (commonStyles) channels = styles(this, options, channels);
+    if (primary !== undefined) channels = styles(this, options, channels, primary);
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {

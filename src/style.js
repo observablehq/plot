@@ -2,25 +2,47 @@ import {string, number, maybeColor, maybeNumber, titleGroup} from "./mark.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
-// TODO This works for Area, but Line has different defaults (primary fill vs. primary stroke).
-export function styles(mark, {
-  title,
-  fill,
-  fillOpacity,
-  stroke,
-  strokeWidth,
-  strokeOpacity,
-  strokeLinejoin,
-  strokeLinecap,
-  strokeMiterlimit,
-  strokeDasharray,
-  mixBlendMode,
-  shapeRendering
-} = {}, channels) {
-  const [vstroke, cstroke] = maybeColor(stroke, "none");
-  const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-  const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
+// For marks whose primary color is fill-based, such as areas, the fill will
+// default to currentColor and the stroke to none.
+export const primaryFill = Symbol("fill");
+
+// For marks whose primary color is stroke-based, such as lines, the fill will
+// default to none and the stroke to currentColor; in addition, the strokeWidth
+// will default to 1.5 instead of 1.
+export const primaryStroke = Symbol("stroke");
+
+export function styles(
+  mark,
+  {
+    title,
+    fill,
+    fillOpacity,
+    stroke,
+    strokeWidth,
+    strokeOpacity,
+    strokeLinejoin,
+    strokeLinecap,
+    strokeMiterlimit,
+    strokeDasharray,
+    mixBlendMode,
+    shapeRendering
+  } = {},
+  channels,
+  primary = primaryFill
+) {
+  let vstroke, cstroke, vfill, cfill;
+  if (primary === primaryFill) {
+    ([vstroke, cstroke] = maybeColor(stroke, "none"));
+    ([vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none"));
+  } else if (primary === primaryStroke) {
+    ([vfill, cfill] = maybeColor(fill, "none"));
+    ([vstroke, cstroke] = maybeColor(stroke, "currentColor"));
+    if (strokeWidth === undefined) strokeWidth = cstroke === "none" ? undefined : 1.5;
+  } else {
+    throw new Error("unknown primary");
+  }
   const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
+  const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
   if (strokeMiterlimit === undefined) strokeMiterlimit = cstroke === "none" ? undefined : 1;
   mark.fill = impliedString(cfill, "currentColor");
   mark.fillOpacity = impliedNumber(cfillOpacity, 1);
