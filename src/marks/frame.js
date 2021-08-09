@@ -1,20 +1,22 @@
 import {create} from "d3";
 import {Mark, number} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+
+const defaults = {
+  fill: "none",
+  stroke: "currentColor"
+};
 
 export class Frame extends Mark {
-  constructor({
-    fill = "none",
-    stroke = fill === null || fill === "none" ? "currentColor" : "none",
-    inset = 0,
-    insetTop = inset,
-    insetRight = inset,
-    insetBottom = inset,
-    insetLeft = inset,
-    ...style
-  } = {}) {
-    super();
-    Style(this, {fill, stroke, ...style});
+  constructor(options = {}) {
+    const {
+      inset = 0,
+      insetTop = inset,
+      insetRight = inset,
+      insetBottom = inset,
+      insetLeft = inset
+    } = options;
+    super(undefined, undefined, options, defaults);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
