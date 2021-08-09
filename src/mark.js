@@ -313,7 +313,7 @@ export function numberChannel(source) {
 }
 
 // TODO use Float64Array.from for position and radius scales?
-export function values(channels = [], scales) {
+export function applyScales(channels = [], scales) {
   const values = Object.create(null);
   for (let [name, {value, scale}] of channels) {
     if (name !== undefined) {

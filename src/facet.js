@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, values, first, second} from "./mark.js";
+import {Mark, first, second, applyScales} from "./mark.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -76,7 +76,7 @@ class Facet extends Mark {
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-    const marksValues = marksChannels.map(channels => values(channels, scales));
+    const marksValues = marksChannels.map(channels => applyScales(channels, scales));
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
