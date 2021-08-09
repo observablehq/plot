@@ -26,9 +26,11 @@ it("frame(options) has the expected defaults", () => {
 it("frame({fill}) allows fill to be a constant color", () => {
   const frame = Plot.frame({fill: "red"});
   assert.strictEqual(frame.fill, "red");
+  assert.strictEqual(frame.stroke, undefined);
 });
 
 it("frame({stroke}) allows stroke to be a constant color", () => {
   const frame = Plot.frame({stroke: "red"});
   assert.strictEqual(frame.stroke, "red");
+  assert.strictEqual(frame.fill, "none");
 });
