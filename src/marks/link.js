@@ -30,8 +30,8 @@ export class Link extends Mark {
     {x, y},
     channels
   ) {
-    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, X1, Y1, X2, Y2, S, SO); // TODO filter standard channels
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const index = filter(I, X1, Y1, X2, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)

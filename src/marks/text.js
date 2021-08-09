@@ -53,9 +53,9 @@ export class Text extends Mark {
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const {x: X, y: Y, rotate: R, text: T, fill: F, fillOpacity: FO, fontSize: FS} = channels;
+    const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
-    const index = filter(I, X, Y, F, FO, R).filter(i => nonempty(T[i]));  // TODO filter standard channels
+    const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")

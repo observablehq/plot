@@ -31,8 +31,8 @@ export class Dot extends Mark {
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const {x: X, y: Y, r: R, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = channels;
-    let index = filter(I, X, Y, F, FO, S, SO); // TODO filter standard channels
+    const {x: X, y: Y, r: R} = channels;
+    let index = filter(I, X, Y);
     if (R) index = index.filter(i => positive(R[i]));
     return create("svg:g")
         .call(applyIndirectStyles, this)

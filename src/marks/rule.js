@@ -37,8 +37,8 @@ export class RuleX extends Mark {
     channels,
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
-    const {x: X, y1: Y1, y2: Y2, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, X, Y1, Y2, S, SO); // TODO filter standard channels
+    const {x: X, y1: Y1, y2: Y2} = channels;
+    const index = filter(I, X, Y1, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, X && x, null, 0.5, 0)
@@ -84,8 +84,8 @@ export class RuleY extends Mark {
     channels,
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
-    const {y: Y, x1: X1, x2: X2, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, Y, X1, X2, S, SO); // TODO filter standard channels
+    const {y: Y, x1: X1, x2: X2} = channels;
+    const index = filter(I, Y, X1, X2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, null, Y && y, 0, 0.5)

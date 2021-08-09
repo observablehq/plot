@@ -13,8 +13,8 @@ class AbstractTick extends Mark {
     super(data, channels, options, defaults);
   }
   render(I, scales, channels, dimensions) {
-    const {x: X, y: Y, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, X, Y, S, SO); // TODO filter standard channels
+    const {x: X, y: Y} = channels;
+    const index = filter(I, X, Y);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)

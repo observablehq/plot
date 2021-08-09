@@ -19,8 +19,7 @@ export class AbstractBar extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {rx, ry} = this;
-    const {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, ...this._positions(channels), F, FO, S, SO); // TODO filter standard channels
+    const index = filter(I, ...this._positions(channels));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)
