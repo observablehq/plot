@@ -9,6 +9,7 @@ const defaults = {
   stroke: "currentColor",
   strokeMiterlimit: 1
 };
+
 export class Link extends Mark {
   constructor(data, options = {}) {
     const {x1, y1, x2, y2, curve} = options;
@@ -25,11 +26,7 @@ export class Link extends Mark {
     );
     this.curve = Curve(curve);
   }
-  render(
-    I,
-    {x, y},
-    channels
-  ) {
+  render(I, {x, y}, channels) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const index = filter(I, X1, Y1, X2, Y2);
     return create("svg:g")
