@@ -1,10 +1,9 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
-import {filter} from "./defined.js";
 import {facets} from "./facet.js";
 import {applyScales} from "./mark.js";
 import {Scales, autoScaleRange} from "./scales.js";
-import {offset} from "./style.js";
+import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -85,8 +84,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark);
     const values = applyScales(channels, scales);
-    const {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = values;
-    const index = filter(markIndex.get(mark), F, FO, S, SO);
+    const index = filterStyles(markIndex.get(mark), values);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }

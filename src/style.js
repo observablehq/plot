@@ -1,4 +1,5 @@
 import {string, number, maybeColor, maybeNumber, title, titleGroup} from "./mark.js";
+import {filter} from "./defined.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -127,4 +128,9 @@ export function impliedString(value, impliedValue) {
 
 export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
+}
+
+export function filterStyles(index, values) {
+  const {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = values;
+  return filter(index, F, FO, S, SO);
 }

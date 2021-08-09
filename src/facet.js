@@ -1,6 +1,7 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
 import {Mark, first, second, applyScales} from "./mark.js";
+import {filterStyles} from "./style.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -110,10 +111,12 @@ class Facet extends Mark {
             .each(function(key) {
               const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
               for (let i = 0; i < marks.length; ++i) {
+                const values = marksValues[i];
+                const index = filterStyles(marksFacetIndex[i], values);
                 const node = marks[i].render(
-                  marksFacetIndex[i],
+                  index,
                   scales,
-                  marksValues[i],
+                  values,
                   subdimensions
                 );
                 if (node != null) this.appendChild(node);
