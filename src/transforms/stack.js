@@ -76,7 +76,8 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
             const y = Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
-            else Y2[i] = Y1[i] = yp; // NaN or zero
+            else if (!isNaN(y)) Y2[i] = Y1[i] = yp; // zero
+            else Y2[i] = Y1[i] = NaN;
           }
         }
         if (offset) offset(stacks, Y1, Y2, Z);

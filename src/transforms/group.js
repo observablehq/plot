@@ -173,7 +173,7 @@ function reduceFunction(f) {
 function reduceAccessor(f) {
   return {
     reduce(I, X) {
-      return I.length ? f(I, i => X[i]) : null;
+      return I.length ? f(I, i => X[i]) : NaN;
     }
   };
 }
@@ -199,13 +199,14 @@ const reduceLast = {
 const reduceCount = {
   label: "Frequency",
   reduce(I) {
-    return I.length || null;
+    return I.length || NaN;
   }
 };
 
 const reduceDistinct = {
   label: "Distinct",
   reduce: (I, X) => {
+    if (I.length === 0) return NaN;
     const s = new InternSet();
     for (const i of I) s.add(X[i]);
     return s.size;
@@ -216,6 +217,6 @@ const reduceSum = reduceAccessor(sum);
 
 function reduceProportion(value, scope) {
   return value == null
-      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length ? I.length / basis : null}
-      : {scope, reduce: (I, V, basis = 1) => I.length ? sum(I, i => V[i]) / basis : null};
+      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length ? I.length / basis : NaN}
+      : {scope, reduce: (I, V, basis = 1) => I.length ? sum(I, i => V[i]) / basis : NaN};
 }
