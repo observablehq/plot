@@ -228,7 +228,7 @@ function bincumset([bin], j, bins) {
 }
 
 function binfilter([{x0, x1}, set]) {
-  return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
+  return [x0, x1, set.size ? I => I.filter(set.has, set) : () => []]; // TODO optimize
 }
 
 function maybeInset(inset, inset1, inset2) {
