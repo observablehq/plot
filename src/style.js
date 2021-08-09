@@ -72,33 +72,6 @@ export function styles(
   ];
 }
 
-// TODO remove me
-export function Style(mark, {
-  fill,
-  fillOpacity,
-  stroke,
-  strokeWidth,
-  strokeOpacity,
-  strokeLinejoin,
-  strokeLinecap,
-  strokeMiterlimit,
-  strokeDasharray,
-  mixBlendMode,
-  shapeRendering
-} = {}) {
-  mark.fill = impliedString(fill, "currentColor");
-  mark.fillOpacity = impliedNumber(fillOpacity, 1);
-  mark.stroke = impliedString(stroke, "none");
-  mark.strokeWidth = impliedNumber(strokeWidth, 1);
-  mark.strokeOpacity = impliedNumber(strokeOpacity, 1);
-  mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
-  mark.strokeLinecap = impliedString(strokeLinecap, "butt");
-  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
-  mark.strokeDasharray = string(strokeDasharray);
-  mark.mixBlendMode = impliedString(mixBlendMode, "normal");
-  mark.shapeRendering = impliedString(shapeRendering, "auto");
-}
-
 export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
   applyAttr(selection, "fill", F && (i => F[i]));
   applyAttr(selection, "fill-opacity", FO && (i => FO[i]));
