@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, isCollapsed} from "../mark.js";
+import {Mark, number} from "../mark.js";
+import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
