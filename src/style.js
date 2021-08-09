@@ -26,6 +26,11 @@ export function styles(
     strokeMiterlimit: defaultStrokeMiterlimit
   }
 ) {
+  // some marks default stroke to undefined if fill is not none (e.g., dot)
+  if (defaultFill === "none" && defaultStroke === "currentColor") {
+    if (fill != null && fill !== "none") defaultStroke = null;
+  }
+
   const [vstroke, cstroke] = maybeColor(stroke, defaultStroke);
 
   // some styles only apply if there is a stroke (either constant non-none, or channel)
