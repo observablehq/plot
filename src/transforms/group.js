@@ -173,7 +173,7 @@ function reduceFunction(f) {
 function reduceAccessor(f) {
   return {
     reduce(I, X) {
-      return f(I, i => X[i]);
+      return I.length ? f(I, i => X[i]) : null;
     }
   };
 }
@@ -199,7 +199,7 @@ const reduceLast = {
 const reduceCount = {
   label: "Frequency",
   reduce(I) {
-    return I.length;
+    return I.length || null;
   }
 };
 
@@ -216,6 +216,6 @@ const reduceSum = reduceAccessor(sum);
 
 function reduceProportion(value, scope) {
   return value == null
-      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
-      : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
+      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length ? I.length / basis : null}
+      : {scope, reduce: (I, V, basis = 1) => I.length ? sum(I, i => V[i]) / basis : null};
 }

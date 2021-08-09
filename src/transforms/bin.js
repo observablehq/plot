@@ -96,10 +96,8 @@ function binn(
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
-              if (bb.length === 0) continue;
               for (const [y1, y2, fy] of BY) {
                 const b = fy(bb);
-                if (b.length === 0) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
@@ -165,7 +163,7 @@ function maybeBin(options) {
     }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
-    return bins.filter(nonempty2).map(binfilter);
+    return bins.map(binfilter);
   };
   bin.label = labelof(value);
   return bin;
@@ -231,10 +229,6 @@ function bincumset([bin], j, bins) {
 
 function binfilter([{x0, x1}, set]) {
   return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
-}
-
-function nonempty2([, {size}]) {
-  return size > 0;
 }
 
 function maybeInset(inset, inset1, inset2) {
