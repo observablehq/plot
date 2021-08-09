@@ -1,49 +1,44 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, title, number, maybeNumber} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
+import {Mark, identity, number} from "../mark.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles} from "../style.js";
+
+const defaults = {
+  fill: null,
+  stroke: "currentColor"
+};
 
 export class RuleX extends Mark {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x,
       y1,
       y2,
-      title,
-      stroke,
-      strokeOpacity,
       inset = 0,
       insetTop = inset,
-      insetBottom = inset,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
+      insetBottom = inset
+    } = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y1", value: y1, scale: "y", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true},
-        {name: "title", value: title, optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+        {name: "y2", value: y2, scale: "y", optional: true}
       ],
-      options
+      options,
+      defaults
     );
-    Style(this, {stroke: cstroke, strokeOpacity: cstrokeOpacity, ...options});
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
   }
   render(
     I,
     {x, y},
-    {x: X, y1: Y1, y2: Y2, title: L, stroke: S, strokeOpacity: SO},
+    channels,
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
-    const index = filter(I, X, Y1, Y2, S);
+    const {x: X, y1: Y1, y2: Y2} = channels;
+    const index = filter(I, X, Y1, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, X && x, null, 0.5, 0)
@@ -55,53 +50,41 @@ export class RuleX extends Mark {
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 ? i => Y1[i] + this.insetTop : marginTop + this.insetTop)
             .attr("y2", Y2 ? (y.bandwidth ? i => Y2[i] + y.bandwidth() - this.insetBottom : i => Y2[i] - this.insetBottom) : height - marginBottom - this.insetBottom)
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }
 
 export class RuleY extends Mark {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x1,
       x2,
       y,
-      title,
-      stroke,
-      strokeOpacity,
       inset = 0,
       insetRight = inset,
-      insetLeft = inset,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
+      insetLeft = inset
+    } = options;
     super(
       data,
       [
         {name: "y", value: y, scale: "y", optional: true},
         {name: "x1", value: x1, scale: "x", optional: true},
-        {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "title", value: title, optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+        {name: "x2", value: x2, scale: "x", optional: true}
       ],
-      options
+      options,
+      defaults
     );
-    Style(this, {stroke: cstroke, strokeOpacity: cstrokeOpacity, ...options});
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
   }
   render(
     I,
     {x, y},
-    {y: Y, x1: X1, x2: X2, title: L, stroke: S, strokeOpacity: SO},
+    channels,
     {width, height, marginTop, marginRight, marginLeft, marginBottom}
   ) {
+    const {y: Y, x1: X1, x2: X2} = channels;
     const index = filter(I, Y, X1, X2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -114,9 +97,7 @@ export class RuleY extends Mark {
             .attr("x2", X2 ? (x.bandwidth ? i => X2[i] + x.bandwidth() - this.insetRight : i => X2[i] - this.insetRight) : width - marginRight - this.insetRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }

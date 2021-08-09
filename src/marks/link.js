@@ -1,61 +1,34 @@
 import {create, path} from "d3";
 import {filter} from "../defined.js";
-import {Mark, maybeColor, maybeNumber, title} from "../mark.js";
+import {Mark} from "../mark.js";
 import {Curve} from "../curve.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+
+const defaults = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeMiterlimit: 1
+};
 
 export class Link extends Mark {
-  constructor(
-    data,
-    {
-      x1,
-      y1,
-      x2,
-      y2,
-      title,
-      fill,
-      fillOpacity,
-      stroke,
-      strokeOpacity,
-      curve,
-      ...options
-    } = {}
-  ) {
-    const [vfill, cfill] = maybeColor(fill, "none");
-    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
-    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
+  constructor(data, options = {}) {
+    const {x1, y1, x2, y2, curve} = options;
     super(
       data,
       [
         {name: "x1", value: x1, scale: "x"},
         {name: "y1", value: y1, scale: "y"},
         {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true},
-        {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+        {name: "y2", value: y2, scale: "y", optional: true}
       ],
-      options
+      options,
+      defaults
     );
     this.curve = Curve(curve);
-    Style(this, {
-      fill: cfill,
-      fillOpacity: cfillOpacity,
-      stroke: cstroke,
-      strokeMiterlimit: cstroke === "none" ? undefined : 1,
-      strokeOpacity: cstrokeOpacity,
-      ...options
-    });
   }
-  render(
-    I,
-    {x, y},
-    {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, title: L, stroke: S, strokeOpacity: SO}
-  ) {
-    const index = filter(I, X1, Y1, X2, Y2, S, SO);
+  render(I, {x, y}, channels) {
+    const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const index = filter(I, X1, Y1, X2, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
@@ -72,9 +45,7 @@ export class Link extends Mark {
               c.lineEnd();
               return p + "";
             })
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }

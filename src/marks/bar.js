@@ -1,52 +1,15 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, title, maybeNumber} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
+import {Mark, number} from "../mark.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
+const defaults = {};
+
 export class AbstractBar extends Mark {
-  constructor(
-    data,
-    channels,
-    {
-      title,
-      fill,
-      fillOpacity,
-      stroke,
-      strokeOpacity,
-      inset = 0,
-      insetTop = inset,
-      insetRight = inset,
-      insetBottom = inset,
-      insetLeft = inset,
-      rx,
-      ry,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "none");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-    const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
-    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
-    super(
-      data,
-      [
-        ...channels,
-        {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
-      ],
-      options
-    );
-    Style(this, {
-      fill: cfill,
-      fillOpacity: cfillOpacity,
-      stroke: cstroke,
-      strokeOpacity: cstrokeOpacity,
-      ...options
-    });
+  constructor(data, channels, options = {}) {
+    super(data, channels, options, defaults);
+    const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -56,8 +19,7 @@ export class AbstractBar extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {rx, ry} = this;
-    const {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, ...this._positions(channels), F, FO, S, SO);
+    const index = filter(I, ...this._positions(channels));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)
@@ -69,13 +31,9 @@ export class AbstractBar extends Mark {
             .attr("width", this._width(scales, channels, dimensions))
             .attr("y", this._y(scales, channels, dimensions))
             .attr("height", this._height(scales, channels, dimensions))
-            .call(applyAttr, "fill", F && (i => F[i]))
-            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
   _x(scales, {x: X}, {marginLeft}) {
@@ -99,7 +57,8 @@ export class AbstractBar extends Mark {
 }
 
 export class BarX extends AbstractBar {
-  constructor(data, {x1, x2, y, ...options} = {}) {
+  constructor(data, options = {}) {
+    const {x1, x2, y} = options;
     super(
       data,
       [
@@ -127,7 +86,8 @@ export class BarX extends AbstractBar {
 }
 
 export class BarY extends AbstractBar {
-  constructor(data, {x, y1, y2, ...options} = {}) {
+  constructor(data, options = {}) {
+    const {x, y1, y2} = options;
     super(
       data,
       [

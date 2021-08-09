@@ -1,20 +1,16 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, title, maybeColor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
+import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform} from "../style.js";
+
+const defaults = {};
 
 export class Text extends Mark {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x,
       y,
       text = indexOf,
-      title,
-      fill,
-      fillOpacity,
-      stroke,
-      strokeOpacity,
       textAnchor,
       fontFamily,
       fontSize,
@@ -23,14 +19,8 @@ export class Text extends Mark {
       fontWeight,
       dx,
       dy = "0.32em",
-      rotate,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "none");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-    const [vfill, cfill] = maybeColor(fill, "currentColor");
-    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
+      rotate
+    } = options;
     const [vrotate, crotate] = maybeNumber(rotate, 0);
     const [vfontSize, cfontSize] = maybeNumber(fontSize);
     super(
@@ -40,22 +30,11 @@ export class Text extends Mark {
         {name: "y", value: y, scale: "y", optional: true},
         {name: "fontSize", value: numberChannel(vfontSize), optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
-        {name: "text", value: text},
-        {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+        {name: "text", value: text}
       ],
-      options
+      options,
+      defaults
     );
-    Style(this, {
-      fill: cfill,
-      fillOpacity: cfillOpacity,
-      stroke: cstroke,
-      strokeOpacity: cstrokeOpacity,
-      ...options
-    });
     this.rotate = crotate;
     this.textAnchor = string(textAnchor);
     this.fontFamily = string(fontFamily);
@@ -69,11 +48,12 @@ export class Text extends Mark {
   render(
     I,
     {x, y},
-    {x: X, y: Y, rotate: R, text: T, title: L, fill: F, fillOpacity: FO, fontSize: FS, stroke: S, strokeOpacity: SO},
+    channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
+    const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
-    const index = filter(I, X, Y, F, FO, R).filter(i => nonempty(T[i]));
+    const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")
@@ -92,13 +72,9 @@ export class Text extends Mark {
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
-            .call(applyAttr, "fill", F && (i => F[i]))
-            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
             .text(i => T[i])
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }

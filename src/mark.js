@@ -1,18 +1,21 @@
 import {color} from "d3";
 import {ascendingDefined, nonempty} from "./defined.js";
 import {plot} from "./plot.js";
+import {styles} from "./style.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 export class Mark {
-  constructor(data, channels = [], {facet = "auto", ...options} = {}) {
+  constructor(data, channels = [], options = {}, defaults) {
+    const {facet = "auto"} = options;
     const names = new Set();
     this.data = data;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = maybeTransform(options);
     this.transform = transform;
+    if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
@@ -307,23 +310,6 @@ export function numberChannel(source) {
     transform: data => valueof(data, source, Float64Array),
     label: labelof(source)
   };
-}
-
-// TODO use Float64Array.from for position and radius scales?
-export function values(channels = [], scales) {
-  const values = Object.create(null);
-  for (let [name, {value, scale}] of channels) {
-    if (name !== undefined) {
-      if (scale !== undefined) {
-        scale = scales[scale];
-        if (scale !== undefined) {
-          value = Array.from(value, scale);
-        }
-      }
-      values[name] = value;
-    }
-  }
-  return values;
 }
 
 export function isOrdinal(values) {
