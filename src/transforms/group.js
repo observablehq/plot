@@ -136,13 +136,13 @@ export function maybeReduce(reduce, value) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
   switch ((reduce + "").toLowerCase()) {
-    case "first": return reduceFirst;
-    case "last": return reduceLast;
-    case "count": return reduceCount;
-    case "distinct": return reduceDistinct;
-    case "sum": return value == null ? reduceCount : reduceSum;
-    case "proportion": return reduceProportion(value, "data");
-    case "proportion-facet": return reduceProportion(value, "facet");
+    case "first": return emptyReduce(reduceFirst);
+    case "last": return emptyReduce(reduceLast);
+    case "count": return emptyReduce(reduceCount);
+    case "distinct": return emptyReduce(reduceDistinct);
+    case "sum": return emptyReduce(value == null ? reduceCount : reduceSum);
+    case "proportion": return emptyReduce(reduceProportion(value, "data"));
+    case "proportion-facet": return emptyReduce(reduceProportion(value, "facet"));
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
     case "max": return reduceAccessor(max);
@@ -152,6 +152,12 @@ export function maybeReduce(reduce, value) {
     case "mode": return reduceAccessor(mode);
   }
   throw new Error("invalid reduce");
+}
+
+function emptyReduce(reducer) {
+  const {reduce} = reducer;
+  reducer.reduce = (I, X, basis) => I.length ? reduce(I, X, basis) : NaN;
+  return reducer;
 }
 
 export function maybeSubgroup(outputs, Z, F, S) {
@@ -199,14 +205,13 @@ const reduceLast = {
 const reduceCount = {
   label: "Frequency",
   reduce(I) {
-    return I.length || NaN;
+    return I.length;
   }
 };
 
 const reduceDistinct = {
   label: "Distinct",
   reduce: (I, X) => {
-    if (I.length === 0) return NaN;
     const s = new InternSet();
     for (const i of I) s.add(X[i]);
     return s.size;
@@ -217,6 +222,6 @@ const reduceSum = reduceAccessor(sum);
 
 function reduceProportion(value, scope) {
   return value == null
-      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length ? I.length / basis : NaN}
-      : {scope, reduce: (I, V, basis = 1) => I.length ? sum(I, i => V[i]) / basis : NaN};
+      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
+      : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
 }
