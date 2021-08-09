@@ -112,3 +112,20 @@ function inferScaleType(key, channels, {type, domain, range}) {
 function asOrdinalType(key) {
   return registry.get(key) === position ? "point" : "ordinal";
 }
+
+// TODO use Float64Array.from for position and radius scales?
+export function applyScales(channels = [], scales) {
+  const values = Object.create(null);
+  for (let [name, {value, scale}] of channels) {
+    if (name !== undefined) {
+      if (scale !== undefined) {
+        scale = scales[scale];
+        if (scale !== undefined) {
+          value = Array.from(value, scale);
+        }
+      }
+      values[name] = value;
+    }
+  }
+  return values;
+}

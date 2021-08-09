@@ -1,6 +1,7 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second, applyScales} from "./mark.js";
+import {Mark, first, second} from "./mark.js";
+import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
 export function facets(data, {x, y, ...options}, marks) {

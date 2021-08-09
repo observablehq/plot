@@ -1,8 +1,7 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
-import {applyScales} from "./mark.js";
-import {Scales, autoScaleRange} from "./scales.js";
+import {Scales, autoScaleRange, applyScales} from "./scales.js";
 import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
