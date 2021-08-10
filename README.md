@@ -963,18 +963,20 @@ Plot.barY(data, Plot.stackX(Plot.reverse(Plot.sort("length", Plot.binX({y: "coun
 
 (Sorting before binning would result in sorted data inside bins; sorting after stacking would result in a different z-order of the marks.)
 
-### Sort and reverse
+### Plot.sort(*order*, *options)
 
-The Plot.sort(*sort*, *options*) transform will return data sorted by *sort*, which can be an acessor function, a comparator function, or a channel value definition.
+Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
 
-Plot.reverse(*options*) reverses the order of the data.
+### Plot.reverse(*options)
 
-### Filter
+Reverses the order of the data.
 
-Given a *filter* and *options*, Plot.filter passes the data for which *filter* is truthy. The filter can be given as an accessor function (which receives the datum and index), or as a channel value definition.
+### Plot.filter(*test*, *options*)
+
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
 
 ```js
-Plot.filter([0, 1, 1, ], options) // returns the second and third data points
+Plot.filter(d => d.value > 3, options) // show data whose value is greater than three
 ```
 
 ### Bin
