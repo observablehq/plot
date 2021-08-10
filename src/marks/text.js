@@ -45,13 +45,9 @@ export class Text extends Mark {
     this.dx = string(dx);
     this.dy = string(dy);
   }
-  render(
-    I,
-    {x, y},
-    channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
-  ) {
+  render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
+    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
     const {rotate} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
