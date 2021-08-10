@@ -1258,6 +1258,8 @@ The following window reducers are supported:
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
 
+By default, **shift** is *centered* and **reduce** is *mean*.
+
 #### Plot.map(*outputs*, *options*)
 
 ```js
@@ -1282,37 +1284,37 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
-#### Plot.normalizeX(*options*)
+#### Plot.normalizeX(*basis*, *options*)
 
 ```js
 Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.normalizeY(*options*)
+#### Plot.normalizeY(*basis*, *options*)
 
 ```js
 Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.windowX(*options*)
-
-```js
-Plot.windowX({y: "Date", x: "Anomaly", k: 24})
-```
-
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
-
-#### Plot.windowY(*options*)
+#### Plot.windowX(*k*, *options*)
 
 ```js
-Plot.windowY({x: "Date", y: "Anomaly", k: 24})
+Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. If *k* is an object, separate *shift* and *reduce* window options can also be specified.
+
+#### Plot.windowY(*k*, *options*)
+
+```js
+Plot.windowY(24, {x: "Date", y: "Anomaly"})
+```
+
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. If *k* is an object, separate *shift* and *reduce* window options can also be specified.
 
 ### Select
 
