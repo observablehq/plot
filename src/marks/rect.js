@@ -24,10 +24,10 @@ export class Rect extends Mark {
     super(
       data,
       [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "y1", value: y1, scale: "y"},
-        {name: "x2", value: x2, scale: "x"},
-        {name: "y2", value: y2, scale: "y"}
+        {name: "x1", value: x1, scale: "x", optional: true},
+        {name: "y1", value: y1, scale: "y", optional: true},
+        {name: "x2", value: x2, scale: "x", optional: true},
+        {name: "y2", value: y2, scale: "y", optional: true}
       ],
       options,
       defaults
@@ -39,9 +39,10 @@ export class Rect extends Mark {
     this.rx = impliedString(rx, "auto"); // number or percentage
     this.ry = impliedString(ry, "auto");
   }
-  render(I, {x, y}, channels) {
+  render(I, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
-    const {rx, ry} = this;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     const index = filter(I, X1, Y2, X2, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -50,10 +51,10 @@ export class Rect extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", i => Math.min(X1[i], X2[i]) + this.insetLeft)
-            .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
-            .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
-            .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
+            .attr("x", X1 && X2 ? i => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
+            .attr("y", Y1 && Y2 ? i => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+            .attr("width", X1 && X2 ? i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight) : width - marginRight - marginLeft - insetRight - insetLeft)
+            .attr("height", Y1 && Y2 ? i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom) : height - marginTop - marginBottom - insetTop - insetBottom)
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
             .call(applyChannelStyles, channels))

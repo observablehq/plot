@@ -20,7 +20,6 @@ export default async function() {
     },
     marks: [
       Plot.barX(hadcrut, {
-        y: null,
         x1: "year", // start of current year
         x2: d => d3.utcYear.offset(d.year), // start of next year
         fill: "anomaly"
