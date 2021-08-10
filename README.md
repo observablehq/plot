@@ -963,11 +963,11 @@ Plot.barY(data, Plot.stackX(Plot.reverse(Plot.sort("length", Plot.binX({y: "coun
 
 (Sorting before binning would result in sorted data inside bins; sorting after stacking would result in a different z-order of the marks.)
 
-### Plot.sort(*order*, *options)
+### Plot.sort(*order*, *options*)
 
 Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
 
-### Plot.reverse(*options)
+### Plot.reverse(*options*)
 
 Reverses the order of the data.
 
