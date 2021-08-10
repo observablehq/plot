@@ -156,7 +156,7 @@ export function maybeReduce(reduce, value) {
 
 function emptyReduce(reducer) {
   const {reduce} = reducer;
-  reducer.reduce = (I, X, basis) => I.length ? reduce(I, X, basis) : NaN;
+  reducer.reduce = (I, X, basis) => I.length ? reduce(I, X, basis) : null;
   return reducer;
 }
 
@@ -179,7 +179,7 @@ function reduceFunction(f) {
 function reduceAccessor(f) {
   return {
     reduce(I, X) {
-      return I.length ? f(I, i => X[i]) : NaN;
+      return I.length ? f(I, i => X[i]) : null;
     }
   };
 }
@@ -205,7 +205,7 @@ const reduceLast = {
 const reduceCount = {
   label: "Frequency",
   reduce(I) {
-    return I.length;
+    return I.length || null;
   }
 };
 

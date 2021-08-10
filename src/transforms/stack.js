@@ -60,7 +60,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   return [
     maybeTransform(options, (data, facets) => {
       const X = x == null ? undefined : setX(valueof(data, x));
-      const Y = valueof(data, y, Float64Array);
+      const Y = valueof(data, y);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
       const n = data.length;
@@ -76,12 +76,12 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
             const y = Y[i];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
-            else if (!isNaN(y)) Y2[i] = Y1[i] = yp; // zero
-            else Y2[i] = Y1[i] = NaN;
+            else Y2[i] = Y1[i] = yp; // invalid or zero
           }
         }
         if (offset) offset(stacks, Y1, Y2, Z);
       }
+      facets = facets.map(facet => facet.filter(i => Y[i] != null && !isNaN(Y[i])));
       return {data, facets};
     }),
     X,
