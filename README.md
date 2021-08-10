@@ -955,13 +955,7 @@ The basic transforms are composable: the *filter* transform is applied first, th
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
-The *filter*, *sort* and *reverse* transforms are also available as functions, allowing to specify the order of operations when the shorthand notation might be ambiguous. In the following example, the sort transform is made explicitly after binning and before stacking:
-
-```js
-Plot.barY(data, Plot.stackX(Plot.reverse(Plot.sort("length", Plot.binX({y: "count"}, {x: "date"})))))
-```
-
-(Sorting before binning would result in sorted data inside bins; sorting after stacking would result in a different z-order of the marks.)
+The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z*-order of rendered marks.
 
 ### Plot.sort(*order*, *options*)
 
