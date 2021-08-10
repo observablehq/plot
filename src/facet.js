@@ -72,7 +72,7 @@ class Facet extends Mark {
     }
     return {index, channels: [...channels, ...subchannels]};
   }
-  render(index, scales, channels, dimensions, axes) {
+  render(I, scales, channels, dimensions, axes) {
     const {marks, marksChannels, marksIndex, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
