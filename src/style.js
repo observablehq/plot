@@ -58,6 +58,8 @@ export function styles(
     if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
   }
 
+  const [vstrokeWidth, cstrokeWidth] = maybeNumber(strokeWidth);
+
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill !== null) {
     mark.fill = impliedString(cfill, "currentColor");
@@ -65,7 +67,7 @@ export function styles(
   }
 
   mark.stroke = impliedString(cstroke, "none");
-  mark.strokeWidth = impliedNumber(strokeWidth, 1);
+  mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
   mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
   mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
   mark.strokeLinecap = impliedString(strokeLinecap, "butt");
@@ -80,23 +82,26 @@ export function styles(
     {name: "fill", value: vfill, scale: "color", optional: true},
     {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
     {name: "stroke", value: vstroke, scale: "color", optional: true},
-    {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+    {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true},
+    {name: "strokeWidth", value: vstrokeWidth, optional: true}
   ];
 }
 
-export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
+export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
   applyAttr(selection, "fill", F && (i => F[i]));
   applyAttr(selection, "fill-opacity", FO && (i => FO[i]));
   applyAttr(selection, "stroke", S && (i => S[i]));
   applyAttr(selection, "stroke-opacity", SO && (i => SO[i]));
+  applyAttr(selection, "stroke-width", SW && (i => SW[i]));
   title(L)(selection);
 }
 
-export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
+export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
   applyAttr(selection, "fill", F && (([i]) => F[i]));
   applyAttr(selection, "fill-opacity", FO && (([i]) => FO[i]));
   applyAttr(selection, "stroke", S && (([i]) => S[i]));
   applyAttr(selection, "stroke-opacity", SO && (([i]) => SO[i]));
+  applyAttr(selection, "stroke-width", SW && (i => SW[i]));
   titleGroup(L)(selection);
 }
 
@@ -141,8 +146,8 @@ export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
-export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}) {
-  return filter(index, F, FO, S, SO);
+export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
+  return filter(index, F, FO, S, SO, SW);
 }
 
 function none(color) {
