@@ -1,6 +1,7 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
+import {basic} from "./basic.js";
 import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -69,7 +70,7 @@ function binn(
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
     ..."stroke" in inputs && {stroke: GS || stroke},
-    ...maybeTransform(options, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const K = valueof(data, k);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);

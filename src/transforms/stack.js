@@ -1,6 +1,7 @@
 import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero} from "../mark.js";
+import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero} from "../mark.js";
+import {basic} from "./basic.js";
 
 export function stackX({y1, y = y1, x, ...options} = {}) {
   const [transform, Y, x1, x2] = stack(y, x, "x", options);
@@ -58,7 +59,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    maybeTransform(options, (data, facets) => {
+    basic(options, (data, facets) => {
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);

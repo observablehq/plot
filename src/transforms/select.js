@@ -1,5 +1,6 @@
 import {greatest, group, least} from "d3";
-import {maybeTransform, maybeZ, valueof} from "../mark.js";
+import {maybeZ, valueof} from "../mark.js";
+import {basic} from "./basic.js";
 
 export function selectFirst(options) {
   return select(first, undefined, options);
@@ -53,7 +54,7 @@ function* max(I, X) {
 
 function select(selectIndex, v, options) {
   const z = maybeZ(options);
-  return maybeTransform(options, (data, facets) => {
+  return basic(options, (data, facets) => {
     const Z = valueof(data, z);
     const V = valueof(data, v);
     const selectFacets = [];

@@ -955,6 +955,32 @@ The basic transforms are composable: the *filter* transform is applied first, th
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
+The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z*-order of rendered marks.
+
+### Plot.sort(*order*, *options*)
+
+```js
+Plot.sort(d => d.value, options) // show data in ascending value order
+```
+
+Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
+
+### Plot.reverse(*options*)
+
+```js
+Plot.reverse(options) // reverse the input order
+```
+
+Reverses the order of the data.
+
+### Plot.filter(*test*, *options*)
+
+```js
+Plot.filter(d => d.value > 3, options) // show data whose value is greater than three
+```
+
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
+
 ### Bin
 
 [<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@observablehq/plot-bin)

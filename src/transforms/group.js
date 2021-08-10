@@ -1,6 +1,7 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
 import {firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTransform, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
+import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
+import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
 export function groupZ(outputs, options) {
@@ -57,7 +58,7 @@ function groupn(
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
     ..."stroke" in inputs && {stroke: GS || stroke},
-    ...maybeTransform(options, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const X = valueof(data, x);
       const Y = valueof(data, y);
       const Z = valueof(data, z);
