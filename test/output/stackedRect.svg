@@ -1,0 +1,59 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(20.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(80.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(200.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(260.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(320.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(380.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(440.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">70%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(500.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(560.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">90%</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100%</text>
+    </g>
+  </g>
+  <g>
+    <rect x="21" y="0" width="0" height="30" fill="rgb(35, 23, 27)"></rect>
+    <rect x="21" y="0" width="2.157894736842106" height="30" fill="rgb(71, 56, 158)"></rect>
+    <rect x="24.157894736842106" y="0" width="5.315789473684209" height="30" fill="rgb(73, 92, 225)"></rect>
+    <rect x="30.473684210526315" y="0" width="8.473684210526315" height="30" fill="rgb(59, 129, 248)"></rect>
+    <rect x="39.94736842105263" y="0" width="11.631578947368425" height="30" fill="rgb(44, 164, 242)"></rect>
+    <rect x="52.578947368421055" y="0" width="14.78947368421052" height="30" fill="rgb(37, 196, 218)"></rect>
+    <rect x="68.36842105263158" y="0" width="17.947368421052644" height="30" fill="rgb(42, 222, 186)"></rect>
+    <rect x="87.31578947368422" y="0" width="21.105263157894726" height="30" fill="rgb(60, 241, 151)"></rect>
+    <rect x="109.42105263157895" y="0" width="24.263157894736835" height="30" fill="rgb(90, 251, 119)"></rect>
+    <rect x="134.68421052631578" y="0" width="27.42105263157896" height="30" fill="rgb(128, 253, 92)"></rect>
+    <rect x="163.10526315789474" y="0" width="30.57894736842107" height="30" fill="rgb(169, 246, 71)"></rect>
+    <rect x="194.6842105263158" y="0" width="33.73684210526312" height="30" fill="rgb(208, 230, 55)"></rect>
+    <rect x="229.42105263157893" y="0" width="36.89473684210529" height="30" fill="rgb(240, 205, 44)"></rect>
+    <rect x="267.3157894736842" y="0" width="40.05263157894734" height="30" fill="rgb(255, 175, 37)"></rect>
+    <rect x="308.36842105263156" y="0" width="43.21052631578948" height="30" fill="rgb(255, 139, 31)"></rect>
+    <rect x="352.57894736842104" y="0" width="46.36842105263156" height="30" fill="rgb(250, 102, 25)"></rect>
+    <rect x="399.9473684210526" y="0" width="49.5263157894737" height="30" fill="rgb(224, 66, 18)"></rect>
+    <rect x="450.4736842105263" y="0" width="52.68421052631578" height="30" fill="rgb(190, 36, 9)"></rect>
+    <rect x="504.1578947368421" y="0" width="55.84210526315792" height="30" fill="rgb(158, 16, 1)"></rect>
+    <rect x="561" y="0" width="59" height="30" fill="rgb(144, 12, 0)"></rect>
+  </g>
+</svg>

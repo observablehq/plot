@@ -746,14 +746,14 @@ Returns a new link with the given *data* and *options*.
 
 [Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@observablehq/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
 
-The following channels are required:
+The following channels are optional:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both. The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.rect(*data*, *options*)
 
