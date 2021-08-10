@@ -965,19 +965,27 @@ Plot.barY(data, Plot.stackX(Plot.reverse(Plot.sort("length", Plot.binX({y: "coun
 
 ### Plot.sort(*order*, *options*)
 
+```js
+Plot.sort(d => d.value, options) // show data in ascending value order
+```
+
 Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
 
 ### Plot.reverse(*options*)
+
+```js
+Plot.reverse(options) // reverse the input order
+```
 
 Reverses the order of the data.
 
 ### Plot.filter(*test*, *options*)
 
-Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
-
 ```js
 Plot.filter(d => d.value > 3, options) // show data whose value is greater than three
 ```
+
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
 
 ### Bin
 
