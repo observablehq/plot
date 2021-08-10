@@ -1287,7 +1287,7 @@ Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores
 #### Plot.normalizeX(*basis*, *options*)
 
 ```js
-Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
+Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
 Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
@@ -1295,7 +1295,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method wit
 #### Plot.normalizeY(*basis*, *options*)
 
 ```js
-Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
+Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
 Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
