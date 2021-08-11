@@ -3,21 +3,21 @@ import * as d3 from "d3";
 
 export default async function() {
   const data = await d3.csv("data/availability.csv", d3.autoType);
+  const sum = d => d.length ? d3.sum(d) : NaN; // force gaps
   return Plot.plot({
+    height: 180,
     marks: [
       Plot.areaY(
         data,
         Plot.binX(
           {
             filter: null,
-            y: "sum"
+            y: sum
           },
           {
             x: "date",
             y: "value",
-            sort: "date",
             curve: "step",
-            empty: true,
             thresholds: d3.utcDay,
             fill: "#f2f2fe"
           }
@@ -28,20 +28,17 @@ export default async function() {
         Plot.binX(
           {
             filter: null,
-            y: d => d.length ? d3.sum(d) : null
+            y: sum
           },
           {
             x: "date",
             y: "value",
-            sort: "date",
             curve: "step",
-            empty: true,
             thresholds: d3.utcDay
           }
         )
       ),
       Plot.ruleY([0])
-    ],
-    height: 180
+    ]
   });
 }
