@@ -1243,7 +1243,7 @@ The Plot.normalizeX and Plot.normalizeY transforms normalize series values relat
 The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums. These transforms also take additional options:
 
 * **k** - the window size (the number of elements in the window)
-* **shift** - how to align the window: *centered*, *leading*, or *trailing*
+* **anchor** - how to align the window: *start*, *middle*, or *end*
 * **reduce** - the aggregation method (window reducer)
 
 The following window reducers are supported:
@@ -1258,7 +1258,7 @@ The following window reducers are supported:
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
 
-By default, **shift** is *centered* and **reduce** is *mean*.
+By default, **anchor** is *middle* and **reduce** is *mean*.
 
 #### Plot.map(*outputs*, *options*)
 
@@ -1306,7 +1306,7 @@ Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method wit
 Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
 
 #### Plot.windowY(*k*, *options*)
 
@@ -1314,7 +1314,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with t
 Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
 
 ### Select
 
@@ -1378,11 +1378,11 @@ The stack transform supports diverging stacks: negative values are stacked below
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
 - null - a zero baseline (default)
-- *expand* - rescale each stack to fill [0, 1]
-- *silhouette* - align the centers of all stacks
+- *expand* (or *normalize*) - rescale each stack to fill [0, 1]
+- *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
 
-If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
 
 In addition to the **y1** and **y2** output channels, Plot.stackY computers a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
 
