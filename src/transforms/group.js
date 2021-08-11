@@ -101,7 +101,7 @@ function groupn(
     }),
     ...GX && {x: GX},
     ...GY && {y: GY},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
+    ...extractOutputs(outputs)
   };
 }
 
@@ -176,6 +176,12 @@ export function maybeSort(facets, sort, reverse) {
   if (reverse) {
     facets.forEach(f => f.reverse());
   }
+}
+
+export function extractOutputs(outputs) {
+  return Object.fromEntries(outputs
+    .filter(({name}) => name !== "sort")
+    .map(({name, output}) => [name, output]));
 }
 
 function reduceFunction(f) {

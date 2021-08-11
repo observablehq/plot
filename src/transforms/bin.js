@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {basic} from "./basic.js";
-import {maybeGroup, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceIdentity} from "./group.js";
+import {extractOutputs, maybeGroup, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -125,7 +125,7 @@ function binn(
     ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
     ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
     ...GK && {[gk]: GK},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
+    ...extractOutputs(outputs)
   };
 }
 
