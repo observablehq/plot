@@ -51,8 +51,6 @@ function binn(
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
-  if (sort) debugger;
-
   // Don’t group on a channel if an output requires it as an input!
   if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
   if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
