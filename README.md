@@ -642,7 +642,7 @@ If the **x** channel is not specified, dots will be horizontally centered in the
 
 The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
 
-Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
+Dots are drawn in input order, with the last data drawn on top. If sorting is needed, consider a [sort and reverse transform](#transforms). The **sortedMark** option, if set to true, will sort the dots in descending radius order, a common approach to mitigate overplotting by drawing the smallest dots on top.
 
 #### Plot.dot(*data*, *options*)
 

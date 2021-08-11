@@ -11,7 +11,7 @@ const defaults = {
 
 export class Dot extends Mark {
   constructor(data, options = {}) {
-    const {x, y, r} = options;
+    const {x, y, r, sortedMark = false} = options;
     const [vr, cr] = maybeNumber(r, 3);
     super(
       data,
@@ -24,6 +24,7 @@ export class Dot extends Mark {
       defaults
     );
     this.r = cr;
+    this.sortedMark = !!sortedMark;
   }
   render(
     I,
@@ -33,7 +34,12 @@ export class Dot extends Mark {
   ) {
     const {x: X, y: Y, r: R} = channels;
     let index = filter(I, X, Y);
-    if (R) index = index.filter(i => positive(R[i]));
+    if (R) {
+      index = index.filter(i => positive(R[i]));
+      if (this.sortedMark) {
+        index = index.sort((i, j) => R[j] - R[i]);
+      }
+    }
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, 0.5, 0.5)
