@@ -14,7 +14,7 @@ export default async function() {
       scheme: "YlGnBu"
     },
     marks: [
-      Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height", thresholds: 50}))
+      Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
     ]
   });
 }

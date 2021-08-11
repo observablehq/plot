@@ -197,7 +197,7 @@ const reduceLast = {
   }
 };
 
-const reduceCount = {
+export const reduceCount = {
   label: "Frequency",
   reduce(I) {
     return I.length;

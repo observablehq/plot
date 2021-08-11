@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {basic} from "./basic.js";
-import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
+import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -33,12 +33,17 @@ function binn(
   by, // optionally bin on y (exclusive with gy)
   gx, // optionally group on x (exclusive with bx and gy)
   gy, // optionally group on y (exclusive with by and gx)
-  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {
+    data: reduceData = reduceIdentity,
+    filter: reduceFilter = reduceCount,
+    ...outputs // output channel definitions
+  } = {},
   inputs = {} // input channels and options
 ) {
   bx = maybeBin(bx);
   by = maybeBin(by);
   reduceData = maybeReduce(reduceData, identity);
+  reduceFilter = reduceFilter == null ? reduceTrue : maybeReduce(reduceFilter, identity);
 
   // Compute the outputs. Don’t group on a channel if one of the output channels
   // requires it as an input!
@@ -97,10 +102,9 @@ function binn(
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
-              if (bb.length === 0) continue;
               for (const [y1, y2, fy] of BY) {
                 const b = fy(bb);
-                if (b.length === 0) continue;
+                if (!reduceFilter.reduce(b, data)) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
@@ -166,7 +170,7 @@ function maybeBin(options) {
     }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
-    return bins.filter(nonempty2).map(binfilter);
+    return bins.map(binfilter);
   };
   bin.label = labelof(value);
   return bin;
@@ -231,11 +235,7 @@ function bincumset([bin], j, bins) {
 }
 
 function binfilter([{x0, x1}, set]) {
-  return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
-}
-
-function nonempty2([, {size}]) {
-  return size > 0;
+  return [x0, x1, set.size ? I => I.filter(set.has, set) : () => []]; // TODO optimize
 }
 
 function maybeInset(inset, inset1, inset2) {
@@ -243,3 +243,9 @@ function maybeInset(inset, inset1, inset2) {
     ? (offset ? [1, 0] : [0.5, 0.5])
     : [inset1, inset2];
 }
+
+const reduceTrue = {
+  reduce() {
+    return true;
+  }
+};
