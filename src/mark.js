@@ -271,3 +271,17 @@ export function isTemporal(values) {
     return value instanceof Date;
   }
 }
+
+export function markify(mark) {
+  return mark instanceof Mark ? mark : new Render(mark);
+}
+
+class Render extends Mark {
+  constructor(render) {
+    super();
+    if (render == null) return;
+    if (typeof render !== "function") throw new TypeError("invalid mark");
+    this.render = render;
+  }
+  render() {}
+}
