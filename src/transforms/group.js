@@ -1,5 +1,5 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
-import {firstof} from "../defined.js";
+import {ascendingDefined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 import {basic} from "./basic.js";
 
@@ -96,11 +96,7 @@ function groupn(
         }
         groupFacets.push(groupFacet);
       }
-      if (sort) {
-        const S = sort.output.transform();
-        groupFacets.forEach(f => f.sort((i, j) => S[i] - S[j]));
-      }
-      if (reverse) groupFacets.forEach(f => f.reverse());
+      maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...GX && {x: GX},
@@ -169,6 +165,17 @@ export function maybeSubgroup(outputs, Z, F, S) {
     outputs.some(o => o.name === "fill") ? undefined : F,
     outputs.some(o => o.name === "stroke") ? undefined : S
   );
+}
+
+export function maybeSort(facets, sort, reverse) {
+  if (sort) {
+    const S = sort.output.transform();
+    const compare = (i, j) => ascendingDefined(S[i], S[j]);
+    facets.forEach(f => f.sort(compare));
+  }
+  if (reverse) {
+    facets.forEach(f => f.reverse());
+  }
 }
 
 function reduceFunction(f) {
