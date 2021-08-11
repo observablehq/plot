@@ -239,7 +239,7 @@ function binfilter([{x0, x1}, set]) {
 }
 
 function binempty() {
-  return [];
+  return new Uint32Array(0);
 }
 
 function maybeInset(inset, inset1, inset2) {
