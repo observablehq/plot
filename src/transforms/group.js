@@ -1,5 +1,5 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
-import {firstof} from "../defined.js";
+import {ascendingDefined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 import {basic} from "./basic.js";
 
@@ -34,7 +34,7 @@ export function group(outputs, options = {}) {
 function groupn(
   x, // optionally group on x
   y, // optionally group on y
-  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {data: reduceData = reduceIdentity, reverse, ...outputs} = {}, // output channel definitions
   inputs = {} // input channels and options
 ) {
   reduceData = maybeReduce(reduceData, identity);
@@ -93,11 +93,12 @@ function groupn(
         }
         groupFacets.push(groupFacet);
       }
+      maybeSort(groupFacets, outputs, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...GX && {x: GX},
     ...GY && {y: GY},
-    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
+    ...extractOutputs(outputs)
   };
 }
 
@@ -161,6 +162,24 @@ export function maybeSubgroup(outputs, Z, F, S) {
     outputs.some(o => o.name === "fill") ? undefined : F,
     outputs.some(o => o.name === "stroke") ? undefined : S
   );
+}
+
+export function maybeSort(facets, outputs, reverse) {
+  const sort = outputs.find(o => o.name === "sort");
+  if (sort) {
+    const S = sort.output.transform();
+    const compare = (i, j) => ascendingDefined(S[i], S[j]);
+    facets.forEach(f => f.sort(compare));
+  }
+  if (reverse) {
+    facets.forEach(f => f.reverse());
+  }
+}
+
+export function extractOutputs(outputs) {
+  return Object.fromEntries(outputs
+    .filter(({name}) => name !== "sort")
+    .map(({name, output}) => [name, output]));
 }
 
 function reduceFunction(f) {
