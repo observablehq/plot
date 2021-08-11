@@ -34,10 +34,16 @@ export function group(outputs, options = {}) {
 function groupn(
   x, // optionally group on x
   y, // optionally group on y
-  {data: reduceData = reduceIdentity, reverse, ...outputs} = {}, // output channel definitions
+  {
+    data: reduceData = reduceIdentity,
+    filter: reduceFilter = reduceCount,
+    reverse, // output channel definitions
+    ...outputs
+  } = {},
   inputs = {} // input channels and options
 ) {
   reduceData = maybeReduce(reduceData, identity);
+  reduceFilter = reduceFilter == null ? reduceTrue : maybeReduce(reduceFilter, identity);
   outputs = maybeOutputs(outputs, inputs);
 
   // Produce x and y output channels as appropriate.
@@ -80,6 +86,7 @@ function groupn(
         for (const [, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
+              if (!reduceFilter.reduce(g, data)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
               if (X) GX.push(x);
@@ -197,6 +204,12 @@ function reduceAccessor(f) {
     }
   };
 }
+
+export const reduceTrue = {
+  reduce() {
+    return true;
+  }
+};
 
 export const reduceIdentity = {
   reduce(I, X) {
