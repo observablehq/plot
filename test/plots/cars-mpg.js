@@ -15,7 +15,7 @@ export default async function() {
       Plot.ruleY([0], {filter: false}),
       Plot.line(data,
         Plot.binX({y: "mean"}, {
-          x: d => +d["year"],
+          x: "year",
           y: "economy (mpg)",
           stroke: "cylinders",
           curve: "basis",
