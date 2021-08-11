@@ -3,31 +3,30 @@ import * as d3 from "d3";
 
 export default async function() {
   const data = await d3.csv("data/cars.csv", d3.autoType);
-
   return Plot.plot({
-    x: {type: "point"},
-    y: {grid: true, zero: true},
+    x: {
+      type: "point"
+    },
+    y: {
+      grid: true,
+      zero: true
+    },
     color: {
-      type: "categorical",
-      legend: true // as soon as it's available
+      type: "ordinal"
     },
     marks: [
-      Plot.line(data,
-        Plot.groupX({y: "mean"}, {
-          x: "year",
-          y: "economy (mpg)",
-          stroke: "cylinders",
-          curve: "basis"
-        })
-      ),
-      Plot.dot(data,
-        Plot.reverse(Plot.sort("length", Plot.binY({r: "count"}, {
-          x: "year",
-          y: "economy (mpg)",
-          fill: "cylinders",
-          thresholds: 20
-        }))
-      ))
+      Plot.line(data, Plot.groupX({y: "mean"}, {
+        x: "year",
+        y: "economy (mpg)",
+        stroke: "cylinders",
+        curve: "basis"
+      })),
+      Plot.dot(data, Plot.binY({r: "count"}, {
+        x: "year",
+        y: "economy (mpg)",
+        stroke: "cylinders",
+        thresholds: 20
+      }))
     ]
   });
 }
