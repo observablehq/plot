@@ -122,7 +122,7 @@ function binn(
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b);
-                if (sort) sort.reduce(g);
+                if (sort) sort.reduce(b);
               }
             }
           }
