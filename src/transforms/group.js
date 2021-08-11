@@ -226,12 +226,6 @@ function reduceAccessor(f) {
   };
 }
 
-export const reduceTrue = {
-  reduce() {
-    return true;
-  }
-};
-
 export const reduceIdentity = {
   reduce(I, X) {
     return take(X, I);
