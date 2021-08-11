@@ -23,7 +23,7 @@ export default async function() {
         })
       ),
       Plot.dot(data,
-        Plot.reverse(Plot.sort("length", Plot.binY({ r: "count" }, {
+        Plot.reverse(Plot.sort("length", Plot.binY({r: "count"}, {
           x: "year",
           y: "economy (mpg)",
           fill: "cylinders",
