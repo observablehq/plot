@@ -1258,6 +1258,8 @@ The following window reducers are supported:
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
 
+By default, **shift** is *centered* and **reduce** is *mean*.
+
 #### Plot.map(*outputs*, *options*)
 
 ```js
@@ -1282,37 +1284,37 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
-#### Plot.normalizeX(*options*)
+#### Plot.normalizeX(*basis*, *options*)
 
 ```js
-Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
+Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.normalizeY(*options*)
+#### Plot.normalizeY(*basis*, *options*)
 
 ```js
-Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
+Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.windowX(*options*)
+#### Plot.windowX(*k*, *options*)
 
 ```js
-Plot.windowX({y: "Date", x: "Anomaly", k: 24})
+Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
 
-#### Plot.windowY(*options*)
+#### Plot.windowY(*k*, *options*)
 
 ```js
-Plot.windowY({x: "Date", y: "Anomaly", k: 24})
+Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
 
 ### Select
 
@@ -1383,6 +1385,8 @@ After all values have been stacked from zero, an optional **offset** can be appl
 If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
 
 In addition to the **y1** and **y2** output channels, Plot.stackY computers a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
+
+If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
 #### Plot.stackY(*options*)
 

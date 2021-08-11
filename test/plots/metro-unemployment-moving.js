@@ -5,7 +5,7 @@ export default async function() {
   const data = await d3.csv("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.line(data, Plot.windowY({x: "date", y: "unemployment", z: "division", k: 12})),
+      Plot.line(data, Plot.windowY(12, {x: "date", y: "unemployment", z: "division"})),
       Plot.ruleY([0])
     ]
   });

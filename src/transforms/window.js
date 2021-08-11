@@ -1,15 +1,19 @@
 import {mapX, mapY} from "./map.js";
 import {deviation, max, min, median, variance} from "d3";
 
-export function windowX({k, reduce, shift, ...options} = {}) {
-  return mapX(window(k, reduce, shift), options);
+export function windowX(windowOptions = {}, options) {
+  if (arguments.length === 1) options = windowOptions;
+  return mapX(window(windowOptions), options);
 }
 
-export function windowY({k, reduce, shift, ...options} = {}) {
-  return mapY(window(k, reduce, shift), options);
+export function windowY(windowOptions = {}, options) {
+  if (arguments.length === 1) options = windowOptions;
+  return mapY(window(windowOptions), options);
 }
 
-function window(k, reduce, shift) {
+function window(options = {}) {
+  if (typeof options === "number") options = {k: options};
+  let {k, reduce, shift} = options;
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
   return maybeReduce(reduce)(k, maybeShift(shift, k));
 }
