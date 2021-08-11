@@ -1306,7 +1306,7 @@ Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method wit
 Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. If *k* is an object, separate *shift* and *reduce* window options can also be specified.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
 
 #### Plot.windowY(*k*, *options*)
 
@@ -1314,7 +1314,7 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with t
 Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. If *k* is an object, separate *shift* and *reduce* window options can also be specified.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *shift*, or *reduce*.
 
 ### Select
 
