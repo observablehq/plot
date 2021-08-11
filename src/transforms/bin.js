@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {basic} from "./basic.js";
-import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -35,7 +35,7 @@ function binn(
   gy, // optionally group on y (exclusive with by and gx)
   {
     data: reduceData = reduceIdentity,
-    filter: reduceFilter = reduceCount,
+    transform = ignoreEmpty,
     ...outputs // output channel definitions
   } = {},
   inputs = {} // input channels and options
@@ -43,7 +43,6 @@ function binn(
   bx = maybeBin(bx);
   by = maybeBin(by);
   reduceData = maybeReduce(reduceData, identity);
-  reduceFilter = reduceFilter == null ? reduceTrue : maybeReduce(reduceFilter, identity);
 
   // Compute the outputs. Don’t group on a channel if one of the output channels
   // requires it as an input!
@@ -103,8 +102,8 @@ function binn(
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
-                const b = fy(bb);
-                if (!reduceFilter.reduce(b, data)) continue;
+                const b = transform(fy(bb));
+                if (!b) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
@@ -248,8 +247,6 @@ function maybeInset(inset, inset1, inset2) {
     : [inset1, inset2];
 }
 
-const reduceTrue = {
-  reduce() {
-    return true;
-  }
-};
+function ignoreEmpty(bin) {
+  return bin.length ? bin : null;
+}

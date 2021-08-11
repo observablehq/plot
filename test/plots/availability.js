@@ -9,7 +9,7 @@ export default async function() {
         data,
         Plot.binX(
           {
-            filter: null,
+            transform: bin => bin,
             y: "sum"
           },
           {
@@ -27,7 +27,7 @@ export default async function() {
         data,
         Plot.binX(
           {
-            filter: null,
+            transform: bin => bin,
             y: d => d.length ? d3.sum(d) : null
           },
           {
