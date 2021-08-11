@@ -5,7 +5,7 @@ export default async function() {
   const data = await d3.csv("data/cars.csv", d3.autoType);
 
   return Plot.plot({
-    x: {inset: 20, ticks: 10},
+    x: {type: "point"},
     y: {grid: true, zero: true},
     color: {
       type: "categorical",
@@ -13,12 +13,11 @@ export default async function() {
     },
     marks: [
       Plot.line(data,
-        Plot.binX({y: "mean"}, {
+        Plot.groupX({y: "mean"}, {
           x: "year",
           y: "economy (mpg)",
           stroke: "cylinders",
-          curve: "basis",
-          thresholds: 20
+          curve: "basis"
         })
       ),
       Plot.dot(data,
