@@ -66,6 +66,9 @@ function binn(
   const [GF = fill, setGF] = maybeLazyChannel(vfill);
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
+  // Extract the special sort output, if any.
+  const sort = outputs.find(o => o.name === "sort");
+
   return {
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
@@ -116,7 +119,6 @@ function binn(
         }
         groupFacets.push(groupFacet);
       }
-      const sort = outputs.find(o => o.name === "sort");
       if (sort) {
         const S = sort.output.transform();
         groupFacets.forEach(f => f.sort((i, j) => S[i] - S[j]));
