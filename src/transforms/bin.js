@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {basic} from "./basic.js";
-import {extractOutputs, maybeGroup, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity, reduceTrue} from "./group.js";
+import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -35,7 +35,8 @@ function binn(
   gy, // optionally group on y (exclusive with by and gx)
   {
     data: reduceData = reduceIdentity,
-    filter: reduceFilter = reduceCount,
+    filter = reduceCount, // return only non-empty bins by default
+    sort,
     reverse,
     ...outputs // output channel definitions
   } = {},
@@ -43,12 +44,16 @@ function binn(
 ) {
   bx = maybeBin(bx);
   by = maybeBin(by);
-  reduceData = maybeReduce(reduceData, identity);
-  reduceFilter = reduceFilter == null ? reduceTrue : maybeReduce(reduceFilter, identity);
 
-  // Compute the outputs. Don’t group on a channel if one of the output channels
-  // requires it as an input!
+  // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
+  reduceData = maybeReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+
+  if (sort) debugger;
+
+  // Don’t group on a channel if an output requires it as an input!
   if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
   if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
 
@@ -96,16 +101,20 @@ function binn(
       const BY2 = by && setBY2([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
+      if (sort) sort.initialize(data);
+      if (filter) filter.initialize(data);
       for (const facet of facets) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
+        if (sort) sort.scope("facet", facet);
+        if (filter) filter.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
                 const b = fy(bb);
-                if (!reduceFilter.reduce(b, data)) continue;
+                if (filter && !filter.reduce(b)) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
@@ -115,19 +124,20 @@ function binn(
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b);
+                if (sort) sort.reduce(g);
               }
             }
           }
         }
         groupFacets.push(groupFacet);
       }
-      maybeSort(groupFacets, outputs, reverse);
+      maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
     ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
     ...GK && {[gk]: GK},
-    ...extractOutputs(outputs)
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 

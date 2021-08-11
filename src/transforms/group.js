@@ -36,15 +36,19 @@ function groupn(
   y, // optionally group on y
   {
     data: reduceData = reduceIdentity,
-    filter: reduceFilter = reduceCount,
-    reverse, // output channel definitions
-    ...outputs
+    filter,
+    sort,
+    reverse,
+    ...outputs // output channel definitions
   } = {},
   inputs = {} // input channels and options
 ) {
-  reduceData = maybeReduce(reduceData, identity);
-  reduceFilter = reduceFilter == null ? reduceTrue : maybeReduce(reduceFilter, identity);
+
+  // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
+  reduceData = maybeReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeLazyChannel(x);
@@ -80,13 +84,17 @@ function groupn(
       const GS = S && setGS([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
+      if (sort) sort.initialize(data);
+      if (filter) filter.initialize(data);
       for (const facet of facets) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
+        if (sort) sort.scope("facet", facet);
+        if (filter) filter.scope("facet", facet);
         for (const [, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
-              if (!reduceFilter.reduce(g, data)) continue;
+              if (filter && !filter.reduce(g)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
               if (X) GX.push(x);
@@ -95,46 +103,66 @@ function groupn(
               if (F) GF.push(F[g[0]]);
               if (S) GS.push(S[g[0]]);
               for (const o of outputs) o.reduce(g);
+              if (sort) sort.reduce(g);
             }
           }
         }
         groupFacets.push(groupFacet);
       }
-      maybeSort(groupFacets, outputs, reverse);
+      maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...GX && {x: GX},
     ...GY && {y: GY},
-    ...extractOutputs(outputs)
+    ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 
 export function maybeOutputs(outputs, inputs) {
-  return Object.entries(outputs).map(([name, reduce]) => {
-    const value = maybeInput(name, inputs);
-    const reducer = maybeReduce(reduce, value);
-    const [output, setOutput] = lazyChannel(labelof(value, reducer.label));
-    let V, O, context;
-    return {
-      name,
-      output,
-      initialize(data) {
-        V = value === undefined ? data : valueof(data, value);
-        O = setOutput([]);
-        if (reducer.scope === "data") {
-          context = reducer.reduce(range(data), V);
-        }
-      },
-      scope(scope, I) {
-        if (reducer.scope === scope) {
-          context = reducer.reduce(I, V);
-        }
-      },
-      reduce(I) {
-        O.push(reducer.reduce(I, V, context));
+  return Object.entries(outputs).map(([name, reduce]) => maybeOutput(name, reduce, inputs));
+}
+
+export function maybeOutput(name, reduce, inputs) {
+  const evaluator = maybeEvaluator(name, reduce, inputs);
+  const [output, setOutput] = lazyChannel(evaluator.label);
+  let O;
+  return {
+    name,
+    output,
+    initialize(data) {
+      evaluator.initialize(data);
+      O = setOutput([]);
+    },
+    scope(scope, I) {
+      evaluator.scope(scope, I);
+    },
+    reduce(I) {
+      O.push(evaluator.reduce(I));
+    }
+  };
+}
+
+export function maybeEvaluator(name, reduce, inputs) {
+  const input = maybeInput(name, inputs);
+  const reducer = maybeReduce(reduce, input);
+  let V, context;
+  return {
+    label: labelof(input, reducer.label),
+    initialize(data) {
+      V = input === undefined ? data : valueof(data, input);
+      if (reducer.scope === "data") {
+        context = reducer.reduce(range(data), V);
       }
-    };
-  });
+    },
+    scope(scope, I) {
+      if (reducer.scope === scope) {
+        context = reducer.reduce(I, V);
+      }
+    },
+    reduce(I) {
+      return reducer.reduce(I, V, context);
+    }
+  };
 }
 
 export function maybeGroup(I, X) {
@@ -171,8 +199,7 @@ export function maybeSubgroup(outputs, Z, F, S) {
   );
 }
 
-export function maybeSort(facets, outputs, reverse) {
-  const sort = outputs.find(o => o.name === "sort");
+export function maybeSort(facets, sort, reverse) {
   if (sort) {
     const S = sort.output.transform();
     const compare = (i, j) => ascendingDefined(S[i], S[j]);
@@ -181,12 +208,6 @@ export function maybeSort(facets, outputs, reverse) {
   if (reverse) {
     facets.forEach(f => f.reverse());
   }
-}
-
-export function extractOutputs(outputs) {
-  return Object.fromEntries(outputs
-    .filter(({name}) => name !== "sort")
-    .map(({name, output}) => [name, output]));
 }
 
 function reduceFunction(f) {
