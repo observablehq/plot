@@ -17,6 +17,7 @@ export {default as athletesWeightCumulative} from "./athletes-weight-cumulative.
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as beckerBarley} from "./becker-barley.js";
 export {default as caltrain} from "./caltrain.js";
+export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as crimeanWarOverlapped} from "./crimean-war-overlapped.js";
 export {default as crimeanWarStacked} from "./crimean-war-stacked.js";
