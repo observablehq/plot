@@ -23,6 +23,7 @@ import * as plots from "./plots/index.js";
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
         const actual = beautify.html(root.outerHTML, {indent_size: 2});
         const outfile = path.resolve("./test/output", path.basename(name, ".js") + "." + ext);
+        const diffile = path.resolve("./test/output", path.basename(name, ".js") + "-changed." + ext);
         let expected;
 
         try {
@@ -37,11 +38,22 @@ import * as plots from "./plots/index.js";
           }
         }
 
-        if (actual !== expected) {
-          const outfile = path.resolve("./test/output", path.basename(name, ".js") + "-changed." + ext);
-          console.warn(`! generating ${outfile}`);
-          await fs.writeFile(outfile, actual, "utf8");
+        if (actual === expected) {
+          if (process.env.CI !== "true") {
+            try {
+              await fs.unlink(diffile);
+              console.warn(`! deleted ${diffile}`);
+            } catch (error) {
+              if (error.code !== "ENOENT") {
+                throw error;
+              }
+            }
+          }
+        } else {
+          console.warn(`! generating ${diffile}`);
+          await fs.writeFile(diffile, actual, "utf8");
         }
+
         assert(actual === expected, `${name} must match snapshot`);
       } finally {
         delete global.document;
