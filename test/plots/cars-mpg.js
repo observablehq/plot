@@ -6,13 +6,12 @@ export default async function() {
 
   return Plot.plot({
     x: {inset: 20, ticks: 10},
-    y: {grid: true},
+    y: {grid: true, zero: true},
     color: {
       type: "categorical",
       legend: true // as soon as it's available
     },
     marks: [
-      Plot.ruleY([0], {filter: false}),
       Plot.line(data,
         Plot.binX({y: "mean"}, {
           x: "year",
