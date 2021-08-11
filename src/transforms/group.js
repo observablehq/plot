@@ -54,9 +54,6 @@ function groupn(
   const [GF = fill, setGF] = maybeLazyChannel(vfill);
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
-  // Extract the special sort output, if any.
-  const sort = outputs.find(o => o.name === "sort");
-
   return {
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
@@ -96,7 +93,7 @@ function groupn(
         }
         groupFacets.push(groupFacet);
       }
-      maybeSort(groupFacets, sort, reverse);
+      maybeSort(groupFacets, outputs, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...GX && {x: GX},
@@ -167,7 +164,8 @@ export function maybeSubgroup(outputs, Z, F, S) {
   );
 }
 
-export function maybeSort(facets, sort, reverse) {
+export function maybeSort(facets, outputs, reverse) {
+  const sort = outputs.find(o => o.name === "sort");
   if (sort) {
     const S = sort.output.transform();
     const compare = (i, j) => ascendingDefined(S[i], S[j]);
