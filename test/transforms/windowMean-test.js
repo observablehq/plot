@@ -4,7 +4,7 @@ import assert from "assert";
 
 /* eslint-disable no-sparse-arrays */
 /* eslint-disable comma-dangle */
-it("movingAverage computes a moving average", () => {
+it("window mean computes a moving average", () => {
   const data = d3.range(6);
   const m1 = Plot.windowX({k: 1, x: d => d});
   m1.transform(data, [d3.range(data.length)]);
@@ -20,23 +20,23 @@ it("movingAverage computes a moving average", () => {
   assert.deepStrictEqual(m4.x.transform(), [, 1.5, 2.5, 3.5,,, ]);
 });
 
-it("movingAverage skips NaN", () => {
+it("window mean skips NaN", () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, NaN, 1, 1, 1];
   const m3 = Plot.windowX({k: 3, x: d => d});
   m3.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1,, ]);
 });
 
-it("movingAverage treats null as NaN", () => {
+it("window mean treats null as NaN", () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, 1, 1, 1];
   const m3 = Plot.windowX({k: 3, x: d => d});
   m3.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1,, ]);
 });
 
-it("movingAverage respects anchor", () => {
+it("window mean respects anchor", () => {
   const data = [0, 1, 2, 3, 4, 5];
-  const mc = Plot.windowX({k: 3, anchor: "center", x: d => d});
+  const mc = Plot.windowX({k: 3, anchor: "middle", x: d => d});
   mc.transform(data, [d3.range(data.length)]);
   assert.deepStrictEqual(mc.x.transform(), [, 1, 2, 3, 4,, ]);
   const ml = Plot.windowX({k: 3, anchor: "start", x: d => d});

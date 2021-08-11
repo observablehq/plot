@@ -36,7 +36,7 @@ it("window max treats null as NaN", () => {
 
 it("window max respects anchor", () => {
   const data = [0, 1, 2, 3, 4, 5];
-  const mc = Plot.windowX({reduce: "max", k: 3, anchor: "center", x: d => d});
+  const mc = Plot.windowX({reduce: "max", k: 3, anchor: "middle", x: d => d});
   mc.transform(data, [range(data.length)]);
   assert.deepStrictEqual(mc.x.transform(), [, 2, 3, 4, 5,, ]);
   const ml = Plot.windowX({reduce: "max", k: 3, anchor: "start", x: d => d});

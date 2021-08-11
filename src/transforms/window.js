@@ -13,18 +13,29 @@ export function windowY(windowOptions = {}, options) {
 
 function window(options = {}) {
   if (typeof options === "number") options = {k: options};
-  let {k, reduce, anchor} = options;
+  let {k, reduce, shift, anchor = maybeShift(shift)} = options;
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
   return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
 }
 
-function maybeAnchor(anchor = "center", k) {
+function maybeAnchor(anchor = "middle", k) {
   switch ((anchor + "").toLowerCase()) {
-    case "center": return (k - 1) >> 1;
+    case "middle": return (k - 1) >> 1;
     case "start": return 0;
     case "end": return k - 1;
   }
   throw new Error("invalid anchor");
+}
+
+function maybeShift(shift) {
+  if (shift === undefined) return;
+  console.warn("shift is deprecated; please use anchor instead");
+  switch ((shift + "").toLowerCase()) {
+    case "centered": return "middle";
+    case "leading": return "start";
+    case "trailing": return "end";
+  }
+  throw new Error("invalid shift");
 }
 
 function maybeReduce(reduce = "mean") {
