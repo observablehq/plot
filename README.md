@@ -234,6 +234,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**tickFormat** - how to format tick values as a string (a function or format specifier)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
+* *scale*.**line** - if true, draw the axis line
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
