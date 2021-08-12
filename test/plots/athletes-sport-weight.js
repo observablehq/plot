@@ -6,7 +6,7 @@ export default async function() {
   return Plot.plot({
     x: {
       grid: true,
-      axisLine: true
+      line: true
     },
     color: {
       scheme: "YlGnBu",
