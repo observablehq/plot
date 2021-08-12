@@ -21,12 +21,13 @@ export default async function() {
         stroke: "cylinders",
         curve: "basis"
       })),
-      Plot.dot(data, Plot.binY({r: "count"}, {
+      Plot.dot(data, Plot.reverse(Plot.sort("r", Plot.stackR(Plot.binY({r: "count"}, {
         x: "year",
         y: "economy (mpg)",
-        stroke: "cylinders",
-        thresholds: 20
-      }))
+        fill: "cylinders",
+        thresholds: 20,
+        order: "cylinders"
+      })))))
     ]
   });
 }
