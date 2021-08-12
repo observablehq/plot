@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
+import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales} from "./scales.js";
 import {filterStyles, offset} from "./style.js";
 
@@ -15,7 +16,7 @@ export function plot(options = {}) {
   }
 
   // Flatten any nested marks.
-  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity);
+  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();

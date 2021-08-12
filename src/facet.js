@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second} from "./mark.js";
+import {Mark, first, second, markify} from "./mark.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
@@ -21,7 +21,7 @@ class Facet extends Mark {
       ],
       options
     );
-    this.marks = marks.flat(Infinity);
+    this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
