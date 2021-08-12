@@ -285,3 +285,8 @@ class Render extends Mark {
   }
   render() {}
 }
+
+export function marks(...marks) {
+  marks.plot = Mark.prototype.plot;
+  return marks;
+}
