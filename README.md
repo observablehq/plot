@@ -490,10 +490,6 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
-### Plot.marks(...*marks*)
-
-A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function.
-
 ### Area
 
 [<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@observablehq/plot-area)
@@ -909,6 +905,10 @@ The following optional channels are supported:
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
+### Plot.marks(...*marks*)
+
+A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function.
+
 ## Decorations
 
 Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
@@ -955,7 +955,7 @@ For greater control, you can also implement a custom transform function:
 
 * **transform** - a function that returns transformed *data* and *index*
 
-The basic transforms are composable: the *filter* transform is applied first, then *sort*, *reverse*, and lastly the custom *transform*, if any. A custom transform is rarely specified directly; instead it is typically specified via one of an option transform.
+The basic transforms are composable: the *filter* transform is applied first, then *sort*, then *reverse*. If a custom *transform* option is specified directly, it supersedes any basic transforms (*i.e.*, the *filter*, *sort* and *reverse* options are ignored). However, the *transform* option is rarely used directly; instead an option transform is used. These option transforms automatically compose with the basic *filter*, *sort* and *reverse* transforms.
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
