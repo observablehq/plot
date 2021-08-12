@@ -1,6 +1,5 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import {svg} from "htl";
 
 export default async function() {
   const anscombe = await d3.csv("data/anscombe.csv", d3.autoType);
@@ -15,8 +14,7 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(anscombe, {x: "x", y: "y"}),
-      () => svg`<circle cx=40 cy=40 r=10 fill=red>`
+      Plot.dot(anscombe, {x: "x", y: "y"})
     ]
   });
 }
