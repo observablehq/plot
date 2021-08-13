@@ -85,6 +85,7 @@ export {default as randomWalk} from "./random-walk.js";
 export {default as seattlePrecipitationRule} from "./seattle-precipitation-rule.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";
 export {default as seattleTemperatureCell} from "./seattle-temperature-cell.js";
+export {default as sfCovidDeaths} from "./sf-covid-deaths.js";
 export {default as sfTemperatureBand} from "./sf-temperature-band.js";
 export {default as sfTemperatureBandArea} from "./sf-temperature-band-area.js";
 export {default as simpsonsRatings} from "./simpsons-ratings.js";
