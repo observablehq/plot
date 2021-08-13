@@ -91,7 +91,7 @@ function groupn(
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        for (const [, I] of maybeGroup(facet, G)) {
+        for (const [f, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
               if (filter && !filter.reduce(g)) continue;
@@ -99,9 +99,9 @@ function groupn(
               groupData.push(reduceData.reduce(g, data));
               if (X) GX.push(x);
               if (Y) GY.push(y);
-              if (Z) GZ.push(Z[g[0]]);
-              if (F) GF.push(F[g[0]]);
-              if (S) GS.push(S[g[0]]);
+              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
+              if (F) GF.push(G === F ? f : F[g[0]]);
+              if (S) GS.push(G === S ? f : S[g[0]]);
               for (const o of outputs) o.reduce(g);
               if (sort) sort.reduce(g);
             }
