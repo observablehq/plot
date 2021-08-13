@@ -92,8 +92,11 @@ function groupn(
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
         const domainX = X ? sorter(new Set(X)) : [undefined];
+        const domainY = Y ? sorter(new Set(Y)) : [undefined];
         for (const [f, I] of maybeGroup(facet, G)) {
-          for (const [y, gg] of maybeGroup(I, Y)) {
+          const thisY = new Map(maybeGroup(I, Y));
+          for (const y of domainY) {
+            const gg = thisY.get(y) || [];
             const thisX = new Map(maybeGroup(gg, X));
             for (const x of domainX) {
               const g = thisX.get(x) || [];

@@ -1,0 +1,120 @@
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="430" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,400.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,359.38888888888886)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,318.2777777777778)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,277.1666666666667)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,236.05555555555557)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,194.94444444444443)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,153.83333333333334)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,112.72222222222221)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">7</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,71.61111111111113)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,30.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">9</text>
+    </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ x</text>
+  </g>
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(177.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">A</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(482.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">B</text>
+    </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">facet</text>
+  </g>
+  <g>
+    <g transform="translate(40,0)">
+      <g transform="translate(0,400)" fill="none" text-anchor="middle">
+        <g class="tick" opacity="1" transform="translate(0.5,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(69.25,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(138,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(206.75,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(275.5,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
+        </g>
+      </g>
+    </g>
+    <g transform="translate(345,0)">
+      <g transform="translate(0,400)" fill="none" text-anchor="middle">
+        <g class="tick" opacity="1" transform="translate(0.5,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(69.25,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(138,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(206.75,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
+        </g>
+        <g class="tick" opacity="1" transform="translate(275.5,0)">
+          <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
+        </g><text fill="currentColor" transform="translate(295,30)" dy="-0.32em" text-anchor="end">value →</text>
+      </g>
+    </g>
+    <g transform="translate(40,0)">
+      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="275" height="370"></rect>
+      <g fill-opacity="0.5">
+        <path fill="#4e79a7" d="M0,400L34.375,358.88888888888886L34.375,317.7777777777778L34.375,276.6666666666667L0,235.55555555555557L0,194.44444444444443L0,153.33333333333334L0,112.22222222222221L275,71.11111111111113L0,30L0,30L0,71.11111111111113L0,112.22222222222221L0,153.33333333333334L0,194.44444444444443L0,235.55555555555557L0,276.6666666666667L0,317.7777777777778L0,358.88888888888886L0,400Z"></path>
+        <path fill="#f28e2c" d="M0,400L103.125,358.88888888888886L34.375,317.7777777777778L34.375,276.6666666666667L275,235.55555555555557L137.5,194.44444444444443L240.625,153.33333333333334L34.375,112.22222222222221L275,71.11111111111113L275,30L0,30L275,71.11111111111113L0,112.22222222222221L0,153.33333333333334L0,194.44444444444443L0,235.55555555555557L34.375,276.6666666666667L34.375,317.7777777777778L34.375,358.88888888888886L0,400Z"></path>
+      </g>
+      <g transform="translate(0.5,0.5)">
+        <circle cx="34.375" cy="358.88888888888886" r="3" fill="#4e79a7"></circle>
+        <circle cx="34.375" cy="317.7777777777778" r="3" fill="#4e79a7"></circle>
+        <circle cx="34.375" cy="276.6666666666667" r="3" fill="#4e79a7"></circle>
+        <circle cx="275" cy="71.11111111111113" r="3" fill="#4e79a7"></circle>
+        <circle cx="103.125" cy="358.88888888888886" r="3" fill="#f28e2c"></circle>
+        <circle cx="275" cy="235.55555555555557" r="3" fill="#f28e2c"></circle>
+        <circle cx="137.5" cy="194.44444444444443" r="3" fill="#f28e2c"></circle>
+        <circle cx="240.625" cy="153.33333333333334" r="3" fill="#f28e2c"></circle>
+        <circle cx="34.375" cy="112.22222222222221" r="3" fill="#f28e2c"></circle>
+        <circle cx="275" cy="30" r="3" fill="#f28e2c"></circle>
+      </g>
+    </g>
+    <g transform="translate(345,0)">
+      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="275" height="370"></rect>
+      <g fill-opacity="0.5">
+        <path fill="#4e79a7" d="M0,400L0,358.88888888888886L0,317.7777777777778L240.625,276.6666666666667L34.375,235.55555555555557L171.875,194.44444444444443L0,153.33333333333334L0,112.22222222222221L0,71.11111111111113L0,30L0,30L0,71.11111111111113L0,112.22222222222221L0,153.33333333333334L0,194.44444444444443L0,235.55555555555557L0,276.6666666666667L0,317.7777777777778L0,358.88888888888886L0,400Z"></path>
+        <path fill="#f28e2c" d="M68.75,400L103.125,358.88888888888886L240.625,317.7777777777778L240.625,276.6666666666667L34.375,235.55555555555557L171.875,194.44444444444443L240.625,153.33333333333334L137.5,112.22222222222221L206.25,71.11111111111113L206.25,30L0,30L0,71.11111111111113L0,112.22222222222221L0,153.33333333333334L171.875,194.44444444444443L34.375,235.55555555555557L240.625,276.6666666666667L0,317.7777777777778L0,358.88888888888886L0,400Z"></path>
+      </g>
+      <g transform="translate(0.5,0.5)">
+        <circle cx="240.625" cy="276.6666666666667" r="3" fill="#4e79a7"></circle>
+        <circle cx="34.375" cy="235.55555555555557" r="3" fill="#4e79a7"></circle>
+        <circle cx="171.875" cy="194.44444444444443" r="3" fill="#4e79a7"></circle>
+        <circle cx="68.75" cy="400" r="3" fill="#f28e2c"></circle>
+        <circle cx="103.125" cy="358.88888888888886" r="3" fill="#f28e2c"></circle>
+        <circle cx="240.625" cy="317.7777777777778" r="3" fill="#f28e2c"></circle>
+        <circle cx="240.625" cy="153.33333333333334" r="3" fill="#f28e2c"></circle>
+        <circle cx="137.5" cy="112.22222222222221" r="3" fill="#f28e2c"></circle>
+        <circle cx="206.25" cy="71.11111111111113" r="3" fill="#f28e2c"></circle>
+        <circle cx="206.25" cy="30" r="3" fill="#f28e2c"></circle>
+      </g>
+    </g>
+  </g>
+</svg>
