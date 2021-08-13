@@ -106,7 +106,7 @@ function binn(
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        for (const [, I] of maybeGroup(facet, G)) {
+        for (const [f, I] of maybeGroup(facet, G)) {
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
@@ -116,9 +116,9 @@ function binn(
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
-                if (Z) GZ.push(Z[b[0]]);
-                if (F) GF.push(F[b[0]]);
-                if (S) GS.push(S[b[0]]);
+                if (Z) GZ.push(G === Z ? f : Z[b[0]]);
+                if (F) GF.push(G === F ? f : F[b[0]]);
+                if (S) GS.push(G === S ? f : S[b[0]]);
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b);
