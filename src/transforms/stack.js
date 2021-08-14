@@ -6,42 +6,42 @@ import {basic} from "./basic.js";
 export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
+  const [transform, Y,, x1, x2] = stack(y, undefined, x, "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
 export function stackX1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y,, X] = stack(y, undefined, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackX2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y,, X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y,,, X] = stack(y, undefined, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackY(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
+  const [transform, X,, y1, y2] = stack(x, undefined, y, "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
 export function stackY1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X,, Y] = stack(x, undefined, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
 export function stackY2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) options = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X,, Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X,,, Y] = stack(x, undefined, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
@@ -63,6 +63,13 @@ export function maybeStackY({y, y1, y2, ...options} = {}) {
   return {...options, y1, y2};
 }
 
+export function stackR(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {x, y, r, ...rest} = options; // note: consumes x,y!
+  const [transform, X, Y, R1, R2] = stack(x, y, r, "r", stackOptions, rest);
+  return {...transform, x: X, y: Y, r1: R1, r: R2};
+}
+
 // The reverse option is ambiguous: it is both a stack option and a basic
 // transform. If only one options object is specified, we interpret it as a
 // stack option, and therefore must remove it from the propagated options.
@@ -71,16 +78,19 @@ function mergeOptions(options) {
   return reverse ? {...options, reverse: false} : options;
 }
 
-function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
+function stack(xa, xb, y = () => 1, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
-  const [X, setX] = maybeLazyChannel(x);
+  const [Xa, setXa] = maybeLazyChannel(xa);
+  const [Xb, setXb] = maybeLazyChannel(xb);
   const [Y1, setY1] = lazyChannel(y);
   const [Y2, setY2] = lazyChannel(y);
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
     basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
+      const Xa = xa == null ? undefined : setXa(valueof(data, xa));
+      const Xb = xb == null ? undefined : setXb(valueof(data, xb));
+      const X = xa == null ? Xb : xb == null ? Xa : Xa.map((a, i) => JSON.stringify([a, Xb[i]]));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
@@ -104,7 +114,8 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
       }
       return {data, facets};
     }),
-    X,
+    Xa,
+    Xb,
     Y1,
     Y2
   ];
