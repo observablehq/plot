@@ -1,4 +1,4 @@
-import {group as grouper, sort as sorter, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
+import {group as grouper, sort as sorter, sum, deviation, min, max, mean, median, mode, variance, InternMap, InternSet} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 import {basic} from "./basic.js";
@@ -91,13 +91,13 @@ function groupn(
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        const domainX = X ? sorter(new Set(X)) : [undefined];
-        const domainY = Y ? sorter(new Set(Y)) : [undefined];
-        for (const [f, I] of maybeGroup(facet, G)) {
-          const thisY = new Map(maybeGroup(I, Y));
+        const domainX = X ? sorter(new InternSet(X)) : [undefined];
+        const domainY = Y ? sorter(new InternSet(Y)) : [undefined];
+        for (const [f, I] of sorter(maybeGroup(facet, G), first)) {
+          const thisY = new InternMap(maybeGroup(I, Y));
           for (const y of domainY) {
             const gg = thisY.get(y) || [];
-            const thisX = new Map(maybeGroup(gg, X));
+            const thisX = new InternMap(maybeGroup(gg, X));
             for (const x of domainX) {
               const g = thisX.get(x) || [];
               if (filter ? !filter.reduce(g) : g.length === 0) continue;
@@ -172,7 +172,7 @@ export function maybeEvaluator(name, reduce, inputs) {
 }
 
 export function maybeGroup(I, X) {
-  return X ? sorter(grouper(I, i => X[i]), first) : [[, I]];
+  return X ? grouper(I, i => X[i]) : [[, I]];
 }
 
 export function maybeReduce(reduce, value) {

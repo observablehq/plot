@@ -1,5 +1,5 @@
-import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {bin as binner, sort as sorter, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
+import {first, valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
 import {basic} from "./basic.js";
 import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
@@ -106,8 +106,8 @@ function binn(
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        for (const [f, I] of maybeGroup(facet, G)) {
-          for (const [k, g] of maybeGroup(I, K)) {
+        for (const [f, I] of sorter(maybeGroup(facet, G), first)) {
+          for (const [k, g] of sorter(maybeGroup(I, K), first)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
