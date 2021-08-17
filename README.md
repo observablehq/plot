@@ -5,6 +5,7 @@
 * [Introduction](https://observablehq.com/@observablehq/plot)
 * [Installing](#installing)
 * [API Reference](#plotplotoptions)
+* [Changelog](./CHANGELOG.md)
 * [Contributing](./CONTRIBUTING.md)
 
 ## Installing
