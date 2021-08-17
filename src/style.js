@@ -101,7 +101,7 @@ export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpa
   applyAttr(selection, "fill-opacity", FO && (([i]) => FO[i]));
   applyAttr(selection, "stroke", S && (([i]) => S[i]));
   applyAttr(selection, "stroke-opacity", SO && (([i]) => SO[i]));
-  applyAttr(selection, "stroke-width", SW && (i => SW[i]));
+  applyAttr(selection, "stroke-width", SW && (([i]) => SW[i]));
   titleGroup(L)(selection);
 }
 
