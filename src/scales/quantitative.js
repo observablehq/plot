@@ -144,6 +144,7 @@ function ScaleD(key, scale, channels, {
   pivot = 0,
   range,
   scheme = "rdbu",
+  symmetric = true,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : undefined,
   reverse
 }) {
@@ -158,6 +159,14 @@ function ScaleD(key, scale, channels, {
 
   // If an explicit range is specified, promote it to a piecewise interpolator.
   if (range !== undefined) interpolate = piecewise(interpolate, range);
+
+  // Normalize the interpolator for symmetric difference around the pivot.
+  if (symmetric) {
+    const mindelta = Math.abs(domain[0] - pivot);
+    const maxdelta = Math.abs(domain[2] - pivot);
+    if (mindelta < maxdelta) interpolate = truncateLower(interpolate, mindelta / maxdelta);
+    else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
+  }
 
   scale.domain(domain).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
@@ -183,6 +192,14 @@ export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain =
 
 export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
   return ScaleD(key, scaleDivergingSymlog().constant(constant), channels, options);
+}
+
+function truncateLower(interpolate, k) {
+  return t => interpolate(t < 0.5 ? (1 - k) / 2 + t * k : t);
+}
+
+function truncateUpper(interpolate, k) {
+  return t => interpolate(t > 0.5 ? t * k - (k - 1) / 2 : t);
 }
 
 function inferDomain(channels, f) {

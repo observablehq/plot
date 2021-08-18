@@ -11,7 +11,8 @@ export default async function() {
     },
     color: {
       type: "diverging",
-      scheme: "BuRd"
+      scheme: "BuRd",
+      symmetric: false
     },
     marks: [
       Plot.ruleY([0]),

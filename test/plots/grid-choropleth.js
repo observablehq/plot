@@ -19,8 +19,7 @@ export default async function() {
     },
     color: {
       type: "diverging",
-      scheme: "piyg",
-      domain: [-0.17, 0.17] // TODO
+      scheme: "piyg"
     },
     marks: [
       Plot.cell(states, {x: "x", y: "y", fill: change}),
