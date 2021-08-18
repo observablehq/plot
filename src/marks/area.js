@@ -2,7 +2,7 @@ import {area as shapeArea, create, group} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, maybeZ} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, maybeGroupedStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
@@ -49,13 +49,13 @@ export class Area extends Mark {
 }
 
 export function area(data, options) {
-  return new Area(data, options);
+  return new Area(data, maybeGroupedStyles(options));
 }
 
 export function areaX(data, {y = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackX({...options, y1: y, y2: undefined}));
+  return new Area(data, maybeStackX(maybeGroupedStyles({...options, y1: y, y2: undefined})));
 }
 
 export function areaY(data, {x = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackY({...options, x1: x, x2: undefined}));
+  return new Area(data, maybeStackY(maybeGroupedStyles({...options, x1: x, x2: undefined})));
 }

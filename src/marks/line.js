@@ -2,7 +2,7 @@ import {create, group, line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, maybeTuple, maybeZ} from "../mark.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, maybeGroupedStyles} from "../style.js";
 
 const defaults = {
   fill: "none",
@@ -47,13 +47,13 @@ export class Line extends Mark {
 
 export function line(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }
 
 export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }
 
 export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }

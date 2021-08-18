@@ -683,7 +683,23 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **stroke** if a channel, or **fill** if a channel.
 
-The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
+The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1. The **stroke** defaults to currentColor. The **fill** defaults to none.
+
+If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; in that case the color for the mark is taken as the first channel value for each series. A different reducer can be applied by specifying {value, reduce}. The following reducers are available:
+
+* *first* (default) - the first value
+* *last* - the last value
+* *count* - the number of values
+* *distinct* - the number of distinct values
+* *sum* - the sum of values
+* *min* - the minimum value
+* *max* - the maximum value
+* *mean* - the mean (average) of values
+* *median* - the median of values
+* *mode* - the mode (most frequent occurrence) of values
+* a function to be passed the array of values
+
+This also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth** and **title** channels.
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
