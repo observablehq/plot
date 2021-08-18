@@ -1,4 +1,4 @@
-import {rollup, sort} from "d3";
+import {groupSort} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
@@ -77,10 +77,7 @@ function channelSort(channels, x, y, y2, reduce) {
   const XV = X[1].value;
   const YV = Y[1].value;
   reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
-  X[1].domain = () => {
-    const rank = rollup(range(XV), I => -reduce.reduce(I, YV), i => XV[i]);
-    return sort(XV, v => rank.get(v)); // TODO cleanup
-  };
+  X[1].domain = () => groupSort(range(XV), I => -reduce.reduce(I, YV), i => XV[i]);
 }
 
 // This allows transforms to behave equivalently to channels.
