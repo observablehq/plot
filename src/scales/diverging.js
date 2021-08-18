@@ -13,7 +13,7 @@ import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
 import {inferDomain, Interpolator} from "./quantitative.js";
 
-function ScaleD(key, scale, channels, {
+function ScaleD(key, scale, transform, channels, {
   nice,
   clamp,
   domain = inferDomain(channels),
@@ -38,8 +38,8 @@ function ScaleD(key, scale, channels, {
 
   // Normalize the interpolator for symmetric difference around the pivot.
   if (symmetric) {
-    const mindelta = Math.abs(domain[0] - pivot);
-    const maxdelta = Math.abs(domain[2] - pivot);
+    const mindelta = Math.abs(transform(domain[0]) - transform(pivot));
+    const maxdelta = Math.abs(transform(domain[2]) - transform(pivot));
     if (mindelta < maxdelta) interpolate = truncateLower(interpolate, mindelta / maxdelta);
     else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
   }
@@ -51,23 +51,23 @@ function ScaleD(key, scale, channels, {
 }
 
 export function ScaleDiverging(key, channels, options) {
-  return ScaleD(key, scaleDiverging(), channels, options);
+  return ScaleD(key, scaleDiverging(), transformIdentity, channels, options);
 }
 
 export function ScaleDivergingSqrt(key, channels, options) {
-  return ScaleD(key, scaleDivergingSqrt(), channels, options);
+  return ScaleD(key, scaleDivergingSqrt(), Math.sqrt, channels, options);
 }
 
 export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
-  return ScaleD(key, scaleDivergingPow().exponent(exponent), channels, options);
+  return ScaleD(key, scaleDivergingPow().exponent(exponent), transformPow(exponent), channels, options);
 }
 
 export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}) {
-  return ScaleD(key, scaleDivergingLog().base(base), channels, {domain, pivot, ...options});
+  return ScaleD(key, scaleDivergingLog().base(base), Math.log, channels, {domain, pivot, ...options});
 }
 
 export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleD(key, scaleDivergingSymlog().constant(constant), channels, options);
+  return ScaleD(key, scaleDivergingSymlog().constant(constant), transformSymlog(constant), channels, options);
 }
 
 function truncateLower(interpolate, k) {
@@ -76,4 +76,16 @@ function truncateLower(interpolate, k) {
 
 function truncateUpper(interpolate, k) {
   return t => interpolate(t > 0.5 ? t * k - (k - 1) / 2 : t);
+}
+
+function transformIdentity(x) {
+  return x;
+}
+
+function transformPow(exponent) {
+  return x => x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
+}
+
+function transformSymlog(constant) {
+  return x => Math.sign(x) * Math.log1p(Math.abs(x / constant));
 }
