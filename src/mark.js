@@ -50,7 +50,7 @@ export class Mark {
     });
     if (this.order != null) {
       for (const x in this.order) {
-        channelSort(channels, x, this.order[x], true); // TODO order options (reduce, limit, reverse)
+        channelSort(channels, x, this.order[x]);
       }
     }
     return {index, channels};
@@ -70,7 +70,9 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, x, y, reduce) {
+function channelSort(channels, x, y) {
+  let reverse, reduce, limit;
+  ({reverse = true, reduce = true, limit = Infinity, value: y} = maybeValue(y));
   if (reduce == null || reduce === false) return;
   const X = channels.find(([, {scale}]) => scale === x);
   if (!X) throw new Error(`missing channel: ${x}`);
@@ -79,7 +81,11 @@ function channelSort(channels, x, y, reduce) {
   const XV = X[1].value;
   const YV = Y[1].value;
   reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
-  X[1].domain = () => groupSort(range(XV), I => -reduce.reduce(I, YV), i => XV[i]);
+  X[1].domain = () => {
+    const domain = groupSort(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
+    if (reverse) domain.reverse();
+    return limit < Infinity ? domain.slice(0, limit) : domain;
+  };
 }
 
 // This allows transforms to behave equivalently to channels.
