@@ -1,4 +1,4 @@
-import {groupSort} from "d3";
+import {ascending, descending, rollup, sort} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
@@ -82,9 +82,10 @@ function channelSort(channels, x, y) {
   const YV = Y[1].value;
   reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
   X[1].domain = () => {
-    const domain = groupSort(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
-    if (reverse) domain.reverse();
-    return limit < Infinity ? domain.slice(0, limit) : domain;
+    let domain = rollup(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
+    domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
+    if (limit < Infinity) domain = domain.slice(0, limit);
+    return domain.map(first);
   };
 }
 
@@ -313,4 +314,12 @@ class Render extends Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot;
   return marks;
+}
+
+function ascendingGroup([ak, av], [bk, bv]) {
+  return ascending(av, bv) || ascending(ak, bk);
+}
+
+function descendingGroup([ak, av], [bk, bv]) {
+  return descending(av, bv) || ascending(ak, bk);
 }
