@@ -1,4 +1,4 @@
-import {count, max, mean, median, min, sum} from "d3";
+import {count, max, mean, median, min, rollup, sort, sum} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
@@ -73,7 +73,12 @@ function channelSort(channels, x, y, reduce) {
   const X = channels.find(([, {scale}]) => scale === x);
   const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === `${y}2`);
   if (!(X && Y)) throw new Error(`unable to sort ${x} by ${y}`);
-  X[1].sorted = I => -reduce(I, i => Y[1].value[i]); // TODO clean this up
+  X[1].domain = () => {
+    const XV = X[1].value;
+    const YV = Y[1].value;
+    const rank = rollup(range(XV), I => -reduce(I, i => YV[i]), i => XV[i]);
+    return sort(XV, v => rank.get(v)); // TODO cleanup
+  };
 }
 
 function channelSortReduce(reduce) {

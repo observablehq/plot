@@ -1,6 +1,5 @@
-import {InternSet, rollup, reverse as reverseof, sort} from "d3";
+import {InternSet, reverse as reverseof, sort} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint} from "d3";
-import {range} from "../mark.js";
 import {ordinalScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
@@ -70,12 +69,12 @@ function maybeRound(scale, channels, options = {}) {
 }
 
 function inferDomain(channels) {
-  const domain = new InternSet();
+  const values = new InternSet();
   let a;
-  for (const {value, sorted} of channels) {
+  for (const {value, domain} of channels) {
+    if (domain !== undefined) return domain();
     if (value === undefined) continue;
-    for (const v of value) domain.add(v);
-    if (sorted) a = rollup(range(value), sorted, i => value[i]); // TODO rename a
+    for (const v of value) values.add(v);
   }
-  return sort(domain, a ? v => a.get(v) : ascendingDefined);
+  return sort(values, ascendingDefined);
 }
