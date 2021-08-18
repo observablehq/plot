@@ -1,9 +1,10 @@
-import {count, max, mean, median, min, rollup, sort, sum} from "d3";
+import {rollup, sort} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
 import {styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
+import {maybeReduce} from "./transforms/group.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -48,8 +49,8 @@ export class Mark {
       const {name} = channel;
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
-    channelSort(channels, "x", "y", this.sortX);
-    channelSort(channels, "y", "x", this.sortY);
+    channelSort(channels, "x", "y", "y2", this.sortX);
+    channelSort(channels, "y", "x", "x2", this.sortY);
     return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
@@ -67,32 +68,19 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, x, y, reduce) {
+function channelSort(channels, x, y, y2, reduce) {
   if (reduce == null || reduce === false) return;
-  reduce = channelSortReduce(reduce);
   const X = channels.find(([, {scale}]) => scale === x);
-  const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === `${y}2`);
-  if (!(X && Y)) throw new Error(`unable to sort ${x} by ${y}`);
+  if (!X) throw new Error(`missing channel: ${x}`);
+  const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === y2);
+  if (!Y) throw new Error(`missing channel: ${y}`);
+  const XV = X[1].value;
+  const YV = Y[1].value;
+  reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
   X[1].domain = () => {
-    const XV = X[1].value;
-    const YV = Y[1].value;
-    const rank = rollup(range(XV), I => -reduce(I, i => YV[i]), i => XV[i]);
+    const rank = rollup(range(XV), I => -reduce.reduce(I, YV), i => XV[i]);
     return sort(XV, v => rank.get(v)); // TODO cleanup
   };
-}
-
-function channelSortReduce(reduce) {
-  if (typeof reduce === "function") return reduce;
-  if (reduce === true) return max;
-  switch ((reduce + "").toLowerCase()) {
-    case "max": return max;
-    case "mean": return mean;
-    case "median": return median;
-    case "min": return min;
-    case "sum": return sum;
-    case "count": return count;
-  }
-  throw new Error(`unknown channel sort ${reduce}`);
 }
 
 // This allows transforms to behave equivalently to channels.
