@@ -12,9 +12,10 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sortX, sortY} = options;
+    const {facet = "auto", order} = options;
     const names = new Set();
     this.data = data;
+    this.order = order && order.toString === objectToString ? order : null; // TODO resolve ambiguity with stack’s order option
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = basic(options);
     this.transform = transform;
@@ -33,8 +34,6 @@ export class Mark {
       }
       return true;
     });
-    this.sortX = sortX;
-    this.sortY = sortY;
   }
   initialize(facets) {
     let data = arrayify(this.data);
@@ -49,8 +48,11 @@ export class Mark {
       const {name} = channel;
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
-    channelSort(channels, "x", "y", "y2", this.sortX);
-    channelSort(channels, "y", "x", "x2", this.sortY);
+    if (this.order != null) {
+      for (const x in this.order) {
+        channelSort(channels, x, this.order[x], true); // TODO order options (reduce, limit, reverse)
+      }
+    }
     return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
@@ -68,11 +70,11 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, x, y, y2, reduce) {
+function channelSort(channels, x, y, reduce) {
   if (reduce == null || reduce === false) return;
   const X = channels.find(([, {scale}]) => scale === x);
   if (!X) throw new Error(`missing channel: ${x}`);
-  const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === y2);
+  const Y = channels.find(([name]) => name === y);
   if (!Y) throw new Error(`missing channel: ${y}`);
   const XV = X[1].value;
   const YV = Y[1].value;

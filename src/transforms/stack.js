@@ -204,7 +204,8 @@ function maybeOrder(order, offset, ky) {
     return orderFunction(field(order));
   }
   if (typeof order === "function") return orderFunction(order);
-  return orderGiven(order);
+  if (Array.isArray(order)) return orderGiven(order);
+  // throw new Error("invalid order"); // TODO resolve ambiguity with mark order option
 }
 
 // by value
