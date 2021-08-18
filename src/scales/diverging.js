@@ -71,11 +71,11 @@ export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) 
 }
 
 function truncateLower(interpolate, k) {
-  return t => interpolate(t < 0.5 ? (1 - k) / 2 + t * k : t);
+  return t => interpolate(t < 0.5 ? t * k + (1 - k) / 2 : t);
 }
 
 function truncateUpper(interpolate, k) {
-  return t => interpolate(t > 0.5 ? t * k - (k - 1) / 2 : t);
+  return t => interpolate(t > 0.5 ? t * k + (1 - k) / 2 : t);
 }
 
 function transformIdentity(x) {
