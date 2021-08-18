@@ -22,12 +22,6 @@ Plot can then be imported as a namespace:
 import * as Plot from "@observablehq/plot";
 ```
 
-In an Observable notebook, Plot (and optionally D3) can be imported like so:
-
-```js
-import {Plot, d3} from "@observablehq/plot"
-```
-
 In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
 
 ```html
@@ -39,6 +33,8 @@ document.body.appendChild(Plot.plot(options));
 
 </script>
 ```
+
+In an Observable notebook, Plot and D3 are available by default as part of the [standard library](https://observablehq.com/@observablehq/recommended-libraries).
 
 Plot is also available as a UMD bundle for legacy browsers.
 
