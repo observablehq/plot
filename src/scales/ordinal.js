@@ -70,7 +70,6 @@ function maybeRound(scale, channels, options = {}) {
 
 function inferDomain(channels) {
   const values = new InternSet();
-  let a;
   for (const {value, domain} of channels) {
     if (domain !== undefined) return domain();
     if (value === undefined) continue;
