@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const [grid, data] = await Promise.all([
-    await d3.csv("data/us-state-grid.csv").then(gridmap),
+    await d3.csv("data/us-state-grid.csv", d3.autoType).then(gridmap),
     await d3.csv("data/us-state-population-2010-2019.csv", d3.autoType)
   ]);
   const states = data
