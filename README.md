@@ -10,6 +10,8 @@
 
 ## Installing
 
+In Observable notebooks, Plot and D3 are available by default as part of the [standard library](https://observablehq.com/@observablehq/recommended-libraries).
+
 For use with Webpack, Rollup, or other Node-based bundlers, Plot is typically installed via a package manager such as Yarn or npm.
 
 ```bash
@@ -33,8 +35,6 @@ document.body.appendChild(Plot.plot(options));
 
 </script>
 ```
-
-In an Observable notebook, Plot and D3 are available by default as part of the [standard library](https://observablehq.com/@observablehq/recommended-libraries).
 
 Plot is also available as a UMD bundle for legacy browsers.
 
