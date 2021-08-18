@@ -148,7 +148,7 @@ function autoHeight({y, fy, fx}) {
 }
 
 export function channelSort(channels, x, y, reduce) {
-  if (!reduce) return;
+  if (reduce == null || reduce === false) return;
   reduce = channelSortReduce(reduce);
   const X = channels.find(([, {scale}]) => scale === x);
   const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === `${y}2`);
