@@ -1,3 +1,4 @@
+import {count, max, mean, median, min, sum} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
@@ -43,13 +44,13 @@ export class Mark {
       data = arrayify(data);
       if (facets === undefined && index.length) ([index] = index);
     }
-    return {
-      index,
-      channels: this.channels.map(channel => {
-        const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, channel)];
-      })
-    };
+    const channels = this.channels.map(channel => {
+      const {name} = channel;
+      return [name == null ? undefined : name + "", Channel(data, channel)];
+    });
+    channelSort(channels, "x", "y", this.sortX);
+    channelSort(channels, "y", "x", this.sortY);
+    return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
@@ -64,6 +65,29 @@ function Channel(data, {scale, type, value}) {
     value: valueof(data, value),
     label: labelof(value)
   };
+}
+
+function channelSort(channels, x, y, reduce) {
+  if (reduce == null || reduce === false) return;
+  reduce = channelSortReduce(reduce);
+  const X = channels.find(([, {scale}]) => scale === x);
+  const Y = channels.find(([name]) => name === y) || channels.find(([name]) => name === `${y}2`);
+  if (!(X && Y)) throw new Error(`unable to sort ${x} by ${y}`);
+  X[1].sorted = I => -reduce(I, i => Y[1].value[i]); // TODO clean this up
+}
+
+function channelSortReduce(reduce) {
+  if (typeof reduce === "function") return reduce;
+  if (reduce === true) return max;
+  switch ((reduce + "").toLowerCase()) {
+    case "max": return max;
+    case "mean": return mean;
+    case "median": return median;
+    case "min": return min;
+    case "sum": return sum;
+    case "count": return count;
+  }
+  throw new Error(`unknown channel sort ${reduce}`);
 }
 
 // This allows transforms to behave equivalently to channels.

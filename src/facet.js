@@ -1,7 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
 import {Mark, first, second, markify} from "./mark.js";
-import {channelSort} from "./plot.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
@@ -69,8 +68,6 @@ class Facet extends Mark {
       for (const [, channel] of channels) {
         subchannels.push([, channel]);
       }
-      channelSort(channels, "x", "y", mark.sortX);
-      channelSort(channels, "y", "x", mark.sortY);
       marksChannels.push(channels);
     }
     return {index, channels: [...channels, ...subchannels]};
