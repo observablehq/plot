@@ -1,5 +1,5 @@
 import {mapX, mapY} from "./map.js";
-import {deviation, max, min, median, variance} from "d3";
+import {deviation, max, min, median, mode, variance} from "d3";
 
 export function windowX(windowOptions = {}, options) {
   if (arguments.length === 1) options = windowOptions;
@@ -46,6 +46,7 @@ function maybeReduce(reduce = "mean") {
       case "mean": return reduceMean;
       case "median": return reduceSubarray(median);
       case "min": return reduceSubarray(min);
+      case "mode": return reduceSubarray(mode);
       case "sum": return reduceSum;
       case "variance": return reduceSubarray(variance);
       case "difference": return reduceDifference;

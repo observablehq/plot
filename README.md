@@ -1254,6 +1254,7 @@ The following window reducers are supported:
 * *max* - the maximum
 * *mean* - the mean (average)
 * *median* - the median
+* *mode* - the mode (most common occurrence)
 * *sum* - the sum of values
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
