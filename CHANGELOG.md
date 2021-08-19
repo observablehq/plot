@@ -46,9 +46,9 @@ The new axis *line* option, which defaults to false, can be used to show a conti
 
 ### Facets
 
-When the facet *data* is null, a better error message is thrown.
+The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are: *auto*, *include*, and *exclude*. True is an alias for *include* and false is an alias for *exclude*. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel (have the same length and order) as the facet data. The *exclude* facet mode shows all data that are *not* present in the current facet; this is useful for providing shared context across facets without overdrawing.
 
-The mark *facet* option can be used to control whether a mark is faceted. The new *exclude* facet mode shows all data that are *not* present in the current facet.
+When the facet *data* is null, a better error message is thrown.
 
 ### Transforms
 
