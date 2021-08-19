@@ -80,14 +80,13 @@ function channelSort(channels, facetChannels, x, y) {
   if (!Y) throw new Error(`missing channel: ${y}`);
   const XV = X[1].value;
   const YV = Y[1].value;
+  const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
   if (reduce == null || reduce === false) return;
   reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
   X[1].domain = () => {
     let domain = rollup(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
     domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
-    if (limit !== undefined) {
-      domain = domain.slice(...typeof limit === "object" ? [limit[0], limit[1]] : [0, limit]);
-    }
+    if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
     return domain.map(first);
   };
 }
