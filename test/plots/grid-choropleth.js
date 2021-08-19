@@ -18,11 +18,11 @@ export default async function() {
       axis: null
     },
     color: {
-      type: "diverging",
+      type: "diverging-log",
       scheme: "piyg"
     },
     marks: [
-      Plot.cell(states, {x: "x", y: "y", fill: change}),
+      Plot.cell(states, {x: "x", y: "y", fill: d => 1 + change(d)}),
       Plot.text(states, {x: "x", y: "y", text: "key", dy: -2}),
       Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d)))(d3.format("+.0%")), dy: 10, fillOpacity: 0.6})
     ]

@@ -51,7 +51,7 @@ function ScaleD(key, scale, transform, channels, {
 }
 
 export function ScaleDiverging(key, channels, options) {
-  return ScaleD(key, scaleDiverging(), transformIdentity, channels, options);
+  return ScaleD(key, scaleDiverging(), x => x, channels, options);
 }
 
 export function ScaleDivergingSqrt(key, channels, options) {
@@ -76,10 +76,6 @@ function truncateLower(interpolate, k) {
 
 function truncateUpper(interpolate, k) {
   return t => interpolate(t > 0.5 ? t * k + (1 - k) / 2 : t);
-}
-
-function transformIdentity(x) {
-  return x;
 }
 
 function transformPow(exponent) {
