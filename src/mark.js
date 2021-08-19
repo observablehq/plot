@@ -1,8 +1,11 @@
+import {ascending, descending, rollup, sort} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
+import {registry} from "./scales/index.js";
 import {styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
+import {maybeReduce} from "./transforms/group.js";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -10,9 +13,10 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto"} = options;
+    const {facet = "auto", sort} = options;
     const names = new Set();
     this.data = data;
+    this.sort = isOptions(sort) ? sort : null;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = basic(options);
     this.transform = transform;
@@ -32,7 +36,7 @@ export class Mark {
       return true;
     });
   }
-  initialize(facets) {
+  initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     let index = facets === undefined && data != null ? range(data) : facets;
     if (data !== undefined && this.transform !== undefined) {
@@ -41,13 +45,12 @@ export class Mark {
       data = arrayify(data);
       if (facets === undefined && index.length) ([index] = index);
     }
-    return {
-      index,
-      channels: this.channels.map(channel => {
-        const {name} = channel;
-        return [name == null ? undefined : name + "", Channel(data, channel)];
-      })
-    };
+    const channels = this.channels.map(channel => {
+      const {name} = channel;
+      return [name == null ? undefined : name + "", Channel(data, channel)];
+    });
+    if (this.sort != null) channelSort(channels, facetChannels, this.sort);
+    return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
@@ -62,6 +65,29 @@ function Channel(data, {scale, type, value}) {
     value: valueof(data, value),
     label: labelof(value)
   };
+}
+
+function channelSort(channels, facetChannels, options) {
+  const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
+  for (const x in options) {
+    if (!registry.has(x)) continue; // ignore unknown scale keys
+    const {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
+    if (reduce == null || reduce === false) continue; // disabled reducer
+    const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
+    if (!X) throw new Error(`missing channel for scale: ${x}`);
+    const Y = channels.find(([name]) => name === y);
+    if (!Y) throw new Error(`missing channel: ${y}`);
+    const XV = X[1].value;
+    const YV = Y[1].value;
+    const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
+    const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
+    X[1].domain = () => {
+      let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
+      domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
+      if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
+      return domain.map(first);
+    };
+  }
 }
 
 // This allows transforms to behave equivalently to channels.
@@ -139,6 +165,14 @@ export function arrayify(data, type) {
   return data == null ? data : (type === undefined
     ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
     : (data instanceof type ? data : type.from(data)));
+}
+
+// Disambiguates an options object (e.g., {y: "x2"}) from a channel value
+// definition expressed as a channel transform (e.g., {transform: …}).
+export function isOptions(option) {
+  return option
+    && option.toString === objectToString
+    && typeof option.transform !== "function";
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
@@ -245,9 +279,7 @@ export function mid(x1, x2) {
 
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
-  return value === undefined || (value &&
-    value.toString === objectToString &&
-    typeof value.transform !== "function") ? value : {value};
+  return value === undefined || isOptions(value) ? value : {value};
 }
 
 export function numberChannel(source) {
@@ -289,4 +321,12 @@ class Render extends Mark {
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot;
   return marks;
+}
+
+function ascendingGroup([ak, av], [bk, bv]) {
+  return ascending(av, bv) || ascending(ak, bk);
+}
+
+function descendingGroup([ak, av], [bk, bv]) {
+  return descending(av, bv) || ascending(ak, bk);
 }

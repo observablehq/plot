@@ -10,12 +10,10 @@ export default async function() {
       grid: true
     },
     y: {
-      domain: d3.sort(alphabet, d => -d.frequency).map(d => d.letter),
-      reverse: true, // TODO implicitly reverse when band or point in y
       label: null
     },
     marks: [
-      Plot.barX(alphabet, {x: "frequency", y: "letter"}),
+      Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "x"}}),
       Plot.ruleX([0])
     ],
     height: 580

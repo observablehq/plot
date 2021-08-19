@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero} from "../mark.js";
+import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero, isOptions, maybeValue} from "../mark.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
@@ -46,6 +46,7 @@ export function stackY2(stackOptions = {}, options = {}) {
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
+  options = aliasSort(options, "x");
   if (x1 === undefined && x2 == undefined) {
     if (x === undefined) x = identity;
     return stackX({x, ...options});
@@ -55,12 +56,23 @@ export function maybeStackX({x, x1, x2, ...options} = {}) {
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
+  options = aliasSort(options, "y");
   if (y1 === undefined && y2 == undefined) {
     if (y === undefined) y = identity;
     return stackY({y, ...options});
   }
   ([y1, y2] = maybeZero(y, y1, y2));
   return {...options, y1, y2};
+}
+
+function aliasSort(options, name) {
+  let {sort} = options;
+  if (!isOptions(sort)) return options;
+  for (const x in sort) {
+    const {value: y, ...rest} = maybeValue(sort[x]);
+    if (y === name) sort = {...sort, [x]: {value: `${y}2`, ...rest}};
+  }
+  return {...options, sort};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic
@@ -204,7 +216,8 @@ function maybeOrder(order, offset, ky) {
     return orderFunction(field(order));
   }
   if (typeof order === "function") return orderFunction(order);
-  return orderGiven(order);
+  if (Array.isArray(order)) return orderGiven(order);
+  throw new Error("invalid order");
 }
 
 // by value

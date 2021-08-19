@@ -32,8 +32,7 @@ export default async function() {
         y: Genre,
         x: Profit,
         stroke: "red",
-        strokeWidth: 2,
-        order: "x"
+        strokeWidth: 2
       }))
     ]
   });

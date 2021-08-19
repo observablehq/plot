@@ -70,7 +70,6 @@ When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
-
 ### Layout options
 
 These options determine the overall layout of the plot; all are specified as numbers in pixels:
@@ -172,7 +171,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; set the domain explicitly for a different order. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-options) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
@@ -356,6 +355,44 @@ Plot.plot({
   marks: …
 })
 ```
+
+### Sort options
+
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```
+
+The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that implicitly stack ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
+
+Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
+```
+
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. TODO An example of assigning categorical colors in a scatterplot by descending count to maximize discriminability. See the [group transform](#group) for the list of supported reducers.
+
+For descending rather than ascending order, use the *reverse* option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```
+
+An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+```
+
+If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+```
+
+Note: when a string or a function, the sort option is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
 
 ### Facet options
 
@@ -1021,7 +1058,9 @@ The following aggregation methods are supported:
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
 * *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
 * *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
 * *deviation* - the standard deviation
@@ -1081,7 +1120,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
+If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
 
 The bin transform supports grouping in addition to binning: you can subdivide bins by up to two additional ordinal or categorical dimensions (not including faceting). If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. Similarly, Plot.binX will group on **y** if **y** is not an output channel, and Plot.binY will group on **x** if **x** is not an output channel. For example, for a stacked histogram:
 
@@ -1148,7 +1187,9 @@ The following aggregation methods are supported:
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
 * *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
 * *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
 * *deviation* - the standard deviation
@@ -1374,7 +1415,7 @@ The following **order** methods are supported:
 - *inside-out* - order the earliest-appearing series on the inside
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
 
 The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 

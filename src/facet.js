@@ -47,7 +47,7 @@ class Facet extends Mark {
         : facet === "include" ? facetsIndex
         : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
         : undefined;
-      const {index: I, channels} = mark.initialize(markFacets);
+      const {index: I, channels: markChannels} = mark.initialize(markFacets, channels);
       // If an index is returned by mark.initialize, its structure depends on
       // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
       // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
@@ -65,10 +65,10 @@ class Facet extends Mark {
           marksIndex[i] = I;
         }
       }
-      for (const [, channel] of channels) {
+      for (const [, channel] of markChannels) {
         subchannels.push([, channel]);
       }
-      marksChannels.push(channels);
+      marksChannels.push(markChannels);
     }
     return {index, channels: [...channels, ...subchannels]};
   }
