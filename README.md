@@ -70,12 +70,6 @@ When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
-#### Sorting *y* by *x*
-
-If the mark accepts an ordinal dimension for *y*, a common task is to sort the *y* domain according to the descending value of the opposite dimension *x*. Although this can be done by setting *y.domain*, you can specify a reducer in *mark.sortY*—the default *y* domain will then be sorted according to the corresponding *x* (or *x2*) reduced over all the elements sharing the same *y*. Baked-in reducers are "count", "max" (default when setting *sortY = true*), "min", "mean", "median", and "sum", the latter being useful when summing across facets.
-
-Symmetrically, set *mark.sortX = true* to sort an ordinal *x* by the *y* (or *y2*) channel.
-
 ### Layout options
 
 These options determine the overall layout of the plot; all are specified as numbers in pixels:
@@ -177,7 +171,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a sortX or sortY option to a mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-options) to a mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
@@ -201,6 +195,32 @@ Plot.plot({
   marks: …
 })
 ```
+
+### Sort options
+
+If the mark accepts an ordinal dimension for *y*, a common task is to sort *y*’s domain according to the value of the opposite dimension *x*. Although this can be done by setting *y.domain* with d3.groupSort, you can pass a sort option to achieve a similar effect. The sort option is an object that specifies, for each scale, a channel *value* and a group *reduce*, and the sorting direction *reverse*.
+
+For example, the following sorts the domain of the *y* scale by the descending length *x* of horizontal bars:
+
+```js   
+Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {
+  y: {value: "x", reverse: true, reduce: "max"}
+}})
+```
+
+Only the mark’s channels (such as *x*, *y*, *y2*, *fill*, etc.) can be used for sorting. When stacking on dimension Y, *y* is aliased to *y2* for convenience; similarly when stacking on X, *x* is aliased to *x2*.
+
+The default *reduce* is "max". All of the [group](#group) aggregation methods are available. In the barX example given above, the *reduce* function is applied to each bar’s *x* channel, and most aggregation methods ("mean", "max", "min", "sum"…) would result in the same ordering. For dot marks, however, the "count" reducer is usually more appropriate.
+
+The default for *reverse* is false. The shorthand notation "-x" is equivalent to setting {value: "x", reverse: true}. The example above can be simplified:
+
+```js   
+Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
+```
+
+An additional *limit: n* option allows to restrict the domain to the *n* first values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
+
+Note: when passed as a string or a function, *options.sort* is a shorthand for the [sort transform](#transforms). To use both sort options and a sort transform, use Plot.sort explicitly.
 
 ### Position options
 

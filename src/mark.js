@@ -72,7 +72,7 @@ function Channel(data, {scale, type, value}) {
 
 function channelSort(channels, x, y) {
   let reverse, reduce, limit;
-  ({value: y, reverse = /^[-]/.test(y), reduce = true, limit = Infinity} = maybeValue(y));
+  ({value: y, reverse = /^[-]/.test(y), reduce = true, limit} = maybeValue(y));
   if (/^[-+]/.test(y)) y = y.slice(1);
   const X = channels.find(([, {scale}]) => scale === x);
   if (!X) throw new Error(`missing channel for scale: ${x}`);
@@ -85,7 +85,9 @@ function channelSort(channels, x, y) {
   X[1].domain = () => {
     let domain = rollup(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
     domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
-    if (limit < Infinity) domain = domain.slice(0, limit);
+    if (limit !== undefined) {
+      domain = domain.slice(...typeof limit === "object" ? [limit[0], limit[1]] : [0, limit]);
+    }
     return domain.map(first);
   };
 }
