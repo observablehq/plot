@@ -2,6 +2,7 @@ import {ascending, descending, rollup, sort} from "d3";
 import {color} from "d3";
 import {nonempty} from "./defined.js";
 import {plot} from "./plot.js";
+import {registry} from "./scales/index.js";
 import {styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 import {maybeReduce} from "./transforms/group.js";
@@ -48,11 +49,7 @@ export class Mark {
       const {name} = channel;
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
-    if (this.sort != null) {
-      for (const x in this.sort) {
-        channelSort(channels, facetChannels, x, this.sort[x]);
-      }
-    }
+    if (this.sort != null) channelSort(channels, facetChannels, this.sort);
     return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
@@ -70,25 +67,27 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, facetChannels, x, y) {
-  let reverse, reduce, limit;
-  ({value: y, reverse = /^[-]/.test(y), reduce = true, limit} = maybeValue(y));
-  if (/^[-+]/.test(y += "")) y = y.slice(1);
-  const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
-  if (!X) throw new Error(`missing channel for scale: ${x}`);
-  const Y = channels.find(([name]) => name === y);
-  if (!Y) throw new Error(`missing channel: ${y}`);
-  const XV = X[1].value;
-  const YV = Y[1].value;
-  const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
-  if (reduce == null || reduce === false) return;
-  reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
-  X[1].domain = () => {
-    let domain = rollup(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
-    domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
-    if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
-    return domain.map(first);
-  };
+function channelSort(channels, facetChannels, options) {
+  const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
+  for (const x in options) {
+    if (!registry.has(x)) continue; // ignore unknown scale keys
+    const {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
+    if (reduce == null || reduce === false) continue; // disabled reducer
+    const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
+    if (!X) throw new Error(`missing channel for scale: ${x}`);
+    const Y = channels.find(([name]) => name === y);
+    if (!Y) throw new Error(`missing channel: ${y}`);
+    const XV = X[1].value;
+    const YV = Y[1].value;
+    const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
+    const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
+    X[1].domain = () => {
+      let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
+      domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
+      if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
+      return domain.map(first);
+    };
+  }
 }
 
 // This allows transforms to behave equivalently to channels.

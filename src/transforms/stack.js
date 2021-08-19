@@ -69,10 +69,8 @@ function aliasSort(options, name) {
   let {sort} = options;
   if (!isOptions(sort)) return options;
   for (const x in sort) {
-    let {value: y, ...rest} = maybeValue(sort[x]);
-    if ((y += "").replace(/^[-+]/, "") === name) {
-      sort = {...sort, [x]: {value: y + "2", ...rest}};
-    }
+    const {value: y, ...rest} = maybeValue(sort[x]);
+    if (y === name) sort = {...sort, [x]: {value: `${y}2`, ...rest}};
   }
   return {...options, sort};
 }

@@ -28,8 +28,10 @@ export default async function() {
         y: "variety",
         stroke: "year",
         sort: {
-          fy: {value: "-x", reduce: "median"},
-          y: {value: "-x", reduce: "median"}
+          fy: "x",
+          y: "x",
+          reduce: "median",
+          reverse: true
         }
       })
     ]

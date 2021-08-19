@@ -366,27 +366,31 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
 
 The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that implicitly stack ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
 
-Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. The above code is shorthand for:
+Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
 
 ```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
 ```
 
 Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. TODO An example of assigning categorical colors in a scatterplot by descending count to maximize discriminability. See the [group transform](#group) for the list of supported reducers.
 
-For descending rather than ascending order, use the *reverse* sort option:
+For descending rather than ascending order, use the *reverse* option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```
+
+An additional *limit* option truncates the domain to the top *n* values after sorting. If *limit* is negative, the bottom *n* values are used instead. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
+```
+
+If different sort options are needed for different ordinal scales, the channel name can be replaced with a *value* object with additional per-scale options.
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
 ```
-
-As additional shorthand, a hyphen minus (-) can be prefixed to the channel name. This changes the default of *reverse* to true. For symmetry, a plus sign (+) can also be prefixed to the channel name; this has no effect.
-
-```js
-Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
-```
-
-An additional *limit* option truncates the domain to the top *n* values after sorting. If *limit* is negative, the bottom *n* values are used instead. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
 
 Note: when a string or a function, the sort option is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
 
