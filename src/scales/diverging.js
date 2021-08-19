@@ -79,7 +79,7 @@ function truncateUpper(interpolate, k) {
 }
 
 function transformPow(exponent) {
-  return x => x < 0 ? -Math.pow(-x, exponent) : Math.pow(x, exponent);
+  return x => Math.sign(x) * Math.pow(Math.abs(x), exponent);
 }
 
 function transformSymlog(constant) {

@@ -22,9 +22,9 @@ export default async function() {
       scheme: "piyg"
     },
     marks: [
-      Plot.cell(states, {x: "x", y: "y", fill: d => 1 + change(d)}),
+      Plot.cell(states, {x: "x", y: "y", fill: change}),
       Plot.text(states, {x: "x", y: "y", text: "key", dy: -2}),
-      Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d)))(d3.format("+.0%")), dy: 10, fillOpacity: 0.6})
+      Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d) - 1))(d3.format("+.0%")), dy: 10, fillOpacity: 0.6})
     ]
   });
 }
@@ -34,5 +34,5 @@ function gridmap(states) {
 }
 
 function change(d) {
-  return d["2019"] / d["2010"] - 1;
+  return d["2019"] / d["2010"];
 }
