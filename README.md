@@ -196,32 +196,6 @@ Plot.plot({
 })
 ```
 
-### Sort options
-
-If the mark accepts an ordinal dimension for *y*, a common task is to sort *y*’s domain according to the value of the opposite dimension *x*. Although this can be done by setting *y.domain* with d3.groupSort, you can pass a sort option to achieve a similar effect. The sort option is an object that specifies, for each scale, a channel *value* and a group *reduce*, and the sorting direction *reverse*.
-
-For example, the following sorts the domain of the *y* scale by the descending length *x* of horizontal bars:
-
-```js   
-Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {
-  y: {value: "x", reverse: true, reduce: "max"}
-}})
-```
-
-Only the mark’s channels (such as *x*, *y*, *y2*, *fill*, etc.) can be used for sorting. When stacking on dimension Y, *y* is aliased to *y2* for convenience; similarly when stacking on X, *x* is aliased to *x2*.
-
-The default *reduce* is "max". All of the [group](#group) aggregation methods are available. In the barX example given above, the *reduce* function is applied to each bar’s *x* channel, and most aggregation methods ("mean", "max", "min", "sum"…) would result in the same ordering. For dot marks, however, the "count" reducer is usually more appropriate.
-
-The default for *reverse* is false. The shorthand notation "-x" is equivalent to setting {value: "x", reverse: true}. The example above can be simplified:
-
-```js   
-Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
-```
-
-An additional *limit: n* option allows to restrict the domain to the *n* first values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
-
-Note: when passed as a string or a function, *options.sort* is a shorthand for the [sort transform](#transforms). To use both sort options and a sort transform, use Plot.sort explicitly.
-
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
@@ -512,6 +486,38 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
+
+### Sort options
+
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (say using [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use the mark **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```
+
+The sort option is an object whose keys are (ordinal) scale names, such as *x*, and whose values specify mark channels, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition, and you can refer to channels derived by a [transform](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that support an implicit stack transform ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
+
+Note that there may be *multiple* values in the secondary dimension (above, *y*) for a given value in the primary ordinal dimension (above, *x*). To derive an order, the secondary dimension’s values are grouped for each associated value in the primary dimension and then an aggregation method (reducer) is applied to each group. The primary values are then sorted based on the associated reduced secondary values in natural ascending order, giving the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. Generally speaking, a reducer only needs to be specified when there are more than one secondary values for some corresponding primary values. See the [group transform](#group) for the list of supported reducers. The above code is shorthand for:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
+```
+
+For descending rather than ascending order, use the *reverse* sort option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+```
+
+As additional shorthand, a hyphen minus (-) can be prefixed to the channel name. This changes the default of *reverse* to true. For symmetry, a plus sign (+) can also be prefixed to the channel name; this has no effect.
+
+```js
+Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
+```
+
+An additional *limit* option truncates the domain to the top *n* values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
+
+Note: when a string or a function, the sort option is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
 
 ### Area
 
@@ -1106,7 +1112,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * a time interval (for temporal binning)
 * a function that returns an array, count, or time interval
 
-If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/master/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
+If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds.
 
 The bin transform supports grouping in addition to binning: you can subdivide bins by up to two additional ordinal or categorical dimensions (not including faceting). If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. Similarly, Plot.binX will group on **y** if **y** is not an output channel, and Plot.binY will group on **x** if **x** is not an output channel. For example, for a stacked histogram:
 
@@ -1399,7 +1405,7 @@ The following **order** methods are supported:
 - *inside-out* - order the earliest-appearing series on the inside
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/master/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: unlike the other order methods, they do not guarantee a consistent series order across stacks.
 
 The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 
