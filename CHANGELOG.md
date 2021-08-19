@@ -24,15 +24,23 @@ The link mark now supports *x* or *y* shorthand for one-dimensional links, equiv
 
 ### Scales
 
-The new [*sort* options](https://github.com/observablehq/plot/blob/main/README.md#sort-options) allow more convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The sort options use the same aggregation methods as the group and bin transform, via the *reduce* option, defaulting to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
+The new [*sort* options](https://github.com/observablehq/plot/blob/main/README.md#sort-options) allow convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
 ```
 
-Color scales now support the *threshold* scale type, which allows you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors. The new *quantile* scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
+Color scales now support the *threshold* scale type, allowing you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors. The new *quantile* scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
 
-Diverging color scales now support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*. These correspond to the *sqrt*, *pow*, *log*, and *symlog* scale types. Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.)
+Diverging color scales now support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively.
+
+Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.) For example, the choropleth below exaggerates West Virginia’s population decline of −3% relative to Alaska’s gain of +3%. This exaggeration is caused by the domain of [−3%, +17%]: −3% is mapped to the darkest purple while +17% is mapped to the darkest green. (The pivot of 0 is mapped to the midpoint of the scheme, which is light gray here.)
+
+<img width="642" alt="a choropleth with asymmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is exaggerated" src="https://user-images.githubusercontent.com/230541/129834636-504214ae-2519-4814-9b2a-9ced7f65a1c5.png">
+
+With the new *symmetric* option, the apparent difference between −3% and 0 is equal to the apparent difference between +3% and 0; equivalently, −17% is mapped to the darkest purple.
+
+<img width="641" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
 
 The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
 
