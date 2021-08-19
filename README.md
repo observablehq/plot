@@ -364,13 +364,15 @@ If an ordinal scale’s domain is not set, it defaults to natural ascending orde
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
 ```
 
-The sort option is an object whose keys are ordinal scale names, such as *x*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that support an implicit stack transform ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
+The sort option is an object whose keys are ordinal scale names, such as *x*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that implicitly stack ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
 
-Note that there may be *multiple* values in the secondary dimension (above, *y*) for a given value in the primary ordinal dimension (above, *x*). To derive an order, the secondary dimension’s values are grouped for each associated value in the primary dimension and then an aggregation method (reducer) is applied to each group. The primary values are then sorted based on the associated reduced secondary values in natural ascending order, giving the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. Generally speaking, a reducer only needs to be specified when there are more than one secondary values for some corresponding primary values. See the [group transform](#group) for the list of supported reducers. The above code is shorthand for:
+Note that there may be *multiple* associated values in the secondary dimension (above, *y*) for a given value in the primary ordinal dimension (above, *x*). To derive an order, the secondary values are grouped for each associated primary value and then each group is aggregated by applying a reducer. The primary values are then sorted based on their associated reduced secondary value in natural ascending order, giving the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. The above code is shorthand for:
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
 ```
+
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](#group) for the list of supported reducers.
 
 For descending rather than ascending order, use the *reverse* sort option:
 
