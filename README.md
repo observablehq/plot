@@ -218,7 +218,7 @@ The default for *reverse* is false. The shorthand notation "-x" is equivalent to
 Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
 ```
 
-An additional *limit: n* option allows to restrict the domain to the *n* first values after sorting. It defaults to Infinity, showing all the values.
+An additional *limit: n* option allows to restrict the domain to the *n* first values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
 
 Note: when passed as a string or a function, *options.sort* is a shorthand for the [sort transform](#transforms). To use both sort options and a sort transform, use Plot.sort explicitly.
 
