@@ -36,11 +36,11 @@ Diverging color scales now support transformations via four new scale types: *di
 
 Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.) For example, the choropleth below exaggerates West Virginia’s population decline of −3% relative to Alaska’s gain of +3%. This exaggeration is caused by the domain of [−3%, +17%]: −3% is mapped to the darkest purple while +17% is mapped to the darkest green. (The pivot of 0 is mapped to the midpoint of the scheme, which is light gray here.)
 
-<img width="320" alt="a choropleth with asymmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is exaggerated" src="https://user-images.githubusercontent.com/230541/129834636-504214ae-2519-4814-9b2a-9ced7f65a1c5.png">
+<img width="642" alt="a choropleth with asymmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is exaggerated" src="https://user-images.githubusercontent.com/230541/129834636-504214ae-2519-4814-9b2a-9ced7f65a1c5.png">
 
 With the new *symmetric* option, the apparent difference between −3% and 0 is equal to the apparent difference between +3% and 0; equivalently, −17% is mapped to the darkest purple.
 
-<img width="320" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
+<img width="641" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
 
 The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
 
