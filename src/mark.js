@@ -75,18 +75,27 @@ function channelSort(channels, facetChannels, options) {
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
-    const Y = channels.find(([name]) => name === y);
-    if (!Y) throw new Error(`missing channel: ${y}`);
     const XV = X[1].value;
-    const YV = Y[1].value;
     const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
-    const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
-    X[1].domain = () => {
-      let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
-      domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
-      if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
-      return domain.map(first);
-    };
+    if (y == null) {
+      X[1].domain = () => {
+        let domain = XV;
+        if (reverse) domain = domain.slice().reverse();
+        if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
+        return domain;
+      };
+    } else {
+      const Y = channels.find(([name]) => name === y);
+      if (!Y) throw new Error(`missing channel: ${y}`);
+      const YV = Y[1].value;
+      const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
+      X[1].domain = () => {
+        let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
+        domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
+        if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
+        return domain.map(first);
+      };
+    }
   }
 }
 
