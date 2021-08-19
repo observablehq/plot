@@ -9,21 +9,21 @@ export function groupZ(outputs, options) {
 }
 
 // Group on {z, fill, stroke}, then on x.
-export function groupX(outputs, options = {}) {
+export function groupX(outputs = {y: "count"}, options = {}) {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y.
-export function groupY(outputs, options = {}) {
+export function groupY(outputs = {x: "count"}, options = {}) {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y.
-export function group(outputs, options = {}) {
+export function group(outputs = {fill: "count"}, options = {}) {
   let {x, y} = options;
   ([x, y] = maybeTuple(x, y));
   if (x == null) throw new Error("missing channel: x");
