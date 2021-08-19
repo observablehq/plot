@@ -17,7 +17,7 @@ export class Mark {
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
-    this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
+    this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
