@@ -18,13 +18,13 @@ The plot *marks* option now accepts render functions and nullish values as short
 
 Marks now support more style options, including shapeRendering.
 
-Marks now support fill and stroke defaults more consistently.
+Marks now support fill and stroke defaults more consistently. Common styles (fill, fillOpacity, stroke, strokeWidth, and strokeOpacity) can now be interpreted as a channel on all marks.
 
 Marks now filter undefined values more consistently.
 
-Marks now handle collapsed domains.
+Marks now handle collapsed domains. This avoids situations where a single bin would become invisible.
 
-The link mark now supports shorthand for one-dimensional links.
+The link mark now supports shorthand for one-dimensional links (equivalent to ruleX or ruleY).
 
 The rect mark now supports one-dimensional (and zero-dimensional) rects: the *x1*, *x2*, *y1* and *y2* channels are now optional.
 
@@ -50,13 +50,11 @@ The mark *facet* option can be used to control whether a mark is faceted. The ne
 
 The *outputs* argument to the bin transforms is now optional. It defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively. TODO Should the group transforms have similar default outputs?
 
-The bin and group transforms now support *filter*, *sort* and *reverse* options on the *outputs* object.
+The bin and group transforms now support *filter*, *sort* and *reverse* options on the *outputs* object. One use case is to return empty bins (which are filtered out by default), when we want to render missing days in a temporal line chart as holes or zeroes, rather than interpolating across them. The *z*, *fill* or *stroke* channels, when used for grouping, are also propagated.
 
 The bin and group transforms now support the *distinct* and *mode* reducers.
 
-The bin and group transforms now propagate *z*, *fill*, and *stroke* channel values correctly on empty bins when the this channel is used for grouping.
-
-The default *thresholds* option for the bin transforms is now *auto* instead of *scott*, and applies a maximum limit of 200 bins to Scott’s rule.
+The default *thresholds* option for the bin transforms is now *auto* instead of *scott*, and applies a maximum limit of 200 bins to Scott’s rule. This avoids vanishing bars when they are too numerous and thin to be visible.
 
 The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand.
 

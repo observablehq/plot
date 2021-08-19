@@ -51,7 +51,7 @@ To run the tests:
 yarn test
 ```
 
-This will automatically generate any missing snapshots in `test/output`, which you should remember to `git add` before committing your changes. (If you forget, your PR will fail in CI, and you’ll get a reminder.)
+This will automatically generate any missing snapshots in `test/output`, which you should remember to `git add` before committing your changes. (If you forget, your PR will fail in CI, and you’ll get a reminder.) Changed snapshots are saved alongside the originals with a -changed suffix, for visual inspection. These should never be commited.
 
 If your code intentionally changes some of the existing snapshots, simply blow away the existing snapshots and run the tests again. You can then review what’s changed using `git diff`.
 
