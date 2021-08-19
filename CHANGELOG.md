@@ -79,6 +79,22 @@ Diverging color scales now also support transformations via four new scale types
 
 The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
 
+<img width="640" alt="an empty plot showing horizontal and vertical lines along the x and y axes, respectively" src="https://user-images.githubusercontent.com/230541/130158604-2b157912-e131-4736-bba0-0c7403818cf0.png">
+
+```js
+Plot.plot({
+  grid: true,
+  line: true,
+  inset: 6,
+  x: {
+    domain: [0, 1]
+  },
+  y: {
+    domain: [0, 1]
+  }
+})
+```
+
 ### Facets
 
 The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are *auto*, *include*, and *exclude*. True is an alias for *include* and false is an alias for *exclude*. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel with the facet data (*i.e.*, have the same length and order). The *exclude* facet mode shows all data that are not present in the current facet; this can provide shared context across facets without overdrawing.
