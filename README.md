@@ -171,7 +171,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**reverse** - reverses the domain, say to flip the chart along *x* or *y*
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-options) to a mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#ordinal-options) to a mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
 The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
@@ -356,6 +356,38 @@ Plot.plot({
 })
 ```
 
+### Ordinal options
+
+If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (say using [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use the mark **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
+```
+
+The sort option is an object whose keys are (ordinal) scale names, such as *x*, and whose values specify mark channels, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition, and you can refer to channels derived by a [transform](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that support an implicit stack transform ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
+
+Note that there may be *multiple* values in the secondary dimension (above, *y*) for a given value in the primary ordinal dimension (above, *x*). To derive an order, the secondary dimension’s values are grouped for each associated value in the primary dimension and then an aggregation method (reducer) is applied to each group. The primary values are then sorted based on the associated reduced secondary values in natural ascending order, giving the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. Generally speaking, a reducer only needs to be specified when there are more than one secondary values for some corresponding primary values. See the [group transform](#group) for the list of supported reducers. The above code is shorthand for:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
+```
+
+For descending rather than ascending order, use the *reverse* sort option:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
+```
+
+As additional shorthand, a hyphen minus (-) can be prefixed to the channel name. This changes the default of *reverse* to true. For symmetry, a plus sign (+) can also be prefixed to the channel name; this has no effect.
+
+```js
+Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
+```
+
+An additional *limit* option truncates the domain to the top *n* values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
+
+Note: when a string or a function, the sort option is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
+
 ### Facet options
 
 The *facet* option enables [faceting](https://observablehq.com/@observablehq/plot-facets). When faceting, two additional band scales may be configured:
@@ -486,38 +518,6 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
-
-### Sort options
-
-If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (say using [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use the mark **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
-```
-
-The sort option is an object whose keys are (ordinal) scale names, such as *x*, and whose values specify mark channels, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition, and you can refer to channels derived by a [transform](#transforms) (such as [stack](#stack) or [bin](#bin)). For marks that support an implicit stack transform ([area](#area), [bar](#bar), and [rect](#rect)), the stacked dimension is aliased: when stacking on *x*, *x* is an alias for *x2*, and when stacking on *y*, *y* is an alias for *y2*.
-
-Note that there may be *multiple* values in the secondary dimension (above, *y*) for a given value in the primary ordinal dimension (above, *x*). To derive an order, the secondary dimension’s values are grouped for each associated value in the primary dimension and then an aggregation method (reducer) is applied to each group. The primary values are then sorted based on the associated reduced secondary values in natural ascending order, giving the domain. The default reducer is *max*, but may be changed by specifying the channel as an object with *value* and *reduce* properties. Generally speaking, a reducer only needs to be specified when there are more than one secondary values for some corresponding primary values. See the [group transform](#group) for the list of supported reducers. The above code is shorthand for:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
-```
-
-For descending rather than ascending order, use the *reverse* sort option:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse: true}}})
-```
-
-As additional shorthand, a hyphen minus (-) can be prefixed to the channel name. This changes the default of *reverse* to true. For symmetry, a plus sign (+) can also be prefixed to the channel name; this has no effect.
-
-```js
-Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "-x"} })
-```
-
-An additional *limit* option truncates the domain to the top *n* values after sorting. It defaults to Infinity, showing all the values. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected.
-
-Note: when a string or a function, the sort option is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
 
 ### Area
 
