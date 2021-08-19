@@ -1054,7 +1054,9 @@ The following aggregation methods are supported:
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
 * *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
 * *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
 * *deviation* - the standard deviation
@@ -1181,7 +1183,9 @@ The following aggregation methods are supported:
 * *proportion* - the sum proportional to the overall total (weighted frequency)
 * *proportion-facet* - the sum proportional to the facet total
 * *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
 * *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
 * *deviation* - the standard deviation

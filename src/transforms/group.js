@@ -1,4 +1,4 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
 import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 import {basic} from "./basic.js";
@@ -182,7 +182,9 @@ export function maybeReduce(reduce, value) {
     case "proportion-facet": return reduceProportion(value, "facet");
     case "deviation": return reduceAccessor(deviation);
     case "min": return reduceAccessor(min);
+    case "min-index": return reduceAccessor(minIndex);
     case "max": return reduceAccessor(max);
+    case "max-index": return reduceAccessor(maxIndex);
     case "mean": return reduceAccessor(mean);
     case "median": return reduceAccessor(median);
     case "variance": return reduceAccessor(variance);
