@@ -44,7 +44,27 @@ The new [*sort* options](https://github.com/observablehq/plot/blob/main/README.m
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
 ```
 
-Color scales now support the *threshold* scale type, allowing you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors. The new *quantile* scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
+Color scales now support the *threshold* scale type, allowing you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors.
+
+<img width="640" alt="a histogram showing the forecast probabilities of Democratic electoral votes in the 2016 U.S. presidential election, with outcomes of 270 votes highlighted in blue" src="https://user-images.githubusercontent.com/230541/130157825-0624447b-f39d-4a2a-9363-e18129d6f20e.png">
+
+```js
+Plot.plot({
+  y: {
+    percent: true
+  },
+  color: {
+    type: "threshold",
+    domain: [270]
+  },
+  marks: [
+    Plot.ruleX(data, {x: "dem_electoral_votes", y: "probability",stroke: "dem_electoral_votes",strokeWidth: 1.5}),
+    Plot.ruleX([270])
+  ]
+})
+```
+
+The new *quantile* color scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
 
 Diverging color scales now support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively.
 
