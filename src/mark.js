@@ -74,13 +74,13 @@ function channelSort(channels, x, y) {
   let reverse, reduce, limit;
   ({value: y, reverse = /^[-]/.test(y), reduce = true, limit = Infinity} = maybeValue(y));
   if (/^[-+]/.test(y)) y = y.slice(1);
-  if (reduce == null || reduce === false) return;
   const X = channels.find(([, {scale}]) => scale === x);
-  if (!X) throw new Error(`missing channel: ${x}`);
+  if (!X) throw new Error(`missing channel for scale: ${x}`);
   const Y = channels.find(([name]) => name === y);
   if (!Y) throw new Error(`missing channel: ${y}`);
   const XV = X[1].value;
   const YV = Y[1].value;
+  if (reduce == null || reduce === false) return;
   reduce = maybeReduce(reduce === true ? "max" : reduce, YV);
   X[1].domain = () => {
     let domain = rollup(range(XV), I => reduce.reduce(I, YV), i => XV[i]);
