@@ -35,7 +35,7 @@ export class Mark {
       return true;
     });
   }
-  initialize(facets) {
+  initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     let index = facets === undefined && data != null ? range(data) : facets;
     if (data !== undefined && this.transform !== undefined) {
@@ -50,7 +50,7 @@ export class Mark {
     });
     if (this.sort != null) {
       for (const x in this.sort) {
-        channelSort(channels, x, this.sort[x]);
+        channelSort(channels, facetChannels, x, this.sort[x]);
       }
     }
     return {index, channels};
@@ -70,11 +70,11 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, x, y) {
+function channelSort(channels, facetChannels, x, y) {
   let reverse, reduce, limit;
   ({value: y, reverse = /^[-]/.test(y), reduce = true, limit} = maybeValue(y));
   if (/^[-+]/.test(y)) y = y.slice(1);
-  const X = channels.find(([, {scale}]) => scale === x);
+  const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
   if (!X) throw new Error(`missing channel for scale: ${x}`);
   const Y = channels.find(([name]) => name === y);
   if (!Y) throw new Error(`missing channel: ${y}`);
