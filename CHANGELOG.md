@@ -17,7 +17,10 @@ The [*marks* option](https://github.com/observablehq/plot/blob/main/README.md#ma
 <img width="636" alt="a line chart of Apple, Inc.’s daily closing stock price from 2013 to 2018, with a red ‘hello world’ label" src="https://user-images.githubusercontent.com/230541/130157120-8cbf8052-aa31-44ed-a650-d081c4a21d69.png">
 
 ```js
-Plot.marks(Plot.line(aapl, {x: "Date", y: "Close"}), () => svg`<text x=20% y=20% fill=red>Hello, world!</text>`).plot()
+Plot.marks(
+  Plot.line(aapl, {x: "Date", y: "Close"}),
+  () => svg`<text x=20% y=20% fill=red>Hello, world!</text>`
+).plot()
 ```
 
 The [Plot.marks(...*marks*)](https://github.com/observablehq/plot/blob/main/README.md#plotmarksmarks) function provides [*mark*.plot](https://github.com/observablehq/plot/blob/main/README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
@@ -64,8 +67,6 @@ Plot.plot({
 })
 ```
 
-Diverging color scales now support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively.
-
 Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.) For example, the choropleth below exaggerates West Virginia’s population decline of −3% relative to Alaska’s gain of +3%. This exaggeration is caused by the domain of [−3%, +17%]: −3% is mapped to the darkest purple while +17% is mapped to the darkest green. (The pivot of 0 is mapped to the midpoint of the scheme, which is light gray here.)
 
 <img width="642" alt="a choropleth with asymmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is exaggerated" src="https://user-images.githubusercontent.com/230541/129834636-504214ae-2519-4814-9b2a-9ced7f65a1c5.png">
@@ -74,11 +75,40 @@ With the new *symmetric* option, the apparent difference between −3% and 0 is 
 
 <img width="641" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
 
+Diverging color scales now also support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively.
+
 The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
 
 ### Facets
 
 The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are *auto*, *include*, and *exclude*. True is an alias for *include* and false is an alias for *exclude*. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel with the facet data (*i.e.*, have the same length and order). The *exclude* facet mode shows all data that are not present in the current facet; this can provide shared context across facets without overdrawing.
+
+<img width="640" alt="a faceted scatterplot showing the correlation between culmen depth and length across sex and species; each facet shows the current sex and species with black dots and all other penguins as pale gray dots" src="https://user-images.githubusercontent.com/230541/130158213-2232800e-430a-4709-8b1b-8b44e6cf1fd8.png">
+
+```js
+Plot.plot({
+  facet: {
+    data: penguins,
+    x: "sex",
+    y: "species",
+    marginRight: 80
+  },
+  marks: [
+    Plot.frame(),
+    Plot.dot(penguins, {
+      facet: "exclude",
+      x: "culmen_depth_mm",
+      y: "culmen_length_mm",
+      r: 2,
+      fill: "#ddd"
+    }),
+    Plot.dot(penguins, {
+      x: "culmen_depth_mm",
+      y: "culmen_length_mm"
+    })
+  ]
+})
+```
 
 When the facet *data* is null, a better error message is thrown.
 
