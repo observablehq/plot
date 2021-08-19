@@ -5,12 +5,9 @@ export default async function() {
   const caltrain = await d3.csv("data/caltrain.csv");
   return Plot.plot({
     width: 240,
-    x: {
-      axis: null
-    },
+    axis: null,
     y: {
-      domain: d3.range(3, 26).map(String),
-      axis: null
+      domain: d3.range(3, 26).map(String)
     },
     color: {
       domain: "NLB",
