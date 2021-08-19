@@ -380,7 +380,7 @@ For descending rather than ascending order, use the *reverse* option:
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
 ```
 
-An additional *limit* option truncates the domain to the top *n* values after sorting. If *limit* is negative, the bottom *n* values are used instead. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
