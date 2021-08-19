@@ -372,7 +372,7 @@ Note that there may be multiple associated values in the secondary dimension (ab
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reduce: "max"}}})
 ```
 
-Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. See the [group transform](#group) for the list of supported reducers.
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. TODO An example of assigning categorical colors in a scatterplot by descending count to maximize discriminability. See the [group transform](#group) for the list of supported reducers.
 
 For descending rather than ascending order, use the *reverse* sort option:
 
