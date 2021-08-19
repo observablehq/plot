@@ -12,10 +12,10 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", order} = options;
+    const {facet = "auto", sort} = options;
     const names = new Set();
     this.data = data;
-    this.order = order && order.toString === objectToString ? order : null; // TODO resolve ambiguity with stack’s order option
+    this.sort = isChannelSort(sort) ? sort : null;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = basic(options);
     this.transform = transform;
@@ -48,9 +48,9 @@ export class Mark {
       const {name} = channel;
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
-    if (this.order != null) {
-      for (const x in this.order) {
-        channelSort(channels, x, this.order[x]);
+    if (this.sort != null) {
+      for (const x in this.sort) {
+        channelSort(channels, x, this.sort[x]);
       }
     }
     return {index, channels};
@@ -68,6 +68,14 @@ function Channel(data, {scale, type, value}) {
     value: valueof(data, value),
     label: labelof(value)
   };
+}
+
+// Disambiguates a channel sort option (e.g., {y: "x2"}) from the basic sort
+// transform expressed as a channel transform (e.g., {transform: …}).
+export function isChannelSort(sort) {
+  return sort
+    && sort.toString === objectToString
+    && typeof sort.transform !== "function";
 }
 
 function channelSort(channels, x, y) {
