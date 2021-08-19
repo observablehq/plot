@@ -30,7 +30,7 @@ export default async function() {
         x: d => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
         y: "Country Name",
         fill: "type",
-        sort: {y: "x2"}
+        sort: {y: "-x2"}
       }),
       Plot.ruleX([0])
     ]

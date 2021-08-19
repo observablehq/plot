@@ -72,7 +72,8 @@ function Channel(data, {scale, type, value}) {
 
 function channelSort(channels, x, y) {
   let reverse, reduce, limit;
-  ({reverse = true, reduce = true, limit = Infinity, value: y} = maybeValue(y));
+  ({value: y, reverse = /^[-]/.test(y), reduce = true, limit = Infinity} = maybeValue(y));
+  if (/^[-+]/.test(y)) y = y.slice(1);
   if (reduce == null || reduce === false) return;
   const X = channels.find(([, {scale}]) => scale === x);
   if (!X) throw new Error(`missing channel: ${x}`);

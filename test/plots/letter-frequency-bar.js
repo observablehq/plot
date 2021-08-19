@@ -13,7 +13,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: {value: "x2", reverse: false}}}),
+      Plot.barX(alphabet, {x: "frequency", y: "letter", sort: {y: "x2"}}),
       Plot.ruleX([0])
     ],
     height: 580
