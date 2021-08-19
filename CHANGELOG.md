@@ -12,15 +12,13 @@
 
 ### Marks
 
-The plot *marks* option now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
+The [*marks* option](https://github.com/observablehq/plot/blob/main/README.md#mark-options) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
 
 The [Plot.marks(...*marks*)](https://github.com/observablehq/plot/blob/main/README.md#plotmarksmarks) function provides [*mark*.plot](https://github.com/observablehq/plot/blob/main/README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
 
 If its fill is not *none*, a line’s default stroke is now *none* rather than *currentColor*, making it consistent with dot and other marks.
 
-All marks now support the [shapeRendering option](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering). (This is a constant option; it may not vary across marks.)
-
-All marks now allow strokeWidth to be specified as a channel. Text marks now also allow stroke and strokeOpacity to be specified as channels.
+All marks now support the [shapeRendering option](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering). (This is a constant option; it may not vary across marks.) All marks now allow strokeWidth to be specified as a channel. Text marks now also allow stroke and strokeOpacity to be specified as channels.
 
 When a fill or fillOpacity channel is used with a link, or when a stroke or strokeOpacity channel is used with a rule, undefined values will now be filtered.
 
@@ -32,17 +30,17 @@ The text mark now uses attributes instead of styles for font rendering propertie
 
 ### Scales
 
-Sorting ordinal domains.
+The new [*sort* options](https://github.com/observablehq/plot/blob/main/README.md#sort-options) allow more convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The sort options use the same aggregation methods as the group and bin transform, via the *reduce* option, defaulting to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
 
-New *threshold* scale type.
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
+```
 
-New *quantile* scale type.
+Color scales now support the *threshold* scale type, which allows you to specify a set of *n* - 1 discrete (typically numeric) thresholds to produce *n* discrete colors. The new *quantile* scale type will automatically compute *n* - 1 thresholds for *n* quantiles based on the data.
 
-New diverging scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, *diverging-symlog*.
+Diverging color scales now support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*. These correspond to the *sqrt*, *pow*, *log*, and *symlog* scale types. Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.)
 
-Symmetric diverging scales.
-
-The axis *line* option can be used to show a line along the *x* or *y* axis.
+The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
 
 ### Facets
 
