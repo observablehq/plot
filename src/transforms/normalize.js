@@ -3,11 +3,13 @@ import {defined} from "../defined.js";
 import {take} from "../mark.js";
 import {mapX, mapY} from "./map.js";
 
-export function normalizeX({basis, ...options} = {}) {
+export function normalizeX(basis, options) {
+  if (arguments.length === 1) ({basis, ...options} = basis);
   return mapX(normalize(basis), options);
 }
 
-export function normalizeY({basis, ...options} = {}) {
+export function normalizeY(basis, options) {
+  if (arguments.length === 1) ({basis, ...options} = basis);
   return mapY(normalize(basis), options);
 }
 

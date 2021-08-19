@@ -3,15 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const morley = await d3.csv("data/morley.csv", d3.autoType);
-  return Plot.plot({
-    x: {
-      grid: true,
-      inset: 6
-    },
-    marks: [
-      boxX(morley, {x: "Speed", y: "Expt"})
-    ]
-  });
+  return boxX(morley, {x: "Speed", y: "Expt"}).plot({x: {grid: true, inset: 6}});
 }
 
 // Returns a composite mark for producing a box plot, applying the necessary
@@ -23,12 +15,12 @@ function boxX(data, {
   stroke = "currentColor",
   ...options
 } = {}) {
-  return [
+  return Plot.marks(
     Plot.ruleY(data, Plot.groupY({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
     Plot.barX(data, Plot.groupY({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
     Plot.tickX(data, Plot.groupY({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
     Plot.dot(data, Plot.map({x: outliers}, {x, y, z: y, stroke, ...options}))
-  ];
+  );
 }
 
 // A map function that returns only outliers, returning NaN for non-outliers

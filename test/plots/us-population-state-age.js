@@ -19,7 +19,7 @@ export default async function() {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.tickX(stateage, Plot.normalizeX({basis: "sum", z: "state", x: "population", y: "age"}))
+      Plot.tickX(stateage, Plot.normalizeX("sum", {z: "state", x: "population", y: "age"}))
     ]
   });
 }

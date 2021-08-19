@@ -20,7 +20,7 @@ export default async function() {
   });
 
   // Normalize the x-position based on the extent for each dimension.
-  const xy = Plot.normalizeX({basis: "extent", x: "value", y: "dimension", z: "dimension"});
+  const xy = Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"});
 
   return Plot.plot({
     marginLeft: 100,

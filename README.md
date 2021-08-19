@@ -2,12 +2,15 @@
 
 **Observable Plot** is a JavaScript library for exploratory data visualization.
 
-* [Introduction](https://observablehq.com/@data-workflows/plot)
+* [Introduction](https://observablehq.com/@observablehq/plot)
 * [Installing](#installing)
 * [API Reference](#plotplotoptions)
+* [Changelog](./CHANGELOG.md)
 * [Contributing](./CONTRIBUTING.md)
 
 ## Installing
+
+In Observable notebooks, Plot and D3 are available by default as part of the [standard library](https://observablehq.com/@observablehq/recommended-libraries).
 
 For use with Webpack, Rollup, or other Node-based bundlers, Plot is typically installed via a package manager such as Yarn or npm.
 
@@ -19,12 +22,6 @@ Plot can then be imported as a namespace:
 
 ```js
 import * as Plot from "@observablehq/plot";
-```
-
-In an Observable notebook, Plot (and optionally D3) can be imported like so:
-
-```js
-import {Plot, d3} from "@observablehq/plot"
 ```
 
 In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
@@ -57,7 +54,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 ### Mark options
 
-The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbtirary content into your plot. And marks may be null or undefined, which produce no output; this is useful for having marks shown conditionally (*e.g.*, when a box is checked). Marks are drawn in *z*-order, last on top. For example, here bars for the dataset *alphabet* are drawn on top of a single rule at *y* = 0.
 
 ```js
 Plot.plot({
@@ -112,7 +109,7 @@ Plot.plot({
 
 ### Scale options
 
-Plot passes data through [scales](https://observablehq.com/@data-workflows/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
+Plot passes data through [scales](https://observablehq.com/@observablehq/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
 
 ```js
 Plot.plot({
@@ -273,7 +270,7 @@ The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 
 The *scale*.inset option can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@data-workflows/plot-scales) for an interactive version.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
 
 <img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
 
@@ -298,6 +295,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**tickFormat** - how to format tick values as a string (a function or format specifier)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
+* *scale*.**line** - if true, draw the axis line
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
@@ -425,7 +423,7 @@ Plot.plot({
 
 ### Facet options
 
-The *facet* option enables [faceting](https://observablehq.com/@data-workflows/plot-facets). When faceting, two additional band scales may be configured:
+The *facet* option enables [faceting](https://observablehq.com/@observablehq/plot-facets). When faceting, two additional band scales may be configured:
 
 * **fx** - the horizontal position, a *band* scale
 * **fy** - the vertical position, a *band* scale
@@ -471,7 +469,7 @@ The strict equality check means that an individual mark that receives a shallow 
 
 ## Marks
 
-[Marks](https://observablehq.com/@data-workflows/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](#plotplotoptions).
+[Marks](https://observablehq.com/@observablehq/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](#plotplotoptions).
 
 Mark constructors take two arguments: **data** and **options**. Together these describe a tabular dataset and how to visualize it. Options that are shared by all of a mark’s generated shapes are known as *constants*, while options that vary with the mark’s data are known as *channels*. Channels are typically bound to [scales](#scale-options) and encode abstract values, such as time or temperature, as visual values, such as position or color.
 
@@ -538,9 +536,10 @@ All marks support the following optional channels:
 * **fillOpacity** - a fill opacity; bound to the *opacity* scale
 * **stroke** - a stroke color; bound to the *color* scale
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
+* **strokeWidth** - a stroke width (in pixels)
 * **title** - a tooltip (a string of text, possibly with newlines)
 
-The **fill**, **fillOpacity**, **stroke**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity is specified as a number, it is interpreted as a constant; otherwise it is interpeted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity or the stroke width is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
 
@@ -555,9 +554,9 @@ Insets are specified in pixels. Corner radii are specified in either pixels or p
 
 ### Area
 
-[<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@data-workflows/plot-area)
+[<img src="./img/area.png" width="320" height="198" alt="an area chart">](https://observablehq.com/@observablehq/plot-area)
 
-[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@data-workflows/plot-area) · Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*) as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
+[Source](./src/marks/area.js) · [Examples](https://observablehq.com/@observablehq/plot-area) · Draws regions formed by a baseline (*x1*, *y1*) and a topline (*x2*, *y2*) as in an area chart. Often the baseline represents *y* = 0. While not required, typically the *x* and *y* scales are both quantitative.
 
 The following channels are required:
 
@@ -574,7 +573,7 @@ If **x2** is not specified, it defaults to **x1**. If **y2** is not specified, i
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **fill** if a channel, or **stroke** if a channel.
 
-The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels.
+The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth**, and **title** channels.
 
 Points along the baseline and topline are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
@@ -606,9 +605,9 @@ Returns a new area with the given *data* and *options*. This constructor is used
 
 ### Bar
 
-[<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@data-workflows/plot-bar)
+[<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@observablehq/plot-bar)
 
-[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@data-workflows/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
+[Source](./src/marks/bar.js) · [Examples](https://observablehq.com/@observablehq/plot-bar) · Draws rectangles where *x* is ordinal and *y* is quantitative ([Plot.barY](#plotbarydata-options)) or *y* is ordinal and *x* is quantitative ([Plot.barX](#plotbarxdata-options)). There is usually one ordinal value associated with each bar, such as a name, and two quantitative values defining a lower and upper bound. The lower bound is often not specified explicitly because it defaults to zero as in a conventional bar chart.
 
 For the required channels, see [Plot.barX](#plotbarxdata-options) and [Plot.barY](#plotbarydata-options). The bar mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
@@ -652,9 +651,9 @@ If the **x** channel is not specified, the bar will span the full horizontal ext
 
 ### Cell
 
-[<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@data-workflows/plot-cell)
+[<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@observablehq/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@data-workflows/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group).
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@observablehq/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group).
 
 In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
@@ -691,9 +690,9 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 ### Dot
 
-[<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@data-workflows/plot-dot)
+[<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@observablehq/plot-dot)
 
-[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@data-workflows/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
+[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@observablehq/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -733,9 +732,9 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option i
 
 ### Line
 
-[<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@data-workflows/plot-line)
+[<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@observablehq/plot-line)
 
-[Source](./src/marks/line.js) · [Examples](https://observablehq.com/@data-workflows/plot-line) · Draws two-dimensional lines as in a line chart.
+[Source](./src/marks/line.js) · [Examples](https://observablehq.com/@observablehq/plot-line) · Draws two-dimensional lines as in a line chart.
 
 The following channels are required:
 
@@ -748,7 +747,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **stroke** if a channel, or **fill** if a channel.
 
-The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
+The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
@@ -780,9 +779,9 @@ Equivalent to [Plot.line](#plotlinedata-options) except that if the **y** option
 
 ### Link
 
-[<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@data-workflows/plot-link)
+[<img src="./img/link.png" width="320" height="198" alt="a chart with links">](https://observablehq.com/@observablehq/plot-link)
 
-[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@data-workflows/plot-link) · Draws line segments (or curves) connecting pairs of points.
+[Source](./src/marks/link.js) · [Examples](https://observablehq.com/@observablehq/plot-link) · Draws line segments (or curves) connecting pairs of points.
 
 The following channels are required:
 
@@ -805,18 +804,18 @@ Returns a new link with the given *data* and *options*.
 
 ### Rect
 
-[<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@data-workflows/plot-rect)
+[<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@observablehq/plot-rect)
 
-[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@data-workflows/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
+[Source](./src/marks/rect.js) · [Examples](https://observablehq.com/@observablehq/plot-rect) · Draws rectangles where both *x* and *y* are quantitative as in a histogram. Both pairs of quantitative values represent lower and upper bounds, and often one of the lower bounds is implicitly zero. If one of the dimensions is ordinal, use a [bar](#bar) instead; if both dimensions are ordinal, use a [cell](#cell) instead. Rects are often used in conjunction with a [bin transform](#bin).
 
-The following channels are required:
+The following channels are optional:
 
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both. The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.rect(*data*, *options*)
 
@@ -844,9 +843,9 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y
 
 ### Rule
 
-[<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@data-workflows/plot-rule)
+[<img src="./img/rule.png" width="320" height="198" alt="a line chart with a highlighted rule">](https://observablehq.com/@observablehq/plot-rule)
 
-[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@data-workflows/plot-rule) · Draws an orthogonal line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
+[Source](./src/marks/rule.js) · [Examples](https://observablehq.com/@observablehq/plot-rule) · Draws an orthogonal line at the given horizontal ([Plot.ruleX](#plotrulexdata-options)) or vertical ([Plot.ruleY](#plotruleydata-options)) position, either across the entire plot (or facet) or bounded in the opposite dimension. Rules are often used with hard-coded data to annotate special values such as *y* = 0, though they can also be used to visualize data as in a lollipop chart.
 
 For the required channels, see [Plot.ruleX](#plotrulexdata-options) and [Plot.ruleY](#plotruleydata-options). The rule mark supports the [standard mark options](#marks), including insets along its secondary dimension. The **stroke** defaults to currentColor.
 
@@ -886,9 +885,9 @@ If the **y** option is not specified, it defaults to the identity function and a
 
 ### Text
 
-[<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@data-workflows/plot-text)
+[<img src="./img/text.png" width="320" height="198" alt="a bar chart with text labels">](https://observablehq.com/@observablehq/plot-text)
 
-[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@data-workflows/plot-text) · Draws a text label at the specified position.
+[Source](./src/marks/text.js) · [Examples](https://observablehq.com/@observablehq/plot-text) · Draws a text label at the specified position.
 
 The following channels are required:
 
@@ -930,9 +929,9 @@ Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the i
 
 ### Tick
 
-[<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@data-workflows/plot-tick)
+[<img src="./img/tick.png" width="320" height="198" alt="a barcode plot">](https://observablehq.com/@observablehq/plot-tick)
 
-[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@data-workflows/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions as in a “barcode” plot.
+[Source](./src/marks/tick.js) · [Examples](https://observablehq.com/@observablehq/plot-tick) · Draws an orthogonal line at the given horizontal ([Plot.tickX](#plottickxdata-options)) or vertical ([Plot.tickY](#plottickydata-options)) position, with an optional secondary position dimension along a band scale. (If the secondary dimension is quantitative instead of ordinal, use a [rule](#rule).) Ticks are often used to visualize distributions as in a “barcode” plot.
 
 For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** defaults to currentColor.
 
@@ -968,15 +967,19 @@ The following optional channels are supported:
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
+### Plot.marks(...*marks*)
+
+A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function.
+
 ## Decorations
 
 Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
 
 ### Frame
 
-[<img src="./img/frame.png" width="320" height="198" alt="a faceted scatterplot with a frame around each facet">](https://observablehq.com/@data-workflows/plot-frame)
+[<img src="./img/frame.png" width="320" height="198" alt="a faceted scatterplot with a frame around each facet">](https://observablehq.com/@observablehq/plot-frame)
 
-[Source](./src/marks/frame.js) · [Examples](https://observablehq.com/@data-workflows/plot-frame) · Draws a simple frame around the entire plot (or facet).
+[Source](./src/marks/frame.js) · [Examples](https://observablehq.com/@observablehq/plot-frame) · Draws a simple frame around the entire plot (or facet).
 
 The frame mark supports the [standard mark options](#marks), but does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
 
@@ -1014,17 +1017,43 @@ For greater control, you can also implement a custom transform function:
 
 * **transform** - a function that returns transformed *data* and *index*
 
-The basic transforms are composable: the *filter* transform is applied first, then *sort*, *reverse*, and lastly the custom *transform*, if any. A custom transform is rarely specified directly; instead it is typically specified via one of an option transform.
+The basic transforms are composable: the *filter* transform is applied first, then *sort*, then *reverse*. If a custom *transform* option is specified directly, it supersedes any basic transforms (*i.e.*, the *filter*, *sort* and *reverse* options are ignored). However, the *transform* option is rarely used directly; instead an option transform is used. These option transforms automatically compose with the basic *filter*, *sort* and *reverse* transforms.
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
+The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z*-order of rendered marks.
+
+### Plot.sort(*order*, *options*)
+
+```js
+Plot.sort(d => d.value, options) // show data in ascending value order
+```
+
+Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
+
+### Plot.reverse(*options*)
+
+```js
+Plot.reverse(options) // reverse the input order
+```
+
+Reverses the order of the data.
+
+### Plot.filter(*test*, *options*)
+
+```js
+Plot.filter(d => d.value > 3, options) // show data whose value is greater than three
+```
+
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
+
 ### Bin
 
-[<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@data-workflows/plot-bin)
+[<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@observablehq/plot-bin)
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@data-workflows/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@observablehq/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
 
-Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the binned data is computed.
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the binned data is computed. The outputs may also include *filter* and *sort* options specified as aggregation methods, and a *reverse* option to reverse the order of generated bins. By default, empty bins are omitted, and non-empty bins are generated in ascending threshold order.
 
 While it is possible to compute channel values on the binned data by defining channel values as a function, more commonly channel values are computed directly by the bin transform, either implicitly or explicitly. In addition to data, the following channels are automatically aggregated:
 
@@ -1152,11 +1181,11 @@ Bins on *y*. Groups on on *x* and first channel of *z*, *fill*, or *stroke*, if 
 
 ### Group
 
-[<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@data-workflows/plot-group)
+[<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-group)
 
-[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@data-workflows/plot-group) · Aggregates ordinal or categorical data — such as names — into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
+[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@observablehq/plot-group) · Aggregates ordinal or categorical data — such as names — into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
 
-Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*). Empty groups are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the grouped data is computed.
+Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*). Empty groups are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the grouped data is computed. The outputs may also include *filter* and *sort* options specified as aggregation methods, and a *reverse* option to reverse the order of generated groups. By default, all (non-empty) groups are generated in ascending natural order.
 
 While it is possible to compute channel values on the grouped data by defining channel values as a function, more commonly channel values are computed directly by the group transform, either implicitly or explicitly. In addition to data, the following channels are automatically aggregated:
 
@@ -1251,9 +1280,9 @@ Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*,
 
 ### Map
 
-[<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@data-workflows/plot-map)
+[<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@observablehq/plot-map)
 
-[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@data-workflows/plot-map) · Groups data into series and then applies a mapping function to each series’ values, say to normalize them relative to some basis or to apply a moving average.
+[Source](./src/transforms/map.js) · [Examples](https://observablehq.com/@observablehq/plot-map) · Groups data into series and then applies a mapping function to each series’ values, say to normalize them relative to some basis or to apply a moving average.
 
 The map transform derives new output channels from corresponding input channels. The output channels have strictly the same length as the input channels; the map transform does not affect the mark’s data or index. The map transform is akin to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given function. However, the map transform is series-aware: the data are first grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks so that series are processed independently.
 
@@ -1280,7 +1309,7 @@ The Plot.normalizeX and Plot.normalizeY transforms normalize series values relat
 The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums. These transforms also take additional options:
 
 * **k** - the window size (the number of elements in the window)
-* **shift** - how to align the window: *centered*, *leading*, or *trailing*
+* **anchor** - how to align the window: *start*, *middle*, or *end*
 * **reduce** - the aggregation method (window reducer)
 
 The following window reducers are supported:
@@ -1289,11 +1318,14 @@ The following window reducers are supported:
 * *max* - the maximum
 * *mean* - the mean (average)
 * *median* - the median
+* *mode* - the mode (most common occurrence)
 * *sum* - the sum of values
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
+
+By default, **anchor** is *middle* and **reduce** is *mean*.
 
 #### Plot.map(*outputs*, *options*)
 
@@ -1319,43 +1351,43 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
-#### Plot.normalizeX(*options*)
+#### Plot.normalizeX(*basis*, *options*)
 
 ```js
-Plot.normalizeX({y: "Date", x: "Close", stroke: "Symbol"})
+Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.normalizeY(*options*)
+#### Plot.normalizeY(*basis*, *options*)
 
 ```js
-Plot.normalizeY({x: "Date", y: "Close", stroke: "Symbol"})
+Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
 
-#### Plot.windowX(*options*)
+#### Plot.windowX(*k*, *options*)
 
 ```js
-Plot.windowX({y: "Date", x: "Anomaly", k: 24})
+Plot.windowX(24, {y: "Date", x: "Anomaly"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given *options*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
 
-#### Plot.windowY(*options*)
+#### Plot.windowY(*k*, *options*)
 
 ```js
-Plot.windowY({x: "Date", y: "Anomaly", k: 24})
+Plot.windowY(24, {x: "Date", y: "Anomaly"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given *options*.
+Like [Plot.mapY](#plotmapymap-options), but applies the window map method with the given window size *k*. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
 
 ### Select
 
-[<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@data-workflows/plot-select)
+[<img src="./img/select.png" width="320" height="198" alt="a line chart of several stocks">](https://observablehq.com/@observablehq/plot-select)
 
-[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@data-workflows/plot-select) · Selects a value from each series, say to label a line or annotate extremes.
+[Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@observablehq/plot-select) · Selects a value from each series, say to label a line or annotate extremes.
 
 The select transform derives a filtered mark index; it does not affect the mark’s data or channels. It is similar to the basic [filter transform](#transforms) except that provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks.
 
@@ -1385,9 +1417,9 @@ Selects the highest point of each series.
 
 ### Stack
 
-[<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@data-workflows/plot-stack)
+[<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@observablehq/plot-stack)
 
-[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@data-workflows/plot-stack) · Transforms a length channel into starting and ending position channels by “stacking” elements that share a given position, such as transforming the **y** input channel into **y1** and **y2** output channels after grouping on **x** as in a stacked area chart. The starting position of each element equals the ending position of the preceding element in the stack.
+[Source](./src/transforms/stack.js) · [Examples](https://observablehq.com/@observablehq/plot-stack) · Transforms a length channel into starting and ending position channels by “stacking” elements that share a given position, such as transforming the **y** input channel into **y1** and **y2** output channels after grouping on **x** as in a stacked area chart. The starting position of each element equals the ending position of the preceding element in the stack.
 
 The Plot.stackY transform groups on **x** and transforms **y** into **y1** and **y2**; the Plot.stackX transform groups on **y** and transforms **x** into **x1** and **x2**. If **y** is not specified for Plot.stackY, or if **x** is not specified for Plot.stackX, it defaults to the constant one, which is useful for constructing simple isotype charts (*e.g.*, stacked dots).
 
@@ -1413,13 +1445,15 @@ The stack transform supports diverging stacks: negative values are stacked below
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
 - null - a zero baseline (default)
-- *expand* - rescale each stack to fill [0, 1]
-- *silhouette* - align the centers of all stacks
+- *expand* (or *normalize*) - rescale each stack to fill [0, 1]
+- *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
 
-If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *silhouette* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
 
 In addition to the **y1** and **y2** output channels, Plot.stackY computers a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
+
+If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
 #### Plot.stackY(*options*)
 

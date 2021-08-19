@@ -1,11 +1,11 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
 import {facets} from "./facet.js";
-import {values} from "./mark.js";
-import {Scales, autoScaleRange, exposeScales} from "./scales.js";
+import {Scales, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {figureWrap} from "./figure.js";
 import {createLegends} from "./legends.js";
-import {offset} from "./style.js";
+import {markify} from "./mark.js";
+import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -18,7 +18,7 @@ export function plot(options = {}) {
   }
 
   // Flatten any nested marks.
-  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity);
+  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
   // A Map from Mark instance to an object of named channel values.
   const markChannels = new Map();
@@ -88,8 +88,9 @@ export function plot(options = {}) {
 
   for (const mark of marks) {
     const channels = markChannels.get(mark);
-    const index = markIndex.get(mark);
-    const node = mark.render(index, scales, values(channels, scales), dimensions, axes);
+    const values = applyScales(channels, scales);
+    const index = filterStyles(markIndex.get(mark), values);
+    const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
 

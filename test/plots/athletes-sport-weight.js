@@ -5,7 +5,8 @@ export default async function() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
   return Plot.plot({
     x: {
-      grid: true
+      grid: true,
+      line: true
     },
     color: {
       scheme: "YlGnBu",

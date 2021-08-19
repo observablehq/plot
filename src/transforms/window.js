@@ -1,25 +1,39 @@
 import {mapX, mapY} from "./map.js";
-import {deviation, max, min, median, variance} from "d3";
+import {deviation, max, min, median, mode, variance} from "d3";
 
-export function windowX({k, reduce, shift, ...options} = {}) {
-  return mapX(window(k, reduce, shift), options);
+export function windowX(windowOptions = {}, options) {
+  if (arguments.length === 1) options = windowOptions;
+  return mapX(window(windowOptions), options);
 }
 
-export function windowY({k, reduce, shift, ...options} = {}) {
-  return mapY(window(k, reduce, shift), options);
+export function windowY(windowOptions = {}, options) {
+  if (arguments.length === 1) options = windowOptions;
+  return mapY(window(windowOptions), options);
 }
 
-function window(k, reduce, shift) {
+function window(options = {}) {
+  if (typeof options === "number") options = {k: options};
+  let {k, reduce, shift, anchor = maybeShift(shift)} = options;
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
-  return maybeReduce(reduce)(k, maybeShift(shift, k));
+  return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
 }
 
-// TODO rename to anchor = {start, center, end}?
-function maybeShift(shift = "centered", k) {
+function maybeAnchor(anchor = "middle", k) {
+  switch ((anchor + "").toLowerCase()) {
+    case "middle": return (k - 1) >> 1;
+    case "start": return 0;
+    case "end": return k - 1;
+  }
+  throw new Error("invalid anchor");
+}
+
+function maybeShift(shift) {
+  if (shift === undefined) return;
+  console.warn("shift is deprecated; please use anchor instead");
   switch ((shift + "").toLowerCase()) {
-    case "centered": return (k - 1) >> 1;
-    case "leading": return 0;
-    case "trailing": return k - 1;
+    case "centered": return "middle";
+    case "leading": return "start";
+    case "trailing": return "end";
   }
   throw new Error("invalid shift");
 }
@@ -32,6 +46,7 @@ function maybeReduce(reduce = "mean") {
       case "mean": return reduceMean;
       case "median": return reduceSubarray(median);
       case "min": return reduceSubarray(min);
+      case "mode": return reduceSubarray(mode);
       case "sum": return reduceSum;
       case "variance": return reduceSubarray(variance);
       case "difference": return reduceDifference;

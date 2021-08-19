@@ -1,6 +1,8 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, values, first, second} from "./mark.js";
+import {Mark, first, second, markify} from "./mark.js";
+import {applyScales} from "./scales.js";
+import {filterStyles} from "./style.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -19,7 +21,7 @@ class Facet extends Mark {
       ],
       options
     );
-    this.marks = marks.flat(Infinity);
+    this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
@@ -70,13 +72,13 @@ class Facet extends Mark {
     }
     return {index, channels: [...channels, ...subchannels]};
   }
-  render(index, scales, channels, dimensions, axes) {
+  render(I, scales, channels, dimensions, axes) {
     const {marks, marksChannels, marksIndex, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-    const marksValues = marksChannels.map(channels => values(channels, scales));
+    const marksValues = marksChannels.map(channels => applyScales(channels, scales));
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -110,10 +112,12 @@ class Facet extends Mark {
             .each(function(key) {
               const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
               for (let i = 0; i < marks.length; ++i) {
+                const values = marksValues[i];
+                const index = filterStyles(marksFacetIndex[i], values);
                 const node = marks[i].render(
-                  marksFacetIndex[i],
+                  index,
                   scales,
-                  marksValues[i],
+                  values,
                   subdimensions
                 );
                 if (node != null) this.appendChild(node);

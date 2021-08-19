@@ -1,36 +1,20 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeColor, title, maybeNumber, number} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
+import {Mark, identity, number} from "../mark.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles} from "../style.js";
+
+const defaults = {
+  fill: null,
+  stroke: "currentColor"
+};
 
 class AbstractTick extends Mark {
-  constructor(
-    data,
-    channels,
-    {
-      title,
-      stroke,
-      strokeOpacity,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "currentColor");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-    super(
-      data,
-      [
-        ...channels,
-        {name: "title", value: title, optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
-      ],
-      options
-    );
-    Style(this, {stroke: cstroke, strokeOpacity: cstrokeOpacity, ...options});
+  constructor(data, channels, options) {
+    super(data, channels, options, defaults);
   }
   render(I, scales, channels, dimensions) {
-    const {x: X, y: Y, title: L, stroke: S, strokeOpacity: SO} = channels;
-    const index = filter(I, X, Y, S, SO);
+    const {x: X, y: Y} = channels;
+    const index = filter(I, X, Y);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales)
@@ -42,25 +26,20 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels, dimensions))
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }
 
 export class TickX extends AbstractTick {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x,
       y,
       inset = 0,
       insetTop = inset,
-      insetBottom = inset,
-      ...options
-    } = {}
-  ) {
+      insetBottom = inset
+    } = options;
     super(
       data,
       [
@@ -82,25 +61,24 @@ export class TickX extends AbstractTick {
     return i => X[i];
   }
   _y1(scales, {y: Y}, {marginTop}) {
-    return Y ? i => Y[i] + this.insetTop : marginTop + this.insetTop;
+    const {insetTop} = this;
+    return Y ? i => Y[i] + insetTop : marginTop + insetTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
-    return Y ? i => Y[i] + y.bandwidth() - this.insetBottom : height - marginBottom - this.insetBottom;
+    const {insetBottom} = this;
+    return Y ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
   }
 }
 
 export class TickY extends AbstractTick {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x,
       y,
       inset = 0,
       insetRight = inset,
-      insetLeft = inset,
-      ...options
-    } = {}
-  ) {
+      insetLeft = inset
+    } = options;
     super(
       data,
       [
@@ -116,10 +94,12 @@ export class TickY extends AbstractTick {
     selection.call(applyTransform, null, y, 0, 0.5);
   }
   _x1(scales, {x: X}, {marginLeft}) {
-    return X ? i => X[i] + this.insetLeft : marginLeft + this.insetLeft;
+    const {insetLeft} = this;
+    return X ? i => X[i] + insetLeft : marginLeft + insetLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
-    return X ? i => X[i] + x.bandwidth() - this.insetRight : width - marginRight - this.insetRight;
+    const {insetRight} = this;
+    return X ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
   }
   _y1(scales, {y: Y}) {
     return i => Y[i];

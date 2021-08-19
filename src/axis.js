@@ -14,6 +14,7 @@ export class AxisX {
     label,
     labelAnchor,
     labelOffset,
+    line,
     tickRotate
   } = {}) {
     this.name = name;
@@ -26,6 +27,7 @@ export class AxisX {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
+    this.line = boolean(line);
     this.tickRotate = number(tickRotate);
   }
   render(
@@ -51,6 +53,7 @@ export class AxisX {
       label,
       labelAnchor,
       labelOffset,
+      line,
       tickRotate
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
@@ -62,7 +65,7 @@ export class AxisX {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
-        .call(g => g.select(".domain").remove())
+        .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
           : fy ? gridFacetX(fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
@@ -94,6 +97,7 @@ export class AxisY {
     label,
     labelAnchor,
     labelOffset,
+    line,
     tickRotate
   } = {}) {
     this.name = name;
@@ -106,6 +110,7 @@ export class AxisY {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
+    this.line = boolean(line);
     this.tickRotate = number(tickRotate);
   }
   render(
@@ -129,6 +134,7 @@ export class AxisY {
       label,
       labelAnchor,
       labelOffset,
+      line,
       tickRotate
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
@@ -140,7 +146,7 @@ export class AxisY {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
-        .call(g => g.select(".domain").remove())
+        .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
           : fx ? gridFacetY(fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
