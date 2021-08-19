@@ -70,7 +70,7 @@ function aliasSort(options, name) {
   if (!isOptions(sort)) return options;
   for (const x in sort) {
     const {value: y, ...rest} = maybeValue(sort[x]);
-    if (y.replace(/^[-+]/, "") === name) {
+    if (String(y).replace(/^[-+]/, "") === name) {
       sort = {...sort, [x]: {value: y + "2", ...rest}};
     }
   }
