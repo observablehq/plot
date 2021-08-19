@@ -2,7 +2,7 @@ import {AxisX, AxisY} from "./axis.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, grid, facet: {grid: facetGrid} = {}} = {}
+  {x = {}, y = {}, fx = {}, fy = {}, grid, line, facet: {grid: facetGrid} = {}} = {}
 ) {
   let {axis: xAxis = true} = x;
   let {axis: yAxis = true} = y;
@@ -13,8 +13,8 @@ export function Axes(
   if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
   if (!fyScale) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xAxis && {x: new AxisX({grid, ...x, axis: xAxis})},
-    ...yAxis && {y: new AxisY({grid, ...y, axis: yAxis})},
+    ...xAxis && {x: new AxisX({grid, line, ...x, axis: xAxis})},
+    ...yAxis && {y: new AxisY({grid, line, ...y, axis: yAxis})},
     ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, ...fx, axis: fxAxis})},
     ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, ...fy, axis: fyAxis})}
   };
