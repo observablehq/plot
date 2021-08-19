@@ -244,13 +244,17 @@ The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordina
 * *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 * *sequential* - equivalent to *linear*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
+* *threshold* - encodes based on the specified discrete thresholds
+* *quantile* - encodes based on the computed quantile thresholds
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to the *rdbu* scheme
 * *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
-* *threshold* - given a *domain* of *n* = 1 or more values and a *range* of *n* + 1 colors, returns the *i*th color of the *range* for values that are smaller than the *i*th element of the domain. Returns the *n*th color for values above the highest threshold
-* *quantile* - given a number of *quantiles*, bins the channels into ordered *quantiles* having roughly the same number of values, then returns a threshold scale based on the bins’ limits
+
+For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *quantiles* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors.
+
+By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
 
 Color scales support two additional options:
 

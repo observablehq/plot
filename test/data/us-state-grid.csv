@@ -1,0 +1,52 @@
+x,y,key,name
+0,0,AK,Alaska
+11,0,ME,Maine
+9,1,VT,Vermont
+10,1,NH,New Hampshire
+11,1,MA,Massachusetts
+1,2,WA,Washington
+2,2,MT,Montana
+3,2,ND,North Dakota
+4,2,SD,South Dakota
+5,2,MN,Minnesota
+6,2,WI,Wisconsin
+7,2,MI,Michigan
+9,2,NY,New York
+10,2,CT,Connecticut
+11,2,RI,Rhode Island
+1,3,OR,Oregon
+2,3,ID,Idaho
+3,3,WY,Wyoming
+4,3,NE,Nebraska
+5,3,IA,Iowa
+6,3,IL,Illinois
+7,3,IN,Indiana
+8,3,OH,Ohio
+9,3,PA,Pennsylvania
+10,3,NJ,New Jersey
+0,4,CA,California
+1,4,NV,Nevada
+2,4,UT,Utah
+3,4,CO,Colorado
+4,4,KS,Kansas
+5,4,MO,Missouri
+6,4,KY,Kentucky
+7,4,WV,West Virginia
+8,4,DC,District of Columbia
+9,4,MD,Maryland
+10,4,DE,Delaware
+2,5,AZ,Arizona
+3,5,NM,New Mexico
+4,5,OK,Oklahoma
+5,5,AR,Arkansas
+6,5,TN,Tennessee
+7,5,VA,Virginia
+8,5,NC,North Carolina
+3,6,TX,Texas
+4,6,LA,Louisiana
+5,6,MS,Mississippi
+6,6,AL,Alabama
+7,6,GA,Georgia
+8,6,SC,South Carolina
+0,7,HI,Hawaii
+7,7,FL,Florida
