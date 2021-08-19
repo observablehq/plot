@@ -1,4 +1,4 @@
-import {isChannelSort} from "../mark.js";
+import {isOptions} from "../mark.js";
 import {composeTransform} from "./compose.js";
 import {filterTransform} from "./filter.js";
 import {reverseTransform} from "./reverse.js";
@@ -15,12 +15,12 @@ export function basic({
 } = {}, t2) {
   if (t1 === undefined) { // explicit transform overrides filter, sort, and reverse
     if (f1 != null) t1 = filterTransform(f1);
-    if (s1 != null && !isChannelSort(s1)) t1 = composeTransform(t1, sortTransform(s1));
+    if (s1 != null && !isOptions(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
   return {
     ...options,
-    ...isChannelSort(s1) && {sort: s1},
+    ...isOptions(s1) && {sort: s1},
     transform: composeTransform(t1, t2)
   };
 }

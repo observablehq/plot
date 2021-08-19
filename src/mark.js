@@ -15,7 +15,7 @@ export class Mark {
     const {facet = "auto", sort} = options;
     const names = new Set();
     this.data = data;
-    this.sort = isChannelSort(sort) ? sort : null;
+    this.sort = isOptions(sort) ? sort : null;
     this.facet = facet ? keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]) : null;
     const {transform} = basic(options);
     this.transform = transform;
@@ -68,14 +68,6 @@ function Channel(data, {scale, type, value}) {
     value: valueof(data, value),
     label: labelof(value)
   };
-}
-
-// Disambiguates a channel sort option (e.g., {y: "x2"}) from the basic sort
-// transform expressed as a channel transform (e.g., {transform: …}).
-export function isChannelSort(sort) {
-  return sort
-    && sort.toString === objectToString
-    && typeof sort.transform !== "function";
 }
 
 function channelSort(channels, x, y) {
@@ -172,6 +164,14 @@ export function arrayify(data, type) {
   return data == null ? data : (type === undefined
     ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
     : (data instanceof type ? data : type.from(data)));
+}
+
+// Disambiguates an options object (e.g., {y: "x2"}) from a channel value
+// definition expressed as a channel transform (e.g., {transform: …}).
+export function isOptions(option) {
+  return option
+    && option.toString === objectToString
+    && typeof option.transform !== "function";
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
@@ -278,9 +278,7 @@ export function mid(x1, x2) {
 
 // This distinguishes between per-dimension options and a standalone value.
 export function maybeValue(value) {
-  return value === undefined || (value &&
-    value.toString === objectToString &&
-    typeof value.transform !== "function") ? value : {value};
+  return value === undefined || isOptions(value) ? value : {value};
 }
 
 export function numberChannel(source) {
