@@ -46,31 +46,23 @@ The new axis *line* option, which defaults to false, can be used to show a conti
 
 ### Facets
 
-The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are: *auto*, *include*, and *exclude*. True is an alias for *include* and false is an alias for *exclude*. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel (have the same length and order) as the facet data. The *exclude* facet mode shows all data that are *not* present in the current facet; this is useful for providing shared context across facets without overdrawing.
+The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are *auto*, *include*, and *exclude*. True is an alias for *include* and false is an alias for *exclude*. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel with the facet data (*i.e.*, have the same length and order). The *exclude* facet mode shows all data that are not present in the current facet; this can provide shared context across facets without overdrawing.
 
 When the facet *data* is null, a better error message is thrown.
 
 ### Transforms
 
-The *outputs* argument to the bin transforms is now optional. It defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively. TODO Should the group transforms have similar default outputs?
+The bin and group transforms now support *filter*, *sort* and *reverse* options on the *outputs* object. By setting the *filter* to null, the bin transform will now return empty bins; this is useful with marks such as lines and areas that require zeroes to be present, rather than interpolating across the missing bins. (The *z*, *fill* or *stroke* channels, when used for grouping, are propagated to empty bins.) The *outputs* argument to the bin and group transforms is now optional; it defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively, and the same for the group transforms.
 
-The bin and group transforms now support *filter*, *sort* and *reverse* options on the *outputs* object. One use case is to return empty bins (which are filtered out by default), when we want to render missing days in a temporal line chart as holes or zeroes, rather than interpolating across them. The *z*, *fill* or *stroke* channels, when used for grouping, are also propagated.
+The bin and group transforms now support the *distinct*, *mode*, *min-index*, and *max-index* reducers. The *distinct* reducer counts the number of distinct values in each group, while the *mode* reducer returns the most frequent value in each group. The *min-index* and *max-index* reducers are similar to *min* and *max*, except they return the zero-based index of the minimum and maximum value, respectively; for example, this is useful to sort time series by the date of each series’ peak.
 
-The bin and group transforms now support the *distinct* and *mode* reducers.
+The default *thresholds* option for the bin transforms is now *auto* instead of *scott*, while applies a maximum limit of 200 bins to Scott’s rule. This avoids vanishing rects when they are too numerous and thin to be visible. (Note, however, that it is still possible to produce invisible rects if the insets are larger than the width.)
 
-The default *thresholds* option for the bin transforms is now *auto* instead of *scott*, and applies a maximum limit of 200 bins to Scott’s rule. This avoids vanishing bars when they are too numerous and thin to be visible.
-
-The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand.
-
-The select transforms now throw better error messages when required input channels are missing.
-
-The stack *offset* options have been renamed: *normalize* and *center* replace *expand* and *silhouette*, respectively. The old names are supported for backwards compatibility.
-
-The window *shift* option has been renamed to *anchor*. The *centered*, *leading*, and *trailing* shifts and replaced with *middle*, *start*, and *end* respectively. The old *shift* option is supported for backwards compatibility.
+The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. The *offset* = {*expand*, *silhouette*} stack option has been renamed to *offset* = {*normalize*, *center*}, respectively. The *shift* = {*centered*, *leading*, *trailing*} window option has been renamed to *anchor* = {*middle*, *start*, *end*} respectively. The old names are supported for backwards compatibility.
 
 The basic transforms are now available as explicit option transforms: Plot.filter, Plot.sort, and Plot.reverse. These are useful when you wish to control the order of these transforms with respect to other transforms such as Plot.bin and Plot.stack.
 
-When mark *transform* option is null, it is considered equivalent to undefined and no transform is applied instead of throwing an error.
+The select transforms now throw better error messages when required input channels are missing. When mark *transform* option is null, it is considered equivalent to undefined and no transform is applied instead of throwing an error.
 
 ## 0.1.0
 
