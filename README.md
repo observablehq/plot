@@ -1445,7 +1445,7 @@ If two arguments are passed to the stack transform functions below, the stack-sp
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *inputs* or as a separate *options* argument.
+Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *inputs* object, if the only argument, or as a separate *options* argument.
 
 #### Plot.stackY1(*options*, *inputs*)
 
