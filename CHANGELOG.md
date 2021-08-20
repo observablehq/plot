@@ -126,7 +126,7 @@ Plot.plot({
 })
 ```
 
-Empty facets, which can occur when faceting in both *x* and *y*, are no longer rendered. When the facet *data* is null, a better error message is thrown.
+Empty facets, which can occur when faceting in both *x* and *y*, or when the *fx* or *fy* domain is explicitly specified and includes values not present in the data, are no longer rendered. When the facet *data* is null, a better error message is thrown.
 
 ### Transforms
 
