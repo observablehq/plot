@@ -73,7 +73,7 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndex, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
@@ -90,7 +90,12 @@ class Facet extends Mark {
               .data(domain)
               .join("g")
               .attr("transform", ky => `translate(0,${fy(ky)})`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fyDimensions));
+              .append((ky, i) => (i === j ? axis1 : axis2).render(
+                fx && where(fx.domain(), kx => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fyDimensions
+              ));
           }
           if (fx && axes.x) {
             const domain = fx.domain();
@@ -102,7 +107,12 @@ class Facet extends Mark {
               .data(domain)
               .join("g")
               .attr("transform", kx => `translate(${fx(kx)},0)`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fxDimensions));
+              .append((kx, i) => (i === j ? axis1 : axis2).render(
+                fy && where(fy.domain(), ky => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fxDimensions
+              ));
           }
         })
         .call(g => g.selectAll()
@@ -110,17 +120,19 @@ class Facet extends Mark {
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
-              for (let i = 0; i < marks.length; ++i) {
-                const values = marksValues[i];
-                const index = filterStyles(marksFacetIndex[i], values);
-                const node = marks[i].render(
-                  index,
-                  scales,
-                  values,
-                  subdimensions
-                );
-                if (node != null) this.appendChild(node);
+              if (marksIndexByFacet.has(key)) {
+                const marksFacetIndex = marksIndexByFacet.get(key);
+                for (let i = 0; i < marks.length; ++i) {
+                  const values = marksValues[i];
+                  const index = filterStyles(marksFacetIndex[i], values);
+                  const node = marks[i].render(
+                    index,
+                    scales,
+                    values,
+                    subdimensions
+                  );
+                  if (node != null) this.appendChild(node);
+                }
               }
             }))
       .node();
@@ -201,4 +213,15 @@ class FacetMap2 extends FacetMap {
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
+}
+
+// indices of tested values in an iterator
+function where(values, test = d => !!d) {
+  const index = [];
+  let i = 0;
+  for (const d of values) {
+    if (test(d)) index.push(i);
+    ++i;
+  }
+  return index;
 }
