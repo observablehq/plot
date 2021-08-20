@@ -423,10 +423,10 @@ The following *facet* constant options are also supported:
 
 Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
 
-* *auto* (default) - marks whose data is strictly equal to (`===`) the facet data will be filtered within each facet to show the current facet’s subset (see *include*), whereas other marks will be repeated across facets.
-* *include* - enable faceting for this mark (shorthand: *true*)
-* *exclude* - enable exclusion faceting for this mark (each facet receives all the data except the facet’s subset)
-* null - (or false) disable faceting for this mark
+* *auto* (default) - equivalent to *include* when mark data is strictly equal to facet data; else null
+* *include* (or true) - draw the subset of the mark’s data in the current facet
+* *exclude* - draw the subset of the mark’s data *not* in the current facet
+* null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
 
 ```js
 Plot.plot({
@@ -442,7 +442,7 @@ Plot.plot({
 })
 ```
 
-The strict equality check means that an individual mark that receives a shallow copy of the data, say using [*array*.slice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) or [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) has faceting disabled by default.
+When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
 ## Marks
 
