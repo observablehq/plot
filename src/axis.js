@@ -184,22 +184,22 @@ function gridY(x2) {
 
 function gridFacetX(index, fy, ty) {
   const dy = fy.bandwidth();
-  const domain = index ? take(fy.domain(), index) : fy.domain();
+  const domain = fy.domain();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", domain.map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
+      .attr("d", (index ? take(domain, index) : domain).map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
 }
 
 function gridFacetY(index, fx, tx) {
   const dx = fx.bandwidth();
-  const domain = index ? take(fx.domain(), index) : fx.domain();
+  const domain = fx.domain();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", domain.map(v => `M${fx(v) + tx},0h${dx}`).join(""));
+      .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
