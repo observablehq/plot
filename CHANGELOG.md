@@ -71,20 +71,21 @@ Diverging scales now support a *symmetric* option, which defaults to true, to en
 
 Diverging color scales now also support transformations via four new scale types: *diverging-sqrt*, *diverging-pow*, *diverging-log*, and *diverging-symlog*, corresponding to the *sqrt*, *pow*, *log*, and *symlog* quantitative scale types respectively. (The above choropleth uses a *diverging-log* scale to show relative change.)
 
-The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. Using a rule to annotate a meaningful value, such as zero, is generally preferred over the *line* option.
+The new axis *line* option, which defaults to false, can be used to show a continuous line along the *x* or *y* axis. For continuous scales, a rule annotating a meaningful value, such as zero, is generally preferred over the *line* option.
 
-<img width="640" alt="an empty plot showing horizontal and vertical lines along the x and y axes, respectively" src="https://user-images.githubusercontent.com/230541/130158604-2b157912-e131-4736-bba0-0c7403818cf0.png">
+<img width="640" alt="an empty plot showing horizontal and vertical lines along ordinal x and y axes, respectively" src="https://user-images.githubusercontent.com/7001/130227092-5f02f326-ac9b-478a-8eff-f11ec737f30e.png">
 
 ```js
 Plot.plot({
   grid: true,
-  line: true,
   inset: 6,
   x: {
-    domain: [0, 1]
+    line: true,
+    domain: [..."ABCDEFGH"]
   },
   y: {
-    domain: [0, 1]
+    line: true,
+    domain: [..."abcdefg"]
   }
 })
 ```
