@@ -2573,7 +2573,6 @@
         <circle cx="111.16666666666664" cy="134.20727272727274" r="3"></circle>
       </g>
     </g>
-    <g transform="translate(398,216)"></g>
     <g transform="translate(398,402)">
       <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="161" height="167"></rect>
       <g fill="#ddd" transform="translate(0.5,0.5)">
