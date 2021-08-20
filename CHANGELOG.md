@@ -130,7 +130,13 @@ The bin and group transforms now support new *distinct*, *mode*, *min-index*, an
 
 The default *thresholds* option for the bin transforms is now *auto* instead of *scott*, while applies a maximum limit of 200 bins to Scott’s rule. This avoids vanishing rects when they are too numerous and thin to be visible. (Note, however, that it is still possible to produce invisible rects if the insets are larger than the width.)
 
-The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. The *offset* = {*expand*, *silhouette*} stack option has been renamed to *offset* = {*normalize*, *center*}, respectively. The *shift* = {*centered*, *leading*, *trailing*} window option has been renamed to *anchor* = {*middle*, *start*, *end*} respectively. The old names are supported for backwards compatibility.
+The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. For example, you can pass *k* as the first argument to the window transform, here for a 12-month moving average:
+
+```js
+Plot.line(data, Plot.windowY(12, {x: "date", y: "unemployment", z: "division"}))
+```
+
+The *offset* = {*expand*, *silhouette*} stack option has been renamed to *offset* = {*normalize*, *center*}, respectively. The *shift* = {*centered*, *leading*, *trailing*} window option has been renamed to *anchor* = {*middle*, *start*, *end*} respectively. The old names are supported for backwards compatibility.
 
 The basic transforms are now available as explicit option transforms: Plot.filter, Plot.sort, and Plot.reverse. These are useful when you wish to control the order of these transforms with respect to other transforms such as Plot.bin and Plot.stack.
 
