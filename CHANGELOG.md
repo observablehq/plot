@@ -2,7 +2,7 @@
 
 ## 0.2.0
 
-*Not yet released.* These notes are a work in progress.
+Released August 20, 2021.
 
 [breaking] Plot is now published as an ES module and requires Node 12 or higher. For more, please read [Sindre Sorhus’s FAQ](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
 
