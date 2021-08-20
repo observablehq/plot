@@ -1,58 +1,35 @@
 import {greatest, group, least} from "d3";
-import {maybeZ, valueof} from "../mark.js";
+import {maybeInput, maybeZ, valueof} from "../mark.js";
 import {basic} from "./basic.js";
 
 export function selectFirst(options) {
-  return select(first, undefined, options);
+  return select(selectorFirst, undefined, options);
 }
 
 export function selectLast(options) {
-  return select(last, undefined, options);
+  return select(selectorLast, undefined, options);
 }
 
-export function selectMinX(options = {}) {
-  const x = options.x;
-  if (x == null) throw new Error("missing channel: x");
-  return select(min, x, options);
+export function selectMinX(options) {
+  return select(selectorMin, "x", options);
 }
 
-export function selectMinY(options = {}) {
-  const y = options.y;
-  if (y == null) throw new Error("missing channel: y");
-  return select(min, y, options);
+export function selectMinY(options) {
+  return select(selectorMin, "y", options);
 }
 
-export function selectMaxX(options = {}) {
-  const x = options.x;
-  if (x == null) throw new Error("missing channel: x");
-  return select(max, x, options);
+export function selectMaxX(options) {
+  return select(selectorMax, "x", options);
 }
 
-export function selectMaxY(options = {}) {
-  const y = options.y;
-  if (y == null) throw new Error("missing channel: y");
-  return select(max, y, options);
+export function selectMaxY(options) {
+  return select(selectorMax, "y", options);
 }
 
-// TODO If the value (for some required channel) is undefined, scan forward?
-function* first(I) {
-  yield I[0];
-}
-
-// TODO If the value (for some required channel) is undefined, scan backward?
-function* last(I) {
-  yield I[I.length - 1];
-}
-
-function* min(I, X) {
-  yield least(I, i => X[i]);
-}
-
-function* max(I, X) {
-  yield greatest(I, i => X[i]);
-}
-
-function select(selectIndex, v, options) {
+export function select(selector, k, options = {}) {
+  const v = k == null ? null : maybeInput(k, options);
+  if (k != null && v == null) throw new Error(`missing channel: ${k}`);
+  selector = maybeSelector(selector);
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
     const Z = valueof(data, z);
@@ -61,7 +38,7 @@ function select(selectIndex, v, options) {
     for (const facet of facets) {
       const selectFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selectIndex(I, V)) {
+        for (const i of selector(I, V)) {
           selectFacet.push(i);
         }
       }
@@ -69,4 +46,32 @@ function select(selectIndex, v, options) {
     }
     return {data, facets: selectFacets};
   });
+}
+
+function maybeSelector(selector) {
+  if (selector === undefined) return selectorFirst;
+  if (typeof selector === "function") return selector;
+  switch ((selector + "").toLowerCase()) {
+    case "min": return selectorMin;
+    case "max": return selectorMax;
+    case "first": return selectorFirst;
+    case "last": return selectorLast;
+  }
+  throw new Error("invalid selector");
+}
+
+function* selectorFirst(I) {
+  yield I[0];
+}
+
+function* selectorLast(I) {
+  yield I[I.length - 1];
+}
+
+function* selectorMin(I, X) {
+  yield least(I, i => X[i]);
+}
+
+function* selectorMax(I, X) {
+  yield greatest(I, i => X[i]);
 }

@@ -25,7 +25,7 @@ export default async function() {
       Plot.ruleX([0]),
       Plot.ruleY(stateage, Plot.groupY({x1: "min", x2: "max"}, position)),
       Plot.dot(stateage, {...position, fill: "age"}),
-      Plot.text(stateage, Plot.selectMinX({...position, textAnchor: "end", dx: -6, text: "state", sort: {y: "x", reduce: "min", reverse: true}}))
+      Plot.text(stateage, Plot.select("min", "x", {...position, textAnchor: "end", dx: -6, text: "state", sort: {y: "x", reduce: "min", reverse: true}}))
     ]
   });
 }
