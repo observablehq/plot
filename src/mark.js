@@ -85,16 +85,15 @@ function channelSort(channels, facetChannels, data, options) {
         return domain;
       };
     } else {
-      let YV, reducer;
-      if (typeof y === "string") {
+      let YV;
+      if (y === "data") {
+        YV = data;
+      } else {
         const Y = channels.find(([name]) => name === y);
         if (!Y) throw new Error(`missing channel: ${y}`);
         YV = Y[1].value;
-        reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
-      } else {
-        YV = data;
-        reducer = maybeReduce(y, YV);
       }
+      const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X[1].domain = () => {
         let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
         domain = sort(domain, reverse ? descendingGroup : ascendingGroup);

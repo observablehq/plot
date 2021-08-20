@@ -80,7 +80,8 @@ export default async function() {
         fill: "status",
         title: d => `${d.percent.toFixed(1)}%`,
         sort: {
-          fy: data => data.find(d => d.status === "ACCEPTED").percent,
+          fy: "data",
+          reduce: data => data.find(d => d.status === "ACCEPTED").percent,
           reverse: true
         }
       }),
