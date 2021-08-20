@@ -727,7 +727,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 By default, the data is assumed to represent a single series (a single value that varies over time, *e.g.*). If the **z** channel is specified, data is grouped by *z* to form separate series. Typically *z* is a categorical value such as a series name. If **z** is not specified, it defaults to **stroke** if a channel, or **fill** if a channel.
 
-The **stroke** defaults to currentColor. The **fill** defaults to none. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
+The **fill** defaults to none. The **stroke** defaults to currentColor if the fill is none, and to none otherwise. If both the stroke and fill are defined as channels, or if the *z* channel is also specified, it is possible for the stroke or fill to vary within a series; varying color within a series is not supported, however, so only the first channel value for each series is considered. This limitation also applies to the **fillOpacity**, **strokeOpacity**, **strokeWidth**, and **title** channels. The **strokeWidth** defaults to 1.5 and the **strokeMiterlimit** defaults to 1.
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
@@ -1006,10 +1006,10 @@ The *filter*, *sort* and *reverse* transforms are also available as functions, a
 ### Plot.sort(*order*, *options*)
 
 ```js
-Plot.sort(d => d.value, options) // show data in ascending value order
+Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition.
+Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition such as a field name.
 
 ### Plot.reverse(*options*)
 
@@ -1022,10 +1022,10 @@ Reverses the order of the data.
 ### Plot.filter(*test*, *options*)
 
 ```js
-Plot.filter(d => d.value > 3, options) // show data whose value is greater than three
+Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
 ```
 
-Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition; truthy values are retained.
+Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
 
 ### Bin
 
