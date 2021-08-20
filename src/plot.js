@@ -2,7 +2,7 @@ import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
-import {Scales, autoScaleRange, applyScales} from "./scales.js";
+import {Scales, autoScaleRange, applyScales, isCollapsed} from "./scales.js";
 import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -141,6 +141,6 @@ function ScaleFunctions(scales) {
 
 function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  const ny = y && !isCollapsed(y.scale) ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }
