@@ -1439,7 +1439,7 @@ In addition to the **y1** and **y2** output channels, Plot.stackY computers a **
 
 If two arguments are passed to the stack transform functions below, the stack-specific options (**offset**, **order**, and **reverse**) are pulled exclusively from the first *options* argument, while any channels (*e.g.*, **x**, **y**, and **z**) are pulled from second *options* argument. Options from the second argument that are not consumed by the stack transform will be passed through. Using two arguments is sometimes necessary is disambiguate the option recipient when chaining transforms.
 
-#### Plot.stackY([*options*, ]*inputs*)
+#### Plot.stackY(*options*, *inputs*)
 
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -1447,7 +1447,7 @@ Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *inputs* or as a separate *options* argument.
 
-#### Plot.stackY1([*options*, ]*inputs*)
+#### Plot.stackY1(*options*, *inputs*)
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -1455,7 +1455,7 @@ Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackY](#plotstackyoptions-inputs), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
-#### Plot.stackY2([*options*, ]*inputs*)
+#### Plot.stackY2(*options*, *inputs*)
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -1463,7 +1463,7 @@ Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackY](#plotstackyoptions-inputs), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
-#### Plot.stackX([*options*, ]*inputs*)
+#### Plot.stackX(*options*, *inputs*)
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -1471,7 +1471,7 @@ Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
 
 See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
 
-#### Plot.stackX1([*options*, ]*inputs*)
+#### Plot.stackX1(*options*, *inputs*)
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -1479,7 +1479,7 @@ Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackX](#plotstackxoptions-inputs), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
-#### Plot.stackX2([*options*, ]*inputs*)
+#### Plot.stackX2(*options*, *inputs*)
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
