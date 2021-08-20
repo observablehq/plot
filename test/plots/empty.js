@@ -6,18 +6,11 @@ export default async function() {
     grid: true,
     inset: 6,
     x: {
-      domain: [0, 1]
+      domain: "ABCDEFGH"
     },
     y: {
+      line: true,
       domain: [0, 1]
-    },
-    marks: [
-      Plot.frame(),
-      undefined,
-      null,
-      () => null,
-      () => undefined,
-      () => svg`<circle cx=50% cy=50% r=5 fill=green>`
-    ]
+    }
   });
 }
