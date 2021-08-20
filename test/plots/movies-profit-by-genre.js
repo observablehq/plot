@@ -13,9 +13,6 @@ export default async function() {
       label: "Profit ($M) →",
       domain: [d3.min(movies, Profit), 1e3]
     },
-    y: {
-      domain: d3.groupSort(movies, movies => -d3.median(movies, Profit), Genre)
-    },
     marks: [
       Plot.ruleX([0]),
       Plot.barX(movies, Plot.groupY({x1: quartile1, x2: quartile3}, {
@@ -32,7 +29,8 @@ export default async function() {
         y: Genre,
         x: Profit,
         stroke: "red",
-        strokeWidth: 2
+        strokeWidth: 2,
+        sort: {y: "x", reverse: true}
       }))
     ]
   });

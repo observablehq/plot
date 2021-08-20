@@ -15,7 +15,6 @@ export default async function() {
       transform: d => d * 100
     },
     y: {
-      domain: d3.groupSort(stateage, g => -g.find(d => d.age === "≥80").population / d3.sum(g, d => d.population), d => d.state),
       axis: null
     },
     color: {
@@ -26,7 +25,7 @@ export default async function() {
       Plot.ruleX([0]),
       Plot.ruleY(stateage, Plot.groupY({x1: "min", x2: "max"}, position)),
       Plot.dot(stateage, {...position, fill: "age"}),
-      Plot.text(stateage, Plot.selectMinX({...position, textAnchor: "end", dx: -6, text: "state"}))
+      Plot.text(stateage, Plot.selectMinX({...position, textAnchor: "end", dx: -6, text: "state", sort: {y: "x", reduce: "min", reverse: true}}))
     ]
   });
 }
