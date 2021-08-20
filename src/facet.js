@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second, markify} from "./mark.js";
+import {Mark, first, second, markify, where} from "./mark.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
@@ -24,7 +24,6 @@ class Facet extends Mark {
     this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
-    this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
   }
   initialize() {
@@ -34,7 +33,6 @@ class Facet extends Mark {
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
-    const marksIndex = this.marksIndex = new Array(this.marks.length);
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
@@ -57,12 +55,10 @@ class Facet extends Mark {
           for (let j = 0; j < facetsKeys.length; ++j) {
             marksIndexByFacet.get(facetsKeys[j])[i] = I[j];
           }
-          marksIndex[i] = []; // implicit empty index for sparse facets
         } else {
           for (let j = 0; j < facetsKeys.length; ++j) {
             marksIndexByFacet.get(facetsKeys[j])[i] = I;
           }
-          marksIndex[i] = I;
         }
       }
       for (const [, channel] of markChannels) {
@@ -73,8 +69,10 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndex, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
+    const fyDomain = fy && fy.domain();
+    const fxDomain = fx && fx.domain();
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
@@ -82,35 +80,43 @@ class Facet extends Mark {
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
-            const domain = fy.domain();
             const axis1 = axes.y, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "bottom" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
+            const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
             const fyDimensions = {...dimensions, ...fyMargins};
             g.selectAll()
-              .data(domain)
+              .data(fyDomain)
               .join("g")
               .attr("transform", ky => `translate(0,${fy(ky)})`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fyDimensions));
+              .append((ky, i) => (i === j ? axis1 : axis2).render(
+                fx && where(fxDomain, kx => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fyDimensions
+              ));
           }
           if (fx && axes.x) {
-            const domain = fx.domain();
             const axis1 = axes.x, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "right" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
+            const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
             const {marginLeft, marginRight} = dimensions;
             const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
             g.selectAll()
-              .data(domain)
+              .data(fxDomain)
               .join("g")
               .attr("transform", kx => `translate(${fx(kx)},0)`)
-              .append((_, i) => (i === j ? axis1 : axis2).render(null, scales, null, fxDimensions));
+              .append((kx, i) => (i === j ? axis1 : axis2).render(
+                fy && where(fyDomain, ky => marksIndexByFacet.has([kx, ky])),
+                scales,
+                null,
+                fxDimensions
+              ));
           }
         })
         .call(g => g.selectAll()
-          .data(facetKeys(scales))
+          .data(facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key) || marksIndex;
+              const marksFacetIndex = marksIndexByFacet.get(key);
               for (let i = 0; i < marks.length; ++i) {
                 const values = marksValues[i];
                 const index = filterStyles(marksFacetIndex[i], values);
