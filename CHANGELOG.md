@@ -175,13 +175,25 @@ Plot.plot({
 
 The default *thresholds* option for the bin transforms is now *auto* instead of *scott*. The *auto* option applies a maximum limit of 200 bins to Scott’s rule. This reduces the risk of producing vanishing rects when they are too numerous and thin to be visible. (Note, however, that it is still possible to produce invisible rects if the insets are larger than the width.)
 
-The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. For example, you can pass *k* as the first argument to the window transform, here for a 12-month moving average:
+The normalize, window, and stack transforms can now accept a transform *options* argument in addition to an *inputs* argument that specifies the input channels. This allows makes these transforms more consistent with the other transforms, reduces ambiguity, and allows for additional shorthand. For example, you can pass *k* as the first argument to the window transform, here for a 24-month moving average:
+
+<img width="640" alt="a smoothed line chart showing the rise of the average global surface temperature anomaly from 1880 to the present" src="https://user-images.githubusercontent.com/230541/130284148-04622afe-c8a9-4a1e-a459-ada8f1744a3e.png">
 
 ```js
-Plot.line(data, Plot.windowY(12, {x: "date", y: "unemployment", z: "division"}))
+Plot.plot({
+  y: {
+    label: "↑ Temperature anomaly (°C)",
+    tickFormat: "+f",
+    grid: true
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.line(gistemp, Plot.windowY(24, {x: "Date", y: "Anomaly"}))
+  ]
+})
 ```
 
-The *offset* = {*expand*, *silhouette*} stack option has been renamed to *offset* = {*normalize*, *center*}, respectively. The *shift* = {*centered*, *leading*, *trailing*} window option has been renamed to *anchor* = {*middle*, *start*, *end*} respectively. The old names are supported for backwards compatibility.
+The *offset* stack options have been renamed: *offset* = *expand* is now *offset* = *normalize*, and *offset* = *silhouette* is *offset* = *center*. The *shift* window option has been replaced with the *anchor* option: *shift* = *centered* is now *anchor* = *middle*, *shift* = *leading* is *anchor* = *start*, and *shift* = *trailing* is *anchor* = *end*. The old names are supported for backwards compatibility.
 
 The basic transforms are now available as explicit option transforms: Plot.filter, Plot.sort, and Plot.reverse. These are useful when you wish to control the order of these transforms with respect to other transforms such as Plot.bin and Plot.stack.
 
