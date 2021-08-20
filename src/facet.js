@@ -24,7 +24,6 @@ class Facet extends Mark {
     this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
-    this.marksIndex = undefined; // array of mark indexes (for non-faceted marks)
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
   }
   initialize() {
@@ -34,7 +33,6 @@ class Facet extends Mark {
     const facetsIndex = Array.from(facets, second);
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
-    const marksIndex = this.marksIndex = new Array(this.marks.length);
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
@@ -57,12 +55,10 @@ class Facet extends Mark {
           for (let j = 0; j < facetsKeys.length; ++j) {
             marksIndexByFacet.get(facetsKeys[j])[i] = I[j];
           }
-          marksIndex[i] = []; // implicit empty index for sparse facets
         } else {
           for (let j = 0; j < facetsKeys.length; ++j) {
             marksIndexByFacet.get(facetsKeys[j])[i] = I;
           }
-          marksIndex[i] = I;
         }
       }
       for (const [, channel] of markChannels) {
