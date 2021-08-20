@@ -126,7 +126,7 @@ Plot.plot({
 })
 ```
 
-Empty facets —which can happen when faceting over two dimensions— are now left blank. When the facet *data* is null, a better error message is thrown.
+Empty facets, which can occur when faceting in both *x* and *y*, are no longer rendered. When the facet *data* is null, a better error message is thrown.
 
 ### Transforms
 
