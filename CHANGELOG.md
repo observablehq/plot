@@ -99,7 +99,7 @@ Plot.plot({
 
 The mark *facet* option can be used to control whether or not a mark is faceted. The supported values are *auto*, *include*, and *exclude*. True is an alias for *include* and null (and false) disables faceting. The default is *auto*, which facets a mark if and only if its data is strictly equal to the facet data. The *include* facet mode allows a mark with different data to be faceted; however, it requires that the mark’s data be parallel with the facet data (*i.e.*, have the same length and order). The *exclude* facet mode shows all data that are not present in the current facet; this can provide shared context across facets without overdrawing.
 
-<img width="640" alt="a faceted scatterplot showing the correlation between culmen depth and length across sex and species; each facet shows the current sex and species with black dots and all other penguins as pale gray dots" src="https://user-images.githubusercontent.com/230541/130158213-2232800e-430a-4709-8b1b-8b44e6cf1fd8.png">
+<img width="640" alt="a faceted scatterplot showing the correlation between culmen depth and length across sex and species; each facet shows the current sex and species with black dots and all other penguins as pale gray dots" src="https://user-images.githubusercontent.com/7001/130275538-ec33aaa4-73e2-4fb3-862a-8fdd47a788d6.png">
 
 ```js
 Plot.plot({
