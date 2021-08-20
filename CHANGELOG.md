@@ -131,7 +131,25 @@ When the facet *data* is null, a better error message is thrown.
 
 ### Transforms
 
-The bin and group transforms now support new *filter*, *sort* and *reverse* options on the *outputs* object. By setting the *filter* to null, the bin transform will now return empty bins; this is useful with marks such as lines and areas that require zeroes to be present, rather than interpolating across the missing bins. (The *z*, *fill* or *stroke* channels, when used for grouping, are propagated to empty bins.) The *outputs* argument to the bin and group transforms is now optional; it defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively, and the same for the group transforms.
+The bin and group transforms now support new *filter*, *sort* and *reverse* options on the *outputs* object. By setting the *filter* to null, the bin transform will now return all bins, including the empty ones; this is useful with marks such as lines and areas that require zeroes to be present, rather than interpolating across the missing bins. (The *z*, *fill* or *stroke* channels, when used for grouping, are propagated to empty bins.) The *outputs* argument to the bin and group transforms is now optional; it defaults to the *count* reducer for *y*, *x* and *fill* for Plot.binX, Plot.binY, and Plot.bin respectively, and the same for the group transforms.
+
+<img width="640" alt="a one-dimensional scatterplot hightlighting empty bins" src="https://user-images.githubusercontent.com/7001/130244527-6b3191c3-4d8f-4cb7-8209-7ab47f02e871.png">
+
+```js
+Plot.plot({
+  marks: [
+    Plot.rect(
+      penguins,
+      Plot.binX(
+        { filter: (bin) => !bin.length },
+        { x: "bill_length", thresholds: 100, fill: "#ddd" }
+      )
+    ),
+    Plot.dotX(penguins, { x: "bill_length", y: Math.random, fill: "#aaa", r: 2 })
+  ],
+  height: 80
+})
+```
 
 The bin and group transforms now support new *distinct*, *mode*, *min-index*, and *max-index* reducers. The *distinct* reducer counts the number of distinct values in each group, while the *mode* reducer returns the most frequent value in each group. The *min-index* and *max-index* reducers are similar to *min* and *max*, except they return the zero-based index of the minimum and maximum value, respectively; for example, this is useful to sort time series by the date of each series’ peak.
 
