@@ -4,9 +4,9 @@
 
 *Not yet released.* These notes are a work in progress.
 
-[breaking] Plot is now published as an ES module and requires Node 12 or higher. For more on how to upgrade to ES modules, please read [Sindre Sorhus’s FAQ](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+[breaking] Plot is now published as an ES module and requires Node 12 or higher. For more, please read [Sindre Sorhus’s FAQ](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
 
-[breaking] Plot now depends on D3 7 or higher.
+[breaking] Plot now depends on [D3 7.0](https://github.com/d3/d3/releases/tag/v7.0.0) or higher.
 
 ### Marks
 
