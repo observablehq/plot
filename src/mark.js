@@ -230,6 +230,11 @@ export function range(data) {
   return Uint32Array.from(data, indexOf);
 }
 
+// Returns a filtered range of data given the test function.
+export function where(data, test) {
+  return range(data).filter(i => test(data[i], i, data));
+}
+
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
   return Array.from(index, i => values[i]);

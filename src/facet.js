@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second, markify} from "./mark.js";
+import {Mark, first, second, markify, range, where} from "./mark.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
@@ -211,15 +211,4 @@ class FacetMap2 extends FacetMap {
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
-}
-
-// indices of tested values in an iterator
-function where(values, test = d => !!d) {
-  const index = [];
-  let i = 0;
-  for (const d of values) {
-    if (test(d)) index.push(i);
-    ++i;
-  }
-  return index;
 }
