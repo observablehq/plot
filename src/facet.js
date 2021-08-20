@@ -75,6 +75,8 @@ class Facet extends Mark {
   render(I, scales, channels, dimensions, axes) {
     const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
+    const fyDomain = fy && fy.domain();
+    const fxDomain = fx && fx.domain();
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
@@ -82,33 +84,31 @@ class Facet extends Mark {
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
-            const domain = fy.domain();
             const axis1 = axes.y, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "bottom" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
+            const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
             const fyDimensions = {...dimensions, ...fyMargins};
             g.selectAll()
-              .data(domain)
+              .data(fyDomain)
               .join("g")
               .attr("transform", ky => `translate(0,${fy(ky)})`)
               .append((ky, i) => (i === j ? axis1 : axis2).render(
-                fx && where(fx.domain(), kx => marksIndexByFacet.has([kx, ky])),
+                fx && where(fxDomain, kx => marksIndexByFacet.has([kx, ky])),
                 scales,
                 null,
                 fyDimensions
               ));
           }
           if (fx && axes.x) {
-            const domain = fx.domain();
             const axis1 = axes.x, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "right" ? domain.length - 1 : axis1.labelAnchor === "center" ? domain.length >> 1 : 0;
+            const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
             const {marginLeft, marginRight} = dimensions;
             const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
             g.selectAll()
-              .data(domain)
+              .data(fxDomain)
               .join("g")
               .attr("transform", kx => `translate(${fx(kx)},0)`)
               .append((kx, i) => (i === j ? axis1 : axis2).render(
-                fy && where(fy.domain(), ky => marksIndexByFacet.has([kx, ky])),
+                fy && where(fyDomain, ky => marksIndexByFacet.has([kx, ky])),
                 scales,
                 null,
                 fxDimensions
@@ -116,23 +116,21 @@ class Facet extends Mark {
           }
         })
         .call(g => g.selectAll()
-          .data(facetKeys(scales))
+          .data(facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              if (marksIndexByFacet.has(key)) {
-                const marksFacetIndex = marksIndexByFacet.get(key);
-                for (let i = 0; i < marks.length; ++i) {
-                  const values = marksValues[i];
-                  const index = filterStyles(marksFacetIndex[i], values);
-                  const node = marks[i].render(
-                    index,
-                    scales,
-                    values,
-                    subdimensions
-                  );
-                  if (node != null) this.appendChild(node);
-                }
+              const marksFacetIndex = marksIndexByFacet.get(key);
+              for (let i = 0; i < marks.length; ++i) {
+                const values = marksValues[i];
+                const index = filterStyles(marksFacetIndex[i], values);
+                const node = marks[i].render(
+                  index,
+                  scales,
+                  values,
+                  subdimensions
+                );
+                if (node != null) this.appendChild(node);
               }
             }))
       .node();
