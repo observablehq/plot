@@ -168,7 +168,7 @@ Plot.plot({
     marginLeft: 160
   },
   marks: [
-    Plot.areaY(trends, {x: "week", y: "interest", sort: {fy: {value: "y", reduce: "max-index"}}})
+    Plot.areaY(trends, {x: "week", y: "interest", sort: {fy: "y", reduce: "max-index"}})
   ]
 })
 ```
