@@ -34,15 +34,15 @@ function bars(groups, title) {
     y: {
       padding: 0,
       label: title,
-      labelAnchor: "top",
-      domain: d3.groupSort(groups, ([[, value]]) => -value, ([key]) => key)
+      labelAnchor: "top"
     },
     marks: [
       Plot.barX(groups, {
         x: ([, value]) => value,
         y: ([key]) => key,
         fill: "steelblue",
-        insetTop: 1
+        insetTop: 1,
+        sort: {y: "x", reverse: true}
       }),
       Plot.ruleX([0])
     ]

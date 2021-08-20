@@ -3,7 +3,6 @@ import * as d3 from "d3";
 
 export default async function() {
   const athletes = await d3.csv("data/athletes.csv", d3.autoType);
-  const female = data => d3.mean(data, d => d.sex === "female");
   return Plot.plot({
     marginLeft: 100,
     x: {
@@ -14,11 +13,10 @@ export default async function() {
       grid: true
     },
     y: {
-      label: null,
-      domain: d3.groupSort(athletes, female, d => d.sport)
+      label: null
     },
     marks: [
-      Plot.barX(athletes, Plot.groupY({x: female}, {y: "sport"}))
+      Plot.barX(athletes, Plot.groupY({x: "mean"}, {x: d => d.sex === "female", y: "sport", sort: {y: "x"}}))
     ]
   });
 }

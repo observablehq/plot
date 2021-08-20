@@ -49,7 +49,7 @@ export class Mark {
       const {name} = channel;
       return [name == null ? undefined : name + "", Channel(data, channel)];
     });
-    if (this.sort != null) channelSort(channels, facetChannels, this.sort);
+    if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
     return {index, channels};
   }
   plot({marks = [], ...options} = {}) {
@@ -67,7 +67,7 @@ function Channel(data, {scale, type, value}) {
   };
 }
 
-function channelSort(channels, facetChannels, options) {
+function channelSort(channels, facetChannels, data, options) {
   const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys
@@ -85,9 +85,14 @@ function channelSort(channels, facetChannels, options) {
         return domain;
       };
     } else {
-      const Y = channels.find(([name]) => name === y);
-      if (!Y) throw new Error(`missing channel: ${y}`);
-      const YV = Y[1].value;
+      let YV;
+      if (y === "data") {
+        YV = data;
+      } else {
+        const Y = channels.find(([name]) => name === y);
+        if (!Y) throw new Error(`missing channel: ${y}`);
+        YV = Y[1].value;
+      }
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X[1].domain = () => {
         let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
