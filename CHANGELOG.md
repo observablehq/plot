@@ -67,11 +67,7 @@ Plot.plot({
 })
 ```
 
-Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. (This assumes that the diverging scale’s interpolator is similarly symmetric; this is true of all the built-in diverging color schemes from ColorBrewer.) For example, the choropleth below exaggerates West Virginia’s population decline of −3% relative to Alaska’s gain of +3%. This exaggeration is caused by the domain of [−3%, +17%]: −3% is mapped to the darkest purple while +17% is mapped to the darkest green. (The pivot of 0 is mapped to the midpoint of the scheme, which is light gray here.)
-
-<img width="642" alt="a choropleth with asymmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is exaggerated" src="https://user-images.githubusercontent.com/230541/129834636-504214ae-2519-4814-9b2a-9ced7f65a1c5.png">
-
-With the new *symmetric* option, the apparent difference between −3% and 0 is equal to the apparent difference between +3% and 0; equivalently, −17% is mapped to the darkest purple.
+Diverging scales now support a *symmetric* option, which defaults to true, to ensure that differences above and below the pivot are equally apparent. For example, the choropleth below gives equal visual weight to West Virginia’s population decline of −3% and Alaska’s gain of +3%. If *symmetric* is false, as before, then -3% is mapped to the darkest purple. (Diverging scales should always use balanced interpolators where the negative and positive extremes have equal weight; this is true of Plot’s built-in diverging color schemes from ColorBrewer.)
 
 <img width="641" alt="a choropleth with symmetric diverging scale, showing the change in population of the fifty U.S. states between 2010 and 2019; the change in negative values is commensurate with the change in positive values" src="https://user-images.githubusercontent.com/230541/129834634-2617a895-5040-4135-b015-0aa4b812c262.png">
 
