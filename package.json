@@ -57,6 +57,6 @@
     "node": ">=12"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }
