@@ -2,12 +2,12 @@ import {AxisX, AxisY} from "./axis.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, axis = true, grid, line, label, facet: {grid: facetGrid, label: facetLabel = label} = {}} = {}
+  {x = {}, y = {}, fx = {}, fy = {}, axis = true, grid, line, label, facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}} = {}
 ) {
   let {axis: xAxis = axis} = x;
   let {axis: yAxis = axis} = y;
-  let {axis: fxAxis = axis} = fx;
-  let {axis: fyAxis = axis} = fy;
+  let {axis: fxAxis = facetAxis} = fx;
+  let {axis: fyAxis = facetAxis} = fy;
   if (!xScale) xAxis = null; else if (xAxis === true) xAxis = "bottom";
   if (!yScale) yAxis = null; else if (yAxis === true) yAxis = "left";
   if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
