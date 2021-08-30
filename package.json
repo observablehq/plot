@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
@@ -44,7 +44,7 @@
     "js-beautify": "^1.13.0",
     "jsdom": "^17.0.0",
     "jsesc": "^3.0.2",
-    "mocha": "^9.0.3",
+    "mocha": "^9.1.0",
     "module-alias": "^2.2.2",
     "rollup": "^2.32.1",
     "rollup-plugin-terser": "^7.0.2",
@@ -58,6 +58,6 @@
     "node": ">=12"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   }
 }

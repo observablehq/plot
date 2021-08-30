@@ -22,7 +22,7 @@ export default async function() {
       marginLeft: 160
     },
     marks: [
-      Plot.areaY(data, {x: "week", y: "interest", fillOpacity: 0.3, sort: {fy: {value: "y", reduce: "max-index"}}}),
+      Plot.areaY(data, {x: "week", y: "interest", fillOpacity: 0.3, sort: {fy: "y", reduce: "max-index"}}),
       Plot.line(data, {x: "week", y: "interest", stroke: "white", strokeWidth: 1}),
       Plot.ruleY([0])
     ]
