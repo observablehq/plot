@@ -42,6 +42,7 @@ export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
 export {default as decathlon} from "./decathlon.js";
 export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
+export {default as diamondsCaratSampling} from "./diamonds-carat-sampling.js";
 export {default as documentationLinks} from "./documentation-links.js";
 export {default as downloads} from "./downloads.js";
 export {default as driving} from "./driving.js";
