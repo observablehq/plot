@@ -1159,7 +1159,7 @@ Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Bins on *y*. Groups on on *x* and first channel of *z*, *fill*, or *stroke*, if any.
+Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.
 
 ### Group
 
