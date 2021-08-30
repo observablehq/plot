@@ -185,12 +185,6 @@
         <line x1="0" x2="164" y1="140" y2="140"></line>
       </g>
     </g>
-    <g transform="translate(405,185)">
-      <g></g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
-        <line x1="0" x2="164" y1="140" y2="140"></line>
-      </g>
-    </g>
     <g transform="translate(405,340)">
       <g>
         <rect x="63" y="136.66666666666666" width="19" height="3.333333333333343"></rect>

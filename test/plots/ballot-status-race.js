@@ -62,7 +62,6 @@ export default async function() {
       axis: null
     },
     fy: {
-      domain: d3.groupSort(rollup, group => -group.find(d => d.status === "ACCEPTED").percent, d => d.race),
       label: null
     },
     color: {
@@ -75,7 +74,17 @@ export default async function() {
       marginLeft: 210
     },
     marks: [
-      Plot.barX(rollup, {x: "percent", y: "status", fill: "status", title: d => `${d.percent.toFixed(1)}%`}),
+      Plot.barX(rollup, {
+        x: "percent",
+        y: "status",
+        fill: "status",
+        title: d => `${d.percent.toFixed(1)}%`,
+        sort: {
+          fy: "data",
+          reduce: data => data.find(d => d.status === "ACCEPTED").percent,
+          reverse: true
+        }
+      }),
       Plot.ruleX([0])
     ]
   });

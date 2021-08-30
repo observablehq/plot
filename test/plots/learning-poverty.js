@@ -19,7 +19,6 @@ export default async function() {
       nice: true
     },
     y: {
-      domain: d3.sort(data, d => d["Learning Poverty"]).map(d => d["Country Name"]).reverse(),
       label: null
     },
     color: {
@@ -30,7 +29,8 @@ export default async function() {
       Plot.barX(values, {
         x: d => (d.type === "ok" ? -1 : 1) * d.share, // diverging bars
         y: "Country Name",
-        fill: "type"
+        fill: "type",
+        sort: {y: "x", reverse: true}
       }),
       Plot.ruleX([0])
     ]

@@ -11,11 +11,7 @@ export default async function() {
       nice: true
     },
     y: {
-      domain: d3.groupSort(barley, g => -d3.median(g, d => d.yield), d => d.variety),
       inset: 5
-    },
-    fy: {
-      domain: d3.groupSort(barley, g => -d3.median(g, d => d.yield), d => d.site)
     },
     color: {
       type: "categorical"
@@ -27,7 +23,17 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(barley, {x: "yield", y: "variety", stroke: "year"})
+      Plot.dot(barley, {
+        x: "yield",
+        y: "variety",
+        stroke: "year",
+        sort: {
+          fy: "x",
+          y: "x",
+          reduce: "median",
+          reverse: true
+        }
+      })
     ]
   });
 }
