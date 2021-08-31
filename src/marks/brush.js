@@ -1,21 +1,11 @@
 import {brush as brusher, brushX as brusherX, brushY as brusherY, create, extent} from "d3";
 import {filter} from "../defined.js";
 import {Mark, identity, first, second} from "../mark.js";
-import {Style} from "../style.js";
 const {max, min} = Math;
 
+const defaults = {};
 export class Brush extends Mark {
-  constructor(
-    data,
-    {
-      x = first,
-      y = second,
-      selection,
-      transform,
-      onbrush,
-      ...style
-    } = {}
-  ) {
+  constructor(data, {x = first, y = second, selection, onbrush, ...options} = {}) {
     super(
       data,
       [
@@ -23,9 +13,9 @@ export class Brush extends Mark {
         {name: "x", value: x, optional: true},
         {name: "y", value: y, optional: true}
       ],
-      transform
+      options,
+      defaults
     );
-    Style(this, style);
     this.initialSelection = selection;
     this.onbrush = onbrush;
   }
