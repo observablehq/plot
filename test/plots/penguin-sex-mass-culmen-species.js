@@ -7,16 +7,23 @@ export default async function() {
     inset: 10,
     height: 320,
     grid: true,
+    className: "plot classtest",
     x: {
       ticks: 10,
-      tickFormat: "~s"
+      tickFormat: "~s",
+      className: "axis-x"
     },
     y: {
-      ticks: 10
+      ticks: 10,
+      className: "axis-y"
     },
     facet: {
       data,
-      x: "sex"
+      x: "sex",
+      className: "facet"
+    },
+    fx: {
+      className: "axis-fx"
     },
     marks: [
       Plot.frame(),
@@ -29,7 +36,8 @@ export default async function() {
         y: "culmen_length_mm",
         stroke: "species",
         fill: "species",
-        fillOpacity: 0.2
+        fillOpacity: 0.2,
+        className: "bin"
       }))
     ]
   });

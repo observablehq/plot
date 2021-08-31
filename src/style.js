@@ -6,6 +6,7 @@ export const offset = typeof window !== "undefined" && window.devicePixelRatio >
 export function styles(
   mark,
   {
+    className,
     title,
     fill,
     fillOpacity,
@@ -66,6 +67,7 @@ export function styles(
     mark.fillOpacity = impliedNumber(cfillOpacity, 1);
   }
 
+  mark.className = string(className);
   mark.stroke = impliedString(cstroke, "none");
   mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
   mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
@@ -106,6 +108,7 @@ export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpa
 }
 
 export function applyIndirectStyles(selection, mark) {
+  applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);

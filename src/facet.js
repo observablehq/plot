@@ -11,7 +11,7 @@ export function facets(data, {x, y, ...options}, marks) {
 }
 
 class Facet extends Mark {
-  constructor(data, {x, y, ...options} = {}, marks = []) {
+  constructor(data, {x, y, className, ...options} = {}, marks = []) {
     if (data == null) throw new Error("missing facet data");
     super(
       data,
@@ -25,6 +25,7 @@ class Facet extends Mark {
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
+    this.className = className;
   }
   initialize() {
     const {index, channels} = super.initialize();
@@ -69,7 +70,7 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksIndexByFacet, className} = this;
     const {fx, fy} = scales;
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
@@ -78,6 +79,7 @@ class Facet extends Mark {
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const marksValues = marksChannels.map(channels => applyScales(channels, scales));
     return create("svg:g")
+        .attr("class", className)
         .call(g => {
           if (fy && axes.y) {
             const axis1 = axes.y, axis2 = nolabel(axis1);
