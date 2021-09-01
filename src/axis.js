@@ -1,6 +1,6 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
-import {boolean, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
+import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
 
 export class AxisX {
   constructor({
@@ -14,6 +14,7 @@ export class AxisX {
     label,
     labelAnchor,
     labelOffset,
+    line,
     tickRotate
   } = {}) {
     this.name = name;
@@ -26,6 +27,7 @@ export class AxisX {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
+    this.line = boolean(line);
     this.tickRotate = number(tickRotate);
   }
   render(
@@ -51,6 +53,7 @@ export class AxisX {
       label,
       labelAnchor,
       labelOffset,
+      line,
       tickRotate
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
@@ -62,9 +65,9 @@ export class AxisX {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
-        .call(g => g.select(".domain").remove())
+        .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
-          : fy ? gridFacetX(fy, -ty)
+          : fy ? gridFacetX(index, fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
@@ -94,6 +97,7 @@ export class AxisY {
     label,
     labelAnchor,
     labelOffset,
+    line,
     tickRotate
   } = {}) {
     this.name = name;
@@ -106,6 +110,7 @@ export class AxisY {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
+    this.line = boolean(line);
     this.tickRotate = number(tickRotate);
   }
   render(
@@ -129,6 +134,7 @@ export class AxisY {
       label,
       labelAnchor,
       labelOffset,
+      line,
       tickRotate
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
@@ -140,9 +146,9 @@ export class AxisY {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
-        .call(g => g.select(".domain").remove())
+        .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
-          : fx ? gridFacetY(fx, -tx)
+          : fx ? gridFacetY(index, fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
@@ -176,22 +182,24 @@ function gridY(x2) {
       .attr("x2", x2);
 }
 
-function gridFacetX(fy, ty) {
+function gridFacetX(index, fy, ty) {
   const dy = fy.bandwidth();
+  const domain = fy.domain();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", fy.domain().map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
+      .attr("d", (index ? take(domain, index) : domain).map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
 }
 
-function gridFacetY(fx, tx) {
+function gridFacetY(index, fx, tx) {
   const dx = fx.bandwidth();
+  const domain = fx.domain();
   return g => g.selectAll(".tick")
     .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr("d", fx.domain().map(v => `M${fx(v) + tx},0h${dx}`).join(""));
+      .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {

@@ -1,39 +1,38 @@
 import {create} from "d3";
 import {Mark, number} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+
+const defaults = {
+  fill: "none",
+  stroke: "currentColor"
+};
 
 export class Frame extends Mark {
-  constructor({
-    fill = "none",
-    stroke = fill === null || fill === "none" ? "currentColor" : "none",
-    inset = 0,
-    insetTop = inset,
-    insetRight = inset,
-    insetBottom = inset,
-    insetLeft = inset,
-    ...style
-  } = {}) {
-    super();
-    Style(this, {fill, stroke, ...style});
+  constructor(options = {}) {
+    const {
+      inset = 0,
+      insetTop = inset,
+      insetRight = inset,
+      insetBottom = inset,
+      insetLeft = inset
+    } = options;
+    super(undefined, undefined, options, defaults);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
   }
-  render(
-    index,
-    scales,
-    channels,
-    {marginTop, marginRight, marginBottom, marginLeft, width, height}
-  ) {
+  render(I, scales, channels, dimensions) {
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {insetTop, insetRight, insetBottom, insetLeft} = this;
     return create("svg:rect")
         .call(applyIndirectStyles, this)
         .call(applyDirectStyles, this)
         .call(applyTransform, null, null, 0.5, 0.5)
-        .attr("x", marginLeft + this.insetLeft)
-        .attr("y", marginTop + this.insetTop)
-        .attr("width", width - marginLeft - marginRight - this.insetLeft - this.insetRight)
-        .attr("height", height - marginTop - marginBottom - this.insetTop - this.insetBottom)
+        .attr("x", marginLeft + insetLeft)
+        .attr("y", marginTop + insetTop)
+        .attr("width", width - marginLeft - marginRight - insetLeft - insetRight)
+        .attr("height", height - marginTop - marginBottom - insetTop - insetBottom)
       .node();
   }
 }

@@ -1,0 +1,55 @@
+president_number,name,birth,death,tenure_start,tenure_end,president,president_relationship
+1,Martha Washington,1731-06-13,1802-05-22,1789-04-30,1797-03-04,George Washington,Husband
+2,Abigail Adams,1744-11-22,1818-10-28,1797-03-04,1801-03-04,John Adams,Husband
+3,Martha Jefferson,1772-09-27,1836-10-10,1801-03-04,1809-03-04,Thomas Jefferson,Father
+4,Dolly Madison,1768-05-20,1849-07-12,1809-03-04,1817-03-04,James Madison,Husband
+5,Elizabeth Monroe,1768-06-30,1830-09-23,1817-03-04,1825-03-04,James Monroe,Husband
+6,Louisa Adams,1775-02-12,1852-05-15,1825-03-04,1829-03-04,John Quincy Adams,Husband
+7,Emily Donelson,1807-06-01,1836-12-19,1829-03-04,1834-11-26,Andrew Jackson,Uncle
+7,Sarah Jackson,1803-07-16,1887-08-23,1834-11-26,1837-03-04,Andrew Jackson,Father-in-law
+8,Sarah Van Buren,1818-02-13,1877-12-29,1838-11-27,1841-03-04,Martin Van Buren,Father-in-law
+9,Anna Harrison,1775-07-25,1864-02-25,1841-03-04,1841-04-04,William Henry Harrison,Husband
+9,Jane Harrison,1804-07-23,1846-05-11,1841-03-04,1841-04-04,William Henry Harrison,Father-in-law
+10,Letitia Tyler,1790-11-12,1842-09-10,1841-04-04,1842-09-10,John Tyler,Husband
+10,Elizabeth Priscilla Tyler,1816-06-14,1889-12-29,1842-09-10,1844-06-26,John Tyler,Father-in-law
+10,Julia Tyler,1820-07-29,1889-07-10,1844-06-26,1845-03-04,John Tyler,Husband
+11,Sarah Polk,1803-09-04,1891-08-14,1845-03-04,1849-03-04,James K. Polk,Husband
+12,"Margaret ""Peggy"" Taylor",1788-09-21,1852-08-14,1849-03-04,1850-07-09,Zachary Taylor,Husband
+13,Abigail Fillmore,1798-03-13,1853-03-30,1850-07-09,1853-03-04,Millard Fillmore,Husband
+14,Jane Pierce,1806-03-12,1863-12-02,1853-03-04,1857-03-04,Franklin Pierce,Husband
+15,Harriet Lane,1830-05-09,1903-07-03,1857-03-04,1861-03-04,James Buchanan,Uncle
+16,Mary Lincoln,1818-12-13,1882-07-16,1861-03-04,1865-04-15,Abraham Lincoln,Husband
+17,Eliza Johnson,1810-10-04,1876-01-15,1865-04-15,1869-03-04,Andrew Johnson,Husband
+18,Julia Grant,1826-01-26,1902-12-14,1869-03-04,1877-03-04,Ulysses S. Grant,Husband
+19,Lucy Hayes,1831-08-28,1889-06-25,1877-03-04,1881-03-04,Rutherford B. Hayes,Husband
+20,Lucretia Garfield,1832-04-19,1918-03-14,1881-03-04,1881-09-19,James A. Garfield,Husband
+21,Mary McElroy,1841-07-05,1917-01-08,1881-09-19,1885-03-04,Chester A. Arthur,Brother
+22,Rose Cleveland,1846-06-13,1918-11-22,1885-03-04,1886-06-02,Grover Cleveland,Brother
+22,Frances Cleveland,1864-07-21,1947-10-29,1886-06-02,1889-03-04,Grover Cleveland,Husband
+23,Caroline Harrison,1832-10-01,1892-10-25,1889-03-04,1892-10-25,Benjamin Harrison,Husband
+23,Mary Harrison McKee,1858-04-03,1930-10-28,1892-10-25,1893-03-04,Benjamin Harrison,Father
+24,Frances Cleveland,1864-07-21,1947-10-29,1893-03-04,1897-03-04,Grover Cleveland,Husband
+25,Ida McKinley,1847-06-08,1907-05-26,1897-03-04,1901-09-14,William McKinley,Husband
+26,Edith Roosevelt,1861-08-06,1948-09-30,1901-09-14,1909-03-04,Theodore Roosevelt,Husband
+27,"Helen ""Nellie"" Taft",1861-06-02,1943-05-22,1909-03-04,1913-03-04,William H. Taft,Husband
+28,Ellen Wilson,1860-05-15,1914-08-06,1913-03-04,1914-08-06,Woodrow Wilson,Husband
+28,Margaret Wilson,1886-04-16,1944-02-12,1914-08-06,1915-12-18,Woodrow Wilson,Father
+28,Edith Wilson,1872-10-15,1961-12-28,1915-12-18,1921-03-04,Woodrow Wilson,Husband
+29,Florence Harding,1860-08-15,1924-11-21,1921-03-04,1923-08-02,Warren G. Harding,Husband
+30,Grace Coolidge,1879-01-03,1957-07-08,1923-08-02,1929-03-04,Calvin Coolidge,Husband
+31,Lou Hoover,1874-03-29,1944-01-07,1929-03-04,1933-03-04,Herbert Hoover,Husband
+32,Anna Eleanor Roosevelt,1884-10-11,1962-11-07,1933-03-04,1945-04-12,Franklin D. Roosevelt,Husband
+33,"Elizabeth ""Bess"" Truman",1885-02-13,1982-10-18,1945-04-12,1953-01-20,Harry S. Truman,Husband
+34,Mamie Eisenhower,1896-11-14,1979-11-01,1953-01-20,1961-01-20,Dwight D. Eisenhower,Husband
+35,"Jacqueline ""Jackie"" Kennedy",1929-07-28,1994-05-19,1961-01-20,1963-11-22,John F. Kennedy,Husband
+36,"Claudia ""Lady Bird"" Johnson",1912-12-22,2007-07-11,1963-11-22,1969-01-20,Lyndon B. Johnson,Husband
+37,"Thelma ""Pat"" Nixon",1912-03-16,1993-06-22,1969-01-20,1974-08-09,Richard Nixon,Husband
+38,"Elizabeth ""Betty"" Ford",1918-04-08,2011-07-08,1974-08-09,1977-01-20,Gerald Ford,Husband
+39,Eleanor Rosalynn Carter,1927-08-18,,1977-01-20,1981-01-20,Jimmy Carter,Husband
+40,Nancy Reagan,1921-07-06,2016-03-06,1981-01-20,1989-01-20,Ronald Reagan,Husband
+41,Barbara Bush,1925-06-08,2018-04-17,1989-01-20,1993-01-20,George H. W. Bush,Husband
+42,Hillary Clinton,1947-10-26,,1993-01-20,2001-01-20,Bill Clinton,Husband
+43,Laura Bush,1946-11-04,,2001-01-20,2009-01-20,George W. Bush,Husband
+44,Michelle Obama,1964-01-17,,2009-01-20,2017-01-20,Barack Obama,Husband
+45,Melania Trump,1970-04-26,,2017-01-20,2021-01-20,Donald Trump,Husband
+46,Jill Biden,1951-06-03,,2021-01-20,,Joe Biden,Husband

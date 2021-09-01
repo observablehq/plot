@@ -11,7 +11,6 @@ export default async function() {
       axis: null
     },
     fy: {
-      domain: d3.groupSort(data, g => -d3.max(g, d => d.unemployment), d => d.division),
       label: null
     },
     facet: {
@@ -21,7 +20,7 @@ export default async function() {
     },
     marks: [
       Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
-      Plot.line(data, {x: "date", y: "unemployment"}),
+      Plot.line(data, {x: "date", y: "unemployment", sort: {fy: "y", reverse: true}}),
       Plot.ruleY([0])
     ]
   });

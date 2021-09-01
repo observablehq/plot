@@ -1,7 +1,8 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTransform, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {offset} from "../style.js";
-import {maybeGroup, maybeOutputs, maybeReduce, maybeSubgroup, reduceIdentity} from "./group.js";
+import {basic} from "./basic.js";
+import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
@@ -32,16 +33,25 @@ function binn(
   by, // optionally bin on y (exclusive with gy)
   gx, // optionally group on x (exclusive with bx and gy)
   gy, // optionally group on y (exclusive with by and gx)
-  {data: reduceData = reduceIdentity, ...outputs} = {}, // output channel definitions
+  {
+    data: reduceData = reduceIdentity,
+    filter = reduceCount, // return only non-empty bins by default
+    sort,
+    reverse,
+    ...outputs // output channel definitions
+  } = {},
   inputs = {} // input channels and options
 ) {
   bx = maybeBin(bx);
   by = maybeBin(by);
-  reduceData = maybeReduce(reduceData, identity);
 
-  // Compute the outputs. Don’t group on a channel if one of the output channels
-  // requires it as an input!
+  // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
+  reduceData = maybeReduce(reduceData, identity);
+  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
+  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+
+  // Don’t group on a channel if an output requires it as an input!
   if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
   if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
 
@@ -69,7 +79,7 @@ function binn(
     ..."z" in inputs && {z: GZ || z},
     ..."fill" in inputs && {fill: GF || fill},
     ..."stroke" in inputs && {stroke: GS || stroke},
-    ...maybeTransform(options, (data, facets) => {
+    ...basic(options, (data, facets) => {
       const K = valueof(data, k);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
@@ -89,32 +99,37 @@ function binn(
       const BY2 = by && setBY2([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
+      if (sort) sort.initialize(data);
+      if (filter) filter.initialize(data);
       for (const facet of facets) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
-        for (const [, I] of maybeGroup(facet, G)) {
+        if (sort) sort.scope("facet", facet);
+        if (filter) filter.scope("facet", facet);
+        for (const [f, I] of maybeGroup(facet, G)) {
           for (const [k, g] of maybeGroup(I, K)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
-              if (bb.length === 0) continue;
               for (const [y1, y2, fy] of BY) {
                 const b = fy(bb);
-                if (b.length === 0) continue;
+                if (filter && !filter.reduce(b)) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data));
                 if (K) GK.push(k);
-                if (Z) GZ.push(Z[b[0]]);
-                if (F) GF.push(F[b[0]]);
-                if (S) GS.push(S[b[0]]);
+                if (Z) GZ.push(G === Z ? f : Z[b[0]]);
+                if (F) GF.push(G === F ? f : F[b[0]]);
+                if (S) GS.push(G === S ? f : S[b[0]]);
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b);
+                if (sort) sort.reduce(b);
               }
             }
           }
         }
         groupFacets.push(groupFacet);
       }
+      maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
     ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
@@ -165,22 +180,27 @@ function maybeBin(options) {
     }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
-    return bins.filter(nonempty2).map(binfilter);
+    return bins.map(binfilter);
   };
   bin.label = labelof(value);
   return bin;
 }
 
-function maybeThresholds(thresholds = thresholdScott) {
+function maybeThresholds(thresholds = thresholdAuto) {
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
       case "scott": return thresholdScott;
       case "sturges": return thresholdSturges;
+      case "auto": return thresholdAuto;
     }
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
+}
+
+function thresholdAuto(values, min, max) {
+  return Math.min(200, thresholdScott(values, min, max));
 }
 
 function isTimeInterval(t) {
@@ -225,11 +245,11 @@ function bincumset([bin], j, bins) {
 }
 
 function binfilter([{x0, x1}, set]) {
-  return [x0, x1, I => I.filter(set.has, set)]; // TODO optimize
+  return [x0, x1, set.size ? I => I.filter(set.has, set) : binempty];
 }
 
-function nonempty2([, {size}]) {
-  return size > 0;
+function binempty() {
+  return new Uint32Array(0);
 }
 
 function maybeInset(inset, inset1, inset2) {

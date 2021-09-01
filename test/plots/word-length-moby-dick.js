@@ -21,7 +21,7 @@ export default async function() {
       percent: true
     },
     marks: [
-      Plot.barY(words, Plot.groupX({y: "proportion"}, {x: "length"}))
+      Plot.barY(words, Plot.groupX({y: "proportion", title: "mode"}, {x: "length", title: d => d}))
     ]
   });
 }

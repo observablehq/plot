@@ -1,36 +1,36 @@
 import * as Plot from "@observablehq/plot";
-import tape from "tape-await";
+import assert from "assert";
 
-tape("Plot.bin does not return unspecified options", test => {
+it("Plot.bin does not return unspecified options", () => {
   const A = Plot.bin({});
-  test.strictEqual("z" in A, false);
-  test.strictEqual("fill" in A, false);
-  test.strictEqual("stroke" in A, false);
+  assert.strictEqual("z" in A, false);
+  assert.strictEqual("fill" in A, false);
+  assert.strictEqual("stroke" in A, false);
   const B = Plot.bin({}, {fill: "red"});
-  test.strictEqual(B.fill, "red");
-  test.strictEqual("z" in B, false);
-  test.strictEqual("stroke" in B, false);
+  assert.strictEqual(B.fill, "red");
+  assert.strictEqual("z" in B, false);
+  assert.strictEqual("stroke" in B, false);
   const C = Plot.bin({}, {stroke: "red"});
-  test.strictEqual(C.stroke, "red");
-  test.strictEqual("z" in C, false);
-  test.strictEqual("fill" in C, false);
+  assert.strictEqual(C.stroke, "red");
+  assert.strictEqual("z" in C, false);
+  assert.strictEqual("fill" in C, false);
   const D = Plot.bin({}, {fill: "red", stroke: "x"});
-  test.strictEqual(D.fill, "red");
-  test.strictEqual(D.stroke.label, "x");
-  test.strictEqual("z" in D, false);
+  assert.strictEqual(D.fill, "red");
+  assert.strictEqual(D.stroke.label, "x");
+  assert.strictEqual("z" in D, false);
 });
 
-tape("Plot.bin does return specified options", test => {
+it("Plot.bin does return specified options", () => {
   const A = Plot.bin({}, {fill: null});
-  test.strictEqual(A.fill, null);
-  test.strictEqual("z" in A, false);
-  test.strictEqual("stroke" in A, false);
+  assert.strictEqual(A.fill, null);
+  assert.strictEqual("z" in A, false);
+  assert.strictEqual("stroke" in A, false);
   const B = Plot.bin({}, {stroke: null});
-  test.strictEqual(B.stroke, null);
-  test.strictEqual("z" in B, false);
-  test.strictEqual("fill" in B, false);
+  assert.strictEqual(B.stroke, null);
+  assert.strictEqual("z" in B, false);
+  assert.strictEqual("fill" in B, false);
   const C = Plot.bin({}, {z: null});
-  test.strictEqual(C.z, null);
-  test.strictEqual("fill" in C, false);
-  test.strictEqual("stroke" in C, false);
+  assert.strictEqual(C.z, null);
+  assert.strictEqual("fill" in C, false);
+  assert.strictEqual("stroke" in C, false);
 });

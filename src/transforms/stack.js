@@ -1,38 +1,52 @@
 import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeTransform, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero} from "../mark.js";
+import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero, isOptions, maybeValue} from "../mark.js";
+import {basic} from "./basic.js";
 
-export function stackX({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, x1, x2] = stack(y, x, "x", options);
-  return {y1, y: Y, x1, x2, x: mid(x1, x2), ...transform};
+export function stackX(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {y1, y = y1, x, ...rest} = options; // note: consumes x!
+  const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
+  return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y, X] = stack(y, x, "x", options);
-  return {y1, y: Y, x: X, ...transform};
+export function stackX1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {y1, y = y1, x} = options;
+  const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
+  return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2({y1, y = y1, x, ...options} = {}) {
-  const [transform, Y,, X] = stack(y, x, "x", options);
-  return {y1, y: Y, x: X, ...transform};
+export function stackX2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {y1, y = y1, x} = options;
+  const [transform, Y,, X] = stack(y, x, "x", stackOptions, options);
+  return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, y1, y2] = stack(x, y, "y", options);
-  return {x1, x: X, y1, y2, y: mid(y1, y2), ...transform};
+export function stackY(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {x1, x = x1, y, ...rest} = options; // note: consumes y!
+  const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
+  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1({x1, x = x1, y, ...options} = {}) {
-  const [transform, X, Y] = stack(x, y, "y", options);
-  return {x1, x: X, y: Y, ...transform};
+export function stackY1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {x1, x = x1, y} = options;
+  const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
+  return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2({x1, x = x1, y, ...options} = {}) {
-  const [transform, X,, Y] = stack(x, y, "y", options);
-  return {x1, x: X, y: Y, ...transform};
+export function stackY2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  const {x1, x = x1, y} = options;
+  const [transform, X,, Y] = stack(x, y, "y", stackOptions, options);
+  return {...transform, x1, x: X, y: Y};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
+  options = aliasSort(options, "x");
   if (x1 === undefined && x2 == undefined) {
     if (x === undefined) x = identity;
     return stackX({x, ...options});
@@ -42,6 +56,7 @@ export function maybeStackX({x, x1, x2, ...options} = {}) {
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
+  options = aliasSort(options, "y");
   if (y1 === undefined && y2 == undefined) {
     if (y === undefined) y = identity;
     return stackY({y, ...options});
@@ -50,7 +65,25 @@ export function maybeStackY({y, y1, y2, ...options} = {}) {
   return {...options, y1, y2};
 }
 
-function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
+function aliasSort(options, name) {
+  let {sort} = options;
+  if (!isOptions(sort)) return options;
+  for (const x in sort) {
+    const {value: y, ...rest} = maybeValue(sort[x]);
+    if (y === name) sort = {...sort, [x]: {value: `${y}2`, ...rest}};
+  }
+  return {...options, sort};
+}
+
+// The reverse option is ambiguous: it is both a stack option and a basic
+// transform. If only one options object is specified, we interpret it as a
+// stack option, and therefore must remove it from the propagated options.
+function mergeOptions(options) {
+  const {reverse} = options;
+  return reverse ? {...options, reverse: false} : options;
+}
+
+function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeLazyChannel(x);
   const [Y1, setY1] = lazyChannel(y);
@@ -58,7 +91,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    maybeTransform(options, (data, facets) => {
+    basic(options, (data, facets) => {
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
@@ -92,8 +125,8 @@ function stack(x, y = () => 1, ky, {offset, order, reverse, ...options} = {}) {
 function maybeOffset(offset) {
   if (offset == null) return;
   switch ((offset + "").toLowerCase()) {
-    case "expand": return offsetExpand;
-    case "silhouette": return offsetSilhouette;
+    case "expand": case "normalize": return offsetExpand;
+    case "center": case "silhouette": return offsetCenter;
     case "wiggle": return offsetWiggle;
   }
   throw new Error(`unknown offset: ${offset}`);
@@ -123,7 +156,7 @@ function offsetExpand(stacks, Y1, Y2) {
   }
 }
 
-function offsetSilhouette(stacks, Y1, Y2) {
+function offsetCenter(stacks, Y1, Y2) {
   for (const stack of stacks) {
     const [yn, yp] = extent(stack, Y2);
     for (const i of stack) {
@@ -183,7 +216,8 @@ function maybeOrder(order, offset, ky) {
     return orderFunction(field(order));
   }
   if (typeof order === "function") return orderFunction(order);
-  return orderGiven(order);
+  if (Array.isArray(order)) return orderGiven(order);
+  throw new Error("invalid order");
 }
 
 // by value

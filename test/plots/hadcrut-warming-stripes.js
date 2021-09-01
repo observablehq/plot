@@ -16,11 +16,11 @@ export default async function() {
     },
     color: {
       type: "diverging",
-      scheme: "BuRd"
+      scheme: "BuRd",
+      symmetric: false
     },
     marks: [
       Plot.barX(hadcrut, {
-        y: null,
         x1: "year", // start of current year
         x2: d => d3.utcYear.offset(d.year), // start of next year
         fill: "anomaly"

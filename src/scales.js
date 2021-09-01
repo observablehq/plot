@@ -1,6 +1,6 @@
 import {registry, position, radius, opacity} from "./scales/index.js";
-import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleIdentity} from "./scales/quantitative.js";
-import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/quantitative.js";
+import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
+import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
@@ -67,6 +67,8 @@ function Scale(key, channels = [], options = {}) {
     case "categorical": case "ordinal": return ScaleOrdinal(key, channels, options);
     case "cyclical": case "sequential": case "linear": return ScaleLinear(key, channels, options);
     case "sqrt": return ScaleSqrt(key, channels, options);
+    case "threshold": return ScaleThreshold(key, channels, options);
+    case "quantile": return ScaleQuantile(key, channels, options);
     case "pow": return ScalePow(key, channels, options);
     case "log": return ScaleLog(key, channels, options);
     case "symlog": return ScaleSymlog(key, channels, options);
@@ -109,4 +111,36 @@ function inferScaleType(key, channels, {type, domain, range}) {
 // Positional scales default to a point scale instead of an ordinal scale.
 function asOrdinalType(key) {
   return registry.get(key) === position ? "point" : "ordinal";
+}
+
+// TODO use Float64Array.from for position and radius scales?
+export function applyScales(channels = [], scales) {
+  const values = Object.create(null);
+  for (let [name, {value, scale}] of channels) {
+    if (name !== undefined) {
+      if (scale !== undefined) {
+        scale = scales[scale];
+        if (scale !== undefined) {
+          value = Array.from(value, scale);
+        }
+      }
+      values[name] = value;
+    }
+  }
+  return values;
+}
+
+// Certain marks have special behavior if a scale is collapsed, i.e. if the
+// domain is degenerate and represents only a single value such as [3, 3]; for
+// example, a rect will span the full extent of the chart along a collapsed
+// dimension (whereas a dot will simply be drawn in the center).
+export function isCollapsed(scale) {
+  const domain = scale.domain();
+  const value = scale(domain[0]);
+  for (let i = 1, n = domain.length; i < n; ++i) {
+    if (scale(domain[i]) - value) {
+      return false;
+    }
+  }
+  return true;
 }

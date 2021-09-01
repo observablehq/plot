@@ -1,5 +1,5 @@
 export {plot} from "./plot.js";
-export {Mark, valueof} from "./mark.js";
+export {Mark, marks, valueof} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
@@ -12,6 +12,9 @@ export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
+export {filter} from "./transforms/filter.js";
+export {reverse} from "./transforms/reverse.js";
+export {sort} from "./transforms/sort.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {normalizeX, normalizeY} from "./transforms/normalize.js";

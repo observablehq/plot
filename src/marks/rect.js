@@ -1,58 +1,38 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, number, maybeColor, title, maybeNumber} from "../mark.js";
-import {Style, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr} from "../style.js";
+import {Mark, number} from "../mark.js";
+import {isCollapsed} from "../scales.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
+const defaults = {};
+
 export class Rect extends Mark {
-  constructor(
-    data,
-    {
+  constructor(data, options = {}) {
+    const {
       x1,
       y1,
       x2,
       y2,
-      title,
-      fill,
-      fillOpacity,
-      stroke,
-      strokeOpacity,
       inset = 0,
       insetTop = inset,
       insetRight = inset,
       insetBottom = inset,
       insetLeft = inset,
       rx,
-      ry,
-      ...options
-    } = {}
-  ) {
-    const [vstroke, cstroke] = maybeColor(stroke, "none");
-    const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-    const [vfill, cfill] = maybeColor(fill, cstroke === "none" ? "currentColor" : "none");
-    const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
+      ry
+    } = options;
     super(
       data,
       [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "y1", value: y1, scale: "y"},
-        {name: "x2", value: x2, scale: "x"},
-        {name: "y2", value: y2, scale: "y"},
-        {name: "title", value: title, optional: true},
-        {name: "fill", value: vfill, scale: "color", optional: true},
-        {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
-        {name: "stroke", value: vstroke, scale: "color", optional: true},
-        {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true}
+        {name: "x1", value: x1, scale: "x", optional: true},
+        {name: "y1", value: y1, scale: "y", optional: true},
+        {name: "x2", value: x2, scale: "x", optional: true},
+        {name: "y2", value: y2, scale: "y", optional: true}
       ],
-      options
+      options,
+      defaults
     );
-    Style(this, {
-      fill: cfill,
-      fillOpacity: cfillOpacity,
-      stroke: cstroke,
-      strokeOpacity: cstrokeOpacity,
-      ...options
-    });
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -60,13 +40,11 @@ export class Rect extends Mark {
     this.rx = impliedString(rx, "auto"); // number or percentage
     this.ry = impliedString(ry, "auto");
   }
-  render(
-    I,
-    {x, y},
-    {x1: X1, y1: Y1, x2: X2, y2: Y2, title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO}
-  ) {
-    const {rx, ry} = this;
-    const index = filter(I, X1, Y2, X2, Y2, F, FO, S, SO);
+  render(I, {x, y}, channels, dimensions) {
+    const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
+    const index = filter(I, X1, Y2, X2, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y)
@@ -74,17 +52,13 @@ export class Rect extends Mark {
           .data(index)
           .join("rect")
             .call(applyDirectStyles, this)
-            .attr("x", i => Math.min(X1[i], X2[i]) + this.insetLeft)
-            .attr("y", i => Math.min(Y1[i], Y2[i]) + this.insetTop)
-            .attr("width", i => Math.max(0, Math.abs(X2[i] - X1[i]) - this.insetLeft - this.insetRight))
-            .attr("height", i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - this.insetTop - this.insetBottom))
-            .call(applyAttr, "fill", F && (i => F[i]))
-            .call(applyAttr, "fill-opacity", FO && (i => FO[i]))
-            .call(applyAttr, "stroke", S && (i => S[i]))
-            .call(applyAttr, "stroke-opacity", SO && (i => SO[i]))
+            .attr("x", X1 && X2 && !isCollapsed(x) ? i => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
+            .attr("y", Y1 && Y2 && !isCollapsed(y) ? i => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+            .attr("width", X1 && X2 && !isCollapsed(x) ? i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight) : width - marginRight - marginLeft - insetRight - insetLeft)
+            .attr("height", Y1 && Y2 && !isCollapsed(y) ? i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom) : height - marginTop - marginBottom - insetTop - insetBottom)
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(title(L)))
+            .call(applyChannelStyles, channels))
       .node();
   }
 }

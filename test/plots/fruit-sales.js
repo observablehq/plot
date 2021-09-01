@@ -6,10 +6,11 @@ export default async function() {
   return Plot.plot({
     marginLeft: 50,
     y: {
-      label: null
+      label: null,
+      reverse: true
     },
     marks: [
-      Plot.barX(sales, Plot.groupY({x: "sum"}, {x: "units", y: "fruit"})),
+      Plot.barX(sales, Plot.groupY({x: "sum"}, {x: "units", y: "fruit", sort: {y: "x", reverse: true}})),
       Plot.ruleX([0])
     ]
   });

@@ -190,10 +190,10 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Malaysia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,734.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Israel</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bulgaria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,745.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bulgaria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Israel</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,756.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Zealand</text>
@@ -241,10 +241,10 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Canada</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,921.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Latvia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Croatia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,932.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Croatia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Latvia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,943.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Macao SAR, China</text>
@@ -265,13 +265,13 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hong Kong SAR, China</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1009.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lithuania</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Czech Republic</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1020.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Korea, Rep</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1031.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Czech Republic</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Lithuania</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1042.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Singapore</text>
@@ -283,16 +283,16 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Austria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1075.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sweden</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,1086.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ireland</text>
     </g>
+    <g class="tick" opacity="1" transform="translate(0,1086.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sweden</text>
+    </g>
     <g class="tick" opacity="1" transform="translate(0,1097.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kazakhstan</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Japan</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1108.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Japan</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kazakhstan</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1119.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Vietnam</text>
@@ -384,9 +384,9 @@
     <rect x="241" width="129" y="454" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="114.25" y="454" height="10" fill="#edd382"></rect>
     <rect x="484.25" width="6.75" y="454" height="10" fill="#ffa69e"></rect>
-    <rect x="149.25" width="220.75" y="740" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="12.250000000000057" y="740" height="10" fill="#edd382"></rect>
-    <rect x="382.25000000000006" width="16.999999999999943" y="740" height="10" fill="#ffa69e"></rect>
+    <rect x="149.25" width="220.75" y="729" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="12.250000000000057" y="729" height="10" fill="#edd382"></rect>
+    <rect x="382.25000000000006" width="16.999999999999943" y="729" height="10" fill="#ffa69e"></rect>
     <rect x="333.5" width="36.5" y="146" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="134.25" y="146" height="10" fill="#edd382"></rect>
     <rect x="504.25" width="79.25" y="146" height="10" fill="#ffa69e"></rect>
@@ -426,15 +426,15 @@
     <rect x="325.75" width="44.25" y="179" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="153" y="179" height="10" fill="#edd382"></rect>
     <rect x="523" width="52.750000000000114" y="179" height="10" fill="#ffa69e"></rect>
-    <rect x="130" width="240" y="927" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="2.5" y="927" height="10" fill="#edd382"></rect>
-    <rect x="372.5" width="7.5" y="927" height="10" fill="#ffa69e"></rect>
+    <rect x="130" width="240" y="916" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="2.5" y="916" height="10" fill="#edd382"></rect>
+    <rect x="372.5" width="7.5" y="916" height="10" fill="#ffa69e"></rect>
     <rect x="160.5" width="209.5" y="685" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="35" y="685" height="10" fill="#edd382"></rect>
     <rect x="405" width="5.5" y="685" height="10" fill="#ffa69e"></rect>
-    <rect x="127.5" width="242.5" y="1026" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="7.5" y="1026" height="10" fill="#edd382"></rect>
-    <rect x="377.5" width="0" y="1026" height="10" fill="#ffa69e"></rect>
+    <rect x="127.5" width="242.5" y="1004" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="7.5" y="1004" height="10" fill="#edd382"></rect>
+    <rect x="377.5" width="0" y="1004" height="10" fill="#ffa69e"></rect>
     <rect x="129" width="241" y="949" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="6.5" y="949" height="10" fill="#edd382"></rect>
     <rect x="376.5" width="2.5" y="949" height="10" fill="#ffa69e"></rect>
@@ -483,24 +483,24 @@
     <rect x="209.25" width="160.75" y="531" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="87.00000000000006" y="531" height="10" fill="#edd382"></rect>
     <rect x="457.00000000000006" width="2.249999999999943" y="531" height="10" fill="#ffa69e"></rect>
-    <rect x="125.75" width="244.25" y="1081" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="5.75" y="1081" height="10" fill="#edd382"></rect>
-    <rect x="375.75" width="0" y="1081" height="10" fill="#ffa69e"></rect>
-    <rect x="149.25" width="220.75" y="729" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="22" y="729" height="10" fill="#edd382"></rect>
-    <rect x="392" width="7.25" y="729" height="10" fill="#ffa69e"></rect>
+    <rect x="125.75" width="244.25" y="1070" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="5.75" y="1070" height="10" fill="#edd382"></rect>
+    <rect x="375.75" width="0" y="1070" height="10" fill="#ffa69e"></rect>
+    <rect x="149.25" width="220.75" y="740" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="22" y="740" height="10" fill="#edd382"></rect>
+    <rect x="392" width="7.25" y="740" height="10" fill="#ffa69e"></rect>
     <rect x="128.75" width="241.25" y="960" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="5.25" y="960" height="10" fill="#edd382"></rect>
     <rect x="375.25" width="3.5" y="960" height="10" fill="#ffa69e"></rect>
-    <rect x="125.5" width="244.5" y="1103" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="2.5" y="1103" height="10" fill="#edd382"></rect>
-    <rect x="372.5" width="3" y="1103" height="10" fill="#ffa69e"></rect>
+    <rect x="125.5" width="244.5" y="1092" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="2.5" y="1092" height="10" fill="#edd382"></rect>
+    <rect x="372.5" width="3" y="1092" height="10" fill="#ffa69e"></rect>
     <rect x="250" width="120" y="410" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="120" y="410" height="10" fill="#edd382"></rect>
     <rect x="490" width="10" y="410" height="10" fill="#ffa69e"></rect>
-    <rect x="125.5" width="244.5" y="1092" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="4.750000000000057" y="1092" height="10" fill="#edd382"></rect>
-    <rect x="374.75000000000006" width="0.7499999999999432" y="1092" height="10" fill="#ffa69e"></rect>
+    <rect x="125.5" width="244.5" y="1103" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="4.750000000000057" y="1103" height="10" fill="#edd382"></rect>
+    <rect x="374.75000000000006" width="0.7499999999999432" y="1103" height="10" fill="#ffa69e"></rect>
     <rect x="127.5" width="242.5" y="1015" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="0.7499999999999432" y="1015" height="10" fill="#edd382"></rect>
     <rect x="370.74999999999994" width="6.750000000000057" y="1015" height="10" fill="#ffa69e"></rect>
@@ -510,12 +510,12 @@
     <rect x="281.25" width="88.75" y="344" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="156.5" y="344" height="10" fill="#edd382"></rect>
     <rect x="526.5" width="4.75" y="344" height="10" fill="#ffa69e"></rect>
-    <rect x="130" width="240" y="916" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="2" y="916" height="10" fill="#edd382"></rect>
-    <rect x="372" width="8" y="916" height="10" fill="#ffa69e"></rect>
-    <rect x="127.5" width="242.5" y="1004" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="6.750000000000057" y="1004" height="10" fill="#edd382"></rect>
-    <rect x="376.75000000000006" width="0.7499999999999432" y="1004" height="10" fill="#ffa69e"></rect>
+    <rect x="130" width="240" y="927" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="2" y="927" height="10" fill="#edd382"></rect>
+    <rect x="372" width="8" y="927" height="10" fill="#ffa69e"></rect>
+    <rect x="127.5" width="242.5" y="1026" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="6.750000000000057" y="1026" height="10" fill="#edd382"></rect>
+    <rect x="376.75000000000006" width="0.7499999999999432" y="1026" height="10" fill="#ffa69e"></rect>
     <rect x="129.25" width="240.75" y="938" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="6" y="938" height="10" fill="#edd382"></rect>
     <rect x="376" width="3.25" y="938" height="10" fill="#ffa69e"></rect>
@@ -609,9 +609,9 @@
     <rect x="157" width="213" y="696" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="34.75" y="696" height="10" fill="#edd382"></rect>
     <rect x="404.75" width="2.25" y="696" height="10" fill="#ffa69e"></rect>
-    <rect x="125.75" width="244.25" y="1070" height="10" fill="#aed9e0"></rect>
-    <rect x="370" width="4.750000000000057" y="1070" height="10" fill="#edd382"></rect>
-    <rect x="374.75000000000006" width="0.9999999999999432" y="1070" height="10" fill="#ffa69e"></rect>
+    <rect x="125.75" width="244.25" y="1081" height="10" fill="#aed9e0"></rect>
+    <rect x="370" width="4.750000000000057" y="1081" height="10" fill="#edd382"></rect>
+    <rect x="374.75000000000006" width="0.9999999999999432" y="1081" height="10" fill="#ffa69e"></rect>
     <rect x="178.75" width="191.25" y="619" height="10" fill="#aed9e0"></rect>
     <rect x="370" width="53.75" y="619" height="10" fill="#edd382"></rect>
     <rect x="423.75" width="5" y="619" height="10" fill="#ffa69e"></rect>

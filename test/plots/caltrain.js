@@ -5,23 +5,20 @@ export default async function() {
   const caltrain = await d3.csv("data/caltrain.csv");
   return Plot.plot({
     width: 240,
-    x: {
-      axis: null
-    },
+    axis: null,
     y: {
-      domain: d3.range(3, 26),
-      axis: null
+      domain: d3.range(3, 26).map(String)
     },
     color: {
       domain: "NLB",
       range: ["currentColor", "peru", "brown"]
     },
     marks: [
-      Plot.text([[1, 3]], {
+      Plot.text([[1, "3"]], {
         text: ["Northbound"],
         textAnchor: "start"
       }),
-      Plot.text([[-1, 3]], {
+      Plot.text([[-1, "3"]], {
         text: ["Southbound"],
         textAnchor: "end"
       }),
