@@ -22,6 +22,7 @@ export class Image extends Mark {
     );
     this.r = cr;
     this.preserveAspectRatio = string(preserveAspectRatio);
+    console.log(this.preserveAspectRatio);
     this.crossorigin = string(crossorigin);
   }
   render(
@@ -50,9 +51,9 @@ export class Image extends Mark {
               "transform",
               i => `translate(${[-(R ? R[i] : this.r), -(R ? R[i] : this.r)]})`
             )
-            .call(applyChannelStyles, channels))
             .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
             .call(applyAttr, "crossorigin", this.crossorigin)
+            .call(applyChannelStyles, channels))
       .node();
   }
 }
