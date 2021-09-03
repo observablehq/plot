@@ -9,6 +9,8 @@ it("image(undefined, {href}) has the expected defaults", () => {
   assert.deepStrictEqual(image.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [undefined, undefined]]);
   assert.deepStrictEqual(image.channels.map(c => c.scale), ["x", "y", undefined]);
   assert.strictEqual(image.r, 15);
+  assert.strictEqual(image.preserveAspectRatio, undefined);
+  assert.strictEqual(image.crossorigin, undefined);
 });
 
 it("image(data, {r, href}) allows r to be a constant amount", () => {

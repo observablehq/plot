@@ -1,11 +1,13 @@
 import { create } from "d3";
 import { filter, positive } from "../defined.js";
-import { Mark, maybeNumber, maybeTuple } from "../mark.js";
+import { Mark, maybeNumber, maybeTuple, string } from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr} from "../style.js";
+
+const defaults = {};
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    const {x, y, r, href} = options;
+    const {x, y, r, href, preserveAspectRatio, crossorigin} = options;
     const [vr, cr] = maybeNumber(r, 15);
     super(
       data,
@@ -16,9 +18,11 @@ export class Image extends Mark {
         { name: 'href', value: href, optional: false }
       ],
       options,
-      {}
+      defaults
     );
     this.r = cr;
+    this.preserveAspectRatio = string(preserveAspectRatio);
+    this.crossorigin = string(crossorigin);
   }
   render(
     I,
@@ -47,6 +51,8 @@ export class Image extends Mark {
               i => `translate(${[-(R ? R[i] : this.r), -(R ? R[i] : this.r)]})`
             )
             .call(applyChannelStyles, channels))
+            .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
+            .call(applyAttr, "crossorigin", this.crossorigin)
       .node();
   }
 }
