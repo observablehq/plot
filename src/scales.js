@@ -35,7 +35,7 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.scale.range([marginLeft + inset, width - marginRight - inset]);
+    scale.scale.range(maybePiecewiseRange(marginLeft + inset, width - marginRight - inset, scale));
   }
   autoScaleRound(scale);
 }
@@ -44,7 +44,7 @@ function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    const range = [height - marginBottom - inset, marginTop + inset];
+    const range = maybePiecewiseRange(height - marginBottom - inset, marginTop + inset, scale);
     if (scale.type === "ordinal") range.reverse();
     scale.scale.range(range);
   }
@@ -55,6 +55,14 @@ function autoScaleRound(scale) {
   if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
+}
+
+function maybePiecewiseRange(start, end, {type, scale}) {
+  if (type === "quantitative") {
+    const l = scale.domain().length;
+    if (l > 2) return Array.from({length: l}, (_, i) => start + i / (l - 1) * (end - start));
+  }
+  return [start, end];
 }
 
 function Scale(key, channels = [], options = {}) {
