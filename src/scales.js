@@ -4,6 +4,7 @@ import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
+import {parse as isoParse} from "isoformat";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
@@ -200,6 +201,6 @@ function coerceNumber(x) {
 // and treated as milliseconds since UNIX epoch.
 function coerceDate(x) {
   return x instanceof Date ? x
-    : typeof x === "string" && /^([-+]\d{2})?\d{4}(-\d{2}(-\d{2})?)?(T\d{2}:\d{2}(:\d{2}(\.\d{3})?)?(Z|[-+]\d{2}:\d{2})?)?$/.test(x) ? new Date(x)
+    : typeof x === "string" ? isoParse(x)
     : new Date(x == null ? NaN : +x);
 }

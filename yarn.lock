@@ -2243,10 +2243,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-isoformat@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/isoformat/-/isoformat-0.1.0.tgz#b693c1c9ee9ab02f1af5af41ceeae52bf501b233"
-  integrity sha512-4wCSk50Ov1PKbZ2m+YN0rUgQfF4NRkIavbhpW1mANEqD9HxBZ+j/fWk8hERq1yxn+CfWqvOac4m9axLuF0NfEw==
+isoformat@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/isoformat/-/isoformat-0.2.0.tgz#52c3dce6c281adb6cb7f060895a731b7b2d52c1b"
+  integrity sha512-iyxQ94xMvUZryoHVaXg/TSLM318/aO7xS7Ute+t4MkvZ17IDfe9MkI/MQuu7XgxbmTiGkeggNj+1f6wmxF876Q==
 
 isstream@~0.1.2:
   version "0.1.2"

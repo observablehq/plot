@@ -1532,7 +1532,7 @@ These helper functions are provided for use as a *scale*.tickFormat [axis option
 Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
 ```
 
-Given a *date*, returns the shortest equivalent ISO 8601 UTC string.
+Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`.
 
 #### Plot.formatWeekday(*locale*, *format*)
 
