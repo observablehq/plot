@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## Forthcoming
+
+*Not yet released.* These notes are a work in progress.
+
+### Scales
+
+Quantitative scales, as well as *identity* for position scales, will now coerce string values to numbers; time scales will likewise coerce string values to dates using [isoformat.parse](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback), provided they are formatted as ISO 8601.
+
 ## 0.2.0
 
 Released August 20, 2021.
