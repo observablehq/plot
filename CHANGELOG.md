@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.3.0
+
+*Not yet released.* These notes are a work in progress.
+
+### Scales
+
+Quantitative scales, as well as identity position scales, now coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
+
 ## 0.2.0
 
 Released August 20, 2021.

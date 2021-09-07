@@ -4,6 +4,7 @@ import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
+import {parse as isoParse} from "isoformat";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
@@ -58,7 +59,37 @@ function autoScaleRound(scale) {
 }
 
 function Scale(key, channels = [], options = {}) {
-  switch (inferScaleType(key, channels, options)) {
+  const type = inferScaleType(key, channels, options);
+
+  // Once the scale type is known, coerce the associated channel values and any
+  // explicitly-specified domain to the expected type.
+  switch (type) {
+    case "diverging":
+    case "diverging-sqrt":
+    case "diverging-pow":
+    case "diverging-log":
+    case "diverging-symlog":
+    case "cyclical":
+    case "sequential":
+    case "linear":
+    case "sqrt":
+    case "threshold":
+    case "quantile":
+    case "pow":
+    case "log":
+    case "symlog":
+      options = coerceType(channels, options, coerceNumber, Float64Array);
+      break;
+    case "identity":
+      if (registry.get(key) === position) options = coerceType(channels, options, coerceNumber, Float64Array);
+      break;
+    case "utc":
+    case "time":
+      options = coerceType(channels, options, coerceDate);
+      break;
+  }
+
+  switch (type) {
     case "diverging": return ScaleDiverging(key, channels, options);
     case "diverging-sqrt": return ScaleDivergingSqrt(key, channels, options);
     case "diverging-pow": return ScaleDivergingPow(key, channels, options);
@@ -143,4 +174,34 @@ export function isCollapsed(scale) {
     }
   }
   return true;
+}
+
+// Mutates channel.value!
+function coerceType(channels, options, coerce, type) {
+  for (const c of channels) c.value = coerceArray(c.value, coerce, type);
+  return {...options, domain: coerceArray(options.domain, coerce, type)};
+}
+
+function coerceArray(array, coerce, type = Array) {
+  if (array !== undefined) return type.from(array, coerce);
+}
+
+// Unlike Mark’s number, here we want to convert null and undefined to NaN,
+// since the result will be stored in a Float64Array and we don’t want null to
+// be coerced to zero.
+function coerceNumber(x) {
+  return x == null ? NaN : +x;
+}
+
+// When coercing strings to dates, we only want to allow the ISO 8601 format
+// since the built-in string parsing of the Date constructor varies across
+// browsers. (In the future, this could be made more liberal if desired, though
+// it is still generally preferable to do date parsing yourself explicitly,
+// rather than rely on Plot.) Any non-string values are coerced to number first
+// and treated as milliseconds since UNIX epoch.
+function coerceDate(x) {
+  return x instanceof Date && !isNaN(x) ? x
+    : typeof x === "string" ? isoParse(x)
+    : x == null || isNaN(x = +x) ? undefined
+    : new Date(x);
 }

@@ -1,4 +1,4 @@
-export {default as formatIsoDate} from "isoformat";
+import {format as isoFormat} from "isoformat";
 
 export function formatMonth(locale = "en-US", month = "short") {
   const format = new Intl.DateTimeFormat(locale, {timeZone: "UTC", month});
@@ -16,4 +16,8 @@ export function formatWeekday(locale = "en-US", weekday = "short") {
       return format.format(i);
     }
   };
+}
+
+export function formatIsoDate(date) {
+  return isoFormat(date, "Invalid Date");
 }
