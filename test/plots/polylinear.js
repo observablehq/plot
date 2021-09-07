@@ -36,7 +36,7 @@ export default async function() {
       inset: 20,
       label: "date →"
     },
-    color: { scheme: "cool" },
+    color: {scheme: "cool"},
     marks: [
       Plot.barX(d3.pairs(times), {x1: "0", x2: "1", fill: (_,i) => i}),
       Plot.dotX(events, {x: "date", fill: "white"}),
