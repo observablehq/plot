@@ -14,13 +14,13 @@ const times = [
 const events = [
   {date: "2013-04-05T13:00Z", text: "Initiate"},
   {date: "2013-04-11T13:00Z", text: "Begin"},
-  {date: "2013-03-13T20:00Z", text: "Entry"},
-  {date: "2013-03-15T00:00Z", text: "Test"},
-  {date: "2013-03-16T00:00Z", text: "Drive"},
-  {date: "2013-03-17T08:00Z", text: "Drive"},
-  {date: "2013-03-18T15:00Z", text: "Brake"},
-  {date: "2013-03-20T10:00Z", text: "Stop"},
-  {date: "2013-03-23T14:00Z", text: "Shutdown"}
+  {date: "2013-04-13T20:00Z", text: "Entry"},
+  {date: "2013-04-15T00:00Z", text: "Test"},
+  {date: "2013-04-16T00:00Z", text: "Drive"},
+  {date: "2013-04-17T08:00Z", text: "Drive"},
+  {date: "2013-04-18T15:00Z", text: "Brake"},
+  {date: "2013-04-20T10:00Z", text: "Stop"},
+  {date: "2013-04-23T14:00Z", text: "Shutdown"}
 ].map(d => ({text: d.text, date: d3.isoParse(d.date)}));
 
 const days = [...d3.utcDays(...d3.extent(times)), times[times.length-1]];
