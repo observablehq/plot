@@ -13,7 +13,7 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort} = options;
+    const {facet = "auto", sort, dx, dy} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
@@ -35,6 +35,8 @@ export class Mark {
       }
       return true;
     });
+    this.dx = +dx || 0;
+    this.dy = +dy || 0;
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
