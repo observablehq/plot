@@ -32,7 +32,7 @@ export default async function() {
       domain: times,
       type: "linear",
       ticks: days,
-      tickFormat: d3.timeFormat("%d"),
+      tickFormat: d3.utcFormat("%d"),
       inset: 20,
       label: "date →"
     },
