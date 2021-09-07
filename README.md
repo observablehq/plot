@@ -165,7 +165,7 @@ For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* 
 
 You can opt-out of a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), an *identity* scale is still quantitative and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
-Quantitative scales, as well as *identity* for position scales, will coerce string values to numbers; time scales will likewise coerce string values to dates using [isoformat.parse](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback), provided they are formatted as ISO 8601.
+Quantitative scales, as well as identity position scales, now coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
 
 A scale’s domain (the extent of its inputs, abstract values) and range (the extent of its outputs, visual values) are typically inferred automatically. You can set them explicitly using these options:
 
