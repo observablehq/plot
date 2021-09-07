@@ -2,26 +2,28 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 const times = [
-  new Date(2013, 3, 5),
-  new Date(2013, 3, 11),
-  new Date(2013, 3, 14),
-  new Date(2013, 3, 16),
-  new Date(2013, 3, 18),
-  new Date(2013, 3, 21),
-  new Date(2013, 3, 27)
-];
+  "2013-04-05",
+  "2013-04-11",
+  "2013-04-14",
+  "2013-04-16",
+  "2013-04-18",
+  "2013-04-21",
+  "2013-04-27"
+].map(d3.isoParse);
 
 const events = [
-  { date: new Date(2013, 3, 5, 13, 0), text: "Initiate" },
-  { date: new Date(2013, 3, 11, 13, 0), text: "Begin" },
-  { date: new Date(2013, 3, 13, 20, 0), text: "Entry" },
-  { date: new Date(2013, 3, 15, 0, 0), text: "Test" },
-  { date: new Date(2013, 3, 16, 0, 0), text: "Drive" },
-  { date: new Date(2013, 3, 17, 8, 0), text: "Drive" },
-  { date: new Date(2013, 3, 18, 15, 0), text: "Brake" },
-  { date: new Date(2013, 3, 20, 10, 0), text: "Stop" },
-  { date: new Date(2013, 3, 23, 14, 0), text: "Shutdown" }
-];
+  {date: "2013-04-05T13:00Z", text: "Initiate"},
+  {date: "2013-04-11T13:00Z", text: "Begin"},
+  {date: "2013-03-13T20:00Z", text: "Entry"},
+  {date: "2013-03-15T00:00Z", text: "Test"},
+  {date: "2013-03-16T00:00Z", text: "Drive"},
+  {date: "2013-03-17T08:00Z", text: "Drive"},
+  {date: "2013-03-18T15:00Z", text: "Brake"},
+  {date: "2013-03-20T10:00Z", text: "Stop"},
+  {date: "2013-03-23T14:00Z", text: "Shutdown"}
+].map(d => ({text: d.text, date: d3.isoParse(d.date)}));
+
+const days = [...d3.utcDays(...d3.extent(times)), times[times.length-1]];
 
 export default async function() {
   return Plot.plot({
@@ -29,7 +31,7 @@ export default async function() {
     x: {
       domain: times,
       type: "linear",
-      ticks: [...d3.timeDays(...d3.extent(times)), times[times.length-1]],
+      ticks: days,
       tickFormat: d3.timeFormat("%d"),
       inset: 20,
       label: "date →"
