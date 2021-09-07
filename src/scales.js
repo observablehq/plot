@@ -200,7 +200,8 @@ function coerceNumber(x) {
 // rather than rely on Plot.) Any non-string values are coerced to number first
 // and treated as milliseconds since UNIX epoch.
 function coerceDate(x) {
-  return x instanceof Date ? x
+  return x instanceof Date && !isNaN(x) ? x
     : typeof x === "string" ? isoParse(x)
-    : new Date(x == null ? NaN : +x);
+    : x == null || isNaN(x = +x) ? undefined
+    : new Date(x);
 }
