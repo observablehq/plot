@@ -22,7 +22,8 @@
   },
   "files": [
     "dist/**/*.js",
-    "src/**/*.js"
+    "src/**/*.js",
+    "src/**/*.css"    
   ],
   "scripts": {
     "test": "mkdir -p test/output && mocha -r module-alias/register 'test/**/*-test.js' && mocha -r module-alias/register test/plot.js && eslint src test",
