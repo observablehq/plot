@@ -38,7 +38,7 @@ export default async function() {
     },
     color: {scheme: "cool"},
     marks: [
-      Plot.barX(d3.pairs(times), {x1: "0", x2: "1", fill: (_,i) => i}),
+      Plot.barX(d3.pairs(days), {x1: "0", x2: "1", fill: "0", stroke: "1"}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ],
