@@ -4,7 +4,6 @@
 
 *Not yet released.* These notes are a work in progress.
 
-
 ### Marks
 
 The constant *dx* and *dy* options have been extended to all marks, allowing to shift the mark by *dx* pixels horizontally and *dy* pixels vertically. Since only text elements accept the dx and dy properties, in all the other marks these are rendered as a transform (2D transformation) property of the mark’s parent, possibly including a 0.5px offset on low-density screens.
