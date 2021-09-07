@@ -72,6 +72,7 @@ export function ScaleQ(key, scale, channels, {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
       if (reverse) interpolate = flip(interpolate);
+      if (domain.length > 2) interpolate = polyLinear(interpolate, scale, domain);
       interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
@@ -172,4 +173,15 @@ function inferQuantileDomain(channels) {
     for (const v of value) domain.push(v);
   }
   return domain;
+}
+
+// stopgap solution until scaleLinear deals with polylinear domains
+// and an interpolate function
+function polyLinear(interpolate, scale, domain) {
+  const [a, b] = [domain[0], domain[domain.length-1]];
+  const tr = scaleLinear()
+    .domain(domain.map(d => (d - a) / (b - a)))
+    .range(domain.map((_, i) => i / (domain.length - 1)));
+  scale.domain([a, b]);
+  return t => interpolate(tr(t));
 }
