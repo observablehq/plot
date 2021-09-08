@@ -73,8 +73,8 @@ export function ScaleQ(key, scale, channels, {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
       if (reverse) interpolate = flip(interpolate);
-      if (domain.length > 2 && range === undefined) ({range, interpolate} = polyLinear(interpolate, scale, domain));
-      interpolate = constant(interpolate);
+      if (domain.length > 2 && range === undefined) ({range, interpolate} = piecewiseInterpolate(interpolate, domain));
+      else interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
   }
@@ -173,7 +173,7 @@ function inferQuantileDomain(channels) {
 }
 
 // polylinear domain with an interpolate function (e.g. color scheme)
-function polyLinear(interpolate, scale, domain) {
+function piecewiseInterpolate(interpolate, domain) {
   const n = domain.length - 1;
   return {
     range: range(domain),
