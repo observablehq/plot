@@ -37,7 +37,8 @@ export default async function() {
       label: "date →"
     },
     color: {
-      domain: times,
+      reverse: true, // unit tests both reverse…
+      domain: d3.reverse(times), // …and a decreasing domain
       type: "linear",
       scheme: "cool"
     },
