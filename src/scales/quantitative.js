@@ -23,7 +23,7 @@ import {
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
-import {constant} from "../mark.js";
+import {constant, range} from "../mark.js";
 
 export function flip(i) { return t => i(1 - t); }
 
@@ -72,7 +72,7 @@ export function ScaleQ(key, scale, channels, {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
       if (reverse) interpolate = flip(interpolate);
-      if (domain.length > 2) interpolate = polyLinear(interpolate, scale, domain);
+      if (domain.length > 2 && range === undefined) ({range, interpolate} = polyLinear(interpolate, scale, domain));
       interpolate = constant(interpolate);
     }
     scale.interpolate(interpolate);
@@ -175,13 +175,11 @@ function inferQuantileDomain(channels) {
   return domain;
 }
 
-// stopgap solution until scaleLinear deals with polylinear domains
-// and an interpolate function
+// polylinear domain with an interpolate function (e.g. color scheme)
 function polyLinear(interpolate, scale, domain) {
-  const [a, b] = [domain[0], domain[domain.length-1]];
-  const tr = scaleLinear()
-    .domain(domain.map(d => (d - a) / (b - a)))
-    .range(domain.map((_, i) => i / (domain.length - 1)));
-  scale.domain([a, b]);
-  return t => interpolate(tr(t));
+  const n = domain.length - 1;
+  return {
+    range: range(domain),
+    interpolate: i => t => interpolate((i + t) / n)
+  };
 }
