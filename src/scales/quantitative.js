@@ -76,7 +76,13 @@ export function ScaleQ(key, scale, channels, {
     scale.interpolate(interpolate);
   }
 
-  if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
+  if (zero) {
+    if (domain[0] > 0) {
+      domain[0] = 0;
+    } else if (domain[domain.length - 1] < 0) {
+      domain[domain.length - 1] = 0;
+    }
+  }
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
