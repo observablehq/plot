@@ -23,7 +23,6 @@ import {
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
-import {constant, range} from "../mark.js";
 
 const flip = i => t => i(1 - t);
 
@@ -63,15 +62,15 @@ export function ScaleQ(key, scale, channels, {
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
   // is used in conjunction with the range. And other times the interpolate
-  // function is a “fixed” interpolator independent of the range, as when a
+  // function is a “fixed” interpolator on the [0, 1] interval, as when a
   // color scheme such as interpolateRdBu is used.
   if (interpolate !== undefined) {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
       if (reverse) interpolate = flip(interpolate), reverse = false;
-      if (domain.length > 2 && range === undefined) ({range, interpolate} = piecewiseInterpolate(interpolate, domain));
-      else interpolate = constant(interpolate);
+      if (range === undefined && domain.length > 2) range = Float64Array.from(domain, (d, i) => i / (domain.length - 1));
+      interpolate = maybePiecewiseInterpolate(interpolate);
     }
     scale.interpolate(interpolate);
   }
@@ -180,11 +179,6 @@ function inferQuantileDomain(channels) {
   return domain;
 }
 
-// polylinear domain with an interpolate function (e.g. color scheme)
-function piecewiseInterpolate(interpolate, domain) {
-  const n = domain.length - 1;
-  return {
-    range: range(domain),
-    interpolate: (i, j) => t => interpolate((i + t * (j - i)) / n)
-  };
+function maybePiecewiseInterpolate(interpolate) {
+  return (i, j) => (i === 0 && j === 1) ? interpolate : t => interpolate(i + t * (j - i));
 }
