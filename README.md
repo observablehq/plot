@@ -198,6 +198,23 @@ Plot.plot({
 })
 ```
 
+All the scale definitions are exposed through the *scales* property of the plot.
+
+```js
+color = Plot.plot({…}).scales("color");
+color.range // ["red", "blue"]
+```
+
+And, to reuse the scale in another plot:
+
+```js
+const plot1 = Plot.plot(…);
+
+Plot.plot({
+  color: plot1.scales("color")
+})
+```
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
