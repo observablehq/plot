@@ -114,6 +114,10 @@ function Scale(key, channels = [], options = {}) {
   }
 }
 
+export function scale(options) {
+  return Scale(options.key, undefined, options).scale;
+}
+
 function inferScaleType(key, channels, {type, domain, range}) {
   if (key === "fx" || key === "fy") return "band";
   if (type !== undefined) {

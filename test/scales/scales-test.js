@@ -23,6 +23,7 @@ it("plot(…).scales('x') exposes the plot’s x scale", () => {
   assert.strictEqual(typeof x.interpolate, "function");
   assert.strictEqual(x.type, "linear");
   assert.strictEqual(x.clamp, false);
+  assert.strictEqual(typeof Plot.scale(x), "function");
 });
 
 it("plot(…).scales('y') exposes the plot’s y scale", () => {
@@ -34,6 +35,7 @@ it("plot(…).scales('y') exposes the plot’s y scale", () => {
   assert.strictEqual(typeof y.interpolate, "function");
   assert.strictEqual(y.type, "linear");
   assert.strictEqual(y.clamp, false);
+  assert.strictEqual(typeof Plot.scale(y), "function");
 });
 
 it("plot(…).scales('fx') exposes the plot’s fx scale", () => {
@@ -46,6 +48,7 @@ it("plot(…).scales('fx') exposes the plot’s fx scale", () => {
   assert.strictEqual(typeof fx.interpolate, "undefined");
   assert.strictEqual(fx.type, "band");
   assert.strictEqual(fx.clamp, undefined);
+  assert.strictEqual(typeof Plot.scale(fx), "function");
 });
 
 it("plot(…).scales('fy') exposes the plot’s fy scale", () => {
@@ -58,6 +61,7 @@ it("plot(…).scales('fy') exposes the plot’s fy scale", () => {
   assert.strictEqual(typeof fy.interpolate, "undefined");
   assert.strictEqual(fy.type, "band");
   assert.strictEqual(fy.clamp, undefined);
+  assert.strictEqual(typeof Plot.scale(fy), "function");
 });
 
 it("plot(…).scales('color') exposes a continuous color scale", () => {
@@ -70,6 +74,7 @@ it("plot(…).scales('color') exposes a continuous color scale", () => {
   assert.strictEqual(typeof color.interpolate, "function");
   assert.strictEqual(color.type, "linear");
   assert.strictEqual(color.clamp, false);
+  assert.strictEqual(typeof Plot.scale(color), "function");
 });
 
 it("plot(…).scales('color') exposes an ordinal color scale", () => {
@@ -80,6 +85,7 @@ it("plot(…).scales('color') exposes an ordinal color scale", () => {
   assert.strictEqual(typeof color.interpolate, "undefined");
   assert.strictEqual(color.type, "ordinal");
   assert.strictEqual(color.clamp, undefined);
+  assert.strictEqual(typeof Plot.scale(color), "function");
 });
 
 it("plot(…).scales('color') exposes a categorical color scale", () => {
@@ -90,6 +96,7 @@ it("plot(…).scales('color') exposes a categorical color scale", () => {
   assert.strictEqual(typeof color.interpolate, "undefined");
   assert.strictEqual(color.type, "categorical");
   assert.strictEqual(color.clamp, undefined);
+  assert.strictEqual(typeof Plot.scale(color), "function");
 });
 
 it("plot(…).scales('r') exposes a radius scale", () => {
@@ -102,6 +109,7 @@ it("plot(…).scales('r') exposes a radius scale", () => {
   assert.strictEqual(typeof r.interpolate, "function");
   assert.strictEqual(r.type, "sqrt");
   assert.strictEqual(r.clamp, false);
+  assert.strictEqual(typeof Plot.scale(r), "function");
 });
 
 it("plot(…).scales('opacity') exposes a linear scale", () => {
@@ -114,6 +122,7 @@ it("plot(…).scales('opacity') exposes a linear scale", () => {
   assert.strictEqual(typeof opacity.interpolate, "function");
   assert.strictEqual(opacity.type, "linear");
   assert.strictEqual(opacity.clamp, false);
+  assert.strictEqual(typeof Plot.scale(opacity), "function");
 });
 
 it("plot(…).scales expose inset domain", () => {

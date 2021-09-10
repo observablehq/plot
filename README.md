@@ -215,6 +215,14 @@ Plot.plot({
 })
 ```
 
+#### Plot.scale(*scaleOptions*)
+
+```js
+Plot.scale(plot1.scales("color"))
+```
+
+Returns a [D3 scale](https://github.com/d3/d3-scale) that matches the given Plot scale *options* object.
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
