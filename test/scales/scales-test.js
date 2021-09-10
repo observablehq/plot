@@ -1,5 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
+import {JSDOM} from "jsdom";
+const {window} = new JSDOM("");
+global.document = window.document;
 
 it("plot(…).scales exposes the plot’s scales", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
@@ -127,8 +130,6 @@ it("plot(…).scales expose clamp", () => {
 });
 
 it("plot(…).scales expose rounded scales", () => {
-  assert.strictEqual(Plot.scale(scaleOpt({round: false}))(Math.SQRT2), 144.26406871192853);
-  assert.strictEqual(Plot.scale(scaleOpt({round: true}))(Math.SQRT2), 144);
   assert.strictEqual(scaleOpt({round: true}).interpolate(0, 100)(Math.SQRT1_2), 71);
 });
 
