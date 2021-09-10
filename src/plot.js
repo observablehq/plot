@@ -1,8 +1,8 @@
 import {create} from "d3";
-import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
-import {Scales, autoScaleRange, applyScales} from "./scales.js";
+import {Scales, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -52,6 +52,9 @@ export function plot(options = {}) {
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
   autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
+  for (const key of ["color", "r", "opacity"]) {
+    autoScaleLabel(scaleDescriptors[key], scaleChannels.get(key), options);
+  }
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
@@ -90,7 +93,7 @@ export function plot(options = {}) {
   }
 
   const figure = wrap(svg, {caption});
-  figure.scales = scales;
+  figure.scales = (key) => exposeScales(scaleDescriptors, key);
   return figure;
 }
 

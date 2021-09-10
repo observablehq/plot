@@ -37,6 +37,7 @@ function autoAxisTicksK(scale, axis, k) {
 }
 
 // Mutates axis.{label,labelAnchor,labelOffset}!
+// Mutates scale.label!
 export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
@@ -77,6 +78,7 @@ function autoAxisLabelsX(axis, scale, channels) {
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "x");
   }
+  scale.label = axis.label;
 }
 
 function autoAxisLabelsY(axis, opposite, scale, channels) {
@@ -87,6 +89,15 @@ function autoAxisLabelsY(axis, opposite, scale, channels) {
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "y");
+  }
+  scale.label = axis.label;
+}
+
+export function autoScaleLabel(scale, channels, {color} = {}) {
+  if (scale === undefined) return;
+  if (color !== undefined) scale.label = color.label;
+  if (scale.label === undefined) {
+    scale.label = inferLabel(channels, scale, {});
   }
 }
 
