@@ -46,21 +46,21 @@ function autoScaleRangeY(scale, dimensions) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.type === "ordinal") range.reverse();
+    if (scale.family === "ordinal") range.reverse();
     scale.scale.range(range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && scale.family === "ordinal" && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }
 
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
-  let scale;
+  options.type = type;
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
@@ -91,29 +91,31 @@ function Scale(key, channels = [], options = {}) {
   }
 
   switch (type) {
-    case "diverging": scale = ScaleDiverging(key, channels, options); break;
-    case "diverging-sqrt": scale = ScaleDivergingSqrt(key, channels, options); break;
-    case "diverging-pow": scale = ScaleDivergingPow(key, channels, options); break;
-    case "diverging-log": scale = ScaleDivergingLog(key, channels, options); break;
-    case "diverging-symlog": scale = ScaleDivergingSymlog(key, channels, options); break;
-    case "categorical": case "ordinal": scale = ScaleOrdinal(key, channels, options); break;
-    case "cyclical": case "sequential": case "linear": scale = ScaleLinear(key, channels, options); break;
-    case "sqrt": scale = ScaleSqrt(key, channels, options); break;
-    case "threshold": scale = ScaleThreshold(key, channels, options); break;
-    case "quantile": scale = ScaleQuantile(key, channels, options); break;
-    case "pow": scale = ScalePow(key, channels, options); break;
-    case "log": scale = ScaleLog(key, channels, options); break;
-    case "symlog": scale = ScaleSymlog(key, channels, options); break;
-    case "utc": scale = ScaleUtc(key, channels, options); break;
-    case "time": scale = ScaleTime(key, channels, options); break;
-    case "point": scale = ScalePoint(key, channels, options); break;
-    case "band": scale = ScaleBand(key, channels, options); break;
-    case "identity": scale = registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined; break;
-    case undefined: break;
+    case "diverging": return ScaleDiverging(key, channels, options);
+    case "diverging-sqrt": return ScaleDivergingSqrt(key, channels, options);
+    case "diverging-pow": return ScaleDivergingPow(key, channels, options);
+    case "diverging-log": return ScaleDivergingLog(key, channels, options);
+    case "diverging-symlog": return ScaleDivergingSymlog(key, channels, options);
+    case "categorical": case "ordinal": return ScaleOrdinal(key, channels, options);
+    case "cyclical": case "sequential": case "linear": return ScaleLinear(key, channels, options);
+    case "sqrt": return ScaleSqrt(key, channels, options);
+    case "threshold": return ScaleThreshold(key, channels, options);
+    case "quantile": return ScaleQuantile(key, channels, options);
+    case "pow": return ScalePow(key, channels, options);
+    case "log": return ScaleLog(key, channels, options);
+    case "symlog": return ScaleSymlog(key, channels, options);
+    case "utc": return ScaleUtc(key, channels, options);
+    case "time": return ScaleTime(key, channels, options);
+    case "point": return ScalePoint(key, channels, options);
+    case "band": return ScaleBand(key, channels, options);
+    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
+    case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
-  if (scale) scale.scale.type = type;
-  return scale;
+}
+
+export function scale(options) {
+  return Scale(options.key, undefined, options).scale;
 }
 
 function inferScaleType(key, channels, {type, domain, range}) {
@@ -131,7 +133,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isOrdinal(domain)) return asOrdinalType(key, type);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
@@ -143,8 +145,8 @@ function inferScaleType(key, channels, {type, domain, range}) {
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key) {
-  return registry.get(key) === position ? "point" : "ordinal";
+function asOrdinalType(key, type = "categorical") {
+  return registry.get(key) === position ? "point" : type;
 }
 
 // TODO use Float64Array.from for position and radius scales?
@@ -210,26 +212,27 @@ function coerceDate(x) {
 }
 
 // prepare scales for exposure through the plot's scales() function
-export function exposeScales(scaleDescriptors, key) {
-  if (key === undefined) {
-    return Object.fromEntries(
-      Object.entries(scaleDescriptors)
-      .map(([key, descriptor]) => [key, exposeScale(descriptor)])
-    );
+export function exposeScales(scaleDescriptors) {
+  const scales = {};
+  for (const key in scaleDescriptors) {
+    let cache;
+    Object.defineProperty(scales, key, {
+      enumerable: true,
+      get: () => cache = cache || exposeScale(scaleDescriptors[key])
+    });
   }
-  if (key in scaleDescriptors) {
-    return exposeScale(scaleDescriptors[key]);
-  }
+  return scales;
 }
 
-function exposeScale({scale, label}) {
+function exposeScale({scale, ...options}) {
+  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse", "family"]) delete options[remove];
   return {
     domain: scale.domain(),
     range: scale.range(),
     ...scale.interpolate && {interpolate: scale.interpolate()},
-    ...label !== undefined && {label},
-    ...scale.type && {type: scale.type},
-    ...scale.clamp && scale.clamp() && {clamp: true},
-    scale
+    ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
+    ...scale.clamp && {clamp: scale.clamp()},
+    ...options
   };
 }
+

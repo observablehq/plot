@@ -71,7 +71,7 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
 
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
+    axis.labelAnchor = scale.family === "ordinal" ? "center"
       : scale.reverse ? "left"
       : "right";
   }
@@ -83,7 +83,7 @@ function autoAxisLabelsX(axis, scale, channels) {
 
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
+    axis.labelAnchor = scale.family === "ordinal" ? "center"
       : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
       : "top";
   }
@@ -93,9 +93,9 @@ function autoAxisLabelsY(axis, opposite, scale, channels) {
   scale.label = axis.label;
 }
 
-export function autoScaleLabel(scale, channels, {color} = {}) {
+export function autoScaleLabel(scale, channels, options) {
   if (scale === undefined) return;
-  if (color !== undefined) scale.label = color.label;
+  if (options !== undefined) scale.label = options.label;
   if (scale.label === undefined) {
     scale.label = inferLabel(channels, scale, {});
   }
@@ -115,8 +115,8 @@ function inferLabel(channels = [], scale, axis, key) {
   if (candidate !== undefined) {
     const {percent, reverse} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
-    if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
-    if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
+    if (scale.family === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
+    if (scale.family !== "ordinal" && (key === "x" || key === "y")) {
       if (percent) candidate = `${candidate} (%)`;
       if (axis.labelAnchor === "center") {
         candidate = `${candidate} →`;

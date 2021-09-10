@@ -8,6 +8,10 @@ export default async function() {
       grid: true,
       tickFormat: "%"
     },
+    color: {
+      legend: true,
+      columns: 5
+    },
     marks: [
       Plot.areaY(data, Plot.stackY({
         x: "date",
