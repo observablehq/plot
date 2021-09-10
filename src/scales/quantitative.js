@@ -49,14 +49,13 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
-  percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
   scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
-  inset
+  ...rest
 }) {
   if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
   if (reverse = !!reverse) domain = reverseof(domain);
@@ -80,7 +79,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type: "quantitative", reverse, domain, range, scale, inset, percent};
+  return {family: "quantitative", reverse, domain, range, scale, type, ...rest};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -92,11 +91,11 @@ export function ScaleSqrt(key, channels, options) {
 }
 
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, options);
+  return ScaleQ(key, scalePow().exponent(exponent), channels, options.type === "sqrt" ? options : {exponent, ...options});
 }
 
 export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {domain, ...options});
+  return ScaleQ(key, scaleLog().base(base), channels, {base, domain, ...options});
 }
 
 export function ScaleQuantile(key, channels, {
@@ -112,7 +111,7 @@ export function ScaleQuantile(key, channels, {
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+  return ScaleQ(key, scaleSymlog().constant(constant), channels, {constant, ...options});
 }
 
 export function ScaleThreshold(key, channels, {
@@ -128,7 +127,7 @@ export function ScaleThreshold(key, channels, {
 }
 
 export function ScaleIdentity() {
-  return {type: "identity", scale: scaleIdentity()};
+  return {family: "identity", scale: scaleIdentity(), type: "identity"};
 }
 
 export function inferDomain(channels, f) {
