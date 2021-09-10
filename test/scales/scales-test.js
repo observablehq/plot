@@ -1,5 +1,8 @@
 import * as Plot from "@observablehq/plot";
 import assert from "assert";
+import {JSDOM} from "jsdom";
+const {window} = new JSDOM("");
+global.document = window.document;
 
 it("plot(…).scales exposes the plot’s scales", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
