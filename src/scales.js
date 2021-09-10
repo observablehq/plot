@@ -46,20 +46,21 @@ function autoScaleRangeY(scale, dimensions) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.type === "ordinal") range.reverse();
+    if (scale.family === "ordinal") range.reverse();
     scale.scale.range(range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && scale.family === "ordinal" && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }
 
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
+  options.type = type;
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
@@ -128,7 +129,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isOrdinal(domain)) return asOrdinalType(key, type);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
@@ -140,8 +141,8 @@ function inferScaleType(key, channels, {type, domain, range}) {
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key) {
-  return registry.get(key) === position ? "point" : "ordinal";
+function asOrdinalType(key, type = "categorical") {
+  return registry.get(key) === position ? "point" : type;
 }
 
 // TODO use Float64Array.from for position and radius scales?
@@ -204,4 +205,25 @@ function coerceDate(x) {
     : typeof x === "string" ? isoParse(x)
     : x == null || isNaN(x = +x) ? undefined
     : new Date(x);
+}
+
+// prepare scales for exposure through the plot's scales() function
+export function exposeScales(scaleDescriptors) {
+  return function(key) {
+    if (registry.has(key))
+      return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+    throw new Error(`no such scale ${key}`);
+  };
+}
+
+function exposeScale({scale, ...options}) {
+  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse", "family"]) delete options[remove];
+  return {
+    domain: scale.domain(),
+    range: scale.range(),
+    ...scale.interpolate && {interpolate: scale.interpolate()},
+    ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
+    ...scale.clamp && {clamp: scale.clamp()},
+    ...options
+  };
 }
