@@ -151,16 +151,6 @@ export function maybeNumber(value, defaultValue) {
     : [value, undefined];
 }
 
-// If the channel value is specified as a string, indicating a named field, this
-// wraps the specified function f with another function with the corresponding
-// label property, such that the associated axis inherits the label by default.
-export function maybeLabel(f, value) {
-  const label = typeof value === "string" ? value
-    : typeof value === "function" ? value.label
-    : undefined;
-  return label === undefined ? f : Object.assign(d => f(d), {label});
-}
-
 // Validates the specified optional string against the allowed list of keywords.
 export function maybeKeyword(input, name, allowed) {
   if (input != null) return keyword(input, name, allowed);
