@@ -132,8 +132,8 @@ function binn(
       maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
-    ...BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
-    ...BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
+    ...BX1 && !hasOutput(outputs, "x") ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
+    ...BY1 && !hasOutput(outputs, "y") ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
     ...GK && {[gk]: GK},
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };

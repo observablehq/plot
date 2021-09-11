@@ -1,151 +1,126 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="300" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(40,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,270.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,230.94303797468356)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
+    <g class="tick" opacity="1" transform="translate(0,342.4551282051282)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,191.38607594936707)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    <g class="tick" opacity="1" transform="translate(0,314.41025641025647)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,151.82911392405066)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">150</text>
+    <g class="tick" opacity="1" transform="translate(0,286.36538461538464)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">150</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,112.27215189873417)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
+    <g class="tick" opacity="1" transform="translate(0,258.3205128205128)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,72.71518987341773)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">250</text>
+    <g class="tick" opacity="1" transform="translate(0,230.27564102564102)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">250</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,33.158227848101276)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
-    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+    <g class="tick" opacity="1" transform="translate(0,202.2307692307692)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">300</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,174.18589743589746)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">350</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,146.1410256410256)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,118.09615384615384)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">450</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,90.05128205128203)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">500</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,62.00641025641026)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">550</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,33.96153846153845)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Stargazers added per week</text>
   </g>
-  <g transform="translate(0,270)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(60.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">November</text>
+  <g transform="translate(0,370)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">November</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(130.93478260869566,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
+    <g class="tick" opacity="1" transform="translate(115.82467532467531,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(203.71739130434784,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">2021</text>
+    <g class="tick" opacity="1" transform="translate(193.66017316017314,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2021</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(276.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">February</text>
+    <g class="tick" opacity="1" transform="translate(271.495670995671,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">February</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(342.2391304347826,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">March</text>
+    <g class="tick" opacity="1" transform="translate(341.79870129870125,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">March</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(415.0217391304348,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
+    <g class="tick" opacity="1" transform="translate(419.63419913419915,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(485.45652173913044,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
+    <g class="tick" opacity="1" transform="translate(494.95887445887445,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(558.2391304347826,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-250" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">June</text>
+    <g class="tick" opacity="1" transform="translate(572.7943722943724,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">June</text>
     </g>
+  </g>
+  <g>
+    <rect x="41" y="368.8782051282051" width="16.575757575757578" height="1.1217948717949184">
+      <title>2020-11-01 to 2020-11-08
+        2</title>
+    </rect>
+    <rect x="76.15151515151516" y="369.43910256410254" width="16.575757575757564" height="0.5608974358974592">
+      <title>2020-11-15 to 2020-11-22
+        1</title>
+    </rect>
+    <rect x="497.96969696969694" y="20" width="16.575757575757677" height="350">
+      <title>2021-05-02 to 2021-05-09
+        624</title>
+    </rect>
+    <rect x="515.5454545454546" y="292.5961538461538" width="16.575757575757507" height="77.40384615384619">
+      <title>2021-05-09 to 2021-05-16
+        138</title>
+    </rect>
+    <rect x="533.1212121212121" y="331.2980769230769" width="16.57575757575762" height="38.701923076923094">
+      <title>2021-05-16 to 2021-05-23
+        69</title>
+    </rect>
+    <rect x="550.6969696969697" y="347.56410256410254" width="16.575757575757507" height="22.43589743589746">
+      <title>2021-05-23 to 2021-05-30
+        40</title>
+    </rect>
+    <rect x="568.2727272727273" y="342.51602564102564" width="16.57575757575762" height="27.483974358974365">
+      <title>2021-05-30 to 2021-06-06
+        49</title>
+    </rect>
+    <rect x="585.8484848484849" y="300.44871794871796" width="16.57575757575762" height="69.55128205128204">
+      <title>2021-06-06 to 2021-06-13
+        124</title>
+    </rect>
+    <rect x="603.4242424242425" y="341.9551282051282" width="16.575757575757507" height="28.044871794871824">
+      <title>2021-06-13 to 2021-06-20
+        50</title>
+    </rect>
+  </g>
+  <g stroke="red" transform="translate(0,0.5)">
+    <line x1="41" x2="620" y1="341.9551282051282" y2="341.9551282051282"></line>
   </g>
   <g stroke="currentColor" transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="270" y2="270"></line>
-  </g>
-  <g transform="translate(0,0.5)">
-    <line x1="40" x2="620" y1="262.0886075949367" y2="262.0886075949367"></line>
-  </g>
-  <g fill="brown">
-    <rect x="61" y="269.2088607594937" width="3.6956521739130466" height="0.7911392405063111">
-      <title>2020-11-01…2020-11-03</title>
-    </rect>
-    <rect x="65.69565217391305" y="269.2088607594937" width="3.6956521739130466" height="0.7911392405063111">
-      <title>2020-11-03…2020-11-05</title>
-    </rect>
-    <rect x="103.26086956521739" y="269.2088607594937" width="3.6956521739130466" height="0.7911392405063111">
-      <title>2020-11-19…2020-11-21</title>
-    </rect>
-    <rect x="490.65217391304344" y="90.41139240506328" width="3.6956521739131176" height="179.58860759493672">
-      <title>2021-05-03…2021-05-05</title>
-    </rect>
-    <rect x="495.34782608695656" y="20" width="3.695652173913004" height="250">
-      <title>2021-05-05…2021-05-07</title>
-    </rect>
-    <rect x="500.04347826086956" y="205.91772151898732" width="3.695652173913061" height="64.08227848101268">
-      <title>2021-05-07…2021-05-09</title>
-    </rect>
-    <rect x="504.7391304347826" y="234.39873417721518" width="3.695652173913004" height="35.601265822784825">
-      <title>2021-05-09…2021-05-11</title>
-    </rect>
-    <rect x="509.4347826086956" y="254.96835443037975" width="3.6956521739131176" height="15.031645569620252">
-      <title>2021-05-11…2021-05-13</title>
-    </rect>
-    <rect x="514.1304347826087" y="223.3227848101266" width="3.695652173913004" height="46.67721518987341">
-      <title>2021-05-13…2021-05-15</title>
-    </rect>
-    <rect x="518.8260869565217" y="248.6392405063291" width="3.695652173913004" height="21.360759493670912">
-      <title>2021-05-15…2021-05-17</title>
-    </rect>
-    <rect x="523.5217391304348" y="245.47468354430382" width="3.6956521739131176" height="24.525316455696185">
-      <title>2021-05-17…2021-05-19</title>
-    </rect>
-    <rect x="528.2173913043479" y="258.92405063291136" width="3.695652173913004" height="11.07594936708864">
-      <title>2021-05-19…2021-05-21</title>
-    </rect>
-    <rect x="532.9130434782609" y="260.50632911392404" width="3.6956521739131176" height="9.49367088607596">
-      <title>2021-05-21…2021-05-23</title>
-    </rect>
-    <rect x="537.608695652174" y="258.92405063291136" width="3.6956521739128902" height="11.07594936708864">
-      <title>2021-05-23…2021-05-25</title>
-    </rect>
-    <rect x="542.3043478260869" y="262.87974683544303" width="3.6956521739131176" height="7.120253164556971">
-      <title>2021-05-25…2021-05-27</title>
-    </rect>
-    <rect x="547" y="257.3417721518987" width="3.695652173913004" height="12.658227848101319">
-      <title>2021-05-27…2021-05-29</title>
-    </rect>
-    <rect x="551.695652173913" y="267.626582278481" width="3.695652173913004" height="2.37341772151899">
-      <title>2021-05-29…2021-05-31</title>
-    </rect>
-    <rect x="556.391304347826" y="267.626582278481" width="1.3478260869566157" height="2.37341772151899">
-      <title>2021-05-31…2021-06-01</title>
-    </rect>
-    <rect x="558.7391304347826" y="264.4620253164557" width="3.695652173913004" height="5.537974683544292">
-      <title>2021-06-01…2021-06-03</title>
-    </rect>
-    <rect x="563.4347826086956" y="251.80379746835445" width="3.6956521739131176" height="18.196202531645554">
-      <title>2021-06-03…2021-06-05</title>
-    </rect>
-    <rect x="568.1304347826087" y="241.51898734177217" width="3.695652173913004" height="28.481012658227826">
-      <title>2021-06-05…2021-06-07</title>
-    </rect>
-    <rect x="572.8260869565217" y="236.77215189873417" width="3.695652173913004" height="33.227848101265835">
-      <title>2021-06-07…2021-06-09</title>
-    </rect>
-    <rect x="577.5217391304348" y="245.47468354430382" width="3.695652173913004" height="24.525316455696185">
-      <title>2021-06-09…2021-06-11</title>
-    </rect>
-    <rect x="582.2173913043478" y="247.05696202531644" width="3.6956521739131176" height="22.943037974683563">
-      <title>2021-06-11…2021-06-13</title>
-    </rect>
-    <rect x="586.9130434782609" y="247.05696202531644" width="3.6956521739131176" height="22.943037974683563">
-      <title>2021-06-13…2021-06-15</title>
-    </rect>
-    <rect x="591.608695652174" y="256.5506329113924" width="3.695652173913004" height="13.449367088607573">
-      <title>2021-06-15…2021-06-17</title>
-    </rect>
-    <rect x="596.304347826087" y="266.8354430379747" width="3.695652173913004" height="3.1645569620253013">
-      <title>2021-06-17…2021-06-19</title>
-    </rect>
-  </g>
-  <g stroke="currentColor" stroke-width="0.25" stroke-dasharray="5,10" transform="translate(0,0.5)">
-    <line x1="41" x2="620" y1="254.96835443037975" y2="254.96835443037975"></line>
+    <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

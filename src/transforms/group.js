@@ -119,7 +119,11 @@ function groupn(
 }
 
 export function maybeOutputs(outputs, inputs) {
-  return Object.entries(outputs).map(([name, reduce]) => maybeOutput(name, reduce, inputs));
+  return Object.entries(outputs).map(([name, reduce]) => {
+    return reduce == null
+      ? {name, initialize() {}, scope() {}, reduce() {}}
+      : maybeOutput(name, reduce, inputs);
+  });
 }
 
 export function maybeOutput(name, reduce, inputs) {
