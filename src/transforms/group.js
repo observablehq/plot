@@ -140,8 +140,8 @@ export function maybeOutput(name, reduce, inputs) {
     scope(scope, I) {
       evaluator.scope(scope, I);
     },
-    reduce(I) {
-      O.push(evaluator.reduce(I));
+    reduce(I, extent) {
+      O.push(evaluator.reduce(I, extent));
     }
   };
 }
@@ -163,8 +163,10 @@ export function maybeEvaluator(name, reduce, inputs) {
         context = reducer.reduce(I, V);
       }
     },
-    reduce(I) {
-      return reducer.reduce(I, V, context);
+    reduce(I, extent) {
+      return reducer.scope == null
+        ? reducer.reduce(I, V, extent)
+        : reducer.reduce(I, V, context, extent);
     }
   };
 }
@@ -218,10 +220,8 @@ export function maybeSort(facets, sort, reverse) {
 
 function reduceFunction(f) {
   return {
-    reduce(I, X) {
-      const x = take(X, I);
-      if ("x1" in I) { x.x1 = I.x1; x.x2 = I.x2; x.y1 = I.y1; x.y2 = I.y2; }
-      return f(x);
+    reduce(I, X, extent) {
+      return f(take(X, I), extent);
     }
   };
 }

@@ -13,7 +13,7 @@ export default async function() {
       Plot.rectY(
         stargazers,
         Plot.binX(
-          {y: "count", title: d => `${format(d.x1)} to ${format(d.x2)}\n${d.length}`},
+          {y: "count", title: (d, {x1, x2}) => `${format(x1)} to ${format(x2)}\n${d.length}`},
           {x: "date", thresholds: d3.utcWeek}
         )
       ),

@@ -111,17 +111,18 @@ function binn(
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
-                const b = Object.assign(fy(bb), {x1, x2, y1, y2});
-                if (filter && !filter.reduce(b)) continue;
+                const extent = {x1, x2, y1, y2};
+                const b = fy(bb);
+                if (filter && !filter.reduce(b, extent)) continue;
                 groupFacet.push(i++);
-                groupData.push(reduceData.reduce(b, data));
+                groupData.push(reduceData.reduce(b, data, extent));
                 if (K) GK.push(k);
                 if (Z) GZ.push(G === Z ? f : Z[b[0]]);
                 if (F) GF.push(G === F ? f : F[b[0]]);
                 if (S) GS.push(G === S ? f : S[b[0]]);
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
-                for (const o of outputs) o.reduce(b);
+                for (const o of outputs) o.reduce(b, extent);
                 if (sort) sort.reduce(b);
               }
             }
