@@ -94,16 +94,23 @@ function groupn(
         for (const [f, I] of maybeGroup(facet, G)) {
           for (const [y, gg] of maybeGroup(I, Y)) {
             for (const [x, g] of maybeGroup(gg, X)) {
-              if (filter && !filter.reduce(g)) continue;
+              const extent = {
+                ...Z && {z: G === Z ? f : Z[g[0]]},
+                ...F && {fill: G === F ? f : F[g[0]]},
+                ...S && {stroke: G === S ? f : S[g[0]]},
+                ...x != null && {x},
+                ...y != null && {y}
+              };
+              if (filter && !filter.reduce(g, extent)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduce(g, data));
+              groupData.push(reduceData.reduce(g, data, extent));
               if (X) GX.push(x);
               if (Y) GY.push(y);
-              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
-              if (F) GF.push(G === F ? f : F[g[0]]);
-              if (S) GS.push(G === S ? f : S[g[0]]);
-              for (const o of outputs) o.reduce(g);
-              if (sort) sort.reduce(g);
+              if (Z) GZ.push(extent.z);
+              if (F) GF.push(extent.fill);
+              if (S) GS.push(extent.stroke);
+              for (const o of outputs) o.reduce(g, extent);
+              if (sort) sort.reduce(g, extent);
             }
           }
         }

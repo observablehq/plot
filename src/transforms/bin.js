@@ -111,15 +111,22 @@ function binn(
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
-                const extent = {x1, x2, y1, y2};
                 const b = fy(bb);
+                const extent = {
+                  ...K && {[gk]: k},
+                  ...Z && {z: G === Z ? f : Z[b[0]]},
+                  ...F && {fill: G === F ? f : F[b[0]]},
+                  ...S && {stroke: G === S ? f : S[b[0]]},
+                  ...x1 != null && {x1, x2},
+                  ...y1 != null && {y1, y2}
+                };
                 if (filter && !filter.reduce(b, extent)) continue;
                 groupFacet.push(i++);
                 groupData.push(reduceData.reduce(b, data, extent));
                 if (K) GK.push(k);
-                if (Z) GZ.push(G === Z ? f : Z[b[0]]);
-                if (F) GF.push(G === F ? f : F[b[0]]);
-                if (S) GS.push(G === S ? f : S[b[0]]);
+                if (Z) GZ.push(extent.z);
+                if (F) GF.push(extent.fill);
+                if (S) GS.push(extent.stroke);
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b, extent);
