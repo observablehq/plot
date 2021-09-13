@@ -12,6 +12,27 @@ The constant *dx* and *dy* options have been extended to all marks, allowing to 
 
 Quantitative scales, as well as identity position scales, now coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
 
+### Transforms
+
+#### Plot.bin
+
+The reducers now receive the extent of the current bin as an argument after the data. For example, it allows to create meaningful titles:
+```js
+Plot.rect(
+  athletes,
+  Plot.bin(
+    {
+      fill: "count",
+      title: (bin, { x1, x2, y1, y2 }) =>
+        `${bin.length} athletes weighing between ${x1} and ${x2} and with a height between ${y1} and ${y2}`
+    },
+    { x: "weight", y: "height", inset: 0 }
+  )
+).plot()
+```
+
+The *x1* and *x2* outputs now default to undefined if *x* is explicitly defined; similary, the *y1* and *y2* outputs now default to undefined if *y* is explicitly defined.
+
 ## 0.2.0
 
 Released August 20, 2021.

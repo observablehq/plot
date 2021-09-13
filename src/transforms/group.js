@@ -119,7 +119,11 @@ function groupn(
 }
 
 export function maybeOutputs(outputs, inputs) {
-  return Object.entries(outputs).map(([name, reduce]) => maybeOutput(name, reduce, inputs));
+  return Object.entries(outputs).map(([name, reduce]) => {
+    return reduce == null
+      ? {name, initialize() {}, scope() {}, reduce() {}}
+      : maybeOutput(name, reduce, inputs);
+  });
 }
 
 export function maybeOutput(name, reduce, inputs) {
@@ -136,8 +140,8 @@ export function maybeOutput(name, reduce, inputs) {
     scope(scope, I) {
       evaluator.scope(scope, I);
     },
-    reduce(I) {
-      O.push(evaluator.reduce(I));
+    reduce(I, extent) {
+      O.push(evaluator.reduce(I, extent));
     }
   };
 }
@@ -159,8 +163,10 @@ export function maybeEvaluator(name, reduce, inputs) {
         context = reducer.reduce(I, V);
       }
     },
-    reduce(I) {
-      return reducer.reduce(I, V, context);
+    reduce(I, extent) {
+      return reducer.scope == null
+        ? reducer.reduce(I, V, extent)
+        : reducer.reduce(I, V, context, extent);
     }
   };
 }
@@ -214,8 +220,8 @@ export function maybeSort(facets, sort, reverse) {
 
 function reduceFunction(f) {
   return {
-    reduce(I, X) {
-      return f(take(X, I));
+    reduce(I, X, extent) {
+      return f(take(X, I), extent);
     }
   };
 }
