@@ -212,7 +212,7 @@ export function exposeScales(scaleDescriptors) {
   return key => {
     if (registry.has(key))
       return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
-    throw new Error(`no such scale ${key}`);
+    throw new Error(`unknown scale: ${key}`);
   };
 }
 
