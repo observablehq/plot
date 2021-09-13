@@ -102,7 +102,7 @@ export function plot(options = {}) {
     figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
   }
 
-  figure.scales = exposeScales(scaleDescriptors);
+  figure.scale = exposeScales(scaleDescriptors);
   return figure;
 }
 
