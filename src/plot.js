@@ -2,7 +2,7 @@ import {create} from "d3";
 import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
-import {Scales, autoScaleRange, applyScales, exposeScales} from "./scales.js";
+import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {registry, position} from "./scales/index.js";
 import {filterStyles, offset} from "./style.js";
 
@@ -149,6 +149,6 @@ function ScaleFunctions(scales) {
 
 function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (y.family === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }

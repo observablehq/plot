@@ -1,4 +1,5 @@
 import {AxisX, AxisY} from "./axis.js";
+import {isOrdinalScale, isTemporalScale} from "./scales.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -70,7 +71,7 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
 
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.family === "ordinal" ? "center"
+    axis.labelAnchor = isOrdinalScale(scale) ? "center"
       : scale.reverse ? "left"
       : "right";
   }
@@ -82,7 +83,7 @@ function autoAxisLabelsX(axis, scale, channels) {
 
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.family === "ordinal" ? "center"
+    axis.labelAnchor = isOrdinalScale(scale) ? "center"
       : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
       : "top";
   }
@@ -114,15 +115,17 @@ function inferLabel(channels = [], scale, axis, key) {
   if (candidate !== undefined) {
     const {percent, reverse} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
-    if (scale.family === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
-    if (scale.family !== "ordinal" && (key === "x" || key === "y")) {
+    if (isTemporalScale(scale) && /^(date|time|year)$/i.test(candidate)) return;
+    if (!isOrdinalScale(scale)) {
       if (percent) candidate = `${candidate} (%)`;
-      if (axis.labelAnchor === "center") {
-        candidate = `${candidate} →`;
-      } else if (key === "x") {
-        candidate = reverse ? `← ${candidate}` : `${candidate} →`;
-      } else {
-        candidate = `${reverse ? "↓ " : "↑ "}${candidate}`;
+      if (key === "x" || key === "y") {
+        if (axis.labelAnchor === "center") {
+          candidate = `${candidate} →`;
+        } else if (key === "x") {
+          candidate = reverse ? `← ${candidate}` : `${candidate} →`;
+        } else {
+          candidate = `${reverse ? "↓ " : "↑ "}${candidate}`;
+        }
       }
     }
   }
