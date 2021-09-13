@@ -36,10 +36,10 @@ export default async function() {
   });
 }
 
-function quartile1(values, value) {
-  return d3.quantile(values, 0.25, value);
+function quartile1(values) {
+  return d3.quantile(values, 0.25);
 }
 
-function quartile3(values, value) {
-  return d3.quantile(values, 0.75, value);
+function quartile3(values) {
+  return d3.quantile(values, 0.75);
 }

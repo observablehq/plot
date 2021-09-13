@@ -31,22 +31,22 @@ function outliers(values) {
   return values.map(v => v < r1 || v > r2 ? v : NaN);
 }
 
-function iqr1(values, value) {
-  return Math.max(d3.min(values, value), quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5);
+function iqr1(values) {
+  return Math.max(d3.min(values), quartile1(values) * 2.5 - quartile3(values) * 1.5);
 }
 
-function iqr2(values, value) {
-  return Math.min(d3.max(values, value), quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5);
+function iqr2(values) {
+  return Math.min(d3.max(values), quartile3(values) * 2.5 - quartile1(values) * 1.5);
 }
 
-function median(values, value) {
-  return d3.median(values, value);
+function median(values) {
+  return d3.median(values);
 }
 
-function quartile1(values, value) {
-  return d3.quantile(values, 0.25, value);
+function quartile1(values) {
+  return d3.quantile(values, 0.25);
 }
 
-function quartile3(values, value) {
-  return d3.quantile(values, 0.75, value);
+function quartile3(values) {
+  return d3.quantile(values, 0.75);
 }
