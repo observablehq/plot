@@ -224,14 +224,21 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, ...options}) {
-  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse"]) delete options[remove];
+function exposeScale({scale, type, label, percent, base, constant, exponent, align, paddingInner, paddingOuter}) {
   return {
+    type,
     domain: scale.domain(),
     range: scale.range(),
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
     ...scale.clamp && {clamp: scale.clamp()},
-    ...options
+    ...label !== undefined && {label},
+    ...percent !== undefined && {percent},
+    ...type === "log" && {base},
+    ...type === "symlog" && {constant},
+    ...type === "pow" && {exponent},
+    ...(type === "band" || type === "point") && {align},
+    ...type === "band" && {paddingInner},
+    ...type === "band" && {paddingOuter}
   };
 }

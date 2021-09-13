@@ -119,33 +119,33 @@ it("plot(…).scale('opacity') exposes a linear scale", () => {
   assert.strictEqual(opacity.clamp, false);
 });
 
-it("plot(…).scale expose inset domain", () => {
+it("plot(…).scale exposes inset domain", () => {
   assert.deepStrictEqual(scaleOpt({inset: null}).range, [20, 620]);
   assert.deepStrictEqual(scaleOpt({inset: 7}).range, [27, 613]);
 });
 
-it("plot(…).scale expose clamp", () => {
+it("plot(…).scale exposes clamp", () => {
   assert.strictEqual(scaleOpt({clamp: false}).clamp, false);
   assert.strictEqual(scaleOpt({clamp: true}).clamp, true);
 });
 
-it("plot(…).scale expose rounded scales", () => {
+it("plot(…).scale exposes rounded scales", () => {
   assert.strictEqual(scaleOpt({round: true}).interpolate(0, 100)(Math.SQRT1_2), 71);
 });
 
-it("plot(…).scale expose label", () => {
+it("plot(…).scale exposes label", () => {
   assert.strictEqual(scaleOpt({}).label, "x →");
   assert.strictEqual(scaleOpt({label: "value"}).label, "value");
 });
 
-it("plot(…).scale expose color label", () => {
+it("plot(…).scale exposes color label", () => {
   const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"}).plot().scale("color");
   assert.strictEqual(x.label, "x");
   const y = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"}).plot({color: {label: "y"}}).scale("color");
   assert.strictEqual(y.label, "y");
 });
 
-it("plot(…).scale expose radius label", () => {
+it("plot(…).scale exposes the radius label", () => {
   const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"}).plot().scale("r");
   assert.strictEqual(x.label, "x");
   const r = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"}).plot({r: {label: "radius"}}).scale("r");
@@ -181,10 +181,10 @@ it("plot(…).scale expose align, paddingInner and paddingOuter", () => {
   assert.strictEqual(x.paddingOuter, -0.2);
 });
 
-it("plot(…).scale expose unexpected scale options", () => {
+it("plot(…).scale does not expose unexpected scale options", () => {
   const x = Plot.dotX([]).plot({x: { lala: 42, width: 420 }}).scale("x");
-  assert.strictEqual(x.lala, 42);
-  assert.strictEqual(x.width, 420);
+  assert.strictEqual(x.lala, undefined);
+  assert.strictEqual(x.width, undefined);
 });
 
 function scaleOpt(x) {
