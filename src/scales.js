@@ -209,7 +209,7 @@ function coerceDate(x) {
 
 // prepare scales for exposure through the plot's scales() function
 export function exposeScales(scaleDescriptors) {
-  return function(key) {
+  return key => {
     if (registry.has(key))
       return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
     throw new Error(`no such scale ${key}`);
