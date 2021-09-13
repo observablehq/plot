@@ -17,7 +17,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {family: "ordinal", domain, range, scale, ...options};
+  return {domain, range, scale, ...options};
 }
 
 export function ScaleOrdinal(key, channels, {

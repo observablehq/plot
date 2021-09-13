@@ -79,7 +79,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {family: "quantitative", reverse, domain, range, scale, type, ...rest};
+  return {reverse, domain, range, scale, type, ...rest};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -127,7 +127,7 @@ export function ScaleThreshold(key, channels, {
 }
 
 export function ScaleIdentity() {
-  return {family: "identity", scale: scaleIdentity(), type: "identity"};
+  return {scale: scaleIdentity(), type: "identity"};
 }
 
 export function inferDomain(channels, f) {

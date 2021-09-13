@@ -46,14 +46,14 @@ function autoScaleRangeY(scale, dimensions) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.family === "ordinal") range.reverse();
+    if (isOrdinalScale(scale)) range.reverse();
     scale.scale.range(range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.family === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && isOrdinalScale(scale) && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }
@@ -145,6 +145,14 @@ function asOrdinalType(key, type = "categorical") {
   return registry.get(key) === position ? "point" : type;
 }
 
+export function isTemporalScale({type}) {
+  return type === "time" || type === "utc";
+}
+
+export function isOrdinalScale({type}) {
+  return type === "ordinal" || type === "categorical" || type === "point" || type === "band";
+}
+
 // TODO use Float64Array.from for position and radius scales?
 export function applyScales(channels = [], scales) {
   const values = Object.create(null);
@@ -217,7 +225,7 @@ export function exposeScales(scaleDescriptors) {
 }
 
 function exposeScale({scale, ...options}) {
-  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse", "family"]) delete options[remove];
+  for (const remove of ["domain", "range", "interpolate", "clamp", "round", "nice", "padding", "inset", "reverse"]) delete options[remove];
   return {
     domain: scale.domain(),
     range: scale.range(),
