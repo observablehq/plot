@@ -1013,7 +1013,7 @@ The *filter*, *sort* and *reverse* transforms are also available as functions, a
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an acessor function, a comparator function, or a channel value definition such as a field name.
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name.
 
 ### Plot.reverse(*options*)
 
