@@ -230,11 +230,12 @@ export function exposeScales(scaleDescriptors) {
 
 function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter}) {
   const domain = scale.domain();
+  const range = scale.range();
   const pivot = diverging && domain.splice(1,1)[0];
   return {
     type,
-    ...{domain},
-    range: scale.range(),
+    domain,
+    range,
     ...diverging && {pivot, symmetric: false},
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
