@@ -224,19 +224,22 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, type, label, percent, base, constant, exponent, align, paddingInner, paddingOuter}) {
+function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter}) {
+  const domain = scale.domain();
+  const pivot = diverging && domain.splice(1,1)[0];
   return {
     type,
-    domain: scale.domain(),
+    ...{domain},
     range: scale.range(),
+    ...diverging && {pivot, symmetric: false},
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
     ...scale.clamp && {clamp: scale.clamp()},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
-    ...type === "log" && {base},
-    ...type === "symlog" && {constant},
-    ...type === "pow" && {exponent},
+    ...scale.base && {base: scale.base()},
+    ...scale.constant && {constant: scale.constant()},
+    ...scale.exponent && {exponent: scale.exponent()},
     ...(type === "band" || type === "point") && {align},
     ...type === "band" && {paddingInner},
     ...type === "band" && {paddingOuter}
