@@ -108,7 +108,7 @@ function Scale(key, channels = [], options = {}) {
     case "time": return ScaleTime(key, channels, options);
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
-    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
+    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : {type: "identity"};
     case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
@@ -228,20 +228,21 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter}) {
+function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter, transform}) {
+  if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
-  const range = scale.range();
   const pivot = diverging && domain.splice(1,1)[0];
   return {
     type,
     domain,
-    range,
+    range: scale.range(),
     ...diverging && {pivot, symmetric: false},
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
     ...scale.clamp && {clamp: scale.clamp()},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
+    ...transform !== undefined && {transform},
     ...scale.base && {base: scale.base()},
     ...scale.constant && {constant: scale.constant()},
     ...scale.exponent && {exponent: scale.exponent()},
