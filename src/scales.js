@@ -1,4 +1,4 @@
-import {registry, position, radius, opacity} from "./scales/index.js";
+import {registry, color, position, radius, opacity} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
@@ -129,7 +129,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key, type);
+    if (isOrdinal(domain)) return asOrdinalType(key);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
@@ -141,8 +141,12 @@ function inferScaleType(key, channels, {type, domain, range}) {
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key, type = "categorical") {
-  return registry.get(key) === position ? "point" : type;
+function asOrdinalType(key) {
+  switch(registry.get(key)) {
+    case position: return "point";
+    case color: return "categorical";
+    default: return "ordinal";
+  }
 }
 
 export function isTemporalScale({type}) {
