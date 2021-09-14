@@ -158,7 +158,7 @@ it("plot(…).scale expose pow exponent", () => {
   assert.strictEqual(x.exponent, 0.3);
   const y = Plot.dotX([]).plot({x: { type: "sqrt" }}).scale("x");
   assert.strictEqual(y.type, "sqrt");
-  assert.strictEqual(y.exponent, undefined);
+  assert.strictEqual(y.exponent, 0.5);
 });
 
 it("plot(…).scale expose log base", () => {

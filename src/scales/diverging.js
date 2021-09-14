@@ -22,9 +22,10 @@ function ScaleD(key, scale, transform, channels, {
   scheme = "rdbu",
   symmetric = true,
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : undefined,
-  reverse
+  reverse,
+  type
 }) {
-  domain = [Math.min(domain[0], pivot), pivot, Math.max(domain[1], pivot)];
+  domain = [Math.min(domain[0], pivot), Math.max(domain[1], pivot)];
   if (reverse = !!reverse) domain = reverseof(domain);
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
@@ -39,15 +40,15 @@ function ScaleD(key, scale, transform, channels, {
   // Normalize the interpolator for symmetric difference around the pivot.
   if (symmetric) {
     const mindelta = Math.abs(transform(domain[0]) - transform(pivot));
-    const maxdelta = Math.abs(transform(domain[2]) - transform(pivot));
+    const maxdelta = Math.abs(transform(domain[1]) - transform(pivot));
     if (mindelta < maxdelta) interpolate = truncateLower(interpolate, mindelta / maxdelta);
     else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
   }
 
-  scale.domain(domain).interpolator(interpolate);
+  scale.domain([domain[0], pivot, domain[1]]).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type: "quantitative", reverse, domain, scale};
+  return {type, diverging: true, scale};
 }
 
 export function ScaleDiverging(key, channels, options) {
