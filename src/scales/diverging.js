@@ -1,7 +1,6 @@
 import {
   interpolateRgb,
   piecewise,
-  reverse as reverseof,
   scaleDiverging,
   scaleDivergingLog,
   scaleDivergingPow,
@@ -11,7 +10,7 @@ import {
 import {positive, negative} from "../defined.js";
 import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
-import {inferDomain, Interpolator} from "./quantitative.js";
+import {inferDomain, Interpolator, flip} from "./quantitative.js";
 
 function ScaleD(key, scale, transform, channels, {
   nice,
@@ -26,7 +25,6 @@ function ScaleD(key, scale, transform, channels, {
   type
 }) {
   domain = [Math.min(domain[0], pivot), Math.max(domain[1], pivot)];
-  if (reverse = !!reverse) domain = reverseof(domain);
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
   // space; other times it is a function that takes t in [0, 1].
@@ -45,6 +43,7 @@ function ScaleD(key, scale, transform, channels, {
     else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
   }
 
+  if (reverse = !!reverse) interpolate = flip(interpolate);
   scale.domain([domain[0], pivot, domain[1]]).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);

@@ -25,7 +25,7 @@ import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
 
-const flip = i => t => i(1 - t);
+export function flip(i) { return t => i(1 - t); }
 
 const interpolators = new Map([
   // numbers
