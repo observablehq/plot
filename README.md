@@ -201,7 +201,7 @@ Plot.plot({
 All the scale definitions are exposed through the *scales* property of the plot.
 
 ```js
-color = Plot.plot({…}).scales("color");
+color = Plot.plot({…}).scale("color");
 color.range // ["red", "blue"]
 ```
 
@@ -211,9 +211,11 @@ And, to reuse the scale in another plot:
 const plot1 = Plot.plot(…);
 
 Plot.plot({
-  color: plot1.scales("color")
+  color: plot1.scale("color")
 })
 ```
+
+*plot*.scale(*scale*) returns a scale definition instantiated on the actual values encountered in the plot (domain, range, thresholds, etc.). It returns undefined if *scale* is known (*x*, *y*, *fx*, *fy*, *r*, *color*, *opacity*) but not used, and throws an error if *scale* is unknown.
 
 ### Position options
 
