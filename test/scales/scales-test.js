@@ -192,6 +192,13 @@ it("plot(…).scale exposes rounded scales", () => {
 it("plot(…).scale exposes label", () => {
   assert.strictEqual(scaleOpt({}).label, "x →");
   assert.strictEqual(scaleOpt({label: "value"}).label, "value");
+  assert.strictEqual(scaleOpt({label: null}).label, null);
+
+  // if label is undefined, return undefined; can be useful for small multiples
+  const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {x: d => d.x})
+    .plot()
+    .scale("x");
+    assert.strictEqual(x.label, undefined);
 });
 
 it("plot(…).scale exposes color label", () => {
