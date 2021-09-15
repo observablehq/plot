@@ -106,11 +106,10 @@ export function ScaleQuantile(key, channels, {
   reverse,
   percent
 }) {
-  if (reverse = !!reverse) range = reverseof(range); // domain unordered, so reverse range
-  const scale = scaleQuantile(domain, range);
   return ScaleThreshold(key, channels, {
-    domain: scale.quantiles(),
+    domain: scaleQuantile(domain, range).quantiles(),
     range,
+    reverse,
     percent
   });
 }
