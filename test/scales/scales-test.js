@@ -479,3 +479,387 @@ it("An opacity scale has the expected defaults", () => {
   assert.equal(x.label, "Frequency (%)");
 });
 
+it("scale.transform is exposed and reusable", () => {
+  isReusable({x: {transform: d => 1 / d}});
+});
+
+it("scale.zero is subsumed in the domain and reusable", () => {
+  isReusable({
+    x: {zero: true},
+    color: {zero: true}
+  });
+});
+
+it("A diverging scale’s pivot is reusable", () => {
+  isReusable({
+    color: {
+      type: "diverging",
+      pivot: 5400,
+      symmetric: false,
+      reverse: false
+    }
+  });
+});
+
+it("A diverging-log scale’s pivot is reusable", () => {
+  isReusable({
+    color: {
+      type: "diverging-log",
+      pivot: 3200
+    }
+  });
+});
+
+it("The default cyclical scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "cyclical",
+      domain: [1000, 6000]
+    }
+  });
+});
+
+it("A scheme-based scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "cyclical", // superseded by scheme and interpolate
+      scheme: "blues",
+      domain: [0, 10000]
+    }
+  });
+});
+
+it("An interpolate-based scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "cyclical", // superseded by scheme and interpolate
+      scheme: "blues", // superseded by interpolate
+      interpolate: d3.interpolateWarm
+    }
+  });
+});
+
+it("A sequential scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "sequential",
+      reverse: true
+    }
+  });
+});
+
+it("A sequential-scheme scale and reusable", () => {
+  isReusable({
+    color: {
+      type: "sequential", // superseded by scheme and interpolate
+      scheme: "blues"
+    }
+  });
+});
+
+it("A sequential-interpolate scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "sequential", // superseded by scheme and interpolate
+      scheme: "blues", // superseded by interpolate
+      interpolate: d3.interpolateWarm
+    }
+  });
+});
+
+it("A simple threshold scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "threshold",
+      domain: d3.range(2000, 7000, 500)
+    }
+  });
+});
+
+it("A quantile scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      quantiles: 10,
+      scheme: "warm"
+    }
+  });
+});
+
+it("Another quantile scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      quantiles: 3,
+      scheme: "sinebow"
+    }
+  });
+});
+
+it("A quantile scale defined by a range is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      range: ["red", "yellow", "blue", "green"] // the range determines the number of quantiles
+    }
+  });
+});
+
+it("A default quantile scale defined by a continuous scheme is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      scheme: "warm"
+    }
+  });
+});
+
+it("A default quantile scale defined by an array scheme is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      scheme: "reds"
+    }
+  });
+});
+
+it("A quantile scale with a scheme and quantiles is reusable", () => {
+  isReusable({
+    color: {
+      type: "quantile",
+      scheme: "rdbu",
+      quantiles: 12,
+      reverse: true
+    }
+  });
+});
+
+it("A default ordinal scale is reusable", () => {
+  isReusable({}, Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9}));
+});
+
+it("An explicit categorical scale is reusable", () => {
+  isReusable(
+    {color: {type: "categorical"}},
+    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
+  );
+});
+
+it("A reversed ordinal scale is reusable", () => {
+  isReusable(
+    {
+      color: {type: "ordinal", reverse: true}
+    },
+    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
+  );
+});
+
+it("An ordinal scheme with an explicit range is reusable", () => {
+  isReusable(
+    {
+      color: {range: ["yellow", "lime", "grey"]}
+    },
+    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
+  );
+});
+
+it("An ordinal scheme with a large explicit range is reusable", () => {
+  isReusable(
+    {
+      color: {range: ["yellow", "lime", "black", "red"]}
+    },
+    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
+  );
+});
+
+it("A reversed band scale is reusable", () => {
+  isReusable(
+    {
+      x: {reverse: false, type: "band"},
+      y: {reverse: true},
+      color: {type: "categorical"}
+    },
+    Plot.barY(
+      "ABCDEF".split("").map(d => ({d})),
+      {x: "d", y2: "d", fill: "d"}
+    )
+  );
+});
+
+it("A point scale with explicit align is reusable 0", () => {
+  isReusable(
+    {
+      x: {type: "point", align: 0},
+      r: {range: [2, 13]}
+    },
+    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
+  );
+});
+
+it("A point scale with explicit align is reusable 0.7", () => {
+  isReusable(
+    {
+      x: {type: "point", align: 0.7},
+      r: {range: [2, 13]}
+    },
+    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
+  );
+});
+
+it("A radius scale with an explicit range is reusable", () => {
+  isReusable(
+    {
+      x: {type: "point"},
+      r: {range: [2, 13]}
+    },
+    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
+  );
+});
+
+it("A band scale is reusable", () => {
+  isReusable(
+    {
+      x: {type: "band"}
+    },
+    Plot.cellX(
+      data,
+      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
+    )
+  );
+});
+
+it("A band scale with an explicit align is reusable 0", () => {
+  isReusable(
+    {
+      x: {type: "band", align: 0}
+    },
+    Plot.cellX(
+      data,
+      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
+    )
+  );
+});
+
+it("A band scale with an explicit align is reusable 1", () => {
+  isReusable(
+    {
+      x: {type: "band", align: 1}
+    },
+    Plot.cellX(
+      data,
+      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
+    )
+  );
+});
+
+it("A band scale with an explicit paddingInner is reusable", () => {
+  isReusable(
+    {
+      x: {type: "band", paddingInner: 0.4}
+    },
+    Plot.cellX(
+      data,
+      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
+    )
+  );
+});
+
+it("A band scale with an explicit paddingOuter is reusable", () => {
+  isReusable(
+    {
+      x: {type: "band", paddingOuter: 0.4}
+    },
+    Plot.cellX(
+      data,
+      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
+    )
+  );
+});
+
+it("A utc scale is reusable", () => {
+  const dates = ["2002-01-07", "2003-06-09", "2004-01-01"].map(d3.isoParse);
+  isReusable(
+    {
+      x: {type: "utc"}
+    },
+    Plot.tickX(dates, {x: d => d})
+  );
+});
+
+it("A time scale is reusable", () => {
+  const dates = ["2002-01-07", "2003-06-09", "2004-01-01"].map(d3.isoParse);
+  isReusable(
+    {
+      x: {type: "time"}
+    },
+    Plot.tickX(dates, {x: d => d})
+  );
+});
+
+it("The identity scale is reusable", () => {
+  isReusable(
+    {
+      x: {type: "identity"},
+      color: {type: "identity"}
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: ["red", "blue", "lime", "grey"]
+    })
+  );
+});
+
+function isReusable(
+  scales,
+  pl = Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9})
+) {
+  const plot = pl.plot(scales);
+  const plot2 = pl.plot({
+    fx: plot.scale("fx"),
+    fy: plot.scale("fy"),
+    x: plot.scale("x"),
+    y: plot.scale("y"),
+    color: plot.scale("color"),
+    r: plot.scale("r"),
+    opacity: plot.scale("opacity")
+  });
+  const plot3 = pl.plot({
+    fx: plot2.scale("fx"),
+    fy: plot2.scale("fy"),
+    x: plot2.scale("x"),
+    y: plot2.scale("y"),
+    color: plot2.scale("color"),
+    r: plot2.scale("r"),
+    opacity: plot2.scale("opacity")
+  });
+
+  assert(plot3.innerHTML === plot.innerHTML);
+
+  // now test with reverse
+  if (scales.color) {
+    scales.color.reverse = !scales.color.reverse;
+    {
+      const plot = pl.plot(scales);
+      const plot2 = pl.plot({
+        fx: plot.scale("fx"),
+        fy: plot.scale("fy"),
+        x: plot.scale("x"),
+        y: plot.scale("y"),
+        color: plot.scale("color"),
+        r: plot.scale("r"),
+        opacity: plot.scale("opacity")
+      });
+      const plot3 = pl.plot({
+        fx: plot2.scale("fx"),
+        fy: plot2.scale("fy"),
+        x: plot2.scale("x"),
+        y: plot2.scale("y"),
+        color: plot2.scale("color"),
+        r: plot2.scale("r"),
+        opacity: plot2.scale("opacity")
+      });
+
+      assert(plot3.innerHTML === plot.innerHTML);
+    }
+  }
+}
