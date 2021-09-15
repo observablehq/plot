@@ -182,7 +182,7 @@ it("plot(…).scale exposes clamp", () => {
   assert.strictEqual(scaleOpt({clamp: true}).clamp, true);
 });
 
-it("plot(…).scale exposes rounded scales", () => {
+it("plot(…).scale exposes rounded continuous scales", () => {
   assert.strictEqual(
     scaleOpt({round: true}).interpolate(0, 100)(Math.SQRT1_2),
     71
@@ -345,7 +345,7 @@ it("nice and inset are subsumed in the domain and range", () => {
   assert.deepEqual(x.range, [40, 600]);
 });
 
-it("round is subsumed in the interpolator", () => {
+it("quantitative round is subsumed in the interpolator", () => {
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot({x: {round: true}});
   const x = p.scale("x");
   assert.deepEqual(Object.keys(x), [
@@ -659,6 +659,18 @@ it("A reversed ordinal scale is reusable", () => {
     },
     Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
   );
+});
+
+it("a non-rounded ordinal scale is reusable", () => {
+  isReusable({
+    x: { round: false, range: [100.1, 542.3] }
+  }, Plot.dotX(["A", "B", "C"], {x: d => d})); 
+});
+
+it("a rounded ordinal scale is reusable", () => {
+  isReusable({
+    x: { round: true, range: [100.1, 542.3] }
+  }, Plot.dotX(["A", "B", "C"], {x: d => d})); 
 });
 
 it("An ordinal scheme with an explicit range is reusable", () => {

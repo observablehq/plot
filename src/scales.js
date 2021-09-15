@@ -236,7 +236,7 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter, transform}) {
+function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter, transform, round}) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   const pivot = diverging && domain.splice(1,1)[0];
@@ -256,6 +256,7 @@ function exposeScale({scale, type, label, percent, diverging, align, paddingInne
     ...scale.exponent && {exponent: scale.exponent()},
     ...(type === "band" || type === "point") && {align},
     ...type === "band" && {paddingInner},
-    ...type === "band" && {paddingOuter}
+    ...type === "band" && {paddingOuter},
+    ...round != null && !scale.interpolate && {round}
   };
 }
