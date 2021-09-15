@@ -1,8 +1,12 @@
 import * as Plot from "@observablehq/plot";
+import * as d3 from "d3";
 import assert from "assert";
 import {JSDOM} from "jsdom";
+import {readFileSync} from "fs";
 const {window} = new JSDOM("");
 global.document = window.document;
+
+const data = d3.csvParse(readFileSync("./test/data/penguins.csv").toString(), d3.autoType);
 
 it("plot(…).scale exposes the plot’s scales", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
@@ -190,3 +194,219 @@ it("plot(…).scale does not expose unexpected scale options", () => {
 function scaleOpt(x) {
   return Plot.dot([{x: 1}, {x: 2}, {x: 3}], {x: "x"}).plot({x}).scale("x");
 }
+
+it("default linear scale has the expected value", () => {
+  const p = Plot.dotX(data, { x: "body_mass_g" }).plot();
+  const x = p.scale("x");
+  assert.deepEqual(Object.keys(x), [
+    "type",
+    "domain",
+    "range",
+    "interpolate",
+    "clamp",
+    "label"
+  ]);
+  assert.deepEqual(x.domain, [2700, 6300]);
+  assert.deepEqual(x.range, [20, 620]);
+  assert.equal(x.interpolate(0, 1)(0.15), 0.15);
+  assert.equal(x.clamp, false); // undefined would be fine too!
+  assert.equal(x.type, "linear");
+  assert.equal(x.align, undefined);
+  assert.equal(x.label, "body_mass_g →");
+});
+
+it("sqrt scale x honors explicit values", () => {
+  const p = Plot.dotX(data, { x: "body_mass_g" }).plot({
+    x: {
+      domain: [3500, 4000],
+      range: [30, 610],
+      label: "Body mass",
+      type: "sqrt",
+      clamp: true
+    }
+  });
+  const x = p.scale("x");
+  assert.deepEqual(Object.keys(x), [
+    "type",
+    "domain",
+    "range",
+    "interpolate",
+    "clamp",
+    "label",
+    "exponent"
+  ]);
+  assert.deepEqual(x.domain, [3500, 4000]);
+  assert.deepEqual(x.range, [30, 610]);
+  assert.equal(x.exponent, .5);
+  assert.equal(x.interpolate(0, 1)(0.15), 0.15);
+  assert.equal(x.clamp, true);
+  assert.equal(x.type, "sqrt");
+  assert.equal(x.label, "Body mass");
+});
+
+it("nice and inset are subsumed in the domain and range", () => {
+  const p = Plot.dotX(data, { x: "body_mass_g" }).plot({
+    x: {
+      nice: true,
+      inset: 20
+    }
+  });
+  const x = p.scale("x");
+  assert.deepEqual(Object.keys(x), [
+    "type",
+    "domain",
+    "range",
+    "interpolate",
+    "clamp",
+    "label"
+  ]);
+  assert.deepEqual(x.domain, [2500, 6500]);
+  assert.deepEqual(x.range, [40, 600]);
+});
+
+it("round is subsumed in the interpolator", () => {
+  const p = Plot.dotX(data, { x: "body_mass_g" }).plot({x: {round: true}});
+  const x = p.scale("x");
+  assert.deepEqual(Object.keys(x), [
+    "type",
+    "domain",
+    "range",
+    "interpolate",
+    "clamp",
+    "label"
+  ]);
+  assert.deepEqual(x.domain, [2700, 6300]);
+  assert.deepEqual(x.range, [20, 620]);
+  assert.equal(x.interpolate(0, 100)(1/3), 33);
+  assert.equal(x.clamp, false); // undefined would be fine too!
+  assert.equal(x.type, "linear");
+  assert.equal(x.align, undefined);
+  assert.equal(x.label, "body_mass_g →");
+});
+
+it("custom interpolators are honored", () => {
+  const p = Plot.dotX(data, { x: "body_mass_g" }).plot({
+    x: { interpolate: (a, b) => t => +(t * (b - a) + a).toFixed(1) }
+  });
+  const x = p.scale("x");
+  assert.deepEqual(Object.keys(x), [
+    "type",
+    "domain",
+    "range",
+    "interpolate",
+    "clamp",
+    "label"
+  ]);
+  assert.deepEqual(x.domain, [2700, 6300]);
+  assert.deepEqual(x.range, [20, 620]);
+  assert.equal(x.interpolate(0, 100)(1 / 3), 33.3);
+  assert.equal(x.clamp, false); // undefined would be fine too!
+  assert.equal(x.type, "linear");
+  assert.equal(x.align, undefined);
+  assert.equal(x.label, "body_mass_g →");
+});
+
+it("A continuous scheme on a continuous dimension is returned as an interpolator", () => {
+  const p = Plot.dotX(data, { fill: "body_mass_g" }).plot({
+    fill: { scheme: "warm" }
+  });
+  const x = p.scale("color");
+  assert.equal(x.interpolate(0, 100)(1 / 3), "rgb(46, 229, 174)");
+});
+
+it("A continuous scheme on an ordinal dimension is returned as a range of the same length", () => {
+  const p = Plot.dotX(data, { fill: "island" }).plot({
+    color: { scheme: "warm" }
+  });
+  const x = p.scale("color");
+  assert.deepEqual(x.range, [
+    "rgb(110, 64, 170)",
+    "rgb(255, 94, 99)",
+    "rgb(175, 240, 91)"
+  ]);
+  assert.equal(x.range.length, x.domain.length);
+
+  const pr = Plot.dotX(data, { fill: "island" }).plot({
+    color: { scheme: "reds" }
+  });
+  const xr = pr.scale("color");
+  assert.deepEqual(xr.range, ["#fee0d2", "#fc9272", "#de2d26"]);
+
+});
+
+it("An ordinal scheme on an ordinal dimension is returned as a range", () => {
+  const p = Plot.dotX(data, { fill: "island" }).plot({
+    color: { scheme: "category10" }
+  });
+  const x = p.scale("color");
+  assert.deepEqual(x.range, [
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf"
+  ]);
+});
+
+
+it("Continuous non-linear scales are accompanied by their parameters", () => {
+  const sqrt = Plot.dotX(data, { x: "body_mass_g" })
+    .plot({ x: { type: "sqrt" } })
+    .scale("x");
+  assert.equal(sqrt.type, "sqrt");
+  
+  const pow = Plot.dotX(data, { x: "body_mass_g" })
+    .plot({ x: { type: "pow", exponent: 1.7 } })
+    .scale("x");
+  assert.equal(pow.type, "pow");
+  assert.equal(pow.exponent, 1.7);
+
+  const log = Plot.dotX(data, { x: "body_mass_g" })
+    .plot({ x: { type: "log", base: 7 } })
+    .scale("x");
+  assert.equal(log.type, "log");
+  assert.equal(log.base, 7);
+
+  const symlog = Plot.dotX(data, { x: "body_mass_g" })
+    .plot({ x: { type: "symlog", constant: 3 } })
+    .scale("x");
+  assert.equal(symlog.type, "symlog");
+  assert.equal(symlog.constant, 3);
+
+
+});
+
+it("All the expected scales are returned; non-instantiated scales are undefined; non-existing scales throw an error", () => {
+  const p = Plot.dotX(data, { fill: "island" }).plot();
+  assert(p.scale("x"));
+  assert.equal(p.scale("y"), undefined);
+  assert.equal(p.scale("fx"), undefined);
+  assert.equal(p.scale("fy"), undefined);
+  assert.equal(p.scale("r"), undefined);
+  assert(p.scale("color"));
+  assert.equal(p.scale("opacity"), undefined);
+  assert.throws(() => p.scale("nonexistent"));
+});
+
+it("An opacity scale has the expected defaults", () => {
+  const p = Plot.rectX(
+    data,
+    Plot.binX({ fillOpacity: "count" }, { x: "body_mass_g", thresholds: 20 })
+  ).plot({
+    opacity: { percent: true }
+  });
+  const x = p.scale("opacity");
+  assert.deepEqual(x.domain, [0, 4000]);
+  assert.deepEqual(x.range,  [0, 1]);
+  assert.equal(x.interpolate(0, 10)(.15), 1.5),
+  assert.equal(x.clamp, false);
+  assert.equal(x.type, "linear");
+  assert.equal(x.percent, true);
+  assert.equal(x.label, "Frequency (%)");
+});
+
