@@ -56,7 +56,7 @@ export function ScaleQ(key, scale, channels, {
   reverse,
   ...rest
 }) {
-  reverse = !!reverse;
+  let reversedomain = reverse = !!reverse;
 
   // Sometimes interpolator is named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
@@ -67,7 +67,7 @@ export function ScaleQ(key, scale, channels, {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
     } else if (interpolate.length === 1) {
-      if (reverse) interpolate = flip(interpolate), reverse = false;
+      if (reverse) interpolate = flip(interpolate), reversedomain = false;
       if (range === undefined && domain.length > 2) range = Float64Array.from(domain, (d, i) => i / (domain.length - 1));
       interpolate = maybePiecewiseInterpolate(interpolate);
     }
@@ -81,7 +81,7 @@ export function ScaleQ(key, scale, channels, {
       domain[domain.length - 1] = 0;
     }
   }
-  if (reverse) domain = reverseof(domain);
+  if (reversedomain) domain = reverseof(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
 
