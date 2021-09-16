@@ -245,7 +245,7 @@ function exposeScale({scale, type, label, range, percent, diverging, align, padd
   return {
     type,
     domain,
-    ...range !== undefined && {range},
+    ...range !== undefined && {range: range.slice()},
     ...diverging && {pivot, symmetric: false},
     ...scale.interpolate && {interpolate: scale.interpolate()},
     ...scale.interpolator && {interpolate: scale.interpolator()},
