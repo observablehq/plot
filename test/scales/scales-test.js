@@ -555,6 +555,22 @@ it("A diverging-log scale is reusable", () => {
   });
 });
 
+it("A diverging-log scale with negative values is reusable", () => {
+  isReusable(
+    {
+      color: {
+        type: "diverging-log",
+        domain: [-6000, -3000],
+        pivot: -4500,
+        constant: 3,
+        symmetric: true,
+        scheme: "cool"
+      }
+    },
+    Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
+  );
+});
+
 it("The default cyclical scale is reusable", () => {
   isReusable({
     color: {
