@@ -198,7 +198,7 @@ it("plot(…).scale exposes label", () => {
   const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {x: d => d.x})
     .plot()
     .scale("x");
-    assert.strictEqual(x.label, undefined);
+  assert.strictEqual(x.label, undefined);
 });
 
 it("plot(…).scale exposes color label", () => {
@@ -662,15 +662,21 @@ it("A reversed ordinal scale is reusable", () => {
 });
 
 it("a non-rounded ordinal scale is reusable", () => {
-  isReusable({
-    x: { round: false, range: [100.1, 542.3] }
-  }, Plot.dotX(["A", "B", "C"], {x: d => d}));
+  isReusable(
+    {
+      x: {round: false, range: [100.1, 542.3]}
+    },
+    Plot.dotX(["A", "B", "C"], {x: d => d})
+  );
 });
 
 it("a rounded ordinal scale is reusable", () => {
-  isReusable({
-    x: { round: true, range: [100.1, 542.3] }
-  }, Plot.dotX(["A", "B", "C"], {x: d => d}));
+  isReusable(
+    {
+      x: {round: true, range: [100.1, 542.3]}
+    },
+    Plot.dotX(["A", "B", "C"], {x: d => d})
+  );
 });
 
 it("An ordinal scheme with an explicit range is reusable", () => {
@@ -832,7 +838,11 @@ it("Polylinear scales are reusable", () => {
   isReusable(
     {
       x: {type: "linear", domain: [0, 150, 500]},
-      color: {type: "linear", domain: [0, 150, 500], range: ["yellow", "blue", "black"]}
+      color: {
+        type: "linear",
+        domain: [0, 150, 500],
+        range: ["yellow", "blue", "black"]
+      }
     },
     Plot.tickX([100, 200, 300, 400], {
       x: d => d,
