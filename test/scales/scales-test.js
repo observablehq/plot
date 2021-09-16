@@ -508,11 +508,49 @@ it("A diverging scale’s pivot is reusable", () => {
   });
 });
 
-it("A diverging-log scale’s pivot is reusable", () => {
+it("A diverging-sqrt scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "diverging-sqrt",
+      pivot: 3200,
+      symmetric: false,
+      scheme: "reds"
+    }
+  });
+});
+
+it("A diverging-pow scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "diverging-pow",
+      exponent: 3.2,
+      pivot: 3200,
+      symmetric: false,
+      scheme: "reds"
+    }
+  });
+});
+
+it("A diverging-symlog scale is reusable", () => {
+  isReusable({
+    color: {
+      type: "diverging-symlog",
+      pivot: 3200,
+      constant: 3,
+      symmetric: true,
+      scheme: "cool"
+    }
+  });
+});
+
+it("A diverging-log scale is reusable", () => {
   isReusable({
     color: {
       type: "diverging-log",
-      pivot: 3200
+      pivot: 3200,
+      symmetric: false,
+      range: ["red", "yellow", "blue"],
+      interpolate: "hsl" // d3.interpolateHsl
     }
   });
 });
@@ -834,12 +872,81 @@ it("The identity scale is reusable", () => {
   );
 });
 
-it("Polylinear scales are reusable", () => {
+it("Piecewise scales are reusable (polylinear)", () => {
   isReusable(
     {
       x: {type: "linear", domain: [0, 150, 500]},
       color: {
         type: "linear",
+        domain: [0, 150, 500],
+        range: ["yellow", "blue", "black"]
+      }
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: d => d
+    })
+  );
+});
+
+it("Piecewise scales are reusable (polysqrt)", () => {
+  isReusable(
+    {
+      x: {type: "sqrt", domain: [0, 150, 500]},
+      color: {
+        type: "sqrt",
+        domain: [0, 150, 500],
+        range: ["yellow", "blue", "black"]
+      }
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: d => d
+    })
+  );
+});
+
+it("Piecewise scales are reusable (polypow)", () => {
+  isReusable(
+    {
+      x: {type: "pow", exponent: 3.1, domain: [0, 150, 500]},
+      color: {
+        type: "pow",
+        exponent: 3.1,
+        domain: [0, 150, 500],
+        range: ["yellow", "blue", "black"]
+      }
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: d => d
+    })
+  );
+});
+
+it("Piecewise scales are reusable (polylog)", () => {
+  isReusable(
+    {
+      x: {type: "log", domain: [0, 150, 500]},
+      color: {
+        type: "log",
+        domain: [0, 150, 500],
+        range: ["yellow", "blue", "black"]
+      }
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: d => d
+    })
+  );
+});
+
+it("Piecewise scales are reusable (polysymlog)", () => {
+  isReusable(
+    {
+      x: {type: "symlog", domain: [0, 150, 500]},
+      color: {
+        type: "symlog",
         domain: [0, 150, 500],
         range: ["yellow", "blue", "black"]
       }
