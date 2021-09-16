@@ -1,5 +1,6 @@
 import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale} from "./scales.js";
+import {ascending} from "d3";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -72,7 +73,7 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
-      : scale.reverse ? "left"
+      : isDescendingDomain(scale) ? "left"
       : "right";
   }
   if (axis.label === undefined) {
@@ -113,21 +114,24 @@ function inferLabel(channels = [], scale, axis, key) {
     else if (candidate !== label) return;
   }
   if (candidate !== undefined) {
-    const {percent, reverse} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
     if (isTemporalScale(scale) && /^(date|time|year)$/i.test(candidate)) return;
     if (!isOrdinalScale(scale)) {
-      if (percent) candidate = `${candidate} (%)`;
+      if (scale.percent) candidate = `${candidate} (%)`;
       if (key === "x" || key === "y") {
         if (axis.labelAnchor === "center") {
           candidate = `${candidate} →`;
         } else if (key === "x") {
-          candidate = reverse ? `← ${candidate}` : `${candidate} →`;
+          candidate = isDescendingDomain(scale) ? `← ${candidate}` : `${candidate} →`;
         } else {
-          candidate = `${reverse ? "↓ " : "↑ "}${candidate}`;
+          candidate = `${isDescendingDomain(scale) ? "↓ " : "↑ "}${candidate}`;
         }
       }
     }
   }
   return candidate;
+}
+
+function isDescendingDomain({domain, reverse}) {
+  return domain && domain.length > 1 ? ascending(...domain) === 1 : reverse;
 }
