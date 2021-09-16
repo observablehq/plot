@@ -36,7 +36,8 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.scale.range(maybePiecewiseRange(marginLeft + inset, width - marginRight - inset, scale));
+    scale.range = maybePiecewiseRange(marginLeft + inset, width - marginRight - inset, scale);
+    scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
 }
@@ -47,6 +48,7 @@ function autoScaleRangeY(scale, dimensions) {
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     const range = maybePiecewiseRange(height - marginBottom - inset, marginTop + inset, scale);
     if (isOrdinalScale(scale)) range.reverse();
+    scale.range = range;
     scale.scale.range(range);
   }
   autoScaleRound(scale);
@@ -236,17 +238,17 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, type, label, percent, diverging, align, paddingInner, paddingOuter, transform, round}) {
+function exposeScale({scale, type, label, range, percent, diverging, align, paddingInner, paddingOuter, transform, round}) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   const pivot = diverging && domain.splice(1,1)[0];
   return {
     type,
     domain,
-    range: scale.range(),
+    ...range !== undefined && {range},
     ...diverging && {pivot, symmetric: false},
     ...scale.interpolate && {interpolate: scale.interpolate()},
-    ...scale.interpolator && {interpolate: scale.interpolator(), range: undefined},
+    ...scale.interpolator && {interpolate: scale.interpolator()},
     ...scale.clamp && {clamp: scale.clamp()},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},

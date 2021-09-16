@@ -94,7 +94,7 @@ it("plot(…).scale('color') exposes a continuous color scale", () => {
     .plot()
     .scale("color");
   assert.deepStrictEqual(color.domain, [1, 5]);
-  assert.deepStrictEqual(color.range, [0, 1]);
+  assert.strictEqual(color.range, undefined);
   assert.strictEqual(typeof color.interpolate, "function");
   assert.strictEqual(color.type, "linear");
   assert.strictEqual(color.clamp, false);
@@ -664,13 +664,13 @@ it("A reversed ordinal scale is reusable", () => {
 it("a non-rounded ordinal scale is reusable", () => {
   isReusable({
     x: { round: false, range: [100.1, 542.3] }
-  }, Plot.dotX(["A", "B", "C"], {x: d => d})); 
+  }, Plot.dotX(["A", "B", "C"], {x: d => d}));
 });
 
 it("a rounded ordinal scale is reusable", () => {
   isReusable({
     x: { round: true, range: [100.1, 542.3] }
-  }, Plot.dotX(["A", "B", "C"], {x: d => d})); 
+  }, Plot.dotX(["A", "B", "C"], {x: d => d}));
 });
 
 it("An ordinal scheme with an explicit range is reusable", () => {
@@ -825,6 +825,26 @@ it("The identity scale is reusable", () => {
       x: d => d,
       stroke: ["red", "blue", "lime", "grey"]
     })
+  );
+});
+
+it("Polylinear scales are reusable", () => {
+  isReusable(
+    {
+      x: {type: "linear", domain: [0, 150, 500]},
+      color: {type: "linear", domain: [0, 150, 500], range: ["yellow", "blue", "black"]}
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      stroke: d => d
+    })
+  );
+});
+
+it("A cyclical scale is reusable", () => {
+  isReusable(
+    {color: {type: "cyclical", pivot: 5000, symmetric: false}},
+    Plot.dotX(data, {x: "body_mass", fill: "body_mass"})
   );
 });
 
