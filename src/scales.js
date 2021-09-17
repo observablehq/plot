@@ -242,14 +242,17 @@ function exposeScale({scale, type, label, range, percent, diverging, align, padd
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   const pivot = diverging && domain.splice(1,1)[0];
+  const interpolate = scale.interpolate ? scale.interpolate()
+    : scale.interpolator ? scale.interpolator()
+    : undefined;
+  const clamp = scale.clamp && scale.clamp();
   return {
     type,
     domain,
     ...range !== undefined && {range: range.slice()},
     ...diverging && {pivot, symmetric: false},
-    ...scale.interpolate && {interpolate: scale.interpolate()},
-    ...scale.interpolator && {interpolate: scale.interpolator()},
-    ...scale.clamp && {clamp: scale.clamp()},
+    ...interpolate !== undefined && {interpolate},
+    ...clamp && {clamp},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
     ...transform !== undefined && {transform},

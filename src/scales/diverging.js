@@ -26,7 +26,7 @@ function ScaleD(key, scale, transform, channels, {
 }) {
   domain = [Math.min(domain[0], pivot), Math.max(domain[1], pivot)];
 
-  // Sometimes interpolator is named interpolator, such as "lab" for Lab color
+  // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space; other times it is a function that takes t in [0, 1].
   if (interpolate !== undefined && typeof interpolate !== "function") {
     interpolate = Interpolator(interpolate);
