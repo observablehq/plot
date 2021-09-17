@@ -34,7 +34,7 @@ it("plot(…).scale('x') exposes the plot’s x scale", () => {
   assert.deepStrictEqual(x.range, [20, 620]);
   assert.strictEqual(typeof x.interpolate, "function");
   assert.strictEqual(x.type, "linear");
-  assert.strictEqual(x.clamp, false);
+  assert.strictEqual(x.clamp, undefined);
 });
 
 it("plot(…).scale('y') exposes the plot’s y scale", () => {
@@ -49,7 +49,7 @@ it("plot(…).scale('y') exposes the plot’s y scale", () => {
   assert.deepStrictEqual(y.range, [380, 20]);
   assert.strictEqual(typeof y.interpolate, "function");
   assert.strictEqual(y.type, "linear");
-  assert.strictEqual(y.clamp, false);
+  assert.strictEqual(y.clamp, undefined);
 });
 
 it("plot(…).scale('fx') exposes the plot’s fx scale", () => {
@@ -97,7 +97,7 @@ it("plot(…).scale('color') exposes a continuous color scale", () => {
   assert.strictEqual(color.range, undefined);
   assert.strictEqual(typeof color.interpolate, "function");
   assert.strictEqual(color.type, "linear");
-  assert.strictEqual(color.clamp, false);
+  assert.strictEqual(color.clamp, undefined);
 });
 
 it("plot(…).scale('color') exposes an ordinal color scale", () => {
@@ -153,7 +153,7 @@ it("plot(…).scale('r') exposes a radius scale", () => {
   assert.deepStrictEqual(r.range, [0, Math.sqrt(40.5)]);
   assert.strictEqual(typeof r.interpolate, "function");
   assert.strictEqual(r.type, "sqrt");
-  assert.strictEqual(r.clamp, false);
+  assert.strictEqual(r.clamp, undefined);
 });
 
 it("plot(…).scale('opacity') exposes a linear scale", () => {
@@ -169,7 +169,7 @@ it("plot(…).scale('opacity') exposes a linear scale", () => {
   assert.deepStrictEqual(opacity.range, [0, 1]);
   assert.strictEqual(typeof opacity.interpolate, "function");
   assert.strictEqual(opacity.type, "linear");
-  assert.strictEqual(opacity.clamp, false);
+  assert.strictEqual(opacity.clamp, undefined);
 });
 
 it("plot(…).scale exposes inset domain", () => {
@@ -178,7 +178,7 @@ it("plot(…).scale exposes inset domain", () => {
 });
 
 it("plot(…).scale exposes clamp", () => {
-  assert.strictEqual(scaleOpt({clamp: false}).clamp, false);
+  assert.strictEqual(scaleOpt({clamp: false}).clamp, undefined);
   assert.strictEqual(scaleOpt({clamp: true}).clamp, true);
 });
 
@@ -284,13 +284,12 @@ it("default linear scale has the expected value", () => {
     "domain",
     "range",
     "interpolate",
-    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);
   assert.equal(x.interpolate(0, 1)(0.15), 0.15);
-  assert.equal(x.clamp, false); // undefined would be fine too!
+  assert.equal(x.clamp, undefined);
   assert.equal(x.type, "linear");
   assert.equal(x.align, undefined);
   assert.equal(x.label, "body_mass_g →");
@@ -338,7 +337,6 @@ it("nice and inset are subsumed in the domain and range", () => {
     "domain",
     "range",
     "interpolate",
-    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2500, 6500]);
@@ -353,13 +351,12 @@ it("quantitative round is subsumed in the interpolator", () => {
     "domain",
     "range",
     "interpolate",
-    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);
   assert.equal(x.interpolate(0, 100)(1 / 3), 33);
-  assert.equal(x.clamp, false); // undefined would be fine too!
+  assert.equal(x.clamp, undefined); // undefined would be fine too!
   assert.equal(x.type, "linear");
   assert.equal(x.align, undefined);
   assert.equal(x.label, "body_mass_g →");
@@ -375,13 +372,11 @@ it("custom interpolators are honored", () => {
     "domain",
     "range",
     "interpolate",
-    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);
   assert.equal(x.interpolate(0, 100)(1 / 3), 33.3);
-  assert.equal(x.clamp, false); // undefined would be fine too!
   assert.equal(x.type, "linear");
   assert.equal(x.align, undefined);
   assert.equal(x.label, "body_mass_g →");
@@ -480,7 +475,8 @@ it("An opacity scale has the expected defaults", () => {
   const x = p.scale("opacity");
   assert.deepEqual(x.domain, [0, 4000]);
   assert.deepEqual(x.range, [0, 1]);
-  assert.equal(x.interpolate(0, 10)(0.15), 1.5), assert.equal(x.clamp, false);
+  assert.equal(x.interpolate(0, 10)(0.15), 1.5);
+  assert.equal(x.clamp, undefined);
   assert.equal(x.type, "linear");
   assert.equal(x.percent, true);
   assert.equal(x.label, "Frequency (%)");

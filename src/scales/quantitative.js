@@ -58,7 +58,7 @@ export function ScaleQ(key, scale, channels, {
 }) {
   let reversedomain = reverse = !!reverse;
 
-  // Sometimes interpolator is named interpolator, such as "lab" for Lab color
+  // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
   // is used in conjunction with the range. And other times the interpolate
   // function is a “fixed” interpolator on the [0, 1] interval, as when a
