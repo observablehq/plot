@@ -1,7 +1,7 @@
 {
   "name": "@observablehq/plot",
   "description": "A JavaScript library for exploratory data visualization.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "Observable, Inc.",
     "url": "https://observablehq.com"
