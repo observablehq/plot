@@ -1,8 +1,8 @@
 # Observable Plot - Changelog
 
-## 0.3.0
+## 0.2.1
 
-*Not yet released.* These notes are a work in progress.
+Released September 19, 2021.
 
 ### Marks
 
