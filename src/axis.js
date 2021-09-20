@@ -220,23 +220,24 @@ function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
     .tickValues(Array.isArray(ticks) ? ticks : null);
 }
 
+const radians = Math.PI / 180;
+
 function maybeTickRotate(g, rotate) {
   if (!(rotate = +rotate)) return;
-  const radians = Math.PI / 180;
-  const labels = g.selectAll("text").attr("dy", "0.32em");
-  const y = +labels.attr("y");
-  if (y) {
-    const s = Math.sign(y);
-    labels
-      .attr("y", null)
-      .attr("transform", `translate(0, ${y + s * 4 * Math.cos(rotate * radians)}) rotate(${rotate})`)
-      .attr("text-anchor", Math.abs(rotate) < 10 ? "middle" : (rotate < 0) ^ (s > 0) ? "start" : "end");
-  } else {
-    const x = +labels.attr("x");
-    const s = Math.sign(x);
-    labels
-      .attr("x", null)
-      .attr("transform", `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0) rotate(${rotate})`)
-      .attr("text-anchor", Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end");
+  for (const text of g.selectAll("text")) {
+    const x = +text.getAttribute("x");
+    const y = +text.getAttribute("y");
+    if (Math.abs(y) > Math.abs(x)) {
+      const s = Math.sign(y);
+      text.setAttribute("transform", `translate(0, ${y + s * 4 * Math.cos(rotate * radians)}) rotate(${rotate})`);
+      text.setAttribute("text-anchor", Math.abs(rotate) < 10 ? "middle" : (rotate < 0) ^ (s > 0) ? "start" : "end");
+    } else {
+      const s = Math.sign(x);
+      text.setAttribute("transform", `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0) rotate(${rotate})`);
+      text.setAttribute("text-anchor", Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end");
+    }
+    text.removeAttribute("x");
+    text.removeAttribute("y");
+    text.setAttribute("dy", "0.32em");
   }
 }
