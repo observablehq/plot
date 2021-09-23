@@ -1,4 +1,5 @@
 import {labelof, maybeValue, valueof} from "../mark.js";
+import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
 // This will require the interval knowing the type of the associated scale to
@@ -17,25 +18,25 @@ function maybeIntervalValue(value, {interval} = {}) {
   return value;
 }
 
-function maybeIntervalK(k, options = {}) {
+function maybeIntervalK(k, maybeInsetK, options = {}) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
   const {value, interval} = maybeIntervalValue(v, options);
   if (interval == null) return options;
   let V1;
   const tv1 = data => V1 || (V1 = valueof(data, value).map(v => interval.floor(v)));
   const label = labelof(v);
-  return {
+  return maybeInsetK({
     ...options,
     [k]: undefined,
     [`${k}1`]: v1 === undefined ? {transform: tv1, label} : v1,
     [`${k}2`]: v2 === undefined ? {transform: () => tv1().map(v => interval.offset(v)), label} : v2
-  };
+  });
 }
 
 export function maybeIntervalX(options) {
-  return maybeIntervalK("x", options);
+  return maybeIntervalK("x", maybeInsetX, options);
 }
 
 export function maybeIntervalY(options = {}) {
-  return maybeIntervalK("y", options);
+  return maybeIntervalK("y", maybeInsetY, options);
 }
