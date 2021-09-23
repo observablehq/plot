@@ -1274,7 +1274,7 @@ Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*,
 
 The map transform derives new output channels from corresponding input channels. The output channels have strictly the same length as the input channels; the map transform does not affect the mark’s data or index. The map transform is akin to running [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the input channel’s values with the given function. However, the map transform is series-aware: the data are first grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks so that series are processed independently.
 
-Like the [group](#group) and [bin](#bin) transforms, the [Plot.map](#plotmapoutputs-options) transform takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and any additional options. The other map transforms, such as [Plot.normalizeX](#plotnormalizexoptions) and [Plot.windowX](#plotwindowxoptions), call Plot.map internally.
+Like the [group](#group) and [bin](#bin) transforms, the [Plot.map](#plotmapoutputs-options) transform takes two arguments: an *outputs* object that describes the output channels to compute, and an *options* object that describes the input channels and any additional options. The other map transforms, such as [Plot.normalizeX](#plotnormalizexbasis-options) and [Plot.windowX](#plotwindowxk-options), call Plot.map internally.
 
 The following map methods are supported:
 
@@ -1312,6 +1312,7 @@ The following window reducers are supported:
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
+* a function to be passed an array of *k* values
 
 By default, **anchor** is *middle* and **reduce** is *mean*.
 
