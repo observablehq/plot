@@ -1,31 +1,25 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
-import {offset} from "../style.js";
 import {basic} from "./basic.js";
 import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binX(outputs = {y: "count"}, {inset, insetLeft, insetRight, ...options} = {}) {
-  let {x, y} = options;
-  x = maybeBinValue(x, options, identity);
-  ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  return binn(x, null, null, y, outputs, {inset, insetLeft, insetRight, ...options});
+export function binX(outputs = {y: "count"}, options = {}) {
+  const {x, y} = options;
+  return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binY(outputs = {x: "count"}, {inset, insetTop, insetBottom, ...options} = {}) {
-  let {x, y} = options;
-  y = maybeBinValue(y, options, identity);
-  ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
-  return binn(null, y, x, null, outputs, {inset, insetTop, insetBottom, ...options});
+export function binY(outputs = {x: "count"}, options = {}) {
+  const {x, y} = options;
+  return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function bin(outputs = {fill: "count"}, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options} = {}) {
+export function bin(outputs = {fill: "count"}, options = {}) {
   const {x, y} = maybeBinValueTuple(options);
-  ([insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom));
-  ([insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight));
-  return binn(x, y, null, null, outputs, {inset, insetTop, insetRight, insetBottom, insetLeft, ...options});
+  return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
 
 function binn(
@@ -251,10 +245,4 @@ function binfilter([{x0, x1}, set]) {
 
 function binempty() {
   return new Uint32Array(0);
-}
-
-function maybeInset(inset, inset1, inset2) {
-  return inset === undefined && inset1 === undefined && inset2 === undefined
-    ? (offset ? [1, 0] : [0.5, 0.5])
-    : [inset1, inset2];
 }
