@@ -13,7 +13,7 @@ function maybeInterval(interval) {
 // The interval may be specified either as x: {value, interval} or as {x,
 // interval}. The former is used, for example, for Plot.rect.
 function maybeIntervalValue(value, {interval} = {}) {
-  (value = {...maybeValue(value)});
+  value = {...maybeValue(value)};
   value.interval = maybeInterval(value.interval === undefined ? interval : value.interval);
   return value;
 }
