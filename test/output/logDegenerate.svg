@@ -1,13 +1,13 @@
 <svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(20.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1e-1</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100m</text>
     </g>
     <g class="tick" opacity="1" transform="translate(110.80899869919432,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2e-1</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200m</text>
     </g>
     <g class="tick" opacity="1" transform="translate(163.63637641589867,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3e-1</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">300m</text>
     </g>
     <g class="tick" opacity="1" transform="translate(201.11799739838864,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
@@ -28,13 +28,13 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(320.49999999999994,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1e+0</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
     </g>
     <g class="tick" opacity="1" transform="translate(410.8089986991943,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2e+0</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
     </g>
     <g class="tick" opacity="1" transform="translate(463.63637641589867,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3e+0</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3</text>
     </g>
     <g class="tick" opacity="1" transform="translate(501.11799739838864,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
@@ -55,7 +55,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1e+1</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
     </g>
   </g>
   <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
