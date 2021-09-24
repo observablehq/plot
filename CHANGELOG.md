@@ -6,6 +6,8 @@ Released September 24, 2021.
 
 Rect, bar, and rule marks now accept an *interval* option that allows to derive *x1* and *x2* from *x*, or *y1* and *y2* from *y*, where appropriate. A typical use case is for data that represents a fixed time interval; for example, using d3.utcDay as the interval creates rects that span a whole day, from UTC midnight to UTC midnight, that contains the associated time instant. The interval must be specifed as an object with two methods: **floor**(*x*) returns the start of the interval *x1* for the given *x*, while **offset**(*x*) returns the end of the interval *x2* for the given interval start *x*. If the interval is specified as a number, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
 
+The new Plot.normalize and Plot.window methods return map methods for use in conjunction with Plot.map. This allows greater flexibility; for example, you can apply separate window methods to *y1* and *y2* to produce Bollinger bands.
+
 ## 0.2.2
 
 Released September 19, 2021.
