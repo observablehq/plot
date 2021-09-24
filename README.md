@@ -1340,6 +1340,14 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
+#### Plot.normalize(*basis*)
+
+```js
+Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
+```
+
+Returns a normalize map method for the given *basis*, suitable for use with Plot.map.
+
 #### Plot.normalizeX(*basis*, *options*)
 
 ```js
@@ -1355,6 +1363,14 @@ Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
 Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
+
+#### Plot.window(*k*)
+
+```js
+Plot.map({y: Plot.window(24)}, {x: "Date", y: "Close", stroke: "Symbol"})
+```
+
+Returns a window map method for the given window size *k*, suitable for use with Plot.map. For additional options to the window transform, replace the number *k* with an object with properties *k*, *anchor*, or *reduce*.
 
 #### Plot.windowX(*k*, *options*)
 

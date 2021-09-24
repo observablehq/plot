@@ -11,7 +11,7 @@ export function windowY(windowOptions = {}, options) {
   return mapY(window(windowOptions), options);
 }
 
-function window(options = {}) {
+export function window(options = {}) {
   if (typeof options === "number") options = {k: options};
   let {k, reduce, shift, anchor = maybeShift(shift)} = options;
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");

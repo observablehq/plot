@@ -1,3 +1,4 @@
+export {default as aaplBollinger} from "./aapl-bollinger.js";
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
 export {default as aaplClose} from "./aapl-close.js";
