@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.3.0
+
+*Not yet released.* These notes are a work in progress.
+
+### Marks
+
+The rect marks now accept an *interval* option that allows to derive *x1* and *x2* from *x*. A typical use case is an interval: d3.utcDay which creates a rect spanning the whole day that contains a certain date-time. The interval can be specified as an object with *floor** method that returns *x1* from *x* and an **offset** method that returns *x2* from *x1*. If the interval is specified as a (non-null) number, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+
 ## 0.2.1
 
 Released September 19, 2021.

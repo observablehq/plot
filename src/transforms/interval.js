@@ -6,6 +6,11 @@ import {maybeInsetX, maybeInsetY} from "./inset.js";
 // chose between UTC and local time (or better, an explicit timeZone option).
 function maybeInterval(interval) {
   if (interval == null) return;
+  if (typeof interval === "number") {
+    const n = interval;
+    // Note: this offset doesn’t support the optional step argument for simplicity.
+    interval = {floor: d => n * Math.floor(d / n), offset: d => d + n};
+  }
   if (typeof interval.floor !== "function" || typeof interval.offset !== "function") throw new Error("invalid interval");
   return interval;
 }
