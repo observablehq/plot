@@ -3,6 +3,7 @@ import {filter} from "../defined.js";
 import {Mark, identity, number} from "../mark.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
   fill: null,
@@ -97,14 +98,16 @@ export class RuleY extends Mark {
   }
 }
 
-export function ruleX(data, {x = identity, y, y1, y2, ...options} = {}) {
+export function ruleX(data, options) {
+  let {x = identity, y, y1, y2, ...rest} = maybeIntervalY(options);
   ([y1, y2] = maybeOptionalZero(y, y1, y2));
-  return new RuleX(data, {...options, x, y1, y2});
+  return new RuleX(data, {...rest, x, y1, y2});
 }
 
-export function ruleY(data, {y = identity, x, x1, x2, ...options} = {}) {
+export function ruleY(data, options) {
+  let {y = identity, x, x1, x2, ...rest} = maybeIntervalX(options);
   ([x1, x2] = maybeOptionalZero(x, x1, x2));
-  return new RuleY(data, {...options, y, x1, x2});
+  return new RuleY(data, {...rest, y, x1, x2});
 }
 
 // For marks specified either as [0, x] or [x1, x2], or nothing.

@@ -1,32 +1,40 @@
 # Observable Plot - Changelog
 
+## 0.2.3
+
+*Not yet released.* These notes are a work in progress.
+
+Rect, bar, and rule marks now accept an *interval* option that allows to derive *x1* and *x2* from *x*, or *y1* and *y2* from *y*, where appropriate. A typical use case is for data that represents a fixed time interval; for example, using d3.utcDay as the interval creates rects that span a whole day, from UTC midnight to UTC midnight, that contains the associated time instant. The interval must be specifed as an object with two methods: **floor**(*x*) returns the start of the interval *x1* for the given *x*, while **offset**(*x*) returns the end of the interval *x2* for the given interval start *x*. If the interval is specified as a number, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+
+## 0.2.2
+
+Released September 19, 2021.
+
+Fix a crash with the axis.tickRotate option when there are no ticks to rotate.
+
 ## 0.2.1
 
 Released September 19, 2021.
 
-### Marks
-
 The constant *dx* and *dy* options have been extended to all marks, allowing to shift the mark by *dx* pixels horizontally and *dy* pixels vertically. Since only text elements accept the dx and dy properties, in all the other marks these are rendered as a transform (2D transformation) property of the mark’s parent, possibly including a 0.5px offset on low-density screens.
-
-### Scales
 
 Quantitative scales, as well as identity position scales, now coerce channel values to numbers; both null and undefined are coerced to NaN. Similarly, time scales coerce channel values to dates; numbers are assumed to be milliseconds since UNIX epoch, while strings are assumed to be in [ISO 8601 format](https://github.com/mbostock/isoformat/blob/main/README.md#parsedate-fallback).
 
-### Transforms
+Bin transform reducers now receive the extent of the current bin as an argument after the data. For example, it allows to create meaningful titles:
 
-#### Plot.bin
-
-The reducers now receive the extent of the current bin as an argument after the data. For example, it allows to create meaningful titles:
 ```js
 Plot.rect(
   athletes,
   Plot.bin(
     {
       fill: "count",
-      title: (bin, { x1, x2, y1, y2 }) =>
-        `${bin.length} athletes weighing between ${x1} and ${x2} and with a height between ${y1} and ${y2}`
+      title: (bin, {x1, x2, y1, y2}) => `${bin.length} athletes weighing between ${x1} and ${x2} and with a height between ${y1} and ${y2}`
     },
-    { x: "weight", y: "height", inset: 0 }
+    {
+      x: "weight",
+      y: "height",
+      inset: 0
+    }
   )
 ).plot()
 ```

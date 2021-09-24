@@ -801,7 +801,9 @@ The following channels are optional:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both. The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both. **x1** and **x2** can be derived from **x** and an **interval** object (such as d3.utcDay) with a **floor** method that returns *x1* from *x* and an **offset** method that returns *x2* from *x1*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval}—typically to apply different intervals to x and y.
+
+The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
 #### Plot.rect(*data*, *options*)
 
