@@ -13,7 +13,7 @@ export function normalizeY(basis, options) {
   return mapY(normalize(basis), options);
 }
 
-function normalize(basis) {
+export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   switch ((basis + "").toLowerCase()) {
