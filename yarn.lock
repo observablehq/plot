@@ -1966,9 +1966,9 @@ hosted-git-info@^4.0.1:
     lru-cache "^6.0.0"
 
 htl@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/htl/-/htl-0.3.0.tgz#078769ae5cb77d110b976b0a15e44b6b158ebef3"
-  integrity sha512-BvVM78yP5/b9k7GmuXUh2GEadmRueFrJ6UGEpSm0JuvX/yqZ53akB+1tNqWEFDAQnFF3E79GhusZ003E9oOZKQ==
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/htl/-/htl-0.3.1.tgz#13c5a32fa46434f33b84d4553dd37e58a80e8d8a"
+  integrity sha512-1LBtd+XhSc+++jpOOt0lCcEycXs/zTQSupOISnVAUmvGBpV7DH+C2M6hwV7zWYfpTMMg9ch4NO0lHiOTAMHdVA==
 
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
