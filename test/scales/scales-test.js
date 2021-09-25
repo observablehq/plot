@@ -981,6 +981,24 @@ it("Piecewise scales are reusable (polylinear)", async () => {
   );
 });
 
+it("Piecewise scales are reusable (polylinear interpolate)", async () => {
+  isReusable(
+    {
+      x: {type: "linear", domain: [0, 150, 500]},
+      color: {
+        type: "linear",
+        domain: [0, 150, 500],
+        scheme: "warm",
+        reverse: true
+      }
+    },
+    Plot.tickX([100, 200, 300, 400], {
+      x: d => d,
+      fill: d => d
+    })
+  );
+});
+
 it("Piecewise scales are reusable (polysqrt)", async () => {
   isReusable(
     {
