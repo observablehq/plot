@@ -262,6 +262,17 @@ it("plot(…).scale('color') can return a linear scale", () => {
   });
 });
 
+it("plot(…).scale('color') can return a linear scale with an explicit range and RGB interpolation", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({color: {range: ["yellow", "blue"]}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [100, 400],
+    range: ["yellow", "blue"],
+    interpolate: d3.interpolateRgb,
+    clamp: false
+  });
+});
+
 it("plot(…).scale('color') can return a utc scale", async () => {
   const aapl = await d3.csv("data/aapl.csv", d3.autoType);
   const plot = Plot.dot(aapl, {x: "Close", stroke: "Date"}).plot();
@@ -269,6 +280,134 @@ it("plot(…).scale('color') can return a utc scale", async () => {
     type: "utc",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
     interpolate: d3.interpolateTurbo,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a “polylinear” piecewise linear scale with an explicit range", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "linear",
+      domain: [0, 150, 500],
+      range: ["yellow", "blue", "black"]
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [0, 150, 500],
+    range: ["yellow", "blue", "black"],
+    interpolate: d3.interpolateRgb,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a polylinear piecewise linear scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "linear",
+      domain: [0, 150, 500],
+      scheme: "warm"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [0, 150, 500],
+    range: [0, 0.5, 1],
+    interpolate: d3.interpolateWarm,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a reversed polylinear piecewise linear scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "linear",
+      domain: [0, 150, 500],
+      reverse: true,
+      scheme: "warm"
+    }
+  });
+  const {interpolate, ...color} = plot.scale("color");
+  assert.deepStrictEqual(color, {
+    type: "linear",
+    domain: [0, 150, 500],
+    range: [0, 0.5, 1],
+    clamp: false
+  });
+  for (const t of d3.ticks(0, 1, 100)) {
+    assert.strictEqual(interpolate(t), d3.interpolateWarm(1 - t));
+  }
+});
+
+it("plot(…).scale('color') can return a polylinear piecewise sqrt scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "sqrt",
+      domain: [0, 150, 500],
+      scheme: "warm"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "pow",
+    exponent: 0.5,
+    domain: [0, 150, 500],
+    range: [0, 0.5, 1],
+    interpolate: d3.interpolateWarm,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a polylinear piecewise pow scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "pow",
+      exponent: 0.3,
+      domain: [0, 150, 500],
+      scheme: "warm"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "pow",
+    exponent: 0.3,
+    domain: [0, 150, 500],
+    range: [0, 0.5, 1],
+    interpolate: d3.interpolateWarm,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a polylinear piecewise log scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "log",
+      domain: [1, 10, 500],
+      scheme: "warm"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "log",
+    base: 10,
+    domain: [1, 10, 500],
+    range: [0, 0.5, 1],
+    interpolate: d3.interpolateWarm,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a polylinear piecewise symlog scale with an explicit scheme", () => {
+  const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
+    color: {
+      type: "symlog",
+      domain: [1, 10, 500],
+      scheme: "warm"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "symlog",
+    constant: 1,
+    domain: [1, 10, 500],
+    range: [0, 0.5, 1],
+    interpolate: d3.interpolateWarm,
     clamp: false
   });
 });
@@ -1001,110 +1140,6 @@ it("A diverging-log scale with negative values is reusable", async () => {
       }
     },
     Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
-  );
-});
-
-it("Piecewise scales are reusable (polylinear)", async () => {
-  assertReusable(
-    {
-      x: {type: "linear", domain: [0, 150, 500]},
-      color: {
-        type: "linear",
-        domain: [0, 150, 500],
-        range: ["yellow", "blue", "black"]
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: d => d
-    })
-  );
-});
-
-it("Piecewise scales are reusable (polylinear interpolate)", async () => {
-  assertReusable(
-    {
-      x: {type: "linear", domain: [0, 150, 500]},
-      color: {
-        type: "linear",
-        domain: [0, 150, 500],
-        scheme: "warm",
-        reverse: true
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      fill: d => d
-    })
-  );
-});
-
-it("Piecewise scales are reusable (polysqrt)", async () => {
-  assertReusable(
-    {
-      x: {type: "sqrt", domain: [0, 150, 500]},
-      color: {
-        type: "sqrt",
-        domain: [0, 150, 500],
-        range: ["yellow", "blue", "black"]
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: d => d
-    })
-  );
-});
-
-it("Piecewise scales are reusable (polypow)", async () => {
-  assertReusable(
-    {
-      x: {type: "pow", exponent: 3.1, domain: [0, 150, 500]},
-      color: {
-        type: "pow",
-        exponent: 3.1,
-        domain: [0, 150, 500],
-        range: ["yellow", "blue", "black"]
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: d => d
-    })
-  );
-});
-
-it("Piecewise scales are reusable (polylog)", async () => {
-  assertReusable(
-    {
-      x: {type: "log", domain: [0, 150, 500]},
-      color: {
-        type: "log",
-        domain: [0, 150, 500],
-        range: ["yellow", "blue", "black"]
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: d => d
-    })
-  );
-});
-
-it("Piecewise scales are reusable (polysymlog)", async () => {
-  assertReusable(
-    {
-      x: {type: "symlog", domain: [0, 150, 500]},
-      color: {
-        type: "symlog",
-        domain: [0, 150, 500],
-        range: ["yellow", "blue", "black"]
-      }
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: d => d
-    })
   );
 });
 

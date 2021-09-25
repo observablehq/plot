@@ -251,7 +251,7 @@ function exposeScale({
   return {
     type,
     domain, // TODO wrong for diverging
-    ...range !== undefined && {range: range.slice()}, // defensive copy
+    ...range !== undefined && {range: Array.from(range)}, // defensive copy
     ...label !== undefined && {label},
 
     // quantitative

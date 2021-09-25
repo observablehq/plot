@@ -107,7 +107,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {reverse, domain, range, scale, type, interpolate, percent, inset, transform};
+  return {type, domain, range, reverse, scale, interpolate, percent, inset, transform};
 }
 
 export function ScaleLinear(key, channels, options) {
