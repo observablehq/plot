@@ -406,6 +406,16 @@ it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () =>
   });
 });
 
+it("plot(…).scale('color') ignores nonsensical options for cyclical scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical", pivot: 5000, symmetric: false}}); // Note: diverging options ignored here!
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [1, 5],
+    interpolate: d3.interpolateRainbow,
+    clamp: false
+  });
+});
+
 it("plot(…).scale('color') promotes a cyclical scale to a linear scale, even when a scheme is specified", () => {
   const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical", scheme: "blues"}});
   assert.deepStrictEqual(plot.scale("color"), {
@@ -1095,14 +1105,6 @@ it("Piecewise scales are reusable (polysymlog)", async () => {
       x: d => d,
       stroke: d => d
     })
-  );
-});
-
-it("A cyclical scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {color: {type: "cyclical", pivot: 5000, symmetric: false}},
-    Plot.dotX(data, {x: "body_mass", fill: "body_mass"})
   );
 });
 
