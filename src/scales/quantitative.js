@@ -1,6 +1,5 @@
 import {
   ascending,
-  interpolate as interpolateAuto,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -86,7 +85,7 @@ export function ScaleQ(key, scale, channels, {
       scale.interpolate(interpolate);
     }
   } else {
-    interpolate = interpolateAuto;
+    interpolate = scale.interpolate();
   }
 
   // TODO describe zero option
