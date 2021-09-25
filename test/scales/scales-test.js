@@ -1,15 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import assert from "assert";
-import {JSDOM} from "jsdom";
-import {readFileSync} from "fs";
-const {window} = new JSDOM("");
-global.document = window.document;
-
-const data = d3.csvParse(
-  readFileSync("./test/data/penguins.csv").toString(),
-  d3.autoType
-);
+import it from "../jsdom.js";
 
 it("plot(…).scale exposes the plot’s scales", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
@@ -276,7 +268,8 @@ function scaleOpt(x) {
     .scale("x");
 }
 
-it("default linear scale has the expected value", () => {
+it("default linear scale has the expected value", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot();
   const x = p.scale("x");
   assert.deepEqual(Object.keys(x), [
@@ -295,7 +288,8 @@ it("default linear scale has the expected value", () => {
   assert.equal(x.label, "body_mass_g →");
 });
 
-it("sqrt scale x honors explicit values", () => {
+it("sqrt scale x honors explicit values", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
     x: {
       domain: [3500, 4000],
@@ -324,7 +318,8 @@ it("sqrt scale x honors explicit values", () => {
   assert.equal(x.label, "Body mass");
 });
 
-it("nice and inset are subsumed in the domain and range", () => {
+it("nice and inset are subsumed in the domain and range", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
     x: {
       nice: true,
@@ -343,7 +338,8 @@ it("nice and inset are subsumed in the domain and range", () => {
   assert.deepEqual(x.range, [40, 600]);
 });
 
-it("quantitative round is subsumed in the interpolator", () => {
+it("quantitative round is subsumed in the interpolator", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot({x: {round: true}});
   const x = p.scale("x");
   assert.deepEqual(Object.keys(x), [
@@ -362,7 +358,8 @@ it("quantitative round is subsumed in the interpolator", () => {
   assert.equal(x.label, "body_mass_g →");
 });
 
-it("custom interpolators are honored", () => {
+it("custom interpolators are honored", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
     x: {interpolate: (a, b) => t => +(t * (b - a) + a).toFixed(1)}
   });
@@ -383,13 +380,15 @@ it("custom interpolators are honored", () => {
 });
 
 // TODO Determine why this is failing, and fix.
-it.skip("A continuous scheme on a continuous dimension is returned as an interpolator", () => {
+it.skip("A continuous scheme on a continuous dimension is returned as an interpolator", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {fill: "body_mass_g"}).plot({fill: {scheme: "warm"}});
   const x = p.scale("color");
   assert.equal(x.interpolate(0, 100)(1 / 3), "rgb(46, 229, 174)");
 });
 
-it("A continuous scheme on an ordinal dimension is returned as a range of the same length", () => {
+it("A continuous scheme on an ordinal dimension is returned as a range of the same length", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {fill: "island"}).plot({
     color: {scheme: "warm"}
   });
@@ -400,7 +399,6 @@ it("A continuous scheme on an ordinal dimension is returned as a range of the sa
     "rgb(175, 240, 91)"
   ]);
   assert.equal(x.range.length, x.domain.length);
-
   const pr = Plot.dotX(data, {fill: "island"}).plot({
     color: {scheme: "reds"}
   });
@@ -408,7 +406,8 @@ it("A continuous scheme on an ordinal dimension is returned as a range of the sa
   assert.deepEqual(xr.range, ["#fee0d2", "#fc9272", "#de2d26"]);
 });
 
-it("An ordinal scheme on an ordinal dimension is returned as a range", () => {
+it("An ordinal scheme on an ordinal dimension is returned as a range", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {fill: "island"}).plot({
     color: {scheme: "category10"}
   });
@@ -427,24 +426,22 @@ it("An ordinal scheme on an ordinal dimension is returned as a range", () => {
   ]);
 });
 
-it("Continuous non-linear scales are accompanied by their parameters", () => {
+it("Continuous non-linear scales are accompanied by their parameters", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const sqrt = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "sqrt"}})
     .scale("x");
   assert.equal(sqrt.type, "sqrt");
-
   const pow = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "pow", exponent: 1.7}})
     .scale("x");
   assert.equal(pow.type, "pow");
   assert.equal(pow.exponent, 1.7);
-
   const log = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "log", base: 7}})
     .scale("x");
   assert.equal(log.type, "log");
   assert.equal(log.base, 7);
-
   const symlog = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "symlog", constant: 3}})
     .scale("x");
@@ -452,7 +449,8 @@ it("Continuous non-linear scales are accompanied by their parameters", () => {
   assert.equal(symlog.constant, 3);
 });
 
-it("All the expected scales are returned; non-instantiated scales are undefined; non-existing scales throw an error", () => {
+it("All the expected scales are returned; non-instantiated scales are undefined; non-existing scales throw an error", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.dotX(data, {fill: "island"}).plot();
   assert(p.scale("x"));
   assert.equal(p.scale("y"), undefined);
@@ -464,7 +462,8 @@ it("All the expected scales are returned; non-instantiated scales are undefined;
   assert.throws(() => p.scale("nonexistent"));
 });
 
-it("An opacity scale has the expected defaults", () => {
+it("An opacity scale has the expected defaults", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   const p = Plot.rectX(
     data,
     Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20})
@@ -481,18 +480,27 @@ it("An opacity scale has the expected defaults", () => {
   assert.equal(x.label, "Frequency (%)");
 });
 
-it("scale.transform is exposed and reusable", () => {
-  isReusable({x: {transform: d => 1 / d}});
+it("scale.transform is exposed and reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
+  isReusable(
+    {x: {transform: d => 1 / d}},
+    Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9})
+  );
 });
 
-it("scale.zero is subsumed in the domain and reusable", () => {
-  isReusable({
-    x: {zero: true},
-    color: {zero: true}
-  });
+it("scale.zero is subsumed in the domain and reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
+  isReusable(
+    {
+      x: {zero: true},
+      color: {zero: true}
+    },
+    Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9})
+  );
 });
 
-it("A diverging scale’s pivot is reusable", () => {
+it("A diverging scale’s pivot is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "diverging",
@@ -500,10 +508,12 @@ it("A diverging scale’s pivot is reusable", () => {
       symmetric: false,
       reverse: false
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A diverging-sqrt scale is reusable", () => {
+it("A diverging-sqrt scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "diverging-sqrt",
@@ -511,10 +521,12 @@ it("A diverging-sqrt scale is reusable", () => {
       symmetric: false,
       scheme: "reds"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A diverging-pow scale is reusable", () => {
+it("A diverging-pow scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "diverging-pow",
@@ -523,10 +535,12 @@ it("A diverging-pow scale is reusable", () => {
       symmetric: false,
       scheme: "reds"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A diverging-symlog scale is reusable", () => {
+it("A diverging-symlog scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "diverging-symlog",
@@ -535,10 +549,12 @@ it("A diverging-symlog scale is reusable", () => {
       symmetric: true,
       scheme: "cool"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A diverging-log scale is reusable", () => {
+it("A diverging-log scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "diverging-log",
@@ -547,10 +563,12 @@ it("A diverging-log scale is reusable", () => {
       range: ["red", "yellow", "blue"],
       interpolate: "hsl" // d3.interpolateHsl
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A diverging-log scale with negative values is reusable", () => {
+it("A diverging-log scale with negative values is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       color: {
@@ -566,120 +584,145 @@ it("A diverging-log scale with negative values is reusable", () => {
   );
 });
 
-it("The default cyclical scale is reusable", () => {
+it("The default cyclical scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "cyclical",
       domain: [1000, 6000]
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A scheme-based scale is reusable", () => {
+it("A scheme-based scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "cyclical", // superseded by scheme and interpolate
       scheme: "blues",
       domain: [0, 10000]
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("An interpolate-based scale is reusable", () => {
+it("An interpolate-based scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "cyclical", // superseded by scheme and interpolate
       scheme: "blues", // superseded by interpolate
       interpolate: d3.interpolateWarm
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A sequential scale is reusable", () => {
+it("A sequential scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "sequential",
       reverse: true
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A sequential-scheme scale and reusable", () => {
+it("A sequential-scheme scale and reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "sequential", // superseded by scheme and interpolate
       scheme: "blues"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A sequential-interpolate scale is reusable", () => {
+it("A sequential-interpolate scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "sequential", // superseded by scheme and interpolate
       scheme: "blues", // superseded by interpolate
       interpolate: d3.interpolateWarm
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A simple threshold scale is reusable", () => {
+it("A simple threshold scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "threshold",
       domain: d3.range(2000, 7000, 500)
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A quantile scale is reusable", () => {
+it("A quantile scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
       quantiles: 10,
       scheme: "warm"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("Another quantile scale is reusable", () => {
+it("Another quantile scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
       quantiles: 3,
       scheme: "sinebow"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A quantile scale defined by a range is reusable", () => {
+it("A quantile scale defined by a range is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
       range: ["red", "yellow", "blue", "green"] // the range determines the number of quantiles
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A default quantile scale defined by a continuous scheme is reusable", () => {
+it("A default quantile scale defined by a continuous scheme is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
       scheme: "warm"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A default quantile scale defined by an array scheme is reusable", () => {
+it("A default quantile scale defined by an array scheme is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
       scheme: "reds"
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A quantile scale with a scheme and quantiles is reusable", () => {
+it("A quantile scale with a scheme and quantiles is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({
     color: {
       type: "quantile",
@@ -687,21 +730,25 @@ it("A quantile scale with a scheme and quantiles is reusable", () => {
       quantiles: 12,
       reverse: true
     }
-  });
+  },
+  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
-it("A default ordinal scale is reusable", () => {
+it("A default ordinal scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable({}, Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9}));
 });
 
-it("An explicit categorical scale is reusable", () => {
+it("An explicit categorical scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {color: {type: "categorical"}},
     Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
   );
 });
 
-it("A reversed ordinal scale is reusable", () => {
+it("A reversed ordinal scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       color: {type: "ordinal", reverse: true}
@@ -710,7 +757,8 @@ it("A reversed ordinal scale is reusable", () => {
   );
 });
 
-it("a non-rounded ordinal scale is reusable", () => {
+it("a non-rounded ordinal scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {round: false, range: [100.1, 542.3]}
@@ -719,7 +767,8 @@ it("a non-rounded ordinal scale is reusable", () => {
   );
 });
 
-it("a rounded ordinal scale is reusable", () => {
+it("a rounded ordinal scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {round: true, range: [100.1, 542.3]}
@@ -728,7 +777,8 @@ it("a rounded ordinal scale is reusable", () => {
   );
 });
 
-it("An ordinal scheme with an explicit range is reusable", () => {
+it("An ordinal scheme with an explicit range is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       color: {range: ["yellow", "lime", "grey"]}
@@ -737,7 +787,8 @@ it("An ordinal scheme with an explicit range is reusable", () => {
   );
 });
 
-it("An ordinal scheme with a large explicit range is reusable", () => {
+it("An ordinal scheme with a large explicit range is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       color: {range: ["yellow", "lime", "black", "red"]}
@@ -746,7 +797,8 @@ it("An ordinal scheme with a large explicit range is reusable", () => {
   );
 });
 
-it("A reversed band scale is reusable", () => {
+it("A reversed band scale is reusable", async () => {
+  // const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {reverse: false, type: "band"},
@@ -760,7 +812,8 @@ it("A reversed band scale is reusable", () => {
   );
 });
 
-it("A point scale with explicit align is reusable 0", () => {
+it("A point scale with explicit align is reusable 0", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "point", align: 0},
@@ -770,7 +823,8 @@ it("A point scale with explicit align is reusable 0", () => {
   );
 });
 
-it("A point scale with explicit align is reusable 0.7", () => {
+it("A point scale with explicit align is reusable 0.7", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "point", align: 0.7},
@@ -780,7 +834,8 @@ it("A point scale with explicit align is reusable 0.7", () => {
   );
 });
 
-it("A radius scale with an explicit range is reusable", () => {
+it("A radius scale with an explicit range is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "point"},
@@ -790,7 +845,8 @@ it("A radius scale with an explicit range is reusable", () => {
   );
 });
 
-it("A band scale is reusable", () => {
+it("A band scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "band"}
@@ -802,7 +858,8 @@ it("A band scale is reusable", () => {
   );
 });
 
-it("A band scale with an explicit align is reusable 0", () => {
+it("A band scale with an explicit align is reusable 0", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "band", align: 0}
@@ -814,7 +871,8 @@ it("A band scale with an explicit align is reusable 0", () => {
   );
 });
 
-it("A band scale with an explicit align is reusable 1", () => {
+it("A band scale with an explicit align is reusable 1", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "band", align: 1}
@@ -826,7 +884,8 @@ it("A band scale with an explicit align is reusable 1", () => {
   );
 });
 
-it("A band scale with an explicit paddingInner is reusable", () => {
+it("A band scale with an explicit paddingInner is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "band", paddingInner: 0.4}
@@ -838,7 +897,8 @@ it("A band scale with an explicit paddingInner is reusable", () => {
   );
 });
 
-it("A band scale with an explicit paddingOuter is reusable", () => {
+it("A band scale with an explicit paddingOuter is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "band", paddingOuter: 0.4}
@@ -870,7 +930,8 @@ it("A time scale is reusable", () => {
   );
 });
 
-it("The identity scale is reusable", () => {
+it("The identity scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "identity"},
@@ -883,7 +944,8 @@ it("The identity scale is reusable", () => {
   );
 });
 
-it("Piecewise scales are reusable (polylinear)", () => {
+it("Piecewise scales are reusable (polylinear)", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "linear", domain: [0, 150, 500]},
@@ -900,7 +962,8 @@ it("Piecewise scales are reusable (polylinear)", () => {
   );
 });
 
-it("Piecewise scales are reusable (polysqrt)", () => {
+it("Piecewise scales are reusable (polysqrt)", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "sqrt", domain: [0, 150, 500]},
@@ -917,7 +980,8 @@ it("Piecewise scales are reusable (polysqrt)", () => {
   );
 });
 
-it("Piecewise scales are reusable (polypow)", () => {
+it("Piecewise scales are reusable (polypow)", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "pow", exponent: 3.1, domain: [0, 150, 500]},
@@ -935,7 +999,8 @@ it("Piecewise scales are reusable (polypow)", () => {
   );
 });
 
-it("Piecewise scales are reusable (polylog)", () => {
+it("Piecewise scales are reusable (polylog)", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "log", domain: [0, 150, 500]},
@@ -952,7 +1017,8 @@ it("Piecewise scales are reusable (polylog)", () => {
   );
 });
 
-it("Piecewise scales are reusable (polysymlog)", () => {
+it("Piecewise scales are reusable (polysymlog)", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "symlog", domain: [0, 150, 500]},
@@ -969,17 +1035,15 @@ it("Piecewise scales are reusable (polysymlog)", () => {
   );
 });
 
-it("A cyclical scale is reusable", () => {
+it("A cyclical scale is reusable", async () => {
+  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {color: {type: "cyclical", pivot: 5000, symmetric: false}},
     Plot.dotX(data, {x: "body_mass", fill: "body_mass"})
   );
 });
 
-function isReusable(
-  scales,
-  pl = Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9})
-) {
+async function isReusable(scales, pl) {
   const plot = pl.plot(scales);
   const plot2 = pl.plot({
     fx: plot.scale("fx"),
