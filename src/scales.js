@@ -164,7 +164,7 @@ export function isTemporalScale({type}) {
 }
 
 export function isOrdinalScale({type}) {
-  return type === "ordinal" || type === "categorical" || type === "point" || type === "band";
+  return type === "ordinal" || type === "point" || type === "band";
 }
 
 // TODO use Float64Array.from for position and radius scales?
