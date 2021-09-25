@@ -28,6 +28,7 @@ import {constant} from "../mark.js";
 import {order} from "../scales.js";
 
 export const flip = i => t => i(1 - t);
+const unit = [0, 1];
 
 const interpolators = new Map([
   // numbers
@@ -52,7 +53,7 @@ export function ScaleQ(key, scale, channels, {
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
   round,
-  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
+  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   type,
   scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : interpolateNumber,
@@ -77,12 +78,11 @@ export function ScaleQ(key, scale, channels, {
         interpolate = flip(interpolate);
         reverse = false;
       }
-      if (domain.length > 2) {
-        if (range === undefined) range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
-        scale.interpolate(interpolatePiecewise(interpolate));
-      } else {
-        scale.interpolate(constant(interpolate));
+      if (range === undefined) {
+        range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+        if (range.length === 2) range = unit; // optimize common case of [0, 1]
       }
+      scale.interpolate((range === unit ? constant : interpolatePiecewise)(interpolate));
     } else {
       scale.interpolate(interpolate);
     }
