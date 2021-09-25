@@ -237,20 +237,33 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({scale, type, label, range, percent, diverging, align, paddingInner, paddingOuter, transform, round}) {
+function exposeScale({
+  scale,
+  type,
+  label,
+  range,
+  interpolate, // TODO
+  percent,
+  diverging,
+  align,
+  paddingInner,
+  paddingOuter,
+  transform,
+  round
+}) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   const pivot = diverging && domain.splice(1,1)[0];
-  const interpolate = scale.interpolate ? scale.interpolate()
-    : scale.interpolator ? scale.interpolator()
-    : undefined;
+  // const interpolate = scale.interpolate ? scale.interpolate()
+  //   : scale.interpolator ? scale.interpolator()
+  //   : undefined;
   const clamp = scale.clamp && scale.clamp();
   return {
     type,
     domain,
     ...range !== undefined && {range: range.slice()},
     ...diverging && {pivot, symmetric: false},
-    ...interpolate !== undefined && {interpolate},
+    ...interpolate !== undefined && {interpolate}, // TODO different check
     ...clamp && {clamp},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
