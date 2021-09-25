@@ -46,7 +46,7 @@ const curves = new Map([
 
 export function Curve(curve = curveLinear, tension) {
   if (typeof curve === "function") return curve; // custom curve
-  const c = curves.get((curve + "").toLowerCase());
+  const c = curves.get(`${curve}`.toLowerCase());
   if (!c) throw new Error(`unknown curve: ${curve}`);
   if (tension !== undefined) {
     switch (c) {

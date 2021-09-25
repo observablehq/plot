@@ -22,8 +22,8 @@ import * as plots from "./plots/index.js";
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
         svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
         const actual = beautify.html(root.outerHTML, {indent_size: 2});
-        const outfile = path.resolve("./test/output", path.basename(name, ".js") + "." + ext);
-        const diffile = path.resolve("./test/output", path.basename(name, ".js") + "-changed." + ext);
+        const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
+        const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
         let expected;
 
         try {

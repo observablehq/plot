@@ -41,7 +41,7 @@ export function map(outputs = {}, options = {}) {
 function maybeMap(map) {
   if (map && typeof map.map === "function") return map;
   if (typeof map === "function") return mapFunction(map);
-  switch ((map + "").toLowerCase()) {
+  switch (`${map}`.toLowerCase()) {
     case "cumsum": return mapCumsum;
   }
   throw new Error("invalid map");

@@ -39,7 +39,7 @@ const interpolators = new Map([
 ]);
 
 export function Interpolator(interpolate) {
-  const i = (interpolate + "").toLowerCase();
+  const i = `${interpolate}`.toLowerCase();
   if (!interpolators.has(i)) throw new Error(`unknown interpolator: ${i}`);
   return interpolators.get(i);
 }

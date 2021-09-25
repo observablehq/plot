@@ -13,7 +13,7 @@ export function descendingDefined(a, b) {
 }
 
 export function nonempty(x) {
-  return x != null && (x + "") !== "";
+  return x != null && `${x}` !== "";
 }
 
 export function filter(index, ...channels) {

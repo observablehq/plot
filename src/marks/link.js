@@ -44,7 +44,7 @@ export class Link extends Mark {
               c.point(X1[i], Y1[i]);
               c.point(X2[i], Y2[i]);
               c.lineEnd();
-              return p + "";
+              return `${p}`;
             })
             .call(applyChannelStyles, channels))
       .node();

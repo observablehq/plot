@@ -178,7 +178,7 @@ export function maybeGroup(I, X) {
 export function maybeReduce(reduce, value) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
-  switch ((reduce + "").toLowerCase()) {
+  switch (`${reduce}`.toLowerCase()) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
     case "count": return reduceCount;
