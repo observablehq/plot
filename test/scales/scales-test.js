@@ -58,6 +58,42 @@ it("plot(…).scale('x') returns the expected sqrt scale given explicit options"
   });
 });
 
+it("plot(…).scale('x') can return a point scale", () => {
+  const plot = Plot.dot(["A", "B"], {x: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "point",
+    domain: ["A", "B"],
+    range: [20, 620],
+    padding: 0.5,
+    align: 0.5,
+    round: true
+  });
+});
+
+it("plot(…).scale('x') can return a point scale, respecting the specified align and padding", () => {
+  const plot = Plot.dot(["A", "B"], {x: d => d}).plot({x: {padding: -0.2, align: 1}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "point",
+    domain: ["A", "B"],
+    range: [20, 620],
+    padding: -0.2,
+    align: 1,
+    round: true
+  });
+});
+
+it("plot(…).scale('x') can promote a reversed point scale to a point scale with a reversed domain", () => {
+  const plot = Plot.dot(["A", "B"], {x: d => d}).plot({x: {reverse: true}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "point",
+    domain: ["B", "A"],
+    range: [20, 620],
+    padding: 0.5,
+    align: 0.5,
+    round: true
+  });
+});
+
 it("plot(…).scale('x') can return a band scale", () => {
   const plot = Plot.cellX(["A", "B"]).plot();
   assert.deepStrictEqual(plot.scale("x"), {
@@ -80,6 +116,19 @@ it("plot(…).scale('x') can return a band scale, respecting the specified align
     paddingInner: 0.1,
     paddingOuter: -0.2,
     align: 1,
+    round: true
+  });
+});
+
+it("plot(…).scale('x') can promote a reversed band scale to a band scale with a reversed domain", () => {
+  const plot = Plot.cellX(["A", "B"]).plot({x: {reverse: true}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "band",
+    domain: [1, 0],
+    range: [20, 620],
+    paddingInner: 0.1,
+    paddingOuter: 0.1,
+    align: 0.5,
     round: true
   });
 });
@@ -301,6 +350,17 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit range
   });
 });
 
+it("plot(…).scale('color') can promote a reversed quantile scale to a threshold scale with a reversed range", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", reverse: true}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3475, 3800, 4300, 4950],
+    range: d3.reverse(d3.schemeRdYlBu[5]),
+    label: "body_mass_g"
+  });
+});
+
 it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () => {
   const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical"}});
   assert.deepStrictEqual(plot.scale("color"), {
@@ -374,30 +434,82 @@ it("plot(…).scale('color') promotes a reversed sequential scale to a linear sc
   }
 });
 
-it("plot(…).scale('color') can return a categorical scale", () => {
-  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot();
-  assert.deepStrictEqual(plot.scale("color"), {
-    type: "categorical",
-    domain: ["a", "b", "c", "d"],
-    range: d3.schemeTableau10
-  });
-});
-
-it("plot(…).scale('color') can return an explicitly categorical scale", () => {
-  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot({color: {type: "categorical"}});
-  assert.deepStrictEqual(plot.scale("color"), {
-    type: "categorical",
-    domain: ["a", "b", "c", "d"],
-    range: d3.schemeTableau10
-  });
-});
-
-it("plot(…).scale('color') can return an ordinal scale", () => {
-  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot({color: {type: "ordinal"}});
+it("plot(…).scale('color') can return an ordinal scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot();
   assert.deepStrictEqual(plot.scale("color"), {
     type: "ordinal",
-    domain: ["a", "b", "c", "d"],
-    range: d3.quantize(d3.interpolateTurbo, 4)
+    domain: ["Biscoe", "Dream", "Torgersen"],
+    range: d3.schemeTableau10,
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') can promote a reversed categorical scale to an ordinal scale with a reversed domain", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {reverse: true}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Torgersen", "Dream", "Biscoe"],
+    range: d3.schemeTableau10,
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') can promotes an explicitly categorical scale to an ordinal scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {type: "categorical"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Biscoe", "Dream", "Torgersen"],
+    range: d3.schemeTableau10,
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') can return an explicitly ordinal scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {type: "ordinal"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Biscoe", "Dream", "Torgersen"],
+    range: d3.quantize(d3.interpolateTurbo, 3),
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') promotes a reversed ordinal scale to an ordinal scale with a reversed domain", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {type: "ordinal", reverse: true}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Torgersen", "Dream", "Biscoe"],
+    range: d3.quantize(d3.interpolateTurbo, 3),
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') can return a ordinal scale with an explicit range", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const range = ["yellow", "lime", "black", "red"];
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {range}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Biscoe", "Dream", "Torgersen"],
+    range,
+    label: "island"
+  });
+});
+
+it("plot(…).scale('color') can return an ordinal scale with an explicit range", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const range = ["yellow", "lime", "black", "red"];
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {type: "ordinal", range}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Biscoe", "Dream", "Torgersen"],
+    range,
+    label: "island"
   });
 });
 
@@ -604,18 +716,22 @@ it("plot(…).scale(name).interpolate reflects the round option for quantitative
   assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: true}}).scale("x").interpolate, d3.interpolateRound);
 });
 
+it("plot(…).scale(name).round reflects the round option for point scales", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot().scale("x").round, true);
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot({x: {round: 1}}).scale("x").round, true);
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot({x: {round: true}}).scale("x").round, true);
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot({x: {round: 0}}).scale("x").round, false);
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot({x: {round: false}}).scale("x").round, false);
+});
+
 it("plot(…).scale(name).round reflects the round option for band scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.deepStrictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {}}).scale("x"), {
-    type: "band",
-    domain: ["Adelie", "Chinstrap", "Gentoo"],
-    range: [20, 620],
-    align: 0.5,
-    paddingInner: 0.1,
-    paddingOuter: 0.1,
-    round: true,
-    label: "species"
-  });
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot().scale("x").round, true);
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {round: 1}}).scale("x").round, true);
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {round: true}}).scale("x").round, true);
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {round: 0}}).scale("x").round, false);
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {round: false}}).scale("x").round, false);
 });
 
 it("plot(…).scale(name) reflects the given custom interpolator", async () => {
@@ -765,106 +881,6 @@ it("A diverging-log scale with negative values is reusable", async () => {
       }
     },
     Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
-  );
-});
-
-it("A default quantile scale defined by an array scheme is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      scheme: "reds"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("A quantile scale with a scheme and quantiles is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      scheme: "rdbu",
-      quantiles: 12,
-      reverse: true
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("A default ordinal scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({}, Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9}));
-});
-
-it("An explicit categorical scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {color: {type: "categorical"}},
-    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
-  );
-});
-
-it("A reversed ordinal scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      color: {type: "ordinal", reverse: true}
-    },
-    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
-  );
-});
-
-it("a non-rounded ordinal scale is reusable", async () => {
-  assertReusable(
-    {
-      x: {round: false, range: [100.1, 542.3]}
-    },
-    Plot.dotX(["A", "B", "C"], {x: d => d})
-  );
-});
-
-it("a rounded ordinal scale is reusable", async () => {
-  assertReusable(
-    {
-      x: {round: true, range: [100.1, 542.3]}
-    },
-    Plot.dotX(["A", "B", "C"], {x: d => d})
-  );
-});
-
-it("An ordinal scheme with an explicit range is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      color: {range: ["yellow", "lime", "grey"]}
-    },
-    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
-  );
-});
-
-it("An ordinal scheme with a large explicit range is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      color: {range: ["yellow", "lime", "black", "red"]}
-    },
-    Plot.dotX(data, {fill: "island", x: "body_mass_g", r: 9})
-  );
-});
-
-it("A reversed band scale is reusable", async () => {
-  // const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {reverse: false, type: "band"},
-      y: {reverse: true},
-      color: {type: "categorical"}
-    },
-    Plot.barY(
-      "ABCDEF".split("").map(d => ({d})),
-      {x: "d", y2: "d", fill: "d"}
-    )
   );
 });
 

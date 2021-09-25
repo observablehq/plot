@@ -13,6 +13,7 @@ export function ScaleO(scale, channels, {
   inset = 0,
   transform
 }) {
+  if (type === "categorical") type = "ordinal"; // shorthand for color schemes
   if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
   if (reverse = !!reverse) domain = reverseof(domain);
   round = !!round;
