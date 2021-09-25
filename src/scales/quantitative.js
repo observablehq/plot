@@ -23,6 +23,7 @@ import {
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
+import {constant} from "../mark.js";
 
 export function flip(i) { return t => i(1 - t); }
 
@@ -56,7 +57,7 @@ export function ScaleQ(key, scale, channels, {
   reverse,
   ...rest
 }) {
-  let reversedomain = reverse = !!reverse;
+  reverse = !!reverse;
 
   // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
@@ -66,14 +67,24 @@ export function ScaleQ(key, scale, channels, {
   if (interpolate !== undefined) {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
-    } else if (interpolate.length === 1) {
-      if (reverse) interpolate = flip(interpolate), reversedomain = false;
-      if (range === undefined && domain.length > 2) range = Float64Array.from(domain, (d, i) => i / (domain.length - 1));
-      interpolate = maybePiecewiseInterpolate(interpolate);
     }
-    scale.interpolate(interpolate);
+    if (interpolate.length === 1) {
+      if (reverse) {
+        interpolate = flip(interpolate);
+        domain = reverseof(domain);
+      }
+      if (domain.length > 2) {
+        if (range === undefined) range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+        scale.interpolate(interpolatePiecewise(interpolate));
+      } else {
+        scale.interpolate(constant(interpolate));
+      }
+    } else {
+      scale.interpolate(interpolate);
+    }
   }
 
+  // TODO describe zero option
   if (zero) {
     if (domain[0] > 0) {
       domain[0] = 0;
@@ -81,13 +92,13 @@ export function ScaleQ(key, scale, channels, {
       domain[domain.length - 1] = 0;
     }
   }
-  if (reversedomain) domain = reverseof(domain);
+
+  if (reverse) domain = reverseof(domain);
   scale.domain(domain);
   if (nice) scale.nice(nice === true ? undefined : nice);
-
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {reverse, domain, range, scale, type, ...rest};
+  return {reverse, domain, range, scale, type, interpolate, ...rest};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -182,6 +193,6 @@ function inferQuantileDomain(channels) {
   return domain;
 }
 
-function maybePiecewiseInterpolate(interpolate) {
-  return (i, j) => (i === 0 && j === 1) ? interpolate : t => interpolate(i + t * (j - i));
+function interpolatePiecewise(interpolate) {
+  return (i, j) => t => interpolate(i + t * (j - i));
 }

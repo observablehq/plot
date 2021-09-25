@@ -3,93 +3,78 @@ import * as d3 from "d3";
 import assert from "assert";
 import it from "../jsdom.js";
 
-it("plot(…).scale exposes the plot’s scales", () => {
+it("plot(…).scale(name) returns undefined for an unused scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
-  const scales = plot.scale;
-  assert.strictEqual(typeof scales, "function");
-  assert(scales("x"));
-  assert(scales("y"));
-  assert.strictEqual(scales("r"), undefined);
+  assert.strictEqual(plot.scale("r"), undefined);
 });
 
-it("plot(…).scale(z) throws an error if z ins not a registered scale", () => {
+it("plot(…).scale(name) throws an error if there is no such named scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
-  const scales = plot.scale;
-  assert.throws(() => scales("z"));
+  assert.throws(() => plot.scale("z"), /unknown scale: z/);
 });
 
-it("plot(…).scale('x') exposes the plot’s x scale", () => {
-  const x = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("x");
-  assert.deepStrictEqual(x.domain, [1, 2]);
-  assert.deepStrictEqual(x.range, [20, 620]);
-  assert.strictEqual(typeof x.interpolate, "function");
-  assert.strictEqual(x.type, "linear");
-  assert.strictEqual(x.clamp, undefined);
+it("plot(…).scale(name) can return a linear scale for x or y", () => {
+  const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [1, 2],
+    range: [40, 620],
+    interpolate: d3.interpolate
+  });
+  assert.deepStrictEqual(plot.scale("y"), {
+    type: "linear",
+    domain: [1, 2],
+    range: [370, 20],
+    interpolate: d3.interpolate
+  });
 });
 
-it("plot(…).scale('y') exposes the plot’s y scale", () => {
-  const y0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("y");
-  assert.strictEqual(y0, undefined);
-  const y = Plot.dot([1, 2], {y: d => d})
-    .plot()
-    .scale("y");
-  assert.deepStrictEqual(y.domain, [1, 2]);
-  assert.deepStrictEqual(y.range, [380, 20]);
-  assert.strictEqual(typeof y.interpolate, "function");
-  assert.strictEqual(y.type, "linear");
-  assert.strictEqual(y.clamp, undefined);
+it("plot(…).scale(name) can return undefined for fx or fy, if not facted", () => {
+  const plot = Plot.dot([1, 2], {x: d => d}).plot();
+  assert.strictEqual(plot.scale("fx"), undefined);
+  assert.strictEqual(plot.scale("fy"), undefined);
 });
 
-it("plot(…).scale('fx') exposes the plot’s fx scale", () => {
-  const fx0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("fx");
-  assert.strictEqual(fx0, undefined);
+it("plot(…).scale(fx) can return a facet band scale, if faceted", () => {
   const data = [1, 2];
-  const fx = Plot.dot(data, {y: d => d})
-    .plot({facet: {data, x: data}})
-    .scale("fx");
-  assert.deepStrictEqual(fx.domain, [1, 2]);
-  assert.deepStrictEqual(fx.range, [40, 620]);
-  assert.strictEqual(typeof fx.interpolate, "undefined");
-  assert.strictEqual(fx.type, "band");
-  assert.strictEqual(fx.clamp, undefined);
+  const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, x: data}});
+  assert.strictEqual(plot.scale("fy"), undefined);
+  assert.deepStrictEqual(plot.scale("fx"), {
+    type: "band",
+    domain: [1, 2],
+    range: [40, 620],
+    align: 0.5,
+    paddingInner: 0.1,
+    paddingOuter: 0
+  });
 });
 
-it("plot(…).scale('fy') exposes the plot’s fy scale", () => {
-  const fy0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("fy");
-  assert.strictEqual(fy0, undefined);
+it("plot(…).scale(fy) can return a facet band scale, if faceted", () => {
   const data = [1, 2];
-  const fy = Plot.dot(data, {y: d => d})
-    .plot({facet: {data, y: data}})
-    .scale("fy");
-  assert.deepStrictEqual(fy.domain, [1, 2]);
-  assert.deepStrictEqual(fy.range, [20, 380]);
-  assert.strictEqual(typeof fy.interpolate, "undefined");
-  assert.strictEqual(fy.type, "band");
-  assert.strictEqual(fy.clamp, undefined);
+  const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, y: data}});
+  assert.strictEqual(plot.scale("fx"), undefined);
+  assert.deepStrictEqual(plot.scale("fy"), {
+    type: "band",
+    domain: [1, 2],
+    range: [20, 380],
+    align: 0.5,
+    paddingInner: 0.1,
+    paddingOuter: 0
+  });
 });
 
-it("plot(…).scale('color') exposes a continuous color scale", () => {
-  const color0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("color");
-  assert.strictEqual(color0, undefined);
-  const data = [1, 2, 3, 4, 5];
-  const color = Plot.dot(data, {y: d => d, fill: d => d})
-    .plot()
-    .scale("color");
-  assert.deepStrictEqual(color.domain, [1, 5]);
-  assert.strictEqual(color.range, undefined);
-  assert.strictEqual(typeof color.interpolate, "function");
-  assert.strictEqual(color.type, "linear");
-  assert.strictEqual(color.clamp, undefined);
+it("plot(…).scale(color) can return undefined if no color scale is present", () => {
+  const plot = Plot.dot([1, 2], {x: d => d}).plot();
+  assert.strictEqual(plot.scale("color"), undefined);
+});
+
+it("plot(…).scale(color) can return a linear scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [1, 5],
+    interpolate: d3.interpolateTurbo
+  });
 });
 
 it("plot(…).scale('color') exposes an ordinal color scale", () => {
@@ -758,7 +743,6 @@ it("A reversed ordinal scale is reusable", async () => {
 });
 
 it("a non-rounded ordinal scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {round: false, range: [100.1, 542.3]}
@@ -768,7 +752,6 @@ it("a non-rounded ordinal scale is reusable", async () => {
 });
 
 it("a rounded ordinal scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {round: true, range: [100.1, 542.3]}
@@ -931,7 +914,6 @@ it("A time scale is reusable", () => {
 });
 
 it("The identity scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "identity"},
@@ -945,7 +927,6 @@ it("The identity scale is reusable", async () => {
 });
 
 it("Piecewise scales are reusable (polylinear)", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "linear", domain: [0, 150, 500]},
@@ -963,7 +944,6 @@ it("Piecewise scales are reusable (polylinear)", async () => {
 });
 
 it("Piecewise scales are reusable (polysqrt)", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "sqrt", domain: [0, 150, 500]},
@@ -981,7 +961,6 @@ it("Piecewise scales are reusable (polysqrt)", async () => {
 });
 
 it("Piecewise scales are reusable (polypow)", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "pow", exponent: 3.1, domain: [0, 150, 500]},
@@ -1000,7 +979,6 @@ it("Piecewise scales are reusable (polypow)", async () => {
 });
 
 it("Piecewise scales are reusable (polylog)", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "log", domain: [0, 150, 500]},
@@ -1018,7 +996,6 @@ it("Piecewise scales are reusable (polylog)", async () => {
 });
 
 it("Piecewise scales are reusable (polysymlog)", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
   isReusable(
     {
       x: {type: "symlog", domain: [0, 150, 500]},
