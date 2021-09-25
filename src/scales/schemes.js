@@ -181,7 +181,7 @@ export function ordinalScheme(scheme) {
 export function ordinalRange(scheme, length) {
   const s = ordinalScheme(scheme);
   const r = typeof s === "function" ? s({length}) : s;
-  return r.length !== length ? r.slice(length) : r;
+  return r.length !== length ? r.slice(0, length) : r;
 }
 
 const quantitativeSchemes = new Map([

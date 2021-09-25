@@ -212,6 +212,95 @@ it("plot(…).scale('color') can return a threshold scale with an explicit domai
   });
 });
 
+it("plot(…).scale('color') can return a threshold scale with an explicit scheme", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "threshold", scheme: "blues"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [0],
+    range: [d3.schemeBlues[3][0], d3.schemeBlues[3][1]],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can return a threshold scale with an explicit interpolator", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "threshold", interpolate: d3.interpolateReds}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [0],
+    range: d3.quantize(d3.interpolateReds, 2),
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3475, 3800, 4300, 4950],
+    range: d3.schemeRdYlBu[5],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale with an explicit discrete scheme to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", scheme: "spectral"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3475, 3800, 4300, 4950],
+    range: d3.schemeSpectral[5],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale with an explicit continuous scheme to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", scheme: "warm"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3475, 3800, 4300, 4950],
+    range: d3.quantize(d3.interpolateWarm, 5),
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale with an explicit continuous interpolator to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", interpolate: d3.interpolateRainbow}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3475, 3800, 4300, 4950],
+    range: d3.quantize(d3.interpolateRainbow, 5),
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale with an explicit number of quantiles to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", quantiles: 10}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3300, 3475, 3650, 3800, 4050, 4300, 4650, 4950, 5400],
+    range: d3.schemeRdYlBu[10],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantile scale with an explicit range to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const range = ["red", "yellow", "blue", "green"]; // for quartiles
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", range}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3550, 4050, 4750],
+    range,
+    label: "body_mass_g"
+  });
+});
+
 it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () => {
   const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical"}});
   assert.deepStrictEqual(plot.scale("color"), {
@@ -677,52 +766,6 @@ it("A diverging-log scale with negative values is reusable", async () => {
     },
     Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
   );
-});
-
-it("A quantile scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      quantiles: 10,
-      scheme: "warm"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("Another quantile scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      quantiles: 3,
-      scheme: "sinebow"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("A quantile scale defined by a range is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      range: ["red", "yellow", "blue", "green"] // the range determines the number of quantiles
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("A default quantile scale defined by a continuous scheme is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "quantile",
-      scheme: "warm"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
 });
 
 it("A default quantile scale defined by an array scheme is reusable", async () => {

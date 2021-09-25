@@ -10,6 +10,7 @@ import {
   min,
   max,
   quantile,
+  quantize,
   reverse as reverseof,
   pairs,
   scaleLinear,
@@ -129,7 +130,8 @@ export function ScaleQuantile(key, channels, {
   quantiles = 5,
   scheme = "rdylbu",
   domain = inferQuantileDomain(channels),
-  range = registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
+  interpolate,
+  range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
   reverse,
   percent
 }) {
@@ -148,7 +150,8 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 export function ScaleThreshold(key, channels, {
   domain = [0], // explicit thresholds in ascending order
   scheme = "rdylbu",
-  range = registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
+  interpolate,
+  range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse,
   percent
 }) {
