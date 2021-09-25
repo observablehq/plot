@@ -70,7 +70,7 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
     }
   }
   for (const [key, type] of registry) {
-    if (type !== position && scales[key]) { // already handled above
+    if (type !== position && scales[key]) { // not already handled above
       autoScaleLabel(key, scales[key], channels.get(key), options[key]);
     }
   }
