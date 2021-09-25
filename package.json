@@ -26,7 +26,7 @@
     "src/**/*.css"
   ],
   "scripts": {
-    "test": "mkdir -p test/output && mocha -r module-alias/register 'test/**/*-test.js' && mocha -r module-alias/register test/plot.js && eslint src test",
+    "test": "mkdir -p test/output && mocha -r module-alias/register 'test/**/*-test.js' test/plot.js && eslint src test",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "snowpack dev"
