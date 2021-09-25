@@ -26,7 +26,7 @@ import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
 
-export function flip(i) { return t => i(1 - t); }
+export const flip = i => t => i(1 - t);
 
 const interpolators = new Map([
   // numbers
@@ -50,15 +50,15 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
+  percent,
+  transform,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
   scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
-  percent,
-  inset = 0,
-  transform
+  inset = 0
 }) {
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
@@ -95,6 +95,7 @@ export function ScaleQ(key, scale, channels, {
 
   // TODO describe zero option
   if (zero) {
+    domain = [...domain]; // copy before write
     if (domain[0] > 0) {
       domain[0] = 0;
     } else if (domain[domain.length - 1] < 0) {
