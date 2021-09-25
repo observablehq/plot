@@ -52,8 +52,9 @@ export function ScaleQ(key, scale, channels, {
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
+  scheme: explicitScheme,
   scheme = type === "cyclical" ? "rainbow" : "turbo",
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
+  interpolate = registry.get(key) === color ? (explicitScheme || range === undefined ? quantitativeScheme(scheme) : interpolateRgb) : round ? interpolateRound : undefined,
   reverse,
   ...rest
 }) {
@@ -73,8 +74,10 @@ export function ScaleQ(key, scale, channels, {
         interpolate = flip(interpolate);
         domain = reverseof(domain);
       }
-      if (domain.length > 2) {
-        if (range === undefined) range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+      if (domain.length > 2 && range === undefined) {
+        range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+      }
+      if (range !== undefined) {
         scale.interpolate(interpolatePiecewise(interpolate));
       } else {
         scale.interpolate(constant(interpolate));
