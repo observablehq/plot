@@ -5,19 +5,25 @@ import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
 
 export function ScaleO(scale, channels, {
+  type,
   domain = inferDomain(channels),
   range,
   reverse,
-  ...options
+  round,
+  inset = 0,
+  transform
 }) {
+  if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
   if (reverse = !!reverse) domain = reverseof(domain);
+  round = !!round;
+  inset = +inset;
   scale.domain(domain);
   if (range !== undefined) {
     // If the range is specified as a function, pass it the domain.
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {domain, range, scale, reverse, ...options};
+  return {type, domain, range, scale, reverse, round, inset, transform};
 }
 
 export function ScaleOrdinal(key, channels, {
