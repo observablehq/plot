@@ -58,6 +58,30 @@ it("plot(…).scale('x') returns the expected sqrt scale given explicit options"
   });
 });
 
+it("plot(…).scale('x') can return a utc scale", async () => {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  const plot = Plot.line(aapl, {x: "Date", y: "Close"}).plot();
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "utc",
+    domain: [new Date("2013-05-13"), new Date("2018-05-11")],
+    range: [40, 620],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('x') can return an explicit time scale", async () => {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  const plot = Plot.line(aapl, {x: "Date", y: "Close"}).plot({x: {type: "time"}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "time",
+    domain: [new Date("2013-05-13"), new Date("2018-05-11")],
+    range: [40, 620],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
 it("plot(…).scale('x') can return a point scale", () => {
   const plot = Plot.dot(["A", "B"], {x: d => d}).plot();
   assert.deepStrictEqual(plot.scale("x"), {
@@ -233,6 +257,17 @@ it("plot(…).scale('color') can return a linear scale", () => {
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    interpolate: d3.interpolateTurbo,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') can return a utc scale", async () => {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  const plot = Plot.dot(aapl, {x: "Close", stroke: "Date"}).plot();
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "utc",
+    domain: [new Date("2013-05-13"), new Date("2018-05-11")],
     interpolate: d3.interpolateTurbo,
     clamp: false
   });
@@ -554,6 +589,18 @@ it("plot(…).scale('r') can return an explicit pow scale", () => {
   });
 });
 
+it("plot(…).scale('r') can return an implicit pow scale with an explicit range", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 9], {r: d => d}).plot({r: {range: [2, 13]}}); // Note: range should normally start at zero!
+  assert.deepStrictEqual(plot.scale("r"), {
+    type: "pow",
+    exponent: 0.5,
+    domain: [0, 9],
+    range: [2, 13],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
 it("plot(…).scale('opacity') can return undefined", () => {
   const plot = Plot.dot([1, 2], {x: d => d}).plot();
   assert.strictEqual(plot.scale("opacity"), undefined);
@@ -836,6 +883,12 @@ it("plot(…).scale(name) reflects the given transform", async () => {
   });
 });
 
+it("plot(…).scale(name) can return an identity scale, ignoring all other options", () => {
+  const plot = Plot.dot([1, 2], {x: d => d, fill: d => d}).plot({x: {type: "identity"}, color: {type: "identity"}});
+  assert.deepStrictEqual(plot.scale("x"), {type: "identity"});
+  assert.deepStrictEqual(plot.scale("color"), {type: "identity"});
+});
+
 // Given a plot specification (or, as shorthand, an array of marks or a single
 // mark), asserts that the given named scales, when materialized from the first
 // plot and used to produce a second plot, produce the same output and the same
@@ -938,50 +991,6 @@ it("A diverging-log scale with negative values is reusable", async () => {
       }
     },
     Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
-  );
-});
-
-it("A radius scale with an explicit range is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "point"},
-      r: {range: [2, 13]}
-    },
-    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
-  );
-});
-
-it("A utc scale is reusable", () => {
-  const dates = ["2002-01-07", "2003-06-09", "2004-01-01"].map(d3.isoParse);
-  assertReusable(
-    {
-      x: {type: "utc"}
-    },
-    Plot.tickX(dates, {x: d => d})
-  );
-});
-
-it("A time scale is reusable", () => {
-  const dates = ["2002-01-07", "2003-06-09", "2004-01-01"].map(d3.isoParse);
-  assertReusable(
-    {
-      x: {type: "time"}
-    },
-    Plot.tickX(dates, {x: d => d})
-  );
-});
-
-it("The identity scale is reusable", async () => {
-  assertReusable(
-    {
-      x: {type: "identity"},
-      color: {type: "identity"}
-    },
-    Plot.tickX([100, 200, 300, 400], {
-      x: d => d,
-      stroke: ["red", "blue", "lime", "grey"]
-    })
   );
 });
 

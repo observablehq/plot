@@ -118,7 +118,7 @@ function Scale(key, channels = [], options = {}) {
     case "time": return ScaleTime(key, channels, options);
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
-    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : {type: "identity"};
+    case "identity": return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
     case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
@@ -229,10 +229,9 @@ function coerceDate(x) {
     : new Date(x);
 }
 
-// prepare scales for exposure through the plot's scales() function
 export function exposeScales(scaleDescriptors) {
   return key => {
-    if (!registry.has(key += "")) throw new Error(`unknown scale: ${key}`);
+    if (!registry.has(key = `${key}`)) throw new Error(`unknown scale: ${key}`);
     return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
   };
 }
@@ -247,18 +246,18 @@ function exposeScale({
   percent,
   diverging
 }) {
-  if (type === "identity") return {type: "identity"}; // TODO label, transform?
+  if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   return {
     type,
-    domain,
-    ...range !== undefined && {range: range.slice()},
+    domain, // TODO wrong for diverging
+    ...range !== undefined && {range: range.slice()}, // defensive copy
     ...label !== undefined && {label},
-    ...transform !== undefined && {transform},
-    ...percent && {percent}, // only exposed if truthy
 
-    // TODO quantitative
-    ...interpolate !== undefined && {interpolate}, // TODO different check?
+    // quantitative
+    ...transform !== undefined && {transform}, // TODO ordinal transforms?
+    ...percent && {percent}, // only exposed if truthy
+    ...interpolate !== undefined && {interpolate},
     ...scale.clamp && {clamp: scale.clamp()},
 
     // TODO diverging
