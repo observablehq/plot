@@ -9,16 +9,27 @@ import {parse as isoParse} from "isoformat";
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
   for (const key of registry.keys()) {
-    if (channels.has(key) || options[key]) {
-      const scale = Scale(key, channels.get(key), {
+    const scaleChannels = channels.get(key);
+    const scaleOptions = options[key];
+    if (scaleChannels || scaleOptions) {
+      const scale = Scale(key, scaleChannels, {
         inset: key === "x" || key === "y" ? inset : undefined, // not for facet
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
         align,
         padding,
-        ...options[key]
+        ...scaleOptions
       });
-      if (scale) scales[key] = scale;
+      if (scale) {
+        if (scaleOptions) { // populate generic scale options (percent, transform)
+          let {percent, transform} = scaleOptions;
+          if (transform == null) transform = undefined;
+          else if (typeof transform !== "function") throw new Error("invalid scale transform");
+          scale.percent = !!percent;
+          scale.transform = transform;
+        }
+        scales[key] = scale;
+      }
     }
   }
   return scales;

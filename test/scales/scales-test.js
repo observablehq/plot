@@ -314,6 +314,21 @@ it("plot(…).scale('color') can return a symmetric diverging scale", async () =
   }
 });
 
+it("plot(…).scale('color') can return a transformed diverging scale", async () => {
+  const transform = d => d * 100;
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", transform, symmetric: false}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging",
+    domain: [-78, 135],
+    pivot: 0,
+    transform,
+    interpolate: d3.interpolateRdBu,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
 it("plot(…).scale('color') can return an asymmetric diverging pow scale with an explicit scheme", async () => {
   const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-sqrt", symmetric: false, scheme: "piyg"}});
@@ -371,13 +386,15 @@ it("plot(…).scale('color') can return an asymmetric diverging log scale with a
 });
 
 it("plot(…).scale('color') can return an asymmetric diverging log scale with a negative domain via transform, pivot and base", async () => {
+  const transform = d => -d;
   const aapl = await d3.csv("data/aapl.csv", d3.autoType);
-  const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", transform: d => -d, pivot: -1e8, base: 10, symmetric: false, scheme: "piyg"}});
+  const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", transform, pivot: -1e8, base: 10, symmetric: false, scheme: "piyg"}});
   assert.deepStrictEqual(plot.scale("color"), {
     type: "diverging-log",
     base: 10,
     domain: [-266380800, -11475900],
     pivot: -100000000,
+    transform,
     interpolate: d3.interpolatePiYG,
     clamp: false,
     label: "Volume"

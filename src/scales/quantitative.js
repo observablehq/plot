@@ -50,8 +50,6 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
-  percent,
-  transform,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
@@ -61,9 +59,7 @@ export function ScaleQ(key, scale, channels, {
   inset = 0
 }) {
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
-  if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
   reverse = !!reverse;
-  percent = !!percent;
   inset = +inset;
 
   // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
@@ -108,7 +104,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, reverse, scale, interpolate, percent, inset, transform};
+  return {type, domain, range, reverse, scale, interpolate, inset};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -133,14 +129,12 @@ export function ScaleQuantile(key, channels, {
   domain = inferQuantileDomain(channels),
   interpolate,
   range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
-  reverse,
-  percent
+  reverse
 }) {
   return ScaleThreshold(key, channels, {
     domain: scaleQuantile(domain, range).quantiles(),
     range,
-    reverse,
-    percent
+    reverse
   });
 }
 
@@ -153,13 +147,11 @@ export function ScaleThreshold(key, channels, {
   scheme = "rdylbu",
   interpolate,
   range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
-  reverse,
-  percent
+  reverse
 }) {
-  percent = !!percent;
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
   if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range, percent};
+  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range};
 }
 
 export function ScaleIdentity() {

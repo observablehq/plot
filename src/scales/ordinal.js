@@ -9,11 +9,9 @@ export function ScaleO(scale, channels, {
   domain = inferDomain(channels),
   range,
   reverse,
-  inset = 0,
-  transform
+  inset = 0
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
-  if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
   if (reverse = !!reverse) domain = reverseof(domain);
   inset = +inset;
   scale.domain(domain);
@@ -22,7 +20,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, reverse, inset, transform};
+  return {type, domain, range, scale, reverse, inset};
 }
 
 export function ScaleOrdinal(key, channels, {
