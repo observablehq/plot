@@ -247,7 +247,7 @@ function exposeScale({
   percent,
   diverging
 }) {
-  if (type === "identity") return {type: "identity"};
+  if (type === "identity") return {type: "identity"}; // TODO label, transform?
   const domain = scale.domain();
   return {
     type,

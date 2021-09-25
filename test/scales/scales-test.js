@@ -176,6 +176,26 @@ it("plot(…).scale('color') can return a linear scale", () => {
   });
 });
 
+it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [1, 5],
+    interpolate: d3.interpolateRainbow,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('color') promotes a sequential scale to a linear scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "sequential"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [1, 5],
+    interpolate: d3.interpolateTurbo,
+    clamp: false
+  });
+});
+
 it("plot(…).scale('color') can return a categorical scale", () => {
   const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot();
   assert.deepStrictEqual(plot.scale("color"), {

@@ -58,6 +58,7 @@ export function ScaleQ(key, scale, channels, {
   percent,
   inset = 0
 }) {
+  if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
   percent = !!percent;
   inset = +inset;
