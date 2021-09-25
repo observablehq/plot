@@ -24,6 +24,66 @@ it("plot(…).scale('x') can return a linear scale", () => {
   });
 });
 
+it("plot(…).scale('x') returns the expected linear scale for penguins", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot();
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [2700, 6300],
+    range: [20, 620],
+    interpolate: d3.interpolate,
+    clamp: false,
+    label: "body_mass_g →"
+  });
+});
+
+it("plot(…).scale('x') returns the expected sqrt scale given explicit options", () => {
+  const plot = Plot.dotX([], {x: "body_mass_g"}).plot({
+    x: {
+      type: "sqrt",
+      domain: [3500, 4000],
+      range: [30, 610],
+      clamp: true,
+      label: "Body mass"
+    }
+  });
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "pow",
+    exponent: 0.5,
+    domain: [3500, 4000],
+    range: [30, 610],
+    interpolate: d3.interpolate,
+    clamp: true,
+    label: "Body mass"
+  });
+});
+
+it("plot(…).scale('x') can return a band scale", () => {
+  const plot = Plot.cellX(["A", "B"]).plot();
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "band",
+    domain: [0, 1],
+    range: [20, 620],
+    paddingInner: 0.1,
+    paddingOuter: 0.1,
+    align: 0.5,
+    round: true
+  });
+});
+
+it("plot(…).scale('x') can return a band scale, respecting the specified align and padding", () => {
+  const plot = Plot.cellX(["A", "B"]).plot({x: {paddingOuter: -0.2, align: 1}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "band",
+    domain: [0, 1],
+    range: [20, 620],
+    paddingInner: 0.1,
+    paddingOuter: -0.2,
+    align: 1,
+    round: true
+  });
+});
+
 it("plot(…).scale('y') can return a linear scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
   assert.deepStrictEqual(plot.scale("y"), {
@@ -32,6 +92,32 @@ it("plot(…).scale('y') can return a linear scale", () => {
     range: [370, 20],
     interpolate: d3.interpolate,
     clamp: false
+  });
+});
+
+it("plot(…).scale('y') can return a band scale", () => {
+  const plot = Plot.cellY(["A", "B"]).plot();
+  assert.deepStrictEqual(plot.scale("y"), {
+    type: "band",
+    domain: [0, 1],
+    range: [20, 80],
+    paddingInner: 0.1,
+    paddingOuter: 0.1,
+    align: 0.5,
+    round: true
+  });
+});
+
+it("plot(…).scale('y') can return a band scale, respecting the specified align and padding", () => {
+  const plot = Plot.cellY(["A", "B"]).plot({y: {paddingOuter: -0.2, align: 1}});
+  assert.deepStrictEqual(plot.scale("y"), {
+    type: "band",
+    domain: [0, 1],
+    range: [20, 80],
+    paddingInner: 0.1,
+    paddingOuter: -0.2,
+    align: 1,
+    round: true
   });
 });
 
@@ -56,7 +142,8 @@ it("plot(…).scale('fx') can return a band scale", () => {
     range: [40, 620],
     align: 0.5,
     paddingInner: 0.1,
-    paddingOuter: 0
+    paddingOuter: 0,
+    round: true
   });
 });
 
@@ -69,7 +156,8 @@ it("plot(…).scale('fy') can return a band scale", () => {
     range: [20, 380],
     align: 0.5,
     paddingInner: 0.1,
-    paddingOuter: 0
+    paddingOuter: 0,
+    round: true
   });
 });
 
@@ -269,115 +357,40 @@ it("plot(…).scale(name).constant returns the expected constant for symlog scal
   assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "symlog", constant: "2"}}).scale("x").constant, 2);
 });
 
-it("plot(…).scale expose align, paddingInner and paddingOuter", () => {
-  const x = Plot.cellX(["A", "B"])
-    .plot({x: {paddingOuter: -0.2, align: 1}})
-    .scale("x");
-  assert.strictEqual(x.type, "band");
-  assert.strictEqual(x.align, 1);
-  assert.strictEqual(x.paddingInner, 0.1);
-  assert.strictEqual(x.paddingOuter, -0.2);
+it("plot(…).scale(name).domain respects the given nice option", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: false}}).scale("x").domain, [2700, 6300]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: true}}).scale("x").domain, [2500, 6500]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 10}}).scale("x").domain, [2500, 6500]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 5}}).scale("x").domain, [2000, 7000]);
 });
 
-it("plot(…).scale does not expose unexpected scale options", () => {
-  const x = Plot.dotX([])
-    .plot({x: {lala: 42, width: 420}})
-    .scale("x");
-  assert.strictEqual(x.lala, undefined);
-  assert.strictEqual(x.width, undefined);
+it("plot(…).scale(name).domain nices an explicit domain, too", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: false, domain: [1701, 7299]}}).scale("x").domain, [1701, 7299]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: true, domain: [1701, 7299]}}).scale("x").domain, [1500, 7500]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 10, domain: [1701, 7299]}}).scale("x").domain, [1500, 7500]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 5, domain: [1701, 7299]}}).scale("x").domain, [1000, 8000]);
 });
 
-it("default linear scale has the expected value", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {x: "body_mass_g"}).plot();
-  const x = p.scale("x");
-  assert.deepEqual(Object.keys(x), [
-    "type",
-    "domain",
-    "range",
-    "interpolate",
-    "clamp",
-    "label"
-  ]);
-  assert.deepEqual(x.domain, [2700, 6300]);
-  assert.deepEqual(x.range, [20, 620]);
-  assert.equal(x.interpolate(0, 1)(0.15), 0.15);
-  assert.equal(x.clamp, false);
-  assert.equal(x.type, "linear");
-  assert.equal(x.align, undefined);
-  assert.equal(x.label, "body_mass_g →");
+it("plot(…).scale(name).interpolate reflects the round option for quantitative scales", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: false}}).scale("x").interpolate, d3.interpolate);
+  assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: true}}).scale("x").interpolate, d3.interpolateRound);
 });
 
-it("sqrt scale x honors explicit values", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
-    x: {
-      domain: [3500, 4000],
-      range: [30, 610],
-      label: "Body mass",
-      type: "sqrt",
-      clamp: true
-    }
+it("plot(…).scale(name).round reflects the round option for band scales", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.deepStrictEqual(Plot.cell(penguins, {x: "species"}).plot({x: {}}).scale("x"), {
+    type: "band",
+    domain: ["Adelie", "Chinstrap", "Gentoo"],
+    range: [20, 620],
+    align: 0.5,
+    paddingInner: 0.1,
+    paddingOuter: 0.1,
+    round: true,
+    label: "species"
   });
-  const x = p.scale("x");
-  assert.deepEqual(Object.keys(x), [
-    "type",
-    "domain",
-    "range",
-    "interpolate",
-    "clamp",
-    "label",
-    "exponent"
-  ]);
-  assert.deepEqual(x.domain, [3500, 4000]);
-  assert.deepEqual(x.range, [30, 610]);
-  assert.equal(x.exponent, 0.5);
-  assert.equal(x.interpolate(0, 1)(0.15), 0.15);
-  assert.equal(x.clamp, true);
-  assert.equal(x.type, "pow");
-  assert.equal(x.label, "Body mass");
-});
-
-it("nice and inset are subsumed in the domain and range", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
-    x: {
-      nice: true,
-      inset: 20
-    }
-  });
-  const x = p.scale("x");
-  assert.deepEqual(Object.keys(x), [
-    "type",
-    "domain",
-    "range",
-    "interpolate",
-    "clamp",
-    "label"
-  ]);
-  assert.deepEqual(x.domain, [2500, 6500]);
-  assert.deepEqual(x.range, [40, 600]);
-});
-
-it("quantitative round is subsumed in the interpolator", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {x: "body_mass_g"}).plot({x: {round: true}});
-  const x = p.scale("x");
-  assert.deepEqual(Object.keys(x), [
-    "type",
-    "domain",
-    "range",
-    "interpolate",
-    "clamp",
-    "label"
-  ]);
-  assert.deepEqual(x.domain, [2700, 6300]);
-  assert.deepEqual(x.range, [20, 620]);
-  assert.equal(x.interpolate(0, 100)(1 / 3), 33);
-  assert.equal(x.clamp, false); // undefined would be fine too!
-  assert.equal(x.type, "linear");
-  assert.equal(x.align, undefined);
-  assert.equal(x.label, "body_mass_g →");
 });
 
 it("custom interpolators are honored", async () => {
@@ -390,9 +403,9 @@ it("custom interpolators are honored", async () => {
     "type",
     "domain",
     "range",
+    "label",
     "interpolate",
-    "clamp",
-    "label"
+    "clamp"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);

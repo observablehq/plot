@@ -245,35 +245,40 @@ function exposeScale({
   interpolate, // TODO
   percent,
   diverging,
-  align,
-  paddingInner,
-  paddingOuter,
-  transform,
-  round
+  // align, // TODO remove
+  // paddingInner, // TODO remove
+  // paddingOuter, // TODO remove
+  transform
+  // round // TODO remove
 }) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
-  const pivot = diverging && domain.splice(1,1)[0];
-  // const interpolate = scale.interpolate ? scale.interpolate()
-  //   : scale.interpolator ? scale.interpolator()
-  //   : undefined;
-  // const clamp = scale.clamp && scale.clamp();
   return {
     type,
     domain,
     ...range !== undefined && {range: range.slice()},
-    ...diverging && {pivot, symmetric: false},
-    ...interpolate !== undefined && {interpolate}, // TODO different check?
-    ...scale.clamp && {clamp: scale.clamp()},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
     ...transform !== undefined && {transform},
+
+    // TODO quantitative
+    ...interpolate !== undefined && {interpolate}, // TODO different check?
+    ...scale.clamp && {clamp: scale.clamp()},
+
+    // TODO diverging
+    ...diverging && {pivot: (([, pivot]) => pivot)(domain), symmetric: false}, // TODO symmetric?
+
+    // log, diverging-log
     ...scale.base && {base: scale.base()},
-    ...scale.constant && {constant: scale.constant()},
+
+    // pow, diverging-pow
     ...scale.exponent && {exponent: scale.exponent()},
-    ...(type === "band" || type === "point") && {align},
-    ...type === "band" && {paddingInner},
-    ...type === "band" && {paddingOuter},
-    ...round != null && !scale.interpolate && {round}
+
+    // symlog, diverging-symlog
+    ...scale.constant && {constant: scale.constant()},
+
+    // band, point
+    ...scale.align && {align: scale.align(), round: scale.round()},
+    ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()})
   };
 }
