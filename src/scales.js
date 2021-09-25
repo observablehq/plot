@@ -258,7 +258,7 @@ function exposeScale({
     ...label !== undefined && {label},
 
     // quantitative
-    ...transform !== undefined && {transform}, // TODO ordinal transforms?
+    ...transform !== undefined && {transform},
     ...percent && {percent}, // only exposed if truthy
     ...interpolate !== undefined && {interpolate},
     ...scale.clamp && {clamp: scale.clamp()},
