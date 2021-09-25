@@ -55,7 +55,7 @@ export function ScaleDiverging(key, channels, options) {
 }
 
 export function ScaleDivergingSqrt(key, channels, options) {
-  return ScaleD(key, scaleDivergingSqrt(), Math.sqrt, channels, options);
+  return ScaleD(key, scaleDivergingSqrt(), Math.sqrt, channels, options); // TODO scaleDivergingPow
 }
 
 export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {

@@ -19,13 +19,15 @@ it("plot(…).scale(name) can return a linear scale for x or y", () => {
     type: "linear",
     domain: [1, 2],
     range: [40, 620],
-    interpolate: d3.interpolate
+    interpolate: d3.interpolate,
+    clamp: false
   });
   assert.deepStrictEqual(plot.scale("y"), {
     type: "linear",
     domain: [1, 2],
     range: [370, 20],
-    interpolate: d3.interpolate
+    interpolate: d3.interpolate,
+    clamp: false
   });
 });
 
@@ -35,7 +37,7 @@ it("plot(…).scale(name) can return undefined for fx or fy, if not facted", () 
   assert.strictEqual(plot.scale("fy"), undefined);
 });
 
-it("plot(…).scale(fx) can return a facet band scale, if faceted", () => {
+it("plot(…).scale('fx') can return a facet band scale, if faceted", () => {
   const data = [1, 2];
   const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, x: data}});
   assert.strictEqual(plot.scale("fy"), undefined);
@@ -49,7 +51,7 @@ it("plot(…).scale(fx) can return a facet band scale, if faceted", () => {
   });
 });
 
-it("plot(…).scale(fy) can return a facet band scale, if faceted", () => {
+it("plot(…).scale('fy') can return a facet band scale, if faceted", () => {
   const data = [1, 2];
   const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, y: data}});
   assert.strictEqual(plot.scale("fx"), undefined);
@@ -63,100 +65,94 @@ it("plot(…).scale(fy) can return a facet band scale, if faceted", () => {
   });
 });
 
-it("plot(…).scale(color) can return undefined if no color scale is present", () => {
+it("plot(…).scale('color') can return undefined if no color scale is present", () => {
   const plot = Plot.dot([1, 2], {x: d => d}).plot();
   assert.strictEqual(plot.scale("color"), undefined);
 });
 
-it("plot(…).scale(color) can return a linear scale", () => {
+it("plot(…).scale('color') can return a linear scale", () => {
   const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot();
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
-    interpolate: d3.interpolateTurbo
+    interpolate: d3.interpolateTurbo,
+    clamp: false
   });
 });
 
-it("plot(…).scale('color') exposes an ordinal color scale", () => {
-  const data = ["a", "b", "c", "d"];
-  const color = Plot.dot(data, {y: d => d, fill: d => d})
-    .plot({color: {type: "ordinal"}})
-    .scale("color");
-  assert.deepStrictEqual(color.domain, data);
-  assert.deepStrictEqual(color.range, [
-    "rgb(35, 23, 27)",
-    "rgb(46, 229, 174)",
-    "rgb(254, 185, 39)",
-    "rgb(144, 12, 0)"
-  ]);
-  assert.strictEqual(typeof color.interpolate, "undefined");
-  assert.strictEqual(color.type, "ordinal");
-  assert.strictEqual(color.clamp, undefined);
+it("plot(…).scale('color') can return a categorical scale", () => {
+  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "categorical",
+    domain: ["a", "b", "c", "d"],
+    range: d3.schemeTableau10
+  });
 });
 
-it("plot(…).scale('color') exposes a categorical color scale", () => {
-  const data = ["a", "b", "c", "d"];
-  const color = Plot.dot(data, {y: d => d, fill: d => d})
-    .plot({color: {type: "categorical"}})
-    .scale("color");
-  assert.deepStrictEqual(color.domain, data);
-  assert.deepStrictEqual(color.range, [
-    "#4e79a7",
-    "#f28e2c",
-    "#e15759",
-    "#76b7b2",
-    "#59a14f",
-    "#edc949",
-    "#af7aa1",
-    "#ff9da7",
-    "#9c755f",
-    "#bab0ab"
-  ]);
-  assert.strictEqual(typeof color.interpolate, "undefined");
-  assert.strictEqual(color.type, "categorical");
-  assert.strictEqual(color.clamp, undefined);
+it("plot(…).scale('color') can return an explicitly categorical scale", () => {
+  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot({color: {type: "categorical"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "categorical",
+    domain: ["a", "b", "c", "d"],
+    range: d3.schemeTableau10
+  });
 });
 
-it("plot(…).scale('r') exposes a radius scale", () => {
-  const r0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("r");
-  assert.strictEqual(r0, undefined);
-  const data = [1, 2, 3, 4, 9];
-  const r = Plot.dot(data, {r: d => d})
-    .plot()
-    .scale("r");
-  assert.deepStrictEqual(r.domain, [0, 9]);
-  assert.deepStrictEqual(r.range, [0, Math.sqrt(40.5)]);
-  assert.strictEqual(typeof r.interpolate, "function");
-  assert.strictEqual(r.type, "sqrt");
-  assert.strictEqual(r.clamp, undefined);
+it("plot(…).scale('color') can return an ordinal scale", () => {
+  const plot = Plot.dot(["a", "b", "c", "d"], {y: d => d, fill: d => d}).plot({color: {type: "ordinal"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["a", "b", "c", "d"],
+    range: d3.quantize(d3.interpolateTurbo, 4)
+  });
 });
 
-it("plot(…).scale('opacity') exposes a linear scale", () => {
-  const opacity0 = Plot.dot([1, 2], {x: d => d})
-    .plot()
-    .scale("opacity");
-  assert.strictEqual(opacity0, undefined);
-  const data = [1, 2, 3, 4, 9];
-  const opacity = Plot.dot(data, {fillOpacity: d => d})
-    .plot()
-    .scale("opacity");
-  assert.deepStrictEqual(opacity.domain, [0, 9]);
-  assert.deepStrictEqual(opacity.range, [0, 1]);
-  assert.strictEqual(typeof opacity.interpolate, "function");
-  assert.strictEqual(opacity.type, "linear");
-  assert.strictEqual(opacity.clamp, undefined);
+it("plot(…).scale('r') can return undefined", () => {
+  const plot = Plot.dot([1, 2], {x: d => d}).plot();
+  assert.strictEqual(plot.scale("r"), undefined);
 });
 
-it("plot(…).scale exposes inset domain", () => {
-  assert.deepStrictEqual(scaleOpt({inset: null}).range, [20, 620]);
-  assert.deepStrictEqual(scaleOpt({inset: 7}).range, [27, 613]);
+it("plot(…).scale('r') can return a pow scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 9], {r: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("r"), {
+    type: "pow",
+    exponent: 0.5,
+    domain: [0, 9],
+    range: [0, Math.sqrt(40.5)],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
 });
 
-it("plot(…).scale exposes clamp", () => {
-  assert.strictEqual(scaleOpt({clamp: false}).clamp, undefined);
-  assert.strictEqual(scaleOpt({clamp: true}).clamp, true);
+it("plot(…).scale('opacity') can return undefined", () => {
+  const plot = Plot.dot([1, 2], {x: d => d}).plot();
+  assert.strictEqual(plot.scale("opacity"), undefined);
+});
+
+it("plot(…).scale('opacity') can return a linear scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 9], {fillOpacity: d => d}).plot();
+  assert.deepStrictEqual(plot.scale("opacity"), {
+    type: "linear",
+    domain: [0, 9],
+    range: [0, 1],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot({inset, …}).scale('x').range respects the given top-level inset", () => {
+  assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({inset: 0}).scale("x").range, [20, 620]);
+  assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({inset: 7}).scale("x").range, [27, 613]);
+});
+
+it("plot({inset, …}).scale('x').range respects the given scale-level inset", () => {
+  assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {inset: 0}}).scale("x").range, [20, 620]);
+  assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {inset: 7}}).scale("x").range, [27, 613]);
+});
+
+it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => {
+  assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: false}}).scale("x").clamp, false);
+  assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: true}}).scale("x").clamp, true);
 });
 
 it("plot(…).scale exposes rounded continuous scales", () => {

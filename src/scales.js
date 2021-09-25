@@ -257,14 +257,14 @@ function exposeScale({
   // const interpolate = scale.interpolate ? scale.interpolate()
   //   : scale.interpolator ? scale.interpolator()
   //   : undefined;
-  const clamp = scale.clamp && scale.clamp();
+  // const clamp = scale.clamp && scale.clamp();
   return {
     type,
     domain,
     ...range !== undefined && {range: range.slice()},
     ...diverging && {pivot, symmetric: false},
-    ...interpolate !== undefined && {interpolate}, // TODO different check
-    ...clamp && {clamp},
+    ...interpolate !== undefined && {interpolate}, // TODO different check?
+    ...scale.clamp && {clamp: scale.clamp()},
     ...label !== undefined && {label},
     ...percent !== undefined && {percent},
     ...transform !== undefined && {transform},
