@@ -729,6 +729,19 @@ it("plot(…).scale('color') can return an ordinal scale", async () => {
   });
 });
 
+it("plot(…).scale('color') can return an ordinal scale with a transform", async () => {
+  const transform = d => d.toUpperCase();
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {transform}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["BISCOE", "DREAM", "TORGERSEN"],
+    transform,
+    range: d3.schemeTableau10,
+    label: "island"
+  });
+});
+
 it("plot(…).scale('color') can promote a reversed categorical scale to an ordinal scale with a reversed domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {reverse: true}});
