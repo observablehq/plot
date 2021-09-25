@@ -61,7 +61,7 @@ function autoScaleRound(scale) {
 }
 
 function maybePiecewiseRange(start, end, {type, scale}) {
-  if (type === "quantitative") {
+  if (!isOrdinalScale({type})) {
     const l = scale.domain().length;
     if (l > 2) return Array.from({length: l}, (_, i) => start + i / (l - 1) * (end - start));
   }
