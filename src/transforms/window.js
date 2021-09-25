@@ -19,7 +19,7 @@ export function window(options = {}) {
 }
 
 function maybeAnchor(anchor = "middle", k) {
-  switch ((anchor + "").toLowerCase()) {
+  switch (`${anchor}`.toLowerCase()) {
     case "middle": return (k - 1) >> 1;
     case "start": return 0;
     case "end": return k - 1;
@@ -30,7 +30,7 @@ function maybeAnchor(anchor = "middle", k) {
 function maybeShift(shift) {
   if (shift === undefined) return;
   console.warn("shift is deprecated; please use anchor instead");
-  switch ((shift + "").toLowerCase()) {
+  switch (`${shift}`.toLowerCase()) {
     case "centered": return "middle";
     case "leading": return "start";
     case "trailing": return "end";

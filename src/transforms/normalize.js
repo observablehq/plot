@@ -16,7 +16,7 @@ export function normalizeY(basis, options) {
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
-  switch ((basis + "").toLowerCase()) {
+  switch (`${basis}`.toLowerCase()) {
     case "first": return normalizeFirst;
     case "last": return normalizeLast;
     case "mean": return normalizeMean;

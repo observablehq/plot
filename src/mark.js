@@ -28,7 +28,7 @@ export class Mark {
         throw new Error(`missing channel value: ${name}`);
       }
       if (name !== undefined) {
-        const key = name + "";
+        const key = `${name}`;
         if (key === "__proto__") throw new Error("illegal channel name");
         if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
         names.add(key);
@@ -49,7 +49,7 @@ export class Mark {
     }
     const channels = this.channels.map(channel => {
       const {name} = channel;
-      return [name == null ? undefined : name + "", Channel(data, channel)];
+      return [name == null ? undefined : `${name}`, Channel(data, channel)];
     });
     if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
     return {index, channels};
@@ -120,7 +120,7 @@ export const field = name => d => d[name];
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
-export const string = x => x == null ? x : x + "";
+export const string = x => x == null ? x : `${x}`;
 export const number = x => x == null ? x : +x;
 export const boolean = x => x == null ? x : !!x;
 export const first = d => d[0];
@@ -158,7 +158,7 @@ export function maybeKeyword(input, name, allowed) {
 
 // Validates the specified required string against the allowed list of keywords.
 export function keyword(input, name, allowed) {
-  const i = (input + "").toLowerCase();
+  const i = `${input}`.toLowerCase();
   if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
   return i;
 }

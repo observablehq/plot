@@ -171,7 +171,7 @@ function schemei(interpolate) {
 }
 
 export function ordinalScheme(scheme) {
-  const s = (scheme + "").toLowerCase();
+  const s = `${scheme}`.toLowerCase();
   if (!ordinalSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
   return ordinalSchemes.get(s);
 }
@@ -235,7 +235,7 @@ const quantitativeSchemes = new Map([
 ]);
 
 export function quantitativeScheme(scheme) {
-  const s = (scheme + "").toLowerCase();
+  const s = `${scheme}`.toLowerCase();
   if (!quantitativeSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
   return quantitativeSchemes.get(s);
 }
