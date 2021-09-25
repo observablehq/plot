@@ -36,7 +36,8 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.range = maybePiecewiseRange(marginLeft + inset, width - marginRight - inset, scale);
+    scale.range = [marginLeft + inset, width - marginRight - inset];
+    if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
@@ -46,10 +47,10 @@ function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    const range = maybePiecewiseRange(height - marginBottom - inset, marginTop + inset, scale);
-    if (isOrdinalScale(scale)) range.reverse();
-    scale.range = range;
-    scale.scale.range(range);
+    scale.range = [height - marginBottom - inset, marginTop + inset];
+    if (isOrdinalScale(scale)) scale.range.reverse();
+    else scale.range = piecewiseRange(scale);
+    scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
 }
@@ -60,12 +61,11 @@ function autoScaleRound(scale) {
   }
 }
 
-function maybePiecewiseRange(start, end, {type, scale}) {
-  if (!isOrdinalScale({type})) {
-    const l = scale.domain().length;
-    if (l > 2) return Array.from({length: l}, (_, i) => start + i / (l - 1) * (end - start));
-  }
-  return [start, end];
+function piecewiseRange({scale, range}) {
+  const length = scale.domain().length;
+  if (!(length > 2)) return range;
+  const [start, end] = range;
+  return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
 }
 
 function Scale(key, channels = [], options = {}) {
