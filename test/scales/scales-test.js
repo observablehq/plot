@@ -13,7 +13,7 @@ it("plot(…).scale(name) throws an error if there is no such named scale", () =
   assert.throws(() => plot.scale("z"), /unknown scale: z/);
 });
 
-it("plot(…).scale(name) can return a linear scale for x or y", () => {
+it("plot(…).scale('x') can return a linear scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
   assert.deepStrictEqual(plot.scale("x"), {
     type: "linear",
@@ -22,6 +22,10 @@ it("plot(…).scale(name) can return a linear scale for x or y", () => {
     interpolate: d3.interpolate,
     clamp: false
   });
+});
+
+it("plot(…).scale('y') can return a linear scale", () => {
+  const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
   assert.deepStrictEqual(plot.scale("y"), {
     type: "linear",
     domain: [1, 2],
@@ -31,16 +35,21 @@ it("plot(…).scale(name) can return a linear scale for x or y", () => {
   });
 });
 
-it("plot(…).scale(name) can return undefined for fx or fy, if not facted", () => {
-  const plot = Plot.dot([1, 2], {x: d => d}).plot();
-  assert.strictEqual(plot.scale("fx"), undefined);
-  assert.strictEqual(plot.scale("fy"), undefined);
+it("plot(…).scale('fx') can return undefined", () => {
+  const data = [1, 2];
+  assert.strictEqual(Plot.dot(data, {x: d => d}).plot().scale("fx"), undefined);
+  assert.strictEqual(Plot.dot(data, {x: d => d}).plot({facet: {data, y: data}}).scale("fx"), undefined);
 });
 
-it("plot(…).scale('fx') can return a facet band scale, if faceted", () => {
+it("plot(…).scale('fy') can return undefined", () => {
+  const data = [1, 2];
+  assert.strictEqual(Plot.dot(data, {y: d => d}).plot().scale("fy"), undefined);
+  assert.strictEqual(Plot.dot(data, {y: d => d}).plot({facet: {data, x: data}}).scale("fy"), undefined);
+});
+
+it("plot(…).scale('fx') can return a band scale", () => {
   const data = [1, 2];
   const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, x: data}});
-  assert.strictEqual(plot.scale("fy"), undefined);
   assert.deepStrictEqual(plot.scale("fx"), {
     type: "band",
     domain: [1, 2],
@@ -51,10 +60,9 @@ it("plot(…).scale('fx') can return a facet band scale, if faceted", () => {
   });
 });
 
-it("plot(…).scale('fy') can return a facet band scale, if faceted", () => {
+it("plot(…).scale('fy') can return a band scale", () => {
   const data = [1, 2];
   const plot = Plot.dot(data, {y: d => d}).plot({facet: {data, y: data}});
-  assert.strictEqual(plot.scale("fx"), undefined);
   assert.deepStrictEqual(plot.scale("fy"), {
     type: "band",
     domain: [1, 2],
@@ -112,11 +120,35 @@ it("plot(…).scale('r') can return undefined", () => {
   assert.strictEqual(plot.scale("r"), undefined);
 });
 
-it("plot(…).scale('r') can return a pow scale", () => {
+it("plot(…).scale('r') can return an implicit pow scale", () => {
   const plot = Plot.dot([1, 2, 3, 4, 9], {r: d => d}).plot();
   assert.deepStrictEqual(plot.scale("r"), {
     type: "pow",
     exponent: 0.5,
+    domain: [0, 9],
+    range: [0, Math.sqrt(40.5)],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('r') can return a pow scale for sqrt", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 9], {r: d => d}).plot({r: {type: "sqrt"}});
+  assert.deepStrictEqual(plot.scale("r"), {
+    type: "pow",
+    exponent: 0.5,
+    domain: [0, 9],
+    range: [0, Math.sqrt(40.5)],
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot(…).scale('r') can return an explicit pow scale", () => {
+  const plot = Plot.dot([1, 2, 3, 4, 9], {r: d => d}).plot({r: {type: "pow", exponent: 0.3}});
+  assert.deepStrictEqual(plot.scale("r"), {
+    type: "pow",
+    exponent: 0.3,
     domain: [0, 9],
     range: [0, Math.sqrt(40.5)],
     interpolate: d3.interpolate,
@@ -155,74 +187,86 @@ it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => 
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: true}}).scale("x").clamp, true);
 });
 
-it("plot(…).scale exposes rounded continuous scales", () => {
-  assert.strictEqual(
-    scaleOpt({round: true}).interpolate(0, 100)(Math.SQRT1_2),
-    71
-  );
+it("plot(…).scale('x').label reflects the default label for named fields, possibly reversed", () => {
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot().scale("x").label, "foo →");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {reverse: true}}).scale("x").label, "← foo");
 });
 
-it("plot(…).scale exposes label", () => {
-  assert.strictEqual(scaleOpt({}).label, "x →");
-  assert.strictEqual(scaleOpt({label: "value"}).label, "value");
-  assert.strictEqual(scaleOpt({label: null}).label, null);
-
-  // if label is undefined, return undefined; can be useful for small multiples
-  const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {x: d => d.x})
-    .plot()
-    .scale("x");
-  assert.strictEqual(x.label, undefined);
+it("plot(…).scale('y').label reflects the default label for named fields, possibly reversed", () => {
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot().scale("y").label, "↑ foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot({y: {reverse: true}}).scale("y").label, "↓ foo");
 });
 
-it("plot(…).scale exposes color label", () => {
-  const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"})
-    .plot()
-    .scale("color");
-  assert.strictEqual(x.label, "x");
-  const y = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"})
-    .plot({color: {label: "y"}})
-    .scale("color");
-  assert.strictEqual(y.label, "y");
+it("plot(…).scale('x').label reflects the explicit label", () => {
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {label: "Foo"}}).scale("x").label, "Foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {label: null}}).scale("x").label, null);
 });
 
-it("plot(…).scale exposes the radius label", () => {
-  const x = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"})
-    .plot()
-    .scale("r");
-  assert.strictEqual(x.label, "x");
-  const r = Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"})
-    .plot({r: {label: "radius"}})
-    .scale("r");
-  assert.strictEqual(r.label, "radius");
+it("plot(…).scale('x').label reflects a function label, if not overridden by an explicit label", () => {
+  const foo = Object.assign(d => d.foo, {label: "Foo"});
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo →");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot({x: {label: null}}).scale("x").label, null);
 });
 
-it("plot(…).scale expose pow exponent", () => {
-  const x = Plot.dotX([])
-    .plot({x: {type: "pow", exponent: 0.3}})
-    .scale("x");
-  assert.strictEqual(x.type, "pow");
-  assert.strictEqual(x.exponent, 0.3);
-  const y = Plot.dotX([])
-    .plot({x: {type: "sqrt"}})
-    .scale("x");
-  assert.strictEqual(y.type, "sqrt");
-  assert.strictEqual(y.exponent, 0.5);
+it("plot(…).scale('x').label reflects a channel transform label, if not overridden by an explicit label", () => {
+  const foo = {transform: data => data.map(d => d.foo), label: "Foo"};
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo →");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot({x: {label: null}}).scale("x").label, null);
 });
 
-it("plot(…).scale expose log base", () => {
-  const x = Plot.dotX([])
-    .plot({x: {type: "log", base: 2}})
-    .scale("x");
-  assert.strictEqual(x.type, "log");
-  assert.strictEqual(x.base, 2);
+it("plot(…).scale('color').label reflects the default label for named fields", () => {
+  assert.strictEqual(Plot.dot([{x: 1}, {x: 2}, {x: 3}], {fill: "x"}).plot().scale("color").label, "x");
+  assert.strictEqual(Plot.dot([{y: 1}, {y: 2}, {y: 3}], {fill: "y"}).plot().scale("color").label, "y");
 });
 
-it("plot(…).scale expose symlog constant", () => {
-  const x = Plot.dotX([])
-    .plot({x: {type: "symlog", constant: 42}})
-    .scale("x");
-  assert.strictEqual(x.type, "symlog");
-  assert.strictEqual(x.constant, 42);
+it("plot(…).scale('r').label returns the expected label", () => {
+  assert.strictEqual(Plot.dot([{x: 1}, {x: 2}, {x: 3}], {r: "x"}).plot().scale("r").label, "x");
+  assert.strictEqual(Plot.dot([{y: 1}, {y: 2}, {y: 3}], {r: "y"}).plot().scale("r").label, "y");
+  assert.strictEqual(Plot.dot([{y: 1}, {y: 2}, {y: 3}], {r: "y"}).plot({r: {label: "radius"}}).scale("r").label, "radius");
+});
+
+it("plot(…).scale(name).exponent returns the expected exponent for pow and sqrt scales", () => {
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "sqrt"}}).scale("x").exponent, 0.5);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "sqrt", exponent: 1}}).scale("x").exponent, 0.5);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "pow"}}).scale("x").exponent, 1);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "pow", exponent: 0.3}}).scale("x").exponent, 0.3);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "pow", exponent: "0.3"}}).scale("x").exponent, 0.3);
+});
+
+it("plot(…).scale('y') can return a log scale", () => {
+  const plot = Plot.dotY([1, 2, 3, 4]).plot({y: {type: "log"}});
+  assert.deepStrictEqual(plot.scale("y"), {
+    type: "log",
+    domain: [1, 4],
+    range: [380, 20],
+    base: 10,
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot(…).scale(name).base returns the expected base for log scales", () => {
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "log"}}).scale("x").base, 10);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "log", base: 2}}).scale("x").base, 2);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "log", base: "2"}}).scale("x").base, 2);
+});
+
+it("plot(…).scale('y') can return a symlog scale", () => {
+  const plot = Plot.dotY([1, 2, 3, 4]).plot({y: {type: "symlog"}});
+  assert.deepStrictEqual(plot.scale("y"), {
+    type: "symlog",
+    domain: [1, 4],
+    range: [380, 20],
+    constant: 1,
+    interpolate: d3.interpolate,
+    clamp: false
+  });
+});
+
+it("plot(…).scale(name).constant returns the expected constant for symlog scales", () => {
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "symlog"}}).scale("x").constant, 1);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "symlog", constant: 2}}).scale("x").constant, 2);
+  assert.strictEqual(Plot.dotX([1, 2, 3]).plot({x: {type: "symlog", constant: "2"}}).scale("x").constant, 2);
 });
 
 it("plot(…).scale expose align, paddingInner and paddingOuter", () => {
@@ -242,12 +286,6 @@ it("plot(…).scale does not expose unexpected scale options", () => {
   assert.strictEqual(x.lala, undefined);
   assert.strictEqual(x.width, undefined);
 });
-
-function scaleOpt(x) {
-  return Plot.dot([{x: 1}, {x: 2}, {x: 3}], {x: "x"})
-    .plot({x})
-    .scale("x");
-}
 
 it("default linear scale has the expected value", async () => {
   const data = await d3.csv("data/penguins.csv", d3.autoType);

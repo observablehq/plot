@@ -132,6 +132,7 @@ function inferLabel(channels = [], scale, axis, key) {
   return candidate;
 }
 
+// TODO trace explicit reverse field instead of trying to order the domain?
 function isDescendingDomain({domain, reverse}) {
   return domain && domain.length > 1 ? ascending(...domain) === 1 : reverse;
 }
