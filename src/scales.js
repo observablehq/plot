@@ -240,16 +240,12 @@ export function exposeScales(scaleDescriptors) {
 function exposeScale({
   scale,
   type,
-  label,
   range,
-  interpolate, // TODO
+  label,
+  interpolate,
+  transform,
   percent,
-  diverging,
-  // align, // TODO remove
-  // paddingInner, // TODO remove
-  // paddingOuter, // TODO remove
-  transform
-  // round // TODO remove
+  diverging
 }) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
@@ -258,8 +254,8 @@ function exposeScale({
     domain,
     ...range !== undefined && {range: range.slice()},
     ...label !== undefined && {label},
-    ...percent !== undefined && {percent},
     ...transform !== undefined && {transform},
+    ...percent && {percent}, // only exposed if truthy
 
     // TODO quantitative
     ...interpolate !== undefined && {interpolate}, // TODO different check?

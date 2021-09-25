@@ -260,6 +260,27 @@ it("plot(…).scale('opacity') can return a linear scale", () => {
   });
 });
 
+it("plot(…).scale('opacity') can return a linear scale for penguins", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.plot({
+    opacity: {
+      percent: 1 // coerced to true; TODO separate test for percent
+    },
+    marks: [
+      Plot.rectX(penguins, Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20}))
+    ]
+  });
+  assert.deepStrictEqual(plot.scale("opacity"), {
+    type: "linear",
+    domain: [0, 4000],
+    range: [0, 1],
+    interpolate: d3.interpolate,
+    clamp: false,
+    percent: true,
+    label: "Frequency (%)"
+  });
+});
+
 it("plot({inset, …}).scale('x').range respects the given top-level inset", () => {
   assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({inset: 0}).scale("x").range, [20, 620]);
   assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({inset: 7}).scale("x").range, [27, 613]);
@@ -483,37 +504,6 @@ it("Continuous non-linear scales are accompanied by their parameters", async () 
     .scale("x");
   assert.equal(symlog.type, "symlog");
   assert.equal(symlog.constant, 3);
-});
-
-it("All the expected scales are returned; non-instantiated scales are undefined; non-existing scales throw an error", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {fill: "island"}).plot();
-  assert(p.scale("x"));
-  assert.equal(p.scale("y"), undefined);
-  assert.equal(p.scale("fx"), undefined);
-  assert.equal(p.scale("fy"), undefined);
-  assert.equal(p.scale("r"), undefined);
-  assert(p.scale("color"));
-  assert.equal(p.scale("opacity"), undefined);
-  assert.throws(() => p.scale("nonexistent"));
-});
-
-it("An opacity scale has the expected defaults", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.rectX(
-    data,
-    Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20})
-  ).plot({
-    opacity: {percent: true}
-  });
-  const x = p.scale("opacity");
-  assert.deepEqual(x.domain, [0, 4000]);
-  assert.deepEqual(x.range, [0, 1]);
-  assert.equal(x.interpolate(0, 10)(0.15), 1.5);
-  assert.equal(x.clamp, false);
-  assert.equal(x.type, "linear");
-  assert.equal(x.percent, true);
-  assert.equal(x.label, "Frequency (%)");
 });
 
 it("scale.transform is exposed and reusable", async () => {

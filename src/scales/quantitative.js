@@ -55,9 +55,12 @@ export function ScaleQ(key, scale, channels, {
   scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
-  ...rest
+  percent,
+  inset = 0
 }) {
   reverse = !!reverse;
+  percent = !!percent;
+  inset = +inset;
 
   // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
@@ -100,7 +103,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {reverse, domain, range, scale, type, interpolate, ...rest};
+  return {reverse, domain, range, scale, type, interpolate, percent, inset};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -146,6 +149,7 @@ export function ScaleThreshold(key, channels, {
   reverse,
   percent
 }) {
+  percent = !!percent;
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
   if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
   return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range, percent};
