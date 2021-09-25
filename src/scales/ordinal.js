@@ -9,14 +9,12 @@ export function ScaleO(scale, channels, {
   domain = inferDomain(channels),
   range,
   reverse,
-  round,
   inset = 0,
   transform
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
   if (transform !== undefined && typeof transform !== "function") throw new Error("invalid transform");
   if (reverse = !!reverse) domain = reverseof(domain);
-  round = !!round;
   inset = +inset;
   scale.domain(domain);
   if (range !== undefined) {
@@ -24,7 +22,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, reverse, round, inset, transform};
+  return {type, domain, range, scale, reverse, inset, transform};
 }
 
 export function ScaleOrdinal(key, channels, {
@@ -33,7 +31,7 @@ export function ScaleOrdinal(key, channels, {
   range = registry.get(key) === color ? ordinalScheme(scheme) : undefined,
   ...options
 }) {
-  return ScaleO(scaleOrdinal().unknown(undefined), channels, {range, type, ...options});
+  return ScaleO(scaleOrdinal().unknown(undefined), channels, {type, range, ...options});
 }
 
 export function ScalePoint(key, channels, {
@@ -46,7 +44,7 @@ export function ScalePoint(key, channels, {
       .align(align)
       .padding(padding),
     channels,
-    {align, padding, ...options}
+    options
   );
 }
 
@@ -63,14 +61,15 @@ export function ScaleBand(key, channels, {
       .paddingInner(paddingInner)
       .paddingOuter(paddingOuter),
     channels,
-    {align, paddingInner, paddingOuter, ...options}
+    options
   );
 }
 
-function maybeRound(scale, channels, {round, ...options} = {}) {
-  if (round !== undefined) scale.round(round);
+function maybeRound(scale, channels, options) {
+  let {round} = options;
+  if (round !== undefined) scale.round(round = !!round);
   scale = ScaleO(scale, channels, options);
-  scale.round = round;
+  scale.round = round; // preserve for autoScaleRound
   return scale;
 }
 

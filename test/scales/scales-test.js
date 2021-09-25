@@ -107,15 +107,15 @@ it("plot(…).scale('x') can return a band scale", () => {
   });
 });
 
-it("plot(…).scale('x') can return a band scale, respecting the specified align and padding", () => {
-  const plot = Plot.cellX(["A", "B"]).plot({x: {paddingOuter: -0.2, align: 1}});
+it("plot(…).scale('x') can return an explicit band scale", () => {
+  const plot = Plot.cell([0, 1], {x: d => d}).plot({x: {type: "band"}});
   assert.deepStrictEqual(plot.scale("x"), {
     type: "band",
     domain: [0, 1],
     range: [20, 620],
     paddingInner: 0.1,
-    paddingOuter: -0.2,
-    align: 1,
+    paddingOuter: 0.1,
+    align: 0.5,
     round: true
   });
 });
@@ -612,6 +612,63 @@ it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => 
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: true}}).scale("x").clamp, true);
 });
 
+it("plot({align, …}).scale('x').align reflects the given align option for point scales", () => {
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
+});
+
+it("plot({align, …}).scale('x').align reflects the given align option for band scales", () => {
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
+});
+
+it("plot({paddingInner, …}).scale('x').paddingInner reflects the given paddingInner option for band scales", () => {
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 1}}).scale("x").paddingInner, 1);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 1}}).scale("x").paddingInner, 1);
+});
+
+it("plot({paddingOuter, …}).scale('x').paddingOuter reflects the given paddingOuter option for band scales", () => {
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 1}}).scale("x").paddingOuter, 1);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 1}}).scale("x").paddingOuter, 1);
+});
+
+it("plot({padding, …}).scale('x').paddingInner reflects the given padding option for band scales", () => {
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingInner, 1);
+});
+
+it("plot({padding, …}).scale('x').paddingOuter reflects the given padding option for band scales", () => {
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingOuter, 1);
+});
+
+it("plot({padding, …}).scale('x').padding reflects the given padding option for point scales", () => {
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").padding, 0);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").padding, 0.7);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").padding, 0.7);
+  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").padding, 1);
+});
+
 it("plot(…).scale('x').label reflects the default label for named fields, possibly reversed", () => {
   assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot().scale("x").label, "foo →");
   assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {reverse: true}}).scale("x").label, "← foo");
@@ -884,28 +941,6 @@ it("A diverging-log scale with negative values is reusable", async () => {
   );
 });
 
-it("A point scale with explicit align is reusable 0", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "point", align: 0},
-      r: {range: [2, 13]}
-    },
-    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
-  );
-});
-
-it("A point scale with explicit align is reusable 0.7", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "point", align: 0.7},
-      r: {range: [2, 13]}
-    },
-    Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
-  );
-});
-
 it("A radius scale with an explicit range is reusable", async () => {
   const data = await d3.csv("data/penguins.csv", d3.autoType);
   assertReusable(
@@ -914,71 +949,6 @@ it("A radius scale with an explicit range is reusable", async () => {
       r: {range: [2, 13]}
     },
     Plot.dotX(data, Plot.groupX({r: "count"}, {fill: "island", x: "island"}))
-  );
-});
-
-it("A band scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "band"}
-    },
-    Plot.cellX(
-      data,
-      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
-    )
-  );
-});
-
-it("A band scale with an explicit align is reusable 0", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "band", align: 0}
-    },
-    Plot.cellX(
-      data,
-      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
-    )
-  );
-});
-
-it("A band scale with an explicit align is reusable 1", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "band", align: 1}
-    },
-    Plot.cellX(
-      data,
-      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
-    )
-  );
-});
-
-it("A band scale with an explicit paddingInner is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "band", paddingInner: 0.4}
-    },
-    Plot.cellX(
-      data,
-      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
-    )
-  );
-});
-
-it("A band scale with an explicit paddingOuter is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      x: {type: "band", paddingOuter: 0.4}
-    },
-    Plot.cellX(
-      data,
-      Plot.groupX({fillOpacity: "count"}, {fill: "island", x: "island"})
-    )
   );
 });
 
