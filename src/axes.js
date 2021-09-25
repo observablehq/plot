@@ -1,6 +1,7 @@
 import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale} from "./scales.js";
 import {ascending} from "d3";
+import {position, registry} from "./scales/index.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -39,7 +40,7 @@ function autoAxisTicksK(scale, axis, k) {
 }
 
 // Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
-export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
+export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, options) {
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
     if (fx.labelOffset === undefined) {
@@ -68,38 +69,39 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
       y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     }
   }
+  for (const [key, type] of registry) {
+    if (type !== position && scales[key]) { // already handled above
+      autoScaleLabel(key, scales[key], channels.get(key), options[key]);
+    }
+  }
 }
 
+// Note: mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
       : isDescendingDomain(scale) ? "left"
       : "right";
   }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "x");
-  }
+  if (axis.label === undefined) axis.label = inferLabel(channels, scale, axis, "x");
   scale.label = axis.label;
 }
 
+// Note: mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
       : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
       : "top";
   }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "y");
-  }
+  if (axis.label === undefined) axis.label = inferLabel(channels, scale, axis, "y");
   scale.label = axis.label;
 }
 
-export function autoScaleLabel(scale, channels, options) {
-  if (scale === undefined) return;
-  if (options !== undefined) scale.label = options.label;
-  if (scale.label === undefined) {
-    scale.label = inferLabel(channels, scale, {});
-  }
+// Note: mutates scale.label!
+function autoScaleLabel(key, scale, channels, options) {
+  if (options) scale.label = options.label;
+  if (scale.label === undefined) scale.label = inferLabel(channels, scale, null, key);
 }
 
 // Channels can have labels; if all the channels for a given scale are
@@ -119,7 +121,7 @@ function inferLabel(channels = [], scale, axis, key) {
     if (!isOrdinalScale(scale)) {
       if (scale.percent) candidate = `${candidate} (%)`;
       if (key === "x" || key === "y") {
-        if (axis.labelAnchor === "center") {
+        if (axis && axis.labelAnchor === "center") {
           candidate = `${candidate} →`;
         } else if (key === "x") {
           candidate = isDescendingDomain(scale) ? `← ${candidate}` : `${candidate} →`;

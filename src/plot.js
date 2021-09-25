@@ -1,9 +1,8 @@
 import {create} from "d3";
-import {Axes, autoAxisTicks, autoAxisLabels, autoScaleLabel} from "./axes.js";
+import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {registry, position} from "./scales/index.js";
 import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -51,11 +50,8 @@ export function plot(options = {}) {
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
+  autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
-  autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
-  for (const [key, type] of registry) {
-    if (type !== position) autoScaleLabel(scaleDescriptors[key], scaleChannels.get(key), options[key]);
-  }
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
