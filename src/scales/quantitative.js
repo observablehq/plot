@@ -145,7 +145,7 @@ export function ScaleQuantile(key, channels, {
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, {constant, ...options});
+  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
 }
 
 export function ScaleThreshold(key, channels, {
@@ -163,7 +163,7 @@ export function ScaleThreshold(key, channels, {
 }
 
 export function ScaleIdentity() {
-  return {scale: scaleIdentity(), type: "identity"};
+  return {type: "identity", scale: scaleIdentity()};
 }
 
 export function inferDomain(channels, f) {
