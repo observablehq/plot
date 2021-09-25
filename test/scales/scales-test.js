@@ -284,6 +284,106 @@ it("plot(…).scale('color') can return a utc scale", async () => {
   });
 });
 
+it("plot(…).scale('color') can return an asymmetric diverging scale", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", symmetric: false}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging",
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    interpolate: d3.interpolateRdBu,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') can return a symmetric diverging scale", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging"}});
+  const {interpolate, ...color} = plot.scale("color");
+  assert.deepStrictEqual(color, {
+    type: "diverging",
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    clamp: false,
+    label: "Anomaly"
+  });
+  const k = 0.78 / 1.35;
+  for (const t of d3.ticks(0, 1, 100)) {
+    assert.strictEqual(interpolate(t), d3.interpolateRdBu(t < 0.5 ? t * k + (1 - k) / 2: t));
+  }
+});
+
+it("plot(…).scale('color') can return an asymmetric diverging pow scale with an explicit scheme", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-sqrt", symmetric: false, scheme: "piyg"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging-pow",
+    exponent: 0.5,
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    interpolate: d3.interpolatePiYG,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') can return an asymmetric diverging pow scale with an explicit exponent and scheme", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-pow", exponent: 2, symmetric: false, scheme: "piyg"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging-pow",
+    exponent: 2,
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    interpolate: d3.interpolatePiYG,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') can return an asymmetric diverging symlog scale with an explicit constant", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-symlog", constant: 2, symmetric: false, scheme: "piyg"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging-symlog",
+    constant: 2,
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    interpolate: d3.interpolatePiYG,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') can return an asymmetric diverging log scale with an explicit pivot and base", async () => {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", pivot: 1e8, base: 10, symmetric: false, scheme: "piyg"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging-log",
+    base: 10,
+    domain: [11475900, 266380800],
+    pivot: 100000000,
+    interpolate: d3.interpolatePiYG,
+    clamp: false,
+    label: "Volume"
+  });
+});
+
+it("plot(…).scale('color') can return an asymmetric diverging log scale with a negative domain via transform, pivot and base", async () => {
+  const aapl = await d3.csv("data/aapl.csv", d3.autoType);
+  const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", transform: d => -d, pivot: -1e8, base: 10, symmetric: false, scheme: "piyg"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging-log",
+    base: 10,
+    domain: [-266380800, -11475900],
+    pivot: -100000000,
+    interpolate: d3.interpolatePiYG,
+    clamp: false,
+    label: "Volume"
+  });
+});
+
 it("plot(…).scale('color') can return a “polylinear” piecewise linear scale with an explicit range", () => {
   const plot = Plot.ruleX([100, 200, 300, 400], {stroke: d => d}).plot({
     color: {
@@ -1052,145 +1152,3 @@ it("plot(…).scale(name) can return an identity scale, ignoring all other optio
 //   assert.deepStrictEqual(scales1, scales2);
 //   assert.strictEqual(plot1.outerHTML, plot2.outerHTML);
 // }
-
-// TODO FIXME
-it.skip("A diverging scale’s pivot is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "diverging",
-      pivot: 5400,
-      symmetric: false,
-      reverse: false
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-// TODO FIXME
-it.skip("A diverging-sqrt scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "diverging-sqrt",
-      pivot: 3200,
-      symmetric: false,
-      scheme: "reds"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-// TODO FIXME
-it.skip("A diverging-pow scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "diverging-pow",
-      exponent: 3.2,
-      pivot: 3200,
-      symmetric: false,
-      scheme: "reds"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-// TODO FIXME
-it.skip("A diverging-symlog scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "diverging-symlog",
-      pivot: 3200,
-      constant: 3,
-      symmetric: true,
-      scheme: "cool"
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-// TODO FIXME
-it.skip("A diverging-log scale is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable({
-    color: {
-      type: "diverging-log",
-      pivot: 3200,
-      symmetric: false,
-      range: ["red", "yellow", "blue"],
-      interpolate: "hsl" // d3.interpolateHsl
-    }
-  },
-  Plot.dotX(data, {fill: "body_mass_g", x: "body_mass_g", r: 9}));
-});
-
-it("A diverging-log scale with negative values is reusable", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  assertReusable(
-    {
-      color: {
-        type: "diverging-log",
-        domain: [-6000, -3000],
-        pivot: -4500,
-        constant: 3,
-        symmetric: true,
-        scheme: "cool"
-      }
-    },
-    Plot.dotX(data, {fill: d => -d.body_mass, x: "body_mass", r: 9})
-  );
-});
-
-function assertReusable(scales, pl) {
-  const plot = pl.plot(scales);
-  const plot2 = pl.plot({
-    fx: plot.scale("fx"),
-    fy: plot.scale("fy"),
-    x: plot.scale("x"),
-    y: plot.scale("y"),
-    color: plot.scale("color"),
-    r: plot.scale("r"),
-    opacity: plot.scale("opacity")
-  });
-  const plot3 = pl.plot({
-    fx: plot2.scale("fx"),
-    fy: plot2.scale("fy"),
-    x: plot2.scale("x"),
-    y: plot2.scale("y"),
-    color: plot2.scale("color"),
-    r: plot2.scale("r"),
-    opacity: plot2.scale("opacity")
-  });
-
-  assert(plot3.innerHTML === plot.innerHTML);
-
-  // now test with reverse
-  if (scales.color) {
-    scales.color.reverse = !scales.color.reverse;
-    {
-      const plot = pl.plot(scales);
-      const plot2 = pl.plot({
-        fx: plot.scale("fx"),
-        fy: plot.scale("fy"),
-        x: plot.scale("x"),
-        y: plot.scale("y"),
-        color: plot.scale("color"),
-        r: plot.scale("r"),
-        opacity: plot.scale("opacity")
-      });
-      const plot3 = pl.plot({
-        fx: plot2.scale("fx"),
-        fy: plot2.scale("fy"),
-        x: plot2.scale("x"),
-        y: plot2.scale("y"),
-        color: plot2.scale("color"),
-        r: plot2.scale("r"),
-        opacity: plot2.scale("opacity")
-      });
-
-      assert(plot3.innerHTML === plot.innerHTML);
-    }
-  }
-}

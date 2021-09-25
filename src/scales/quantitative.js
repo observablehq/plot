@@ -119,11 +119,11 @@ export function ScaleSqrt(key, channels, options) {
 }
 
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow", exponent});
+  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
 }
 
 export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {base, domain, ...options});
+  return ScaleQ(key, scaleLog().base(base), channels, {...options, domain});
 }
 
 export function ScaleQuantile(key, channels, {

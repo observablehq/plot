@@ -152,7 +152,7 @@ function inferScaleType(key, channels, {type, domain, range}) {
 
 // Positional scales default to a point scale instead of an ordinal scale.
 function asOrdinalType(key) {
-  switch(registry.get(key)) {
+  switch (registry.get(key)) {
     case position: return "point";
     case color: return "categorical";
     default: return "ordinal";
@@ -165,6 +165,10 @@ export function isTemporalScale({type}) {
 
 export function isOrdinalScale({type}) {
   return type === "ordinal" || type === "point" || type === "band";
+}
+
+export function isDivergingScale({type}) {
+  return /^diverging($|-)/.test(type);
 }
 
 // TODO use Float64Array.from for position and radius scales?
@@ -243,14 +247,13 @@ function exposeScale({
   label,
   interpolate,
   transform,
-  percent,
-  diverging
+  percent
 }) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
   return {
     type,
-    domain, // TODO wrong for diverging
+    domain,
     ...range !== undefined && {range: Array.from(range)}, // defensive copy
     ...label !== undefined && {label},
 
@@ -260,8 +263,8 @@ function exposeScale({
     ...interpolate !== undefined && {interpolate},
     ...scale.clamp && {clamp: scale.clamp()},
 
-    // TODO diverging
-    ...diverging && {pivot: (([, pivot]) => pivot)(domain), symmetric: false}, // TODO symmetric?
+    // diverging
+    ...isDivergingScale({type}) && (([min, pivot, max]) => ({domain: [min, max], pivot}))(domain),
 
     // log, diverging-log
     ...scale.base && {base: scale.base()},
