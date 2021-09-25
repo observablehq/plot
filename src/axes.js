@@ -1,6 +1,6 @@
 import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale} from "./scales.js";
-import {ascending} from "d3";
+import {ascending, extent} from "d3";
 import {position, registry} from "./scales/index.js";
 
 export function Axes(
@@ -34,8 +34,8 @@ export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, f
 
 function autoAxisTicksK(scale, axis, k) {
   if (axis.ticks === undefined) {
-    const [min, max] = scale.scale.range();
-    axis.ticks = Math.abs(max - min) / k;
+    const [min, max] = extent(scale.scale.range());
+    axis.ticks = (max - min) / k;
   }
 }
 
