@@ -402,12 +402,11 @@ it("custom interpolators are honored", async () => {
   assert.equal(x.label, "body_mass_g →");
 });
 
-// TODO Determine why this is failing, and fix.
-it.skip("A continuous scheme on a continuous dimension is returned as an interpolator", async () => {
+it("A continuous scheme on a continuous dimension is returned as an interpolator", async () => {
   const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {fill: "body_mass_g"}).plot({fill: {scheme: "warm"}});
+  const p = Plot.dotX(data, {fill: "body_mass_g"}).plot({color: {scheme: "warm"}});
   const x = p.scale("color");
-  assert.equal(x.interpolate(0, 100)(1 / 3), "rgb(46, 229, 174)");
+  assert.equal(x.interpolate(1 / 3), d3.interpolateWarm(1 / 3));
 });
 
 it("A continuous scheme on an ordinal dimension is returned as a range of the same length", async () => {
