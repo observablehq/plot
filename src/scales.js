@@ -70,7 +70,7 @@ function piecewiseRange({scale, range}) {
 
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
-  options.type = type;
+  options.type = type; // Note: mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
