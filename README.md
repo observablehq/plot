@@ -198,24 +198,22 @@ Plot.plot({
 })
 ```
 
-All the scale definitions are exposed through the *scales* property of the plot.
+Scale definitions are exposed through the *plot*.**scale**(*name*) function of the returned plot.
 
 ```js
-color = Plot.plot({…}).scale("color");
-color.range // ["red", "blue"]
+const plot = Plot.plot(…); // render a plot
+const color = plot.scale("color"); // retrieve the color scale object
+console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
-And, to reuse the scale in another plot:
+To reuse a scale across plots, pass the scale object into another plot specification:
 
 ```js
 const plot1 = Plot.plot(…);
-
-Plot.plot({
-  color: plot1.scale("color")
-})
+const plot2 = Plot.plot({…, color: plot1.scale("color")});
 ```
 
-*plot*.scale(*scale*) returns a scale definition instantiated on the actual values encountered in the plot (domain, range, thresholds, etc.). It returns undefined if *scale* is known (*x*, *y*, *fx*, *fy*, *r*, *color*, *opacity*) but not used, and throws an error if *scale* is unknown.
+The returned scale object represents the actual (or “materialized”) values encountered in the plot, including the domain, range, interpolate function, *etc.* The scale object is undefined if there is the associated plot has scale with the given *name*, and throws an error if the *name* is invalid  (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 
 ### Position options
 
