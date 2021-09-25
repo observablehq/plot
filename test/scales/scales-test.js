@@ -262,22 +262,28 @@ it("plot(…).scale('opacity') can return a linear scale", () => {
 
 it("plot(…).scale('opacity') can return a linear scale for penguins", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.plot({
-    opacity: {
-      percent: 1 // coerced to true; TODO separate test for percent
-    },
-    marks: [
-      Plot.rectX(penguins, Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20}))
-    ]
-  });
+  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20})).plot();
   assert.deepStrictEqual(plot.scale("opacity"), {
     type: "linear",
-    domain: [0, 4000],
+    domain: [0, 40],
     range: [0, 1],
     interpolate: d3.interpolate,
     clamp: false,
-    percent: true,
-    label: "Frequency (%)"
+    label: "Frequency"
+  });
+});
+
+it("plot(…).scale('opacity') respects the percent option, affecting domain and label", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "proportion"}, {x: "body_mass_g", thresholds: 20})).plot({opacity: {percent: true}});
+  assert.deepStrictEqual(plot.scale("opacity"), {
+    type: "linear",
+    domain: [0, 11.627906976744185],
+    range: [0, 1],
+    interpolate: d3.interpolate,
+    clamp: false,
+    label: "Frequency (%)",
+    percent: true
   });
 });
 
@@ -414,96 +420,34 @@ it("plot(…).scale(name).round reflects the round option for band scales", asyn
   });
 });
 
-it("custom interpolators are honored", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {x: "body_mass_g"}).plot({
-    x: {interpolate: (a, b) => t => +(t * (b - a) + a).toFixed(1)}
+it("plot(…).scale(name) reflects the given custom interpolator", async () => {
+  const interpolate = (a, b) => t => +(t * (b - a) + a).toFixed(1);
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {interpolate}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [2700, 6300],
+    range: [20, 620],
+    interpolate,
+    clamp: false,
+    label: "body_mass_g →"
   });
-  const x = p.scale("x");
-  assert.deepEqual(Object.keys(x), [
-    "type",
-    "domain",
-    "range",
-    "label",
-    "interpolate",
-    "clamp"
-  ]);
-  assert.deepEqual(x.domain, [2700, 6300]);
-  assert.deepEqual(x.range, [20, 620]);
-  assert.equal(x.interpolate(0, 100)(1 / 3), 33.3);
-  assert.equal(x.type, "linear");
-  assert.equal(x.align, undefined);
-  assert.equal(x.label, "body_mass_g →");
 });
 
-it("A continuous scheme on a continuous dimension is returned as an interpolator", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {fill: "body_mass_g"}).plot({color: {scheme: "warm"}});
-  const x = p.scale("color");
-  assert.equal(x.interpolate(1 / 3), d3.interpolateWarm(1 / 3));
+it("plot(…).scale('color') promotes the given scheme option to an interpolator for quantitative scales", () => {
+  assert.strictEqual(Plot.dotX([], {fill: "x"}).plot().scale("color").interpolate, d3.interpolateTurbo);
+  assert.strictEqual(Plot.dotX([], {fill: "x"}).plot({color: {scheme: "warm"}}).scale("color").interpolate, d3.interpolateWarm);
+  assert.strictEqual(Plot.dotX([], {fill: "x"}).plot({color: {scheme: "cool"}}).scale("color").interpolate, d3.interpolateCool);
 });
 
-it("A continuous scheme on an ordinal dimension is returned as a range of the same length", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {fill: "island"}).plot({
-    color: {scheme: "warm"}
-  });
-  const x = p.scale("color");
-  assert.deepEqual(x.range, [
-    "rgb(110, 64, 170)",
-    "rgb(255, 94, 99)",
-    "rgb(175, 240, 91)"
-  ]);
-  assert.equal(x.range.length, x.domain.length);
-  const pr = Plot.dotX(data, {fill: "island"}).plot({
-    color: {scheme: "reds"}
-  });
-  const xr = pr.scale("color");
-  assert.deepEqual(xr.range, ["#fee0d2", "#fc9272", "#de2d26"]);
-});
-
-it("An ordinal scheme on an ordinal dimension is returned as a range", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const p = Plot.dotX(data, {fill: "island"}).plot({
-    color: {scheme: "category10"}
-  });
-  const x = p.scale("color");
-  assert.deepEqual(x.range, [
-    "#1f77b4",
-    "#ff7f0e",
-    "#2ca02c",
-    "#d62728",
-    "#9467bd",
-    "#8c564b",
-    "#e377c2",
-    "#7f7f7f",
-    "#bcbd22",
-    "#17becf"
-  ]);
-});
-
-it("Continuous non-linear scales are accompanied by their parameters", async () => {
-  const data = await d3.csv("data/penguins.csv", d3.autoType);
-  const sqrt = Plot.dotX(data, {x: "body_mass_g"})
-    .plot({x: {type: "sqrt"}})
-    .scale("x");
-  assert.equal(sqrt.type, "pow");
-  assert.equal(sqrt.exponent, 0.5);
-  const pow = Plot.dotX(data, {x: "body_mass_g"})
-    .plot({x: {type: "pow", exponent: 1.7}})
-    .scale("x");
-  assert.equal(pow.type, "pow");
-  assert.equal(pow.exponent, 1.7);
-  const log = Plot.dotX(data, {x: "body_mass_g"})
-    .plot({x: {type: "log", base: 7}})
-    .scale("x");
-  assert.equal(log.type, "log");
-  assert.equal(log.base, 7);
-  const symlog = Plot.dotX(data, {x: "body_mass_g"})
-    .plot({x: {type: "symlog", constant: 3}})
-    .scale("x");
-  assert.equal(symlog.type, "symlog");
-  assert.equal(symlog.constant, 3);
+it("plot(…).scale('color') promotes the given scheme option to a range for ordinal scales", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, d3.schemeTableau10);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot({color: {type: "categorical"}}).scale("color").range, d3.schemeTableau10);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot({color: {scheme: "category10"}}).scale("color").range, d3.schemeCategory10);
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot({color: {type: "ordinal"}}).scale("color").range, d3.quantize(d3.interpolateTurbo, 3));
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot({color: {scheme: "warm"}}).scale("color").range, d3.quantize(d3.interpolateWarm, 3));
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot({color: {scheme: "cool"}}).scale("color").range, d3.quantize(d3.interpolateCool, 3));
 });
 
 it("scale.transform is exposed and reusable", async () => {
