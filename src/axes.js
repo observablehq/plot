@@ -76,7 +76,7 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
   }
 }
 
-// Note: mutates axis.labelAnchor, axis.label, scale.label!
+// Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
@@ -87,7 +87,7 @@ function autoAxisLabelsX(axis, scale, channels) {
   scale.label = axis.label;
 }
 
-// Note: mutates axis.labelAnchor, axis.label, scale.label!
+// Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
@@ -98,7 +98,7 @@ function autoAxisLabelsY(axis, opposite, scale, channels) {
   scale.label = axis.label;
 }
 
-// Note: mutates scale.label!
+// Mutates scale.label!
 function autoScaleLabel(key, scale, channels, options) {
   if (options) scale.label = options.label;
   if (scale.label === undefined) scale.label = inferLabel(channels, scale, null, key);
