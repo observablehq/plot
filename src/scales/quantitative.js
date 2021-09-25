@@ -1,5 +1,6 @@
 import {
   ascending,
+  interpolate as interpolateAuto,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -14,7 +15,6 @@ import {
   scaleLinear,
   scaleLog,
   scalePow,
-  scaleSqrt,
   scaleQuantile,
   scaleSymlog,
   scaleThreshold,
@@ -82,6 +82,8 @@ export function ScaleQ(key, scale, channels, {
     } else {
       scale.interpolate(interpolate);
     }
+  } else {
+    interpolate = interpolateAuto;
   }
 
   // TODO describe zero option
@@ -106,11 +108,11 @@ export function ScaleLinear(key, channels, options) {
 }
 
 export function ScaleSqrt(key, channels, options) {
-  return ScaleQ(key, scaleSqrt(), channels, options);
+  return ScalePow(key, channels, {...options, exponent: 0.5});
 }
 
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, options.type === "sqrt" ? options : {exponent, ...options});
+  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow", exponent});
 }
 
 export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
