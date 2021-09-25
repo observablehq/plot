@@ -296,12 +296,13 @@ it("default linear scale has the expected value", async () => {
     "domain",
     "range",
     "interpolate",
+    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);
   assert.equal(x.interpolate(0, 1)(0.15), 0.15);
-  assert.equal(x.clamp, undefined);
+  assert.equal(x.clamp, false);
   assert.equal(x.type, "linear");
   assert.equal(x.align, undefined);
   assert.equal(x.label, "body_mass_g →");
@@ -333,7 +334,7 @@ it("sqrt scale x honors explicit values", async () => {
   assert.equal(x.exponent, 0.5);
   assert.equal(x.interpolate(0, 1)(0.15), 0.15);
   assert.equal(x.clamp, true);
-  assert.equal(x.type, "sqrt");
+  assert.equal(x.type, "pow");
   assert.equal(x.label, "Body mass");
 });
 
@@ -351,6 +352,7 @@ it("nice and inset are subsumed in the domain and range", async () => {
     "domain",
     "range",
     "interpolate",
+    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2500, 6500]);
@@ -366,12 +368,13 @@ it("quantitative round is subsumed in the interpolator", async () => {
     "domain",
     "range",
     "interpolate",
+    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
   assert.deepEqual(x.range, [20, 620]);
   assert.equal(x.interpolate(0, 100)(1 / 3), 33);
-  assert.equal(x.clamp, undefined); // undefined would be fine too!
+  assert.equal(x.clamp, false); // undefined would be fine too!
   assert.equal(x.type, "linear");
   assert.equal(x.align, undefined);
   assert.equal(x.label, "body_mass_g →");
@@ -388,6 +391,7 @@ it("custom interpolators are honored", async () => {
     "domain",
     "range",
     "interpolate",
+    "clamp",
     "label"
   ]);
   assert.deepEqual(x.domain, [2700, 6300]);
@@ -450,7 +454,8 @@ it("Continuous non-linear scales are accompanied by their parameters", async () 
   const sqrt = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "sqrt"}})
     .scale("x");
-  assert.equal(sqrt.type, "sqrt");
+  assert.equal(sqrt.type, "pow");
+  assert.equal(sqrt.exponent, 0.5);
   const pow = Plot.dotX(data, {x: "body_mass_g"})
     .plot({x: {type: "pow", exponent: 1.7}})
     .scale("x");
@@ -493,7 +498,7 @@ it("An opacity scale has the expected defaults", async () => {
   assert.deepEqual(x.domain, [0, 4000]);
   assert.deepEqual(x.range, [0, 1]);
   assert.equal(x.interpolate(0, 10)(0.15), 1.5);
-  assert.equal(x.clamp, undefined);
+  assert.equal(x.clamp, false);
   assert.equal(x.type, "linear");
   assert.equal(x.percent, true);
   assert.equal(x.label, "Frequency (%)");
