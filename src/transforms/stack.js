@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, identity, maybeZero, isOptions, maybeValue} from "../mark.js";
+import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybeZero, isOptions, maybeValue} from "../mark.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
@@ -47,20 +47,14 @@ export function stackY2(stackOptions = {}, options = {}) {
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
   options = aliasSort(options, "x");
-  if (x1 === undefined && x2 == undefined) {
-    if (x === undefined) x = identity;
-    return stackX({x, ...options});
-  }
+  if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   ([x1, x2] = maybeZero(x, x1, x2));
   return {...options, x1, x2};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
   options = aliasSort(options, "y");
-  if (y1 === undefined && y2 == undefined) {
-    if (y === undefined) y = identity;
-    return stackY({y, ...options});
-  }
+  if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   ([y1, y2] = maybeZero(y, y1, y2));
   return {...options, y1, y2};
 }

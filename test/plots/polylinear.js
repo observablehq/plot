@@ -23,27 +23,25 @@ const events = [
   {date: "2013-04-23T14:00Z", text: "Shutdown"}
 ].map(d => ({text: d.text, date: d3.isoParse(d.date)}));
 
-const days = [...d3.utcDays(...d3.extent(times)), times[times.length-1]];
-
 export default async function() {
   return Plot.plot({
     grid: true,
     x: {
+      type: "utc",
       domain: times,
-      type: "linear",
-      ticks: days,
-      tickFormat: d3.utcFormat("%d"),
+      ticks: d3.utcDay,
+      tickFormat: "%d",
       inset: 20,
       label: "date →"
     },
     color: {
-      reverse: true, // unit tests both reverse…
-      domain: d3.reverse(times), // …and a decreasing domain
       type: "linear",
+      domain: d3.reverse(times), // …and a decreasing domain
+      reverse: true, // unit tests both reverse…
       scheme: "cool"
     },
     marks: [
-      Plot.barX(d3.pairs(days), {x1: "0", x2: "1", fill: "0", stroke: "1"}),
+      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: d3.utcDay, fill: d => d}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ],

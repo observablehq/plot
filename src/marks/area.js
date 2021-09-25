@@ -3,6 +3,7 @@ import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, maybeZ} from "../mark.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
@@ -54,9 +55,9 @@ export function area(data, options) {
 }
 
 export function areaX(data, {y = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackX({...options, y1: y, y2: undefined}));
+  return new Area(data, maybeStackX(maybeIdentityX({...options, y1: y, y2: undefined})));
 }
 
 export function areaY(data, {x = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackY({...options, x1: x, x2: undefined}));
+  return new Area(data, maybeStackY(maybeIdentityY({...options, x1: x, x2: undefined})));
 }

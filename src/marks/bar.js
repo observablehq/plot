@@ -3,6 +3,7 @@ import {filter} from "../defined.js";
 import {Mark, number} from "../mark.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -117,9 +118,9 @@ export class BarY extends AbstractBar {
 }
 
 export function barX(data, options) {
-  return new BarX(data, maybeStackX(maybeIntervalX(options)));
+  return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
 
 export function barY(data, options) {
-  return new BarY(data, maybeStackY(maybeIntervalY(options)));
+  return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
 }
