@@ -315,7 +315,7 @@ The following sequential scale schemes are supported for both quantitative and o
 * <sub><img src="./img/warm.png" width="32" height="16" alt="warm"></sub> *warm*
 * <sub><img src="./img/cool.png" width="32" height="16" alt="cool"></sub> *cool*
 
-The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility; color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
+The default color scheme, *turbo*, was chosen primarily to ensure high-contrast visibility. Color schemes such as *blues* make low-value marks difficult to see against a white background, for better or for worse—set the *range* to a section of the default [0, 1] to restrict the colors. If you wish to encode a quantitative value without hue, consider using *opacity* rather than *color* (e.g., use Plot.dot’s *strokeOpacity* instead of *stroke*).
 
 The following diverging scale schemes are supported:
 
