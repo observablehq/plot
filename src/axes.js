@@ -1,6 +1,6 @@
+import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
-import {isOrdinalScale, isTemporalScale} from "./scales.js";
-import {ascending, extent} from "d3";
+import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
 
 export function Axes(
@@ -80,10 +80,12 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
-      : isDescendingDomain(scale) ? "left"
+      : scaleOrder(scale) < 0 ? "left"
       : "right";
   }
-  if (axis.label === undefined) axis.label = inferLabel(channels, scale, axis, "x");
+  if (axis.label === undefined) {
+    axis.label = inferLabel(channels, scale, axis, "x");
+  }
   scale.label = axis.label;
 }
 
@@ -91,17 +93,23 @@ function autoAxisLabelsX(axis, scale, channels) {
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
     axis.labelAnchor = isOrdinalScale(scale) ? "center"
-      : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
+      : opposite && opposite.axis === "top" ? "bottom" // TODO scaleOrder?
       : "top";
   }
-  if (axis.label === undefined) axis.label = inferLabel(channels, scale, axis, "y");
+  if (axis.label === undefined) {
+    axis.label = inferLabel(channels, scale, axis, "y");
+  }
   scale.label = axis.label;
 }
 
 // Mutates scale.label!
 function autoScaleLabel(key, scale, channels, options) {
-  if (options) scale.label = options.label;
-  if (scale.label === undefined) scale.label = inferLabel(channels, scale, null, key);
+  if (options) {
+    scale.label = options.label;
+  }
+  if (scale.label === undefined) {
+    scale.label = inferLabel(channels, scale, null, key);
+  }
 }
 
 // Channels can have labels; if all the channels for a given scale are
@@ -121,20 +129,16 @@ function inferLabel(channels = [], scale, axis, key) {
     if (!isOrdinalScale(scale)) {
       if (scale.percent) candidate = `${candidate} (%)`;
       if (key === "x" || key === "y") {
-        if (axis && axis.labelAnchor === "center") {
-          candidate = `${candidate} →`;
-        } else if (key === "x") {
-          candidate = isDescendingDomain(scale) ? `← ${candidate}` : `${candidate} →`;
-        } else {
-          candidate = `${isDescendingDomain(scale) ? "↓ " : "↑ "}${candidate}`;
+        const order = scaleOrder(scale);
+        if (order) {
+          if (key === "x" || (axis && axis.labelAnchor === "center")) {
+            candidate = key === "x" === order < 0 ? `← ${candidate}` : `${candidate} →`;
+          } else {
+            candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
+          }
         }
       }
     }
   }
   return candidate;
-}
-
-// TODO trace explicit reverse field instead of trying to order the domain?
-function isDescendingDomain({domain, reverse}) {
-  return domain && domain.length > 1 ? ascending(...domain) > 0 : reverse;
 }

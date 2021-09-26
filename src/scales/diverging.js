@@ -45,11 +45,11 @@ function ScaleD(key, scale, transform, channels, {
     else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
   }
 
-  if (reverse = !!reverse) interpolate = flip(interpolate);
+  if (reverse) interpolate = flip(interpolate);
   scale.domain([min, pivot, max]).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type, interpolate, reverse, scale};
+  return {type, interpolate, scale};
 }
 
 export function ScaleDiverging(key, channels, options) {

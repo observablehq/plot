@@ -73,7 +73,7 @@ export function ScaleQ(key, scale, channels, {
     if (interpolate.length === 1) {
       if (reverse) {
         interpolate = flip(interpolate);
-        domain = reverseof(domain);
+        reverse = false;
       }
       if (domain.length > 2) {
         if (range === undefined) range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
@@ -103,7 +103,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, reverse, scale, interpolate, inset};
+  return {type, domain, range, scale, interpolate, inset};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -149,8 +149,8 @@ export function ScaleThreshold(key, channels, {
   reverse
 }) {
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
-  if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range};
+  if (reverse) range = reverseof(range); // domain ascending, so reverse range
+  return {type: "threshold", scale: scaleThreshold(domain, range), domain, range};
 }
 
 export function ScaleIdentity() {

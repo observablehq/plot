@@ -1,10 +1,11 @@
+import {descending} from "d3";
+import {parse as isoParse} from "isoformat";
 import {registry, color, position, radius, opacity} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
-import {parse as isoParse} from "isoformat";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
@@ -180,6 +181,17 @@ export function isOrdinalScale({type}) {
 
 export function isDivergingScale({type}) {
   return /^diverging($|-)/.test(type);
+}
+
+export function scaleOrder({domain, range}) {
+  return Math.sign(order(domain)) * Math.sign(order(range));
+}
+
+function order(values) {
+  if (values == null) return;
+  const first = values[0];
+  const last = values[values.length - 1];
+  return descending(first, last);
 }
 
 // TODO use Float64Array.from for position and radius scales?

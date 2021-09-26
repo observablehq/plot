@@ -12,7 +12,7 @@ export function ScaleO(scale, channels, {
   inset = 0
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
-  if (reverse = !!reverse) domain = reverseof(domain);
+  if (reverse) domain = reverseof(domain);
   inset = +inset;
   scale.domain(domain);
   if (range !== undefined) {
@@ -20,7 +20,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, reverse, inset};
+  return {type, domain, range, scale, inset};
 }
 
 export function ScaleOrdinal(key, channels, {
