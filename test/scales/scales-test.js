@@ -296,6 +296,7 @@ it("plot(…).scale('color') can return a linear scale", () => {
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateTurbo,
     clamp: false
   });
@@ -318,6 +319,7 @@ it("plot(…).scale('color') can return a utc scale", async () => {
   assert.deepStrictEqual(plot.scale("color"), {
     type: "utc",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
+    range: [0, 1],
     interpolate: d3.interpolateTurbo,
     clamp: false
   });
@@ -696,6 +698,7 @@ it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () =>
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateRainbow,
     clamp: false
   });
@@ -706,6 +709,7 @@ it("plot(…).scale('color') ignores nonsensical options for cyclical scale", ()
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateRainbow,
     clamp: false
   });
@@ -716,6 +720,7 @@ it("plot(…).scale('color') promotes a cyclical scale to a linear scale, even w
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateBlues,
     clamp: false
   });
@@ -726,6 +731,7 @@ it("plot(…).scale('color') promotes a cyclical scale to a linear scale and ign
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateWarm,
     clamp: false
   });
@@ -736,6 +742,7 @@ it("plot(…).scale('color') promotes a sequential scale to a linear scale, even
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateBlues,
     clamp: false
   });
@@ -746,6 +753,7 @@ it("plot(…).scale('color') promotes a sequential scale to a linear scale and i
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateWarm,
     clamp: false
   });
@@ -756,6 +764,7 @@ it("plot(…).scale('color') promotes a sequential scale to a linear scale", () 
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     interpolate: d3.interpolateTurbo,
     clamp: false
   });
@@ -767,6 +776,7 @@ it("plot(…).scale('color') promotes a reversed sequential scale to a linear sc
   assert.deepStrictEqual(color, {
     type: "linear",
     domain: [1, 5],
+    range: [0, 1],
     clamp: false
   });
   for (const t of d3.ticks(1, 5, 100)) {
