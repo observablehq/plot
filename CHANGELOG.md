@@ -6,7 +6,7 @@
 
 Add *plot*.**scale**(*name*). Explanation TK.
 
-Add support for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (or equivalently a color scheme such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
+Add support for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
 
 Add automatic detection of “reversed” scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This improves the default axis label arrow orientation and the behavior of the *zero* option.
 
