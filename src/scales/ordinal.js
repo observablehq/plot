@@ -1,5 +1,5 @@
 import {InternSet, reverse as reverseof, sort} from "d3";
-import {scaleBand, scaleOrdinal, scalePoint} from "d3";
+import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ordinalScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
@@ -27,9 +27,11 @@ export function ScaleOrdinal(key, channels, {
   type,
   scheme = type === "ordinal" ? "turbo" : "tableau10", // ignored if not color
   range = registry.get(key) === color ? ordinalScheme(scheme) : undefined,
+  unknown,
   ...options
 }) {
-  return ScaleO(scaleOrdinal().unknown(undefined), channels, {type, range, ...options});
+  if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
+  return ScaleO(scaleOrdinal().unknown(unknown), channels, {type, range, ...options});
 }
 
 export function ScalePoint(key, channels, {

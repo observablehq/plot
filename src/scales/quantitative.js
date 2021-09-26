@@ -52,6 +52,7 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
+  unknown,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   type,
@@ -105,7 +106,7 @@ export function ScaleQ(key, scale, channels, {
   }
 
   if (reverse) domain = reverseof(domain);
-  scale.domain(domain);
+  scale.domain(domain).unknown(unknown);
   if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
@@ -149,6 +150,7 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 
 export function ScaleThreshold(key, channels, {
   domain = [0], // explicit thresholds in ascending order
+  unknown,
   scheme = "rdylbu",
   interpolate,
   range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
@@ -156,7 +158,7 @@ export function ScaleThreshold(key, channels, {
 }) {
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range), domain, range};
+  return {type: "threshold", scale: scaleThreshold(domain, range).unknown(unknown), domain, range};
 }
 
 export function ScaleIdentity() {

@@ -15,6 +15,7 @@ function ScaleD(key, scale, transform, channels, {
   nice,
   clamp,
   domain = inferDomain(channels),
+  unknown,
   pivot = 0,
   range,
   scheme = "rdbu",
@@ -46,7 +47,7 @@ function ScaleD(key, scale, transform, channels, {
   }
 
   if (reverse) interpolate = flip(interpolate);
-  scale.domain([min, pivot, max]).interpolator(interpolate);
+  scale.domain([min, pivot, max]).unknown(unknown).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
   return {type, interpolate, scale};

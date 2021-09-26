@@ -293,6 +293,7 @@ function exposeScale({
 }) {
   if (type === "identity") return {type: "identity"};
   const domain = scale.domain();
+  const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
     domain,
@@ -300,6 +301,7 @@ function exposeScale({
     ...transform !== undefined && {transform},
     ...percent && {percent}, // only exposed if truthy
     ...label !== undefined && {label},
+    ...unknown !== undefined && {unknown},
 
     // quantitative
     ...interpolate !== undefined && {interpolate},
