@@ -1,4 +1,4 @@
-import {InternMap, cumsum, group, groupSort, greatest, rollup, sum, min} from "d3";
+import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybeZero, isOptions, maybeValue} from "../mark.js";
 import {basic} from "./basic.js";
@@ -93,6 +93,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
+      const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
@@ -106,8 +107,9 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
         }
-        if (offset) offset(stacks, Y1, Y2, Z);
+        facetstacks.push(stacks);
       }
+      if (offset) offset(facetstacks, Y1, Y2, Z);
       return {data, facets};
     }),
     X,
@@ -139,51 +141,59 @@ function extent(stack, Y2) {
   return [min, max];
 }
 
-function offsetExpand(stacks, Y1, Y2) {
-  for (const stack of stacks) {
-    const [yn, yp] = extent(stack, Y2);
-    for (const i of stack) {
-      const m = 1 / (yp - yn || 1);
-      Y1[i] = m * (Y1[i] - yn);
-      Y2[i] = m * (Y2[i] - yn);
+function offsetExpand(facetstacks, Y1, Y2) {
+  for (const stacks of facetstacks) {
+    for (const stack of stacks) {
+      const [yn, yp] = extent(stack, Y2);
+      for (const i of stack) {
+        const m = 1 / (yp - yn || 1);
+        Y1[i] = m * (Y1[i] - yn);
+        Y2[i] = m * (Y2[i] - yn);
+      }
     }
   }
 }
 
-function offsetCenter(stacks, Y1, Y2) {
-  for (const stack of stacks) {
-    const [yn, yp] = extent(stack, Y2);
-    for (const i of stack) {
-      const m = (yp + yn) / 2;
-      Y1[i] -= m;
-      Y2[i] -= m;
+function offsetCenter(facetstacks, Y1, Y2) {
+  for (const stacks of facetstacks) {
+    for (const stack of stacks) {
+      const [yn, yp] = extent(stack, Y2);
+      for (const i of stack) {
+        const m = (yp + yn) / 2;
+        Y1[i] -= m;
+        Y2[i] -= m;
+      }
     }
+    offsetZero(stacks, Y1, Y2);
   }
-  offsetZero(stacks, Y1, Y2);
+  offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
-function offsetWiggle(stacks, Y1, Y2, Z) {
-  const prev = new InternMap();
-  let y = 0;
-  for (const stack of stacks) {
-    let j = -1;
-    const Fi = stack.map(i => Math.abs(Y2[i] - Y1[i]));
-    const Df = stack.map(i => {
-      j = Z ? Z[i] : ++j;
-      const value = Y2[i] - Y1[i];
-      const diff = prev.has(j) ? value - prev.get(j) : 0;
-      prev.set(j, value);
-      return diff;
-    });
-    const Cf1 = [0, ...cumsum(Df)];
-    for (const i of stack) {
-      Y1[i] += y;
-      Y2[i] += y;
+function offsetWiggle(facetstacks, Y1, Y2, Z) {
+  for (const stacks of facetstacks) {
+    const prev = new InternMap();
+    let y = 0;
+    for (const stack of stacks) {
+      let j = -1;
+      const Fi = stack.map(i => Math.abs(Y2[i] - Y1[i]));
+      const Df = stack.map(i => {
+        j = Z ? Z[i] : ++j;
+        const value = Y2[i] - Y1[i];
+        const diff = prev.has(j) ? value - prev.get(j) : 0;
+        prev.set(j, value);
+        return diff;
+      });
+      const Cf1 = [0, ...cumsum(Df)];
+      for (const i of stack) {
+        Y1[i] += y;
+        Y2[i] += y;
+      }
+      const s1 = sum(Fi);
+      if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
     }
-    const s1 = sum(Fi);
-    if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
+    offsetZero(stacks, Y1, Y2);
   }
-  offsetZero(stacks, Y1, Y2);
+  offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
 function offsetZero(stacks, Y1, Y2) {
@@ -192,6 +202,21 @@ function offsetZero(stacks, Y1, Y2) {
     for (const i of stack) {
       Y1[i] -= m;
       Y2[i] -= m;
+    }
+  }
+}
+
+function offsetCenterFacets(facetstacks, Y1, Y2) {
+  const n = facetstacks.length;
+  if (n === 1) return;
+  const facets = facetstacks.map(stacks => stacks.flat());
+  const m = facets.map(I => (min(I, i => Y1[i]) + max(I, i => Y2[i])) / 2);
+  const m0 = min(m);
+  for (let j = 0; j < n; j++) {
+    const p = m0 - m[j];
+    for (const i of facets[j]) {
+      Y1[i] += p;
+      Y2[i] += p;
     }
   }
 }
