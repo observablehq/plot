@@ -4,11 +4,39 @@
 
 *Not yet released.* These notes are a work in progress.
 
-Add *plot*.**scale**(*name*). Explanation TK.
+The new *plot*.**scale**(*name*) method exposes scales used by a particular plot. This method on returned plots takes the *name* of a scale and returns an object containing scale options that fully describe the scale’s behavior. The returned object represents the actual (or “materialized”) options used, including *scale*.domain, *scale*.range, *scale*.interpolate, *etc.* The *scale*.label, if any, is also returned; however, note that other axis properties are not currently exposed. The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*). For example, given a plot:
 
-Add support for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
+```js
+plot = Plot.dot(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"}).plot()
+```
 
-Add automatic detection of “reversed” scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This improves the default axis label arrow orientation and the behavior of the *zero* option.
+You can retrieve the color scale like so:
+
+```js
+color = plot.scale("color")
+```
+
+The resulting object is:
+
+```js
+({
+  type: "linear",
+  domain: [-0.78, 1.35],
+  interpolate: d3.interpolateTurbo,
+  clamp: false,
+  label: "Anomaly"
+})
+```
+
+Inspecting materialized scales is useful for debugging and for generating color legends. (For now, we recommend using the [D3 color legend](https://observablehq.com/@d3/color-legend); in the near future Plot will have built-in support for color legends.) Scales can also now be shared between plots, ensuring consistent encoding. To reuse a scale, pass the scale from one plot into the specification for another:
+
+```js
+Plot.plot({…, color: plot.scale("color")})
+```
+
+Plot now supports for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
+
+Plot now automatically detects “reversed” quantitative or temporal scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This improves the default axis label arrow orientation and the behavior of the *zero* option.
 
 Ordinal color schemes now return the correct number of colors when the natural scheme size is not equal to the desired scheme size. The *rainbow* and *sinebow* cyclical color schemes, when used with an ordinal color scale, no longer duplicate the first color as the last color.
 
