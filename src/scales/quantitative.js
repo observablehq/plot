@@ -55,8 +55,8 @@ export function ScaleQ(key, scale, channels, {
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   type,
-  scheme = type === "cyclical" ? "rainbow" : "turbo",
-  interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : interpolateNumber,
+  scheme,
+  interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse,
   inset = 0
 }) {

@@ -1180,6 +1180,32 @@ it("plot(…).scale(name) reflects the given custom interpolator", async () => {
   });
 });
 
+it("plot(…).scale('color') allows a range to be specified in conjunction with a scheme", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", fill: "Anomaly"}).plot({color: {range: [0, 0.5], scheme: "cool"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [-0.78, 1.35],
+    range: [0, 0.5],
+    interpolate: d3.interpolateCool,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') allows a range to be specified in conjunction with a single-argument interpolator", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", fill: "Anomaly"}).plot({color: {range: [0, 0.5], interpolate: d3.interpolateCool}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [-0.78, 1.35],
+    range: [0, 0.5],
+    interpolate: d3.interpolateCool,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
 it("plot(…).scale('color') promotes the given scheme option to an interpolator for quantitative scales", () => {
   assert.strictEqual(Plot.dotX([], {fill: "x"}).plot().scale("color").interpolate, d3.interpolateTurbo);
   assert.strictEqual(Plot.dotX([], {fill: "x"}).plot({color: {scheme: "warm"}}).scale("color").interpolate, d3.interpolateWarm);
