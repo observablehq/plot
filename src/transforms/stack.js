@@ -93,7 +93,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
-      const allstacks = [];
+      const facetstacks = [];
       for (const facet of facets) {
         const stacks = X ? Array.from(group(facet, i => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
@@ -107,9 +107,9 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
             else Y2[i] = Y1[i] = yp; // NaN or zero
           }
         }
-        allstacks.push(stacks);
+        facetstacks.push(stacks);
       }
-      if (offset) offset(allstacks, Y1, Y2, Z);
+      if (offset) offset(facetstacks, Y1, Y2, Z);
       return {data, facets};
     }),
     X,
@@ -141,8 +141,8 @@ function extent(stack, Y2) {
   return [min, max];
 }
 
-function offsetExpand(allstacks, Y1, Y2) {
-  for (const stacks of allstacks) {
+function offsetExpand(facetstacks, Y1, Y2) {
+  for (const stacks of facetstacks) {
     for (const stack of stacks) {
       const [yn, yp] = extent(stack, Y2);
       for (const i of stack) {
@@ -154,8 +154,8 @@ function offsetExpand(allstacks, Y1, Y2) {
   }
 }
 
-function offsetCenter(allstacks, Y1, Y2) {
-  for (const stacks of allstacks) {
+function offsetCenter(facetstacks, Y1, Y2) {
+  for (const stacks of facetstacks) {
     for (const stack of stacks) {
       const [yn, yp] = extent(stack, Y2);
       for (const i of stack) {
@@ -166,11 +166,11 @@ function offsetCenter(allstacks, Y1, Y2) {
     }
     offsetZero(stacks, Y1, Y2);
   }
-  offsetCenterFacets(allstacks, Y1, Y2);
+  offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
-function offsetWiggle(allstacks, Y1, Y2, Z) {
-  for (const stacks of allstacks) {
+function offsetWiggle(facetstacks, Y1, Y2, Z) {
+  for (const stacks of facetstacks) {
     const prev = new InternMap();
     let y = 0;
     for (const stack of stacks) {
@@ -193,7 +193,7 @@ function offsetWiggle(allstacks, Y1, Y2, Z) {
     }
     offsetZero(stacks, Y1, Y2);
   }
-  offsetCenterFacets(allstacks, Y1, Y2);
+  offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
 function offsetZero(stacks, Y1, Y2) {
@@ -206,10 +206,10 @@ function offsetZero(stacks, Y1, Y2) {
   }
 }
 
-function offsetCenterFacets(allstacks, Y1, Y2) {
-  const n = allstacks.length;
+function offsetCenterFacets(facetstacks, Y1, Y2) {
+  const n = facetstacks.length;
   if (n === 1) return;
-  const facets = allstacks.map(d => d.flat());
+  const facets = facetstacks.map(stacks => stacks.flat());
   const m = facets.map(I => (min(I, i => Y1[i]) + max(I, i => Y2[i])) / 2);
   const m0 = min(m);
   for (let j = 0; j < n; j++) {
