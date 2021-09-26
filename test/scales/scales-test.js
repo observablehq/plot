@@ -19,7 +19,7 @@ it("plot(…).scale('x') can return a linear scale", () => {
     type: "linear",
     domain: [1, 2],
     range: [40, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -31,7 +31,7 @@ it("plot(…).scale('x') returns the expected linear scale for penguins", async 
     type: "linear",
     domain: [2700, 6300],
     range: [20, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "body_mass_g →"
   });
@@ -52,7 +52,7 @@ it("plot(…).scale('x') returns the expected sqrt scale given explicit options"
     exponent: 0.5,
     domain: [3500, 4000],
     range: [30, 610],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: true,
     label: "Body mass"
   });
@@ -65,7 +65,7 @@ it("plot(…).scale('x') can return a utc scale", async () => {
     type: "utc",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
     range: [40, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -77,7 +77,7 @@ it("plot(…).scale('x') can return an explicit time scale", async () => {
     type: "time",
     domain: [new Date("2013-05-13"), new Date("2018-05-11")],
     range: [40, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -163,7 +163,7 @@ it("plot(…).scale('y') can return a linear scale", () => {
     type: "linear",
     domain: [1, 2],
     range: [370, 20],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -241,7 +241,7 @@ it("plot(…).scale(name) promotes the given zero option to the domain", async (
     type: "linear",
     domain: [0, 6300],
     range: [20, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "body_mass_g →"
   });
@@ -839,7 +839,7 @@ it("plot(…).scale('r') can return an implicit pow scale", () => {
     exponent: 0.5,
     domain: [0, 9],
     range: [0, Math.sqrt(40.5)],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -851,7 +851,7 @@ it("plot(…).scale('r') can return a pow scale for sqrt", () => {
     exponent: 0.5,
     domain: [0, 9],
     range: [0, Math.sqrt(40.5)],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -863,7 +863,7 @@ it("plot(…).scale('r') can return an explicit pow scale", () => {
     exponent: 0.3,
     domain: [0, 9],
     range: [0, Math.sqrt(40.5)],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -875,7 +875,7 @@ it("plot(…).scale('r') can return an implicit pow scale with an explicit range
     exponent: 0.5,
     domain: [0, 9],
     range: [2, 13],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -891,7 +891,7 @@ it("plot(…).scale('opacity') can return a linear scale", () => {
     type: "linear",
     domain: [0, 9],
     range: [0, 1],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -903,7 +903,7 @@ it("plot(…).scale('opacity') can return a linear scale for penguins", async ()
     type: "linear",
     domain: [0, 40],
     range: [0, 1],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "Frequency"
   });
@@ -916,7 +916,7 @@ it("plot(…).scale('opacity') respects the percent option, affecting domain and
     type: "linear",
     domain: [0, 11.627906976744185],
     range: [0, 1],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "Frequency (%)",
     percent: true
@@ -1048,7 +1048,7 @@ it("plot(…).scale('y') can return a log scale", () => {
     domain: [1, 4],
     range: [380, 20],
     base: 10,
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -1066,7 +1066,7 @@ it("plot(…).scale('y') can return a symlog scale", () => {
     domain: [1, 4],
     range: [380, 20],
     constant: 1,
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false
   });
 });
@@ -1095,7 +1095,7 @@ it("plot(…).scale(name).domain nices an explicit domain, too", async () => {
 
 it("plot(…).scale(name).interpolate reflects the round option for quantitative scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: false}}).scale("x").interpolate, d3.interpolate);
+  assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: false}}).scale("x").interpolate, d3.interpolateNumber);
   assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: true}}).scale("x").interpolate, d3.interpolateRound);
 });
 
@@ -1156,7 +1156,7 @@ it("plot(…).scale(name) reflects the given transform", async () => {
     domain: [1 / 6300, 1 / 2700],
     range: [20, 620],
     clamp: false,
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     transform,
     label: "body_mass_g →"
   });
