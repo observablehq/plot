@@ -48,15 +48,15 @@ export function Interpolator(interpolate) {
 }
 
 export function ScaleQ(key, scale, channels, {
+  type,
   nice,
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
   unknown,
   round,
-  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
-  type,
   scheme,
+  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse,
   inset = 0
@@ -70,25 +70,21 @@ export function ScaleQ(key, scale, channels, {
   // is used in conjunction with the range. And other times the interpolate
   // function is a “fixed” interpolator on the [0, 1] interval, as when a
   // color scheme such as interpolateRdBu is used.
-  if (interpolate !== undefined) {
-    if (typeof interpolate !== "function") {
-      interpolate = Interpolator(interpolate);
+  if (typeof interpolate !== "function") {
+    interpolate = Interpolator(interpolate);
+  }
+  if (interpolate.length === 1) {
+    if (reverse) {
+      interpolate = flip(interpolate);
+      reverse = false;
     }
-    if (interpolate.length === 1) {
-      if (reverse) {
-        interpolate = flip(interpolate);
-        reverse = false;
-      }
-      if (range === undefined) {
-        range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
-        if (range.length === 2) range = unit; // optimize common case of [0, 1]
-      }
-      scale.interpolate((range === unit ? constant : interpolatePiecewise)(interpolate));
-    } else {
-      scale.interpolate(interpolate);
+    if (range === undefined) {
+      range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+      if (range.length === 2) range = unit; // optimize common case of [0, 1]
     }
+    scale.interpolate((range === unit ? constant : interpolatePiecewise)(interpolate));
   } else {
-    interpolate = scale.interpolate();
+    scale.interpolate(interpolate);
   }
 
   // If a zero option is specified, we assume that the domain is numeric, and we
@@ -205,6 +201,6 @@ function inferQuantileDomain(channels) {
   return domain;
 }
 
-function interpolatePiecewise(interpolate) {
+export function interpolatePiecewise(interpolate) {
   return (i, j) => t => interpolate(i + t * (j - i));
 }
