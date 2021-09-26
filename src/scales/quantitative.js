@@ -1,5 +1,6 @@
 import {
   ascending,
+  extent,
   interpolateHcl,
   interpolateHsl,
   interpolateLab,
@@ -24,6 +25,7 @@ import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
+import {order} from "../scales.js";
 
 export const flip = i => t => i(1 - t);
 
@@ -88,13 +90,17 @@ export function ScaleQ(key, scale, channels, {
     interpolate = scale.interpolate();
   }
 
-  // TODO describe zero option
+  // If a zero option is specified, we assume that the domain is numeric, and we
+  // want to ensure that the domain crosses zero. However, note that the domain
+  // may be reversed (descending) so we shouldn’t assume that the first value is
+  // smaller than the last; and also it’s possible that the domain has more than
+  // two values for a “poly” scale. And lastly be careful not to mutate input!
   if (zero) {
-    domain = [...domain]; // copy before write
-    if (domain[0] > 0) {
-      domain[0] = 0;
-    } else if (domain[domain.length - 1] < 0) {
-      domain[domain.length - 1] = 0;
+    const [min, max] = extent(domain);
+    if ((min > 0) || (max < 0)) {
+      domain = Array.from(domain);
+      if (order(domain) < 0) domain[domain.length - 1] = 0;
+      else domain[0] = 0;
     }
   }
 

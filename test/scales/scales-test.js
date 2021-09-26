@@ -247,6 +247,45 @@ it("plot(…).scale(name) promotes the given zero option to the domain", async (
   });
 });
 
+it("plot(…).scale(name) handles the zero option correctly for descending domains", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true, domain: [4000, 2000]}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [4000, 0],
+    range: [20, 620],
+    interpolate: d3.interpolate,
+    clamp: false,
+    label: "← body_mass_g"
+  });
+});
+
+it("plot(…).scale(name) handles the zero option correctly for polylinear domains", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {type: "linear", zero: true, domain: [1000, 2000, 4000]}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [0, 2000, 4000],
+    range: [20, 320, 620],
+    interpolate: d3.interpolate,
+    clamp: false,
+    label: "body_mass_g →"
+  });
+});
+
+it("plot(…).scale(name) handles the zero option correctly for descending polylinear domains", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {type: "linear", zero: true, domain: [4000, 2000, 1000]}});
+  assert.deepStrictEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [4000, 2000, 0],
+    range: [20, 320, 620],
+    interpolate: d3.interpolate,
+    clamp: false,
+    label: "← body_mass_g"
+  });
+});
+
 it("plot(…).scale('color') can return undefined if no color scale is present", () => {
   const plot = Plot.dot([1, 2], {x: d => d}).plot();
   assert.strictEqual(plot.scale("color"), undefined);

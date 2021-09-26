@@ -188,7 +188,7 @@ export function scaleOrder({range, domain = range}) {
   return Math.sign(order(domain)) * Math.sign(order(range));
 }
 
-function order(values) {
+export function order(values) {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];
