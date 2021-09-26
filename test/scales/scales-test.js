@@ -254,7 +254,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending domai
     type: "linear",
     domain: [4000, 0],
     range: [20, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "← body_mass_g"
   });
@@ -267,7 +267,7 @@ it("plot(…).scale(name) handles the zero option correctly for polylinear domai
     type: "linear",
     domain: [0, 2000, 4000],
     range: [20, 320, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "body_mass_g →"
   });
@@ -280,7 +280,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending polyl
     type: "linear",
     domain: [4000, 2000, 0],
     range: [20, 320, 620],
-    interpolate: d3.interpolate,
+    interpolate: d3.interpolateNumber,
     clamp: false,
     label: "← body_mass_g"
   });
