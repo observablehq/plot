@@ -137,8 +137,8 @@ const ordinalSchemes = new Map([
   ["ylorrd", scheme9(schemeYlOrRd, interpolateYlOrRd)],
 
   // cyclical
-  ["rainbow", schemei(interpolateRainbow)],
-  ["sinebow", schemei(interpolateSinebow)]
+  ["rainbow", schemeicyclical(interpolateRainbow)],
+  ["sinebow", schemeicyclical(interpolateSinebow)]
 ]);
 
 function scheme9(scheme, interpolate) {
@@ -165,9 +165,11 @@ function scheme11r(scheme, interpolate) {
 }
 
 function schemei(interpolate) {
-  return ({length: n}) => {
-    return quantize(interpolate, n > 0 ? Math.floor(n) : 0);
-  };
+  return ({length: n}) => quantize(interpolate, n > 0 ? Math.floor(n) : 0);
+}
+
+function schemeicyclical(interpolate) {
+  return ({length: n}) => quantize(interpolate, n > 0 ? Math.floor(n) + 1 : 1).slice(0, -1);
 }
 
 export function ordinalScheme(scheme) {
@@ -179,7 +181,7 @@ export function ordinalScheme(scheme) {
 export function ordinalRange(scheme, length) {
   const s = ordinalScheme(scheme);
   const r = typeof s === "function" ? s({length}) : s;
-  return r.length !== length ? r.slice(length) : r;
+  return r.length !== length ? r.slice(0, length) : r;
 }
 
 const quantitativeSchemes = new Map([

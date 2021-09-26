@@ -1,8 +1,8 @@
 import {create} from "d3";
-import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
+import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
-import {Scales, autoScaleRange, applyScales} from "./scales.js";
+import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {filterStyles, offset} from "./style.js";
 
 export function plot(options = {}) {
@@ -50,8 +50,8 @@ export function plot(options = {}) {
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
+  autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
-  autoAxisLabels(scaleChannels, scaleDescriptors, axes, dimensions);
 
   // Normalize the options.
   options = {...scaleDescriptors, ...dimensions};
@@ -90,11 +90,15 @@ export function plot(options = {}) {
   }
 
   // Wrap the plot in a figure with a caption, if desired.
-  if (caption == null) return svg;
-  const figure = document.createElement("figure");
-  figure.appendChild(svg);
-  const figcaption = figure.appendChild(document.createElement("figcaption"));
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  let figure = svg;
+  if (caption != null) {
+    figure = document.createElement("figure");
+    figure.appendChild(svg);
+    const figcaption = figure.appendChild(document.createElement("figcaption"));
+    figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+  }
+
+  figure.scale = exposeScales(scaleDescriptors);
   return figure;
 }
 
@@ -141,6 +145,6 @@ function ScaleFunctions(scales) {
 
 function autoHeight({y, fy, fx}) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (y.type === "ordinal" ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }

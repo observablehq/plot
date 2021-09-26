@@ -2,9 +2,7 @@ import {scaleTime, scaleUtc} from "d3";
 import {ScaleQ} from "./quantitative.js";
 
 function ScaleT(key, scale, channels, options) {
-  const s = ScaleQ(key, scale, channels, options);
-  s.type = "temporal";
-  return s;
+  return ScaleQ(key, scale, channels, options);
 }
 
 export function ScaleTime(key, channels, options) {

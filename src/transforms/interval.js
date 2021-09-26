@@ -26,7 +26,7 @@ function maybeIntervalValue(value, {interval} = {}) {
 function maybeIntervalK(k, maybeInsetK, options = {}) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
   const {value, interval} = maybeIntervalValue(v, options);
-  if (interval == null) return options;
+  if (value == null || interval == null) return options;
   let V1;
   const tv1 = data => V1 || (V1 = valueof(data, value).map(v => interval.floor(v)));
   const label = labelof(v);

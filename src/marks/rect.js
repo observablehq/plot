@@ -3,6 +3,7 @@ import {filter} from "../defined.js";
 import {Mark, number} from "../mark.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
+import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -69,9 +70,9 @@ export function rect(data, options) {
 }
 
 export function rectX(data, options) {
-  return new Rect(data, maybeStackX(maybeIntervalY(options)));
+  return new Rect(data, maybeStackX(maybeIntervalY(maybeIdentityX(options))));
 }
 
 export function rectY(data, options) {
-  return new Rect(data, maybeStackY(maybeIntervalX(options)));
+  return new Rect(data, maybeStackY(maybeIntervalX(maybeIdentityY(options))));
 }

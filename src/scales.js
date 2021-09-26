@@ -1,24 +1,36 @@
-import {registry, position, radius, opacity} from "./scales/index.js";
+import {descending} from "d3";
+import {parse as isoParse} from "isoformat";
+import {registry, color, position, radius, opacity} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
-import {parse as isoParse} from "isoformat";
 
 export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
   const scales = {};
   for (const key of registry.keys()) {
-    if (channels.has(key) || options[key]) {
-      const scale = Scale(key, channels.get(key), {
+    const scaleChannels = channels.get(key);
+    const scaleOptions = options[key];
+    if (scaleChannels || scaleOptions) {
+      const scale = Scale(key, scaleChannels, {
         inset: key === "x" || key === "y" ? inset : undefined, // not for facet
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
         align,
         padding,
-        ...options[key]
+        ...scaleOptions
       });
-      if (scale) scales[key] = scale;
+      if (scale) {
+        if (scaleOptions) { // populate generic scale options (percent, transform)
+          let {percent, transform} = scaleOptions;
+          if (transform == null) transform = undefined;
+          else if (typeof transform !== "function") throw new Error("invalid scale transform");
+          scale.percent = !!percent;
+          scale.transform = transform;
+        }
+        scales[key] = scale;
+      }
     }
   }
   return scales;
@@ -36,7 +48,9 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.scale.range([marginLeft + inset, width - marginRight - inset]);
+    scale.range = [marginLeft + inset, width - marginRight - inset];
+    if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
+    scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
 }
@@ -45,21 +59,30 @@ function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
     const {inset = 0} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    const range = [height - marginBottom - inset, marginTop + inset];
-    if (scale.type === "ordinal") range.reverse();
-    scale.scale.range(range);
+    scale.range = [height - marginBottom - inset, marginTop + inset];
+    if (isOrdinalScale(scale)) scale.range.reverse();
+    else scale.range = piecewiseRange(scale);
+    scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && scale.type === "ordinal" && scale.scale.step() >= 5) {
+  if (scale.round === undefined && isOrdinalScale(scale) && scale.scale.step() >= 5) {
     scale.scale.round(true);
   }
 }
 
+function piecewiseRange({scale, range}) {
+  const length = scale.domain().length;
+  if (!(length > 2)) return range;
+  const [start, end] = range;
+  return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
+}
+
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
+  options.type = type; // Mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
   // explicitly-specified domain to the expected type.
@@ -107,7 +130,7 @@ function Scale(key, channels = [], options = {}) {
     case "time": return ScaleTime(key, channels, options);
     case "point": return ScalePoint(key, channels, options);
     case "band": return ScaleBand(key, channels, options);
-    case "identity": return registry.get(key) === position ? ScaleIdentity(key, channels, options) : undefined;
+    case "identity": return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
     case undefined: return;
     default: throw new Error(`unknown scale type: ${options.type}`);
   }
@@ -141,7 +164,35 @@ function inferScaleType(key, channels, {type, domain, range}) {
 
 // Positional scales default to a point scale instead of an ordinal scale.
 function asOrdinalType(key) {
-  return registry.get(key) === position ? "point" : "ordinal";
+  switch (registry.get(key)) {
+    case position: return "point";
+    case color: return "categorical";
+    default: return "ordinal";
+  }
+}
+
+export function isTemporalScale({type}) {
+  return type === "time" || type === "utc";
+}
+
+export function isOrdinalScale({type}) {
+  return type === "ordinal" || type === "point" || type === "band";
+}
+
+export function isDivergingScale({type}) {
+  return /^diverging($|-)/.test(type);
+}
+
+// If the domain is undefined, we assume an identity scale.
+export function scaleOrder({range, domain = range}) {
+  return Math.sign(order(domain)) * Math.sign(order(range));
+}
+
+function order(values) {
+  if (values == null) return;
+  const first = values[0];
+  const last = values[values.length - 1];
+  return descending(first, last);
 }
 
 // TODO use Float64Array.from for position and radius scales?
@@ -204,4 +255,52 @@ function coerceDate(x) {
     : typeof x === "string" ? isoParse(x)
     : x == null || isNaN(x = +x) ? undefined
     : new Date(x);
+}
+
+export function exposeScales(scaleDescriptors) {
+  return key => {
+    if (!registry.has(key = `${key}`)) throw new Error(`unknown scale: ${key}`);
+    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
+  };
+}
+
+function exposeScale({
+  scale,
+  type,
+  range,
+  label,
+  interpolate,
+  transform,
+  percent
+}) {
+  if (type === "identity") return {type: "identity"};
+  const domain = scale.domain();
+  return {
+    type,
+    domain,
+    ...range !== undefined && {range: Array.from(range)}, // defensive copy
+    ...transform !== undefined && {transform},
+    ...percent && {percent}, // only exposed if truthy
+    ...label !== undefined && {label},
+
+    // quantitative
+    ...interpolate !== undefined && {interpolate},
+    ...scale.clamp && {clamp: scale.clamp()},
+
+    // diverging
+    ...isDivergingScale({type}) && (([min, pivot, max]) => ({domain: [min, max], pivot}))(domain),
+
+    // log, diverging-log
+    ...scale.base && {base: scale.base()},
+
+    // pow, diverging-pow
+    ...scale.exponent && {exponent: scale.exponent()},
+
+    // symlog, diverging-symlog
+    ...scale.constant && {constant: scale.constant()},
+
+    // band, point
+    ...scale.align && {align: scale.align(), round: scale.round()},
+    ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()})
+  };
 }

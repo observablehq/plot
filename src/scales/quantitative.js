@@ -9,12 +9,12 @@ import {
   min,
   max,
   quantile,
+  quantize,
   reverse as reverseof,
   pairs,
   scaleLinear,
   scaleLog,
   scalePow,
-  scaleSqrt,
   scaleQuantile,
   scaleSymlog,
   scaleThreshold,
@@ -25,7 +25,7 @@ import {registry, radius, opacity, color} from "./index.js";
 import {positive, negative} from "../defined.js";
 import {constant} from "../mark.js";
 
-const flip = i => t => i(1 - t);
+export const flip = i => t => i(1 - t);
 
 const interpolators = new Map([
   // numbers
@@ -49,38 +49,61 @@ export function ScaleQ(key, scale, channels, {
   clamp,
   zero,
   domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
-  percent,
   round,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? [0, 1] : undefined,
   type,
   scheme = type === "cyclical" ? "rainbow" : "turbo",
   interpolate = registry.get(key) === color ? (range !== undefined ? interpolateRgb : quantitativeScheme(scheme)) : round ? interpolateRound : undefined,
   reverse,
-  inset
+  inset = 0
 }) {
-  if (zero) domain = domain[1] < 0 ? [domain[0], 0] : domain[0] > 0 ? [0, domain[1]] : domain;
-  if (reverse = !!reverse) domain = reverseof(domain);
-  scale.domain(domain);
-  if (nice) scale.nice(nice === true ? undefined : nice);
+  if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
+  reverse = !!reverse;
+  inset = +inset;
 
-  // Sometimes interpolator is named interpolator, such as "lab" for Lab color
+  // Sometimes interpolate is a named interpolator, such as "lab" for Lab color
   // space. Other times interpolate is a function that takes two arguments and
   // is used in conjunction with the range. And other times the interpolate
-  // function is a “fixed” interpolator independent of the range, as when a
+  // function is a “fixed” interpolator on the [0, 1] interval, as when a
   // color scheme such as interpolateRdBu is used.
   if (interpolate !== undefined) {
     if (typeof interpolate !== "function") {
       interpolate = Interpolator(interpolate);
-    } else if (interpolate.length === 1) {
-      if (reverse) interpolate = flip(interpolate);
-      interpolate = constant(interpolate);
     }
-    scale.interpolate(interpolate);
+    if (interpolate.length === 1) {
+      if (reverse) {
+        interpolate = flip(interpolate);
+        reverse = false;
+      }
+      if (domain.length > 2) {
+        if (range === undefined) range = Float64Array.from(domain, (_, i) => i / (domain.length - 1));
+        scale.interpolate(interpolatePiecewise(interpolate));
+      } else {
+        scale.interpolate(constant(interpolate));
+      }
+    } else {
+      scale.interpolate(interpolate);
+    }
+  } else {
+    interpolate = scale.interpolate();
   }
 
+  // TODO describe zero option
+  if (zero) {
+    domain = [...domain]; // copy before write
+    if (domain[0] > 0) {
+      domain[0] = 0;
+    } else if (domain[domain.length - 1] < 0) {
+      domain[domain.length - 1] = 0;
+    }
+  }
+
+  if (reverse) domain = reverseof(domain);
+  scale.domain(domain);
+  if (nice) scale.nice(nice === true ? undefined : nice);
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type: "quantitative", reverse, domain, range, scale, inset, percent};
+  return {type, domain, range, scale, interpolate, inset};
 }
 
 export function ScaleLinear(key, channels, options) {
@@ -88,27 +111,30 @@ export function ScaleLinear(key, channels, options) {
 }
 
 export function ScaleSqrt(key, channels, options) {
-  return ScaleQ(key, scaleSqrt(), channels, options);
+  return ScalePow(key, channels, {...options, exponent: 0.5});
 }
 
 export function ScalePow(key, channels, {exponent = 1, ...options}) {
-  return ScaleQ(key, scalePow().exponent(exponent), channels, options);
+  return ScaleQ(key, scalePow().exponent(exponent), channels, {...options, type: "pow"});
 }
 
 export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(channels), ...options}) {
-  return ScaleQ(key, scaleLog().base(base), channels, {domain, ...options});
+  return ScaleQ(key, scaleLog().base(base), channels, {...options, domain});
 }
 
 export function ScaleQuantile(key, channels, {
   quantiles = 5,
   scheme = "rdylbu",
   domain = inferQuantileDomain(channels),
-  range = registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
-  reverse,
-  percent
+  interpolate,
+  range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
+  reverse
 }) {
-  if (reverse = !!reverse) range = reverseof(range); // domain unordered, so reverse range
-  return {type: "quantile", scale: scaleQuantile(domain, range), reverse, domain, range, percent};
+  return ScaleThreshold(key, channels, {
+    domain: scaleQuantile(domain, range).quantiles(),
+    range,
+    reverse
+  });
 }
 
 export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
@@ -118,13 +144,13 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 export function ScaleThreshold(key, channels, {
   domain = [0], // explicit thresholds in ascending order
   scheme = "rdylbu",
-  range = registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
-  reverse,
-  percent
+  interpolate,
+  range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
+  reverse
 }) {
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
-  if (reverse = !!reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range), reverse, domain, range, percent};
+  if (reverse) range = reverseof(range); // domain ascending, so reverse range
+  return {type: "threshold", scale: scaleThreshold(domain, range), domain, range};
 }
 
 export function ScaleIdentity() {
@@ -169,4 +195,8 @@ function inferQuantileDomain(channels) {
     for (const v of value) domain.push(v);
   }
   return domain;
+}
+
+function interpolatePiecewise(interpolate) {
+  return (i, j) => t => interpolate(i + t * (j - i));
 }

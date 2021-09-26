@@ -1,4 +1,7 @@
+import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
+import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
+import {position, registry} from "./scales/index.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -31,13 +34,13 @@ export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, f
 
 function autoAxisTicksK(scale, axis, k) {
   if (axis.ticks === undefined) {
-    const [min, max] = scale.scale.range();
-    axis.ticks = Math.abs(max - min) / k;
+    const [min, max] = extent(scale.scale.range());
+    axis.ticks = (max - min) / k;
   }
 }
 
-// Mutates axis.{label,labelAnchor,labelOffset}!
-export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
+// Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
+export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, options) {
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
     if (fx.labelOffset === undefined) {
@@ -66,27 +69,46 @@ export function autoAxisLabels(channels, scales, {x, y, fx, fy}, dimensions) {
       y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     }
   }
+  for (const [key, type] of registry) {
+    if (type !== position && scales[key]) { // not already handled above
+      autoScaleLabel(key, scales[key], channels.get(key), options[key]);
+    }
+  }
 }
 
+// Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
-      : scale.reverse ? "left"
+    axis.labelAnchor = isOrdinalScale(scale) ? "center"
+      : scaleOrder(scale) < 0 ? "left"
       : "right";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "x");
   }
+  scale.label = axis.label;
 }
 
+// Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = scale.type === "ordinal" ? "center"
-      : opposite && opposite.axis === "top" ? "bottom" // TODO scale.reverse?
+    axis.labelAnchor = isOrdinalScale(scale) ? "center"
+      : opposite && opposite.axis === "top" ? "bottom" // TODO scaleOrder?
       : "top";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "y");
+  }
+  scale.label = axis.label;
+}
+
+// Mutates scale.label!
+function autoScaleLabel(key, scale, channels, options) {
+  if (options) {
+    scale.label = options.label;
+  }
+  if (scale.label === undefined) {
+    scale.label = inferLabel(channels, scale, null, key);
   }
 }
 
@@ -102,17 +124,19 @@ function inferLabel(channels = [], scale, axis, key) {
     else if (candidate !== label) return;
   }
   if (candidate !== undefined) {
-    const {percent, reverse} = scale;
     // Ignore the implicit label for temporal scales if it’s simply “date”.
-    if (scale.type === "temporal" && /^(date|time|year)$/i.test(candidate)) return;
-    if (scale.type !== "ordinal" && (key === "x" || key === "y")) {
-      if (percent) candidate = `${candidate} (%)`;
-      if (axis.labelAnchor === "center") {
-        candidate = `${candidate} →`;
-      } else if (key === "x") {
-        candidate = reverse ? `← ${candidate}` : `${candidate} →`;
-      } else {
-        candidate = `${reverse ? "↓ " : "↑ "}${candidate}`;
+    if (isTemporalScale(scale) && /^(date|time|year)$/i.test(candidate)) return;
+    if (!isOrdinalScale(scale)) {
+      if (scale.percent) candidate = `${candidate} (%)`;
+      if (key === "x" || key === "y") {
+        const order = scaleOrder(scale);
+        if (order) {
+          if (key === "x" || (axis && axis.labelAnchor === "center")) {
+            candidate = key === "x" === order < 0 ? `← ${candidate}` : `${candidate} →`;
+          } else {
+            candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
+          }
+        }
       }
     }
   }
