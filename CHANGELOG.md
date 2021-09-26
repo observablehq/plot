@@ -8,11 +8,11 @@ Add *plot*.**scale**(*name*). Explanation TK.
 
 Add support for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (or equivalently a color scheme such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
 
-Add automatic detection of “reversed” scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This affects the default axis label arrow orientation and the behavior of the *zero* option.
+Add automatic detection of “reversed” scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This improves the default axis label arrow orientation and the behavior of the *zero* option.
 
-Fix ordinal color schemes to return the correct number of colors when the natural scheme size is not equal to the desired scheme size. Fix the *rainbow* and *sinebow* cyclical color schemes when used with an ordinal color scale; the last color will no longer be equal to the first.
+Ordinal color schemes now return the correct number of colors when the natural scheme size is not equal to the desired scheme size. The *rainbow* and *sinebow* cyclical color schemes, when used with an ordinal color scale, no longer duplicate the first color as the last color.
 
-Fix the *interval* option for rect and bar so that it works with the default identity accessor. Also, ignore the *interval* option if the necessary value channel (*e.g.*, *x*) is not defined. For example, you no longer have to define *x* as the identity function here:
+The *interval* option for rect and bar now works with the default identity accessor. Also, the *interval* option is now ignored if the necessary value channel (*e.g.*, *x*) is not defined, rather than throwing an error. For example, you no longer have to define *x* as the identity function here:
 
 ```js
 Plot.barX(d3.utcDays(start, end), {interval: d3.utcDay, fill: d => d})
@@ -20,7 +20,7 @@ Plot.barX(d3.utcDays(start, end), {interval: d3.utcDay, fill: d => d})
 
 The *percent* and *transform* options are now supported on all scales, including diverging scales.
 
-Fix internal string coercion.
+Internal string coercion now uses *object*.toString instead of *object*.valueOf.
 
 ## 0.2.4
 
