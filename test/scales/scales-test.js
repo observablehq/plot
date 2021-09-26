@@ -252,6 +252,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a contin
   assert.deepStrictEqual(plot.scale("color"), {
     type: "linear",
     domain: [2700, 6300],
+    range: [0, 1],
     clamp: false,
     unknown: "black",
     interpolate: d3.interpolateTurbo,
