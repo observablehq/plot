@@ -234,6 +234,58 @@ it("plot(…).scale('fy') can return a band scale", () => {
   });
 });
 
+it("plot(…).scale(name).unknown reflects the given unknown option for an ordinal scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g", fill: "island"}).plot({color: {domain: ["Dream"], unknown: "#ccc"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "ordinal",
+    domain: ["Dream"],
+    unknown: "#ccc",
+    range: d3.schemeTableau10,
+    label: "island"
+  });
+});
+
+it("plot(…).scale(name).unknown reflects the given unknown option for a continuous scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {unknown: "black"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "linear",
+    domain: [2700, 6300],
+    range: [0, 1],
+    clamp: false,
+    unknown: "black",
+    interpolate: d3.interpolateTurbo,
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale(name).unknown reflects the given unknown option for a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "threshold", domain: [3000], unknown: "black"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3000],
+    unknown: "black",
+    range: [d3.schemeRdYlBu[3][0], d3.schemeRdYlBu[3][2]],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale(name).unknown reflects the given unknown option for a diverging scale", async () => {
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dotX(gistemp, {x: "Date", fill: "Anomaly"}).plot({color: {type: "diverging", symmetric: false, unknown: "black"}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging",
+    domain: [-0.78, 1.35],
+    pivot: 0,
+    clamp: false,
+    unknown: "black",
+    interpolate: d3.interpolateRdBu,
+    label: "Anomaly"
+  });
+});
+
 it("plot(…).scale(name) promotes the given zero option to the domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true}});

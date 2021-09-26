@@ -14,7 +14,8 @@ export default async function() {
       label: "Season"
     },
     color: {
-      scheme: "PiYG"
+      scheme: "PiYG",
+      unknown: "#ddd"
     },
     height: 640,
     marks: [
@@ -26,7 +27,7 @@ export default async function() {
       Plot.text(data, {
         x: "number_in_season",
         y: "season",
-        text: d => d.imdb_rating == null ? null : d.imdb_rating.toFixed(1),
+        text: d => d.imdb_rating == null ? "-" : d.imdb_rating.toFixed(1),
         title: "title"
       })
     ]
