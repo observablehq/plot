@@ -68,7 +68,7 @@ function autoScaleRangeY(scale, dimensions) {
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && isOrdinalScale(scale) && roundError(scale) <= 30) {
+  if (scale.round === undefined && isBandScale(scale) && roundError(scale) <= 30) {
     scale.scale.round(true);
   }
 }
@@ -191,6 +191,10 @@ export function isTemporalScale({type}) {
 
 export function isOrdinalScale({type}) {
   return type === "ordinal" || type === "point" || type === "band";
+}
+
+function isBandScale({type}) {
+  return type === "point" || type === "band";
 }
 
 export function isDivergingScale({type}) {
