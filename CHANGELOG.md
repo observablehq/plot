@@ -34,9 +34,9 @@ Inspecting materialized scales is useful for debugging and for generating color 
 Plot.plot({…, color: myplot.scale("color")})
 ```
 
-Plot now supports for piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
+Plot now supports piecewise (a.k.a. “polylinear”) scales. If a single-argument *interpolate* function is specified (such as d3.interpolateWarm, or equivalently if you specify a color *scheme* such as *warm*), and the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
 
-Plot now automatically detects “reversed” quantitative or temporal scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This improves the default axis label arrow orientation and the behavior of the *zero* option.
+Plot now automatically detects “reversed” quantitative or temporal scales with descending domains or ranges. Reversed scales are detected by comparing the natural order of the domain and range. This improves the default axis label arrow orientation and the behavior of the *zero* option.
 
 Ordinal color schemes now return the correct number of colors when the natural scheme size is not equal to the desired scheme size. The *rainbow* and *sinebow* cyclical color schemes, when used with an ordinal color scale, no longer duplicate the first color as the last color.
 
