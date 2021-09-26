@@ -166,7 +166,7 @@ function offsetCenter(allstacks, Y1, Y2) {
     }
     offsetZero(stacks, Y1, Y2);
   }
-  offsetCenterFacets(Y1, Y2, allstacks.map(d => d.flat()));
+  offsetCenterFacets(allstacks, Y1, Y2);
 }
 
 function offsetWiggle(allstacks, Y1, Y2, Z) {
@@ -193,7 +193,7 @@ function offsetWiggle(allstacks, Y1, Y2, Z) {
     }
     offsetZero(stacks, Y1, Y2);
   }
-  offsetCenterFacets(Y1, Y2, allstacks.map(d => d.flat()));
+  offsetCenterFacets(allstacks, Y1, Y2);
 }
 
 function offsetZero(stacks, Y1, Y2) {
@@ -206,9 +206,10 @@ function offsetZero(stacks, Y1, Y2) {
   }
 }
 
-function offsetCenterFacets(Y1, Y2, facets) {
-  const n = facets.length;
+function offsetCenterFacets(allstacks, Y1, Y2) {
+  const n = allstacks.length;
   if (n === 1) return;
+  const facets = allstacks.map(d => d.flat());
   const m = facets.map(I => (min(I, i => Y1[i]) + max(I, i => Y2[i])) / 2);
   const m0 = min(m);
   for (let j = 0; j < n; j++) {
