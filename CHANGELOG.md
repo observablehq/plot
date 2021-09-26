@@ -1,5 +1,27 @@
 # Observable Plot - Changelog
 
+## 0.2.5
+
+*Not yet released.* These notes are a work in progress.
+
+Add *plot*.**scale**(*name*). Explanation TK.
+
+Add support for piecewise (“polylinear”) scales. If a single-argument *interpolate* function is specified, the *range* is undefined, and the *domain* has more than two elements, the range [0, 1] will be partitioned into *domain*.length - 1 same-sized segments. The default scale range for *x* and *y* now supports piecewise scales, as does the default axis tick count.
+
+Add automatic detection of “reversed” scales with descending domains or ranges. Reversed scales are now detected by comparing the natural order of the domain and range, rather than checking the *reverse* option. This affects the default axis label arrow orientation and the behavior of the *zero* option.
+
+Fix ordinal color schemes to return the correct number of colors when the natural scheme size is not equal to the desired scheme size. Fix the *rainbow* and *sinebow* cyclical color schemes when used with an ordinal color scale; the last color will no longer be equal to the first.
+
+Fix the *interval* option for rect and bar so that it works with the default identity accessor. Also, ignore the *interval* option if the necessary value channel (*e.g.*, *x*) is not defined. For example, you no longer have to define *x* as the identity function here:
+
+```js
+Plot.barX(d3.utcDays(start, end), {interval: d3.utcDay, fill: d => d})
+```
+
+The *percent* and *transform* options are now supported on all scales, including diverging scales.
+
+Fix internal string coercion.
+
 ## 0.2.4
 
 Released September 24, 2021.
