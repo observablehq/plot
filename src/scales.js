@@ -68,9 +68,23 @@ function autoScaleRangeY(scale, dimensions) {
 }
 
 function autoScaleRound(scale) {
-  if (scale.round === undefined && isOrdinalScale(scale) && scale.scale.step() >= 5) {
+  if (scale.round === undefined && isBandScale(scale) && roundError(scale) <= 30) {
     scale.scale.round(true);
   }
+}
+
+// If we were to turn on rounding for this band or point scale, how much wasted
+// space would it introduce (on both ends of the range)? This must match
+// d3.scaleBand’s rounding behavior:
+// https://github.com/d3/d3-scale/blob/83555bd759c7314420bd4240642beda5e258db9e/src/band.js#L20-L32
+function roundError({scale}) {
+  const n = scale.domain().length;
+  const [start, stop] = scale.range();
+  const paddingInner = scale.paddingInner ? scale.paddingInner() : 1;
+  const paddingOuter = scale.paddingOuter ? scale.paddingOuter() : scale.padding();
+  const m = n - paddingInner;
+  const step = Math.abs(stop - start) / Math.max(1, m + paddingOuter * 2);
+  return (step - Math.floor(step)) * m;
 }
 
 function piecewiseRange({scale, range}) {
@@ -177,6 +191,10 @@ export function isTemporalScale({type}) {
 
 export function isOrdinalScale({type}) {
   return type === "ordinal" || type === "point" || type === "band";
+}
+
+function isBandScale({type}) {
+  return type === "point" || type === "band";
 }
 
 export function isDivergingScale({type}) {
