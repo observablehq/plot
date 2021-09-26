@@ -14,6 +14,7 @@ export default async function() {
       axis: null
     },
     fy: {
+      round: true,
       label: null
     },
     facet: {
