@@ -393,18 +393,14 @@ it("plot(…).scale('color') can return an asymmetric diverging scale", async ()
 it("plot(…).scale('color') can return a symmetric diverging scale", async () => {
   const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging"}});
-  const {interpolate, ...color} = plot.scale("color");
-  assert.deepStrictEqual(color, {
+  assert.deepStrictEqual(plot.scale("color"), {
     type: "diverging",
-    domain: [-0.78, 1.35],
+    domain: [-1.35, 1.35],
+    interpolate: d3.interpolateRdBu,
     pivot: 0,
     clamp: false,
     label: "Anomaly"
   });
-  const k = 0.78 / 1.35;
-  for (const t of d3.ticks(0, 1, 100)) {
-    assert.strictEqual(interpolate(t), d3.interpolateRdBu(t < 0.5 ? t * k + (1 - k) / 2: t));
-  }
 });
 
 it("plot(…).scale('color') can return a diverging scale with an explicit range", async () => {
@@ -447,6 +443,21 @@ it("plot(…).scale('color') can return a transformed diverging scale", async ()
   assert.deepStrictEqual(plot.scale("color"), {
     type: "diverging",
     domain: [-78, 135],
+    pivot: 0,
+    transform,
+    interpolate: d3.interpolateRdBu,
+    clamp: false,
+    label: "Anomaly"
+  });
+});
+
+it("plot(…).scale('color') can return a transformed symmetric diverging scale", async () => {
+  const transform = d => d * 100;
+  const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
+  const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", transform}});
+  assert.deepStrictEqual(plot.scale("color"), {
+    type: "diverging",
+    domain: [-135, 135],
     pivot: 0,
     transform,
     interpolate: d3.interpolateRdBu,
