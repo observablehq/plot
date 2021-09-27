@@ -75,7 +75,7 @@ Update [D3](https://github.com/d3/d3) to [7.0.4](https://github.com/d3/d3/releas
 
 Released September 19, 2021.
 
-Fix a crash with the axis.tickRotate option when there are no ticks to rotate.
+Fix a crash with the scale.tickRotate option when there are no ticks to rotate.
 
 ## 0.2.1
 
