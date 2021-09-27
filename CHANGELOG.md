@@ -1,5 +1,11 @@
 # Observable Plot - Changelog
 
+## 0.2.6
+
+Released September 26, 2021.
+
+Fix the symmetric transform for reversed diverging scales.
+
 ## 0.2.5
 
 Released September 26, 2021.
