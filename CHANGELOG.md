@@ -1,5 +1,11 @@
 # Observable Plot - Changelog
 
+## 0.2.7
+
+Released September 27, 2021.
+
+Implement symmetric diverging scales by extending the domain instead of slicing the interpolator.
+
 ## 0.2.6
 
 Released September 26, 2021.
