@@ -46,6 +46,9 @@ function ScaleD(key, scale, transform, channels, {
       : piecewise(interpolate, range);
   }
 
+  // Reverse before normalization.
+  if (reverse) interpolate = flip(interpolate);
+
   // Normalize the interpolator for symmetric difference around the pivot.
   if (symmetric) {
     const mindelta = Math.abs(transform(min) - transform(pivot));
@@ -54,7 +57,6 @@ function ScaleD(key, scale, transform, channels, {
     else if (mindelta > maxdelta) interpolate = truncateUpper(interpolate, maxdelta / mindelta);
   }
 
-  if (reverse) interpolate = flip(interpolate);
   scale.domain([min, pivot, max]).unknown(unknown).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
