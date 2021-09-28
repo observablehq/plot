@@ -1,9 +1,10 @@
+import {randomLcg} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {valueof} from "../mark.js";
 import {basic} from "./basic.js";
 
-export function shuffle(options) {
-  return basic(options, sortValue(Math.random));
+export function shuffle({seed, ...options} = {}) {
+  return basic(options, sortValue(seed == null ? Math.random : randomLcg(seed)));
 }
 
 export function sort(value, options) {
