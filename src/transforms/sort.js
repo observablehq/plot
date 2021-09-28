@@ -2,6 +2,10 @@ import {ascendingDefined} from "../defined.js";
 import {valueof} from "../mark.js";
 import {basic} from "./basic.js";
 
+export function shuffle(options) {
+  return basic(options, sortValue(Math.random));
+}
+
 export function sort(value, options) {
   return basic(options, sortTransform(value));
 }

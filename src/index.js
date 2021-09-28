@@ -13,7 +13,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {filter} from "./transforms/filter.js";
 export {reverse} from "./transforms/reverse.js";
-export {sort} from "./transforms/sort.js";
+export {sort, shuffle} from "./transforms/sort.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
