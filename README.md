@@ -1047,6 +1047,14 @@ Plot.sort("body_mass_g", options) // show data in ascending body mass order
 
 Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name.
 
+### Plot.shuffle(*options*)
+
+```js
+Plot.shuffle(options) // show data in random order
+```
+
+Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
+
 ### Plot.reverse(*options*)
 
 ```js

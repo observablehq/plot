@@ -10,6 +10,7 @@ export {default as anscombeQuartet} from "./anscombe-quartet.js";
 export {default as athletesHeightWeight} from "./athletes-height-weight.js";
 export {default as athletesHeightWeightBin} from "./athletes-height-weight-bin.js";
 export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight-bin-stroke.js";
+export {default as athletesHeightWeightSport} from "./athletes-height-weight-sport.js";
 export {default as athletesHeightWeightSex} from "./athletes-height-weight-sex.js";
 export {default as athletesNationality} from "./athletes-nationality.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
