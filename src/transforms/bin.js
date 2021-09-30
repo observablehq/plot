@@ -61,8 +61,23 @@ function binn(
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
-  // computing them more than once.
-  const {x, y, z, fill, stroke, ...options} = inputs;
+  // computing them more than once. We also want to consume options that should
+  // only apply to this transform rather than passing them through to the next.
+  const {
+    x,
+    y,
+    z,
+    fill,
+    stroke,
+    x1, // possibly consumed
+    x2, // possibly consumed
+    y1, // possibly consumed
+    y2, // possibly consumed
+    domain, // eslint-disable-line no-unused-vars
+    cumulative, // eslint-disable-line no-unused-vars
+    thresholds, // eslint-disable-line no-unused-vars
+    ...options
+  } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -127,8 +142,8 @@ function binn(
       maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
-    ...BX1 && !hasOutput(outputs, "x") ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
-    ...BY1 && !hasOutput(outputs, "y") ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
+    ...!hasOutput(outputs, "x") && (BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x, x1, x2}),
+    ...!hasOutput(outputs, "y") && (BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y, y1, y2}),
     ...GK && {[gk]: GK},
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
