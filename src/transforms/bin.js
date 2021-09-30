@@ -6,18 +6,21 @@ import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs = {x: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs = {fill: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
@@ -147,7 +150,12 @@ function binn(
   };
 }
 
-function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValue) {
+// Allow bin options to be specified as part of outputs; merge them into options.
+function mergeOptions({cumulative, domain, thresholds, ...outputs}, options) {
+  return [outputs, {cumulative, domain, thresholds, ...options}];
+}
+
+function maybeBinValue(value, {cumulative, domain, thresholds}, defaultValue) {
   value = {...maybeValue(value)};
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
@@ -157,7 +165,7 @@ function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValu
   return value;
 }
 
-function maybeBinValueTuple(options = {}) {
+function maybeBinValueTuple(options) {
   let {x, y} = options;
   x = maybeBinValue(x, options);
   y = maybeBinValue(y, options);
