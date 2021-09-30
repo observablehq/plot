@@ -151,7 +151,7 @@ export function maybeEvaluator(name, reduce, inputs) {
   const reducer = maybeReduce(reduce, input);
   let V, context;
   return {
-    label: labelof(input, reducer.label),
+    label: labelof(reducer === reduceCount ? null : input, reducer.label),
     initialize(data) {
       V = input === undefined ? data : valueof(data, input);
       if (reducer.scope === "data") {
