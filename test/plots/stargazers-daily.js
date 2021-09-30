@@ -5,8 +5,7 @@ export default async function() {
   const stargazers = await d3.csv("data/stargazers.csv", d3.autoType);
   return Plot.plot({
     y: {
-      grid: true,
-      // label: "↑ Stargazers added per week"
+      grid: true
     },
     marks: [
       Plot.rectY(stargazers, Plot.binX({y: "count"}, Plot.binX({x: "count"}, {x: "date", thresholds: d3.utcDay}))),
