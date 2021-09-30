@@ -69,10 +69,8 @@ function binn(
     z,
     fill,
     stroke,
-    x1, // possibly consumed
-    x2, // possibly consumed
-    y1, // possibly consumed
-    y2, // possibly consumed
+    x1, x2, // consumed if x is an output
+    y1, y2, // consumed if y is an output
     domain, // eslint-disable-line no-unused-vars
     cumulative, // eslint-disable-line no-unused-vars
     thresholds, // eslint-disable-line no-unused-vars
