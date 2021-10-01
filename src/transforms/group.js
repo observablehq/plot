@@ -57,7 +57,14 @@ function groupn(
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
   // computing them more than once.
-  const {z, fill, stroke, ...options} = inputs;
+  const {
+    z,
+    fill,
+    stroke,
+    x1, x2, // consumed if x is an output
+    y1, y2, // consumed if y is an output
+    ...options
+  } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -112,10 +119,19 @@ function groupn(
       maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
-    ...GX && {x: GX},
-    ...GY && {y: GY},
+    ...!hasOutput(outputs, "x") && (GX ? {x: GX} : {x1, x2}),
+    ...!hasOutput(outputs, "y") && (GY ? {y: GY} : {y1, y2}),
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
+}
+
+export function hasOutput(outputs, ...names) {
+  for (const {name} of outputs) {
+    if (names.includes(name)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export function maybeOutputs(outputs, inputs) {
