@@ -7,14 +7,24 @@ import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
 import {isOrdinal, isTemporal} from "./mark.js";
 
-export function Scales(channels, {inset, round, nice, align, padding, ...options} = {}) {
+export function Scales(channels, {
+  inset: globalInset = 0,
+  insetTop: globalInsetTop = globalInset,
+  insetRight: globalInsetRight = globalInset,
+  insetBottom: globalInsetBottom = globalInset,
+  insetLeft: globalInsetLeft = globalInset,
+  round,
+  nice,
+  align,
+  padding,
+  ...options
+} = {}) {
   const scales = {};
   for (const key of registry.keys()) {
     const scaleChannels = channels.get(key);
     const scaleOptions = options[key];
     if (scaleChannels || scaleOptions) {
       const scale = Scale(key, scaleChannels, {
-        inset: key === "x" || key === "y" ? inset : undefined, // not for facet
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
         align,
@@ -22,12 +32,26 @@ export function Scales(channels, {inset, round, nice, align, padding, ...options
         ...scaleOptions
       });
       if (scale) {
-        if (scaleOptions) { // populate generic scale options (percent, transform)
-          let {percent, transform} = scaleOptions;
-          if (transform == null) transform = undefined;
-          else if (typeof transform !== "function") throw new Error("invalid scale transform");
-          scale.percent = !!percent;
-          scale.transform = transform;
+        // populate generic scale options (percent, transform, insets)
+        let {
+          percent,
+          transform,
+          inset,
+          insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
+          insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
+          insetBottom = inset !== undefined ? inset : key === "y" ? globalInsetBottom : 0, // not fy
+          insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
+        } = scaleOptions || {};
+        if (transform == null) transform = undefined;
+        else if (typeof transform !== "function") throw new Error("invalid scale transform");
+        scale.percent = !!percent;
+        scale.transform = transform;
+        if (key === "x" || key === "fx") {
+          scale.insetLeft = +insetLeft;
+          scale.insetRight = +insetRight;
+        } else if (key === "y" || key === "fy") {
+          scale.insetTop = +insetTop;
+          scale.insetBottom = +insetBottom;
         }
         scales[key] = scale;
       }
@@ -46,9 +70,9 @@ export function autoScaleRange({x, y, fx, fy}, dimensions) {
 
 function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
-    const {inset = 0} = scale;
+    const {insetLeft, insetRight} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.range = [marginLeft + inset, width - marginRight - inset];
+    scale.range = [marginLeft + insetLeft, width - marginRight - insetRight];
     if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     scale.scale.range(scale.range);
   }
@@ -57,9 +81,9 @@ function autoScaleRangeX(scale, dimensions) {
 
 function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
-    const {inset = 0} = scale;
+    const {insetTop, insetBottom} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    scale.range = [height - marginBottom - inset, marginTop + inset];
+    scale.range = [height - marginBottom - insetBottom, marginTop + insetTop];
     if (isOrdinalScale(scale)) scale.range.reverse();
     else scale.range = piecewiseRange(scale);
     scale.scale.range(scale.range);
