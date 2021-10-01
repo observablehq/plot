@@ -173,10 +173,13 @@ function inferZeroDomain(channels) {
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
-// be degenerate, so we ignore nonpositive values.
+// be degenerate, so we ignore nonpositive values. We also don’t want the maximum
+// default radius to exceed 30px.
 function inferRadialRange(channels, domain) {
   const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
-  return domain.map(d => 3 * Math.sqrt(d / h25));
+  const range = domain.map(d => 3 * Math.sqrt(d / h25));
+  const k = 30 / max(range);
+  return k < 1 ? range.map(r => r * k) : range;
 }
 
 function inferLogDomain(channels) {
