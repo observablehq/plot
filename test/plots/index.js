@@ -93,6 +93,7 @@ export {default as policeDeaths} from "./police-deaths.js";
 export {default as policeDeathsBar} from "./police-deaths-bar.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
+export {default as randomQuantile} from "./random-quantile.js";
 export {default as randomWalk} from "./random-walk.js";
 export {default as seattlePrecipitationRule} from "./seattle-precipitation-rule.js";
 export {default as seattleTemperatureBand} from "./seattle-temperature-band.js";

@@ -1,4 +1,4 @@
-import {group} from "d3";
+import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, lazyChannel} from "../mark.js";
 import {basic} from "./basic.js";
 
@@ -43,8 +43,15 @@ function maybeMap(map) {
   if (typeof map === "function") return mapFunction(map);
   switch (`${map}`.toLowerCase()) {
     case "cumsum": return mapCumsum;
+    case "rank": return mapFunction(rank);
+    case "quantile": return mapFunction(rankQuantile);
   }
   throw new Error("invalid map");
+}
+
+function rankQuantile(V) {
+  const n = count(V) - 1;
+  return rank(V).map(r => r / n);
 }
 
 function mapFunction(f) {

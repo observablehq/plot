@@ -1319,6 +1319,8 @@ Like the [group](#group) and [bin](#bin) transforms, the [Plot.map](#plotmapoutp
 The following map methods are supported:
 
 * *cumsum* - a cumulative sum
+* *rank* - the rank of each value in the sorted array
+* *quantile* - the rank, normalized between 0 and 1
 * a function to be passed an array of values, returning new values
 * an object that implements the *map* method
 
