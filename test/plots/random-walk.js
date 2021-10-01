@@ -7,6 +7,7 @@ export default async function() {
     marks: [
       Plot.lineY(d3.cumsum({length: 500}, randomNormal), {stroke: "red"}),
       Plot.lineY({length: 500}, Plot.mapY("cumsum", {y: randomNormal, stroke: "blue"}))
-    ]
+    ],
+    y: {insetTop: -5, insetBottom: 5}
   });
 }

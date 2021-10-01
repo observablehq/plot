@@ -7,6 +7,9 @@ export default async function() {
   const q1 = data => d3.quantile(data, 0.25);
   const q3 = data => d3.quantile(data, 0.75);
   return Plot.plot({
+    x: {
+      insetLeft: 2
+    },
     y: {
       transform: d => d / 1e6,
       label: "↑ Daily trade volume (millions)",
