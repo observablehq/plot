@@ -11,11 +11,21 @@ export default async function() {
       grid: true
     },
     marks: [
-      Plot.barY(stargazers,
-        Plot.groupX({y: "count", title: "first"},
+      Plot.barY(
+        stargazers,
+        Plot.groupX(
+          {y: "count", title: "first"},
           Plot.binY(
-            {x: d => d.length < 5 ? `${d.length}` : "5+", thresholds: d3.utcHour, title: "first"},
-            {y: "date", fill: d => d.date.getUTCDay(), title: d => "SMTWTFS"[d.date.getUTCDay()]}
+            {
+              x: d => d.length < 5 ? `${d.length}` : "5+",
+              thresholds: d3.utcHour,
+              title: "first"
+            },
+            {
+              y: "date",
+              fill: d => d.date.getUTCDay(),
+              title: d => "SMTWTFS"[d.date.getUTCDay()]
+            }
           )
         )
       ),
