@@ -1,4 +1,4 @@
-import {group, rank} from "d3";
+import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, lazyChannel} from "../mark.js";
 import {basic} from "./basic.js";
 
@@ -50,7 +50,7 @@ function maybeMap(map) {
 }
 
 function rankQuantile(V) {
-  const n = V.length;
+  const n = count(V) - 1;
   return rank(V).map(r => r / n);
 }
 
