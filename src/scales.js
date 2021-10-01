@@ -84,8 +84,8 @@ function autoScaleRangeY(scale, dimensions) {
     const {insetTop, insetBottom} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
     scale.range = [height - marginBottom - insetBottom, marginTop + insetTop];
-    if (isOrdinalScale(scale)) scale.range.reverse();
-    else scale.range = piecewiseRange(scale);
+    if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
+    else scale.range.reverse();
     scale.scale.range(scale.range);
   }
   autoScaleRound(scale);
@@ -111,10 +111,10 @@ function roundError({scale}) {
   return (step - Math.floor(step)) * m;
 }
 
-function piecewiseRange({scale, range}) {
-  const length = scale.domain().length;
-  if (!(length > 2)) return range;
-  const [start, end] = range;
+function piecewiseRange(scale) {
+  const length = scale.scale.domain().length + isThresholdScale(scale);
+  if (!(length > 2)) return scale.range;
+  const [start, end] = scale.range;
   return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
 }
 
@@ -215,6 +215,10 @@ export function isTemporalScale({type}) {
 
 export function isOrdinalScale({type}) {
   return type === "ordinal" || type === "point" || type === "band";
+}
+
+function isThresholdScale({type}) {
+  return type === "threshold";
 }
 
 function isBandScale({type}) {

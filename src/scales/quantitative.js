@@ -132,7 +132,7 @@ export function ScaleQuantile(key, channels, {
   reverse
 }) {
   return ScaleThreshold(key, channels, {
-    domain: scaleQuantile(domain, range).quantiles(),
+    domain: scaleQuantile(domain, range === undefined ? {length: quantiles} : range).quantiles(),
     range,
     reverse
   });
@@ -152,7 +152,7 @@ export function ScaleThreshold(key, channels, {
 }) {
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range).unknown(unknown), domain, range};
+  return {type: "threshold", scale: scaleThreshold(domain, range === undefined ? [] : range).unknown(unknown), domain, range};
 }
 
 export function ScaleIdentity() {
