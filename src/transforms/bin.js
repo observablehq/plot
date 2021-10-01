@@ -1,7 +1,7 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {basic} from "./basic.js";
-import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -221,15 +221,6 @@ function thresholdAuto(values, min, max) {
 
 function isTimeInterval(t) {
   return t ? typeof t.range === "function" : false;
-}
-
-function hasOutput(outputs, ...names) {
-  for (const {name} of outputs) {
-    if (names.includes(name)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 function binset(bin) {
