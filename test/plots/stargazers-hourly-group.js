@@ -15,7 +15,7 @@ export default async function() {
         Plot.groupX({y: "count", title: "first"},
           Plot.binY(
             {x: d => d.length < 5 ? `${d.length}` : "5+", thresholds: d3.utcHour, title: "first"},
-            {y: "date", fill: d => d.date.getDay(), title: d => "SMTWTFS"[d.date.getDay()]}
+            {y: "date", fill: d => d.date.getUTCDay(), title: d => "SMTWTFS"[d.date.getUTCDay()]}
           )
         )
       ),
