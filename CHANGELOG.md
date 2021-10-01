@@ -1,5 +1,21 @@
 # Observable Plot - Changelog
 
+## 0.2.8
+
+Released October 1, 2021.
+
+The map transform now supports *rank* and *quantile* map methods. These compute the 0-based ordinal rank or the *p*-quantile of the data, respectively.
+
+The bin transform now allows bin options (*domain*, *cumulative*, and *thresholds*) to be specified on the *outputs* object; this avoids ambiguity when composing multiple bin transforms. To facilitate transform composition, the bin and group transforms now consume the *x1* and *x2* channels when *x* is an output, and the *y1* and *y2* channels when *y* is an output. Also, the bin, group, and stack transforms now consume their respective transform options rather than propagating them in the returned options. The bin and group transform no longer use the channel name as the default lable for the *count* reducer. The bin transform now automatically coerces values to dates when the *thresholds* are specified as a time interval or an array of dates.
+
+The new shuffle transform randomizes the order of data. It takes an optional *seed* for deterministic order.
+
+Position scales (*x*, *y*, *fx*, and *fy*) now support asymmetric insets via the *scale*.**insetLeft**, *scale*.**insetRight**, *scale*.**insetTop**, and *scale*.**insetBottom** options. Threshold and quantile scales can now be used as position scales without requiring an explicit range.
+
+The radius scale (*r*) now limits the maximum default radius to 30 pixels.
+
+Text marks now default strokeLinejoin to “round” to reduce the effect of miter joins.
+
 ## 0.2.7
 
 Released September 27, 2021.
