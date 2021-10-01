@@ -4,42 +4,42 @@ import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybe
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
   const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
 export function stackX1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {y1, y = y1, x} = options;
   const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackX2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {y1, y = y1, x} = options;
   const [transform, Y,, X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackY(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
 export function stackY1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {x1, x = x1, y} = options;
   const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
 export function stackY2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) options = mergeOptions(stackOptions);
+  if (arguments.length === 1) ([stackOptions, options] = mergeOptions(stackOptions));
   const {x1, x = x1, y} = options;
   const [transform, X,, Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
@@ -73,8 +73,8 @@ function aliasSort(options, name) {
 // transform. If only one options object is specified, we interpret it as a
 // stack option, and therefore must remove it from the propagated options.
 function mergeOptions(options) {
-  const {reverse} = options;
-  return reverse ? {...options, reverse: false} : options;
+  const {offset, order, reverse, ...rest} = options;
+  return [{offset, order, reverse}, rest];
 }
 
 function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {

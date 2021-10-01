@@ -1,23 +1,26 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {basic} from "./basic.js";
-import {maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs = {x: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
 export function bin(outputs = {fill: "count"}, options = {}) {
+  ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
@@ -61,8 +64,21 @@ function binn(
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
-  // computing them more than once.
-  const {x, y, z, fill, stroke, ...options} = inputs;
+  // computing them more than once. We also want to consume options that should
+  // only apply to this transform rather than passing them through to the next.
+  const {
+    x,
+    y,
+    z,
+    fill,
+    stroke,
+    x1, x2, // consumed if x is an output
+    y1, y2, // consumed if y is an output
+    domain, // eslint-disable-line no-unused-vars
+    cumulative, // eslint-disable-line no-unused-vars
+    thresholds, // eslint-disable-line no-unused-vars
+    ...options
+  } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
   const [vfill] = maybeColor(fill);
   const [vstroke] = maybeColor(stroke);
@@ -127,14 +143,19 @@ function binn(
       maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
-    ...BX1 && !hasOutput(outputs, "x") ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x},
-    ...BY1 && !hasOutput(outputs, "y") ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y},
+    ...!hasOutput(outputs, "x") && (BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x, x1, x2}),
+    ...!hasOutput(outputs, "y") && (BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y, y1, y2}),
     ...GK && {[gk]: GK},
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 
-function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValue) {
+// Allow bin options to be specified as part of outputs; merge them into options.
+function mergeOptions({cumulative, domain, thresholds, ...outputs}, options) {
+  return [outputs, {cumulative, domain, thresholds, ...options}];
+}
+
+function maybeBinValue(value, {cumulative, domain, thresholds}, defaultValue) {
   value = {...maybeValue(value)};
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
@@ -144,7 +165,7 @@ function maybeBinValue(value, {cumulative, domain, thresholds} = {}, defaultValu
   return value;
 }
 
-function maybeBinValueTuple(options = {}) {
+function maybeBinValueTuple(options) {
   let {x, y} = options;
   x = maybeBinValue(x, options);
   y = maybeBinValue(y, options);
@@ -200,15 +221,6 @@ function thresholdAuto(values, min, max) {
 
 function isTimeInterval(t) {
   return t ? typeof t.range === "function" : false;
-}
-
-function hasOutput(outputs, ...names) {
-  for (const {name} of outputs) {
-    if (names.includes(name)) {
-      return true;
-    }
-  }
-  return false;
 }
 
 function binset(bin) {

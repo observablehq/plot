@@ -111,6 +111,8 @@ export {default as stackedBar} from "./stacked-bar.js";
 export {default as stackedRect} from "./stacked-rect.js";
 export {default as stargazers} from "./stargazers.js";
 export {default as stargazersBinned} from "./stargazers-binned.js";
+export {default as stargazersHourly} from "./stargazers-hourly.js";
+export {default as stargazersHourlyGroup} from "./stargazers-hourly-group.js";
 export {default as stocksIndex} from "./stocks-index.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";

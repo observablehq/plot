@@ -17,13 +17,13 @@ function maybeInterval(interval) {
 
 // The interval may be specified either as x: {value, interval} or as {x,
 // interval}. The former is used, for example, for Plot.rect.
-function maybeIntervalValue(value, {interval} = {}) {
+function maybeIntervalValue(value, {interval}) {
   value = {...maybeValue(value)};
   value.interval = maybeInterval(value.interval === undefined ? interval : value.interval);
   return value;
 }
 
-function maybeIntervalK(k, maybeInsetK, options = {}) {
+function maybeIntervalK(k, maybeInsetK, options) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
   const {value, interval} = maybeIntervalValue(v, options);
   if (value == null || interval == null) return options;
@@ -38,7 +38,7 @@ function maybeIntervalK(k, maybeInsetK, options = {}) {
   });
 }
 
-export function maybeIntervalX(options) {
+export function maybeIntervalX(options = {}) {
   return maybeIntervalK("x", maybeInsetX, options);
 }
 
