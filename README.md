@@ -1168,7 +1168,7 @@ The **thresholds** option may be specified as a named method or a variety of oth
 * *sturges* - [Sturges’ formula](https://en.wikipedia.org/wiki/Histogram#Sturges.27_formula)
 * a count (hint) representing the desired number of bins
 * an array of *n* threshold values for *n* + 1 bins
-* a time interval (for temporal binning)
+* an interval or time interval (for temporal binning; see below)
 * a function that returns an array, count, or time interval
 
 If the **thresholds** option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, [d3.ticks](https://github.com/d3/d3-array/blob/main/README.md#ticks) or [d3.utcTicks](https://github.com/d3/d3-time/blob/master/README.md#ticks) is used to choose suitable nice thresholds. If an interval, it must expose an *interval*.floor(*value*), *interval*.ceil(*value*), and *interval*.range(*start*, *stop*) methods. If the interval is a time interval such as d3.utcDay, or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
