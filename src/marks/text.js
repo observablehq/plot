@@ -3,7 +3,9 @@ import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset} from "../style.js";
 
-const defaults = {};
+const defaults = {
+  strokeLinejoin: "round"
+};
 
 export class Text extends Mark {
   constructor(data, options = {}) {

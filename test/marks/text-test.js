@@ -49,3 +49,10 @@ it("text(data, {fill}) allows fill to be a variable color", () => {
   assert.strictEqual(fill.value, "x");
   assert.strictEqual(fill.scale, "color");
 });
+
+it("text(data, {stroke}) has a default strokeLinejoin of round", () => {
+  const text = Plot.text(undefined, {stroke: "red"});
+  assert.strictEqual(text.fill, "none");
+  assert.strictEqual(text.stroke, "red");
+  assert.strictEqual(text.strokeLinejoin, "round");
+});

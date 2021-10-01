@@ -24,6 +24,7 @@ export function styles(
     fill: defaultFill = "currentColor",
     stroke: defaultStroke = "none",
     strokeWidth: defaultStrokeWidth,
+    strokeLinejoin: defaultStrokeLinejoin,
     strokeMiterlimit: defaultStrokeMiterlimit
   }
 ) {
@@ -55,6 +56,7 @@ export function styles(
   // defaults if the stroke is not (constant) none.
   if (cstroke !== "none") {
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
+    if (strokeLinejoin === undefined) strokeLinejoin = defaultStrokeLinejoin;
     if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
   }
 
