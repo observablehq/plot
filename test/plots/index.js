@@ -116,6 +116,7 @@ export {default as stargazersHourlyGroup} from "./stargazers-hourly-group.js";
 export {default as stocksIndex} from "./stocks-index.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
+export {default as untypedDateBin} from "./untyped-date-bin.js";
 export {default as usCongressAge} from "./us-congress-age.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";

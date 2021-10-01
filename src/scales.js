@@ -286,7 +286,7 @@ function coerceArray(array, coerce, type = Array) {
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
 // since the result will be stored in a Float64Array and we don’t want null to
 // be coerced to zero.
-function coerceNumber(x) {
+export function coerceNumber(x) {
   return x == null ? NaN : +x;
 }
 
@@ -296,7 +296,7 @@ function coerceNumber(x) {
 // it is still generally preferable to do date parsing yourself explicitly,
 // rather than rely on Plot.) Any non-string values are coerced to number first
 // and treated as milliseconds since UNIX epoch.
-function coerceDate(x) {
+export function coerceDate(x) {
   return x instanceof Date && !isNaN(x) ? x
     : typeof x === "string" ? isoParse(x)
     : x == null || isNaN(x = +x) ? undefined

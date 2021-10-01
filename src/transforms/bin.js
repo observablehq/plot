@@ -1,5 +1,6 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {coerceDate} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
@@ -177,13 +178,14 @@ function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
   const bin = data => {
-    const V = valueof(data, value);
+    let V = valueof(data, value);
     const bin = binner().value(i => V[i]);
-    if (isTemporal(V)) {
+    if (isTemporal(V) || isTimeThresholds(thresholds)) {
+      V = V.map(coerceDate);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
-      let t = typeof thresholds === "function" && !isTimeInterval(thresholds) ? thresholds(V, min, max) : thresholds;
+      let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
-      if (isTimeInterval(t)) {
+      if (isInterval(t)) {
         if (domain === extent) {
           min = t.floor(min);
           max = t.ceil(new Date(+max + 1));
@@ -219,7 +221,15 @@ function thresholdAuto(values, min, max) {
   return Math.min(200, thresholdScott(values, min, max));
 }
 
+function isTimeThresholds(t) {
+  return isTimeInterval(t) || t && t[Symbol.iterator] && isTemporal(t);
+}
+
 function isTimeInterval(t) {
+  return isInterval(t) && typeof t === "function" && t() instanceof Date;
+}
+
+function isInterval(t) {
   return t ? typeof t.range === "function" : false;
 }
 
