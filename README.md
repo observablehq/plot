@@ -225,12 +225,12 @@ The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
 * *scale*.**inset** - inset the default range by the specified amount in pixels
 * *scale*.**round** - round the output value to the nearest integer (whole pixel)
 
-The *x* scale supports asymmetric insets for more precision. Replace inset by:
+The *x* and *fx* scales support asymmetric insets for more precision. Replace inset by:
 
 * *scale*.**insetLeft** - insets the start of the default range by the specified number of pixels
 * *scale*.**insetRight** - insets the end of the default range by the specified number of pixels
 
-Similarly, the *y* scale supports asymmetric insets with:
+Similarly, the *y* and *fy* scales support asymmetric insets with:
 
 * *scale*.**insetTop** - insets the top of the default range by the specified number of pixels
 * *scale*.**insetBottom** - insets the bottom of the default range by the specified number of pixels
