@@ -51,7 +51,7 @@
     "snowpack": "^3.0.11"
   },
   "dependencies": {
-    "d3": "^7.0.0",
+    "d3": "^7.1.0",
     "isoformat": "^0.2.0"
   },
   "engines": {
