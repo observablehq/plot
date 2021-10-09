@@ -469,11 +469,11 @@ Plot.plot({
     data: penguins,
     x: "sex"
   },
-  marks: {
+  marks: [
     Plot.frame(), // draws an outline around each facet
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee", facet: "exclude"}), // draws excluded penguins on each facet
     Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
-  }
+  ]
 })
 ```
 
