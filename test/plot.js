@@ -9,6 +9,8 @@ for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
     const root = await plot();
     const [ext, svg] = root.tagName === "svg" ? ["svg", root] : ["html", root.querySelector("svg")];
+    svg.setAttribute("class", "plot"); // strip uid
+    svg.querySelector("style").remove(); // strip stylesheet (contains uid)
     svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
     svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     const actual = beautify.html(root.outerHTML, {indent_size: 2});

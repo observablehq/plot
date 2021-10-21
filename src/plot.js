@@ -68,13 +68,31 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
+  // A unique identifier for this plot, for inline styles.
+  const uid = `plot-${Math.random().toString(16).slice(2)}`;
+
   const svg = create("svg")
-      .attr("class", "plot")
+      .attr("class", uid)
       .attr("fill", "currentColor")
+      .attr("font-family", "system-ui, sans-serif")
+      .attr("font-size", 10)
+      .attr("font-variant", "tabular-nums")
       .attr("text-anchor", "middle")
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)
+      .call(svg => svg.append("style").text(`
+        .${uid} {
+          display: block;
+          background: white;
+          height: auto;
+          height: intrinsic;
+          max-width: 100%;
+        }
+        .${uid} text {
+          white-space: pre;
+        }
+      `))
       .each(function() {
         if (typeof style === "string") this.style = style;
         else Object.assign(this.style, style);
