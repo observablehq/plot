@@ -1,7 +1,7 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
-
+import {validateClassName} from "./style.js";
 export class AxisX {
   constructor({
     name = "x",
@@ -30,7 +30,7 @@ export class AxisX {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
-    this.className = className;
+    this.className = validateClassName(className);
   }
   render(
     index,
@@ -117,7 +117,7 @@ export class AxisY {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
-    this.className = className;
+    this.className = validateClassName(className);
   }
   render(
     index,

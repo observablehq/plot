@@ -3,10 +3,11 @@ import {Axes, autoAxisTicks, autoAxisLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales} from "./scales.js";
-import {filterStyles, offset} from "./style.js";
+import {filterStyles, offset, validateClassName} from "./style.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, className = "plot"} = options;
+  const {facet, style, caption} = options;
+  const className = validateClassName(options.className === undefined ? "plot" : options.className);
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {

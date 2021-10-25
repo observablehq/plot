@@ -156,3 +156,14 @@ export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, stroke
 function none(color) {
   return color == null || color === "none";
 }
+
+function validClassName(str) {
+  return typeof str === "string" &&
+    !!str.match(/^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/);
+}
+
+export function validateClassName(str) {
+  if (str == null) return null;
+  if (validClassName(str)) return str;
+  throw new Error(`Invalid class name ${str}`);
+}

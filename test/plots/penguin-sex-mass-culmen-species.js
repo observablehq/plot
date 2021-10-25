@@ -7,7 +7,7 @@ export default async function() {
     inset: 10,
     height: 320,
     grid: true,
-    className: "plot classtest",
+    className: "classtest",
     x: {
       ticks: 10,
       tickFormat: "~s",

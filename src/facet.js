@@ -2,7 +2,7 @@ import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
 import {Mark, first, second, markify, where} from "./mark.js";
 import {applyScales} from "./scales.js";
-import {filterStyles} from "./style.js";
+import {filterStyles, validateClassName} from "./style.js";
 
 export function facets(data, {x, y, ...options}, marks) {
   return x === undefined && y === undefined
@@ -70,7 +70,8 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet, className} = this;
+    const {marks, marksChannels, marksIndexByFacet} = this;
+    const className = validateClassName(this.className);
     const {fx, fy} = scales;
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
