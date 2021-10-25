@@ -106,6 +106,8 @@ Plot.plot({
 })
 ```
 
+The generated SVG element has a random class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
+
 ### Scale options
 
 Plot passes data through [scales](https://observablehq.com/@observablehq/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
