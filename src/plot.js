@@ -3,10 +3,13 @@ import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {filterStyles, offset} from "./style.js";
+import {filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
+
+  // className for inline styles
+  const className = maybeClassName(options.className);
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
@@ -68,11 +71,8 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
-  // A unique identifier for this plot, for inline styles.
-  const uid = `plot-${Math.random().toString(16).slice(2)}`;
-
   const svg = create("svg")
-      .attr("class", uid)
+      .attr("class", className)
       .attr("fill", "currentColor")
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
@@ -82,14 +82,14 @@ export function plot(options = {}) {
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)
       .call(svg => svg.append("style").text(`
-        .${uid} {
+        .${className} {
           display: block;
           background: white;
           height: auto;
           height: intrinsic;
           max-width: 100%;
         }
-        .${uid} text {
+        .${className} text {
           white-space: pre;
         }
       `))
