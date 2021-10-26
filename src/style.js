@@ -154,7 +154,11 @@ function none(color) {
   return color == null || color === "none";
 }
 
-export function validClassName(str) {
-  return typeof str === "string" &&
-    !!str.match(/^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/);
+const validClassName = /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
+
+export function maybeClassName(name) {
+  if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
+  name = `${name}`;
+  if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
+  return name;
 }

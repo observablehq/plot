@@ -3,13 +3,13 @@ import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {filterStyles, offset, validClassName} from "./style.js";
+import {filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, className = `plot-${Math.random().toString(16).slice(2)}`} = options;
+  const {facet, style, caption} = options;
 
   // className for inline styles
-  if (!validClassName(className)) throw new Error(`Invalid class name ${className}`);
+  const className = maybeClassName(options.className);
 
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
