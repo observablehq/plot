@@ -1,4 +1,17 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="240" height="520" viewBox="0 0 240 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="240" height="520" viewBox="0 0 240 520" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
   <g text-anchor="start" transform="translate(0.5,0.5)"><text dy="0.32em" x="149.375" y="18">Northbound</text></g>
   <g text-anchor="end" transform="translate(0.5,0.5)"><text dy="0.32em" x="89.625" y="18">Southbound</text></g>
   <g transform="translate(0.5,0.5)"><text dy="0.32em" x="119.5" y="62">5a</text><text dy="0.32em" x="119.5" y="392">8p</text><text dy="0.32em" x="119.5" y="414">9p</text><text dy="0.32em" x="119.5" y="436">10p</text><text dy="0.32em" x="119.5" y="458">11p</text><text dy="0.32em" x="119.5" y="128">8a</text><text dy="0.32em" x="119.5" y="150">9a</text><text dy="0.32em" x="119.5" y="326">5p</text><text dy="0.32em" x="119.5" y="348">6p</text><text dy="0.32em" x="119.5" y="172">10a</text><text dy="0.32em" x="119.5" y="194">11a</text><text dy="0.32em" x="119.5" y="216">12p</text><text dy="0.32em" x="119.5" y="238">1p</text><text dy="0.32em" x="119.5" y="260">2p</text><text dy="0.32em" x="119.5" y="282">3p</text><text dy="0.32em" x="119.5" y="304">4p</text><text dy="0.32em" x="119.5" y="84">6a</text><text dy="0.32em" x="119.5" y="106">7a</text><text dy="0.32em" x="119.5" y="370">7p</text><text dy="0.32em" x="119.5" y="480">12a</text></g>

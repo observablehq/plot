@@ -1,4 +1,17 @@
-<svg class="plot" fill="currentColor" text-anchor="middle" width="640" height="420" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="640" height="420" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
   <g>
     <rect x="10" width="47" y="212" height="46" fill="rgb(190, 226, 146)"></rect>
     <rect x="166" width="47" y="314" height="46" fill="rgb(60, 124, 30)"></rect>
