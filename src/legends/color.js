@@ -1,8 +1,8 @@
 import {legendRamp} from "./ramp.js";
 import {legendSwatches} from "./swatches.js";
 
-export function legendColor(color, options) {
-  return color.type === "ordinal" || color.type === "categorical"
-    ? legendSwatches(color, options)
-    : legendRamp(color, options);
+export function legendColor(scale) {
+  return scale.type === "ordinal" || scale.type === "categorical"
+    ? legendSwatches(scale)
+    : legendRamp(scale);
 }

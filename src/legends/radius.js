@@ -4,14 +4,15 @@ import {text} from "../marks/text.js";
 import {dot} from "../marks/dot.js";
 import {scale} from "../scales.js";
 
-export function legendRadius(r, {
+export function legendRadius({
   label,
   ticks = 5,
   tickFormat = (d) => d,
   strokeWidth = 0.5,
   strokeDasharray = [5, 4],
   minStep = 8,
-  gap = 20
+  gap = 20,
+  ...r
 }) {
   const s = scale(r);
   const r0 = s.range()[1];
