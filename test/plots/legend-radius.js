@@ -7,5 +7,5 @@ export default async function() {
     fill: "red"
   }).plot({ r: { domain: [0, 20], label: "population" }});
   
-  return Plot.legend({r: chart.scale("r")});
+  return chart.legend("r");
 }

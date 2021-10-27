@@ -228,11 +228,13 @@ The scale object is undefined if the associated plot has no scale with the given
 
 Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a legend:
 
-#### Plot.legend(*options*)
+#### chart.legend(*name*[, *options*])
 
-If *options*.**color** is specified as a color scale (or a chart), a suitable color legend is returned, as swatches for categorical and ordinal scales, and as a ramp for continuous scales.
+A suitable legend is returned for the chart’s scale name: *color*, *r*, or *opacity*. 
 
-The color swatches can be configured with the following options:
+Categorical and ordinal color legends are rendered as swatches.
+
+The swatches can be configured with the following options:
 * *options*.**columns** - the number of swatches per row
 * *options*.**format** - a format function for the labels
 * *options*.**swatchSize** - the size of the swatch (if square)
@@ -240,7 +242,7 @@ The color swatches can be configured with the following options:
 * *options*.**swatchHeight** - the swatches’ height
 * *options*.**marginLeft** - the legend’s left margin
 
-The continuous color legends can be configured with the following options:
+Continuous color legends are rendered as a ramp, and can be configured with the following options:
 * *options*.**label** - the scale’s label
 * *options*.**tickSize** - the tick size
 * *options*.**width** - the legend’s width
@@ -253,11 +255,9 @@ The continuous color legends can be configured with the following options:
 * *options*.**tickFormat** - a format function for the legend’s ticks
 * *options*.**tickValues** - the legend’s tick values
 
-If *options*.**opacity** is specified as an opacity scale (or a chart), an opacity legend is returned—rendered as a grayscale color legend. The same options as above apply.
+An opacity legend is rendered as a grayscale color legend. The same options as above apply.
 
-If *options*.**r** is specified as a radius scale (or a chart), an radius legend is returned—rendered as circles on a common base.
-
-The radius legend can be configured with the following options:
+The r legend is rendered as circles on a common base. It can be configured with the following options:
 * *options*.**label** - the scale’s label
 * *options*.**ticks** - the number of ticks (circles)
 * *options*.**tickFormat** - a format function for the ticks (TODO: format??)
