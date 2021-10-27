@@ -1,6 +1,8 @@
 import {scale} from "../scales.js";
 import {create} from "d3";
 
+// TODO: once we inline, is this smart variable handling any
+// better than inline styles?
 const styles = `
 .plot-swatches {
   display: flex;
@@ -50,7 +52,7 @@ const styles = `
 }
 `;
 
-export function legendSwatches(color, {
+export function legendSwatches({
   columns = null,
   format = x => x,
   swatchSize = 15,
@@ -58,7 +60,8 @@ export function legendSwatches(color, {
   swatchHeight = swatchSize,
   marginLeft = 0,
   style = styles,
-  width
+  width,
+  ...color
 } = {}) {
   color = scale(color);
   const swatches = create("div")

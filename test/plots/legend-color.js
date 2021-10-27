@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 
 export default async function() {
-  const plot = Plot.plot({color: {type: "diverging", domain: [-1, 1] }});
-  return Plot.legend({color: plot, width: 500});
+  const chart = Plot.plot({color: {scheme: "burd", domain: [-15, 35], label: "temperature" }});
+  return Plot.legend({color: chart.scale("color"), width: 500, tickFormat: d => `${d > 0 ? "+" : ""}${d}°C`});
 }

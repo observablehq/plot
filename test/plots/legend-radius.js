@@ -5,7 +5,7 @@ export default async function() {
     x: d => d,
     r: d => d,
     fill: "red"
-  }).plot({ r: { domain: [0, 20], label: "test radius" }});
+  }).plot({ r: { domain: [0, 20], label: "population" }});
   
-  return Plot.legend({r: chart});
+  return Plot.legend({r: chart.scale("r")});
 }

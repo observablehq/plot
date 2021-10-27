@@ -1,7 +1,7 @@
 import {scale} from "../scales.js";
 import {create, scaleLinear, quantize, interpolate, interpolateRound, quantile, range, format, scaleBand, axisBottom} from "d3";
 
-export function legendRamp(color, {
+export function legendRamp({
   label,
   tickSize = 6,
   width = 240, 
@@ -12,7 +12,8 @@ export function legendRamp(color, {
   marginLeft = 0,
   ticks = width / 64,
   tickFormat,
-  tickValues
+  tickValues,
+  ...color
 } = {}) {
   color = scale(color);
   const svg = create("svg")
