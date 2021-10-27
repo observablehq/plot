@@ -9,12 +9,16 @@ for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
     const root = await plot();
     const [ext, svg] = root.tagName === "svg" ? ["svg", root] : ["html", root.querySelector("svg")];
-    const uid = svg.getAttribute("class");
-    svg.setAttribute("class", "plot");
-    const style = svg.querySelector("style");
-    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), ".plot");
-    svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+    if (svg) {
+      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
+      const uid = svg.getAttribute("class");
+      svg.setAttribute("class", "plot");
+      const style = svg.querySelector("style");
+      if (style) {
+        style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), ".plot");
+      }
+    }
     const actual = beautify.html(root.outerHTML, {indent_size: 2});
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);

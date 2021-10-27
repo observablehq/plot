@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
+import {figureWrap} from "./figure.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {filterStyles, maybeClassName, offset} from "./style.js";
@@ -108,14 +109,7 @@ export function plot(options = {}) {
   }
 
   // Wrap the plot in a figure with a caption, if desired.
-  let figure = svg;
-  if (caption != null) {
-    figure = document.createElement("figure");
-    figure.appendChild(svg);
-    const figcaption = figure.appendChild(document.createElement("figcaption"));
-    figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
-  }
-
+  const figure = figureWrap(svg, dimensions, caption);
   figure.scale = exposeScales(scaleDescriptors);
   return figure;
 }

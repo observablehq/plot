@@ -37,6 +37,7 @@
   "devDependencies": {
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.4",
+    "canvas": "^2.8.0",
     "eslint": "^7.12.1",
     "htl": "^0.3.0",
     "js-beautify": "^1.13.0",
