@@ -1,0 +1,29 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="640" height="70" viewBox="0 0 640 70" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-miterlimit="1" stroke-dasharray="5,4" transform="translate(0.5,0.5)">
+    <path d="M32,8L82,8"></path>
+    <path d="M32,16.038475772933687L82,16.038475772933687"></path>
+    <path d="M32,25.573593128807147L82,25.573593128807147"></path>
+    <path d="M32,38L82,38"></path>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0.5)">
+    <circle cx="32" cy="38" r="30"></circle>
+    <circle cx="32" cy="42.01923788646684" r="25.980762113533157"></circle>
+    <circle cx="32" cy="46.78679656440357" r="21.213203435596427"></circle>
+    <circle cx="32" cy="53" r="15"></circle>
+  </g>
+  <g text-anchor="start" transform="translate(0.5,0.5)"><text dx="4" dy="0.32em" x="82" y="8">20</text><text dx="4" dy="0.32em" x="82" y="16.038475772933687">15</text><text dx="4" dy="0.32em" x="82" y="25.573593128807147">10</text><text dx="4" dy="0.32em" x="82" y="38">5</text></g>
+  <g text-anchor="start" font-weight="bold" transform="translate(0.5,0.5)"></g>
+</svg>

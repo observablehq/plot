@@ -60,6 +60,10 @@ export function Scales(channels, {
   return scales;
 }
 
+export function scale(options) {
+  return Scale(options.key, undefined, options).scale;
+}
+
 // Mutates scale.range!
 export function autoScaleRange({x, y, fx, fy}, dimensions) {
   if (fx) autoScaleRangeX(fx, dimensions);
