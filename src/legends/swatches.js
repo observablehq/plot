@@ -1,4 +1,3 @@
-import {scale} from "../scales.js";
 import {create} from "d3";
 
 // TODO: once we inline, is this smart variable handling any
@@ -61,9 +60,8 @@ export function legendSwatches({
   marginLeft = 0,
   style = styles,
   width,
-  ...color
+  scale: color
 } = {}) {
-  color = scale(color);
   const swatches = create("div")
     .classed("plot-swatches", true)
     .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px;${

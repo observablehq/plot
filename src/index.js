@@ -22,3 +22,4 @@ export {window, windowX, windowY} from "./transforms/window.js";
 export {selectFirst, selectLast, selectMaxX, selectMaxY, selectMinX, selectMinY} from "./transforms/select.js";
 export {stackX, stackX1, stackX2, stackY, stackY1, stackY2} from "./transforms/stack.js";
 export {formatIsoDate, formatWeekday, formatMonth} from "./format.js";
+export {legend} from "./legends.js";
