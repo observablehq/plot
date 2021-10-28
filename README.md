@@ -266,6 +266,10 @@ The r legend is rendered as circles on a common base. It can be configured with 
 * *options*.**minStep** - the minimal step between subsequent circles (in pixels), defauts to 8
 * *options*.**gap** - the horizontal gap between the circles and the labels; defauts to 20 pixels.
 
+#### Plot.legend({*name*: *scale*, ...*options*})
+
+Builds a legend from a scale description object, passing the options described in the previous section. The name can be one of *color*, *opacity*, *r*, *x*, *y*, *fx*, *fy*.
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:

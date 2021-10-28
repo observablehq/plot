@@ -1,8 +1,8 @@
 import * as Plot from "@observablehq/plot";
 
 export default async function() {
-  const chart = Plot.dotX([{o: 0.1}, {o: 0.5}], {
+  const chart = Plot.dotX([{o: 1}, {o: 10}], {
     fillOpacity: "o"
-  }).plot({ opacity: { domain: [0, 20], label: "opaque" }});
+  }).plot({ opacity: {type: "log", label: "opaque", legend: true}});
   return chart.legend("opacity");
 }

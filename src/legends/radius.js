@@ -1,8 +1,8 @@
+import {Scale} from "../scales.js";
 import {plot} from "../plot.js";
 import {link} from "../marks/link.js";
 import {text} from "../marks/text.js";
 import {dot} from "../marks/dot.js";
-import {scale} from "../scales.js";
 
 export function legendRadius({
   label,
@@ -12,9 +12,9 @@ export function legendRadius({
   strokeDasharray = [5, 4],
   minStep = 8,
   gap = 20,
-  ...r
+  ...options
 }) {
-  const s = scale(r);
+  const s = Scale("r", undefined, options).scale;
   const r0 = s.range()[1];
 
   const shiftY = label ? 10 : 0;

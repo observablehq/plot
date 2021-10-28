@@ -23,5 +23,5 @@ export function createLegends(descriptors, dimensions) {
 export function legend({color, opacity, r, ...options}) {
   if (color) return legendColor({...color, ...options});
   if (r) return legendRadius({...r, ...options});
-  if (opacity) return legendOpacity({...opacity, ...r, ...options});
+  if (opacity) return legendOpacity({...opacity, ...options});
 }
