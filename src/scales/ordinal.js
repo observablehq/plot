@@ -1,6 +1,6 @@
-import {InternSet, reverse as reverseof, sort} from "d3";
+import {InternSet, quantize, reverse as reverseof, sort} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
-import {ordinalScheme} from "./schemes.js";
+import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
 import {registry, color} from "./index.js";
 
@@ -23,11 +23,20 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   type,
-  scheme = type === "ordinal" ? "turbo" : "tableau10", // ignored if not color
-  range = registry.get(key) === color ? ordinalScheme(scheme) : undefined,
+  range,
+  scheme = range === undefined ? type === "ordinal" ? "turbo" : "tableau10" : undefined,
   unknown,
   ...options
 }) {
+  if (registry.get(key) === color && scheme !== undefined) {
+    if (range !== undefined) {
+      const interpolate = quantitativeScheme(scheme);
+      const t0 = range[0], d = range[1] - range[0];
+      range = ({length: n}) => quantize(t => interpolate(t0 + d * t), n);
+    } else {
+      range = ordinalScheme(scheme);
+    }
+  }
   if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
   return ScaleO(scaleOrdinal().unknown(unknown), channels, {type, range, ...options});
 }
