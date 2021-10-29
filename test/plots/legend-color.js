@@ -7,7 +7,7 @@ export default async function() {
   const ordinal = Plot.dot("ABCDEFGHIJ", {x: 0, fill: d => d}).plot();
 
   for (const l of [
-    ordinal.legend("color"),
+    ordinal.legend("color", {className: "swatches1"}),
 
     ordinal.legend("color", {legend: "ramp"}),
 
@@ -33,9 +33,9 @@ export default async function() {
       }
     }),
 
-    Plot.legend({ color: { domain: "DCBA", scheme: "rainbow" } }),
+    Plot.legend({color: {domain: "DCBA", scheme: "rainbow", className: "swatches2"}}),
 
-    Plot.legend({ color: { domain: "DCBA", reverse: true } }),
+    Plot.legend({color: {domain: "DCBA", reverse: true, className: "swatches3"}}),
 
     Plot.legend({
       color: Plot.plot({
@@ -46,7 +46,7 @@ export default async function() {
             fill: (i) => i ** 2
           })
         ],
-        color: { type: "quantile", scheme: "inferno", quantiles: 7 }
+        color: {type: "quantile", scheme: "inferno", quantiles: 7}
       }).scale("color"),
       width: 300,
       label: "quantiles!",
@@ -65,11 +65,11 @@ export default async function() {
     }),
 
     Plot.legend({
-      color: { scheme: "viridis", domain: [0, 100], label: "Temperature (°F)" }
+      color: {scheme: "viridis", domain: [0, 100], label: "Temperature (°F)"}
     }),
 
     Plot.legend({
-      color: { scheme: "Turbo", type: "sqrt", domain: [0, 1], label: "Speed (kts)" }
+      color: {scheme: "Turbo", type: "sqrt", domain: [0, 1], label: "Speed (kts)"}
     }),
 
     Plot.legend({
@@ -150,6 +150,7 @@ export default async function() {
         ],
         scheme: "Spectral",
         label: "Age (years)",
+        className: "swatches4",
         tickSize: 0
       }
     }),
@@ -176,7 +177,7 @@ export default async function() {
     }),
 
     Plot.legend({
-      color: { domain: ["blueberries", "oranges", "apples"], scheme: "category10" }
+      color: {domain: ["blueberries", "oranges", "apples"], scheme: "category10", className: "swatches5"}
     }),
 
     Plot.legend({
@@ -194,7 +195,8 @@ export default async function() {
           "Other"
         ],
         columns: "180px", // responsive!
-        width: 960
+        width: 960,
+        className: "swatches6"
       }
     })
 
