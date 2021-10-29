@@ -116,7 +116,7 @@ export default async function() {
     Plot.legend({
       color: {
         type: "quantile",
-        domain: d3.range(1000).map(d3.randomNormal(100, 20)),
+        domain: d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))(100, 20)),
         scheme: "Spectral",
         label: "Height (cm)",
         tickFormat: ".0f",
