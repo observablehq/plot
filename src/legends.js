@@ -1,8 +1,10 @@
 import {normalizeScale} from "./scales.js";
 import {legendColor} from "./legends/color.js";
+import {legendOpacity} from "./legends/opacity.js";
 
 const legendRegistry = new Map([
-  ["color", legendColor]
+  ["color", legendColor],
+  ["opacity", legendOpacity]
 ]);
 
 export function legend(options = {}) {

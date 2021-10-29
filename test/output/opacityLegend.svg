@@ -1,0 +1,37 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAZ0lEQVQ4jaVS2wpAIQjT/v+jewmSMefOKRA0bJc0456MiHXydeosNd6r6HoVVtWAGFH6mDaH3+llPEwzyx1P3VvnP3E+DNsNpR9xlQfUxfLJj5rv1z2bvCiMyUunz+H4O5MXPGf3cwMB/wEBfsriPgAAAABJRU5ErkJggg=="></image>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(0.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(48.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(96.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(144.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(192.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(240.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Quantitative</text>
+  </g>
+</svg>

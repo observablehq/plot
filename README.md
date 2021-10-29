@@ -258,7 +258,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 
 #### Plot.legend({[*name*]: *scale*, ...*options*})
 
-Returns a legend for the given *scale* definition, passing the options described in the previous section. The only supported name for now is *color*.
+Returns a legend for the given *scale* definition, passing the options described in the previous section. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
 
 ### Position options
 
