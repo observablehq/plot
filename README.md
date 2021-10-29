@@ -222,7 +222,7 @@ The returned scale object represents the actual (or “materialized”) values e
 
 ### Legends
 
-Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a legend:
+Given a chart’s *color* or *r* (radius) scale, Plot can generate a legend:
 
 #### chart.legend(*name*[, *options*])
 
@@ -251,6 +251,15 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**ticks** - number of ticks
 * *options*.**tickFormat** - a format function for the legend’s ticks
 * *options*.**tickValues** - the legend’s tick values
+
+The r (radius) legend is rendered as circles on a common base. It can be configured with the following options:
+* *options*.**label** - the scale’s label
+* *options*.**ticks** - the number of ticks (circles)
+* *options*.**tickFormat** - a format function for the ticks (TODO: format??)
+* *options*.**strokeWidth** - the circles’ stroke width, in pixels; default to 0.5
+* *options*.**strokeDasharray** - the connector’s stroke dash-array, defaults to [5, 4]
+* *options*.**minStep** - the minimal step between subsequent circles (in pixels), defauts to 8
+* *options*.**gap** - the horizontal gap between the circles and the labels; defauts to 20 pixels.
 
 #### Plot.legend({*name*: *scale*, ...*options*})
 
