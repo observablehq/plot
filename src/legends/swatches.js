@@ -1,9 +1,10 @@
 import {create} from "d3";
+import {maybeClassName} from "../style.js";
 
 // TODO: once we inline, is this smart variable handling any
 // better than inline styles?
-const styles = `
-.plot-swatches {
+const styles = uid => `
+.${uid} {
   display: flex;
   align-items: center;
   margin-left: var(--marginLeft);
@@ -12,25 +13,25 @@ const styles = `
   margin-bottom: 0.5em;
 }
 
-.plot-swatches > div {
+.${uid} > div {
   width: 100%;
 }
 
-.plot-swatches .swatch-item {
+.${uid} .swatch-item {
   break-inside: avoid;
   display: flex;
   align-items: center;
   padding-bottom: 1px;
 }
 
-.plot-swatches .swatch-label {
+.${uid} .swatch-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - var(--swatchWidth) - 0.5em);
 }
 
-.plot-swatches .swatch-block {
+.${uid} .swatch-block {
   width: var(--swatchWidth);
   height: var(--swatchHeight);
   margin: 0 0.5em 0 0;
@@ -59,12 +60,14 @@ export function legendSwatches({
   swatchWidth = swatchSize,
   swatchHeight = swatchSize,
   marginLeft = 0,
-  style = styles,
+  className,
+  uid = maybeClassName(className),
+  style = styles(uid),
   width,
   scale: color
 } = {}) {
   const swatches = create("div")
-    .classed("plot-swatches", true)
+    .classed(uid, true)
     .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px;${
       width === undefined ? "" : ` width: ${width}px;`
     }`);
