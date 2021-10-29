@@ -228,7 +228,7 @@ Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a 
 
 A suitable legend is returned for the chart’s scale name: *color*, *r*, or *opacity*. 
 
-Categorical and ordinal color legends are rendered as swatches.
+Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to "ramp".
 
 The swatches can be configured with the following options:
 * *options*.**columns** - the number of swatches per row
