@@ -226,7 +226,7 @@ Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a 
 
 #### chart.legend(*name*[, *options*])
 
-A suitable legend is returned for the chart’s scale name: *color*, *r*, or *opacity*. 
+A suitable legend is returned for the chart’s scale name; for now only *color* legends are supported. 
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to "ramp".
 
@@ -237,6 +237,7 @@ The swatches can be configured with the following options:
 * *options*.**swatchWidth** - the swatches’ width
 * *options*.**swatchHeight** - the swatches’ height
 * *options*.**marginLeft** - the legend’s left margin
+* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
 
 Continuous color legends are rendered as a ramp, and can be configured with the following options:
 * *options*.**label** - the scale’s label
@@ -251,20 +252,9 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**tickFormat** - a format function for the legend’s ticks
 * *options*.**tickValues** - the legend’s tick values
 
-An opacity legend is rendered as a grayscale color legend. The same options as above apply.
-
-The r legend is rendered as circles on a common base. It can be configured with the following options:
-* *options*.**label** - the scale’s label
-* *options*.**ticks** - the number of ticks (circles)
-* *options*.**tickFormat** - a format function for the ticks (TODO: format??)
-* *options*.**strokeWidth** - the circles’ stroke width, in pixels; default to 0.5
-* *options*.**strokeDasharray** - the connector’s stroke dash-array, defaults to [5, 4]
-* *options*.**minStep** - the minimal step between subsequent circles (in pixels), defauts to 8
-* *options*.**gap** - the horizontal gap between the circles and the labels; defauts to 20 pixels.
-
 #### Plot.legend({*name*: *scale*, ...*options*})
 
-Builds a legend from a scale description object, passing the options described in the previous section. The name can be one of *color*, *opacity*, *r*, *x*, *y*, *fx*, *fy*.
+Builds a legend from a scale description object, passing the options described in the previous section. The only supported name for now is *color*.
 
 ### Position options
 
