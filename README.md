@@ -226,7 +226,7 @@ The scale object is undefined if the associated plot has no scale with the given
 
 ### Legends
 
-Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a legend:
+Given a chart’s *color* scale, Plot can generate a legend:
 
 #### chart.legend(*name*[, *options*])
 
