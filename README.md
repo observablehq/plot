@@ -222,7 +222,7 @@ The returned scale object represents the actual (or “materialized”) values e
 
 ### Legends
 
-Given a chart’s *color*, *opacity* or *r* (radius) scale, Plot can generate a legend:
+Given a chart’s *color* scale, Plot can generate a legend:
 
 #### chart.legend(*name*[, *options*])
 
