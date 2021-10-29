@@ -37,13 +37,13 @@ const styles = uid => `
   margin: 0 0.5em 0 0;
 }
 
-.plot-swatch {
+.${uid} .plot-swatch {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
 }
 
-.plot-swatch::before {
+.${uid} .plot-swatch::before {
   content: "";
   width: var(--swatchWidth);
   height: var(--swatchHeight);
