@@ -569,55 +569,58 @@
       </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold" class="label">Unemployment rate (%)</text>
     </g>
   </svg>
-  <div class="plot-swatches" style="--marginLeft: 0px; --swatchWidth: 15px; --swatchHeight: 15px;">
-    <style>
-      .plot-swatches {
-        display: flex;
-        align-items: center;
-        margin-left: var(--marginLeft);
-        min-height: 33px;
-        font: 10px sans-serif;
-        margin-bottom: 0.5em;
-      }
+  <div>
+    <div style="font-weight: bold; font-family: sans-serif; font-size: 10px; margin: 5px 0px -5px 0px;">Age (years)</div>
+    <div class="plot-swatches" style="--marginLeft: 0px; --swatchWidth: 15px; --swatchHeight: 15px;">
+      <style>
+        .plot-swatches {
+          display: flex;
+          align-items: center;
+          margin-left: var(--marginLeft);
+          min-height: 33px;
+          font: 10px sans-serif;
+          margin-bottom: 0.5em;
+        }
 
-      .plot-swatches>div {
-        width: 100%;
-      }
+        .plot-swatches>div {
+          width: 100%;
+        }
 
-      .plot-swatches .swatch-item {
-        break-inside: avoid;
-        display: flex;
-        align-items: center;
-        padding-bottom: 1px;
-      }
+        .plot-swatches .swatch-item {
+          break-inside: avoid;
+          display: flex;
+          align-items: center;
+          padding-bottom: 1px;
+        }
 
-      .plot-swatches .swatch-label {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: calc(100% - var(--swatchWidth) - 0.5em);
-      }
+        .plot-swatches .swatch-label {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: calc(100% - var(--swatchWidth) - 0.5em);
+        }
 
-      .plot-swatches .swatch-block {
-        width: var(--swatchWidth);
-        height: var(--swatchHeight);
-        margin: 0 0.5em 0 0;
-      }
+        .plot-swatches .swatch-block {
+          width: var(--swatchWidth);
+          height: var(--swatchHeight);
+          margin: 0 0.5em 0 0;
+        }
 
-      .plot-swatch {
-        display: inline-flex;
-        align-items: center;
-        margin-right: 1em;
-      }
+        .plot-swatch {
+          display: inline-flex;
+          align-items: center;
+          margin-right: 1em;
+        }
 
-      .plot-swatch::before {
-        content: "";
-        width: var(--swatchWidth);
-        height: var(--swatchHeight);
-        margin-right: 0.5em;
-        background: var(--color);
-      }
-    </style><span class="plot-swatch" style="--color: #d53e4f;">&lt;10</span><span class="plot-swatch" style="--color: #f46d43;">10-19</span><span class="plot-swatch" style="--color: #fdae61;">20-29</span><span class="plot-swatch" style="--color: #fee08b;">30-39</span><span class="plot-swatch" style="--color: #ffffbf;">40-49</span><span class="plot-swatch" style="--color: #e6f598;">50-59</span><span class="plot-swatch" style="--color: #abdda4;">60-69</span><span class="plot-swatch" style="--color: #66c2a5;">70-79</span><span class="plot-swatch" style="--color: #3288bd;">≥80</span>
+        .plot-swatch::before {
+          content: "";
+          width: var(--swatchWidth);
+          height: var(--swatchHeight);
+          margin-right: 0.5em;
+          background: var(--color);
+        }
+      </style><span class="plot-swatch" style="--color: #d53e4f;">&lt;10</span><span class="plot-swatch" style="--color: #f46d43;">10-19</span><span class="plot-swatch" style="--color: #fdae61;">20-29</span><span class="plot-swatch" style="--color: #fee08b;">30-39</span><span class="plot-swatch" style="--color: #ffffbf;">40-49</span><span class="plot-swatch" style="--color: #e6f598;">50-59</span><span class="plot-swatch" style="--color: #abdda4;">60-69</span><span class="plot-swatch" style="--color: #66c2a5;">70-79</span><span class="plot-swatch" style="--color: #3288bd;">≥80</span>
+    </div>
   </div><svg width="400" height="44" viewBox="0,0,400,44" style="overflow: visible; display: block;">
     <g>
       <rect x="2" y="18" width="43" height="10" fill="#d53e4f"></rect>
