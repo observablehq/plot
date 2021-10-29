@@ -54,6 +54,7 @@ const styles = `
 export function legendSwatches({
   columns = null,
   format = x => x,
+  label,
   swatchSize = 15,
   swatchWidth = swatchSize,
   swatchHeight = swatchSize,
@@ -92,7 +93,18 @@ export function legendSwatches({
       .style("--color", color)
       .text(format);
   }
-  return swatches.node();
+
+  return label == null
+  ? swatches.node()
+  : create("div")
+      .call(div => div.append("div")
+        .style("font-weight", "bold")
+        .style("font-family", "sans-serif")
+        .style("font-size", "10px")
+        .style("margin", "5px 0 -5px 0")
+        .text(label))
+      .call(div => div.append(() => swatches.node()))
+      .node();
 }
 
 function entity(character) {
