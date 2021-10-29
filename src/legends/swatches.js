@@ -17,38 +17,45 @@ const styles = uid => `
   width: 100%;
 }
 
-.${uid} .swatch-item {
+.${uid}-item {
   break-inside: avoid;
   display: flex;
   align-items: center;
   padding-bottom: 1px;
 }
 
-.${uid} .swatch-label {
+.${uid}-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - var(--swatchWidth) - 0.5em);
 }
 
-.${uid} .swatch-block {
+.${uid}-block {
   width: var(--swatchWidth);
   height: var(--swatchHeight);
   margin: 0 0.5em 0 0;
 }
 
-.${uid} .plot-swatch {
+.${uid}-swatch {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
 }
 
-.${uid} .plot-swatch::before {
+.${uid}-swatch::before {
   content: "";
   width: var(--swatchWidth);
   height: var(--swatchHeight);
   margin-right: 0.5em;
   background: var(--color);
+}
+
+.${uid}-title {
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 10px;
+  margin: 5px 0 -5px 0;
 }
 `;
 
@@ -77,13 +84,13 @@ export function legendSwatches({
     const elems = swatches.append("div")
       .style("columns", columns);
     for (const value of color.domain()) {
-      const d = elems.append("div").classed("swatch-item", true);
+      const d = elems.append("div").classed(`${uid}-item`, true);
       d.append("div")
-        .classed("swatch-block", true)
+        .classed(`${uid}-block`, true)
         .style("background", color(value));
       const label = format(value);
       d.append("div")
-        .classed("swatch-label", true)
+        .classed(`${uid}-label`, true)
         .text(label)
         .attr("title", label.replace(/["&]/g, entity));
     }
@@ -92,7 +99,7 @@ export function legendSwatches({
       .selectAll()
       .data(color.domain())
       .join("span")
-      .classed("plot-swatch", true)
+      .classed(`${uid}-swatch`, true)
       .style("--color", color)
       .text(format);
   }
@@ -101,10 +108,7 @@ export function legendSwatches({
   ? swatches.node()
   : create("div")
       .call(div => div.append("div")
-        .style("font-weight", "bold")
-        .style("font-family", "sans-serif")
-        .style("font-size", "10px")
-        .style("margin", "5px 0 -5px 0")
+        .classed(`${uid}-title`, true)
         .text(label))
       .call(div => div.append(() => swatches.node()))
       .node();
