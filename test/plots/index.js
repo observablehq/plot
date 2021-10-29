@@ -53,10 +53,8 @@ export {default as industryUnemploymentShare} from "./industry-unemployment-shar
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as legendColor} from "./legend-color.js";
-export {default as legendDirect} from "./legend-direct.js";
 export {default as legendOpacity} from "./legend-opacity.js";
 export {default as legendRadius} from "./legend-radius.js";
-export {default as legendSwatches} from "./legend-swatches.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyCloud} from "./letter-frequency-cloud.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
