@@ -23,7 +23,8 @@ function ScaleD(key, scale, transform, channels, {
   range,
   symmetric = true,
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : "rdbu")) : interpolateNumber,
-  reverse
+  reverse,
+  ...extra
 }) {
   pivot = +pivot;
   let [min, max] = domain;
@@ -61,7 +62,7 @@ function ScaleD(key, scale, transform, channels, {
   scale.domain([min, pivot, max]).unknown(unknown).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type, interpolate, scale};
+  return {type, interpolate, scale, extra};
 }
 
 export function ScaleDiverging(key, channels, options) {

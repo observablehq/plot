@@ -8,7 +8,8 @@ export function ScaleO(scale, channels, {
   type,
   domain = inferDomain(channels),
   range,
-  reverse
+  reverse,
+  ...extra
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
@@ -18,7 +19,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale};
+  return {type, domain, range, scale, extra};
 }
 
 export function ScaleOrdinal(key, channels, {

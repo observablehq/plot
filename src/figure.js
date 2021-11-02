@@ -1,12 +1,10 @@
 
-// Wrap the plot in a figure with a caption, if desired.
-export function figureWrap(svg, {width}, caption) {
-  if (caption == null) return svg;
+// Wrap the plot in a figure with a caption and legends, if desired.
+export function figure(decorations, {width}) {
+  decorations = decorations.filter(d => d instanceof Node);
+  if (decorations.length === 1) return decorations[0];
   const figure = document.createElement("figure");
   figure.style = `max-width: ${width}px`;
-  figure.appendChild(svg);
-  const figcaption = document.createElement("figcaption");
-  figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
-  figure.appendChild(figcaption);
+  for (const d of decorations) figure.appendChild(d);
   return figure;
 }

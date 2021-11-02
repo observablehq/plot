@@ -1,8 +1,8 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
-import {figureWrap} from "./figure.js";
-import { legend } from "./legends.js";
+import {figure} from "./figure.js";
+import {exposeLegends} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {filterStyles, maybeClassName, offset} from "./style.js";
@@ -109,11 +109,19 @@ export function plot(options = {}) {
     if (node != null) svg.appendChild(node);
   }
 
-  // Wrap the plot in a figure with a caption, if desired.
-  const figure = figureWrap(svg, dimensions, caption);
-  figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = (type, options = {}) => legend({[type]: figure.scale(type), ...options});
-  return figure;
+  // Wrap the plot in a figure with a caption and legends, if desired.
+  const decorations = [svg];
+  const scale = exposeScales(scaleDescriptors);
+  const legend = exposeLegends(scale);
+  if (options.color?.extra?.legend) {
+    decorations.unshift(legend("color", options.color.extra));
+  }
+  if (caption != null) {
+    const figcaption = document.createElement("figcaption");
+    figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+    decorations.push(figcaption);
+  }
+  return Object.assign(figure(decorations, dimensions), {scale, legend});
 }
 
 function Dimensions(
