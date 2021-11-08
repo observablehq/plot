@@ -2,7 +2,7 @@ import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {figureWrap} from "./figure.js";
-import { legend } from "./legends.js";
+import {legend} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {filterStyles, maybeClassName, offset} from "./style.js";
