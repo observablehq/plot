@@ -11,6 +11,6 @@ export function legendColor({legend, ...options}) {
     case "ramp":
       return legendRamp({...scale, ...options});
     default:
-      throw new Error(`unknown legend type ${legend}`);
+      throw new Error(`unknown color legend type: ${legend}`);
   }
 }
