@@ -6,7 +6,7 @@ export default async function() {
 
   const ordinal = Plot.dot("ABCDEFGHIJ", {x: 0, fill: d => d}).plot();
 
-  for (const l of [
+  div.append(
     ordinal.legend("color", {className: "swatches1"}),
 
     ordinal.legend("color", {legend: "ramp"}),
@@ -124,7 +124,7 @@ export default async function() {
         quantiles: 10
       }
     }),
-    
+
     Plot.legend({
       color: {
         type: "threshold",
@@ -200,7 +200,7 @@ export default async function() {
       }
     })
 
-  ]) div.appendChild(l);
+  );
 
   return div;
 }
