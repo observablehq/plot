@@ -353,6 +353,6 @@ function exposeScale({
 
     // utilities
     apply: t => scale(t),
-    ...scale.invert && {invert: t => scale.invert(t) }
+    ...scale.invert && {invert: t => scale.invert(t)}
   };
 }
