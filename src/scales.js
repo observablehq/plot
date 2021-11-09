@@ -319,7 +319,7 @@ function exposeScale({
   transform,
   percent
 }) {
-  if (type === "identity") return {type: "identity"};
+  if (type === "identity") return {type: "identity", apply: d => d, invert: d => d};
   const domain = scale.domain();
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
@@ -349,6 +349,10 @@ function exposeScale({
 
     // band, point
     ...scale.align && {align: scale.align(), round: scale.round()},
-    ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()})
+    ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()}),
+
+    // utilities
+    apply: t => scale(t),
+    ...scale.invert && {invert: t => scale.invert(t)}
   };
 }
