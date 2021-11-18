@@ -1,6 +1,6 @@
 import {create, scaleLinear, quantize, interpolate, interpolateRound, quantile, range, format, scaleBand, axisBottom} from "d3";
 
-export function legendRamp({
+export function legendRamp(color, {
   label,
   tickSize = 6,
   width = 240, 
@@ -12,7 +12,7 @@ export function legendRamp({
   ticks = width / 64,
   tickFormat,
   tickValues,
-  scale: color
+  type
 } = {}) {
   const svg = create("svg")
       .attr("width", width)
@@ -73,12 +73,8 @@ export function legendRamp({
   }
 
   // Threshold
-  else if (color.invertExtent) {
-    const thresholds
-        = color.thresholds ? color.thresholds() // scaleQuantize
-        : color.quantiles ? color.quantiles() // scaleQuantile
-        : color.domain(); // scaleThreshold
-
+  else if (type === "threshold" || type === "quantile") {
+    const thresholds = color.domain();
     const thresholdFormat
         = tickFormat === undefined ? d => d
         : typeof tickFormat === "string" ? format(tickFormat)

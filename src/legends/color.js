@@ -7,9 +7,9 @@ export function legendColor({legend, ...options}) {
   if (legend === undefined) legend = scale.type === "ordinal" ? "swatches" : "ramp";
   switch (legend) {
     case "swatches":
-      return legendSwatches({...scale, ...options});
+      return legendSwatches(scale.scale, options);
     case "ramp":
-      return legendRamp({...scale, ...options});
+      return legendRamp(scale.scale, options);
     default:
       throw new Error(`unknown color legend type: ${legend}`);
   }

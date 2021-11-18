@@ -59,7 +59,7 @@ const styles = uid => `
 }
 `;
 
-export function legendSwatches({
+export function legendSwatches(color, {
   columns = null,
   format = x => x,
   label,
@@ -70,8 +70,7 @@ export function legendSwatches({
   className,
   uid = maybeClassName(className),
   style = styles(uid),
-  width,
-  scale: color
+  width
 } = {}) {
   const swatches = create("div")
     .classed(uid, true)
