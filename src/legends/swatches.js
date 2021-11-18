@@ -1,5 +1,5 @@
 import {create} from "d3";
-import {maybeClassName} from "../style.js";
+import {addStyle, maybeClassName} from "../style.js";
 
 // TODO: once we inline, is this smart variable handling any
 // better than inline styles?
@@ -68,28 +68,28 @@ export function legendSwatches(color, {
   swatchHeight = swatchSize,
   marginLeft = 0,
   className,
-  uid = maybeClassName(className),
-  style = styles(uid),
+  style,
   width
 } = {}) {
+  className = maybeClassName(className);
   const swatches = create("div")
-    .classed(uid, true)
+    .classed(className, true)
     .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px;${
       width === undefined ? "" : ` width: ${width}px;`
     }`);
-  swatches.append("style").text(style);
+  swatches.append("style").text(styles(className));
 
   if (columns !== null) {
     const elems = swatches.append("div")
       .style("columns", columns);
     for (const value of color.domain) {
-      const d = elems.append("div").classed(`${uid}-item`, true);
+      const d = elems.append("div").classed(`${className}-item`, true);
       d.append("div")
-        .classed(`${uid}-block`, true)
+        .classed(`${className}-block`, true)
         .style("background", color.apply(value));
       const label = format(value);
       d.append("div")
-        .classed(`${uid}-label`, true)
+        .classed(`${className}-label`, true)
         .text(label)
         .attr("title", label);
     }
@@ -98,16 +98,16 @@ export function legendSwatches(color, {
       .selectAll()
       .data(color.domain)
       .join("span")
-      .classed(`${uid}-swatch`, true)
+      .classed(`${className}-swatch`, true)
       .style("--color", color.apply)
       .text(format);
   }
 
-  return label == null
-  ? swatches.node()
-  : create("div")
-      .call(div => div.append("div")
-        .classed(`${uid}-title`, true)
+  return create("div")
+      .each(addStyle(style))
+      .call(label == null ? () => {}
+      : div => div.append("div")
+        .classed(`${className}-title`, true)
         .text(label))
       .call(div => div.append(() => swatches.node()))
       .node();

@@ -1,5 +1,6 @@
 import {Scale} from "../scales.js";
 import {create, scaleLinear, quantize, interpolate, interpolateRound, quantile, range, format, scaleBand, axisBottom} from "d3";
+import {addStyle} from "../style.js";
 
 export function legendRamp(scale, {
   label,
@@ -10,6 +11,7 @@ export function legendRamp(scale, {
   marginRight = 0,
   marginBottom = 16 + tickSize,
   marginLeft = 0,
+  style,
   ticks = width / 64,
   tickFormat,
   tickValues
@@ -21,8 +23,9 @@ export function legendRamp(scale, {
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", [0, 0, width, height])
-      .style("overflow", "visible")
-      .style("display", "block");
+      .each(addStyle(style));
+    if (svg.style("overflow") === "") svg.style("overflow", "visible");
+    if (svg.style("display") === "") svg.style("display", "block");
 
   let tickAdjust = g => g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
   let x;

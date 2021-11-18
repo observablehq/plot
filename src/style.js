@@ -162,3 +162,8 @@ export function maybeClassName(name) {
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
 }
+
+export const addStyle = (style) => function() {
+  if (typeof style === "string") this.style = style;
+  else Object.assign(this.style, style);
+};

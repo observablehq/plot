@@ -5,7 +5,7 @@ import {figureWrap} from "./figure.js";
 import {legend} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {filterStyles, maybeClassName, offset} from "./style.js";
+import {addStyle, filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -95,10 +95,7 @@ export function plot(options = {}) {
           white-space: pre;
         }
       `))
-      .each(function() {
-        if (typeof style === "string") this.style = style;
-        else Object.assign(this.style, style);
-      })
+      .each(addStyle(style))
     .node();
 
   for (const mark of marks) {
