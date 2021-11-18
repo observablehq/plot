@@ -91,7 +91,7 @@ export function legendSwatches(color, {
       d.append("div")
         .classed(`${uid}-label`, true)
         .text(label)
-        .attr("title", label.replace(/["&]/g, entity));
+        .attr("title", label);
     }
   } else {
     swatches
@@ -111,8 +111,4 @@ export function legendSwatches(color, {
         .text(label))
       .call(div => div.append(() => swatches.node()))
       .node();
-}
-
-function entity(character) {
-  return `&#${character.charCodeAt(0).toString()};`;
 }
