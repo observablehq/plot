@@ -260,6 +260,42 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 
 Builds a legend from a scale description object, passing the options described in the previous section. The only supported name for now is *color*.
 
+### Legends
+
+Given a chart’s *color* scale, Plot can generate a legend:
+
+#### chart.legend(*name*[, *options*])
+
+A suitable legend is returned for the chart’s scale name; for now only *color* legends are supported. 
+
+Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to "ramp".
+
+The swatches can be configured with the following options:
+* *options*.**columns** - the number of swatches per row
+* *options*.**format** - a format function for the labels
+* *options*.**swatchSize** - the size of the swatch (if square)
+* *options*.**swatchWidth** - the swatches’ width
+* *options*.**swatchHeight** - the swatches’ height
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+
+Continuous color legends are rendered as a ramp, and can be configured with the following options:
+* *options*.**label** - the scale’s label
+* *options*.**tickSize** - the tick size
+* *options*.**width** - the legend’s width
+* *options*.**height** - the legend’s height
+* *options*.**marginTop** - the legend’s top margin
+* *options*.**marginRight** - the legend’s right margin
+* *options*.**marginBottom** - the legend’s bottom margin
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**ticks** - number of ticks
+* *options*.**tickFormat** - a format function for the legend’s ticks
+* *options*.**tickValues** - the legend’s tick values
+
+#### Plot.legend({*name*: *scale*, ...*options*})
+
+Builds a legend from a scale description object, passing the options described in the previous section. The only supported name for now is *color*.
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
