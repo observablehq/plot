@@ -23,19 +23,19 @@ export default async function() {
 
     Plot.legend({
       color: {
-        width: 400,
         type: "sqrt",
         scheme: "blues",
         range: [0.25, 1],
-        label: "I feel blue",
-        marginLeft: 150,
-        marginRight: 50
-      }
+        label: "I feel blue"
+      },
+      width: 400,
+      marginLeft: 150,
+      marginRight: 50
     }),
 
-    Plot.legend({color: {domain: "DCBA", scheme: "rainbow", className: "swatches2"}}),
+    Plot.legend({color: {domain: "DCBA", scheme: "rainbow"}, className: "swatches2"}),
 
-    Plot.legend({color: {domain: "DCBA", reverse: true, className: "swatches3"}}),
+    Plot.legend({color: {domain: "DCBA", reverse: true}, className: "swatches3"}),
 
     Plot.legend({
       color: Plot.plot({
@@ -77,9 +77,9 @@ export default async function() {
         type: "diverging",
         domain: [-0.1, 0.1],
         scheme: "PiYG",
-        label: "Daily change",
-        tickFormat: "+%"
-      }
+        label: "Daily change"
+      },
+      tickFormat: "+%"
     }),
 
     Plot.plot({
@@ -96,9 +96,9 @@ export default async function() {
         type: "diverging-sqrt",
         domain: [-0.1, 0.1],
         scheme: "RdBu",
-        label: "Daily change",
-        tickFormat: "+%"
-      }
+        label: "Daily change"
+      },
+      tickFormat: "+%"
     }),
 
     Plot.legend({
@@ -106,10 +106,10 @@ export default async function() {
         type: "log",
         domain: [1, 100],
         scheme: "Blues",
-        label: "Energy (joules)",
-        ticks: 10,
-        width: 380
-      }
+        label: "Energy (joules)"
+      },
+      ticks: 10,
+      width: 380
     }),
 
     Plot.legend({
@@ -128,10 +128,10 @@ export default async function() {
         domain: d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))(100, 20)),
         scheme: "Spectral",
         label: "Height (cm)",
-        tickFormat: ".0f",
-        width: 400,
         quantiles: 10
-      }
+      },
+      tickFormat: ".0f",
+      width: 400
     }),
 
     Plot.legend({
@@ -139,9 +139,9 @@ export default async function() {
         type: "threshold",
         domain: [2.5, 3.1, 3.5, 3.9, 6, 7, 8, 9.5],
         scheme: "RdBu",
-        label: "Unemployment rate (%)",
-        tickSize: 0
-      }
+        label: "Unemployment rate (%)"
+      },
+      tickSize: 0
     }),
 
     Plot.legend({
@@ -158,10 +158,10 @@ export default async function() {
           "≥80"
         ],
         scheme: "Spectral",
-        label: "Age (years)",
-        className: "swatches4",
-        tickSize: 0
-      }
+        label: "Age (years)"
+      },
+      className: "swatches4",
+      tickSize: 0
     }),
 
     Plot.legend({
@@ -178,15 +178,16 @@ export default async function() {
           "≥80"
         ],
         scheme: "Spectral",
-        label: "Age (years)",
-        tickSize: 0,
-        legend: "ramp",
-        width: 400
-      }
+        label: "Age (years)"
+      },
+      tickSize: 0,
+      legend: "ramp",
+      width: 400
     }),
 
     Plot.legend({
-      color: {domain: ["blueberries", "oranges", "apples"], scheme: "category10", className: "swatches5"}
+      color: {domain: ["blueberries", "oranges", "apples"], scheme: "category10"},
+      className: "swatches5"
     }),
 
     Plot.legend({
@@ -202,12 +203,12 @@ export default async function() {
           "Finance",
           "Self-employed",
           "Other"
-        ],
-        columns: "180px", // responsive!
-        width: 960,
-        className: "swatches6"
-      }
-    })
+        ]
+      },
+      columns: "180px", // responsive!
+      width: 960,
+      className: "swatches6"
+  })
 
   );
 
