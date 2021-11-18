@@ -310,7 +310,7 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-function exposeScale({
+export function exposeScale({
   scale,
   type,
   range,

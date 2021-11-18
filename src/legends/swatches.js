@@ -82,11 +82,11 @@ export function legendSwatches(color, {
   if (columns !== null) {
     const elems = swatches.append("div")
       .style("columns", columns);
-    for (const value of color.domain()) {
+    for (const value of color.domain) {
       const d = elems.append("div").classed(`${uid}-item`, true);
       d.append("div")
         .classed(`${uid}-block`, true)
-        .style("background", color(value));
+        .style("background", color.apply(value));
       const label = format(value);
       d.append("div")
         .classed(`${uid}-label`, true)
@@ -96,10 +96,10 @@ export function legendSwatches(color, {
   } else {
     swatches
       .selectAll()
-      .data(color.domain())
+      .data(color.domain)
       .join("span")
       .classed(`${uid}-swatch`, true)
-      .style("--color", color)
+      .style("--color", color.apply)
       .text(format);
   }
 

@@ -1,6 +1,7 @@
+import {Scale} from "../scales.js";
 import {create, scaleLinear, quantize, interpolate, interpolateRound, quantile, range, format, scaleBand, axisBottom} from "d3";
 
-export function legendRamp(color, {
+export function legendRamp(scale, {
   label,
   tickSize = 6,
   width = 240, 
@@ -11,9 +12,11 @@ export function legendRamp(color, {
   marginLeft = 0,
   ticks = width / 64,
   tickFormat,
-  tickValues,
-  type
-} = {}) {
+  tickValues
+}) {
+  let {type, apply, domain, pivot, range: scaleRange} = scale;
+  if (pivot !== undefined) domain = [domain[0], pivot, domain[1]]; // diverging scales
+  const color = Scale("color", undefined, scale).scale;
   const svg = create("svg")
       .attr("width", width)
       .attr("height", height)
@@ -26,16 +29,16 @@ export function legendRamp(color, {
 
   // Continuous
   if (color.interpolate) {
-    const n = Math.min(color.domain().length, color.range().length);
+    const n = Math.min(domain.length, scaleRange.length);
     x = color.copy().rangeRound(quantize(interpolate(marginLeft, width - marginRight), n));
     let color2 = color.copy().domain(quantize(interpolate(0, 1), n));
     // special case for log scales
-    if (color.base) {
+    if (type === "log") {
       const p = scaleLinear(
-        quantize(interpolate(0, 1), color.domain().length),
-        color.domain().map(d => Math.log(d))
+        quantize(interpolate(0, 1), domain.length),
+        domain.map(d => Math.log(d))
       );
-      color2 = t => color(Math.exp(p(t)));
+      color2 = t => apply(Math.exp(p(t)));
     }
     svg.append("image")
         .attr("x", marginLeft)
@@ -64,7 +67,7 @@ export function legendRamp(color, {
     if (!x.ticks) {
       if (tickValues === undefined) {
         const n = Math.round(ticks + 1);
-        tickValues = range(n).map(i => quantile(color.domain(), i / (n - 1)));
+        tickValues = range(n).map(i => quantile(domain, i / (n - 1)));
       }
       if (typeof tickFormat !== "function") {
         tickFormat = format(tickFormat === undefined ? ",f" : tickFormat);
@@ -74,19 +77,19 @@ export function legendRamp(color, {
 
   // Threshold
   else if (type === "threshold" || type === "quantile") {
-    const thresholds = color.domain();
+    const thresholds = domain;
     const thresholdFormat
         = tickFormat === undefined ? d => d
         : typeof tickFormat === "string" ? format(tickFormat)
         : tickFormat;
 
     x = scaleLinear()
-        .domain([-1, color.range().length - 1])
+        .domain([-1, scaleRange.length - 1])
         .rangeRound([marginLeft, width - marginRight]);
 
     svg.append("g")
       .selectAll("rect")
-      .data(color.range())
+      .data(scaleRange)
       .join("rect")
         .attr("x", (d, i) => x(i - 1))
         .attr("y", marginTop)
@@ -101,12 +104,12 @@ export function legendRamp(color, {
   // Ordinal
   else {
     x = scaleBand()
-        .domain(color.domain())
+        .domain(domain)
         .rangeRound([marginLeft, width - marginRight]);
 
     svg.append("g")
       .selectAll("rect")
-      .data(color.domain())
+      .data(domain)
       .join("rect")
         .attr("x", x)
         .attr("y", marginTop)

@@ -58,7 +58,8 @@ function ScaleD(key, scale, transform, channels, {
     else if (mindelta > maxdelta) max = transform.invert(mid + mindelta);
   }
 
-  scale.domain([min, pivot, max]).unknown(unknown).interpolator(interpolate);
+  domain = [min, pivot, max];
+  scale.domain(domain).unknown(unknown).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
   return {type, interpolate, scale};

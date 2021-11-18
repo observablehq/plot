@@ -82,6 +82,16 @@ export default async function() {
       }
     }),
 
+    // Plot.plot({
+    //   color: {
+    //     type: "diverging",
+    //     domain: [-0.1, 0.1],
+    //     scheme: "PiYG",
+    //     label: "Daily change",
+    //     tickFormat: "+%"
+    //   }
+    // }).legend("color"),
+
     Plot.legend({
       color: {
         type: "diverging-sqrt",
