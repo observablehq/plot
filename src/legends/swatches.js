@@ -3,8 +3,8 @@ import {addStyle, maybeClassName} from "../style.js";
 
 // TODO: once we inline, is this smart variable handling any
 // better than inline styles?
-const styles = uid => `
-.${uid} {
+const styles = className => `
+.${className} {
   display: flex;
   align-items: center;
   margin-left: var(--marginLeft);
@@ -13,37 +13,37 @@ const styles = uid => `
   margin-bottom: 0.5em;
 }
 
-.${uid} > div {
+.${className} > div {
   width: 100%;
 }
 
-.${uid}-item {
+.${className}-item {
   break-inside: avoid;
   display: flex;
   align-items: center;
   padding-bottom: 1px;
 }
 
-.${uid}-label {
+.${className}-label {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: calc(100% - var(--swatchWidth) - 0.5em);
 }
 
-.${uid}-block {
+.${className}-block {
   width: var(--swatchWidth);
   height: var(--swatchHeight);
   margin: 0 0.5em 0 0;
 }
 
-.${uid}-swatch {
+.${className}-swatch {
   display: inline-flex;
   align-items: center;
   margin-right: 1em;
 }
 
-.${uid}-swatch::before {
+.${className}-swatch::before {
   content: "";
   width: var(--swatchWidth);
   height: var(--swatchHeight);
@@ -51,7 +51,7 @@ const styles = uid => `
   background: var(--color);
 }
 
-.${uid}-title {
+.${className}-title {
   font-weight: bold;
   font-family: sans-serif;
   font-size: 10px;
