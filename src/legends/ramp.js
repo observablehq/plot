@@ -118,7 +118,7 @@ export function legendRamp(scale, {
         .attr("y", marginTop)
         .attr("width", Math.max(0, x.bandwidth() - 1))
         .attr("height", height - marginTop - marginBottom)
-        .attr("fill", color);
+        .attr("fill", apply);
 
     tickAdjust = () => {};
   }
