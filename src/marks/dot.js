@@ -33,8 +33,7 @@ export class Dot extends Mark {
   ) {
     const {x: X, y: Y, r: R} = channels;
     const {dx, dy} = this;
-    let index = filter(I, X, Y);
-    if (R) index = index.filter(i => positive(R[i]));
+    const index = filter(I, X, Y, R && (i => positive(R[i])));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)

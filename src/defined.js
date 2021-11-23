@@ -17,8 +17,15 @@ export function nonempty(x) {
 }
 
 export function filter(index, ...channels) {
+  const ignored = [];
   for (const c of channels) {
-    if (c) index = index.filter(i => defined(c[i]));
+    if (c) {
+      const test = typeof c === "function" ? c : i => defined(c[i]);
+      index = index.filter(i => test(i) || (ignored.push(i), false));
+    }
+  }
+  if (ignored.length > 0) {
+    console.warn(`ignored indices:`, ignored);
   }
   return index;
 }
