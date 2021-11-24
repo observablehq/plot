@@ -15,3 +15,7 @@ export function legend({color, ...options}) {
   }
   throw new Error(`unsupported legend type`);
 }
+
+export function exposeLegends(type, options) {
+  return legend({...options, [type]: this.scale(type)});
+}

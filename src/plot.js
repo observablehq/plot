@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
-import {legend} from "./legends.js";
+import {exposeLegends} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {addStyle, filterStyles, maybeClassName, offset} from "./style.js";
@@ -115,7 +115,7 @@ export function plot(options = {}) {
   }
 
   figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = (type, options) => legend({...options, [type]: figure.scale(type)});
+  figure.legend = exposeLegends;
   return figure;
 }
 
