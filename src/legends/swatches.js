@@ -1,5 +1,5 @@
 import {create} from "d3";
-import {addStyle, maybeClassName} from "../style.js";
+import {applyInlineStyles, maybeClassName} from "../style.js";
 
 // TODO: once we inline, is this smart variable handling any
 // better than inline styles?
@@ -104,7 +104,7 @@ export function legendSwatches(color, {
   }
 
   return create("div")
-      .each(addStyle(style))
+      .call(applyInlineStyles, style)
       .call(label == null ? () => {}
       : div => div.append("div")
         .classed(`${className}-title`, true)

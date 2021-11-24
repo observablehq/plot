@@ -4,7 +4,7 @@ import {facets} from "./facet.js";
 import {exposeLegends} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {addStyle, filterStyles, maybeClassName, offset} from "./style.js";
+import {applyInlineStyles, filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -94,7 +94,7 @@ export function plot(options = {}) {
           white-space: pre;
         }
       `))
-      .each(addStyle(style))
+      .call(applyInlineStyles, style)
     .node();
 
   for (const mark of marks) {

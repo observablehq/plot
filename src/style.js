@@ -163,7 +163,12 @@ export function maybeClassName(name) {
   return name;
 }
 
-export const addStyle = (style) => function() {
-  if (typeof style === "string") this.style = style;
-  else Object.assign(this.style, style);
-};
+export function applyInlineStyles(selection, style) {
+  if (typeof style === "string") {
+    selection.property("style", style);
+  } else {
+    for (const element of selection) {
+      Object.assign(element.style, style);
+    }
+  }
+}
