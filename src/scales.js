@@ -335,8 +335,8 @@ export function exposeScale({
     ...interpolate !== undefined && {interpolate},
     ...scale.clamp && {clamp: scale.clamp()},
 
-    // diverging
-    ...isDivergingScale({type}) && (([min, pivot, max]) => ({domain: [min, max], pivot}))(domain),
+    // diverging (always asymmetric; we never want to apply the symmetric transform twice)
+    ...isDivergingScale({type}) && (([min, pivot, max]) => ({domain: [min, max], pivot, symmetric: false}))(domain),
 
     // log, diverging-log
     ...scale.base && {base: scale.base()},

@@ -1,0 +1,48 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" width="240" height="44" viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="1" y="18" width="33" height="10" fill="#d53e4f"></rect>
+    <rect x="35" y="18" width="33" height="10" fill="#fc8d59"></rect>
+    <rect x="69" y="18" width="33" height="10" fill="#fee08b"></rect>
+    <rect x="103" y="18" width="33" height="10" fill="#ffffbf"></rect>
+    <rect x="137" y="18" width="33" height="10" fill="#e6f598"></rect>
+    <rect x="171" y="18" width="33" height="10" fill="#99d594"></rect>
+    <rect x="205" y="18" width="33" height="10" fill="#3288bd"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(18.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">&lt;20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(52.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">20-29</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(86.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">30-39</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(120.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">40-49</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(154.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">50-59</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(188.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">60-69</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(222.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">≥70</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Age (years)</text>
+  </g>
+</svg>

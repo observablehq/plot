@@ -45,6 +45,6 @@ if (tests[initialValue]) select.value = initialValue;
 
 document.body.append(select);
 
-tests[select.value]().then(chart => document.body.append(chart));
+Promise.resolve(tests[select.value]()).then(chart => document.body.append(chart));
 
 </script>

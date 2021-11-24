@@ -1,216 +1,237 @@
 import * as d3 from "d3";
 import * as Plot from "@observablehq/plot";
 
-export default async function() {
-  const div = document.createElement("div");
+export function colorLegendCategorical() {
+  return Plot.plot({color: {domain: "ABCDEFGHIJ"}}).legend("color");
+}
 
-  const ordinal = Plot.dot("ABCDEFGHIJ", {x: 0, fill: d => d}).plot();
+export function colorLegendCategoricalColumns() {
+  return Plot.legend({
+    color: {
+      domain: [
+        "Wholesale and Retail Trade",
+        "Manufacturing",
+        "Leisure and hospitality",
+        "Business services",
+        "Construction",
+        "Education and Health",
+        "Government",
+        "Finance",
+        "Self-employed",
+        "Other"
+      ]
+    },
+    label: "Hello",
+    columns: "180px"
+  });
+}
 
-  div.append(
-    ordinal.legend("color", {className: "swatches1"}),
+export function colorLegendCategoricalScheme() {
+  return Plot.plot({color: {domain: "ABCDEFGHIJ", scheme: "category10"}}).legend("color");
+}
 
-    ordinal.legend("color", {legend: "ramp"}),
+export function colorLegendCategoricalReverse() {
+  return Plot.plot({color: {domain: "ABCDEFGHIJ", reverse: true}}).legend("color");
+}
 
-    Plot.dot({length: 22}, {x: 0, fill: (_, i) => i % 11}).plot().legend("color"),
+export function colorLegendOrdinal() {
+  return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ"}}).legend("color");
+}
 
-    Plot.dot({length: 22}, {x: 0, fill: (_, i) => i % 11}).plot({
-      color: {label: "scale label"}
-    }).legend("color"),
+export function colorLegendOrdinalRamp() {
+  return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ"}}).legend("color", {legend: "ramp"});
+}
 
-    Plot.dot({length: 22}, {x: 0, fill: (_, i) => i % 11}).plot({
-      color: {label: "scale label"}
-    }).legend("color", {label: "legend label"}),
+export function colorLegendOrdinalRampTickSize() {
+  return Plot.legend({
+    color: {
+      domain: [
+        "<20",
+        "20-29",
+        "30-39",
+        "40-49",
+        "50-59",
+        "60-69",
+        "≥70"
+      ],
+      scheme: "Spectral",
+      label: "Age (years)"
+    },
+    legend: "ramp",
+    tickSize: 0
+  });
+}
 
-    Plot.legend({
-      color: {
-        type: "sqrt",
-        scheme: "blues",
-        range: [0.25, 1],
-        label: "I feel blue"
-      },
-      width: 400,
-      marginLeft: 150,
-      marginRight: 50
-    }),
+export function colorLegendOrdinalReverseRamp() {
+  return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ", reverse: true}}).legend("color", {legend: "ramp"});
+}
 
-    Plot.legend({color: {domain: "DCBA", scheme: "rainbow"}, className: "swatches2"}),
+export function colorLegendOrdinalScheme() {
+  return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}}).legend("color");
+}
 
-    Plot.legend({color: {domain: "DCBA", reverse: true}, className: "swatches3"}),
+export function colorLegendOrdinalSchemeRamp() {
+  return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}}).legend("color", {legend: "ramp"});
+}
 
-    Plot.legend({
-      color: Plot.plot({
-        marks: [
-          Plot.dotX(d3.range(100), {
-            x: (i) => i,
-            y: (i) => i ** 2,
-            fill: (i) => i ** 2
-          })
-        ],
-        color: {type: "quantile", scheme: "inferno", quantiles: 7}
-      }).scale("color"),
-      width: 300,
-      label: "quantiles!",
-      tickFormat: ",d"
-    }),
+export function colorLegendQuantitative() {
+  return Plot.plot({color: {domain: [0, 10]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "threshold",
-        domain: d3.ticks(2, 8, 5),
-        scheme: "viridis"
-      },
-      width: 300,
-      label: "thresholds!",
-      tickFormat: (d) => d.toFixed(1)
-    }),
+export function colorLegendQuantitativeScheme() {
+  return Plot.plot({color: {scheme: "blues", domain: [0, 1]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {scheme: "viridis", domain: [0, 100], label: "Temperature (°F)"}
-    }),
+export function colorLegendLinear() {
+  return Plot.plot({color: {type: "linear", domain: [0, 10]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {scheme: "Turbo", type: "sqrt", domain: [0, 1], label: "Speed (kts)"}
-    }),
+export function colorLegendSqrt() {
+  return Plot.plot({color: {type: "sqrt", domain: [0, 10]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "diverging",
-        domain: [-0.1, 0.1],
-        scheme: "PiYG",
-        label: "Daily change"
-      },
-      tickFormat: "+%"
-    }),
+export function colorLegendSqrtPiecewise() {
+  return Plot.plot({color: {type: "sqrt", domain: [-100, 0, 100], range: ["blue", "white", "red"]}}).legend("color");
+}
 
-    Plot.plot({
-      color: {
-        type: "diverging",
-        domain: [-0.1, 0.1],
-        scheme: "PiYG",
-        label: "Daily change"
-      }
-    }).legend("color", {tickFormat: "+%"}),
+export function colorLegendInterpolate() {
+  return Plot.plot({color: {domain: [0, 10], range: ["steelblue", "orange"], interpolate: "hcl"}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "diverging-sqrt",
-        domain: [-0.1, 0.1],
-        scheme: "RdBu",
-        label: "Daily change"
-      },
-      tickFormat: "+%"
-    }),
+export function colorLegendInterpolateSqrt() {
+  return Plot.plot({color: {type: "sqrt", domain: [0, 10]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "log",
-        domain: [1, 100],
-        scheme: "Blues",
-        label: "Energy (joules)"
-      },
-      ticks: 10,
-      width: 380
-    }),
+export function colorLegendLog() {
+  return Plot.plot({color: {type: "log", domain: [1, 10]}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "sqrt",
-        domain: [-100, 0, 100],
-        range: ["blue", "white", "red"],
-        label: "Temperature (°C)",
-        interpolate: "rgb"
-      }
-    }),
+export function colorLegendLogTicks() {
+  return Plot.plot({color: {type: "log", domain: [1, 10]}}).legend("color", {ticks: 10});
+}
 
-    Plot.legend({
-      color: {
-        type: "quantile",
-        domain: d3.range(1000).map(d3.randomNormal.source(d3.randomLcg(42))(100, 20)),
-        scheme: "Spectral",
-        label: "Height (cm)",
-        quantiles: 10
-      },
-      tickFormat: ".0f",
-      width: 400
-    }),
+export function colorLegendLabelScale() {
+  return Plot.plot({color: {type: "linear", domain: [0, 10], label: "Scale"}}).legend("color");
+}
 
-    Plot.legend({
-      color: {
-        type: "threshold",
-        domain: [2.5, 3.1, 3.5, 3.9, 6, 7, 8, 9.5],
-        scheme: "RdBu",
-        label: "Unemployment rate (%)"
-      },
-      tickSize: 0
-    }),
+export function colorLegendLabelLegend() {
+  return Plot.plot({color: {type: "linear", domain: [0, 10]}}).legend("color", {label: "Legend"});
+}
 
-    Plot.legend({
-      color: {
-        domain: [
-          "<10",
-          "10-19",
-          "20-29",
-          "30-39",
-          "40-49",
-          "50-59",
-          "60-69",
-          "70-79",
-          "≥80"
-        ],
-        scheme: "Spectral",
-        label: "Age (years)"
-      },
-      className: "swatches4",
-      tickSize: 0
-    }),
+export function colorLegendLabelBoth() {
+  return Plot.plot({color: {type: "linear", domain: [0, 10], label: "Scale"}}).legend("color", {label: "Legend"});
+}
 
-    Plot.legend({
-      color: {
-        domain: [
-          "<10",
-          "10-19",
-          "20-29",
-          "30-39",
-          "40-49",
-          "50-59",
-          "60-69",
-          "70-79",
-          "≥80"
-        ],
-        scheme: "Spectral",
-        label: "Age (years)"
-      },
-      tickSize: 0,
-      legend: "ramp",
-      width: 400
-    }),
+export function colorLegendMargins() {
+  return Plot.legend({
+    color: {
+      type: "sqrt",
+      domain: [0, 10],
+      label: "I feel blue"
+    },
+    width: 400,
+    marginLeft: 150,
+    marginRight: 50
+  });
+}
 
-    Plot.legend({
-      color: {domain: ["blueberries", "oranges", "apples"], scheme: "category10"},
-      className: "swatches5"
-    }),
+export function colorLegendThreshold() {
+  return Plot.legend({
+    color: {
+      type: "threshold",
+      scheme: "viridis",
+      domain: d3.range(1, 10),
+      label: "Viridis"
+    }
+  });
+}
 
-    Plot.legend({
-      color: {
-        domain: [
-          "Wholesale and Retail Trade",
-          "Manufacturing",
-          "Leisure and hospitality",
-          "Business services",
-          "Construction",
-          "Education and Health",
-          "Government",
-          "Finance",
-          "Self-employed",
-          "Other"
-        ]
-      },
-      columns: "180px", // responsive!
-      width: 960,
-      className: "swatches6"
-  })
+export function colorLegendThresholdTickSize() {
+  return Plot.legend({
+    color: {
+      type: "threshold",
+      domain: [2.5, 3.1, 3.5, 3.9, 6, 7, 8, 9.5],
+      scheme: "RdBu",
+      label: "Unemployment rate (%)"
+    },
+    tickSize: 0
+  });
+}
 
-  );
+// This quantile scale is implicitly converted to a threshold scale!
+export function colorLegendQuantile() {
+  return Plot.legend({
+    color: {
+      type: "quantile",
+      scheme: "inferno",
+      domain: d3.range(100).map(i => i ** 2),
+      quantiles: 7,
+      label: "Inferno"
+    },
+    tickFormat: ",d"
+  });
+}
 
-  return div;
+// This quantile scale is implicitly converted to a threshold scale!
+export function colorLegendQuantileImplicit() {
+  return Plot.plot({
+    color: {
+      type: "quantile",
+      scheme: "inferno",
+      quantiles: 7,
+      label: "Inferno"
+    },
+    marks: [
+      Plot.dot(d3.range(100), {fill: i => i ** 2})
+    ]
+  }).legend("color", {
+    tickFormat: ",d"
+  });
+}
+
+export function colorLegendDiverging() {
+  return Plot.legend({
+    color: {
+      type: "diverging",
+      domain: [-0.1, 0.1],
+      scheme: "PiYG",
+      label: "Daily change"
+    },
+    tickFormat: "+%"
+  });
+}
+
+export function colorLegendDivergingPivot() {
+  return Plot.legend({
+    color: {
+      type: "diverging",
+      domain: [1, 4],
+      pivot: 3,
+      scheme: "PiYG"
+    }
+  });
+}
+
+export function colorLegendDivergingPivotAsymmetric() {
+  return Plot.legend({
+    color: {
+      type: "diverging",
+      symmetric: false,
+      domain: [1, 4],
+      pivot: 3,
+      scheme: "PiYG"
+    }
+  });
+}
+
+export function colorLegendDivergingSqrt() {
+  return Plot.legend({
+    color: {
+      type: "diverging-sqrt",
+      domain: [-0.1, 0.1],
+      scheme: "PiYG",
+      label: "Daily change"
+    },
+    tickFormat: "+%"
+  });
 }

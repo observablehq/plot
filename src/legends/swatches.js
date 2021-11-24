@@ -1,68 +1,10 @@
 import {create} from "d3";
 import {applyInlineStyles, maybeClassName} from "../style.js";
 
-// TODO: once we inline, is this smart variable handling any
-// better than inline styles?
-const styles = className => `
-.${className} {
-  display: flex;
-  align-items: center;
-  margin-left: var(--marginLeft);
-  min-height: 33px;
-  font: 10px sans-serif;
-  margin-bottom: 0.5em;
-}
-
-.${className} > div {
-  width: 100%;
-}
-
-.${className}-item {
-  break-inside: avoid;
-  display: flex;
-  align-items: center;
-  padding-bottom: 1px;
-}
-
-.${className}-label {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: calc(100% - var(--swatchWidth) - 0.5em);
-}
-
-.${className}-block {
-  width: var(--swatchWidth);
-  height: var(--swatchHeight);
-  margin: 0 0.5em 0 0;
-}
-
-.${className}-swatch {
-  display: inline-flex;
-  align-items: center;
-  margin-right: 1em;
-}
-
-.${className}-swatch::before {
-  content: "";
-  width: var(--swatchWidth);
-  height: var(--swatchHeight);
-  margin-right: 0.5em;
-  background: var(--color);
-}
-
-.${className}-title {
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 10px;
-  margin: 5px 0 -5px 0;
-}
-`;
-
 export function legendSwatches(color, {
-  columns = null,
+  columns,
   format = x => x,
-  label,
+  // TODO label,
   swatchSize = 15,
   swatchWidth = swatchSize,
   swatchHeight = swatchSize,
@@ -72,43 +14,87 @@ export function legendSwatches(color, {
   width
 } = {}) {
   className = maybeClassName(className);
-  const swatches = create("div")
-    .classed(className, true)
-    .attr("style", `--marginLeft: ${+marginLeft}px; --swatchWidth: ${+swatchWidth}px; --swatchHeight: ${+swatchHeight}px;${
-      width === undefined ? "" : ` width: ${width}px;`
-    }`);
-  swatches.append("style").text(styles(className));
 
-  if (columns !== null) {
-    const elems = swatches.append("div")
-      .style("columns", columns);
-    for (const value of color.domain) {
-      const d = elems.append("div").classed(`${className}-item`, true);
-      d.append("div")
-        .classed(`${className}-block`, true)
-        .style("background", color.apply(value));
-      const label = format(value);
-      d.append("div")
-        .classed(`${className}-label`, true)
-        .text(label)
-        .attr("title", label);
-    }
+  const swatches = create("div")
+      .attr("class", className)
+      .attr("style", `
+        --swatchWidth: ${+swatchWidth}px;
+        --swatchHeight: ${+swatchHeight}px;
+      `);
+
+  let extraStyle;
+
+  if (columns != null) {
+    extraStyle = `
+      .${className}-swatch {
+        display: flex;
+        align-items: center;
+        break-inside: avoid;
+        padding-bottom: 1px;
+      }
+      .${className}-swatch::before {
+        flex-shrink: 0;
+      }
+      .${className}-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    `;
+
+    swatches
+        .style("columns", columns)
+      .selectAll()
+      .data(color.domain)
+      .join("div")
+        .attr("class", `${className}-swatch`)
+        .style("--color", color.apply)
+        .call(item => item.append("div")
+            .attr("class", `${className}-label`)
+            .attr("title", format)
+            .text(format));
   } else {
+    extraStyle = `
+      .${className} {
+        display: flex;
+        align-items: center;
+        min-height: 33px;
+      }
+      .${className}-swatch {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 1em;
+      }
+    `;
+
     swatches
       .selectAll()
       .data(color.domain)
       .join("span")
-      .classed(`${className}-swatch`, true)
-      .style("--color", color.apply)
-      .text(format);
+        .attr("class", `${className}-swatch`)
+        .style("--color", color.apply)
+        .text(format);
   }
 
-  return create("div")
+  return swatches
+      .call(div => div.insert("style", "*").text(`
+        .${className} {
+          font-family: system-ui, sans-serif;
+          font-size: 10px;
+          font-variant: tabular-nums;
+          margin-bottom: 0.5em;${marginLeft === undefined ? "" : `
+          margin-left: ${+marginLeft}px;`}${width === undefined ? "" : `
+          width: ${width}px;`}
+        }
+        .${className}-swatch::before {
+          content: "";
+          width: var(--swatchWidth);
+          height: var(--swatchHeight);
+          margin-right: 0.5em;
+          background: var(--color);
+        }
+        ${extraStyle}
+      `))
       .call(applyInlineStyles, style)
-      .call(label == null ? () => {}
-      : div => div.append("div")
-        .classed(`${className}-title`, true)
-        .text(label))
-      .call(div => div.append(() => swatches.node()))
-      .node();
+    .node();
 }

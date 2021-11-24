@@ -1,0 +1,45 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="34" height="10" fill="#000004"></rect>
+    <rect x="34" y="18" width="35" height="10" fill="#320a5e"></rect>
+    <rect x="69" y="18" width="34" height="10" fill="#781c6d"></rect>
+    <rect x="103" y="18" width="34" height="10" fill="#bc3754"></rect>
+    <rect x="137" y="18" width="34" height="10" fill="#ed6925"></rect>
+    <rect x="171" y="18" width="35" height="10" fill="#fbb61a"></rect>
+    <rect x="206" y="18" width="34" height="10" fill="#fcffa4"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(34.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(69.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(103.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">1,800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(137.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">3,201</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(171.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">5,001</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(206.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">7,201</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Inferno</text>
+  </g>
+</svg>

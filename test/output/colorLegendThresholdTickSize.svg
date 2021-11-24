@@ -1,0 +1,53 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" width="240" height="44" viewBox="0 0 240 44" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="27" height="10" fill="#b2182b"></rect>
+    <rect x="27" y="18" width="26" height="10" fill="#d6604d"></rect>
+    <rect x="53" y="18" width="27" height="10" fill="#f4a582"></rect>
+    <rect x="80" y="18" width="27" height="10" fill="#fddbc7"></rect>
+    <rect x="107" y="18" width="26" height="10" fill="#f7f7f7"></rect>
+    <rect x="133" y="18" width="27" height="10" fill="#d1e5f0"></rect>
+    <rect x="160" y="18" width="27" height="10" fill="#92c5de"></rect>
+    <rect x="187" y="18" width="26" height="10" fill="#4393c3"></rect>
+    <rect x="213" y="18" width="27" height="10" fill="#2166ac"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(27.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">2.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(53.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">3.1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(80.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">3.5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(107.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">3.9</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(133.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(160.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">7</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(187.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(213.5,0)">
+      <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">9.5</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Unemployment rate (%)</text>
+  </g>
+</svg>
