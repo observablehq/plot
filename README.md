@@ -1030,6 +1030,9 @@ The following text-specific constant options are also supported:
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
 * **rotate** - the rotation in degrees clockwise; defaults to 0
+* **anchor** - the anchor point—if the text is not bound to a scale; any of: top, bottom, left, right and combinations thereof such as top-left; defaults to the center of the chart
+* **x** - number of pixels to the right relative to the anchor point
+* **y** - number of pixels to the bottom relative to the anchor point
 
 For text marks, the **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**. The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 

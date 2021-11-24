@@ -19,17 +19,20 @@ export class Text extends Mark {
       fontStyle,
       fontVariant,
       fontWeight,
+      anchor,
       dx,
       dy = "0.32em",
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumber(rotate, 0);
     const [vfontSize, cfontSize] = maybeNumber(fontSize);
+    const [vx, cx] = maybeNumber(x, 0);
+    const [vy, cy] = maybeNumber(y, 0);
     super(
       data,
       [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
+        {name: "x", value: vx, scale: "x", optional: true},
+        {name: "y", value: vy, scale: "y", optional: true},
         {name: "fontSize", value: numberChannel(vfontSize), optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text}
@@ -44,16 +47,17 @@ export class Text extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
+    this.cx = cx;
+    this.cy = cy;
+    this.anchor = anchor;
     this.dx = string(dx);
     this.dy = string(dy);
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
-    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
     const {rotate} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
-    const cx = (marginLeft + width - marginRight) / 2;
-    const cy = (marginTop + height - marginBottom) / 2;
+    const c = textPosition(dimensions, this.anchor, this.cx, this.cy);
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, offset, offset)
@@ -62,14 +66,14 @@ export class Text extends Mark {
           .join("text")
             .call(applyDirectTextStyles, this)
             .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
-                : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
-                : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
-                : i => `translate(${cx},${cy}) rotate(${R[i]})`)
+                : X ? i => `translate(${X[i]},${c[1]}) rotate(${R[i]})`
+                : Y ? i => `translate(${c[0]},${Y[i]}) rotate(${R[i]})`
+                : i => `translate(${c[0]},${c[1]}) rotate(${R[i]})`)
               : rotate ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
-                : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
-                : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
-                : `translate(${cx},${cy}) rotate(${rotate})`)
-              : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
+                : X ? i => `translate(${X[i]},${c[1]}) rotate(${rotate})`
+                : Y ? i => `translate(${c[0]},${Y[i]}) rotate(${rotate})`
+                : `translate(${c[0]},${c[1]}) rotate(${rotate})`)
+              : text => text.attr("x", X ? i => X[i] : c[0]).attr("y", Y ? i => Y[i] : c[1]))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .text(i => T[i])
             .call(applyChannelStyles, channels))
@@ -104,4 +108,15 @@ function applyDirectTextStyles(selection, mark) {
   applyDirectStyles(selection, mark);
   applyAttr(selection, "dx", mark.dx);
   applyAttr(selection, "dy", mark.dy);
+}
+
+function textPosition({width, height, marginTop, marginRight, marginBottom, marginLeft}, anchor = "", cx = 0, cy = 0) {
+  const a = anchor.toLowerCase();
+  const v = a.match(/^(top|bottom|)/)[0];
+  const h = a.match(/(left|right|)$/)[0];
+  if (a != ((h && v) ? `${v}-${h}` : h ? h : v))
+    throw new Error(`Unexpected anchor: ${anchor}`);
+  const x = h === "left" ? marginLeft : h === "right" ? width - marginRight : (marginLeft + width - marginRight) / 2;
+  const y = v === "top" ? marginTop : v === "bottom" ? height - marginBottom : (marginTop + height - marginBottom) / 2;
+  return [x + cx, y + cy];
 }
