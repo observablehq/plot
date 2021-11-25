@@ -4,11 +4,12 @@ import {legendColor} from "./color.js";
 const black = rgb(0, 0, 0);
 
 export function legendOpacity({type, interpolate, ...scale}, {
-  legend = "ramp",
+  legend = true,
   color = black,
   ...options
 }) {
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
+  if (legend === true) legend = "ramp";
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
   return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
 }
