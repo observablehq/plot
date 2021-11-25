@@ -32,7 +32,11 @@ if (location.pathname !== "/") {
 const select = document.createElement("select");
 select.autofocus = true;
 select.style.margin = "1em 0";
-select.onchange = () => location.href = `?test=${select.value}`;
+select.onchange = () => {
+  const {value} = select;
+  history.pushState({value}, "", `?test=${value}`);
+  render();
+};
 select.append(...Object.keys(tests).map(key => {
   const option = document.createElement("option");
   option.value = key;
@@ -40,11 +44,25 @@ select.append(...Object.keys(tests).map(key => {
   return option;
 }));
 
+addEventListener("popstate", (event) => {
+  const {value} = history.state;
+  select.value = value;
+  render();
+});
+
 const initialValue = new URL(location).searchParams.get("test");
 if (tests[initialValue]) select.value = initialValue;
 
 document.body.append(select);
 
-Promise.resolve(tests[select.value]()).then(chart => document.body.append(chart));
+let currentChart;
+
+async function render() {
+  if (currentChart) currentChart.remove();
+  currentChart = await Promise.resolve(tests[select.value]());
+  document.body.append(currentChart);
+}
+
+render();
 
 </script>
