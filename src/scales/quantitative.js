@@ -101,7 +101,7 @@ export function ScaleQ(key, scale, channels, {
 
   if (reverse) domain = reverseof(domain);
   scale.domain(domain).unknown(unknown);
-  if (nice) scale.nice(nice === true ? undefined : nice);
+  if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
   return {type, domain, range, scale, interpolate};

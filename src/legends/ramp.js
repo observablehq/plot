@@ -1,8 +1,7 @@
-import {Scale} from "../scales.js";
 import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {applyInlineStyles, maybeClassName} from "../style.js";
 
-export function legendRamp(scale, {
+export function legendRamp(color, {
   label,
   tickSize = 6,
   width = 240,
@@ -45,7 +44,7 @@ export function legendRamp(scale, {
   let tickAdjust = g => g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
   let x;
 
-  const {type, domain, range, interpolate, apply} = scale;
+  const {type, domain, range, interpolate, scale, pivot} = color;
 
   // Continuous
   if (interpolate) {
@@ -62,11 +61,11 @@ export function legendRamp(scale, {
     // domain.length is two, and so the range is simply the extent.) For a
     // diverging scale, we need an extra point in the range for the pivot such
     // that the pivot is always drawn in the middle.
-    x = Scale("color", undefined, scale).scale.rangeRound(
+    x = scale.copy().rangeRound(
       quantize(
         interpolateNumber(marginLeft, width - marginRight),
         Math.min(
-          domain.length + (scale.pivot !== undefined),
+          domain.length + (pivot !== undefined),
           range === undefined ? Infinity : range.length
         )
       )
@@ -124,7 +123,7 @@ export function legendRamp(scale, {
         .attr("y", marginTop)
         .attr("width", Math.max(0, x.bandwidth() - 1))
         .attr("height", height - marginTop - marginBottom)
-        .attr("fill", apply);
+        .attr("fill", scale);
 
     tickAdjust = () => {};
   }

@@ -61,7 +61,7 @@ function ScaleD(key, scale, transform, channels, {
   scale.domain([min, pivot, max]).unknown(unknown).interpolator(interpolate);
   if (clamp) scale.clamp(clamp);
   if (nice) scale.nice(nice);
-  return {type, interpolate, scale};
+  return {type, domain: [min, max], pivot, interpolate, scale};
 }
 
 export function ScaleDiverging(key, channels, options) {

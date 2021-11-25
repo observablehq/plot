@@ -48,7 +48,7 @@ export function legendSwatches(color, {
       .data(color.domain)
       .join("div")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.apply)
+        .style("--color", color.scale)
         .call(item => item.append("div")
             .attr("class", `${className}-label`)
             .attr("title", format)
@@ -72,7 +72,7 @@ export function legendSwatches(color, {
       .data(color.domain)
       .join("span")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.apply)
+        .style("--color", color.scale)
         .text(format);
   }
 

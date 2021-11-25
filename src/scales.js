@@ -118,7 +118,11 @@ function piecewiseRange(scale) {
   return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
 }
 
-export function Scale(key, channels = [], options = {}) {
+export function normalizeScale(key, scale) {
+  return Scale(key, undefined, {...scale});
+}
+
+function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
   options.type = type; // Mutates input!
 
@@ -170,7 +174,7 @@ export function Scale(key, channels = [], options = {}) {
     case "band": return ScaleBand(key, channels, options);
     case "identity": return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
     case undefined: return;
-    default: throw new Error(`unknown scale type: ${options.type}`);
+    default: throw new Error(`unknown scale type: ${type}`);
   }
 }
 
@@ -310,21 +314,22 @@ export function exposeScales(scaleDescriptors) {
   };
 }
 
-export function exposeScale({
+function exposeScale({
   scale,
   type,
+  domain,
   range,
   label,
   interpolate,
   transform,
-  percent
+  percent,
+  pivot
 }) {
   if (type === "identity") return {type: "identity", apply: d => d, invert: d => d};
-  const domain = scale.domain();
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain,
+    domain: Array.from(domain), // defensive copy
     ...range !== undefined && {range: Array.from(range)}, // defensive copy
     ...transform !== undefined && {transform},
     ...percent && {percent}, // only exposed if truthy
@@ -336,7 +341,7 @@ export function exposeScale({
     ...scale.clamp && {clamp: scale.clamp()},
 
     // diverging (always asymmetric; we never want to apply the symmetric transform twice)
-    ...isDivergingScale({type}) && (([min, pivot, max]) => ({domain: [min, max], pivot, symmetric: false}))(domain),
+    ...pivot !== undefined && {pivot, symmetric: false},
 
     // log, diverging-log
     ...scale.base && {base: scale.base()},
