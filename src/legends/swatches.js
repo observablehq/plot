@@ -1,9 +1,10 @@
 import {create} from "d3";
+import {maybeTickFormat} from "../axis.js";
 import {applyInlineStyles, maybeClassName} from "../style.js";
 
 export function legendSwatches(color, {
   columns,
-  format = x => x,
+  tickFormat,
   // TODO label,
   swatchSize = 15,
   swatchWidth = swatchSize,
@@ -14,6 +15,7 @@ export function legendSwatches(color, {
   width
 } = {}) {
   className = maybeClassName(className);
+  tickFormat = maybeTickFormat(tickFormat, color.domain);
 
   const swatches = create("div")
       .attr("class", className)
@@ -51,8 +53,8 @@ export function legendSwatches(color, {
         .style("--color", color.scale)
         .call(item => item.append("div")
             .attr("class", `${className}-label`)
-            .attr("title", format)
-            .text(format));
+            .attr("title", tickFormat)
+            .text(tickFormat));
   } else {
     extraStyle = `
       .${className} {
@@ -73,7 +75,7 @@ export function legendSwatches(color, {
       .join("span")
         .attr("class", `${className}-swatch`)
         .style("--color", color.scale)
-        .text(format);
+        .text(tickFormat);
   }
 
   return swatches

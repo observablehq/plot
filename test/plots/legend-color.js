@@ -74,6 +74,10 @@ export function colorLegendOrdinalSchemeRamp() {
   return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}}).legend("color", {legend: "ramp"});
 }
 
+export function colorLegendOrdinalTickFormat() {
+  return Plot.plot({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}}).legend("color");
+}
+
 export function colorLegendQuantitative() {
   return Plot.plot({color: {domain: [0, 10]}}).legend("color");
 }
@@ -179,14 +183,13 @@ export function colorLegendQuantileImplicit() {
       type: "quantile",
       scheme: "inferno",
       quantiles: 7,
-      label: "Inferno"
+      label: "Inferno",
+      tickFormat: ",d"
     },
     marks: [
       Plot.dot(d3.range(100), {fill: i => i ** 2})
     ]
-  }).legend("color", {
-    tickFormat: ",d"
-  });
+  }).legend("color");
 }
 
 export function colorLegendDiverging() {

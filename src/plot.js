@@ -57,13 +57,6 @@ export function plot(options = {}) {
   autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  // Normalize the options.
-  options = {...scaleDescriptors, ...dimensions};
-  if (axes.x) options.x = {...options.x, ...axes.x};
-  if (axes.y) options.y = {...options.y, ...axes.y};
-  if (axes.fx) options.fx = {...options.fx, ...axes.fx};
-  if (axes.fy) options.fy = {...options.fy, ...axes.fy};
-
   // When faceting, render axes for fx and fy instead of x and y.
   const x = facet !== undefined && scales.fx ? "fx" : "x";
   const y = facet !== undefined && scales.fy ? "fy" : "y";
@@ -115,7 +108,7 @@ export function plot(options = {}) {
   }
 
   figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = exposeLegends;
+  figure.legend = exposeLegends(scaleDescriptors, options);
   return figure;
 }
 
