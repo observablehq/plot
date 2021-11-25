@@ -248,6 +248,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**ticks** - the desired number of ticks, or an array of tick values
 * *options*.**tickFormat** - a format function for the legend’s ticks
 * *options*.**tickSize** - the tick size
+* *options*.**round** - if true (default), round tick positions to pixels
 * *options*.**width** - the legend’s width
 * *options*.**height** - the legend’s height
 * *options*.**marginTop** - the legend’s top margin

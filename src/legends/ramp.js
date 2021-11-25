@@ -11,8 +11,9 @@ export function legendRamp(color, {
   marginBottom = 16 + tickSize,
   marginLeft = 0,
   style,
-  ticks = width / 64,
+  ticks = (width - marginLeft - marginRight) / 64,
   tickFormat,
+  round = true,
   className
 }) {
   className = maybeClassName(className);
@@ -41,7 +42,14 @@ export function legendRamp(color, {
       .call(applyInlineStyles, style);
 
   let tickAdjust = g => g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
+
   let x;
+
+  // Some D3 scales use scale.interpolate, some scale.interpolator, and some
+  // scale.round; this normalizes the API so it works with all scale types.
+  const applyRange = round
+      ? (x, range) => x.rangeRound(range)
+      : (x, range) => x.range(range);
 
   const {type, domain, range, interpolate, scale, pivot} = color;
 
@@ -60,7 +68,8 @@ export function legendRamp(color, {
     // domain.length is two, and so the range is simply the extent.) For a
     // diverging scale, we need an extra point in the range for the pivot such
     // that the pivot is always drawn in the middle.
-    x = scale.copy().rangeRound(
+    x = applyRange(
+      scale.copy(),
       quantize(
         interpolateNumber(marginLeft, width - marginRight),
         Math.min(
@@ -90,9 +99,7 @@ export function legendRamp(color, {
 
     // Construct a linear scale with evenly-spaced ticks for each of the
     // thresholds; the domain extends one beyond the threshold extent.
-    x = scaleLinear()
-        .domain([-1, range.length - 1])
-        .rangeRound([marginLeft, width - marginRight]);
+    x = applyRange(scaleLinear().domain([-1, range.length - 1]), [marginLeft, width - marginRight]);
 
     svg.append("g")
       .selectAll("rect")
@@ -110,9 +117,7 @@ export function legendRamp(color, {
 
   // Ordinal (hopefully!)
   else {
-    x = scaleBand()
-        .domain(domain)
-        .rangeRound([marginLeft, width - marginRight]);
+    x = applyRange(scaleBand().domain(domain), [marginLeft, width - marginRight]);
 
     svg.append("g")
       .selectAll("rect")
