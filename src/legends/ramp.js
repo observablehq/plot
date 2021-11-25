@@ -1,4 +1,5 @@
 import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, maybeClassName} from "../style.js";
 
 export function legendRamp(color, {
@@ -59,9 +60,9 @@ export function legendRamp(color, {
     // Often interpolate is a “fixed” interpolator on the [0, 1] interval, as
     // with a built-in color scheme, but sometimes it is a function that takes
     // two arguments and is used in conjunction with the range.
-    const interpolator = interpolate.length === 1
-        ? interpolate
-        : piecewise(interpolate, range);
+    const interpolator = range === undefined ? interpolate
+        : piecewise(interpolate.length === 1 ? interpolatePiecewise(interpolate)
+        : interpolate, range);
 
     // Construct a D3 scale of the same type, but with a range that evenly
     // divides the horizontal extent of the legend. (In the common case, the
