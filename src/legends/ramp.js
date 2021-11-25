@@ -13,7 +13,6 @@ export function legendRamp(color, {
   style,
   ticks = width / 64,
   tickFormat,
-  tickValues,
   className
 }) {
   className = maybeClassName(className);
@@ -105,7 +104,7 @@ export function legendRamp(color, {
         .attr("height", height - marginTop - marginBottom)
         .attr("fill", d => d);
 
-    tickValues = Array.from(thresholds, (_, i) => i);
+    ticks = Array.from(thresholds, (_, i) => i);
     tickFormat = i => thresholdFormat(thresholds[i], i);
   }
 
@@ -131,10 +130,10 @@ export function legendRamp(color, {
   svg.append("g")
       .attr("transform", `translate(0,${height - marginBottom})`)
       .call(axisBottom(x)
-          .ticks(ticks, typeof tickFormat === "string" ? tickFormat : undefined)
+          .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "string" ? tickFormat : undefined)
           .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
           .tickSize(tickSize)
-          .tickValues(tickValues))
+          .tickValues(Array.isArray(ticks) ? ticks : null))
       .attr("font-size", null)
       .attr("font-family", null)
       .call(tickAdjust)

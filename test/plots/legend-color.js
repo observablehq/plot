@@ -74,6 +74,10 @@ export function colorLegendOrdinalSchemeRamp() {
   return Plot.plot({color: {type: "ordinal", domain: "ABCDEFGHIJ", scheme: "rainbow"}}).legend("color", {legend: "ramp"});
 }
 
+export function colorLegendOrdinalTicks() {
+  return Plot.legend({color: {type: "categorical", domain: [0, 1, 2, 3, 4], ticks: [0, 1, 4]}, legend: "ramp"});
+}
+
 export function colorLegendOrdinalTickFormat() {
   return Plot.plot({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}}).legend("color");
 }
