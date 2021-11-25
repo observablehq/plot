@@ -1,14 +1,17 @@
 import {normalizeScale} from "./scales.js";
 import {legendColor} from "./legends/color.js";
+import {legendOpacity} from "./legends/opacity.js";
+import {isObject} from "./mark.js";
 
 const legendRegistry = new Map([
-  ["color", legendColor]
+  ["color", legendColor],
+  ["opacity", legendOpacity]
 ]);
 
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
-    if (scale != null) {
+    if (isObject(scale)) { // e.g., ignore {color: "red"}
       return value(normalizeScale(key, scale), legendOptions(scale, options));
     }
   }
