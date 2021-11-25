@@ -207,12 +207,13 @@ function gridFacetY(index, fx, tx) {
 // string, not the default identity format.
 export function maybeTickFormat(tickFormat, domain) {
   return tickFormat === undefined ? (isTemporal(domain) ? formatIsoDate : string)
+      : typeof tickFormat === "function" ? tickFormat
       : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format)
       : constant)(tickFormat);
 }
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
-  if (!scale.tickFormat && typeof tickFormat !== "function") {
+  if (!scale.tickFormat) {
     tickFormat = maybeTickFormat(tickFormat, scale.domain());
   }
   return axis(scale)

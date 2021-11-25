@@ -78,6 +78,10 @@ export function colorLegendOrdinalTickFormat() {
   return Plot.plot({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: ".1f"}}).legend("color");
 }
 
+export function colorLegendOrdinalTickFormatFunction() {
+  return Plot.plot({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: d => d.toFixed(1)}}).legend("color");
+}
+
 export function colorLegendQuantitative() {
   return Plot.plot({color: {domain: [0, 10]}}).legend("color");
 }
