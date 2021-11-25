@@ -173,12 +173,15 @@ export function arrayify(data, type) {
     : (data instanceof type ? data : type.from(data)));
 }
 
+// Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
+export function isObject(option) {
+  return option && option.toString === objectToString;
+}
+
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
 export function isOptions(option) {
-  return option
-    && option.toString === objectToString
-    && typeof option.transform !== "function";
+  return isObject(option) && typeof option.transform !== "function";
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.

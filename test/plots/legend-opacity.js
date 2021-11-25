@@ -12,6 +12,10 @@ export function opacityLegendLinear() {
   return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}});
 }
 
+export function opacityLegendColor() {
+  return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}, color: "steelblue"});
+}
+
 export function opacityLegendLog() {
   return Plot.legend({opacity: {type: "log", domain: [1, 10], label: "Log"}});
 }

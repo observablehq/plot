@@ -1,11 +1,19 @@
+import {rgb} from "d3";
 import {legendColor} from "./color.js";
 
-export function legendOpacity({type, interpolate, ...scale}, {legend = "ramp", ...options}) {
+const black = rgb(0, 0, 0);
+
+export function legendOpacity({type, interpolate, ...scale}, {
+  legend = "ramp",
+  color = black,
+  ...options
+}) {
   if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
   if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
-  return legendColor({type, ...scale, interpolate: interpolateOpacity}, {legend, ...options});
+  return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
 }
 
-function interpolateOpacity(t) {
-  return `rgba(0,0,0,${t})`;
+function interpolateOpacity(color) {
+  const {r, g, b} = rgb(color) || black; // treat invalid color as black
+  return t => `rgba(${r},${g},${b},${t})`;
 }
