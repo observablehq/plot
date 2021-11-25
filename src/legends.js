@@ -29,3 +29,14 @@ export function exposeLegends(scales, defaults = {}) {
 function legendOptions({label, ticks, tickFormat} = {}, options = {}) {
   return {label, ticks, tickFormat, ...options};
 }
+
+export function Legends(scales, options) {
+  const legends = [];
+  for (const [key, value] of legendRegistry) {
+    const o = options[key];
+    if (o && o.legend) {
+      legends.push(value(scales[key], legendOptions(scales[key], o)));
+    }
+  }
+  return legends;
+}
