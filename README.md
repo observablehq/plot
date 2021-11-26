@@ -78,6 +78,7 @@ These options determine the overall layout of the plot; all are specified as num
 * **marginRight** - the right margin
 * **marginBottom** - the bottom margin
 * **marginLeft** - the left margin
+* **margin** - shorthand for the four margins
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
@@ -459,6 +460,7 @@ The following *facet* constant options are also supported:
 * facet.**marginRight** - the right margin
 * facet.**marginBottom** - the bottom margin
 * facet.**marginLeft** - the left margin
+* facet.**margin** - shorthand for the four margins
 * facet.**grid** - if true, draw grid lines for each facet
 * facet.**label** - if null, disable default facet axis labels
 
