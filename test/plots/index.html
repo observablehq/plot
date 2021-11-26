@@ -37,6 +37,27 @@ select.onchange = () => {
   history.pushState({value}, "", `?test=${value}`);
   render();
 };
+
+select.onkeydown = (event) => {
+  if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+  switch (event.key) {
+    case "ArrowLeft": {
+      if (select.selectedIndex > 0) {
+        --select.selectedIndex;
+        select.onchange();
+      }
+      break;
+    }
+    case "ArrowRight": {
+      if (select.selectedIndex < select.options.length - 1) {
+        ++select.selectedIndex;
+        select.onchange();
+      }
+      break;
+    }
+  }
+};
+
 select.append(...Object.keys(tests).map(key => {
   const option = document.createElement("option");
   option.value = key;
@@ -55,12 +76,12 @@ if (tests[initialValue]) select.value = initialValue;
 
 document.body.append(select);
 
-let currentChart;
+let currentChart = document.createElement("DIV");
 
 async function render() {
   if (currentChart) currentChart.remove();
-  currentChart = await Promise.resolve(tests[select.value]());
-  document.body.append(currentChart);
+  const div = currentChart = document.body.appendChild(document.createElement("DIV"));
+  div.append(await tests[select.value]());
 }
 
 render();
