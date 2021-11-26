@@ -166,7 +166,7 @@ export function maybeClassName(name) {
 export function applyInlineStyles(selection, style) {
   if (typeof style === "string") {
     selection.property("style", style);
-  } else {
+  } else if (style != null) {
     for (const element of selection) {
       Object.assign(element.style, style);
     }
