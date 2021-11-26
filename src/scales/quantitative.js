@@ -160,14 +160,14 @@ export function ScaleIdentity() {
 }
 
 export function inferDomain(channels, f) {
-  return [
+  return channels.length ? [
     min(channels, ({value}) => value === undefined ? value : min(value, f)),
     max(channels, ({value}) => value === undefined ? value : max(value, f))
-  ];
+  ] : [0, 1];
 }
 
 function inferZeroDomain(channels) {
-  return [0, max(channels, ({value}) => value === undefined ? value : max(value))];
+  return [0, channels.length ? max(channels, ({value}) => value === undefined ? value : max(value)) : 1];
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
