@@ -35,6 +35,12 @@ export function styles(
     fillOpacity = null;
   }
 
+  // Some marks don’t support stroke (e.g., image).
+  if (defaultStroke === null) {
+    stroke = null;
+    strokeOpacity = null;
+  }
+
   // Some marks default to fill with no stroke, while others default to stroke
   // with no fill. For example, bar and area default to fill, while dot and line
   // default to stroke. For marks that fill by default, the default fill only
@@ -68,13 +74,17 @@ export function styles(
     mark.fillOpacity = impliedNumber(cfillOpacity, 1);
   }
 
-  mark.stroke = impliedString(cstroke, "none");
-  mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
-  mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
-  mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
-  mark.strokeLinecap = impliedString(strokeLinecap, "butt");
-  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
-  mark.strokeDasharray = string(strokeDasharray);
+  // Some marks don’t support stroke (e.g., image).
+  if (defaultStroke !== null) {
+    mark.stroke = impliedString(cstroke, "none");
+    mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
+    mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
+    mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
+    mark.strokeLinecap = impliedString(strokeLinecap, "butt");
+    mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
+    mark.strokeDasharray = string(strokeDasharray);
+  }
+
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 

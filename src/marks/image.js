@@ -3,7 +3,10 @@ import {filter, positive} from "../defined.js";
 import {Mark, maybeNumber, maybeTuple, string} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
-const defaults = {};
+const defaults = {
+  fill: null,
+  stroke: null
+};
 
 export class Image extends Mark {
   constructor(data, options = {}) {
