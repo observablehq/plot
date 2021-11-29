@@ -49,7 +49,7 @@ export class Text extends Mark {
     this.fontWeight = string(fontWeight);
     this.cx = cx;
     this.cy = cy;
-    this.anchor = anchor;
+    this.anchor = maybeAnchor(anchor);
     this.dx = string(dx);
     this.dy = string(dy);
   }
@@ -57,7 +57,7 @@ export class Text extends Mark {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
-    const c = textPosition(dimensions, this.anchor, this.cx, this.cy);
+    const [cx, cy] = textPosition(dimensions, this.anchor, this.cx, this.cy);
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, offset, offset)
@@ -66,14 +66,14 @@ export class Text extends Mark {
           .join("text")
             .call(applyDirectTextStyles, this)
             .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
-                : X ? i => `translate(${X[i]},${c[1]}) rotate(${R[i]})`
-                : Y ? i => `translate(${c[0]},${Y[i]}) rotate(${R[i]})`
-                : i => `translate(${c[0]},${c[1]}) rotate(${R[i]})`)
+                : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
+                : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
+                : i => `translate(${cx},${cy}) rotate(${R[i]})`)
               : rotate ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
-                : X ? i => `translate(${X[i]},${c[1]}) rotate(${rotate})`
-                : Y ? i => `translate(${c[0]},${Y[i]}) rotate(${rotate})`
-                : `translate(${c[0]},${c[1]}) rotate(${rotate})`)
-              : text => text.attr("x", X ? i => X[i] : c[0]).attr("y", Y ? i => Y[i] : c[1]))
+                : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
+                : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
+                : `translate(${cx},${cy}) rotate(${rotate})`)
+              : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .text(i => T[i])
             .call(applyChannelStyles, channels))
@@ -110,12 +110,17 @@ function applyDirectTextStyles(selection, mark) {
   applyAttr(selection, "dy", mark.dy);
 }
 
-function textPosition({width, height, marginTop, marginRight, marginBottom, marginLeft}, anchor = "", cx = 0, cy = 0) {
+function maybeAnchor(anchor = "") {
   const a = anchor.toLowerCase();
   const v = a.match(/^(top|bottom|)/)[0];
   const h = a.match(/(left|right|)$/)[0];
   if (a != ((h && v) ? `${v}-${h}` : h ? h : v))
     throw new Error(`Unexpected anchor: ${anchor}`);
+  return {h, v};
+}
+
+function textPosition({width, height, marginTop, marginRight, marginBottom, marginLeft}, anchor, cx = 0, cy = 0) {
+  const {h, v} = anchor;
   const x = h === "left" ? marginLeft : h === "right" ? width - marginRight : (marginLeft + width - marginRight) / 2;
   const y = v === "top" ? marginTop : v === "bottom" ? height - marginBottom : (marginTop + height - marginBottom) / 2;
   return [x + cx, y + cy];
