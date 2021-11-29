@@ -202,14 +202,19 @@ function gridFacetY(index, fx, tx) {
       .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
-function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
-  if (!scale.tickFormat && typeof tickFormat !== "function") {
-    // D3 doesn’t provide a tick format for ordinal scales; we want shorthand
-    // when an ordinal domain is numbers or dates, and we want null to mean the
-    // empty string, not the default identity format.
-    tickFormat = tickFormat === undefined ? (isTemporal(scale.domain()) ? formatIsoDate : string)
-      : (typeof tickFormat === "string" ? (isTemporal(scale.domain()) ? utcFormat : format)
+// D3 doesn’t provide a tick format for ordinal scales; we want shorthand when
+// an ordinal domain is numbers or dates, and we want null to mean the empty
+// string, not the default identity format.
+export function maybeTickFormat(tickFormat, domain) {
+  return tickFormat === undefined ? (isTemporal(domain) ? formatIsoDate : string)
+      : typeof tickFormat === "function" ? tickFormat
+      : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format)
       : constant)(tickFormat);
+}
+
+function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
+  if (!scale.tickFormat) {
+    tickFormat = maybeTickFormat(tickFormat, scale.domain());
   }
   return axis(scale)
     .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)

@@ -11,7 +11,8 @@ export default async function() {
     },
     color: {
       domain: "NLB",
-      range: ["currentColor", "peru", "brown"]
+      range: ["currentColor", "peru", "brown"],
+      legend: true
     },
     marks: [
       Plot.text([[1, "3"]], {

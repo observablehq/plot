@@ -1,9 +1,10 @@
 import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
+import {Legends, exposeLegends} from "./legends.js";
 import {markify} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
-import {filterStyles, maybeClassName, offset} from "./style.js";
+import {applyInlineStyles, filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
   const {facet, style, caption} = options;
@@ -56,13 +57,6 @@ export function plot(options = {}) {
   autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  // Normalize the options.
-  options = {...scaleDescriptors, ...dimensions};
-  if (axes.x) options.x = {...options.x, ...axes.x};
-  if (axes.y) options.y = {...options.y, ...axes.y};
-  if (axes.fx) options.fx = {...options.fx, ...axes.fx};
-  if (axes.fy) options.fy = {...options.fy, ...axes.fy};
-
   // When faceting, render axes for fx and fy instead of x and y.
   const x = facet !== undefined && scales.fx ? "fx" : "x";
   const y = facet !== undefined && scales.fy ? "fy" : "y";
@@ -93,10 +87,7 @@ export function plot(options = {}) {
           white-space: pre;
         }
       `))
-      .each(function() {
-        if (typeof style === "string") this.style = style;
-        else Object.assign(this.style, style);
-      })
+      .call(applyInlineStyles, style)
     .node();
 
   for (const mark of marks) {
@@ -109,14 +100,19 @@ export function plot(options = {}) {
 
   // Wrap the plot in a figure with a caption, if desired.
   let figure = svg;
-  if (caption != null) {
+  const legends = Legends(scaleDescriptors, options);
+  if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");
-    figure.appendChild(svg);
-    const figcaption = figure.appendChild(document.createElement("figcaption"));
-    figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+    figure.append(...legends, svg);
+    if (caption != null) {
+      const figcaption = document.createElement("figcaption");
+      figcaption.append(caption);
+      figure.append(figcaption);
+    }
   }
 
   figure.scale = exposeScales(scaleDescriptors);
+  figure.legend = exposeLegends(scaleDescriptors, options);
   return figure;
 }
 

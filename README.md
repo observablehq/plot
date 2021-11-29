@@ -225,6 +225,42 @@ For convenience, an apply method is exposed, which returns the scale’s output 
 
 The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 
+### Legends
+
+Given a scale definition, Plot can generate a legend.
+
+#### *chart*.legend(*name*[, *options*])
+
+Returns a suitable legend for the chart’s scale with the given *name*. For now, only *color* legends are supported.
+
+Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
+
+* *options*.**tickFormat** - a format function for the labels
+* *options*.**swatchSize** - the size of the swatch (if square)
+* *options*.**swatchWidth** - the swatches’ width
+* *options*.**swatchHeight** - the swatches’ height
+* *options*.**columns** - the number of swatches per row
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+
+Continuous color legends are rendered as a ramp, and can be configured with the following options:
+
+* *options*.**label** - the scale’s label
+* *options*.**ticks** - the desired number of ticks, or an array of tick values
+* *options*.**tickFormat** - a format function for the legend’s ticks
+* *options*.**tickSize** - the tick size
+* *options*.**round** - if true (default), round tick positions to pixels
+* *options*.**width** - the legend’s width
+* *options*.**height** - the legend’s height
+* *options*.**marginTop** - the legend’s top margin
+* *options*.**marginRight** - the legend’s right margin
+* *options*.**marginBottom** - the legend’s bottom margin
+* *options*.**marginLeft** - the legend’s left margin
+
+#### Plot.legend({[*name*]: *scale*, ...*options*})
+
+Returns a legend for the given *scale* definition, passing the options described in the previous section. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
@@ -274,7 +310,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
 
-Plot does not currently generate a legend for the *color*, *radius*, or *opacity* scales, but when it does, we expect that some of the above options will also be used to configure legends. Top-level options are also supported as shorthand: **grid** and **line** (for *x* and *y* only; see also [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
 ### Color options
 

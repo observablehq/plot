@@ -128,3 +128,6 @@ export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
 export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
+
+export * from "./legend-color.js";
+export * from "./legend-opacity.js";

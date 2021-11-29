@@ -277,6 +277,7 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a diverg
   const plot = Plot.dotX(gistemp, {x: "Date", fill: "Anomaly"}).plot({color: {type: "diverging", symmetric: false, unknown: "black"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging",
+    symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
     clamp: false,
@@ -382,6 +383,7 @@ it("plot(…).scale('color') can return an asymmetric diverging scale", async ()
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", symmetric: false}});
   scaleEqual(plot.scale("color"), {
     type: "diverging",
+    symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
     interpolate: d3.interpolateRdBu,
@@ -395,6 +397,7 @@ it("plot(…).scale('color') can return a symmetric diverging scale", async () =
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging",
+    symmetric: false,
     domain: [-1.35, 1.35],
     interpolate: d3.interpolateRdBu,
     pivot: 0,
@@ -409,6 +412,7 @@ it("plot(…).scale('color') can return a diverging scale with an explicit range
   const {interpolate, ...color} = plot.scale("color");
   scaleEqual(color, {
     type: "diverging",
+    symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
     clamp: false,
@@ -426,6 +430,7 @@ it("plot(…).scale('color') can return a diverging scale with an explicit schem
   const {interpolate, ...color} = plot.scale("color");
   scaleEqual(color, {
     type: "diverging",
+    symmetric: false,
     domain: [-0.78, 1.35],
     pivot: 0,
     clamp: false,
@@ -442,6 +447,7 @@ it("plot(…).scale('color') can return a transformed diverging scale", async ()
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", transform, symmetric: false}});
   scaleEqual(plot.scale("color"), {
     type: "diverging",
+    symmetric: false,
     domain: [-78, 135],
     pivot: 0,
     transform,
@@ -457,6 +463,7 @@ it("plot(…).scale('color') can return a transformed symmetric diverging scale"
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging", transform}});
   scaleEqual(plot.scale("color"), {
     type: "diverging",
+    symmetric: false,
     domain: [-135, 135],
     pivot: 0,
     transform,
@@ -471,6 +478,7 @@ it("plot(…).scale('color') can return an asymmetric diverging pow scale with a
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-sqrt", symmetric: false, scheme: "piyg"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging-pow",
+    symmetric: false,
     exponent: 0.5,
     domain: [-0.78, 1.35],
     pivot: 0,
@@ -485,6 +493,7 @@ it("plot(…).scale('color') can return an asymmetric diverging pow scale with a
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-pow", exponent: 2, symmetric: false, scheme: "piyg"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging-pow",
+    symmetric: false,
     exponent: 2,
     domain: [-0.78, 1.35],
     pivot: 0,
@@ -499,6 +508,7 @@ it("plot(…).scale('color') can return an asymmetric diverging symlog scale wit
   const plot = Plot.dot(gistemp, {x: "Date", stroke: "Anomaly"}).plot({color: {type: "diverging-symlog", constant: 2, symmetric: false, scheme: "piyg"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging-symlog",
+    symmetric: false,
     constant: 2,
     domain: [-0.78, 1.35],
     pivot: 0,
@@ -513,6 +523,7 @@ it("plot(…).scale('color') can return an asymmetric diverging log scale with a
   const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", pivot: 1e8, base: 10, symmetric: false, scheme: "piyg"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging-log",
+    symmetric: false,
     base: 10,
     domain: [11475900, 266380800],
     pivot: 100000000,
@@ -528,6 +539,7 @@ it("plot(…).scale('color') can return an asymmetric diverging log scale with a
   const plot = Plot.dot(aapl, {x: "Date", stroke: "Volume"}).plot({color: {type: "diverging-log", transform, pivot: -1e8, base: 10, symmetric: false, scheme: "piyg"}});
   scaleEqual(plot.scale("color"), {
     type: "diverging-log",
+    symmetric: false,
     base: 10,
     domain: [-266380800, -11475900],
     pivot: -100000000,

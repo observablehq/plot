@@ -162,3 +162,13 @@ export function maybeClassName(name) {
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
 }
+
+export function applyInlineStyles(selection, style) {
+  if (typeof style === "string") {
+    selection.property("style", style);
+  } else if (style != null) {
+    for (const element of selection) {
+      Object.assign(element.style, style);
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="24" height="10" fill="#440154"></rect>
+    <rect x="24" y="18" width="24" height="10" fill="#482878"></rect>
+    <rect x="48" y="18" width="24" height="10" fill="#3e4989"></rect>
+    <rect x="72" y="18" width="24" height="10" fill="#31688e"></rect>
+    <rect x="96" y="18" width="24" height="10" fill="#26828e"></rect>
+    <rect x="120" y="18" width="24" height="10" fill="#1f9e89"></rect>
+    <rect x="144" y="18" width="24" height="10" fill="#35b779"></rect>
+    <rect x="168" y="18" width="24" height="10" fill="#6ece58"></rect>
+    <rect x="192" y="18" width="24" height="10" fill="#b5de2b"></rect>
+    <rect x="216" y="18" width="24" height="10" fill="#fde725"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(24.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(48.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(72.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(96.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(120.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(144.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(168.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">7</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(192.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(216.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">9</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Viridis</text>
+  </g>
+</svg>
