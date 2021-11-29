@@ -45,15 +45,15 @@
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">police →</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">wealth →</text>
   </g>
   <g>
-    <rect x="20" width="264" y="0" height="30" fill="#f28e2c"></rect>
-    <rect x="284" width="192" y="0" height="30" fill="#e15759"></rect>
-    <rect x="476" width="108" y="0" height="30" fill="#76b7b2"></rect>
-    <rect x="584" width="36" y="0" height="30" fill="#4e79a7"></rect>
+    <rect x="20" width="18" y="0" height="30" fill="#4e79a7"></rect>
+    <rect x="38" width="192" y="0" height="30" fill="#f28e2c"></rect>
+    <rect x="230" width="312" y="0" height="30" fill="#e15759"></rect>
+    <rect x="542" width="78" y="0" height="30" fill="#76b7b2"></rect>
   </g>
-  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="152" y="15">Black</text><text dy="0.32em" x="380" y="15">Hispanic</text><text dy="0.32em" x="530" y="15">White</text><text dy="0.32em" x="602" y="15">All other races</text></g>
+  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="29" y="15">16-34’s</text><text dy="0.32em" x="134" y="15">35-54’s</text><text dy="0.32em" x="386" y="15">55-74’s</text><text dy="0.32em" x="581" y="15">Over 75’s</text></g>
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>
     <line x1="620" x2="620" y1="0" y2="30"></line>
