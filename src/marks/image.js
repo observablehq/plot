@@ -1,13 +1,15 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
 import {Mark, maybeNumber, maybeTuple, string} from "../mark.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
 const defaults = {};
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    const {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
+    let {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
+    if (width === undefined && height !== undefined) width = height;
+    else if (height === undefined && width !== undefined) height = width;
     const [vw, cw] = maybeNumber(width, 16);
     const [vh, ch] = maybeNumber(height, 16);
     super(

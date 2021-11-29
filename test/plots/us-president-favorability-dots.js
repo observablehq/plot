@@ -24,7 +24,6 @@ export default async function() {
           x: "First Inauguration Date",
           y: d => (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) / 100,
           width: 60,
-          height: 60,
           src: "Portrait URL",
           title: "Name"
         }
