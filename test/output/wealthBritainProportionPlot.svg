@@ -17,7 +17,7 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of population</text>
     </g>
     <g class="tick" opacity="1" transform="translate(580.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of national wealth</text>
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of wealth</text>
     </g>
   </g>
   <g stroke="white" stroke-miterlimit="1">
@@ -28,5 +28,5 @@
   </g>
   <g text-anchor="end" transform="translate(0.5,0.5)"><text dx="-6" dy="0.32em" x="50" y="85.35">30%</text><text dx="-6" dy="0.32em" x="50" y="201.58499999999998">33%</text><text dx="-6" dy="0.32em" x="50" y="314.13">28%</text><text dx="-6" dy="0.32em" x="50" y="382.395">9%</text></g>
   <g text-anchor="start" transform="translate(0.5,0.5)"><text dx="6" dy="0.32em" x="580" y="35.535">3%</text><text dx="6" dy="0.32em" x="580" y="100.11">32%</text><text dx="6" dy="0.32em" x="580" y="255.08999999999997">52%</text><text dx="6" dy="0.32em" x="580" y="375.015">13%</text></g>
-  <g fill="white" text-anchor="start" font-size="20" transform="translate(0.5,0.5)"><text dx="18" dy="0.32em" x="50" y="85.35">16-34’s</text><text dx="18" dy="0.32em" x="50" y="201.58499999999998">35-54’s</text><text dx="18" dy="0.32em" x="50" y="314.13">55-74’s</text><text dx="18" dy="0.32em" x="50" y="382.395">Over 75’s</text></g>
+  <g fill="white" text-anchor="start" font-weight="bold" transform="translate(0.5,0.5)"><text dx="8" dy="0.32em" x="50" y="85.35">16-34’s</text><text dx="8" dy="0.32em" x="50" y="201.58499999999998">35-54’s</text><text dx="8" dy="0.32em" x="50" y="314.13">55-74’s</text><text dx="8" dy="0.32em" x="50" y="382.395">Over 75’s</text></g>
 </svg>
