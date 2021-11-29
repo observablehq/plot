@@ -24,7 +24,7 @@ export class Image extends Mark {
     );
     this.width = cw;
     this.height = ch;
-    this.preserveAspectRatio = string(preserveAspectRatio);
+    this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
     this.crossOrigin = string(crossOrigin);
   }
   render(
