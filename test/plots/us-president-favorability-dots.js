@@ -4,27 +4,28 @@ import * as d3 from "d3";
 export default async function() {
   const data = await d3.csv("data/us-president-favorability.csv", d3.autoType);
   return Plot.plot({
-    inset: 20,
-    width: 900,
+    inset: 30,
+    width: 960,
     height: 600,
+    x: {
+      label: "Date of first inauguration"
+    },
     y: {
-      label: 'Net Favorability',
-      tickFormat: d => d+'%'
+      grid: true,
+      label: "Net favorability (%)",
+      percent: true,
+      tickFormat: "+f"
     },
     marks: [
       Plot.ruleY([0]),
       Plot.image(
-        data, 
+        data,
         {
-          x: 'First Inauguration Date',
-          y: d => 
-            d['Very Favorable %'] + 
-            d['Somewhat Favorable %'] - 
-            d['Very Unfavorable %'] - 
-            d['Somewhat Unfavorable %'],
-          href: 'Portrait URL',
+          x: "First Inauguration Date",
+          y: d => (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) / 100,
           r: 30,
-          title: 'Name'
+          href: "Portrait URL",
+          title: "Name"
         }
       )
     ]

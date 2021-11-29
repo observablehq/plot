@@ -10,7 +10,7 @@ it("image(undefined, {href}) has the expected defaults", () => {
   assert.deepStrictEqual(image.channels.map(c => c.scale), ["x", "y", undefined]);
   assert.strictEqual(image.r, 15);
   assert.strictEqual(image.preserveAspectRatio, undefined);
-  assert.strictEqual(image.crossorigin, undefined);
+  assert.strictEqual(image.crossOrigin, undefined);
 });
 
 it("image(data, {r, href}) allows r to be a constant amount", () => {
