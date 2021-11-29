@@ -583,6 +583,7 @@ All marks support the following style options:
 * **strokeLinecap** - how to cap lines (*butt*, *round*, or *square*)
 * **strokeMiterlimit** - to limit the length of *miter* joins
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
+* **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
@@ -597,9 +598,10 @@ All marks support the following optional channels:
 * **stroke** - a stroke color; bound to the *color* scale
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **strokeWidth** - a stroke width (in pixels)
+* **opacity** - an object opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 
-The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity or the stroke width is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
 
