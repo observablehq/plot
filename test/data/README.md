@@ -101,3 +101,9 @@ https://www.census.gov/retail/mrts/historic_releases.html
 ## us-state-population-2010-2019.csv
 U.S. Census Bureau (?)
 https://observablehq.com/@d3/diverging-bar-chart
+
+## wealth-britain.csv
+U.K. Office for National Statistics
+A recreation of “Who owns Britain?” by Richard Speigal; proportion plot chart type by Stephanie Evergreen
+https://www.linkedin.com/feed/update/urn:li:activity:6758306750174138368/
+https://stephanieevergreen.com/proportion-plots/
