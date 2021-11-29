@@ -7,20 +7,23 @@ const defaults = {};
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    const {x, y, r, href, preserveAspectRatio, crossOrigin} = options;
-    const [vr, cr] = maybeNumber(r, 15);
+    const {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
+    const [vw, cw] = maybeNumber(width, 16);
+    const [vh, ch] = maybeNumber(height, 16);
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "r", value: vr, scale: "r", optional: true},
-        {name: "href", value: href, optional: false}
+        {name: "width", value: vw, optional: true},
+        {name: "height", value: vh, optional: true},
+        {name: "src", value: src, optional: false}
       ],
       options,
       defaults
     );
-    this.r = cr;
+    this.width = cw;
+    this.height = ch;
     this.preserveAspectRatio = string(preserveAspectRatio);
     this.crossOrigin = string(crossOrigin);
   }
@@ -30,9 +33,10 @@ export class Image extends Mark {
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
-    const {x: X, y: Y, r: R, href: H} = channels;
-    let index = filter(I, X, Y, R, H);
-    if (R) index = index.filter(i => positive(R[i]));
+    const {x: X, y: Y, width: W, height: H, src: S} = channels;
+    let index = filter(I, X, Y, S);
+    if (W) index = index.filter(i => positive(W[i]));
+    if (H) index = index.filter(i => positive(H[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")
@@ -42,11 +46,11 @@ export class Image extends Mark {
           .data(index)
           .join("image")
             .call(applyDirectStyles, this)
-            .attr("x", R && X ? i => X[i] - R[i] : R ? i => cx - R[i] : X ? i => X[i] - this.r : cx - this.r)
-            .attr("y", R && Y ? i => Y[i] - R[i] : R ? i => cy - R[i] : Y ? i => Y[i] - this.r : cy - this.r)
-            .attr("width", R ? i => R[i] * 2 : this.r * 2)
-            .attr("height", R ? i => R[i] * 2 : this.r * 2)
-            .call(applyAttr, "href", H && (i => H[i]))
+            .attr("x", W && X ? i => X[i] - W[i] / 2 : W ? i => cx - W[i] / 2 : X ? i => X[i] - this.width / 2 : cx - this.width / 2)
+            .attr("y", H && Y ? i => Y[i] - H[i] / 2 : H ? i => cy - H[i] / 2 : Y ? i => Y[i] - this.height / 2 : cy - this.height / 2)
+            .attr("width", W ? i => W[i] : this.width)
+            .attr("height", H ? i => H[i] : this.height)
+            .call(applyAttr, "href", S && (i => S[i]))
             .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
             .call(applyAttr, "crossorigin", this.crossOrigin)
             .call(applyChannelStyles, channels))
