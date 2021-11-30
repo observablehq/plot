@@ -813,6 +813,8 @@ If the **x** channel is not specified, images will be horizontally centered in t
 
 The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
 
+The **preserveAspectRatio** and **crossOrigin** options, both constant, allow control over the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) and [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior, respectively. The default aspect ratio behavior is “xMidYMid meet”; consider “xMidYMid slice” to crop the image instead of scaling it to fit.
+
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
 
 #### Plot.image(*data*, *options*)
