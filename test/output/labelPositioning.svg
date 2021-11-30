@@ -1,0 +1,147 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(50,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,85.5)">
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">top</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,195.5)">
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,305.5)">
+      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">bottom</text>
+    </g>
+  </g>
+  <g transform="translate(0,370)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(155.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">left</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(340.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(525.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">right</text>
+    </g>
+  </g>
+  <g>
+    <g transform="translate(81,41)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"><text dy="0.32em" x="5" y="10">TOP-LEFT</text></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(81,151)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"><text dy="0.32em" x="5" y="44">LEFT</text></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(81,261)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"><text dy="0.32em" x="5" y="78">BOTTOM-LEFT</text></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(266,41)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"><text dy="0.32em" x="74" y="10">TOP</text></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(266,151)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"><text dy="0.32em" x="74" y="44">—</text></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(266,261)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"><text dy="0.32em" x="74" y="78">BOTTOM</text></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(451,41)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"><text dy="0.32em" x="143" y="10">TOP-RIGHT</text></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(451,151)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"><text dy="0.32em" x="143" y="44">RIGHT</text></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+    </g>
+    <g transform="translate(451,261)">
+      <rect fill="none" stroke="#eee" transform="translate(0.5,0.5)" x="0" y="0" width="148" height="88"></rect>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"></g>
+      <g text-anchor="start" transform="translate(0.5,0.5)"></g>
+      <g transform="translate(0.5,0.5)"></g>
+      <g text-anchor="end" transform="translate(0.5,0.5)"><text dy="0.32em" x="143" y="78">BOTTOM-RIGHT</text></g>
+    </g>
+  </g>
+</svg>
