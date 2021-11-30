@@ -231,7 +231,7 @@ Given a scale definition, Plot can generate a legend.
 
 #### *chart*.legend(*name*[, *options*])
 
-Returns a suitable legend for the chart’s scale with the given *name*. For now, only *color* legends are supported.
+Returns a suitable legend for the chart’s scale with the given *name*. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
@@ -259,7 +259,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 
 #### Plot.legend({[*name*]: *scale*, ...*options*})
 
-Returns a legend for the given *scale* definition, passing the options described in the previous section. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
+Returns a legend for the given *scale* definition, passing the options described in the previous section.
 
 ### Position options
 
