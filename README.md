@@ -796,6 +796,33 @@ Plot.dotY(cars.map(d => d["economy (mpg)"]))
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
+### Image
+
+[<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
+
+[Source](./src/marks/image.js) · [Examples](https://observablehq.com/@observablehq/plot-image) · Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **width** - the image width (in pixels)
+* **height** - the image height (in pixels)
+
+If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+
+The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
+
+Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
+
+#### Plot.image(*data*, *options*)
+
+```js
+Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
+```
+
+Returns a new image with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+
 ### Line
 
 [<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@observablehq/plot-line)
