@@ -8,11 +8,34 @@ const defaults = {
   stroke: null
 };
 
+// Tests if the given string is a path: does it start with a dot-slash
+// (./foo.png), dot-dot-slash (../foo.png), or slash (/foo.png)?
+function isPath(string) {
+  return /^\.*\//.test(string);
+}
+
+// Tests if the given string is a URL (e.g., https://placekitten.com/200/300).
+// The allowed protocols is overly restrictive, but we don’t want to allow any
+// scheme here because it would increase the likelihood of a false positive with
+// a field name that happens to contain a colon.
+function isUrl(string) {
+  return /^(blob|data|file|http|https):/i.test(string);
+}
+
+// Disambiguates a constant src definition from a channel. A path or URL string
+// is assumed to be a constant; any other string is assumed to be a field name.
+function maybePath(value) {
+  return typeof value === "string" && (isPath(value) || isUrl(value))
+    ? [undefined, value]
+    : [value, undefined];
+}
+
 export class Image extends Mark {
   constructor(data, options = {}) {
     let {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
+    const [vs, cs] = maybePath(src);
     const [vw, cw] = maybeNumber(width, 16);
     const [vh, ch] = maybeNumber(height, 16);
     super(
@@ -22,11 +45,12 @@ export class Image extends Mark {
         {name: "y", value: y, scale: "y", optional: true},
         {name: "width", value: vw, optional: true},
         {name: "height", value: vh, optional: true},
-        {name: "src", value: src, optional: false}
+        {name: "src", value: vs, optional: true}
       ],
       options,
       defaults
     );
+    this.src = cs;
     this.width = cw;
     this.height = ch;
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
@@ -55,7 +79,7 @@ export class Image extends Mark {
             .attr("y", H && Y ? i => Y[i] - H[i] / 2 : H ? i => cy - H[i] / 2 : Y ? i => Y[i] - this.height / 2 : cy - this.height / 2)
             .attr("width", W ? i => W[i] : this.width)
             .attr("height", H ? i => H[i] : this.height)
-            .call(applyAttr, "href", S && (i => S[i]))
+            .call(applyAttr, "href", S ? i => S[i] : this.src)
             .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
             .call(applyAttr, "crossorigin", this.crossOrigin)
             .call(applyChannelStyles, channels))
