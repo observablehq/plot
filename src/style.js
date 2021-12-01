@@ -16,6 +16,7 @@ export function styles(
     strokeLinecap,
     strokeMiterlimit,
     strokeDasharray,
+    opacity,
     mixBlendMode,
     shapeRendering
   },
@@ -35,6 +36,12 @@ export function styles(
     fillOpacity = null;
   }
 
+  // Some marks don’t support stroke (e.g., image).
+  if (defaultStroke === null) {
+    stroke = null;
+    strokeOpacity = null;
+  }
+
   // Some marks default to fill with no stroke, while others default to stroke
   // with no fill. For example, bar and area default to fill, while dot and line
   // default to stroke. For marks that fill by default, the default fill only
@@ -51,6 +58,7 @@ export function styles(
   const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
   const [vstroke, cstroke] = maybeColor(stroke, defaultStroke);
   const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
+  const [vopacity, copacity] = maybeNumber(opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
   // defaults if the stroke is not (constant) none.
@@ -68,13 +76,18 @@ export function styles(
     mark.fillOpacity = impliedNumber(cfillOpacity, 1);
   }
 
-  mark.stroke = impliedString(cstroke, "none");
-  mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
-  mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
-  mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
-  mark.strokeLinecap = impliedString(strokeLinecap, "butt");
-  mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
-  mark.strokeDasharray = string(strokeDasharray);
+  // Some marks don’t support stroke (e.g., image).
+  if (defaultStroke !== null) {
+    mark.stroke = impliedString(cstroke, "none");
+    mark.strokeWidth = impliedNumber(cstrokeWidth, 1);
+    mark.strokeOpacity = impliedNumber(cstrokeOpacity, 1);
+    mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
+    mark.strokeLinecap = impliedString(strokeLinecap, "butt");
+    mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
+    mark.strokeDasharray = string(strokeDasharray);
+  }
+
+  mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
@@ -85,25 +98,28 @@ export function styles(
     {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
     {name: "stroke", value: vstroke, scale: "color", optional: true},
     {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true},
-    {name: "strokeWidth", value: vstrokeWidth, optional: true}
+    {name: "strokeWidth", value: vstrokeWidth, optional: true},
+    {name: "opacity", value: vopacity, scale: "opacity", optional: true}
   ];
 }
 
-export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
+export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O}) {
   applyAttr(selection, "fill", F && (i => F[i]));
   applyAttr(selection, "fill-opacity", FO && (i => FO[i]));
   applyAttr(selection, "stroke", S && (i => S[i]));
   applyAttr(selection, "stroke-opacity", SO && (i => SO[i]));
   applyAttr(selection, "stroke-width", SW && (i => SW[i]));
+  applyAttr(selection, "opacity", O && (i => O[i]));
   title(L)(selection);
 }
 
-export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
+export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O}) {
   applyAttr(selection, "fill", F && (([i]) => F[i]));
   applyAttr(selection, "fill-opacity", FO && (([i]) => FO[i]));
   applyAttr(selection, "stroke", S && (([i]) => S[i]));
   applyAttr(selection, "stroke-opacity", SO && (([i]) => SO[i]));
   applyAttr(selection, "stroke-width", SW && (([i]) => SW[i]));
+  applyAttr(selection, "opacity", O && (([i]) => O[i]));
   titleGroup(L)(selection);
 }
 
@@ -122,6 +138,7 @@ export function applyIndirectStyles(selection, mark) {
 
 export function applyDirectStyles(selection, mark) {
   applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
+  applyAttr(selection, "opacity", mark.opacity);
 }
 
 export function applyAttr(selection, name, value) {

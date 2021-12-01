@@ -120,6 +120,7 @@ export {default as usCongressAge} from "./us-congress-age.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPopulationStateAgeDots} from "./us-population-state-age-dots.js";
+export {default as usPresidentFavorabilityDots} from "./us-president-favorability-dots.js";
 export {default as usPresidentialElection2020} from "./us-presidential-election-2020.js";
 export {default as usPresidentialForecast2016} from "./us-presidential-forecast-2016.js";
 export {default as usRetailSales} from "./us-retail-sales.js";

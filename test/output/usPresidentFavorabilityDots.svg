@@ -1,0 +1,239 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="960" height="600" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,540.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,491.98514851485146)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,443.470297029703)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,394.9554455445544)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,346.44059405940595)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,297.9257425742574)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,249.41089108910893)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,200.89603960396042)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,152.38118811881185)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+50</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,103.86633663366337)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,55.351485148514854)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+70</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">Net favorability (%)</text>
+  </g>
+  <g transform="translate(0,570)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(109.18708351056289,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(181.67822203317735,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1820</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(254.17928541046362,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1840</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(326.68034878774984,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1860</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(399.1814121650362,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1880</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(471.6824755423224,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1900</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(544.1736140649369,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1920</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(616.6746774422231,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1940</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(689.1757408195094,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1960</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(761.6768041967956,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1980</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(834.1778675740819,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(906.6789309513682,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2020</text>
+    </g><text fill="currentColor" transform="translate(960,30)" dy="-0.32em" text-anchor="end">Date of first inauguration</text>
+  </g>
+  <g stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
+  </g>
+  <g transform="translate(0.5,0.5)">
+    <image x="40" y="73.36633663366337" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg/160px-Gilbert_Stuart_Williamstown_Portrait_of_George_Washington.jpg">
+      <title>George Washington</title>
+    </image>
+    <image x="68.43470863462356" y="194.65346534653463" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg/160px-John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg">
+      <title>John Adams</title>
+    </image>
+    <image x="82.92499645540904" y="136.43564356435644" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg/160px-Thomas_Jefferson_by_Rembrandt_Peale%2C_1800.jpg">
+      <title>Thomas Jefferson</title>
+    </image>
+    <image x="111.92542180632356" y="218.91089108910893" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/James_Madison.jpg/160px-James_Madison.jpg">
+      <title>James Madison</title>
+    </image>
+    <image x="140.92584715723805" y="281.980198019802" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/James_Monroe_White_House_portrait_1819.jpg/160px-James_Monroe_White_House_portrait_1819.jpg">
+      <title>James Monroe</title>
+    </image>
+    <image x="169.92627250815258" y="194.65346534653463" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/JQA_Photo.tif/lossy-page1-160px-JQA_Photo.tif.jpg">
+      <title>John Quincy Adams</title>
+    </image>
+    <image x="184.4264851836098" y="340.1980198019802" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Andrew_jackson_head.jpg/165px-Andrew_jackson_head.jpg">
+      <title>Andrew Jackson</title>
+    </image>
+    <image x="213.42691053452432" y="359.6039603960396" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Martin_Van_Buren_edit.jpg/160px-Martin_Van_Buren_edit.jpg">
+      <title>Martin Van Buren</title>
+    </image>
+    <image x="227.92712320998157" y="345.049504950495" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/William_Henry_Harrison_daguerreotype_edit.jpg/160px-William_Henry_Harrison_daguerreotype_edit.jpg">
+      <title>William Henry Harrison</title>
+    </image>
+    <image x="228.23479370480646" y="364.4554455445544" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/John_Tyler%2C_Jr.jpg/160px-John_Tyler%2C_Jr.jpg">
+      <title>John Tyler</title>
+    </image>
+    <image x="242.42733588543882" y="369.30693069306926" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/JKP.jpg/160px-JKP.jpg">
+      <title>James K. Polk</title>
+    </image>
+    <image x="256.92754856089607" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Zachary_Taylor_restored_and_cropped.jpg/160px-Zachary_Taylor_restored_and_cropped.jpg">
+      <title>Zachary Taylor</title>
+    </image>
+    <image x="261.81057705940736" y="379.009900990099" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/160px-Fillmore.jpg">
+      <title>Millard Fillmore</title>
+    </image>
+    <image x="271.4277612363533" y="364.4554455445544" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29.jpg/160px-Mathew_Brady_-_Franklin_Pierce_-_alternate_crop_%28cropped%29.jpg">
+      <title>Franklin Pierce</title>
+    </image>
+    <image x="285.9279739118106" y="393.5643564356436" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/James_Buchanan.jpg/160px-James_Buchanan.jpg">
+      <title>James Buchanan</title>
+    </image>
+    <image x="300.4281865872678" y="20" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Abraham_Lincoln_O-77_matte_collodion_print.jpg/160px-Abraham_Lincoln_O-77_matte_collodion_print.jpg">
+      <title>Abraham Lincoln</title>
+    </image>
+    <image x="315.34524315893947" y="374.15841584158414" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg/160px-Andrew_Johnson_photo_portrait_head_and_shoulders%2C_c1870-1880-Edit1.jpg">
+      <title>Andrew Johnson</title>
+    </image>
+    <image x="329.4286119381823" y="223.76237623762376" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ulysses_S_Grant_by_Brady_c1870-restored.jpg/160px-Ulysses_S_Grant_by_Brady_c1870-restored.jpg">
+      <title>Ulysses S. Grant</title>
+    </image>
+    <image x="358.4290372890968" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/President_Rutherford_Hayes_1870_-_1880_Restored.jpg/160px-President_Rutherford_Hayes_1870_-_1880_Restored.jpg">
+      <title>Rutherford B. Hayes</title>
+    </image>
+    <image x="372.92924996455406" y="335.3465346534653" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/James_Abram_Garfield%2C_photo_portrait_seated.jpg/160px-James_Abram_Garfield%2C_photo_portrait_seated.jpg">
+      <title>James A. Garfield</title>
+    </image>
+    <image x="374.90429604423645" y="364.4554455445544" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Chester_Alan_Arthur.jpg/160px-Chester_Alan_Arthur.jpg">
+      <title>Chester A. Arthur</title>
+    </image>
+    <image x="387.4294626400113" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg/160px-Grover_Cleveland_-_NARA_-_518139_%28cropped%29.jpg">
+      <title>Grover Cleveland</title>
+    </image>
+    <image x="401.92967531546856" y="354.7524752475247" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg/160px-Benjamin_Harrison%2C_head_and_shoulders_bw_photo%2C_1896.jpg">
+      <title>Benjamin Harrison</title>
+    </image>
+    <image x="430.93010066638305" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Mckinley.jpg/160px-Mckinley.jpg">
+      <title>William McKinley</title>
+    </image>
+    <image x="447.3458102934921" y="121.88118811881185" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/President_Roosevelt_-_Pach_Bros.jpg/160px-President_Roosevelt_-_Pach_Bros.jpg">
+      <title>Theodore Roosevelt</title>
+    </image>
+    <image x="474.42081383808306" y="354.7524752475247" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/William_Howard_Taft_-_Harris_and_Ewing.jpg/160px-William_Howard_Taft_-_Harris_and_Ewing.jpg">
+      <title>William Howard Taft</title>
+    </image>
+    <image x="488.92102651354037" y="330.49504950495054" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg/160px-Thomas_Woodrow_Wilson%2C_Harris_%26_Ewing_bw_photo_portrait%2C_1919.jpg">
+      <title>Woodrow Wilson</title>
+    </image>
+    <image x="517.9214518644549" y="403.26732673267327" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Warren_G_Harding-Harris_%26_Ewing.jpg/160px-Warren_G_Harding-Harris_%26_Ewing.jpg">
+      <title>Warren G. Harding</title>
+    </image>
+    <image x="526.665248830285" y="340.1980198019802" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg/160px-Calvin_Coolidge_cph.3g10777_%28cropped%29.jpg">
+      <title>Calvin Coolidge</title>
+    </image>
+    <image x="546.9218772153692" y="388.71287128712873" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/President_Hoover_portrait.jpg/165px-President_Hoover_portrait.jpg">
+      <title>Herbert Hoover</title>
+    </image>
+    <image x="561.4220898908266" y="165.54455445544556" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/FDR_1944_Color_Portrait.jpg/160px-FDR_1944_Color_Portrait.jpg">
+      <title>Franklin D. Roosevelt</title>
+    </image>
+    <image x="605.3097972493974" y="184.95049504950492" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/TRUMAN_58-766-06_CROPPED.jpg/160px-TRUMAN_58-766-06_CROPPED.jpg">
+      <title>Harry S. Truman</title>
+    </image>
+    <image x="633.4963845172267" y="136.43564356435644" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959.jpg/160px-Dwight_D._Eisenhower%2C_official_photo_portrait%2C_May_29%2C_1959.jpg">
+      <title>Dwight D. Eisenhower</title>
+    </image>
+    <image x="662.4968098681412" y="78.21782178217822" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/John_F._Kennedy%2C_White_House_color_photo_portrait.jpg/160px-John_F._Kennedy%2C_White_House_color_photo_portrait.jpg">
+      <title>John F. Kennedy</title>
+    </image>
+    <image x="672.7789593080959" y="354.7524752475247" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/37_Lyndon_Johnson_3x4.jpg/160px-37_Lyndon_Johnson_3x4.jpg">
+      <title>Lyndon B. Johnson</title>
+    </image>
+    <image x="691.4972352190557" y="510" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Richard_Nixon_presidential_portrait_%281%29.jpg/160px-Richard_Nixon_presidential_portrait_%281%29.jpg">
+      <title>Richard Nixon</title>
+    </image>
+    <image x="711.6149156387353" y="311.08910891089107" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Gerald_Ford_presidential_portrait.jpg/160px-Gerald_Ford_presidential_portrait.jpg">
+      <title>Gerald Ford</title>
+    </image>
+    <image x="720.4976605699703" y="301.3861386138614" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/JimmyCarterPortrait2.jpg/160px-JimmyCarterPortrait2.jpg">
+      <title>Jimmy Carter</title>
+    </image>
+    <image x="734.9978732454275" y="252.87128712871288" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Official_Portrait_of_President_Reagan_1981.jpg/165px-Official_Portrait_of_President_Reagan_1981.jpg">
+      <title>Ronald Reagan</title>
+    </image>
+    <image x="763.998298596342" y="364.4554455445544" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/George_H._W._Bush_presidential_portrait_%28cropped%29.jpg/160px-George_H._W._Bush_presidential_portrait_%28cropped%29.jpg">
+      <title>George H. W. Bush</title>
+    </image>
+    <image x="778.4985112717992" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Bill_Clinton.jpg/160px-Bill_Clinton.jpg">
+      <title>Bill Clinton</title>
+    </image>
+    <image x="807.4989366227137" y="369.30693069306926" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/George-W-Bush.jpeg/160px-George-W-Bush.jpeg">
+      <title>George W. Bush</title>
+    </image>
+    <image x="836.4993619736282" y="301.3861386138614" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Official_portrait_of_Barack_Obama.jpg/160px-Official_portrait_of_Barack_Obama.jpg">
+      <title>Barack Obama</title>
+    </image>
+    <image x="865.4997873245427" y="437.2277227722772" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Donald_Trump_official_portrait.jpg/160px-Donald_Trump_official_portrait.jpg">
+      <title>Donald Trump</title>
+    </image>
+    <image x="880" y="349.90099009900985" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Joe_Biden_presidential_portrait.jpg/160px-Joe_Biden_presidential_portrait.jpg">
+      <title>Joe Biden</title>
+    </image>
+  </g>
+</svg>

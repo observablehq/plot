@@ -90,6 +90,11 @@ https://www.tsa.gov/coronavirus/passenger-throughput
 U.S. Census Bureau
 https://observablehq.com/@d3/barcode-plot
 
+## us-president-favorability.csv
+YouGov (polling data) and Wikipedia (presidential portraits)
+https://today.yougov.com/topics/politics/articles-reports/2021/07/27/most-and-least-popular-us-presidents-according-ame
+https://en.wikipedia.org/wiki/List_of_presidents_of_the_United_States
+
 ## us-presidential-election-2020.csv
 Fabio Votta/Edison Research/NYT
 https://github.com/favstats/USElection2020-EdisonResearch-Results

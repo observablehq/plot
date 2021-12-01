@@ -231,7 +231,7 @@ Given a scale definition, Plot can generate a legend.
 
 #### *chart*.legend(*name*[, *options*])
 
-Returns a suitable legend for the chart’s scale with the given *name*. For now, only *color* legends are supported.
+Returns a suitable legend for the chart’s scale with the given *name*. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
@@ -259,7 +259,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 
 #### Plot.legend({[*name*]: *scale*, ...*options*})
 
-Returns a legend for the given *scale* definition, passing the options described in the previous section. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
+Returns a legend for the given *scale* definition, passing the options described in the previous section.
 
 ### Position options
 
@@ -583,6 +583,7 @@ All marks support the following style options:
 * **strokeLinecap** - how to cap lines (*butt*, *round*, or *square*)
 * **strokeMiterlimit** - to limit the length of *miter* joins
 * **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
+* **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
@@ -597,9 +598,10 @@ All marks support the following optional channels:
 * **stroke** - a stroke color; bound to the *color* scale
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **strokeWidth** - a stroke width (in pixels)
+* **opacity** - an object opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 
-The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, and **strokeOpacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill or stroke opacity or the stroke width is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
 
@@ -793,6 +795,35 @@ Plot.dotY(cars.map(d => d["economy (mpg)"]))
 ```
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
+### Image
+
+[<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
+
+[Source](./src/marks/image.js) · [Examples](https://observablehq.com/@observablehq/plot-image) · Draws images as in a scatterplot. The required **src** option specifies the URL (or relative path) of each image. If **src** is specified as a string that starts with a dot, slash, or URL protocol (*e.g.*, “https:”) it is assumed to be a constant; otherwise it is interpreted as a channel.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **width** - the image width (in pixels)
+* **height** - the image height (in pixels)
+
+If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+
+The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
+
+The **preserveAspectRatio** and **crossOrigin** options, both constant, allow control over the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) and [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior, respectively. The default aspect ratio behavior is “xMidYMid meet”; consider “xMidYMid slice” to crop the image instead of scaling it to fit.
+
+Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
+
+#### Plot.image(*data*, *options*)
+
+```js
+Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
+```
+
+Returns a new image with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
