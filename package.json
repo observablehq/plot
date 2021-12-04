@@ -35,22 +35,22 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "@rollup/plugin-json": "^4.1.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "canvas": "^2.8.0",
-    "eslint": "^7.12.1",
-    "htl": "^0.3.0",
-    "js-beautify": "^1.13.0",
-    "jsdom": "^17.0.0",
-    "mocha": "^9.1.0",
-    "module-alias": "^2.2.2",
-    "rollup": "^2.32.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "snowpack": "^3.0.11"
+    "@rollup/plugin-json": "4",
+    "@rollup/plugin-node-resolve": "13",
+    "canvas": "2",
+    "eslint": "8",
+    "htl": "0.3",
+    "js-beautify": "1",
+    "jsdom": "19",
+    "mocha": "9",
+    "module-alias": "2",
+    "rollup": "2",
+    "rollup-plugin-terser": "7",
+    "snowpack": "3"
   },
   "dependencies": {
-    "d3": "^7.1.0",
-    "isoformat": "^0.2.0"
+    "d3": "7",
+    "isoformat": "0.2"
   },
   "engines": {
     "node": ">=12"
