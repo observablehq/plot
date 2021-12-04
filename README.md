@@ -489,15 +489,15 @@ When the *include* or *exclude* facet mode is chosen, the mark data must be para
 
 ## Legends
 
-Plot can generate legends for *color* and *opacity* [scales](#scale-options). For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color* and *opacity* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
 
-* *scale*.**legend** - if truthy, generate a legend for the specified scale
+* *scale*.**legend** - if truthy, generate a legend for the given scale
 
-If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
+If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
 
 ### *plot*.legend(*name*, *options*)
 
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a suitable legend for the *plot*’s scale with the given *name*. For example:
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a legend for the *plot*’s scale with the given *name*. For example:
 
 ```js
 myplot = Plot.plot(…)
@@ -505,8 +505,6 @@ myplot = Plot.plot(…)
 ```js
 mylegend = myplot.legend("color")
 ```
-
-Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
