@@ -235,9 +235,9 @@ For an inline legend, use the *scale*.**legend** option:
 
 Currently only *color* and *opacity* scales are supported. If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
 
-#### *chart*.legend(*name*[, *options*])
+#### *plot*.legend(*name*, *options*)
 
-Returns a suitable legend for the chart’s scale with the given *name*. Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
+Returns a suitable legend for the given *plot*’s scale with the given *name*. Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
@@ -263,9 +263,13 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
 
-#### Plot.legend({[*name*]: *scale*, ...*options*})
+#### Plot.legend(*options*)
 
-Returns a legend for the given *scale* definition, passing the options described in the previous section.
+Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
+
+```js
+Plot.legend({color: {type: "linear"}})
+```
 
 ### Position options
 

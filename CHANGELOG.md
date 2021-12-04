@@ -4,9 +4,9 @@
 
 Released December 4, 2021.
 
-Plot can now produce [legends for *color* and *opacity* scales](https://observablehq.com/@observablehq/plot-legends)! The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
+Plot can now produce [legends for *color* and *opacity* scales](https://github.com/observablehq/plot/blob/main/README.md#legends)! The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
-The new [Plot.image(*data*[, *options*])](https://github.com/observablehq/plot/blob/main/README.md#plotimage) mark centers an image on the given *xy* position.
+The new [Plot.image](https://github.com/observablehq/plot/blob/main/README.md#image) mark centers an image on the given *xy* position.
 
 All marks now support a new *opacity* option, either as a constant or a channel bound to the *opacity* scale, which sets the mark’s object opacity. The *strokeOpacity* or *fillOpacity* options should be preferred for performance, but the *opacity* option is needed for some cases (such as images).
 
