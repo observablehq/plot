@@ -489,13 +489,11 @@ When the *include* or *exclude* facet mode is chosen, the mark data must be para
 
 ## Legends
 
-Given a scale definition, Plot can generate a legend.
-
-For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color* and *opacity* [scales](#scale-options). For an inline legend, use the *scale*.**legend** option:
 
 * *scale*.**legend** - if truthy, generate a legend for the specified scale
 
-Currently only *color* and *opacity* scales are supported. If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
+If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
 
 ### *plot*.legend(*name*, *options*)
 
