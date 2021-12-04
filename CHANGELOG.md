@@ -1,5 +1,28 @@
 # Observable Plot - Changelog
 
+## 0.3.0
+
+Released… TK
+
+The [Plot.image(*data*[, *options*])](https://github.com/observablehq/plot/blob/main/README.md#plotimage) mark centers an image on a certain *xy* position. See the [Plot: Image documentation notebook](https://observablehq.com/@observablehq/plot-image) for details.
+
+Color legends! The new *plot*.legend(name) function returns a legend for the corresponding scale (only "color" and "opacity" are supported at the moment). Use the *legend*: true option in the plot’s color scale definition to wrap the legend with the plot in a figure element. A stand-alone Plot.**legend** function allows to create a legend independently of any chart. Two types of color legends are provided: *swatches* for ordinal scales, and *ramp* for continuous scales. See the [Plot: legends documentation notebook](https://observablehq.com/@observablehq/plot-legends) for details.
+
+Plot.**scale**("x") now builds a scale.apply function, allowing to use the returned scale directly on data, or to create a custom legend; when applicable, a scale.invert function is also returned, which can be useful, for example, to build interactions.
+
+All quantitative scales now have a default domain.
+
+The stylesheet is now inlined in the generated SVG element; to avoid namespace collisions, we use a randomly-generated class name which. Use the top-level **className** option to specify that class name. The default style now uses font-variant: tabular-nums for a better alignment of numbers.
+
+A new top-level *margin* option allows to set all of marginLeft, marginRight, marginTop, and marginBottom at once. (This shorthand notation is also available as a facet option.)
+
+
+## 0.2.9
+
+Released October 12, 2021.
+
+Update D3 to 7.1.1.
+
 ## 0.2.8
 
 Released October 1, 2021.
