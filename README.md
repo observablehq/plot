@@ -225,61 +225,6 @@ For convenience, an apply method is exposed, which returns the scale’s output 
 
 The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 
-### Legends
-
-Given a scale definition, Plot can generate a legend.
-
-For an inline legend, use the *scale*.**legend** option:
-
-* *scale*.**legend** - if truthy, generate a legend for the specified scale
-
-Currently only *color* and *opacity* scales are supported. If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
-
-#### *plot*.legend(*name*, *options*)
-
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a suitable legend for the *plot*’s scale with the given *name*. For example:
-
-```js
-myplot = Plot.plot(…)
-```
-```js
-mylegend = myplot.legend("color")
-```
-
-Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
-
-Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
-
-* *options*.**tickFormat** - a format function for the labels
-* *options*.**swatchSize** - the size of the swatch (if square)
-* *options*.**swatchWidth** - the swatches’ width
-* *options*.**swatchHeight** - the swatches’ height
-* *options*.**columns** - the number of swatches per row
-* *options*.**marginLeft** - the legend’s left margin
-* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
-
-Continuous color legends are rendered as a ramp, and can be configured with the following options:
-
-* *options*.**label** - the scale’s label
-* *options*.**ticks** - the desired number of ticks, or an array of tick values
-* *options*.**tickFormat** - a format function for the legend’s ticks
-* *options*.**tickSize** - the tick size
-* *options*.**round** - if true (default), round tick positions to pixels
-* *options*.**width** - the legend’s width
-* *options*.**height** - the legend’s height
-* *options*.**marginTop** - the legend’s top margin
-* *options*.**marginRight** - the legend’s right margin
-* *options*.**marginBottom** - the legend’s bottom margin
-* *options*.**marginLeft** - the legend’s left margin
-
-#### Plot.legend(*options*)
-
-Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
-
-```js
-Plot.legend({color: {type: "linear"}})
-```
-
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
@@ -541,6 +486,61 @@ Plot.plot({
 ```
 
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+
+## Legends
+
+Given a scale definition, Plot can generate a legend.
+
+For an inline legend, use the *scale*.**legend** option:
+
+* *scale*.**legend** - if truthy, generate a legend for the specified scale
+
+Currently only *color* and *opacity* scales are supported. If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
+
+### *plot*.legend(*name*, *options*)
+
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a suitable legend for the *plot*’s scale with the given *name*. For example:
+
+```js
+myplot = Plot.plot(…)
+```
+```js
+mylegend = myplot.legend("color")
+```
+
+Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
+
+Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
+
+* *options*.**tickFormat** - a format function for the labels
+* *options*.**swatchSize** - the size of the swatch (if square)
+* *options*.**swatchWidth** - the swatches’ width
+* *options*.**swatchHeight** - the swatches’ height
+* *options*.**columns** - the number of swatches per row
+* *options*.**marginLeft** - the legend’s left margin
+* *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+
+Continuous color legends are rendered as a ramp, and can be configured with the following options:
+
+* *options*.**label** - the scale’s label
+* *options*.**ticks** - the desired number of ticks, or an array of tick values
+* *options*.**tickFormat** - a format function for the legend’s ticks
+* *options*.**tickSize** - the tick size
+* *options*.**round** - if true (default), round tick positions to pixels
+* *options*.**width** - the legend’s width
+* *options*.**height** - the legend’s height
+* *options*.**marginTop** - the legend’s top margin
+* *options*.**marginRight** - the legend’s right margin
+* *options*.**marginBottom** - the legend’s bottom margin
+* *options*.**marginLeft** - the legend’s left margin
+
+### Plot.legend(*options*)
+
+Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
+
+```js
+Plot.legend({color: {type: "linear"}})
+```
 
 ## Marks
 
