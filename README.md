@@ -237,7 +237,16 @@ Currently only *color* and *opacity* scales are supported. If the *scale*.**lege
 
 #### *plot*.legend(*name*, *options*)
 
-Returns a suitable legend for the given *plot*’s scale with the given *name*. Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a suitable legend for the *plot*’s scale with the given *name*. For example:
+
+```js
+myplot = Plot.plot(…)
+```
+```js
+mylegend = myplot.legend("color")
+```
+
+Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
