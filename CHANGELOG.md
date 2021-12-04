@@ -2,20 +2,19 @@
 
 ## 0.3.0
 
-Released… TK
+Released December 4, 2021.
 
-The [Plot.image(*data*[, *options*])](https://github.com/observablehq/plot/blob/main/README.md#plotimage) mark centers an image on a certain *xy* position. See the [Plot: Image documentation notebook](https://observablehq.com/@observablehq/plot-image) for details.
+Plot can now produce [legends for *color* and *opacity* scales](https://observablehq.com/@observablehq/plot-legends)! The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
-Color legends! The new *plot*.legend(name) function returns a legend for the corresponding scale (only "color" and "opacity" are supported at the moment). Use the *legend*: true option in the plot’s color scale definition to wrap the legend with the plot in a figure element. A stand-alone Plot.**legend** function allows to create a legend independently of any chart. Two types of color legends are provided: *swatches* for ordinal scales, and *ramp* for continuous scales. See the [Plot: legends documentation notebook](https://observablehq.com/@observablehq/plot-legends) for details.
+The new [Plot.image(*data*[, *options*])](https://github.com/observablehq/plot/blob/main/README.md#plotimage) mark centers an image on the given *xy* position.
 
-Plot.**scale**("x") now builds a scale.apply function, allowing to use the returned scale directly on data, or to create a custom legend; when applicable, a scale.invert function is also returned, which can be useful, for example, to build interactions.
+The scale definition returned by *plot*.**scale**(*name*) now includes a *scale*.apply function, allowing you to apply the scale’s encoding directly on the given data value. When applicable, a *scale*.invert function is also returned, which can be useful for interaction.
 
 All quantitative scales now have a default domain.
 
-The stylesheet is now inlined in the generated SVG element; to avoid namespace collisions, we use a randomly-generated class name which. Use the top-level **className** option to specify that class name. The default style now uses font-variant: tabular-nums for a better alignment of numbers.
+Plot’s stylesheet is now inlined in the generated SVG element rather than injected into the document head. To avoid namespace collisions, we use a randomly-generated class name; use the top-level **className** option to specify a custom class name. The default style now uses font-variant: tabular-nums for a better alignment of numbers.
 
-A new top-level *margin* option allows to set all of marginLeft, marginRight, marginTop, and marginBottom at once. (This shorthand notation is also available as a facet option.)
-
+A new top-level *margin* option allows to set all of marginLeft, marginRight, marginTop, and marginBottom at once. This shorthand notation is also available as a facet option.
 
 ## 0.2.9
 

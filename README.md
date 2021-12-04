@@ -29,7 +29,7 @@ In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
 ```html
 <script type="module">
 
-import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.2";
+import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.3";
 
 document.body.appendChild(Plot.plot(options));
 
@@ -40,7 +40,7 @@ Plot is also available as a UMD bundle for legacy browsers.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.3"></script>
 <script>
 
 document.body.appendChild(Plot.plot(options));
@@ -229,9 +229,15 @@ The scale object is undefined if the associated plot has no scale with the given
 
 Given a scale definition, Plot can generate a legend.
 
+For an inline legend, use the *scale*.**legend** option:
+
+* *scale*.**legend** - if truthy, generate a legend for the specified scale
+
+Currently only *color* and *opacity* scales are supported. If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale type. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
+
 #### *chart*.legend(*name*[, *options*])
 
-Returns a suitable legend for the chart’s scale with the given *name*. Currently supports only *color* and *opacity* scales. An opacity scale is treated as a color scale with varying transparency.
+Returns a suitable legend for the chart’s scale with the given *name*. Currently only *color* and *opacity* scales are supported. An opacity scale is treated as a color scale with varying transparency.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
