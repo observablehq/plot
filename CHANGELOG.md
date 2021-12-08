@@ -19,9 +19,29 @@ Plot.plot({
 })
 ```
 
-The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
+The top-level plot *scale*.**legend** option generates an inline legend for the given *scale* (*color* or *opacity*). Alternatively, the new *plot*.legend(*name*) function returns a legend for the scale with the given *name*. The new standalone Plot.**legend**(*options*) function also allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
 The new [Plot.image](https://github.com/observablehq/plot/blob/main/README.md#image) mark centers an image on the given *xy* position.
+
+[<img src="./img/image.png" width="640" height="396" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
+
+```js
+Plot.plot({
+  x: {
+    label: "Date of first inauguration →"
+  },
+  y: {
+    grid: true,
+    label: `↑ Net favorability (%)`,
+    percent: true,
+    tickFormat: "+f"
+  },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.image(favorability, {x: "First Inauguration Date", y: "Net favorability", src: "Portrait URL"})
+  ]
+})
+```
 
 All marks now support a new *opacity* option, either as a constant or a channel bound to the *opacity* scale, which sets the mark’s object opacity. The *strokeOpacity* or *fillOpacity* options should be preferred for performance, but the *opacity* option is needed for some cases (such as images).
 
