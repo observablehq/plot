@@ -515,6 +515,7 @@ Categorical and ordinal color legends are rendered as swatches, unless *options*
 * *options*.**columns** - the number of swatches per row
 * *options*.**marginLeft** - the legend’s left margin
 * *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
+* *options*.**width** - the legend’s width (in pixels)
 
 Continuous color legends are rendered as a ramp, and can be configured with the following options:
 
