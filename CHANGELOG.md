@@ -4,7 +4,22 @@
 
 Released December 4, 2021.
 
-Plot can now produce [legends for *color* and *opacity* scales](https://github.com/observablehq/plot/blob/main/README.md#legends)! The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
+Plot can now produce [legends for *color* and *opacity* scales](https://github.com/observablehq/plot/blob/main/README.md#legends)!
+
+[<img src="./img/legend.png" width="660" height="437" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
+
+```js
+Plot.plot({
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+  ]
+})
+```
+
+The new *plot*.legend(*name*) function returns a legend for the scale with the given *name* (*color* or *opacity*). Alternatively, the top-level plot *scale*.**legend** option generates an inline legend. The new standalone Plot.**legend**(*options*) function allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
 The new [Plot.image](https://github.com/observablehq/plot/blob/main/README.md#image) mark centers an image on the given *xy* position.
 
