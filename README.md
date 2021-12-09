@@ -1429,12 +1429,16 @@ If a function is used, it must return an array of the same length as the given i
 
 The Plot.normalizeX and Plot.normalizeY transforms normalize series values relative to the given basis. For example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as in an index chart. The **basis** option specifies how to normalize the series values. The following basis methods are supported:
 
+
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
+* *max* - the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *min* - the minimum value
 * *sum* - the sum of values
 * *extent* - the minimum is mapped to zero, and the maximum to one
+* *deviation* - each value is transformed by subtracting the mean and then dividing by the standard deviation
 * a function to be passed an array of values, returning the desired basis
 
 The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums. These transforms also take additional options:
