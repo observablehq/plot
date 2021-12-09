@@ -1431,10 +1431,13 @@ The Plot.normalizeX and Plot.normalizeY transforms normalize series values relat
 
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
+* *max* - the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *min* - the minimum value
 * *sum* - the sum of values
 * *extent* - the minimum is mapped to zero, and the maximum to one
+* *deviation* - each value is transformed by subtracting the mean and then dividing by the standard deviation
 * a function to be passed an array of values, returning the desired basis
 
 The Plot.windowX and Plot.windowY transforms compute a moving window around each data point and then derive a summary statistic from values in the current window, say to compute rolling averages, rolling minimums, or rolling maximums. These transforms also take additional options:

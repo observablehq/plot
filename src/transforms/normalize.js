@@ -1,4 +1,4 @@
-import {extent, mean, median, sum} from "d3";
+import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
 import {take} from "../mark.js";
 import {mapX, mapY} from "./map.js";
@@ -17,10 +17,13 @@ export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   switch (`${basis}`.toLowerCase()) {
+    case "deviation": return normalizeDeviation;
     case "first": return normalizeFirst;
     case "last": return normalizeLast;
+    case "max": return normalizeMax;
     case "mean": return normalizeMean;
     case "median": return normalizeMedian;
+    case "min": return normalizeMin;
     case "sum": return normalizeSum;
     case "extent": return normalizeExtent;
   }
@@ -61,6 +64,18 @@ const normalizeLast = normalizeBasis((I, S) => {
   }
 });
 
+const normalizeDeviation = {
+  map(I, S, T) {
+    const m = mean(I, i => S[i]);
+    const d = deviation(I, i => S[i]);
+    for (const i of I) {
+      T[i] = S[i] === null ? NaN : d ? (S[i] - m) / d : 0;
+    }
+  }
+};
+
+const normalizeMax = normalizeBasis((I, S) => max(I, i => S[i]));
 const normalizeMean = normalizeBasis((I, S) => mean(I, i => S[i]));
 const normalizeMedian = normalizeBasis((I, S) => median(I, i => S[i]));
+const normalizeMin = normalizeBasis((I, S) => min(I, i => S[i]));
 const normalizeSum = normalizeBasis((I, S) => sum(I, i => S[i]));
