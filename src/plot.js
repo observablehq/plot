@@ -103,6 +103,7 @@ export function plot(options = {}) {
   const legends = Legends(scaleDescriptors, options);
   if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");
+    figure.style.maxWidth = "initial";
     figure.append(...legends, svg);
     if (caption != null) {
       const figcaption = document.createElement("figcaption");
