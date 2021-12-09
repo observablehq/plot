@@ -1429,7 +1429,6 @@ If a function is used, it must return an array of the same length as the given i
 
 The Plot.normalizeX and Plot.normalizeY transforms normalize series values relative to the given basis. For example, if the series values are [*y₀*, *y₁*, *y₂*, …] and the *first* basis is used, the mapped series values would be [*y₀* / *y₀*, *y₁* / *y₀*, *y₂* / *y₀*, …] as in an index chart. The **basis** option specifies how to normalize the series values. The following basis methods are supported:
 
-
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
 * *max* - the maximum value
