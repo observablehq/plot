@@ -70,7 +70,6 @@ export function plot(options = {}) {
       .attr("fill", "currentColor")
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
-      .attr("font-variant", "tabular-nums")
       .attr("text-anchor", "middle")
       .attr("width", width)
       .attr("height", height)

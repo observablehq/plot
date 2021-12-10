@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="960" height="240" viewBox="0 0 960 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="240" viewBox="0 0 960 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -12,7 +12,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,185.5622406639004)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
@@ -50,7 +50,7 @@
   </g>
   <g>
     <g transform="translate(42,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(22.96666666666667,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -66,7 +66,7 @@
       </g>
     </g>
     <g transform="translate(272,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(22.96666666666667,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -82,7 +82,7 @@
       </g>
     </g>
     <g transform="translate(502,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(22.96666666666667,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
@@ -98,7 +98,7 @@
       </g>
     </g>
     <g transform="translate(732,0)">
-      <g transform="translate(0,210)" fill="none" text-anchor="middle">
+      <g transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(22.96666666666667,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>

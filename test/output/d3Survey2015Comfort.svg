@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="960" height="150" viewBox="0 0 960 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="150" viewBox="0 0 960 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -29,7 +29,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
     </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">How comfortable are you with d3 now?</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(300.5,0)">
       <line stroke="currentColor" y2="-6"></line>
       <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>

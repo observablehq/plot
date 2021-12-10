@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="640" height="600" viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="600" viewBox="0 0 640 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -36,7 +36,7 @@
   </g>
   <g>
     <g transform="translate(0,30)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161M358,0h161"></path>
@@ -60,7 +60,7 @@
       </g>
     </g>
     <g transform="translate(0,216)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161"></path>
@@ -84,7 +84,7 @@
       </g>
     </g>
     <g transform="translate(0,402)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end">
+      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161M358,0h161"></path>
@@ -108,7 +108,7 @@
       </g>
     </g>
     <g transform="translate(40,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle">
+      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-354v167M0,-168v167"></path>
@@ -120,7 +120,7 @@
       </g>
     </g>
     <g transform="translate(219,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle">
+      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-354v167M0,-168v167"></path>
@@ -132,7 +132,7 @@
       </g>
     </g>
     <g transform="translate(398,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle">
+      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-168v167"></path>

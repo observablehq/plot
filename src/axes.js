@@ -16,8 +16,8 @@ export function Axes(
   if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
   if (!fyScale) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xAxis && {x: new AxisX({grid, line, label, ...x, axis: xAxis})},
-    ...yAxis && {y: new AxisY({grid, line, label, ...y, axis: yAxis})},
+    ...xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})},
+    ...yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})},
     ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, ...fx, axis: fxAxis})},
     ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, ...fy, axis: fyAxis})}
   };
@@ -141,4 +141,8 @@ function inferLabel(channels = [], scale, axis, key) {
     }
   }
   return candidate;
+}
+
+function inferFontVariant(scale) {
+  return isOrdinalScale(scale) ? undefined : "tabular-nums";
 }

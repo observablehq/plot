@@ -23,7 +23,6 @@ export function legendRamp(color, {
       .attr("class", className)
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
-      .attr("font-variant", "tabular-nums")
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)

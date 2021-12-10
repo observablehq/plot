@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" font-variant="tabular-nums" text-anchor="middle" width="640" height="320" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="320" viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -12,7 +12,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,271.2692307692308)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">34</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
@@ -79,7 +79,7 @@
   </g>
   <g>
     <g transform="translate(40,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
@@ -111,7 +111,7 @@
       </g>
     </g>
     <g transform="translate(240,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
@@ -143,7 +143,7 @@
       </g>
     </g>
     <g transform="translate(440,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle">
+      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
