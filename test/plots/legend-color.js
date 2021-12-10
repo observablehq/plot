@@ -204,6 +204,13 @@ export function colorLegendQuantileImplicit() {
   }).legend("color");
 }
 
+export function colorLegendImplicitLabel() {
+  return Plot.plot({
+    color: {scheme: "viridis"},
+    marks: [Plot.dot(d3.range(100).map(i => ({thing: i})), {fill: "thing"})]
+  }).legend("color");
+}
+
 export function colorLegendDiverging() {
   return Plot.legend({
     color: {
