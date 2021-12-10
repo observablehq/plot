@@ -1,5 +1,15 @@
 # Observable Plot - Changelog
 
+## 0.3.1
+
+Released December 10, 2021.
+
+The normalize transform now also supports the *min*, *max*, and *deviation* basis methods.
+
+The generated figure element now resets the max-width style to initial.
+
+Update D3 to 7.2.1.
+
 ## 0.3.0
 
 Released December 4, 2021.
@@ -50,6 +60,8 @@ All quantitative scales now have a default domain (typically [0, 1]). Ordinal sc
 Plot’s stylesheet is now inlined in the generated SVG element rather than injected into the document head. To avoid namespace collisions, we use a randomly-generated class name; use the top-level **className** option to specify a custom class name. The default style now uses font-variant: tabular-nums for a better alignment of numbers.
 
 A new top-level *margin* option allows to set all of marginLeft, marginRight, marginTop, and marginBottom at once. This shorthand notation is also available as a facet option.
+
+Update D3 to 7.2.0.
 
 ## 0.2.9
 
