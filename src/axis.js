@@ -10,6 +10,7 @@ export class AxisX {
     tickSize = name === "fx" ? 0 : 6,
     tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
+    fontVariant = "tabular-nums",
     grid,
     label,
     labelAnchor,
@@ -23,6 +24,7 @@ export class AxisX {
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
+    this.fontVariant = string(fontVariant);
     this.grid = boolean(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
@@ -49,6 +51,7 @@ export class AxisX {
   ) {
     const {
       axis,
+      fontVariant,
       grid,
       label,
       labelAnchor,
@@ -65,6 +68,7 @@ export class AxisX {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
+        .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
           : fy ? gridFacetX(index, fy, -ty)
@@ -93,6 +97,7 @@ export class AxisY {
     tickSize = name === "fy" ? 0 : 6,
     tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
+    fontVariant = "tabular-nums",
     grid,
     label,
     labelAnchor,
@@ -106,6 +111,7 @@ export class AxisY {
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
+    this.fontVariant = string(fontVariant);
     this.grid = boolean(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
@@ -130,6 +136,7 @@ export class AxisY {
   ) {
     const {
       axis,
+      fontVariant,
       grid,
       label,
       labelAnchor,
@@ -146,6 +153,7 @@ export class AxisY {
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
+        .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
         .call(!grid ? () => {}
           : fx ? gridFacetY(index, fx, -tx)

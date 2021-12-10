@@ -83,7 +83,6 @@ export function legendSwatches(color, {
         .${className} {
           font-family: system-ui, sans-serif;
           font-size: 10px;
-          font-variant: tabular-nums;
           margin-bottom: 0.5em;${marginLeft === undefined ? "" : `
           margin-left: ${+marginLeft}px;`}${width === undefined ? "" : `
           width: ${width}px;`}
