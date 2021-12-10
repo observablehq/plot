@@ -1,10 +1,12 @@
 import {create} from "d3";
+import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
-import {applyInlineStyles, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
 export function legendSwatches(color, {
   columns,
   tickFormat,
+  fontVariant = inferFontVariant(color),
   // TODO label,
   swatchSize = 15,
   swatchWidth = swatchSize,
@@ -96,6 +98,7 @@ export function legendSwatches(color, {
         }
         ${extraStyle}
       `))
+      .style("font-variant", impliedString(fontVariant, "normal"))
       .call(applyInlineStyles, style)
     .node();
 }

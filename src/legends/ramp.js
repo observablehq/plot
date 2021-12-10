@@ -1,6 +1,7 @@
 import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {inferFontVariant} from "../axes.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
-import {applyInlineStyles, maybeClassName} from "../style.js";
+import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
 export function legendRamp(color, {
   label = color.label,
@@ -14,6 +15,7 @@ export function legendRamp(color, {
   style,
   ticks = (width - marginLeft - marginRight) / 64,
   tickFormat,
+  fontVariant = inferFontVariant(color),
   round = true,
   className
 }) {
@@ -141,6 +143,7 @@ export function legendRamp(color, {
           .tickValues(Array.isArray(ticks) ? ticks : null))
       .attr("font-size", null)
       .attr("font-family", null)
+      .attr("font-variant", impliedString(fontVariant, "normal"))
       .call(tickAdjust)
       .call(g => g.select(".domain").remove())
       .call(label === undefined ? () => {} : g => g.append("text")

@@ -22,7 +22,7 @@
     <rect x="171" y="18" width="35" height="10" fill="#fbb61a"></rect>
     <rect x="206" y="18" width="34" height="10" fill="#fcffa4"></rect>
   </g>
-  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(34.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
     </g>

@@ -24,7 +24,7 @@
     <rect x="187" y="18" width="26" height="10" fill="#4393c3"></rect>
     <rect x="213" y="18" width="27" height="10" fill="#2166ac"></rect>
   </g>
-  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(27.5,0)">
       <line stroke="currentColor" y2="0" y1="-10"></line><text fill="currentColor" y="3" dy="0.71em">2.5</text>
     </g>

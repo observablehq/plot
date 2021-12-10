@@ -143,6 +143,6 @@ function inferLabel(channels = [], scale, axis, key) {
   return candidate;
 }
 
-function inferFontVariant(scale) {
+export function inferFontVariant(scale) {
   return isOrdinalScale(scale) ? undefined : "tabular-nums";
 }
