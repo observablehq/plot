@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.3.2
+
+Released December 10, 2021.
+
+The font-variant now only defaults to *tabular-nums* for axis and legend tick labels on non-ordinal scales; on ordinal scales it defaults to *normal*.
+
+If a scale has an implicit label (such as inferred from a channel), the legend will now inherit the label.
+
 ## 0.3.1
 
 Released December 10, 2021.
