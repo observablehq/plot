@@ -111,7 +111,7 @@ export class AxisY {
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
-    this.fontVariant = string(fontVariant);
+    this.fontVariant = impliedString(fontVariant, "normal");
     this.grid = boolean(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
