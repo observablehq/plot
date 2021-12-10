@@ -14,7 +14,7 @@
     }
   </style>
   <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAQElEQVQ4jWNkYGCoZ4AARihmwMNHFydWnlRzSRUnlibVH+TaQ6p7SA0vaoUHreKFVHdRyx+0jpfB4j5y0xMGDQAAngEBTE2LzQAAAABJRU5ErkJggg=="></image>
-  <g transform="translate(0,28)" fill="none" text-anchor="middle">
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">0.0</text>
     </g>
