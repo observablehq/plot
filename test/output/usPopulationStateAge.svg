@@ -12,7 +12,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(50,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g transform="translate(50,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,45.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="570" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">&lt;10</text>

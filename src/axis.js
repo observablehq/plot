@@ -1,6 +1,7 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
+import {impliedString} from "./style.js";
 
 export class AxisX {
   constructor({
@@ -10,7 +11,7 @@ export class AxisX {
     tickSize = name === "fx" ? 0 : 6,
     tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
-    fontVariant = "tabular-nums",
+    fontVariant,
     grid,
     label,
     labelAnchor,
@@ -97,7 +98,7 @@ export class AxisY {
     tickSize = name === "fy" ? 0 : 6,
     tickPadding = tickSize === 0 ? 9 : 3,
     tickFormat,
-    fontVariant = "tabular-nums",
+    fontVariant,
     grid,
     label,
     labelAnchor,

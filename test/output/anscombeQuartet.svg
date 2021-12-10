@@ -34,7 +34,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
     </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ y</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(145.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">1</text>
     </g>
