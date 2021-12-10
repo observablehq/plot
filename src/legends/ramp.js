@@ -3,7 +3,7 @@ import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, maybeClassName} from "../style.js";
 
 export function legendRamp(color, {
-  label,
+  label = color.label,
   tickSize = 6,
   width = 240,
   height = 44 + tickSize,
