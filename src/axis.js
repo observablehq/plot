@@ -1,4 +1,4 @@
-import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
+import {axisTop, axisBottom, axisRight, axisLeft, create, format, select, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
 import {impliedString} from "./style.js";
@@ -66,6 +66,7 @@ export class AxisX {
     return create("svg:g")
         .attr("transform", `translate(0,${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
+        .call(g => g.selectAll("text").each(splitText()))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
@@ -90,6 +91,20 @@ export class AxisX {
   }
 }
 
+function splitText() {
+  const repeats = [];
+  return function() {
+    const cur = this.textContent;
+    const lines = cur.split("\n");
+    if (lines.length > 1) {
+      select(this).text(lines.shift())
+        .selectAll().data(lines).join("tspan")
+        .text((d, i) => d[0] === "?" ? d === repeats[i] ? " " : (repeats[i] = d).slice(1) : d)
+        .attr("x", 0)
+        .attr("dy", "1.2em");
+    }
+  };
+}
 export class AxisY {
   constructor({
     name = "y",

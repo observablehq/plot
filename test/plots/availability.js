@@ -6,6 +6,8 @@ export default async function() {
   const sum = d => d.length ? d3.sum(d) : NaN; // force gaps
   return Plot.plot({
     height: 180,
+    marginBottom: 45,
+    x: {tickFormat: "%b\n?%Y"},
     marks: [
       Plot.areaY(
         data,
