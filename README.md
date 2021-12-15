@@ -1219,6 +1219,10 @@ The following aggregation methods are supported:
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *mode* - the value with the most occurrences
+* *x1* - the lower bound of the bin’s *x*-extent (when binning on *x*)
+* *x2* - the upper bound of the bin’s *x*-extent (when binning on *x*)
+* *y1* - the lower bound of the bin’s *y*-extent (when binning on *y*)
+* *y2* - the upper bound of the bin’s *y*-extent (when binning on *y*)
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduce* method
 

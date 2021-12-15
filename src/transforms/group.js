@@ -211,6 +211,10 @@ export function maybeReduce(reduce, value) {
     case "median": return reduceAccessor(median);
     case "variance": return reduceAccessor(variance);
     case "mode": return reduceAccessor(mode);
+    case "x1": return reduceX1;
+    case "x2": return reduceX2;
+    case "y1": return reduceY1;
+    case "y2": return reduceY2;
   }
   throw new Error("invalid reduce");
 }
@@ -291,3 +295,27 @@ function reduceProportion(value, scope) {
       ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
       : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
 }
+
+const reduceX1 = {
+  reduce(I, X, {x1}) {
+    return x1;
+  }
+};
+
+const reduceX2 = {
+  reduce(I, X, {x2}) {
+    return x2;
+  }
+};
+
+const reduceY1 = {
+  reduce(I, X, {y1}) {
+    return y1;
+  }
+};
+
+const reduceY2 = {
+  reduce(I, X, {y2}) {
+    return y2;
+  }
+};
