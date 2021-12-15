@@ -19,7 +19,17 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M0,370.5h580M0,329.3235294117647h580M0,288.1470588235294h580M0,246.9705882352941h580M0,205.7941176470588h580M0,164.61764705882354h580M0,123.44117647058823h580M0,82.26470588235296h580M0,41.08823529411765h580"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,370h580"></path>
+        <path d="M0,328.8235294117647h580"></path>
+        <path d="M0,287.6470588235294h580"></path>
+        <path d="M0,246.4705882352941h580"></path>
+        <path d="M0,205.2941176470588h580"></path>
+        <path d="M0,164.11764705882354h580"></path>
+        <path d="M0,122.94117647058823h580"></path>
+        <path d="M0,81.76470588235296h580"></path>
+        <path d="M0,40.58823529411765h580"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>

@@ -19,7 +19,16 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <path d="M0,324.40833015408174h900M0,282.295187339942h900M0,240.18204452580224h900M0,198.06890171166248h900M0,155.95575889752268h900M0,113.84261608338295h900M0,71.72947326924321h900M0,29.61633045510343h900"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,323.90833015408174h900"></path>
+        <path d="M0,281.795187339942h900"></path>
+        <path d="M0,239.68204452580224h900"></path>
+        <path d="M0,197.56890171166248h900"></path>
+        <path d="M0,155.45575889752268h900"></path>
+        <path d="M0,113.34261608338295h900"></path>
+        <path d="M0,71.22947326924321h900"></path>
+        <path d="M0,29.11633045510343h900"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,324.40833015408174)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">155</text>
@@ -48,7 +57,14 @@
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M117.53999999999999,0v-350M274.8428571428571,0v-350M432.1457142857143,0v-350M574.2257142857143,0v-350M731.5285714285715,0v-350M883.7571428571428,0v-350"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M117.03999999999999,0v-350"></path>
+        <path d="M274.3428571428571,0v-350"></path>
+        <path d="M431.6457142857143,0v-350"></path>
+        <path d="M573.7257142857143,0v-350"></path>
+        <path d="M731.0285714285715,0v-350"></path>
+        <path d="M883.2571428571428,0v-350"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(117.53999999999999,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">December</text>

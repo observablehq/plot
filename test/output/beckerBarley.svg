@@ -39,12 +39,60 @@
   </g>
   <g transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M110.5,-750v114M183.83333333333331,-750v114M257.16666666666663,-750v114M330.5,-750v114M403.8333333333333,-750v114M477.1666666666667,-750v114M550.5,-750v114"></path>
-      <path d="M110.5,-623v114M183.83333333333331,-623v114M257.16666666666663,-623v114M330.5,-623v114M403.8333333333333,-623v114M477.1666666666667,-623v114M550.5,-623v114"></path>
-      <path d="M110.5,-496v114M183.83333333333331,-496v114M257.16666666666663,-496v114M330.5,-496v114M403.8333333333333,-496v114M477.1666666666667,-496v114M550.5,-496v114"></path>
-      <path d="M110.5,-369v114M183.83333333333331,-369v114M257.16666666666663,-369v114M330.5,-369v114M403.8333333333333,-369v114M477.1666666666667,-369v114M550.5,-369v114"></path>
-      <path d="M110.5,-242v114M183.83333333333331,-242v114M257.16666666666663,-242v114M330.5,-242v114M403.8333333333333,-242v114M477.1666666666667,-242v114M550.5,-242v114"></path>
-      <path d="M110.5,-115v114M183.83333333333331,-115v114M257.16666666666663,-115v114M330.5,-115v114M403.8333333333333,-115v114M477.1666666666667,-115v114M550.5,-115v114"></path>
+      <g transform="translate(0.5,-750)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
+      <g transform="translate(0.5,-623)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
+      <g transform="translate(0.5,-496)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
+      <g transform="translate(0.5,-369)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
+      <g transform="translate(0.5,-242)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
+      <g transform="translate(0.5,-115)">
+        <path d="M110,0v114"></path>
+        <path d="M183.33333333333331,0v114"></path>
+        <path d="M256.66666666666663,0v114"></path>
+        <path d="M330,0v114"></path>
+        <path d="M403.3333333333333,0v114"></path>
+        <path d="M476.6666666666667,0v114"></path>
+        <path d="M550,0v114"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
@@ -72,7 +120,18 @@
     <g transform="translate(0,20)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -109,7 +168,18 @@
     <g transform="translate(0,147)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -146,7 +216,18 @@
     <g transform="translate(0,274)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -183,7 +264,18 @@
     <g transform="translate(0,401)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -220,7 +312,18 @@
     <g transform="translate(0,528)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -257,7 +360,18 @@
     <g transform="translate(0,655)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
+          <g transform="translate(0,0.5)">
+            <path d="M0,12h440"></path>
+            <path d="M0,22h440"></path>
+            <path d="M0,32h440"></path>
+            <path d="M0,42h440"></path>
+            <path d="M0,52h440"></path>
+            <path d="M0,62h440"></path>
+            <path d="M0,72h440"></path>
+            <path d="M0,82h440"></path>
+            <path d="M0,92h440"></path>
+            <path d="M0,102h440"></path>
+          </g>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>

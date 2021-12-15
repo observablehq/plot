@@ -81,7 +81,14 @@
   </g>
   <g transform="translate(0,430)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M40.5,0v-410M142.79276895943562,0v-410M245.08553791887124,0v-410M347.3783068783069,0v-410M449.6710758377425,0v-410M551.963844797178,0v-410"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M40,0v-410"></path>
+        <path d="M142.29276895943562,0v-410"></path>
+        <path d="M244.58553791887124,0v-410"></path>
+        <path d="M346.8783068783069,0v-410"></path>
+        <path d="M449.1710758377425,0v-410"></path>
+        <path d="M551.463844797178,0v-410"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>

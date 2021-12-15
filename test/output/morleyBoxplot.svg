@@ -36,7 +36,17 @@
   </g>
   <g transform="translate(0,130)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M84.36666666666667,0v-110M147.4777777777778,0v-110M210.58888888888887,0v-110M273.70000000000005,0v-110M336.8111111111111,0v-110M399.9222222222222,0v-110M463.0333333333333,0v-110M526.1444444444445,0v-110M589.2555555555556,0v-110"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M83.86666666666667,0v-110"></path>
+        <path d="M146.9777777777778,0v-110"></path>
+        <path d="M210.08888888888887,0v-110"></path>
+        <path d="M273.20000000000005,0v-110"></path>
+        <path d="M336.3111111111111,0v-110"></path>
+        <path d="M399.4222222222222,0v-110"></path>
+        <path d="M462.5333333333333,0v-110"></path>
+        <path d="M525.6444444444445,0v-110"></path>
+        <path d="M588.7555555555556,0v-110"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(84.36666666666667,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">650</text>

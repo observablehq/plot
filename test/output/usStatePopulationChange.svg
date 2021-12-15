@@ -19,7 +19,60 @@
   </style>
   <g transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <path d="M0,42.5h520M0,56.5h520M0,70.5h520M0,84.5h520M0,98.5h520M0,112.5h520M0,126.5h520M0,140.5h520M0,154.5h520M0,168.5h520M0,182.5h520M0,196.5h520M0,210.5h520M0,224.5h520M0,238.5h520M0,252.5h520M0,266.5h520M0,280.5h520M0,294.5h520M0,308.5h520M0,322.5h520M0,336.5h520M0,350.5h520M0,364.5h520M0,378.5h520M0,392.5h520M0,406.5h520M0,420.5h520M0,434.5h520M0,448.5h520M0,462.5h520M0,476.5h520M0,490.5h520M0,504.5h520M0,518.5h520M0,532.5h520M0,546.5h520M0,560.5h520M0,574.5h520M0,588.5h520M0,602.5h520M0,616.5h520M0,630.5h520M0,644.5h520M0,658.5h520M0,672.5h520M0,686.5h520M0,700.5h520M0,714.5h520M0,728.5h520M0,742.5h520M0,756.5h520"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,42h520"></path>
+        <path d="M0,56h520"></path>
+        <path d="M0,70h520"></path>
+        <path d="M0,84h520"></path>
+        <path d="M0,98h520"></path>
+        <path d="M0,112h520"></path>
+        <path d="M0,126h520"></path>
+        <path d="M0,140h520"></path>
+        <path d="M0,154h520"></path>
+        <path d="M0,168h520"></path>
+        <path d="M0,182h520"></path>
+        <path d="M0,196h520"></path>
+        <path d="M0,210h520"></path>
+        <path d="M0,224h520"></path>
+        <path d="M0,238h520"></path>
+        <path d="M0,252h520"></path>
+        <path d="M0,266h520"></path>
+        <path d="M0,280h520"></path>
+        <path d="M0,294h520"></path>
+        <path d="M0,308h520"></path>
+        <path d="M0,322h520"></path>
+        <path d="M0,336h520"></path>
+        <path d="M0,350h520"></path>
+        <path d="M0,364h520"></path>
+        <path d="M0,378h520"></path>
+        <path d="M0,392h520"></path>
+        <path d="M0,406h520"></path>
+        <path d="M0,420h520"></path>
+        <path d="M0,434h520"></path>
+        <path d="M0,448h520"></path>
+        <path d="M0,462h520"></path>
+        <path d="M0,476h520"></path>
+        <path d="M0,490h520"></path>
+        <path d="M0,504h520"></path>
+        <path d="M0,518h520"></path>
+        <path d="M0,532h520"></path>
+        <path d="M0,546h520"></path>
+        <path d="M0,560h520"></path>
+        <path d="M0,574h520"></path>
+        <path d="M0,588h520"></path>
+        <path d="M0,602h520"></path>
+        <path d="M0,616h520"></path>
+        <path d="M0,630h520"></path>
+        <path d="M0,644h520"></path>
+        <path d="M0,658h520"></path>
+        <path d="M0,672h520"></path>
+        <path d="M0,686h520"></path>
+        <path d="M0,700h520"></path>
+        <path d="M0,714h520"></path>
+        <path d="M0,728h520"></path>
+        <path d="M0,742h520"></path>
+        <path d="M0,756h520"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,48.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Texas</text>
@@ -180,7 +233,17 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M110.5,0v750M168.5,0v750M226.5,0v750M284.5,0v750M342.5,0v750M400.5,0v750M457.5,0v750M515.5,0v750M573.5,0v750"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M110,0v750"></path>
+        <path d="M168,0v750"></path>
+        <path d="M226,0v750"></path>
+        <path d="M284,0v750"></path>
+        <path d="M342,0v750"></path>
+        <path d="M400,0v750"></path>
+        <path d="M457,0v750"></path>
+        <path d="M515,0v750"></path>
+        <path d="M573,0v750"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>

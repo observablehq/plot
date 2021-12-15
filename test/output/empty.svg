@@ -19,7 +19,19 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M0,364.5h580M0,330.70000000000005h580M0,296.9h580M0,263.09999999999997h580M0,229.3h580M0,195.5h580M0,161.7h580M0,127.90000000000002h580M0,94.09999999999998h580M0,60.3h580M0,26.5h580"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,364h580"></path>
+        <path d="M0,330.20000000000005h580"></path>
+        <path d="M0,296.4h580"></path>
+        <path d="M0,262.59999999999997h580"></path>
+        <path d="M0,228.8h580"></path>
+        <path d="M0,195h580"></path>
+        <path d="M0,161.2h580"></path>
+        <path d="M0,127.40000000000002h580"></path>
+        <path d="M0,93.59999999999998h580"></path>
+        <path d="M0,59.8h580"></path>
+        <path d="M0,26h580"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,364.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.0</text>
@@ -57,7 +69,19 @@
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M46.5,0v-350M103.30000000000001,0v-350M160.10000000000002,0v-350M216.89999999999998,0v-350M273.70000000000005,0v-350M330.5,0v-350M387.29999999999995,0v-350M444.09999999999997,0v-350M500.90000000000003,0v-350M557.7,0v-350M614.5,0v-350"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M46,0v-350"></path>
+        <path d="M102.80000000000001,0v-350"></path>
+        <path d="M159.60000000000002,0v-350"></path>
+        <path d="M216.39999999999998,0v-350"></path>
+        <path d="M273.20000000000005,0v-350"></path>
+        <path d="M330,0v-350"></path>
+        <path d="M386.79999999999995,0v-350"></path>
+        <path d="M443.59999999999997,0v-350"></path>
+        <path d="M500.40000000000003,0v-350"></path>
+        <path d="M557.2,0v-350"></path>
+        <path d="M614,0v-350"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(46.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.0</text>

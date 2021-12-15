@@ -66,7 +66,19 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M300.5,0v300M364.5,0v300M428.5,0v300M492.5,0v300M556.5,0v300M620.5,0v300M684.5,0v300M748.5,0v300M812.5,0v300M876.5,0v300M940.5,0v300"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M300,0v300"></path>
+        <path d="M364,0v300"></path>
+        <path d="M428,0v300"></path>
+        <path d="M492,0v300"></path>
+        <path d="M556,0v300"></path>
+        <path d="M620,0v300"></path>
+        <path d="M684,0v300"></path>
+        <path d="M748,0v300"></path>
+        <path d="M812,0v300"></path>
+        <path d="M876,0v300"></path>
+        <path d="M940,0v300"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(300.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">0</text>

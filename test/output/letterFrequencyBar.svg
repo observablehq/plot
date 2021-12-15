@@ -99,7 +99,15 @@
   </g>
   <g transform="translate(0,550)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M40.5,0v-530M131.824200913242,0v-530M223.14840182648402,0v-530M314.472602739726,0v-530M405.79680365296804,0v-530M497.12100456621,0v-530M588.445205479452,0v-530"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M40,0v-530"></path>
+        <path d="M131.324200913242,0v-530"></path>
+        <path d="M222.64840182648402,0v-530"></path>
+        <path d="M313.972602739726,0v-530"></path>
+        <path d="M405.29680365296804,0v-530"></path>
+        <path d="M496.62100456621,0v-530"></path>
+        <path d="M587.945205479452,0v-530"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>

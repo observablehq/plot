@@ -19,7 +19,21 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M0,370.5h580M0,342.9452842072115h580M0,315.3905684144229h580M0,287.8358526216344h580M0,260.28113682884583h580M0,232.72642103605727h580M0,205.1717052432688h580M0,177.6169894504802h580M0,150.0622736576917h580M0,122.50755786490315h580M0,94.9528420721146h580M0,67.39812627932609h580M0,39.84341048653754h580"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,370h580"></path>
+        <path d="M0,342.4452842072115h580"></path>
+        <path d="M0,314.8905684144229h580"></path>
+        <path d="M0,287.3358526216344h580"></path>
+        <path d="M0,259.78113682884583h580"></path>
+        <path d="M0,232.22642103605727h580"></path>
+        <path d="M0,204.6717052432688h580"></path>
+        <path d="M0,177.1169894504802h580"></path>
+        <path d="M0,149.5622736576917h580"></path>
+        <path d="M0,122.00755786490315h580"></path>
+        <path d="M0,94.4528420721146h580"></path>
+        <path d="M0,66.89812627932609h580"></path>
+        <path d="M0,39.34341048653754h580"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.00</text>

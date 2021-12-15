@@ -19,7 +19,17 @@
   </style>
   <g transform="translate(50,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <path d="M0,36.5h570M0,56.5h570M0,76.5h570M0,96.5h570M0,116.5h570M0,136.5h570M0,156.5h570M0,176.5h570M0,196.5h570"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,36h570"></path>
+        <path d="M0,56h570"></path>
+        <path d="M0,76h570"></path>
+        <path d="M0,96h570"></path>
+        <path d="M0,116h570"></path>
+        <path d="M0,136h570"></path>
+        <path d="M0,156h570"></path>
+        <path d="M0,176h570"></path>
+        <path d="M0,196h570"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,45.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">&lt;10</text>
@@ -51,7 +61,19 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <path d="M50.5,0v190M105.34685346338046,0v190M160.1937069267609,0v190M215.04056039014134,0v190M269.8874138535218,0v190M324.7342673169022,0v190M379.5811207802827,0v190M434.42797424366313,0v190M489.2748277070436,0v190M544.1216811704239,0v190M598.9685346338044,0v190"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M50,0v190"></path>
+        <path d="M104.84685346338046,0v190"></path>
+        <path d="M159.6937069267609,0v190"></path>
+        <path d="M214.54056039014134,0v190"></path>
+        <path d="M269.3874138535218,0v190"></path>
+        <path d="M324.2342673169022,0v190"></path>
+        <path d="M379.0811207802827,0v190"></path>
+        <path d="M433.92797424366313,0v190"></path>
+        <path d="M488.7748277070436,0v190"></path>
+        <path d="M543.6216811704239,0v190"></path>
+        <path d="M598.4685346338044,0v190"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(50.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">0</text>

@@ -19,7 +19,36 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <path d="M0,32.5h580M0,53.5h580M0,74.5h580M0,95.5h580M0,116.5h580M0,137.5h580M0,158.5h580M0,179.5h580M0,200.5h580M0,221.5h580M0,242.5h580M0,263.5h580M0,284.5h580M0,305.5h580M0,326.5h580M0,347.5h580M0,368.5h580M0,389.5h580M0,410.5h580M0,431.5h580M0,452.5h580M0,473.5h580M0,494.5h580M0,515.5h580M0,536.5h580M0,557.5h580M0,578.5h580M0,599.5h580"></path>
+      <g transform="translate(0,0.5)">
+        <path d="M0,32h580"></path>
+        <path d="M0,53h580"></path>
+        <path d="M0,74h580"></path>
+        <path d="M0,95h580"></path>
+        <path d="M0,116h580"></path>
+        <path d="M0,137h580"></path>
+        <path d="M0,158h580"></path>
+        <path d="M0,179h580"></path>
+        <path d="M0,200h580"></path>
+        <path d="M0,221h580"></path>
+        <path d="M0,242h580"></path>
+        <path d="M0,263h580"></path>
+        <path d="M0,284h580"></path>
+        <path d="M0,305h580"></path>
+        <path d="M0,326h580"></path>
+        <path d="M0,347h580"></path>
+        <path d="M0,368h580"></path>
+        <path d="M0,389h580"></path>
+        <path d="M0,410h580"></path>
+        <path d="M0,431h580"></path>
+        <path d="M0,452h580"></path>
+        <path d="M0,473h580"></path>
+        <path d="M0,494h580"></path>
+        <path d="M0,515h580"></path>
+        <path d="M0,536h580"></path>
+        <path d="M0,557h580"></path>
+        <path d="M0,578h580"></path>
+        <path d="M0,599h580"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
@@ -108,7 +137,33 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="grid">
-      <path d="M43.5,0v590M66.5,0v590M89.5,0v590M112.5,0v590M135.5,0v590M158.5,0v590M181.5,0v590M204.5,0v590M227.5,0v590M250.5,0v590M273.5,0v590M296.5,0v590M319.5,0v590M342.5,0v590M365.5,0v590M388.5,0v590M411.5,0v590M434.5,0v590M457.5,0v590M480.5,0v590M503.5,0v590M526.5,0v590M549.5,0v590M572.5,0v590M595.5,0v590"></path>
+      <g transform="translate(0.5,0)">
+        <path d="M43,0v590"></path>
+        <path d="M66,0v590"></path>
+        <path d="M89,0v590"></path>
+        <path d="M112,0v590"></path>
+        <path d="M135,0v590"></path>
+        <path d="M158,0v590"></path>
+        <path d="M181,0v590"></path>
+        <path d="M204,0v590"></path>
+        <path d="M227,0v590"></path>
+        <path d="M250,0v590"></path>
+        <path d="M273,0v590"></path>
+        <path d="M296,0v590"></path>
+        <path d="M319,0v590"></path>
+        <path d="M342,0v590"></path>
+        <path d="M365,0v590"></path>
+        <path d="M388,0v590"></path>
+        <path d="M411,0v590"></path>
+        <path d="M434,0v590"></path>
+        <path d="M457,0v590"></path>
+        <path d="M480,0v590"></path>
+        <path d="M503,0v590"></path>
+        <path d="M526,0v590"></path>
+        <path d="M549,0v590"></path>
+        <path d="M572,0v590"></path>
+        <path d="M595,0v590"></path>
+      </g>
     </g>
     <g class="tick" opacity="1" transform="translate(54.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1</text>

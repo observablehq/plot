@@ -70,6 +70,7 @@ export class AxisX {
         .call(!grid ? () => {}
             : createGridX(
               grid(x, ticks),
+              x,
               fy ? fy.bandwidth() : offsetSign * (marginBottom + marginTop - height),
               fy ? take(fy.domain().map(d => fy(d) - ty), index) : [0]
             ))
@@ -159,6 +160,7 @@ export class AxisY {
         .call(!grid ? () => {}
           : createGridY(
               grid(y, ticks),
+              y,
               fx ? fx.bandwidth() : offsetSign * (marginLeft + marginRight - width),
               fx ? take(fx.domain().map(d => fx(d) - tx), index) : [0]
             ))
@@ -229,28 +231,36 @@ function maybeTickRotate(g, rotate) {
   }
 }
 
-function createGridX(ticks, dy, steps) {
+function createGridX(ticks, x, dy, steps) {
   return g => g.append("g")
       .attr("class", "grid")
       .selectAll()
       .data(steps)
-      .join("path")
-        .attr("d", v => ticks.map(d => `M${offset + d},${v}v${dy}`).join(""));
+      .join("g")
+        .attr("transform", v => `translate(${offset},${v})`)
+        .selectAll()
+        .data(ticks)
+        .join("path")
+        .attr("d", d => `M${x(d)},0v${dy}`);
 }
 
-function createGridY(ticks, dx, steps) {
+function createGridY(ticks, y, dx, steps) {
   return g => g.append("g")
       .attr("class", "grid")
       .selectAll()
       .data(steps)
-      .join("path")
-        .attr("d", v => ticks.map(d => `M${v},${offset + d}h${dx}`).join(""));
+      .join("g")
+        .attr("transform", v => `translate(${v},${offset})`)
+        .selectAll()
+        .data(ticks)
+        .join("path")
+        .attr("d", d => `M0,${y(d)}h${dx}`);
 }
 
 function maybeTicks(grid) {
   if (!grid) return false;
-  if (grid === true) return (scale, ticks) => (scale.ticks ? scale.ticks(ticks) : scale.domain()).map(scale);
-  if (Array.isArray(grid)) return (scale) => grid.map(scale);
-  if (grid === +grid) return (scale) => (scale.ticks ? scale.ticks.apply(scale, [grid]) : scale.domain()).map(scale);
+  if (grid === true) return (scale, ticks) => (scale.ticks ? scale.ticks(ticks) : scale.domain());
+  if (Array.isArray(grid)) return () => grid;
+  if (grid === +grid) return (scale) => (scale.ticks ? scale.ticks.apply(scale, [grid]) : scale.domain());
   throw new Error(`Unexpected grid option: ${grid}`);
 }
