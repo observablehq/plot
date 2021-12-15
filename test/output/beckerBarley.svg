@@ -39,60 +39,12 @@
   </g>
   <g transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0.5,-750)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
-      <g transform="translate(0.5,-623)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
-      <g transform="translate(0.5,-496)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
-      <g transform="translate(0.5,-369)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
-      <g transform="translate(0.5,-242)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
-      <g transform="translate(0.5,-115)">
-        <line x1="110" x2="110" y1="114"></line>
-        <line x1="183.33333333333331" x2="183.33333333333331" y1="114"></line>
-        <line x1="256.66666666666663" x2="256.66666666666663" y1="114"></line>
-        <line x1="330" x2="330" y1="114"></line>
-        <line x1="403.3333333333333" x2="403.3333333333333" y1="114"></line>
-        <line x1="476.6666666666667" x2="476.6666666666667" y1="114"></line>
-        <line x1="550" x2="550" y1="114"></line>
-      </g>
+      <path d="M110.5,-750v114M183.83333333333331,-750v114M257.16666666666663,-750v114M330.5,-750v114M403.8333333333333,-750v114M477.1666666666667,-750v114M550.5,-750v114"></path>
+      <path d="M110.5,-623v114M183.83333333333331,-623v114M257.16666666666663,-623v114M330.5,-623v114M403.8333333333333,-623v114M477.1666666666667,-623v114M550.5,-623v114"></path>
+      <path d="M110.5,-496v114M183.83333333333331,-496v114M257.16666666666663,-496v114M330.5,-496v114M403.8333333333333,-496v114M477.1666666666667,-496v114M550.5,-496v114"></path>
+      <path d="M110.5,-369v114M183.83333333333331,-369v114M257.16666666666663,-369v114M330.5,-369v114M403.8333333333333,-369v114M477.1666666666667,-369v114M550.5,-369v114"></path>
+      <path d="M110.5,-242v114M183.83333333333331,-242v114M257.16666666666663,-242v114M330.5,-242v114M403.8333333333333,-242v114M477.1666666666667,-242v114M550.5,-242v114"></path>
+      <path d="M110.5,-115v114M183.83333333333331,-115v114M257.16666666666663,-115v114M330.5,-115v114M403.8333333333333,-115v114M477.1666666666667,-115v114M550.5,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
@@ -120,18 +72,7 @@
     <g transform="translate(0,20)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -168,18 +109,7 @@
     <g transform="translate(0,147)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -216,18 +146,7 @@
     <g transform="translate(0,274)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -264,18 +183,7 @@
     <g transform="translate(0,401)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -312,18 +220,7 @@
     <g transform="translate(0,528)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
@@ -360,18 +257,7 @@
     <g transform="translate(0,655)">
       <g transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="grid">
-          <g transform="translate(0,0.5)">
-            <line y1="12" y2="12" x1="440"></line>
-            <line y1="22" y2="22" x1="440"></line>
-            <line y1="32" y2="32" x1="440"></line>
-            <line y1="42" y2="42" x1="440"></line>
-            <line y1="52" y2="52" x1="440"></line>
-            <line y1="62" y2="62" x1="440"></line>
-            <line y1="72" y2="72" x1="440"></line>
-            <line y1="82" y2="82" x1="440"></line>
-            <line y1="92" y2="92" x1="440"></line>
-            <line y1="102" y2="102" x1="440"></line>
-          </g>
+          <path d="M0,12.5h440M0,22.5h440M0,32.5h440M0,42.5h440M0,52.5h440M0,62.5h440M0,72.5h440M0,82.5h440M0,92.5h440M0,102.5h440"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>

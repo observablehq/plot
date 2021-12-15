@@ -19,36 +19,7 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <g transform="translate(0,0.5)">
-        <line y1="32" y2="32" x1="580"></line>
-        <line y1="53" y2="53" x1="580"></line>
-        <line y1="74" y2="74" x1="580"></line>
-        <line y1="95" y2="95" x1="580"></line>
-        <line y1="116" y2="116" x1="580"></line>
-        <line y1="137" y2="137" x1="580"></line>
-        <line y1="158" y2="158" x1="580"></line>
-        <line y1="179" y2="179" x1="580"></line>
-        <line y1="200" y2="200" x1="580"></line>
-        <line y1="221" y2="221" x1="580"></line>
-        <line y1="242" y2="242" x1="580"></line>
-        <line y1="263" y2="263" x1="580"></line>
-        <line y1="284" y2="284" x1="580"></line>
-        <line y1="305" y2="305" x1="580"></line>
-        <line y1="326" y2="326" x1="580"></line>
-        <line y1="347" y2="347" x1="580"></line>
-        <line y1="368" y2="368" x1="580"></line>
-        <line y1="389" y2="389" x1="580"></line>
-        <line y1="410" y2="410" x1="580"></line>
-        <line y1="431" y2="431" x1="580"></line>
-        <line y1="452" y2="452" x1="580"></line>
-        <line y1="473" y2="473" x1="580"></line>
-        <line y1="494" y2="494" x1="580"></line>
-        <line y1="515" y2="515" x1="580"></line>
-        <line y1="536" y2="536" x1="580"></line>
-        <line y1="557" y2="557" x1="580"></line>
-        <line y1="578" y2="578" x1="580"></line>
-        <line y1="599" y2="599" x1="580"></line>
-      </g>
+      <path d="M0,32.5h580M0,53.5h580M0,74.5h580M0,95.5h580M0,116.5h580M0,137.5h580M0,158.5h580M0,179.5h580M0,200.5h580M0,221.5h580M0,242.5h580M0,263.5h580M0,284.5h580M0,305.5h580M0,326.5h580M0,347.5h580M0,368.5h580M0,389.5h580M0,410.5h580M0,431.5h580M0,452.5h580M0,473.5h580M0,494.5h580M0,515.5h580M0,536.5h580M0,557.5h580M0,578.5h580M0,599.5h580"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
@@ -137,33 +108,7 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="grid">
-      <g transform="translate(0.5,0)">
-        <line x1="43" x2="43" y1="590"></line>
-        <line x1="66" x2="66" y1="590"></line>
-        <line x1="89" x2="89" y1="590"></line>
-        <line x1="112" x2="112" y1="590"></line>
-        <line x1="135" x2="135" y1="590"></line>
-        <line x1="158" x2="158" y1="590"></line>
-        <line x1="181" x2="181" y1="590"></line>
-        <line x1="204" x2="204" y1="590"></line>
-        <line x1="227" x2="227" y1="590"></line>
-        <line x1="250" x2="250" y1="590"></line>
-        <line x1="273" x2="273" y1="590"></line>
-        <line x1="296" x2="296" y1="590"></line>
-        <line x1="319" x2="319" y1="590"></line>
-        <line x1="342" x2="342" y1="590"></line>
-        <line x1="365" x2="365" y1="590"></line>
-        <line x1="388" x2="388" y1="590"></line>
-        <line x1="411" x2="411" y1="590"></line>
-        <line x1="434" x2="434" y1="590"></line>
-        <line x1="457" x2="457" y1="590"></line>
-        <line x1="480" x2="480" y1="590"></line>
-        <line x1="503" x2="503" y1="590"></line>
-        <line x1="526" x2="526" y1="590"></line>
-        <line x1="549" x2="549" y1="590"></line>
-        <line x1="572" x2="572" y1="590"></line>
-        <line x1="595" x2="595" y1="590"></line>
-      </g>
+      <path d="M43.5,0v590M66.5,0v590M89.5,0v590M112.5,0v590M135.5,0v590M158.5,0v590M181.5,0v590M204.5,0v590M227.5,0v590M250.5,0v590M273.5,0v590M296.5,0v590M319.5,0v590M342.5,0v590M365.5,0v590M388.5,0v590M411.5,0v590M434.5,0v590M457.5,0v590M480.5,0v590M503.5,0v590M526.5,0v590M549.5,0v590M572.5,0v590M595.5,0v590"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(54.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">1</text>

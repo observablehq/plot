@@ -220,7 +220,7 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return Array.from(index, i => values[i]);
+  return index ? Array.from(index, i => values[i]) : values;
 }
 
 export function maybeInput(key, options) {

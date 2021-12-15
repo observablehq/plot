@@ -19,15 +19,7 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <g transform="translate(0,0.5)">
-        <line y1="32" y2="32" x1="580"></line>
-        <line y1="53" y2="53" x1="580"></line>
-        <line y1="74" y2="74" x1="580"></line>
-        <line y1="95" y2="95" x1="580"></line>
-        <line y1="116" y2="116" x1="580"></line>
-        <line y1="137" y2="137" x1="580"></line>
-        <line y1="158" y2="158" x1="580"></line>
-      </g>
+      <path d="M0,32.5h580M0,53.5h580M0,74.5h580M0,95.5h580M0,116.5h580M0,137.5h580M0,158.5h580"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>

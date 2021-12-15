@@ -67,7 +67,12 @@ export class AxisX {
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
         .attr("transform", `translate(0,${ty})`)
-        .call(!grid ? () => {} : makeGridX(grid(x, ticks), fy ? fy.bandwidth() : offsetSign * (marginBottom + marginTop - height), index, fy, ty))
+        .call(!grid ? () => {}
+            : createGridX(
+              grid(x, ticks),
+              fy ? fy.bandwidth() : offsetSign * (marginBottom + marginTop - height),
+              fy ? take(fy.domain().map(d => fy(d) - ty), index) : [0]
+            ))
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
@@ -151,7 +156,12 @@ export class AxisY {
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
         .attr("transform", `translate(${tx},0)`)
-        .call(!grid ? () => {} : makeGridY(grid(y, ticks), fx ? fx.bandwidth() : offsetSign * (marginLeft + marginRight - width), index, fx, tx))
+        .call(!grid ? () => {}
+          : createGridY(
+              grid(y, ticks),
+              fx ? fx.bandwidth() : offsetSign * (marginLeft + marginRight - width),
+              fx ? take(fx.domain().map(d => fx(d) - tx), index) : [0]
+            ))
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
@@ -219,40 +229,22 @@ function maybeTickRotate(g, rotate) {
   }
 }
 
-function makeGridX(ticks, dy, index, fy, ty) {
-  const domain = fy ? fy.domain() : [ty];
-  let steps = index ? take(domain, index) : domain;
-  if (fy) steps = steps.map(fy);
+function createGridX(ticks, dy, steps) {
   return g => g.append("g")
       .attr("class", "grid")
       .selectAll()
       .data(steps)
-      .join("g")
-        .attr("transform", v => `translate(${offset},${v - ty})`)
-        .selectAll()
-        .data(() => ticks)
-        .join("line")
-          .attr("x1", d => d)
-          .attr("x2", d => d)
-          .attr("y1", dy);
+      .join("path")
+        .attr("d", v => ticks.map(d => `M${offset + d},${v}v${dy}`).join(""));
 }
 
-function makeGridY(ticks, dx, index, fx, tx) {
-  const domain = fx ? fx.domain() : [tx];
-  let steps = index ? take(domain, index) : domain;
-  if (fx) steps = steps.map(fx);
+function createGridY(ticks, dx, steps) {
   return g => g.append("g")
       .attr("class", "grid")
       .selectAll()
       .data(steps)
-      .join("g")
-        .attr("transform", v => `translate(${v - tx},${offset})`)
-        .selectAll()
-        .data(() => ticks)
-        .join("line")
-          .attr("y1", d => d)
-          .attr("y2", d => d)
-          .attr("x1", dx);
+      .join("path")
+        .attr("d", v => ticks.map(d => `M${v},${offset + d}h${dx}`).join(""));
 }
 
 function maybeTicks(grid) {

@@ -19,60 +19,7 @@
   </style>
   <g transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="grid">
-      <g transform="translate(0,0.5)">
-        <line y1="42" y2="42" x1="520"></line>
-        <line y1="56" y2="56" x1="520"></line>
-        <line y1="70" y2="70" x1="520"></line>
-        <line y1="84" y2="84" x1="520"></line>
-        <line y1="98" y2="98" x1="520"></line>
-        <line y1="112" y2="112" x1="520"></line>
-        <line y1="126" y2="126" x1="520"></line>
-        <line y1="140" y2="140" x1="520"></line>
-        <line y1="154" y2="154" x1="520"></line>
-        <line y1="168" y2="168" x1="520"></line>
-        <line y1="182" y2="182" x1="520"></line>
-        <line y1="196" y2="196" x1="520"></line>
-        <line y1="210" y2="210" x1="520"></line>
-        <line y1="224" y2="224" x1="520"></line>
-        <line y1="238" y2="238" x1="520"></line>
-        <line y1="252" y2="252" x1="520"></line>
-        <line y1="266" y2="266" x1="520"></line>
-        <line y1="280" y2="280" x1="520"></line>
-        <line y1="294" y2="294" x1="520"></line>
-        <line y1="308" y2="308" x1="520"></line>
-        <line y1="322" y2="322" x1="520"></line>
-        <line y1="336" y2="336" x1="520"></line>
-        <line y1="350" y2="350" x1="520"></line>
-        <line y1="364" y2="364" x1="520"></line>
-        <line y1="378" y2="378" x1="520"></line>
-        <line y1="392" y2="392" x1="520"></line>
-        <line y1="406" y2="406" x1="520"></line>
-        <line y1="420" y2="420" x1="520"></line>
-        <line y1="434" y2="434" x1="520"></line>
-        <line y1="448" y2="448" x1="520"></line>
-        <line y1="462" y2="462" x1="520"></line>
-        <line y1="476" y2="476" x1="520"></line>
-        <line y1="490" y2="490" x1="520"></line>
-        <line y1="504" y2="504" x1="520"></line>
-        <line y1="518" y2="518" x1="520"></line>
-        <line y1="532" y2="532" x1="520"></line>
-        <line y1="546" y2="546" x1="520"></line>
-        <line y1="560" y2="560" x1="520"></line>
-        <line y1="574" y2="574" x1="520"></line>
-        <line y1="588" y2="588" x1="520"></line>
-        <line y1="602" y2="602" x1="520"></line>
-        <line y1="616" y2="616" x1="520"></line>
-        <line y1="630" y2="630" x1="520"></line>
-        <line y1="644" y2="644" x1="520"></line>
-        <line y1="658" y2="658" x1="520"></line>
-        <line y1="672" y2="672" x1="520"></line>
-        <line y1="686" y2="686" x1="520"></line>
-        <line y1="700" y2="700" x1="520"></line>
-        <line y1="714" y2="714" x1="520"></line>
-        <line y1="728" y2="728" x1="520"></line>
-        <line y1="742" y2="742" x1="520"></line>
-        <line y1="756" y2="756" x1="520"></line>
-      </g>
+      <path d="M0,42.5h520M0,56.5h520M0,70.5h520M0,84.5h520M0,98.5h520M0,112.5h520M0,126.5h520M0,140.5h520M0,154.5h520M0,168.5h520M0,182.5h520M0,196.5h520M0,210.5h520M0,224.5h520M0,238.5h520M0,252.5h520M0,266.5h520M0,280.5h520M0,294.5h520M0,308.5h520M0,322.5h520M0,336.5h520M0,350.5h520M0,364.5h520M0,378.5h520M0,392.5h520M0,406.5h520M0,420.5h520M0,434.5h520M0,448.5h520M0,462.5h520M0,476.5h520M0,490.5h520M0,504.5h520M0,518.5h520M0,532.5h520M0,546.5h520M0,560.5h520M0,574.5h520M0,588.5h520M0,602.5h520M0,616.5h520M0,630.5h520M0,644.5h520M0,658.5h520M0,672.5h520M0,686.5h520M0,700.5h520M0,714.5h520M0,728.5h520M0,742.5h520M0,756.5h520"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,48.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Texas</text>
@@ -233,17 +180,7 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0.5,0)">
-        <line x1="110" x2="110" y1="750"></line>
-        <line x1="168" x2="168" y1="750"></line>
-        <line x1="226" x2="226" y1="750"></line>
-        <line x1="284" x2="284" y1="750"></line>
-        <line x1="342" x2="342" y1="750"></line>
-        <line x1="400" x2="400" y1="750"></line>
-        <line x1="457" x2="457" y1="750"></line>
-        <line x1="515" x2="515" y1="750"></line>
-        <line x1="573" x2="573" y1="750"></line>
-      </g>
+      <path d="M110.5,0v750M168.5,0v750M226.5,0v750M284.5,0v750M342.5,0v750M400.5,0v750M457.5,0v750M515.5,0v750M573.5,0v750"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>

@@ -321,19 +321,7 @@
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0.5,0)">
-        <line x1="120" x2="120" y1="1110"></line>
-        <line x1="170" x2="170" y1="1110"></line>
-        <line x1="220" x2="220" y1="1110"></line>
-        <line x1="270" x2="270" y1="1110"></line>
-        <line x1="320" x2="320" y1="1110"></line>
-        <line x1="370" x2="370" y1="1110"></line>
-        <line x1="420" x2="420" y1="1110"></line>
-        <line x1="470" x2="470" y1="1110"></line>
-        <line x1="520" x2="520" y1="1110"></line>
-        <line x1="570" x2="570" y1="1110"></line>
-        <line x1="620" x2="620" y1="1110"></line>
-      </g>
+      <path d="M120.5,0v1110M170.5,0v1110M220.5,0v1110M270.5,0v1110M320.5,0v1110M370.5,0v1110M420.5,0v1110M470.5,0v1110M520.5,0v1110M570.5,0v1110M620.5,0v1110"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(120.5,0)">
       <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">100%</text>

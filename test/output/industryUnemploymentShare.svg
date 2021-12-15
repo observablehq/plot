@@ -19,19 +19,7 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0,0.5)">
-        <line y1="370" y2="370" x1="580"></line>
-        <line y1="335" y2="335" x1="580"></line>
-        <line y1="300" y2="300" x1="580"></line>
-        <line y1="265" y2="265" x1="580"></line>
-        <line y1="230" y2="230" x1="580"></line>
-        <line y1="195" y2="195" x1="580"></line>
-        <line y1="160" y2="160" x1="580"></line>
-        <line y1="125.00000000000001" y2="125.00000000000001" x1="580"></line>
-        <line y1="89.99999999999999" y2="89.99999999999999" x1="580"></line>
-        <line y1="54.99999999999999" y2="54.99999999999999" x1="580"></line>
-        <line y1="20" y2="20" x1="580"></line>
-      </g>
+      <path d="M0,370.5h580M0,335.5h580M0,300.5h580M0,265.5h580M0,230.5h580M0,195.5h580M0,160.5h580M0,125.50000000000001h580M0,90.49999999999999h580M0,55.49999999999999h580M0,20.5h580"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0%</text>

@@ -60,14 +60,7 @@
   </g>
   <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0.5,0)">
-        <line x1="182.141592920354" x2="182.141592920354" y1="-270"></line>
-        <line x1="268.5132743362832" x2="268.5132743362832" y1="-270"></line>
-        <line x1="354.88495575221236" x2="354.88495575221236" y1="-270"></line>
-        <line x1="441.2566371681416" x2="441.2566371681416" y1="-270"></line>
-        <line x1="527.6283185840707" x2="527.6283185840707" y1="-270"></line>
-        <line x1="614" x2="614" y1="-270"></line>
-      </g>
+      <path d="M182.641592920354,0v-270M269.0132743362832,0v-270M355.38495575221236,0v-270M441.7566371681416,0v-270M528.1283185840707,0v-270M614.5,0v-270"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(182.641592920354,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>

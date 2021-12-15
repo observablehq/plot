@@ -19,19 +19,7 @@
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0,0.5)">
-        <line y1="610" y2="610" x1="580"></line>
-        <line y1="552" y2="552" x1="580"></line>
-        <line y1="494" y2="494" x1="580"></line>
-        <line y1="436" y2="436" x1="580"></line>
-        <line y1="379" y2="379" x1="580"></line>
-        <line y1="321" y2="321" x1="580"></line>
-        <line y1="263" y2="263" x1="580"></line>
-        <line y1="205" y2="205" x1="580"></line>
-        <line y1="147" y2="147" x1="580"></line>
-        <line y1="89" y2="89" x1="580"></line>
-        <line y1="32" y2="32" x1="580"></line>
-      </g>
+      <path d="M0,610.5h580M0,552.5h580M0,494.5h580M0,436.5h580M0,379.5h580M0,321.5h580M0,263.5h580M0,205.5h580M0,147.5h580M0,89.5h580M0,32.5h580"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,610.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1.2</text>
@@ -69,15 +57,7 @@
   </g>
   <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="grid">
-      <g transform="translate(0.5,0)">
-        <line x1="81" x2="81" y1="-590"></line>
-        <line x1="163" x2="163" y1="-590"></line>
-        <line x1="244" x2="244" y1="-590"></line>
-        <line x1="326" x2="326" y1="-590"></line>
-        <line x1="408" x2="408" y1="-590"></line>
-        <line x1="489" x2="489" y1="-590"></line>
-        <line x1="571" x2="571" y1="-590"></line>
-      </g>
+      <path d="M81.5,0v-590M163.5,0v-590M244.5,0v-590M326.5,0v-590M408.5,0v-590M489.5,0v-590M571.5,0v-590"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(81.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
