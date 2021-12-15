@@ -85,6 +85,10 @@ export function plot(options = {}) {
         .${className} text {
           white-space: pre;
         }
+        .${className} .grid {
+          stroke: currentColor;
+          stroke-opacity: 0.1;
+        }
       `))
       .call(applyInlineStyles, style)
     .node();

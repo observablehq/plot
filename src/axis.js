@@ -2,7 +2,7 @@ import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} fro
 import {formatIsoDate} from "./format.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
 import {radians} from "./math.js";
-import {impliedString} from "./style.js";
+import {impliedString, offset} from "./style.js";
 
 export class AxisX {
   constructor({
@@ -27,7 +27,7 @@ export class AxisX {
     this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
     this.fontVariant = impliedString(fontVariant, "normal");
-    this.grid = boolean(grid);
+    this.grid = maybeTicks(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
@@ -59,22 +59,21 @@ export class AxisX {
       labelAnchor,
       labelOffset,
       line,
-      tickRotate
+      tickRotate,
+      ticks
     } = this;
     const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
         .attr("transform", `translate(0,${ty})`)
+        .call(!grid ? () => {} : makeGridX(grid(x, ticks), fy ? fy.bandwidth() : offsetSign * (marginBottom + marginTop - height), index, fy, ty))
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fy ? gridFacetX(index, fy, -ty)
-          : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
@@ -114,7 +113,7 @@ export class AxisY {
     this.tickPadding = number(tickPadding);
     this.tickFormat = tickFormat;
     this.fontVariant = impliedString(fontVariant, "normal");
-    this.grid = boolean(grid);
+    this.grid = maybeTicks(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
@@ -144,22 +143,21 @@ export class AxisY {
       labelAnchor,
       labelOffset,
       line,
-      tickRotate
+      tickRotate,
+      ticks
     } = this;
     const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
         .attr("transform", `translate(${tx},0)`)
+        .call(!grid ? () => {} : makeGridY(grid(y, ticks), fx ? fx.bandwidth() : offsetSign * (marginLeft + marginRight - width), index, fx, tx))
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fx ? gridFacetY(index, fx, -tx)
-          : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
@@ -176,40 +174,6 @@ export class AxisY {
             .text(label))
       .node();
   }
-}
-
-function gridX(y2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("y2", y2);
-}
-
-function gridY(x2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("x2", x2);
-}
-
-function gridFacetX(index, fy, ty) {
-  const dy = fy.bandwidth();
-  const domain = fy.domain();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", (index ? take(domain, index) : domain).map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
-}
-
-function gridFacetY(index, fx, tx) {
-  const dx = fx.bandwidth();
-  const domain = fx.domain();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
 // D3 doesn’t provide a tick format for ordinal scales; we want shorthand when
@@ -253,4 +217,48 @@ function maybeTickRotate(g, rotate) {
     text.removeAttribute("y");
     text.setAttribute("dy", "0.32em");
   }
+}
+
+function makeGridX(ticks, dy, index, fy, ty) {
+  const domain = fy ? fy.domain() : [ty];
+  let steps = index ? take(domain, index) : domain;
+  if (fy) steps = steps.map(fy);
+  return g => g.append("g")
+      .attr("class", "grid")
+      .selectAll()
+      .data(steps)
+      .join("g")
+        .attr("transform", v => `translate(${offset},${v - ty})`)
+        .selectAll()
+        .data(() => ticks)
+        .join("line")
+          .attr("x1", d => d)
+          .attr("x2", d => d)
+          .attr("y1", dy);
+}
+
+function makeGridY(ticks, dx, index, fx, tx) {
+  const domain = fx ? fx.domain() : [tx];
+  let steps = index ? take(domain, index) : domain;
+  if (fx) steps = steps.map(fx);
+  return g => g.append("g")
+      .attr("class", "grid")
+      .selectAll()
+      .data(steps)
+      .join("g")
+        .attr("transform", v => `translate(${v - tx},${offset})`)
+        .selectAll()
+        .data(() => ticks)
+        .join("line")
+          .attr("y1", d => d)
+          .attr("y2", d => d)
+          .attr("x1", dx);
+}
+
+function maybeTicks(grid) {
+  if (!grid) return false;
+  if (grid === true) return (scale, ticks) => (scale.ticks ? scale.ticks(ticks) : scale.domain()).map(scale);
+  if (Array.isArray(grid)) return (scale) => grid.map(scale);
+  if (grid === +grid) return (scale) => (scale.ticks ? scale.ticks.apply(scale, [grid]) : scale.domain()).map(scale);
+  throw new Error(`Unexpected grid option: ${grid}`);
 }
