@@ -5,6 +5,7 @@ export default async function() {
   const data = await d3.csv("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     height: 640,
+    marginLeft: 44,
     color: {
       scheme: "bupu",
       type: "symlog"

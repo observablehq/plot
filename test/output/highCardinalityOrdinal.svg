@@ -11,6 +11,11 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(45.5,0)">

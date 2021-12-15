@@ -11,6 +11,11 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(120,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,41.5)">
@@ -315,49 +320,53 @@
     </g>
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid">
+      <g transform="translate(0.5,0)">
+        <line x1="120" x2="120" y1="1110"></line>
+        <line x1="170" x2="170" y1="1110"></line>
+        <line x1="220" x2="220" y1="1110"></line>
+        <line x1="270" x2="270" y1="1110"></line>
+        <line x1="320" x2="320" y1="1110"></line>
+        <line x1="370" x2="370" y1="1110"></line>
+        <line x1="420" x2="420" y1="1110"></line>
+        <line x1="470" x2="470" y1="1110"></line>
+        <line x1="520" x2="520" y1="1110"></line>
+        <line x1="570" x2="570" y1="1110"></line>
+        <line x1="620" x2="620" y1="1110"></line>
+      </g>
+    </g>
     <g class="tick" opacity="1" transform="translate(120.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(170.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(220.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(270.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(320.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(370.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">0%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(420.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">20%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(470.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">40%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(520.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">60%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(570.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">80%</text>
     </g>
     <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="1110" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">100%</text>
     </g>
   </g>
   <g>

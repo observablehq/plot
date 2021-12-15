@@ -11,51 +11,60 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="grid">
+      <g transform="translate(0,0.5)">
+        <line y1="370" y2="370" x1="580"></line>
+        <line y1="335.8845315904139" y2="335.8845315904139" x1="580"></line>
+        <line y1="301.7690631808279" y2="301.7690631808279" x1="580"></line>
+        <line y1="267.65359477124184" y2="267.65359477124184" x1="580"></line>
+        <line y1="233.5381263616558" y2="233.5381263616558" x1="580"></line>
+        <line y1="199.42265795206976" y2="199.42265795206976" x1="580"></line>
+        <line y1="165.30718954248368" y2="165.30718954248368" x1="580"></line>
+        <line y1="131.19172113289764" y2="131.19172113289764" x1="580"></line>
+        <line y1="97.07625272331158" y2="97.07625272331158" x1="580"></line>
+        <line y1="62.96078431372551" y2="62.96078431372551" x1="580"></line>
+        <line y1="28.84531590413947" y2="28.84531590413947" x1="580"></line>
+      </g>
+    </g>
     <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,336.3845315904139)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,302.2690631808279)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,268.15359477124184)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,234.0381263616558)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,199.92265795206976)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,165.80718954248368)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,131.69172113289764)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,97.57625272331158)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,63.46078431372551)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,29.34531590413947)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency (%)</text>
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle">

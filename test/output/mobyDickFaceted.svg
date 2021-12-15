@@ -11,6 +11,11 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(600,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,118.5)">
@@ -31,65 +36,91 @@
   <g>
     <g transform="translate(0,31)">
       <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+        <g class="grid">
+          <g transform="translate(1,0.5)">
+            <line y1="175" y2="175" x1="265"></line>
+            <line y1="145.93023255813955" y2="145.93023255813955" x1="265"></line>
+            <line y1="116.86046511627907" y2="116.86046511627907" x1="265"></line>
+            <line y1="87.79069767441861" y2="87.79069767441861" x1="265"></line>
+            <line y1="58.72093023255814" y2="58.72093023255814" x1="265"></line>
+            <line y1="29.651162790697676" y2="29.651162790697676" x1="265"></line>
+            <line y1="0.5813953488372131" y2="0.5813953488372131" x1="265"></line>
+          </g>
+          <g transform="translate(295,0.5)">
+            <line y1="175" y2="175" x1="265"></line>
+            <line y1="145.93023255813955" y2="145.93023255813955" x1="265"></line>
+            <line y1="116.86046511627907" y2="116.86046511627907" x1="265"></line>
+            <line y1="87.79069767441861" y2="87.79069767441861" x1="265"></line>
+            <line y1="58.72093023255814" y2="58.72093023255814" x1="265"></line>
+            <line y1="29.651162790697676" y2="29.651162790697676" x1="265"></line>
+            <line y1="0.5813953488372131" y2="0.5813953488372131" x1="265"></line>
+          </g>
+        </g>
         <g class="tick" opacity="1" transform="translate(0,175.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,146.43023255813955)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,117.36046511627907)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,88.29069767441861)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,59.22093023255814)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,30.151162790697676)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,1.081395348837213)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g><text fill="currentColor" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ Frequency</text>
       </g>
     </g>
     <g transform="translate(0,225)">
       <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+        <g class="grid">
+          <g transform="translate(1,0.5)">
+            <line y1="175" y2="175" x1="265"></line>
+            <line y1="145.93023255813955" y2="145.93023255813955" x1="265"></line>
+            <line y1="116.86046511627907" y2="116.86046511627907" x1="265"></line>
+            <line y1="87.79069767441861" y2="87.79069767441861" x1="265"></line>
+            <line y1="58.72093023255814" y2="58.72093023255814" x1="265"></line>
+            <line y1="29.651162790697676" y2="29.651162790697676" x1="265"></line>
+            <line y1="0.5813953488372131" y2="0.5813953488372131" x1="265"></line>
+          </g>
+          <g transform="translate(295,0.5)">
+            <line y1="175" y2="175" x1="265"></line>
+            <line y1="145.93023255813955" y2="145.93023255813955" x1="265"></line>
+            <line y1="116.86046511627907" y2="116.86046511627907" x1="265"></line>
+            <line y1="87.79069767441861" y2="87.79069767441861" x1="265"></line>
+            <line y1="58.72093023255814" y2="58.72093023255814" x1="265"></line>
+            <line y1="29.651162790697676" y2="29.651162790697676" x1="265"></line>
+            <line y1="0.5813953488372131" y2="0.5813953488372131" x1="265"></line>
+          </g>
+        </g>
         <g class="tick" opacity="1" transform="translate(0,175.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,146.43023255813955)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,117.36046511627907)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,88.29069767441861)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,59.22093023255814)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,30.151162790697676)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
         <g class="tick" opacity="1" transform="translate(0,1.081395348837213)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
-          <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
         </g>
       </g>
     </g>

@@ -5,7 +5,8 @@ export default async function() {
   const data = await d3.csv("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     height: 640,
-    grid: true,
+    marginLeft: 44,
+    grid: 100,
     x: {
       label: "Carats →"
     },

@@ -11,6 +11,11 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g>
     <rect x="10" width="47" y="212" height="46" fill="rgb(190, 226, 146)"></rect>

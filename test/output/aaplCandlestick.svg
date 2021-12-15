@@ -11,65 +11,78 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="grid">
+      <g transform="translate(0,0.5)">
+        <line y1="323.90833015408174" y2="323.90833015408174" x1="900"></line>
+        <line y1="281.795187339942" y2="281.795187339942" x1="900"></line>
+        <line y1="239.68204452580224" y2="239.68204452580224" x1="900"></line>
+        <line y1="197.56890171166248" y2="197.56890171166248" x1="900"></line>
+        <line y1="155.45575889752268" y2="155.45575889752268" x1="900"></line>
+        <line y1="113.34261608338295" y2="113.34261608338295" x1="900"></line>
+        <line y1="71.22947326924321" y2="71.22947326924321" x1="900"></line>
+        <line y1="29.11633045510343" y2="29.11633045510343" x1="900"></line>
+      </g>
+    </g>
     <g class="tick" opacity="1" transform="translate(0,324.40833015408174)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">155</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">155</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,282.295187339942)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,240.18204452580224)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">165</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">165</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,198.06890171166248)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">170</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">170</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,155.95575889752268)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">175</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">175</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,113.84261608338295)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">180</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,71.72947326924321)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">185</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">185</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,29.61633045510343)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">190</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">190</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Apple stock price ($)</text>
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid">
+      <g transform="translate(0.5,0)">
+        <line x1="117.03999999999999" x2="117.03999999999999" y1="-350"></line>
+        <line x1="274.3428571428571" x2="274.3428571428571" y1="-350"></line>
+        <line x1="431.6457142857143" x2="431.6457142857143" y1="-350"></line>
+        <line x1="573.7257142857143" x2="573.7257142857143" y1="-350"></line>
+        <line x1="731.0285714285715" x2="731.0285714285715" y1="-350"></line>
+        <line x1="883.2571428571428" x2="883.2571428571428" y1="-350"></line>
+      </g>
+    </g>
     <g class="tick" opacity="1" transform="translate(117.53999999999999,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
     </g>
     <g class="tick" opacity="1" transform="translate(274.8428571428571,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
     </g>
     <g class="tick" opacity="1" transform="translate(432.1457142857143,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">February</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">February</text>
     </g>
     <g class="tick" opacity="1" transform="translate(574.2257142857143,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">March</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">March</text>
     </g>
     <g class="tick" opacity="1" transform="translate(731.5285714285715,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">April</text>
     </g>
     <g class="tick" opacity="1" transform="translate(883.7571428571428,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
     </g>
   </g>
   <g stroke="currentColor" transform="translate(0.5,0)">
