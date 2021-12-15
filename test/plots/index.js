@@ -7,6 +7,7 @@ export {default as aaplMonthly} from "./aapl-monthly.js";
 export {default as aaplVolume} from "./aapl-volume.js";
 export {default as aaplVolumeRect} from "./aapl-volume-rect.js";
 export {default as anscombeQuartet} from "./anscombe-quartet.js";
+export {default as athletesBinsColors} from "./athletes-bins-colors.js";
 export {default as athletesHeightWeight} from "./athletes-height-weight.js";
 export {default as athletesHeightWeightBin} from "./athletes-height-weight-bin.js";
 export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight-bin-stroke.js";
