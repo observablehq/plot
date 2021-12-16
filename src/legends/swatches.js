@@ -63,6 +63,7 @@ export function legendSwatches(color, {
         display: flex;
         align-items: center;
         min-height: 33px;
+        flex-wrap: wrap;
       }
       .${className}-swatch {
         display: inline-flex;
