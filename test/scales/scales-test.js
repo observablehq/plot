@@ -1090,6 +1090,16 @@ it("plot({inset, …}).scale('x').range respects the given scale-level inset", (
   assert.deepStrictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {inset: 7}}).scale("x").range, [27, 613]);
 });
 
+it("plot({inset, …}).scale('x') throws if there is not enough space", () => {
+  assert.throws(() => Plot.plot({x: {inset: 60}, width: 100}));
+  assert.throws(() => Plot.plot({x: {inset: 30}, margin: 30, width: 100}));
+});
+
+it("plot({inset, …}).scale('y') throws if there is not enough space", () => {
+  assert.throws(() => Plot.plot({y: {inset: 60}, height: 100}));
+  assert.throws(() => Plot.plot({y: {inset: 30}, margin: 30, height: 100}));
+});
+
 it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => {
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: false}}).scale("x").clamp, false);
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: true}}).scale("x").clamp, true);

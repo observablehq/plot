@@ -72,7 +72,10 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {insetLeft, insetRight} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.range = [marginLeft + insetLeft, width - marginRight - insetRight];
+    const left = marginLeft + insetLeft;
+    const right = width - marginRight - insetRight;
+    if (right < left) throw new Error("Not enough space left for x");
+    scale.range = [left, right];
     if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     scale.scale.range(scale.range);
   }
@@ -83,7 +86,10 @@ function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
     const {insetTop, insetBottom} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    scale.range = [height - marginBottom - insetBottom, marginTop + insetTop];
+    const top = height - marginBottom - insetBottom;
+    const bottom = marginTop + insetTop;
+    if (top < bottom) throw new Error("Not enough space left for y");
+    scale.range = [top, bottom];
     if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     else scale.range.reverse();
     scale.scale.range(scale.range);
