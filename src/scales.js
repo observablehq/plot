@@ -15,6 +15,7 @@ export function Scales(channels, {
   insetLeft: globalInsetLeft = globalInset,
   round,
   nice,
+  clamp,
   align,
   padding,
   ...options
@@ -27,6 +28,7 @@ export function Scales(channels, {
       const scale = Scale(key, scaleChannels, {
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
+        clamp,
         align,
         padding,
         ...scaleOptions

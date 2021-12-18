@@ -190,7 +190,7 @@ Quantitative scales can be further customized with additional options:
 * *scale*.**zero** - if true, extend the domain to include zero if needed
 * *scale*.**percent** - if true, transform proportions in [0, 1] to percentages in [0, 100]
 
-Clamping is typically used in conjunction with setting an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. A top-level **nice** option is supported as shorthand for setting *scale*.nice on all scales.
+Clamping is typically used in conjunction with setting an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. Top-level **clamp** and **nice** options are supported as shorthand for setting *scale*.clamp and *scale*.nice on all scales.
 
 The *scale*.**transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
