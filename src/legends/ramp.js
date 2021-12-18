@@ -14,12 +14,13 @@ export function legendRamp(color, {
   marginLeft = 0,
   style,
   tickFormat,
-  ticks = tickFormat === null ? 0 : (width - marginLeft - marginRight) / 64,
+  ticks = (width - marginLeft - marginRight) / 64,
   fontVariant = inferFontVariant(color),
   round = true,
   className
 }) {
   className = maybeClassName(className);
+  if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg")
       .attr("class", className)
