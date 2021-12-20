@@ -540,6 +540,8 @@ Returns a standalone legend for the given *scale* definition, passing the *optio
 Plot.legend({color: {type: "linear"}})
 ```
 
+The scale definition is exposed through the *plot*.**scale**(*name*) function of the returned legend.
+
 ## Marks
 
 [Marks](https://observablehq.com/@observablehq/plot-marks) visualize data as geometric shapes such as bars, dots, and lines. An single mark can generate multiple shapes: for example, passing a [Plot.barY](#plotbarydata-options) to [Plot.plot](#plotplotoptions) will produce a bar for each element in the associated data. Multiple marks can be layered into [plots](#plotplotoptions).

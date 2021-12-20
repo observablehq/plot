@@ -1,4 +1,4 @@
-import {normalizeScale} from "./scales.js";
+import {normalizeScale, exposeScales} from "./scales.js";
 import {legendColor} from "./legends/color.js";
 import {legendOpacity} from "./legends/opacity.js";
 import {isObject} from "./mark.js";
@@ -10,9 +10,13 @@ const legendRegistry = new Map([
 
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
-    const scale = options[key];
-    if (isObject(scale)) { // e.g., ignore {color: "red"}
-      return value(normalizeScale(key, scale), legendOptions(scale, options));
+    const desc = options[key];
+    if (isObject(desc)) { // e.g., ignore {color: "red"}
+      const scale = normalizeScale(key, desc);
+      return Object.assign(
+        value(scale, legendOptions(desc, options)),
+        {scale: exposeScales({[key]: scale})}
+      );
     }
   }
   throw new Error("unknown legend type");
