@@ -3,7 +3,6 @@ import * as d3 from "d3";
 
 export default async function() {
   const data = await d3.csv("data/bls-industry-unemployment.csv", d3.autoType);
-  console.warn(data);
   return Plot.plot({
     clamp: true,
     x: {domain: [new Date(Date.UTC(2006, 0, 1)), new Date(Date.UTC(2008, 0, 1))], clamp: false},
