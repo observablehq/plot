@@ -4,6 +4,7 @@ import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   ariaLabel: "text",
@@ -118,15 +119,15 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
 
 export function text(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return new Text(data, {...options, x, y});
+  return new Text(data, maybeIntervalMidY(maybeIntervalMidX({...options, x, y})));
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, {...options, x});
+  return new Text(data, maybeIntervalMidY({...options, x}));
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, {...options, y});
+  return new Text(data, maybeIntervalMidX({...options, y}));
 }
 
 function applyIndirectTextStyles(selection, mark, T) {

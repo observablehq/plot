@@ -1,0 +1,32 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="rect" fill="none" stroke="black">
+    <rect x="0" y="4" width="620" height="25.887671232876713" rx="8"></rect>
+    <rect x="0" y="37.88767123287671" width="598.8636363636364" height="22.608219178082194" rx="8"></rect>
+    <rect x="0" y="68.4958904109589" width="584.7727272727273" height="25.8876712328767" rx="8"></rect>
+    <rect x="0" y="102.3835616438356" width="584.7727272727273" height="24.79452054794521" rx="8"></rect>
+    <rect x="0" y="135.17808219178082" width="528.4090909090909" height="25.887671232876727" rx="8"></rect>
+    <rect x="0" y="169.06575342465754" width="521.3636363636364" height="24.79452054794521" rx="8"></rect>
+    <rect x="0" y="201.86027397260276" width="521.3636363636364" height="25.88767123287667" rx="8"></rect>
+    <rect x="0" y="235.74794520547943" width="528.4090909090909" height="25.887671232876755" rx="8"></rect>
+    <rect x="0" y="269.6356164383562" width="479.09090909090907" height="24.794520547945183" rx="8"></rect>
+    <rect x="0" y="302.43013698630136" width="465" height="25.887671232876755" rx="8"></rect>
+    <rect x="0" y="336.3178082191781" width="521.3636363636364" height="24.794520547945183" rx="8"></rect>
+    <rect x="0" y="369.1123287671233" width="556.5909090909091" height="25.8876712328767" rx="8"></rect>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(14.5,0.5)"><text y="0.32em" transform="translate(620,16.943835616438356)">88</text><text y="0.32em" transform="translate(598.8636363636364,49.1917808219178)">85</text><text y="0.32em" transform="translate(584.7727272727273,81.43972602739726)">83</text><text y="0.32em" transform="translate(584.7727272727273,114.78082191780821)">83</text><text y="0.32em" transform="translate(528.4090909090909,148.12191780821917)">75</text><text y="0.32em" transform="translate(521.3636363636364,181.46301369863014)">74</text><text y="0.32em" transform="translate(521.3636363636364,214.80410958904108)">74</text><text y="0.32em" transform="translate(528.4090909090909,248.69178082191783)">75</text><text y="0.32em" transform="translate(479.09090909090907,282.03287671232874)">68</text><text y="0.32em" transform="translate(465,315.37397260273974)">66</text><text y="0.32em" transform="translate(521.3636363636364,348.7150684931507)">74</text><text y="0.32em" transform="translate(556.5909090909091,382.0561643835616)">79</text></g>
+  <g aria-label="text" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(310,16.943835616438356)">Jan</text><text y="0.32em" transform="translate(299.4318181818182,49.1917808219178)">Feb</text><text y="0.32em" transform="translate(292.3863636363636,81.43972602739726)">Mar</text><text y="0.32em" transform="translate(292.3863636363636,114.78082191780821)">Apr</text><text y="0.32em" transform="translate(264.20454545454544,148.12191780821917)">May</text><text y="0.32em" transform="translate(260.6818181818182,181.46301369863014)">Jun</text><text y="0.32em" transform="translate(260.6818181818182,214.80410958904108)">Jul</text><text y="0.32em" transform="translate(264.20454545454544,248.69178082191783)">Aug</text><text y="0.32em" transform="translate(239.54545454545453,282.03287671232874)">Sep</text><text y="0.32em" transform="translate(232.5,315.37397260273974)">Oct</text><text y="0.32em" transform="translate(260.6818181818182,348.7150684931507)">Nov</text><text y="0.32em" transform="translate(278.29545454545456,382.0561643835616)">Dec</text></g>
+</svg>
