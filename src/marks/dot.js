@@ -1,5 +1,6 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
+import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {Mark, identity, maybeNumber, maybeTuple} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -52,13 +53,13 @@ export class Dot extends Mark {
 
 export function dot(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Dot(data, {...options, x, y});
+  return new Dot(data, maybeIntervalY(maybeIntervalX({...options, x, y})));
 }
 
 export function dotX(data, {x = identity, ...options} = {}) {
-  return new Dot(data, {...options, x});
+  return new Dot(data, maybeIntervalY({...options, x}));
 }
 
 export function dotY(data, {y = identity, ...options} = {}) {
-  return new Dot(data, {...options, y});
+  return new Dot(data, maybeIntervalX({...options, y}));
 }

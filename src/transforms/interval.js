@@ -32,9 +32,9 @@ function maybeIntervalK(k, maybeInsetK, options) {
   const label = labelof(v);
   return maybeInsetK({
     ...options,
-    [k]: undefined,
+    [k]: {transform: (data) => tv1(data).map(v => mid(interval.offset(v), v)), label},
     [`${k}1`]: v1 === undefined ? {transform: tv1, label} : v1,
-    [`${k}2`]: v2 === undefined ? {transform: () => tv1().map(v => interval.offset(v)), label} : v2
+    [`${k}2`]: v2 === undefined ? {transform: (data) => tv1(data).map(v => interval.offset(v)), label} : v2
   });
 }
 
@@ -44,4 +44,8 @@ export function maybeIntervalX(options = {}) {
 
 export function maybeIntervalY(options = {}) {
   return maybeIntervalK("y", maybeInsetY, options);
+}
+
+function mid(a, b) {
+  return a instanceof Date ? new Date((+a + +b) / 2) : (a + b) / 2;
 }

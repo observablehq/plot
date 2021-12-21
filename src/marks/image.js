@@ -1,5 +1,6 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
+import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {Mark, maybeNumber, maybeTuple, string} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
@@ -89,5 +90,5 @@ export class Image extends Mark {
 
 export function image(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Image(data, {...options, x, y});
+  return new Image(data, maybeIntervalY(maybeIntervalX({...options, x, y})));
 }
