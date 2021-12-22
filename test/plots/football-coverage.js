@@ -10,7 +10,8 @@ export default async function() {
     y: {
       grid: true,
       domain: [0, 0.5],
-      tickFormat: "%"
+      tickFormat: "%",
+      axis: "both"
     },
     facet: {
       data: football,

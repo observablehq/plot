@@ -8,7 +8,8 @@ export default async function() {
     inset: 10,
     x: {
       type: "log",
-      label: "Population →"
+      label: "Population →",
+      axis: "both"
     },
     y: {
       label: "↑ Inequality"

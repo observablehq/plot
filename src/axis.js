@@ -20,7 +20,7 @@ export class AxisX {
     tickRotate
   } = {}) {
     this.name = name;
-    this.axis = keyword(axis, "axis", ["top", "bottom"]);
+    this.axis = keyword(axis, "axis", name === "x" ? ["top", "bottom", "both"] : ["top", "bottom"]);
     this.ticks = ticks;
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
@@ -58,35 +58,48 @@ export class AxisX {
       labelAnchor,
       labelOffset,
       line,
+      name,
       tickRotate
     } = this;
-    const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
-    const offsetSign = axis === "top" ? -1 : 1;
-    const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
-    return create("svg:g")
-        .attr("transform", `translate(0,${ty})`)
-        .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
-        .call(maybeTickRotate, tickRotate)
-        .attr("font-size", null)
-        .attr("font-family", null)
-        .attr("font-variant", fontVariant)
-        .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fy ? gridFacetX(index, fy, -ty)
-          : gridX(offsetSign * (marginBottom + marginTop - height)))
-        .call(!label ? () => {} : g => g.append("text")
-            .attr("fill", "currentColor")
-            .attr("transform", `translate(${
-                labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
-                  : labelAnchor === "right" ? width + labelMarginRight
-                  : -labelMarginLeft
-              },${labelOffset * offsetSign})`)
-            .attr("dy", axis === "top" ? "1em" : "-0.32em")
-            .attr("text-anchor", labelAnchor === "center" ? "middle"
-                : labelAnchor === "right" ? "end"
-                : "start")
-            .text(label))
-      .node();
+    const axes = Array.from(axis === "both" ? ["bottom", "top"] : [axis], (axis, secondary) => {
+      const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
+      const offsetSign = axis === "top" ? -1 : 1;
+      const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
+      return create("svg:g")
+          .attr("transform", `translate(0,${ty})`)
+          .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
+          .call(maybeTickRotate, tickRotate)
+          .attr("font-size", null)
+          .attr("font-family", null)
+          .attr("font-variant", fontVariant)
+          .call(!line ? g => g.select(".domain").remove() : () => {})
+          .call(!grid || secondary ? () => {}
+            : fy ? gridFacetX(index, fy, -ty)
+            : gridX(offsetSign * (marginBottom + marginTop - height)))
+          .call(!label || secondary ? () => {} : g => g.append("text")
+              .attr("fill", "currentColor")
+              .attr("transform", `translate(${
+                  labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
+                    : labelAnchor === "right" ? width + labelMarginRight
+                    : -labelMarginLeft
+                },${
+                  offsetSign * (labelOffset !== undefined
+                    ? labelOffset
+                    : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom
+                )})`)
+              .attr("dy", axis === "top" ? "1em" : "-0.32em")
+              .attr("text-anchor", labelAnchor === "center" ? "middle"
+                  : labelAnchor === "right" ? "end"
+                  : "start")
+              .text(label))
+        .node();
+    });
+    return axis === "both"
+      ? create("svg:g")
+        .call(g => g.append(() => axes[0]))
+        .call(g => g.append(() => axes[1]))
+        .node()
+      : axes[0];
   }
 }
 
@@ -107,7 +120,7 @@ export class AxisY {
     tickRotate
   } = {}) {
     this.name = name;
-    this.axis = keyword(axis, "axis", ["left", "right"]);
+    this.axis = keyword(axis, "axis", name === "y" ? ["left", "right", "both"] : ["left", "right"]);
     this.ticks = ticks;
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
@@ -143,37 +156,50 @@ export class AxisY {
       labelAnchor,
       labelOffset,
       line,
+      name,
       tickRotate
     } = this;
-    const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
-    const offsetSign = axis === "left" ? -1 : 1;
-    const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
-    return create("svg:g")
-        .attr("transform", `translate(${tx},0)`)
-        .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
-        .call(maybeTickRotate, tickRotate)
-        .attr("font-size", null)
-        .attr("font-family", null)
-        .attr("font-variant", fontVariant)
-        .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fx ? gridFacetY(index, fx, -tx)
-          : gridY(offsetSign * (marginLeft + marginRight - width)))
-        .call(!label ? () => {} : g => g.append("text")
-            .attr("fill", "currentColor")
-            .attr("transform", `translate(${labelOffset * offsetSign},${
-                labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
-                  : labelAnchor === "bottom" ? height - marginBottom
-                  : marginTop
-              })${labelAnchor === "center" ? ` rotate(-90)` : ""}`)
-            .attr("dy", labelAnchor === "center" ? (axis === "right" ? "-0.32em" : "0.75em")
-                : labelAnchor === "bottom" ? "1.4em"
-                : "-1em")
-            .attr("text-anchor", labelAnchor === "center" ? "middle"
-                : axis === "right" ? "end"
-                : "start")
-            .text(label))
-      .node();
+    const axes = Array.from(axis === "both" ? ["right", "left"] : [axis], (axis, secondary) => {
+      const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
+      const offsetSign = axis === "left" ? -1 : 1;
+      const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
+      return create("svg:g")
+          .attr("transform", `translate(${tx},0)`)
+          .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
+          .call(maybeTickRotate, tickRotate)
+          .attr("font-size", null)
+          .attr("font-family", null)
+          .attr("font-variant", fontVariant)
+          .call(!line ? g => g.select(".domain").remove() : () => {})
+          .call(!grid || secondary ? () => {}
+            : fx ? gridFacetY(index, fx, -tx)
+            : gridY(offsetSign * (marginLeft + marginRight - width)))
+          .call(!label || secondary ? () => {} : g => g.append("text")
+              .attr("fill", "currentColor")
+              .attr("transform", `translate(${
+                offsetSign * (labelOffset !== undefined
+                  ? labelOffset
+                  : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight
+              )},${
+                  labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
+                    : labelAnchor === "bottom" ? height - marginBottom
+                    : marginTop
+                })${labelAnchor === "center" ? ` rotate(-90)` : ""}`)
+              .attr("dy", labelAnchor === "center" ? (axis === "right" ? "-0.32em" : "0.75em")
+                  : labelAnchor === "bottom" ? "1.4em"
+                  : "-1em")
+              .attr("text-anchor", labelAnchor === "center" ? "middle"
+                  : axis === "right" ? "end"
+                  : "start")
+              .text(label))
+        .node();
+      });
+      return axis === "both"
+        ? create("svg:g")
+          .call(g => g.append(() => axes[0]))
+          .call(g => g.append(() => axes[1]))
+          .node()
+        : axes[0];
   }
 }
 

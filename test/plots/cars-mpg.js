@@ -9,7 +9,8 @@ export default async function() {
     },
     y: {
       grid: true,
-      zero: true
+      zero: true,
+      axis: "both"
     },
     color: {
       type: "ordinal"

@@ -55,20 +55,8 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
       fy.labelOffset = fy.axis === "left" ? facetMarginLeft : facetMarginRight;
     }
   }
-  if (x) {
-    autoAxisLabelsX(x, scales.x, channels.get("x"));
-    if (x.labelOffset === undefined) {
-      const {marginTop, marginBottom, facetMarginTop, facetMarginBottom} = dimensions;
-      x.labelOffset = x.axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
-    }
-  }
-  if (y) {
-    autoAxisLabelsY(y, x, scales.y, channels.get("y"));
-    if (y.labelOffset === undefined) {
-      const {marginRight, marginLeft, facetMarginLeft, facetMarginRight} = dimensions;
-      y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
-    }
-  }
+  if (x) autoAxisLabelsX(x, scales.x, channels.get("x"));
+  if (y) autoAxisLabelsY(y, x, scales.y, channels.get("y"));
   for (const [key, type] of registry) {
     if (type !== position && scales[key]) { // not already handled above
       autoScaleLabel(key, scales[key], channels.get(key), options[key]);
