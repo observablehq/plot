@@ -783,7 +783,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
 
-If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified or is a constant number of pixels, dots will be placed relative to the anchor. Likewise if the **y** channel is not specified or is a constant number of pixels, dots will be placed vertically relative to the anchor. Typically either *x*, *y*, or both are specified.
+
+The **anchor** option describes how the dots are placed when their horizontal or vertical position is not bound to a scale; any of: top, bottom, left, right and combinations thereof such as top-left; defaults to the center of the plot or of the facet.
 
 The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
 
@@ -826,7 +828,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
 
-If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified or is a constant number of pixels, images will be placed relative to the anchor. Likewise if the **y** channel is not specified or is a constant number of pixels, images will be placed vertically relative to the anchor. Typically either *x*, *y*, or both are specified.
+
+The **anchor** option describes how the image is placed when its horizontal or vertical position is not bound to a scale; any of: top, bottom, left, right and combinations thereof such as top-left; defaults to the center of the plot or of the facet.
 
 The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
 
@@ -1030,7 +1034,7 @@ The following text-specific constant options are also supported:
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
 * **rotate** - the rotation in degrees clockwise; defaults to 0
-* **anchor** - the anchor point—if the text is not bound to a scale; any of: top, bottom, left, right and combinations thereof such as top-left; defaults to the center of the chart
+* **anchor** - the anchor point—if the text is not bound to a scale; any of: top, bottom, left, right and combinations thereof such as top-left; defaults to the center of the plot or of the facet
 * **x** - number of pixels to the right relative to the anchor point
 * **y** - number of pixels to the bottom relative to the anchor point
 

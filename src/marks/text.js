@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
+import {Mark, indexOf, identity, string, anchorPosition, maybeAnchor, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -57,7 +57,7 @@ export class Text extends Mark {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
-    const [cx, cy] = textPosition(dimensions, this.anchor, this.cx, this.cy);
+    const [cx, cy] = anchorPosition(dimensions, this.anchor, this.cx, this.cy);
     return create("svg:g")
         .call(applyIndirectTextStyles, this)
         .call(applyTransform, x, y, offset, offset)
@@ -108,20 +108,4 @@ function applyDirectTextStyles(selection, mark) {
   applyDirectStyles(selection, mark);
   applyAttr(selection, "dx", mark.dx);
   applyAttr(selection, "dy", mark.dy);
-}
-
-function maybeAnchor(anchor = "") {
-  const a = anchor.toLowerCase();
-  const v = a.match(/^(top|bottom|)/)[0];
-  const h = a.match(/(left|right|)$/)[0];
-  if (a != ((h && v) ? `${v}-${h}` : h ? h : v))
-    throw new Error(`Unexpected anchor: ${anchor}`);
-  return {h, v};
-}
-
-function textPosition({width, height, marginTop, marginRight, marginBottom, marginLeft}, anchor, cx = 0, cy = 0) {
-  const {h, v} = anchor;
-  const x = h === "left" ? marginLeft : h === "right" ? width - marginRight : (marginLeft + width - marginRight) / 2;
-  const y = v === "top" ? marginTop : v === "bottom" ? height - marginBottom : (marginTop + height - marginBottom) / 2;
-  return [x + cx, y + cy];
 }

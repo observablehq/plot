@@ -344,3 +344,19 @@ function ascendingGroup([ak, av], [bk, bv]) {
 function descendingGroup([ak, av], [bk, bv]) {
   return descending(av, bv) || ascending(ak, bk);
 }
+
+export function maybeAnchor(anchor = "") {
+  const a = anchor.toLowerCase();
+  const v = a.match(/^(top|bottom|)/)[0];
+  const h = a.match(/(left|right|)$/)[0];
+  if (a != ((h && v) ? `${v}-${h}` : h ? h : v))
+    throw new Error(`Unexpected anchor: ${anchor}`);
+  return {h, v};
+}
+
+export function anchorPosition({width, height, marginTop, marginRight, marginBottom, marginLeft}, anchor, cx = 0, cy = 0) {
+  const {h, v} = anchor;
+  const x = h === "left" ? marginLeft : h === "right" ? width - marginRight : (marginLeft + width - marginRight) / 2;
+  const y = v === "top" ? marginTop : v === "bottom" ? height - marginBottom : (marginTop + height - marginBottom) / 2;
+  return [x + cx, y + cy];
+}

@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, maybeNumber, maybeTuple, string} from "../mark.js";
+import {Mark, anchorPosition, maybeAnchor, maybeNumber, maybeTuple, string} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
 const defaults = {
@@ -32,17 +32,19 @@ function maybePath(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
+    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, anchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePath(src);
     const [vw, cw] = maybeNumber(width, 16);
     const [vh, ch] = maybeNumber(height, 16);
+    const [vx, cx] = maybeNumber(x, 0);
+    const [vy, cy] = maybeNumber(y, 0);
     super(
       data,
       [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
+        {name: "x", value: vx, scale: "x", optional: true},
+        {name: "y", value: vy, scale: "y", optional: true},
         {name: "width", value: vw, optional: true},
         {name: "height", value: vh, optional: true},
         {name: "src", value: vs, optional: true}
@@ -50,6 +52,9 @@ export class Image extends Mark {
       options,
       defaults
     );
+    this.cx = cx;
+    this.cy = cy;
+    this.anchor = maybeAnchor(anchor);
     this.src = cs;
     this.width = cw;
     this.height = ch;
@@ -60,14 +65,13 @@ export class Image extends Mark {
     I,
     {x, y},
     channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
+    dimensions
   ) {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
     let index = filter(I, X, Y, S);
     if (W) index = index.filter(i => positive(W[i]));
     if (H) index = index.filter(i => positive(H[i]));
-    const cx = (marginLeft + width - marginRight) / 2;
-    const cy = (marginTop + height - marginBottom) / 2;
+    const [cx, cy] = anchorPosition(dimensions, this.anchor, this.cx, this.cy);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset, offset)
