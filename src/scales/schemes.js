@@ -103,7 +103,7 @@ const ordinalSchemes = new Map([
 
   // reversed diverging (for temperature data)
   ["burd", scheme11r(schemeRdBu, interpolateRdBu)],
-  ["buylrd", scheme11r(schemeRdGy, interpolateRdGy)],
+  ["buylrd", scheme11r(schemeRdYlBu, interpolateRdYlBu)],
 
   // sequential (single-hue)
   ["blues", scheme9(schemeBlues, interpolateBlues)],
