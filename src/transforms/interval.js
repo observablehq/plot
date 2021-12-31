@@ -27,14 +27,34 @@ function maybeIntervalK(k, maybeInsetK, options) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
   const {value, interval} = maybeIntervalValue(v, options);
   if (value == null || interval == null) return options;
-  let V1;
-  const tv1 = data => V1 || (V1 = valueof(data, value).map(v => interval.floor(v)));
+  let D1, V1;
   const label = labelof(v);
+  function transform(data) {
+    if (V1 !== undefined && data === D1) return V1; // memoize
+    return V1 = valueof(D1 = data, value).map(v => interval.floor(v));
+  }
   return maybeInsetK({
     ...options,
-    [k]: {transform: (data) => tv1(data).map(v => mid(interval.offset(v), v)), label},
-    [`${k}1`]: v1 === undefined ? {transform: tv1, label} : v1,
-    [`${k}2`]: v2 === undefined ? {transform: (data) => tv1(data).map(v => interval.offset(v)), label} : v2
+    [k]: undefined,
+    [`${k}1`]: v1 === undefined ? {transform, label} : v1,
+    [`${k}2`]: v2 === undefined ? {transform: data => transform(data).map(v => interval.offset(v)), label} : v2
+  });
+}
+
+function maybeIntervalMidK(k, maybeInsetK, options) {
+  const {[k]: v} = options;
+  const {value, interval} = maybeIntervalValue(v, options);
+  if (value == null || interval == null) return options;
+  return maybeInsetK({
+    ...options,
+    [k]: {
+      label: labelof(v),
+      transform: data => valueof(data, value).map(v => {
+        const a = interval.floor(v);
+        const b = interval.offset(a);
+        return a instanceof Date ? new Date((+a + +b) / 2) : (a + b) / 2;
+      })
+    }
   });
 }
 
@@ -46,6 +66,10 @@ export function maybeIntervalY(options = {}) {
   return maybeIntervalK("y", maybeInsetY, options);
 }
 
-function mid(a, b) {
-  return a instanceof Date ? new Date((+a + +b) / 2) : (a + b) / 2;
+export function maybeIntervalMidX(options = {}) {
+  return maybeIntervalMidK("x", maybeInsetX, options);
+}
+
+export function maybeIntervalMidY(options = {}) {
+  return maybeIntervalMidK("y", maybeInsetY, options);
 }

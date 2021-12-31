@@ -2,7 +2,7 @@ import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset} from "../style.js";
-import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   strokeLinejoin: "round"
@@ -80,15 +80,15 @@ export class Text extends Mark {
 
 export function text(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Text(data, maybeIntervalY(maybeIntervalX({...options, x, y})));
+  return new Text(data, maybeIntervalMidY(maybeIntervalMidX({...options, x, y})));
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, maybeIntervalY({...options, x}));
+  return new Text(data, maybeIntervalMidY({...options, x}));
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, maybeIntervalX({...options, y}));
+  return new Text(data, maybeIntervalMidX({...options, y}));
 }
 
 function applyIndirectTextStyles(selection, mark) {
