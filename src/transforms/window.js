@@ -51,6 +51,8 @@ function maybeReduce(reduce = "mean") {
       case "variance": return reduceSubarray(variance);
       case "difference": return reduceDifference;
       case "ratio": return reduceRatio;
+      case "first": return reduceFirst;
+      case "last": return reduceLast;
     }
   }
   if (typeof reduce !== "function") throw new Error("invalid reduce");
@@ -126,6 +128,26 @@ function reduceRatio(k, s) {
         const a = S[I[i]];
         const b = S[I[i + k - 1]];
         T[I[i + s]] = a === null || b === null ? NaN : b / a;
+      }
+    }
+  };
+}
+
+function reduceFirst(k, s) {
+  return {
+    map(I, S, T) {
+      for (let i = 0, n = I.length - k; i < n; ++i) {
+        T[I[i + s]] = S[I[i]];
+      }
+    }
+  };
+}
+
+function reduceLast(k, s) {
+  return {
+    map(I, S, T) {
+      for (let i = 0, n = I.length - k; i < n; ++i) {
+        T[I[i + s]] = S[I[i + k - 1]];
       }
     }
   };

@@ -1463,6 +1463,8 @@ The following window reducers are supported:
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * *difference* - the difference between the last and first window value
 * *ratio* - the ratio of the last and first window value
+* *first* - the first value
+* *last* - the last value
 * a function to be passed an array of *k* values
 
 By default, **anchor** is *middle* and **reduce** is *mean*.
