@@ -212,6 +212,12 @@ const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
+You can also create a standalone scale with Plot.**scale**(*options*):
+
+```js
+const color = Plot.scale({color: {type: "linear"}});
+```
+
 To reuse a scale across plots, pass the scale object into another plot specification:
 
 ```js
