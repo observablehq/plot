@@ -143,7 +143,7 @@ const ordinalSchemes = new Map([
 
 function scheme9(scheme, interpolate) {
   return ({length: n}) => {
-    n = n > 3 ? Math.floor(n) : 3;
+    n = Math.max(3, Math.floor(n));
     return n > 9 ? quantize(interpolate, n) : scheme[n];
   };
 }
@@ -151,7 +151,7 @@ function scheme9(scheme, interpolate) {
 function scheme11(scheme, interpolate) {
   return ({length: n}) => {
     if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor diverging extrema
-    n = n > 3 ? Math.floor(n) : 3;
+    n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize(interpolate, n) : scheme[n];
   };
 }
@@ -159,17 +159,17 @@ function scheme11(scheme, interpolate) {
 function scheme11r(scheme, interpolate) {
   return ({length: n}) => {
     if (n === 2) return [scheme[3][2], scheme[3][0]]; // favor diverging extrema
-    n = n > 3 ? Math.floor(n) : 3;
+    n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize(t => interpolate(1 - t), n) : scheme[n].slice().reverse();
   };
 }
 
 function schemei(interpolate) {
-  return ({length: n}) => quantize(interpolate, n > 0 ? Math.floor(n) : 0);
+  return ({length: n}) => quantize(interpolate, Math.max(2, Math.floor(n)));
 }
 
 function schemeicyclical(interpolate) {
-  return ({length: n}) => quantize(interpolate, n > 0 ? Math.floor(n) + 1 : 1).slice(0, -1);
+  return ({length: n}) => quantize(interpolate, Math.floor(n) + 1).slice(0, -1);
 }
 
 export function ordinalScheme(scheme) {
