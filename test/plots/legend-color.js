@@ -257,3 +257,119 @@ export function colorLegendDivergingSqrt() {
     tickFormat: "+%"
   });
 }
+
+export function colorSchemesOrdinal() {
+  const div = document.createElement("DIV");
+  for (const scheme of [
+    "accent",
+    "category10",
+    "dark2",
+    "paired",
+    "pastel1",
+    "pastel2",
+    "set1",
+    "set2",
+    "set3",
+    "tableau10",
+    "brbg",
+    "prgn",
+    "piyg",
+    "puor",
+    "rdbu",
+    "rdgy",
+    "rdylbu",
+    "rdylgn",
+    "spectral",
+    "burd",
+    "buylrd",
+    "blues",
+    "greens",
+    "greys",
+    "oranges",
+    "purples",
+    "reds",
+    "turbo",
+    "viridis",
+    "magma",
+    "inferno",
+    "plasma",
+    "cividis",
+    "cubehelix",
+    "warm",
+    "cool",
+    "bugn",
+    "bupu",
+    "gnbu",
+    "orrd",
+    "pubu",
+    "pubugn",
+    "purd",
+    "rdpu",
+    "ylgn",
+    "ylgnbu",
+    "ylorbr",
+    "ylorrd",
+    "rainbow",
+    "sinebow"
+  ]) {
+    div.append(
+      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme]}}),
+      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1`]}}),
+      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`123`]}}),
+      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`12345678`]}}),
+      Plot.legend({color: {type: "ordinal", scheme, domain: [scheme, ...`1234567890ABCD`]}})
+    );
+  }
+  return div;
+}
+
+export function colorSchemesQuantitative() {
+  const div = document.createElement("DIV");
+  for (const scheme of [
+    "brbg",
+    "prgn",
+    "piyg",
+    "puor",
+    "rdbu",
+    "rdgy",
+    "rdylbu",
+    "rdylgn",
+    "spectral",
+    "burd",
+    "buylrd",
+    "blues",
+    "greens",
+    "greys",
+    "purples",
+    "reds",
+    "oranges",
+    "turbo",
+    "viridis",
+    "magma",
+    "inferno",
+    "plasma",
+    "cividis",
+    "cubehelix",
+    "warm",
+    "cool",
+    "bugn",
+    "bupu",
+    "gnbu",
+    "orrd",
+    "pubugn",
+    "pubu",
+    "purd",
+    "rdpu",
+    "ylgnbu",
+    "ylgn",
+    "ylorbr",
+    "ylorrd",
+    "rainbow",
+    "sinebow"
+  ]) {
+    div.append(
+      Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10})
+    );
+  }
+  return div;
+}
