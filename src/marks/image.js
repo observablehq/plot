@@ -68,9 +68,10 @@ export class Image extends Mark {
     if (H) index = index.filter(i => positive(H[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
+    const {dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyTransform, x, y, offset, offset)
+        .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
           .join("image")
