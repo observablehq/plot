@@ -3,6 +3,17 @@ import * as d3 from "d3";
 import assert from "assert";
 import it from "../jsdom.js";
 
+it("Plot.scale(description) returns a standalone scale", () => {
+  const color = Plot.scale({color: {type: "linear"}});
+  scaleEqual(color, {
+    type: "linear",
+    domain: [0, 1],
+    range: [0, 1],
+    interpolate: d3.interpolateTurbo,
+    clamp: false
+  });
+});
+
 it("plot(…).scale(name) returns undefined for an unused scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
   assert.deepStrictEqual(plot.scale("r"), undefined);

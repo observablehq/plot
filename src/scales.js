@@ -309,6 +309,17 @@ export function coerceDate(x) {
     : new Date(x);
 }
 
+export function scale(options = {}) {
+  let scale;
+  for (const key in options) {
+    if (!registry.has(key)) continue; // ignore unknown properties
+    if (scale !== undefined) throw new Error("ambiguous scale definition");
+    scale = exposeScale(normalizeScale(key, options[key]));
+  }
+  if (scale === undefined) throw new Error("invalid scale definition");
+  return scale;
+}
+
 export function exposeScales(scaleDescriptors) {
   return key => {
     if (!registry.has(key = `${key}`)) throw new Error(`unknown scale: ${key}`);
