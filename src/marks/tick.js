@@ -27,7 +27,7 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels, dimensions))
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

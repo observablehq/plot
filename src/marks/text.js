@@ -72,7 +72,7 @@ export class Text extends Mark {
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .text(i => T[i])
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

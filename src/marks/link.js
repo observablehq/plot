@@ -46,7 +46,7 @@ export class Link extends Mark {
               c.lineEnd();
               return `${p}`;
             })
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

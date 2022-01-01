@@ -49,7 +49,7 @@ export class RuleX extends Mark {
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 && !isCollapsed(y) ? i => Y1[i] + insetTop : marginTop + insetTop)
             .attr("y2", Y2 && !isCollapsed(y) ? (y.bandwidth ? i => Y2[i] + y.bandwidth() - insetBottom : i => Y2[i] - insetBottom) : height - marginBottom - insetBottom)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }
@@ -93,7 +93,7 @@ export class RuleY extends Mark {
             .attr("x2", X2 && !isCollapsed(x) ? (x.bandwidth ? i => X2[i] + x.bandwidth() - insetRight : i => X2[i] - insetRight) : width - marginRight - insetRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }
