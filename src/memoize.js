@@ -1,17 +1,10 @@
 export function memoize1(compute) {
   let cacheValue;
-  let cacheKey = [];
+  let cacheKey = {};
   return (...keys) => {
-    let cached = cacheKey.length === keys.length;
-    if (cached) {
-      for (let i = 0; i < cacheKey.length; ++i) {
-        if (cacheKey[i] !== keys[i]) {
-          cached = false;
-          break;
-        }
-      }
-    }
-    if (!cached) {
+    let i = 0, n = cacheKey.length;
+    while (i < n && cacheKey[i] === keys[i]) ++i;
+    if (i !== n || n !== keys.length) {
       cacheKey = keys;
       cacheValue = compute(...keys);
     }
