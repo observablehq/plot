@@ -238,5 +238,5 @@
   <g transform="translate(0.5,0.5)">
     <circle cx="265" cy="124.08851089921694" r="3"></circle>
   </g>
-  <g text-anchor="start" transform="translate(0.5,0.5)"><text dx="6" dy="0.32em" x="265" y="124.08851089921694">900</text></g>
+  <g text-anchor="start" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text dx="6" dy="0.32em" x="265" y="124.08851089921694">900</text></g>
 </svg>

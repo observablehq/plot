@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
+import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel, isNumeric, isTemporal} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyText, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -55,7 +55,7 @@ export class Text extends Mark {
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")
-        .call(applyIndirectTextStyles, this)
+        .call(applyIndirectTextStyles, this, T)
         .call(applyTransform, x, y, offset, offset)
         .call(g => g.selectAll()
           .data(index)
@@ -90,13 +90,13 @@ export function textY(data, {y = identity, ...options} = {}) {
   return new Text(data, {...options, y});
 }
 
-function applyIndirectTextStyles(selection, mark) {
+function applyIndirectTextStyles(selection, mark, T) {
   applyIndirectStyles(selection, mark);
   applyAttr(selection, "text-anchor", mark.textAnchor);
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);
   applyAttr(selection, "font-style", mark.fontStyle);
-  applyAttr(selection, "font-variant", mark.fontVariant);
+  applyAttr(selection, "font-variant", mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : mark.fontVariant);
   applyAttr(selection, "font-weight", mark.fontWeight);
 }
 
