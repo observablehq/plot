@@ -74,7 +74,9 @@ function autoScaleRangeX(scale, dimensions) {
   if (scale.range === undefined) {
     const {insetLeft, insetRight} = scale;
     const {width, marginLeft = 0, marginRight = 0} = dimensions;
-    scale.range = [marginLeft + insetLeft, width - marginRight - insetRight];
+    const left = marginLeft + insetLeft;
+    const right = width - marginRight - insetRight;
+    scale.range = [left, Math.max(left, right)];
     if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     scale.scale.range(scale.range);
   }
@@ -85,7 +87,9 @@ function autoScaleRangeY(scale, dimensions) {
   if (scale.range === undefined) {
     const {insetTop, insetBottom} = scale;
     const {height, marginTop = 0, marginBottom = 0} = dimensions;
-    scale.range = [height - marginBottom - insetBottom, marginTop + insetTop];
+    const top = marginTop + insetTop;
+    const bottom = height - marginBottom - insetBottom;
+    scale.range = [Math.max(top, bottom), top];
     if (!isOrdinalScale(scale)) scale.range = piecewiseRange(scale);
     else scale.range.reverse();
     scale.scale.range(scale.range);
