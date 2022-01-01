@@ -31,7 +31,7 @@ function maybeIntervalK(k, maybeInsetK, options) {
   const label = labelof(v);
   function transform(data) {
     if (V1 !== undefined && data === D1) return V1; // memoize
-    return V1 = valueof(D1 = data, value).map(v => interval.floor(v));
+    return V1 = Array.from(valueof(D1 = data, value), v => interval.floor(v));
   }
   return maybeInsetK({
     ...options,
@@ -50,7 +50,7 @@ function maybeIntervalMidK(k, maybeInsetK, options) {
     [k]: {
       label: labelof(v),
       transform: data => {
-        const V1 = valueof(data, value).map(v => interval.floor(v));
+        const V1 = Array.from(valueof(data, value), v => interval.floor(v));
         const V2 = V1.map(v => interval.offset(v));
         return V1.map(isTemporal(V1)
           ? (v1, i) => new Date((+v1 + +V2[i]) / 2)
