@@ -53,6 +53,7 @@ export {default as identityScale} from "./identity-scale.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
+export {default as infinityLog} from "./infinity-log.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyCloud} from "./letter-frequency-cloud.js";

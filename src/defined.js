@@ -23,12 +23,16 @@ export function filter(index, ...channels) {
   return index;
 }
 
+export function finite(x) {
+  return isFinite(x) ? x : NaN;
+}
+
 export function positive(x) {
-  return x > 0 ? x : NaN;
+  return x > 0 && isFinite(x) ? x : NaN;
 }
 
 export function negative(x) {
-  return x < 0 ? x : NaN;
+  return x < 0 && isFinite(x) ? x : NaN;
 }
 
 export function firstof(...values) {
