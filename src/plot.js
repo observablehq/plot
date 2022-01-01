@@ -95,8 +95,9 @@ export function plot(options = {}) {
 
   for (const mark of marks) {
     const channels = markChannels.get(mark) ?? [];
-    const values = applyScales(channels, scales);
+    let values = applyScales(channels, scales);
     const index = filter(markIndex.get(mark), channels, values);
+    if (mark.layout != null) values = mark.layout(index, scales, values, dimensions);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -132,9 +133,10 @@ function filter(index, channels, values) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy} = options;
+    const {layout, facet = "auto", sort, dx, dy} = options;
     const names = new Set();
     this.data = data;
+    this.layout = layout;
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);

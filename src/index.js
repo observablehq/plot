@@ -14,6 +14,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {Vector, vector} from "./marks/vector.js";
 export {valueof} from "./options.js";
+export {dodgeX, dodgeY} from "./layouts/dodge.js";
 export {filter, reverse, sort, shuffle} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
