@@ -1,6 +1,7 @@
-import {namespaces} from "d3";
-import {string, number, maybeColor, maybeNumber, title, titleGroup} from "./mark.js";
-import {filter} from "./defined.js";
+import {isoFormat, namespaces} from "d3";
+import {string, number, maybeColor, maybeNumber, isTemporal, isNumeric} from "./mark.js";
+import {filter, nonempty} from "./defined.js";
+import {formatNumber} from "./format.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -108,6 +109,24 @@ export function styles(
   ];
 }
 
+// Applies the specified titles via selection.call.
+export function applyTitle(selection, L) {
+  if (L) selection.filter(i => nonempty(L[i])).append("title").call(applyText, L);
+}
+
+// Like applyTitle, but for grouped data (lines, areas).
+export function applyTitleGroup(selection, L) {
+  if (L) selection.filter(([i]) => nonempty(L[i])).append("title").call(applyTextGroup, L);
+}
+
+export function applyText(selection, T) {
+  if (T) selection.text(isTemporal(T) ? i => isoFormat(T[i]) : isNumeric(T) ? (f => i => f(T[i]))(formatNumber()) : i => T[i]);
+}
+
+export function applyTextGroup(selection, T) {
+  if (T) selection.text(isTemporal(T) ? ([i]) => isoFormat(T[i]) : isNumeric(T) ? (f => ([i]) => f(T[i]))(formatNumber()) : ([i]) => T[i]);
+}
+
 export function applyChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
   if (F) applyAttr(selection, "fill", i => F[i]);
   if (FO) applyAttr(selection, "fill-opacity", i => FO[i]);
@@ -116,7 +135,7 @@ export function applyChannelStyles(selection, {target}, {title: L, fill: F, fill
   if (SW) applyAttr(selection, "stroke-width", i => SW[i]);
   if (O) applyAttr(selection, "opacity", i => O[i]);
   if (H) applyHref(selection, i => H[i], target);
-  title(L)(selection);
+  applyTitle(selection, L);
 }
 
 export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
@@ -127,7 +146,7 @@ export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: 
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
-  titleGroup(L)(selection);
+  applyTitleGroup(selection, L);
 }
 
 export function applyIndirectStyles(selection, mark) {

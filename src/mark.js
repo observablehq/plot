@@ -1,6 +1,4 @@
-import {ascending, descending, rollup, sort} from "d3";
-import {color} from "d3";
-import {nonempty} from "./defined.js";
+import {ascending, color, descending, rollup, sort} from "d3";
 import {plot} from "./plot.js";
 import {registry} from "./scales/index.js";
 import {styles} from "./style.js";
@@ -209,22 +207,6 @@ export function maybeZ({z, fill, stroke} = {}) {
   return z;
 }
 
-// Applies the specified titles via selection.call.
-export function title(L) {
-  return L ? selection => selection
-    .filter(i => nonempty(L[i]))
-    .append("title")
-      .text(i => L[i]) : () => {};
-}
-
-// title for groups (lines, areas).
-export function titleGroup(L) {
-  return L ? selection => selection
-    .filter(([i]) => nonempty(L[i]))
-    .append("title")
-      .text(([i]) => L[i]) : () => {};
-}
-
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
   return Uint32Array.from(data, indexOf);
@@ -315,6 +297,13 @@ export function isTemporal(values) {
   for (const value of values) {
     if (value == null) continue;
     return value instanceof Date;
+  }
+}
+
+export function isNumeric(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return typeof value === "number";
   }
 }
 

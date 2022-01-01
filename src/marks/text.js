@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
 import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel} from "../mark.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyText, applyTransform, offset} from "../style.js";
 
 const defaults = {
   strokeLinejoin: "round"
@@ -71,7 +71,7 @@ export class Text extends Mark {
                 : `translate(${cx},${cy}) rotate(${rotate})`)
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
-            .text(i => T[i])
+            .call(applyText, T)
             .call(applyChannelStyles, this, channels))
       .node();
   }
