@@ -9,9 +9,19 @@ function maybeInterval(interval) {
   if (typeof interval === "number") {
     const n = interval;
     // Note: this offset doesn’t support the optional step argument for simplicity.
-    interval = {floor: d => n * Math.floor(d / n), offset: d => d + n};
+    interval = {
+      floor: d => n * Math.floor(d / n),
+      mid: d => n * (Math.floor(d / n) + 0.5),
+      offset: d => d + n
+    };
   }
   if (typeof interval.floor !== "function" || typeof interval.offset !== "function") throw new Error("invalid interval");
+  if (typeof interval.mid !== "function") {
+    interval = {
+      ...interval,
+      mid: x => (x = interval.floor(x), new Date((+x + +interval.offset(x)) / 2))
+    };
+  }
   return interval;
 }
 
@@ -49,11 +59,7 @@ function maybeIntervalMidK(k, maybeInsetK, options) {
     ...options,
     [k]: {
       label: labelof(v),
-      transform: data => valueof(data, value).map(v => {
-        const a = interval.floor(v);
-        const b = interval.offset(a);
-        return a instanceof Date ? new Date((+a + +b) / 2) : (a + b) / 2;
-      })
+      transform: data => valueof(data, value).map(interval.mid)
     }
   });
 }
