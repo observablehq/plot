@@ -53,8 +53,8 @@ function maybeIntervalMidK(k, maybeInsetK, options) {
         const V1 = Array.from(valueof(data, value), v => interval.floor(v));
         const V2 = V1.map(v => interval.offset(v));
         return V1.map(isTemporal(V1)
-          ? (v1, i) => new Date((+v1 + +V2[i]) / 2)
-          : (v1, i) => (+v1 + +V2[i]) / 2);
+          ? (v1, v2) => v1 == null || isNaN(v1 = +v1) || (v2 = V2[v2], v2 == null) || isNaN(v2 = +v2) ? undefined : new Date((v1 + v2) / 2)
+          : (v1, v2) => v1 == null || (v2 = V2[v2], v2 == null) ? NaN : (+v1 + +v2) / 2);
       }
     }
   });
