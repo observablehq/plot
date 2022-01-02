@@ -115,17 +115,18 @@ export function applyChannelStyles(selection, {target}, {title: L, fill: F, fill
   if (SO) applyAttr(selection, "stroke-opacity", i => SO[i]);
   if (SW) applyAttr(selection, "stroke-width", i => SW[i]);
   if (O) applyAttr(selection, "opacity", i => O[i]);
-  if (H) applyHref(selection, H, target);
+  if (H) applyHref(selection, i => H[i], target);
   title(L)(selection);
 }
 
-export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O}) {
+export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
   if (F) applyAttr(selection, "fill", ([i]) => F[i]);
   if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
   if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
   if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i]);
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
+  if (H) applyHref(selection, ([i]) => H[i], target);
   titleGroup(L)(selection);
 }
 
@@ -149,9 +150,10 @@ export function applyDirectStyles(selection, mark) {
 
 function applyHref(selection, href, target) {
   selection.each(function(i) {
-    if (href[i] != null) {
+    const h = href(i);
+    if (h != null) {
       const a = document.createElementNS(namespaces.svg, "a");
-      a.setAttributeNS(namespaces.xlink, "href", href[i]);
+      a.setAttributeNS(namespaces.xlink, "href", h);
       if (target != null) a.setAttribute("target", target);
       this.parentNode.insertBefore(a, this).appendChild(this);
     }

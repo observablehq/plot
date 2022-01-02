@@ -36,7 +36,7 @@ export class Line extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, channels)
+            .call(applyGroupedChannelStyles, this, channels)
             .attr("d", shapeLine()
               .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))

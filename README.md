@@ -623,6 +623,8 @@ All marks support the following optional channels:
 * **strokeWidth** - a stroke width (in pixels)
 * **opacity** - an object opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
+* **href** - a URL to link to; an associated **target** attribute can be specified (typically target: "_blank" indicates that the browser should open the link in a new tab)
+
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
