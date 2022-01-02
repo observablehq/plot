@@ -36,7 +36,7 @@ export class AbstractBar extends Mark {
             .attr("height", this._height(scales, channels, dimensions))
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
   _x(scales, {x: X}, {marginLeft}) {

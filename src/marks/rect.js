@@ -60,7 +60,7 @@ export class Rect extends Mark {
             .attr("height", Y1 && Y2 && !isCollapsed(y) ? i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom) : height - marginTop - marginBottom - insetTop - insetBottom)
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

@@ -83,7 +83,7 @@ export class Image extends Mark {
             .call(applyAttr, "href", S ? i => S[i] : this.src)
             .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
             .call(applyAttr, "crossorigin", this.crossOrigin)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

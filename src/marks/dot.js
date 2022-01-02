@@ -45,7 +45,7 @@ export class Dot extends Mark {
             .attr("cx", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("cy", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("r", R ? i => R[i] : this.r)
-            .call(applyChannelStyles, channels))
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }

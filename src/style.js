@@ -1,3 +1,4 @@
+import {namespaces} from "d3";
 import {string, number, maybeColor, maybeNumber, title, titleGroup} from "./mark.js";
 import {filter} from "./defined.js";
 
@@ -7,6 +8,8 @@ export function styles(
   mark,
   {
     title,
+    href,
+    target,
     fill,
     fillOpacity,
     stroke,
@@ -87,6 +90,7 @@ export function styles(
     mark.strokeDasharray = string(strokeDasharray);
   }
 
+  mark.target = string(target);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
@@ -94,6 +98,7 @@ export function styles(
   return [
     ...channels,
     {name: "title", value: title, optional: true},
+    {name: "href", value: href, optional: true},
     {name: "fill", value: vfill, scale: "color", optional: true},
     {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
     {name: "stroke", value: vstroke, scale: "color", optional: true},
@@ -103,23 +108,25 @@ export function styles(
   ];
 }
 
-export function applyChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O}) {
-  applyAttr(selection, "fill", F && (i => F[i]));
-  applyAttr(selection, "fill-opacity", FO && (i => FO[i]));
-  applyAttr(selection, "stroke", S && (i => S[i]));
-  applyAttr(selection, "stroke-opacity", SO && (i => SO[i]));
-  applyAttr(selection, "stroke-width", SW && (i => SW[i]));
-  applyAttr(selection, "opacity", O && (i => O[i]));
+export function applyChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+  if (F) applyAttr(selection, "fill", i => F[i]);
+  if (FO) applyAttr(selection, "fill-opacity", i => FO[i]);
+  if (S) applyAttr(selection, "stroke", i => S[i]);
+  if (SO) applyAttr(selection, "stroke-opacity", i => SO[i]);
+  if (SW) applyAttr(selection, "stroke-width", i => SW[i]);
+  if (O) applyAttr(selection, "opacity", i => O[i]);
+  if (H) applyHref(selection, i => H[i], target);
   title(L)(selection);
 }
 
-export function applyGroupedChannelStyles(selection, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O}) {
-  applyAttr(selection, "fill", F && (([i]) => F[i]));
-  applyAttr(selection, "fill-opacity", FO && (([i]) => FO[i]));
-  applyAttr(selection, "stroke", S && (([i]) => S[i]));
-  applyAttr(selection, "stroke-opacity", SO && (([i]) => SO[i]));
-  applyAttr(selection, "stroke-width", SW && (([i]) => SW[i]));
-  applyAttr(selection, "opacity", O && (([i]) => O[i]));
+export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+  if (F) applyAttr(selection, "fill", ([i]) => F[i]);
+  if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
+  if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
+  if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i]);
+  if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
+  if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
+  if (H) applyHref(selection, ([i]) => H[i], target);
   titleGroup(L)(selection);
 }
 
@@ -139,6 +146,18 @@ export function applyIndirectStyles(selection, mark) {
 export function applyDirectStyles(selection, mark) {
   applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
   applyAttr(selection, "opacity", mark.opacity);
+}
+
+function applyHref(selection, href, target) {
+  selection.each(function(i) {
+    const h = href(i);
+    if (h != null) {
+      const a = document.createElementNS(namespaces.svg, "a");
+      a.setAttributeNS(namespaces.xlink, "href", h);
+      if (target != null) a.setAttribute("target", target);
+      this.parentNode.insertBefore(a, this).appendChild(this);
+    }
+  });
 }
 
 export function applyAttr(selection, name, value) {

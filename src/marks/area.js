@@ -38,7 +38,7 @@ export class Area extends Mark {
           .data(Z ? group(I, i => Z[i]).values() : [I])
           .join("path")
             .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, channels)
+            .call(applyGroupedChannelStyles, this, channels)
             .attr("d", shapeArea()
               .curve(this.curve)
               .defined(i => defined(X1[i]) && defined(Y1[i]) && defined(X2[i]) && defined(Y2[i]))
