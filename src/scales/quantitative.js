@@ -23,7 +23,7 @@ import {
 } from "d3";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color} from "./index.js";
-import {positive, negative} from "../defined.js";
+import {positive, negative, finite} from "../defined.js";
 import {constant} from "../mark.js";
 import {order} from "../scales.js";
 
@@ -159,7 +159,7 @@ export function ScaleIdentity() {
   return {type: "identity", scale: scaleIdentity()};
 }
 
-export function inferDomain(channels, f) {
+export function inferDomain(channels, f = finite) {
   return channels.length ? [
     min(channels, ({value}) => value === undefined ? value : min(value, f)),
     max(channels, ({value}) => value === undefined ? value : max(value, f))
@@ -167,7 +167,7 @@ export function inferDomain(channels, f) {
 }
 
 function inferZeroDomain(channels) {
-  return [0, channels.length ? max(channels, ({value}) => value === undefined ? value : max(value)) : 1];
+  return [0, channels.length ? max(channels, ({value}) => value === undefined ? value : max(value, finite)) : 1];
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
