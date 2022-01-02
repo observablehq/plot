@@ -1,0 +1,185 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="560" viewBox="0 0 640 560" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g transform="translate(140,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,35.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Observable Plot</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,55.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Marks</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,75.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Scales</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,95.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Transforms</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,115.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Facets</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,135.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Area Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,155.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bar Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,175.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cell Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,195.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dot Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,215.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Image Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,235.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Line Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,255.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Link Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,275.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Rect Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,295.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Rule Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,315.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Text Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,335.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tick Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,355.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Frame Mark</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,375.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Group Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,395.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bin Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,415.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Stack Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,435.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Map Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,455.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Window Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,475.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Select Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,495.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Interval Transform</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,515.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Legends</text>
+    </g>
+  </g>
+  <g transform="translate(0,530)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(140.5,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(199.03658536585365,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(257.5731707317073,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(316.109756097561,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(374.6463414634146,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(433.1829268292683,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(491.7195121951219,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(550.2560975609756,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(608.7926829268292,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">likes →</text>
+  </g>
+  <g><a href="https://observablehq.com/@observablehq/plot" target="_blank">
+      <rect x="140" width="480" y="26" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-marks" target="_blank">
+      <rect x="140" width="187.3170731707317" y="46" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-scales" target="_blank">
+      <rect x="140" width="210.7317073170732" y="66" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-transforms" target="_blank">
+      <rect x="140" width="70.2439024390244" y="86" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-facets" target="_blank">
+      <rect x="140" width="117.07317073170731" y="106" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-area" target="_blank">
+      <rect x="140" width="35.1219512195122" y="126" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-bar" target="_blank">
+      <rect x="140" width="105.3658536585366" y="146" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-cell" target="_blank">
+      <rect x="140" width="199.02439024390242" y="166" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-dot" target="_blank">
+      <rect x="140" width="58.536585365853654" y="186" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-image" target="_blank">
+      <rect x="140" width="128.78048780487802" y="206" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-line" target="_blank">
+      <rect x="140" width="93.65853658536588" y="226" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-link" target="_blank">
+      <rect x="140" width="23.414634146341456" y="246" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-rect" target="_blank">
+      <rect x="140" width="23.414634146341456" y="266" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-rule" target="_blank">
+      <rect x="140" width="46.82926829268294" y="286" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-text" target="_blank">
+      <rect x="140" width="58.536585365853654" y="306" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-tick" target="_blank">
+      <rect x="140" width="11.707317073170742" y="326" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-frame" target="_blank">
+      <rect x="140" width="35.1219512195122" y="346" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-group" target="_blank">
+      <rect x="140" width="81.95121951219511" y="366" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-bin" target="_blank">
+      <rect x="140" width="140.48780487804873" y="386" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-stack" target="_blank">
+      <rect x="140" width="152.1951219512195" y="406" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-map" target="_blank">
+      <rect x="140" width="70.2439024390244" y="426" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-window" target="_blank">
+      <rect x="140" width="35.1219512195122" y="446" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-select" target="_blank">
+      <rect x="140" width="70.2439024390244" y="466" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-interval" target="_blank">
+      <rect x="140" width="81.95121951219511" y="486" height="18"></rect>
+    </a><a href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
+      <rect x="140" width="210.7317073170732" y="506" height="18"></rect>
+    </a></g>
+  <g fill="white" text-anchor="end" transform="translate(0.5,9.5)"><text dx="-3" dy="0.32em" x="620" y="26">⚡︎ 296</text><text dx="-3" dy="0.32em" x="327.3170731707317" y="46"> 16</text><text dx="-3" dy="0.32em" x="350.7317073170732" y="66"> 18</text><text dx="-3" dy="0.32em" x="210.2439024390244" y="86"> 6</text><text dx="-3" dy="0.32em" x="257.0731707317073" y="106"> 10</text><text dx="-3" dy="0.32em" x="175.1219512195122" y="126"> 3</text><text dx="-3" dy="0.32em" x="245.3658536585366" y="146"> 9</text><text dx="-3" dy="0.32em" x="339.0243902439024" y="166"> 17</text><text dx="-3" dy="0.32em" x="198.53658536585365" y="186"> 5</text><text dx="-3" dy="0.32em" x="268.780487804878" y="206"> 11</text><text dx="-3" dy="0.32em" x="233.65853658536588" y="226"> 8</text><text dx="-3" dy="0.32em" x="163.41463414634146" y="246"> 2</text><text dx="-3" dy="0.32em" x="163.41463414634146" y="266"> 2</text><text dx="-3" dy="0.32em" x="186.82926829268294" y="286"> 4</text><text dx="-3" dy="0.32em" x="198.53658536585365" y="306"> 5</text><text dx="-3" dy="0.32em" x="151.70731707317074" y="326"> 1</text><text dx="-3" dy="0.32em" x="175.1219512195122" y="346"> 3</text><text dx="-3" dy="0.32em" x="221.9512195121951" y="366"> 7</text><text dx="-3" dy="0.32em" x="280.48780487804873" y="386"> 12</text><text dx="-3" dy="0.32em" x="292.1951219512195" y="406"> 13</text><text dx="-3" dy="0.32em" x="210.2439024390244" y="426"> 6</text><text dx="-3" dy="0.32em" x="175.1219512195122" y="446"> 3</text><text dx="-3" dy="0.32em" x="210.2439024390244" y="466"> 6</text><text dx="-3" dy="0.32em" x="221.9512195121951" y="486"> 7</text><text dx="-3" dy="0.32em" x="350.7317073170732" y="506"> 18</text></g>
+  <g stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="140" x2="140" y1="20" y2="530"></line>
+  </g>
+</svg>
