@@ -54,10 +54,10 @@ export class Vector extends Mark {
           .join("path")
             .call(applyDirectStyles, this)
             .attr("d", i => {
-              const l = fl(i), r = l / 5, a = fr(i) * radians;
-              const s = Math.sin(a), sl = s * l, sr = s * r;
-              const c = Math.cos(a), cl = c * l, cr = c * r;
-              return `M${fx(i) - sl * k},${fy(i) + cl * k}l${sl},${-cl}m${-cr - sr},${cr - sr}l${cr + sr},${sr - cr}l${cr - sr},${sr + cr}`;
+              const l = fl(i), a = fr(i) * radians;
+              const x = Math.sin(a) * l, y = -Math.cos(a) * l;
+              const d = (x + y) / 5, e = (x - y) / 5;
+              return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
             })
             .call(applyChannelStyles, this, channels))
       .node();
