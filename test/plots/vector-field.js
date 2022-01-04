@@ -9,7 +9,6 @@ export default function() {
       Plot.vector(
         (T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)),
         {
-          anchor: "middle",
           length: ([x, y]) => (x + y) * 2 + 2,
           rotate: ([x, y]) => (Math.sin(x) - Math.sin(y)) * 60
         }

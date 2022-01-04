@@ -13,7 +13,7 @@ const defaults = {
 
 export class Vector extends Mark {
   constructor(data, options = {}) {
-    const {x, y, length, rotate, anchor = "start"} = options;
+    const {x, y, length, rotate, anchor = "middle"} = options;
     const [vl, cl] = maybeNumber(length, 12);
     const [vr, cr] = maybeNumber(rotate, 0);
     super(
@@ -44,7 +44,7 @@ export class Vector extends Mark {
     const fr = R ? i => R[i] : () => rotate;
     const fx = X ? i => X[i] : () => (marginLeft + width - marginRight) / 2;
     const fy = Y ? i => Y[i] : () => (marginTop + height - marginBottom) / 2;
-    const k = anchor === "end" ? 1 : anchor === "middle" ? 0.5 : 0;
+    const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g")
         .attr("fill", "none")
         .call(applyIndirectStyles, this)
