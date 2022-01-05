@@ -1,8 +1,8 @@
-import {InternSet, quantize, reverse as reverseof, sort} from "d3";
+import {InternSet, quantize, reverse as reverseof, sort, symbols} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
-import {registry, color} from "./index.js";
+import {registry, color, symbol} from "./index.js";
 
 export function ScaleO(scale, channels, {
   type,
@@ -23,7 +23,7 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   type,
-  range,
+  range = registry.get(key) === symbol ? symbols : undefined, // TODO map symbol names to implementations
   scheme = range === undefined ? type === "ordinal" ? "turbo" : "tableau10" : undefined,
   unknown,
   ...options

@@ -32,6 +32,7 @@ export {default as collapsedHistogram} from "./collapsed-histogram.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
 export {default as d3Survey2015Comfort} from "./d3-survey-2015-comfort.js";
 export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
+export {default as decathlon} from "./decathlon.js";
 export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
 export {default as documentationLinks} from "./documentation-links.js";
