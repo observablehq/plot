@@ -21,7 +21,7 @@ export function maybeSymbol(symbol) {
   throw new Error(`invalid symbol: ${symbol}`);
 }
 
-export function maybeSymbolChannel(symbol = symbolCircle) {
+export function maybeSymbolChannel(symbol) {
   if (symbol == null || isSymbol(symbol)) return [undefined, symbol];
   if (typeof symbol === "string") {
     const value = symbols.get(`${symbol}`.toLowerCase());
