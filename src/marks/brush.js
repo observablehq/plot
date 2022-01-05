@@ -25,7 +25,7 @@ export class Brush extends Mark {
     {x: X, y: Y, picker: J},
     {marginLeft, width, marginRight, marginTop, height, marginBottom}
   ) {
-    let svg;
+    let root;
     const {onbrush} = this;
     const g = create("svg:g");
     const data = this.data;
@@ -52,13 +52,13 @@ export class Brush extends Mark {
 
         if (typeof onbrush === "function") {
           onbrush(event, dots);
-        } else if (svg) {
-          svg.value = dots;
-          svg.dispatchEvent(new CustomEvent('input'));
+        } else if (root) {
+          root.value = dots;
+          root.dispatchEvent(new CustomEvent('input'));
         }
-        if (svg) {
+        if (root) {
           if (sourceEvent && type === "start") {
-            for (const {b, g} of svg.__brushes) {
+            for (const {b, g} of root.__brushes) {
               if (b !== brush) g.call(b.clear);
             }
           }
@@ -73,12 +73,13 @@ export class Brush extends Mark {
      * - register the multiple brushes (for faceting) 
      */
     setTimeout(() => {
-      svg = g.node().ownerSVGElement;
-      if (!svg.__brushes) svg.__brushes = [];
-      svg.__brushes.push({b: brush, g});
+      const svg = g.node().ownerSVGElement;
+      root = svg.parentElement?.nodeName === "FIGURE" ? svg.parentElement : svg;
+      if (!root.__brushes) root.__brushes = [];
+      root.__brushes.push({b: brush, g});
 
       // initial setup works only on one facet
-      if (svg.__brushes.length === 1) {
+      if (root.__brushes.length === 1) {
         if (this.initialSelection) {
           const s = this.initialSelection;
           if (X && Y) {
