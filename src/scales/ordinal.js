@@ -3,6 +3,7 @@ import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
 import {registry, color, symbol} from "./index.js";
+import {maybeSymbol} from "./symbol.js";
 
 export function ScaleO(scale, channels, {
   type,
@@ -23,12 +24,14 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   type,
-  range = registry.get(key) === symbol ? symbols : undefined, // TODO map symbol names to implementations
+  range,
   scheme = range === undefined ? type === "ordinal" ? "turbo" : "tableau10" : undefined,
   unknown,
   ...options
 }) {
-  if (registry.get(key) === color && scheme !== undefined) {
+  if (registry.get(key) === symbol) {
+    range = range === undefined ? symbols : Array.from(range, maybeSymbol);
+  } else if (registry.get(key) === color && scheme !== undefined) {
     if (range !== undefined) {
       const interpolate = quantitativeScheme(scheme);
       const t0 = range[0], d = range[1] - range[0];

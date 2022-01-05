@@ -1,7 +1,7 @@
 import {create, path, symbolCircle} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, identity, maybeNumber, maybeTuple} from "../mark.js";
-import {maybeSymbol} from "../scales/symbol.js";
+import {Mark, identity, maybeNumberChannel, maybeTuple} from "../mark.js";
+import {maybeSymbolChannel} from "../scales/symbol.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -13,9 +13,9 @@ const defaults = {
 export class Dot extends Mark {
   constructor(data, options = {}) {
     const {x, y, r, rotate, symbol} = options;
-    const [vr, cr] = maybeNumber(r, 3);
-    const [vrotate, crotate] = maybeNumber(rotate, 0);
-    const [vsymbol, csymbol] = maybeSymbol(symbol);
+    const [vr, cr] = maybeNumberChannel(r, 3);
+    const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
+    const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
     super(
       data,
       [

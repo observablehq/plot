@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColor, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../mark.js";
 import {coerceDate} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
@@ -81,8 +81,8 @@ function binn(
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
-  const [vfill] = maybeColor(fill);
-  const [vstroke] = maybeColor(stroke);
+  const [vfill] = maybeColorChannel(fill);
+  const [vstroke] = maybeColorChannel(stroke);
   const [GF = fill, setGF] = maybeLazyChannel(vfill);
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 

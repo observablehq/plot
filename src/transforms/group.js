@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
-import {valueof, maybeColor, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
+import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../mark.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -66,8 +66,8 @@ function groupn(
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
-  const [vfill] = maybeColor(fill);
-  const [vstroke] = maybeColor(stroke);
+  const [vfill] = maybeColorChannel(fill);
+  const [vstroke] = maybeColorChannel(stroke);
   const [GF = fill, setGF] = maybeLazyChannel(vfill);
   const [GS = stroke, setGS] = maybeLazyChannel(vstroke);
 
