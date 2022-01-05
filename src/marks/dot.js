@@ -40,7 +40,9 @@ export class Dot extends Mark {
   ) {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const {dx, dy} = this;
-    let index = filter(I, X, Y, S);
+    const cx = (marginLeft + width - marginRight) / 2;
+    const cy = (marginTop + height - marginBottom) / 2;
+    let index = filter(I, X, Y, A, S);
     if (R) index = index.filter(i => positive(R[i]));
     const circle = this.symbol === symbolCircle;
     return create("svg:g")
@@ -53,23 +55,22 @@ export class Dot extends Mark {
             .call(circle
               ? selection => {
                 selection
-                    .attr("cx", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
-                    .attr("cy", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
+                    .attr("cx", X ? i => X[i] : cx)
+                    .attr("cy", Y ? i => Y[i] : cy)
                     .attr("r", R ? i => R[i] : this.r);
               }
               : selection => {
-                // TODO optimize these accessors to avoid them if needed
-                const fx = X ? i => X[i] : () => (marginLeft + width - marginRight) / 2;
-                const fy = Y ? i => Y[i] : () => (marginTop + height - marginBottom) / 2;
-                const fr = R ? i => R[i] : () => this.r;
-                const fs = S ? i => S[i] : () => this.symbol;
+                const translate = X && Y ? i => `translate(${X[i]},${Y[i]})`
+                  : X ? i => `translate(${X[i]},${cy})`
+                  : Y ? i => `translate(${cx},${X[i]})`
+                  : () => `translate(${cx},${cy})`;
                 selection
-                    .attr("transform", A ? i => `translate(${fx(i)},${fy(i)}) rotate(${A[i]})`
-                      : this.rotate ? i => `translate(${fx(i)},${fy(i)}) rotate(${this.rotate})`
-                      : i => `translate(${fx(i)},${fy(i)})`)
+                    .attr("transform", A ? i => `${translate(i)} rotate(${A[i]})`
+                      : this.rotate ? i => `${translate(i)} rotate(${this.rotate})`
+                      : translate)
                     .attr("d", i => {
-                      const p = path(), r = fr(i);
-                      fs(i).draw(p, r * r * Math.PI);
+                      const p = path(), r = R ? R[i] : this.r;
+                      (S ? S[i] : this.symbol).draw(p, r * r * Math.PI);
                       return p;
                     });
               })
