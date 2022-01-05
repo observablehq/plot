@@ -26,10 +26,10 @@ export function legendSymbols(symbol, {
   strokeOpacity = 1,
   strokeWidth = 1.5,
   ...options
-} = {}) {
-  fill = maybeColorChannel(fill)[1];
+} = {}, scale) {
+  const [vf, cf] = maybeColorChannel(fill);
+  const [vs, cs] = maybeColorChannel(stroke);
   fillOpacity = maybeNumberChannel(fillOpacity)[1];
-  stroke = maybeColorChannel(stroke)[1];
   strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
   strokeWidth = maybeNumberChannel(strokeWidth)[1];
   return legendItems(
@@ -37,6 +37,8 @@ export function legendSymbols(symbol, {
     options,
     selection => selection.append("svg")
         .attr("viewBox", "-8 -8 16 16")
+        .attr("fill", vf === "color" ? d => scale(vf).scale(d) : null)
+        .attr("stroke", vs === "color" ? d => scale(vs).scale(d) : null)
       .append("path")
         .attr("d", d => {
           const p = path();
@@ -48,9 +50,9 @@ export function legendSymbols(symbol, {
         height: var(--swatchHeight);
         margin-right: 0.5em;
         overflow: visible;
-        fill: ${fill};
+        fill: ${cf};
         fill-opacity: ${fillOpacity};
-        stroke: ${stroke};
+        stroke: ${cs};
         stroke-width: ${strokeWidth}px;
         stroke-opacity: ${strokeOpacity};
       }`

@@ -8,10 +8,10 @@ export default async function() {
     inset: 12,
     symbol: {
       legend: true,
-      stroke: "steelblue"
+      stroke: "color"
     },
     marks: [
-      Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", r: 8, symbol: "Country", stroke: "steelblue"})
+      Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", r: 8, symbol: "Country", stroke: "Country"})
     ]
   });
 }
