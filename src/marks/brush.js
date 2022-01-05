@@ -10,8 +10,8 @@ export class Brush extends Mark {
       data,
       [
         {name: "picker", value: identity},
-        {name: "x", value: x, optional: true},
-        {name: "y", value: y, optional: true}
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", optional: true}
       ],
       options,
       defaults
@@ -29,12 +29,6 @@ export class Brush extends Mark {
     const {onbrush} = this;
     const g = create("svg:g");
     const data = this.data;
-
-    // compute the scaled channels
-    if (X && this.X === undefined) this.X = X.map(x);
-    if (Y && this.Y === undefined) this.Y = Y.map(y);
-    ({X, Y} = this);
-
     const bounds = [
       [Math.floor(marginLeft), Math.floor(marginTop)],
       [Math.ceil(width - marginRight), Math.ceil(height - marginBottom)]
