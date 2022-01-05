@@ -1,7 +1,8 @@
 import {create, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {maybeColorChannel, maybeNumberChannel} from "../mark.js";
+import {applyInlineStyles, impliedString, maybeClassName, none} from "../style.js";
 
 export function legendSwatches(color, options) {
   return legendItems(
@@ -18,7 +19,19 @@ export function legendSwatches(color, options) {
   );
 }
 
-export function legendSymbols(symbol, options) {
+export function legendSymbols(symbol, {
+  fill = "none",
+  fillOpacity = 1,
+  stroke = none(fill) ? "currentColor" : "none",
+  strokeOpacity = 1,
+  strokeWidth = 1.5,
+  ...options
+} = {}) {
+  fill = maybeColorChannel(fill)[1];
+  fillOpacity = maybeNumberChannel(fillOpacity)[1];
+  stroke = maybeColorChannel(stroke)[1];
+  strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
+  strokeWidth = maybeNumberChannel(strokeWidth)[1];
   return legendItems(
     symbol,
     options,
@@ -35,9 +48,11 @@ export function legendSymbols(symbol, options) {
         height: var(--swatchHeight);
         margin-right: 0.5em;
         overflow: visible;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 1.5px;
+        fill: ${fill};
+        fill-opacity: ${fillOpacity};
+        stroke: ${stroke};
+        stroke-width: ${strokeWidth}px;
+        stroke-opacity: ${strokeOpacity};
       }`
   );
 }

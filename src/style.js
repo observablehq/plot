@@ -207,7 +207,7 @@ export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, stroke
   return filter(index, F, FO, S, SO, SW);
 }
 
-function none(color) {
+export function none(color) {
   return color == null || color === "none";
 }
 
