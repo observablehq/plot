@@ -1,12 +1,51 @@
-import {create} from "d3";
+import {create, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
-export function legendSwatches(color, {
+export function legendSwatches(color, options) {
+  return legendItems(
+    color,
+    options,
+    selection => selection.style("--color", color.scale),
+    className => `.${className}-swatch::before {
+        content: "";
+        width: var(--swatchWidth);
+        height: var(--swatchHeight);
+        margin-right: 0.5em;
+        background: var(--color);
+      }`
+  );
+}
+
+export function legendSymbols(symbol, options) {
+  return legendItems(
+    symbol,
+    options,
+    selection => selection.append("svg")
+        .attr("viewBox", "-8 -8 16 16")
+      .append("path")
+        .attr("d", d => {
+          const p = path();
+          symbol.scale(d).draw(p, 64);
+          return p;
+        }),
+    className => `.${className}-swatch > svg {
+        width: var(--swatchWidth);
+        height: var(--swatchHeight);
+        margin-right: 0.5em;
+        overflow: visible;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5px;
+      }`
+  );
+}
+
+function legendItems(scale, {
   columns,
   tickFormat,
-  fontVariant = inferFontVariant(color),
+  fontVariant = inferFontVariant(scale),
   // TODO label,
   swatchSize = 15,
   swatchWidth = swatchSize,
@@ -15,9 +54,9 @@ export function legendSwatches(color, {
   className,
   style,
   width
-} = {}) {
+} = {}, swatch, swatchStyle) {
   className = maybeClassName(className);
-  tickFormat = maybeTickFormat(tickFormat, color.domain);
+  tickFormat = maybeTickFormat(tickFormat, scale.domain);
 
   const swatches = create("div")
       .attr("class", className)
@@ -49,10 +88,10 @@ export function legendSwatches(color, {
     swatches
         .style("columns", columns)
       .selectAll()
-      .data(color.domain)
+      .data(scale.domain)
       .join("div")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.scale)
+        .call(swatch, scale)
         .call(item => item.append("div")
             .attr("class", `${className}-label`)
             .attr("title", tickFormat)
@@ -74,11 +113,13 @@ export function legendSwatches(color, {
 
     swatches
       .selectAll()
-      .data(color.domain)
+      .data(scale.domain)
       .join("span")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.scale)
-        .text(tickFormat);
+        .call(swatch, scale)
+        .append(function() {
+          return document.createTextNode(tickFormat.apply(this, arguments));
+        });
   }
 
   return swatches
@@ -90,13 +131,7 @@ export function legendSwatches(color, {
           margin-left: ${+marginLeft}px;`}${width === undefined ? "" : `
           width: ${width}px;`}
         }
-        .${className}-swatch::before {
-          content: "";
-          width: var(--swatchWidth);
-          height: var(--swatchHeight);
-          margin-right: 0.5em;
-          background: var(--color);
-        }
+        ${swatchStyle(className)}
         ${extraStyle}
       `))
       .style("font-variant", impliedString(fontVariant, "normal"))

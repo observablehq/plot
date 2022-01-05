@@ -1,10 +1,12 @@
+import {rgb} from "d3";
 import {normalizeScale} from "./scales.js";
-import {legendColor} from "./legends/color.js";
-import {legendOpacity} from "./legends/opacity.js";
+import {legendRamp} from "./legends/ramp.js";
+import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 import {isObject} from "./mark.js";
 
 const legendRegistry = new Map([
   ["color", legendColor],
+  ["symbol", legendSymbols],
   ["opacity", legendOpacity]
 ]);
 
@@ -28,6 +30,34 @@ export function exposeLegends(scales, defaults = {}) {
 
 function legendOptions({label, ticks, tickFormat} = {}, options = {}) {
   return {label, ticks, tickFormat, ...options};
+}
+
+function legendColor(color, {
+  legend = true,
+  ...options
+}) {
+  if (legend === true) legend = color.type === "ordinal" ? "swatches" : "ramp";
+  switch (`${legend}`.toLowerCase()) {
+    case "swatches": return legendSwatches(color, options);
+    case "ramp": return legendRamp(color, options);
+    default: throw new Error(`unknown legend type: ${legend}`);
+  }
+}
+
+function legendOpacity({type, interpolate, ...scale}, {
+  legend = true,
+  color = rgb(0, 0, 0),
+  ...options
+}) {
+  if (!interpolate) throw new Error(`${type} opacity scales are not supported`);
+  if (legend === true) legend = "ramp";
+  if (`${legend}`.toLowerCase() !== "ramp") throw new Error(`${legend} opacity legends are not supported`);
+  return legendColor({type, ...scale, interpolate: interpolateOpacity(color)}, {legend, ...options});
+}
+
+function interpolateOpacity(color) {
+  const {r, g, b} = rgb(color) || rgb(0, 0, 0); // treat invalid color as black
+  return t => `rgba(${r},${g},${b},${t})`;
 }
 
 export function Legends(scales, options) {

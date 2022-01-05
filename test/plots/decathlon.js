@@ -6,6 +6,9 @@ export default async function() {
   return Plot.plot({
     grid: true,
     inset: 12,
+    symbol: {
+      legend: true
+    },
     marks: [
       Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", r: 8, symbol: "Country"})
     ]
