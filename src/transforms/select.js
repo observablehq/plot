@@ -1,13 +1,18 @@
 import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../mark.js";
 import {basic} from "./basic.js";
+import {defined} from "../defined.js";
 
-export function selectFirst(options) {
-  return select(first, undefined, options);
+export function selectFirst({valid: f, ...options} = {}) {
+  return select(first, f, options);
 }
 
-export function selectLast(options) {
-  return select(last, undefined, options);
+export function selectLast({valid: f, ...options} = {}) {
+  return select(last, f, options);
+}
+
+export function selectValid({valid: f, ...options} = {}) {
+  return select(all, f, options);
 }
 
 export function selectMinX(options = {}) {
@@ -34,14 +39,34 @@ export function selectMaxY(options = {}) {
   return select(max, y, options);
 }
 
-// TODO If the value (for some required channel) is undefined, scan forward?
-function* first(I) {
+function* first(I, V) {
+  if (V) {
+    for (const i of I) {
+      if (defined(V[i])) {
+        return yield i;
+      }
+    }
+  }
   yield I[0];
 }
 
-// TODO If the value (for some required channel) is undefined, scan backward?
-function* last(I) {
-  yield I[I.length - 1];
+function* last(I, V) {
+  if (V) {
+    for (const i of I.reverse()) {
+      if (defined(V[i])) {
+        return yield i;
+      }
+    }
+  }
+  yield I[I.length-1];
+}
+
+function* all(I, V) {
+  for (const i of I) {
+    if (!V || defined(V[i])) {
+      yield i;
+    }
+  }
 }
 
 function* min(I, X) {
