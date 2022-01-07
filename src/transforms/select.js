@@ -10,36 +10,43 @@ export function selectLast(options) {
   return select(last, undefined, options);
 }
 
-export function selectMinX(options = {}) {
-  const x = options.x;
-  if (x == null) throw new Error("missing channel: x");
-  return select(min, x, options);
+export function selectAny(selector, channel = {}, options) {
+  let x;
+  if (options !== undefined) {
+    if (typeof channel !== "string") throw new Error(`unsupported channel definition`);
+    x = options[channel];
+    if (x == null) throw new Error(`missing channel: ${channel}`);
+  } else {
+    options = channel;
+  }
+  if (typeof selector === "function") return select(selector, x, options);
+  switch (`${selector}`.toLowerCase()) {
+    case "min": return select(min, x, options);
+    case "max": return select(max, x, options);
+  }
+  throw new Error(`unknown selector: ${selector}`);
 }
 
-export function selectMinY(options = {}) {
-  const y = options.y;
-  if (y == null) throw new Error("missing channel: y");
-  return select(min, y, options);
+export function selectMinX(options) {
+  return selectAny("min", "x", options);
 }
 
-export function selectMaxX(options = {}) {
-  const x = options.x;
-  if (x == null) throw new Error("missing channel: x");
-  return select(max, x, options);
+export function selectMinY(options) {
+  return selectAny("min", "y", options);
 }
 
-export function selectMaxY(options = {}) {
-  const y = options.y;
-  if (y == null) throw new Error("missing channel: y");
-  return select(max, y, options);
+export function selectMaxX(options) {
+  return selectAny("max", "x", options);
 }
 
-// TODO If the value (for some required channel) is undefined, scan forward?
+export function selectMaxY(options) {
+  return selectAny("max", "y", options);
+}
+
 function* first(I) {
   yield I[0];
 }
 
-// TODO If the value (for some required channel) is undefined, scan backward?
 function* last(I) {
   yield I[I.length - 1];
 }
