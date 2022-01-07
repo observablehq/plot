@@ -806,7 +806,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 * **symbol** - the categorical symbol; bound to the *symbol* scale; defaults to circle
 
-If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
 
@@ -851,7 +851,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
 
-If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
 The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
 
