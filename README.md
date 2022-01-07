@@ -129,6 +129,8 @@ Each scale’s options are specified as a nested options object with the corresp
 * **r** - radius (size)
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
+* **length** - linear length (for [vectors](#vector))
+* **symbol** - categorical symbol (for [dots](#dot))
 
 For example, to set the domain for the *x* and *y* scales:
 

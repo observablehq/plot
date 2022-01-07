@@ -9,6 +9,7 @@ import {
   interpolateRound,
   min,
   max,
+  median,
   quantile,
   quantize,
   reverse as reverseof,
@@ -22,7 +23,7 @@ import {
   scaleIdentity
 } from "d3";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
-import {registry, radius, opacity, color} from "./index.js";
+import {registry, radius, opacity, color, length} from "./index.js";
 import {positive, negative, finite} from "../defined.js";
 import {constant} from "../mark.js";
 import {order} from "../scales.js";
@@ -52,11 +53,11 @@ export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
   zero,
-  domain = (registry.get(key) === radius || registry.get(key) === opacity ? inferZeroDomain : inferDomain)(channels),
+  domain = (registry.get(key) === radius || registry.get(key) === opacity || registry.get(key) === length ? inferZeroDomain : inferDomain)(channels),
   unknown,
   round,
   scheme,
-  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
+  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === length ? inferLengthRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse
 }) {
@@ -178,6 +179,13 @@ function inferRadialRange(channels, domain) {
   const range = domain.map(d => 3 * Math.sqrt(d / h25));
   const k = 30 / max(range);
   return k < 1 ? range.map(r => r * k) : range;
+}
+
+// We want a length scale’s domain to go from zero to a positive value, and to
+// treat negative lengths, if any, as inverted vectors of equivalent magnitude.
+function inferLengthRange(channels, domain) {
+  const h50 = median(channels, ({value}) => value === undefined ? NaN : median(value, Math.abs));
+  return domain.map(d => 12 * d / h50);
 }
 
 function inferLogDomain(channels) {

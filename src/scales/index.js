@@ -11,6 +11,10 @@ export const color = Symbol("color");
 // default domain from 0 to the median first quartile of associated channels.
 export const radius = Symbol("radius");
 
+// Length scales default to the linear type, have a default range of [0, 12],
+// and a default domain from 0 to the median median of associated channels.
+export const length = Symbol("length");
+
 // Opacity scales have a default range of [0, 1], and a default domain from 0 to
 // the maximum value of associated channels.
 export const opacity = Symbol("opacity");
@@ -29,5 +33,6 @@ export const registry = new Map([
   ["r", radius],
   ["color", color],
   ["opacity", opacity],
-  ["symbol", symbol]
+  ["symbol", symbol],
+  ["length", length]
 ]);

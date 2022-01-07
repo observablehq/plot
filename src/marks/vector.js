@@ -21,7 +21,7 @@ export class Vector extends Mark {
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "length", value: vl, optional: true},
+        {name: "length", value: vl, scale: "length", optional: true},
         {name: "rotate", value: vr, optional: true}
       ],
       options,
