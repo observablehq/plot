@@ -794,7 +794,7 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 [<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@observablehq/plot-dot)
 
-[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@observablehq/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
+[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@observablehq/plot-dot) · Draws circles, or other symbols, as in a scatterplot.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
@@ -1107,6 +1107,41 @@ The following optional channels are supported:
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
+
+### Vector
+
+[<img src="./img/vector.png" width="320" height="200" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
+
+[Source](./src/marks/vector.js) · [Examples](https://observablehq.com/@observablehq/plot-vector) · Draws little arrows as in a vector field.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **length** - the length in pixels; defaults to 12
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+
+The following options are also supported:
+
+* **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
+
+TK how to position the arrow relative to the *xy* point.
+
+If the **x** channel is not specified, vectors will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, vectors will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+
+The **rotate** and **length** options can be specified as either channels or constants. When specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The length defaults to 12 pixels, and the rotate defaults to 0 degrees (pointing up↑). Vectors with a negative length will be drawn inverted. Positive angles proceed clockwise from noon.
+
+The **stroke** defaults to currentColor. The **strokeWidth** defaults to 1.5, and the **strokeLinecap** defaults to *round*.
+
+Vectors are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest vectors on top, consider a [sort and reverse transform](#transforms).
+
+#### Plot.vector(*data*, *options*)
+
+```js
+Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
+```
+
+Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 ### Plot.marks(...*marks*)
 
