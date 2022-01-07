@@ -38,9 +38,11 @@ export class Dot extends Mark {
     const {channels} = this;
     const symbolChannel = channels.find(({scale}) => scale === "symbol");
     if (symbolChannel) {
+      const fillChannel = channels.find(({name}) => name === "fill");
+      const strokeChannel = channels.find(({name}) => name === "stroke");
       symbolChannel.hint = {
-        fill: channels.some(({name}) => name === "fill") ? "color" : this.fill,
-        stroke: channels.some(({name}) => name === "stroke") ? "color" : this.stroke
+        fill: fillChannel?.value === symbolChannel.value ? "color" : this.fill,
+        stroke: strokeChannel?.value === symbolChannel.value ? "color" : this.stroke
       };
     }
   }
