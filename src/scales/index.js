@@ -15,6 +15,9 @@ export const radius = Symbol("radius");
 // the maximum value of associated channels.
 export const opacity = Symbol("opacity");
 
+// Symbol scales have a default range of d3.symbols.
+export const symbol = Symbol("symbol");
+
 // TODO Rather than hard-coding the list of known scale names, collect the names
 // and categories for each plot specification, so that custom marks can register
 // custom scales.
@@ -25,5 +28,6 @@ export const registry = new Map([
   ["fy", position],
   ["r", radius],
   ["color", color],
-  ["opacity", opacity]
+  ["opacity", opacity],
+  ["symbol", symbol]
 ]);

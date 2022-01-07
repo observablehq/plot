@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeNumber, maybeTuple, keyword} from "../mark.js";
+import {Mark, identity, maybeNumberChannel, maybeTuple, keyword} from "../mark.js";
 import {radians} from "../math.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -14,8 +14,8 @@ const defaults = {
 export class Vector extends Mark {
   constructor(data, options = {}) {
     const {x, y, length, rotate, anchor = "middle"} = options;
-    const [vl, cl] = maybeNumber(length, 12);
-    const [vr, cr] = maybeNumber(rotate, 0);
+    const [vl, cl] = maybeNumberChannel(length, 12);
+    const [vr, cr] = maybeNumberChannel(rotate, 0);
     super(
       data,
       [

@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, maybeNumber, maybeTuple, string} from "../mark.js";
+import {Mark, maybeNumberChannel, maybeTuple, string} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
 const defaults = {
@@ -24,7 +24,7 @@ function isUrl(string) {
 
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
-function maybePath(value) {
+function maybePathChannel(value) {
   return typeof value === "string" && (isPath(value) || isUrl(value))
     ? [undefined, value]
     : [value, undefined];
@@ -35,9 +35,9 @@ export class Image extends Mark {
     let {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
-    const [vs, cs] = maybePath(src);
-    const [vw, cw] = maybeNumber(width, 16);
-    const [vh, ch] = maybeNumber(height, 16);
+    const [vs, cs] = maybePathChannel(src);
+    const [vw, cw] = maybeNumberChannel(width, 16);
+    const [vh, ch] = maybeNumberChannel(height, 16);
     super(
       data,
       [
