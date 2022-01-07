@@ -20,6 +20,7 @@ export function legendRamp(color, {
   className
 }) {
   className = maybeClassName(className);
+  if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg")
       .attr("class", className)

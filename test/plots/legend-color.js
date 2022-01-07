@@ -98,6 +98,10 @@ export function colorLegendLinear() {
   return Plot.plot({color: {type: "linear", domain: [0, 10]}}).legend("color");
 }
 
+export function colorLegendLinearNoTicks() {
+  return Plot.plot({color: {type: "linear", tickFormat: null, domain: [0, 10]}}).legend("color");
+}
+
 export function colorLegendLinearTruncatedScheme() {
   return Plot.plot({color: {scheme: "rainbow", domain: [0, 1], range: [0.5, 1]}}).legend("color");
 }
