@@ -13,9 +13,9 @@ const defaults = {
 export class Dot extends Mark {
   constructor(data, options = {}) {
     const {x, y, r, rotate, symbol = symbolCircle} = options;
-    const [vr, cr] = maybeNumberChannel(r, 3);
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
+    const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
     super(
       data,
       [

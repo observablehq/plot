@@ -1,8 +1,9 @@
-import {InternSet, quantize, reverse as reverseof, sort, symbols} from "d3";
+import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
-import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
+import {none} from "../style.js";
 import {registry, color, symbol} from "./index.js";
+import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {maybeSymbol} from "./symbol.js";
 
 export function ScaleO(scale, channels, {
@@ -99,21 +100,16 @@ function inferDomain(channels) {
 // If all channels provide a consistent hint, propagate it to the scale.
 function inferSymbolHint(channels) {
   const hint = {};
-  for (const {hint: {fill, stroke}} of channels) {
-    if (!("fill" in hint)) hint.fill = fill;
-    else if (hint.fill !== fill) hint.fill = undefined;
-    if (!("stroke" in hint)) hint.stroke = stroke;
-    else if (hint.stroke !== stroke) hint.stroke = undefined;
+  for (const {hint: channelHint} of channels) {
+    for (const key of ["fill", "stroke"]) {
+      const value = channelHint[key];
+      if (!(key in hint)) hint[key] = value;
+      else if (hint[key] !== value) hint[key] = undefined;
+    }
   }
   return hint;
 }
 
-// TODO If the symbols will be filled, prefer the filled symbol set.
 function inferSymbolRange(hint) {
-  if (hint.fill !== "none") {
-    console.debug("TODO prefer filled symbols");
-  } else {
-    console.debug("TODO prefer stroked symbols");
-  }
-  return symbols;
+  return none(hint.fill) ? symbolsStroke : symbolsFill;
 }

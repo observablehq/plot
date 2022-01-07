@@ -10,7 +10,7 @@ export default async function() {
       legend: true
     },
     marks: [
-      Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", r: 8, symbol: "Country", stroke: "Country"})
+      Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", symbol: "Country", stroke: "Country"})
     ]
   });
 }

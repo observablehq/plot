@@ -32,12 +32,14 @@ export function legendSymbols(symbol, {
   stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : none(fill) ? "currentColor" : "none",
   strokeOpacity = 1,
   strokeWidth = 1.5,
+  r = 4.5,
   ...options
 } = {}, scale) {
   const [vf, cf] = maybeColorChannel(fill);
   const [vs, cs] = maybeColorChannel(stroke);
   const sf = maybeScale(scale, vf);
   const ss = maybeScale(scale, vs);
+  const size = r * r * Math.PI;
   fillOpacity = maybeNumberChannel(fillOpacity)[1];
   strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
   strokeWidth = maybeNumberChannel(strokeWidth)[1];
@@ -51,7 +53,7 @@ export function legendSymbols(symbol, {
       .append("path")
         .attr("d", d => {
           const p = path();
-          symbol.scale(d).draw(p, 64);
+          symbol.scale(d).draw(p, size);
           return p;
         }),
     className => `.${className}-swatch > svg {
