@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, maybeNumberChannel, maybeTuple, keyword} from "../mark.js";
+import {Mark, maybeNumberChannel, maybeTuple, keyword} from "../mark.js";
 import {radians} from "../math.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -67,12 +67,4 @@ export class Vector extends Mark {
 export function vector(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   return new Vector(data, {...options, x, y});
-}
-
-export function vectorX(data, {x = identity, ...options} = {}) {
-  return new Vector(data, {...options, x});
-}
-
-export function vectorY(data, {y = identity, ...options} = {}) {
-  return new Vector(data, {...options, y});
 }
