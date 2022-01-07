@@ -76,7 +76,7 @@ export class Dot extends Mark {
               : selection => {
                 const translate = X && Y ? i => `translate(${X[i]},${Y[i]})`
                   : X ? i => `translate(${X[i]},${cy})`
-                  : Y ? i => `translate(${cx},${X[i]})`
+                  : Y ? i => `translate(${cx},${Y[i]})`
                   : () => `translate(${cx},${cy})`;
                 selection
                     .attr("transform", A ? i => `${translate(i)} rotate(${A[i]})`
