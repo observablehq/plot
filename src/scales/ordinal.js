@@ -9,7 +9,8 @@ export function ScaleO(scale, channels, {
   type,
   domain = inferDomain(channels),
   range,
-  reverse
+  reverse,
+  hint
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
@@ -19,7 +20,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale};
+  return {type, domain, range, scale, hint};
 }
 
 export function ScaleOrdinal(key, channels, {
@@ -29,8 +30,10 @@ export function ScaleOrdinal(key, channels, {
   unknown,
   ...options
 }) {
+  let hint;
   if (registry.get(key) === symbol) {
-    range = range === undefined ? symbols : Array.from(range, maybeSymbol);
+    hint = inferSymbolHint(channels);
+    range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
   } else if (registry.get(key) === color && scheme !== undefined) {
     if (range !== undefined) {
       const interpolate = quantitativeScheme(scheme);
@@ -41,7 +44,7 @@ export function ScaleOrdinal(key, channels, {
     }
   }
   if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
-  return ScaleO(scaleOrdinal().unknown(unknown), channels, {type, range, ...options});
+  return ScaleO(scaleOrdinal().unknown(unknown), channels, {...options, type, range, hint});
 }
 
 export function ScalePoint(key, channels, {
@@ -91,4 +94,26 @@ function inferDomain(channels) {
     for (const v of value) values.add(v);
   }
   return sort(values, ascendingDefined);
+}
+
+// If all channels provide a consistent hint, propagate it to the scale.
+function inferSymbolHint(channels) {
+  const hint = {};
+  for (const {hint: {fill, stroke}} of channels) {
+    if (!("fill" in hint)) hint.fill = fill;
+    else if (hint.fill !== fill) hint.fill = undefined;
+    if (!("stroke" in hint)) hint.stroke = stroke;
+    else if (hint.stroke !== stroke) hint.stroke = undefined;
+  }
+  return hint;
+}
+
+// TODO If the symbols will be filled, prefer the filled symbol set.
+function inferSymbolRange(hint) {
+  if (hint.fill !== "none") {
+    console.debug("TODO prefer filled symbols");
+  } else {
+    console.debug("TODO prefer stroked symbols");
+  }
+  return symbols;
 }

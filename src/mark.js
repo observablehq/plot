@@ -58,12 +58,13 @@ export class Mark {
 }
 
 // TODO Type coercion?
-function Channel(data, {scale, type, value}) {
+function Channel(data, {scale, type, value, hint}) {
   return {
     scale,
     type,
     value: valueof(data, value),
-    label: labelof(value)
+    label: labelof(value),
+    hint
   };
 }
 

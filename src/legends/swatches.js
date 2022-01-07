@@ -4,6 +4,13 @@ import {maybeTickFormat} from "../axis.js";
 import {maybeColorChannel, maybeNumberChannel} from "../mark.js";
 import {applyInlineStyles, impliedString, maybeClassName, none} from "../style.js";
 
+function maybeScale(scale, key) {
+  if (key == null) return key;
+  const s = scale(key);
+  if (!s) throw new Error(`scale not found: ${key}`);
+  return s;
+}
+
 export function legendSwatches(color, options) {
   return legendItems(
     color,
@@ -20,15 +27,17 @@ export function legendSwatches(color, options) {
 }
 
 export function legendSymbols(symbol, {
-  fill = "none",
+  fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
   fillOpacity = 1,
-  stroke = none(fill) ? "currentColor" : "none",
+  stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : none(fill) ? "currentColor" : "none",
   strokeOpacity = 1,
   strokeWidth = 1.5,
   ...options
 } = {}, scale) {
   const [vf, cf] = maybeColorChannel(fill);
   const [vs, cs] = maybeColorChannel(stroke);
+  const sf = maybeScale(scale, vf);
+  const ss = maybeScale(scale, vs);
   fillOpacity = maybeNumberChannel(fillOpacity)[1];
   strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
   strokeWidth = maybeNumberChannel(strokeWidth)[1];
@@ -37,8 +46,8 @@ export function legendSymbols(symbol, {
     options,
     selection => selection.append("svg")
         .attr("viewBox", "-8 -8 16 16")
-        .attr("fill", vf === "color" ? d => scale(vf).scale(d) : null)
-        .attr("stroke", vs === "color" ? d => scale(vs).scale(d) : null)
+        .attr("fill", vf === "color" ? d => sf.scale(d) : null)
+        .attr("stroke", vs === "color" ? d => ss.scale(d) : null)
       .append("path")
         .attr("d", d => {
           const p = path();

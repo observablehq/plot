@@ -7,8 +7,7 @@ export default async function() {
     grid: true,
     inset: 12,
     symbol: {
-      legend: true,
-      stroke: "color"
+      legend: true
     },
     marks: [
       Plot.dot(decathlon, {x: "Long Jump", y: "100 Meters", r: 8, symbol: "Country", stroke: "Country"})

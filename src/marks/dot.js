@@ -31,6 +31,18 @@ export class Dot extends Mark {
     this.r = cr;
     this.rotate = crotate;
     this.symbol = csymbol;
+
+    // Give a hint to the symbol scale; this allows the symbol scale to chose
+    // appropriate default symbols based on whether the dots are filled or
+    // stroked, and for the symbol legend to match the appearance of the dots.
+    const {channels} = this;
+    const symbolChannel = channels.find(({scale}) => scale === "symbol");
+    if (symbolChannel) {
+      symbolChannel.hint = {
+        fill: channels.some(({name}) => name === "fill") ? "color" : this.fill,
+        stroke: channels.some(({name}) => name === "stroke") ? "color" : this.stroke
+      };
+    }
   }
   render(
     I,
