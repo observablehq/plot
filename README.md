@@ -129,6 +129,8 @@ Each scale’s options are specified as a nested options object with the corresp
 * **r** - radius (size)
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
+* **length** - linear length (for [vectors](#vector))
+* **symbol** - categorical symbol (for [dots](#dot))
 
 For example, to set the domain for the *x* and *y* scales:
 
@@ -496,11 +498,11 @@ When the *include* or *exclude* facet mode is chosen, the mark data must be para
 
 ## Legends
 
-Plot can generate legends for *color* and *opacity* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
 
 * *scale*.**legend** - if truthy, generate a legend for the given scale
 
-If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales, only the *swatches* value is supported.
+If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales and symbol scales, only the *swatches* value is supported.
 
 ### *plot*.legend(*name*, *options*)
 
@@ -523,6 +525,17 @@ Categorical and ordinal color legends are rendered as swatches, unless *options*
 * *options*.**marginLeft** - the legend’s left margin
 * *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
 * *options*.**width** - the legend’s width (in pixels)
+
+Symbol legends are rendered as swatches and share the same options as above. In addition, symbol legends support the following additional options:
+
+* *options*.**fill** - the symbol fill color
+* *options*.**fillOpacity** - the symbol fill opacity; defaults to 1
+* *options*.**stroke** - the symbol stroke color
+* *options*.**strokeOpacity** - the symbol stroke opacity; defaults to 1
+* *options*.**strokeWidth** - the symbol stroke width; defaults to 1.5
+* *options*.**r** - the symbol radius; defaults to 4.5 pixels
+
+The **fill** and **stroke** options can be specified as “color” to use the corresponding color encoding, for when the symbol encoding is redundant. The **fill** defaults to none. The **stroke** defaults to currentColor if the fill is none, and to none otherwise. The **fill** and **stroke** options may also be inherited from the corresponding options on an associated dot mark.
 
 Continuous color legends are rendered as a ramp, and can be configured with the following options:
 
@@ -593,7 +606,7 @@ Channel values can also be specified as numbers for constant values, say for a f
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"}).plot()
 ```
 
-Missing and invalid data are handled specifically for each mark type and channel. Plot.dot will not generate circles with null, undefined or negative radius, or null or undefined coordinates. Similarly, Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points; Plot.link, Plot.rect will only create shapes where x1, x2, y1 and y2 are not null or undefined. Marks will not generate elements for null or undefined fill or stroke, stroke width, fill or stroke opacity. Titles will only be added if they are non-empty.
+Missing and invalid data are handled specifically for each mark type and channel. In most cases, if the provided channel value for a given datum is null, undefined, or (strictly) NaN, the mark will implicitly filter the datum and not generate a corresponding output. In some cases, such as the radius (*r*) of a dot, the channel value must additionally be positive. Plot.line and Plot.area will stop the path before any invalid point and start again at the next valid point, thus creating interruptions rather than interpolating between valid points. Titles will only be added if they are non-empty.
 
 All marks support the following style options:
 
@@ -783,17 +796,21 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 [<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@observablehq/plot-dot)
 
-[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@observablehq/plot-dot) · Draws circles (and in the future, possibly other symbols) as in a scatterplot.
+[Source](./src/marks/dot.js) · [Examples](https://observablehq.com/@observablehq/plot-dot) · Draws circles, or other symbols, as in a scatterplot.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+* **symbol** - the categorical symbol; bound to the *symbol* scale; defaults to circle
 
-If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
-The **r** option defaults to three pixels and can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Dots with a nonpositive radius are not drawn. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5.
+The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
+
+The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5. The **rotate** and **symbol** options can be specified as either channels or constants. When rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When symbol is a valid symbol name or symbol object (implementing the draw method), it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
@@ -834,7 +851,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
 
-If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
 The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
 
@@ -1028,7 +1045,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 * **fontSize** - the font size in pixels
-* **rotate** - the rotation in degrees clockwise
+* **rotate** - the rotation angle in degrees clockwise
 
 The following text-specific constant options are also supported:
 
@@ -1037,7 +1054,7 @@ The following text-specific constant options are also supported:
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
-* **rotate** - the rotation in degrees clockwise; defaults to 0
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
 For text marks, the **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**. The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
@@ -1092,6 +1109,41 @@ The following optional channels are supported:
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
+
+### Vector
+
+[<img src="./img/vector.png" width="320" height="200" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
+
+[Source](./src/marks/vector.js) · [Examples](https://observablehq.com/@observablehq/plot-vector) · Draws little arrows as in a vector field.
+
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **x** - the horizontal position; bound to the *x* scale
+* **y** - the vertical position; bound to the *y* scale
+* **length** - the length in pixels; bound to the *length* scale; defaults to 12
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+
+The following options are also supported:
+
+* **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
+
+If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
+
+If the **x** channel is not specified, vectors will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, vectors will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+
+The **rotate** and **length** options can be specified as either channels or constants. When specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The length defaults to 12 pixels, and the rotate defaults to 0 degrees (pointing up↑). Vectors with a negative length will be drawn inverted. Positive angles proceed clockwise from noon.
+
+The **stroke** defaults to currentColor. The **strokeWidth** defaults to 1.5, and the **strokeLinecap** defaults to *round*.
+
+Vectors are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest vectors on top, consider a [sort and reverse transform](#transforms).
+
+#### Plot.vector(*data*, *options*)
+
+```js
+Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
+```
+
+Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 ### Plot.marks(...*marks*)
 

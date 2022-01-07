@@ -58,12 +58,13 @@ export class Mark {
 }
 
 // TODO Type coercion?
-function Channel(data, {scale, type, value}) {
+function Channel(data, {scale, type, value, hint}) {
   return {
     scale,
     type,
     value: valueof(data, value),
-    label: labelof(value)
+    label: labelof(value),
+    hint
   };
 }
 
@@ -134,16 +135,16 @@ const colors = new Set(["currentColor", "none"]);
 // tuple [channel, constant] where one of the two is undefined, and the other is
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
-export function maybeColor(value, defaultValue) {
+export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
     : typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value]
     : [value, undefined];
 }
 
-// Similar to maybeColor, this tests whether the given value is a number
+// Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
-export function maybeNumber(value, defaultValue) {
+export function maybeNumberChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null || typeof value === "number" ? [undefined, value]
     : [value, undefined];
@@ -202,8 +203,8 @@ export function maybeTuple(x, y) {
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
 export function maybeZ({z, fill, stroke} = {}) {
-  if (z === undefined) ([z] = maybeColor(fill));
-  if (z === undefined) ([z] = maybeColor(stroke));
+  if (z === undefined) ([z] = maybeColorChannel(fill));
+  if (z === undefined) ([z] = maybeColorChannel(stroke));
   return z;
 }
 

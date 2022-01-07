@@ -1,5 +1,5 @@
 import {isoFormat, namespaces} from "d3";
-import {string, number, maybeColor, maybeNumber, isTemporal, isNumeric} from "./mark.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./mark.js";
 import {filter, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
 
@@ -29,6 +29,7 @@ export function styles(
     fill: defaultFill = "currentColor",
     stroke: defaultStroke = "none",
     strokeWidth: defaultStrokeWidth,
+    strokeLinecap: defaultStrokeLinecap,
     strokeLinejoin: defaultStrokeLinejoin,
     strokeMiterlimit: defaultStrokeMiterlimit
   }
@@ -58,21 +59,22 @@ export function styles(
     if (none(defaultStroke) && !none(stroke)) defaultFill = "none";
   }
 
-  const [vfill, cfill] = maybeColor(fill, defaultFill);
-  const [vfillOpacity, cfillOpacity] = maybeNumber(fillOpacity);
-  const [vstroke, cstroke] = maybeColor(stroke, defaultStroke);
-  const [vstrokeOpacity, cstrokeOpacity] = maybeNumber(strokeOpacity);
-  const [vopacity, copacity] = maybeNumber(opacity);
+  const [vfill, cfill] = maybeColorChannel(fill, defaultFill);
+  const [vfillOpacity, cfillOpacity] = maybeNumberChannel(fillOpacity);
+  const [vstroke, cstroke] = maybeColorChannel(stroke, defaultStroke);
+  const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(strokeOpacity);
+  const [vopacity, copacity] = maybeNumberChannel(opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
   // defaults if the stroke is not (constant) none.
   if (cstroke !== "none") {
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
+    if (strokeLinecap === undefined) strokeLinecap = defaultStrokeLinecap;
     if (strokeLinejoin === undefined) strokeLinejoin = defaultStrokeLinejoin;
     if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
   }
 
-  const [vstrokeWidth, cstrokeWidth] = maybeNumber(strokeWidth);
+  const [vstrokeWidth, cstrokeWidth] = maybeNumberChannel(strokeWidth);
 
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill !== null) {
@@ -205,7 +207,7 @@ export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, stroke
   return filter(index, F, FO, S, SO, SW);
 }
 
-function none(color) {
+export function none(color) {
   return color == null || color === "none";
 }
 

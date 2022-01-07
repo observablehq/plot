@@ -1,6 +1,6 @@
 import {descending} from "d3";
 import {parse as isoParse} from "isoformat";
-import {registry, color, position, radius, opacity} from "./scales/index.js";
+import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
@@ -195,7 +195,8 @@ function inferScaleType(key, channels, {type, domain, range}) {
     return type;
   }
   if (registry.get(key) === radius) return "sqrt";
-  if (registry.get(key) === opacity) return "linear";
+  if (registry.get(key) === opacity || registry.get(key) === length) return "linear";
+  if (registry.get(key) === symbol) return "ordinal";
   for (const {type} of channels) if (type !== undefined) return type;
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {

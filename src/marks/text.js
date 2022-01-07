@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark, indexOf, identity, string, maybeNumber, maybeTuple, numberChannel, isNumeric, isTemporal} from "../mark.js";
+import {Mark, indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal} from "../mark.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyText, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -23,8 +23,8 @@ export class Text extends Mark {
       dy = "0.32em",
       rotate
     } = options;
-    const [vrotate, crotate] = maybeNumber(rotate, 0);
-    const [vfontSize, cfontSize] = maybeNumber(fontSize);
+    const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
+    const [vfontSize, cfontSize] = maybeNumberChannel(fontSize);
     super(
       data,
       [

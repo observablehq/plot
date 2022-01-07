@@ -1,6 +1,7 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {formatIsoDate} from "./format.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
+import {radians} from "./math.js";
 import {impliedString} from "./style.js";
 
 export class AxisX {
@@ -233,8 +234,6 @@ function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
     .tickPadding(tickPadding)
     .tickValues(Array.isArray(ticks) ? ticks : null);
 }
-
-const radians = Math.PI / 180;
 
 function maybeTickRotate(g, rotate) {
   if (!(rotate = +rotate)) return;

@@ -1,12 +1,79 @@
-import {create} from "d3";
+import {create, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import {maybeColorChannel, maybeNumberChannel} from "../mark.js";
+import {applyInlineStyles, impliedString, maybeClassName, none} from "../style.js";
 
-export function legendSwatches(color, {
+function maybeScale(scale, key) {
+  if (key == null) return key;
+  const s = scale(key);
+  if (!s) throw new Error(`scale not found: ${key}`);
+  return s;
+}
+
+export function legendSwatches(color, options) {
+  return legendItems(
+    color,
+    options,
+    selection => selection.style("--color", color.scale),
+    className => `.${className}-swatch::before {
+        content: "";
+        width: var(--swatchWidth);
+        height: var(--swatchHeight);
+        margin-right: 0.5em;
+        background: var(--color);
+      }`
+  );
+}
+
+export function legendSymbols(symbol, {
+  fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
+  fillOpacity = 1,
+  stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : none(fill) ? "currentColor" : "none",
+  strokeOpacity = 1,
+  strokeWidth = 1.5,
+  r = 4.5,
+  ...options
+} = {}, scale) {
+  const [vf, cf] = maybeColorChannel(fill);
+  const [vs, cs] = maybeColorChannel(stroke);
+  const sf = maybeScale(scale, vf);
+  const ss = maybeScale(scale, vs);
+  const size = r * r * Math.PI;
+  fillOpacity = maybeNumberChannel(fillOpacity)[1];
+  strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
+  strokeWidth = maybeNumberChannel(strokeWidth)[1];
+  return legendItems(
+    symbol,
+    options,
+    selection => selection.append("svg")
+        .attr("viewBox", "-8 -8 16 16")
+        .attr("fill", vf === "color" ? d => sf.scale(d) : null)
+        .attr("stroke", vs === "color" ? d => ss.scale(d) : null)
+      .append("path")
+        .attr("d", d => {
+          const p = path();
+          symbol.scale(d).draw(p, size);
+          return p;
+        }),
+    className => `.${className}-swatch > svg {
+        width: var(--swatchWidth);
+        height: var(--swatchHeight);
+        margin-right: 0.5em;
+        overflow: visible;
+        fill: ${cf};
+        fill-opacity: ${fillOpacity};
+        stroke: ${cs};
+        stroke-width: ${strokeWidth}px;
+        stroke-opacity: ${strokeOpacity};
+      }`
+  );
+}
+
+function legendItems(scale, {
   columns,
   tickFormat,
-  fontVariant = inferFontVariant(color),
+  fontVariant = inferFontVariant(scale),
   // TODO label,
   swatchSize = 15,
   swatchWidth = swatchSize,
@@ -15,9 +82,9 @@ export function legendSwatches(color, {
   className,
   style,
   width
-} = {}) {
+} = {}, swatch, swatchStyle) {
   className = maybeClassName(className);
-  tickFormat = maybeTickFormat(tickFormat, color.domain);
+  tickFormat = maybeTickFormat(tickFormat, scale.domain);
 
   const swatches = create("div")
       .attr("class", className)
@@ -49,10 +116,10 @@ export function legendSwatches(color, {
     swatches
         .style("columns", columns)
       .selectAll()
-      .data(color.domain)
+      .data(scale.domain)
       .join("div")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.scale)
+        .call(swatch, scale)
         .call(item => item.append("div")
             .attr("class", `${className}-label`)
             .attr("title", tickFormat)
@@ -74,11 +141,13 @@ export function legendSwatches(color, {
 
     swatches
       .selectAll()
-      .data(color.domain)
+      .data(scale.domain)
       .join("span")
         .attr("class", `${className}-swatch`)
-        .style("--color", color.scale)
-        .text(tickFormat);
+        .call(swatch, scale)
+        .append(function() {
+          return document.createTextNode(tickFormat.apply(this, arguments));
+        });
   }
 
   return swatches
@@ -90,13 +159,7 @@ export function legendSwatches(color, {
           margin-left: ${+marginLeft}px;`}${width === undefined ? "" : `
           width: ${width}px;`}
         }
-        .${className}-swatch::before {
-          content: "";
-          width: var(--swatchWidth);
-          height: var(--swatchHeight);
-          margin-right: 0.5em;
-          background: var(--color);
-        }
+        ${swatchStyle(className)}
         ${extraStyle}
       `))
       .style("font-variant", impliedString(fontVariant, "normal"))

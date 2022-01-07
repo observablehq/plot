@@ -35,6 +35,10 @@ https://covid19.healthdata.org/
 D3 Community Survey, 2015
 https://github.com/enjalot/d3surveys
 
+## decathlon.csv
+Sample of decathlon dataset from JMP Statistical Discovery (http://www.jmp.com).
+https://github.com/hemanrobinson/preattentive/blob/a58dd4795d0ee063a38a2d7bf33812d969ca6256/src/Data.js#L5598-L5650
+
 ## diamonds.csv
 ggplot2 “diamonds” dataset (carat and price columns only)
 https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv

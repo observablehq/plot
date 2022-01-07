@@ -1,14 +1,17 @@
-import {InternSet, quantize, reverse as reverseof, sort} from "d3";
+import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
-import {ordinalScheme, quantitativeScheme} from "./schemes.js";
 import {ascendingDefined} from "../defined.js";
-import {registry, color} from "./index.js";
+import {none} from "../style.js";
+import {registry, color, symbol} from "./index.js";
+import {ordinalScheme, quantitativeScheme} from "./schemes.js";
+import {maybeSymbol} from "./symbol.js";
 
 export function ScaleO(scale, channels, {
   type,
   domain = inferDomain(channels),
   range,
-  reverse
+  reverse,
+  hint
 }) {
   if (type === "categorical") type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
@@ -18,7 +21,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale};
+  return {type, domain, range, scale, hint};
 }
 
 export function ScaleOrdinal(key, channels, {
@@ -28,7 +31,11 @@ export function ScaleOrdinal(key, channels, {
   unknown,
   ...options
 }) {
-  if (registry.get(key) === color && scheme !== undefined) {
+  let hint;
+  if (registry.get(key) === symbol) {
+    hint = inferSymbolHint(channels);
+    range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
+  } else if (registry.get(key) === color && scheme !== undefined) {
     if (range !== undefined) {
       const interpolate = quantitativeScheme(scheme);
       const t0 = range[0], d = range[1] - range[0];
@@ -38,7 +45,7 @@ export function ScaleOrdinal(key, channels, {
     }
   }
   if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
-  return ScaleO(scaleOrdinal().unknown(unknown), channels, {type, range, ...options});
+  return ScaleO(scaleOrdinal().unknown(unknown), channels, {...options, type, range, hint});
 }
 
 export function ScalePoint(key, channels, {
@@ -88,4 +95,21 @@ function inferDomain(channels) {
     for (const v of value) values.add(v);
   }
   return sort(values, ascendingDefined);
+}
+
+// If all channels provide a consistent hint, propagate it to the scale.
+function inferSymbolHint(channels) {
+  const hint = {};
+  for (const {hint: channelHint} of channels) {
+    for (const key of ["fill", "stroke"]) {
+      const value = channelHint[key];
+      if (!(key in hint)) hint[key] = value;
+      else if (hint[key] !== value) hint[key] = undefined;
+    }
+  }
+  return hint;
+}
+
+function inferSymbolRange(hint) {
+  return none(hint.fill) ? symbolsStroke : symbolsFill;
 }
