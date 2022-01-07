@@ -182,10 +182,13 @@ function inferRadialRange(channels, domain) {
 }
 
 // We want a length scale’s domain to go from zero to a positive value, and to
-// treat negative lengths, if any, as inverted vectors of equivalent magnitude.
+// treat negative lengths if any as inverted vectors of equivalent magnitude. We
+// also don’t want the maximum default length to exceed 60px.
 function inferLengthRange(channels, domain) {
   const h50 = median(channels, ({value}) => value === undefined ? NaN : median(value, Math.abs));
-  return domain.map(d => 12 * d / h50);
+  const range = domain.map(d => 12 * d / h50);
+  const k = 60 / max(range);
+  return k < 1 ? range.map(r => r * k) : range;
 }
 
 function inferLogDomain(channels) {

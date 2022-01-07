@@ -5,9 +5,6 @@ export default function() {
   return Plot.plot({
     inset: 12,
     height: 600,
-    length: {
-      type: "identity"
-    },
     marks: [
       Plot.vector(
         (T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)),
