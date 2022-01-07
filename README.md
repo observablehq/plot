@@ -1633,6 +1633,31 @@ Selects the rightmost point of each series.
 
 Selects the highest point of each series.
 
+### Plot.selectAny(*select*, [*channel*, ]*options*)
+
+Selects the points of each series selected by the *select* selector. The selector can be specified as a built-in ("min" and "max"), or as a function, which receives as inputs the index of the series and the optional *channel*, if specified.
+
+For example, to select the point within each series that is the closest to the median of the *y* channel:
+
+```js
+  Plot.selectAny((I, V) => {
+      const median = d3.median(I, i => V[i]);
+      const i = d3.least(I, (i) => Math.abs(V[i] - median));
+      return [i];
+    },
+    "y",
+    {
+      x: "year",
+      y: "revenue",
+      fill: "format"
+    })
+```
+
+To pick three points at random in each series:
+```js
+  Plot.selectAny(I => d3.shuffle(I).slice(0, 3), {z: "year", ...})
+```
+
 ### Stack
 
 [<img src="./img/stack.png" width="320" height="198" alt="a stacked area chart of revenue by category">](https://observablehq.com/@observablehq/plot-stack)
