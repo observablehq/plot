@@ -13,8 +13,8 @@ export function legendRamp(color, {
   marginBottom = 16 + tickSize,
   marginLeft = 0,
   style,
-  tickFormat,
   ticks = (width - marginLeft - marginRight) / 64,
+  tickFormat,
   fontVariant = inferFontVariant(color),
   round = true,
   className
