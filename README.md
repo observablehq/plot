@@ -1120,14 +1120,14 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
-* **length** - the length in pixels; defaults to 12
+* **length** - the length in pixels; bound to the *length* scale; defaults to 12
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
 The following options are also supported:
 
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
 
-TK how to position the arrow relative to the *xy* point.
+If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
 
 If the **x** channel is not specified, vectors will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, vectors will vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
 
