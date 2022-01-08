@@ -27,7 +27,7 @@ export class Arrow extends Mark {
       options,
       defaults
     );
-    this.bend = Math.max(-90, Math.min(90, bend));
+    this.bend = bend === true ? 22.5 : Math.max(-90, Math.min(90, bend));
     this.headAngle = +headAngle;
     this.headLength = +headLength;
   }
@@ -101,8 +101,4 @@ export function arrow(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
   ([x1, x2] = maybeSameValue(x, x1, x2));
   ([y1, y2] = maybeSameValue(y, y1, y2));
   return new Arrow(data, {...options, x1, x2, y1, y2});
-}
-
-export function swoop(data, {bend = 22.5, ...options} = {}) {
-  return arrow(data, {bend, ...options});
 }
