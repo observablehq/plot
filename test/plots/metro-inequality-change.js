@@ -19,7 +19,7 @@ export default async function() {
       symmetric: false
     },
     marks: [
-      Plot.arrow(data, {
+      Plot.swoop(data, {
         x1: "POP_1980",
         y1: "R90_10_1980",
         x2: "POP_2015",
