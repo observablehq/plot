@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
 import {Mark} from "../mark.js";
+import {radians} from "../math.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
@@ -14,7 +15,7 @@ const defaults = {
 
 export class Arrow extends Mark {
   constructor(data, options = {}) {
-    const {x1, y1, x2, y2} = options;
+    const {x1, y1, x2, y2, bend = 0, headAngle = 60, headLength = 8} = options;
     super(
       data,
       [
@@ -26,11 +27,30 @@ export class Arrow extends Mark {
       options,
       defaults
     );
+    this.bend = Math.max(-90, Math.min(90, bend));
+    this.headAngle = +headAngle;
+    this.headLength = +headLength;
   }
   render(I, {x, y}, channels) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
-    const {dx, dy, strokeWidth} = this;
+    const {dx, dy, strokeWidth, bend, headAngle, headLength} = this;
     const sw = SW ? i => SW[i] : () => strokeWidth;
+
+    // When bending, the offset between the straight line between the two points
+    // and the outgoing tangent from the start point. (Also the negative
+    // incoming tangent to the end point.) This must be within ±π/2. A positive
+    // angle will produce a clockwise curve; a negative angle will produce a
+    // counterclockwise curve; zero will produce a straight line.
+    const bendAngle = bend * radians;
+
+    // The angle between the arrow’s shaft and one of the wings; the “head”
+    // angle between the wings is twice this value.
+    const wingAngle = headAngle * radians / 2;
+
+    // The length of the arrowhead’s “wings” (the line segments that extend from
+    // the end point) relative to the stroke width.
+    const wingScale = headLength / 1.5;
+
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -38,7 +58,40 @@ export class Arrow extends Mark {
           .data(filter(I, X1, Y1, X2, Y2))
           .join("path")
             .call(applyDirectStyles, this)
-            .attr("d", i => pathArrow(X1[i], Y1[i], X2[i], Y2[i], sw(i)))
+            .attr("d", i => {
+              const x1 = X1[i], y1 = Y1[i], x2 = X2[i], y2 = Y2[i];
+              const dx = x2 - x1, dy = y2 - y1;
+              const lineLength = Math.hypot(dx, dy);
+              const lineAngle = Math.atan2(dy, dx);
+
+              // We don’t allow the wing length to be too large relative to the
+              // length of the arrow. (Plot.vector allows arbitrarily large
+              // wings, but that’s okay since vectors are usually small.)
+              const headLength = Math.min(wingScale * sw(i), lineLength / 3);
+
+              // The angle of the arrow as it approaches the endpoint, and the
+              // angles of the adjacent wings. Here “left” refers to if the
+              // arrow is pointing up.
+              const endAngle = lineAngle + bendAngle;
+              const leftAngle = endAngle + wingAngle;
+              const rightAngle = endAngle - wingAngle;
+
+              // The endpoints of the two wings.
+              const x3 = x2 - headLength * Math.cos(leftAngle);
+              const y3 = y2 - headLength * Math.sin(leftAngle);
+              const x4 = x2 - headLength * Math.cos(rightAngle);
+              const y4 = y2 - headLength * Math.sin(rightAngle);
+
+              // The radius of the circle that intersects with the two endpoints
+              // and has the specified bend angle.
+              const r = Math.hypot(lineLength / Math.tan(bendAngle), lineLength) / 2;
+
+              // If the radius is very large (or even infinite, as when the bend
+              // angle is zero), then render a straight line.
+              return r < 1e5
+                ? `M${x1},${y1}A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`
+                : `M${x1},${y1}L${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`;
+            })
             .call(applyChannelStyles, this, channels))
       .node();
   }
@@ -50,48 +103,6 @@ export function arrow(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
   return new Arrow(data, {...options, x1, x2, y1, y2});
 }
 
-function pathArrow(x1, y1, x2, y2, k) {
-  const dx = x2 - x1, dy = y2 - y1;
-  const length = Math.hypot(dx, dy);
-  const angle = Math.atan2(dy, dx);
-
-  // The length of the arrowhead’s “wings” (the line segments that extend from
-  // the endpoint of the link). This is typically a multiple of the stroke
-  // width, but we don’t allow the effective arrowhead length to be too large
-  // relative to the length of the arrow. (Unlike Plot.vector, which allows the
-  // arrowhead to grow arbitrarily large, but that’s okay since vectors are
-  // usually small.)
-  const headLength = Math.min(16 * k, length) / 3;
-
-  // The angle between the arrow’s shaft and one of the wings. (The angle
-  // between both wings is twice this value.)
-  const headAngle = Math.PI / 4;
-
-  // When bending, the offset between the straight line between the two points
-  // and the departing tangent from the start point. This must be within ±π/2. A
-  // positive angle will produce a clockwise curve, while a negative angle will
-  // produce a counterclockwise curve. (Zero will produce a straight line.)
-  const bendAngle = Math.PI / 8;
-
-  // The angle of the shaft when it approaches the endpoint, and the angles of
-  // the adjacent wings. Here “left” refers to if the arrow is pointing up.
-  const endAngle = angle + bendAngle;
-  const leftAngle = endAngle + headAngle;
-  const rightAngle = endAngle - headAngle;
-
-  // The endpoints of the two wings.
-  const x3 = x2 - headLength * Math.cos(leftAngle);
-  const y3 = y2 - headLength * Math.sin(leftAngle);
-  const x4 = x2 - headLength * Math.cos(rightAngle);
-  const y4 = y2 - headLength * Math.sin(rightAngle);
-
-  // The radius of the circle that intersects with the two endpoints and has the
-  // specified bend angle.
-  const r = Math.hypot(length / Math.tan(bendAngle), length) / 2;
-
-  // If the radius is very large (or even infinite, as when the bend angle is
-  // zero), then render a straight line.
-  return r < 1e5
-    ? `M${x1},${y1}A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`
-    : `M${x1},${y1}L${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`;
+export function swoop(data, {bend = 22.5, ...options} = {}) {
+  return arrow(data, {bend, ...options});
 }
