@@ -19,11 +19,12 @@ export default async function() {
       symmetric: false
     },
     marks: [
-      Plot.swoop(data, {
+      Plot.arrow(data, {
         x1: "POP_1980",
         y1: "R90_10_1980",
         x2: "POP_2015",
         y2: "R90_10_2015",
+        bend: true,
         stroke: d => d.R90_10_2015 - d.R90_10_1980
       }),
       Plot.text(data, {
