@@ -526,7 +526,7 @@ Categorical and ordinal color legends are rendered as swatches, unless *options*
 * *options*.**className** - a class name, that defaults to a randomly generated string scoping the styles
 * *options*.**width** - the legend’s width (in pixels)
 
-Symbol legends are rendered as swatches and share the same options as above. In addition, symbol legends support the following additional options:
+Symbol legends are rendered as swatches and support the options above in addition to the following options:
 
 * *options*.**fill** - the symbol fill color
 * *options*.**fillOpacity** - the symbol fill opacity; defaults to 1
@@ -535,7 +535,7 @@ Symbol legends are rendered as swatches and share the same options as above. In 
 * *options*.**strokeWidth** - the symbol stroke width; defaults to 1.5
 * *options*.**r** - the symbol radius; defaults to 4.5 pixels
 
-The **fill** and **stroke** options can be specified as “color” to use the corresponding color encoding, for when the symbol encoding is redundant. The **fill** defaults to none. The **stroke** defaults to currentColor if the fill is none, and to none otherwise. The **fill** and **stroke** options may also be inherited from the corresponding options on an associated dot mark.
+The **fill** and **stroke** symbol legend options can be specified as “color” to apply the color scale when the symbol scale is a redundant encoding. The **fill** defaults to none. The **stroke** defaults to currentColor if the fill is none, and to none otherwise. The **fill** and **stroke** options may also be inherited from the corresponding options on an associated dot mark.
 
 Continuous color legends are rendered as a ramp, and can be configured with the following options:
 
