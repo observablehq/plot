@@ -87,9 +87,7 @@ export class Arrow extends Mark {
 
               // If the radius is very large (or even infinite, as when the bend
               // angle is zero), then render a straight line.
-              return r < 1e5
-                ? `M${x1},${y1}A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`
-                : `M${x1},${y1}L${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`;
+              return `M${x1},${y1}${r < 1e5 ? `A${r},${r} 0,0,${bendAngle > 0 ? 1 : 0} ` : `L`}${x2},${y2}M${x3},${y3}L${x2},${y2}L${x4},${y4}`;
             })
             .call(applyChannelStyles, this, channels))
       .node();
