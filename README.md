@@ -716,9 +716,7 @@ The following channels are required:
 * **x2** - the ending horizontal position; bound to the *x* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-The arrow mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
-
-The arrow mark supports the following additional options:
+The arrow mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one. The following additional options are supported:
 
 * **bend** - the bend angle, in degrees; defaults to zero
 * **headAngle** - the arrowhead angle, in degrees; defaults to 22.5°
