@@ -73,11 +73,12 @@ export class Arrow extends Mark {
             .call(applyDirectStyles, this)
             .attr("d", i => {
               let x1 = X1[i], y1 = Y1[i], x2 = X2[i], y2 = Y2[i];
+              let lineAngle = Math.atan2(y2 - y1, x2 - x1);
+              const lineLength = Math.hypot(x2 - x1, y2 - y1);
 
               // We don’t allow the wing length to be too large relative to the
               // length of the arrow. (Plot.vector allows arbitrarily large
               // wings, but that’s okay since vectors are usually small.)
-              const lineLength = Math.hypot(x2 - x1, y2 - y1);
               const headLength = Math.min(wingScale * sw(i), lineLength / 3);
 
               // The radius of the circle that intersects with the two endpoints
@@ -87,11 +88,26 @@ export class Arrow extends Mark {
               // Apply insets.
               if (insetStart || insetEnd) {
                 if (r < 1e5) {
+                  // For inset swoopy arrows, compute the circle-circle
+                  // intersection between a circle centered around the
+                  // respective arrow endpoint and the center of the circle
+                  // segment that forms the shaft of the arrow.
                   const sign = Math.sign(bendAngle);
                   const [cx, cy] = pointPointCenter([x1, y1], [x2, y2], r, sign);
-                  if (insetStart) ([x1, y1] = circleCircleIntersect([cx, cy, r], [x1, y1, insetStart], -sign));
-                  if (insetEnd) ([x2, y2] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign));
+                  if (insetStart) {
+                    ([x1, y1] = circleCircleIntersect([cx, cy, r], [x1, y1, insetStart], -sign * Math.sign(insetStart)));
+                  }
+                  // For the end inset, rotate the arrowhead so that it aligns
+                  // with the truncated end of the arrow. Since the arrow is a
+                  // segment of the circle centered at <cx,cy>, we can compute
+                  // the angular difference to the new endpoint.
+                  if (insetEnd) {
+                    const [x, y] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign * Math.sign(insetEnd));
+                    lineAngle += Math.atan2(y - cy, x - cx) - Math.atan2(y2 - cy, x2 - cx);
+                    x2 = x, y2 = y;
+                  }
                 } else {
+                  // For inset straight arrows, offset along the straight line.
                   const dx = x2 - x1, dy = y2 - y1, d = Math.hypot(dx, dy);
                   if (insetStart) x1 += dx / d * insetStart, y1 += dy / d * insetStart;
                   if (insetEnd) x2 -= dx / d * insetEnd, y2 -= dy / d * insetEnd;
@@ -101,7 +117,6 @@ export class Arrow extends Mark {
               // The angle of the arrow as it approaches the endpoint, and the
               // angles of the adjacent wings. Here “left” refers to if the
               // arrow is pointing up.
-              const lineAngle = Math.atan2(y2 - y1, x2 - x1);
               const endAngle = lineAngle + bendAngle;
               const leftAngle = endAngle + wingAngle;
               const rightAngle = endAngle - wingAngle;
