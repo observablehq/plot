@@ -721,6 +721,9 @@ The arrow mark supports the [standard mark options](#marks). The **stroke** defa
 * **bend** - the bend angle, in degrees; defaults to zero
 * **headAngle** - the arrowhead angle, in degrees; defaults to 22.5°
 * **headLength** - the arrowhead scale; defaults to 8
+* **insetEnd** - inset at the end of the arrow (useful if the arrow points to a dot)
+* **insetStart** - inset at the start of the arrow
+* **inset** - shorthand for the two insets
 
 The **bend** option sets the angle between the straight line between the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
 
