@@ -1,11 +1,11 @@
-import {descending} from "d3";
+import {color as isColor, descending} from "d3";
 import {parse as isoParse} from "isoformat";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
-import {isOrdinal, isTemporal} from "./mark.js";
+import {colors, isOrdinal, isTemporal} from "./mark.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
@@ -184,7 +184,7 @@ function Scale(key, channels = [], options = {}) {
   }
 }
 
-function inferScaleType(key, channels, {type, domain, range}) {
+function inferScaleType(key, channels, {type, domain, range, scheme}) {
   if (key === "fx" || key === "fy") return "band";
   if (type !== undefined) {
     for (const {type: t} of channels) {
@@ -198,24 +198,30 @@ function inferScaleType(key, channels, {type, domain, range}) {
   if (registry.get(key) === opacity || registry.get(key) === length) return "linear";
   if (registry.get(key) === symbol) return "ordinal";
   for (const {type} of channels) if (type !== undefined) return type;
-  if ((domain || range || []).length > 2) return asOrdinalType(key);
+  if ((domain || range || []).length > 2) return asOrdinalType(key, domain, range, scheme);
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isOrdinal(domain)) return asOrdinalType(key, domain, range, scheme);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
   // If any channel is ordinal or temporal, it takes priority.
   const values = channels.map(({value}) => value).filter(value => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(key);
+  if (values.some(isOrdinal)) return asOrdinalType(key, new Set(values.flat()), range, scheme);
   if (values.some(isTemporal)) return "utc";
   return "linear";
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key) {
+// Color scales default to identity if every element of the domain is a color, and no range has been specified
+function asOrdinalType(key, domain, range, scheme) {
   switch (registry.get(key)) {
     case position: return "point";
-    case color: return "categorical";
+    case color:
+      return range === undefined && scheme === undefined
+          && (domain = Array.from(domain)).length > 0
+          && domain.every(value => colors.has(value) || isColor(value))
+            ? "identity"
+            : "categorical";
     default: return "ordinal";
   }
 }
