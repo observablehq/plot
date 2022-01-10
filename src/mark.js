@@ -127,7 +127,7 @@ export const second = d => d[1];
 export const constant = x => () => x;
 
 // A few extra color keywords not known to d3-color.
-const colors = new Set(["currentColor", "none"]);
+export const colors = new Set(["currentColor", "none"]);
 
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this
