@@ -300,6 +300,8 @@ The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordina
 * *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
 
+For categorical data, if all the values in the color channels are valid CSS colors, the color scale defaults to identity.
+
 For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *quantiles* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors.
 
 By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
