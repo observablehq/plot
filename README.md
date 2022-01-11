@@ -1581,20 +1581,19 @@ Selects the rightmost point of each series.
 
 Selects the highest point of each series.
 
-### Plot.selectAny(*select*, [*channel*, ]*options*)
+### Plot.select(*selector*, *options*)
 
-Selects the points of each series selected by the *select* selector. The selector can be specified as a built-in ("min" and "max"), or as a function, which receives as inputs the index of the series and the optional *channel*, if specified.
+Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, or as a key: value object with exactly one key representing a channel, and the value being a function which receives as inputs the index of the series and the channel or the short-hand "min" and "max" which respectively select the least and greatest points for the specified channel.
 
 For example, to select the point within each series that is the closest to the median of the *y* channel:
 
 ```js
-  Plot.selectAny((I, V) => {
+  Plot.select({
+    y: (I, V) => {
       const median = d3.median(I, i => V[i]);
       const i = d3.least(I, (i) => Math.abs(V[i] - median));
       return [i];
-    },
-    "y",
-    {
+    }, {
       x: "year",
       y: "revenue",
       fill: "format"
@@ -1603,7 +1602,12 @@ For example, to select the point within each series that is the closest to the m
 
 To pick three points at random in each series:
 ```js
-  Plot.selectAny(I => d3.shuffle(I).slice(0, 3), {z: "year", ...})
+  Plot.select(I => d3.shuffle(I).slice(0, 3), {z: "year", ...})
+```
+
+To pick the point in each city with the highest temperature:
+```js
+  Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"})
 ```
 
 ### Stack
