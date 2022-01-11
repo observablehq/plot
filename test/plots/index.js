@@ -14,6 +14,7 @@ export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight
 export {default as athletesHeightWeightSport} from "./athletes-height-weight-sport.js";
 export {default as athletesHeightWeightSex} from "./athletes-height-weight-sex.js";
 export {default as athletesNationality} from "./athletes-nationality.js";
+export {default as athletesSample} from "./athletes-sample.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
 export {default as athletesSportSex} from "./athletes-sport-sex.js";
 export {default as athletesSportWeight} from "./athletes-sport-weight.js";
@@ -55,6 +56,7 @@ export {default as identityScale} from "./identity-scale.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
+export {default as industryUnemploymentTrack} from "./industry-unemployment-track.js";
 export {default as infinityLog} from "./infinity-log.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";

@@ -2,45 +2,44 @@ import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function selectFirst(options) {
-  return select(first, undefined, options);
-}
-
-export function selectLast(options) {
-  return select(last, undefined, options);
-}
-
-export function selectAny(selector, channel = {}, options) {
-  let x;
-  if (options !== undefined) {
-    if (typeof channel !== "string") throw new Error(`unsupported channel definition`);
-    x = options[channel];
-    if (x == null) throw new Error(`missing channel: ${channel}`);
-  } else {
-    options = channel;
-  }
-  if (typeof selector === "function") return select(selector, x, options);
+export function select(selector, options = {}) {
+  if (typeof selector === "function") return selectAny(selector, undefined, options);
+  const k = Object.keys(selector);
+  if (k.length !== 1) throw new Error("select one channel");
+  const channel = k[0];
+  selector = selector[channel];
+  const x = options[channel];
+  if (x == null) throw new Error(`missing channel: ${channel}`);
+  if (typeof selector === "function") return selectAny(selector, x, options);
   switch (`${selector}`.toLowerCase()) {
-    case "min": return select(min, x, options);
-    case "max": return select(max, x, options);
+    case "min": return selectAny(min, x, options);
+    case "max": return selectAny(max, x, options);
   }
   throw new Error(`unknown selector: ${selector}`);
 }
 
+export function selectFirst(options) {
+  return selectAny(first, undefined, options);
+}
+
+export function selectLast(options) {
+  return selectAny(last, undefined, options);
+}
+
 export function selectMinX(options) {
-  return selectAny("min", "x", options);
+  return select({x: "min"}, options);
 }
 
 export function selectMinY(options) {
-  return selectAny("min", "y", options);
+  return selectAny({y: "min"}, options);
 }
 
 export function selectMaxX(options) {
-  return selectAny("max", "x", options);
+  return selectAny({x: "max"}, options);
 }
 
 export function selectMaxY(options) {
-  return selectAny("max", "y", options);
+  return selectAny({y: "max"}, options);
 }
 
 function* first(I) {
@@ -59,7 +58,7 @@ function* max(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function select(selectIndex, v, options) {
+function selectAny(selectIndex, v, options) {
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
     const Z = valueof(data, z);
