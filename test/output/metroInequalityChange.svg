@@ -11,14 +11,9 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0,0.5)">
         <path d="M0,347.7777777777777h580"></path>
         <path d="M0,317.22222222222223h580"></path>
@@ -68,7 +63,7 @@
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Inequality</text>
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M122.35098938270542,0v-350"></path>
         <path d="M165.22783869550042,0v-350"></path>

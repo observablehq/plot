@@ -11,11 +11,6 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,33.5)">
@@ -35,7 +30,7 @@
     </g><text fill="currentColor" transform="translate(-40,75) rotate(-90)" dy="0.75em" text-anchor="middle">Expt</text>
   </g>
   <g transform="translate(0,130)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M83.86666666666667,0v-110"></path>
         <path d="M146.9777777777778,0v-110"></path>

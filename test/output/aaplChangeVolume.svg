@@ -11,14 +11,9 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0,0.5)">
         <path d="M0,359.69431858593606h580"></path>
         <path d="M0,334.0667387631559h580"></path>
@@ -80,7 +75,7 @@
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Volume (log₁₀)</text>
   </g>
   <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M63.95301139559466,0v-350"></path>
         <path d="M139.6256868642966,0v-350"></path>

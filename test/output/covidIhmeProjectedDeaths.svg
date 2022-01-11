@@ -11,14 +11,9 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0,0.5)">
         <path d="M0,570h900"></path>
         <path d="M0,524.5627235402541h900"></path>
@@ -148,7 +143,7 @@
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Deaths per day to COVID-19 (projected)</text>
   </g>
   <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M65.71428571428571,0v-550"></path>
         <path d="M110.71428571428572,0v-550"></path>

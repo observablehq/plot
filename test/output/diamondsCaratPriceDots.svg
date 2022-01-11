@@ -11,14 +11,9 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(44,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0,0.5)">
         <path d="M0,606.8279569892474h576"></path>
         <path d="M0,600.483870967742h576"></path>
@@ -171,7 +166,7 @@
     </g><text fill="currentColor" transform="translate(-44,20)" dy="-1em" text-anchor="start">↑ Price ($)</text>
   </g>
   <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M46.99999999999999,0v-590"></path>
         <path d="M53,0v-590"></path>

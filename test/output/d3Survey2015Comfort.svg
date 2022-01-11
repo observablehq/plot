@@ -11,11 +11,6 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(300,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,40.5)">
@@ -35,7 +30,7 @@
     </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">How comfortable are you with d3 now?</text>
   </g>
   <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="grid">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
       <g transform="translate(0.5,0)">
         <path d="M300,0v100"></path>
         <path d="M364,0v100"></path>

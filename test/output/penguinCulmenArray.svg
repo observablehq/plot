@@ -11,11 +11,6 @@
     .plot text {
       white-space: pre;
     }
-
-    .plot .grid {
-      stroke: currentColor;
-      stroke-opacity: 0.1;
-    }
   </style>
   <g transform="translate(560,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,113.5)">
@@ -42,7 +37,7 @@
   <g>
     <g transform="translate(0,30)">
       <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0,0.5)">
             <path d="M0,149.38909090909092h161"></path>
             <path d="M0,119.02545454545455h161"></path>
@@ -84,7 +79,7 @@
     </g>
     <g transform="translate(0,216)">
       <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0,0.5)">
             <path d="M0,149.38909090909092h161"></path>
             <path d="M0,119.02545454545455h161"></path>
@@ -119,7 +114,7 @@
     </g>
     <g transform="translate(0,402)">
       <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0,0.5)">
             <path d="M0,149.38909090909092h161"></path>
             <path d="M0,119.02545454545455h161"></path>
@@ -161,7 +156,7 @@
     </g>
     <g transform="translate(40,0)">
       <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0.5,-540)">
             <path d="M36.41666666666667,0v167"></path>
             <path d="M132.25,0v167"></path>
@@ -185,7 +180,7 @@
     </g>
     <g transform="translate(219,0)">
       <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0.5,-540)">
             <path d="M36.41666666666667,0v167"></path>
             <path d="M132.25,0v167"></path>
@@ -209,7 +204,7 @@
     </g>
     <g transform="translate(398,0)">
       <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-        <g class="grid">
+        <g class="grid" stroke="currentColor" stroke-opacity="0.1">
           <g transform="translate(0.5,-540)">
             <path d="M36.41666666666667,0v167"></path>
             <path d="M132.25,0v167"></path>
