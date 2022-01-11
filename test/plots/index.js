@@ -13,6 +13,8 @@ export {default as athletesHeightWeightBin} from "./athletes-height-weight-bin.j
 export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight-bin-stroke.js";
 export {default as athletesHeightWeightSport} from "./athletes-height-weight-sport.js";
 export {default as athletesHeightWeightSex} from "./athletes-height-weight-sex.js";
+export {default as athletesHeightWeightTicks} from "./athletes-height-weight-ticks.js";
+export {default as athletesHeightWeightTicksOnly} from "./athletes-height-weight-ticks-only.js";
 export {default as athletesNationality} from "./athletes-nationality.js";
 export {default as athletesSexWeight} from "./athletes-sex-weight.js";
 export {default as athletesSportSex} from "./athletes-sport-sex.js";

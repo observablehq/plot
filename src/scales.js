@@ -18,19 +18,23 @@ export function Scales(channels, {
   clamp,
   align,
   padding,
+  grid,
   ...options
 } = {}) {
   const scales = {};
   for (const key of registry.keys()) {
-    const scaleChannels = channels.get(key);
     const scaleOptions = options[key];
-    if (scaleChannels || scaleOptions) {
+    const ticks = scaleOptions && Array.isArray(scaleOptions.grid) ? scaleOptions.grid : Array.isArray(grid) ? grid : null;
+    const scaleChannels = channels.has(key) ? channels.get(key) : [];
+    if (ticks && ticks.length) scaleChannels.push({value: ticks});
+    if (scaleChannels.length || scaleOptions) {
       const scale = Scale(key, scaleChannels, {
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
         clamp,
         align,
         padding,
+        grid,
         ...scaleOptions
       });
       if (scale) {
