@@ -11,6 +11,11 @@
     .plot text {
       white-space: pre;
     }
+
+    .plot .grid {
+      stroke: currentColor;
+      stroke-opacity: 0.1;
+    }
   </style>
   <g transform="translate(140,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
@@ -90,41 +95,45 @@
     </g>
   </g>
   <g transform="translate(0,530)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid">
+      <g transform="translate(0.5,0)">
+        <path d="M140,0v-510"></path>
+        <path d="M198.53658536585365,0v-510"></path>
+        <path d="M257.0731707317073,0v-510"></path>
+        <path d="M315.609756097561,0v-510"></path>
+        <path d="M374.1463414634146,0v-510"></path>
+        <path d="M432.6829268292683,0v-510"></path>
+        <path d="M491.2195121951219,0v-510"></path>
+        <path d="M549.7560975609756,0v-510"></path>
+        <path d="M608.2926829268292,0v-510"></path>
+      </g>
+    </g>
     <g class="tick" opacity="1" transform="translate(140.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(199.03658536585365,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(257.5731707317073,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(316.109756097561,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
     </g>
     <g class="tick" opacity="1" transform="translate(374.6463414634146,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
     </g>
     <g class="tick" opacity="1" transform="translate(433.1829268292683,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
     </g>
     <g class="tick" opacity="1" transform="translate(491.7195121951219,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
     </g>
     <g class="tick" opacity="1" transform="translate(550.2560975609756,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
     </g>
     <g class="tick" opacity="1" transform="translate(608.7926829268292,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">likes →</text>
   </g>
   <g><a href="https://observablehq.com/@observablehq/plot" target="_blank">
