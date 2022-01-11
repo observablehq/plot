@@ -234,6 +234,8 @@ function maybeTickRotate(g, rotate) {
 function createGridX(ticks, x, dy, steps) {
   return g => g.append("g")
       .attr("class", "grid")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", "0.1")
       .selectAll()
       .data(steps)
       .join("g")
@@ -247,6 +249,8 @@ function createGridX(ticks, x, dy, steps) {
 function createGridY(ticks, y, dx, steps) {
   return g => g.append("g")
       .attr("class", "grid")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", "0.1")
       .selectAll()
       .data(steps)
       .join("g")
