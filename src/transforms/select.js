@@ -3,62 +3,83 @@ import {maybeZ, valueof} from "../mark.js";
 import {basic} from "./basic.js";
 
 export function select(selector, options = {}) {
-  if (typeof selector === "function") return selectAny(selector, undefined, options);
-  const k = Object.keys(selector);
-  if (k.length !== 1) throw new Error("select one channel");
-  const channel = k[0];
-  selector = selector[channel];
-  const x = options[channel];
-  if (x == null) throw new Error(`missing channel: ${channel}`);
-  if (typeof selector === "function") return selectAny(selector, x, options);
+  // If specified selector is a string or function, it’s a selector without an
+  // input channel such as first or last.
+  if (typeof selector === "string") {
+    switch (selector.toLowerCase()) {
+      case "first": return selectFirst(options);
+      case "last": return selectLast(options);
+    }
+  }
+  if (typeof selector === "function") {
+    return selectChannel(null, selector, options);
+  }
+  // Otherwise the selector is an option {name: value} where name is a channel
+  // name and value is a selector definition that additionally takes the given
+  // channel values as input. The selector object must have exactly one key.
+  let key, value;
+  for (key in selector) {
+    if (value !== undefined) throw new Error("ambiguous select definition");
+    value = maybeSelector(selector[key]);
+  }
+  if (value === undefined) throw new Error("invalid select definition");
+  return selectChannel(key, value, options);
+}
+
+function maybeSelector(selector) {
+  if (typeof selector === "function") return selector;
   switch (`${selector}`.toLowerCase()) {
-    case "min": return selectAny(min, x, options);
-    case "max": return selectAny(max, x, options);
+    case "min": return selectorMin;
+    case "max": return selectorMax;
   }
   throw new Error(`unknown selector: ${selector}`);
 }
 
 export function selectFirst(options) {
-  return selectAny(first, undefined, options);
+  return selectChannel(null, selectorFirst, options);
 }
 
 export function selectLast(options) {
-  return selectAny(last, undefined, options);
+  return selectChannel(null, selectorLast, options);
 }
 
 export function selectMinX(options) {
-  return select({x: "min"}, options);
+  return selectChannel("x", selectorMin, options);
 }
 
 export function selectMinY(options) {
-  return selectAny({y: "min"}, options);
+  return selectChannel("y", selectorMin, options);
 }
 
 export function selectMaxX(options) {
-  return selectAny({x: "max"}, options);
+  return selectChannel("x", selectorMax, options);
 }
 
 export function selectMaxY(options) {
-  return selectAny({y: "max"}, options);
+  return selectChannel("y", selectorMax, options);
 }
 
-function* first(I) {
+function* selectorFirst(I) {
   yield I[0];
 }
 
-function* last(I) {
+function* selectorLast(I) {
   yield I[I.length - 1];
 }
 
-function* min(I, X) {
+function* selectorMin(I, X) {
   yield least(I, i => X[i]);
 }
 
-function* max(I, X) {
+function* selectorMax(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function selectAny(selectIndex, v, options) {
+function selectChannel(v, selector, options) {
+  if (v != null) {
+    if (options[v] == null) throw new Error(`missing channel: ${v}`);
+    v = options[v];
+  }
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
     const Z = valueof(data, z);
@@ -67,7 +88,7 @@ function selectAny(selectIndex, v, options) {
     for (const facet of facets) {
       const selectFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selectIndex(I, V)) {
+        for (const i of selector(I, V)) {
           selectFacet.push(i);
         }
       }
