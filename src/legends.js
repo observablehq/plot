@@ -2,12 +2,14 @@ import {rgb} from "d3";
 import {isObject} from "./options.js";
 import {normalizeScale} from "./scales.js";
 import {legendRamp} from "./legends/ramp.js";
+import {legendRadius} from "./legends/radius.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 
 const legendRegistry = new Map([
   ["color", legendColor],
   ["symbol", legendSymbols],
-  ["opacity", legendOpacity]
+  ["opacity", legendOpacity],
+  ["r", legendRadius]
 ]);
 
 export function legend(options = {}) {
