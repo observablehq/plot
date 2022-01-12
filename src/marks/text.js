@@ -19,6 +19,7 @@ export class Text extends Mark {
       fontStyle,
       fontVariant,
       fontWeight,
+      halo,
       dx,
       dy = "0.32em",
       rotate
@@ -46,11 +47,12 @@ export class Text extends Mark {
     this.fontWeight = string(fontWeight);
     this.dx = string(dx);
     this.dy = string(dy);
+    this.halo = !!halo;
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-    const {rotate} = this;
+    const {rotate, halo} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
@@ -73,6 +75,11 @@ export class Text extends Mark {
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .call(applyText, T)
             .call(applyChannelStyles, this, channels))
+            .call(!halo ? () => {} : g => g.selectAll("text")
+              .call(text => text.clone(true))
+              .attr("stroke-width", 4)
+              .attr("fill", "none")
+              .attr("stroke", "white"))
       .node();
   }
 }
