@@ -45,8 +45,9 @@ export class Rect extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry} = this;
+    const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry, onchange} = this;
     const index = filter(I, X1, Y2, X2, Y2);
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, dx, dy)
@@ -60,7 +61,14 @@ export class Rect extends Mark {
             .attr("height", Y1 && Y2 && !isCollapsed(y) ? i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom) : height - marginTop - marginBottom - insetTop - insetBottom)
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

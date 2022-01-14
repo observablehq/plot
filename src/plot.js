@@ -2,21 +2,25 @@ import {create} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {markify} from "./mark.js";
+import {arrayify, markify, valueof} from "./mark.js";
 import {Scales, autoScaleRange, applyScales, exposeScales, isOrdinalScale} from "./scales.js";
 import {applyInlineStyles, filterStyles, maybeClassName, offset} from "./style.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption} = options;
+  const {facet, selection = {}, style, caption} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
 
+  // An array of selection listeners
+  const {data: selectionData, filter: selectionFilter = true} = selection || {}; // TODO: error if selection is given without data
+  const selectionListeners = new Set();
+  
   // When faceting, wrap all marks in a faceting mark.
   if (facet !== undefined) {
     const {marks} = options;
     const {data} = facet;
-    options = {...options, marks: facets(data, facet, marks)};
+    options = {...options, marks: facets(data, facet, marks, selectionData)};
   }
 
   // Flatten any nested marks.
@@ -33,7 +37,7 @@ export function plot(options = {}) {
   // Also apply any scale transforms.
   for (const mark of marks) {
     if (markChannels.has(mark)) throw new Error("duplicate mark");
-    const {index, channels} = mark.initialize();
+    const {index, channels} = mark.initialize(undefined, undefined, selectionData);
     for (const [, channel] of channels) {
       const {scale} = channel;
       if (scale !== undefined) {
@@ -46,8 +50,12 @@ export function plot(options = {}) {
     }
     markChannels.set(mark, channels);
     markIndex.set(mark, index);
+    if (mark.selectable) {
+      mark.onchange = change;
+      if (mark.select) selectionListeners.add(mark);
+    }
   }
-
+  
   const scaleDescriptors = Scales(scaleChannels, options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
@@ -94,7 +102,10 @@ export function plot(options = {}) {
     const values = applyScales(channels, scales);
     const index = filterStyles(markIndex.get(mark), values);
     const node = mark.render(index, scales, values, dimensions, axes);
-    if (node != null) svg.appendChild(node);
+    if (node != null) {
+      if (mark.nodes) mark.nodes.push(node);
+      svg.appendChild(node);
+    }
   }
 
   // Wrap the plot in a figure with a caption, if desired.
@@ -113,7 +124,29 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, options);
+
+  const selectionValue = selectionData && new Uint8Array(arrayify(selectionData).length);
+  if (selectionData) {
+    figure.addEventListener("change", change);
+    figure.dispatchEvent(new CustomEvent("change", {detail: {
+      filter: selectionFilter
+    }}));
+  }
+
   return figure;
+  
+  function change({detail: {filter, origin, transition} = {}} = {}) {
+    if (filter !== undefined) {
+      const values = valueof(selectionData, ["boolean", "number"].includes(typeof filter) ? (() => +filter) : filter);
+      if (values.length !== selectionValue.length) throw new Error("selection length mismatch");
+      for (let i = 0; i < values.length; i++) selectionValue[i] = values[i];
+    }
+    for (const mark of selectionListeners) {
+      mark.select(selectionValue, {origin, transition});
+    }
+    figure.value = selectionData.filter((d, i) => selectionValue[i]);
+    figure.dispatchEvent(new CustomEvent("input", {bubbles: true}));
+  }
 }
 
 function Dimensions(

@@ -28,8 +28,9 @@ export class Link extends Mark {
   }
   render(I, {x, y}, channels) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    const {dx, dy} = this;
+    const {dx, dy, onchange} = this;
     const index = filter(I, X1, Y1, X2, Y2);
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -46,7 +47,14 @@ export class Link extends Mark {
               c.lineEnd();
               return `${p}`;
             })
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

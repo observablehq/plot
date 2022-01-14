@@ -13,6 +13,7 @@ export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {Vector, vector} from "./marks/vector.js";
+export {Brush, brush, brushX, brushY} from "./marks/brush.js";
 export {filter} from "./transforms/filter.js";
 export {reverse} from "./transforms/reverse.js";
 export {sort, shuffle} from "./transforms/sort.js";

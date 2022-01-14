@@ -18,7 +18,8 @@ export class RuleX extends Mark {
       y2,
       inset = 0,
       insetTop = inset,
-      insetBottom = inset
+      insetBottom = inset,
+      clickable
     } = options;
     super(
       data,
@@ -32,12 +33,14 @@ export class RuleX extends Mark {
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
+    this.clickable = !!clickable;
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y1: Y1, y2: Y2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetTop, insetBottom} = this;
+    const {insetTop, insetBottom, onchange} = this;
     const index = filter(I, X, Y1, Y2);
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, X && x, null, offset, 0)
@@ -49,8 +52,15 @@ export class RuleX extends Mark {
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 && !isCollapsed(y) ? i => Y1[i] + insetTop : marginTop + insetTop)
             .attr("y2", Y2 && !isCollapsed(y) ? (y.bandwidth ? i => Y2[i] + y.bandwidth() - insetBottom : i => Y2[i] - insetBottom) : height - marginBottom - insetBottom)
-            .call(applyChannelStyles, this, channels))
-      .node();
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
+        .node();
   }
 }
 
@@ -80,8 +90,9 @@ export class RuleY extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {y: Y, x1: X1, x2: X2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetLeft, insetRight, dx, dy} = this;
+    const {insetLeft, insetRight, dx, dy, onchange} = this;
     const index = filter(I, Y, X1, X2);
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, null, Y && y, dx, offset + dy)
@@ -93,7 +104,14 @@ export class RuleY extends Mark {
             .attr("x2", X2 && !isCollapsed(x) ? (x.bandwidth ? i => X2[i] + x.bandwidth() - insetRight : i => X2[i] - insetRight) : width - marginRight - insetRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

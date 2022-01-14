@@ -68,7 +68,8 @@ export class Image extends Mark {
     if (H) index = index.filter(i => positive(H[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
-    const {dx, dy} = this;
+    const {dx, dy, onchange} = this;
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -83,7 +84,14 @@ export class Image extends Mark {
             .call(applyAttr, "href", S ? i => S[i] : this.src)
             .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
             .call(applyAttr, "crossorigin", this.crossOrigin)
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

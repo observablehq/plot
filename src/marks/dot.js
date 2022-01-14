@@ -12,7 +12,7 @@ const defaults = {
 
 export class Dot extends Mark {
   constructor(data, options = {}) {
-    const {x, y, r, rotate, symbol = symbolCircle} = options;
+    const {x, y, r, rotate, symbol = symbolCircle, clickable} = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
     const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
@@ -31,6 +31,7 @@ export class Dot extends Mark {
     this.r = cr;
     this.rotate = crotate;
     this.symbol = csymbol;
+    this.clickable = !!clickable;
 
     // Give a hint to the symbol scale; this allows the symbol scale to chose
     // appropriate default symbols based on whether the dots are filled or
@@ -53,12 +54,13 @@ export class Dot extends Mark {
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
-    const {dx, dy} = this;
+    const {dx, dy, onchange} = this;
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     let index = filter(I, X, Y, A, S);
     if (R) index = index.filter(i => positive(R[i]));
     const circle = this.symbol === symbolCircle;
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -88,7 +90,14 @@ export class Dot extends Mark {
                       return p;
                     });
               })
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

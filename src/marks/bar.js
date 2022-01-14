@@ -21,8 +21,9 @@ export class AbstractBar extends Mark {
     this.ry = impliedString(ry, "auto");
   }
   render(I, scales, channels, dimensions) {
-    const {dx, dy, rx, ry} = this;
+    const {dx, dy, rx, ry, onchange} = this;
     const index = filter(I, ...this._positions(channels));
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales, dx, dy)
@@ -36,7 +37,14 @@ export class AbstractBar extends Mark {
             .attr("height", this._height(scales, channels, dimensions))
             .call(applyAttr, "rx", rx)
             .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
   _x(scales, {x: X}, {marginLeft}) {

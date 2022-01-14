@@ -38,13 +38,14 @@ export class Vector extends Mark {
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {x: X, y: Y, length: L, rotate: R} = channels;
-    const {dx, dy, length, rotate, anchor} = this;
+    const {dx, dy, length, rotate, anchor, onchange} = this;
     const index = filter(I, X, Y, L, R);
     const fl = L ? i => L[i] : () => length;
     const fr = R ? i => R[i] : () => rotate;
     const fx = X ? i => X[i] : () => (marginLeft + width - marginRight) / 2;
     const fy = Y ? i => Y[i] : () => (marginTop + height - marginBottom) / 2;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
+    let selected;
     return create("svg:g")
         .attr("fill", "none")
         .call(applyIndirectStyles, this)
@@ -59,7 +60,14 @@ export class Vector extends Mark {
               const d = (x + y) / 5, e = (x - y) / 5;
               return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
             })
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

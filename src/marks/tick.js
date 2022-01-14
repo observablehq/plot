@@ -14,8 +14,9 @@ class AbstractTick extends Mark {
   }
   render(I, scales, channels, dimensions) {
     const {x: X, y: Y} = channels;
-    const {dx, dy} = this;
+    const {dx, dy, onchange} = this;
     const index = filter(I, X, Y);
+    let selected;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales, dx, dy)
@@ -27,7 +28,14 @@ class AbstractTick extends Mark {
             .attr("x2", this._x2(scales, channels, dimensions))
             .attr("y1", this._y1(scales, channels, dimensions))
             .attr("y2", this._y2(scales, channels, dimensions))
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }

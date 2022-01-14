@@ -1,4 +1,4 @@
-import {ascending, color, descending, rollup, sort} from "d3";
+import {ascending, color, descending, rollup, selectAll, sort} from "d3";
 import {plot} from "./plot.js";
 import {registry} from "./scales/index.js";
 import {styles} from "./style.js";
@@ -11,11 +11,12 @@ const objectToString = Object.prototype.toString;
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy} = options;
+    const {facet = "auto", selection, sort, dx, dy} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+    this.selection = selection == null || selection === false ? null : keyword(selection === true ? "include" : selection, "selection", ["auto", "include"]);
     const {transform} = basic(options);
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
@@ -35,8 +36,9 @@ export class Mark {
     });
     this.dx = +dx || 0;
     this.dy = +dy || 0;
+    this.nodes = [];
   }
-  initialize(facets, facetChannels) {
+  initialize(facets, facetChannels, selection) {
     let data = arrayify(this.data);
     let index = facets === undefined && data != null ? range(data) : facets;
     if (data !== undefined && this.transform !== undefined) {
@@ -50,7 +52,21 @@ export class Mark {
       return [name == null ? undefined : `${name}`, Channel(data, channel)];
     });
     if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
+    this.selectable = this.selection === "include" || (this.selection === "auto" && this.data === selection);
     return {index, channels};
+  }
+  select(S, {transition}) {
+    let sel = selectAll(this.nodes).selectChildren();
+    if (transition) {
+      const {delay, duration} = typeof transition === "object" ? transition : {};
+      sel = sel.transition();
+      if (delay !== undefined) sel.delay(delay);
+      if (duration !== undefined) sel.duration(duration);
+    }
+    return sel
+      .style("opacity", 1e-6)
+      .filter(i => S[i])
+      .style("opacity", 1);
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});

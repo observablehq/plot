@@ -4,14 +4,14 @@ import {Mark, first, second, markify, where} from "./mark.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 
-export function facets(data, {x, y, ...options}, marks) {
+export function facets(data, {x, y, ...options}, marks, selectionData) {
   return x === undefined && y === undefined
     ? marks // if no facets are specified, ignore!
-    : [new Facet(data, {x, y, ...options}, marks)];
+    : [new Facet(data, {x, y, ...options}, marks, selectionData)];
 }
 
 class Facet extends Mark {
-  constructor(data, {x, y, ...options} = {}, marks = []) {
+  constructor(data, {x, y, ...options} = {}, marks = [], selectionData) {
     if (data == null) throw new Error("missing facet data");
     super(
       data,
@@ -19,12 +19,13 @@ class Facet extends Mark {
         {name: "fx", value: x, scale: "fx", optional: true},
         {name: "fy", value: y, scale: "fy", optional: true}
       ],
-      options
+      {selection: !!selectionData, ...options}
     );
     this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
+    this.selectionData = selectionData;
   }
   initialize() {
     const {index, channels} = super.initialize();
@@ -34,10 +35,12 @@ class Facet extends Mark {
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
+    const {selectionData} = this;
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
     let facetsExclude;
+    let selectable;
     for (let i = 0; i < this.marks.length; ++i) {
       const mark = this.marks[i];
       const {facet} = mark;
@@ -45,7 +48,7 @@ class Facet extends Mark {
         : facet === "include" ? facetsIndex
         : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
         : undefined;
-      const {index: I, channels: markChannels} = mark.initialize(markFacets, channels);
+      const {index: I, channels: markChannels} = mark.initialize(markFacets, channels, selectionData);
       // If an index is returned by mark.initialize, its structure depends on
       // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
       // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
@@ -64,9 +67,11 @@ class Facet extends Mark {
       for (const [, channel] of markChannels) {
         subchannels.push([, channel]);
       }
+      if (mark.selectable) selectable = true;
+      mark.onchange = (event) => this.onchange(event, I);
       marksChannels.push(markChannels);
     }
-    return {index, channels: [...channels, ...subchannels]};
+    return {index, channels: [...channels, ...subchannels], selectable};
   }
   render(I, scales, channels, dimensions, axes) {
     const {marks, marksChannels, marksIndexByFacet} = this;
@@ -126,10 +131,18 @@ class Facet extends Mark {
                   values,
                   subdimensions
                 );
-                if (node != null) this.appendChild(node);
+                if (node != null) {
+                  marks[i].nodes.push(node);
+                  this.appendChild(node);
+                }
               }
             }))
       .node();
+  }
+  select(S, options) {
+    for (const mark of this.marks) {
+      if (mark.selectable) mark.select(S, options);
+    }
   }
 }
 

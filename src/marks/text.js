@@ -50,10 +50,11 @@ export class Text extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-    const {rotate} = this;
+    const {rotate, onchange} = this;
     const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
+    let selected;
     return create("svg:g")
         .call(applyIndirectTextStyles, this, T)
         .call(applyTransform, x, y, offset, offset)
@@ -72,7 +73,14 @@ export class Text extends Mark {
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .call(applyText, T)
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(!(onchange && this.clickable)
+              ? () => {}
+              : e => e.on("click", function(event, i) {
+                selected = selected === this || event.shiftKey ? undefined : this;
+                onchange({ detail: { filter: selected ? ((d, j) => i === j) : true }});
+              })
+            ))
       .node();
   }
 }
