@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter, nonempty} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark} from "../plot.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyText, applyTransform, offset} from "../style.js";
 

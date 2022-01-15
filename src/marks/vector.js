@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark} from "../plot.js";
 import {maybeNumberChannel, maybeTuple, keyword} from "../options.js";
 import {radians} from "../math.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";

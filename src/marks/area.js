@@ -1,7 +1,7 @@
 import {area as shapeArea, create, group} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark} from "../plot.js";
 import {indexOf, maybeZ} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";

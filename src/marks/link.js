@@ -1,6 +1,6 @@
 import {create, path} from "d3";
 import {filter} from "../defined.js";
-import {Mark} from "../mark.js";
+import {Mark} from "../plot.js";
 import {Curve} from "../curve.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 

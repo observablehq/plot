@@ -1,5 +1,4 @@
-export {plot} from "./plot.js";
-export {Mark, marks} from "./mark.js";
+export {plot, Mark, marks} from "./plot.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
