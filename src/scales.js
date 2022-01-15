@@ -61,6 +61,10 @@ export function Scales(channels, {
   return scales;
 }
 
+export function ScaleFunctions(scales) {
+  return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+}
+
 // Mutates scale.range!
 export function autoScaleRange({x, y, fx, fy}, dimensions) {
   if (fx) autoScaleRangeX(fx, dimensions);
