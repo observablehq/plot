@@ -1,6 +1,7 @@
 import {cross, difference, groups, InternMap} from "d3";
 import {create} from "d3";
-import {Mark, first, second, markify, where} from "./mark.js";
+import {Mark, markify} from "./mark.js";
+import {first, second, where} from "./options.js";
 import {applyScales} from "./scales.js";
 import {filterStyles} from "./style.js";
 

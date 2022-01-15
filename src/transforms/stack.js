@@ -1,7 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {lazyChannel, maybeLazyChannel, maybeZ, mid, range, maybeZero, maybeValue} from "../mark.js";
-import {field, isOptions, valueof} from "../options.js";
+import {field, isOptions, valueof, lazyChannel, maybeLazyChannel, maybeZ, mid, range, maybeZero, maybeValue} from "../options.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {

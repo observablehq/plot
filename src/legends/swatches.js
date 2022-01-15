@@ -1,7 +1,7 @@
 import {create, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
-import {maybeColorChannel, maybeNumberChannel} from "../mark.js";
+import {maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {applyInlineStyles, impliedString, maybeClassName, none} from "../style.js";
 
 function maybeScale(scale, key) {
