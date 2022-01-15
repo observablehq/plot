@@ -22,11 +22,11 @@ import {
   scaleThreshold,
   scaleIdentity
 } from "d3";
+import {positive, negative, finite} from "../defined.js";
+import {constant} from "../options.js";
+import {order} from "../scales.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
-import {positive, negative, finite} from "../defined.js";
-import {constant} from "../mark.js";
-import {order} from "../scales.js";
 
 export const flip = i => t => i(1 - t);
 const unit = [0, 1];

@@ -1,8 +1,8 @@
 import {rgb} from "d3";
+import {isObject} from "./options.js";
 import {normalizeScale} from "./scales.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
-import {isObject} from "./mark.js";
 
 const legendRegistry = new Map([
   ["color", legendColor],

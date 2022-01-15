@@ -1,5 +1,6 @@
 import {greatest, group, least} from "d3";
-import {maybeZ, valueof} from "../mark.js";
+import {maybeZ} from "../mark.js";
+import {valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function selectFirst(options) {
