@@ -1,4 +1,4 @@
-import {color} from "d3";
+import {color, descending} from "d3";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -205,4 +205,11 @@ export function isObject(option) {
 // definition expressed as a channel transform (e.g., {transform: …}).
 export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
+}
+
+export function order(values) {
+  if (values == null) return;
+  const first = values[0];
+  const last = values[values.length - 1];
+  return descending(first, last);
 }

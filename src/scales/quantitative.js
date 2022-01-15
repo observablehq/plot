@@ -23,8 +23,7 @@ import {
   scaleIdentity
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {constant} from "../options.js";
-import {order} from "../scales.js";
+import {constant, order} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 

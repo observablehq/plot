@@ -1,6 +1,5 @@
-import {descending} from "d3";
 import {parse as isoParse} from "isoformat";
-import {isOrdinal, isTemporal} from "./options.js";
+import {isOrdinal, isTemporal, order} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -243,13 +242,6 @@ export function isDivergingScale({type}) {
 // If the domain is undefined, we assume an identity scale.
 export function scaleOrder({range, domain = range}) {
   return Math.sign(order(domain)) * Math.sign(order(range));
-}
-
-export function order(values) {
-  if (values == null) return;
-  const first = values[0];
-  const last = values[values.length - 1];
-  return descending(first, last);
 }
 
 // TODO use Float64Array.from for position and radius scales?
