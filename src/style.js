@@ -1,5 +1,5 @@
 import {isoFormat, namespaces} from "d3";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./mark.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./options.js";
 import {filter, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
 

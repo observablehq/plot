@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {filter} from "../defined.js";
-import {Mark, identity, number} from "../mark.js";
+import {Mark} from "../plot.js";
+import {identity, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";

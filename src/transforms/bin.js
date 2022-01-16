@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../mark.js";
+import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
 import {coerceDate} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";

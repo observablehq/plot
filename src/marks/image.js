@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, maybeNumberChannel, maybeTuple, string} from "../mark.js";
+import {Mark} from "../plot.js";
+import {maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
 const defaults = {

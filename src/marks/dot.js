@@ -1,6 +1,7 @@
 import {create, path, symbolCircle} from "d3";
 import {filter, positive} from "../defined.js";
-import {Mark, identity, maybeNumberChannel, maybeTuple} from "../mark.js";
+import {Mark} from "../plot.js";
+import {identity, maybeNumberChannel, maybeTuple} from "../options.js";
 import {maybeSymbolChannel} from "../scales/symbol.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 

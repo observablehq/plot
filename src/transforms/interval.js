@@ -1,4 +1,4 @@
-import {labelof, maybeValue, valueof} from "../mark.js";
+import {labelof, maybeValue, valueof} from "../options.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
