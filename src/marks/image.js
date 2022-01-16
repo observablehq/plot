@@ -1,7 +1,7 @@
 import {create} from "d3";
-import {filter, positive} from "../defined.js";
-import {Mark} from "../plot.js";
+import {positive} from "../defined.js";
 import {maybeNumberChannel, maybeTuple, string} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
 
 const defaults = {
@@ -44,8 +44,8 @@ export class Image extends Mark {
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "width", value: vw, optional: true},
-        {name: "height", value: vh, optional: true},
+        {name: "width", value: vw, filter: positive, optional: true},
+        {name: "height", value: vh, filter: positive, optional: true},
         {name: "src", value: vs, optional: true}
       ],
       options,
@@ -58,15 +58,12 @@ export class Image extends Mark {
     this.crossOrigin = string(crossOrigin);
   }
   render(
-    I,
+    index,
     {x, y},
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
-    let index = filter(I, X, Y, S);
-    if (W) index = index.filter(i => positive(W[i]));
-    if (H) index = index.filter(i => positive(H[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     const {dx, dy} = this;

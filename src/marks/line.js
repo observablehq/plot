@@ -18,8 +18,8 @@ export class Line extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, filter: null, scale: "x"},
+        {name: "y", value: y, filter: null, scale: "y"},
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,

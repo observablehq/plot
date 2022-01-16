@@ -1,5 +1,4 @@
 import {create} from "d3";
-import {filter} from "../defined.js";
 import {Mark} from "../plot.js";
 import {identity, number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
@@ -13,10 +12,8 @@ class AbstractTick extends Mark {
   constructor(data, channels, options) {
     super(data, channels, options, defaults);
   }
-  render(I, scales, channels, dimensions) {
-    const {x: X, y: Y} = channels;
+  render(index, scales, channels, dimensions) {
     const {dx, dy} = this;
-    const index = filter(I, X, Y);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales, dx, dy)

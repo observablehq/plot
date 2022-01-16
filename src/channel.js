@@ -4,12 +4,13 @@ import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
 // TODO Type coercion?
-export function Channel(data, {scale, type, value, hint}) {
+export function Channel(data, {scale, type, value, filter, hint}) {
   return {
     scale,
     type,
     value: valueof(data, value),
     label: labelof(value),
+    filter,
     hint
   };
 }

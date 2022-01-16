@@ -16,13 +16,6 @@ export function nonempty(x) {
   return x != null && `${x}` !== "";
 }
 
-export function filter(index, ...channels) {
-  for (const c of channels) {
-    if (c) index = index.filter(i => defined(c[i]));
-  }
-  return index;
-}
-
 export function finite(x) {
   return isFinite(x) ? x : NaN;
 }

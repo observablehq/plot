@@ -1,7 +1,7 @@
 import {isoFormat, namespaces} from "d3";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./options.js";
-import {filter, nonempty} from "./defined.js";
+import {nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./options.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -201,10 +201,6 @@ export function impliedString(value, impliedValue) {
 
 export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
-}
-
-export function filterStyles(index, {fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW}) {
-  return filter(index, F, FO, S, SO, SW);
 }
 
 export function none(color) {
