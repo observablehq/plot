@@ -44,10 +44,6 @@ function groupn(
   inputs = {} // input channels and options
 ) {
 
-  // Propagate standard mark channels by default.
-  if (inputs.title != null && outputs.title === undefined) outputs.title = reduceTitle;
-  if (inputs.href != null && outputs.href === undefined) outputs.href = reduceFirst;
-
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
   reduceData = maybeReduce(reduceData, identity);
@@ -139,7 +135,11 @@ export function hasOutput(outputs, ...names) {
 }
 
 export function maybeOutputs(outputs, inputs) {
-  return Object.entries(outputs).map(([name, reduce]) => {
+  const entries = Object.entries(outputs);
+  // Propagate standard mark channels by default.
+  if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
+  if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
+  return entries.map(([name, reduce]) => {
     return reduce == null
       ? {name, initialize() {}, scope() {}, reduce() {}}
       : maybeOutput(name, reduce, inputs);
@@ -264,13 +264,13 @@ export const reduceIdentity = {
   }
 };
 
-export const reduceFirst = {
+const reduceFirst = {
   reduce(I, X) {
     return X[I[0]];
   }
 };
 
-export const reduceTitle = {
+const reduceTitle = {
   reduce(I, X) {
     return sort(rollup(I, V => V.length, i => X[i]), second)
       .reverse()
