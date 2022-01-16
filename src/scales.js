@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isColors, isOrdinal, isTemporal, order} from "./options.js";
+import {isAllColors, isColors, isOrdinal, isTemporal, order} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -202,8 +202,10 @@ function inferScaleType(key, channels, {type, domain, range}) {
   if (registry.get(key) === symbol) return "ordinal";
   for (const {type} of channels) if (type !== undefined) return type;
   if (registry.get(key) === color
-    && (domain !== undefined ? isColors(domain)
-      : channels.some(({value}) => value !== undefined && isColors(value)))) return "identity";
+    && (domain !== undefined
+      ? isColors(domain) && isAllColors(domain)
+      : channels.some(({value}) => value !== undefined && isColors(value))
+        && channels.every(({value}) => value === undefined || isAllColors(value)))) return "identity";
   if ((domain || range || []).length > 2) return asOrdinalType(key);
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(key);
