@@ -4,8 +4,17 @@ import {color, descending} from "d3";
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
+// This allows transforms to behave equivalently to channels.
+export function valueof(data, value, type) {
+  const array = type === undefined ? Array : type;
+  return typeof value === "string" ? array.from(data, field(value))
+    : typeof value === "function" ? array.from(data, value)
+    : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
+    : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
+    : arrayify(value, type); // preserve undefined type
+}
+
 export const field = name => d => d[name];
-export const constant = x => () => x;
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
@@ -14,6 +23,7 @@ export const number = x => x == null ? x : +x;
 export const boolean = x => x == null ? x : !!x;
 export const first = d => d[0];
 export const second = d => d[1];
+export const constant = x => () => x;
 
 // A few extra color keywords not known to d3-color.
 const colors = new Set(["currentColor", "none"]);
@@ -49,6 +59,27 @@ export function keyword(input, name, allowed) {
   const i = `${input}`.toLowerCase();
   if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
   return i;
+}
+
+// Promotes the specified data to an array or typed array as needed. If an array
+// type is provided (e.g., Array), then the returned array will strictly be of
+// the specified type; otherwise, any array or typed array may be returned. If
+// the specified data is null or undefined, returns the value as-is.
+export function arrayify(data, type) {
+  return data == null ? data : (type === undefined
+    ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
+    : (data instanceof type ? data : type.from(data)));
+}
+
+// Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
+export function isObject(option) {
+  return option && option.toString === objectToString;
+}
+
+// Disambiguates an options object (e.g., {y: "x2"}) from a channel value
+// definition expressed as a channel transform (e.g., {transform: …}).
+export function isOptions(option) {
+  return isObject(option) && typeof option.transform !== "function";
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
@@ -174,37 +205,6 @@ export function isNumeric(values) {
     if (value == null) continue;
     return typeof value === "number";
   }
-}
-
-// This allows transforms to behave equivalently to channels.
-export function valueof(data, value, type) {
-  const array = type === undefined ? Array : type;
-  return typeof value === "string" ? array.from(data, field(value))
-    : typeof value === "function" ? array.from(data, value)
-    : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
-    : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
-    : arrayify(value, type); // preserve undefined type
-}
-
-// Promotes the specified data to an array or typed array as needed. If an array
-// type is provided (e.g., Array), then the returned array will strictly be of
-// the specified type; otherwise, any array or typed array may be returned. If
-// the specified data is null or undefined, returns the value as-is.
-export function arrayify(data, type) {
-  return data == null ? data : (type === undefined
-    ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
-    : (data instanceof type ? data : type.from(data)));
-}
-
-// Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
-export function isObject(option) {
-  return option && option.toString === objectToString;
-}
-
-// Disambiguates an options object (e.g., {y: "x2"}) from a channel value
-// definition expressed as a channel transform (e.g., {transform: …}).
-export function isOptions(option) {
-  return isObject(option) && typeof option.transform !== "function";
 }
 
 export function order(values) {
