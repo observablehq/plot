@@ -1,4 +1,4 @@
-import {create, group, line as shapeLine} from "d3";
+import {create, group, line as shapeLine, selectAll} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, identity, maybeTuple, maybeZ} from "../mark.js";
@@ -43,6 +43,19 @@ export class Line extends Mark {
               .x(i => X[i])
               .y(i => Y[i])))
       .node();
+  }
+  select(S, {transition}) {
+    let sel = selectAll(this.nodes).selectChildren();
+    if (transition) {
+      const {delay, duration} = typeof transition === "object" ? transition : {};
+      sel = sel.transition();
+      if (delay !== undefined) sel.delay(delay);
+      if (duration !== undefined) sel.duration(duration);
+    }
+    return sel
+      .style("opacity", 1e-6)
+      .filter(([i]) => S[i])
+      .style("opacity", 1);
   }
 }
 

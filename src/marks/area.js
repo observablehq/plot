@@ -1,4 +1,4 @@
-import {area as shapeArea, create, group} from "d3";
+import {area as shapeArea, create, group, selectAll} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark, indexOf, maybeZ} from "../mark.js";
@@ -47,6 +47,19 @@ export class Area extends Mark {
               .x1(i => X2[i])
               .y1(i => Y2[i])))
       .node();
+  }
+  select(S, {transition}) {
+    let sel = selectAll(this.nodes).selectChildren();
+    if (transition) {
+      const {delay, duration} = typeof transition === "object" ? transition : {};
+      sel = sel.transition();
+      if (delay !== undefined) sel.delay(delay);
+      if (duration !== undefined) sel.duration(duration);
+    }
+    return sel
+      .style("opacity", 1e-6)
+      .filter(([i]) => S[i])
+      .style("opacity", 1);
   }
 }
 
