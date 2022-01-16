@@ -15,9 +15,6 @@ export class Cell extends AbstractBar {
   _transform() {
     // noop
   }
-  _positions({x: X, y: Y}) {
-    return [X, Y];
-  }
 }
 
 export function cell(data, {x, y, ...options} = {}) {

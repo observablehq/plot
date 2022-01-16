@@ -1,7 +1,7 @@
 import {create, path, symbolCircle} from "d3";
-import {filter, positive} from "../defined.js";
-import {Mark} from "../plot.js";
+import {positive} from "../defined.js";
 import {identity, maybeNumberChannel, maybeTuple} from "../options.js";
+import {Mark} from "../plot.js";
 import {maybeSymbolChannel} from "../scales/symbol.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -22,7 +22,7 @@ export class Dot extends Mark {
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "r", value: vr, scale: "r", optional: true},
+        {name: "r", value: vr, scale: "r", filter: positive, optional: true},
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
@@ -48,7 +48,7 @@ export class Dot extends Mark {
     }
   }
   render(
-    I,
+    index,
     {x, y},
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
@@ -57,8 +57,6 @@ export class Dot extends Mark {
     const {dx, dy} = this;
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
-    let index = filter(I, X, Y, A, S);
-    if (R) index = index.filter(i => positive(R[i]));
     const circle = this.symbol === symbolCircle;
     return create("svg:g")
         .call(applyIndirectStyles, this)

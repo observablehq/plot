@@ -1,7 +1,7 @@
 import {create} from "d3";
-import {filter, nonempty} from "../defined.js";
-import {Mark} from "../plot.js";
+import {nonempty} from "../defined.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyText, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -33,7 +33,7 @@ export class Text extends Mark {
         {name: "y", value: y, scale: "y", optional: true},
         {name: "fontSize", value: numberChannel(vfontSize), optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
-        {name: "text", value: text}
+        {name: "text", value: text, filter: nonempty}
       ],
       options,
       defaults
@@ -48,11 +48,10 @@ export class Text extends Mark {
     this.dx = string(dx);
     this.dy = string(dy);
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
     const {rotate} = this;
-    const index = filter(I, X, Y, R).filter(i => nonempty(T[i]));
     const cx = (marginLeft + width - marginRight) / 2;
     const cy = (marginTop + height - marginBottom) / 2;
     return create("svg:g")

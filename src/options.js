@@ -178,8 +178,11 @@ export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
+// Coerces the given channel values (if any) to numbers. This is useful when
+// values will be interpolated into other code, such as an SVG transform, and
+// where we don’t wish to allow unexpected behavior for weird input.
 export function numberChannel(source) {
-  return {
+  return source == null ? null : {
     transform: data => valueof(data, source, Float64Array),
     label: labelof(source)
   };

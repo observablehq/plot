@@ -1,8 +1,7 @@
 import {create} from "d3";
-import {filter} from "../defined.js";
-import {Mark} from "../plot.js";
-import {maybeNumberChannel, maybeTuple, keyword} from "../options.js";
 import {radians} from "../math.js";
+import {maybeNumberChannel, maybeTuple, keyword} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
@@ -33,14 +32,13 @@ export class Vector extends Mark {
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
   }
   render(
-    I,
+    index,
     {x, y},
     channels,
     {width, height, marginTop, marginRight, marginBottom, marginLeft}
   ) {
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {dx, dy, length, rotate, anchor} = this;
-    const index = filter(I, X, Y, L, R);
     const fl = L ? i => L[i] : () => length;
     const fr = R ? i => R[i] : () => rotate;
     const fx = X ? i => X[i] : () => (marginLeft + width - marginRight) / 2;

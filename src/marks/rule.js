@@ -1,7 +1,6 @@
 import {create} from "d3";
-import {filter} from "../defined.js";
-import {Mark} from "../plot.js";
 import {identity, number} from "../options.js";
+import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
@@ -34,11 +33,10 @@ export class RuleX extends Mark {
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, {x, y}, channels, dimensions) {
     const {x: X, y1: Y1, y2: Y2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
-    const index = filter(I, X, Y1, Y2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, X && x, null, offset, 0)
@@ -78,11 +76,10 @@ export class RuleY extends Mark {
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, {x, y}, channels, dimensions) {
     const {y: Y, x1: X1, x2: X2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight, dx, dy} = this;
-    const index = filter(I, Y, X1, X2);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, null, Y && y, dx, offset + dy)

@@ -1,11 +1,12 @@
 import {create, cross, difference, groups, InternMap} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
+import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
-import {applyInlineStyles, filterStyles, maybeClassName, styles} from "./style.js";
+import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
 export function plot(options = {}) {
@@ -92,9 +93,9 @@ export function plot(options = {}) {
     .node();
 
   for (const mark of marks) {
-    const channels = markChannels.get(mark);
+    const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
-    const index = filterStyles(markIndex.get(mark), values);
+    const index = filter(markIndex.get(mark), channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -116,6 +117,16 @@ export function plot(options = {}) {
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, options);
   return figure;
+}
+
+function filter(index, channels, values) {
+  for (const [name, {filter = defined}] of channels) {
+    if (name !== undefined && filter !== null) {
+      const value = values[name];
+      index = index.filter(i => filter(value[i]));
+    }
+  }
+  return index;
 }
 
 export class Mark {
@@ -300,13 +311,8 @@ class Facet extends Mark {
               const marksFacetIndex = marksIndexByFacet.get(key);
               for (let i = 0; i < marks.length; ++i) {
                 const values = marksValues[i];
-                const index = filterStyles(marksFacetIndex[i], values);
-                const node = marks[i].render(
-                  index,
-                  scales,
-                  values,
-                  subdimensions
-                );
+                const index = filter(marksFacetIndex[i], marksChannels[i], values);
+                const node = marks[i].render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
             }))

@@ -1,5 +1,4 @@
 import {create} from "d3";
-import {filter} from "../defined.js";
 import {Mark} from "../plot.js";
 import {number} from "../options.js";
 import {isCollapsed} from "../scales.js";
@@ -21,9 +20,8 @@ export class AbstractBar extends Mark {
     this.rx = impliedString(rx, "auto"); // number or percentage
     this.ry = impliedString(ry, "auto");
   }
-  render(I, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {dx, dy, rx, ry} = this;
-    const index = filter(I, ...this._positions(channels));
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(this._transform, scales, dx, dy)
@@ -76,9 +74,6 @@ export class BarX extends AbstractBar {
   _transform(selection, {x}, dx, dy) {
     selection.call(applyTransform, x, null, dx, dy);
   }
-  _positions({x1: X1, x2: X2, y: Y}) {
-    return [X1, X2, Y];
-  }
   _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
     const {insetLeft} = this;
     return isCollapsed(x) ? marginLeft + insetLeft : i => Math.min(X1[i], X2[i]) + insetLeft;
@@ -104,9 +99,6 @@ export class BarY extends AbstractBar {
   }
   _transform(selection, {y}, dx, dy) {
     selection.call(applyTransform, null, y, dx, dy);
-  }
-  _positions({y1: Y1, y2: Y2, x: X}) {
-    return [Y1, Y2, X];
   }
   _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
     const {insetTop} = this;
