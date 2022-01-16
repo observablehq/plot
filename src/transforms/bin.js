@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
 import {coerceDate} from "../scales.js";
 import {basic} from "./basic.js";
-import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity, reduceTitle} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
@@ -42,6 +42,10 @@ function binn(
 ) {
   bx = maybeBin(bx);
   by = maybeBin(by);
+
+  // Propagate standard mark channels by default.
+  if (inputs.title != null && outputs.title === undefined) outputs.title = reduceTitle;
+  if (inputs.href != null && outputs.href === undefined) outputs.href = reduceFirst;
 
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
