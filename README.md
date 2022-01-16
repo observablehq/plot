@@ -703,6 +703,38 @@ Plot.areaY(aapl, {x: "Date", y: "Close"})
 
 Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
 
+### Arrow
+
+[<img src="./img/arrow.png" width="320" height="198" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
+
+[Source](./src/marks/arrow.js) · [Examples](https://observablehq.com/@observablehq/plot-arrow) · Draws arrows (possibly swoopy arrows) connecting pairs of points.
+
+The following channels are required:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+The arrow mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one. The following additional options are supported:
+
+* **bend** - the bend angle, in degrees; defaults to zero
+* **headAngle** - the arrowhead angle, in degrees; defaults to 22.5°
+* **headLength** - the arrowhead scale; defaults to 8
+* **insetEnd** - inset at the end of the arrow (useful if the arrow points to a dot)
+* **insetStart** - inset at the start of the arrow
+* **inset** - shorthand for the two insets
+
+The **bend** option sets the angle between the straight line between the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
+
+#### Plot.arrow(*data*, *options*)
+
+```js
+Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+```
+
+Returns a new arrow with the given *data* and *options*.
+
 ### Bar
 
 [<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@observablehq/plot-bar)
@@ -929,7 +961,7 @@ The following channels are required:
 
 The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
 
-The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area.
+The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
 #### Plot.link(*data*, *options*)
 
