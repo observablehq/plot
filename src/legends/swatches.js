@@ -1,4 +1,4 @@
-import {create, path} from "d3";
+import {create, namespaces, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
 import {maybeColorChannel, maybeNumberChannel} from "../mark.js";
@@ -47,6 +47,7 @@ export function legendSymbols(symbol, {
     symbol,
     options,
     selection => selection.append("svg")
+        .attr("xmlns", namespaces.svg)
         .attr("viewBox", "-8 -8 16 16")
         .attr("fill", vf === "color" ? d => sf.scale(d) : null)
         .attr("stroke", vs === "color" ? d => ss.scale(d) : null)

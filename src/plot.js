@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create, namespaces} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {facets} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
@@ -66,6 +66,7 @@ export function plot(options = {}) {
   const {width, height} = dimensions;
 
   const svg = create("svg")
+      .attr("xmlns", namespaces.svg)
       .attr("class", className)
       .attr("fill", "currentColor")
       .attr("font-family", "system-ui, sans-serif")

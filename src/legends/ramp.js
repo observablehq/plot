@@ -1,4 +1,4 @@
-import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom, namespaces} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
@@ -23,6 +23,7 @@ export function legendRamp(color, {
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg")
+      .attr("xmlns", namespaces.svg)
       .attr("class", className)
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
