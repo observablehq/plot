@@ -124,6 +124,7 @@ export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
 export {default as untypedDateBin} from "./untyped-date-bin.js";
 export {default as usCongressAge} from "./us-congress-age.js";
+export {default as usCongressAgeColorExplicit} from "./us-congress-age-color-explicit.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPopulationStateAgeDots} from "./us-population-state-age-dots.js";

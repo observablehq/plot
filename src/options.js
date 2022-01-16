@@ -210,6 +210,13 @@ export function isNumeric(values) {
   }
 }
 
+export function isColors(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return typeof value === "string" && (colors.has(value) || color(value) !== null);
+  }
+}
+
 export function order(values) {
   if (values == null) return;
   const first = values[0];
