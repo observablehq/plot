@@ -274,7 +274,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**ticks** - the approximate number of ticks to generate
 * *scale*.**tickSize** - the size of each tick (in pixels; default 6)
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
-* *scale*.**tickFormat** - how to format tick values as a string (a function or format specifier)
+* *scale*.**tickFormat** - to format tick values, either a function or a [d3-format](https://github.com/d3/d3-format#locale_format) or [d3-time-format](https://github.com/d3/d3-time-format#locale_format) specifier string; see [Formats](#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
 * *scale*.**line** - if true, draw the axis line
