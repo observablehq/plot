@@ -25,9 +25,6 @@ export const first = d => d[0];
 export const second = d => d[1];
 export const constant = x => () => x;
 
-// A few extra color keywords not known to d3-color.
-const colors = new Set(["currentColor", "none"]);
-
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this
 // function tests whether the given value is a CSS color string and returns a
@@ -37,7 +34,7 @@ const colors = new Set(["currentColor", "none"]);
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
-    : typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value]
+    : isColor(value) ? [undefined, value]
     : [value, undefined];
 }
 
@@ -208,6 +205,20 @@ export function isNumeric(values) {
     if (value == null) continue;
     return typeof value === "number";
   }
+}
+
+// A few extra color keywords not known to d3-color.
+function isColor(value) {
+  value = `${value}`.toLowerCase();
+  return value === "currentcolor" || value === "none" || color(value);
+}
+
+export function isAllColors(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    if (!isColor(value)) return false;
+  }
+  return true;
 }
 
 export function order(values) {
