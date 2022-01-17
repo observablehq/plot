@@ -17,6 +17,7 @@ export class Text extends Mark {
       text = indexOf,
       textAnchor,
       lineAnchor = "middle",
+      lineHeight = 1,
       fontFamily,
       fontSize,
       fontStyle,
@@ -41,6 +42,7 @@ export class Text extends Mark {
     this.rotate = crotate;
     this.textAnchor = impliedString(textAnchor, "middle");
     this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
+    this.lineHeight = +lineHeight;
     this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
     this.fontStyle = string(fontStyle);
@@ -79,7 +81,7 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(selection, {lineAnchor}, T) {
+function applyMultilineText(selection, {lineAnchor, lineHeight}, T) {
   if (!T) return;
   const format = isTemporal(T) ? isoFormat : isNumeric(T) ? formatNumber() : string;
   selection.each(function(i) {
@@ -90,12 +92,12 @@ function applyMultilineText(selection, {lineAnchor}, T) {
       for (let i = 0; i < n; ++i) {
         const tspan = document.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
-        tspan.setAttribute("y", `${y + i}em`);
+        tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
         tspan.textContent = lines[i];
         this.appendChild(tspan);
       }
     } else {
-      if (y) this.setAttribute("y", `${y}em`);
+      if (y) this.setAttribute("y", `${y * lineHeight}em`);
       this.textContent = lines[0];
     }
   });

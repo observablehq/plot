@@ -1081,6 +1081,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 The following text-specific constant options are also supported:
 
+* **textAnchor** - TODO
+* **lineAnchor** - TODO
+* **lineHeight** - TODO
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
