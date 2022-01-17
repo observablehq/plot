@@ -207,13 +207,6 @@ export function isNumeric(values) {
   }
 }
 
-// A few extra color keywords not known to d3-color.
-export function isColor(value) {
-  if (!(typeof value === "string")) return false;
-  value = value.toLowerCase();
-  return value === "currentcolor" || value === "none" || color(value) !== null;
-}
-
 export function isColors(values) {
   for (const value of values) {
     if (value == null) continue;
@@ -221,6 +214,10 @@ export function isColors(values) {
   }
 }
 
+// Whereas isColors only tests the first defined value and returns undefined for
+// an empty array, this tests all defined values and only returns true if all of
+// them are valid colors. It also returns true for an empty array, and thus
+// should generally be used in conjunction with isColors.
 export function isAllColors(values) {
   for (const value of values) {
     if (value == null) continue;
@@ -229,6 +226,19 @@ export function isAllColors(values) {
   return true;
 }
 
+// Mostly relies on d3-color, with a few extra color keywords. Currently this
+// strictly requires that the value be a string; we might want to apply string
+// coercion here, though note that d3-color instances would need to support
+// valueOf to work correctly with InternMap.
+export function isColor(value) {
+  if (!(typeof value === "string")) return false;
+  value = value.toLowerCase();
+  return value === "currentcolor" || value === "none" || color(value) !== null;
+}
+
+// Like a sort comparator, returns a positive value if the given array of values
+// is in ascending order, a negative value if the values are in descending
+// order. Assumes monotonicity; only tests the first and last values.
 export function order(values) {
   if (values == null) return;
   const first = values[0];
