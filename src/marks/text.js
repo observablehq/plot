@@ -90,6 +90,7 @@ function applyMultilineText(selection, {lineAnchor, lineHeight}, T) {
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
+        if (!lines[i]) continue;
         const tspan = document.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
         tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
