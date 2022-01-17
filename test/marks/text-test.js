@@ -20,8 +20,9 @@ it("text() has the expected defaults", () => {
   assert.strictEqual(text.mixBlendMode, undefined);
   assert.strictEqual(text.shapeRendering, undefined);
   assert.strictEqual(text.textAnchor, undefined);
-  assert.strictEqual(text.dx, undefined);
-  assert.strictEqual(text.dy, "0.32em");
+  assert.strictEqual(text.lineAnchor, "middle");
+  assert.strictEqual(text.dx, 0);
+  assert.strictEqual(text.dy, 0);
   assert.strictEqual(text.rotate, 0);
 });
 
