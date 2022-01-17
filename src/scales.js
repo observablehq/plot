@@ -187,7 +187,7 @@ function Scale(key, channels = [], options = {}) {
   }
 }
 
-function inferScaleType(key, channels, {type, domain, range}) {
+function inferScaleType(key, channels, {type, domain, range, scheme}) {
   if (key === "fx" || key === "fy") return "band";
   if (type !== undefined) {
     for (const {type: t} of channels) {
@@ -202,6 +202,8 @@ function inferScaleType(key, channels, {type, domain, range}) {
   if (registry.get(key) === symbol) return "ordinal";
   for (const {type} of channels) if (type !== undefined) return type;
   if (registry.get(key) === color
+    && range === undefined
+    && scheme === undefined
     && (domain !== undefined
       ? isColors(domain) && isAllColors(domain)
       : channels.some(({value}) => value !== undefined && isColors(value))
