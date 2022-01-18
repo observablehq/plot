@@ -1,6 +1,6 @@
-import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex} from "d3";
+import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
-import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range} from "../options.js";
+import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range, second} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -135,7 +135,11 @@ export function hasOutput(outputs, ...names) {
 }
 
 export function maybeOutputs(outputs, inputs) {
-  return Object.entries(outputs).map(([name, reduce]) => {
+  const entries = Object.entries(outputs);
+  // Propagate standard mark channels by default.
+  if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
+  if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
+  return entries.map(([name, reduce]) => {
     return reduce == null
       ? {name, initialize() {}, scope() {}, reduce() {}}
       : maybeOutput(name, reduce, inputs);
@@ -263,6 +267,19 @@ export const reduceIdentity = {
 const reduceFirst = {
   reduce(I, X) {
     return X[I[0]];
+  }
+};
+
+const reduceTitle = {
+  reduce(I, X) {
+    const n = 5;
+    const groups = sort(rollup(I, V => V.length, i => X[i]), second);
+    const top = groups.slice(-n).reverse();
+    if (top.length < groups.length) {
+      const bottom = groups.slice(0, 1 - n);
+      top[n - 1] = [`… ${bottom.length.toLocaleString("en-US")} more`, sum(bottom, second)];
+    }
+    return top.map(([key, value]) => `${key} (${value.toLocaleString("en-US")})`).join("\n");
   }
 };
 
