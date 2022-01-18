@@ -1,10 +1,10 @@
 # Observable Plot - Changelog
 
-## 0.3.3
+## 0.4.0
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new *href* channel…
+The new *href* channel… And *target* option…
 
 The new Plot.arrow mark…
 
@@ -20,7 +20,7 @@ The bin transform now supports the following shorthand reducers for the bin exte
 
 The window transform now supports the *first* and *last* reducers.
 
-The *color* scale now defaults to *identity* if the associated values are entirely valid CSS colors (or undefined).
+The *color* scale now defaults to *identity* if all associated defined values are valid CSS colors.
 
 The *swatches* legend now wraps correctly in narrow windows.
 
@@ -38,7 +38,11 @@ Plot no longer crashes when you try to display a legend on an identity color sca
 
 Plot no longer uses circular imports, working around a limitation of popular bundlers such as webpack and Rollup.
 
-Plot now uses Vite instead of Snowpack for local development.
+Plot now uses [Vite](https://vitejs.dev) instead of Snowpack for local development.
+
+Update D3 to 7.3.0.
+
+[breaking] Plot now depends on [D3 7.3](https://github.com/d3/d3/releases/tag/v7.3.0) or higher.
 
 ## 0.3.2
 
