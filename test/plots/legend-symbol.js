@@ -5,20 +5,27 @@ export function symbolLegendBasic() {
   return Plot.legend({symbol: {domain: "ABCDEF"}});
 }
 
-// TODO There’s no way to define a standalone symbol legend with a color scale,
-// since the color scale takes priority if both are specified.
+// TODO It would be nice if the symbol scale’s range automatically defaulted to
+// d3.symbolsFill given the presence of fill “color”.
 export function symbolLegendColorFill() {
-  return Plot.plot({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF", range: d3.symbolsFill}}).legend("symbol", {fill: "color"});
+  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF", range: d3.symbolsFill}, fill: "color"});
 }
 
-// TODO There’s no way to define a standalone symbol legend with a color scale,
-// since the color scale takes priority if both are specified.
+// TODO It would be nice if the stroke option defaulted to “color” given the
+// presence of a color scale (and no fill option).
 export function symbolLegendColorStroke() {
-  return Plot.plot({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}}).legend("symbol", {stroke: "color"});
+  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}, stroke: "color"});
 }
 
-// TODO It would be nice if the symbol hint could apply here; but the hint is
-// currently only set by marks that have matching channels.
+// Note: The symbol hint requires reference equality for channel definitions,
+// and so doesn’t consider the fill and symbol channels to be using the same
+// encoding here.
+export function symbolLegendDifferentColor() {
+  return Plot.dotX("ABCDEF", {fill: d => d, symbol: d => d}).plot().legend("symbol");
+}
+
+// TODO It would be nice if the symbol scale’s range automatically defaulted to
+// d3.symbolsFill given the presence of the fill option.
 export function symbolLegendFill() {
   return Plot.legend({symbol: {domain: "ABCDEF", range: d3.symbolsFill}, fill: "red"});
 }

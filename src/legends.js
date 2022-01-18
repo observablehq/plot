@@ -5,8 +5,8 @@ import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 
 const legendRegistry = new Map([
-  ["color", legendColor],
   ["symbol", legendSymbols],
+  ["color", legendColor],
   ["opacity", legendOpacity]
 ]);
 
