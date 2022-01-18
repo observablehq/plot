@@ -2,7 +2,7 @@
 
 ## 0.3.3
 
-*Not yet released. These are forthcoming changes in the main branch but have not yet been published.*
+*Not yet released. These are forthcoming changes in the main branch.*
 
 The new *href* channel…
 
