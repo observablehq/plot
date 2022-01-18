@@ -1,4 +1,4 @@
-import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX} from "d3";
+import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX as symbolTimes} from "d3";
 import {symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye} from "d3";
 
 const symbols = new Map([
@@ -11,10 +11,10 @@ const symbols = new Map([
   ["square", symbolSquare],
   ["square2", symbolSquare2],
   ["star", symbolStar],
+  ["times", symbolTimes],
   ["triangle", symbolTriangle],
   ["triangle2", symbolTriangle2],
-  ["wye", symbolWye],
-  ["x", symbolX]
+  ["wye", symbolWye]
 ]);
 
 function isSymbol(symbol) {

@@ -844,6 +844,8 @@ The **r** option can be specified as either a channel or constant. When the radi
 
 The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise. The **strokeWidth** defaults to 1.5. The **rotate** and **symbol** options can be specified as either channels or constants. When rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When symbol is a valid symbol name or symbol object (implementing the draw method), it is interpreted as a constant; otherwise it is interpreted as a channel.
 
+The built-in **symbol** types are: *asterisk*, *circle*, *cross*, *diamond*, *diamond2*, *plus*, *square*, *square2*, *star*, *times*, *triangle*, *triangle2*, and *wye*. You can also specify a D3 or custom symbol type as an object that implements the [*symbol*.draw(*context*, *size*)](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) method.
+
 Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
 #### Plot.dot(*data*, *options*)
