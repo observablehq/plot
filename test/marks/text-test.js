@@ -56,3 +56,21 @@ it("text(data, {stroke}) has a default strokeLinejoin of round", () => {
   assert.strictEqual(text.stroke, "red");
   assert.strictEqual(text.strokeLinejoin, "round");
 });
+
+it("text(data, {fontSize}) allows fontSize to be a number, length, keyword, or percentage", () => {
+  assert.strictEqual(Plot.text(undefined, {fontSize: 42}).fontSize, 42);
+  assert.strictEqual(Plot.text(undefined, {fontSize: "42"}).fontSize, "42");
+  assert.strictEqual(Plot.text(undefined, {fontSize: "42px"}).fontSize, "42px");
+  assert.strictEqual(Plot.text(undefined, {fontSize: "42pt"}).fontSize, "42pt");
+  assert.strictEqual(Plot.text(undefined, {fontSize: " 42pt"}).fontSize, "42pt");
+  assert.strictEqual(Plot.text(undefined, {fontSize: " 42pt "}).fontSize, "42pt");
+  assert.strictEqual(Plot.text(undefined, {fontSize: " 50% "}).fontSize, "50%");
+  assert.strictEqual(Plot.text(undefined, {fontSize: " Larger "}).fontSize, "larger");
+  assert.strictEqual(Plot.text(undefined, {fontSize: "unset"}).fontSize, "unset");
+});
+
+it("text(data, {fontSize}) allows fontSize to be a channel", () => {
+  const text = Plot.text(undefined, {fontSize: "x"});
+  assert.strictEqual(text.fontSize, undefined);
+  assert.strictEqual(text.channels.find(c => c.name === "fontSize").value, "x");
+});
