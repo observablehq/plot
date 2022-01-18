@@ -1,20 +1,19 @@
-import * as d3 from "d3";
 import * as Plot from "@observablehq/plot";
 
 export function symbolLegendBasic() {
   return Plot.legend({symbol: {domain: "ABCDEF"}});
 }
 
-// TODO It would be nice if the symbol scale’s range automatically defaulted to
-// d3.symbolsFill given the presence of fill “color”.
 export function symbolLegendColorFill() {
-  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF", range: d3.symbolsFill}, fill: "color"});
+  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}, fill: "color"});
 }
 
-// TODO It would be nice if the stroke option defaulted to “color” given the
-// presence of a color scale (and no fill option).
 export function symbolLegendColorStroke() {
-  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}, stroke: "color"});
+  return Plot.legend({color: {domain: "ABCDEF"}, symbol: {domain: "ABCDEF"}});
+}
+
+export function symbolLegendFill() {
+  return Plot.legend({symbol: {domain: "ABCDEF"}, fill: "red"});
 }
 
 // Note: The symbol hint requires reference equality for channel definitions,
@@ -22,12 +21,6 @@ export function symbolLegendColorStroke() {
 // encoding here.
 export function symbolLegendDifferentColor() {
   return Plot.dotX("ABCDEF", {fill: d => d, symbol: d => d}).plot().legend("symbol");
-}
-
-// TODO It would be nice if the symbol scale’s range automatically defaulted to
-// d3.symbolsFill given the presence of the fill option.
-export function symbolLegendFill() {
-  return Plot.legend({symbol: {domain: "ABCDEF", range: d3.symbolsFill}, fill: "red"});
 }
 
 // Note: The symbol hint requires reference equality for channel definitions,

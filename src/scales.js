@@ -127,8 +127,8 @@ function piecewiseRange(scale) {
   return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
 }
 
-export function normalizeScale(key, scale) {
-  return Scale(key, undefined, {...scale});
+export function normalizeScale(key, scale, hint) {
+  return Scale(key, hint === undefined ? undefined : [{hint}], {...scale});
 }
 
 function Scale(key, channels = [], options = {}) {
