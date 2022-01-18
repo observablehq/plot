@@ -1,6 +1,6 @@
 # Observable Plot - Changelog
 
-## 0.4.0
+## 0.3.3
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
@@ -26,11 +26,11 @@ The *swatches* legend now wraps correctly in narrow windows.
 
 A top-level *clamp* option is now available to apply to all scales.
 
-When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it has the expected colors (not *rdgy*).
+When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*).
 
 When large margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output.
 
-When the *tickFormat* option is null, it is now treated as the empty string rather than using the default tick format.
+When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format).
 
 Plot now ignores non-finite values when inferring the default domain for quantitative scales.
 
@@ -40,9 +40,7 @@ Plot no longer uses circular imports, working around a limitation of popular bun
 
 Plot now uses [Vite](https://vitejs.dev) instead of Snowpack for local development.
 
-Update D3 to 7.3.0.
-
-[breaking] Plot now depends on [D3 7.3](https://github.com/d3/d3/releases/tag/v7.3.0) or higher.
+Update D3 to [7.3.0](https://github.com/d3/d3/releases/tag/v7.3.0).
 
 ## 0.3.2
 
