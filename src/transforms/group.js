@@ -272,9 +272,13 @@ const reduceFirst = {
 
 const reduceTitle = {
   reduce(I, X) {
+    const n = 5;
     const groups = sort(rollup(I, V => V.length, i => X[i]), second);
-    const top = groups.slice(-5).reverse();
-    if (top.length < groups.length) top.push(["Other", sum(groups.slice(0, -5), second)]);
+    const top = groups.slice(-n).reverse();
+    if (top.length < groups.length) {
+      const bottom = groups.slice(0, 1 - n);
+      top[n - 1] = [`… ${bottom.length.toLocaleString("en-US")} more`, sum(bottom, second)];
+    }
     return top.map(([key, value]) => `${key} (${value.toLocaleString("en-US")})`).join("\n");
   }
 };
