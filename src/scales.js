@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isOrdinal, isTemporal, order} from "./options.js";
+import {isAllColors, isColors, isOrdinal, isTemporal, order} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -187,36 +187,67 @@ function Scale(key, channels = [], options = {}) {
   }
 }
 
-function inferScaleType(key, channels, {type, domain, range}) {
+function inferScaleType(key, channels, {type, domain, range, scheme}) {
+  // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
-  if (type !== undefined) {
-    for (const {type: t} of channels) {
-      if (t !== undefined && type !== t) {
-        throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
-      }
-    }
-    return type;
+
+  // If a channel dictates a scale type, make sure that it is consistent with
+  // the user-specified scale type (if any) and all other channels. For example,
+  // barY requires x to be a band scale and disallows any other scale type.
+  for (const {type: t} of channels) {
+    if (t === undefined) continue;
+    else if (type === undefined) type = t;
+    else if (type !== t) throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
   }
-  if (registry.get(key) === radius) return "sqrt";
-  if (registry.get(key) === opacity || registry.get(key) === length) return "linear";
-  if (registry.get(key) === symbol) return "ordinal";
-  for (const {type} of channels) if (type !== undefined) return type;
-  if ((domain || range || []).length > 2) return asOrdinalType(key);
+
+  // If the scale, a channel, or user specified a (consistent) type, return it.
+  if (type !== undefined) return type;
+
+  // Some scales have default types.
+  const kind = registry.get(key);
+  if (kind === radius) return "sqrt";
+  if (kind === opacity || kind === length) return "linear";
+  if (kind === symbol) return "ordinal";
+
+  // For color scales, if no range or scheme is specified and all associated
+  // defined values (from the domain if present, and otherwise from channels)
+  // are valid colors, then default to the identity scale. This allows, for
+  // example, a fill channel to return literal colors; without this, the colors
+  // would be remapped to a categorical scheme!
+  if (kind === color
+    && range === undefined
+    && scheme === undefined
+    && (domain !== undefined
+      ? isColors(domain) && isAllColors(domain)
+      : channels.some(({value}) => value !== undefined && isColors(value))
+        && channels.every(({value}) => value === undefined || isAllColors(value)))) return "identity";
+
+  // If the domain or range has more than two values, assume it’s ordinal. You
+  // can still use a “piecewise” (or “polylinear”) scale, but you must set the
+  // type explicitly.
+  if ((domain || range || []).length > 2) return asOrdinalType(kind);
+
+  // Otherwise, infer the scale type from the data! Prefer the domain, if
+  // present, over channels. (The domain and channels should be consistently
+  // typed, and the domain is more explicit and typically much smaller.) We only
+  // check the first defined value for expedience and simplicitly; we expect
+  // that the types are consistent.
   if (domain !== undefined) {
-    if (isOrdinal(domain)) return asOrdinalType(key);
+    if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
     return "linear";
   }
+
   // If any channel is ordinal or temporal, it takes priority.
   const values = channels.map(({value}) => value).filter(value => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(key);
+  if (values.some(isOrdinal)) return asOrdinalType(kind);
   if (values.some(isTemporal)) return "utc";
   return "linear";
 }
 
 // Positional scales default to a point scale instead of an ordinal scale.
-function asOrdinalType(key) {
-  switch (registry.get(key)) {
+function asOrdinalType(kind) {
+  switch (kind) {
     case position: return "point";
     case color: return "categorical";
     default: return "ordinal";
