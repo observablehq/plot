@@ -1,9 +1,9 @@
 import {create, isoFormat, namespaces} from "d3";
 import {nonempty} from "../defined.js";
 import {formatNumber} from "../format.js";
-import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword} from "../options.js";
+import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
   strokeLinejoin: "round"
@@ -23,6 +23,7 @@ export class Text extends Mark {
       fontStyle,
       fontVariant,
       fontWeight,
+      frameAnchor,
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
@@ -48,13 +49,12 @@ export class Text extends Mark {
     this.fontStyle = string(fontStyle);
     this.fontVariant = string(fontVariant);
     this.fontWeight = string(fontWeight);
+    this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
-    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
     const {dx, dy, rotate} = this;
-    const cx = (marginLeft + width - marginRight) / 2;
-    const cy = (marginTop + height - marginBottom) / 2;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g")
         .call(applyIndirectTextStyles, this, T)
         .call(applyTransform, x, y, offset + dx, offset + dy)
