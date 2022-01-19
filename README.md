@@ -1068,7 +1068,7 @@ If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be der
 
 The following channels are required:
 
-* **text** - the text contents (a string)
+* **text** - the text contents (a string); if the string contains line break characters, the mark will wrap each line in a tspan and create a multiline text.
 
 If **text** is not specified, it defaults to [0, 1, 2, …] so that something is visible by default. Due to the design of SVG, each label is currently limited to one line; in the future we may support multiline text. [#327](https://github.com/observablehq/plot/pull/327) For embedding numbers and dates into text, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format).
 
@@ -1081,9 +1081,9 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 The following text-specific constant options are also supported:
 
-* **textAnchor** - TODO
-* **lineAnchor** - TODO
-* **lineHeight** - TODO
+* **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor); start, end, or middle (default) 
+* **lineAnchor** - for multiline text, the vertical line anchor; top, bottom, or middle (default)
+* **lineHeight** - for multiline text,the line height factor; defaults to 1.0, which corresponds to a CSS length of 1em 
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
