@@ -187,10 +187,10 @@ export function numberChannel(source) {
   };
 }
 
-export function isNonObject(values) {
+export function isObjects(values) {
   for (const value of values) {
     if (value == null) continue;
-    return !isObject(value);
+    return isObject(value);
   }
 }
 
