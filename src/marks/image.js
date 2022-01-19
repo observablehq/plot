@@ -82,6 +82,6 @@ export class Image extends Mark {
 }
 
 export function image(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Image(data, {...options, x, y});
 }

@@ -105,7 +105,7 @@ function applyMultilineText(selection, {lineAnchor, lineHeight}, T) {
 }
 
 export function text(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Text(data, {...options, x, y});
 }
 

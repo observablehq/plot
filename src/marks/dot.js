@@ -87,7 +87,7 @@ export class Dot extends Mark {
 }
 
 export function dot(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Dot(data, {...options, x, y});
 }
 
