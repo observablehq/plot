@@ -4,9 +4,9 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new *href* channel… And *target* option…
+The new [arrow mark](./README.md#arrow) draws (possibly swoopy) arrows connecting two pairs of points. It is similar to a [link mark](./README.md#link), except it is intended for directed edges (say for representing movement over time) and supports a configurable arrowhead.
 
-The new arrow mark…
+[<img src="./img/arrow.png" width="660" height="396" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
 The new vector mark…
 
@@ -17,6 +17,8 @@ The text mark now supports multiline text! New *lineAnchor* and *lineHeight* opt
 The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
 
 The text, dot, and image marks now support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
+
+All marks now support the new standard *href* channel and *target* option.
 
 The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
 
@@ -70,7 +72,7 @@ Update D3 to 7.2.1.
 
 Released December 4, 2021.
 
-Plot can now produce [legends for *color* and *opacity* scales](https://github.com/observablehq/plot/blob/main/README.md#legends)!
+Plot can now produce [legends for *color* and *opacity* scales](./README.md#legends)!
 
 [<img src="./img/legend.png" width="660" height="437" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
 
@@ -87,7 +89,7 @@ Plot.plot({
 
 The top-level plot *scale*.**legend** option generates an inline legend for the given *scale* (*color* or *opacity*). Alternatively, the new *plot*.legend(*name*) function returns a legend for the scale with the given *name*. The new standalone Plot.**legend**(*options*) function also allows you to create a legend independently of a chart. Two forms of color legend are provided: *swatches* for ordinal or discrete scales (*e.g.*, threshold color scales), and *ramp* for continuous scales.
 
-The new [Plot.image](https://github.com/observablehq/plot/blob/main/README.md#image) mark centers an image on the given *xy* position.
+The new [Plot.image](./README.md#image) mark centers an image on the given *xy* position.
 
 [<img src="./img/image.png" width="640" height="396" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
 
@@ -269,7 +271,7 @@ Released August 20, 2021.
 
 ### Marks
 
-The [*marks* option](https://github.com/observablehq/plot/blob/main/README.md#mark-options) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
+The [*marks* option](./README.md#mark-options) now accepts render functions, null, and undefined as shorthand mark definitions. Nullish marks produce no output and are useful for conditional display (equivalent to the empty array). Render functions are invoked when plotting and may return an SVG element to insert into the plot, such as a legend or annotation.
 
 <img width="636" alt="a line chart of Apple, Inc.’s daily closing stock price from 2013 to 2018, with a red ‘hello world’ label" src="https://user-images.githubusercontent.com/230541/130157120-8cbf8052-aa31-44ed-a650-d081c4a21d69.png">
 
@@ -280,7 +282,7 @@ Plot.marks(
 ).plot()
 ```
 
-The [Plot.marks(...*marks*)](https://github.com/observablehq/plot/blob/main/README.md#plotmarksmarks) function provides [*mark*.plot](https://github.com/observablehq/plot/blob/main/README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
+The [Plot.marks(...*marks*)](./README.md#plotmarksmarks) function provides [*mark*.plot](./README.md#plotplotoptions) shorthand for array marks. This is useful for composite marks, such as [boxes](https://github.com/observablehq/plot/blob/8fef4fa52a4cca4135f5f964e3c328ef8f18f672/test/plots/morley-boxplot.js#L18-L23).
 
 All marks now support the [shapeRendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering)  option. (This is a constant; it may not vary across marks.) All marks now allow strokeWidth to be specified as a channel. (The strokeWidth channel is unscaled; values are specified in literal pixels.) Text marks now also allow stroke and strokeOpacity to be specified as channels. If its fill is not *none*, a line’s default stroke is now *none* rather than *currentColor*, making it consistent with dot and other marks. When a fill or fillOpacity channel is used with a link, or when a stroke or strokeOpacity channel is used with a rule, undefined values will now be filtered. The text mark now uses attributes instead of styles for font rendering properties, improving compatibility with Firefox.
 
@@ -302,7 +304,7 @@ The link mark now supports *x* or *y* shorthand for one-dimensional links, equiv
 
 ### Scales
 
-The new [*sort* options](https://github.com/observablehq/plot/blob/main/README.md#sort-options) allow convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
+The new [*sort* options](./README.md#sort-options) allow convenient control over the order of ordinal domains, including the *fx* and *fy* facet domains. The aggregation method can be controlled via the *reduce* option, which defaults to *max*. The *reverse* and *limit* options are also supported. For example, a bar chart can be sorted by descending value like so:
 
 <img width="640" alt="a bar chart showing the frequency of letters in the English language in order of descending frequency, starting with E at 13% and ending with Z at almost 0%" src="https://user-images.githubusercontent.com/230541/130157414-be9cbc86-8a0c-40e7-8cfb-999881482691.png">
 
