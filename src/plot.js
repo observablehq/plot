@@ -85,7 +85,8 @@ export function plot(options = {}) {
           height: intrinsic;
           max-width: 100%;
         }
-        .${className} text {
+        .${className} text,
+        .${className} tspan {
           white-space: pre;
         }
       `))
