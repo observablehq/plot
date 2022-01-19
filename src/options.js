@@ -187,6 +187,13 @@ export function numberChannel(source) {
   };
 }
 
+export function isNonObject(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return !isObject(value);
+  }
+}
+
 export function isOrdinal(values) {
   for (const value of values) {
     if (value == null) continue;

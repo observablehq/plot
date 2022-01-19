@@ -1,7 +1,7 @@
 import {create, isoFormat, namespaces} from "d3";
 import {nonempty} from "../defined.js";
 import {formatNumber} from "../format.js";
-import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor} from "../options.js";
+import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isNonObject} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
@@ -14,7 +14,7 @@ export class Text extends Mark {
     const {
       x,
       y,
-      text = indexOf,
+      text = data != null && isNonObject(data) ? identity : indexOf,
       textAnchor,
       lineAnchor = "middle",
       lineHeight = 1,
