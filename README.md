@@ -504,7 +504,7 @@ Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-o
 
 If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales and symbol scales, only the *swatches* value is supported.
 
-### *plot*.legend(*name*, *options*)
+#### *plot*.legend(*name*, *options*)
 
 Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a legend for the *plot*’s scale with the given *name*. For example:
 
@@ -551,7 +551,7 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
 
-### Plot.legend(*options*)
+#### Plot.legend(*options*)
 
 Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
 
@@ -651,6 +651,10 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
+
+#### Plot.marks(...*marks*)
+
+A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function.
 
 ### Area
 
@@ -1181,10 +1185,6 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 ```
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
-
-### Plot.marks(...*marks*)
-
-A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function.
 
 ## Decorations
 
