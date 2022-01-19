@@ -1,7 +1,4 @@
-import {plot} from "../plot.js";
-import {link} from "../marks/link.js";
-import {text} from "../marks/text.js";
-import {dot} from "../marks/dot.js";
+import * as Plot from "../index.js";
 import {maybeClassName} from "../style.js";
 
 export function legendRadius(scale, {
@@ -24,12 +21,12 @@ export function legendRadius(scale, {
   const values = s.ticks(ticks).reverse()
     .filter((t) => h - s(t) > lineHeight / 2 && (h = s(t)));
 
-  return plot({
+  return Plot.plot({
     x: { type: "identity", axis: null },
     r: { type: "identity" },
     y: { type: "identity", axis: null },
     marks: [
-      link(values, {
+      Plot.link(values, {
         x1: r0 + 2,
         y1: (d) => 8 + 2 * r0 - 2 * s(d) + shiftY,
         x2: 2 * r0 + 2 + gap,
@@ -37,20 +34,20 @@ export function legendRadius(scale, {
         strokeWidth: strokeWidth / 2,
         strokeDasharray
       }),
-      dot(values, {
+      Plot.dot(values, {
         r: s,
         x: r0 + 2,
         y: (d) => 8 + 2 * r0 - s(d) + shiftY,
         strokeWidth
       }),
-      text(values, {
+      Plot.text(values, {
         x: 2 * r0 + 2 + gap,
         y: (d) => 8 + 2 * r0 - 2 * s(d) + shiftY,
         textAnchor: "start",
         dx: 4,
         text: tickFormat
       }),
-      text(label ? [label] : [], {
+      Plot.text(label ? [label] : [], {
         x: 0,
         y: 6,
         textAnchor: "start",
