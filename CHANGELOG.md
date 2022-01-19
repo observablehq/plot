@@ -1,5 +1,47 @@
 # Observable Plot - Changelog
 
+## 0.3.3
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The new *href* channel… And *target* option…
+
+The new Plot.arrow mark…
+
+The new Plot.vector mark…
+
+The Plot.dot mark now supports a *symbol* channel.
+
+The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
+
+The bin and group transforms now propagate the *title* and *href* channels, if present, by default.
+
+The bin transform now supports the following shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*.
+
+The window transform now supports the *first* and *last* reducers.
+
+The *color* scale now defaults to *identity* if all associated defined values are valid CSS colors.
+
+The *swatches* legend now wraps correctly in narrow windows.
+
+A top-level *clamp* option is now available to apply to all scales.
+
+When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*).
+
+When large margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output.
+
+When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format).
+
+Plot now ignores non-finite values when inferring the default domain for quantitative scales.
+
+Plot no longer crashes when you try to display a legend on an identity color scale.
+
+Plot no longer uses circular imports, working around a limitation of popular bundlers such as webpack and Rollup.
+
+Plot now uses [Vite](https://vitejs.dev) instead of Snowpack for local development.
+
+Update D3 to [7.3.0](https://github.com/d3/d3/releases/tag/v7.3.0).
+
 ## 0.3.2
 
 Released December 10, 2021.

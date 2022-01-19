@@ -1,4 +1,6 @@
 import {color, descending} from "d3";
+import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX as symbolTimes} from "d3";
+import {symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye} from "d3";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -25,9 +27,6 @@ export const first = d => d[0];
 export const second = d => d[1];
 export const constant = x => () => x;
 
-// A few extra color keywords not known to d3-color.
-const colors = new Set(["currentColor", "none"]);
-
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this
 // function tests whether the given value is a CSS color string and returns a
@@ -37,7 +36,7 @@ const colors = new Set(["currentColor", "none"]);
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
-    : typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value]
+    : isColor(value) ? [undefined, value]
     : [value, undefined];
 }
 
@@ -210,6 +209,80 @@ export function isNumeric(values) {
   }
 }
 
+export function isFirst(values, is) {
+  for (const value of values) {
+    if (value == null) continue;
+    return is(value);
+  }
+}
+
+// Whereas isFirst only tests the first defined value and returns undefined for
+// an empty array, this tests all defined values and only returns true if all of
+// them are valid colors. It also returns true for an empty array, and thus
+// should generally be used in conjunction with isFirst.
+export function isEvery(values, is) {
+  for (const value of values) {
+    if (value == null) continue;
+    if (!is(value)) return false;
+  }
+  return true;
+}
+
+// Mostly relies on d3-color, with a few extra color keywords. Currently this
+// strictly requires that the value be a string; we might want to apply string
+// coercion here, though note that d3-color instances would need to support
+// valueOf to work correctly with InternMap.
+export function isColor(value) {
+  if (typeof value !== "string") return false;
+  value = value.toLowerCase();
+  return value === "currentcolor" || value === "none" || color(value) !== null;
+}
+
+const symbols = new Map([
+  ["asterisk", symbolAsterisk],
+  ["circle", symbolCircle],
+  ["cross", symbolCross],
+  ["diamond", symbolDiamond],
+  ["diamond2", symbolDiamond2],
+  ["plus", symbolPlus],
+  ["square", symbolSquare],
+  ["square2", symbolSquare2],
+  ["star", symbolStar],
+  ["times", symbolTimes],
+  ["triangle", symbolTriangle],
+  ["triangle2", symbolTriangle2],
+  ["wye", symbolWye]
+]);
+
+function isSymbolObject(value) {
+  return value && typeof value.draw === "function";
+}
+
+export function isSymbol(value) {
+  if (isSymbolObject(value)) return true;
+  if (typeof value !== "string") return false;
+  return symbols.has(value.toLowerCase());
+}
+
+export function maybeSymbol(symbol) {
+  if (symbol == null || isSymbolObject(symbol)) return symbol;
+  const value = symbols.get(`${symbol}`.toLowerCase());
+  if (value) return value;
+  throw new Error(`invalid symbol: ${symbol}`);
+}
+
+export function maybeSymbolChannel(symbol) {
+  if (symbol == null || isSymbolObject(symbol)) return [undefined, symbol];
+  if (typeof symbol === "string") {
+    const value = symbols.get(`${symbol}`.toLowerCase());
+    if (value) return [undefined, value];
+  }
+  return [symbol, undefined];
+}
+
+// Like a sort comparator, returns a positive value if the given array of values
+// is in ascending order, a negative value if the values are in descending
+// order. Assumes monotonicity; only tests the first and last values.
 export function order(values) {
   if (values == null) return;
   const first = values[0];

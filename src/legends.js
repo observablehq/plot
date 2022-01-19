@@ -5,8 +5,8 @@ import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
 
 const legendRegistry = new Map([
-  ["color", legendColor],
   ["symbol", legendSymbols],
+  ["color", legendColor],
   ["opacity", legendOpacity]
 ]);
 
@@ -14,7 +14,17 @@ export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isObject(scale)) { // e.g., ignore {color: "red"}
-      return value(normalizeScale(key, scale), legendOptions(scale, options), key => isObject(options[key]) ? normalizeScale(key, options[key]) : null);
+      let hint;
+      // For symbol legends, pass a hint to the symbol scale.
+      if (key === "symbol") {
+        const {fill, stroke = fill === undefined && isObject(options.color) ? "color" : undefined} = options;
+        hint = {fill, stroke};
+      }
+      return value(
+        normalizeScale(key, scale, hint),
+        legendOptions(scale, options),
+        key => isObject(options[key]) ? normalizeScale(key, options[key]) : null
+      );
     }
   }
   throw new Error("unknown legend type");
