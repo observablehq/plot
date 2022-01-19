@@ -26,13 +26,13 @@ export default async function() {
         y: "previous",
         text: ["2019"],
         fill: "#bab0ab",
-        dy: "-0.5em"
+        dy: -8
       }),
       Plot.text(data.slice(0, 1), {
         x: "date",
         y: "current",
         text: ["2020"],
-        dy: "1.2em"
+        dy: 8
       })
     ]
   });
