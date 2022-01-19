@@ -70,10 +70,9 @@ export class Text extends Mark {
                 : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
-              : (X && Y ? i => `translate(${X[i]},${Y[i]})`
-                : X ? i => `translate(${X[i]},${cy})`
-                : Y ? i => `translate(${cx},${Y[i]})`
-                : `translate(${cx},${cy})`))
+              : null)
+            .attr("x", (R || rotate) ? null : X ? i => X[i] : cx)
+            .attr("y", (R || rotate) ? null : Y ? i => Y[i] : cy)
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .call(applyChannelStyles, this, channels)
             .call(applyMultilineText, this, T))
@@ -98,7 +97,7 @@ function applyMultilineText(selection, {lineAnchor, lineHeight}, T) {
         this.appendChild(tspan);
       }
     } else {
-      if (y) this.setAttribute("y", `${y * lineHeight}em`);
+      if (y) this.setAttribute("dy", `${y * lineHeight}em`);
       this.textContent = lines[0];
     }
   });
