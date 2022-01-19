@@ -137,7 +137,7 @@ function maybeFontSizeChannel(fontSize) {
   if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
   if (typeof fontSize !== "string") return [fontSize, undefined];
   fontSize = fontSize.trim().toLowerCase();
-  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+([eE][+-]?\d+)?(\w*|%)$/.test(fontSize)
+  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
     ? [undefined, fontSize]
     : [fontSize, undefined];
 }
