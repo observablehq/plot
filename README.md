@@ -498,7 +498,7 @@ When the *include* or *exclude* facet mode is chosen, the mark data must be para
 
 ## Legends
 
-Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color*, *radius*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
 
 * *scale*.**legend** - if truthy, generate a legend for the given scale
 
@@ -550,6 +550,18 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginRight** - the legend’s right margin
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
+
+Radius legends are rendered as circles sharing a same base, and a line connecting each circle to the corresponding tick label. The ticks are computed in a way that guarantees that they are not occluded. Radius legens can be configured with the following options:
+
+* *options*.**label** - the scale’s label
+* *options*.**ticks** - the desired number of ticks, or an array of tick values
+* *options*.**tickFormat** - a function that formats the ticks
+* *options*.**strokeWidth** - the stroke width for the connectors, defaults to 0.5
+* *options*.**strokeDasharray** - the stroke dash-array for the connectors, defaults to [5, 4]
+* *options*.**lineHeight** - the minimum line height, to avoid label occlusion
+* *options*.**gap** — the gap between the circles and the tick labels, defaults to 20 pixels
+* *options*.**className** - a className for the legend
+* *options*.**style** - styles (a string or an object)
 
 ### Plot.legend(*options*)
 

@@ -1,0 +1,29 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="220" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g fill="none" stroke="currentColor" stroke-width="0.25" stroke-miterlimit="1" stroke-dasharray="5,4" transform="translate(0.5,0.5)">
+    <path d="M102,29.43819168358732L222,29.43819168358732"></path>
+    <path d="M102,54.70068381445478L222,54.70068381445478"></path>
+    <path d="M102,84.66666666666666L222,84.66666666666666"></path>
+    <path d="M102,123.71909584179366L222,123.71909584179366"></path>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0.5)">
+    <circle cx="102" cy="123.71909584179366" r="94.28090415820634"></circle>
+    <circle cx="102" cy="136.3503419072274" r="81.64965809277261"></circle>
+    <circle cx="102" cy="151.33333333333331" r="66.66666666666667"></circle>
+    <circle cx="102" cy="170.85954792089683" r="47.14045207910317"></circle>
+  </g>
+  <g text-anchor="start" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text dx="4" dy="0.32em" x="222" y="29.43819168358732">4,000</text><text dx="4" dy="0.32em" x="222" y="54.70068381445478">3,000</text><text dx="4" dy="0.32em" x="222" y="84.66666666666666">2,000</text><text dx="4" dy="0.32em" x="222" y="123.71909584179366">1,000</text></g>
+  <g text-anchor="start" font-weight="bold" transform="translate(0.5,0.5)"><text dy="0.32em" x="0" y="6">radial</text></g>
+</svg>

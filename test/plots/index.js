@@ -141,3 +141,4 @@ export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
 
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
+export * from "./legend-radius.js";
