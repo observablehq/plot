@@ -12,7 +12,11 @@ The new vector mark…
 
 The dot mark now supports a *symbol* channel.
 
+The text mark now supports multiline text! New *lineAnchor* and *lineHeight* options…
+
 The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
+
+The text, dot, and image marks now support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
 
 The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
 
