@@ -1070,7 +1070,7 @@ The following channels are required:
 
 * **text** - the text contents (a string, possibly with multiple lines)
 
-If **text** contains multiple lines separated by `\n`, `\r\n`, or `\r`, the text will be rendered as multiple lines via tspan elements. If the **text** is specified as numbers or dates, a default formatter will automatically be applied, and the **fontVariant** will default to tabular-nums instead of normal. For more control over number and date formatting, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format). If **text** is not specified, it defaults to [0, 1, 2, …] so that something is visible by default.
+If the **text** contains `\n`, `\r\n`, or `\r`, it will be rendered as multiple lines via tspan elements. If the **text** is specified as numbers or dates, a default formatter will automatically be applied, and the **fontVariant** will default to tabular-nums instead of normal. For more control over number and date formatting, consider [*number*.toLocaleString](https://observablehq.com/@mbostock/number-formatting), [*date*.toLocaleString](https://observablehq.com/@mbostock/date-formatting), [d3-format](https://github.com/d3/d3-format), or [d3-time-format](https://github.com/d3/d3-time-format). If **text** is not specified, it defaults to [0, 1, 2, …] so that something is visible by default.
 
 In addition to the [standard mark options](#marks), the following optional channels are supported:
 
