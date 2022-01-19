@@ -15,15 +15,15 @@ export class Text extends Mark {
       x,
       y,
       text = data != null && isTextual(data) ? identity : indexOf,
-      textAnchor,
-      lineAnchor = "middle",
+      frameAnchor,
+      textAnchor = /right$/i.test(frameAnchor) ? "end" : /left$/i.test(frameAnchor) ? "start" : "middle",
+      lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
       lineHeight = 1,
       fontFamily,
       fontSize,
       fontStyle,
       fontVariant,
       fontWeight,
-      frameAnchor,
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);

@@ -1102,8 +1102,8 @@ If either of the **x** or **y** channels are not specified, the corresponding po
 
 The following text-specific constant options are also supported:
 
-* **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle (default)
-* **lineAnchor** - the line anchor for vertical bposition; top, bottom, or middle (default)
+* **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle
+* **lineAnchor** - the line anchor for vertical bposition; top, bottom, or middle
 * **lineHeight** - the line height in ems; defaults to 1
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
@@ -1113,7 +1113,9 @@ The following text-specific constant options are also supported:
 * **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
-For text marks, the **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**. The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+
+If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
 
 #### Plot.text(*data*, *options*)
 
