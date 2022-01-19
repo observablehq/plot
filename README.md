@@ -1238,7 +1238,7 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z*-order of rendered marks.
 
-### Plot.sort(*order*, *options*)
+#### Plot.sort(*order*, *options*)
 
 ```js
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
@@ -1246,7 +1246,7 @@ Plot.sort("body_mass_g", options) // show data in ascending body mass order
 
 Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name.
 
-### Plot.shuffle(*options*)
+#### Plot.shuffle(*options*)
 
 ```js
 Plot.shuffle(options) // show data in random order
@@ -1254,7 +1254,7 @@ Plot.shuffle(options) // show data in random order
 
 Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
 
-### Plot.reverse(*options*)
+#### Plot.reverse(*options*)
 
 ```js
 Plot.reverse(options) // reverse the input order
@@ -1262,7 +1262,7 @@ Plot.reverse(options) // reverse the input order
 
 Reverses the order of the data.
 
-### Plot.filter(*test*, *options*)
+#### Plot.filter(*test*, *options*)
 
 ```js
 Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
