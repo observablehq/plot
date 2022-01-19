@@ -1,8 +1,7 @@
 import {create, path, symbolCircle} from "d3";
 import {positive} from "../defined.js";
-import {identity, maybeNumberChannel, maybeTuple} from "../options.js";
+import {identity, maybeNumberChannel, maybeSymbolChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {maybeSymbolChannel} from "../scales/symbol.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
