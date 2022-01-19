@@ -62,6 +62,7 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectStyles, this)
+            .call(applyMultilineText, this, T)
             .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
                 : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
@@ -72,7 +73,6 @@ export class Text extends Mark {
                 : `translate(${cx},${cy}) rotate(${rotate})`)
               : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
-            .call(applyMultilineText, this, T)
             .call(applyChannelStyles, this, channels))
       .node();
   }
