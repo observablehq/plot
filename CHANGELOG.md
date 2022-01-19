@@ -1,16 +1,18 @@
 # Observable Plot - Changelog
 
-## 0.3.3
+## 0.4.0
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
 The new *href* channel… And *target* option…
 
-The new Plot.arrow mark…
+The new arrow mark…
 
-The new Plot.vector mark…
+The new vector mark…
 
-The Plot.dot mark now supports a *symbol* channel.
+The dot mark now supports a *symbol* channel.
+
+The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
 
 The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
 
@@ -38,9 +40,9 @@ Plot no longer crashes when you try to display a legend on an identity color sca
 
 Plot no longer uses circular imports, working around a limitation of popular bundlers such as webpack and Rollup.
 
-Plot now uses [Vite](https://vitejs.dev) instead of Snowpack for local development.
+[breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
 
-Update D3 to [7.3.0](https://github.com/d3/d3/releases/tag/v7.3.0).
+[breaking] Plot now requires [D3 ^7.3.0](https://github.com/d3/d3/releases/tag/v7.3.0).
 
 ## 0.3.2
 
