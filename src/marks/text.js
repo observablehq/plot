@@ -63,15 +63,18 @@ export class Text extends Mark {
           .join("text")
             .call(applyDirectStyles, this)
             .call(applyMultilineText, this, T)
-            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
+            .attr("transform", R ? (X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
                 : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
                 : i => `translate(${cx},${cy}) rotate(${R[i]})`)
-              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
+              : rotate ? (X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
                 : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
-              : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
+              : (X && Y ? i => `translate(${X[i]},${Y[i]})`
+                : X ? i => `translate(${X[i]},${cy})`
+                : Y ? i => `translate(${cx},${Y[i]})`
+                : `translate(${cx},${cy})`))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
             .call(applyChannelStyles, this, channels))
       .node();
@@ -95,7 +98,7 @@ function applyMultilineText(selection, {lineAnchor, lineHeight}, T) {
         this.appendChild(tspan);
       }
     } else {
-      if (y) this.setAttribute("dy", `${y * lineHeight}em`);
+      if (y) this.setAttribute("y", `${y * lineHeight}em`);
       this.textContent = lines[0];
     }
   });

@@ -26,7 +26,7 @@
     <path fill="#c2a5cf" d="M50,365.79C315,365.79,315,351.03,580,351.03L580,159.14999999999998C315,159.14999999999998,315,262.47,50,262.47Z"></path>
     <path fill="#7b3294" d="M50,399C315,399,315,399,580,399L580,351.03C315,351.03,315,365.79,50,365.79Z"></path>
   </g>
-  <g text-anchor="end" transform="translate(-5.5,0.5)"><text dy="0.32em" x="50" y="85.35">30%</text><text dy="0.32em" x="50" y="201.58499999999998">33%</text><text dy="0.32em" x="50" y="314.13">28%</text><text dy="0.32em" x="50" y="382.395">9%</text></g>
-  <g text-anchor="start" transform="translate(6.5,0.5)"><text dy="0.32em" x="580" y="35.535">3%</text><text dy="0.32em" x="580" y="100.11">32%</text><text dy="0.32em" x="580" y="255.08999999999997">52%</text><text dy="0.32em" x="580" y="375.015">13%</text></g>
-  <g fill="white" text-anchor="start" font-weight="bold" transform="translate(8.5,0.5)"><text dy="0.32em" x="50" y="85.35">16-34’s</text><text dy="0.32em" x="50" y="201.58499999999998">35-54’s</text><text dy="0.32em" x="50" y="314.13">55-74’s</text><text dy="0.32em" x="50" y="382.395">Over 75’s</text></g>
+  <g text-anchor="end" transform="translate(-5.5,0.5)"><text y="0.32em" transform="translate(50,85.35)">30%</text><text y="0.32em" transform="translate(50,201.58499999999998)">33%</text><text y="0.32em" transform="translate(50,314.13)">28%</text><text y="0.32em" transform="translate(50,382.395)">9%</text></g>
+  <g text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(580,35.535)">3%</text><text y="0.32em" transform="translate(580,100.11)">32%</text><text y="0.32em" transform="translate(580,255.08999999999997)">52%</text><text y="0.32em" transform="translate(580,375.015)">13%</text></g>
+  <g fill="white" text-anchor="start" font-weight="bold" transform="translate(8.5,0.5)"><text y="0.32em" transform="translate(50,85.35)">16-34’s</text><text y="0.32em" transform="translate(50,201.58499999999998)">35-54’s</text><text y="0.32em" transform="translate(50,314.13)">55-74’s</text><text y="0.32em" transform="translate(50,382.395)">Over 75’s</text></g>
 </svg>
