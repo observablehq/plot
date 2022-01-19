@@ -25,13 +25,13 @@ export class Text extends Mark {
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
-    const [vfontSize, cfontSize] = maybeNumberChannel(fontSize);
+    const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
-        {name: "fontSize", value: numberChannel(vfontSize), optional: true},
+        {name: "fontSize", value: vfontSize, optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text, filter: nonempty}
       ],
@@ -104,4 +104,40 @@ function applyDirectTextStyles(selection, mark) {
   applyDirectStyles(selection, mark);
   applyAttr(selection, "dx", mark.dx);
   applyAttr(selection, "dy", mark.dy);
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
+const fontSizes = new Set([
+  // global keywords
+  "inherit",
+  "initial",
+  "revert",
+  "unset",
+  // absolute keywords
+  "xx-small",
+  "x-small",
+  "small",
+  "medium",
+  "large",
+  "x-large",
+  "xx-large",
+  "xxx-large",
+  // relative keywords
+  "larger",
+  "smaller"
+]);
+
+// The font size may be expressed as a constant in the following forms:
+// - number in pixels
+// - string keyword: see above
+// - string <length>: e.g., "12px"
+// - string <percentage>: e.g., "80%"
+// Anything else is assumed to be a channel definition.
+function maybeFontSizeChannel(fontSize) {
+  if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
+  if (typeof fontSize !== "string") return [fontSize, undefined];
+  fontSize = fontSize.trim().toLowerCase();
+  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
+    ? [undefined, fontSize]
+    : [fontSize, undefined];
 }
