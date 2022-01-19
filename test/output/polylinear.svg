@@ -141,5 +141,5 @@
     <circle cx="488.5185185185185" cy="30" r="3"></circle>
     <circle cx="546.851851851852" cy="30" r="3"></circle>
   </g>
-  <g fill="white" text-anchor="start" transform="translate(0.5,0.5)"><text dx="-5" dy="-10" x="48.425925925925924" y="30">Initiate</text><text dx="-5" dy="-10" x="150.18518518518516" y="30">Begin</text><text dx="-5" dy="-10" x="221.48148148148147" y="30">Entry</text><text dx="-5" dy="-10" x="273.3333333333333" y="30">Test</text><text dx="-5" dy="-10" x="320" y="30">Drive</text><text dx="-5" dy="-10" x="382.22222222222223" y="30">Drive</text><text dx="-5" dy="-10" x="432.7777777777777" y="30">Brake</text><text dx="-5" dy="-10" x="488.5185185185185" y="30">Stop</text><text dx="-5" dy="-10" x="546.851851851852" y="30">Shutdown</text></g>
+  <g fill="white" text-anchor="start" transform="translate(-4.5,-9.5)"><text dy="0.32em" x="48.425925925925924" y="30">Initiate</text><text dy="0.32em" x="150.18518518518516" y="30">Begin</text><text dy="0.32em" x="221.48148148148147" y="30">Entry</text><text dy="0.32em" x="273.3333333333333" y="30">Test</text><text dy="0.32em" x="320" y="30">Drive</text><text dy="0.32em" x="382.22222222222223" y="30">Drive</text><text dy="0.32em" x="432.7777777777777" y="30">Brake</text><text dy="0.32em" x="488.5185185185185" y="30">Stop</text><text dy="0.32em" x="546.851851851852" y="30">Shutdown</text></g>
 </svg>

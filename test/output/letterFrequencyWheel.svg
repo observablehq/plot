@@ -1,0 +1,125 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="500" height="250" viewBox="0 0 500 250" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)">
+    <line x1="0" x2="499" y1="239" y2="239"></line>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <path d="M249.5,239L109.50798013197635,230.9032894157891"></path>
+    <path d="M249.5,239L224.29829478293266,234.5840922355424"></path>
+    <path d="M249.5,239L203.889237260121,225.41022354248184"></path>
+    <path d="M249.5,239L182.8996794156942,210.33974535180403"></path>
+    <path d="M249.5,239L62.83251282210467,131.1028206771563"></path>
+    <path d="M249.5,239L218.57100656556895,215.8310144831285"></path>
+    <path d="M249.5,239L225.0322605458868,215.60495893531558"></path>
+    <path d="M249.5,239L184.96081404654302,160.2333852366202"></path>
+    <path d="M249.5,239L187.61413173473986,141.11638333187082"></path>
+    <path d="M249.5,239L248.4216838037767,236.70912004414683"></path>
+    <path d="M249.5,239L245.55594899158916,226.89799092697353"></path>
+    <path d="M249.5,239L237.04088797871023,173.99347461702112"></path>
+    <path d="M249.5,239L247.00533796040733,199.56641044359515"></path>
+    <path d="M249.5,239L256.4977032856239,128.38599504730826"></path>
+    <path d="M249.5,239L272.73740470653973,117.75677365216835"></path>
+    <path d="M249.5,239L259.3550186466639,208.76065349498958"></path>
+    <path d="M249.5,239L250.16954273621715,237.5775581973461"></path>
+    <path d="M249.5,239L302.68844290900256,154.87292377374538"></path>
+    <path d="M249.5,239L316.50679841278674,157.22179658550965"></path>
+    <path d="M249.5,239L359.46518535803926,133.8558352944008"></path>
+    <path d="M249.5,239L286.7824142885318,211.0716511995054"></path>
+    <path d="M249.5,239L263.87260293339483,230.69237589531247"></path>
+    <path d="M249.5,239L286.4566791862125,223.09635528574125"></path>
+    <path d="M249.5,239L251.95924313838313,238.26726582723663"></path>
+    <path d="M249.5,239L282.8432748649403,233.15750541083162"></path>
+    <path d="M249.5,239L250.7684473454431,238.92663688218053"></path>
+  </g>
+  <g font-size="8" transform="translate(0.5,0.5)"><text transform="translate(10,225.1480519622001) rotate(-86.53846153846153)">
+      <tspan x="0" y="-0.216em">A</tspan>
+      <tspan x="0" y="0.984em">8.2%</tspan>
+    </text><text transform="translate(13.492449307032134,197.64614848086194) rotate(-79.61538461538461)">
+      <tspan x="0" y="-0.216em">B</tspan>
+      <tspan x="0" y="0.984em">1.5%</tspan>
+    </text><text transform="translate(20.426420145888954,170.7472772754366) rotate(-72.6923076923077)">
+      <tspan x="0" y="-0.216em">C</tspan>
+      <tspan x="0" y="0.984em">2.8%</tspan>
+    </text><text transform="translate(30.700799607797364,144.84368445908208) rotate(-65.76923076923077)">
+      <tspan x="0" y="-0.216em">D</tspan>
+      <tspan x="0" y="0.984em">4.3%</tspan>
+    </text><text transform="translate(44.16576410431511,120.31310274487193) rotate(-58.84615384615385)">
+      <tspan x="0" y="-0.216em">E</tspan>
+      <tspan x="0" y="0.984em">12.7%</tspan>
+    </text><text transform="translate(60.62496413262346,97.51324325225875) rotate(-51.92307692307692)">
+      <tspan x="0" y="-0.216em">F</tspan>
+      <tspan x="0" y="0.984em">2.3%</tspan>
+    </text><text transform="translate(79.83838749341912,76.77657927345707) rotate(-45)">
+      <tspan x="0" y="-0.216em">G</tspan>
+      <tspan x="0" y="0.984em">2.0%</tspan>
+    </text><text transform="translate(101.52585920923997,58.40549806417864) rotate(-38.07692307692308)">
+      <tspan x="0" y="-0.216em">H</tspan>
+      <tspan x="0" y="0.984em">6.1%</tspan>
+    </text><text transform="translate(125.37112710653636,42.66789135652675) rotate(-31.153846153846153)">
+      <tspan x="0" y="-0.216em">I</tspan>
+      <tspan x="0" y="0.984em">7.0%</tspan>
+    </text><text transform="translate(151.02647348449847,29.793248894303108) rotate(-24.230769230769226)">
+      <tspan x="0" y="-0.216em">J</tspan>
+      <tspan x="0" y="0.984em">0.2%</tspan>
+    </text><text transform="translate(178.11778562212692,19.969311955776924) rotate(-17.307692307692307)">
+      <tspan x="0" y="-0.216em">K</tspan>
+      <tspan x="0" y="0.984em">0.8%</tspan>
+    </text><text transform="translate(206.25001118413286,13.33933566309128) rotate(-10.384615384615387)">
+      <tspan x="0" y="-0.216em">L</tspan>
+      <tspan x="0" y="0.984em">4.0%</tspan>
+    </text><text transform="translate(235.01291897356734,10) rotate(-3.461538461538467)">
+      <tspan x="0" y="-0.216em">M</tspan>
+      <tspan x="0" y="0.984em">2.4%</tspan>
+    </text><text transform="translate(263.98708102643263,10) rotate(3.461538461538467)">
+      <tspan x="0" y="-0.216em">N</tspan>
+      <tspan x="0" y="0.984em">6.7%</tspan>
+    </text><text transform="translate(292.74998881586714,13.339335663091255) rotate(10.384615384615387)">
+      <tspan x="0" y="-0.216em">O</tspan>
+      <tspan x="0" y="0.984em">7.5%</tspan>
+    </text><text transform="translate(320.882214377873,19.9693119557769) rotate(17.307692307692307)">
+      <tspan x="0" y="-0.216em">P</tspan>
+      <tspan x="0" y="0.984em">1.9%</tspan>
+    </text><text transform="translate(347.9735265155015,29.793248894303108) rotate(24.230769230769226)">
+      <tspan x="0" y="-0.216em">Q</tspan>
+      <tspan x="0" y="0.984em">0.1%</tspan>
+    </text><text transform="translate(373.6288728934636,42.6678913565267) rotate(31.15384615384616)">
+      <tspan x="0" y="-0.216em">R</tspan>
+      <tspan x="0" y="0.984em">6.0%</tspan>
+    </text><text transform="translate(397.47414079076,58.405498064178616) rotate(38.076923076923066)">
+      <tspan x="0" y="-0.216em">S</tspan>
+      <tspan x="0" y="0.984em">6.3%</tspan>
+    </text><text transform="translate(419.16161250658087,76.77657927345707) rotate(45)">
+      <tspan x="0" y="-0.216em">T</tspan>
+      <tspan x="0" y="0.984em">9.1%</tspan>
+    </text><text transform="translate(438.3750358673765,97.51324325225869) rotate(51.923076923076934)">
+      <tspan x="0" y="-0.216em">U</tspan>
+      <tspan x="0" y="0.984em">2.8%</tspan>
+    </text><text transform="translate(454.83423589568486,120.31310274487187) rotate(58.84615384615384)">
+      <tspan x="0" y="-0.216em">V</tspan>
+      <tspan x="0" y="0.984em">1.0%</tspan>
+    </text><text transform="translate(468.29920039220264,144.84368445908208) rotate(65.76923076923077)">
+      <tspan x="0" y="-0.216em">W</tspan>
+      <tspan x="0" y="0.984em">2.4%</tspan>
+    </text><text transform="translate(478.5735798541111,170.7472772754366) rotate(72.69230769230768)">
+      <tspan x="0" y="-0.216em">X</tspan>
+      <tspan x="0" y="0.984em">0.1%</tspan>
+    </text><text transform="translate(485.5075506929678,197.64614848086188) rotate(79.61538461538461)">
+      <tspan x="0" y="-0.216em">Y</tspan>
+      <tspan x="0" y="0.984em">2.0%</tspan>
+    </text><text transform="translate(489,225.14805196220004) rotate(86.53846153846155)">
+      <tspan x="0" y="-0.216em">Z</tspan>
+      <tspan x="0" y="0.984em">0.1%</tspan>
+    </text></g>
+</svg>

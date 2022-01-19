@@ -31,7 +31,7 @@ export default async function() {
         x: "POP_2015",
         y: "R90_10_2015",
         text: d => d.highlight && d.nyt_display,
-        dy: -6
+        dy: -8
       })
     ]
   });

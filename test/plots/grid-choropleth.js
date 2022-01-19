@@ -23,8 +23,8 @@ export default async function() {
     },
     marks: [
       Plot.cell(states, {x: "x", y: "y", fill: change}),
-      Plot.text(states, {x: "x", y: "y", text: "key", dy: -2}),
-      Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d) - 1))(d3.format("+.0%")), dy: 10, fillOpacity: 0.6})
+      Plot.text(states, {x: "x", y: "y", text: "key", dy: -6}),
+      Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d) - 1))(d3.format("+.0%")), dy: 6, fillOpacity: 0.6})
     ]
   });
 }

@@ -64,6 +64,7 @@ export {default as letterFrequencyCloud} from "./letter-frequency-cloud.js";
 export {default as letterFrequencyColumn} from "./letter-frequency-column.js";
 export {default as letterFrequencyDot} from "./letter-frequency-dot.js";
 export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js";
+export {default as letterFrequencyWheel} from "./letter-frequency-wheel.js";
 export {default as logDegenerate} from "./log-degenerate.js";
 export {default as metroInequality} from "./metro-inequality.js";
 export {default as metroInequalityChange} from "./metro-inequality-change.js";
