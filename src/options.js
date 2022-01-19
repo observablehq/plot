@@ -187,10 +187,10 @@ export function numberChannel(source) {
   };
 }
 
-export function isObjects(values) {
+export function isTextual(values) {
   for (const value of values) {
     if (value == null) continue;
-    return isObject(value);
+    return typeof value !== "object" || value instanceof Date;
   }
 }
 
