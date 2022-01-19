@@ -62,20 +62,18 @@ export class Text extends Mark {
           .data(index)
           .join("text")
             .call(applyDirectStyles, this)
-            .attr("transform", R ? (X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
+            .call(R ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
                 : X ? i => `translate(${X[i]},${cy}) rotate(${R[i]})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${R[i]})`
                 : i => `translate(${cx},${cy}) rotate(${R[i]})`)
-              : rotate ? (X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
+              : rotate ? text => text.attr("transform", X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
                 : X ? i => `translate(${X[i]},${cy}) rotate(${rotate})`
                 : Y ? i => `translate(${cx},${Y[i]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`)
-              : null)
-            .attr("x", (R || rotate) ? null : X ? i => X[i] : cx)
-            .attr("y", (R || rotate) ? null : Y ? i => Y[i] : cy)
+              : text => text.attr("x", X ? i => X[i] : cx).attr("y", Y ? i => Y[i] : cy))
             .call(applyAttr, "font-size", FS && (i => FS[i]))
-            .call(applyChannelStyles, this, channels)
-            .call(applyMultilineText, this, T))
+            .call(applyMultilineText, this, T)
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }
