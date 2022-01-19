@@ -52,7 +52,7 @@
     <rect x="285.1162790697675" width="118.60465116279067" y="0" height="30" fill="#f28e2c"></rect>
     <rect x="403.72093023255815" width="216.27906976744185" y="0" height="30" fill="#e15759"></rect>
   </g>
-  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="152.55813953488374" y="15">Adelie</text><text dy="0.32em" x="344.41860465116287" y="15">Chinstrap</text><text dy="0.32em" x="511.86046511627904" y="15">Gentoo</text></g>
+  <g transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(152.55813953488374,15)">Adelie</text><text y="0.32em" transform="translate(344.41860465116287,15)">Chinstrap</text><text y="0.32em" transform="translate(511.86046511627904,15)">Gentoo</text></g>
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>
     <line x1="620" x2="620" y1="0" y2="30"></line>

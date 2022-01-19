@@ -1,8 +1,8 @@
 import {create, path, symbolCircle} from "d3";
 import {positive} from "../defined.js";
-import {identity, maybeNumberChannel, maybeSymbolChannel, maybeTuple} from "../options.js";
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeSymbolChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
   fill: "none",
@@ -12,7 +12,7 @@ const defaults = {
 
 export class Dot extends Mark {
   constructor(data, options = {}) {
-    const {x, y, r, rotate, symbol = symbolCircle} = options;
+    const {x, y, r, rotate, symbol = symbolCircle, frameAnchor} = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
     const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
@@ -31,6 +31,7 @@ export class Dot extends Mark {
     this.r = cr;
     this.rotate = crotate;
     this.symbol = csymbol;
+    this.frameAnchor = maybeFrameAnchor(frameAnchor);
 
     // Give a hint to the symbol scale; this allows the symbol scale to chose
     // appropriate default symbols based on whether the dots are filled or
@@ -46,16 +47,10 @@ export class Dot extends Mark {
       };
     }
   }
-  render(
-    index,
-    {x, y},
-    channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
-  ) {
+  render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const {dx, dy} = this;
-    const cx = (marginLeft + width - marginRight) / 2;
-    const cy = (marginTop + height - marginBottom) / 2;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
     return create("svg:g")
         .call(applyIndirectStyles, this)
@@ -92,7 +87,7 @@ export class Dot extends Mark {
 }
 
 export function dot(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Dot(data, {...options, x, y});
 }
 

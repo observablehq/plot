@@ -52,5 +52,5 @@
     <rect x="344" width="248" y="63.75" height="76.5625" fill="#e15759"></rect>
     <rect x="344" width="248" y="20" height="43.75" fill="#f28e2c"></rect>
   </g>
-  <g transform="translate(124.5,0.5)"><text dy="0.32em" x="68" y="337.1875">apples</text><text dy="0.32em" x="68" y="293.4375">oranges</text><text dy="0.32em" x="68" y="266.09375">grapes</text><text dy="0.32em" x="344" y="293.4375">apples</text><text dy="0.32em" x="344" y="178.59375">oranges</text><text dy="0.32em" x="344" y="102.03125">grapes</text><text dy="0.32em" x="344" y="41.875">bananas</text></g>
+  <g transform="translate(124.5,0.5)"><text y="0.32em" transform="translate(68,337.1875)">apples</text><text y="0.32em" transform="translate(68,293.4375)">oranges</text><text y="0.32em" transform="translate(68,266.09375)">grapes</text><text y="0.32em" transform="translate(344,293.4375)">apples</text><text y="0.32em" transform="translate(344,178.59375)">oranges</text><text y="0.32em" transform="translate(344,102.03125)">grapes</text><text y="0.32em" transform="translate(344,41.875)">bananas</text></g>
 </svg>

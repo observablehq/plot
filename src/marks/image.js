@@ -1,8 +1,8 @@
 import {create} from "d3";
 import {positive} from "../defined.js";
-import {maybeNumberChannel, maybeTuple, string} from "../options.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
   fill: null,
@@ -33,7 +33,7 @@ function maybePathChannel(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, width, height, src, preserveAspectRatio, crossOrigin} = options;
+    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePathChannel(src);
@@ -56,17 +56,12 @@ export class Image extends Mark {
     this.height = ch;
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
     this.crossOrigin = string(crossOrigin);
+    this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(
-    index,
-    {x, y},
-    channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
-  ) {
+  render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
-    const cx = (marginLeft + width - marginRight) / 2;
-    const cy = (marginTop + height - marginBottom) / 2;
     const {dx, dy} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -87,6 +82,6 @@ export class Image extends Mark {
 }
 
 export function image(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Image(data, {...options, x, y});
 }

@@ -53,7 +53,7 @@
     <rect x="230" width="312" y="0" height="30" fill="#e15759"></rect>
     <rect x="542" width="78" y="0" height="30" fill="#76b7b2"></rect>
   </g>
-  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="29" y="15">16-34’s</text><text dy="0.32em" x="134" y="15">35-54’s</text><text dy="0.32em" x="386" y="15">55-74’s</text><text dy="0.32em" x="581" y="15">Over 75’s</text></g>
+  <g transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(29,15)">16-34’s</text><text y="0.32em" transform="translate(134,15)">35-54’s</text><text y="0.32em" transform="translate(386,15)">55-74’s</text><text y="0.32em" transform="translate(581,15)">Over 75’s</text></g>
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>
     <line x1="620" x2="620" y1="0" y2="30"></line>

@@ -56,7 +56,7 @@
     <rect x="589.8023255813953" width="15.7441860465118" y="0" height="30" fill="#2171b5"></rect>
     <rect x="606.5465116279071" width="12.95348837209292" y="0" height="30" fill="#eff3ff"></rect>
   </g>
-  <g transform="translate(0.5,0.5)"><text dy="0.32em" x="170" y="15">348</text><text dy="0.32em" x="388.3720930232558" y="15">368</text><text dy="0.32em" x="490.2325581395348" y="15">429</text><text dy="0.32em" x="541.860465116279" y="15">359</text><text dy="0.32em" x="574.6511627906978" y="15">369</text><text dy="0.32em" x="597.6744186046511" y="15">381</text><text dy="0.32em" x="613.0232558139534" y="15">324</text></g>
+  <g transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(170,15)">348</text><text y="0.32em" transform="translate(388.3720930232558,15)">368</text><text y="0.32em" transform="translate(490.2325581395348,15)">429</text><text y="0.32em" transform="translate(541.860465116279,15)">359</text><text y="0.32em" transform="translate(574.6511627906978,15)">369</text><text y="0.32em" transform="translate(597.6744186046511,15)">381</text><text y="0.32em" transform="translate(613.0232558139534,15)">324</text></g>
   <g stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="0" y2="30"></line>
     <line x1="620" x2="620" y1="0" y2="30"></line>

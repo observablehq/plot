@@ -839,10 +839,17 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **x** - the horizontal position; bound to the *x* scale
 * **y** - the vertical position; bound to the *y* scale
 * **r** - the radius (area); bound to the *radius* scale, which defaults to *sqrt*
-* **rotate** - the rotation angle in degrees clockwise; defaults to 0
-* **symbol** - the categorical symbol; bound to the *symbol* scale; defaults to circle
+* **rotate** - the rotation angle in degrees clockwise
+* **symbol** - the categorical symbol; bound to the *symbol* scale
 
-If the **x** channel is not specified, dots will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, dots will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
+The following dot-specific constant options are also supported:
+
+* **r** - the effective radius (length); a number in pixels
+* **rotate** - the rotation angle in degrees clockwise; defaults to 0
+* **symbol** - the categorical symbol; defaults to circle
+* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
 
@@ -858,7 +865,7 @@ Dots are drawn in input order, with the last data drawn on top. If sorting is ne
 Plot.dot(sales, {x: "units", y: "fruit"})
 ```
 
-Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.dotX(*data*, *options*)
 
@@ -889,11 +896,17 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
 
-If the **x** channel is not specified, images will be horizontally centered in the plot (or facet). Likewise if the **y** channel is not specified, images will be vertically centered in the plot (or facet). Typically either *x*, *y*, or both are specified.
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
 The **width** and **height** options default to 16 pixels and can be specified as either a channel or constant. When the width or height is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. Images with a nonpositive width or height are not drawn. If a **width** is specified but not a **height**, or *vice versa*, the one defaults to the other. Images do not support either a fill or a stroke.
 
-The **preserveAspectRatio** and **crossOrigin** options, both constant, allow control over the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio) and [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior, respectively. The default aspect ratio behavior is “xMidYMid meet”; consider “xMidYMid slice” to crop the image instead of scaling it to fit.
+The following image-specific constant options are also supported:
+
+* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
+* **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
+* **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
+
+To crop the image instead of scaling it to fit, set **preserveAspectRatio** to “xMidYMid slice”.
 
 Images are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting, consider a [sort and reverse transform](#transforms).
 
@@ -903,7 +916,7 @@ Images are drawn in input order, with the last data drawn on top. If sorting is 
 Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
 ```
 
-Returns a new image with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new image with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 ### Line
 
@@ -1085,6 +1098,8 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **fontSize** - the font size in pixels
 * **rotate** - the rotation angle in degrees clockwise
 
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
 The following text-specific constant options are also supported:
 
 * **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle (default)
@@ -1095,13 +1110,14 @@ The following text-specific constant options are also supported:
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
+* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
 For text marks, the **dx** and **dy** options can be specified either as numbers representing pixels or as a string including units. For example, `"1em"` shifts the text by one [em](https://en.wikipedia.org/wiki/Em_(typography)), which is proportional to the **fontSize**. The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
 #### Plot.text(*data*, *options*)
 
-Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
 #### Plot.textX(*data*, *options*)
 
