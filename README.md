@@ -1103,7 +1103,7 @@ If either of the **x** or **y** channels are not specified, the corresponding po
 The following text-specific constant options are also supported:
 
 * **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle
-* **lineAnchor** - the line anchor for vertical bposition; top, bottom, or middle
+* **lineAnchor** - the line anchor for vertical position; top, bottom, or middle
 * **lineHeight** - the line height in ems; defaults to 1
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
