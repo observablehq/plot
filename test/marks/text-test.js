@@ -21,9 +21,34 @@ it("text() has the expected defaults", () => {
   assert.strictEqual(text.shapeRendering, undefined);
   assert.strictEqual(text.textAnchor, undefined);
   assert.strictEqual(text.lineAnchor, "middle");
+  assert.strictEqual(text.frameAnchor, "middle");
   assert.strictEqual(text.dx, 0);
   assert.strictEqual(text.dy, 0);
   assert.strictEqual(text.rotate, 0);
+});
+
+it("text(strings, {frameAnchor}) has the expected defaults", () => {
+  const data = ["hello"];
+  const text = Plot.text(data, {frameAnchor: "middle"});
+  assert.strictEqual(text.data, data);
+  assert.strictEqual(text.transform, undefined);
+  assert.deepStrictEqual(text.channels.map(c => c.name), ["text"]);
+  assert.deepStrictEqual(text.channels.map(c => Plot.valueof(data, c.value)), [data]);
+  assert.strictEqual(text.textAnchor, undefined);
+  assert.strictEqual(text.lineAnchor, "middle");
+  assert.strictEqual(text.frameAnchor, "middle");
+});
+
+it("text(dates, {frameAnchor}) has the expected defaults", () => {
+  const data = [new Date("2021-01-01")];
+  const text = Plot.text(data, {frameAnchor: "middle"});
+  assert.strictEqual(text.data, data);
+  assert.strictEqual(text.transform, undefined);
+  assert.deepStrictEqual(text.channels.map(c => c.name), ["text"]);
+  assert.deepStrictEqual(text.channels.map(c => Plot.valueof(data, c.value)), [data]);
+  assert.strictEqual(text.textAnchor, undefined);
+  assert.strictEqual(text.lineAnchor, "middle");
+  assert.strictEqual(text.frameAnchor, "middle");
 });
 
 it("text(data, {title}) specifies an optional title channel", () => {

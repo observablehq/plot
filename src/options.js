@@ -187,6 +187,13 @@ export function numberChannel(source) {
   };
 }
 
+export function isTextual(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return typeof value !== "object" || value instanceof Date;
+  }
+}
+
 export function isOrdinal(values) {
   for (const value of values) {
     if (value == null) continue;

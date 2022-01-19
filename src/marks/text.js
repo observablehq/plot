@@ -1,7 +1,7 @@
 import {create, isoFormat, namespaces} from "d3";
 import {nonempty} from "../defined.js";
 import {formatNumber} from "../format.js";
-import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor} from "../options.js";
+import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
@@ -14,16 +14,16 @@ export class Text extends Mark {
     const {
       x,
       y,
-      text = indexOf,
-      textAnchor,
-      lineAnchor = "middle",
+      text = data != null && isTextual(data) ? identity : indexOf,
+      frameAnchor,
+      textAnchor = /right$/i.test(frameAnchor) ? "end" : /left$/i.test(frameAnchor) ? "start" : "middle",
+      lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
       lineHeight = 1,
       fontFamily,
       fontSize,
       fontStyle,
       fontVariant,
       fontWeight,
-      frameAnchor,
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
