@@ -126,6 +126,7 @@ export {default as untypedDateBin} from "./untyped-date-bin.js";
 export {default as usCongressAge} from "./us-congress-age.js";
 export {default as usCongressAgeColorExplicit} from "./us-congress-age-color-explicit.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
+export {default as usCongressAgeSymbolExplicit} from "./us-congress-age-symbol-explicit.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPopulationStateAgeDots} from "./us-population-state-age-dots.js";
 export {default as usPresidentFavorabilityDots} from "./us-president-favorability-dots.js";
@@ -141,3 +142,4 @@ export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
 
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
+export * from "./legend-symbol.js";

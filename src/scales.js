@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isAllColors, isColors, isOrdinal, isTemporal, order} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -127,8 +127,8 @@ function piecewiseRange(scale) {
   return Array.from({length}, (_, i) => start + i / (length - 1) * (end - start));
 }
 
-export function normalizeScale(key, scale) {
-  return Scale(key, undefined, {...scale});
+export function normalizeScale(key, scale, hint) {
+  return Scale(key, hint === undefined ? undefined : [{hint}], {...scale});
 }
 
 function Scale(key, channels = [], options = {}) {
@@ -155,7 +155,10 @@ function Scale(key, channels = [], options = {}) {
       options = coerceType(channels, options, coerceNumber, Float64Array);
       break;
     case "identity":
-      if (registry.get(key) === position) options = coerceType(channels, options, coerceNumber, Float64Array);
+      switch (registry.get(key)) {
+        case position: options = coerceType(channels, options, coerceNumber, Float64Array); break;
+        case symbol: options = coerceType(channels, options, maybeSymbol); break;
+      }
       break;
     case "utc":
     case "time":
@@ -203,11 +206,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   // If the scale, a channel, or user specified a (consistent) type, return it.
   if (type !== undefined) return type;
 
-  // Some scales have default types.
   const kind = registry.get(key);
-  if (kind === radius) return "sqrt";
-  if (kind === opacity || kind === length) return "linear";
-  if (kind === symbol) return "ordinal";
 
   // For color scales, if no range or scheme is specified and all associated
   // defined values (from the domain if present, and otherwise from channels)
@@ -217,10 +216,17 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   if (kind === color
     && range === undefined
     && scheme === undefined
-    && (domain !== undefined
-      ? isColors(domain) && isAllColors(domain)
-      : channels.some(({value}) => value !== undefined && isColors(value))
-        && channels.every(({value}) => value === undefined || isAllColors(value)))) return "identity";
+    && isAll(domain, channels, isColor)) return "identity";
+
+  // Similarly for symbols…
+  if (kind === symbol
+    && range === undefined
+    && isAll(domain, channels, isSymbol)) return "identity";
+
+  // Some scales have default types.
+  if (kind === radius) return "sqrt";
+  if (kind === opacity || kind === length) return "linear";
+  if (kind === symbol) return "ordinal";
 
   // If the domain or range has more than two values, assume it’s ordinal. You
   // can still use a “piecewise” (or “polylinear”) scale, but you must set the
@@ -252,6 +258,13 @@ function asOrdinalType(kind) {
     case color: return "categorical";
     default: return "ordinal";
   }
+}
+
+function isAll(domain, channels, is) {
+  return domain !== undefined
+    ? isFirst(domain, is) && isEvery(domain, is)
+    : channels.some(({value}) => value !== undefined && isFirst(value, is))
+      && channels.every(({value}) => value === undefined || isEvery(value, is));
 }
 
 export function isTemporalScale({type}) {
