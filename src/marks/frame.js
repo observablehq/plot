@@ -1,5 +1,6 @@
 import {create} from "d3";
-import {Mark, number} from "../mark.js";
+import {Mark} from "../plot.js";
+import {number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {

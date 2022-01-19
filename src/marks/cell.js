@@ -1,4 +1,4 @@
-import {identity, indexOf, maybeColorChannel, maybeTuple} from "../mark.js";
+import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
 import {AbstractBar} from "./bar.js";
 
 export class Cell extends AbstractBar {
@@ -14,9 +14,6 @@ export class Cell extends AbstractBar {
   }
   _transform() {
     // noop
-  }
-  _positions({x: X, y: Y}) {
-    return [X, Y];
   }
 }
 

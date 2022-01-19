@@ -1,7 +1,8 @@
 import {area as shapeArea, create, group} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, maybeZ} from "../mark.js";
+import {Mark} from "../plot.js";
+import {indexOf, maybeZ} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -17,10 +18,10 @@ export class Area extends Mark {
     super(
       data,
       [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "y1", value: y1, scale: "y"},
-        {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true},
+        {name: "x1", value: x1, filter: null, scale: "x"},
+        {name: "y1", value: y1, filter: null, scale: "y"},
+        {name: "x2", value: x2, filter: null, scale: "x", optional: true},
+        {name: "y2", value: y2, filter: null, scale: "y", optional: true},
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,

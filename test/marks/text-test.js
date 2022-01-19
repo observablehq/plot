@@ -5,9 +5,9 @@ it("text() has the expected defaults", () => {
   const text = Plot.text();
   assert.strictEqual(text.data, undefined);
   assert.strictEqual(text.transform, undefined);
-  assert.deepStrictEqual(text.channels.map(c => c.name), ["x", "y", "fontSize", "rotate", "text"]);
-  assert.deepStrictEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], undefined, undefined, [0, 1]]);
-  assert.deepStrictEqual(text.channels.map(c => c.scale), ["x", "y", undefined, undefined, undefined]);
+  assert.deepStrictEqual(text.channels.map(c => c.name), ["x", "y", "text"]);
+  assert.deepStrictEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
+  assert.deepStrictEqual(text.channels.map(c => c.scale), ["x", "y", undefined]);
   assert.strictEqual(text.fill, undefined);
   assert.strictEqual(text.fillOpacity, undefined);
   assert.strictEqual(text.stroke, undefined);

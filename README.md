@@ -145,9 +145,9 @@ Plot.plot({
 })
 ```
 
-Plot supports many scale types. Some scale types are for quantitative data — values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data — unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings — for example, as [position](#position-options) or [color](#color-options).
+Plot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as [position](#position-options) or [color](#color-options).
 
-You can set the scale type explicitly via the *scale*.**type** option, but typically the scale type is inferred automatically from data: strings and booleans imply an ordinal scale; dates imply a UTC scale; anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value. Certain mark types also imply a scale type; for example, the [Plot.barY](#plotbarydata-options) mark implies that the *x* scale is a *band* scale.
+You can set the scale type explicitly via the *scale*.**type** option, though typically the scale type is inferred automatically. Some marks mandate a particular scale type: for example, [Plot.barY](#plotbarydata-options) requires that the *x* scale is a *band* scale. Some scales have a default type: for example, the *radius* scale defaults to *sqrt* and the *opacity* scale defaults to *linear*. Most often, the scale type is inferred from associated data, pulled either from the domain (if specified) or from associated channels. A *color* scale defaults to *identity* if no range or scheme is specified and all associated defined values are valid CSS color strings. Otherwise, strings and booleans imply an ordinal scale; dates imply a UTC scale; and anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value.
 
 For quantitative data (*i.e.* numbers), a mathematical transform may be applied to the data by changing the scale type:
 
@@ -252,7 +252,7 @@ Similarly, the *y* and *fy* scales support asymmetric insets with:
 
 The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension — such as a dot, rule, or tick — then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
 
 <img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
 
@@ -274,7 +274,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**ticks** - the approximate number of ticks to generate
 * *scale*.**tickSize** - the size of each tick (in pixels; default 6)
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
-* *scale*.**tickFormat** - how to format tick values as a string (a function or format specifier)
+* *scale*.**tickFormat** - to format tick values, either a function or a [d3-format](https://github.com/d3/d3-format#locale_format) or [d3-time-format](https://github.com/d3/d3-time-format#locale_format) specifier string; see [Formats](#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
 * *scale*.**line** - if true, draw the axis line
@@ -287,7 +287,7 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 ### Color options
 
-The normal scale types — *linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal* — can be used to encode color. In addition, Plot supports special scale types for color:
+The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
 
 * *categorical* - equivalent to *ordinal*, but defaults to the *tableau10* scheme
 * *sequential* - equivalent to *linear*
@@ -703,6 +703,38 @@ Plot.areaY(aapl, {x: "Date", y: "Close"})
 
 Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
 
+### Arrow
+
+[<img src="./img/arrow.png" width="320" height="198" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
+
+[Source](./src/marks/arrow.js) · [Examples](https://observablehq.com/@observablehq/plot-arrow) · Draws arrows (possibly swoopy arrows) connecting pairs of points.
+
+The following channels are required:
+
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+
+The arrow mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one. The following additional options are supported:
+
+* **bend** - the bend angle, in degrees; defaults to zero
+* **headAngle** - the arrowhead angle, in degrees; defaults to 22.5°
+* **headLength** - the arrowhead scale; defaults to 8
+* **insetEnd** - inset at the end of the arrow (useful if the arrow points to a dot)
+* **insetStart** - inset at the start of the arrow
+* **inset** - shorthand for the two insets
+
+The **bend** option sets the angle between the straight line between the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
+
+#### Plot.arrow(*data*, *options*)
+
+```js
+Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+```
+
+Returns a new arrow with the given *data* and *options*.
+
 ### Bar
 
 [<img src="./img/bar.png" width="320" height="198" alt="a bar chart">](https://observablehq.com/@observablehq/plot-bar)
@@ -929,7 +961,7 @@ The following channels are required:
 
 The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
 
-The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area.
+The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
 #### Plot.link(*data*, *options*)
 
@@ -954,7 +986,7 @@ The following channels are optional:
 
 Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
 
-If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. The same is true for *y*, *y1*, and *y2*, respectively. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval}—typically to apply different intervals to x and y.
+If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. The same is true for *y*, *y1*, and *y2*, respectively. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval} to apply different intervals to x and y.
 
 The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
@@ -1238,7 +1270,7 @@ Filters the data given the specified *test*. The test can be given as an accesso
 
 [<img src="./img/bin.png" width="320" height="198" alt="a histogram of athletes by weight">](https://observablehq.com/@observablehq/plot-bin)
 
-[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@observablehq/plot-bin) · Aggregates continuous data — quantitative or temporal values such as temperatures or times — into discrete bins and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
+[Source](./src/transforms/bin.js) · [Examples](https://observablehq.com/@observablehq/plot-bin) · Aggregates continuous data—quantitative or temporal values such as temperatures or times—into discrete bins and then computes summary statistics for each bin such as a count or sum. The bin transform is like a continuous [group transform](#group) and is often used to make histograms. There are separate transforms depending on which dimensions need binning: [Plot.binX](#plotbinxoutputs-options) for *x*; [Plot.binY](#plotbinyoutputs-options) for *y*; and [Plot.bin](#plotbinoutputs-options) for both *x* and *y*.
 
 Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting binned data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in ascending order according to the associated dimension (*x* then *y*). Empty bins are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the binned data is computed. The outputs may also include *filter* and *sort* options specified as aggregation methods, and a *reverse* option to reverse the order of generated bins. By default, empty bins are omitted, and non-empty bins are generated in ascending threshold order.
 
@@ -1376,7 +1408,7 @@ Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, i
 
 [<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-group)
 
-[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@observablehq/plot-group) · Aggregates ordinal or categorical data — such as names — into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
+[Source](./src/transforms/group.js) · [Examples](https://observablehq.com/@observablehq/plot-group) · Aggregates ordinal or categorical data—such as names—into groups and then computes summary statistics for each group such as a count or sum. The group transform is like a discrete [bin transform](#bin). There are separate transforms depending on which dimensions need grouping: [Plot.groupZ](#plotgroupzoutputs-options) for *z*; [Plot.groupX](#plotgroupxoutputs-options) for *x* and *z*; [Plot.groupY](#plotgroupyoutputs-options) for *y* and *z*; and [Plot.group](#plotgroupoutputs-options) for *x*, *y*, and *z*.
 
 Given input *data* = [*d₀*, *d₁*, *d₂*, …], by default the resulting grouped data is an array of arrays where each inner array is a subset of the input data [[*d₀₀*, *d₀₁*, …], [*d₁₀*, *d₁₁*, …], [*d₂₀*, *d₂₁*, …], …]. Each inner array is in input order. The outer array is in natural ascending order according to the associated dimension (*x* then *y*). Empty groups are skipped. By specifying a different aggregation method for the *data* output, as described below, you can change how the grouped data is computed. The outputs may also include *filter* and *sort* options specified as aggregation methods, and a *reverse* option to reverse the order of generated groups. By default, all (non-empty) groups are generated in ascending natural order.
 
@@ -1609,6 +1641,38 @@ Like [Plot.mapY](#plotmapymap-options), but applies the window map method with t
 [Source](./src/transforms/select.js) · [Examples](https://observablehq.com/@observablehq/plot-select) · Selects a value from each series, say to label a line or annotate extremes.
 
 The select transform derives a filtered mark index; it does not affect the mark’s data or channels. It is similar to the basic [filter transform](#transforms) except that provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks.
+
+#### Plot.select(*selector*, *options*)
+
+Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, or as a {key: value} object with exactly one key representing a channel and the value being a function which receives as inputs the index of the series and the channel or the shorthand “min” and “max” which respectively select the least and greatest points for the specified channel.
+
+For example, to select the point within each series that is the closest to the median of the *y* channel:
+
+```js
+Plot.select({
+  y: (I, V) => {
+    const median = d3.median(I, i => V[i]);
+    const i = d3.least(I, i => Math.abs(V[i] - median));
+    return [i];
+  }
+}, {
+  x: "year",
+  y: "revenue",
+  fill: "format"
+})
+```
+
+To pick three points at random in each series:
+
+```js
+Plot.select(I => d3.shuffle(I.slice()).slice(0, 3), {z: "year", ...})
+```
+
+To pick the point in each city with the highest temperature:
+
+```js
+Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"})
+```
 
 #### Plot.selectFirst(*options*)
 

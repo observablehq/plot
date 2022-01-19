@@ -1,6 +1,6 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
+import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {formatIsoDate} from "./format.js";
-import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./mark.js";
 import {radians} from "./math.js";
 import {impliedString} from "./style.js";
 

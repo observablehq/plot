@@ -10,7 +10,7 @@ cd plot
 yarn
 ```
 
-Plot is written in ES modules and uses [Snowpack](https://snowpack.dev/) for development; this means that you can edit the Plot source code and examples, and they’ll update live as you save changes. To start Snowpack:
+Plot is written in ES modules and uses [Vite](https://vitejs.dev/) for development; this means that you can edit the Plot source code and examples, and they’ll update live as you save changes. To start Vite:
 
 ```
 yarn dev

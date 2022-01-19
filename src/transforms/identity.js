@@ -1,4 +1,4 @@
-import {identity} from "../mark.js";
+import {identity} from "../options.js";
 
 export function maybeIdentityX(options = {}) {
   const {x, x1, x2} = options;

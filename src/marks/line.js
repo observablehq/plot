@@ -1,7 +1,8 @@
 import {create, group, line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
-import {Mark, indexOf, identity, maybeTuple, maybeZ} from "../mark.js";
+import {Mark} from "../plot.js";
+import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset} from "../style.js";
 
 const defaults = {
@@ -17,8 +18,8 @@ export class Line extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, filter: null, scale: "x"},
+        {name: "y", value: y, filter: null, scale: "y"},
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,

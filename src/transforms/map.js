@@ -1,5 +1,5 @@
 import {count, group, rank} from "d3";
-import {maybeZ, take, valueof, maybeInput, lazyChannel} from "../mark.js";
+import {maybeZ, take, valueof, maybeInput, lazyChannel} from "../options.js";
 import {basic} from "./basic.js";
 
 export function mapX(m, options = {}) {

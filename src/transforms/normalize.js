@@ -1,6 +1,6 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
-import {take} from "../mark.js";
+import {take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
 export function normalizeX(basis, options) {

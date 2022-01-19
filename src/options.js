@@ -1,109 +1,8 @@
-import {ascending, color, descending, rollup, sort} from "d3";
-import {plot} from "./plot.js";
-import {registry} from "./scales/index.js";
-import {styles} from "./style.js";
-import {basic} from "./transforms/basic.js";
-import {maybeReduce} from "./transforms/group.js";
+import {color, descending} from "d3";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
-
-export class Mark {
-  constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy} = options;
-    const names = new Set();
-    this.data = data;
-    this.sort = isOptions(sort) ? sort : null;
-    this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
-    const {transform} = basic(options);
-    this.transform = transform;
-    if (defaults !== undefined) channels = styles(this, options, channels, defaults);
-    this.channels = channels.filter(channel => {
-      const {name, value, optional} = channel;
-      if (value == null) {
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      }
-      if (name !== undefined) {
-        const key = `${name}`;
-        if (key === "__proto__") throw new Error("illegal channel name");
-        if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
-        names.add(key);
-      }
-      return true;
-    });
-    this.dx = +dx || 0;
-    this.dy = +dy || 0;
-  }
-  initialize(facets, facetChannels) {
-    let data = arrayify(this.data);
-    let index = facets === undefined && data != null ? range(data) : facets;
-    if (data !== undefined && this.transform !== undefined) {
-      if (facets === undefined) index = index.length ? [index] : [];
-      ({facets: index, data} = this.transform(data, index));
-      data = arrayify(data);
-      if (facets === undefined && index.length) ([index] = index);
-    }
-    const channels = this.channels.map(channel => {
-      const {name} = channel;
-      return [name == null ? undefined : `${name}`, Channel(data, channel)];
-    });
-    if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
-    return {index, channels};
-  }
-  plot({marks = [], ...options} = {}) {
-    return plot({...options, marks: [...marks, this]});
-  }
-}
-
-// TODO Type coercion?
-function Channel(data, {scale, type, value, hint}) {
-  return {
-    scale,
-    type,
-    value: valueof(data, value),
-    label: labelof(value),
-    hint
-  };
-}
-
-function channelSort(channels, facetChannels, data, options) {
-  const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
-  for (const x in options) {
-    if (!registry.has(x)) continue; // ignore unknown scale keys
-    const {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
-    if (reduce == null || reduce === false) continue; // disabled reducer
-    const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
-    if (!X) throw new Error(`missing channel for scale: ${x}`);
-    const XV = X[1].value;
-    const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
-    if (y == null) {
-      X[1].domain = () => {
-        let domain = XV;
-        if (reverse) domain = domain.slice().reverse();
-        if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
-        return domain;
-      };
-    } else {
-      let YV;
-      if (y === "data") {
-        YV = data;
-      } else {
-        const Y = channels.find(([name]) => name === y);
-        if (!Y) throw new Error(`missing channel: ${y}`);
-        YV = Y[1].value;
-      }
-      const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
-      X[1].domain = () => {
-        let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
-        domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
-        if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
-        return domain.map(first);
-      };
-    }
-  }
-}
 
 // This allows transforms to behave equivalently to channels.
 export function valueof(data, value, type) {
@@ -126,9 +25,6 @@ export const first = d => d[0];
 export const second = d => d[1];
 export const constant = x => () => x;
 
-// A few extra color keywords not known to d3-color.
-const colors = new Set(["currentColor", "none"]);
-
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this
 // function tests whether the given value is a CSS color string and returns a
@@ -138,7 +34,7 @@ const colors = new Set(["currentColor", "none"]);
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
-    : typeof value === "string" && (colors.has(value) || color(value)) ? [undefined, value]
+    : isColor(value) ? [undefined, value]
     : [value, undefined];
 }
 
@@ -279,8 +175,11 @@ export function maybeValue(value) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
+// Coerces the given channel values (if any) to numbers. This is useful when
+// values will be interpolated into other code, such as an SVG transform, and
+// where we don’t wish to allow unexpected behavior for weird input.
 export function numberChannel(source) {
-  return {
+  return source == null ? null : {
     transform: data => valueof(data, source, Float64Array),
     label: labelof(source)
   };
@@ -308,29 +207,41 @@ export function isNumeric(values) {
   }
 }
 
-export function markify(mark) {
-  return mark instanceof Mark ? mark : new Render(mark);
-}
-
-class Render extends Mark {
-  constructor(render) {
-    super();
-    if (render == null) return;
-    if (typeof render !== "function") throw new TypeError("invalid mark");
-    this.render = render;
+export function isColors(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return isColor(value);
   }
-  render() {}
 }
 
-export function marks(...marks) {
-  marks.plot = Mark.prototype.plot;
-  return marks;
+// Whereas isColors only tests the first defined value and returns undefined for
+// an empty array, this tests all defined values and only returns true if all of
+// them are valid colors. It also returns true for an empty array, and thus
+// should generally be used in conjunction with isColors.
+export function isAllColors(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    if (!isColor(value)) return false;
+  }
+  return true;
 }
 
-function ascendingGroup([ak, av], [bk, bv]) {
-  return ascending(av, bv) || ascending(ak, bk);
+// Mostly relies on d3-color, with a few extra color keywords. Currently this
+// strictly requires that the value be a string; we might want to apply string
+// coercion here, though note that d3-color instances would need to support
+// valueOf to work correctly with InternMap.
+export function isColor(value) {
+  if (!(typeof value === "string")) return false;
+  value = value.toLowerCase();
+  return value === "currentcolor" || value === "none" || color(value) !== null;
 }
 
-function descendingGroup([ak, av], [bk, bv]) {
-  return descending(av, bv) || ascending(ak, bk);
+// Like a sort comparator, returns a positive value if the given array of values
+// is in ascending order, a negative value if the values are in descending
+// order. Assumes monotonicity; only tests the first and last values.
+export function order(values) {
+  if (values == null) return;
+  const first = values[0];
+  const last = values[values.length - 1];
+  return descending(first, last);
 }
