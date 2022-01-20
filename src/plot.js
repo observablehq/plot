@@ -1,4 +1,5 @@
 import {create, cross, difference, groups, InternMap} from "d3";
+import {maybeLayout} from "./layouts.js";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
@@ -97,6 +98,9 @@ export function plot(options = {}) {
     const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
     const index = filter(markIndex.get(mark), channels, values);
+    if (mark.layouts) {
+      for (const layout of mark.layouts) (layout(values))(index, dimensions);
+    }
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -132,7 +136,7 @@ function filter(index, channels, values) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy} = options;
+    const {facet = "auto", sort, dx, dy, layouts} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
@@ -154,6 +158,7 @@ export class Mark {
       }
       return true;
     });
+    this.layouts = (typeof layouts === "string" ? [layouts] : Array.isArray(layouts) ? layouts : []).map(maybeLayout); // todo: validate
     this.dx = +dx || 0;
     this.dy = +dy || 0;
   }
@@ -270,6 +275,7 @@ class Facet extends Mark {
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const marksValues = marksChannels.map(channels => applyScales(channels, scales));
+    const layouts = marks.map(({layouts}, i) => layouts.map(layout => layout(marksValues[i]/*, TODO: options… */)));
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -313,6 +319,7 @@ class Facet extends Mark {
               for (let i = 0; i < marks.length; ++i) {
                 const values = marksValues[i];
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
+                for (const layout of layouts[i]) layout(index, subdimensions);
                 const node = marks[i].render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
