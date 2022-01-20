@@ -1,0 +1,33 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="199"></rect>
+  <g transform="translate(0.5,0.5)"><text transform="translate(319.5,99.5)">
+      <tspan x="0" y="-7.68em">This Is Just To Say</tspan>
+      <tspan x="0" y="-6.68em">William Carlos Williams, 1934</tspan>
+      <tspan x="0" y="-4.68em">I have eaten</tspan>
+      <tspan x="0" y="-3.6799999999999997em">the plums</tspan>
+      <tspan x="0" y="-2.6799999999999997em">that were in</tspan>
+      <tspan x="0" y="-1.6799999999999997em">the icebox</tspan>
+      <tspan x="0" y="0.3200000000000003em">and which</tspan>
+      <tspan x="0" y="1.3200000000000003em">you were probably</tspan>
+      <tspan x="0" y="2.3200000000000003em">saving</tspan>
+      <tspan x="0" y="3.3200000000000003em">for breakfast</tspan>
+      <tspan x="0" y="5.32em">Forgive me</tspan>
+      <tspan x="0" y="6.32em">they were delicious</tspan>
+      <tspan x="0" y="7.32em">so sweet</tspan>
+      <tspan x="0" y="8.32em">and so cold</tspan>
+    </text></g>
+</svg>

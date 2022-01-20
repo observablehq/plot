@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [arrow mark](./README.md#arrow) draws arrows connecting two pairs of points. It is similar to a [link mark](./README.md#link), except it is intended for directed edges (say for representing movement over time) and supports a configurable arrowhead. It even supports “swoopy” arrows with the *bend* option, together with insets for when arrows start or end with a [circle](./README.md#dot).
+The new [arrow mark](./README.md#arrow) draws arrows between pairs of points. It is similar to the [link mark](./README.md#link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
 
 [<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
@@ -19,7 +19,7 @@ Plot.arrow(data, {
 })
 ```
 
-The new [vector mark](./README.md#vector) similarly draws arrows defined by a single position (*x* and *y*), magnitude (*length*), and direction (*rotate*). It is commonly used to visualize vector fields, such as a map of wind speed and direction.
+The new [vector mark](./README.md#vector) similarly draws arrows at the given position (*x* and *y*) with the given magnitude (*length*) and direction (*rotate*). It is intended to visualize vector fields, such as a map of wind speed and direction.
 
 [<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
 
@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The [dot mark](./README.md#dot) now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke). You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
+The [dot mark](./README.md#dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke); you can also implement a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
@@ -38,41 +38,37 @@ The [dot mark](./README.md#dot) now supports a *symbol* channel and option to co
 Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
 ```
 
-The [text mark](./README.md#text) now supports multiline text! New *lineAnchor* and *lineHeight* options…
+The [text mark](./README.md#text) now supports multiline text! When a text value contains `\r`, `\r\n`, or `\n`, it will be split into multiple lines using tspan elements. The new *lineAnchor* and *lineHeight* options control how the lines are positioned relative to the given *xy* position. The text, dot, and image marks now also support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
 
-When a text mark’s *text* channel, or the *title* channel on any mark, is specified as numbers or dates, the values are now automatically formatted (in the U.S. English locale) to improve readability. For the *text* channel, the default *fontVariant* option additionally changes to tabular-nums.
+[<img src="./img/poem.png" width="660" alt="This Is Just To Say, by William Carlos Williams">](https://observablehq.com/@observablehq/plot-text)
 
-The text mark now additionally allows the *fontSize* to be specified as a CSS length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage.
+```js
+Plot.plot({
+  height: 200,
+  marks: [
+    Plot.frame(),
+    Plot.text([`This Is Just To Say\nWilliam Carlos Williams, …`], {frameAnchor: "middle"})
+  ]
+})
+```
 
-The text, dot, and image marks now support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
+When a text mark’s *text* channel, or the *title* channel on any mark, is specified as numbers or dates, the values are now automatically formatted (in the U.S. English locale) to improve readability. For the *text* channel, the default *fontVariant* option additionally changes to tabular-nums. The text mark now additionally allows the *fontSize* to be specified as a CSS length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage.
 
 All marks now support the new standard *href* channel and *target* option, turning the mark into a clickable link.
 
-The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", href: d => `https://en.wikipedia.org/wiki/${d.letter}`})
+```
 
-The bin and group transforms now propagate the *title* and *href* channels, if present, by default.
+The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts.
 
-The bin transform now supports the following shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*.
+The bin and group transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values per bin by count. The bin transform now supports the following shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively.
 
-The window transform now supports the *first* and *last* reducers.
+The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors. Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects). A top-level *clamp* option is now available to apply to all scales. When margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output. When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*). Plot now ignores non-finite values when inferring the default domain for quantitative scales.
 
-The *color* scale now defaults to *identity* if all associated defined values are valid CSS colors. Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
+The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
 
-The *swatches* legend now wraps correctly in narrow windows.
-
-A top-level *clamp* option is now available to apply to all scales.
-
-When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*).
-
-When large margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output.
-
-When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format).
-
-Plot now ignores non-finite values when inferring the default domain for quantitative scales.
-
-Plot no longer crashes when you try to display a legend on an identity color scale.
-
-Plot no longer uses circular imports, working around a limitation of popular bundlers such as webpack and Rollup.
+Plot no longer uses circular imports, working around a limitation (“temporal dead zone”) of popular bundlers such as webpack and Rollup.
 
 [breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
 
