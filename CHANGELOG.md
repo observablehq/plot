@@ -70,7 +70,7 @@ Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", tit
 
 The bin transform now supports shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively.
 
-The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme.
+The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme. Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
 
 [<img src="./img/identity-color.png" width="640" alt="a chart with red and black bars">](https://observablehq.com/@observablehq/plot-bar)
 
@@ -78,17 +78,23 @@ The *color* scale now defaults to an *identity* scale if all associated defined 
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter) ? "red" : "black"})
 ```
 
-Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects). A top-level *clamp* option is now available to apply to all scales. When margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output. When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*). Plot now ignores non-finite values when inferring the default domain for quantitative scales. The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts.
+The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts. The returned object is has the same form as *plot*.scale(*name*), allowing you to inspect the scale options and invoke the scale programmatically with *scale*.apply (and *scale*.invert, where applicable).
 
-The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
+```js
+const scale = Plot.scale({color: {type: "linear"}});
+console.log(scale.domain); // [0, 1]
+console.log(scale.apply(0.5)); // "rgb(149, 251, 81)"
+```
 
-The new generalized [select transform](./README.md#select) can now call a custom function, or the shorthand min and max, to select the point (or points) to display, passing it an index of the current group and the designed channel. For example one can select the dot with the highest *fill* value with:
+The new generalized [select transform](./README.md#select) can now call a custom function, or the shorthand *min* and *max*, to select the points to display. The function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]), and the designated channel’s values. For example one can select the dot with the highest *fill* value with:
 
 ```js
 Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stroke: "black"})
 ```
 
-Plot no longer uses circular imports, working around a limitation (“temporal dead zone”) of popular bundlers such as webpack and Rollup. Plot now uses [vite](https://vitejs.dev) for local development, offering a significant reduction in dependencies.
+This release includes various minor new features and bug fixes. A top-level *clamp* option is now available to apply to all scales. When margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output. When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*). Plot now ignores non-finite values when inferring the default domain for quantitative scales. The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
+
+To improve compatibility with popular bundlers such as webpack and Rollup, Plot no longer uses circular ES module imports, thereby avoiding the dreaded temporal dead zone. Plot now uses [vite](https://vitejs.dev) for local development, offering a significant reduction in dependencies.
 
 [breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
 
