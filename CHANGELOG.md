@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The dot mark now supports a *symbol* channel and option, controlling the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding.
+The dot mark now supports a *symbol* channel and option, controlling the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The range of the *symbol* scale (the set of displayed symbols) defaults based on whether the symbols are stroked or filled to improve differentiability and give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. (The default *symbol* is still circle.)
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
