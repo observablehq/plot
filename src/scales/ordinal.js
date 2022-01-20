@@ -6,6 +6,12 @@ import {none} from "../style.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
+// This denotes an implicitly ordinal color scale: the scale type was not set,
+// but the associated values are strings or booleans. If the associated defined
+// values are entirely boolean, the range will default to greys. You can opt out
+// of this by setting the type explicitly.
+export const ordinalImplicit = Symbol("ordinal");
+
 export function ScaleO(scale, channels, {
   type,
   domain = inferDomain(channels),
@@ -13,7 +19,7 @@ export function ScaleO(scale, channels, {
   reverse,
   hint
 }) {
-  if (type === "categorical") type = "ordinal"; // shorthand for color schemes
+  if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
   if (range !== undefined) {
@@ -37,9 +43,11 @@ export function ScaleOrdinal(key, channels, {
     hint = inferSymbolHint(channels);
     range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
   } else if (registry.get(key) === color) {
-    if (scheme === undefined
-        && range === undefined
-        && (range = maybeBooleanRange(domain, "greys")) === undefined) {
+    if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
+      range = maybeBooleanRange(domain, scheme === undefined ? "greys" : scheme);
+      if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
+    }
+    if (scheme === undefined && range === undefined) {
       scheme = type === "ordinal" ? "turbo" : "tableau10";
     }
     if (scheme !== undefined) {

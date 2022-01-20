@@ -4,7 +4,7 @@ import {registry, color, position, radius, opacity, symbol, length} from "./scal
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {ScaleOrdinal, ScalePoint, ScaleBand} from "./scales/ordinal.js";
+import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
@@ -172,7 +172,7 @@ function Scale(key, channels = [], options = {}) {
     case "diverging-pow": return ScaleDivergingPow(key, channels, options);
     case "diverging-log": return ScaleDivergingLog(key, channels, options);
     case "diverging-symlog": return ScaleDivergingSymlog(key, channels, options);
-    case "categorical": case "ordinal": return ScaleOrdinal(key, channels, options);
+    case "categorical": case "ordinal": case ordinalImplicit: return ScaleOrdinal(key, channels, options);
     case "cyclical": case "sequential": case "linear": return ScaleLinear(key, channels, options);
     case "sqrt": return ScaleSqrt(key, channels, options);
     case "threshold": return ScaleThreshold(key, channels, options);
@@ -255,7 +255,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
 function asOrdinalType(kind) {
   switch (kind) {
     case position: return "point";
-    case color: return "categorical";
+    case color: return ordinalImplicit;
     default: return "ordinal";
   }
 }
