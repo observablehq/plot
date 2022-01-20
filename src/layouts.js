@@ -24,7 +24,7 @@ function layoutCollide({x: X, y: Y, r: R}) {
       .force("x", forceX(({x}) => x))
       .force("y", forceY(({y}) => y))
       .force("collide", forceCollide(({r}) => 1 + r));
-    simulation.nodes(nodes).tick(30);
+    simulation.nodes(nodes).tick(30).stop();
     for (const node of nodes) X[node.i] = node.x, Y[node.i] = node.y;
   };
 }
