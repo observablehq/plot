@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The dot mark now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *asterisk*, *circle*, *cross*, *diamond*, *diamond2*, *plus*, *square*, *square2*, *star*, *times*, *triangle*, *triangle2*, and *wye*. You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) if desired.
+The dot mark now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke). You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
