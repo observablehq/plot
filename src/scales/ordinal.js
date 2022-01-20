@@ -44,7 +44,7 @@ export function ScaleOrdinal(key, channels, {
     range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
   } else if (registry.get(key) === color) {
     if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
-      range = maybeBooleanRange(domain, scheme === undefined ? "greys" : scheme);
+      range = maybeBooleanRange(domain, scheme);
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
     }
     if (scheme === undefined && range === undefined) {
