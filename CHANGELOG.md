@@ -102,7 +102,7 @@ console.log(scale.apply(0.5)); // "rgb(149, 251, 81)"
 
 This release includes various minor new features and bug fixes. The new top-level *clamp* option applies to all scales. When margins or insets would result in a scale’s range being inverted, Plot now collapses the range instead of producing confusing output. When the *buylrd* color scheme is applied to a (discrete) ordinal scale, it now has the expected colors (not *rdgy*). Plot now ignores non-finite values when inferring the default domain for quantitative scales. The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
 
-To improve compatibility with popular bundlers such as webpack and Rollup, Plot no longer uses circular ES module imports, thereby avoiding the dreaded temporal dead zone. Plot now uses [vite](https://vitejs.dev) for local development instead of [Snowpack](https://snowpack.dev).
+To improve compatibility with popular bundlers such as webpack and Rollup, Plot no longer uses circular ES module imports and thereby avoids the dreaded temporal dead zone. 😱 Plot now uses [vite](https://vitejs.dev) for local development instead of [Snowpack](https://snowpack.dev).
 
 [breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
 
