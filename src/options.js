@@ -37,6 +37,7 @@ export const constant = x => () => x;
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
+    : typeof value === "boolean" ? [undefined, value ? "currentColor" : "none"]
     : isColor(value) ? [undefined, value]
     : [value, undefined];
 }
@@ -241,7 +242,9 @@ export function isEvery(values, is) {
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
 export function isColor(value) {
-  if (typeof value !== "string") return false;
+  const type = typeof value;
+  if (type === "boolean") return true; // true for currentColor, false for none
+  if (type !== "string") return false;
   value = value.toLowerCase();
   return value === "currentcolor" || value === "none" || color(value) !== null;
 }

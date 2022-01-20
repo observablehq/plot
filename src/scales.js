@@ -158,6 +158,7 @@ function Scale(key, channels = [], options = {}) {
       switch (registry.get(key)) {
         case position: options = coerceType(channels, options, coerceNumber, Float64Array); break;
         case symbol: options = coerceType(channels, options, maybeSymbol); break;
+        case color: options = coerceType(channels, options, coerceColorBoolean); break;
       }
       break;
     case "utc":
@@ -332,6 +333,11 @@ function coerceType(channels, options, coerce, type) {
 
 function coerceArray(array, coerce, type = Array) {
   if (array !== undefined) return type.from(array, coerce);
+}
+
+// If a color is specified as a boolean, promote it to the corresponding string.
+function coerceColorBoolean(x) {
+  return x === true ? "currentColor" : x === false ? "none" : x;
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
