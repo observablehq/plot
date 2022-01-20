@@ -4,11 +4,24 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [arrow mark](./README.md#arrow) draws (possibly swoopy) arrows connecting two pairs of points. It is similar to a [link mark](./README.md#link), except it is intended for directed edges (say for representing movement over time) and supports a configurable arrowhead.
+The new [arrow mark](./README.md#arrow) draws arrows connecting two pairs of points. It is similar to a [link mark](./README.md#link), except it is intended for directed edges (say for representing movement over time) and supports a configurable arrowhead. It even supports “swoopy” arrows with the *bend* option, together with insets for when arrows start or end with a [circle](./README.md#dot).
 
 [<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
-The new vector mark…
+```js
+Plot.arrow(data, {
+  x1: "POP_1980",
+  y1: "R90_10_1980",
+  x2: "POP_2015",
+  y2: "R90_10_2015",
+  bend: true,
+  stroke: d => d.R90_10_2015 - d.R90_10_1980
+})
+```
+
+The new [vector mark](./README.md#vector) similarly draws arrows, except that vectors are defined by a single position (*x* and *y*), magnitude (*length*), and direction (*rotate*). It is commonly used to visualize vector fields, such as a map of wind speed and direction.
+
+[<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
 
 The dot mark now supports a *symbol* channel.
 
