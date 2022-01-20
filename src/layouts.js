@@ -18,7 +18,6 @@ function layoutDarker(values) {
 }
 
 function layoutCollide({x: X, y: Y, r: R}) {
-  console.warn("collide", X, Y, R);
   return (index) => {
     const nodes = Array.from(index, i => ({i, x: X[i], y: Y[i], r: R ? R[i] : 8}));
     const simulation = forceSimulation()
