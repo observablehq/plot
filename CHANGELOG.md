@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The [dot mark](./README.md#dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke); you can also implement a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
+The [dot mark](./README.md#dot) now supports a *symbol* option to control the displayed shape, which defaults to *circle*. The *symbol* channel (and associated *symbol* scale) can also be used as an categorical encoding. The default symbol set is based on whether symbols are stroked or filled, improving differentiability and giving uniform weight. Plot supports all of D3’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke, based on [Heman Robinson’s research](https://www.tandfonline.com/doi/abs/10.1080/10618600.2019.1637746)); you can also implement a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
@@ -82,7 +82,13 @@ Similarly, the new *symbol* scale defaults to *identity* if all associated defin
 
 The *swatches* legend now wraps correctly in narrow windows. When the *tickFormat* option is null, ticks will now be unlabeled (rather than using the default format). Plot no longer crashes when you try to display a legend on an identity color scale.
 
-Plot no longer uses circular imports, working around a limitation (“temporal dead zone”) of popular bundlers such as webpack and Rollup.
+The new generalized [select transform](./README.md#select) can now call a custom function, or the shorthand min and max, to select the point (or points) to display, passing it an index of the current group and the designed channel. For example one can select the dot with the highest *fill* value with:
+
+```js
+Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stroke: "black"})
+```
+
+Plot no longer uses circular imports, working around a limitation (“temporal dead zone”) of popular bundlers such as webpack and Rollup. Plot now uses [vite](https://vitejs.dev) for local development, offering a significant reduction in dependencies.
 
 [breaking] For consistency with other marks, the text mark now requires the *dx* and *dy* to be specified as numbers in pixels rather than typographic units such as ems; in addition, the *dx* and *dy* translation now happens prior to rotation (if any). To affect the typographic layout, use the new *lineAnchor* and *lineHeight* options.
 
