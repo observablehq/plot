@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The dot mark now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke). You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
+The [dot mark](./README.md#dot) now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *circle*, *cross*, *diamond*, *square*, *star*, *triangle*, and *wye* (for fill) and *circle*, *plus*, *times*, *triangle2*, *asterisk*, *square2*, and *diamond2* (for stroke). You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types).
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
@@ -38,7 +38,9 @@ The dot mark now supports a *symbol* channel and option to control the displayed
 Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
 ```
 
-The text mark now supports multiline text! New *lineAnchor* and *lineHeight* options…
+The [text mark](./README.md#text) now supports multiline text! New *lineAnchor* and *lineHeight* options…
+
+The text mark’s *text* channel, and the *title* channel on all marks, now automatically format numbers and dates to improve readability (rather than using string coercion). In addition, when the *text* channel is defined as an array of numbers or dates, the *fontVariant* option default changes to tabular-nums.
 
 The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
 
