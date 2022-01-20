@@ -30,7 +30,13 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The dot mark now supports a *symbol* channel.
+The dot mark now supports a *symbol* channel and option, controlling the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding.
+
+[<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
+
+```js
+Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", symbol: "species"})
+```
 
 The text mark now supports multiline text! New *lineAnchor* and *lineHeight* options…
 
