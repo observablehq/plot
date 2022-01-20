@@ -6,7 +6,7 @@
 
 The new [arrow mark](./README.md#arrow) draws (possibly swoopy) arrows connecting two pairs of points. It is similar to a [link mark](./README.md#link), except it is intended for directed edges (say for representing movement over time) and supports a configurable arrowhead.
 
-[<img src="./img/arrow.png" width="660" height="396" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
+[<img src="./img/arrow.png" width="660" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
 The new vector mark…
 
@@ -74,7 +74,7 @@ Released December 4, 2021.
 
 Plot can now produce [legends for *color* and *opacity* scales](./README.md#legends)!
 
-[<img src="./img/legend.png" width="660" height="437" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
+[<img src="./img/legend.png" width="660" alt="a scatterplot with a color legend">](https://observablehq.com/@observablehq/plot-legends)
 
 ```js
 Plot.plot({
@@ -91,7 +91,7 @@ The top-level plot *scale*.**legend** option generates an inline legend for the 
 
 The new [Plot.image](./README.md#image) mark centers an image on the given *xy* position.
 
-[<img src="./img/image.png" width="640" height="396" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
+[<img src="./img/image.png" width="640" alt="a scatterplot of U.S. presidents">](https://observablehq.com/@observablehq/plot-image)
 
 ```js
 Plot.plot({
