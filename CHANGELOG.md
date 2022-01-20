@@ -42,11 +42,11 @@ The [text mark](./README.md#text) now supports multiline text! New *lineAnchor* 
 
 When a text mark’s *text* channel, or the *title* channel on any mark, is specified as numbers or dates, the values are now automatically formatted (in the U.S. English locale) to improve readability. For the *text* channel, the default *fontVariant* option additionally changes to tabular-nums.
 
-The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
+The text mark now additionally allows the *fontSize* to be specified as a CSS length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage.
 
 The text, dot, and image marks now support a *frameAnchor* option for positioning relative to the frame rather than according to data. This is particularly useful for annotations.
 
-All marks now support the new standard *href* channel and *target* option.
+All marks now support the new standard *href* channel and *target* option, turning the mark into a clickable link.
 
 The new Plot.scale method allows you to construct a standalone scale for use independent of any chart, or across charts.
 
