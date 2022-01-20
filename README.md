@@ -795,7 +795,7 @@ If the **x** channel is not specified, the bar will span the full horizontal ext
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@observablehq/plot-cell)
 
-[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@observablehq/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group).
+[Source](./src/marks/cell.js) · [Examples](https://observablehq.com/@observablehq/plot-cell) · Draws rectangles where both *x* and *y* are ordinal, typically in conjunction with a *fill* channel to encode value. Cells are often used in conjunction with a [group transform](#group). If both dimensions are temporal or quantitative, as in a heatmap, use the [rect mark](#rect) with the [bin transform](#bin) instead.
 
 In addition to the [standard mark options](#marks), including insets and rounded corners, the following optional channels are supported:
 
