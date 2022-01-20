@@ -82,7 +82,7 @@ These options determine the overall layout of the plot; all are specified as num
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
 
-The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make responsive plots. The default **height** is 396 if the plot has a *y* or *fy* scale; otherwise it is 90 if the plot has an *fx* scale, or 60 if it does not. (The default height will be getting smarter for ordinal domains; see [#337](https://github.com/observablehq/plot/pull/337).)
+The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/master/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396.
 
 The default margins depend on the plot’s axes: for example, **marginTop** and **marginBottom** are at least 30 if there is a corresponding top or bottom *x* axis, and **marginLeft** and **marginRight** are at least 40 if there is a corresponding left or right *y* axis. For simplicity’s sake and for consistent layout across plots, margins are not automatically sized to make room for tick labels; instead, shorten your tick labels or increase the margins as needed. (In the future, margins may be specified indirectly via a scale property to make it easier to reorient axes without adjusting margins; see [#210](https://github.com/observablehq/plot/issues/210).)
 
@@ -461,7 +461,7 @@ Similar to [marks](#marks), faceting requires specifying data and at least one o
 * facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
 * facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
 
-The facet.**x** and facet.**y** channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. Automatic binning for quantitative data may be added in the future. [#14](https://github.com/observablehq/plot/issues/14)
+The facet.**x** and facet.**y** channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. (Automatic binning for quantitative data may be added in the future; see [#14](https://github.com/observablehq/plot/issues/14).)
 
 The following *facet* constant options are also supported:
 
