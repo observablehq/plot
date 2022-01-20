@@ -40,7 +40,7 @@ Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species",
 
 The [text mark](./README.md#text) now supports multiline text! New *lineAnchor* and *lineHeight* options…
 
-The text mark’s *text* channel, and the *title* channel on all marks, now automatically format numbers and dates to improve readability (rather than using string coercion). In addition, when the *text* channel is defined as an array of numbers or dates, the *fontVariant* option default changes to tabular-nums.
+When a text mark’s *text* channel, or the *title* channel on any mark, is specified as numbers or dates, the values are now automatically formatted (in the U.S. English locale) to improve readability. For the *text* channel, the default *fontVariant* option additionally changes to tabular-nums.
 
 The text mark now allows the *fontSize* to be specified as a length (*e.g.*, “12pt”), keyword (*e.g.*, “x-large”), or percentage, rather than being limited to a number in pixels.
 
