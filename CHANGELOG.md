@@ -60,7 +60,7 @@ All marks now support the new standard *href* channel and *target* option, turni
 Plot.barY(alphabet, {x: "letter", y: "frequency", href: d => `https://en.wikipedia.org/wiki/${d.letter}`})
 ```
 
-The bin and group transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count.
+The [bin](./README.md#bin) and [group](./README.md#group) transforms now propagate the *title* and *href* channels, if present, by default. The default reducer for the *title* channel automatically selects the top five distinct title values by count, making it easier to inspect the contents of a given bin or group.
 
 [<img src="./img/bin-title.png" width="656" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-bin)
 
@@ -68,18 +68,26 @@ The bin and group transforms now propagate the *title* and *href* channels, if p
 Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species", title: d => `${d.species} ${d.sex}`}))
 ```
 
-The bin transform now supports shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively. The new generalized [select transform](./README.md#select) can now call a custom function, or the shorthand *min* and *max*, to select the points to display. The function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]), and the designated channel’s values. For example one can select the dot with the highest *fill* value with:
+The bin transform now supports shorthand reducers for the bin extent: *x1*, *x2*, *y1*, and *y2*. The window transform now supports the *first* and *last* reducers to select the first or last element of the window, respectively. The new generalized [select transform](./README.md#select) can now call a custom selector function, or the shorthand *min* and *max*, to select the points to display. The selector function is passed two arguments: the index of the current group (*e.g.*, [0, 1, 2, …]) and the given channel’s values. For example, to select the dot with the greatest *fill* value:
 
 ```js
 Plot.dotX(data, Plot.select({fill: "max"}, {x: "letter", fill: "frequency", stroke: "black"})
 ```
 
-The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme. Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
+The *color* scale now defaults to an *identity* scale if all associated defined values are valid CSS colors, rather than defaulting to the tableau10 categorical color scheme. The new *symbol* scale similarly defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
 
 [<img src="./img/identity-color.png" width="640" alt="a chart with red and black bars">](https://observablehq.com/@observablehq/plot-bar)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter) ? "red" : "black"})
+```
+
+The *color* scale now has a special default range for boolean data, encoding false as light gray and true as dark gray. (You can opt-out of this by setting the scale type to *categorical* or by specifying a *scheme* or *range*.)
+
+[<img src="./img/boolean-color.png" width="640" alt="a chart with grey and black bars">](https://observablehq.com/@observablehq/plot-bar)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter)})
 ```
 
 The new [Plot.scale](./README.md#scale-options) method allows you to construct a standalone scale for use independent of any chart, or across charts. The returned object has the same form as *plot*.scale(*name*), allowing you to inspect the scale options and invoke the scale programmatically with *scale*.apply (and *scale*.invert, where applicable).
