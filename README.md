@@ -711,7 +711,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 
 [<img src="./img/arrow.png" width="320" height="198" alt="a scatterplot with arrows">](https://observablehq.com/@observablehq/plot-arrow)
 
-[Source](./src/marks/arrow.js) · [Examples](https://observablehq.com/@observablehq/plot-arrow) · Draws arrows (possibly swoopy arrows) connecting pairs of points.
+[Source](./src/marks/arrow.js) · [Examples](https://observablehq.com/@observablehq/plot-arrow) · Draws (possibly swoopy) arrows connecting pairs of points.
 
 The following channels are required:
 
