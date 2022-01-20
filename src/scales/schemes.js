@@ -143,6 +143,8 @@ const ordinalSchemes = new Map([
 
 function scheme9(scheme, interpolate) {
   return ({length: n}) => {
+    if (n === 1) return [scheme[3][1]]; // favor midpoint
+    if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor extrema
     n = Math.max(3, Math.floor(n));
     return n > 9 ? quantize(interpolate, n) : scheme[n];
   };
@@ -182,6 +184,21 @@ export function ordinalRange(scheme, length) {
   const s = ordinalScheme(scheme);
   const r = typeof s === "function" ? s({length}) : s;
   return r.length !== length ? r.slice(0, length) : r;
+}
+
+// If the specified domain contains only booleans (ignoring null and undefined),
+// returns a corresponding range where false is mapped to the low color and true
+// is mapped to the high color of the specified scheme.
+export function maybeBooleanRange(domain, scheme) {
+  const range = new Set();
+  const [f, t] = ordinalScheme(scheme)({length: 2});
+  for (const value of domain) {
+    if (value == null) continue;
+    if (value === true) range.add(t);
+    else if (value === false) range.add(f);
+    else return;
+  }
+  return [...range];
 }
 
 const quantitativeSchemes = new Map([
