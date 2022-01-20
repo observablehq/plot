@@ -7,13 +7,14 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 // This allows transforms to behave equivalently to channels.
-export function valueof(data, value, type) {
-  const array = type === undefined ? Array : type;
-  return typeof value === "string" ? array.from(data, field(value))
-    : typeof value === "function" ? array.from(data, value)
-    : typeof value === "number" || value instanceof Date ? array.from(data, constant(value))
-    : value && typeof value.transform === "function" ? arrayify(value.transform(data), type)
-    : arrayify(value, type); // preserve undefined type
+export function valueof(data, value, arrayType) {
+  const array = arrayType === undefined ? Array : arrayType;
+  const type = typeof value;
+  return type === "string" ? array.from(data, field(value))
+    : type === "function" ? array.from(data, value)
+    : type === "number" || value instanceof Date || type === "boolean" ? array.from(data, constant(value))
+    : value && typeof value.transform === "function" ? arrayify(value.transform(data), arrayType)
+    : arrayify(value, arrayType); // preserve undefined type
 }
 
 export const field = name => d => d[name];
