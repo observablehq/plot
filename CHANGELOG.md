@@ -84,7 +84,7 @@ The *color* scale now defaults to an *identity* scale if all associated defined 
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: d => /[AEIOU]/.test(d.letter) ? "red" : "black"})
 ```
 
-The *color* scale now has a special default range for boolean data, encoding false as light gray and true as dark gray. (You can opt-out of this by setting the scale type to *categorical* or by specifying an explicit *range*.)
+The *color* scale now has a special default range for boolean data, encoding false as light gray and true as dark gray. If you’d prefer more color, you can use a sequential scheme such as *reds* or *blues*. (You can opt-out of the special boolean range by setting the scale type to *categorical* or by specifying an explicit *range*.)
 
 [<img src="./img/boolean-color.png" width="640" alt="a chart with grey and black bars">](https://observablehq.com/@observablehq/plot-bar)
 
