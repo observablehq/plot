@@ -23,6 +23,13 @@ The new [vector mark](./README.md#vector) similarly draws arrows, except that ve
 
 [<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
 
+```js
+Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
+  length: ([x, y]) => (x + y) * 2 + 2,
+  rotate: ([x, y]) => (Math.sin(x) - Math.sin(y)) * 60
+})
+```
+
 The dot mark now supports a *symbol* channel.
 
 The text mark now supports multiline text! New *lineAnchor* and *lineHeight* options…
