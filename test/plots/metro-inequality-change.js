@@ -30,7 +30,8 @@ export default async function() {
       Plot.text(data, {
         x: "POP_2015",
         y: "R90_10_2015",
-        text: d => d.highlight && d.nyt_display,
+        filter: "highlight",
+        text: "nyt_display",
         dy: -8
       })
     ]
