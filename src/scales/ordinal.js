@@ -4,7 +4,7 @@ import {ascendingDefined} from "../defined.js";
 import {maybeSymbol} from "../options.js";
 import {none} from "../style.js";
 import {registry, color, symbol} from "./index.js";
-import {ordinalScheme, quantitativeScheme} from "./schemes.js";
+import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 export function ScaleO(scale, channels, {
   type,
@@ -26,8 +26,9 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   type,
+  domain = inferDomain(channels),
   range,
-  scheme = range === undefined ? type === "ordinal" ? "turbo" : "tableau10" : undefined,
+  scheme,
   unknown,
   ...options
 }) {
@@ -35,17 +36,24 @@ export function ScaleOrdinal(key, channels, {
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
     range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
-  } else if (registry.get(key) === color && scheme !== undefined) {
-    if (range !== undefined) {
-      const interpolate = quantitativeScheme(scheme);
-      const t0 = range[0], d = range[1] - range[0];
-      range = ({length: n}) => quantize(t => interpolate(t0 + d * t), n);
-    } else {
-      range = ordinalScheme(scheme);
+  } else if (registry.get(key) === color) {
+    if (scheme === undefined
+        && range === undefined
+        && (range = maybeBooleanRange(domain, "greys")) === undefined) {
+      scheme = type === "ordinal" ? "turbo" : "tableau10";
+    }
+    if (scheme !== undefined) {
+      if (range !== undefined) {
+        const interpolate = quantitativeScheme(scheme);
+        const t0 = range[0], d = range[1] - range[0];
+        range = ({length: n}) => quantize(t => interpolate(t0 + d * t), n);
+      } else {
+        range = ordinalScheme(scheme);
+      }
     }
   }
   if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
-  return ScaleO(scaleOrdinal().unknown(unknown), channels, {...options, type, range, hint});
+  return ScaleO(scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
 }
 
 export function ScalePoint(key, channels, {
