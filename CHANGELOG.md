@@ -19,7 +19,7 @@ Plot.arrow(data, {
 })
 ```
 
-The new [vector mark](./README.md#vector) similarly draws arrows, except that vectors are defined by a single position (*x* and *y*), magnitude (*length*), and direction (*rotate*). It is commonly used to visualize vector fields, such as a map of wind speed and direction.
+The new [vector mark](./README.md#vector) similarly draws arrows defined by a single position (*x* and *y*), magnitude (*length*), and direction (*rotate*). It is commonly used to visualize vector fields, such as a map of wind speed and direction.
 
 [<img src="./img/vector.png" width="660" alt="a vector field">](https://observablehq.com/@observablehq/plot-vector)
 
@@ -30,7 +30,7 @@ Plot.vector((T => d3.cross(T, T))(d3.ticks(0, 2 * Math.PI, 20)), {
 })
 ```
 
-The dot mark now supports a *symbol* channel and option, controlling the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The range of the *symbol* scale (the set of displayed symbols) defaults based on whether the symbols are stroked or filled to improve differentiability and give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. (The default *symbol* is still circle.)
+The dot mark now supports a *symbol* channel and option to control the displayed shape. The *symbol* channel can be used as an ordinal or categorical encoding. The the set of displayed symbols defaults based on whether the symbols are stroked or filled to improve differentiability and to give uniform visual weight. The symbol legend can also incorporate a redundant color encoding. Plot supports all of d3-shape’s built-in symbol types: *asterisk*, *circle*, *cross*, *diamond*, *diamond2*, *plus*, *square*, *square2*, *star*, *times*, *triangle*, *triangle2*, and *wye*. You can also specify a [custom symbol type](https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types) if desired.
 
 [<img src="./img/symbol.png" width="660" alt="a scatterplot of penguins by mass and flipper length">](https://observablehq.com/@observablehq/plot-dot)
 
@@ -54,7 +54,7 @@ The bin transform now supports the following shorthand reducers for the bin exte
 
 The window transform now supports the *first* and *last* reducers.
 
-The *color* scale now defaults to *identity* if all associated defined values are valid CSS colors.
+The *color* scale now defaults to *identity* if all associated defined values are valid CSS colors. Similarly, the new *symbol* scale defaults to *identity* if all associated defined values are valid symbol names (or symbol type objects).
 
 The *swatches* legend now wraps correctly in narrow windows.
 
