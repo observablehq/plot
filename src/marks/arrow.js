@@ -21,7 +21,7 @@ export class Arrow extends Mark {
       y2,
       bend = 0,
       headAngle = 60,
-      headLength = 8,
+      headLength = 8, // Disable the arrow with headLength = 0; or, use Plot.link.
       inset = 0,
       insetStart = inset,
       insetEnd = inset
@@ -71,6 +71,8 @@ export class Arrow extends Mark {
           .join("path")
             .call(applyDirectStyles, this)
             .attr("d", i => {
+              // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the
+              // ending line angle may be altered for inset swoopy arrows.
               let x1 = X1[i], y1 = Y1[i], x2 = X2[i], y2 = Y2[i];
               let lineAngle = Math.atan2(y2 - y1, x2 - x1);
               const lineLength = Math.hypot(x2 - x1, y2 - y1);
@@ -98,7 +100,7 @@ export class Arrow extends Mark {
                   }
                   // For the end inset, rotate the arrowhead so that it aligns
                   // with the truncated end of the arrow. Since the arrow is a
-                  // segment of the circle centered at <cx,cy>, we can compute
+                  // segment of the circle centered at ⟨cx,cy⟩, we can compute
                   // the angular difference to the new endpoint.
                   if (insetEnd) {
                     const [x, y] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign * Math.sign(insetEnd));
@@ -135,13 +137,21 @@ export class Arrow extends Mark {
   }
 }
 
-function pointPointCenter([ax, ay], [bx, by], r, sign = 1) {
+// Returns the center of a circle that goes through the two given points ⟨ax,ay⟩
+// and ⟨bx,by⟩ and has radius r. There are two such points; use the sign +1 or
+// -1 to chose between them. Returns [NaN, NaN] if r is too small.
+function pointPointCenter([ax, ay], [bx, by], r, sign) {
   const dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy);
   const k = sign * Math.sqrt(r * r - d * d / 4) / d;
   return [(ax + bx) / 2 - dy * k, (ay + by) / 2 + dx * k];
 }
 
-function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign = 1) {
+// Given two circles, one centered at ⟨ax,ay⟩ with radius ar, and the other
+// centered at ⟨bx,by⟩ with radius br, returns a point at which the two circles
+// intersect. There are typically two such points; use the sign +1 or -1 to
+// chose between them. Returns [NaN, NaN] if there is no intersection.
+// https://mathworld.wolfram.com/Circle-CircleIntersection.html
+function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   const dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy);
   const x = (dx * dx + dy * dy - br * br + ar * ar) / (2 * d);
   const y = sign * Math.sign(ay) * Math.sqrt(ar * ar - x * x);
