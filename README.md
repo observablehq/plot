@@ -8,6 +8,8 @@
 * [Changelog](./CHANGELOG.md)
 * [Contributing](./CONTRIBUTING.md)
 
+For a quick overview, see the interactive [Plot Cheatsheets](https://observablehq.com/@observablehq/plot-cheatsheets) or [download the PDF](https://static.observableusercontent.com/files/eae6008fa45cc8307a1f264b329c5b6f9d502dc6459715d51d0cf2ffbb8043b1645e3195434e42aca3c7c458fef8f9559f1d738baa09acc409a54bf0557cb629?response-content-disposition=attachment%3Bfilename*%3DUTF-8%27%27all-cheatsheets.pdf).
+
 ## Installing
 
 In Observable notebooks, Plot and D3 are available by default as part of the [standard library](https://observablehq.com/@observablehq/recommended-libraries).
