@@ -2,7 +2,7 @@
 
 ## 0.4.0
 
-Released January 20, 2022. *Note: This is not yet the default version on Observable. Coming soon.*
+Released January 20, 2022.
 
 The new [arrow mark](./README.md#arrow) draws arrows between pairs of points. It is similar to the [link mark](./README.md#link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
 
