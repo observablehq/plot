@@ -7,7 +7,7 @@ const {max, min} = Math;
 const defaults = {};
 
 export class Brush extends Mark {
-  constructor(data, {x = first, y = second, selection, onbrush, ...options} = {}) {
+  constructor(data, {x = first, y = second, selection, ...options} = {}) {
     super(
       data,
       [
@@ -19,7 +19,6 @@ export class Brush extends Mark {
       defaults
     );
     this.initialSelection = selection;
-    this.onbrush = onbrush;
   }
   render(
     index,
@@ -28,7 +27,6 @@ export class Brush extends Mark {
     {marginLeft, width, marginRight, marginTop, height, marginBottom}
   ) {
     let root;
-    const {onbrush} = this;
     const g = create("svg:g");
     const data = this.data;
     const bounds = [
@@ -51,13 +49,9 @@ export class Brush extends Mark {
         }
         const dots = selection ? Array.from(index, i => J[i]) : data;
 
-        if (typeof onbrush === "function") {
-          onbrush(event, dots);
-        } else if (root) {
+        if (root) {
           root.value = dots;
           root.dispatchEvent(new CustomEvent('input'));
-        }
-        if (root) {
           if (sourceEvent && type === "start") {
             for (const {b, g} of root.__brushes) {
               if (b !== brush) g.call(b.clear);
