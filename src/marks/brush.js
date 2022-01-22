@@ -1,108 +1,63 @@
-import {brush as brusher, brushX as brusherX, brushY as brusherY, create, extent} from "d3";
-import {identity, first, second} from "../options.js";
+import {brush as brusher, brushX as brusherX, brushY as brusherY, create} from "d3";
+import {identity, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 
-const {max, min} = Math;
+// TODO Allow brush styling?
+// TODO Disable standard mark channels (e.g., href, title)?
+const defaults = {
+  fill: null,
+  stroke: null
+};
 
-const defaults = {};
-
+// TODO Initial selection?
+// TODO Insets?
+// TODO Option to select nothing (not everything) when brush is cleared?
+// TODO For band scales, select when the brand overlaps the brush.
 export class Brush extends Mark {
-  constructor(data, {x = first, y = second, selection, ...options} = {}) {
+  constructor(data, {x, y, ...options} = {}) {
     super(
       data,
       [
-        {name: "picker", value: identity},
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true}
       ],
       options,
       defaults
     );
-    this.initialSelection = selection;
   }
-  render(
-    index,
-    {x, y},
-    {x: X, y: Y, picker: J},
-    {marginLeft, width, marginRight, marginTop, height, marginBottom}
-  ) {
-    let root;
-    const g = create("svg:g");
-    const data = this.data;
-    const bounds = [
-      [Math.floor(marginLeft), Math.floor(marginTop)],
-      [Math.ceil(width - marginRight), Math.ceil(height - marginBottom)]
-    ];
-    const brush = (X && Y ? brusher : X ? brusherX : brusherY)()
-      .extent(bounds)
-      .on("start brush end", (event) => {
-        const {type, selection, sourceEvent} = event;
-        if (selection) {
-          if (X) {
-            const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
-            index = index.filter(i => X[i] >= x0 && X[i] <= x1);
-          }
-          if (Y) {
-            const [y0, y1] = X ? [selection[0][1], selection[1][1]] : selection;
-            index = index.filter(i => Y[i] >= y0 && Y[i] <= y1);
-          }
-        }
-        const dots = selection ? Array.from(index, i => J[i]) : data;
-
-        if (root) {
-          root.value = dots;
-          root.dispatchEvent(new CustomEvent('input'));
-          if (sourceEvent && type === "start") {
-            for (const {b, g} of root.__brushes) {
-              if (b !== brush) g.call(b.clear);
+  render(index, scales, {x: X, y: Y}, dimensions) {
+    const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
+    const left = marginLeft;
+    const top = marginTop;
+    const right = width - marginRight;
+    const bottom = height - marginBottom;
+    return create("svg:g")
+        .call((X && Y ? brusher : X ? brusherX : brusherY)()
+          .extent([[left, top], [right, bottom]])
+          .on("start brush end", function(event) {
+            const {selection} = event;
+            let S = index;
+            if (selection) {
+              if (X) {
+                const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
+                S = S.filter(i => x0 <= X[i] && X[i] <= x1);
+              }
+              if (Y) {
+                const [y0, y1] = X ? [selection[0][1], selection[1][1]] : selection;
+                S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
+              }
             }
-          }
-        }
-      });
-
-    g.call(brush);
-
-    /* 🌶 async
-     * wait for the ownerSVGElement to:
-     * - send the first signal
-     * - register the multiple brushes (for faceting)
-     */
-    setTimeout(() => {
-      const svg = g.node().ownerSVGElement;
-      root = svg.parentElement?.nodeName === "FIGURE" ? svg.parentElement : svg;
-      if (!root.__brushes) root.__brushes = [];
-      root.__brushes.push({b: brush, g});
-
-      // initial setup works only on one facet
-      if (root.__brushes.length === 1) {
-        if (this.initialSelection) {
-          const s = this.initialSelection;
-          if (X && Y) {
-            const [x0, x1] = extent([x(s[0][0]), x(s[1][0])]);
-            const [y0, y1] = extent([y(s[0][1]), y(s[1][1])]);
-            g.call(brush.move, [
-              [ max(x0, bounds[0][0]), max(y0, bounds[0][1]) ],
-              [ min(x1, bounds[1][0]), min(y1, bounds[1][1]) ]
-            ]);
-          } else if (X) {
-            const [x0, x1] = extent(s.map(x));
-            g.call(brush.move, [ max(x0, bounds[0][0]), min(x1, bounds[1][0]) ]);
-          } else if (Y) {
-            const [y0, y1] = extent(s.map(y));
-            g.call(brush.move, [ max(y0, bounds[0][1]), min(y1, bounds[1][1]) ]);
-          }
-        } else {
-          g.call(brush.clear);
-        }
-      }
-    }, 1);
-
-    return g.node();
+            this.selection = S;
+            this.dispatchEvent(new Event("input", {bubbles: true}));
+          }))
+        .property("selection", index)
+      .node();
   }
 }
 
-export function brush(data, options) {
-  return new Brush(data, options);
+export function brush(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
+  return new Brush(data, {...options, x, y});
 }
 
 export function brushX(data, {x = identity, ...options} = {}) {

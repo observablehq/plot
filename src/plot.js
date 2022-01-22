@@ -4,7 +4,7 @@ import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
+import {arrayify, isOptions, keyword, range, first, second, where, take} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
@@ -98,7 +98,14 @@ export function plot(options = {}) {
     const values = applyScales(channels, scales);
     const index = filter(markIndex.get(mark), channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
-    if (node != null) svg.appendChild(node);
+    if (node != null) {
+      // TODO More explicit indication that a mark defines a value?
+      if (node.selection !== undefined) {
+        svg.value = take(mark.data, node.selection);
+        node.addEventListener("input", () => svg.value = take(mark.data, node.selection));
+      }
+      svg.appendChild(node);
+    }
   }
 
   // Wrap the plot in a figure with a caption, if desired.
