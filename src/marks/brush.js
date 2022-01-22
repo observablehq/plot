@@ -1,9 +1,11 @@
 import {brush as brusher, brushX as brusherX, brushY as brusherY, create, extent} from "d3";
-import {filter} from "../defined.js";
-import {Mark, identity, first, second} from "../mark.js";
+import {identity, first, second} from "../options.js";
+import {Mark} from "../plot.js";
+
 const {max, min} = Math;
 
 const defaults = {};
+
 export class Brush extends Mark {
   constructor(data, {x = first, y = second, selection, onbrush, ...options} = {}) {
     super(
@@ -20,7 +22,7 @@ export class Brush extends Mark {
     this.onbrush = onbrush;
   }
   render(
-    I,
+    index,
     {x, y},
     {x: X, y: Y, picker: J},
     {marginLeft, width, marginRight, marginTop, height, marginBottom}
@@ -37,7 +39,6 @@ export class Brush extends Mark {
       .extent(bounds)
       .on("start brush end", (event) => {
         const {type, selection, sourceEvent} = event;
-        let index = filter(I, X, Y);
         if (selection) {
           if (X) {
             const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
@@ -64,13 +65,13 @@ export class Brush extends Mark {
           }
         }
       });
-  
+
     g.call(brush);
-    
+
     /* 🌶 async
      * wait for the ownerSVGElement to:
      * - send the first signal
-     * - register the multiple brushes (for faceting) 
+     * - register the multiple brushes (for faceting)
      */
     setTimeout(() => {
       const svg = g.node().ownerSVGElement;
@@ -101,7 +102,7 @@ export class Brush extends Mark {
         }
       }
     }, 1);
-  
+
     return g.node();
   }
 }
