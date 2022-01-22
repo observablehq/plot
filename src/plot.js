@@ -100,6 +100,7 @@ export function plot(options = {}) {
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) {
       // TODO More explicit indication that a mark defines a value?
+      // TODO Will the name “selection” lead to a false positive on random SVG elements?
       if (node.selection !== undefined) {
         svg.value = take(mark.data, node.selection);
         node.addEventListener("input", () => svg.value = take(mark.data, node.selection));
