@@ -1,8 +1,8 @@
 import {create} from "d3";
 import {radians} from "../math.js";
-import {maybeNumberChannel, maybeTuple, keyword} from "../options.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
   fill: null,
@@ -13,7 +13,7 @@ const defaults = {
 
 export class Vector extends Mark {
   constructor(data, options = {}) {
-    const {x, y, length, rotate, anchor = "middle"} = options;
+    const {x, y, length, rotate, anchor = "middle", frameAnchor} = options;
     const [vl, cl] = maybeNumberChannel(length, 12);
     const [vr, cr] = maybeNumberChannel(rotate, 0);
     super(
@@ -30,19 +30,16 @@ export class Vector extends Mark {
     this.length = cl;
     this.rotate = cr;
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
+    this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(
-    index,
-    {x, y},
-    channels,
-    {width, height, marginTop, marginRight, marginBottom, marginLeft}
-  ) {
+  render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {dx, dy, length, rotate, anchor} = this;
+    const [cx, cy] = applyFrameAnchor(this, dimensions);
     const fl = L ? i => L[i] : () => length;
     const fr = R ? i => R[i] : () => rotate;
-    const fx = X ? i => X[i] : () => (marginLeft + width - marginRight) / 2;
-    const fy = Y ? i => Y[i] : () => (marginTop + height - marginBottom) / 2;
+    const fx = X ? i => X[i] : () => cx;
+    const fy = Y ? i => Y[i] : () => cy;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g")
         .attr("fill", "none")
@@ -64,6 +61,6 @@ export class Vector extends Mark {
 }
 
 export function vector(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Vector(data, {...options, x, y});
 }

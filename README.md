@@ -1188,9 +1188,12 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **length** - the length in pixels; bound to the *length* scale; defaults to 12
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+
 The following options are also supported:
 
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
+* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
 
 If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
 
