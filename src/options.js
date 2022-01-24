@@ -240,10 +240,14 @@ export function isEvery(values, is) {
 // strictly requires that the value be a string; we might want to apply string
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
+// https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
 export function isColor(value) {
   if (typeof value !== "string") return false;
-  value = value.toLowerCase();
-  return value === "currentcolor" || value === "none" || color(value) !== null;
+  value = value.toLowerCase().trim();
+  return value === "none"
+    || value === "currentcolor"
+    || (value.startsWith("url(") && value.endsWith(")")) // <funciri>, e.g. pattern or gradient
+    || color(value) !== null;
 }
 
 const symbols = new Map([
