@@ -1111,6 +1111,8 @@ The following text-specific constant options are also supported:
 * **textAnchor** - the [text anchor](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/text-anchor) for horizontal position; start, end, or middle
 * **lineAnchor** - the line anchor for vertical position; top, bottom, or middle
 * **lineHeight** - the line height in ems; defaults to 1
+* **lineWidth** - the line width in ems, for wrapping; defaults to Infinity
+* **monospace** - if true, changes the default fontFamily and metrics to monospace
 * **fontFamily** - the font name; defaults to [system-ui](https://drafts.csswg.org/css-fonts-4/#valdef-font-family-system-ui)
 * **fontSize** - the font size in pixels; defaults to 10
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
@@ -1118,6 +1120,8 @@ The following text-specific constant options are also supported:
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
 * **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
+
+If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
 The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
