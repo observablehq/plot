@@ -1,0 +1,30 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="199" height="199"></rect>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,10.5)">
+    <path d="M199,0l-70.71067811865476,70.71067811865474m28.284271247461902,2.842170943040401e-15l-28.284271247461902,-2.842170943040401e-15l2.842170943040401e-15,-28.284271247461902"></path>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,-9.5)">
+    <path d="M0,199l70.71067811865474,-70.71067811865476m-28.284271247461902,2.842170943040401e-15l28.284271247461902,-2.842170943040401e-15l2.842170943040401e-15,28.284271247461902"></path>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,10.5)">
+    <path d="M0,0l70.71067811865476,70.71067811865474m-2.842170943040401e-15,-28.284271247461902l2.842170943040401e-15,28.284271247461902l-28.284271247461902,2.842170943040401e-15"></path>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,-9.5)">
+    <path d="M199,199l-70.71067811865474,-70.71067811865476m-2.842170943040401e-15,28.284271247461902l2.842170943040401e-15,-28.284271247461902l28.284271247461902,2.842170943040401e-15"></path>
+  </g>
+  <g transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(99.5,99.5)">Ο</text></g>
+</svg>

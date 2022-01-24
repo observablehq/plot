@@ -138,6 +138,7 @@ export {default as usPresidentialForecast2016} from "./us-presidential-forecast-
 export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
 export {default as vectorField} from "./vector-field.js";
+export {default as vectorFrame} from "./vector-frame.js";
 export {default as wealthBritainBar} from "./wealth-britain-bar.js";
 export {default as wealthBritainProportionPlot} from "./wealth-britain-proportion-plot.js";
 export {default as wordCloud} from "./word-cloud.js";
