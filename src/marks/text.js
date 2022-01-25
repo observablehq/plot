@@ -39,7 +39,10 @@ export class Text extends Mark {
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text, filter: nonempty}
       ],
-      options,
+      {
+        ...options.stroke && {paintOrder: "stroke", strokeWidth: 3},
+        ...options
+      },
       defaults
     );
     this.rotate = crotate;
