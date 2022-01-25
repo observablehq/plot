@@ -95,6 +95,8 @@ export {default as penguinMassSpecies} from "./penguin-mass-species.js";
 export {default as penguinSex} from "./penguin-sex.js";
 export {default as penguinSexMassCulmenSpecies} from "./penguin-sex-mass-culmen-species.js";
 export {default as penguinSizeSymbols} from "./penguin-size-symbols.js";
+export {default as penguinSpeciesCheysson} from "./penguin-species-cheysson.js";
+export {default as penguinSpeciesGradient} from "./penguin-species-gradient.js";
 export {default as penguinSpeciesGroup} from "./penguin-species-group.js";
 export {default as penguinSpeciesIsland} from "./penguin-species-island.js";
 export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-relative.js";
