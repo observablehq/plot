@@ -624,6 +624,7 @@ All marks support the following style options:
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)
+* **paintOrder** - the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order) (*e.g.*, *stroke*)
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel

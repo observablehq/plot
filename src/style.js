@@ -22,6 +22,7 @@ export function styles(
     strokeDasharray,
     opacity,
     mixBlendMode,
+    paintOrder,
     shapeRendering
   },
   channels,
@@ -96,6 +97,7 @@ export function styles(
   mark.target = string(target);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
+  mark.paintOrder = impliedString(paintOrder, "normal");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return [
@@ -162,6 +164,7 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
+  applyAttr(selection, "paint-order", mark.paintOrder);
 }
 
 export function applyDirectStyles(selection, mark) {
