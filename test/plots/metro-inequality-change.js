@@ -34,7 +34,6 @@ export default async function() {
         text: "nyt_display",
         fill: "black",
         stroke: "white",
-        strokeWidth: 4,
         dy: -8
       })
     ]

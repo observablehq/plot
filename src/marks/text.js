@@ -6,7 +6,9 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
-  strokeLinejoin: "round"
+  strokeLinejoin: "round",
+  strokeWidth: 3,
+  paintOrder: "stroke"
 };
 
 export class Text extends Mark {
@@ -39,10 +41,7 @@ export class Text extends Mark {
         {name: "rotate", value: numberChannel(vrotate), optional: true},
         {name: "text", value: text, filter: nonempty}
       ],
-      {
-        ...options.stroke && {paintOrder: "stroke", strokeWidth: 3},
-        ...options
-      },
+      options,
       defaults
     );
     this.rotate = crotate;
