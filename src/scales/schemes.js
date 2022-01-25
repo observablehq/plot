@@ -144,7 +144,7 @@ const ordinalSchemes = new Map([
 function scheme9(scheme, interpolate) {
   return ({length: n}) => {
     if (n === 1) return [scheme[3][1]]; // favor midpoint
-    if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor extrema
+    if (n === 2) return [scheme[3][1], scheme[3][2]]; // favor darker
     n = Math.max(3, Math.floor(n));
     return n > 9 ? quantize(interpolate, n) : scheme[n];
   };
