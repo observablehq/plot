@@ -718,7 +718,7 @@ it("plot(…).scale('color') can return a threshold scale with an explicit schem
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
-    range: [d3.schemeBlues[3][0], d3.schemeBlues[3][2]],
+    range: [d3.schemeBlues[3][1], d3.schemeBlues[3][2]],
     label: "body_mass_g"
   });
 });
