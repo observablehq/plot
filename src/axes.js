@@ -71,7 +71,7 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
   }
   for (const [key, type] of registry) {
     if (type !== position && scales[key]) { // not already handled above
-      autoScaleLabel(key, scales[key], channels.get(key), options[key]);
+      autoScaleLabel(scales[key], channels.get(key), options[key]);
     }
   }
 }
@@ -83,10 +83,8 @@ function autoAxisLabelsX(axis, scale, channels) {
       : scaleOrder(scale) < 0 ? "left"
       : "right";
   }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "x");
-  }
-  scale.label = axis.label;
+  autoScaleLabel(scale, channels, axis);
+  autoAxisLabel("x", scale, axis);
 }
 
 // Mutates axis.labelAnchor, axis.label, scale.label!
@@ -96,19 +94,42 @@ function autoAxisLabelsY(axis, opposite, scale, channels) {
       : opposite && opposite.axis === "top" ? "bottom" // TODO scaleOrder?
       : "top";
   }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "y");
-  }
-  scale.label = axis.label;
+  autoScaleLabel(scale, channels, axis);
+  autoAxisLabel("y", scale, axis);
 }
 
-// Mutates scale.label!
-function autoScaleLabel(key, scale, channels, options) {
-  if (options) {
-    scale.label = options.label;
-  }
+// Mutates scale.label, axis.labelArrow!
+function autoScaleLabel(scale, channels, axis) {
+  if (axis) scale.label = axis.label; // propagate manual label, if any, to scale
   if (scale.label === undefined) {
-    scale.label = inferLabel(channels, scale, null, key);
+    scale.label = inferLabel(channels, scale);
+    if (axis) axis.label = scale.label; // propagate automatic label, if used, to axis
+  } else if (axis?.labelArrow === "auto") {
+    axis.labelArrow = "none"; // clear default label arrow if explicit label
+  }
+}
+
+// Mutates axis.label!
+function autoAxisLabel(key, scale, axis) {
+  let {label, labelAnchor, labelArrow} = axis;
+  if (label != null) {
+    if (labelArrow === "auto" && !isOrdinalScale(scale)) {
+      const order = scaleOrder(scale);
+      if (order) {
+        if (key === "x" || labelAnchor === "center") {
+          labelArrow = key === "x" === order < 0 ? "left" : "right";
+        } else {
+          labelArrow = order < 0 ? "up" : "down";
+        }
+      }
+    }
+    switch (labelArrow) {
+      case "left": label = `← ${label}`; break;
+      case "right": label = `${label} →`; break;
+      case "up": label = `↑ ${label}`; break;
+      case "down": label = `↓ ${label}`; break;
+    }
+    axis.label = label;
   }
 }
 
@@ -116,31 +137,19 @@ function autoScaleLabel(key, scale, channels, options) {
 // consistently labeled (i.e., have the same value if not undefined), and the
 // corresponding axis doesn’t already have an explicit label, then the channels’
 // label is promoted to the corresponding axis.
-function inferLabel(channels = [], scale, axis, key) {
-  let candidate;
-  for (const {label} of channels) {
-    if (label === undefined) continue;
-    if (candidate === undefined) candidate = label;
-    else if (candidate !== label) return;
+function inferLabel(channels = [], scale) {
+  let label;
+  for (const {label: channelLabel} of channels) {
+    if (channelLabel === undefined) continue;
+    if (label === undefined) label = channelLabel;
+    else if (label !== channelLabel) return;
   }
-  if (candidate !== undefined) {
+  if (label !== undefined) {
     // Ignore the implicit label for temporal scales if it’s simply “date”.
-    if (isTemporalScale(scale) && /^(date|time|year)$/i.test(candidate)) return;
-    if (!isOrdinalScale(scale)) {
-      if (scale.percent) candidate = `${candidate} (%)`;
-      if (key === "x" || key === "y") {
-        const order = scaleOrder(scale);
-        if (order) {
-          if (key === "x" || (axis && axis.labelAnchor === "center")) {
-            candidate = key === "x" === order < 0 ? `← ${candidate}` : `${candidate} →`;
-          } else {
-            candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
-          }
-        }
-      }
-    }
+    if (isTemporalScale(scale) && /^(date|time|year)$/i.test(label)) return;
+    if (!isOrdinalScale(scale) && scale.percent) label = `${label} (%)`;
   }
-  return candidate;
+  return label;
 }
 
 export function inferFontVariant(scale) {

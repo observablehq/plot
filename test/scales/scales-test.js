@@ -44,7 +44,7 @@ it("plot(…).scale('x') returns the expected linear scale for penguins", async 
     range: [20, 620],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "body_mass_g →"
+    label: "body_mass_g"
   });
 });
 
@@ -307,7 +307,7 @@ it("plot(…).scale(name) promotes the given zero option to the domain", async (
     range: [20, 620],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "body_mass_g →"
+    label: "body_mass_g"
   });
 });
 
@@ -320,7 +320,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending domai
     range: [20, 620],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "← body_mass_g"
+    label: "body_mass_g"
   });
 });
 
@@ -333,7 +333,7 @@ it("plot(…).scale(name) handles the zero option correctly for polylinear domai
     range: [20, 320, 620],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "body_mass_g →"
+    label: "body_mass_g"
   });
 });
 
@@ -346,7 +346,7 @@ it("plot(…).scale(name) handles the zero option correctly for descending polyl
     range: [20, 320, 620],
     interpolate: d3.interpolateNumber,
     clamp: false,
-    label: "← body_mass_g"
+    label: "body_mass_g"
   });
 });
 
@@ -1174,13 +1174,13 @@ it("plot({padding, …}).scale('x').padding reflects the given padding option fo
 });
 
 it("plot(…).scale('x').label reflects the default label for named fields, possibly reversed", () => {
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot().scale("x").label, "foo →");
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {reverse: true}}).scale("x").label, "← foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot().scale("x").label, "foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: "foo"}).plot({x: {reverse: true}}).scale("x").label, "foo");
 });
 
 it("plot(…).scale('y').label reflects the default label for named fields, possibly reversed", () => {
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot().scale("y").label, "↑ foo");
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot({y: {reverse: true}}).scale("y").label, "↓ foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot().scale("y").label, "foo");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {y: "foo"}).plot({y: {reverse: true}}).scale("y").label, "foo");
 });
 
 it("plot(…).scale('x').label reflects the explicit label", () => {
@@ -1190,13 +1190,13 @@ it("plot(…).scale('x').label reflects the explicit label", () => {
 
 it("plot(…).scale('x').label reflects a function label, if not overridden by an explicit label", () => {
   const foo = Object.assign(d => d.foo, {label: "Foo"});
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo →");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo");
   assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot({x: {label: null}}).scale("x").label, null);
 });
 
 it("plot(…).scale('x').label reflects a channel transform label, if not overridden by an explicit label", () => {
   const foo = {transform: data => data.map(d => d.foo), label: "Foo"};
-  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo →");
+  assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot().scale("x").label, "Foo");
   assert.strictEqual(Plot.dot([{foo: 1}, {foo: 2}, {foo: 3}], {x: foo}).plot({x: {label: null}}).scale("x").label, null);
 });
 
@@ -1305,7 +1305,7 @@ it("plot(…).scale(name) reflects the given custom interpolator", async () => {
     range: [20, 620],
     interpolate,
     clamp: false,
-    label: "body_mass_g →"
+    label: "body_mass_g"
   });
 });
 
@@ -1362,7 +1362,7 @@ it("plot(…).scale(name) reflects the given transform", async () => {
     clamp: false,
     interpolate: d3.interpolateNumber,
     transform,
-    label: "body_mass_g →"
+    label: "body_mass_g"
   });
 });
 

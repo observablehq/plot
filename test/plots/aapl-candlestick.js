@@ -7,7 +7,8 @@ export default async function() {
     inset: 6,
     grid: true,
     y: {
-      label: "↑ Apple stock price ($)",
+      label: "Apple stock price ($)",
+      labelArrow: "up",
       fontVariant: null
     },
     color: {

@@ -4,6 +4,12 @@ import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
 import {impliedString} from "./style.js";
 
+function maybeLabelArrow(labelArrow = true) {
+  return labelArrow === true ? "auto"
+    : labelArrow === false || labelArrow == null ? "none"
+    : keyword(labelArrow, "labelArrow", ["auto", "none", "up", "down", "left", "right"]);
+}
+
 export class AxisX {
   constructor({
     name = "x",
@@ -16,6 +22,7 @@ export class AxisX {
     grid,
     label,
     labelAnchor,
+    labelArrow,
     labelOffset,
     line,
     tickRotate
@@ -30,6 +37,7 @@ export class AxisX {
     this.grid = boolean(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
+    this.labelArrow = maybeLabelArrow(labelArrow);
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
@@ -103,6 +111,7 @@ export class AxisY {
     grid,
     label,
     labelAnchor,
+    labelArrow,
     labelOffset,
     line,
     tickRotate
@@ -117,6 +126,7 @@ export class AxisY {
     this.grid = boolean(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
+    this.labelArrow = maybeLabelArrow(labelArrow);
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
