@@ -67,7 +67,9 @@ export function styles(
   const [vopacity, copacity] = maybeNumberChannel(opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
-  // defaults if the stroke is not (constant) none.
+  // defaults if the stroke is not the constant none. (If stroke is a channel,
+  // then cstroke will be undefined, but there’s still a stroke; hence we don’t
+  // use the none helper here.)
   if (cstroke !== "none") {
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
     if (strokeLinecap === undefined) strokeLinecap = defaultStrokeLinecap;
@@ -207,7 +209,7 @@ export function impliedNumber(value, impliedValue) {
 }
 
 export function none(color) {
-  return color == null || color === "none";
+  return color == null || /^\s*none\s*$/i.test(color);
 }
 
 const validClassName = /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
