@@ -32,7 +32,8 @@ export function styles(
     strokeWidth: defaultStrokeWidth,
     strokeLinecap: defaultStrokeLinecap,
     strokeLinejoin: defaultStrokeLinejoin,
-    strokeMiterlimit: defaultStrokeMiterlimit
+    strokeMiterlimit: defaultStrokeMiterlimit,
+    paintOrder: defaultPaintOrder
   }
 ) {
 
@@ -75,6 +76,10 @@ export function styles(
     if (strokeLinecap === undefined) strokeLinecap = defaultStrokeLinecap;
     if (strokeLinejoin === undefined) strokeLinejoin = defaultStrokeLinejoin;
     if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
+
+    // The paint order only takes effect if there is both a fill and a stroke
+    // (at least if we ignore markers, which no built-in marks currently use).
+    if (cfill !== "none" && paintOrder === undefined) paintOrder = defaultPaintOrder;
   }
 
   const [vstrokeWidth, cstrokeWidth] = maybeNumberChannel(strokeWidth);

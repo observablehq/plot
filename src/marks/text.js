@@ -6,7 +6,9 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
-  strokeLinejoin: "round"
+  strokeLinejoin: "round",
+  strokeWidth: 3,
+  paintOrder: "stroke"
 };
 
 export class Text extends Mark {

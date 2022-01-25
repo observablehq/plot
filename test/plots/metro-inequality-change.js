@@ -32,6 +32,8 @@ export default async function() {
         y: "R90_10_2015",
         filter: "highlight",
         text: "nyt_display",
+        fill: "currentColor",
+        stroke: "white",
         dy: -8
       })
     ]

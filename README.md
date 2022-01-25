@@ -1128,6 +1128,8 @@ The **fontSize** and **rotate** options can be specified as either channels or c
 
 If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
 
+The **paintOrder** option defaults to “stroke” and the **strokeWidth** option defaults to 3. By setting **fill** to the foreground color and **stroke** to the background color (such as black and white, respectively), you can surround text with a “halo” which may improve legibility against a busy background.
+
 #### Plot.text(*data*, *options*)
 
 Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
