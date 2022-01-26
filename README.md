@@ -1826,7 +1826,7 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 
 ## Layouts
 
-A layout processes the transformed and scaled values of a mark before rendering. A layout might, for example, modify the marks’ positions to avoid occlusion. A layout operates in the representation space (such as pixels) rather than data space.
+A layout processes the transformed and scaled values of a mark before rendering. A layout might, for example, modify the marks’ positions to avoid occlusion. A layout operates in the representation space (such as pixels, *i.e.* after scales have been applied) rather than data space.
 
 ### Dodge
 
