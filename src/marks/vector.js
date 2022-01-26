@@ -1,6 +1,7 @@
 import {create} from "d3";
 import {radians} from "../math.js";
-import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
+import {positive} from "../defined.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeSymbolChannel, maybeTuple, keyword} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -13,14 +14,19 @@ const defaults = {
 
 export class Vector extends Mark {
   constructor(data, options = {}) {
-    const {x, y, length, rotate, anchor = "middle", frameAnchor} = options;
+    const {x, y, length, rotate, anchor = "middle", frameAnchor, symbol, r} = options;
     const [vl, cl] = maybeNumberChannel(length, 12);
     const [vr, cr] = maybeNumberChannel(rotate, 0);
+
+    // compute the r channel if present, as it might be used by a layout (such as dodgeY)
+    const [vsymbol] = maybeSymbolChannel(symbol);
+    const [vradius] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
+        {name: "r", value: vradius, scale: "r", filter: positive, optional: true},
         {name: "length", value: vl, scale: "length", optional: true},
         {name: "rotate", value: vr, optional: true}
       ],

@@ -1,7 +1,7 @@
 import {create, isoFormat, namespaces} from "d3";
-import {nonempty} from "../defined.js";
+import {nonempty, positive} from "../defined.js";
 import {formatNumber} from "../format.js";
-import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
+import {indexOf, identity, string, maybeNumberChannel, maybeSymbolChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
 
@@ -28,10 +28,16 @@ export class Text extends Mark {
       fontStyle,
       fontVariant,
       fontWeight,
-      rotate
+      rotate,
+      symbol,
+      r
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
+
+    // compute the r channel if present, as it might be used by a layout (such as dodgeY)
+    const [vsymbol] = maybeSymbolChannel(symbol);
+    const [vr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
     super(
       data,
       [
@@ -39,6 +45,7 @@ export class Text extends Mark {
         {name: "y", value: y, scale: "y", optional: true},
         {name: "fontSize", value: vfontSize, optional: true},
         {name: "rotate", value: numberChannel(vrotate), optional: true},
+        {name: "r", value: vr, scale: "r", filter: positive, optional: true},
         {name: "text", value: text, filter: nonempty}
       ],
       options,
