@@ -39,6 +39,7 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function dodge(y, x, anchor, padding = 1, options) {
+  padding = +padding;
   const [, r] = maybeNumberChannel(options.r, 3);
   return layout(options, (I, scales, {[x]: X, r: R}, dimensions) => {
     if (X == null) throw new Error(`missing channel: ${x}`);
