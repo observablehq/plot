@@ -313,9 +313,11 @@ class Facet extends Mark {
             .each(function(key) {
               const marksFacetIndex = marksIndexByFacet.get(key);
               for (let i = 0; i < marks.length; ++i) {
-                const values = marksValues[i];
+                const mark = marks[i];
+                let values = marksValues[i];
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
-                const node = marks[i].render(index, scales, values, subdimensions);
+                if (mark.layout != null) values = mark.layout(index, scales, values, subdimensions);
+                const node = mark.render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
             }))
