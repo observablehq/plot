@@ -1840,7 +1840,6 @@ Plot.dodgeY({x: "date"})
 
 If the marks are arranged along the *x* axis, the dodgeY layout piles them vertically, keeping their *x* position unchanged, and creating a *y* position that avoids overlapping.
 
-
 #### Plot.dodgeX([*dodgeOptions*, ]*options*)
 
 ```js
@@ -1849,8 +1848,8 @@ Plot.dodgeX({y: "value"})
 
 Equivalent to Plot.dodgeY, but the piling is horizontal, keeping the marks’ *y* position unchanged, and creating an *x* position that avoids overlapping.
 
-
 The dodge layouts accept the following options:
+
 * **padding** — a number of pixels added to the radius of the mark to estimate its size
 * **anchor** - the layout’s anchor: one of *middle*, *right*, and *left* (default) for dodgeX, and one of *middle*, *top*, and *bottom* (default) for dodgeY.
 
