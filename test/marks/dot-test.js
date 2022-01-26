@@ -22,6 +22,10 @@ it("dot() has the expected defaults", () => {
   assert.strictEqual(dot.shapeRendering, undefined);
 });
 
+it("dot accepts undefined data", () => {
+  Plot.dot({length: 1}).initialize();
+});
+
 it("dot(data, {r}) allows r to be a constant radius", () => {
   const dot = Plot.dot(undefined, {r: 42});
   assert.strictEqual(dot.r, 42);

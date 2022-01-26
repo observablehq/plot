@@ -24,8 +24,8 @@ export const zero = () => 0;
 export const string = x => x == null ? x : `${x}`;
 export const number = x => x == null ? x : +x;
 export const boolean = x => x == null ? x : !!x;
-export const first = d => d[0];
-export const second = d => d[1];
+export const first = x => x ? x[0] : undefined;
+export const second = x => x ? x[1] : undefined;
 export const constant = x => () => x;
 
 // Some channels may allow a string constant to be specified; to differentiate
