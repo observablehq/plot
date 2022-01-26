@@ -13,10 +13,10 @@
       white-space: pre;
     }
   </style>
-  <g stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.2" transform="translate(0,0.5)">
     <line x1="0" x2="499" y1="239" y2="239"></line>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="link" fill="none" stroke="currentColor" stroke-width="2" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M249.5,239L109.50798013197635,230.9032894157891"></path>
     <path d="M249.5,239L224.29829478293266,234.5840922355424"></path>
     <path d="M249.5,239L203.889237260121,225.41022354248184"></path>
@@ -44,7 +44,7 @@
     <path d="M249.5,239L282.8432748649403,233.15750541083162"></path>
     <path d="M249.5,239L250.7684473454431,238.92663688218053"></path>
   </g>
-  <g font-size="8" transform="translate(0.5,0.5)"><text transform="translate(10,225.1480519622001) rotate(-86.53846153846153)">
+  <g aria-label="text" font-size="8" transform="translate(0.5,0.5)"><text transform="translate(10,225.1480519622001) rotate(-86.53846153846153)">
       <tspan x="0" y="-0.216em">A</tspan>
       <tspan x="0" y="0.984em">8.2%</tspan>
     </text><text transform="translate(13.492449307032134,197.64614848086194) rotate(-79.61538461538461)">

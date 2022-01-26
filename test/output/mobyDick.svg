@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g text-anchor="start" font-size="14" transform="translate(0.5,0.5)"><text transform="translate(0,0)">
+  <g aria-label="text" text-anchor="start" font-size="14" transform="translate(0.5,0.5)"><text transform="translate(0,0)">
       <tspan x="0" y="0.852em">Call me Ishmael. Some years ago—never mind how long precisely—having little or</tspan>
       <tspan x="0" y="2.052em">no money in my purse, and nothing particular to interest me on shore, I thought I</tspan>
       <tspan x="0" y="3.252em">would sail about a little and see the watery part of the world. It is a way I have of</tspan>

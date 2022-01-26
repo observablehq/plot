@@ -8,6 +8,7 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
+  ariaLabel: "area",
   strokeWidth: 1,
   strokeMiterlimit: 1
 };

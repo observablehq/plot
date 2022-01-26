@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,324.40833015408174)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">155</text>
@@ -47,7 +47,7 @@
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">190</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Apple stock price ($)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(117.53999999999999,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">December</text>
@@ -73,7 +73,7 @@
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">May</text>
     </g>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="200.60105641690916" y2="185.86145643196028"></line>
     <line x1="61.22285714285714" x2="61.22285714285714" y1="201.27487512456383" y2="192.85224656173585"></line>
     <line x1="66.29714285714286" x2="66.29714285714286" y1="190.99925985528523" y2="166.40520129708474"></line>
@@ -195,7 +195,7 @@
     <line x1="928.9257142857143" x2="928.9257142857143" y1="48.90955811352057" y2="26"></line>
     <line x1="934" x2="934" y1="50.59405855820043" y2="28.610989586590833"></line>
   </g>
-  <g stroke-width="4" stroke-linecap="round" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke-width="4" stroke-linecap="round" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="188.80942696472124" y2="196.30555796300976" stroke="#e41a1c"></line>
     <line x1="61.22285714285714" x2="61.22285714285714" y1="195.12639838684223" y2="197.73738797343327" stroke="#e41a1c"></line>
     <line x1="66.29714285714286" x2="66.29714285714286" y1="190.99925985528523" y2="171.12185644701134" stroke="#4daf4a"></line>

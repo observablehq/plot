@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">J</text>
     </g>
@@ -51,7 +51,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">D</text>
     </g>
   </g>
-  <g transform="translate(0,270)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" transform="translate(0,270)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(60.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
     </g>
@@ -146,7 +146,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">31</text>
     </g>
   </g>
-  <g>
+  <g aria-label="cell">
     <rect x="51.5" width="17" y="25.5" height="19" fill="rgb(38, 191, 223)"></rect>
     <rect x="69.5" width="17" y="25.5" height="19" fill="rgb(52, 146, 248)"></rect>
     <rect x="87.5" width="17" y="25.5" height="19" fill="rgb(43, 169, 239)"></rect>

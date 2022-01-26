@@ -13,18 +13,18 @@
       white-space: pre;
     }
   </style>
-  <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="199" height="199"></rect>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,10.5)">
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="199" height="199"></rect>
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,10.5)">
     <path d="M199,0l-70.71067811865476,70.71067811865474m28.284271247461902,2.842170943040401e-15l-28.284271247461902,-2.842170943040401e-15l2.842170943040401e-15,-28.284271247461902"></path>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,-9.5)">
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,-9.5)">
     <path d="M0,199l70.71067811865474,-70.71067811865476m-28.284271247461902,2.842170943040401e-15l28.284271247461902,-2.842170943040401e-15l2.842170943040401e-15,28.284271247461902"></path>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,10.5)">
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(10.5,10.5)">
     <path d="M0,0l70.71067811865476,70.71067811865474m-2.842170943040401e-15,-28.284271247461902l2.842170943040401e-15,28.284271247461902l-28.284271247461902,2.842170943040401e-15"></path>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,-9.5)">
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(-9.5,-9.5)">
     <path d="M199,199l-70.71067811865474,-70.71067811865476m-2.842170943040401e-15,28.284271247461902l2.842170943040401e-15,-28.284271247461902l28.284271247461902,2.842170943040401e-15"></path>
   </g>
-  <g transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(99.5,99.5)">Ο</text></g>
+  <g aria-label="text" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(99.5,99.5)">Ο</text></g>
 </svg>

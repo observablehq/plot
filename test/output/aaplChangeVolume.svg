@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,360.19431858593606)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">7.1</text>
@@ -71,7 +71,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8.4</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Volume (log₁₀)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(64.45301139559466,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">−6</text>
@@ -105,10 +105,10 @@
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">+8</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Daily change (%) →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="290.9710378017005" x2="290.9710378017005" y1="20" y2="370"></line>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="318.038554974266" cy="154.94812050220898" r="4.960120564280919"></circle>
     <circle cx="207.6869038789485" cy="116.65204834504294" r="5.891267650927495"></circle>
     <circle cx="202.14399026708406" cy="60.334024095311776" r="7.587287131556231"></circle>

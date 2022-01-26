@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(20.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.2</text>
     </g>
@@ -45,7 +45,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
     </g>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="20" cy="15" r="3"></circle>
     <circle cx="439.3820026016113" cy="15" r="3"></circle>
     <circle cx="620" cy="15" r="3"></circle>

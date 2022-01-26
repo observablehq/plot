@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(560,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" transform="translate(560,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,113.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Adelie</text>
     </g>
@@ -24,7 +24,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Gentoo</text>
     </g><text fill="currentColor" transform="translate(80,300) rotate(-90)" dy="-0.32em" text-anchor="middle">species</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(120.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
@@ -37,7 +37,7 @@
   </g>
   <g>
     <g transform="translate(0,30)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161M358,0h161"></path>
@@ -61,7 +61,7 @@
       </g>
     </g>
     <g transform="translate(0,216)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161"></path>
@@ -85,7 +85,7 @@
       </g>
     </g>
     <g transform="translate(0,402)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161M358,0h161"></path>
@@ -109,7 +109,7 @@
       </g>
     </g>
     <g transform="translate(40,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-354v167M0,-168v167"></path>
@@ -121,7 +121,7 @@
       </g>
     </g>
     <g transform="translate(219,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-354v167M0,-168v167"></path>
@@ -133,7 +133,7 @@
       </g>
     </g>
     <g transform="translate(398,0)">
-      <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-168v167"></path>
@@ -145,7 +145,7 @@
       </g>
     </g>
     <g transform="translate(40,30)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -489,7 +489,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="82.41666666666664" cy="122.06181818181818" r="3"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="3"></circle>
         <circle cx="118.83333333333334" cy="139.06545454545454" r="3"></circle>
@@ -566,7 +566,7 @@
       </g>
     </g>
     <g transform="translate(40,216)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -910,7 +910,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="91.99999999999997" cy="79.55272727272728" r="3"></circle>
         <circle cx="107.33333333333333" cy="86.23272727272729" r="3"></circle>
         <circle cx="90.08333333333336" cy="87.44727272727272" r="3"></circle>
@@ -948,7 +948,7 @@
       </g>
     </g>
     <g transform="translate(40,402)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -1292,7 +1292,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="1.9166666666666599" cy="81.98181818181818" r="3"></circle>
         <circle cx="19.166666666666664" cy="66.19272727272727" r="3"></circle>
         <circle cx="7.666666666666673" cy="79.55272727272728" r="3"></circle>
@@ -1354,7 +1354,7 @@
       </g>
     </g>
     <g transform="translate(219,30)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -1698,7 +1698,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="3"></circle>
         <circle cx="143.75000000000003" cy="123.27636363636366" r="3"></circle>
         <circle cx="124.58333333333336" cy="123.88363636363634" r="3"></circle>
@@ -1775,7 +1775,7 @@
       </g>
     </g>
     <g transform="translate(219,216)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -2119,7 +2119,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="122.66666666666666" cy="58.298181818181824" r="3"></circle>
         <circle cx="116.91666666666666" cy="50.403636363636394" r="3"></circle>
         <circle cx="128.41666666666669" cy="41.90181818181817" r="3"></circle>
@@ -2157,7 +2157,7 @@
       </g>
     </g>
     <g transform="translate(219,402)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -2501,7 +2501,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="61.33333333333335" cy="58.298181818181824" r="3"></circle>
         <circle cx="40.24999999999999" cy="58.298181818181824" r="3"></circle>
         <circle cx="26.83333333333334" cy="72.87272727272727" r="3"></circle>
@@ -2566,7 +2566,7 @@
       </g>
     </g>
     <g transform="translate(398,30)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -2910,7 +2910,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="95.83333333333337" cy="154.85454545454544" r="3"></circle>
         <circle cx="136.08333333333331" cy="106.88000000000002" r="3"></circle>
         <circle cx="76.6666666666667" cy="132.3854545454546" r="3"></circle>
@@ -2919,7 +2919,7 @@
       </g>
     </g>
     <g transform="translate(398,402)">
-      <g fill="#ddd" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
         <circle cx="107.33333333333333" cy="124.4909090909091" r="2"></circle>
         <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
         <circle cx="93.91666666666667" cy="117.20363636363638" r="2"></circle>
@@ -3263,7 +3263,7 @@
         <circle cx="32.58333333333335" cy="87.44727272727272" r="2"></circle>
         <circle cx="57.50000000000003" cy="58.90545454545455" r="2"></circle>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="23.00000000000002" cy="91.69818181818181" r="3"></circle>
         <circle cx="24.916666666666682" cy="81.37454545454544" r="3"></circle>
         <circle cx="13.416666666666686" cy="74.69454545454548" r="3"></circle>

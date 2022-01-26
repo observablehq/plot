@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -71,7 +71,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">65</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Daily trade volume (millions)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(60.85087719298246,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mar 18</text>
     </g>
@@ -97,7 +97,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">May 06</text>
     </g>
   </g>
-  <g fill="#ccc">
+  <g aria-label="rect" fill="#ccc">
     <rect x="41" y="162.72964589401167" width="9.175438596491219" height="207.27035410598833"></rect>
     <rect x="71.52631578947368" y="194.06844666468288" width="9.175438596491219" height="175.93155333531712"></rect>
     <rect x="81.7017543859649" y="266.64334214014553" width="9.175438596491233" height="103.35665785985447"></rect>
@@ -139,7 +139,7 @@
     <rect x="600.6491228070175" y="222.77512270925197" width="9.175438596491176" height="147.22487729074803"></rect>
     <rect x="610.8245614035087" y="234.25621511465388" width="9.17543859649129" height="135.74378488534612"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="41" x2="50.17543859649122" y1="162.72964589401167" y2="162.72964589401167"></line>
     <line x1="71.52631578947368" x2="80.7017543859649" y1="194.06844666468288" y2="194.06844666468288"></line>
     <line x1="81.7017543859649" x2="90.87719298245614" y1="266.64334214014553" y2="266.64334214014553"></line>
@@ -181,7 +181,7 @@
     <line x1="600.6491228070175" x2="609.8245614035087" y1="222.77512270925197" y2="222.77512270925197"></line>
     <line x1="610.8245614035087" x2="620" y1="234.25621511465388" y2="234.25621511465388"></line>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

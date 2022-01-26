@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(50,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(50,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,33.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">bananas</text>
     </g>
@@ -27,7 +27,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">apples</text>
     </g>
   </g>
-  <g transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(50.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
@@ -62,13 +62,13 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">units →</text>
   </g>
-  <g>
+  <g aria-label="bar">
     <rect x="50" width="570" y="87" height="19"></rect>
     <rect x="50" width="114" y="24" height="19"></rect>
     <rect x="50" width="285" y="66" height="19"></rect>
     <rect x="50" width="256.5" y="45" height="19"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="50" x2="50" y1="20" y2="110"></line>
   </g>
 </svg>

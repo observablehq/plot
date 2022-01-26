@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(120,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(120,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adventure</text>
     </g>
@@ -54,7 +54,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Other</text>
     </g>
   </g>
-  <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(182.641592920354,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-270" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
@@ -80,10 +80,10 @@
       <line stroke="currentColor" y2="-270" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1,000</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Profit ($M) →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="182.141592920354" x2="182.141592920354" y1="20" y2="290"></line>
   </g>
-  <g fill-opacity="0.2">
+  <g aria-label="bar" fill-opacity="0.2">
     <rect x="180.62994490265487" width="55.18065052743361" y="46" height="18"></rect>
     <rect x="186.5987488017699" width="101.59013934159293" y="26" height="18"></rect>
     <rect x="180.81513755575222" width="9.83639370088494" y="206" height="18"></rect>
@@ -98,7 +98,7 @@
     <rect x="181.2990490442478" width="22.975477688495573" y="166" height="18"></rect>
     <rect x="176.1667407362832" width="10.054816670796441" y="246" height="18"></rect>
   </g>
-  <g fill="none" stroke="currentColor" transform="translate(0.5,9.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" transform="translate(0.5,9.5)">
     <circle cx="178.74981283539825" cy="266" r="3"></circle>
     <circle cx="182.0167322902655" cy="186" r="3"></circle>
     <circle cx="182.1213534442478" cy="146" r="3"></circle>
@@ -3301,7 +3301,7 @@
     <circle cx="208.6902336" cy="26" r="3"></circle>
     <circle cx="254.99610619469024" cy="26" r="3"></circle>
   </g>
-  <g stroke="red" stroke-width="2" transform="translate(0.5,0)">
+  <g aria-label="tick" stroke="red" stroke-width="2" transform="translate(0.5,0)">
     <line x1="196.84637427256638" x2="196.84637427256638" y1="46" y2="64"></line>
     <line x1="212.00386178053094" x2="212.00386178053094" y1="26" y2="44"></line>
     <line x1="183.2920233380531" x2="183.2920233380531" y1="206" y2="224"></line>

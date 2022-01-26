@@ -5,6 +5,7 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
+  ariaLabel: "image",
   fill: null,
   stroke: null
 };

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(20.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0%</text>
     </g>
@@ -48,7 +48,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100%</text>
     </g>
   </g>
-  <g>
+  <g aria-label="bar">
     <rect x="21" width="0" y="0" height="30" fill="rgb(35, 23, 27)"></rect>
     <rect x="21" width="2.157894736842106" y="0" height="30" fill="rgb(71, 56, 158)"></rect>
     <rect x="24.157894736842106" width="5.315789473684209" y="0" height="30" fill="rgb(73, 92, 225)"></rect>

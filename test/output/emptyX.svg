@@ -13,5 +13,5 @@
       white-space: pre;
     }
   </style>
-  <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="59"></rect>
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="59"></rect>
 </svg>

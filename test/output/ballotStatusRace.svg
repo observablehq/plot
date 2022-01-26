@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(210,0)" fill="none" text-anchor="end">
+  <g aria-label="fy-axis" transform="translate(210,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,48.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">WHITE</text>
     </g>
@@ -39,7 +39,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">NATIVE HAWAIIAN or PACIFIC ISLANDER</text>
     </g>
   </g>
-  <g transform="translate(0,510)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,510)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(210.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-490v56M0,-428v56M0,-366v56M0,-304v56M0,-242v56M0,-180v56M0,-118v56M0,-56v56"></path>
@@ -59,7 +59,7 @@
   </g>
   <g>
     <g transform="translate(0,20)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="410" y="2" height="16" fill="currentColor">
           <title>79.0%</title>
         </rect>
@@ -70,12 +70,12 @@
           <title>20.5%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,82)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="405.8914002270852" y="2" height="16" fill="currentColor">
           <title>78.3%</title>
         </rect>
@@ -86,12 +86,12 @@
           <title>21.1%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,144)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="404.1524922619212" y="2" height="16" fill="currentColor">
           <title>77.9%</title>
         </rect>
@@ -102,12 +102,12 @@
           <title>0.6%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,206)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="384.322276007396" y="2" height="16" fill="currentColor">
           <title>74.1%</title>
         </rect>
@@ -118,12 +118,12 @@
           <title>25.1%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,268)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="383.5206680329693" y="2" height="16" fill="currentColor">
           <title>73.9%</title>
         </rect>
@@ -134,12 +134,12 @@
           <title>0.8%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,330)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="132.02293626031644" y="20" height="16" fill="brown">
           <title>25.5%</title>
         </rect>
@@ -150,12 +150,12 @@
           <title>2.3%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,392)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="349.7813163559978" y="2" height="16" fill="currentColor">
           <title>67.4%</title>
         </rect>
@@ -166,12 +166,12 @@
           <title>1.1%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>
     <g transform="translate(0,454)">
-      <g>
+      <g aria-label="bar">
         <rect x="210" width="216.11499950843603" y="20" height="16" fill="brown">
           <title>41.7%</title>
         </rect>
@@ -179,7 +179,7 @@
           <title>58.3%</title>
         </rect>
       </g>
-      <g stroke="currentColor" transform="translate(0.5,0)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
         <line x1="210" x2="210" y1="0" y2="56"></line>
       </g>
     </g>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(33.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">A</text>
     </g>
@@ -93,7 +93,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
     </g><text fill="currentColor" transform="translate(320,30)" dy="-0.32em" text-anchor="middle">letter</text>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="125" cy="15" r="8.449436326695164"></circle>
     <circle cx="470" cy="15" r="7.1344400054971"></circle>
     <circle cx="33" cy="15" r="6.77521312436458"></circle>

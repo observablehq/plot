@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(100,0)" fill="none" text-anchor="end">
+  <g aria-label="fy-axis" transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">aquatics</text>
     </g>
@@ -99,7 +99,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">wrestling</text>
     </g><text fill="currentColor" transform="translate(-100,305) rotate(-90)" dy="0.75em" text-anchor="middle">sport</text>
   </g>
-  <g transform="translate(0,590)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,590)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <path class="domain" stroke="currentColor" d="M100.5,0.5H620.5"></path>
     <g class="tick" opacity="1" transform="translate(137.11971830985914,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
@@ -132,7 +132,7 @@
   </g>
   <g>
     <g transform="translate(0,26)">
-      <g>
+      <g aria-label="bar">
         <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(254, 255, 215)"></rect>
         <rect x="137.61971830985914" width="6.323943661971839" y="0" height="18" fill="rgb(254, 255, 215)"></rect>
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(254, 255, 215)"></rect>
@@ -178,7 +178,7 @@
       </g>
     </g>
     <g transform="translate(0,46)">
-      <g>
+      <g aria-label="bar">
         <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
@@ -214,7 +214,7 @@
       </g>
     </g>
     <g transform="translate(0,66)">
-      <g>
+      <g aria-label="bar">
         <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(254, 255, 214)"></rect>
         <rect x="137.61971830985914" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(244, 251, 196)"></rect>
@@ -277,7 +277,7 @@
       </g>
     </g>
     <g transform="translate(0,86)">
-      <g>
+      <g aria-label="bar">
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(234, 247, 185)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(196, 232, 180)"></rect>
@@ -303,7 +303,7 @@
       </g>
     </g>
     <g transform="translate(0,106)">
-      <g>
+      <g aria-label="bar">
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
         <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(244, 251, 195)"></rect>
         <rect x="203.53521126760563" width="6.323943661971839" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
@@ -345,10 +345,10 @@
       </g>
     </g>
     <g transform="translate(0,126)">
-      <g></g>
+      <g aria-label="bar"></g>
     </g>
     <g transform="translate(0,146)">
-      <g>
+      <g aria-label="bar">
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(242, 250, 192)"></rect>
         <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
@@ -379,7 +379,7 @@
       </g>
     </g>
     <g transform="translate(0,166)">
-      <g>
+      <g aria-label="bar">
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(253, 254, 213)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
@@ -411,7 +411,7 @@
       </g>
     </g>
     <g transform="translate(0,186)">
-      <g>
+      <g aria-label="bar">
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(250, 253, 207)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(240, 249, 190)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(162, 219, 184)"></rect>
@@ -437,7 +437,7 @@
       </g>
     </g>
     <g transform="translate(0,206)">
-      <g>
+      <g aria-label="bar">
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
@@ -471,7 +471,7 @@
       </g>
     </g>
     <g transform="translate(0,226)">
-      <g>
+      <g aria-label="bar">
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(253, 254, 213)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(248, 252, 203)"></rect>
@@ -501,7 +501,7 @@
       </g>
     </g>
     <g transform="translate(0,246)">
-      <g>
+      <g aria-label="bar">
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(236, 247, 186)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(246, 252, 199)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(236, 247, 186)"></rect>
@@ -530,7 +530,7 @@
       </g>
     </g>
     <g transform="translate(0,266)">
-      <g>
+      <g aria-label="bar">
         <rect x="101" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
         <rect x="108.32394366197184" width="6.323943661971825" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
         <rect x="115.64788732394366" width="6.323943661971839" y="0" height="18" fill="rgb(237, 248, 187)"></rect>
@@ -559,7 +559,7 @@
       </g>
     </g>
     <g transform="translate(0,286)">
-      <g>
+      <g aria-label="bar">
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="203.53521126760563" width="6.323943661971839" y="0" height="18" fill="rgb(243, 250, 194)"></rect>
@@ -595,7 +595,7 @@
       </g>
     </g>
     <g transform="translate(0,306)">
-      <g>
+      <g aria-label="bar">
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(253, 254, 212)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(250, 253, 207)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(236, 248, 186)"></rect>
@@ -624,7 +624,7 @@
       </g>
     </g>
     <g transform="translate(0,326)">
-      <g>
+      <g aria-label="bar">
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(149, 214, 185)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(244, 251, 196)"></rect>
@@ -674,7 +674,7 @@
       </g>
     </g>
     <g transform="translate(0,346)">
-      <g>
+      <g aria-label="bar">
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(240, 249, 189)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(240, 249, 189)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(32, 123, 181)"></rect>
@@ -697,7 +697,7 @@
       </g>
     </g>
     <g transform="translate(0,366)">
-      <g>
+      <g aria-label="bar">
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(249, 253, 205)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(253, 254, 213)"></rect>
@@ -733,7 +733,7 @@
       </g>
     </g>
     <g transform="translate(0,386)">
-      <g>
+      <g aria-label="bar">
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(230, 245, 182)"></rect>
         <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(236, 247, 186)"></rect>
@@ -767,7 +767,7 @@
       </g>
     </g>
     <g transform="translate(0,406)">
-      <g>
+      <g aria-label="bar">
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(244, 251, 195)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(237, 248, 187)"></rect>
@@ -797,7 +797,7 @@
       </g>
     </g>
     <g transform="translate(0,426)">
-      <g>
+      <g aria-label="bar">
         <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(250, 253, 206)"></rect>
@@ -840,7 +840,7 @@
       </g>
     </g>
     <g transform="translate(0,446)">
-      <g>
+      <g aria-label="bar">
         <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(242, 250, 193)"></rect>
@@ -870,7 +870,7 @@
       </g>
     </g>
     <g transform="translate(0,466)">
-      <g>
+      <g aria-label="bar">
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(73, 182, 194)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(224, 243, 180)"></rect>
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(206, 236, 180)"></rect>
@@ -901,7 +901,7 @@
       </g>
     </g>
     <g transform="translate(0,486)">
-      <g>
+      <g aria-label="bar">
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(250, 253, 206)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(244, 251, 196)"></rect>
         <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(244, 251, 196)"></rect>
@@ -929,7 +929,7 @@
       </g>
     </g>
     <g transform="translate(0,506)">
-      <g>
+      <g aria-label="bar">
         <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(233, 247, 184)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(245, 251, 198)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(160, 218, 184)"></rect>
@@ -952,7 +952,7 @@
       </g>
     </g>
     <g transform="translate(0,526)">
-      <g>
+      <g aria-label="bar">
         <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(244, 251, 195)"></rect>
@@ -985,7 +985,7 @@
       </g>
     </g>
     <g transform="translate(0,546)">
-      <g>
+      <g aria-label="bar">
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(170, 222, 183)"></rect>
         <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
@@ -1032,7 +1032,7 @@
       </g>
     </g>
     <g transform="translate(0,566)">
-      <g>
+      <g aria-label="bar">
         <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
         <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(199, 233, 180)"></rect>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(140,0)" fill="none" text-anchor="end">
+  <g aria-label="fy-axis" transform="translate(140,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Construction</text>
     </g>
@@ -57,7 +57,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Mining and Extraction</text>
     </g><text fill="currentColor" transform="translate(-140,165) rotate(-90)" dy="0.75em" text-anchor="middle">industry</text>
   </g>
-  <g transform="translate(0,310)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,310)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(140.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
     </g>
@@ -79,7 +79,7 @@
   </g>
   <g>
     <g transform="translate(0,26)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f1814d">
           <title>745</title>
         </rect>
@@ -447,19 +447,19 @@
           <title>2,440</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="616.3793103448276" cy="9" r="3">
           <title>2,440</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="163.53448275862067" cy="9" r="3">
           <title>384</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,46)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#df6263">
           <title>1,000</title>
         </rect>
@@ -827,19 +827,19 @@
           <title>2,071</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>2,154</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="179.43965517241378" cy="9" r="3">
           <title>701</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,66)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f2844b">
           <title>734</title>
         </rect>
@@ -1207,19 +1207,19 @@
           <title>1,814</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="580.6896551724138" cy="9" r="3">
           <title>2,010</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="498.0603448275862" cy="9" r="3">
           <title>596</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,86)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#ef7e50">
           <title>782</title>
         </rect>
@@ -1587,19 +1587,19 @@
           <title>1,597</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>1,804</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="171.55172413793105" cy="9" r="3">
           <title>636</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,106)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f68f44">
           <title>655</title>
         </rect>
@@ -1967,19 +1967,19 @@
           <title>1,740</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="616.3793103448276" cy="9" r="3">
           <title>1,740</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="175.4310344827586" cy="9" r="3">
           <title>504</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,126)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#febd2a">
           <title>353</title>
         </rect>
@@ -2347,19 +2347,19 @@
           <title>1,200</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="600.4741379310344" cy="9" r="3">
           <title>1,280</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="183.3189655172414" cy="9" r="3">
           <title>293</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,146)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fdb130">
           <title>430</title>
         </rect>
@@ -2727,19 +2727,19 @@
           <title>880</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="588.5775862068965" cy="9" r="3">
           <title>1,129</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="151.76724137931035" cy="9" r="3">
           <title>269</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,166)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd025">
           <title>239</title>
         </rect>
@@ -3107,19 +3107,19 @@
           <title>680</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>730</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="183.3189655172414" cy="9" r="3">
           <title>178</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,186)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd225">
           <title>228</title>
         </rect>
@@ -3487,19 +3487,19 @@
           <title>708</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="616.3793103448276" cy="9" r="3">
           <title>708</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="179.43965517241378" cy="9" r="3">
           <title>184</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,206)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd025">
           <title>236</title>
         </rect>
@@ -3867,19 +3867,19 @@
           <title>591</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>657</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="179.43965517241378" cy="9" r="3">
           <title>129</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,226)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fdca26">
           <title>274</title>
         </rect>
@@ -4247,19 +4247,19 @@
           <title>603</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>609</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="175.4310344827586" cy="9" r="3">
           <title>161</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,246)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f7e425">
           <title>125</title>
         </rect>
@@ -4627,19 +4627,19 @@
           <title>300</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="588.5775862068965" cy="9" r="3">
           <title>373</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="482.2844827586207" cy="9" r="3">
           <title>77</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,266)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f8df25">
           <title>154</title>
         </rect>
@@ -5007,19 +5007,19 @@
           <title>285</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="612.3706896551724" cy="9" r="3">
           <title>318</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="442.9741379310344" cy="9" r="3">
           <title>35</title>
         </circle>
       </g>
     </g>
     <g transform="translate(0,286)">
-      <g>
+      <g aria-label="bar">
         <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f0f724">
           <title>19</title>
         </rect>
@@ -5387,12 +5387,12 @@
           <title>79</title>
         </rect>
       </g>
-      <g fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="black" stroke="#fff" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="576.8103448275862" cy="9" r="3">
           <title>125</title>
         </circle>
       </g>
-      <g fill="#333" transform="translate(0.5,0.5)">
+      <g aria-label="dot" fill="#333" transform="translate(0.5,0.5)">
         <circle cx="411.551724137931" cy="9" r="3">
           <title>2</title>
         </circle>

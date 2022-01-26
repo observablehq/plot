@@ -13,20 +13,20 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,195.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(330.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">foo</text>
     </g>
   </g>
-  <g>
+  <g aria-label="bar">
     <rect x="93" width="474" y="20" height="350"></rect>
   </g>
-  <g stroke="red" transform="translate(237.5,0)">
+  <g aria-label="rule" stroke="red" transform="translate(237.5,0)">
     <line x1="93" x2="93" y1="20" y2="370"></line>
   </g>
 </svg>

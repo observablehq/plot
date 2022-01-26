@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(140,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(140,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Observable Plot</text>
     </g>
@@ -90,7 +90,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Legends</text>
     </g>
   </g>
-  <g transform="translate(0,530)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,530)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(140.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
@@ -128,7 +128,7 @@
       <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">likes →</text>
   </g>
-  <g><a href="https://observablehq.com/@observablehq/plot" target="_blank">
+  <g aria-label="bar"><a href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
     </a><a href="https://observablehq.com/@observablehq/plot-marks" target="_blank">
       <rect x="140" width="187.3170731707317" y="46" height="18"></rect>
@@ -179,8 +179,8 @@
     </a><a href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
       <rect x="140" width="210.7317073170732" y="506" height="18"></rect>
     </a></g>
-  <g fill="white" text-anchor="end" transform="translate(-2.5,9.5)"><text y="0.32em" transform="translate(620,26)">⚡︎ 296</text><text y="0.32em" transform="translate(327.3170731707317,46)"> 16</text><text y="0.32em" transform="translate(350.7317073170732,66)"> 18</text><text y="0.32em" transform="translate(210.2439024390244,86)"> 6</text><text y="0.32em" transform="translate(257.0731707317073,106)"> 10</text><text y="0.32em" transform="translate(175.1219512195122,126)"> 3</text><text y="0.32em" transform="translate(245.3658536585366,146)"> 9</text><text y="0.32em" transform="translate(339.0243902439024,166)"> 17</text><text y="0.32em" transform="translate(198.53658536585365,186)"> 5</text><text y="0.32em" transform="translate(268.780487804878,206)"> 11</text><text y="0.32em" transform="translate(233.65853658536588,226)"> 8</text><text y="0.32em" transform="translate(163.41463414634146,246)"> 2</text><text y="0.32em" transform="translate(163.41463414634146,266)"> 2</text><text y="0.32em" transform="translate(186.82926829268294,286)"> 4</text><text y="0.32em" transform="translate(198.53658536585365,306)"> 5</text><text y="0.32em" transform="translate(151.70731707317074,326)"> 1</text><text y="0.32em" transform="translate(175.1219512195122,346)"> 3</text><text y="0.32em" transform="translate(221.9512195121951,366)"> 7</text><text y="0.32em" transform="translate(280.48780487804873,386)"> 12</text><text y="0.32em" transform="translate(292.1951219512195,406)"> 13</text><text y="0.32em" transform="translate(210.2439024390244,426)"> 6</text><text y="0.32em" transform="translate(175.1219512195122,446)"> 3</text><text y="0.32em" transform="translate(210.2439024390244,466)"> 6</text><text y="0.32em" transform="translate(221.9512195121951,486)"> 7</text><text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text></g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-2.5,9.5)"><text y="0.32em" transform="translate(620,26)">⚡︎ 296</text><text y="0.32em" transform="translate(327.3170731707317,46)"> 16</text><text y="0.32em" transform="translate(350.7317073170732,66)"> 18</text><text y="0.32em" transform="translate(210.2439024390244,86)"> 6</text><text y="0.32em" transform="translate(257.0731707317073,106)"> 10</text><text y="0.32em" transform="translate(175.1219512195122,126)"> 3</text><text y="0.32em" transform="translate(245.3658536585366,146)"> 9</text><text y="0.32em" transform="translate(339.0243902439024,166)"> 17</text><text y="0.32em" transform="translate(198.53658536585365,186)"> 5</text><text y="0.32em" transform="translate(268.780487804878,206)"> 11</text><text y="0.32em" transform="translate(233.65853658536588,226)"> 8</text><text y="0.32em" transform="translate(163.41463414634146,246)"> 2</text><text y="0.32em" transform="translate(163.41463414634146,266)"> 2</text><text y="0.32em" transform="translate(186.82926829268294,286)"> 4</text><text y="0.32em" transform="translate(198.53658536585365,306)"> 5</text><text y="0.32em" transform="translate(151.70731707317074,326)"> 1</text><text y="0.32em" transform="translate(175.1219512195122,346)"> 3</text><text y="0.32em" transform="translate(221.9512195121951,366)"> 7</text><text y="0.32em" transform="translate(280.48780487804873,386)"> 12</text><text y="0.32em" transform="translate(292.1951219512195,406)"> 13</text><text y="0.32em" transform="translate(210.2439024390244,426)"> 6</text><text y="0.32em" transform="translate(175.1219512195122,446)"> 3</text><text y="0.32em" transform="translate(210.2439024390244,466)"> 6</text><text y="0.32em" transform="translate(221.9512195121951,486)"> 7</text><text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text></g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="140" x2="140" y1="20" y2="530"></line>
   </g>
 </svg>

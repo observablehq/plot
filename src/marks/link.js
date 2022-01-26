@@ -4,6 +4,7 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
+  ariaLabel: "link",
   fill: "none",
   stroke: "currentColor",
   strokeMiterlimit: 1

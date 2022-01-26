@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(100,0)" fill="none" text-anchor="end">
+  <g aria-label="fy-axis" transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,35.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">aquatics</text>
     </g>
@@ -99,7 +99,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">wrestling</text>
     </g><text fill="currentColor" transform="translate(-100,305) rotate(-90)" dy="0.75em" text-anchor="middle">sport</text>
   </g>
-  <g transform="translate(0,590)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,590)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(134.16906474820144,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-564v18M0,-544v18M0,-524v18M0,-504v18M0,-484v18M0,-464v18M0,-444v18M0,-424v18M0,-404v18M0,-384v18M0,-364v18M0,-344v18M0,-324v18M0,-304v18M0,-284v18M0,-264v18M0,-244v18M0,-224v18M0,-204v18M0,-184v18M0,-164v18M0,-144v18M0,-124v18M0,-104v18M0,-84v18M0,-64v18M0,-44v18M0,-24v18"></path>
@@ -131,7 +131,7 @@
   </g>
   <g>
     <g transform="translate(0,26)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="358.12949640287775" cy="9" r="5" fill="#d95f02">
           <title>Aaron Younger</title>
         </circle>
@@ -183,7 +183,7 @@
       </g>
     </g>
     <g transform="translate(0,46)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="268.3453237410072" cy="9" r="5" fill="#d95f02">
           <title>Adrian Andres Puentes Perez</title>
         </circle>
@@ -193,7 +193,7 @@
       </g>
     </g>
     <g transform="translate(0,66)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="223.45323741007195" cy="9" r="5" fill="#d95f02">
           <title>A Jesus Garcia</title>
         </circle>
@@ -266,7 +266,7 @@
       </g>
     </g>
     <g transform="translate(0,86)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="287.0503597122302" cy="9" r="5" fill="#d95f02">
           <title>Adam Cwalina</title>
         </circle>
@@ -276,7 +276,7 @@
       </g>
     </g>
     <g transform="translate(0,106)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="320.71942446043164" cy="9" r="5" fill="#d95f02">
           <title>Adas Juskevicius</title>
         </circle>
@@ -292,10 +292,10 @@
       </g>
     </g>
     <g transform="translate(0,126)">
-      <g transform="translate(0.5,0.5)"></g>
+      <g aria-label="dot" transform="translate(0.5,0.5)"></g>
     </g>
     <g transform="translate(0,146)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="302.01438848920867" cy="9" r="5" fill="#d95f02">
           <title>Adam van Koeverden</title>
         </circle>
@@ -314,7 +314,7 @@
       </g>
     </g>
     <g transform="translate(0,166)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="249.64028776978418" cy="9" r="5" fill="#d95f02">
           <title>Aaron Gate</title>
         </circle>
@@ -336,7 +336,7 @@
       </g>
     </g>
     <g transform="translate(0,186)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="234.67625899280577" cy="9" r="5" fill="#d95f02">
           <title>Abdelkebir Ouaddar</title>
         </circle>
@@ -349,7 +349,7 @@
       </g>
     </g>
     <g transform="translate(0,206)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="193.5251798561151" cy="9" r="5" fill="#1b9e77">
           <title>A Lam Shin</title>
         </circle>
@@ -362,7 +362,7 @@
       </g>
     </g>
     <g transform="translate(0,226)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="223.45323741007195" cy="9" r="5" fill="#d95f02">
           <title>Abbubaker Mobara</title>
         </circle>
@@ -384,7 +384,7 @@
       </g>
     </g>
     <g transform="translate(0,246)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="279.568345323741" cy="9" r="5" fill="#d95f02">
           <title>Adilson da Silva</title>
         </circle>
@@ -394,7 +394,7 @@
       </g>
     </g>
     <g transform="translate(0,266)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="114.96402877697841" cy="9" r="5" fill="#1b9e77">
           <title>Aiko Sugihara</title>
         </circle>
@@ -413,7 +413,7 @@
       </g>
     </g>
     <g transform="translate(0,286)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="272.0863309352518" cy="9" r="5" fill="#d95f02">
           <title>Abdulrazzaq Murad</title>
         </circle>
@@ -429,7 +429,7 @@
       </g>
     </g>
     <g transform="translate(0,306)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="245.89928057553954" cy="9" r="5" fill="#d95f02">
           <title>Adam Dixon</title>
         </circle>
@@ -451,7 +451,7 @@
       </g>
     </g>
     <g transform="translate(0,326)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="320.71942446043164" cy="9" r="5" fill="#d95f02">
           <title>Abderrahmane Benamadi</title>
         </circle>
@@ -467,7 +467,7 @@
       </g>
     </g>
     <g transform="translate(0,346)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="264.60431654676256" cy="9" r="5" fill="#d95f02">
           <title>Adam Marosi</title>
         </circle>
@@ -477,7 +477,7 @@
       </g>
     </g>
     <g transform="translate(0,366)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="339.42446043165467" cy="9" r="5" fill="#d95f02">
           <title>Abdelkhalek Elbanna</title>
         </circle>
@@ -502,7 +502,7 @@
       </g>
     </g>
     <g transform="translate(0,386)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="249.64028776978418" cy="9" r="5" fill="#1b9e77">
           <title>Abbie Brown</title>
         </circle>
@@ -518,7 +518,7 @@
       </g>
     </g>
     <g transform="translate(0,406)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="201.0071942446043" cy="9" r="5" fill="#1b9e77">
           <title>Afrodite Zegers</title>
         </circle>
@@ -534,7 +534,7 @@
       </g>
     </g>
     <g transform="translate(0,426)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="283.3093525179856" cy="9" r="5" fill="#d95f02">
           <title>Abdel Aziz Mehelba</title>
         </circle>
@@ -553,7 +553,7 @@
       </g>
     </g>
     <g transform="translate(0,446)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="249.64028776978418" cy="9" r="5" fill="#d95f02">
           <title>Adam Pattantyus</title>
         </circle>
@@ -563,7 +563,7 @@
       </g>
     </g>
     <g transform="translate(0,466)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="283.3093525179856" cy="9" r="5" fill="#d95f02">
           <title>Aaron Cook</title>
         </circle>
@@ -573,7 +573,7 @@
       </g>
     </g>
     <g transform="translate(0,486)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="204.74820143884892" cy="9" r="5" fill="#1b9e77">
           <title>Agnieszka Radwanska</title>
         </circle>
@@ -586,7 +586,7 @@
       </g>
     </g>
     <g transform="translate(0,506)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="234.67625899280577" cy="9" r="5" fill="#d95f02">
           <title>Aaron Royle</title>
         </circle>
@@ -596,7 +596,7 @@
       </g>
     </g>
     <g transform="translate(0,526)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="350.64748201438846" cy="9" r="5" fill="#d95f02">
           <title>Aaron Russell</title>
         </circle>
@@ -612,7 +612,7 @@
       </g>
     </g>
     <g transform="translate(0,546)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="335.68345323741005" cy="9" r="5" fill="#d95f02">
           <title>Adrian Edward Zielinski</title>
         </circle>
@@ -628,7 +628,7 @@
       </g>
     </g>
     <g transform="translate(0,566)">
-      <g transform="translate(0.5,0.5)">
+      <g aria-label="dot" transform="translate(0.5,0.5)">
         <circle cx="197.26618705035972" cy="9" r="5" fill="#d95f02">
           <title>Abbos Rakhmonov</title>
         </circle>
