@@ -10,36 +10,35 @@ const anchorYTop = ({marginTop}) => [1, marginTop];
 const anchorYBottom = ({height, marginBottom}) => [-1, height - marginBottom];
 const anchorYMiddle = ({height, marginTop, marginBottom}) => [0, (marginTop + height - marginBottom) / 2];
 
-function maybeDodge(options) {
-  return typeof options === "string" ? {anchor: options} : options;
+function maybeAnchor(anchor) {
+  return typeof anchor === "string" ? {anchor} : anchor;
 }
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "left", padding} = maybeDodge(dodgeOptions);
+  let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left": anchor = anchorXLeft; break;
     case "right": anchor = anchorXRight; break;
     case "middle": anchor = anchorXMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("x", "y", anchor, padding, options);
+  return dodge("x", "y", anchor, +padding, options);
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "bottom", padding} = maybeDodge(dodgeOptions);
+  let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top": anchor = anchorYTop; break;
     case "bottom": anchor = anchorYBottom; break;
     case "middle": anchor = anchorYMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("y", "x", anchor, padding, options);
+  return dodge("y", "x", anchor, +padding, options);
 }
 
-function dodge(y, x, anchor, padding = 1, options) {
-  padding = +padding;
+function dodge(y, x, anchor, padding, options) {
   const [, r] = maybeNumberChannel(options.r, 3);
   return layout(options, (I, scales, {[x]: X, r: R}, dimensions) => {
     if (X == null) throw new Error(`missing channel: ${x}`);
