@@ -6,14 +6,14 @@ export function layout({layout: layout1, ...options}, layout2) {
 }
 
 function composeLayout(l1, l2) {
-  return (index, scales, values, dimensions) => {
-    values = l1(index, scales, values, dimensions);
-    return l2(index, scales, values, dimensions);
+  return function(index, scales, values, dimensions) {
+    values = l1.call(this, index, scales, values, dimensions);
+    return l2.call(this, index, scales, values, dimensions);
   };
 }
 
 function partialLayout(l) {
-  return (index, scales, values, dimensions) => {
-    return {...values, ...l(index, scales, values, dimensions)};
+  return function(index, scales, values, dimensions) {
+    return {...values, ...l.call(this, index, scales, values, dimensions)};
   };
 }
