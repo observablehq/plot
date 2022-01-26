@@ -23,7 +23,7 @@ it("dot() has the expected defaults", () => {
 });
 
 it("dot accepts undefined data", () => {
-  Plot.dot({ length: 1 }).initialize();
+  Plot.dot({length: 1}).initialize();
 });
 
 it("dot(data, {r}) allows r to be a constant radius", () => {
