@@ -6,7 +6,7 @@ import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
-import {applyDescription, applyInlineStyles, maybeClassName, styles} from "./style.js";
+import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
 export function plot(options = {}) {
@@ -78,7 +78,7 @@ export function plot(options = {}) {
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)
       .attr("aria-label", ariaLabel)
-      .call(applyDescription, ariaDescription)
+      .attr("aria-description", ariaDescription)
       .call(svg => svg.append("style").text(`
         .${className} {
           display: block;

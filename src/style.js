@@ -170,6 +170,7 @@ export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, t
 
 export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
+  applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
@@ -181,7 +182,6 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
-  applyDescription(selection, mark.ariaDescription);
 }
 
 export function applyDirectStyles(selection, mark) {
@@ -234,10 +234,6 @@ export function maybeClassName(name) {
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
-}
-
-export function applyDescription(selection, description) {
-  if (description != null) selection.append("desc").text(description);
 }
 
 export function applyInlineStyles(selection, style) {
