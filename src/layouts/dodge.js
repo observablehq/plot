@@ -39,9 +39,8 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function dodge(y, x, anchor, padding, options) {
-  const [, r0] = maybeNumberChannel(options.r, 3);
   return layout(options, function(I, scales, {[x]: X, r: R}, dimensions) {
-    const r = this.r == null ? r0 : this.r;
+    const r = R ? undefined : this.r !== undefined ? +this.r : options.r !== undefined ? +options.r : 3;
     if (X == null) throw new Error(`missing channel: ${x}`);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
