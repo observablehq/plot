@@ -1855,22 +1855,7 @@ The dodge layouts accept the following layout options:
 
 #### Custom layouts
 
-When it *options* have a *layout* property, the layout function is called after the data has been faceted and scaled; it receives as inputs the index, scales, values (scaled channels) and dimensions, and the mark as this. It must return the (possibly modified) values.
-
-For example, the following custom layout makes every fill color darker:
-
-```js
-Plot.dot(data, {
-  layout(index, scales, values, dimension) {
-    if (values.fill) {
-      const fill = new Array();
-      for (const i of index) fill[i] = d3.rgb(values.fill[i]).darker();
-      return {...values, fill};
-    }
-    return values;
-  }
-})
-```
+When it *options* have a *layout* property, the layout function is called after the data has been faceted and scaled; it receives as inputs the index of the elements to layout, the scales, the values (the scaled channels as a key: array object), the dimensions, and the mark as this. It must return the values.
 
 ## Curves
 
