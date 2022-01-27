@@ -72,9 +72,9 @@ When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
-### Layout options
+### Geometry options
 
-These options determine the overall layout of the plot; all are specified as numbers in pixels:
+These options determine the overall geometry of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
 * **marginRight** - the right margin
@@ -1823,6 +1823,54 @@ Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+
+## Layouts
+
+A layout processes the transformed and scaled values of a mark before rendering. A layout might, for example, modify the marks’ positions to avoid occlusion. A layout operates in the representation space (such as pixels and colors, *i.e.* after scales have been applied) rather than data space.
+
+### Dodge
+
+The dodge layout can be applied to any mark that consumes *x* or *y*, such as the Dot, Image, Text and Vector marks.
+
+#### Plot.dodgeY([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeY({x: "date"})
+```
+
+If the marks are arranged along the *x* axis, the dodgeY layout piles them vertically, keeping their *x* position unchanged, and creating a *y* position that avoids overlapping.
+
+#### Plot.dodgeX([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeX({y: "value"})
+```
+
+Equivalent to Plot.dodgeY, but the piling is horizontal, keeping the marks’ *y* position unchanged, and creating an *x* position that avoids overlapping.
+
+The dodge layouts accept the following layout options:
+
+* **padding** — a number of pixels added to the radius of the mark to estimate its size
+* **anchor** - the layout’s anchor: one of *middle*, *right*, and *left* (default) for dodgeX, and one of *middle*, *top*, and *bottom* (default) for dodgeY.
+
+#### Custom layouts
+
+When it *options* have a *layout* property, the layout function is called after the data has been faceted and scaled; it receives as inputs the index, scales, values (scaled channels) and dimensions, and the mark as this. It must return the (possibly modified) values.
+
+For example, the following custom layout makes every fill color darker:
+
+```js
+Plot.dot(data, {
+  layout: (index, scales, values, dimension) => {
+    if (values.fill) {
+      for (const i of index) {
+        values.fill[i] = d3.rgb(values.fill[i]).darker();
+      }
+    }
+    return values;
+  }
+})
+```
 
 ## Curves
 
