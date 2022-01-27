@@ -1,6 +1,5 @@
 import {max} from "d3";
 import IntervalTree from "interval-tree-1d";
-import {maybeNumberChannel} from "../options.js";
 import {layout} from "./index.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
