@@ -1863,9 +1863,9 @@ For example, the following custom layout makes every fill color darker:
 Plot.dot(data, {
   layout: (index, scales, values, dimension) => {
     if (values.fill) {
-      for (const i of index) {
-        values.fill[i] = d3.rgb(values.fill[i]).darker();
-      }
+      const fill = new Array();
+      for (const i of index) fill[i] = d3.rgb(values.fill[i]).darker();
+      return {...values, fill};
     }
     return values;
   }
