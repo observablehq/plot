@@ -40,40 +40,43 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 
 function dodge(y, x, anchor, padding, options) {
   const [, r] = maybeNumberChannel(options.r, 3);
-  return layout(options, (I, scales, {[x]: X, r: R}, dimensions) => {
+  return layout(options, (index, scales, {[x]: X, r: R}, dimensions) => {
     if (X == null) throw new Error(`missing channel: ${x}`);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    if (ky) ty += ky * ((R ? max(I, i => R[i]) : r) + padding); else ky = 1;
+    if (ky) ty += ky * ((R ? max(index, I => max(I, i => R[i])) : r) + padding); else ky = 1;
     if (!R) R = new Float64Array(X.length).fill(r);
     const Y = new Float64Array(X.length);
-    const tree = IntervalTree();
-    for (const i of I) {
-      const intervals = [];
-      const l = X[i] - R[i];
-      const r = X[i] + R[i];
 
-      // For any previously placed circles that may overlap this circle, compute
-      // the y-positions that place this circle tangent to these other circles.
-      // https://observablehq.com/@mbostock/circle-offset-along-line
-      tree.queryInterval(l - padding, r + padding, ([,, j]) => {
-        const yj = Y[j];
-        const dx = X[i] - X[j];
-        const dr = R[i] + padding + R[j];
-        const dy = Math.sqrt(dr * dr - dx * dx);
-        intervals.push([yj - dy, yj + dy]);
-      });
-
-      // Find the best y-value where this circle can fit.
-      for (let y of intervals.flat().sort(compare)) {
-        if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
-          Y[i] = y;
-          break;
+    for (const I of index) {
+      const tree = IntervalTree();
+      for (const i of I) {
+        const intervals = [];
+        const l = X[i] - R[i];
+        const r = X[i] + R[i];
+  
+        // For any previously placed circles that may overlap this circle, compute
+        // the y-positions that place this circle tangent to these other circles.
+        // https://observablehq.com/@mbostock/circle-offset-along-line
+        tree.queryInterval(l - padding, r + padding, ([,, j]) => {
+          const yj = Y[j];
+          const dx = X[i] - X[j];
+          const dr = R[i] + padding + R[j];
+          const dy = Math.sqrt(dr * dr - dx * dx);
+          intervals.push([yj - dy, yj + dy]);
+        });
+  
+        // Find the best y-value where this circle can fit.
+        for (let y of intervals.flat().sort(compare)) {
+          if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
+            Y[i] = y;
+            break;
+          }
         }
+  
+        // Insert the placed circle into the interval tree.
+        tree.insert([l, r, i]);
       }
-
-      // Insert the placed circle into the interval tree.
-      tree.insert([l, r, i]);
     }
     return {[y]: Y.map(y => y * ky + ty)};
   });

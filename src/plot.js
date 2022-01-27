@@ -97,7 +97,7 @@ export function plot(options = {}) {
     const channels = markChannels.get(mark) ?? [];
     let values = applyScales(channels, scales);
     const index = filter(markIndex.get(mark), channels, values);
-    if (mark.layout != null) values = mark.layout(index, scales, values, dimensions);
+    if (mark.layout != null) values = mark.layout([index], scales, values, dimensions);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -272,6 +272,16 @@ class Facet extends Mark {
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const marksValues = marksChannels.map(channels => applyScales(channels, scales));
+    const keys = facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet);
+    const nodes = [];
+    for (let i = 0; i < marks.length; ++i) {
+      const mark = marks[i];
+      let values = marksValues[i];
+      const index = keys.map(key => filter(marksIndexByFacet.get(key)[i], marksChannels[i], values));
+      if (mark.layout != null) values = mark.layout(index, scales, values, subdimensions);
+      nodes[i] = keys.map((key, j) => mark.render(index[j], scales, values, subdimensions));
+    }
+
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -307,17 +317,12 @@ class Facet extends Mark {
           }
         })
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet))
+          .data(keys)
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
-            .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key);
-              for (let i = 0; i < marks.length; ++i) {
-                const mark = marks[i];
-                let values = marksValues[i];
-                const index = filter(marksFacetIndex[i], marksChannels[i], values);
-                if (mark.layout != null) values = mark.layout(index, scales, values, subdimensions);
-                const node = mark.render(index, scales, values, subdimensions);
+            .each(function(key, j) {
+              for (const n of nodes) {
+                const node = n[j];
                 if (node != null) this.appendChild(node);
               }
             }))
