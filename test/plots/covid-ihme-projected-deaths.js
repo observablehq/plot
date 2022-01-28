@@ -4,6 +4,11 @@ import * as d3 from "d3";
 export default async function() {
   const data = await d3.csv("data/covid-ihme-projected-deaths.csv", d3.autoType);
   const i = data.findIndex(d => d.projected) - 1;
+  const dot = Plot.dot([data[i]], {
+    x: "date",
+    y: "mean",
+    fill: "currentColor"
+  });
   return Plot.plot({
     width: 960,
     height: 600,
@@ -32,14 +37,10 @@ export default async function() {
         title: () => "projected values",
         strokeDasharray: "2,2"
       }),
-      Plot.dot([data[i]], {
-        x: "date",
-        y: "mean",
-        fill: "currentColor"
-      }),
-      Plot.text([data[i]], {
-        x: "date",
-        y: "mean",
+      dot,
+      Plot.text(dot.data, {
+        x: {alias: dot},
+        y: {alias: dot},
         text: "mean",
         textAnchor: "start",
         dx: 6

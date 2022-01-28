@@ -37,9 +37,11 @@ export function plot(options = {}) {
   for (const mark of marks) {
     if (markChannels.has(mark)) throw new Error("duplicate mark");
     const {index, channels} = mark.initialize();
-    for (const [, channel] of channels) {
-      const {scale} = channel;
-      if (scale !== undefined) {
+    for (const [name, channel] of channels) {
+      const {value, scale} = channel;
+      if (value && value.alias !== undefined) {
+        channel.value = markChannels.get(value.alias).find(([n]) => name === n)[1].value; // TODO handle errors
+      } else if (scale !== undefined) {
         const scaled = scaleChannels.get(scale);
         const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
         if (transform != null) channel.value = Array.from(channel.value, transform);
