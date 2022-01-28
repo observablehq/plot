@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,558.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.0</text>
     </g>
@@ -54,7 +54,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6.0</text>
     </g>
   </g>
-  <g transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(52.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
@@ -77,7 +77,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6</text>
     </g>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M52,558.8333333333334l0,-1.6666666666666667m-0.33333333333333337,0.33333333333333337l0.33333333333333337,-0.33333333333333337l0.33333333333333337,0.33333333333333337"></path>
     <path d="M52.20654846660786,542.0106944349266l-0.4130969332157243,-1.9568727408208648m-0.3087551615210281,0.4739939348073178l0.3087551615210281,-0.4739939348073178l0.4739939348073178,0.3087551615210281"></path>
     <path d="M52.46268693684173,525.1355118851337l-0.9253738736834577,-2.141991512202725m-0.24332352770385351,0.6134730771772365l0.24332352770385351,-0.6134730771772365l0.6134730771772365,0.24332352770385351"></path>

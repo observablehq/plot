@@ -4,6 +4,7 @@ import {identity, number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
+  ariaLabel: "tick",
   fill: null,
   stroke: "currentColor"
 };

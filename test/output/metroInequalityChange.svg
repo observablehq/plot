@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,348.2777777777777)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.5</text>
@@ -59,7 +59,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8.5</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Inequality</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(122.85098938270542,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200k</text>
@@ -137,7 +137,7 @@
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20M</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Population →</text>
   </g>
-  <g fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="arrow" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M577.0231512318791,298.88888888888886A219.846341543917,219.846341543917 0,0,1 610,133.88888888888886M602.8217972873439,137.42065980671705L610,133.88888888888886L609.4695019788583,141.87128025047747" stroke="rgb(193, 58, 59)"></path>
     <path d="M529.808311059836,292.77777777777777A205.29848446316504,205.29848446316504 0,0,1 566.5284089581303,139.99999999999994M559.2192119228268,143.25202071012936L566.5284089581303,139.99999999999994L565.6901429890837,147.95596066890337" stroke="rgb(203, 75, 68)"></path>
     <path d="M509.0104304423192,329.44444444444446A177.91913060746253,177.91913060746253 0,0,1 530.6411534518993,194.99999999999997M523.6013120364559,198.80008326822013L530.6411534518993,194.99999999999997L530.4122013909524,202.9967231384979" stroke="rgb(216, 103, 85)"></path>
@@ -334,5 +334,5 @@
     <path d="M52.48584975208373,256.1111111111111A23.95686902620328,23.95686902620328 0,0,1 52.185481987994095,274.4444444444444M57.09470317065009,270.8036683012654L52.185481987994095,274.4444444444444L51.487087949836784,268.37254611587815" stroke="rgb(5, 48, 97)"></path>
     <path d="M102.58341309383286,317.22222222222223A173.8230228048356,173.8230228048356 0,0,1 50.038770403392,194.99999999999997M46.13143145240598,201.98088119954116L50.038770403392,194.99999999999997L54.13072138750283,201.8742953925209" stroke="rgb(225, 121, 97)"></path>
   </g>
-  <g stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,-7.5)"><text y="0.32em" transform="translate(610,133.88888888888886)">New York</text><text y="0.32em" transform="translate(530.6411534518993,194.99999999999997)">Chicago</text><text y="0.32em" transform="translate(491.7660168841815,127.77777777777777)">Houston</text><text y="0.32em" transform="translate(482.02010762320214,158.33333333333331)">Washington, D.C.</text><text y="0.32em" transform="translate(464.66902514240314,133.88888888888886)">San Francisco</text><text y="0.32em" transform="translate(361.3534076861197,78.88888888888881)">San Jose</text><text y="0.32em" transform="translate(286.81606474956936,30)">Fairfield, Conn.</text><text y="0.32em" transform="translate(138.05603473057374,268.3333333333333)">Binghamton, N.Y.</text></g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" transform="translate(0.5,-7.5)"><text y="0.32em" transform="translate(610,133.88888888888886)">New York</text><text y="0.32em" transform="translate(530.6411534518993,194.99999999999997)">Chicago</text><text y="0.32em" transform="translate(491.7660168841815,127.77777777777777)">Houston</text><text y="0.32em" transform="translate(482.02010762320214,158.33333333333331)">Washington, D.C.</text><text y="0.32em" transform="translate(464.66902514240314,133.88888888888886)">San Francisco</text><text y="0.32em" transform="translate(361.3534076861197,78.88888888888881)">San Jose</text><text y="0.32em" transform="translate(286.81606474956936,30)">Fairfield, Conn.</text><text y="0.32em" transform="translate(138.05603473057374,268.3333333333333)">Binghamton, N.Y.</text></g>
 </svg>

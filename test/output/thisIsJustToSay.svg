@@ -13,8 +13,8 @@
       white-space: pre;
     }
   </style>
-  <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="199"></rect>
-  <g transform="translate(0.5,0.5)"><text transform="translate(319.5,99.5)">
+  <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="199"></rect>
+  <g aria-label="text" transform="translate(0.5,0.5)"><text transform="translate(319.5,99.5)">
       <tspan x="0" y="-7.68em">This Is Just To Say</tspan>
       <tspan x="0" y="-6.68em">William Carlos Williams, 1934</tspan>
       <tspan x="0" y="-4.68em">I have eaten</tspan>

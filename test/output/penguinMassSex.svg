@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(570,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" transform="translate(570,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,86.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">FEMALE</text>
     </g>
@@ -24,7 +24,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em"></text>
     </g><text fill="currentColor" transform="translate(70,235) rotate(-90)" dy="-0.32em" text-anchor="middle">sex</text>
   </g>
-  <g transform="translate(0,450)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,450)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,500</text>
     </g>
@@ -55,7 +55,7 @@
   </g>
   <g>
     <g transform="translate(0,20)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,133.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -77,7 +77,7 @@
       </g>
     </g>
     <g transform="translate(0,168)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,133.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -99,7 +99,7 @@
       </g>
     </g>
     <g transform="translate(0,316)">
-      <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,133.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>
@@ -121,7 +121,7 @@
       </g>
     </g>
     <g transform="translate(0,20)">
-      <g>
+      <g aria-label="rect">
         <rect x="41" y="112.9245283018868" width="65" height="20.075471698113205"></rect>
         <rect x="107" y="0" width="66" height="133"></rect>
         <rect x="174" y="17.566037735849054" width="65" height="115.43396226415095"></rect>
@@ -129,12 +129,12 @@
         <rect x="306" y="45.169811320754725" width="65" height="87.83018867924528"></rect>
         <rect x="372" y="112.9245283018868" width="66" height="20.075471698113205"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="40" x2="570" y1="133" y2="133"></line>
       </g>
     </g>
     <g transform="translate(0,168)">
-      <g>
+      <g aria-label="rect">
         <rect x="107" y="115.43396226415095" width="66" height="17.56603773584905"></rect>
         <rect x="174" y="15.056603773584902" width="65" height="117.9433962264151"></rect>
         <rect x="240" y="27.603773584905653" width="65" height="105.39622641509435"></rect>
@@ -143,19 +143,19 @@
         <rect x="439" y="60.22641509433962" width="65" height="72.77358490566039"></rect>
         <rect x="505" y="122.9622641509434" width="65" height="10.037735849056602"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="40" x2="570" y1="133" y2="133"></line>
       </g>
     </g>
     <g transform="translate(0,316)">
-      <g>
+      <g aria-label="rect">
         <rect x="41" y="130.49056603773585" width="65" height="2.509433962264154"></rect>
         <rect x="107" y="127.9811320754717" width="66" height="5.018867924528294"></rect>
         <rect x="174" y="130.49056603773585" width="65" height="2.509433962264154"></rect>
         <rect x="240" y="127.9811320754717" width="65" height="5.018867924528294"></rect>
         <rect x="306" y="125.47169811320755" width="65" height="7.528301886792448"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="40" x2="570" y1="133" y2="133"></line>
       </g>
     </g>

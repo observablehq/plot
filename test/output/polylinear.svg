@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(0,60)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,60)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-60" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">05</text>
@@ -107,7 +107,7 @@
       <line stroke="currentColor" y2="-60" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">27</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">date →</text>
   </g>
-  <g>
+  <g aria-label="bar">
     <rect x="41" width="14.555555555555557" y="0" height="60" fill="rgb(110, 64, 170)"></rect>
     <rect x="56.55555555555556" width="14.555555555555557" y="0" height="60" fill="rgb(107, 69, 179)"></rect>
     <rect x="72.11111111111111" width="14.555555555555543" y="0" height="60" fill="rgb(103, 75, 188)"></rect>
@@ -131,7 +131,7 @@
     <rect x="569.8888888888889" width="14.555555555555543" y="0" height="60" fill="rgb(148, 243, 87)"></rect>
     <rect x="585.4444444444445" width="14.555555555555543" y="0" height="60" fill="rgb(162, 242, 88)"></rect>
   </g>
-  <g fill="white" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="white" transform="translate(0.5,0.5)">
     <circle cx="48.425925925925924" cy="30" r="3"></circle>
     <circle cx="150.18518518518516" cy="30" r="3"></circle>
     <circle cx="221.48148148148147" cy="30" r="3"></circle>
@@ -142,5 +142,5 @@
     <circle cx="488.5185185185185" cy="30" r="3"></circle>
     <circle cx="546.851851851852" cy="30" r="3"></circle>
   </g>
-  <g fill="white" text-anchor="start" transform="translate(-4.5,-9.5)"><text y="0.32em" transform="translate(48.425925925925924,30)">Initiate</text><text y="0.32em" transform="translate(150.18518518518516,30)">Begin</text><text y="0.32em" transform="translate(221.48148148148147,30)">Entry</text><text y="0.32em" transform="translate(273.3333333333333,30)">Test</text><text y="0.32em" transform="translate(320,30)">Drive</text><text y="0.32em" transform="translate(382.22222222222223,30)">Drive</text><text y="0.32em" transform="translate(432.7777777777777,30)">Brake</text><text y="0.32em" transform="translate(488.5185185185185,30)">Stop</text><text y="0.32em" transform="translate(546.851851851852,30)">Shutdown</text></g>
+  <g aria-label="text" fill="white" text-anchor="start" transform="translate(-4.5,-9.5)"><text y="0.32em" transform="translate(48.425925925925924,30)">Initiate</text><text y="0.32em" transform="translate(150.18518518518516,30)">Begin</text><text y="0.32em" transform="translate(221.48148148148147,30)">Entry</text><text y="0.32em" transform="translate(273.3333333333333,30)">Test</text><text y="0.32em" transform="translate(320,30)">Drive</text><text y="0.32em" transform="translate(382.22222222222223,30)">Drive</text><text y="0.32em" transform="translate(432.7777777777777,30)">Brake</text><text y="0.32em" transform="translate(488.5185185185185,30)">Stop</text><text y="0.32em" transform="translate(546.851851851852,30)">Shutdown</text></g>
 </svg>

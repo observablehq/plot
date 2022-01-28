@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,595.4905114324869)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
@@ -187,7 +187,7 @@
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Total number of votes</text>
   </g>
-  <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(108.542956836157,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">−80</text>
@@ -225,10 +225,10 @@
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">+80</text>
     </g><text fill="currentColor" transform="translate(490,30)" dy="-0.32em" text-anchor="middle">← Biden · Vote margin (%) · Trump →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="487.0146974845102" x2="487.0146974845102" y1="20" y2="610"></line>
   </g>
-  <g stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0.5)">
     <circle cx="488.8705694699327" cy="358.38898977936" r="3" fill="rgb(242, 239, 237)">
       <title>ED 1, Alaska
         3,429 votes for Trump

@@ -4,6 +4,7 @@ import {number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
+  ariaLabel: "frame",
   fill: "none",
   stroke: "currentColor"
 };

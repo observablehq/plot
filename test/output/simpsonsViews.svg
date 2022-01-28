@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,610.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -83,7 +83,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">32</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Viewers (U.S., millions)</text>
   </g>
-  <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(46.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4.5</text>
@@ -125,10 +125,10 @@
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">9.0</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">IMDB rating →</text>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="610" y2="610"></line>
   </g>
-  <g transform="translate(0.5,0.5)">
+  <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="396.468085106383" cy="77.94642857142856" r="3" fill="rgb(35, 23, 27)">
       <title>Homer's Night Out S1E10</title>
     </circle>

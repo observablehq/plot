@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,346.15217391304344)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.4</text>
@@ -63,7 +63,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">5.6</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Inequality</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(127.3781294704236,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200k</text>
@@ -137,7 +137,7 @@
       <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10M</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Population →</text>
   </g>
-  <g fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="610" cy="216.52173913043475" r="3"></circle>
     <circle cx="559.8308367772046" cy="202.17391304347814" r="3"></circle>
     <circle cx="537.7315929041683" cy="288.2608695652174" r="3"></circle>

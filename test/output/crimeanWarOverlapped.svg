@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
@@ -57,7 +57,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,600</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ deaths</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(54.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Apr</text>
     </g>
@@ -131,7 +131,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mar</text>
     </g>
   </g>
-  <g>
+  <g aria-label="bar">
     <rect x="259" width="22" y="20" height="350" fill="#4e79a7"></rect>
     <rect x="283" width="22" y="101.2567910177472" height="268.7432089822528" fill="#4e79a7"></rect>
     <rect x="235" width="22" y="151.32922854038392" height="218.67077145961608" fill="#4e79a7"></rect>
@@ -205,7 +205,7 @@
     <rect x="571" width="22" y="370" height="0" fill="#e15759"></rect>
     <rect x="595" width="22" y="370" height="0" fill="#e15759"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

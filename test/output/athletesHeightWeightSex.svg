@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,610.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.2</text>
@@ -59,7 +59,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.2</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ height</text>
   </g>
-  <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(81.5,0)">
       <line stroke="currentColor" y2="6"></line>
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
@@ -89,7 +89,7 @@
       <line stroke="currentColor" y2="-590" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
   </g>
-  <g>
+  <g aria-label="rect">
     <rect x="41" y="530" width="7" height="11" fill="#4e79a7" fill-opacity="0.0125"></rect>
     <rect x="49" y="484" width="7" height="10" fill="#4e79a7" fill-opacity="0.0125"></rect>
     <rect x="57" y="472" width="8" height="11" fill="#4e79a7" fill-opacity="0.025"></rect>

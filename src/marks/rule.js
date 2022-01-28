@@ -6,6 +6,7 @@ import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyl
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
+  ariaLabel: "rule",
   fill: null,
   stroke: "currentColor"
 };

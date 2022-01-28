@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(300,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" transform="translate(300,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,40.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I looked at some examples!</text>
     </g>
@@ -30,7 +30,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
     </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">How comfortable are you with d3 now?</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(300.5,0)">
       <line stroke="currentColor" y2="-6"></line>
       <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
@@ -76,14 +76,14 @@
       <line stroke="currentColor" y2="100" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
     </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
   </g>
-  <g fill="steelblue">
+  <g aria-label="bar" fill="steelblue">
     <rect x="300" width="150.70336391437309" y="71" height="19"></rect>
     <rect x="300" width="56.75840978593271" y="91" height="19"></rect>
     <rect x="300" width="254.43425076452604" y="31" height="19"></rect>
     <rect x="300" width="174.18960244648315" y="51" height="19"></rect>
     <rect x="300" width="3.9143730886850108" y="111" height="19"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="130"></line>
   </g>
 </svg>

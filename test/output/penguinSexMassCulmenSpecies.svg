@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,271.2692307692308)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">34</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
@@ -67,7 +67,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
     </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(130.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
@@ -80,7 +80,7 @@
   </g>
   <g>
     <g transform="translate(40,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
@@ -112,7 +112,7 @@
       </g>
     </g>
     <g transform="translate(240,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
@@ -144,7 +144,7 @@
       </g>
     </g>
     <g transform="translate(440,0)">
-      <g transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
@@ -176,8 +176,8 @@
       </g>
     </g>
     <g transform="translate(40,0)">
-      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
-      <g fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="32.85714285714286" cy="243.0769230769231" r="12.36931687685298" fill="#4e79a7" stroke="#4e79a7"></circle>
         <circle cx="101.42857142857143" cy="150.76923076923077" r="11.61895003862225" fill="#e15759" stroke="#e15759"></circle>
         <circle cx="55.714285714285715" cy="224.61538461538458" r="9.486832980505138" fill="#4e79a7" stroke="#4e79a7"></circle>
@@ -226,8 +226,8 @@
       </g>
     </g>
     <g transform="translate(240,0)">
-      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
-      <g fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="55.714285714285715" cy="206.15384615384616" r="10.392304845413262" fill="#4e79a7" stroke="#4e79a7"></circle>
         <circle cx="147.1428571428571" cy="132.3076923076923" r="9.9498743710662" fill="#e15759" stroke="#e15759"></circle>
         <circle cx="78.57142857142856" cy="206.15384615384616" r="9.9498743710662" fill="#4e79a7" stroke="#4e79a7"></circle>
@@ -273,8 +273,8 @@
       </g>
     </g>
     <g transform="translate(440,0)">
-      <rect fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
-      <g fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="180" height="260"></rect>
+      <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
         <circle cx="101.42857142857143" cy="150.76923076923077" r="4.242640687119285" fill="#e15759" stroke="#e15759"></circle>
         <circle cx="101.42857142857143" cy="169.23076923076923" r="2.9999999999999996" fill="#e15759" stroke="#e15759"></circle>
         <circle cx="78.57142857142856" cy="169.23076923076923" r="2.9999999999999996" fill="#e15759" stroke="#e15759"></circle>

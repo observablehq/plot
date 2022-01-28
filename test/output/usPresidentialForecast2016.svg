@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0.0</text>
     </g>
@@ -33,7 +33,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.5</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ probability (%)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
@@ -53,7 +53,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Electoral votes for Hillary Clinton →</text>
   </g>
-  <g stroke-width="1.5" shape-rendering="crispEdges" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke-width="1.5" shape-rendering="crispEdges" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="370" y2="370" stroke="#fc8d59"></line>
     <line x1="41.078066914498145" x2="41.078066914498145" y1="370" y2="370" stroke="#fc8d59"></line>
     <line x1="42.15613382899628" x2="42.15613382899628" y1="370" y2="370" stroke="#fc8d59"></line>
@@ -594,10 +594,10 @@
     <line x1="618.9219330855019" x2="618.9219330855019" y1="370" y2="369.86344127975025" stroke="#91bfdb"></line>
     <line x1="620" x2="620" y1="370" y2="370" stroke="#91bfdb"></line>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="331.0780669144981" x2="331.0780669144981" y1="20" y2="370"></line>
   </g>
 </svg>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -51,7 +51,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency (%)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">7.0</text>
     </g>
@@ -77,7 +77,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">8.4</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Trade volume (log₁₀) →</text>
   </g>
-  <g>
+  <g aria-label="rect">
     <rect x="41" y="368.3091787439613" width="38" height="1.6908212560387028"></rect>
     <rect x="80" y="349.7101449275362" width="37" height="20.28985507246381"></rect>
     <rect x="118" y="283.768115942029" width="38" height="86.231884057971"></rect>
@@ -94,7 +94,7 @@
     <rect x="544" y="366.6183574879227" width="37" height="3.381642512077292"></rect>
     <rect x="582" y="368.3091787439613" width="38" height="1.6908212560387028"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

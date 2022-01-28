@@ -10,6 +10,9 @@ export function styles(
   {
     title,
     href,
+    ariaLabel: variaLabel,
+    ariaDescription,
+    ariaHidden,
     target,
     fill,
     fillOpacity,
@@ -27,6 +30,7 @@ export function styles(
   },
   channels,
   {
+    ariaLabel: cariaLabel,
     fill: defaultFill = "currentColor",
     stroke: defaultStroke = "none",
     strokeWidth: defaultStrokeWidth,
@@ -102,6 +106,9 @@ export function styles(
   }
 
   mark.target = string(target);
+  mark.ariaLabel = string(cariaLabel);
+  mark.ariaDescription = string(ariaDescription);
+  mark.ariaHidden = string(ariaHidden);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.paintOrder = impliedString(paintOrder, "normal");
@@ -111,6 +118,7 @@ export function styles(
     ...channels,
     {name: "title", value: title, optional: true},
     {name: "href", value: href, optional: true},
+    {name: "ariaLabel", value: variaLabel, optional: true},
     {name: "fill", value: vfill, scale: "color", optional: true},
     {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
     {name: "stroke", value: vstroke, scale: "color", optional: true},
@@ -138,7 +146,8 @@ export function applyTextGroup(selection, T) {
   if (T) selection.text(isTemporal(T) ? ([i]) => isoFormat(T[i]) : isNumeric(T) ? (f => ([i]) => f(T[i]))(formatNumber()) : ([i]) => T[i]);
 }
 
-export function applyChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+export function applyChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+  if (AL) applyAttr(selection, "aria-label", i => AL[i]);
   if (F) applyAttr(selection, "fill", i => F[i]);
   if (FO) applyAttr(selection, "fill-opacity", i => FO[i]);
   if (S) applyAttr(selection, "stroke", i => S[i]);
@@ -146,10 +155,11 @@ export function applyChannelStyles(selection, {target}, {title: L, fill: F, fill
   if (SW) applyAttr(selection, "stroke-width", i => SW[i]);
   if (O) applyAttr(selection, "opacity", i => O[i]);
   if (H) applyHref(selection, i => H[i], target);
-  applyTitle(selection, L);
+  applyTitle(selection, T);
 }
 
-export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+  if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i]);
   if (F) applyAttr(selection, "fill", ([i]) => F[i]);
   if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
   if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
@@ -157,10 +167,13 @@ export function applyGroupedChannelStyles(selection, {target}, {title: L, fill: 
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
-  applyTitleGroup(selection, L);
+  applyTitleGroup(selection, T);
 }
 
 export function applyIndirectStyles(selection, mark) {
+  applyAttr(selection, "aria-label", mark.ariaLabel);
+  applyAttr(selection, "aria-description", mark.ariaDescription);
+  applyAttr(selection, "aria-hidden", mark.ariaHidden);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);

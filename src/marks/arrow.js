@@ -5,6 +5,7 @@ import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransfo
 import {maybeSameValue} from "./link.js";
 
 const defaults = {
+  ariaLabel: "arrow",
   fill: "none",
   stroke: "currentColor",
   strokeLinecap: "round",

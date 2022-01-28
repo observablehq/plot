@@ -1,6 +1,10 @@
 import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
 import {AbstractBar} from "./bar.js";
 
+const defaults = {
+  ariaLabel: "cell"
+};
+
 export class Cell extends AbstractBar {
   constructor(data, {x, y, ...options} = {}) {
     super(
@@ -9,7 +13,8 @@ export class Cell extends AbstractBar {
         {name: "x", value: x, scale: "x", type: "band", optional: true},
         {name: "y", value: y, scale: "y", type: "band", optional: true}
       ],
-      options
+      options,
+      defaults
     );
   }
   _transform() {

@@ -7,7 +7,9 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
-const defaults = {};
+const defaults = {
+  ariaLabel: "rect"
+};
 
 export class Rect extends Mark {
   constructor(data, options = {}) {

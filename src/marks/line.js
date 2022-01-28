@@ -6,6 +6,7 @@ import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset} from "../style.js";
 
 const defaults = {
+  ariaLabel: "line",
   fill: "none",
   stroke: "currentColor",
   strokeWidth: 1.5,

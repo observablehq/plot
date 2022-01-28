@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,585.3936170212767)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
     </g>
@@ -72,7 +72,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">19,000</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ price</text>
   </g>
-  <g transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(76.37628865979381,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0.5</text>
     </g>
@@ -104,7 +104,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5.0</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">carat →</text>
   </g>
-  <g>
+  <g aria-label="rect">
     <rect x="41" y="604.7234042553191" width="4.979381443298969" height="5.27659574468089" fill="rgb(143, 151, 199)"></rect>
     <rect x="41" y="598.4468085106383" width="4.979381443298969" height="5.276595744680776" fill="rgb(136, 72, 160)"></rect>
     <rect x="41" y="592.1702127659574" width="4.979381443298969" height="5.27659574468089" fill="rgb(152, 172, 210)"></rect>

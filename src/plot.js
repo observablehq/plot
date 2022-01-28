@@ -10,7 +10,7 @@ import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption} = options;
+  const {facet, style, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -77,6 +77,8 @@ export function plot(options = {}) {
       .attr("width", width)
       .attr("height", height)
       .attr("viewBox", `0 0 ${width} ${height}`)
+      .attr("aria-label", ariaLabel)
+      .attr("aria-description", ariaDescription)
       .call(svg => svg.append("style").text(`
         .${className} {
           display: block;

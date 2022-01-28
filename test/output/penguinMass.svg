@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
@@ -55,7 +55,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,500</text>
     </g>
@@ -84,7 +84,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,500</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
   </g>
-  <g>
+  <g aria-label="rect">
     <rect x="41" y="336.48936170212767" width="72" height="33.51063829787233"></rect>
     <rect x="114" y="139.14893617021278" width="71" height="230.85106382978722"></rect>
     <rect x="186" y="20" width="72" height="350"></rect>
@@ -94,7 +94,7 @@
     <rect x="476" y="262.02127659574467" width="72" height="107.97872340425533"></rect>
     <rect x="549" y="355.1063829787234" width="71" height="14.893617021276611"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

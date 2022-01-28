@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,366.948087431694)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
@@ -47,7 +47,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Temperature (°F)</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2012</text>
     </g>
@@ -61,7 +61,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
     </g>
   </g>
-  <g transform="translate(0.5,0)">
+  <g aria-label="rule" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="270.81967213114757" y2="206.8852459016394" stroke="rgb(236, 239, 241)"></line>
     <line x1="40.397260273972606" x2="40.397260273972606" y1="288.8524590163935" y2="224.91803278688528" stroke="rgb(200, 224, 237)"></line>
     <line x1="40.794520547945204" x2="40.794520547945204" y1="252.78688524590166" y2="215.90163934426226" stroke="rgb(250, 228, 215)"></line>

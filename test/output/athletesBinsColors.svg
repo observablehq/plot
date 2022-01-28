@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
@@ -54,7 +54,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(81.34507042253522,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g>
@@ -77,7 +77,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">weight →</text>
   </g>
-  <g>
+  <g aria-label="rect">
     <rect x="41" y="369.45226917057903" width="7.16901408450704" height="0.5477308294209706" fill="rgb(35, 23, 27)"></rect>
     <rect x="49.16901408450704" y="369.45226917057903" width="7.169014084507047" height="0.5477308294209706" fill="rgb(49, 32, 70)"></rect>
     <rect x="57.33802816901409" y="367.26134585289515" width="7.169014084507047" height="2.738654147104853" fill="rgb(60, 40, 107)"></rect>
@@ -148,7 +148,7 @@
     <rect x="588.3239436619718" y="369.45226917057903" width="7.169014084507012" height="0.5477308294209706" fill="rgb(153, 14, 0)"></rect>
     <rect x="612.830985915493" y="368.90453834115806" width="7.169014084507012" height="1.0954616588419412" fill="rgb(144, 12, 0)"></rect>
   </g>
-  <g stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
 </svg>

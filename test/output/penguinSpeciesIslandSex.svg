@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,400.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
@@ -75,7 +75,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
     </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
-  <g transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(130.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Adelie</text>
     </g>
@@ -88,7 +88,7 @@
   </g>
   <g>
     <g transform="translate(40,0)">
-      <g transform="translate(0,400)" fill="none" text-anchor="middle">
+      <g aria-label="x-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(32.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
         </g>
@@ -101,7 +101,7 @@
       </g>
     </g>
     <g transform="translate(240,0)">
-      <g transform="translate(0,400)" fill="none" text-anchor="middle">
+      <g aria-label="x-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(32.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
         </g>
@@ -114,7 +114,7 @@
       </g>
     </g>
     <g transform="translate(440,0)">
-      <g transform="translate(0,400)" fill="none" text-anchor="middle">
+      <g aria-label="x-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
         <g class="tick" opacity="1" transform="translate(32.5,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
         </g>
@@ -127,7 +127,7 @@
       </g>
     </g>
     <g transform="translate(40,0)">
-      <g>
+      <g aria-label="bar">
         <rect x="6" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
         <rect x="64" width="52" y="288.4931506849315" height="111.50684931506851" fill="#4e79a7"></rect>
         <rect x="6" width="52" y="151.64383561643834" height="136.84931506849315" fill="#f28e2c"></rect>
@@ -137,26 +137,26 @@
         <rect x="64" width="52" y="30" height="116.57534246575344" fill="#e15759"></rect>
         <rect x="122" width="52" y="369.5890410958904" height="25.34246575342462" fill="#e15759"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="0" x2="180" y1="400" y2="400"></line>
       </g>
     </g>
     <g transform="translate(240,0)">
-      <g>
+      <g aria-label="bar">
         <rect x="6" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
         <rect x="64" width="52" y="227.67123287671234" height="172.32876712328766" fill="#f28e2c"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="0" x2="180" y1="400" y2="400"></line>
       </g>
     </g>
     <g transform="translate(440,0)">
-      <g>
+      <g aria-label="bar">
         <rect x="6" width="52" y="106.027397260274" height="293.97260273972597" fill="#4e79a7"></rect>
         <rect x="64" width="52" y="90.82191780821917" height="309.17808219178085" fill="#4e79a7"></rect>
         <rect x="122" width="52" y="374.6575342465753" height="25.342465753424676" fill="#4e79a7"></rect>
       </g>
-      <g stroke="currentColor" transform="translate(0,0.5)">
+      <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
         <line x1="0" x2="180" y1="400" y2="400"></line>
       </g>
     </g>

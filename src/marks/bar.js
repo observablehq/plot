@@ -7,10 +7,8 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
-const defaults = {};
-
 export class AbstractBar extends Mark {
-  constructor(data, channels, options = {}) {
+  constructor(data, channels, options = {}, defaults) {
     super(data, channels, options, defaults);
     const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
     this.insetTop = number(insetTop);
@@ -58,6 +56,10 @@ export class AbstractBar extends Mark {
   }
 }
 
+const defaults = {
+  ariaLabel: "bar"
+};
+
 export class BarX extends AbstractBar {
   constructor(data, options = {}) {
     const {x1, x2, y} = options;
@@ -68,7 +70,8 @@ export class BarX extends AbstractBar {
         {name: "x2", value: x2, scale: "x"},
         {name: "y", value: y, scale: "y", type: "band", optional: true}
       ],
-      options
+      options,
+      defaults
     );
   }
   _transform(selection, {x}, dx, dy) {
@@ -94,7 +97,8 @@ export class BarY extends AbstractBar {
         {name: "y2", value: y2, scale: "y"},
         {name: "x", value: x, scale: "x", type: "band", optional: true}
       ],
-      options
+      options,
+      defaults
     );
   }
   _transform(selection, {y}, dx, dy) {
