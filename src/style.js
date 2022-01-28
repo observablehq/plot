@@ -12,6 +12,7 @@ export function styles(
     href,
     ariaLabel: variaLabel,
     ariaDescription,
+    ariaHidden,
     target,
     fill,
     fillOpacity,
@@ -107,6 +108,7 @@ export function styles(
   mark.target = string(target);
   mark.ariaLabel = string(cariaLabel);
   mark.ariaDescription = string(ariaDescription);
+  mark.ariaHidden = string(ariaHidden);
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.paintOrder = impliedString(paintOrder, "normal");
@@ -171,6 +173,7 @@ export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, t
 export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
+  applyAttr(selection, "aria-hidden", mark.ariaHidden);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
