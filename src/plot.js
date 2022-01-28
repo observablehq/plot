@@ -204,6 +204,18 @@ function markValue(mark, selection) {
   return selection === null ? mark.data : take(mark.data, selection);
 }
 
+// Given two (possibly null, possibly an index, but not undefined) selections,
+// returns true if the two represent the same selection, and false otherwise.
+// This assumes that the selection is a in-order subset of the original index.
+export function selectionEquals(s1, s2) {
+  if (s1 === s2) return true;
+  if (s1 == null || s2 == null) return false;
+  const n = s1.length;
+  if (n !== s2.length) return false;
+  for (let i = 0; i < n; ++i) if (s1[i] !== s2[i]) return false;
+  return true;
+}
+
 class Render extends Mark {
   constructor(render) {
     super();

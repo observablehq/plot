@@ -1,6 +1,6 @@
 import {brush as brusher, brushX as brusherX, brushY as brusherY, create, select} from "d3";
 import {identity, maybeTuple} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark, selectionEquals} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles} from "../style.js";
 
 const defaults = {
@@ -61,8 +61,10 @@ export class Brush extends Mark {
                 S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
               }
             }
-            this.selection = S;
-            this.dispatchEvent(new Event("input", {bubbles: true}));
+            if (!selectionEquals(this.selection, S)) {
+              this.selection = S;
+              this.dispatchEvent(new Event("input", {bubbles: true}));
+            }
           }))
         .call(g => g.selectAll(".selection")
           .attr("shape-rendering", null) // reset d3-brush
