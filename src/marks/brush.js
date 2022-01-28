@@ -24,6 +24,8 @@ export class Brush extends Mark {
       options,
       defaults
     );
+    this.faceted = [];
+    this.clears = [];
   }
   render(index, scales, {x: X, y: Y}, dimensions) {
     const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
@@ -31,27 +33,36 @@ export class Brush extends Mark {
     const top = marginTop;
     const right = width - marginRight;
     const bottom = height - marginBottom;
-    return create("svg:g")
-        .call((X && Y ? brusher : X ? brusherX : brusherY)()
-          .extent([[left, top], [right, bottom]])
-          .on("start brush end", function(event) {
-            const {selection} = event;
-            let S = index;
-            if (selection) {
-              if (X) {
-                const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
-                S = S.filter(i => x0 <= X[i] && X[i] <= x1);
-              }
-              if (Y) {
-                const [y0, y1] = X ? [selection[0][1], selection[1][1]] : selection;
-                S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
-              }
-            }
-            this.selection = S;
-            this.dispatchEvent(new Event("input", {bubbles: true}));
-          }))
-        .property("selection", index)
-      .node();
+    const {faceted, clears} = this;
+    const f = faceted.push(index) - 1;
+    const brush = (X && Y ? brusher : X ? brusherX : brusherY)()
+    .extent([[left, top], [right, bottom]])
+    .on("start brush end", function({selection, sourceEvent, type}) {
+      if (!sourceEvent) return; // cleared by a brush in a sister facet
+      let S = index;
+      if (selection) {
+        if (X) {
+          const [x0, x1] = Y ? [selection[0][0], selection[1][0]] : selection;
+          S = S.filter(i => x0 <= X[i] && X[i] <= x1);
+        }
+        if (Y) {
+          const [y0, y1] = X ? [selection[0][1], selection[1][1]] : selection;
+          S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
+        }
+        this.selection = S;
+      } else {
+        this.selection = faceted.flat();
+      }
+      if (type === "start") {
+        for (let i = 0; i < clears.length; i++) if (i !== f) clears[i]();
+      }
+      this.dispatchEvent(new Event("input", {bubbles: true}));
+    });
+    const g = create("svg:g")
+        .call(brush)
+        .property("selection", index);
+    clears.push(() => g.call(brush.clear));
+    return g.node();
   }
 }
 

@@ -104,7 +104,7 @@ export function plot(options = {}) {
       // TODO Will the name “selection” lead to a false positive on random SVG elements?
       if (node.selection !== undefined) {
         value = take(mark.data, node.selection);
-        node.addEventListener("input", () => figure.value = take(mark.data, node.selection));
+        node.addEventListener("input", event => figure.value = take(mark.data, event.target.selection));
       }
       svg.appendChild(node);
     }
@@ -280,7 +280,8 @@ class Facet extends Mark {
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const marksValues = marksChannels.map(channels => applyScales(channels, scales));
-    return create("svg:g")
+    let selection = [];
+    const node = create("svg:g")
         .call(g => {
           if (fy && axes.y) {
             const axis1 = axes.y, axis2 = nolabel(axis1);
@@ -324,10 +325,13 @@ class Facet extends Mark {
                 const values = marksValues[i];
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
                 const node = marks[i].render(index, scales, values, subdimensions);
+                if (node.selection !== undefined) selection = new Set([...selection, ...node.selection]);
                 if (node != null) this.appendChild(node);
               }
             }))
       .node();
+    if (selection) node.selection = selection;
+    return node;
   }
 }
 
