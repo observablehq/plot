@@ -22,7 +22,7 @@ export class Brush extends Mark {
       options,
       defaults
     );
-    this.currentElement = null;
+    this.activeElement = null;
   }
   render(index, {x, y}, {x: X, y: Y}, dimensions) {
     const {ariaLabel, ariaDescription, ariaHidden, ...options} = this;
@@ -37,12 +37,12 @@ export class Brush extends Mark {
             // For faceting, when starting a brush in a new facet, clear the
             // brush and selection on the old facet. In the future, we might
             // allow independent brushes across facets by disabling this?
-            if (type === "start" && brush.currentElement !== this) {
-              if (brush.currentElement !== null) {
-                select(brush.currentElement).call(event.target.clear, event);
-                brush.currentElement[selection] = null;
+            if (type === "start" && brush.activeElement !== this) {
+              if (brush.activeElement !== null) {
+                select(brush.activeElement).call(event.target.clear, event);
+                brush.activeElement[selection] = null;
               }
-              brush.currentElement = this;
+              brush.activeElement = this;
             }
             let S = null;
             if (extent) {
