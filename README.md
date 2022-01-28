@@ -1220,6 +1220,38 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+## Interactions
+
+Interactions are special marks that handle user input and define interactive selections. When a plot has an interaction mark, the returned *plot*.value represents the current selection as an array subset of the interaction mark’s data. As the user modifies the selection through interaction with the plot, *input* events are emitted. This design is compatible with [Observable’s viewof operator](https://observablehq.com/@observablehq/introduction-to-views), but you can also listen to *input* events directly via the [EventTarget interface](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget).
+
+### Brush
+
+[Source](./src/marks/brush.js) · [Examples](https://observablehq.com/@observablehq/plot-brush) · Selects points within a single contiguous rectangular region, such as nearby dots in a scatterplot.
+
+#### Plot.brush(*data*, *options*)
+
+```js
+Plot.brush(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
+```
+
+Returns a new brush with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+
+#### Plot.brushX(*data*, *options*)
+
+```js
+Plot.brushX(penguins, {x: "culmen_depth_mm"})
+```
+
+Equivalent to [Plot.brush](#plotbrushdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+
+#### Plot.brushY(*data*, *options*)
+
+```js
+Plot.brushY(penguins, {y: "culmen_length_mm"})
+```
+
+Equivalent to [Plot.brush](#plotbrushdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
 ## Decorations
 
 Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
