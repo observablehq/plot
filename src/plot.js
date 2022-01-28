@@ -6,6 +6,7 @@ import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, first, second, where, take} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
+import {selection} from "./selection.js";
 import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
@@ -102,11 +103,10 @@ export function plot(options = {}) {
     const index = filter(markIndex.get(mark), channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) {
-      // TODO A more explicit indication that a mark defines a value (e.g., a symbol)?
-      if (node.selection !== undefined) {
-        initialValue = markValue(mark, node.selection);
+      if (node[selection] !== undefined) {
+        initialValue = markValue(mark, node[selection]);
         node.addEventListener("input", () => {
-          figure.value = markValue(mark, node.selection);
+          figure.value = markValue(mark, node[selection]);
         });
       }
       svg.appendChild(node);
@@ -202,18 +202,6 @@ function markify(mark) {
 
 function markValue(mark, selection) {
   return selection === null ? mark.data : take(mark.data, selection);
-}
-
-// Given two (possibly null, possibly an index, but not undefined) selections,
-// returns true if the two represent the same selection, and false otherwise.
-// This assumes that the selection is a in-order subset of the original index.
-export function selectionEquals(s1, s2) {
-  if (s1 === s2) return true;
-  if (s1 == null || s2 == null) return false;
-  const n = s1.length;
-  if (n !== s2.length) return false;
-  for (let i = 0; i < n; ++i) if (s1[i] !== s2[i]) return false;
-  return true;
 }
 
 class Render extends Mark {
@@ -345,13 +333,13 @@ class Facet extends Mark {
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
                 const node = marks[i].render(index, scales, values, subdimensions);
                 if (node != null) {
-                  if (node.selection !== undefined) {
+                  if (node[selection] !== undefined) {
                     if (marks[i].data !== data) throw new Error("selection must use facet data");
                     if (selectionByFacet === undefined) selectionByFacet = facetMap(channels);
-                    selectionByFacet.set(key, node.selection);
+                    selectionByFacet.set(key, node[selection]);
                     node.addEventListener("input", () => {
-                      selectionByFacet.set(key, node.selection);
-                      parent.selection = facetSelection(selectionByFacet);
+                      selectionByFacet.set(key, node[selection]);
+                      parent[selection] = facetSelection(selectionByFacet);
                     });
                   }
                   this.appendChild(node);
@@ -360,7 +348,7 @@ class Facet extends Mark {
             }))
       .node();
     if (selectionByFacet !== undefined) {
-      parent.selection = facetSelection(selectionByFacet);
+      parent[selection] = facetSelection(selectionByFacet);
     }
     return parent;
   }
