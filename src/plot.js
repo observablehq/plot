@@ -93,6 +93,7 @@ export function plot(options = {}) {
       .call(applyInlineStyles, style)
     .node();
 
+  let value;
   for (const mark of marks) {
     const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
@@ -102,8 +103,8 @@ export function plot(options = {}) {
       // TODO More explicit indication that a mark defines a value?
       // TODO Will the name “selection” lead to a false positive on random SVG elements?
       if (node.selection !== undefined) {
-        svg.value = take(mark.data, node.selection);
-        node.addEventListener("input", () => svg.value = take(mark.data, node.selection));
+        value = take(mark.data, node.selection);
+        node.addEventListener("input", () => figure.value = take(mark.data, node.selection));
       }
       svg.appendChild(node);
     }
@@ -125,6 +126,7 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, options);
+  figure.value = value;
   return figure;
 }
 
