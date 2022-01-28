@@ -24,28 +24,24 @@ export class Brush extends Mark {
     this.currentElement = null;
   }
   render(index, {x, y}, {x: X, y: Y}, dimensions) {
-    const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
     const {ariaLabel, ariaDescription, ariaHidden, ...options} = this;
-    const left = marginLeft;
-    const top = marginTop;
-    const right = width - marginRight;
-    const bottom = height - marginBottom;
-    const mark = this;
+    const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
+    const brush = this;
     const g = create("svg:g")
         .call(applyIndirectStyles, {ariaLabel, ariaDescription, ariaHidden})
         .call((X && Y ? brusher : X ? brusherX : brusherY)()
-          .extent([[left, top], [right, bottom]])
+          .extent([[marginLeft, marginTop], [width - marginRight, height - marginBottom]])
           .on("start brush end", function(event) {
             const {type, selection} = event;
             // For faceting, when starting a brush in a new facet, clear the
             // brush and selection on the old facet. In the future, we might
             // allow independent brushes across facets by disabling this?
-            if (type === "start" && mark.currentElement !== this) {
-              if (mark.currentElement !== null) {
-                select(mark.currentElement).call(event.target.clear, event);
-                mark.currentElement.selection = null;
+            if (type === "start" && brush.currentElement !== this) {
+              if (brush.currentElement !== null) {
+                select(brush.currentElement).call(event.target.clear, event);
+                brush.currentElement.selection = null;
               }
-              mark.currentElement = this;
+              brush.currentElement = this;
             }
             let S = null;
             if (selection) {
