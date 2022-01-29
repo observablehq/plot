@@ -69,7 +69,7 @@ export class AxisX {
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
-        .attr("aria-label", ariaLabel === undefined ? `${name}-axis ${label}` : ariaLabel)
+        .attr("aria-label", ariaLabel === undefined ? `${name}-axis${label != null ? ` ${label}` : ""}` : ariaLabel)
         .attr("transform", `translate(0,${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
@@ -160,7 +160,7 @@ export class AxisY {
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
-        .attr("aria-label", ariaLabel === undefined ? `${name}-axis ${label}` : ariaLabel)
+        .attr("aria-label", ariaLabel === undefined ? `${name}-axis${label != null ? ` ${label}` : ""}` : ariaLabel)
         .attr("transform", `translate(${tx},0)`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
