@@ -17,7 +17,7 @@ export default async function() {
     marks: [
       Plot.ruleY([0]),
       Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"}),
-      Plot.pointer(data, {x: "Date", y: "Anomaly", mode: "x"})
+      Plot.pointer(data, {x: "Date", y: "Anomaly", n: 5})
     ]
   });
   const output = html`<output>`;

@@ -1,4 +1,4 @@
-import {create, pointer as pointerof} from "d3";
+import {create, pointer as pointerof, quickselect} from "d3";
 import {identity, maybeFrameAnchor, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {selection, selectionEquals} from "../selection.js";
@@ -9,7 +9,15 @@ const defaults = {
 };
 
 export class Pointer extends Mark {
-  constructor(data, {x, y, r = 20, mode = "auto", frameAnchor, ...options} = {}) {
+  constructor(data, {
+    x,
+    y,
+    n = Infinity,
+    r = isFinite(n) ? 120 : 20,
+    mode = "auto",
+    frameAnchor,
+    ...options
+  } = {}) {
     super(
       data,
       [
@@ -19,13 +27,14 @@ export class Pointer extends Mark {
       options,
       defaults
     );
+    this.n = +n;
     this.r = +r;
     this.mode = mode === "auto" ? (x == null ? "y" : y == null ? "x" : "xy") : mode; // TODO maybe mode
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, {x: X, y: Y}, dimensions) {
     const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
-    const {mode, r} = this;
+    const {mode, n, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const r2 = r * r;
     const g = create("svg:g");
@@ -48,25 +57,58 @@ export class Pointer extends Mark {
         .attr("y", marginTop)
         .attr("width", width - marginRight)
         .attr("height", height - marginBottom)
-        .on("pointerover pointermove", function(event) {
+        .on("pointerover pointermove", (event) => {
           const [mx, my] = pointerof(event);
           let S = index;
           switch (mode) {
             case "xy": {
-              S = S.filter(i => {
-                const dx = X[i] - mx, dy = Y[i] - my;
-                return dx * dx + dy * dy <= r2;
-              });
+              if (r < Infinity) {
+                S = S.filter(i => {
+                  const dx = X[i] - mx, dy = Y[i] - my;
+                  return dx * dx + dy * dy <= r2;
+                });
+              }
+              if (S.length > n) {
+                S = S.slice();
+                quickselect(S, n, undefined, undefined, (i, j) => {
+                  const ix = X[i] - mx, iy = Y[i] - my;
+                  const jx = X[j] - mx, jy = Y[j] - my;
+                  return (ix * ix + iy * iy) - (jx * jx + jy * jy);
+                });
+                S = S.slice(0, n);
+              }
               break;
             }
             case "x": {
-              const [x0, x1] = [mx - r, mx + r];
-              S = S.filter(i => x0 <= X[i] && X[i] <= x1);
+              if (r < Infinity) {
+                const [x0, x1] = [mx - r, mx + r];
+                S = S.filter(i => x0 <= X[i] && X[i] <= x1);
+              }
+              if (S.length > n) {
+                S = S.slice();
+                quickselect(S, n, undefined, undefined, (i, j) => {
+                  const ix = X[i] - mx;
+                  const jx = X[j] - mx;
+                  return ix * ix - jx * jx;
+                });
+                S = S.slice(0, n);
+              }
               break;
             }
             case "y": {
-              const [y0, y1] = [my - r, my + r];
-              S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
+              if (r < Infinity) {
+                const [y0, y1] = [my - r, my + r];
+                S = S.filter(i => y0 <= Y[i] && Y[i] <= y1);
+              }
+              if (S.length > n) {
+                S = S.slice();
+                quickselect(S, n, undefined, undefined, (i, j) => {
+                  const iy = Y[i] - my;
+                  const jy = Y[j] - my;
+                  return iy * iy - jy * jy;
+                });
+                S = S.slice(0, n);
+              }
               break;
             }
           }
