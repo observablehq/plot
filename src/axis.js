@@ -18,7 +18,8 @@ export class AxisX {
     labelAnchor,
     labelOffset,
     line,
-    tickRotate
+    tickRotate,
+    ariaLabel
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["top", "bottom"]);
@@ -33,6 +34,7 @@ export class AxisX {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
+    this.ariaLabel = string(ariaLabel);
   }
   render(
     index,
@@ -59,13 +61,15 @@ export class AxisX {
       labelAnchor,
       labelOffset,
       line,
-      tickRotate
+      name,
+      tickRotate,
+      ariaLabel
     } = this;
-    const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
+    const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
-        .attr("aria-label", `${this.name}-axis`)
+        .attr("aria-label", ariaLabel === undefined ? `${name}-axis ${label}` : ariaLabel)
         .attr("transform", `translate(0,${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
@@ -76,7 +80,9 @@ export class AxisX {
         .call(!grid ? () => {}
           : fy ? gridFacetX(index, fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
+        .call(g => g.selectAll(".tick line").attr("role", "none"))
         .call(!label ? () => {} : g => g.append("text")
+            .attr("aria-hidden", true)
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
                 labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
@@ -106,7 +112,8 @@ export class AxisY {
     labelAnchor,
     labelOffset,
     line,
-    tickRotate
+    tickRotate,
+    ariaLabel
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["left", "right"]);
@@ -121,6 +128,7 @@ export class AxisY {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
+    this.ariaLabel = string(ariaLabel);
   }
   render(
     index,
@@ -145,13 +153,15 @@ export class AxisY {
       labelAnchor,
       labelOffset,
       line,
-      tickRotate
+      name,
+      tickRotate,
+      ariaLabel
     } = this;
-    const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
+    const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
-        .attr("aria-label", `${this.name}-axis`)
+        .attr("aria-label", ariaLabel === undefined ? `${name}-axis ${label}` : ariaLabel)
         .attr("transform", `translate(${tx},0)`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
@@ -162,7 +172,9 @@ export class AxisY {
         .call(!grid ? () => {}
           : fx ? gridFacetY(index, fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
+        .call(g => g.selectAll(".tick line").attr("role", "none"))
         .call(!label ? () => {} : g => g.append("text")
+            .attr("aria-hidden", true)
             .attr("fill", "currentColor")
             .attr("transform", `translate(${labelOffset * offsetSign},${
                 labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
