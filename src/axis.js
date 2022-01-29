@@ -80,7 +80,6 @@ export class AxisX {
         .call(!grid ? () => {}
           : fy ? gridFacetX(index, fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
-        .call(g => g.selectAll(".tick line").attr("role", "none"))
         .call(!label ? () => {} : g => g.append("text")
             .attr("aria-hidden", true)
             .attr("fill", "currentColor")
@@ -172,7 +171,6 @@ export class AxisY {
         .call(!grid ? () => {}
           : fx ? gridFacetY(index, fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
-        .call(g => g.selectAll(".tick line").attr("role", "none"))
         .call(!label ? () => {} : g => g.append("text")
             .attr("aria-hidden", true)
             .attr("fill", "currentColor")
