@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(570,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" aria-description="sex" transform="translate(570,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,86.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">FEMALE</text>
     </g>
@@ -24,7 +24,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em"></text>
     </g><text fill="currentColor" transform="translate(70,235) rotate(-90)" dy="-0.32em" text-anchor="middle">sex</text>
   </g>
-  <g aria-label="x-axis" transform="translate(0,450)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" aria-description="Body mass (g) →" transform="translate(0,450)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2,500</text>
     </g>
@@ -55,7 +55,7 @@
   </g>
   <g>
     <g transform="translate(0,20)">
-      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,133.5)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
         </g>

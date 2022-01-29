@@ -59,7 +59,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h76M84,0h76M168,0h76M252,0h76M336,0h76M420,0h76M504,0h76"></path>
     </g>
   </g>
-  <g aria-label="fx-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" aria-description="coverage" transform="translate(0,400)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(78.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">C2</text>
     </g>

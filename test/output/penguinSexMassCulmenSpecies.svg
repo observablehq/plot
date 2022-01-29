@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+  <g aria-label="y-axis" aria-description="↑ culmen_length_mm" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,271.2692307692308)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">34</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
@@ -67,7 +67,7 @@
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
     </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
   </g>
-  <g aria-label="fx-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" aria-description="sex" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(130.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
@@ -144,7 +144,7 @@
       </g>
     </g>
     <g transform="translate(440,0)">
-      <g aria-label="x-axis" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" aria-description="body_mass_g →" transform="translate(0,290)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(21.92857142857143,0)">
           <line stroke="currentColor" y2="6"></line>
           <line stroke="currentColor" y2="-260" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">3k</text>
