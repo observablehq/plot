@@ -631,6 +631,7 @@ All marks support the following style options:
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
 * **ariaDescription** - a textual description of the mark’s contents
+* **ariaHidden** - if true, hide this content from the accessibility tree
 
 For all marks except [text](#plottextdata-options), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
