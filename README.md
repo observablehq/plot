@@ -284,6 +284,8 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
 * *scale*.**fontVariant** - the font-variant attribute for axis ticks; defaults to tabular-nums for quantitative axes.
+* *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
+* *scale*.**ariaDescription** - a textual description for the axis
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
@@ -628,6 +630,8 @@ All marks support the following style options:
 * **dx** - horizontal offset (in pixels; defaults to 0)
 * **dy** - vertical offset (in pixels; defaults to 0)
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
+* **ariaDescription** - a textual description of the mark’s contents
+* **ariaHidden** - if true, hide this content from the accessibility tree
 
 For all marks except [text](#plottextdata-options), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
@@ -641,6 +645,7 @@ All marks support the following optional channels:
 * **opacity** - an object opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 * **href** - a URL to link to
+* **ariaLabel** - a short label representing the value in the accessibility tree
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 
@@ -1918,3 +1923,15 @@ Plot.formatMonth("es-MX", "long")(0) // "enero"
 ```
 
 Returns a function that formats a given month number (from 0 = January to 11 = December) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [month format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*, *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to *short*.
+
+## Accessibility
+
+Plot supports several [ARIA properties](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) to help build the accessibility tree.
+
+The aria-label and aria-description properties can be set on the SVG root element by specifying the top-level options **ariaLabel** and **ariaDescription**, which default to null.
+
+Positional axes are branded with an aria-label and an aria-description properties, which can likewise be specified as axis options. Set the aria-label with the **ariaLabel** axis option, which defaults to “x-axis” and “y-axis” for the corresponding axes (and “fx-axis” and “fy-axis” for facet axes). Set the aria-description with the **ariaDescription** axis option, which defaults to null.
+
+Marks are branded with an aria-label property with the mark’s name (*e.g.*, “dot”). You can also set an optional aria-description property by specifying the mark option **ariaDescription**. A short label can be specified for each of the individual elements—*e.g.*, individual dots in a dot mark—with the mark option **ariaLabel**. A mark can be hidden from the accessibility tree by specifying the mark option **ariaHidden** to true; this allows to hide decorative elements (such as rules) and repetitive marks (such as lines that support dots, or text marks that are also represented by symbols).
+
+The accessibility tree is consumed by various assistive technology such as screen readers and browser add-ons to make web contents and web applications more accessible to people with disabilities. It can be inspected in the browser’s inspector.
