@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(560,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" aria-description="species" transform="translate(560,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,113.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Adelie</text>
     </g>
@@ -24,7 +24,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Gentoo</text>
     </g><text fill="currentColor" transform="translate(80,300) rotate(-90)" dy="-0.32em" text-anchor="middle">species</text>
   </g>
-  <g aria-label="fx-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" aria-description="sex" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(120.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">FEMALE</text>
     </g>
@@ -37,7 +37,7 @@
   </g>
   <g>
     <g transform="translate(0,30)">
-      <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+      <g aria-label="y-axis" aria-description="↑ culmen_length_mm" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(0,149.88909090909092)">
           <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">35</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h161M179,0h161M358,0h161"></path>
@@ -133,7 +133,7 @@
       </g>
     </g>
     <g transform="translate(398,0)">
-      <g aria-label="x-axis" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+      <g aria-label="x-axis" aria-description="culmen_depth_mm →" transform="translate(0,570)" fill="none" text-anchor="middle" font-variant="tabular-nums">
         <g class="tick" opacity="1" transform="translate(36.91666666666667,0)">
           <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
           <path stroke="currentColor" stroke-opacity="0.1" d="M0,-540v167M0,-168v167"></path>

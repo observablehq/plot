@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(550,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" aria-description="site" transform="translate(550,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,77.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Waseca</text>
     </g>
@@ -33,7 +33,7 @@
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Grand Rapids</text>
     </g><text fill="currentColor" transform="translate(90,395) rotate(-90)" dy="-0.32em" text-anchor="middle">site</text>
   </g>
-  <g aria-label="x-axis" transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" aria-description="yield →" transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
@@ -197,7 +197,7 @@
       </g>
     </g>
     <g transform="translate(0,401)">
-      <g aria-label="y-axis" transform="translate(110,0)" fill="none" text-anchor="end">
+      <g aria-label="y-axis" aria-description="variety" transform="translate(110,0)" fill="none" text-anchor="end">
         <g class="tick" opacity="1" transform="translate(0,12.5)">
           <line stroke="currentColor" x2="-6"></line>
           <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>

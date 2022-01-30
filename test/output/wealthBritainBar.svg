@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" aria-description="wealth →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(20.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>

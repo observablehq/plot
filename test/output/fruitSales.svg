@@ -27,7 +27,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">apples</text>
     </g>
   </g>
-  <g aria-label="x-axis" transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" aria-description="units →" transform="translate(0,110)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(50.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
