@@ -223,7 +223,7 @@
       <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Puerto Rico</text>
     </g>
   </g>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" aria-description="← decrease · Change in population, 2010–2019 (millions) · increase →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="-6"></line>
       <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>

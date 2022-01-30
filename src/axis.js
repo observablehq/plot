@@ -2,7 +2,7 @@ import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} fro
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
-import {impliedString} from "./style.js";
+import {applyAttr, impliedString} from "./style.js";
 
 export class AxisX {
   constructor({
@@ -18,7 +18,9 @@ export class AxisX {
     labelAnchor,
     labelOffset,
     line,
-    tickRotate
+    tickRotate,
+    ariaLabel,
+    ariaDescription
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["top", "bottom"]);
@@ -33,6 +35,8 @@ export class AxisX {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
+    this.ariaLabel = string(ariaLabel);
+    this.ariaDescription = string(ariaDescription);
   }
   render(
     index,
@@ -59,13 +63,14 @@ export class AxisX {
       labelAnchor,
       labelOffset,
       line,
+      name,
       tickRotate
     } = this;
-    const offset = this.name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
+    const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
-        .attr("aria-label", `${this.name}-axis`)
+        .call(applyAria, this)
         .attr("transform", `translate(0,${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
@@ -106,7 +111,9 @@ export class AxisY {
     labelAnchor,
     labelOffset,
     line,
-    tickRotate
+    tickRotate,
+    ariaLabel,
+    ariaDescription
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["left", "right"]);
@@ -121,6 +128,8 @@ export class AxisY {
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
+    this.ariaLabel = string(ariaLabel);
+    this.ariaDescription = string(ariaDescription);
   }
   render(
     index,
@@ -145,13 +154,14 @@ export class AxisY {
       labelAnchor,
       labelOffset,
       line,
+      name,
       tickRotate
     } = this;
-    const offset = this.name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
+    const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
-        .attr("aria-label", `${this.name}-axis`)
+        .call(applyAria, this)
         .attr("transform", `translate(${tx},0)`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
@@ -178,6 +188,16 @@ export class AxisY {
             .text(label))
       .node();
   }
+}
+
+function applyAria(selection, {
+  name,
+  label,
+  ariaLabel = `${name}-axis`,
+  ariaDescription = label
+}) {
+  applyAttr(selection, "aria-label", ariaLabel);
+  applyAttr(selection, "aria-description", ariaDescription);
 }
 
 function gridX(y2) {

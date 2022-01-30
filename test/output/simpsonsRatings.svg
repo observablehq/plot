@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
+  <g aria-label="y-axis" aria-description="Season" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,42.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
@@ -127,7 +127,7 @@
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">28</text>
     </g><text fill="currentColor" transform="translate(-40,325) rotate(-90)" dy="0.75em" text-anchor="middle">Season</text>
   </g>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" aria-description="Episode" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(54.5,0)">
       <line stroke="currentColor" y2="-6"></line>
       <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">1</text>
