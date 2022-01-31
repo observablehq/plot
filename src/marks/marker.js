@@ -66,7 +66,7 @@ function markerCircleStroke(color) {
 let nextMarkerId = 0;
 
 export function applyMarkers(path, {markerStart, markerMid, markerEnd}) {
-  if (!markerStart && !markerMid && !markerEnd) return;
+  if (!(markerStart || markerMid || markerEnd)) return;
   const iriByMarkerColor = new Map();
   path.each(function() {
     const color = this.getAttribute("stroke");
