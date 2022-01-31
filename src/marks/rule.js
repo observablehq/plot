@@ -4,7 +4,6 @@ import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
-import {applyMarkers, markers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "rule",
@@ -34,7 +33,6 @@ export class RuleX extends Mark {
     );
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
-    markers(this, options);
   }
   render(index, {x, y}, channels, dimensions) {
     const {x: X, y1: Y1, y2: Y2} = channels;
@@ -48,7 +46,6 @@ export class RuleX extends Mark {
           .join("line")
             .call(applyDirectStyles, this)
             .call(applyChannelStyles, this, channels)
-            .call(applyMarkers, this)
             .attr("x1", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 && !isCollapsed(y) ? i => Y1[i] + insetTop : marginTop + insetTop)
@@ -79,7 +76,6 @@ export class RuleY extends Mark {
     );
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
-    markers(this, options);
   }
   render(index, {x, y}, channels, dimensions) {
     const {y: Y, x1: X1, x2: X2} = channels;
@@ -93,7 +89,6 @@ export class RuleY extends Mark {
           .join("line")
             .call(applyDirectStyles, this)
             .call(applyChannelStyles, this, channels)
-            .call(applyMarkers, this)
             .attr("x1", X1 && !isCollapsed(x) ? i => X1[i] + insetLeft : marginLeft + insetLeft)
             .attr("x2", X2 && !isCollapsed(x) ? (x.bandwidth ? i => X2[i] + x.bandwidth() - insetRight : i => X2[i] - insetRight) : width - marginRight - insetRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
