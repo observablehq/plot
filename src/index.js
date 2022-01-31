@@ -7,6 +7,7 @@ export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Image, image} from "./marks/image.js";
+export {Lasso, lasso} from "./marks/lasso.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";
 export {Pointer, pointer, pointerX, pointerY} from "./marks/pointer.js";

@@ -92,6 +92,7 @@ export {default as ordinalBar} from "./ordinal-bar.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinCulmenBrush} from "./penguin-culmen-brush.js";
+export {default as penguinCulmenLasso} from "./penguin-culmen-lasso.js";
 export {default as penguinIslandUnknown} from "./penguin-island-unknown.js";
 export {default as penguinMass} from "./penguin-mass.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
