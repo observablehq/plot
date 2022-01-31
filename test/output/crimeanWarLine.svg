@@ -1,0 +1,103 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ deaths" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,345.146867077146)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,319.79373415429194)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,294.4406012314379)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,269.0874683085839)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,243.7343353857298)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,218.38120246287573)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,193.02806954002173)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,167.67493661716767)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,600</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,142.32180369431364)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,116.96867077145961)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,91.6155378486056)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,66.26240492575154)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.90927200289748)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2,600</text>
+    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ deaths</text>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Apr</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(115.9,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(192.12857142857143,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Oct</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(268.35714285714283,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(342.9285714285715,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Apr</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(418.3285714285714,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(494.5571428571429,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Oct</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(570.7857142857143,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan</text>
+    </g>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+  </g>
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4e79a7" stroke="white" stroke-width="1.5" id="plot-marker-1">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#4e79a7" marker-start="url(#plot-marker-1)" marker-mid="url(#plot-marker-1)" marker-end="url(#plot-marker-1)" d="M40,369.87323433538575L64.85714285714286,368.4788120246287L90.54285714285714,368.60557768924303L115.4,324.491126403477L141.0857142857143,265.03802969938425L166.7714285714286,270.1086562839551L191.62857142857143,306.23687069902206L217.31428571428572,263.00977906555596L242.17142857142858,151.32922854038392L267.85714285714283,20L293.5428571428572,101.2567910177472L316.74285714285713,217.2473741398044L342.4285714285715,309.53277797899307L367.2857142857143,305.6030423759507L392.97142857142853,268.3339369793553L417.8285714285714,321.5755161173488L443.51428571428573,308.7721839913075L469.2,346.0412893879029L494.0571428571429,353.77399492937343L519.7428571428571,347.43571169865993L544.6,358.4643245201014L570.2857142857143,364.67584208620065L595.9714285714285,366.95762404925756L620,368.09851503078596"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#e15759" stroke="white" stroke-width="1.5" id="plot-marker-2">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#e15759" marker-start="url(#plot-marker-2)" marker-mid="url(#plot-marker-2)" marker-end="url(#plot-marker-2)" d="M40,370L64.85714285714286,370L90.54285714285714,370L115.4,370L141.0857142857143,369.87323433538575L166.7714285714286,359.7319811662441L191.62857142857143,353.26693227091636L217.31428571428572,333.61825425570447L242.17142857142858,355.5487142339732L267.85714285714283,359.4784498370156L293.5428571428572,364.67584208620065L316.74285714285713,365.94349873234336L342.4285714285715,363.91524809851506L367.2857142857143,363.78848243390075L392.97142857142853,343.5059760956175L417.8285714285714,353.0134009416878L443.51428571428573,349.2104310032597L469.2,335.01267656646144L494.0571428571429,363.2814197754437L519.7428571428571,365.8167330677291L544.6,367.71821803694314L570.2857142857143,369.74646867077143L595.9714285714285,370L620,370"></path>
+    <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#f28e2c" stroke="white" stroke-width="1.5" id="plot-marker-3">
+      <circle r="3"></circle>
+    </marker>
+    <path stroke="#f28e2c" marker-start="url(#plot-marker-3)" marker-mid="url(#plot-marker-3)" marker-end="url(#plot-marker-3)" d="M40,369.3661716769287L64.85714285714286,368.8591090184716L90.54285714285714,369.23940601231436L115.4,367.08438971387176L141.0857142857143,366.1970300615719L166.7714285714286,361.1264034770011L191.62857142857143,353.77399492937343L217.31428571428572,356.56283955088736L242.17142857142858,353.39369793553067L267.85714285714283,328.92792466497644L293.5428571428572,324.2375950742485L316.74285714285713,348.1963056863455L342.4285714285715,362.7743571169866L367.2857142857143,365.30967040927203L392.97142857142853,366.0702643969576L417.8285714285714,365.8167330677291L443.51428571428573,366.83085838464325L469.2,367.46468670771463L494.0571428571429,367.71821803694314L519.7428571428571,365.94349873234336L544.6,366.45056139080043L570.2857142857143,363.91524809851506L595.9714285714285,367.5914523723289L620,365.5632017385006"></path>
+  </g>
+</svg>
