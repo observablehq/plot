@@ -27,6 +27,8 @@ export {default as caltrain} from "./caltrain.js";
 export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
+export {default as crimeanWarArrow} from "./crimean-war-arrow.js";
+export {default as crimeanWarLine} from "./crimean-war-line.js";
 export {default as crimeanWarOverlapped} from "./crimean-war-overlapped.js";
 export {default as crimeanWarStacked} from "./crimean-war-stacked.js";
 export {default as collapsedHistogram} from "./collapsed-histogram.js";

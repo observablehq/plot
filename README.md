@@ -949,7 +949,7 @@ The **fill** defaults to none. The **stroke** defaults to currentColor if the fi
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
-The line mark supports [curve options](#curves) to control interpolation between points. If any of the *x* or *y* values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+The line mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrow head) on each of the control points. If any of the *x* or *y* values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
 #### Plot.line(*data*, *options*)
 
@@ -992,7 +992,7 @@ For vertical or horizontal links, the **x** option can be specified as shorthand
 
 The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
 
-The link mark supports [curve options](#curves) to control interpolation between points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
+The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrow head) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
 #### Plot.link(*data*, *options*)
 
@@ -1895,6 +1895,26 @@ The following named curve methods are supported:
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/master/README.md#custom-curves).
 
 The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/master/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/master/README.md#curveCatmullRom_alpha).
+
+## Markers
+
+A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](#line) or a [link](#link) mark. The supported marker options are:
+
+* **markerStart** - the marker for the starting point of a line segment
+* **markerMid** - the marker for any intermediate point of a line segment
+* **markerEnd** - the marker for the end point of a line segment
+* **marker** - shorthand for setting the marker on all points
+
+The following named markers are supported:
+
+* *none* - no marker (default)
+* *arrow* - an arrowhead
+* *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
+* *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
+
+If *marker* is true, it defaults to *circle*. If *marker* is a function, it will be called with a given *color* and must return an SVG marker element.
+
+The primary color of a marker is inherited from the *stroke* of the associated mark. The *arrow* marker is [automatically oriented](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/orient) such that it points in the tangential direction of the path at the position the marker is placed. The *circle* markers are centered around the given vertex. Note that lines whose curve is not *linear* (the default), markers are not necessarily drawn at the data positions given by *x* and *y*; marker placement is determined by the (possibly Bézier) path segments generated by the curve. To ensure that symbols are drawn at a given *x* and *y* position, consider using a [dot](#dot).
 
 ## Formats
 

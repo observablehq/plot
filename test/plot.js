@@ -13,16 +13,8 @@ for (const [name, plot] of Object.entries(plots)) {
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
       svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
-    let index = 0;
-    for (const style of root.querySelectorAll("style")) {
-      const name = `plot${index++ ? `-${index}` : ""}`;
-      const parent = style.parentNode;
-      const uid = parent.getAttribute("class");
-      for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
-        child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), name));
-      }
-      style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), `.${name}`);
-    }
+    reindexStyle(root);
+    reindexMarker(root);
     const actual = beautify.html(root.outerHTML, {indent_size: 2});
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
@@ -58,4 +50,34 @@ for (const [name, plot] of Object.entries(plots)) {
 
     assert(actual === expected, `${name} must match snapshot`);
   });
+}
+
+function reindexStyle(root) {
+  let index = 0;
+  for (const style of root.querySelectorAll("style")) {
+    const name = `plot${index++ ? `-${index}` : ""}`;
+    const parent = style.parentNode;
+    const uid = parent.getAttribute("class");
+    for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
+      child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), name));
+    }
+    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), `.${name}`);
+  }
+}
+
+function reindexMarker(root) {
+  let index = 0;
+  const map = new Map();
+  for (const node of root.querySelectorAll("[id^=plot-marker-]")) {
+    let id = node.getAttribute("id");
+    if (map.has(id)) id = map.get(id);
+    else map.set(id, id = `plot-marker-${++index}`);
+    node.setAttribute("id", id);
+  }
+  for (const key of ["marker-start", "marker-mid", "marker-end"]) {
+    for (const node of root.querySelectorAll(`[${key}]`)) {
+      let id = node.getAttribute(key).slice(5, -1);
+      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
+    }
+  }
 }

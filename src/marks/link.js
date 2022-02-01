@@ -2,6 +2,7 @@ import {create, path} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {markers, applyMarkers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "link",
@@ -25,6 +26,7 @@ export class Link extends Mark {
       defaults
     );
     this.curve = Curve(curve, tension);
+    markers(this, options);
   }
   render(index, {x, y}, channels) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
@@ -45,7 +47,8 @@ export class Link extends Mark {
               c.lineEnd();
               return p;
             })
-            .call(applyChannelStyles, this, channels))
+            .call(applyChannelStyles, this, channels)
+            .call(applyMarkers, this, channels))
       .node();
   }
 }

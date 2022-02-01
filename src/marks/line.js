@@ -4,6 +4,7 @@ import {defined} from "../defined.js";
 import {Mark} from "../plot.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset} from "../style.js";
+import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -27,6 +28,7 @@ export class Line extends Mark {
       defaults
     );
     this.curve = Curve(curve, tension);
+    markers(this, options);
   }
   render(I, {x, y}, channels) {
     const {x: X, y: Y, z: Z} = channels;
@@ -39,6 +41,7 @@ export class Line extends Mark {
           .join("path")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
+            .call(applyGroupedMarkers, this, channels)
             .attr("d", shapeLine()
               .curve(this.curve)
               .defined(i => defined(X[i]) && defined(Y[i]))
