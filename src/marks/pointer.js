@@ -1,7 +1,7 @@
-import {create, pointer as pointerof, quickselect} from "d3";
+import {create, namespaces, pointer as pointerof, quickselect} from "d3";
 import {identity, maybeFrameAnchor, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {selection, selectionEquals} from "../selection.js";
+import {selection} from "../selection.js";
 import {applyFrameAnchor} from "../style.js";
 
 const defaults = {
@@ -37,29 +37,27 @@ export class Pointer extends Mark {
     const {mode, n, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const r2 = r * r;
-    const C = [];
+    let C = [];
 
     const g = create("svg:g")
-        .style("color", "#3b5fc0")
-        .attr("stroke-width", 1.5);
+        .attr("fill", "none");
 
-    g.append("g")
-        .attr("fill", "none")
-      .selectAll("circle")
-      .data(index)
-      .join("circle")
-        .attr("r", 4)
-        .attr("cx", X ? i => X[i] : cx)
-        .attr("cy", Y ? i => Y[i] : cy)
-        .each(function(i) { C[i] = this; });
+    const parent = g.append("g")
+        .attr("stroke", "#3b5fc0")
+        .attr("stroke-width", 1.5)
+      .node();
 
     g.append("rect")
-        .attr("fill", "none")
         .attr("pointer-events", "all")
         .attr("width", width + marginLeft + marginRight)
         .attr("height", height + marginTop + marginBottom)
         .on("pointerover pointermove", (event) => {
           const [mx, my] = pointerof(event);
+
+          // Compute the selection index S: the subset of index that is
+          // logically selected. Note that while normally this should be an
+          // in-order subset of index, it isn’t here if the n option is
+          // specified because quickselect will reorder in-place!
           let S = index;
           switch (mode) {
             case "xy": {
@@ -113,15 +111,42 @@ export class Pointer extends Mark {
               break;
             }
           }
-          C.forEach(c => c.setAttribute("stroke", "none"));
-          S.forEach(i => C[i].setAttribute("stroke", "currentColor"));
-          if (!selectionEquals(node[selection], S)) {
+
+          // Add a circle for any newly-selected datum; remove a circle for any
+          // no-longer-selected datum. The order of these elements is arbitrary,
+          // with the most recently selected datum on top.
+          let C2 = [];
+          let changed = false;
+          S.forEach(i => {
+            let c = C[i];
+            if (!c) {
+              c = document.createElementNS(namespaces.svg, "circle");
+              c.setAttribute("id", i);
+              c.setAttribute("r", 4);
+              c.setAttribute("cx", X ? X[i] : cx);
+              c.setAttribute("cy", Y ? Y[i] : cy);
+              parent.appendChild(c);
+              changed = true;
+            }
+            C2[i] = c;
+          });
+          C.forEach((c, i) => {
+            if (!C2[i]) {
+              c.remove();
+              changed = true;
+            }
+          });
+          C = C2;
+
+          // If the selection changed, emit an input event.
+          if (changed) {
             node[selection] = S;
             node.dispatchEvent(new Event("input", {bubbles: true}));
           }
         })
         .on("pointerout", function() {
-          C.forEach(c => c.setAttribute("stroke", "none"));
+          C.forEach(c => c.remove());
+          C = [];
           node[selection] = null;
           node.dispatchEvent(new Event("input", {bubbles: true}));
         });
