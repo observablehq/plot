@@ -65,7 +65,6 @@ function reindexStyle(root) {
   }
 }
 
-// TODO replace iris url(#plot-1)
 function reindexMarker(root) {
   let index = 0;
   const map = new Map();

@@ -38,8 +38,6 @@ export class Link extends Mark {
           .data(index)
           .join("path")
             .call(applyDirectStyles, this)
-            .call(applyChannelStyles, this, channels)
-            .call(applyMarkers, this, channels)
             .attr("d", i => {
               const p = path();
               const c = curve(p);
@@ -48,7 +46,9 @@ export class Link extends Mark {
               c.point(X2[i], Y2[i]);
               c.lineEnd();
               return p;
-            }))
+            })
+            .call(applyChannelStyles, this, channels)
+            .call(applyMarkers, this, channels))
       .node();
   }
 }
