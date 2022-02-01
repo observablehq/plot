@@ -58,8 +58,12 @@ function mapFunction(f) {
   return {
     map(I, S, T) {
       const M = f(take(S, I));
-      if (M.length !== I.length) throw new Error("mismatched length");
-      for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
+      if (M.uniform) {
+        for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M.value;
+      } else {
+        if (M.length !== I.length) throw new Error("mismatched length");
+        for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
+      }
     }
   };
 }

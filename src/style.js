@@ -4,6 +4,7 @@ import {formatNumber} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, maybeValue, isTemporal, isNumeric} from "./options.js";
 import {max, min, mean, median, mode, sum, InternSet} from "d3";
 import {map} from "./transforms/map.js";
+import {identity} from "./options.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -261,24 +262,21 @@ export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, margi
 }
 
 export function maybeGroupedStyles(options = {}) {
-  let {z} = options;
-  if (z !== undefined) {
-    const maps = [];
-    for (const key of ["fill", "fillOpacity", "stroke", "strokeOpacity", "strokeWidth", "title"]) {
-      if (options[key] != null) {
-        let {value, reduce} = maybeValue(options[key]);
-        options[key] = value;
-        if (reduce) {
-          reduce = maybeReduce(reduce);
-          maps.push([key, d => (d[0] = reduce(d), d)]);
-        }
+  const grouped = [];
+  for (const key of ["fill", "fillOpacity", "stroke", "strokeOpacity", "strokeWidth", "title", "ariaLabel"]) {
+    if (options[key] != null) {
+      let {value, reduce} = maybeValue(options[key]);
+      if (reduce) {
+        options[key] = value === undefined ? identity : value;
+        reduce = maybeReduce(reduce);
+        grouped.push([key, d => ({
+          uniform: true,
+          value: reduce(d)
+        })]);
       }
     }
-    if (maps.length > 0) {
-      options = map(Object.fromEntries(maps), options);
-    }
   }
-  return options;
+  return grouped.length > 0 ? map(Object.fromEntries(grouped), options) : options;
 }
 
 function maybeReduce(reduce) {

@@ -15,6 +15,7 @@ const defaults = {
 
 export class Line extends Mark {
   constructor(data, options = {}) {
+    options = maybeGroupedStyles(options);
     const {x, y, curve, tension} = options;
     super(
       data,
@@ -50,13 +51,13 @@ export class Line extends Mark {
 
 export function line(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Line(data, maybeGroupedStyles({...options, x, y}));
+  return new Line(data, {...options, x, y});
 }
 
 export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, maybeGroupedStyles({...options, x, y}));
+  return new Line(data, {...options, x, y});
 }
 
 export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, maybeGroupedStyles({...options, x, y}));
+  return new Line(data, {...options, x, y});
 }
