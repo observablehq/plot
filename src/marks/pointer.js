@@ -137,10 +137,10 @@ export function pointer(data, {x, y, ...options} = {}) {
   return new Pointer(data, {...options, x, y});
 }
 
-export function pointerX(data, {x = identity, ...options} = {}) {
-  return new Pointer(data, {...options, mode: "x", x, y: null});
+export function pointerX(data, {mode = "x", x = identity, ...options} = {}) {
+  return new Pointer(data, {...options, mode, x});
 }
 
-export function pointerY(data, {y = identity, ...options} = {}) {
-  return new Pointer(data, {...options, mode: "y", x: null, y});
+export function pointerY(data, {mode = "y", y = identity, ...options} = {}) {
+  return new Pointer(data, {...options, mode, y});
 }
