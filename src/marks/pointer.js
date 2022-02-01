@@ -29,7 +29,7 @@ export class Pointer extends Mark {
     );
     this.n = +n;
     this.r = +r;
-    this.mode = mode === "auto" ? (x == null ? "y" : y == null ? "x" : "xy") : mode; // TODO maybe mode
+    this.mode = maybeMode(mode, x, y);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, {x: X, y: Y}, dimensions) {
@@ -130,6 +130,17 @@ export class Pointer extends Mark {
     node[selection] = null;
     return node;
   }
+}
+
+function maybeMode(mode = "auto", x, y) {
+  switch (mode = `${mode}`.toLowerCase()) {
+    case "auto": mode = y == null ? "x" : x == null ? "y" : "xy"; break;
+    case "x": case "y": case "xy": break;
+    default: throw new Error(`invalid mode: ${mode}`);
+  }
+  if (/^x/.test(mode) && x == null) throw new Error("missing channel: x");
+  if (/y$/.test(mode) && y == null) throw new Error("missing channel: y");
+  return mode;
 }
 
 export function pointer(data, {x, y, ...options} = {}) {
