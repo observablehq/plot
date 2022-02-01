@@ -79,9 +79,9 @@ export function brush(data, {x, y, ...options} = {}) {
 }
 
 export function brushX(data, {x = identity, ...options} = {}) {
-  return new Brush(data, {...options, x, y: null});
+  return new Brush(data, {...options, x});
 }
 
 export function brushY(data, {y = identity, ...options} = {}) {
-  return new Brush(data, {...options, x: null, y});
+  return new Brush(data, {...options, y});
 }
