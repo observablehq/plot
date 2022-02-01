@@ -15,6 +15,7 @@ const defaults = {
 
 export class Area extends Mark {
   constructor(data, options = {}) {
+    options = maybeGroupedStyles(options);
     const {x1, y1, x2, y2, curve, tension} = options;
     super(
       data,
@@ -53,13 +54,13 @@ export class Area extends Mark {
 }
 
 export function area(data, options) {
-  return new Area(data, maybeGroupedStyles(options));
+  return new Area(data, options);
 }
 
 export function areaX(data, {y = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackX(maybeIdentityX(maybeGroupedStyles({...options, y1: y, y2: undefined}))));
+  return new Area(data, maybeStackX(maybeIdentityX({...options, y1: y, y2: undefined})));
 }
 
 export function areaY(data, {x = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackY(maybeIdentityY(maybeGroupedStyles({...options, x1: x, x2: undefined}))));
+  return new Area(data, maybeStackY(maybeIdentityY({...options, x1: x, x2: undefined})));
 }
