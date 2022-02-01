@@ -37,8 +37,11 @@ export class Pointer extends Mark {
     const {mode, n, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const r2 = r * r;
-    const g = create("svg:g");
     const C = [];
+
+    const g = create("svg:g")
+        .style("color", "#3b5fc0")
+        .attr("stroke-width", 1.5);
 
     g.append("g")
         .attr("fill", "none")
@@ -53,10 +56,8 @@ export class Pointer extends Mark {
     g.append("rect")
         .attr("fill", "none")
         .attr("pointer-events", "all")
-        .attr("x", marginLeft)
-        .attr("y", marginTop)
-        .attr("width", width - marginRight)
-        .attr("height", height - marginBottom)
+        .attr("width", width + marginLeft + marginRight)
+        .attr("height", height + marginTop + marginBottom)
         .on("pointerover pointermove", (event) => {
           const [mx, my] = pointerof(event);
           let S = index;
@@ -113,7 +114,7 @@ export class Pointer extends Mark {
             }
           }
           C.forEach(c => c.setAttribute("stroke", "none"));
-          S.forEach(i => C[i].setAttribute("stroke", "black"));
+          S.forEach(i => C[i].setAttribute("stroke", "currentColor"));
           if (!selectionEquals(node[selection], S)) {
             node[selection] = S;
             node.dispatchEvent(new Event("input", {bubbles: true}));
