@@ -65,12 +65,20 @@ function markerCircleStroke(color) {
 
 let nextMarkerId = 0;
 
-export function applyMarkers(path, {markerStart, markerMid, markerEnd}) {
-  if (!(markerStart || markerMid || markerEnd)) return;
+export function applyMarkers(path, mark, {stroke: S}) {
+  return applyMarkersColor(path, mark, S && (i => S[i]));
+}
+
+export function applyGroupedMarkers(path, mark, {stroke: S}) {
+  return applyMarkersColor(path, mark, S && (([i]) => S[i]));
+}
+
+function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke) {
   const iriByMarkerColor = new Map();
-  path.each(function() {
-    const color = this.getAttribute("stroke");
-    const applyMarker = (name, marker) => {
+
+  function applyMarker(marker) {
+    return function(i) {
+      const color = strokeof(i);
       let iriByColor = iriByMarkerColor.get(marker);
       if (!iriByColor) iriByMarkerColor.set(marker, iriByColor = new Map());
       let iri = iriByColor.get(color);
@@ -80,10 +88,11 @@ export function applyMarkers(path, {markerStart, markerMid, markerEnd}) {
         node.setAttribute("id", id);
         iriByColor.set(color, iri = `url(#${id})`);
       }
-      this.setAttribute(name, iri);
+      return iri;
     };
-    if (markerStart) applyMarker("marker-start", markerStart);
-    if (markerMid) applyMarker("marker-mid", markerMid);
-    if (markerEnd) applyMarker("marker-end", markerEnd);
-  });
+  }
+
+  if (markerStart) path.attr("marker-start", applyMarker(markerStart));
+  if (markerMid) path.attr("marker-mid", applyMarker(markerMid));
+  if (markerEnd) path.attr("marker-end", applyMarker(markerEnd));
 }
