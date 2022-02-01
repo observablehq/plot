@@ -1898,7 +1898,7 @@ The tension option only has an effect on cardinal and Catmull–Rom splines (*ca
 
 ## Markers
 
-A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on the control points of a line or a link mark. The graphics adjust to the tangential orientation of the line at each point.
+A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on reference points of a line or a link mark. The graphics adjust to the tangential orientation of the line at each point.
 
 The supported marker options are:
 
@@ -1915,6 +1915,8 @@ The following named markers are supported:
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and a 3 pixels radius
 
 If *marker* is true, defaults to *circle*. If *marker* is a function, it will be called with a given *color*, and must return a new svg node of type marker, containing the graphics’s shape centered on ⟨0,0⟩.
+
+Note that the markers are displayed on the line, and may not represent existing values when coupled with certain curves (such as basis or step curves).
 
 ## Formats
 
