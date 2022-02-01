@@ -3,7 +3,7 @@ import {Curve} from "../curve.js";
 import {defined} from "../defined.js";
 import {Mark} from "../plot.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, maybeGroupedStyles, offset} from "../style.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -50,13 +50,13 @@ export class Line extends Mark {
 
 export function line(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }
 
 export function lineX(data, {x = identity, y = indexOf, ...options} = {}) {
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }
 
 export function lineY(data, {x = indexOf, y = identity, ...options} = {}) {
-  return new Line(data, {...options, x, y});
+  return new Line(data, maybeGroupedStyles({...options, x, y}));
 }

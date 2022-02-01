@@ -1,7 +1,9 @@
 import {isoFormat, namespaces} from "d3";
 import {nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./options.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, maybeValue, isTemporal, isNumeric} from "./options.js";
+import {max, min, mean, median, mode, sum, InternSet} from "d3";
+import {map} from "./transforms/map.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -256,4 +258,48 @@ export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, margi
     /left$/.test(frameAnchor) ? marginLeft : /right$/.test(frameAnchor) ? width - marginRight : (marginLeft + width - marginRight) / 2,
     /^top/.test(frameAnchor) ? marginTop : /^bottom/.test(frameAnchor) ? height - marginBottom : (marginTop + height - marginBottom) / 2
   ];
+}
+
+export function maybeGroupedStyles(options = {}) {
+  let {z} = options;
+  if (z !== undefined) {
+    const maps = [];
+    for (const key of ["fill", "fillOpacity", "stroke", "strokeOpacity", "strokeWidth", "title"]) {
+      if (options[key] != null) {
+        let {value, reduce} = maybeValue(options[key]);
+        options[key] = value;
+        if (reduce) {
+          reduce = maybeReduce(reduce);
+          maps.push([key, d => (d[0] = reduce(d), d)]);
+        }
+      }
+    }
+    if (maps.length > 0) {
+      options = map(Object.fromEntries(maps), options);
+    }
+  }
+  return options;
+}
+
+function maybeReduce(reduce) {
+  if (typeof reduce === "string") {
+    switch (reduce.toLowerCase()) {
+      case "first": return ([x]) => x;
+      case "last": return x => x[x.length - 1];
+      case "count": return x => x.length;
+      case "distinct": return d => new InternSet(d).size;
+      case "sum": return sum;
+      // proportion
+      // proportion-facet
+      // deviation
+      case "min": return min;
+      case "max": return max;
+      case "mean": return mean;
+      case "median": return median;
+      // variance
+      case "mode": return mode;
+    }
+  }
+  if (typeof reduce !== "function") throw new Error("invalid reduce");
+  return reduce;
 }
