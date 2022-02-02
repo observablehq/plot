@@ -12,7 +12,7 @@ Plot now supports ARIA attributes for improved accessibility: aria-label, aria-d
 
 The line and link marks now support [marker options](./README.md#markers) for drawing a graphical marker (such as a dot or arrowhead) on each vertex. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
 
-The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to “stroke”, with a stroke width of 3px and a stroke linejoin of “round”, making it easier to apply a halo to separate text labels from a busy background, improving legibility.
+The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to *stroke*, with a stroke width of 3px and a stroke linejoin of *round*, making it easier to create a halo for separating labels from a busy background, improving legibility.
 
 The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”.
 
