@@ -1,5 +1,27 @@
 # Observable Plot - Changelog
 
+## 0.4.1
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+Interaction marks! Brush.
+
+Automatic wrapping for text! And monospace text.
+
+ARIA attributes for accessibility: aria-label, aria-description, aria-hidden.
+
+Marker optionss.
+
+The *paintOrder* option; easier text halo.
+
+The *fill* and *stroke* options can now be expressed as patterns or gradients using funciri color definitions.
+
+Better boolean color schemes.
+
+Fix crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined.
+
+The vector mark now supports *frameAnchor*.
+
 ## 0.4.0
 
 Released January 20, 2022.
