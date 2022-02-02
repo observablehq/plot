@@ -4,17 +4,19 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Interaction marks! Brush.
+Plot now supports [interaction marks](./README.md#interactions). An interaction mark defines an interactive selection represented as a subset of the mark’s data and exposed as *plot*.value. During interaction, the mark emits *input* events. This allows plots to be [Observable views](https://observablehq.com/@observablehq/introduction-to-views), but you can also [listen to *input* events](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) directly.
 
-Automatic wrapping for text! And monospace text.
+The first interaction mark is the [brush mark](./README.md#brush), which allows selection using a single continguous rectangular region. The brush can be used either in two dimensions (*x* and *y*) or one dimension.
 
-ARIA attributes for accessibility: aria-label, aria-description, aria-hidden.
+The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
-Marker options.
+Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new *scale*.**ariaLabel** and *scale*.**ariaDescription** options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the *scale*.**label** (*e.g.*, “↑ temperature”). Marks provide a group-level aria-label based on the mark type (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** option allows the hiding of decorative elements from the accessibility tree.
 
-The *paintOrder* option; easier text halo.
+The line and link marks now support [marker options](./README.md#markers) for drawing a graphical marker (such as a dot or arrowhead) on each control points. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
 
-The *fill* and *stroke* options can now be expressed as patterns or gradients using funciri color definitions.
+The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to “stroke”, with a stroke width of 3px and a stroke linejoin of “round”, making it easier to apply a halo to separate text labels from a busy background, improving legibility.
+
+The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”.
 
 Better boolean color schemes.
 
