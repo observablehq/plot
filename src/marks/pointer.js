@@ -44,8 +44,7 @@ export class Pointer extends Mark {
     let C = []; // a sparse index from index[i] to an svg:circle element
     let P = null; // the persistent selection; a subset of index, or null
 
-    const g = create("svg:g")
-        .attr("fill", "none");
+    const g = create("svg:g");
 
     const parent = g.append("g")
         .call(applyIndirectStyles, this)
@@ -97,6 +96,7 @@ export class Pointer extends Mark {
     }
 
     g.append("rect")
+        .attr("fill", "none")
         .attr("pointer-events", "all")
         .attr("width", width + marginLeft + marginRight)
         .attr("height", height + marginTop + marginBottom)
