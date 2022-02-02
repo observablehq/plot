@@ -10,7 +10,7 @@ Automatic wrapping for text! And monospace text.
 
 ARIA attributes for accessibility: aria-label, aria-description, aria-hidden.
 
-Marker optionss.
+Marker options.
 
 The *paintOrder* option; easier text halo.
 
