@@ -28,7 +28,7 @@ export class Lasso extends Mark {
 
   // The lasso polygons follow the even-odd rule in css, matching the way
   // they are computed by polygonContains.
-  render(index, scales, {x: X, y: Y}, dimensions) {
+  render(index, {x, y}, {x: X, y: Y}, dimensions) {
     const margin = 5;
     const {ariaLabel, ariaDescription, ariaHidden, fill, fillOpacity, stroke, strokeWidth} = this;
     const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
@@ -53,9 +53,15 @@ export class Lasso extends Mark {
             .data(polygons)
             .join("path")
             .attr("d", path);
-          const activePolygons = polygons.find(polygon => polygon.length > 2);
-          const S = !activePolygons ? null
-            : index.filter(i => polygons.some(polygon => polygon.length > 2 && polygonContains(polygon, [X[i], Y[i]])));
+          let S = null;
+          let activePolygons = polygons.filter(polygon => polygon.length > 2);
+          if (activePolygons.length > 0) {
+            let bw;
+            if (x.bandwidth && (bw = x.bandwidth() / 2)) activePolygons = activePolygons.map(polygon => polygon.map(p => [p[0] - bw, p[1]]));
+            if (y.bandwidth && (bw = y.bandwidth() / 2)) activePolygons = activePolygons.map(polygon => polygon.map(p => [p[0], p[1] - bw]));
+            S = index.filter(i => activePolygons.some(polygon => polygonContains(polygon, [X[i], Y[i]])));
+
+          }
           if (!selectionEquals(node[selection], S)) {
             node[selection] = S;
             node.dispatchEvent(new Event("input", {bubbles: true}));
