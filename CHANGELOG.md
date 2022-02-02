@@ -4,9 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Plot now supports [interaction marks](./README.md#interactions). An interaction mark defines an interactive selection represented as a subset of the mark’s data and exposed as *plot*.value. During interaction, the mark emits *input* events. This allows plots to be [Observable views](https://observablehq.com/@observablehq/introduction-to-views), but you can also [listen to *input* events](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) directly.
-
-The first interaction mark is the [brush mark](./README.md#brush), which allows selection using a single continguous rectangular region. The brush can be used either in two dimensions (*x* and *y*) or one dimension.
+Plot now supports [interaction marks](./README.md#interactions)! An interaction mark defines an interactive selection represented as a subset of the mark’s data. For example, the [brush mark](./README.md#brush) allows selection using a single continguous rectangular region; you might use a brush to pull out points of interest from a scatterplot and show them in a table. The selection is exposed as *plot*.value, and during interaction, the mark emits *input* events. This allows plots to be [Observable views](https://observablehq.com/@observablehq/introduction-to-views), but you can also [listen to *input* events](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) directly.
 
 The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
