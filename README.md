@@ -949,7 +949,7 @@ The **fill** defaults to none. The **stroke** defaults to currentColor if the fi
 
 Points along the line are connected in input order. Likewise, if there are multiple series via the *z*, *fill*, or *stroke* channel, the series are drawn in input order such that the last series is drawn on top. Typically, the data is already in sorted order, such as chronological for time series; if sorting is needed, consider a [sort transform](#transforms).
 
-The line mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrow head) on each of the control points. If any of the *x* or *y* values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
+The line mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrowhead) on each of the control points. If any of the *x* or *y* values are invalid (undefined, null, or NaN), the line will be interrupted, resulting in a break that divides the line shape into multiple segments. (See [d3-shape’s *line*.defined](https://github.com/d3/d3-shape/blob/master/README.md#line_defined) for more.) If a line segment consists of only a single point, it may appear invisible unless rendered with rounded or square line caps. In addition, some curves such as *cardinal-open* only render a visible segment if it contains multiple points.
 
 #### Plot.line(*data*, *options*)
 
@@ -992,7 +992,7 @@ For vertical or horizontal links, the **x** option can be specified as shorthand
 
 The link mark supports the [standard mark options](#marks). The **stroke** defaults to currentColor. The **fill** defaults to none. The **strokeWidth** and **strokeMiterlimit** default to one.
 
-The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrow head) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
+The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrowhead) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
 #### Plot.link(*data*, *options*)
 
