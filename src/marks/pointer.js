@@ -1,11 +1,14 @@
-import {create, namespaces, pointer as pointerof, quickselect} from "d3";
+import {create, namespaces, pointer as pointerof, quickselect, union} from "d3";
 import {identity, maybeFrameAnchor, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {selection} from "../selection.js";
-import {applyFrameAnchor} from "../style.js";
+import {applyDirectStyles, applyFrameAnchor, applyIndirectStyles} from "../style.js";
 
 const defaults = {
-  ariaLabel: "pointer"
+  ariaLabel: "pointer",
+  fill: "none",
+  stroke: "#3b5fc0",
+  strokeWidth: 1.5
 };
 
 export class Pointer extends Mark {
@@ -36,28 +39,91 @@ export class Pointer extends Mark {
     const {marginLeft, width, marginRight, marginTop, height, marginBottom} = dimensions;
     const {mode, n, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const r2 = r * r;
-    let C = [];
+    const r2 = r * r; // the squared radius; to determine points in proximity to the pointer
+    const down = new Set(); // the set of pointers that are currently down
+    let C = []; // a sparse index from index[i] to an svg:circle element
+    let P = null; // the persistent selection; a subset of index, or null
 
     const g = create("svg:g")
         .attr("fill", "none");
 
     const parent = g.append("g")
-        .attr("stroke", "#3b5fc0")
-        .attr("stroke-width", 1.5)
+        .call(applyIndirectStyles, this)
+        .call(applyDirectStyles, this)
       .node();
+
+    // Renders the given logical selection S, a subset of index. Applies
+    // copy-on-write to the array of circles C. Returns true if the selection
+    // changed, and false otherwise.
+    function render(S) {
+      const SC = [];
+      let changed = false;
+
+      // Enter (append) the newly-selected elements. The order of the circles is
+      // arbitrary, with the most recently selected datum on top.
+      S.forEach(i => {
+        let c = C[i];
+        if (!c) {
+          c = document.createElementNS(namespaces.svg, "circle");
+          c.setAttribute("id", i);
+          c.setAttribute("r", 4);
+          c.setAttribute("cx", X ? X[i] : cx);
+          c.setAttribute("cy", Y ? Y[i] : cy);
+          parent.appendChild(c);
+          changed = true;
+        }
+        SC[i] = c;
+      });
+
+      // Exit (remove) the no-longer-selected elements.
+      C.forEach((c, i) => {
+        if (!SC[i]) {
+          c.remove();
+          changed = true;
+        }
+      });
+
+      if (changed) C = SC;
+      return changed;
+    }
+
+    // Selects the given logical selection S, a subset of index, or null if
+    // there is no selection.
+    function select(S) {
+      if (S === null) render([]);
+      else if (!render(S)) return;
+      node[selection] = S;
+      node.dispatchEvent(new Event("input", {bubbles: true}));
+    }
 
     g.append("rect")
         .attr("pointer-events", "all")
         .attr("width", width + marginLeft + marginRight)
         .attr("height", height + marginTop + marginBottom)
-        .on("pointerover pointermove", (event) => {
-          const [mx, my] = pointerof(event);
+        .on("pointerdown pointerover pointermove", event => {
 
-          // Compute the selection index S: the subset of index that is
-          // logically selected. Note that while normally this should be an
-          // in-order subset of index, it isn’t here if the n option is
-          // specified because quickselect will reorder in-place!
+          // On pointerdown, initiate a new persistent selection, P, or extend
+          // the existing persistent selection if the shift key is down; then
+          // add to P for as long as the pointer remains down. If there is no
+          // existing persistent selection on pointerdown, initialize P to the
+          // empty selection rather than the points near the pointer such that
+          // you can clear the persistent selection with a pointerdown followed
+          // by a pointerup. (See below.)
+          if (event.type === "pointerdown") {
+            const nop = !P;
+            down.add(event.pointerId);
+            if (nop || !event.shiftKey) P = [];
+            if (!nop && !event.shiftKey) return select(P);
+          }
+
+          // If any pointer is down, only consider pointers that are down.
+          if (P && !down.has(event.pointerId)) return;
+
+          // Compute the current selection, S: the subset of index that is
+          // logically selected. Normally this should be an in-order subset of
+          // index, but it isn’t here because quickselect will reorder in-place
+          // if the n option is used!
+          const [mx, my] = pointerof(event);
           let S = index;
           switch (mode) {
             case "xy": {
@@ -112,43 +178,20 @@ export class Pointer extends Mark {
             }
           }
 
-          // Add a circle for any newly-selected datum; remove a circle for any
-          // no-longer-selected datum. The order of these elements is arbitrary,
-          // with the most recently selected datum on top.
-          let C2 = [];
-          let changed = false;
-          S.forEach(i => {
-            let c = C[i];
-            if (!c) {
-              c = document.createElementNS(namespaces.svg, "circle");
-              c.setAttribute("id", i);
-              c.setAttribute("r", 4);
-              c.setAttribute("cx", X ? X[i] : cx);
-              c.setAttribute("cy", Y ? Y[i] : cy);
-              parent.appendChild(c);
-              changed = true;
-            }
-            C2[i] = c;
-          });
-          C.forEach((c, i) => {
-            if (!C2[i]) {
-              c.remove();
-              changed = true;
-            }
-          });
-          C = C2;
-
-          // If the selection changed, emit an input event.
-          if (changed) {
-            node[selection] = S;
-            node.dispatchEvent(new Event("input", {bubbles: true}));
-          }
+          // If there is a persistent selection, add the new selection to the
+          // persistent selection; otherwise just use the current selection.
+          select(P ? (P = Array.from(union(P, S))) : S);
         })
-        .on("pointerout", function() {
-          C.forEach(c => c.remove());
-          C = [];
-          node[selection] = null;
-          node.dispatchEvent(new Event("input", {bubbles: true}));
+        .on("pointerup", event => {
+          // On pointerup, if the selection is empty, clear the persistent to
+          // selection to allow the ephemeral selection on subsequent hover.
+          if (!P.length) select(P = null);
+          down.delete(event.pointerId);
+        })
+        .on("pointerout", () => {
+          // On pointerout, if there is no persistent selection, clear the
+          // ephemeral selection.
+          if (!P) select(null);
         });
 
     const node = g.node();
