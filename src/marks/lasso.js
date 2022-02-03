@@ -41,6 +41,7 @@ export class Lasso extends Mark {
         .attr("y", marginTop)
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
+        .attr("stroke", "none")
         .attr("fill", "none")
         .attr("cursor", "cross") // TODO
         .attr("pointer-events", "all")
