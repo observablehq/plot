@@ -61,6 +61,7 @@ export {default as industryUnemploymentShare} from "./industry-unemployment-shar
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
 export {default as industryUnemploymentTrack} from "./industry-unemployment-track.js";
 export {default as infinityLog} from "./infinity-log.js";
+export {default as intradayHistogram} from "./intraday-histogram.js";
 export {default as learningPoverty} from "./learning-poverty.js";
 export {default as letterFrequencyBar} from "./letter-frequency-bar.js";
 export {default as letterFrequencyCloud} from "./letter-frequency-cloud.js";
