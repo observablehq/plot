@@ -219,7 +219,9 @@ function maybeBin(options) {
 }
 
 function maybeThresholds(thresholds, interval) {
-  if (thresholds === undefined) return interval != null ? maybeInterval(interval) : thresholdAuto;
+  if (thresholds === undefined) {
+    return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
+  }
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
@@ -230,6 +232,13 @@ function maybeThresholds(thresholds, interval) {
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
+}
+
+// Unlike the interval transform, we require a range method, too.
+function maybeRangeInterval(interval) {
+  interval = maybeInterval(interval);
+  if (!isInterval(interval)) throw new Error("invalid interval");
+  return interval;
 }
 
 function thresholdAuto(values, min, max) {
