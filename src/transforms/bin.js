@@ -4,6 +4,7 @@ import {coerceDate} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
+import {maybeInterval} from "./interval.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
 export function binX(outputs = {y: "count"}, options = {}) {
@@ -78,6 +79,7 @@ function binn(
     domain, // eslint-disable-line no-unused-vars
     cumulative, // eslint-disable-line no-unused-vars
     thresholds, // eslint-disable-line no-unused-vars
+    interval, // eslint-disable-line no-unused-vars
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeLazyChannel(z);
@@ -152,17 +154,18 @@ function binn(
 }
 
 // Allow bin options to be specified as part of outputs; merge them into options.
-function mergeOptions({cumulative, domain, thresholds, ...outputs}, options) {
-  return [outputs, {cumulative, domain, thresholds, ...options}];
+function mergeOptions({cumulative, domain, thresholds, interval, ...outputs}, options) {
+  return [outputs, {cumulative, domain, thresholds, interval, ...options}];
 }
 
-function maybeBinValue(value, {cumulative, domain, thresholds}, defaultValue) {
+function maybeBinValue(value, {cumulative, domain, thresholds, interval}, defaultValue) {
   value = {...maybeValue(value)};
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
   if (value.thresholds === undefined) value.thresholds = thresholds;
+  if (value.interval === undefined) value.interval = interval;
   if (value.value === undefined) value.value = defaultValue;
-  value.thresholds = maybeThresholds(value.thresholds);
+  value.thresholds = maybeThresholds(value.thresholds, value.interval);
   return value;
 }
 
@@ -194,7 +197,18 @@ function maybeBin(options) {
       }
       bin.thresholds(t).domain([min, max]);
     } else {
-      bin.thresholds(thresholds).domain(domain);
+      let d = domain;
+      let t = thresholds;
+      if (isInterval(t)) {
+        let [min, max] = typeof d === "function" ? d(V) : d;
+        if (d === extent) {
+          min = t.floor(min);
+          max = t.offset(t.floor(max));
+          d = [min, max];
+        }
+        t = t.range(min, max);
+      }
+      bin.thresholds(t).domain(d);
     }
     let bins = bin(range(data)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
@@ -204,7 +218,10 @@ function maybeBin(options) {
   return bin;
 }
 
-function maybeThresholds(thresholds = thresholdAuto) {
+function maybeThresholds(thresholds, interval) {
+  if (thresholds === undefined) {
+    return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
+  }
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {
       case "freedman-diaconis": return thresholdFreedmanDiaconis;
@@ -215,6 +232,13 @@ function maybeThresholds(thresholds = thresholdAuto) {
     throw new Error("invalid thresholds");
   }
   return thresholds; // pass array, count, or function to bin.thresholds
+}
+
+// Unlike the interval transform, we require a range method, too.
+function maybeRangeInterval(interval) {
+  interval = maybeInterval(interval);
+  if (!isInterval(interval)) throw new Error("invalid interval");
+  return interval;
 }
 
 function thresholdAuto(values, min, max) {
