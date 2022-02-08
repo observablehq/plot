@@ -1543,6 +1543,42 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
 
+### Hexbin
+
+[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Groups the scaled values into hexagonal bins, and returns the ⟨x,y⟩ positions of these hexagons together with their aggregated value. Binning happens in pixel space, ensuring symmetrical hexagons.
+
+This transform is available in several flavors:
+
+#### Plot.hexbin(data, *options*)
+
+This shortcut extends the [dot](#dot) mark by applying a hexbinFill transform and requesting the hexagon symbol.
+
+#### Plot.hexbinFill(*hexbinOptions*, **options*)
+
+This transforms derives new output channels x, y, and fill, where x and y are the coordinates of the hexagons’ centers and fill depends on the number of data points they contain.
+
+#### Plot.hexbinOpacity(*hexbinOptions*, **options*)
+
+This transforms derives new output channels x, y, and fill, where x and y are the coordinates of the hexagons’ centers and opacity is proportional to the number of data points they contain, scaled so that the largest bin as an opacity of 1.
+
+#### Plot.hexbinR(*hexbinOptions*, **options*)
+
+This transforms derives new output channels x, y, and fill, where x and y are the coordinates of the hexagons’ centers and r specifies a symbol with a size proportional to the bin’s value, scaled so that the largest bin has the full radius.
+
+#### Plot.hexbinText(*hexbinOptions*, **options*)
+
+This transforms derives new output channels x, y, and fill, where x and y are the coordinates of the hexagons’ centers and text depends on the number of data points they contain.
+
+The following *hexbinOptions* are supported:
+* *radius* - the radius of the hexagons tesselation, in pixels, which defaults to 10
+* *value* - the value of a bin: a function that receives as input the binned data, and default to the bin’s length
+* *r* - the radius of a bin, as a function of the bin’s value (uses the scale r which defaults to a type sqrt)
+* *opacity* - the opacity of a bin, as a function of the bin’s value (on the opacity scale)
+* *fill* - the fill color of a bin, as a function of the bin’s value (on the color scale)
+* *text* - a text that represents the contents of the bin, to use with Plot.text; defaults to its value
+* *title* - a text that represents the contents of the bin, to use as a title; defaults to its value
+
+The other *options* are passed to the mark.
 ### Map
 
 [<img src="./img/window.png" width="320" height="198" alt="moving averages of daily highs and lows">](https://observablehq.com/@observablehq/plot-map)

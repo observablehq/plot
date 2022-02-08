@@ -250,12 +250,22 @@ export function isColor(value) {
     || color(value) !== null;
 }
 
+const hex = Array.from({length: 6}, (_, i) => [Math.sin(i * Math.PI / 3), Math.cos(i * Math.PI / 3)]);
+const symbolHexagon = {
+  draw(context, size) {
+    const s = Math.sqrt(size / Math.PI);
+    for (let i = 0; i < 6; i++) context[i ? "lineTo" : "moveTo"](hex[i][0] * s, hex[i][1] * s);
+    context.closePath();
+  }
+};  
+
 const symbols = new Map([
   ["asterisk", symbolAsterisk],
   ["circle", symbolCircle],
   ["cross", symbolCross],
   ["diamond", symbolDiamond],
   ["diamond2", symbolDiamond2],
+  ["hexagon", symbolHexagon],
   ["plus", symbolPlus],
   ["square", symbolSquare],
   ["square2", symbolSquare2],
