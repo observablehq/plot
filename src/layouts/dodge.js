@@ -75,7 +75,11 @@ function dodge(y, x, anchor, padding, options) {
       // Insert the placed circle into the interval tree.
       tree.insert([l, r, i]);
     }
-    return {[y]: Y.map(y => y * ky + ty)};
+    return {
+      reindex: true,
+      [x]: Float64Array.from(I, i => X[i]),
+      [y]: Float64Array.from(I, i => Y[i] * ky + ty)
+    };
   });
 }
 

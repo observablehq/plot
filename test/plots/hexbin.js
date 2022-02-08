@@ -21,7 +21,6 @@ export default async function() {
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
         radius: 12,
-        fill: "brown",
         title: bin => `${bin.length} penguins.`
       }),
       Plot.dot(penguins, {

@@ -52,7 +52,6 @@ export function plot(options = {}) {
   }
 
   const scaleDescriptors = Scales(scaleChannels, options);
-  const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
@@ -60,9 +59,52 @@ export function plot(options = {}) {
   autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
+  // layouts might return new data to scale with existing or new scales
+  const scales = ScaleFunctions(scaleDescriptors);
+  const markValues = new Map();
+  const newChannels = new Map();
+  const newOptions = {};
+  for (const mark of marks) {
+    const channels = markChannels.get(mark) ?? [];
+    const values = applyScales(channels, scales);
+    let index = filter(markIndex.get(mark), channels, values);
+    const rescale = [];
+    if (mark.layout != null) {
+      let {reindex, ...newValues} = mark.layout(index, scales, values, dimensions) || {};
+      for (let key in newValues) {
+        let c = newValues[key];
+        const {scale} = c;
+        if (scale) {
+          if (!newChannels.has(scale)) newChannels.set(scale, []);
+          newChannels.get(scale).push({scale, value: c.values});
+          newOptions[scale] = {...c.options, ...options[scale]};
+          values[key] = c.values;
+          rescale.push([scale, values[key]]);
+        } else {
+          values[key] = c;
+        }
+        if (reindex) {
+          index = range(values[key]);
+          reindex = false;
+        }
+      }
+    }
+    markValues.set(mark, {index, values, rescale});
+  }
+  const newScaleDescriptors = Scales(newChannels, newOptions);
+  Object.assign(scaleDescriptors, newScaleDescriptors);
+  Object.assign(scales, ScaleFunctions(newScaleDescriptors));
+  for (const [, {rescale}] of markValues) {
+    for (const [scale, values] of rescale) {
+      for (let i = 0; i < values.length; i++) {
+        values[i] = scales[scale](values[i]);
+      }
+    }
+  }
+
   // When faceting, render axes for fx and fy instead of x and y.
-  const x = facet !== undefined && scales.fx ? "fx" : "x";
-  const y = facet !== undefined && scales.fy ? "fy" : "y";
+  const x = facet !== undefined && scaleDescriptors.fx ? "fx" : "x";
+  const y = facet !== undefined && scaleDescriptors.fy ? "fy" : "y";
   if (axes[x]) marks.unshift(axes[x]);
   if (axes[y]) marks.unshift(axes[y]);
 
@@ -94,10 +136,7 @@ export function plot(options = {}) {
     .node();
 
   for (const mark of marks) {
-    const channels = markChannels.get(mark) ?? [];
-    let values = applyScales(channels, scales);
-    const index = filter(markIndex.get(mark), channels, values);
-    if (mark.layout != null) values = mark.layout(index, scales, values, dimensions);
+    const {index, values} = markValues.get(mark) || {};
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -220,6 +259,7 @@ class Facet extends Mark {
     // The following fields are set by initialize:
     this.marksChannels = undefined; // array of mark channels
     this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
+    this.marksLayouts = undefined;
   }
   initialize() {
     const {index, channels} = super.initialize();
@@ -229,6 +269,7 @@ class Facet extends Mark {
     const subchannels = [];
     const marksChannels = this.marksChannels = [];
     const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
+    const marksLayouts = this.marksLayouts = [];
     for (const facetKey of facetsKeys) {
       marksIndexByFacet.set(facetKey, new Array(this.marks.length));
     }
@@ -260,18 +301,73 @@ class Facet extends Mark {
         subchannels.push([, channel]);
       }
       marksChannels.push(markChannels);
+      if (mark.layout) marksLayouts.push(mark);
     }
+    this.layout = function(index, scales, channels, dimensions) {
+      const {fx, fy} = scales;
+      const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+      const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+      const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+
+      this.marksValues = marksChannels.map(channels => applyScales(channels, scales));
+      const rescaleChannels = [];
+      for (let i = 0; i < this.marks.length; ++i) {
+        const mark = this.marks[i];
+        if (!mark.layout) continue;
+        let values = facetsKeys.map(facet => [
+          facet,
+          mark.layout(
+            filter(marksIndexByFacet.get(facet)[i], marksChannels[i], this.marksValues[i]),
+            scales,
+            this.marksValues[i],
+            subdimensions
+          )
+        ]);
+        if (values.some(([, d]) => d.reindex)) {
+          const index = [];
+          const newValues = new Map();
+          for (const [facet, value] of values) {
+            const j = index.length;
+            const newIndex = new Set();
+            for (let key in value) {
+              if (key === "reindex") continue; // TODO: better internal API
+              if (!newValues.has(key)) newValues.set(key, []);
+              const V = newValues.get(key);
+              const {scale, options} = value[key];
+              if (scale) Object.assign(V, {scale, options});
+              const U = scale !== undefined ? value[key].values : value[key];
+              for (let i = 0; i < U.length; i++) {
+                const k = i + j;
+                newIndex.add(k);
+                V[k] = U[i];
+              }
+            }
+            for (const i of newIndex) index.push(i);
+            marksIndexByFacet.get(facet)[i] = [...newIndex];
+          }
+          values = Object.fromEntries(newValues);
+        } else {
+          values = values[0][1];
+        }
+        this.marksValues[i] = values;
+        for (let k in values) {
+          if (values[k].scale !== undefined) {
+            rescaleChannels.push([rescaleChannels.length, {values: values[k], scale: values[k].scale, options: values[k].options}]);
+          }
+        }
+      }
+      return Object.fromEntries(rescaleChannels);
+    };
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, channels, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksValues, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-    const marksValues = marksChannels.map(channels => applyScales(channels, scales));
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -316,7 +412,6 @@ class Facet extends Mark {
                 const mark = marks[i];
                 let values = marksValues[i];
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
-                if (mark.layout != null) values = mark.layout(index, scales, values, subdimensions);
                 const node = mark.render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }

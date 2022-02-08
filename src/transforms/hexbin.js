@@ -1,8 +1,8 @@
-import {groups, max} from "d3";
+import {groups} from "d3";
 import {basic} from "./basic.js";
 import {layout} from "../layouts/index.js";
 import {Dot} from "../marks/dot.js";
-import {maybeTuple, range, take, valueof} from "../options.js";
+import {maybeTuple, take, valueof} from "../options.js";
 
 const defaults = {
   ariaLabel: "hex",
@@ -13,18 +13,19 @@ const defaults = {
 };
 
 // width factor (allows the hexbin transform to work with circular dots!)
-const w0 = 1 / Math.sin(Math.PI / 3);
+const w0 = Math.sin(Math.PI / 3);
 
 function hbin(I, X, Y, r) {
-  const dx = r * 2 / w0;
+  const dx = r * 2 * w0;
   const dy = r * 1.5;
+  const keys = new Map();
   return groups(I, i => {
-    let px = X[i] / dy;
-    let py = Y[i] / dx;
+    let px = X[i] / dx;
+    let py = Y[i] / dy;
     if (isNaN(px) || isNaN(py)) return;
     let pj = Math.round(py),
-    pi = Math.round(px - (pj & 1) / 2),
-    py1 = py - pj;
+        pi = Math.round(px = px - (pj & 1) / 2),
+        py1 = py - pj;
     if (Math.abs(py1) * 3 > 1) {
       let px1 = px - pi,
         pi2 = pi + (px < pi ? -1 : 1) / 2,
@@ -33,63 +34,46 @@ function hbin(I, X, Y, r) {
         py2 = py - pj2;
       if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
     }
-    return `${pi}|${pj}`;
+    const key = `${pi}|${pj}`;
+    keys.set(key, [pi, pj]);
+    return key;
   })
   .filter(([p]) => p)
   .map(([p, bin]) => {
-    const [pi, pj] = p.split("|");
-    bin.x = (+pi + (pj & 1) / 2) * dx;
-    bin.y = +pj * dy;
+    const [pi, pj] = keys.get(p);
+    bin.x = (pi + (pj & 1) / 2) * dx;
+    bin.y = pj * dy;
     return bin;
   });
 }
 
-function hexbinLayout({_store, radius, r: _r, opacity: _o, fill: _f, text: _t, title: _l, value: _v}, options) {
+function hexbinLayout({radius, r, opacity, fill, text, title, value}, options) {
   radius = +radius;
-  _r = !!_r;
-  _o = !!_o;
-  _f = !!_f;
-  return layout({_store, ...options}, function(I, {r, color, opacity}, {x: X, y: Y}) {
-    if (!_store.channels) {
-      const bins = _store.facets.map(I => hbin(I, X, Y, radius));
-      const values = bins.map(b => valueof(b, _v));
-      const maxValue = max(values.flat());
-      color = _f && color.copy().domain([1, maxValue]);
-      opacity = _o && opacity.copy().domain([1, maxValue]);
-      r = _r && r && r.copy().domain([0, maxValue]).range([0, radius / w0]);
-      const {data} = this;
-      _store.channels = Array.from(bins, (bin, i) => ({
-        x: valueof(bin, "x"),
-        y: valueof(bin, "y"),
-        ..._t != null && {text: valueof(bin.map(I => take(data, I)), _t)},
-        ..._l != null && {title: valueof(bin.map(I => take(data, I)), _l)},
-        ..._r && r && {r: values[i].map(r)},
-        ..._o && opacity && {fillOpacity: values[i].map(opacity)},
-        ..._f && color && {fill: values[i].map(color)}
-      }));
-    }
-    for (let j = 0; j < _store.facets.length; ++j) {
-      if (_store.facets[j].some(i => I.includes(i))) {
-        const channels = _store.channels[j];
-        // mutates I!
-        I.splice(0, I.length, ...range(channels.x));
-        return channels;
-      }
-    }
-    throw new Error("what are we doing here?");
+  r = !!r;
+  opacity = !!opacity;
+  fill = !!fill;
+  return layout(options, function(index, scales, {x: X, y: Y}) {
+    const bins = hbin(index, X, Y, radius);
+    const values = (r || opacity || fill) && valueof(bins, value);
+    const {data} = this;
+    return {
+      reindex: true, // we're sending transformed data!
+      x: valueof(bins, "x"),
+      y: valueof(bins, "y"),
+      ...text != null && {text: valueof(bins, I => text(take(data, I)))},
+      ...title != null && {title: valueof(bins, I => title(take(data, I)))},
+      ...r && {r: {values, scale: "r", options: {label: "frequency", range: [0, radius * w0]}}},
+      ...opacity && {fillOpacity: {values, scale: "opacity", options: {label: "frequency"}}},
+      ...fill && {fill: {values, scale: "color", options: {scheme: "blues", label: "frequency"}}}
+    };
   });
 }
 
-// The transform does nothing but divert some information that is necessary
-// to do the layout on multiple facets
-// It is a bit of a hack: we want to do all facets at once in order to compute
-// the maximum value. We also convert the facets to plain arrays, since we’re
+// The transform does nothing but convert the facets to plain arrays, since we’re
 // going to splice them
 export function hexbinTransform(hexbinOptions, options) {
-  const _store = {};
-  return basic(hexbinLayout({_store, ...hexbinOptions}, options), (data, facets) => {
+  return basic(hexbinLayout(hexbinOptions, options), (data, facets) => {
     facets = Array.from(facets, facet => Array.from(facet));
-    _store.facets = facets;
     return {data, facets};
   });
 }
@@ -103,17 +87,17 @@ export function hexbin(data, options) {
 
 export function hexbinR({x, y, value = "length", radius = 10, title, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return hexbinTransform({value, radius, title, r: true}, {...defaults, x, y, r: () => 1, ...options});
+  return hexbinTransform({value, radius, title, r: true}, {...defaults, x, y, ...options});
 }
 
 export function hexbinFill({x, y, value = "length", radius = 10, title, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return hexbinTransform({value, radius, title, fill: true}, {...defaults, x, y, r: radius, fill: () => 1, ...options});
+  return hexbinTransform({value, radius, title, fill: true}, {...defaults, x, y, r: radius, ...options});
 }
 
 export function hexbinOpacity({x, y, value = "length", radius = 10, title, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return hexbinTransform({value, radius, title, opacity: true}, {...defaults, x, y, r: radius, opacity: () => 1,...options});
+  return hexbinTransform({value, radius, title, opacity: true}, {...defaults, x, y, r: radius, ...options});
 }
 
 export function hexbinText({x, y, value = "length", radius = 10, text = d => d.length, ...options} = {}) {
