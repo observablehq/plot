@@ -3,6 +3,11 @@ import * as d3 from "d3";
 import assert from "assert";
 import it from "../jsdom.js";
 
+it("The default color scale is identity", () => {
+  const color = Plot.scale({color: {}});
+  scaleEqual(color, {type: "identity"});
+});
+
 it("Plot.scale(description) returns a standalone scale", () => {
   const color = Plot.scale({color: {type: "linear"}});
   scaleEqual(color, {

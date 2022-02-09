@@ -216,12 +216,12 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   if (kind === color
     && range === undefined
     && scheme === undefined
-    && isAll(domain, channels, isColor)) return "identity";
+    && (isAll(domain, channels, isColor) || (domain === undefined && channels.length === 0))) return "identity";
 
   // Similarly for symbols…
   if (kind === symbol
     && range === undefined
-    && isAll(domain, channels, isSymbol)) return "identity";
+    && (isAll(domain, channels, isSymbol) || (domain === undefined && channels.length === 0))) return "identity";
 
   // Some scales have default types.
   if (kind === radius) return "sqrt";
