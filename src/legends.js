@@ -76,7 +76,8 @@ export function Legends(scales, options) {
   for (const [key, value] of legendRegistry) {
     const o = options[key];
     if (o && o.legend) {
-      legends.push(value(scales[key], legendOptions(scales[key], o), key => scales[key]));
+      const legend = value(scales[key], legendOptions(scales[key], o), key => scales[key]);
+      if (legend != null) legends.push(legend);
     }
   }
   return legends;
