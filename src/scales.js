@@ -413,6 +413,8 @@ function exposeScale({
     // band, point
     ...scale.align && {align: scale.align(), round: scale.round()},
     ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()}),
+    ...type === "point" && {step: scale.step()},
+    ...type === "band" && {bandwidth: scale.bandwidth(), step: scale.step()},
 
     // utilities
     apply: t => scale(t),
