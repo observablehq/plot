@@ -101,6 +101,7 @@ it("plot(…).scale('x') can return a point scale", () => {
     range: [20, 620],
     padding: 0.5,
     align: 0.5,
+    bandwidth: 0,
     step: 300,
     round: true
   });
@@ -114,6 +115,7 @@ it("plot(…).scale('x') can return a point scale, respecting the specified alig
     range: [20, 620],
     padding: -0.2,
     align: 1,
+    bandwidth: 0,
     step: 600,
     round: true
   });
@@ -127,6 +129,7 @@ it("plot(…).scale('x') can promote a reversed point scale to a point scale wit
     range: [20, 620],
     padding: 0.5,
     align: 0.5,
+    bandwidth: 0,
     step: 300,
     round: true
   });
