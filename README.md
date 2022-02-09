@@ -231,7 +231,7 @@ const plot2 = Plot.plot({…, color: plot1.scale("color")});
 
 The returned scale object represents the actual (or “materialized”) values encountered in the plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed.
 
-For convenience, an apply method is exposed, which returns the scale’s output for any given input. When applicable, an invert method is exposed, which returns the corresponding input from the scale’s domain for any given output.
+For convenience, an apply method is exposed, which returns the scale’s output for any given input. When applicable, an invert method is exposed, which returns the corresponding input from the scale’s domain for any given output. Point and band scales also expose their materialized bandwidth and step.
 
 The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 

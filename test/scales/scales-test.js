@@ -101,6 +101,8 @@ it("plot(…).scale('x') can return a point scale", () => {
     range: [20, 620],
     padding: 0.5,
     align: 0.5,
+    bandwidth: 0,
+    step: 300,
     round: true
   });
 });
@@ -113,6 +115,8 @@ it("plot(…).scale('x') can return a point scale, respecting the specified alig
     range: [20, 620],
     padding: -0.2,
     align: 1,
+    bandwidth: 0,
+    step: 600,
     round: true
   });
 });
@@ -125,6 +129,8 @@ it("plot(…).scale('x') can promote a reversed point scale to a point scale wit
     range: [20, 620],
     padding: 0.5,
     align: 0.5,
+    bandwidth: 0,
+    step: 300,
     round: true
   });
 });
@@ -138,6 +144,8 @@ it("plot(…).scale('x') can return a band scale", () => {
     paddingInner: 0.1,
     paddingOuter: 0.1,
     align: 0.5,
+    bandwidth: 257,
+    step: 285,
     round: true
   });
 });
@@ -151,6 +159,8 @@ it("plot(…).scale('x') can return an explicit band scale", () => {
     paddingInner: 0.1,
     paddingOuter: 0.1,
     align: 0.5,
+    bandwidth: 257,
+    step: 285,
     round: true
   });
 });
@@ -164,6 +174,8 @@ it("plot(…).scale('x') can promote a reversed band scale to a band scale with 
     paddingInner: 0.1,
     paddingOuter: 0.1,
     align: 0.5,
+    bandwidth: 257,
+    step: 285,
     round: true
   });
 });
@@ -188,6 +200,8 @@ it("plot(…).scale('y') can return a band scale", () => {
     paddingInner: 0.1,
     paddingOuter: 0.1,
     align: 0.5,
+    bandwidth: 25,
+    step: 28,
     round: true
   });
 });
@@ -201,6 +215,8 @@ it("plot(…).scale('y') can return a band scale, respecting the specified align
     paddingInner: 0.1,
     paddingOuter: -0.2,
     align: 1,
+    bandwidth: 36,
+    step: 40,
     round: true
   });
 });
@@ -227,6 +243,8 @@ it("plot(…).scale('fx') can return a band scale", () => {
     align: 0.5,
     paddingInner: 0.1,
     paddingOuter: 0,
+    bandwidth: 275,
+    step: 305,
     round: true
   });
 });
@@ -241,6 +259,8 @@ it("plot(…).scale('fy') can return a band scale", () => {
     align: 0.5,
     paddingInner: 0.1,
     paddingOuter: 0,
+    bandwidth: 170,
+    step: 189,
     round: true
   });
 });
