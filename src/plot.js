@@ -1,12 +1,11 @@
-import {create, cross, difference, groups, InternMap, union} from "d3";
+import {create, cross, difference, groups, InternMap} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, keyword, range, first, second, where, take} from "./options.js";
+import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
-import {selection} from "./selection.js";
 import {applyInlineStyles, maybeClassName, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
@@ -96,21 +95,12 @@ export function plot(options = {}) {
       .call(applyInlineStyles, style)
     .node();
 
-  let initialValue;
   for (const mark of marks) {
     const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
     const index = filter(markIndex.get(mark), channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
-    if (node != null) {
-      if (node[selection] !== undefined) {
-        initialValue = markValue(mark, node[selection]);
-        node.addEventListener("input", () => {
-          figure.value = markValue(mark, node[selection]);
-        });
-      }
-      svg.appendChild(node);
-    }
+    if (node != null) svg.appendChild(node);
   }
 
   // Wrap the plot in a figure with a caption, if desired.
@@ -129,7 +119,6 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, options);
-  figure.value = initialValue;
   return figure;
 }
 
@@ -198,10 +187,6 @@ export function marks(...marks) {
 
 function markify(mark) {
   return mark instanceof Mark ? mark : new Render(mark);
-}
-
-function markValue(mark, selection) {
-  return selection === null ? mark.data : take(mark.data, selection);
 }
 
 class Render extends Mark {
@@ -279,7 +264,7 @@ class Facet extends Mark {
     return {index, channels: [...channels, ...subchannels]};
   }
   render(I, scales, _, dimensions, axes) {
-    const {data, channels, marks, marksChannels, marksIndexByFacet} = this;
+    const {marks, marksChannels, marksIndexByFacet} = this;
     const {fx, fy} = scales;
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
@@ -287,8 +272,7 @@ class Facet extends Mark {
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const marksValues = marksChannels.map(channels => applyScales(channels, scales));
-    let selectionByFacet;
-    const parent = create("svg:g")
+    return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
             const axis1 = axes.y, axis2 = nolabel(axis1);
@@ -332,25 +316,10 @@ class Facet extends Mark {
                 const values = marksValues[i];
                 const index = filter(marksFacetIndex[i], marksChannels[i], values);
                 const node = marks[i].render(index, scales, values, subdimensions);
-                if (node != null) {
-                  if (node[selection] !== undefined) {
-                    if (marks[i].data !== data) throw new Error("selection must use facet data");
-                    if (selectionByFacet === undefined) selectionByFacet = facetMap(channels);
-                    selectionByFacet.set(key, node[selection]);
-                    node.addEventListener("input", () => {
-                      selectionByFacet.set(key, node[selection]);
-                      parent[selection] = facetSelection(selectionByFacet);
-                    });
-                  }
-                  this.appendChild(node);
-                }
+                if (node != null) this.appendChild(node);
               }
             }))
       .node();
-    if (selectionByFacet !== undefined) {
-      parent[selection] = facetSelection(selectionByFacet);
-    }
-    return parent;
   }
 }
 
@@ -393,20 +362,6 @@ function facetTranslate(fx, fy) {
     : ky => `translate(0,${fy(ky)})`;
 }
 
-// If multiple facets define a selection, then the overall selection is the
-// union of the defined selections. As with non-faceted plots, we assume that
-// only a single mark is defining the selection; if multiple marks define a
-// selection, generally speaking the last one wins, although the behavior is not
-// explicitly defined.
-function facetSelection(selectionByFacet) {
-  let selection = null;
-  for (const value of selectionByFacet.values()) {
-    if (value === null) continue;
-    selection = selection === null ? value : union(selection, value);
-  }
-  return selection;
-}
-
 function facetMap(channels) {
   return new (channels.length > 1 ? FacetMap2 : FacetMap);
 }
@@ -423,9 +378,6 @@ class FacetMap {
   }
   set(key, value) {
     return this._.set(key, value), this;
-  }
-  values() {
-    return this._.values();
   }
 }
 
@@ -444,10 +396,5 @@ class FacetMap2 extends FacetMap {
     if (map) map.set(key2, value);
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
-  }
-  *values() {
-    for (const map of this._.values()) {
-      yield* map.values();
-    }
   }
 }
