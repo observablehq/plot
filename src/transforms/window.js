@@ -1,5 +1,6 @@
 import {mapX, mapY} from "./map.js";
 import {deviation, max, min, median, mode, variance} from "d3";
+import {warn} from "../warnings.js";
 
 export function windowX(windowOptions = {}, options) {
   if (arguments.length === 1) options = windowOptions;
@@ -29,7 +30,7 @@ function maybeAnchor(anchor = "middle", k) {
 
 function maybeShift(shift) {
   if (shift === undefined) return;
-  console.warn("shift is deprecated; please use anchor instead");
+  warn("Warning: shift is deprecated; please use anchor instead");
   switch (`${shift}`.toLowerCase()) {
     case "centered": return "middle";
     case "leading": return "start";
