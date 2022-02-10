@@ -647,6 +647,7 @@ All marks support the following optional channels:
 * **title** - a tooltip (a string of text, possibly with newlines)
 * **href** - a URL to link to
 * **ariaLabel** - a short label representing the value in the accessibility tree
+* **clip** - if true, the mark is clipped to the frame’s dimensions
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
 

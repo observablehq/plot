@@ -30,11 +30,11 @@ export class Line extends Mark {
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
-  render(I, {x, y}, channels) {
+  render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const {dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])

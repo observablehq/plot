@@ -15,6 +15,7 @@ for (const [name, plot] of Object.entries(plots)) {
     }
     reindexStyle(root);
     reindexMarker(root);
+    reindexClip(root);
     const actual = beautify.html(root.outerHTML, {indent_size: 2});
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
@@ -75,6 +76,23 @@ function reindexMarker(root) {
     node.setAttribute("id", id);
   }
   for (const key of ["marker-start", "marker-mid", "marker-end"]) {
+    for (const node of root.querySelectorAll(`[${key}]`)) {
+      let id = node.getAttribute(key).slice(5, -1);
+      if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
+    }
+  }
+}
+
+function reindexClip(root) {
+  let index = 0;
+  const map = new Map();
+  for (const node of root.querySelectorAll("[id^=plot-clip-]")) {
+    let id = node.getAttribute("id");
+    if (map.has(id)) id = map.get(id);
+    else map.set(id, id = `plot-clip-${++index}`);
+    node.setAttribute("id", id);
+  }
+  for (const key of ["clip-path"]) {
     for (const node of root.querySelectorAll(`[${key}]`)) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);

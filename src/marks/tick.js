@@ -16,7 +16,7 @@ class AbstractTick extends Mark {
   render(index, scales, channels, dimensions) {
     const {dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(this._transform, scales, dx, dy)
         .call(g => g.selectAll("line")
           .data(index)

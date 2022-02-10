@@ -5,6 +5,8 @@ import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNum
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
+let nextClipId = 0;
+
 export function styles(
   mark,
   {
@@ -174,7 +176,16 @@ export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, t
   applyTitleGroup(selection, T);
 }
 
-export function applyIndirectStyles(selection, mark) {
+// clip: true clips to the frame
+// TODO: accept other types of clips (paths, urls, x, y, other marks?…)
+// https://github.com/observablehq/plot/issues/181
+export function maybeClip(clip) {
+  if (clip === true) return "frame";
+  if (clip == null || clip === false) return false;
+  throw new Error(`clip method not implemented: ${clip}`);
+}
+
+export function applyIndirectStyles(selection, mark, {width, height, marginLeft, marginRight, marginTop, marginBottom}) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -190,6 +201,13 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
+  if (mark.clip === "frame") {
+    const id = `plot-clip-${++nextClipId}`;
+    const w = width - marginRight - marginLeft;
+    const h = height - marginTop - marginBottom;
+    selection.append("clipPath").attr("id", id).append("rect").attr("width", w).attr("height", h);
+    applyAttr(selection, "clip-path", `url(#${id})`);
+  }
 }
 
 export function applyDirectStyles(selection, mark) {

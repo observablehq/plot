@@ -49,7 +49,7 @@ export class Rect extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
           .data(index)
