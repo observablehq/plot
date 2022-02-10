@@ -86,10 +86,10 @@ function reindexMarker(root) {
 function reindexClip(root) {
   let index = 0;
   const map = new Map();
-  for (const node of root.querySelectorAll("[id^=plot-clippath-]")) {
+  for (const node of root.querySelectorAll("[id^=plot-clip-]")) {
     let id = node.getAttribute("id");
     if (map.has(id)) id = map.get(id);
-    else map.set(id, id = `plot-clippath-${++index}`);
+    else map.set(id, id = `plot-clip-${++index}`);
     node.setAttribute("id", id);
   }
   for (const key of ["clip-path"]) {
