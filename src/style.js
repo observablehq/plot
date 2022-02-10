@@ -5,7 +5,7 @@ import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNum
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
-let nextClipPathId = 0;
+let nextClipId = 0;
 
 export function styles(
   mark,
@@ -199,7 +199,7 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   if (mark.clip === "frame") {
-    const id = `plot-clip-${++nextClipPathId}`;
+    const id = `plot-clip-${++nextClipId}`;
     const w = width - marginRight - marginLeft;
     const h = height - marginTop - marginBottom;
     selection.append("clipPath").attr("id", id).append("rect").attr("width", w).attr("height", h);
