@@ -17,6 +17,7 @@ it("text() has the expected defaults", () => {
   assert.strictEqual(text.strokeLinecap, undefined);
   assert.strictEqual(text.strokeMiterlimit, undefined);
   assert.strictEqual(text.strokeDasharray, undefined);
+  assert.strictEqual(text.strokeDashoffset, undefined);
   assert.strictEqual(text.mixBlendMode, undefined);
   assert.strictEqual(text.shapeRendering, undefined);
   assert.strictEqual(text.textAnchor, undefined);

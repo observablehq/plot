@@ -19,6 +19,7 @@ it("area(data, options) has the expected defaults", () => {
   assert.strictEqual(area.strokeLinecap, undefined);
   assert.strictEqual(area.strokeMiterlimit, undefined);
   assert.strictEqual(area.strokeDasharray, undefined);
+  assert.strictEqual(area.strokeDashoffset, undefined);
   assert.strictEqual(area.mixBlendMode, undefined);
   assert.strictEqual(area.shapeRendering, undefined);
 });

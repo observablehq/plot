@@ -17,6 +17,7 @@ it("ruleX() has the expected defaults", () => {
   assert.strictEqual(rule.strokeLinecap, undefined);
   assert.strictEqual(rule.strokeMiterlimit, undefined);
   assert.strictEqual(rule.strokeDasharray, undefined);
+  assert.strictEqual(rule.strokeDashoffset, undefined);
   assert.strictEqual(rule.mixBlendMode, undefined);
   assert.strictEqual(rule.shapeRendering, undefined);
 });
@@ -105,6 +106,7 @@ it("ruleY() has the expected defaults", () => {
   assert.strictEqual(rule.strokeLinecap, undefined);
   assert.strictEqual(rule.strokeMiterlimit, undefined);
   assert.strictEqual(rule.strokeDasharray, undefined);
+  assert.strictEqual(rule.strokeDashoffset, undefined);
   assert.strictEqual(rule.mixBlendMode, undefined);
   assert.strictEqual(rule.shapeRendering, undefined);
 });
