@@ -12,7 +12,7 @@ The line and link marks now support [marker options](./README.md#markers) for dr
 
 The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to *stroke*, with a stroke width of 3px and a stroke linejoin of *round*, making it easier to create a halo for separating labels from a busy background, improving legibility.
 
-The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”.
+The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”. All marks now support the *strokeDashoffset* option (for use with *strokeDasharray*).
 
 When a color scale is associated exclusively with boolean values (true and false), a smarter default range is now chosen: light gray for false, and dark gray for true. Light and dark colors from different sequential schemes, such as *reds*, can be specified via the *scheme* option.
 
