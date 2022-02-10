@@ -30,11 +30,11 @@ export class Area extends Mark {
     );
     this.curve = Curve(curve, tension);
   }
-  render(I, {x, y}, channels) {
+  render(I, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, z: Z} = channels;
     const {dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
           .data(Z ? group(I, i => Z[i]).values() : [I])

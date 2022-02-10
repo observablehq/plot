@@ -39,7 +39,7 @@ export class RuleX extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, X && x, null, offset, 0)
         .call(g => g.selectAll("line")
           .data(index)
@@ -82,7 +82,7 @@ export class RuleY extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight, dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, null, Y && y, dx, offset + dy)
         .call(g => g.selectAll("line")
           .data(index)

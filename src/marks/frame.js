@@ -28,7 +28,7 @@ export class Frame extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, dx, dy} = this;
     return create("svg:rect")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyDirectStyles, this)
         .call(applyTransform, null, null, offset + dx, offset + dy)
         .attr("x", marginLeft + insetLeft)

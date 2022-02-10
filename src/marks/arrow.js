@@ -44,7 +44,7 @@ export class Arrow extends Mark {
     this.insetStart = +insetStart;
     this.insetEnd = +insetEnd;
   }
-  render(index, {x, y}, channels) {
+  render(index, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
     const {dx, dy, strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
     const sw = SW ? i => SW[i] : () => strokeWidth;
@@ -65,7 +65,7 @@ export class Arrow extends Mark {
     const wingScale = headLength / 1.5;
 
     return create("svg:g")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)

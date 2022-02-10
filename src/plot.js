@@ -6,7 +6,7 @@ import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
-import {applyInlineStyles, maybeClassName, styles} from "./style.js";
+import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 
 export function plot(options = {}) {
@@ -134,7 +134,7 @@ function filter(index, channels, values) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy} = options;
+    const {facet = "auto", sort, dx, dy, clip} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
@@ -158,6 +158,7 @@ export class Mark {
     });
     this.dx = +dx || 0;
     this.dy = +dy || 0;
+    this.clip = maybeClip(clip);
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);

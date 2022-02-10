@@ -63,7 +63,8 @@ export class Text extends Mark {
     const {dx, dy, rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g")
-        .call(applyIndirectTextStyles, this, T)
+        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectTextStyles, this, T, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
@@ -129,7 +130,6 @@ export function textY(data, {y = identity, ...options} = {}) {
 }
 
 function applyIndirectTextStyles(selection, mark, T) {
-  applyIndirectStyles(selection, mark);
   applyAttr(selection, "text-anchor", mark.textAnchor);
   applyAttr(selection, "font-family", mark.fontFamily);
   applyAttr(selection, "font-size", mark.fontSize);

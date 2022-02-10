@@ -44,7 +44,7 @@ export class Vector extends Mark {
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g")
         .attr("fill", "none")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
