@@ -622,7 +622,8 @@ All marks support the following style options:
 * **strokeLinejoin** - how to join lines (*bevel*, *miter*, *miter-clip*, or *round*)
 * **strokeLinecap** - how to cap lines (*butt*, *round*, or *square*)
 * **strokeMiterlimit** - to limit the length of *miter* joins
-* **strokeDasharray** - a comma-separated list of dash lengths (in pixels)
+* **strokeDasharray** - a comma-separated list of dash lengths (typically in pixels)
+* **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - object opacity (a number between 0 and 1)
 * **mixBlendMode** - the [blend mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) (*e.g.*, *multiply*)
 * **shapeRendering** - the [shape-rendering mode](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering) (*e.g.*, *crispEdges*)

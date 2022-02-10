@@ -17,6 +17,7 @@ it("barX() has the expected defaults", () => {
   assert.strictEqual(bar.strokeLinecap, undefined);
   assert.strictEqual(bar.strokeMiterlimit, undefined);
   assert.strictEqual(bar.strokeDasharray, undefined);
+  assert.strictEqual(bar.strokeDashoffset, undefined);
   assert.strictEqual(bar.mixBlendMode, undefined);
   assert.strictEqual(bar.shapeRendering, undefined);
   assert.strictEqual(bar.insetTop, 0);
@@ -110,6 +111,7 @@ it("barY() has the expected defaults", () => {
   assert.strictEqual(bar.strokeLinecap, undefined);
   assert.strictEqual(bar.strokeMiterlimit, undefined);
   assert.strictEqual(bar.strokeDasharray, undefined);
+  assert.strictEqual(bar.strokeDashoffset, undefined);
   assert.strictEqual(bar.mixBlendMode, undefined);
   assert.strictEqual(bar.shapeRendering, undefined);
   assert.strictEqual(bar.insetTop, 0);

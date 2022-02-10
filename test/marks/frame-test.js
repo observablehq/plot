@@ -15,6 +15,7 @@ it("frame(options) has the expected defaults", () => {
   assert.strictEqual(frame.strokeLinecap, undefined);
   assert.strictEqual(frame.strokeMiterlimit, undefined);
   assert.strictEqual(frame.strokeDasharray, undefined);
+  assert.strictEqual(frame.strokeDashoffset, undefined);
   assert.strictEqual(frame.mixBlendMode, undefined);
   assert.strictEqual(frame.shapeRendering, undefined);
   assert.strictEqual(frame.insetTop, 0);

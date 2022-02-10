@@ -17,6 +17,7 @@ it("tickX() has the expected defaults", () => {
   assert.strictEqual(tick.strokeLinecap, undefined);
   assert.strictEqual(tick.strokeMiterlimit, undefined);
   assert.strictEqual(tick.strokeDasharray, undefined);
+  assert.strictEqual(tick.strokeDashoffset, undefined);
   assert.strictEqual(tick.mixBlendMode, undefined);
   assert.strictEqual(tick.shapeRendering, undefined);
 });
@@ -70,6 +71,7 @@ it("tickY() has the expected defaults", () => {
   assert.strictEqual(tick.strokeLinecap, undefined);
   assert.strictEqual(tick.strokeMiterlimit, undefined);
   assert.strictEqual(tick.strokeDasharray, undefined);
+  assert.strictEqual(tick.strokeDashoffset, undefined);
   assert.strictEqual(tick.mixBlendMode, undefined);
   assert.strictEqual(tick.shapeRendering, undefined);
 });

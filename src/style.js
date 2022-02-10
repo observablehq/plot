@@ -23,6 +23,7 @@ export function styles(
     strokeLinecap,
     strokeMiterlimit,
     strokeDasharray,
+    strokeDashoffset,
     opacity,
     mixBlendMode,
     paintOrder,
@@ -104,7 +105,8 @@ export function styles(
     mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
     mark.strokeLinecap = impliedString(strokeLinecap, "butt");
     mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
-    mark.strokeDasharray = string(strokeDasharray);
+    mark.strokeDasharray = impliedString(strokeDasharray, "none");
+    mark.strokeDashoffset = impliedString(strokeDashoffset, "0");
   }
 
   mark.target = string(target);
@@ -185,6 +187,7 @@ export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
   applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
   applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
+  applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
 }

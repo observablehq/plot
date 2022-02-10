@@ -19,6 +19,7 @@ it("line() has the expected defaults", () => {
   assert.strictEqual(line.strokeLinecap, undefined);
   assert.strictEqual(line.strokeMiterlimit, 1);
   assert.strictEqual(line.strokeDasharray, undefined);
+  assert.strictEqual(line.strokeDashoffset, undefined);
   assert.strictEqual(line.mixBlendMode, undefined);
   assert.strictEqual(line.shapeRendering, undefined);
 });

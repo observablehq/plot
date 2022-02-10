@@ -17,6 +17,7 @@ it("link(data, options) has the expected defaults", () => {
   assert.strictEqual(link.strokeLinecap, undefined);
   assert.strictEqual(link.strokeMiterlimit, 1);
   assert.strictEqual(link.strokeDasharray, undefined);
+  assert.strictEqual(link.strokeDashoffset, undefined);
   assert.strictEqual(link.mixBlendMode, undefined);
   assert.strictEqual(link.shapeRendering, undefined);
 });
