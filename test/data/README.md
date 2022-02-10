@@ -86,6 +86,10 @@ https://www.ncdc.noaa.gov/
 IMDb/Todd W. Schneider
 https://data.world/data-society/the-simpsons-by-the-data
 
+## traffic.csv
+Moritz Klack
+https://observablehq.com/@moklick
+
 ## travelers.csv
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
