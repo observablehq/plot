@@ -1,10 +1,11 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
+import {warn} from "./warnings.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
@@ -133,6 +134,14 @@ export function normalizeScale(key, scale, hint) {
 
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
+
+  // Warn for common misuse of implicit band scales.
+  if (options.type === undefined && type === "band") {
+    const values = channels.map(({value}) => value).filter(value => value !== undefined);
+    if (values.some(isTemporal)) warn(`Warning: some data associated with the ${key} scale are dates. Dates are typically associated with a "utc" or "time" scale rather than a "band" scale. If you are using a bar mark, you probably want to switch to a rect mark with the interval option; if you are using a group transform, you probably want to switch to a bin transform. If you intend to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "band".`);
+    else if (values.some(isTemporalString)) warn(`Warning: some data associated with the ${key} scale are strings that appear to be dates (e.g., YYYY-MM-DD). If these strings represent dates, you should parse and convert them to Date objects. Dates are typically associated with a "utc" or "time" scale rather than a "band" scale. If you are using a bar mark, you probably want to switch to a rect mark with the interval option; if you are using a group transform, you probably want to switch to a bin transform. If you intend to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "${typeof type === "symbol" ? type.description : type}".`);
+  }
+
   options.type = type; // Mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
@@ -246,7 +255,11 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
 
   // If any channel is ordinal or temporal, it takes priority.
   const values = channels.map(({value}) => value).filter(value => value !== undefined);
-  if (values.some(isOrdinal)) return asOrdinalType(kind);
+  if (values.some(isOrdinal)) {
+    const type = asOrdinalType(kind);
+    if (values.some(isTemporalString)) warn(`Warning: some data associated with the ${key} scale are strings that appear to be dates (e.g., YYYY-MM-DD). If these strings represent dates, you should parse and convert them to Date objects. If you intend to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "${typeof type === "symbol" ? type.description : type}".`);
+    return type;
+  }
   if (values.some(isTemporal)) return "utc";
   return "linear";
 }

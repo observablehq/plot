@@ -1,4 +1,4 @@
-import {create, cross, difference, groups, InternMap} from "d3";
+import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
@@ -8,6 +8,7 @@ import {arrayify, isOptions, keyword, range, first, second, where} from "./optio
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
+import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
@@ -119,6 +120,19 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, options);
+
+  const w = consumeWarnings();
+  if (w > 0) {
+    select(svg).append("text")
+        .attr("x", width)
+        .attr("y", 20)
+        .attr("dy", "-1em")
+        .attr("text-anchor", "end")
+        .text("⚠️")
+      .append("title")
+        .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
+  }
+
   return figure;
 }
 
