@@ -202,11 +202,7 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
     const id = `plot-clippath-${++nextClipPathId}`;
     const w = width - marginRight - marginLeft;
     const h = height - marginTop - marginBottom;
-    selection.append("clipPath")
-      .attr("id", id)
-      .append("rect")
-      .attr("width", w)
-      .attr("height", h);
+    selection.append("clipPath").attr("id", id).append("rect").attr("width", w).attr("height", h);
     applyAttr(selection, "clip-path", `url(#${id})`);
   }
 }
