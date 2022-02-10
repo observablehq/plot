@@ -14,11 +14,13 @@ The new **paintOrder** mark option controls the [paint order](https://developer.
 
 The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”.
 
-Better boolean color schemes.
+When a color scale is associated exclusively with boolean values (true and false), a smarter default range is now chosen: light gray for false, and dark gray for true. Light and dark colors from different sequential schemes, such as *reds*, can be specified via the *scheme* option.
 
-Fix crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined.
+The bin transform now supports the *interval* option, allowing numeric intervals such as integer binning with a nice default domain that aligns with interval boundaries. (The bin transform already supported time intervals as the *thresholds* option; time intervals can now also be specified as the *interval* option.)
 
-The vector mark now supports *frameAnchor*.
+The returned scale object now exposes *bandwidth* and *step* values for *band* and *point* scales.
+
+Fix a crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean value (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined. Fix a bug where an identity color legend would be rendered as the text “undefined” instead of showing nothing. The vector mark now respects the *frameAnchor* option.
 
 ## 0.4.0
 
