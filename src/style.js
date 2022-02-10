@@ -199,7 +199,7 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   if (mark.clip === "frame") {
-    const id = `plot-clippath-${++nextClipPathId}`;
+    const id = `plot-clip-${++nextClipPathId}`;
     const w = width - marginRight - marginLeft;
     const h = height - marginTop - marginBottom;
     selection.append("clipPath").attr("id", id).append("rect").attr("width", w).attr("height", h);
