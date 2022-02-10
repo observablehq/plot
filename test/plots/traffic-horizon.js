@@ -5,6 +5,7 @@ export default async function() {
   const data = d3.sort(await d3.csv("data/traffic.csv", d3.autoType), d => d.date);
   const bands = 7;
   const step = +(d3.max(data, d => d.value) / bands).toPrecision(2);
+  const ticks = d3.range(bands).map(i => i * step);
   return Plot.plot({
     width: 960,
     height: 1100,
@@ -18,7 +19,7 @@ export default async function() {
     color: {
       type: "ordinal",
       scheme: "blues",
-      tickFormat: (f => i => `<${f((i + 1) * step)}`)(d3.format(",")),
+      tickFormat: (f => t => `<${f(t + step)}`)(d3.format(",")),
       legend: true
     },
     fy: {
@@ -30,7 +31,7 @@ export default async function() {
       y: "name"
     },
     marks: [
-      d3.range(bands).map(i => Plot.areaY(data, {x: "date", y: d => d.value - i * step, fill: () => i, clip: true})),
+      ticks.map(t => Plot.areaY(data, {x: "date", y: d => d.value - t, fill: () => t, clip: true})),
       Plot.text(data, Plot.selectFirst({text: "name", frameAnchor: "left"}))
     ]
   });
