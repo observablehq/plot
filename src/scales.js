@@ -1,10 +1,11 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
+import {warn} from "./warnings.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
@@ -133,6 +134,24 @@ export function normalizeScale(key, scale, hint) {
 
 function Scale(key, channels = [], options = {}) {
   const type = inferScaleType(key, channels, options);
+
+  // Warn for common misuses of implicit ordinal scales. We disable this test if
+  // you set the domain or range explicitly, since setting the domain or range
+  // (typically with a cardinality of more than two) is another indication that
+  // you intended for the scale to be ordinal; we also disable it for facet
+  // scales since these are always band scales.
+  if (options.type === undefined
+      && options.domain === undefined
+      && options.range === undefined
+      && key !== "fx"
+      && key !== "fy"
+      && isOrdinalScale({type})) {
+    const values = channels.map(({value}) => value).filter(value => value !== undefined);
+    if (values.some(isTemporal)) warn(`Warning: some data associated with the ${key} scale are dates. Dates are typically associated with a "utc" or "time" scale rather than a "${formatScaleType(type)}" scale. If you are using a bar mark, you probably want a rect mark with the interval option instead; if you are using a group transform, you probably want a bin transform instead. If you want to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "${formatScaleType(type)}".`);
+    else if (values.some(isTemporalString)) warn(`Warning: some data associated with the ${key} scale are strings that appear to be dates (e.g., YYYY-MM-DD). If these strings represent dates, you should parse them to Date objects. Dates are typically associated with a "utc" or "time" scale rather than a "${formatScaleType(type)}" scale. If you are using a bar mark, you probably want a rect mark with the interval option instead; if you are using a group transform, you probably want a bin transform instead. If you want to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "${formatScaleType(type)}".`);
+    else if (values.some(isNumericString)) warn(`Warning: some data associated with the ${key} scale are strings that appear to be numbers. If these strings represent numbers, you should parse or coerce them to numbers. Numbers are typically associated with a "linear" scale rather than a "${formatScaleType(type)}" scale. If you want to treat this data as ordinal, you can suppress this warning by setting the type of the ${key} scale to "${formatScaleType(type)}".`);
+  }
+
   options.type = type; // Mutates input!
 
   // Once the scale type is known, coerce the associated channel values and any
@@ -188,6 +207,10 @@ function Scale(key, channels = [], options = {}) {
     case undefined: return;
     default: throw new Error(`unknown scale type: ${type}`);
   }
+}
+
+function formatScaleType(type) {
+  return typeof type === "symbol" ? type.description : type;
 }
 
 function inferScaleType(key, channels, {type, domain, range, scheme}) {
@@ -272,7 +295,7 @@ export function isTemporalScale({type}) {
 }
 
 export function isOrdinalScale({type}) {
-  return type === "ordinal" || type === "point" || type === "band";
+  return type === "ordinal" || type === "point" || type === "band" || type === ordinalImplicit;
 }
 
 function isThresholdScale({type}) {

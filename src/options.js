@@ -1,3 +1,4 @@
+import {parse as isoParse} from "isoformat";
 import {color, descending} from "d3";
 import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX as symbolTimes} from "d3";
 import {symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye} from "d3";
@@ -207,6 +208,26 @@ export function isTemporal(values) {
   for (const value of values) {
     if (value == null) continue;
     return value instanceof Date;
+  }
+}
+
+// Are these strings that might represent dates? This is stricter than ISO 8601
+// because we want to ignore false positives on numbers; for example, the string
+// "1192" is more likely to represent a number than a date even though it is
+// valid ISO 8601 representing 1192-01-01.
+export function isTemporalString(values) {
+  for (const value of values) {
+    if (value == null) continue;
+    return typeof value === "string" && isNaN(value) && isoParse(value);
+  }
+}
+
+// Are these strings that might represent numbers? This is stricter than
+// coercion because we want to ignore false positives on e.g. empty strings.
+export function isNumericString(values) {
+  for (const value of values) {
+    if (value == null || value === "") continue;
+    return typeof value === "string" && !isNaN(value);
   }
 }
 

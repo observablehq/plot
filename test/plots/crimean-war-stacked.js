@@ -11,7 +11,7 @@ export default async function() {
       label: null
     },
     marks: [
-      Plot.barY(data, {x: "date", y: "deaths", fill: "cause", reverse: true}),
+      Plot.rectY(data, {x: "date", interval: d3.utcMonth, y: "deaths", fill: "cause", reverse: true}),
       Plot.ruleY([0])
     ]
   });

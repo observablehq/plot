@@ -1137,60 +1137,60 @@ it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => 
 });
 
 it("plot({align, …}).scale('x').align reflects the given align option for point scales", () => {
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
 });
 
 it("plot({align, …}).scale('x').align reflects the given align option for band scales", () => {
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {align: 0}}).scale("x").align, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {align: 0.7}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {align: "0.7"}}).scale("x").align, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {align: 1}}).scale("x").align, 1);
 });
 
 it("plot({paddingInner, …}).scale('x').paddingInner reflects the given paddingInner option for band scales", () => {
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 0}}).scale("x").paddingInner, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingInner: 1}}).scale("x").paddingInner, 1);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 0}}).scale("x").paddingInner, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingInner: 1}}).scale("x").paddingInner, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingInner: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingInner: 1}}).scale("x").paddingInner, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingInner: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingInner: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingInner: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingInner: 1}}).scale("x").paddingInner, 1);
 });
 
 it("plot({paddingOuter, …}).scale('x').paddingOuter reflects the given paddingOuter option for band scales", () => {
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 0}}).scale("x").paddingOuter, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {paddingOuter: 1}}).scale("x").paddingOuter, 1);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 0}}).scale("x").paddingOuter, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0, paddingOuter: 1}}).scale("x").paddingOuter, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingOuter: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {paddingOuter: 1}}).scale("x").paddingOuter, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingOuter: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingOuter: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingOuter: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0, paddingOuter: 1}}).scale("x").paddingOuter, 1);
 });
 
 it("plot({padding, …}).scale('x').paddingInner reflects the given padding option for band scales", () => {
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingInner, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingInner, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingInner, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingInner, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingInner, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingInner, 1);
 });
 
 it("plot({padding, …}).scale('x').paddingOuter reflects the given padding option for band scales", () => {
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingOuter, 0);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingOuter, 0.7);
-  assert.strictEqual(Plot.cell(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingOuter, 1);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0}}).scale("x").paddingOuter, 0);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 0.7}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").paddingOuter, 0.7);
+  assert.strictEqual(Plot.cell("abc", {x: d => d}).plot({x: {padding: 1}}).scale("x").paddingOuter, 1);
 });
 
 it("plot({padding, …}).scale('x').padding reflects the given padding option for point scales", () => {
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0}}).scale("x").padding, 0);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 0.7}}).scale("x").padding, 0.7);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").padding, 0.7);
-  assert.strictEqual(Plot.dot(["1", "2", "3"], {x: d => d}).plot({x: {padding: 1}}).scale("x").padding, 1);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {padding: 0}}).scale("x").padding, 0);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {padding: 0.7}}).scale("x").padding, 0.7);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {padding: "0.7"}}).scale("x").padding, 0.7);
+  assert.strictEqual(Plot.dot("abc", {x: d => d}).plot({x: {padding: 1}}).scale("x").padding, 1);
 });
 
 it("plot(…).scale('x').label reflects the default label for named fields, possibly reversed", () => {
