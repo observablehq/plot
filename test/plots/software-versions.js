@@ -30,6 +30,7 @@ export default async function() {
       percent: true
     },
     color: {
+      type: "ordinal",
       scheme: "blues"
     },
     marks: [

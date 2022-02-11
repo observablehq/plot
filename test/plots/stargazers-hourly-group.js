@@ -5,6 +5,7 @@ export default async function() {
   const stargazers = await d3.csv("data/stargazers.csv", d3.autoType);
   return Plot.plot({
     x: {
+      type: "band",
       label: "New stargazers per hour →"
     },
     y: {

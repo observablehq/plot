@@ -222,6 +222,15 @@ export function isTemporalString(values) {
   }
 }
 
+// Are these strings that might represent numbers? This is stricter than
+// coercion because we want to ignore false positives on e.g. empty strings.
+export function isNumericString(values) {
+  for (const value of values) {
+    if (value == null || value === "") continue;
+    return typeof value === "string" && !isNaN(value);
+  }
+}
+
 export function isNumeric(values) {
   for (const value of values) {
     if (value == null) continue;

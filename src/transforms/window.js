@@ -14,7 +14,11 @@ export function windowY(windowOptions = {}, options) {
 
 export function window(options = {}) {
   if (typeof options === "number") options = {k: options};
-  let {k, reduce, shift, anchor = maybeShift(shift)} = options;
+  let {k, reduce, shift, anchor} = options;
+  if (anchor === undefined && shift !== undefined) {
+    anchor = maybeShift(shift);
+    warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
+  }
   if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
   return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
 }
@@ -29,8 +33,6 @@ function maybeAnchor(anchor = "middle", k) {
 }
 
 function maybeShift(shift) {
-  if (shift === undefined) return;
-  warn("Warning: shift is deprecated; please use anchor instead");
   switch (`${shift}`.toLowerCase()) {
     case "centered": return "middle";
     case "leading": return "start";
