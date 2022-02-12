@@ -38,7 +38,7 @@ Plot’s unit tests are written with [Mocha](https://mochajs.org).
 
 ### Snapshot tests
 
-Snapshot tests live in `test/plots`; see [`test/plots/aapl-bollinger.js`](./test/plots/aapl-bollinger.js) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
+Snapshot tests live in `test/plots` and are registered in [`test/plots/index.js`](./test/plots/index.js); see [`test/plots/aapl-bollinger.js`](./test/plots/aapl-bollinger.js) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:
 
 ```js
 import * as Plot from "@observablehq/plot";
@@ -57,7 +57,7 @@ export default async function() {
 
 When a snapshot test is run, its output is compared against the SVG or HTML snapshot saved in the `test/output` folder. This makes it easier to review the effect of code changes and to catch unintended changes. Snapshot tests must have deterministic, reproducible behavior; they should not depend on live data, external servers, the current time, the weather, etc. To use randomness in a test, use a seeded random number generator such as [d3.randomLcg](https://github.com/d3/d3-random/blob/master/README.md#randomLcg).
 
-To add a new snapshot test, create a new JavaScript file in the `test/plots` folder, copying the pattern shown above. Then register your test in the test registry, `test/plots/index.js`, by exporting the snapshot test function. For example:
+To add a new snapshot test, create a new JavaScript file in the `test/plots` folder using the pattern shown above. Then export your snapshot test function from [`test/plots/index.js`](./test/plots/index.js). For example:
 
 ```js
 export {default as mobyDick} from "./moby-dick.js";
