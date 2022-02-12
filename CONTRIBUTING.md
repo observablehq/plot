@@ -63,7 +63,7 @@ To add a new snapshot test, create a new JavaScript file in the `test/plots` fol
 export {default as mobyDick} from "./moby-dick.js";
 ```
 
-The best thing about snapshot tests is that you can see the live result in your browser as you make changes to Plot’s source code! This lets you immediately assess visually what Plot is doing. Once it “looks right” in a snapshot test, you can codify the expected behavior more formally in a unit test. To preview snapshot tests during development, Plot uses [Vite](https://vitejs.dev). To start Vite:
+The best thing about snapshot tests is that you can see the live result in your browser as you make changes to Plot’s source code! This lets you immediately assess visually what Plot is doing. To preview snapshot tests during development, Plot uses [Vite](https://vitejs.dev). To start Vite:
 
 ```bash
 yarn dev
