@@ -69,7 +69,7 @@ The best thing about snapshot tests is that you can see the live result in your 
 yarn dev
 ```
 
-This will open http://localhost:8008/ in your browser where you can choose a test plot registered in `test/plots/index.js`. As you edit the source, the currently-selected test plot will update live in your browser as you save changes. You can change the selected test from the drop-down menu. If the drop-down menu is focused, the left and right arrow keys will cycle between tests.
+This will open http://localhost:8008/ in your browser where you can choose a snapshot test. As you edit the source, the current test will update live in your browser as you save changes. You can change the selected test from the drop-down menu. When the drop-down menu is focused, the left and right arrow keys cycle between tests.
 
 ![Plot’s snapshot test live preview](img/localhost.png)
 
