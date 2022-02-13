@@ -46,8 +46,8 @@ function legendColor(color, {
   legend = true,
   ...options
 }) {
+  if (color?.domain === undefined) return;
   if (legend === true) legend = color.type === "ordinal" ? "swatches" : "ramp";
-  if (color.domain === undefined) return;
   switch (`${legend}`.toLowerCase()) {
     case "swatches": return legendSwatches(color, options);
     case "ramp": return legendRamp(color, options);
