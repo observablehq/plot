@@ -203,10 +203,15 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
   applyAttr(selection, "paint-order", mark.paintOrder);
   if (mark.clip === "frame") {
     const id = `plot-clip-${++nextClipId}`;
-    const w = width - marginRight - marginLeft;
-    const h = height - marginTop - marginBottom;
-    selection.append("clipPath").attr("id", id).append("rect").attr("width", w).attr("height", h);
-    applyAttr(selection, "clip-path", `url(#${id})`);
+    selection
+        .attr("clip-path", `url(#${id})`)
+      .append("clipPath")
+        .attr("id", id)
+      .append("rect")
+        .attr("x", marginLeft)
+        .attr("y", marginTop)
+        .attr("width", width - marginRight - marginLeft)
+        .attr("height", height - marginTop - marginBottom);
   }
 }
 
