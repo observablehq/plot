@@ -1112,13 +1112,13 @@ it("plot(…).scale('opacity') respects the percent option, affecting domain and
 });
 
 it("plot({inset, …}).scale('x') does not allow insets or margins to invert the range", () => {
-  assert.deepStrictEqual(Plot.plot({x: {inset: 60}, width: 100}).scale("x").range, [80, 80]);
-  assert.deepStrictEqual(Plot.plot({x: {inset: 30}, margin: 30, width: 100}).scale("x").range, [60, 60]);
+  assert.deepStrictEqual(Plot.plot({x: {type: "linear", inset: 60}, width: 100}).scale("x").range, [80, 80]);
+  assert.deepStrictEqual(Plot.plot({x: {type: "linear", inset: 30}, margin: 30, width: 100}).scale("x").range, [60, 60]);
 });
 
 it("plot({inset, …}).scale('y') does not allow insets or margins to invert the range", () => {
-  assert.deepStrictEqual(Plot.plot({y: {inset: 60}, height: 100}).scale("y").range, [80, 80]);
-  assert.deepStrictEqual(Plot.plot({y: {inset: 30}, margin: 30, height: 100}).scale("y").range, [60, 60]);
+  assert.deepStrictEqual(Plot.plot({y: {type: "linear", inset: 60}, height: 100}).scale("y").range, [80, 80]);
+  assert.deepStrictEqual(Plot.plot({y: {type: "linear", inset: 30}, margin: 30, height: 100}).scale("y").range, [60, 60]);
 });
 
 it("plot({inset, …}).scale('x').range respects the given top-level inset", () => {

@@ -229,6 +229,9 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   // If the scale, a channel, or user specified a (consistent) type, return it.
   if (type !== undefined) return type;
 
+  // If there’s no data (and no type) associated with this scale, don’t create a scale.
+  if (domain === undefined && !channels.some(({value}) => value !== undefined)) return;
+
   const kind = registry.get(key);
 
   // For color scales, if no range or scheme is specified and all associated
