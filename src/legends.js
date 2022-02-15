@@ -1,5 +1,5 @@
 import {rgb} from "d3";
-import {isObject} from "./options.js";
+import {isScaleOptions} from "./options.js";
 import {normalizeScale} from "./scales.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
@@ -13,17 +13,17 @@ const legendRegistry = new Map([
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
-    if (isObject(scale)) { // e.g., ignore {color: "red"}
+    if (isScaleOptions(scale)) { // e.g., ignore {color: "red"}
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
-        const {fill, stroke = fill === undefined && isObject(options.color) ? "color" : undefined} = options;
+        const {fill, stroke = fill === undefined && isScaleOptions(options.color) ? "color" : undefined} = options;
         hint = {fill, stroke};
       }
       return value(
         normalizeScale(key, scale, hint),
         legendOptions(scale, options),
-        key => isObject(options[key]) ? normalizeScale(key, options[key]) : null
+        key => isScaleOptions(options[key]) ? normalizeScale(key, options[key]) : null
       );
     }
   }
@@ -75,7 +75,7 @@ export function Legends(scales, options) {
   const legends = [];
   for (const [key, value] of legendRegistry) {
     const o = options[key];
-    if (o && o.legend) {
+    if (o?.legend && (key in scales)) {
       const legend = value(scales[key], legendOptions(scales[key], o), key => scales[key]);
       if (legend != null) legends.push(legend);
     }
