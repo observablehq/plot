@@ -40,13 +40,14 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 
 function dodge(y, x, anchor, padding, options) {
   const [, r] = maybeNumberChannel(options.r, 3);
-  return layout(options, (I, scales, {[x]: X, r: R}, dimensions) => {
+  return layout(options, (I, scales, channels, dimensions) => {
+    let {[x]: X, [y]: Y, r: R} = channels;
     if (X == null) throw new Error(`missing channel: ${x}`);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     if (ky) ty += ky * ((R ? max(I, i => R[i]) : r) + padding); else ky = 1;
-    if (!R) R = new Float64Array(X.length).fill(r);
-    const Y = new Float64Array(X.length);
+    if (!R) R = channels.r = new Float64Array(X.length).fill(r);
+    if (!Y) Y = channels.y = new Float64Array(X.length).fill(0);
     const tree = IntervalTree();
     for (const i of I) {
       const intervals = [];
@@ -75,11 +76,8 @@ function dodge(y, x, anchor, padding, options) {
       // Insert the placed circle into the interval tree.
       tree.insert([l, r, i]);
     }
-    return {
-      reindex: true,
-      [x]: Float64Array.from(I, i => X[i]),
-      [y]: Float64Array.from(I, i => Y[i] * ky + ty)
-    };
+    for (const i of I) Y[i] = Y[i] * ky + ty;
+    return {[y]: Y};
   });
 }
 
