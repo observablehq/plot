@@ -1,7 +1,7 @@
-import {isoFormat, namespaces} from "d3";
-import {nonempty} from "./defined.js";
+import {group, isoFormat, namespaces} from "d3";
+import {defined, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric} from "./options.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, keyof} from "./options.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -174,6 +174,58 @@ export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, t
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
   applyTitleGroup(selection, T);
+}
+
+function groupAesthetics({ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+  return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined);
+}
+
+export function* groupIndex(I, position, channels) {
+  const {z: Z} = channels; // group channel
+  const A = groupAesthetics(channels); // aesthetic channels
+  const C = [...position, ...A]; // all channels
+
+  // Group the current index by Z (if any).
+  for (const G of Z ? group(I, i => Z[i]).values() : [I]) {
+    let Ag; // the A-values (aesthetics) of the current group, if any
+    let Gg; // the current group index (a subset of G, and I), if any
+    out: for (const i of G) {
+
+      // If any channel has an undefined value for this index, yield the current
+      // group and start a new empty group, skipping this index.
+      for (const c of C) {
+        if (!defined(c[i])) {
+          if (Gg) yield Gg;
+          Ag = Gg = undefined;
+          continue out;
+        }
+      }
+
+      // Otherwise, if this is a new group, record the aesthetics for this
+      // group. Yield the current group and start a new one.
+      if (Ag === undefined) {
+        if (Gg) yield Gg;
+        Ag = A.map(c => keyof(c[i])), Gg = [i];
+        continue;
+      }
+
+      // Otherwise, add the current index to the current group. Then, if any of
+      // the aesthetics don’t match the current group, yield the current group
+      // and start a new group of the current index.
+      Gg.push(i);
+      for (let j = 0; j < A.length; ++j) {
+        const k = keyof(A[j][i]);
+        if (k !== Ag[j]) {
+          yield Gg;
+          Ag = A.map(c => keyof(c[i])), Gg = [i];
+          continue out;
+        }
+      }
+    }
+
+    // Yield the current group, if any.
+    if (Gg) yield Gg;
+  }
 }
 
 // clip: true clips to the frame

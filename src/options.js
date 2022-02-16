@@ -123,6 +123,11 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
+// Based on InternMap (d3.group).
+export function keyof(value) {
+  return value !== null && typeof value === "object" ? value.valueOf() : value;
+}
+
 export function maybeInput(key, options) {
   if (options[key] !== undefined) return options[key];
   switch (key) {
