@@ -7,6 +7,7 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
+  filter: null,
   ariaLabel: "area",
   strokeWidth: 1,
   strokeMiterlimit: 1
@@ -28,9 +29,6 @@ export class Area extends Mark {
       defaults
     );
     this.curve = Curve(curve, tension);
-  }
-  filter(I) {
-    return I;
   }
   render(I, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;

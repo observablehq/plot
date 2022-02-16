@@ -3,9 +3,8 @@ import {boolean, take, number, string, keyword, maybeKeyword, constant, isTempor
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
 import {applyAttr, impliedString} from "./style.js";
-import {Decoration} from "./decoration.js";
 
-export class AxisX extends Decoration {
+export class AxisX {
   constructor({
     name = "x",
     axis,
@@ -23,7 +22,6 @@ export class AxisX extends Decoration {
     ariaLabel,
     ariaDescription
   } = {}) {
-    super();
     this.name = name;
     this.axis = keyword(axis, "axis", ["top", "bottom"]);
     this.ticks = ticks;
@@ -99,7 +97,7 @@ export class AxisX extends Decoration {
   }
 }
 
-export class AxisY extends Decoration {
+export class AxisY {
   constructor({
     name = "y",
     axis,
@@ -117,7 +115,6 @@ export class AxisY extends Decoration {
     ariaLabel,
     ariaDescription
   } = {}) {
-    super();
     this.name = name;
     this.axis = keyword(axis, "axis", ["left", "right"]);
     this.ticks = ticks;

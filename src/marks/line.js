@@ -6,6 +6,7 @@ import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChan
 import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
+  filter: null,
   ariaLabel: "line",
   fill: "none",
   stroke: "currentColor",
@@ -28,9 +29,6 @@ export class Line extends Mark {
     );
     this.curve = Curve(curve, tension);
     markers(this, options);
-  }
-  filter(I) {
-    return I;
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y} = channels;

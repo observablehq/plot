@@ -1,7 +1,7 @@
 import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
-import {Decoration} from "./decoration.js";
+import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
@@ -99,7 +99,8 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
-    const index = mark.filter(markIndex.get(mark), channels, values);
+    let index = markIndex.get(mark);
+    if (mark.filter != null) index = mark.filter(index, channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -136,15 +137,25 @@ export function plot(options = {}) {
   return figure;
 }
 
-export class Mark extends Decoration {
+function defaultFilter(index, channels, values) {
+  for (const [name, {filter = defined}] of channels) {
+    if (name !== undefined && filter !== null) {
+      const value = values[name];
+      index = index.filter(i => filter(value[i]));
+    }
+  }
+  return index;
+}
+
+export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    super();
     const {facet = "auto", sort, dx, dy, clip} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
+    this.filter = defaults?.filter === undefined ? defaultFilter : defaults.filter;
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
@@ -321,7 +332,8 @@ class Facet extends Mark {
               for (let i = 0; i < marks.length; ++i) {
                 const mark = marks[i];
                 const values = marksValues[i];
-                const index = mark.filter(marksFacetIndex[i], marksChannels[i], values);
+                let index = marksFacetIndex[i];
+                if (mark.filter != null) index = mark.filter(index, marksChannels[i], values);
                 const node = mark.render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
