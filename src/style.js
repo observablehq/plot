@@ -2,6 +2,7 @@ import {group, isoFormat, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, isNoneish, isNone, isRound, keyof} from "./options.js";
+import {warn} from "./warnings.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -183,13 +184,21 @@ function groupAesthetics({ariaLabel: AL, title: T, fill: F, fillOpacity: FO, str
   return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined);
 }
 
-export function* groupIndex(I, position, channels) {
+function groupZ(I, Z, z) {
+  const G = group(I, i => Z[i]);
+  if (z === undefined && G.size > I.length >> 2) {
+    warn(`Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`);
+  }
+  return G.values();
+}
+
+export function* groupIndex(I, position, {z}, channels) {
   const {z: Z} = channels; // group channel
   const A = groupAesthetics(channels); // aesthetic channels
   const C = [...position, ...A]; // all channels
 
   // Group the current index by Z (if any).
-  for (const G of Z ? group(I, i => Z[i]).values() : [I]) {
+  for (const G of Z ? groupZ(I, Z, z) : [I]) {
     let Ag; // the A-values (aesthetics) of the current group, if any
     let Gg; // the current group index (a subset of G, and I), if any
     out: for (const i of G) {

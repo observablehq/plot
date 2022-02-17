@@ -18,7 +18,7 @@ const defaults = {
 
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, curve, tension} = options;
+    const {x, y, z, curve, tension} = options;
     super(
       data,
       [
@@ -29,6 +29,7 @@ export class Line extends Mark {
       options,
       defaults
     );
+    this.z = z;
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
@@ -39,7 +40,7 @@ export class Line extends Mark {
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
-          .data(groupIndex(I, [X, Y], channels))
+          .data(groupIndex(I, [X, Y], this, channels))
           .join("path")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)

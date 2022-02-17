@@ -17,7 +17,7 @@ const defaults = {
 
 export class Area extends Mark {
   constructor(data, options = {}) {
-    const {x1, y1, x2, y2, curve, tension} = options;
+    const {x1, y1, x2, y2, z, curve, tension} = options;
     super(
       data,
       [
@@ -30,6 +30,7 @@ export class Area extends Mark {
       options,
       defaults
     );
+    this.z = z;
     this.curve = Curve(curve, tension);
   }
   render(I, {x, y}, channels, dimensions) {
@@ -39,7 +40,7 @@ export class Area extends Mark {
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
-          .data(groupIndex(I, [X1, Y1, X2, Y2], channels))
+          .data(groupIndex(I, [X1, Y1, X2, Y2], this, channels))
           .join("path")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
