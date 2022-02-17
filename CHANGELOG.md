@@ -25,7 +25,7 @@ Plot can now generate helpful warnings for common mistakes. Warnings are indicat
 <img src="./img/warning.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
 ```js
-Plot.line(aapl, {x: "Date", y: "Close"}).plot({y: {type: "linear", grid: true}}) // 🌶 Oops, Date and Close are strings!
+Plot.line(aapl, {x: "Date", y: "Close"}).plot({y: {type: "linear", grid: true}}) // 🌶 Oops, Date is a string!
 ```
 
 This warning is:
@@ -42,9 +42,15 @@ The [text mark](./README.md#text) now supports automatic wrapping! The new **lin
 Plot.text([mobydick], {dx: 6, dy: 6, fontSize: 12, lineWidth: 80, lineHeight: 1.2, frameAnchor: "top-left", monospace: true})
 ```
 
-Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new **ariaLabel** and **ariaDescription** scale options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the scale’s label (*e.g.*, “↑ temperature”). Marks define a group-level aria-label (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** mark option allows the hiding of decorative elements from the accessibility tree.
-
 The line and link marks now support [marker options](./README.md#markers) for drawing a graphical marker (such as a dot or arrowhead) on each vertex. Circle and arrow markers are provided, or you can implement a custom marker function that returns an SVG marker element. Markers automatically inherit the stroke color of the associated mark.
+
+<img src="./img/marker.png" width="640" alt="a line chart with circle markers overlaid on each data point">
+
+```js
+Plot.lineY(crimea, {x: "date", y: "deaths", stroke: "cause", marker: "circle"})
+```
+
+Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new **ariaLabel** and **ariaDescription** scale options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the scale’s label (*e.g.*, “↑ temperature”). Marks define a group-level aria-label (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** mark option allows the hiding of decorative elements from the accessibility tree.
 
 The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to *stroke*, with a stroke width of 3px and a stroke linejoin of *round*, making it easier to create a halo for separating labels from a busy background, improving legibility.
 
