@@ -4,13 +4,23 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The [area](./README.md#area) and [line marks](./README.md#line) now support varying color and other aesthetics, such as stroke width, within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform.
+The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other aesthetics within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform.
 
-<img src="./img/line-slope.png" width="660" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+<img src="./img/line-slope.png" width="640" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
 ```js
 Plot.line(bls, Plot.map({stroke: Plot.window({k: 2, reduce: "difference"})}, {x: "date", y: "unemployment", z: "division", stroke: "unemployment"}))
 ```
+
+The new *clip* mark option enables clipping to the plot frame. For example, this can be used to clip overlapping areas and produce a horizon chart of hourly traffic patterns.
+
+<img src="./img/horizon.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+
+```js
+d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: () => t, clip: true}))
+```
+
+Warnings…
 
 The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
@@ -20,7 +30,7 @@ The line and link marks now support [marker options](./README.md#markers) for dr
 
 The new **paintOrder** mark option controls the [paint order](https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order). The text mark’s paint order now defaults to *stroke*, with a stroke width of 3px and a stroke linejoin of *round*, making it easier to create a halo for separating labels from a busy background, improving legibility.
 
-The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”. All marks now support the *strokeDashoffset* option (for use with *strokeDasharray*).
+The *fill* and *stroke* mark options can now be expressed as patterns or gradients using funciri color definitions, *e.g.* “url(#pattern)”. Likewise, colors can also be expressed as CSS variables, *e.g.*, “var(--blue)”. All marks now support the *strokeDashoffset* option (for use with *strokeDasharray*).
 
 When a color scale is associated exclusively with boolean values (true and false), a smarter default range is now chosen: light gray for false, and dark gray for true. Light and dark colors from different sequential schemes, such as *reds*, can be specified via the *scheme* option.
 
@@ -28,7 +38,7 @@ The bin transform now supports the *interval* option, allowing numeric intervals
 
 The returned scale object now exposes *bandwidth* and *step* values for *band* and *point* scales.
 
-Fix a crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean value (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined. Fix a bug where an identity color legend would be rendered as the text “undefined” instead of showing nothing. The vector mark now respects the *frameAnchor* option.
+Fix a crash in default tuple accessors for *x* and *y* when data is undefined. Fix a bug where “none” with surrounding whitespace or capital letters would not be recognized as a valid color. When a channel is specified as a boolean value (*e.g.*, `fill: true`), it is now considered a constant value rather than undefined. Fix a bug where an identity color legend would be rendered as the text “undefined” instead of showing nothing. If scale options are declared, but the scale has no defined type, domain, or data, a scale is no longer constructed rather than a default linear scale. The vector mark now respects the *frameAnchor* option.
 
 ## 0.4.0
 
