@@ -74,7 +74,16 @@ export function arrayify(data, type) {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
 export function isObject(option) {
-  return option && option.toString === objectToString;
+  return option?.toString === objectToString;
+}
+
+// Disambiguates a scale options object (e.g., {color: {type: "linear"}}) from
+// some other option (e.g., {color: "red"}). When creating standalone legends,
+// this is used to test whether a scale is defined; this should be consistent
+// with inferScaleType when there are no channels associated with the scale, and
+// if this returns true, then normalizeScale must return non-null.
+export function isScaleOptions(option) {
+  return isObject(option) && (option.type !== undefined || option.domain !== undefined);
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
