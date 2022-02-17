@@ -20,9 +20,27 @@ The new *clip* mark option enables clipping to the plot frame. For example, this
 d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: () => t, clip: true}))
 ```
 
-Warnings…
+Plot can now generate helpful warnings for common mistakes. Warnings are indicated by a warning sign ⚠️ in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you forget to parse strings to dates, resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise on how to fix the scale definition.
+
+<img src="./img/warning.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+
+```js
+Plot.line(aapl, {x: "Date", y: "Close"}).plot({y: {type: "linear", grid: true}}) // 🌶 Oops, Date and Close are strings!
+```
+
+This warning is:
+
+> Warning: some data associated with the x scale are strings that appear to be dates (e.g., YYYY-MM-DD). If these strings represent dates, you should parse them to Date objects. Dates are typically associated with a "utc" or "time" scale rather than a "point" scale. If you are using a bar mark, you probably want a rect mark with the interval option instead; if you are using a group transform, you probably want a bin transform instead. If you want to treat this data as ordinal, you can suppress this warning by setting the type of the x scale to "point".
+
+We will add [more warnings](https://github.com/observablehq/plot/issues/755) in the future. If Plot did something you didn’t expect, please let us know; perhaps it will inspire a new warning that will help other users.
 
 The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
+
+<img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick, demonstrating Plot’s line wrapping implementation">
+
+```js
+Plot.text([mobydick], {dx: 6, dy: 6, fontSize: 12, lineWidth: 80, lineHeight: 1.2, frameAnchor: "top-left", monospace: true})
+```
 
 Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new **ariaLabel** and **ariaDescription** scale options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the scale’s label (*e.g.*, “↑ temperature”). Marks define a group-level aria-label (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** mark option allows the hiding of decorative elements from the accessibility tree.
 
