@@ -10,6 +10,8 @@ const defaults = {
   filter: null,
   ariaLabel: "area",
   strokeWidth: 1,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
   strokeMiterlimit: 1
 };
 

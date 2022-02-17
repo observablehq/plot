@@ -86,7 +86,7 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="line" fill="none" stroke-width="1.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" fill="#4e79a7" stroke="white" stroke-width="1.5" id="plot-marker-1">
       <circle r="3"></circle>
     </marker>

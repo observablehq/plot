@@ -284,6 +284,10 @@ export function isNone(value) {
   return /^\s*none\s*$/i.test(value);
 }
 
+export function isRound(value) {
+  return /^\s*round\s*$/i.test(value);
+}
+
 const symbols = new Map([
   ["asterisk", symbolAsterisk],
   ["circle", symbolCircle],

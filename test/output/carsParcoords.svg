@@ -45,7 +45,7 @@
     <line x1="100" x2="620" y1="150" y2="150"></line>
     <line x1="100" x2="620" y1="175" y2="175"></line>
   </g>
-  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="line" fill="none" stroke="#444" stroke-width="0.5" stroke-opacity="0.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M155.31914893617022,25L620,50L492.35142118863047,75L464.5652173913043,100L425.5344485398355,125L192.85714285714286,150L230,175"></path>
     <path d="M182.9787234042553,25L620,50L532.6614987080104,75L506.9565217391305,100L429.81003685852,125L115.47619047619047,150L100,175"></path>
     <path d="M210.63829787234044,25L620,50L417.10594315245476,75L393.9130434782609,100L403.56677062659486,125L208.33333333333331,150L186.66666666666669,175"></path>

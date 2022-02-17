@@ -15,9 +15,9 @@ it("line() has the expected defaults", () => {
   assert.strictEqual(line.stroke, "currentColor");
   assert.strictEqual(line.strokeWidth, 1.5);
   assert.strictEqual(line.strokeOpacity, undefined);
-  assert.strictEqual(line.strokeLinejoin, undefined);
-  assert.strictEqual(line.strokeLinecap, undefined);
-  assert.strictEqual(line.strokeMiterlimit, 1);
+  assert.strictEqual(line.strokeLinejoin, "round");
+  assert.strictEqual(line.strokeLinecap, "round");
+  assert.strictEqual(line.strokeMiterlimit, undefined);
   assert.strictEqual(line.strokeDasharray, undefined);
   assert.strictEqual(line.strokeDashoffset, undefined);
   assert.strictEqual(line.mixBlendMode, undefined);

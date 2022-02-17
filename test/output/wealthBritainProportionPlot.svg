@@ -21,7 +21,7 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of wealth</text>
     </g>
   </g>
-  <g aria-label="area" stroke="white" stroke-miterlimit="1">
+  <g aria-label="area" stroke="white" stroke-linejoin="round" stroke-linecap="round">
     <path fill="#008837" d="M50,140.7C315,140.7,315,41.06999999999999,580,41.06999999999999L580,30C315,30,315,30,50,30Z"></path>
     <path fill="#a6dba0" d="M50,262.47C315,262.47,315,159.14999999999998,580,159.14999999999998L580,41.06999999999999C315,41.06999999999999,315,140.7,50,140.7Z"></path>
     <path fill="#c2a5cf" d="M50,365.79C315,365.79,315,351.03,580,351.03L580,159.14999999999998C315,159.14999999999998,315,262.47,50,262.47Z"></path>

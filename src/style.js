@@ -1,7 +1,7 @@
 import {group, isoFormat, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, isNoneish, isNone, keyof} from "./options.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, isNoneish, isNone, isRound, keyof} from "./options.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -84,7 +84,10 @@ export function styles(
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
     if (strokeLinecap === undefined) strokeLinecap = defaultStrokeLinecap;
     if (strokeLinejoin === undefined) strokeLinejoin = defaultStrokeLinejoin;
-    if (strokeMiterlimit === undefined) strokeMiterlimit = defaultStrokeMiterlimit;
+
+    // The default stroke miterlimit need not be applied if the current stroke
+    // is the constant round; this only has effect on miter joins.
+    if (strokeMiterlimit === undefined && !isRound(strokeLinejoin)) strokeMiterlimit = defaultStrokeMiterlimit;
 
     // The paint order only takes effect if there is both a fill and a stroke
     // (at least if we ignore markers, which no built-in marks currently use).
