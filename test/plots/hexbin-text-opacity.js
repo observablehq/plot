@@ -14,8 +14,8 @@ export default async function() {
     inset: 14,
     marks: [
       Plot.frame(),
-      Plot.dot(penguins, Plot.hexbinOpacity({x: "culmen_depth_mm", y: "culmen_length_mm", fill: "brown"})),
-      Plot.text(penguins, Plot.hexbinText({x: "culmen_depth_mm", y: "culmen_length_mm"}))
+      Plot.dot(penguins, Plot.hexbin({fillOpacity: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "brown", stroke: "black", strokeWidth: 0.5})),
+      Plot.text(penguins, Plot.hexbin({text: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
     ]
   });
 }

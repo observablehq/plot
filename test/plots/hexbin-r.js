@@ -13,7 +13,7 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(penguins, Plot.hexbinR({x: "culmen_depth_mm", y: "culmen_length_mm"}))
+      Plot.dot(penguins, Plot.hexbin({r: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "#333"}))
     ]
   });
 }

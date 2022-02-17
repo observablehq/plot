@@ -5,7 +5,8 @@ export default async function() {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.dot(penguins, Plot.hexbinR({x: "culmen_depth_mm", y: "culmen_length_mm", radius: 20}))
-    ]
+      Plot.dot(penguins, Plot.hexbin({r: "count", fill: "median"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "body_mass_g", radius: 20, symbol: "circle"}))
+    ],
+    color: {scheme: "viridis", legend: true, label: "body mass (g)"}
   });
 }
