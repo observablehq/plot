@@ -32,7 +32,7 @@ export default async function() {
       y: "name"
     },
     marks: [
-      ticks.map(t => Plot.areaY(data, {x: "date", y: d => d.value - t, fill: () => t, clip: true})),
+      ticks.map(t => Plot.areaY(data, {x: "date", y: d => d.value - t, fill: t, clip: true})),
       Plot.text(data, Plot.selectFirst({text: "name", frameAnchor: "left"}))
     ]
   });

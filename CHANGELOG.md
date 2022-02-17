@@ -17,7 +17,7 @@ The new *clip* mark option enables clipping to the plot frame. For example, this
 <img src="./img/horizon.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
 ```js
-d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: () => t, clip: true}))
+d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: t, clip: true}))
 ```
 
 Plot can now generate helpful warnings for common mistakes. Warnings are indicated ⚠️ in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you forget to parse strings to dates resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise on how to fix the scale definition.
