@@ -273,6 +273,7 @@ export function isColor(value) {
   return value === "none"
     || value === "currentcolor"
     || (value.startsWith("url(") && value.endsWith(")")) // <funciri>, e.g. pattern or gradient
+    || (value.startsWith("var(") && value.endsWith(")")) // CSS variable
     || color(value) !== null;
 }
 
