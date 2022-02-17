@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other aesthetics within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform.
+The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
 
 <img src="./img/line-slope.png" width="640" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
@@ -20,7 +20,7 @@ The new *clip* mark option enables clipping to the plot frame. For example, this
 d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: () => t, clip: true}))
 ```
 
-Plot can now generate helpful warnings for common mistakes. Warnings are indicated by a warning sign ⚠️ in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you forget to parse strings to dates, resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise on how to fix the scale definition.
+Plot can now generate helpful warnings for common mistakes. Warnings are indicated ⚠️ in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you forget to parse strings to dates resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise on how to fix the scale definition.
 
 <img src="./img/warning.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
 
@@ -32,7 +32,7 @@ Plot.line(aapl, {x: "Date", y: "Close"}) // 🌶 Oops, Date is a string!
 
 We will add [more warnings](https://github.com/observablehq/plot/issues/755) in the future. If Plot did something you didn’t expect, please [let us know](https://github.com/observablehq/plot/discussions); perhaps it will inspire a new warning that will help other users.
 
-The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
+The [text mark](./README.md#text) now supports automatic wrapping for easier annotation. The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
 <img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick, demonstrating Plot’s line wrapping implementation">
 
