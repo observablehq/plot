@@ -191,12 +191,10 @@ export function* groupIndex(I, position, channels) {
     let Gg; // the current group index (a subset of G, and I), if any
     out: for (const i of G) {
 
-      // If any channel has an undefined value for this index, yield the current
-      // group and start a new empty group, skipping this index.
+      // If any channel has an undefined value for this index, skip it.
       for (const c of C) {
         if (!defined(c[i])) {
-          if (Gg) yield Gg;
-          Ag = Gg = undefined;
+          if (Gg) Gg.push(-1);
           continue out;
         }
       }

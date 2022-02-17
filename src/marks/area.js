@@ -43,6 +43,7 @@ export class Area extends Mark {
             .call(applyGroupedChannelStyles, this, channels)
             .attr("d", shapeArea()
               .curve(this.curve)
+              .defined(i => i >= 0)
               .x0(i => X1[i])
               .y0(i => Y1[i])
               .x1(i => X2[i])

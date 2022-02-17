@@ -44,6 +44,7 @@ export class Line extends Mark {
             .call(applyGroupedMarkers, this, channels)
             .attr("d", shapeLine()
               .curve(this.curve)
+              .defined(i => i >= 0)
               .x(i => X[i])
               .y(i => Y[i])))
       .node();
