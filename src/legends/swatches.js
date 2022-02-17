@@ -1,8 +1,8 @@
 import {create, path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeTickFormat} from "../axis.js";
-import {maybeColorChannel, maybeNumberChannel} from "../options.js";
-import {applyInlineStyles, impliedString, maybeClassName, none} from "../style.js";
+import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
+import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
 function maybeScale(scale, key) {
   if (key == null) return key;
@@ -29,7 +29,7 @@ export function legendSwatches(color, options) {
 export function legendSymbols(symbol, {
   fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
   fillOpacity = 1,
-  stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : none(fill) ? "currentColor" : "none",
+  stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : isNoneish(fill) ? "currentColor" : "none",
   strokeOpacity = 1,
   strokeWidth = 1.5,
   r = 4.5,

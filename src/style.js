@@ -1,7 +1,7 @@
 import {group, isoFormat, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatNumber} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, keyof} from "./options.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, isNoneish, isNone, keyof} from "./options.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -64,10 +64,10 @@ export function styles(
   // applies if the stroke is (constant) none; if you set a stroke, then the
   // default fill becomes none. Similarly for marks that stroke by stroke, the
   // default stroke only applies if the fill is (constant) none.
-  if (none(defaultFill)) {
-    if (!none(defaultStroke) && !none(fill)) defaultStroke = "none";
+  if (isNoneish(defaultFill)) {
+    if (!isNoneish(defaultStroke) && !isNoneish(fill)) defaultStroke = "none";
   } else {
-    if (none(defaultStroke) && !none(stroke)) defaultFill = "none";
+    if (isNoneish(defaultStroke) && !isNoneish(stroke)) defaultFill = "none";
   }
 
   const [vfill, cfill] = maybeColorChannel(fill, defaultFill);
@@ -79,8 +79,8 @@ export function styles(
   // For styles that have no effect if there is no stroke, only apply the
   // defaults if the stroke is not the constant none. (If stroke is a channel,
   // then cstroke will be undefined, but there’s still a stroke; hence we don’t
-  // use the none helper here.)
-  if (cstroke !== "none") {
+  // use isNoneish here.)
+  if (!isNone(cstroke)) {
     if (strokeWidth === undefined) strokeWidth = defaultStrokeWidth;
     if (strokeLinecap === undefined) strokeLinecap = defaultStrokeLinecap;
     if (strokeLinejoin === undefined) strokeLinejoin = defaultStrokeLinejoin;
@@ -88,7 +88,7 @@ export function styles(
 
     // The paint order only takes effect if there is both a fill and a stroke
     // (at least if we ignore markers, which no built-in marks currently use).
-    if (cfill !== "none" && paintOrder === undefined) paintOrder = defaultPaintOrder;
+    if (!isNone(cfill) && paintOrder === undefined) paintOrder = defaultPaintOrder;
   }
 
   const [vstrokeWidth, cstrokeWidth] = maybeNumberChannel(strokeWidth);
@@ -302,10 +302,6 @@ export function impliedString(value, impliedValue) {
 
 export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
-}
-
-export function none(color) {
-  return color == null || /^\s*none\s*$/i.test(color);
 }
 
 const validClassName = /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;

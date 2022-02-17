@@ -276,6 +276,14 @@ export function isColor(value) {
     || color(value) !== null;
 }
 
+export function isNoneish(value) {
+  return value == null || isNone(value);
+}
+
+export function isNone(value) {
+  return /^\s*none\s*$/i.test(value);
+}
+
 const symbols = new Map([
   ["asterisk", symbolAsterisk],
   ["circle", symbolCircle],
