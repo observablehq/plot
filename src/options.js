@@ -123,6 +123,11 @@ export function take(values, index) {
   return Array.from(index, i => values[i]);
 }
 
+// Based on InternMap (d3.group).
+export function keyof(value) {
+  return value !== null && typeof value === "object" ? value.valueOf() : value;
+}
+
 export function maybeInput(key, options) {
   if (options[key] !== undefined) return options[key];
   switch (key) {
@@ -269,6 +274,18 @@ export function isColor(value) {
     || value === "currentcolor"
     || (value.startsWith("url(") && value.endsWith(")")) // <funciri>, e.g. pattern or gradient
     || color(value) !== null;
+}
+
+export function isNoneish(value) {
+  return value == null || isNone(value);
+}
+
+export function isNone(value) {
+  return /^\s*none\s*$/i.test(value);
+}
+
+export function isRound(value) {
+  return /^\s*round\s*$/i.test(value);
 }
 
 const symbols = new Map([

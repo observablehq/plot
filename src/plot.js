@@ -99,7 +99,8 @@ export function plot(options = {}) {
   for (const mark of marks) {
     const channels = markChannels.get(mark) ?? [];
     const values = applyScales(channels, scales);
-    const index = filter(markIndex.get(mark), channels, values);
+    let index = markIndex.get(mark);
+    if (mark.filter != null) index = mark.filter(index, channels, values);
     const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
@@ -136,7 +137,7 @@ export function plot(options = {}) {
   return figure;
 }
 
-function filter(index, channels, values) {
+function defaultFilter(index, channels, values) {
   for (const [name, {filter = defined}] of channels) {
     if (name !== undefined && filter !== null) {
       const value = values[name];
@@ -154,6 +155,7 @@ export class Mark {
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
+    this.filter = defaults?.filter === undefined ? defaultFilter : defaults.filter;
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
@@ -328,9 +330,11 @@ class Facet extends Mark {
             .each(function(key) {
               const marksFacetIndex = marksIndexByFacet.get(key);
               for (let i = 0; i < marks.length; ++i) {
+                const mark = marks[i];
                 const values = marksValues[i];
-                const index = filter(marksFacetIndex[i], marksChannels[i], values);
-                const node = marks[i].render(index, scales, values, subdimensions);
+                let index = marksFacetIndex[i];
+                if (mark.filter != null) index = mark.filter(index, marksChannels[i], values);
+                const node = mark.render(index, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
             }))

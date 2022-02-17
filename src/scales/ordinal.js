@@ -1,8 +1,7 @@
 import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {maybeSymbol} from "../options.js";
-import {none} from "../style.js";
+import {maybeSymbol, isNoneish} from "../options.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
@@ -127,5 +126,5 @@ function inferSymbolHint(channels) {
 }
 
 function inferSymbolRange(hint) {
-  return none(hint.fill) ? symbolsStroke : symbolsFill;
+  return isNoneish(hint.fill) ? symbolsStroke : symbolsFill;
 }
