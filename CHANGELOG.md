@@ -56,7 +56,7 @@ The *fill* and *stroke* mark options can now be expressed as patterns or gradien
 Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "url(#gradient)"})
 ```
 
-The bin transform now supports the *interval* option, allowing numeric intervals such as integer binning with a nice default domain that aligns with interval boundaries. (The bin transform already supported time intervals as the *thresholds* option; time intervals can now also be specified as the *interval* option.) For example, if you want integer bins, say representing the hour of the day, use an *interval* of 1:
+The bin transform now supports the *interval* option, allowing numeric intervals such as integer binning with a nice default domain that aligns with interval boundaries. (The bin transform already supported time intervals as the *thresholds* option; time intervals can now also be specified as the *interval* option.) For example, if you want to bin by hour of the day, use an *interval* of 1:
 
 <img src="./img/bin-interval.png" width="640" alt="a histogram of average traffic per hour of day">
 
