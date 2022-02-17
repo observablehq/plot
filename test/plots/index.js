@@ -78,6 +78,7 @@ export {default as metroUnemploymentIndex} from "./metro-unemployment-index.js";
 export {default as metroUnemploymentMoving} from "./metro-unemployment-moving.js";
 export {default as metroUnemploymentNormalize} from "./metro-unemployment-normalize.js";
 export {default as metroUnemploymentRidgeline} from "./metro-unemployment-ridgeline.js";
+export {default as metroUnemploymentSlope} from "./metro-unemployment-slope.js";
 export {default as metroUnemploymentStroke} from "./metro-unemployment-stroke.js";
 export {default as mobyDick} from "./moby-dick.js";
 export {default as mobyDickFaceted} from "./moby-dick-faceted.js";

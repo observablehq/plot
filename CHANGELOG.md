@@ -4,6 +4,14 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
+The [area](./README.md#area) and [line marks](./README.md#line) now support varying color and other aesthetics, such as stroke width, within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform.
+
+<img src="./img/line-slope.png" width="660" alt="a line chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+
+```js
+Plot.line(bls, Plot.map({stroke: Plot.window({k: 2, reduce: "difference"})}, {x: "date", y: "unemployment", z: "division", stroke: "unemployment"}))
+```
+
 The [text mark](./README.md#text) now supports automatic wrapping! The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
 Plot now supports ARIA attributes for improved accessibility: aria-label, aria-description, aria-hidden. The top-level **ariaLabel** and **ariaDescription** options apply to the root SVG element. The new **ariaLabel** and **ariaDescription** scale options apply to axes; the label defaults to *e.g.* “y-axis” and the description defaults to the scale’s label (*e.g.*, “↑ temperature”). Marks define a group-level aria-label (*e.g.*, “dot”). There is also an optional **ariaLabel** channel for labeling data (*e.g.*, “E 12.7%”), and a group-level **ariaDescription** option for a human-readable description. The **ariaHidden** mark option allows the hiding of decorative elements from the accessibility tree.
