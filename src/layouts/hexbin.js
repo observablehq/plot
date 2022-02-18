@@ -2,7 +2,6 @@ import {groups} from "d3";
 import {layout} from "./index.js";
 import {basic} from "../transforms/basic.js";
 import {maybeOutputs, hasOutput} from "../transforms/group.js";
-import {Dot} from "../marks/dot.js";
 import {valueof} from "../options.js";
 
 const defaults = {
@@ -77,8 +76,4 @@ export function hexbin(outputs, options) {
   ([outputs, options] = mergeOptions(outputs, options));
   const {radius, ...inputs} = options;
   return basic(hexbinLayout(radius, outputs, inputs), (data, facets) => ({data, facets}));
-}
-
-export function hex(data, options) {
-  return new Dot(data, hexbin({fill: "count"}, options));
 }

@@ -17,12 +17,12 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.hex(penguins, {
+      Plot.dot(penguins, Plot.hexbin({fill: "count"}, {
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
         radius: 12,
         strokeWidth: 0.5
-      }),
+      })),
       Plot.dot(penguins, {
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
