@@ -14,7 +14,7 @@ Plot.line(bls, Plot.map({stroke: Plot.window({k: 2, reduce: "difference"})}, {x:
 
 The new *clip* mark option enables clipping to the plot frame. For example, this can be used to clip overlapping areas and produce a horizon chart of hourly traffic patterns.
 
-<img src="./img/horizon.png" width="640" alt="a horizon chart of traffic patterns over time">
+<img src="./img/horizon.png" width="640" alt="a horizon chart of traffic volume over time">
 
 ```js
 d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: t, clip: true}))
