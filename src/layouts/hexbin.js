@@ -56,6 +56,9 @@ function hexbinLayout(radius, outputs, options) {
     fill: {scale: "color"},
     fillOpacity: {scale: "opacity"}
   };
+  const {x, y} = options;
+  if (x == null) throw new Error("missing channel: x");
+  if (y == null) throw new Error("missing channel: y");
   return layout({...defaults, ...options}, function(index, scales, {x: X, y: Y}) {
     const bins = hbin(index, X, Y, radius);
     for (const o of outputs) o.initialize(this.data);
