@@ -50,10 +50,17 @@ function mergeOptions({radius = 10, ...outputs}, options) {
 }
 
 function hexbinLayout(radius, outputs, options) {
+  // we defer to Plot.bin’s reducers, but some of them are not supported
+  for (const reduce of Object.values(outputs)) {
+    if (typeof reduce === "string"
+    && !reduce.match(/^(first|last|count|distinct|sum|deviation|min|min-index|max|max-index|mean|median|variance|mode|proportion|proportion-facet)$/i))
+      throw new Error(`invalid reduce ${reduce}`);
+  }
   outputs = maybeOutputs(outputs, options);
   const rescales = {
     r: {scale: "r", options: {range: [0, radius * w0]}},
     fill: {scale: "color"},
+    stroke: {scale: "color"},
     fillOpacity: {scale: "opacity"}
   };
   const {x, y} = options;
@@ -61,7 +68,10 @@ function hexbinLayout(radius, outputs, options) {
   if (y == null) throw new Error("missing channel: y");
   return layout({...defaults, ...options}, function(index, scales, {x: X, y: Y}) {
     const bins = hbin(index, X, Y, radius);
-    for (const o of outputs) o.initialize(this.data);
+    for (const o of outputs) {
+      o.initialize(this.data);
+      o.scope("facet", index);
+    }
     for (const bin of bins) {
       for (const o of outputs) o.reduce(bin);
     }

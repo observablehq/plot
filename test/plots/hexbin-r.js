@@ -6,6 +6,7 @@ export default async function() {
   return Plot.plot({
     width: 820,
     height: 320,
+    color: {scheme: "reds", nice: true, tickFormat: d => 100 * d, label: "Proportion of each facet (%)", legend: true},
     facet: {
       data: penguins,
       x: "sex",
@@ -13,7 +14,7 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(penguins, Plot.hexbin({r: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "#333"}))
+      Plot.dot(penguins, Plot.hexbin({title: "proportion-facet", r: "count", fill: "proportion-facet"}, {x: "culmen_depth_mm", y: "culmen_length_mm", strokeWidth: 1}))
     ]
   });
 }
