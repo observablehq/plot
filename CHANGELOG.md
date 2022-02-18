@@ -2,7 +2,7 @@
 
 ## 0.4.1
 
-*Not yet released. These are forthcoming changes in the main branch.*
+Released February 17, 2022.
 
 The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
 
