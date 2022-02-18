@@ -14,7 +14,7 @@ Plot.line(bls, Plot.map({stroke: Plot.window({k: 2, reduce: "difference"})}, {x:
 
 The new *clip* mark option enables clipping to the plot frame. For example, this can be used to clip overlapping areas and produce a horizon chart of hourly traffic patterns.
 
-<img src="./img/horizon.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+<img src="./img/horizon.png" width="640" alt="a horizon chart of traffic patterns over time">
 
 ```js
 d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value - t, fill: t, clip: true}))
@@ -22,7 +22,7 @@ d3.ticks(0, max, bands).map(t => Plot.areaY(traffic, {x: "date", y: d => d.value
 
 Plot can now generate helpful warnings for common mistakes. Warnings ⚠️ are indicated in the top-right corner of the plot; open your browser’s developer console to read the warnings. For example, if you use data with date strings resulting in an *ordinal* scale rather than the desired *utc* scale, Plot will advise you to parse strings to dates.
 
-<img src="./img/warning.png" width="640" alt="a horizon chart of unemployment rates by metro area; increases are shown in red, and decreases in blue">
+<img src="./img/warning.png" width="640" alt="a line chart with an unreadable ordinal x-axis due to incorrect data typing">
 
 ```js
 Plot.line(aapl, {x: "Date", y: "Close"}) // 🌶 Oops, Date is a string!
@@ -34,7 +34,7 @@ We will add [more warnings](https://github.com/observablehq/plot/issues/755) in 
 
 The [text mark](./README.md#text) now supports automatic wrapping for easier annotation. The new **lineWidth** option specifies the desired length of a line in ems. The line breaking, wrapping, and text metrics implementations are all rudimentary, but they should be acceptable for text that is mostly ASCII. (For more control, you can hard-wrap text manually.) The **monospace** option now provides convenient defaults for monospaced text.
 
-<img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick, demonstrating Plot’s line wrapping implementation">
+<img src="./img/wrap.png" width="640" alt="a snippet of Moby Dick demonstrating line wrapping">
 
 ```js
 Plot.text([mobydick], {dx: 6, dy: 6, fontSize: 12, lineWidth: 80, lineHeight: 1.2, frameAnchor: "top-left", monospace: true})
