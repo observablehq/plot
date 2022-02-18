@@ -4,6 +4,7 @@ export {Arrow, arrow} from "./marks/arrow.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
+export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Image, image} from "./marks/image.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";

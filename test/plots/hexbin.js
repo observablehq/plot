@@ -9,7 +9,6 @@ export default async function() {
     height: 320,
     x: {inset: 20, ticks: 5},
     y: {inset: 10},
-    grid: true,
     facet: {
       data: penguins,
       x: "sex",
@@ -17,6 +16,7 @@ export default async function() {
     },
     marks: [
       Plot.frame(),
+      Plot.hexgrid({radius: 12}),
       Plot.dot(penguins, Plot.hexbin({fill: "count"}, {
         x: "culmen_depth_mm",
         y: "culmen_length_mm",
