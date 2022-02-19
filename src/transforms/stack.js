@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybeZero, isOptions, maybeValue} from "../options.js";
+import {field, lazyChannel, maybeLazyChannel, maybeZ, mid, range, valueof, maybeZero} from "../options.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
@@ -46,27 +46,15 @@ export function stackY2(stackOptions = {}, options = {}) {
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
-  options = aliasSort(options, "x");
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   ([x1, x2] = maybeZero(x, x1, x2));
   return {...options, x1, x2};
 }
 
 export function maybeStackY({y, y1, y2, ...options} = {}) {
-  options = aliasSort(options, "y");
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   ([y1, y2] = maybeZero(y, y1, y2));
   return {...options, y1, y2};
-}
-
-function aliasSort(options, name) {
-  let {sort} = options;
-  if (!isOptions(sort)) return options;
-  for (const x in sort) {
-    const {value: y, ...rest} = maybeValue(sort[x]);
-    if (y === name) sort = {...sort, [x]: {value: `${y}2`, ...rest}};
-  }
-  return {...options, sort};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic
