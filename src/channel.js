@@ -19,7 +19,8 @@ export function channelSort(channels, facetChannels, data, options) {
   const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys
-    const {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
+    let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
+    if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
@@ -33,14 +34,10 @@ export function channelSort(channels, facetChannels, data, options) {
         return domain;
       };
     } else {
-      let YV;
-      if (y === "data") {
-        YV = data;
-      } else {
-        const Y = channels.find(([name]) => name === y);
-        if (!Y) throw new Error(`missing channel: ${y}`);
-        YV = Y[1].value;
-      }
+      const YV = y === "data" ? data
+          : y === "height" ? difference(channels, "y1", "y2")
+          : y === "width" ? difference(channels, "x1", "x2")
+          : values(channels, y, y === "y" ? "y2" : y === "x" ? "x2" : undefined);
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X[1].domain = () => {
         let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
@@ -50,6 +47,19 @@ export function channelSort(channels, facetChannels, data, options) {
       };
     }
   }
+}
+
+function difference(channels, k1, k2) {
+  const X1 = values(channels, k1);
+  const X2 = values(channels, k2);
+  return Float64Array.from(X2, (x2, i) => Math.abs(x2 - X1[i]));
+}
+
+function values(channels, name, alias) {
+  let channel = channels.find(([n]) => n === name);
+  if (!channel && alias !== undefined) channel = channels.find(([n]) => n === alias);
+  if (channel) return channel[1].value;
+  throw new Error(`missing channel: ${name}`);
 }
 
 function ascendingGroup([ak, av], [bk, bv]) {

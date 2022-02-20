@@ -42,6 +42,7 @@ export {default as documentationLinks} from "./documentation-links.js";
 export {default as empty} from "./empty.js";
 export {default as emptyLegend} from "./empty-legend.js";
 export {default as emptyX} from "./empty-x.js";
+export {default as energyProduction} from "./energy-production.js";
 export {default as figcaption} from "./figcaption.js";
 export {default as figcaptionHtml} from "./figcaption-html.js";
 export {default as firstLadies} from "./first-ladies.js";
