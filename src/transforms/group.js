@@ -215,8 +215,10 @@ export function maybeReduce(reduce, value) {
     case "median": return reduceAccessor(median);
     case "variance": return reduceAccessor(variance);
     case "mode": return reduceAccessor(mode);
+    case "x": return reduceX;
     case "x1": return reduceX1;
     case "x2": return reduceX2;
+    case "y": return reduceY;
     case "y1": return reduceY1;
     case "y2": return reduceY2;
   }
@@ -312,6 +314,23 @@ function reduceProportion(value, scope) {
       ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
       : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
 }
+
+function mid(x1, x2) {
+  const m = (+x1 + +x2) / 2;
+  return x1 instanceof Date ? new Date(m) : m;
+}
+
+const reduceX = {
+  reduce(I, X, {x1, x2}) {
+    return mid(x1, x2);
+  }
+};
+
+const reduceY = {
+  reduce(I, X, {y1, y2}) {
+    return mid(y1, y2);
+  }
+};
 
 const reduceX1 = {
   reduce(I, X, {x1}) {
