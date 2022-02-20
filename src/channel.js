@@ -20,7 +20,7 @@ export function channelSort(channels, facetChannels, data, options) {
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys
     let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
-    if (reverse === undefined) reverse = y === "dx" || y === "dy"; // default to descending for lengths
+    if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer
     const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
@@ -35,8 +35,8 @@ export function channelSort(channels, facetChannels, data, options) {
       };
     } else {
       const YV = y === "data" ? data
-          : y === "dy" ? difference(channels, "y1", "y2")
-          : y === "dx" ? difference(channels, "x1", "x2")
+          : y === "height" ? difference(channels, "y1", "y2")
+          : y === "width" ? difference(channels, "x1", "x2")
           : values(channels, y, y === "y" ? "y2" : y === "x" ? "x2" : undefined);
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X[1].domain = () => {

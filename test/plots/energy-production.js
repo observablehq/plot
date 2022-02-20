@@ -43,7 +43,7 @@ export default async function() {
       legend: true
     },
     marks: [
-      Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "dy"}}),
+      Plot.rectY(energy, {x: "Year", interval: 1, y: "Value", fill: "Description", sort: {color: "height"}}),
       Plot.ruleY([0])
     ]
   });
