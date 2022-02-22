@@ -14,6 +14,14 @@ it("Plot.scale(description) returns a standalone scale", () => {
   });
 });
 
+it("Plot.scale({}) throws an error", () => {
+  assert.throws(() => Plot.scale({}), /invalid scale definition/);
+});
+
+it("Plot.scale({color: {}}) throws an error", () => {
+  assert.throws(() => Plot.scale({color: {}}), /invalid scale definition/);
+});
+
 it("plot(…).scale(name) returns undefined for an unused scale", () => {
   const plot = Plot.dot([1, 2], {x: d => d, y: d => d}).plot();
   assert.deepStrictEqual(plot.scale("r"), undefined);

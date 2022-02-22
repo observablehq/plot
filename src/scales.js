@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -384,6 +384,7 @@ export function scale(options = {}) {
   let scale;
   for (const key in options) {
     if (!registry.has(key)) continue; // ignore unknown properties
+    if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition");
     scale = exposeScale(normalizeScale(key, options[key]));
   }
