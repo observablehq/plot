@@ -27,7 +27,6 @@ export function legend(options = {}) {
       );
     }
   }
-  throw new Error("unknown legend type");
 }
 
 export function exposeLegends(scales, defaults = {}) {

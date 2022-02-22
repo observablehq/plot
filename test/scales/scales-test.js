@@ -14,12 +14,10 @@ it("Plot.scale(description) returns a standalone scale", () => {
   });
 });
 
-it("Plot.scale({}) throws an error", () => {
-  assert.throws(() => Plot.scale({}), /invalid scale definition/);
-});
-
-it("Plot.scale({color: {}}) throws an error", () => {
-  assert.throws(() => Plot.scale({color: {}}), /invalid scale definition/);
+it("Plot.scale(description) returns undefined if given no scale definition", () => {
+  assert.strictEqual(Plot.scale(), undefined);
+  assert.strictEqual(Plot.scale({}), undefined);
+  assert.strictEqual(Plot.scale({color: {}}), undefined);
 });
 
 it("plot(…).scale(name) returns undefined for an unused scale", () => {

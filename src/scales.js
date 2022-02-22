@@ -388,7 +388,6 @@ export function scale(options = {}) {
     if (scale !== undefined) throw new Error("ambiguous scale definition");
     scale = exposeScale(normalizeScale(key, options[key]));
   }
-  if (scale === undefined) throw new Error("invalid scale definition");
   return scale;
 }
 
