@@ -1354,9 +1354,10 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *mode* - the value with the most occurrences
+* *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-* *mode* - the value with the most occurrences
 * *x* - the middle the bin’s *x*-extent (when binning on *x*)
 * *x1* - the lower bound of the bin’s *x*-extent (when binning on *x*)
 * *x2* - the upper bound of the bin’s *x*-extent (when binning on *x*)
@@ -1492,6 +1493,7 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
 * a function - passed the array of values for each group
@@ -1579,10 +1581,11 @@ The Plot.normalizeX and Plot.normalizeY transforms normalize series values relat
 
 * *first* - the first value, as in an index chart; the default
 * *last* - the last value
+* *min* - the minimum value
 * *max* - the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
-* *min* - the minimum value
+* *pXX* - the percentile value, where XX is a number in [00,99]
 * *sum* - the sum of values
 * *extent* - the minimum is mapped to zero, and the maximum to one
 * *deviation* - each value is transformed by subtracting the mean and then dividing by the standard deviation
@@ -1601,6 +1604,7 @@ The following window reducers are supported:
 * *mean* - the mean (average)
 * *median* - the median
 * *mode* - the mode (most common occurrence)
+* *pXX* - the percentile value, where XX is a number in [00,99]
 * *sum* - the sum of values
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)

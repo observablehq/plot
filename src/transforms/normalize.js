@@ -1,6 +1,6 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
 import {defined} from "../defined.js";
-import {take} from "../options.js";
+import {percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
 export function normalizeX(basis, options) {
@@ -16,6 +16,7 @@ export function normalizeY(basis, options) {
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
+  if (/^p\d{2}$/i.test(basis)) return normalizeAccessor(percentile(basis));
   switch (`${basis}`.toLowerCase()) {
     case "deviation": return normalizeDeviation;
     case "first": return normalizeFirst;
@@ -39,6 +40,10 @@ function normalizeBasis(basis) {
       }
     }
   };
+}
+
+function normalizeAccessor(f) {
+  return normalizeBasis((I, S) => f(I, i => S[i]));
 }
 
 const normalizeExtent = {
@@ -74,8 +79,8 @@ const normalizeDeviation = {
   }
 };
 
-const normalizeMax = normalizeBasis((I, S) => max(I, i => S[i]));
-const normalizeMean = normalizeBasis((I, S) => mean(I, i => S[i]));
-const normalizeMedian = normalizeBasis((I, S) => median(I, i => S[i]));
-const normalizeMin = normalizeBasis((I, S) => min(I, i => S[i]));
-const normalizeSum = normalizeBasis((I, S) => sum(I, i => S[i]));
+const normalizeMax = normalizeAccessor(max);
+const normalizeMean = normalizeAccessor(mean);
+const normalizeMedian = normalizeAccessor(median);
+const normalizeMin = normalizeAccessor(min);
+const normalizeSum = normalizeAccessor(sum);

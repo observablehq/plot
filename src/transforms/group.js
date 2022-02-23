@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
-import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range, second} from "../options.js";
+import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeLazyChannel, lazyChannel, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -198,6 +198,7 @@ export function maybeGroup(I, X) {
 export function maybeReduce(reduce, value) {
   if (reduce && typeof reduce.reduce === "function") return reduce;
   if (typeof reduce === "function") return reduceFunction(reduce);
+  if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
   switch (`${reduce}`.toLowerCase()) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
