@@ -21,7 +21,7 @@ export function boxX(data, {
 } = {}) {
   const group = y != null ? groupY : groupZ;
   return marks(
-    ruleY(data, group({x1: iqr1, x2: iqr2}, {x, y, stroke, strokeOpacity, ...options})),
+    ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, ...options})),
     dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options}))
@@ -42,7 +42,7 @@ export function boxY(data, {
 } = {}) {
   const group = x != null ? groupX : groupZ;
   return marks(
-    ruleX(data, group({y1: iqr1, y2: iqr2}, {x, y, stroke, strokeOpacity, ...options})),
+    ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
     barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
     tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, ...options})),
     dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options}))
@@ -50,19 +50,18 @@ export function boxY(data, {
 }
 
 // A map function that returns only outliers, returning NaN for non-outliers
-// (values within 1.5× of the interquartile range).
 function oqr(values) {
-  const r1 = iqr1(values);
-  const r2 = iqr2(values);
+  const r1 = loqr1(values);
+  const r2 = hiqr2(values);
   return values.map(v => v < r1 || v > r2 ? v : NaN);
 }
 
-function iqr1(values, value) {
+function loqr1(values, value) {
   const lo = quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5;
   return min(values, d => d >= lo ? d : NaN);
 }
 
-function iqr2(values, value) {
+function hiqr2(values, value) {
   const hi = quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5;
   return max(values, d => d <= hi ? d : NaN);
 }
