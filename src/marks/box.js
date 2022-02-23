@@ -58,11 +58,13 @@ function oqr(values) {
 }
 
 function iqr1(values, value) {
-  return Math.max(min(values, value), quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5);
+  const lo = quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5;
+  return min(values, d => d >= lo ? d : NaN);
 }
 
 function iqr2(values, value) {
-  return Math.min(max(values, value), quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5);
+  const hi = quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5;
+  return max(values, d => d <= hi ? d : NaN);
 }
 
 function quartile1(values, value) {
