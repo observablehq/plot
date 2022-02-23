@@ -72,9 +72,9 @@ When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
-### Layout options
+### Geometry options
 
-These options determine the overall layout of the plot; all are specified as numbers in pixels:
+These options determine the overall geometry of the plot; all are specified as numbers in pixels:
 
 * **marginTop** - the top margin
 * **marginRight** - the right margin
@@ -948,6 +948,14 @@ Plot.dotY(cars.map(d => d["economy (mpg)"]))
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
+### Hexgrid
+
+The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
+
+#### Plot.hexgrid([*options*])
+
+The *radius* option specifies the radius of the hexagonal mesh, in pixels (defaults to 10). The *clip* option is set, by default, to clip the mark to the frame’s dimensions.
+
 ### Image
 
 [<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
@@ -1435,10 +1443,11 @@ The following aggregation methods are supported:
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-* *x* - the middle the bin’s *x*-extent (when binning on *x*)
+* *mode* - the value with the most occurrences
+* *x* - the middle of the bin’s *x*-extent (when binning on *x*)
 * *x1* - the lower bound of the bin’s *x*-extent (when binning on *x*)
 * *x2* - the upper bound of the bin’s *x*-extent (when binning on *x*)
-* *y* - the middle the bin’s *y*-extent (when binning on *y*)
+* *y* - the middle of the bin’s *y*-extent (when binning on *y*)
 * *y1* - the lower bound of the bin’s *y*-extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y*-extent (when binning on *y*)
 * a function to be passed the array of values for each bin and the extent of the bin
@@ -1936,6 +1945,68 @@ Given an *options* object that may specify some basic transforms (*filter*, *sor
 This helper for constructing derived channels returns a [*channel*, *setChannel*] array. The *channel* object implements *channel*.transform, returning whatever value was most recently passed to *setChannel*. If *setChannel* is not called, then *channel*.transform returns undefined. If a *source* is specified, then *channel*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *channel*.label is *source*; otherwise *channel*.label propagates *source*.label. This allows derived channels to propagate a human-readable axis or legend label.
 
 Plot.channel is typically used by options transforms to define new channels; these channels are populated (derived) when the custom *transform* function is invoked.
+
+## Layouts
+
+A layout processes the transformed and scaled values of a mark before rendering. A layout might, for example, modify the marks’ positions to avoid occlusion. A layout operates in representation space (such as pixels and colors, *i.e.* after scales have been applied) rather than data space.
+
+### Dodge
+
+The dodge layout can be applied to any mark that consumes *x* or *y*, such as the Dot, Image, Text and Vector marks.
+
+#### Plot.dodgeY([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeY({x: "date"})
+```
+
+If the marks are arranged along the *x* axis, the dodgeY layout piles them vertically, keeping their *x* position unchanged, and creating a *y* position that avoids overlapping.
+
+#### Plot.dodgeX([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeX({y: "value"})
+```
+
+Equivalent to Plot.dodgeY, but the piling is horizontal, keeping the marks’ *y* position unchanged, and creating an *x* position that avoids overlapping.
+
+The dodge layouts accept the following layout options:
+
+* **padding** — a number of pixels added to the radius of the mark to estimate its size
+* **anchor** - the layout’s anchor: one of *middle*, *right*, and *left* (default) for dodgeX, and one of *middle*, *top*, and *bottom* (default) for dodgeY.
+
+### Hexbin
+
+The hexbin layout can be applied to any mark that consumes *x* and *y*, such as the Dot, Image, Text and Vector marks. It aggregates the values into hexagonal bins of the given *radius* (in pixel space), and computes new values *x* and *y* as the centers of each bin. It can also return new channels by applying a reducer to each bin, such as the number of elements in the bin.
+
+#### Plot.hexbin(*outputs*, *options*)
+
+[Source](./src/layouts/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given inputs into hexagonal bins, and creates output channels with the reduced data. The options must specify the *x* and *y* channels, and can indicate the *radius* in pixels of the hexagonal lattice (defaults to 10). The *outputs* options are similar to Plot.bin’s outputs; each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.The following aggregation methods are supported:
+
+* *first* - the first value, in input order
+* *last* - the last value, in input order
+* *count* - the number of elements (frequency)
+* *distinct* - the number of distinct values
+* *sum* - the sum of values
+* *proportion* - the sum proportional to the overall total (weighted frequency)
+* *proportion-facet* - the sum proportional to the facet total
+* *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
+* *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *deviation* - the standard deviation
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *mode* - the value with the most occurrences
+* a function to be passed the array of values for each bin and the extent of the bin
+* an object with a *reduce* method
+
+See also the [hexgrid](#hexgrid) mark.
+
+### Custom layouts
+
+When its *options* have a *layout* property, the layout function is called after the data has been faceted and scaled; it receives as inputs the index of the elements to layout, the scales descriptors, the values (the scaled channels as a key: array object), the dimensions, and the mark as this. It must return the index, values, and the channels that need to be scaled in a second pass.
 
 ## Curves
 
