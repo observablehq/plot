@@ -1,6 +1,7 @@
 import {mapX, mapY} from "./map.js";
 import {deviation, max, min, median, mode, variance} from "d3";
 import {warn} from "../warnings.js";
+import {percentile} from "../options.js";
 
 export function windowX(windowOptions = {}, options) {
   if (arguments.length === 1) options = windowOptions;
@@ -43,6 +44,7 @@ function maybeShift(shift) {
 
 function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
+    if (/^p\d{2}$/i.test(reduce)) return reduceSubarray(percentile(reduce));
     switch (reduce.toLowerCase()) {
       case "deviation": return reduceSubarray(deviation);
       case "max": return reduceSubarray(max);

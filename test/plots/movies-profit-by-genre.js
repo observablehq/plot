@@ -15,7 +15,7 @@ export default async function() {
     },
     marks: [
       Plot.ruleX([0]),
-      Plot.barX(movies, Plot.groupY({x1: quartile1, x2: quartile3}, {
+      Plot.barX(movies, Plot.groupY({x1: "p25", x2: "p75"}, {
         y: Genre,
         x: Profit,
         fillOpacity: 0.2
@@ -34,12 +34,4 @@ export default async function() {
       }))
     ]
   });
-}
-
-function quartile1(values, value) {
-  return d3.quantile(values, 0.25, value);
-}
-
-function quartile3(values, value) {
-  return d3.quantile(values, 0.75, value);
 }

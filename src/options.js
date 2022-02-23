@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {color, descending} from "d3";
+import {color, descending, quantile} from "d3";
 import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX as symbolTimes} from "d3";
 import {symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye} from "d3";
 
@@ -28,6 +28,13 @@ export const boolean = x => x == null ? x : !!x;
 export const first = x => x ? x[0] : undefined;
 export const second = x => x ? x[1] : undefined;
 export const constant = x => () => x;
+
+// Converts a string like “p25” into a function that takes an index I and an
+// accessor function f, returning the corresponding percentile value.
+export function percentile(reduce) {
+  const p = +`${reduce}`.slice(1) / 100;
+  return (I, f) => quantile(I, p, f);
+}
 
 // Some channels may allow a string constant to be specified; to differentiate
 // string constants (e.g., "red") from named fields (e.g., "date"), this

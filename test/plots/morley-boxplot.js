@@ -17,8 +17,8 @@ function boxX(data, {
 } = {}) {
   return Plot.marks(
     Plot.ruleY(data, Plot.groupY({x1: iqr1, x2: iqr2}, {x, y, stroke, ...options})),
-    Plot.barX(data, Plot.groupY({x1: quartile1, x2: quartile3}, {x, y, fill, ...options})),
-    Plot.tickX(data, Plot.groupY({x: median}, {x, y, stroke, strokeWidth: 2, ...options})),
+    Plot.barX(data, Plot.groupY({x1: "p25", x2: "p75"}, {x, y, fill, ...options})),
+    Plot.tickX(data, Plot.groupY({x: "p50"}, {x, y, stroke, strokeWidth: 2, ...options})),
     Plot.dot(data, Plot.map({x: outliers}, {x, y, z: y, stroke, ...options}))
   );
 }
@@ -37,10 +37,6 @@ function iqr1(values, value) {
 
 function iqr2(values, value) {
   return Math.min(d3.max(values, value), quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5);
-}
-
-function median(values, value) {
-  return d3.median(values, value);
 }
 
 function quartile1(values, value) {
