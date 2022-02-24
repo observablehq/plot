@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {radians} from "../math.js";
-import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword} from "../options.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
@@ -64,4 +64,12 @@ export class Vector extends Mark {
 export function vector(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Vector(data, {...options, x, y});
+}
+
+export function vectorX(data, {x = identity, ...options} = {}) {
+  return new Vector(data, {...options, x});
+}
+
+export function vectorY(data, {y = identity, ...options} = {}) {
+  return new Vector(data, {...options, y});
 }
