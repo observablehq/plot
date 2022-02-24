@@ -1,5 +1,11 @@
 # Observable Plot - Changelog
 
+## 0.4.2
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+Plot now supports [interaction marks](./README.md#interactions)! An interaction mark defines an interactive selection represented as a subset of the mark’s data. For example, the [brush mark](./README.md#brush) allows rectangular selection by clicking and dragging; you can use a brush to select points of interest from a scatterplot and show them in a table. The interactive selection is exposed as *plot*.value. When the selection changes during interaction, the plot emits *input* events. This allows plots to be [Observable views](https://observablehq.com/@observablehq/introduction-to-views), but you can also [listen to *input* events](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget) directly.
+
 ## 0.4.1
 
 Released February 17, 2022.
