@@ -1227,6 +1227,14 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+#### Plot.vectorX(*data*, *options*)
+
+Equivalent to Plot.vector except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+
+#### Plot.vectorY(*data*, *options*)
+
+Equivalent to Plot.vector except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
 ## Decorations
 
 Decorations are static marks that do not represent data. Currently this includes only [Plot.frame](#frame), although internally Plot’s axes are implemented as decorations and may in the future be exposed here for more flexible configuration.
