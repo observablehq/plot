@@ -24,10 +24,10 @@ export class AxisX {
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["top", "bottom"]);
-    this.ticks = ticks;
+    this.ticks = maybeTicks(ticks);
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
-    this.tickFormat = tickFormat;
+    this.tickFormat = maybeTickFormat(tickFormat);
     this.fontVariant = impliedString(fontVariant, "normal");
     this.grid = boolean(grid);
     this.label = string(label);
@@ -117,10 +117,10 @@ export class AxisY {
   } = {}) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["left", "right"]);
-    this.ticks = ticks;
+    this.ticks = maybeTicks(ticks);
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
-    this.tickFormat = tickFormat;
+    this.tickFormat = maybeTickFormat(tickFormat);
     this.fontVariant = impliedString(fontVariant, "normal");
     this.grid = boolean(grid);
     this.label = string(label);
@@ -234,10 +234,18 @@ function gridFacetY(index, fx, tx) {
       .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
+function maybeTicks(ticks) {
+  return ticks === null ? [] : ticks;
+}
+
+function maybeTickFormat(tickFormat) {
+  return tickFormat === null ? () => null : tickFormat;
+}
+
 // D3 doesn’t provide a tick format for ordinal scales; we want shorthand when
 // an ordinal domain is numbers or dates, and we want null to mean the empty
 // string, not the default identity format.
-export function maybeTickFormat(tickFormat, domain) {
+export function maybeAutoTickFormat(tickFormat, domain) {
   return tickFormat === undefined ? (isTemporal(domain) ? formatIsoDate : string)
       : typeof tickFormat === "function" ? tickFormat
       : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format)
@@ -246,7 +254,7 @@ export function maybeTickFormat(tickFormat, domain) {
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
   if (!scale.tickFormat) {
-    tickFormat = maybeTickFormat(tickFormat, scale.domain());
+    tickFormat = maybeAutoTickFormat(tickFormat, scale.domain());
   }
   return axis(scale)
     .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
