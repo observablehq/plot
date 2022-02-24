@@ -25,6 +25,7 @@ export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as beckerBarley} from "./becker-barley.js";
 export {default as boxplot} from "./boxplot.js";
 export {default as caltrain} from "./caltrain.js";
+export {default as caltrainDirection} from "./caltrain-direction.js";
 export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
