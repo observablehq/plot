@@ -1,5 +1,5 @@
 import {create} from "d3";
-import {number} from "../options.js";
+import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
@@ -70,10 +70,10 @@ export function rect(data, options) {
   return new Rect(data, maybeIntervalX(maybeIntervalY(options)));
 }
 
-export function rectX(data, options) {
+export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
   return new Rect(data, maybeStackX(maybeIntervalY(maybeIdentityX(options))));
 }
 
-export function rectY(data, options) {
+export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeIntervalX(maybeIdentityY(options))));
 }
