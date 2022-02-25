@@ -1,7 +1,7 @@
 import {area as shapeArea, create} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
-import {indexOf, maybeZ} from "../options.js";
+import {first, indexOf, maybeZ, second} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -56,6 +56,7 @@ export class Area extends Mark {
 }
 
 export function area(data, options) {
+  if (options === undefined) return areaY(data, {x: first, y: second});
   return new Area(data, options);
 }
 
