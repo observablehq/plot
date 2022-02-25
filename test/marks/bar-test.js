@@ -5,9 +5,9 @@ it("barX() has the expected defaults", () => {
   const bar = Plot.barX();
   assert.strictEqual(bar.data, undefined);
   // assert.strictEqual(bar.transform, undefined);
-  assert.deepStrictEqual(bar.channels.map(c => c.name), ["x1", "x2"]);
+  assert.deepStrictEqual(bar.channels.map(c => c.name), ["x1", "x2", "y"]);
   // assert.deepStrictEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  assert.deepStrictEqual(bar.channels.map(c => c.scale), ["x", "x"]);
+  assert.deepStrictEqual(bar.channels.map(c => c.scale), ["x", "x", "y"]);
   assert.strictEqual(bar.fill, undefined);
   assert.strictEqual(bar.fillOpacity, undefined);
   assert.strictEqual(bar.stroke, undefined);
@@ -99,9 +99,9 @@ it("barY() has the expected defaults", () => {
   const bar = Plot.barY();
   assert.strictEqual(bar.data, undefined);
   // assert.strictEqual(bar.transform, undefined);
-  assert.deepStrictEqual(bar.channels.map(c => c.name), ["y1", "y2"]);
+  assert.deepStrictEqual(bar.channels.map(c => c.name), ["y1", "y2", "x"]);
   // assert.deepStrictEqual(bar.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  assert.deepStrictEqual(bar.channels.map(c => c.scale), ["y", "y"]);
+  assert.deepStrictEqual(bar.channels.map(c => c.scale), ["y", "y", "x"]);
   assert.strictEqual(bar.fill, undefined);
   assert.strictEqual(bar.fillOpacity, undefined);
   assert.strictEqual(bar.stroke, undefined);

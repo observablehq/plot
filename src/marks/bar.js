@@ -1,6 +1,6 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
-import {number} from "../options.js";
+import {identity, indexOf, number} from "../options.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -114,10 +114,10 @@ export class BarY extends AbstractBar {
   }
 }
 
-export function barX(data, options) {
+export function barX(data, options = {y: indexOf, x2: identity}) {
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
 
-export function barY(data, options) {
+export function barY(data, options = {x: indexOf, y2: identity}) {
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));
 }
