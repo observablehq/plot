@@ -1,6 +1,6 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
-import {coerceDate} from "../scales.js";
+import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
@@ -181,7 +181,7 @@ function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
   const bin = data => {
-    let V = valueof(data, value);
+    let V = valueof(data, value, Array); // d3.bin prefers Array input
     const bin = binner().value(i => V[i]);
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
       V = V.map(coerceDate);
@@ -197,6 +197,7 @@ function maybeBin(options) {
       }
       bin.thresholds(t).domain([min, max]);
     } else {
+      V = V.map(coerceNumber);
       let d = domain;
       let t = thresholds;
       if (isInterval(t)) {
