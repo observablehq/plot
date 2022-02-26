@@ -43,6 +43,10 @@ https://github.com/hemanrobinson/preattentive/blob/a58dd4795d0ee063a38a2d7bf3381
 ggplot2 “diamonds” dataset (carat and price columns only)
 https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv
 
+## driving.csv
+Based on Hannah Fairfield’s Driving Shifts Into Reverse
+https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02metrics.html
+
 ## energy-production.csv
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php

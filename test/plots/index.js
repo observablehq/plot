@@ -41,6 +41,7 @@ export {default as decathlon} from "./decathlon.js";
 export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
 export {default as documentationLinks} from "./documentation-links.js";
+export {default as driving} from "./driving.js";
 export {default as empty} from "./empty.js";
 export {default as emptyLegend} from "./empty-legend.js";
 export {default as emptyX} from "./empty-x.js";
