@@ -801,6 +801,43 @@ In addition to the [standard bar channels](#bar), the following optional channel
 
 If the **x** channel is not specified, the bar will span the full horizontal extent of the plot (or facet).
 
+### Box
+
+[<img src="./img/box.png" width="640" alt="a boxplot of Michelson’s 1879 measurements of the speed of light">](https://observablehq.com/@observablehq/plot-box)
+
+[Source](./src/marks/box.js) · [Examples](https://observablehq.com/@observablehq/plot-box) · Draws either horizontal boxplots where *x* is quantitative and *y* is ordinal (if present) or vertical boxplots where *y* is quantitative and *x* is ordinal (if present). Boxplots are often used to visualize one-dimensional distributions as an alternative to a histogram. (See also the [bin transform](#bin).)
+
+The box mark is a composite mark consisting of four marks:
+
+* a [rule](#rule) representing the extreme values (not including outliers)
+* a [bar](#bar) representing the interquartile range (trimmed to the data)
+* a [tick](#tick) represent the median value, and
+* a [dot](#dot) representing outliers, if any
+
+The given *options* are passed through to these underlying marks, with the expection of the following options:
+
+* **fill** - the fill color of the bar; defaults to gray
+* **fillOpacity** - the fill opacity of the bar; defaults to 1
+* **stroke** - the stroke color of the rule, tick, and dot; defaults to *currentColor*
+* **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
+* **strokeWidth** - the stroke width of the tick; defaults to 1
+
+#### Plot.boxX(*data*, *options*)
+
+```js
+Plot.boxX(simpsons.map(d => d.imdb_rating))
+```
+
+Returns a horizontal boxplot mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
+
+#### Plot.boxY(*data*, *options*)
+
+```js
+Plot.boxY(simpsons.map(d => d.imdb_rating))
+```
+
+Returns a vertical boxplot mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
+
 ### Cell
 
 [<img src="./img/cell.png" width="320" height="320" alt="a heatmap">](https://observablehq.com/@observablehq/plot-cell)
