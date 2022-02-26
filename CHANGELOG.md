@@ -2,7 +2,7 @@
 
 ## 0.4.2
 
-*Not yet released. These are forthcoming changes in the main branch.*
+Released February 26, 2022.
 
 The new [box mark](./README.md#box) generates a horizontal or vertical boxplot suitable for visualizing one-dimensional distributions. It is a convenience mark that composites a rule, bar, tick, and dot.
 
