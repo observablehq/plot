@@ -129,7 +129,8 @@ export function plot(options = {}) {
         .attr("y", 20)
         .attr("dy", "-1em")
         .attr("text-anchor", "end")
-        .text("⚠️")
+        .attr("font-family", "initial") // fix emoji rendering in Chrome
+        .text("\u26a0\ufe0f") // emoji variation selector
       .append("title")
         .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
