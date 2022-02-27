@@ -814,7 +814,7 @@ The box mark is a composite mark consisting of four marks:
 * a [tick](#tick) represent the median value, and
 * a [dot](#dot) representing outliers, if any
 
-The given *options* are passed through to these underlying marks, with the expection of the following options:
+The given *options* are passed through to these underlying marks, with the exception of the following options:
 
 * **fill** - the fill color of the bar; defaults to gray
 * **fillOpacity** - the fill opacity of the bar; defaults to 1
