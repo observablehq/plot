@@ -27,6 +27,18 @@ export function bin(outputs = {fill: "count"}, options = {}) {
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
 
+function maybeDenseInterval(bin, k, options) {
+  return options?.interval == null ? options : bin({[k]: options?.reduce === undefined ? "sum" : options.reduce, filter: null}, options);
+}
+
+export function maybeDenseIntervalX(options) {
+  return maybeDenseInterval(binX, "y", options);
+}
+
+export function maybeDenseIntervalY(options) {
+  return maybeDenseInterval(binY, "x", options);
+}
+
 function binn(
   bx, // optionally bin on x (exclusive with gx)
   by, // optionally bin on y (exclusive with gy)
