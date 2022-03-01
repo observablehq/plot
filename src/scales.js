@@ -1,11 +1,12 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isTemporal, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {warn} from "./warnings.js";
+import {isSymbol, maybeSymbol} from "./symbols.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
