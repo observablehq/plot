@@ -712,7 +712,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.areaX(observations, {y: "date", interval: d3.utcDay, x: "temperature"})
+Plot.areaX(observations, {y: "date", x: "downloads", interval: d3.utcDay, reduce: "sum"})
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
@@ -728,7 +728,7 @@ Returns a new area with the given *data* and *options*. This constructor is used
 If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.areaY(observations, {x: "date", interval: d3.utcDay, y: "temperature"})
+Plot.areaY(observations, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum})
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
@@ -1025,7 +1025,7 @@ Similar to [Plot.line](#plotlinedata-options) except that if the **x** option is
 If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.lineX(observations, {y: "date", interval: d3.utcDay, x: "temperature"})
+Plot.lineX(observations, {y: "date", x: "downloads", interval: d3.utcDay, reduce: "sum"})
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
@@ -1041,7 +1041,7 @@ Similar to [Plot.line](#plotlinedata-options) except that if the **y** option is
 If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
-Plot.lineY(observations, {x: "date", interval: d3.utcDay, y: "temperature"})
+Plot.lineY(observations, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum"})
 ```
 
 The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
