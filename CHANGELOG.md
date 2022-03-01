@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.4.3
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit bin transform with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
+
+The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
+
 ## 0.4.2
 
 Released February 26, 2022.
