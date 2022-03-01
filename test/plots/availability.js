@@ -7,37 +7,21 @@ export default async function() {
   return Plot.plot({
     height: 180,
     marks: [
-      Plot.areaY(
-        data,
-        Plot.binX(
-          {
-            filter: null,
-            y: sum
-          },
-          {
-            x: "date",
-            y: "value",
-            curve: "step",
-            thresholds: d3.utcDay,
-            fill: "#f2f2fe"
-          }
-        )
-      ),
-      Plot.line(
-        data,
-        Plot.binX(
-          {
-            filter: null,
-            y: sum
-          },
-          {
-            x: "date",
-            y: "value",
-            curve: "step",
-            thresholds: d3.utcDay
-          }
-        )
-      ),
+      Plot.areaY(data, {
+        x: "date",
+        y: "value",
+        interval: d3.utcDay,
+        reduce: sum,
+        curve: "step",
+        fill: "#f2f2fe"
+      }),
+      Plot.lineY(data, {
+        x: "date",
+        y: "value",
+        interval: d3.utcDay,
+        reduce: sum,
+        curve: "step"
+      }),
       Plot.ruleY([0])
     ]
   });

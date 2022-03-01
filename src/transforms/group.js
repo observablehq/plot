@@ -267,7 +267,7 @@ export const reduceIdentity = {
   }
 };
 
-const reduceFirst = {
+export const reduceFirst = {
   reduce(I, X) {
     return X[I[0]];
   }

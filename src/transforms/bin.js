@@ -2,7 +2,7 @@ import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresh
 import {valueof, range, identity, maybeLazyChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
-import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceIdentity} from "./group.js";
+import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity} from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 import {maybeInterval} from "./interval.js";
 
@@ -25,6 +25,18 @@ export function bin(outputs = {fill: "count"}, options = {}) {
   ([outputs, options] = mergeOptions(outputs, options));
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
+}
+
+function maybeDenseInterval(bin, k, options) {
+  return options?.interval == null ? options : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
+}
+
+export function maybeDenseIntervalX(options) {
+  return maybeDenseInterval(binX, "y", options);
+}
+
+export function maybeDenseIntervalY(options) {
+  return maybeDenseInterval(binY, "x", options);
 }
 
 function binn(

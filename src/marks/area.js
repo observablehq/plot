@@ -3,6 +3,7 @@ import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
+import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
@@ -60,10 +61,12 @@ export function area(data, options) {
   return new Area(data, options);
 }
 
-export function areaX(data, {y = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackX(maybeIdentityX({...options, y1: y, y2: undefined})));
+export function areaX(data, options) {
+  const {y = indexOf, ...rest} = maybeDenseIntervalY(options);
+  return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined})));
 }
 
-export function areaY(data, {x = indexOf, ...options} = {}) {
-  return new Area(data, maybeStackY(maybeIdentityY({...options, x1: x, x2: undefined})));
+export function areaY(data, options) {
+  const {x = indexOf, ...rest} = maybeDenseIntervalX(options);
+  return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined})));
 }
