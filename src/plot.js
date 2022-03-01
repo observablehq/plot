@@ -4,8 +4,8 @@ import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
+import {arrayify, isOptions, keyword, range, second, where} from "./options.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
 import {consumeWarnings} from "./warnings.js";
@@ -26,33 +26,22 @@ export function plot(options = {}) {
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
-  // A Map from Mark instance to an object of named channel values.
-  const markChannels = new Map();
-  const markIndex = new Map();
-
-  // A Map from scale name to an array of associated channels.
-  const scaleChannels = new Map();
-
-  // Initialize the marks’ channels, indexing them by mark and scale as needed.
-  // Also apply any scale transforms.
+  // Initialize each mark’s state: the (possibly transformed) data, the mark
+  // index (often [0, 1, 2, …], referencing elements in data), and any channels,
+  // applying scale transforms as needed.
+  const markState = new Map();
   for (const mark of marks) {
-    if (markChannels.has(mark)) throw new Error("duplicate mark");
-    const {index, channels} = mark.initialize();
-    for (const [, channel] of channels) {
-      const {scale} = channel;
-      if (scale !== undefined) {
-        const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
-        if (transform != null) channel.value = Array.from(channel.value, transform);
-        if (scaleChannels.has(scale)) scaleChannels.get(scale).push(channel);
-        else scaleChannels.set(scale, [channel]);
-      }
-    }
-    markChannels.set(mark, channels);
-    markIndex.set(mark, index);
+    if (markState.has(mark)) throw new Error("duplicate mark");
+    const {data, index, channels} = mark.initialize();
+    applyScaleTransforms(channels, options);
+    markState.set(mark, {data, index, channels});
   }
 
-  let scaleDescriptors = Scales(scaleChannels, options);
-  let scales = ScaleFunctions(scaleDescriptors);
+  // Construct the initial scales, axes, and dimensions (a.k.a. geometry). The
+  // scale definitions may later be modified by mark layouts.
+  const scaleChannels = ScaleChannels(flatChannels(markState));
+  const scaleDescriptors = Scales(scaleChannels, options);
+  const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
@@ -60,11 +49,56 @@ export function plot(options = {}) {
   autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  // When faceting, render axes for fx and fy instead of x and y.
-  const x = facet !== undefined && scaleDescriptors.fx ? "fx" : "x";
-  const y = facet !== undefined && scaleDescriptors.fy ? "fy" : "y";
-  if (axes[x]) marks.unshift(axes[x]);
-  if (axes[y]) marks.unshift(axes[y]);
+  // Apply the scales to the marks’ channels, materializing arrays of scaled
+  // values; if there is no associated scale, pass channel values through as-is.
+  // TODO Update this comment or maybe rename the Values function: the abstract
+  // values were materialized earlier in mark.initialize; here we’re mostly just
+  // copying a reference and applying the scale, if any.
+  for (const state of markState.values()) {
+    state.values = Values(state.channels, scales);
+  }
+
+  // If any mark has an associated layout, allow the layout to define a new
+  // index, new (visual) values, and new channels. Record any new channels,
+  // since if they are associated with scales, we will need to construct new
+  // scales below before materializing the corresponding new channel values.
+  const newMarkChannels = new Map();
+  for (const [mark, state] of markState) {
+    if (mark.layout != null) {
+      const {data, facets, values, channels} = mark.layout(state.data, [state.index], scales, state.values, dimensions);
+      if (data !== undefined) state.data = data; // TODO Not strictly necessary?
+      if (facets !== undefined) ([state.index] = facets);
+      if (values !== undefined) Object.assign(state.values, values);
+      if (channels !== undefined) {
+        applyScaleTransforms(channels, options);
+        state.channels = mergeChannels(channels, state.channels);
+        newMarkChannels.set(mark, channels);
+      }
+    }
+  }
+
+  // If any new channel returned by a mark’s layout is associated with a scale,
+  // reconstruct the scale from all associated channels (including channels
+  // prior to the layout). And materialize the values of any new channels, even
+  // if not associated with a scale.
+  if (newMarkChannels.size) {
+    const newScaleDescriptors = NewScales(newMarkChannels, markState, options);
+    const newScales = ScaleFunctions(newScaleDescriptors);
+    Object.assign(scaleDescriptors, newScaleDescriptors);
+    Object.assign(scales, newScales);
+    for (const [mark, channels] of newMarkChannels) {
+      const state = markState.get(mark);
+      const newValues = Values(channels, scales);
+      state.values = {...state.values, ...newValues};
+    }
+  }
+
+  // Filter marks.
+  // TODO passing scales is messy?
+  for (const [mark, state] of markState) {
+    const {index, channels, values} = state;
+    state.index = mark.filter(index, channels, values, scales);
+  }
 
   const {width, height} = dimensions;
 
@@ -95,38 +129,15 @@ export function plot(options = {}) {
       .call(applyInlineStyles, style)
     .node();
 
-  // A mark layout is responsible for:
-  // * applying the scales, possibly pushing a new one (for legends)
-  // * returning a filtered index and values to render, possibly new channels to rescale
-  const newScaleChannels = new Map();
-  const layouts = [];
-  const newOptions = {};
-  for (let i = 0; i < marks.length; ++i) {
-    const mark = marks[i];
-    const {channels} = layouts[i] = applyLayout.call(mark, mark.layout, [markIndex.get(mark)], scaleDescriptors, markChannels.get(mark), dimensions, options);
-    if (channels) {
-      for (const [, {scale, options: hint}] of channels) {
-        if (scale) newOptions[scale] = {...hint, ...options[scale]};
-      }
-      addScaleChannels(newScaleChannels, channels, newOptions);
-      markChannels.set(mark, channels);
-    }
-  }
+  // When faceting, render axes for fx and fy instead of x and y.
+  const axisX = axes[facet !== undefined && scales.fx ? "fx" : "x"];
+  const axisY = axes[facet !== undefined && scales.fy ? "fy" : "y"];
+  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions));
+  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions));
 
-  // compute descriptors for new scales
-  const newScaleDescriptors = Scales(newScaleChannels, newOptions);
-  scaleDescriptors = {...newScaleDescriptors, ...scaleDescriptors};
-  scales = ScaleFunctions(scaleDescriptors);
-  for (const layout of layouts) {
-    if (layout.channels) layout.values = {...layout.values, ...applyScales(layout.channels, scales)};
-  }
-
-  for (let i = 0; i < marks.length; ++i) {
-    const mark = marks[i];
-    const channels = markChannels.get(mark) ?? [];
-    let {index: [I], values} = layouts[i];
-    if (mark.filter != null) I = mark.filter(I, channels || [], values);
-    const node = marks[i].render(I, scales, values, dimensions, axes);
+  // Render marks.
+  for (const [mark, {index, values}] of markState) {
+    const node = mark.render(index, scales, values, dimensions, axes);
     if (node != null) svg.appendChild(node);
   }
 
@@ -163,32 +174,92 @@ export function plot(options = {}) {
   return figure;
 }
 
-function defaultFilter(index, channels, values) {
-  for (const [name, {filter = defined}] of channels) {
-    if (name !== undefined && filter !== null) {
-      const value = values[name];
-      index = index.filter(i => filter(value[i]));
-    }
+// Given an array of named channels [[name?, channel], …], applies the scale’s
+// transform (if any) to the channel values. Note: mutates channel.value!
+function applyScaleTransforms(channels, options) {
+  for (const [, channel] of channels) {
+    const scale = options[channel.scale];
+    if (scale == null) continue;
+    const {percent, transform = percent ? x => x * 100 : undefined} = scale;
+    if (transform == null) continue;
+    channel.value = Array.from(channel.value, transform);
   }
-  return index;
+  return channels;
 }
 
-function addScaleChannels(scaleChannels, channels, options) {
-  for (const [, channel] of channels) {
+// Given an array of named channels [[name?, channel], …] and an object of scale
+// functions, returns a new object representing the materialized values of named
+// channels. TODO use Float64Array.from for position and radius scales?
+function Values(channels, scales) {
+  const values = Object.create(null);
+  for (let [name, {value, scale}] of channels) {
+    if (name !== undefined) {
+      if (scale !== undefined) {
+        scale = scales[scale];
+        if (scale !== undefined) {
+          value = Array.from(value, scale);
+        }
+      }
+      values[name] = value;
+    }
+  }
+  return values;
+}
+
+// Given a map from mark instance to array of associated named channels, returns
+// a flat array of all channels present in the map.
+function flatChannels(markState) {
+  return Array.from(markState.values(), ({channels}) => channels).flat();
+}
+
+// Given an array of named channels [[name?, channel], …], group the channels
+// by scale, ignoring channels not bound to a scale.
+function ScaleChannels(nameChannels) {
+  const scaleChannels = new Map();
+  for (const [, channel] of nameChannels) {
     const {scale} = channel;
     if (scale !== undefined) {
-      const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
-      if (transform != null) channel.value = Array.from(channel.value, transform);
       if (scaleChannels.has(scale)) scaleChannels.get(scale).push(channel);
       else scaleChannels.set(scale, [channel]);
     }
   }
+  return scaleChannels;
 }
 
-function applyLayout(layout, index, scaleDescriptors, channels, dimensions, options) {
-  const scales = ScaleFunctions(scaleDescriptors);
-  const values = channels ? applyScales(channels, scales) : {};
-  return layout ? layout.call(this, index, scaleDescriptors, values, dimensions, options) : {index, values};
+// Given an array of named channels [[name?, channel], …] representing new
+// channels returned by layouts, and a similar array of named channels
+// representing all current channels (both old and new), groups the channels by
+// scale but including only scales that are referenced in the new channels.
+function NewScaleChannels(newNameChannels, nameChannels) {
+  const scales = new Set(newNameChannels.map(([, {scale}]) => scale));
+  return ScaleChannels(nameChannels.filter(([, {scale}]) => scales.has(scale)));
+}
+
+// Given a map from mark instance to array of associated new named channels
+// returned by layouts, and a similar map representing all marks’ current
+// channels (both old and new), returns an object representing the scale
+// descriptors of any scales referenced by the new channels.
+function NewScales(newMarkChannels, markState, options) {
+  const newNameChannels = Array.from(newMarkChannels.values()).flat();
+  const nameChannels = flatChannels(markState);
+  const newScaleChannels = NewScaleChannels(newNameChannels, nameChannels);
+  return Scales(newScaleChannels, options, true); // only create new scales
+}
+
+// Given an array of new named channels associated with a given mark (as
+// returned by mark.layout), and a likewise array of old named channels
+// previously associated with the same mark (as returned by mark.initialize),
+// returns an array representing the resulting union, whereby the newly added
+// channels replace old channels of the same name, if any.
+function mergeChannels(newChannels, oldChannels) {
+  const channels = [...oldChannels];
+  const index = new Map(channels.map(([name], i) => [name, i]));
+  for (const nameChannel of newChannels) {
+    const [name] = nameChannel;
+    if (name != null && index.has(name)) channels[index.get(name)] = nameChannel;
+    else channels.push(nameChannel);
+  }
+  return channels;
 }
 
 export class Mark {
@@ -199,7 +270,6 @@ export class Mark {
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
-    this.filter = defaults?.filter === undefined ? defaultFilter : defaults.filter;
     this.transform = transform;
     this.layout = options.layout;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
@@ -224,7 +294,7 @@ export class Mark {
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     let index = facets === undefined && data != null ? range(data) : facets;
-    if (data !== undefined && this.transform !== undefined) {
+    if (data !== undefined && this.transform != null) {
       if (facets === undefined) index = index.length ? [index] : [];
       ({facets: index, data} = this.transform(data, index));
       data = arrayify(data);
@@ -235,7 +305,16 @@ export class Mark {
       return [name == null ? undefined : `${name}`, Channel(data, channel)];
     });
     if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
-    return {index, channels};
+    return {data, index, channels};
+  }
+  filter(index, channels, values) {
+    for (const [name, {filter = defined}] of channels) {
+      if (name !== undefined && filter !== null) {
+        const value = values[name];
+        index = index.filter(i => filter(value[i]));
+      }
+    }
+    return index;
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
@@ -276,108 +355,94 @@ class Facet extends Mark {
         {name: "fx", value: x, scale: "fx", optional: true},
         {name: "fy", value: y, scale: "fy", optional: true}
       ],
-      options
+      {
+        ...options,
+        layout: Facet.prototype.layout
+      }
     );
     this.marks = marks.flat(Infinity).map(markify);
     // The following fields are set by initialize:
-    this.marksChannels = undefined; // array of mark channels
-    this.facetsKeys = undefined; // list of facet keys
-    this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
+    this.facetIndex = undefined; // map from facet key to facet index
+    this.marksState = undefined; // array of mark state
   }
   initialize() {
-    const {index, channels} = super.initialize();
+    const {data, index, channels} = super.initialize();
     const facets = index === undefined ? [] : facetGroups(index, channels);
-    const facetsKeys = this.facetsKeys = Array.from(facets, first);
     const facetsIndex = Array.from(facets, second);
-    const subchannels = [];
-    const marksChannels = this.marksChannels = [];
-    const marksIndex = this.marksIndex = [];
-    const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
-    for (const facetKey of facetsKeys) {
-      marksIndexByFacet.set(facetKey, new Array(this.marks.length));
-    }
-    let facetsExclude;
-    for (let i = 0; i < this.marks.length; ++i) {
-      const mark = this.marks[i];
+    const subchannels = channels.slice();
+    const marksState = this.marksState = [];
+    const facetIndex = this.facetIndex = facetMap(channels);
+    for (let i = 0; i < facets.length; ++i) facetIndex.set(facets[i][0], i);
+    let facetsExclude; // lazily constructed, if needed
+    for (const mark of this.marks) {
       const {facet} = mark;
       const markFacets = facet === "auto" ? mark.data === this.data ? facetsIndex : undefined
         : facet === "include" ? facetsIndex
         : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
         : undefined;
-      const {index: I, channels: markChannels} = mark.initialize(markFacets, channels);
-      // If an index is returned by mark.initialize, its structure depends on
-      // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
-      // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
-      // when faceted.
-      if (I !== undefined) {
-        if (markFacets) {
-          marksIndex[i] = I;
-          for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = I[j];
-          }
-        } else {
-          marksIndex[i] = [I];
-          for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = I;
-          }
-        }
-      }
-      for (const [, channel] of markChannels) {
-        subchannels.push([, channel]);
-      }
-      marksChannels.push(markChannels);
+      const {data: markData, index: markIndex, channels: markChannels} = mark.initialize(markFacets, channels);
+      for (const [, channel] of markChannels) subchannels.push([, channel]); // anonymize channels
+      marksState.push({data: markData, facets: markFacets, index: markIndex, channels: markChannels});
     }
-    this.layout = function(index, scaleDescriptors, values, dimensions, options) {
-      const {marks, marksChannels, facetsKeys, marksIndexByFacet} = this;
-      const marksValues = this.marksValues = new Array(marks.length);
-      const scales = ScaleFunctions(scaleDescriptors);
-      const {fx, fy} = scales;
-      const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
-      const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
-      const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+    return {data, index, channels: subchannels};
+  }
+  layout(data, facets, scales, values, dimensions) {
+    const {marks, marksState} = this;
 
-      // apply each mark’s layout
-      const newScaleChannels = new Map();
-      const layouts = [];
-      const newOptions = {};
-      for (let i = 0; i < marks.length; ++i) {
-        const mark = marks[i];
-        marksValues[i] = applyScales(marksChannels[i], scales);
-        if (true) {
-          const index = facetsKeys.map(key => marksIndexByFacet.get(key)[i]);
-          const {index: newIndex, values: newValues, channels} = layouts[i] = applyLayout.call(mark, mark.layout, index, scaleDescriptors, marksChannels[i], subdimensions, options);
-          marksValues[i] = {...values, ...newValues};
-          facetsKeys.forEach((key, j) => marksIndexByFacet.get(key)[i] = newIndex[j]);
-          if (channels) {
-            for (const [, {scale, options: hint}] of channels) {
-              if (scale) newOptions[scale] = {...hint, ...options[scale]};
-            }
-            addScaleChannels(newScaleChannels, channels, newOptions);
-            marksChannels[i] = channels;
-          }
+    // Compute the dimensions (geometry) of individual facets.
+    const {fx, fy} = scales;
+    const subdimensions = {
+      ...dimensions,
+      ...fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()},
+      ...fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()}
+    };
+
+    // Apply the scales to the marks’ channels, materializing arrays of scaled
+    // values; if there is no associated scale, pass channel values through as-is.
+    for (const state of marksState) {
+      state.values = Values(state.channels, scales);
+    }
+
+    // If any mark has an associated layout, allow the layout to define a new
+    // index, new (visual) values, and new channels. Record any new channels,
+    // since if they are associated with scales, we will need to construct new
+    // scales below before materializing the corresponding new channel values.
+    let newChannels;
+    for (let i = 0; i < marks.length; ++i) {
+      const mark = marks[i];
+      if (mark.layout != null) {
+        const state = marksState[i];
+        const {data, facets, values, channels} = mark.layout(state.data, state.facets ? state.index : [state.index], scales, state.values, subdimensions);
+        if (data !== undefined) state.data = data;
+        if (facets !== undefined) state.facets ? state.index = facets : [state.index] = facets;
+        if (values !== undefined) Object.assign(state.values, values);
+        if (channels !== undefined) {
+          if (newChannels === undefined) newChannels = [];
+          state.channels = mergeChannels(channels, state.channels);
+          state.newChannels = channels; // to recompute values after scales
+          for (const [, c] of channels) newChannels.push([, c]); // anonymize channels
         }
       }
+    }
 
-      const newScaleDescriptors = Scales(newScaleChannels, newOptions);
-      Object.assign(scaleDescriptors, newScaleDescriptors, scaleDescriptors);
-      const rescales = {...ScaleFunctions(newScaleDescriptors), ...scales};
-      for (let i = 0; i < marks.length; ++i) {
-        marksValues[i] = {...marksValues[i], ...layouts[i].values, ...applyScales(layouts[i].channels || [], rescales)};
-      }
-      
-      return {index, values}; // the facets are unchanged
-    };
-    return {index, channels: [...channels, ...subchannels]};
+    return {channels: newChannels};
   }
-  render(I, scales, _, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet, marksValues} = this;
+  filter(index, channels, values, scales) {
+    for (const state of this.marksState) {
+      if (state.newChannels) {
+        Object.assign(state.values, Values(state.newChannels, scales));
+      }
+    }
+    return index;
+  }
+  render(index, scales, values, dimensions, axes) {
+    const {facetIndex, marks, marksState} = this;
     const {fx, fy} = scales;
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
     const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-
     return create("svg:g")
         .call(g => {
           if (fy && axes.y) {
@@ -389,9 +454,8 @@ class Facet extends Mark {
               .join("g")
               .attr("transform", ky => `translate(0,${fy(ky)})`)
               .append((ky, i) => (i === j ? axis1 : axis2).render(
-                fx && where(fxDomain, kx => marksIndexByFacet.has([kx, ky])),
+                fx && where(fxDomain, kx => facetIndex.has([kx, ky])),
                 scales,
-                null,
                 fyDimensions
               ));
           }
@@ -405,25 +469,23 @@ class Facet extends Mark {
               .join("g")
               .attr("transform", kx => `translate(${fx(kx)},0)`)
               .append((kx, i) => (i === j ? axis1 : axis2).render(
-                fy && where(fyDomain, ky => marksIndexByFacet.has([kx, ky])),
+                fy && where(fyDomain, ky => facetIndex.has([kx, ky])),
                 scales,
-                null,
                 fxDimensions
               ));
           }
         })
         .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet))
+          .data(facetKeys(scales).filter(facetIndex.has, this.facetIndex))
           .join("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key);
+              const j = facetIndex.get(key);
               for (let i = 0; i < marks.length; ++i) {
                 const mark = marks[i];
-                const values = marksValues[i];
-                let index = marksFacetIndex[i];
-                if (mark.filter != null) index = mark.filter(index, marksChannels[i], values);
-                const node = mark.render(index, scales, values, subdimensions);
+                const state = marksState[i];
+                const index = mark.filter(state.facets ? state.index[j] : state.index, state.channels, state.values);
+                const node = mark.render(index, scales, state.values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
             }))

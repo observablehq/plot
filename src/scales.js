@@ -1,11 +1,12 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isTemporal, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {warn} from "./warnings.js";
+import {isSymbol, maybeSymbol} from "./symbols.js";
 
 export function Scales(channels, {
   inset: globalInset = 0,
@@ -19,12 +20,12 @@ export function Scales(channels, {
   align,
   padding,
   ...options
-} = {}) {
+} = {}, strict) {
   const scales = {};
   for (const key of registry.keys()) {
     const scaleChannels = channels.get(key);
     const scaleOptions = options[key];
-    if (scaleChannels || scaleOptions) {
+    if (scaleChannels || (!strict && scaleOptions)) {
       const scale = Scale(key, scaleChannels, {
         round: registry.get(key) === position ? round : undefined, // only for position
         nice,
@@ -316,23 +317,6 @@ export function isDivergingScale({type}) {
 // If the domain is undefined, we assume an identity scale.
 export function scaleOrder({range, domain = range}) {
   return Math.sign(order(domain)) * Math.sign(order(range));
-}
-
-// TODO use Float64Array.from for position and radius scales?
-export function applyScales(channels, scales) {
-  const values = Object.create(null);
-  for (let [name, {value, scale}] of channels) {
-    if (name !== undefined) {
-      if (scale !== undefined) {
-        scale = scales[scale];
-        if (scale !== undefined) {
-          value = Array.from(value, scale);
-        }
-      }
-      values[name] = value;
-    }
-  }
-  return values;
 }
 
 // Certain marks have special behavior if a scale is collapsed, i.e. if the

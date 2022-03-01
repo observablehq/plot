@@ -39,23 +39,23 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function dodge(y, x, anchor, padding, options) {
-  return layout(options, function(index, scales, values, dimensions) {
+  return layout(options, function(data, facets, scales, values, dimensions) {
     let {[x]: X, [y]: Y, r: R} = values;
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? +options.r : 3;
     if (X == null) throw new Error(`missing channel: ${x}`);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    if (ky) ty += ky * ((R ? max(index.flat(), i => R[i]) : r) + padding); else ky = 1;
-    if (!R) R = values.r = new Float64Array(X.length).fill(r);
-    if (!Y) Y = values[y] = new Float64Array(X.length);
-    for (let I of index) {
+    if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
+    if (!R) R = new Float64Array(X.length).fill(r);
+    if (!Y) Y = new Float64Array(X.length);
+    for (const facet of facets) {
       const tree = IntervalTree();
-      I = I.filter(i => finite(X[i]) && positive(R[i]));
+      const I = facet.filter(i => finite(X[i]) && positive(R[i]));
       for (const i of I) {
         const intervals = [];
         const l = X[i] - R[i];
         const r = X[i] + R[i];
-  
+
         // For any previously placed circles that may overlap this circle, compute
         // the y-positions that place this circle tangent to these other circles.
         // https://observablehq.com/@mbostock/circle-offset-along-line
@@ -66,7 +66,7 @@ function dodge(y, x, anchor, padding, options) {
           const dy = Math.sqrt(dr * dr - dx * dx);
           intervals.push([yj - dy, yj + dy]);
         });
-  
+
         // Find the best y-value where this circle can fit.
         for (let y of intervals.flat().sort(compare)) {
           if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
@@ -74,13 +74,13 @@ function dodge(y, x, anchor, padding, options) {
             break;
           }
         }
-  
+
         // Insert the placed circle into the interval tree.
         tree.insert([l, r, i]);
       }
       for (const i of I) Y[i] = Y[i] * ky + ty;
     }
-    return {index, values};
+    return {values: {[y]: Y}};
   });
 }
 

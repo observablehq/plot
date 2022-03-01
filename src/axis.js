@@ -41,7 +41,6 @@ export class AxisX {
   render(
     index,
     {[this.name]: x, fy},
-    channels,
     {
       width,
       height,
@@ -134,7 +133,6 @@ export class AxisY {
   render(
     index,
     {[this.name]: y, fx},
-    channels,
     {
       width,
       height,
