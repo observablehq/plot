@@ -108,5 +108,5 @@ function hexbinLayout(radius, outputs, options) {
 export function hexbin(outputs, options) {
   ([outputs, options] = mergeOptions(outputs, options));
   const {radius, ...inputs} = options;
-  return basic(hexbinLayout(radius, outputs, inputs), (data, facets) => ({data, facets}));
+  return basic(hexbinLayout(radius, outputs, inputs));
 }
