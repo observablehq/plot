@@ -1,6 +1,6 @@
 import {create, namespaces} from "d3";
 import {nonempty} from "../defined.js";
-import {formatGeneric} from "../format.js";
+import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
@@ -96,7 +96,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
     : t => lineWrap(t, lineWidth * 100, defaultWidth))
     : t => t.split(/\r\n?|\n/g);
   selection.each(function(i) {
-    const lines = linesof(formatGeneric(T[i]));
+    const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {

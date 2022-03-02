@@ -25,5 +25,12 @@ export function formatIsoDate(date) {
   return isoFormat(date, "Invalid Date");
 }
 
-const fNum = formatNumber();
-export const formatGeneric = v => v instanceof Date ? formatIsoDate(v) : typeof v === "number" ? fNum(v) : string(v);
+export function formatAuto(locale = "en-US") {
+  const number = formatNumber(locale);
+  return v => (v instanceof Date ? formatIsoDate : typeof v === "number" ? number : string)(v);
+}
+
+// TODO When Plot supports a top-level locale option, this should be removed
+// because it lacks context to know which locale to use; formatAuto should be
+// used instead whenever possible.
+export const formatDefault = formatAuto();

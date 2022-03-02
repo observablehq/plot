@@ -1,6 +1,6 @@
 import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
-import {formatGeneric} from "./format.js";
+import {formatDefault} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
 import {warn} from "./warnings.js";
 
@@ -149,11 +149,11 @@ export function applyTitleGroup(selection, L) {
 }
 
 export function applyText(selection, T) {
-  if (T) selection.text(i => formatGeneric(T[i]));
+  if (T) selection.text(i => formatDefault(T[i]));
 }
 
 export function applyTextGroup(selection, T) {
-  if (T) selection.text(([i]) => formatGeneric(T[i]));
+  if (T) selection.text(([i]) => formatDefault(T[i]));
 }
 
 export function applyChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
