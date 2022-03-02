@@ -1346,7 +1346,7 @@ Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "fre
 
 Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
 
-For greater control, you can also implement a custom transform function:
+For greater control, you can also implement a [custom transform function](#custom-transforms):
 
 * **transform** - a function that returns transformed *data* and *index*
 
@@ -1918,6 +1918,24 @@ Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+
+### Custom transforms
+
+The **transform** option defines a custom transform function, allowing data, indexes, or channels to be derived prior to rendering. Custom transforms are rarely implemented directly; see the built-in transforms above. The transform function (if present) is passed two arguments, *data* and *facets*, representing the mark’s data and facet indexes; it must then return a {data, facets} object representing the resulting transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
+
+While transform functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side-effect of constructing derived channels. For example, the count of elements in a [groupX transform](#group) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark options object and returns a new, transformed options object, where the returned options object implements a *transform* function option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
+
+Plot provides a few helpers for implementing transforms.
+
+#### Plot.transform(*options*, *transform*)
+
+Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
+
+#### Plot.channel([*source*])
+
+This helper for constructing derived channels returns a [*channel*, *setChannel*] array. The *channel* object implements *channel*.transform, returning whatever value was most recently passed to *setChannel*. If *setChannel* is not called, then *channel*.transform returns undefined. If a *source* is specified, then *channel*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *channel*.label is *source*; otherwise *channel*.label propagates *source*.label. This allows derived channels to propagate a human-readable axis or legend label.
+
+Plot.channel is typically used by options transforms to define new channels; these channels are populated (derived) when the custom *transform* function is invoked.
 
 ## Curves
 
