@@ -11,11 +11,11 @@ export default async function() {
       x: "sex",
       marginRight: 80
     },
+    color: {scheme: "magma", reverse: true},
     inset: 14,
     marks: [
       Plot.frame(),
-      Plot.dot(penguins, Plot.hexbin({fillOpacity: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "brown", stroke: "black", strokeWidth: 0.5, _symbol:"circle"})),
-      Plot.text(penguins, Plot.hexbin({text: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
+      Plot.dot(penguins, Plot.hexbin({fill: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm", symbol:"circle", stroke: "none"}))
     ]
   });
 }

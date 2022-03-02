@@ -99,7 +99,7 @@ function hexbinLayout(radius, outputs, options) {
         values[o.name] = o.output.transform();
       }
     }
-    if (!channels.find(([key]) => key === "r")) values.r = Array.from(values.x).fill(radius);
+    if (!channels.find(([key]) => key === "r")) values.r = Array.from(values.x).fill(radius * w0);
 
     return {index: newIndex, values, channels};
   });

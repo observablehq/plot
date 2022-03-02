@@ -63,6 +63,7 @@ export {default as googleTrendsRidgeline} from "./google-trends-ridgeline.js";
 export {default as gridChoropleth} from "./grid-choropleth.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as hexbin} from "./hexbin.js";
+export {default as hexbinConstantDot} from "./hexbin-constant-dot.js";
 export {default as hexbinDot} from "./hexbin-dot.js";
 export {default as hexbinR} from "./hexbin-r.js";
 export {default as hexbinTextOpacity} from "./hexbin-text-opacity.js";
