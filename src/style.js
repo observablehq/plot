@@ -1,7 +1,7 @@
-import {group, isoFormat, namespaces} from "d3";
+import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
-import {formatNumber} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isTemporal, isNumeric, isNoneish, isNone, isRound, keyof} from "./options.js";
+import {formatDefault} from "./format.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
@@ -149,11 +149,11 @@ export function applyTitleGroup(selection, L) {
 }
 
 export function applyText(selection, T) {
-  if (T) selection.text(isTemporal(T) ? i => isoFormat(T[i]) : isNumeric(T) ? (f => i => f(T[i]))(formatNumber()) : i => T[i]);
+  if (T) selection.text(i => formatDefault(T[i]));
 }
 
 export function applyTextGroup(selection, T) {
-  if (T) selection.text(isTemporal(T) ? ([i]) => isoFormat(T[i]) : isNumeric(T) ? (f => ([i]) => f(T[i]))(formatNumber()) : ([i]) => T[i]);
+  if (T) selection.text(([i]) => formatDefault(T[i]));
 }
 
 export function applyChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {

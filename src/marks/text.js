@@ -1,6 +1,6 @@
-import {create, isoFormat, namespaces} from "d3";
+import {create, namespaces} from "d3";
 import {nonempty} from "../defined.js";
-import {formatNumber} from "../format.js";
+import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
@@ -91,13 +91,12 @@ export class Text extends Mark {
 
 function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth}, T) {
   if (!T) return;
-  const format = isTemporal(T) ? isoFormat : isNumeric(T) ? formatNumber() : string;
   const linesof = isFinite(lineWidth) ? (monospace
     ? t => lineWrap(t, lineWidth, monospaceWidth)
     : t => lineWrap(t, lineWidth * 100, defaultWidth))
     : t => t.split(/\r\n?|\n/g);
   selection.each(function(i) {
-    const lines = linesof(format(T[i]));
+    const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {

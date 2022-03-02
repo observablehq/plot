@@ -1,4 +1,5 @@
 import {format as isoFormat} from "isoformat";
+import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
 
 const numberFormat = memoize1(locale => new Intl.NumberFormat(locale));
@@ -23,3 +24,13 @@ export function formatWeekday(locale = "en-US", weekday = "short") {
 export function formatIsoDate(date) {
   return isoFormat(date, "Invalid Date");
 }
+
+export function formatAuto(locale = "en-US") {
+  const number = formatNumber(locale);
+  return v => (v instanceof Date ? formatIsoDate : typeof v === "number" ? number : string)(v);
+}
+
+// TODO When Plot supports a top-level locale option, this should be removed
+// because it lacks context to know which locale to use; formatAuto should be
+// used instead whenever possible.
+export const formatDefault = formatAuto();
