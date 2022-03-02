@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-
+// https://observablehq.com/@mbostock/evenly-spaced-sampling
 function samples(array, m) {
   if (!((m = Math.floor(m)) > 0)) return []; // return nothing
   const n = array.length;
@@ -10,7 +10,7 @@ function samples(array, m) {
   return Array.from({length: m}, (_, i) => array[Math.round(i / (m - 1) * (n - 1))]);
 }
 
-function sample({samples: n = 10, ...options}) {
+function sample(n, options) {
   return Plot.transform(options, (data, facets) => ({data, facets: Array.from(facets, I => samples(I, n))}));
 }
 
@@ -18,12 +18,11 @@ export default async function() {
   const data = await d3.csv("data/diamonds.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.dot(data, sample({
+      Plot.dot(data, sample(2000, {
         x: "carat",
         y: "price",
         r: 1,
-        fill: "currentColor",
-        samples: 2000
+        fill: "currentColor"
       }))
     ]
   });
