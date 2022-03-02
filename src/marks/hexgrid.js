@@ -6,8 +6,8 @@ import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "..
 // width factor (allows the hexbin transform to work with circular dots!)
 const w0 = Math.sin(Math.PI / 3);
 
-const defaultsMesh = {
-  ariaLabel: "hexagonal mesh",
+const defaults = {
+  ariaLabel: "hexgrid",
   fill: "none",
   stroke: "currentColor",
   strokeWidth: 0.25
@@ -19,7 +19,7 @@ export function hexgrid(options) {
 
 export class Hexgrid extends Mark {
   constructor({radius = 10, clip = true, ...options} = {}) {
-    super(undefined, undefined, {clip, ...options}, defaultsMesh);
+    super(undefined, undefined, {clip, ...options}, defaults);
     this.radius = number(radius);
   }
   render(I, scales, channels, dimensions) {
