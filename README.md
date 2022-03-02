@@ -1973,23 +1973,21 @@ The primary color of a marker is inherited from the *stroke* of the associated m
 
 ### Custom transforms
 
-For greater control, you can also implement a custom transform function, by defining the following option:
+For greater control, you can also implement a custom transform function by defining the **transform** function option. This function (if present) is passed two arguments, *data* and *facets*, representing the mark’s data and facet indexes; it must then return a {data, facets} object representing the resulting transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).
 
-* **transform** - a function that returns transformed *data* and *facets*
+While **transform** functions often produce new *data* or *facets*, they may return the passed-in *data* and *facets* as-is, and often have a side-effect of constructing derived channels. For example, the count of elements in a [groupX transform](#group) might be returned as a new *y* channel. In this case, the transform is typically expressed as an options transform: a function that takes a mark options object and returns a new, transformed options object, where the returned options object implements a *transform* function option. Transform functions should not mutate the input *data* or *facets*. Likewise options transforms should not mutate the input *options* object.
 
-The arguments of the *transform* function are *data* and *facets*. The incoming *facets* is an array of facets, each facet being an array of indices into the incoming *data* array. The transform must return an object with two properties *{data, facets}* with the same structure. (The new data and facets can, of course, be different from the incoming values.)
-
-A custom transform might also generate new channels (for example, the count of elements in a groupX transform might be returned as a new channel *y*). The following helpers are useful to build new custom transforms:
+Plot provides a few helpers for implementing transforms.
 
 #### Plot.transform(*options*, *transform*)
 
-Returns an options object with a new transform that corresponds to the specified *transform* function composed with any preceding transform.
+Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*), composes those basic transforms if any with the given *transform* function, returning a new *options* object. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
-#### Plot.column(*x*)
+#### Plot.channel([*source*])
 
-Returns [*X*, *setX*], a channel and a setter. *X* can be returned immediately as a new channel, and *setX* can be called to fill *X* when the transform is applied to the data. The resulting channel *X* is an object with a *transform* method that returns the materialized column of values instantiated by *setX*.
+This helper for constructing derived channels returns a [*channel*, *setChannel*] array. The *channel* object implements *channel*.transform, returning whatever value was most recently passed to *setChannel*. If *setChannel* is not called, then *channel*.transform returns undefined. If a *source* is specified, then *channel*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *channel*.label is *source*; otherwise *channel*.label propagates *source*.label. This allows derived channels to propagate a human-readable axis or legend label.
 
-If *x* is a string or has a label, a label is automatically created on the resulting channel.
+Plot.channel is typically used by options transforms to define new channels; these channels are populated (derived) when the custom *transform* function is invoked.
 
 ## Formats
 
