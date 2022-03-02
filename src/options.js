@@ -156,7 +156,7 @@ export function maybeInput(key, options) {
 // Defines a channel whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned channel definition.
-export function lazyChannel(source) {
+export function channel(source) {
   let value;
   return [
     {
@@ -167,15 +167,15 @@ export function lazyChannel(source) {
   ];
 }
 
+// Like channel, but allows the source to be null.
+export function maybeChannel(source) {
+  return source == null ? [source] : channel(source);
+}
+
 export function labelof(value, defaultValue) {
   return typeof value === "string" ? value
     : value && value.label !== undefined ? value.label
     : defaultValue;
-}
-
-// Like lazyChannel, but allows the source to be null.
-export function maybeLazyChannel(source) {
-  return source == null ? [source] : lazyChannel(source);
 }
 
 // Assuming that both x1 and x2 and lazy channels (per above), this derives a
