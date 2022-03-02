@@ -3,9 +3,6 @@ import {Mark} from "../plot.js";
 import {number} from "../options.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
-// width factor (allows the hexbin transform to work with circular dots!)
-const w0 = Math.sin(Math.PI / 3);
-
 const defaults = {
   ariaLabel: "hexgrid",
   fill: "none",
@@ -23,30 +20,25 @@ export class Hexgrid extends Mark {
     this.radius = number(radius);
   }
   render(I, scales, channels, dimensions) {
-    const {dx, dy, radius} = this;
+    const {dx, dy, radius: r} = this;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const rx = r * 2 * Math.sin(Math.PI / 3); // scaling allows the hexbin transform to work with circular dots!
+    const ry = r * 1.5;
+    const x0 = marginLeft, x1 = width - marginRight - rx / 2, y0 = marginTop, y1 = height - marginBottom + r + ry / 3;
+    const fragment = Array.from({length: 4}, (_, i) => [r * Math.sin((i + 1) * Math.PI / 3), r * Math.cos((i + 1) * Math.PI / 3)]).join("l");
+    const m = [];
+    for (let j = Math.round(y0 / ry), y = ry * j + ry / 3; y < y1; y += ry, ++j) {
+      for (let x = (Math.round(x0 / rx) + (j & 1) / 2) * rx - rx / 2; x < x1; x += rx) {
+        m.push(`M${x},${y}m${fragment}`);
+      }
+    }
+    const d = m.join("");
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
           .call(applyTransform, null, null, offset + dx, offset + dy)
-          .attr("d", mesh(radius, marginLeft, width - marginRight, marginTop, height - marginBottom)))
+          .attr("d", d))
       .node();
   }
-}
-
-function mesh(r, x0, x1, y0, y1) {
-  const dx = r * 2 * w0;
-  const dy = r * 1.5;
-  x1 += dx / 2;
-  y1 += r;
-  const fragment = Array.from({length: 4}, (_, i) => [r * Math.sin((i + 1) * Math.PI / 3), r * Math.cos((i + 1) * Math.PI / 3)]).join("l");
-  const m = [];
-  let j = Math.round(y0 / dy);
-  for (let y = dy * j; y < y1; y += dy, ++j) {
-    for (let x = (Math.round(x0 / dx) + (j & 1) / 2) * dx; x < x1; x += dx) {
-      m.push(`M${x - dx / 2},${y + dy / 3}m${fragment}`);
-    }
-  }
-  return m.join("");
 }
