@@ -1929,7 +1929,7 @@ Plot provides a few helpers for implementing transforms.
 
 #### Plot.transform(*options*, *transform*)
 
-Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*), composes those basic transforms if any with the given *transform* function, returning a new *options* object. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
+Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
 #### Plot.channel([*source*])
 
