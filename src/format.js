@@ -1,4 +1,5 @@
 import {format as isoFormat} from "isoformat";
+import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
 
 const numberFormat = memoize1(locale => new Intl.NumberFormat(locale));
@@ -23,3 +24,6 @@ export function formatWeekday(locale = "en-US", weekday = "short") {
 export function formatIsoDate(date) {
   return isoFormat(date, "Invalid Date");
 }
+
+const fNum = formatNumber();
+export const formatGeneric = v => v instanceof Date ? formatIsoDate(v) : typeof v === "number" ? fNum(v) : string(v);
