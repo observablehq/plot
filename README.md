@@ -1331,7 +1331,6 @@ Plot’s transforms provide a convenient mechanism for transforming data as part
 * **filter** - filters data according to the specified accessor or values
 * **sort** - sorts data according to the specified comparator, accessor, or values
 * **reverse** - reverses the sorted (or if not sorted, the input) data order
-* **transform** - a function that returns transformed *data* and *facets*
 
 For example, to draw bars only for letters that commonly form vowels:
 
@@ -1346,6 +1345,10 @@ Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "fre
 ```
 
 Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
+
+For greater control, you can also implement a custom transform function:
+
+* **transform** - a function that returns transformed *data* and *index*
 
 The basic transforms are composable: the *filter* transform is applied first, then *sort*, then *reverse*. If a custom *transform* option is specified directly, it supersedes any basic transforms (*i.e.*, the *filter*, *sort* and *reverse* options are ignored). However, the *transform* option is rarely used directly; instead an option transform is used. These option transforms automatically compose with the basic *filter*, *sort* and *reverse* transforms.
 
