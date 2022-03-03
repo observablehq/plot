@@ -55,7 +55,7 @@ function dodge(y, x, anchor, padding, options) {
         const intervals = [];
         const l = X[i] - R[i];
         const r = X[i] + R[i];
-  
+
         // For any previously placed circles that may overlap this circle, compute
         // the y-positions that place this circle tangent to these other circles.
         // https://observablehq.com/@mbostock/circle-offset-along-line
@@ -66,7 +66,7 @@ function dodge(y, x, anchor, padding, options) {
           const dy = Math.sqrt(dr * dr - dx * dx);
           intervals.push([yj - dy, yj + dy]);
         });
-  
+
         // Find the best y-value where this circle can fit.
         for (let y of intervals.flat().sort(compare)) {
           if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
@@ -74,7 +74,7 @@ function dodge(y, x, anchor, padding, options) {
             break;
           }
         }
-  
+
         // Insert the placed circle into the interval tree.
         tree.insert([l, r, i]);
       }
