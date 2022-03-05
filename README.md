@@ -633,6 +633,7 @@ All marks support the following style options:
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
+* **clip** - if true, the mark is clipped to the frame’s dimensions
 
 For all marks except [text](#plottextdata-options), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
@@ -647,9 +648,10 @@ All marks support the following optional channels:
 * **title** - a tooltip (a string of text, possibly with newlines)
 * **href** - a URL to link to
 * **ariaLabel** - a short label representing the value in the accessibility tree
-* **clip** - if true, the mark is clipped to the frame’s dimensions
 
 The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+
+The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as strings, the strings refer to the names of columns in the associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
 
 The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
 
