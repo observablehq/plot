@@ -12,6 +12,7 @@ export function valueof(data, value, arrayType) {
     : type === "function" ? map(data, value, arrayType)
     : type === "number" || value instanceof Date || type === "boolean" ? map(data, constant(value), arrayType)
     : value && typeof value.transform === "function" ? arrayify(value.transform(data), arrayType)
+    : value && value.alias !== undefined ? value // TODO cleaner?
     : arrayify(value, arrayType); // preserve undefined type
 }
 
