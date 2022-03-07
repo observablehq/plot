@@ -147,6 +147,7 @@ export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomQuantile} from "./random-quantile.js";
 export {default as randomWalk} from "./random-walk.js";
+export {default as randomWith} from "./random-with.js";
 export {default as rectBand} from "./rect-band.js";
 export {default as seattlePrecipitationRule} from "./seattle-precipitation-rule.js";
 export {default as seattlePrecipitationSum} from "./seattle-precipitation-sum.js";
