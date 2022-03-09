@@ -147,36 +147,33 @@ export function plot(options = {}) {
           if (fy && axes.y) {
             const axis1 = axes.y, axis2 = nolabel(axis1);
             const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
-            const fyDimensions = {...dimensions, ...fyMargins};
             g.selectAll()
               .data(fyDomain)
-              .join("g")
-              .attr("transform", ky => `translate(0,${fy(ky)})`)
+              .enter()
               .append((ky, i) => (i === j ? axis1 : axis2).render(
                 fx && where(fxDomain, kx => indexByFacet.has([kx, ky])),
                 scales,
-                fyDimensions
+                {...dimensions, ...fyMargins, offsetTop: fy(ky)}
               ));
           }
           if (fx && axes.x) {
             const axis1 = axes.x, axis2 = nolabel(axis1);
             const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
             const {marginLeft, marginRight} = dimensions;
-            const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
             g.selectAll()
               .data(fxDomain)
-              .join("g")
-              .attr("transform", kx => `translate(${fx(kx)},0)`)
+              .enter()
               .append((kx, i) => (i === j ? axis1 : axis2).render(
                 fy && where(fyDomain, ky => indexByFacet.has([kx, ky])),
                 scales,
-                fxDimensions
+                {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)}
               ));
           }
         })
         .call(g => g.selectAll()
           .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
-          .join("g")
+          .enter()
+          .append("g")
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
               const j = indexByFacet.get(key);

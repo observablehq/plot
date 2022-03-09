@@ -86,43 +86,37 @@
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Gentoo</text>
     </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">species</text>
   </g>
-  <g transform="translate(40,0)">
-    <g aria-label="x-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
-      <g class="tick" opacity="1" transform="translate(32.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(90.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(148.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
-      </g>
+  <g aria-label="x-axis" transform="translate(40,400)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(32.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(148.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
     </g>
   </g>
-  <g transform="translate(240,0)">
-    <g aria-label="x-axis" aria-description="sex" transform="translate(0,400)" fill="none" text-anchor="middle">
-      <g class="tick" opacity="1" transform="translate(32.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(90.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(148.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
-      </g><text fill="currentColor" transform="translate(90,30)" dy="-0.32em" text-anchor="middle">sex</text>
+  <g aria-label="x-axis" aria-description="sex" transform="translate(240,400)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(32.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
     </g>
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(148.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
+    </g><text fill="currentColor" transform="translate(90,30)" dy="-0.32em" text-anchor="middle">sex</text>
   </g>
-  <g transform="translate(440,0)">
-    <g aria-label="x-axis" transform="translate(0,400)" fill="none" text-anchor="middle">
-      <g class="tick" opacity="1" transform="translate(32.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(90.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
-      </g>
-      <g class="tick" opacity="1" transform="translate(148.5,0)">
-        <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
-      </g>
+  <g aria-label="x-axis" transform="translate(440,400)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(32.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">FEMALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">MALE</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(148.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">N/A</text>
     </g>
   </g>
   <g transform="translate(40,0)">
