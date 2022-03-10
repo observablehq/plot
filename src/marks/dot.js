@@ -58,7 +58,8 @@ export class Dot extends Mark {
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
-          .join(circle ? "circle" : "path")
+          .enter()
+          .append(circle ? "circle" : "path")
             .call(applyDirectStyles, this)
             .call(circle
               ? selection => {

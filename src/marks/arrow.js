@@ -69,7 +69,8 @@ export class Arrow extends Mark {
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
-          .join("path")
+          .enter()
+          .append("path")
             .call(applyDirectStyles, this)
             .attr("d", i => {
               // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the

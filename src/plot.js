@@ -4,7 +4,7 @@ import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
+import {arrayify, isOptions, keyword, range, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
@@ -16,56 +16,85 @@ export function plot(options = {}) {
   // className for inline styles
   const className = maybeClassName(options.className);
 
-  // When faceting, wrap all marks in a faceting mark.
-  if (facet !== undefined) {
-    const {marks} = options;
-    const {data} = facet;
-    options = {...options, marks: facets(data, facet, marks)};
-  }
-
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
-  // A Map from Mark instance to an object of named channel values.
-  const markChannels = new Map();
-  const markIndex = new Map();
+  // A Map from Mark instance to its render state, including:
+  // index - the data index e.g. [0, 1, 2, 3, …]
+  // channels - an array of materialized channels e.g. [["x", {value}], …]
+  // faceted - a boolean indicating whether this mark is faceted
+  // values - an object of scaled values e.g. {x: [40, 32, …], …}
+  const stateByMark = new Map();
 
   // A Map from scale name to an array of associated channels.
-  const scaleChannels = new Map();
+  const channelsByScale = new Map();
+
+  // Faceting!
+  let facets; // array of facet definitions (e.g. [["foo", [0, 1, 3, …]], …])
+  let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
+  let facetChannels; // e.g. [["fx", {value}], ["fy", {value}]]
+  let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
+  let facetsExclude; // lazily-constructed opposite of facetsIndex
+  if (facet !== undefined) {
+    const {x, y} = facet;
+    if (x != null || y != null) {
+      const facetData = arrayify(facet.data);
+      facetChannels = [];
+      if (x != null) {
+        const fx = Channel(facetData, {value: x, scale: "fx"});
+        facetChannels.push(["fx", fx]);
+        channelsByScale.set("fx", [fx]);
+      }
+      if (y != null) {
+        const fy = Channel(facetData, {value: y, scale: "fy"});
+        facetChannels.push(["fy", fy]);
+        channelsByScale.set("fy", [fy]);
+      }
+      facetIndex = range(facetData);
+      facets = facetGroups(facetIndex, facetChannels);
+      facetsIndex = Array.from(facets, second);
+    }
+  }
 
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
-  // Also apply any scale transforms.
   for (const mark of marks) {
-    if (markChannels.has(mark)) throw new Error("duplicate mark");
-    const {index, channels} = mark.initialize();
+    if (stateByMark.has(mark)) throw new Error("duplicate mark");
+    const markFacets = facets === undefined ? undefined
+      : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
+      : mark.facet === "include" ? facetsIndex
+      : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
+      : undefined;
+    const {index, channels} = mark.initialize(markFacets, facetChannels);
     for (const [, channel] of channels) {
       const {scale} = channel;
       if (scale !== undefined) {
-        const scaled = scaleChannels.get(scale);
-        const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
-        if (transform != null) channel.value = Array.from(channel.value, transform);
-        if (scaled) scaled.push(channel);
-        else scaleChannels.set(scale, [channel]);
+        const channels = channelsByScale.get(scale);
+        if (channels !== undefined) channels.push(channel);
+        else channelsByScale.set(scale, [channel]);
       }
     }
-    markChannels.set(mark, channels);
-    markIndex.set(mark, index);
+    stateByMark.set(mark, {index, channels, faceted: markFacets !== undefined});
   }
 
-  const scaleDescriptors = Scales(scaleChannels, options);
+  // Apply scale transforms, mutating channel.value.
+  for (const [scale, channels] of channelsByScale) {
+    const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
+    if (transform != null) for (const c of channels) c.value = Array.from(c.value, transform);
+  }
+
+  const scaleDescriptors = Scales(channelsByScale, options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
-  autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
+  autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  // When faceting, render axes for fx and fy instead of x and y.
-  const x = facet !== undefined && scales.fx ? "fx" : "x";
-  const y = facet !== undefined && scales.fy ? "fy" : "y";
-  if (axes[x]) marks.unshift(axes[x]);
-  if (axes[y]) marks.unshift(axes[y]);
+  // Compute value objects, applying scales as needed.
+  for (const state of stateByMark.values()) {
+    state.values = applyScales(state.channels, scales);
+  }
 
   const {width, height} = dimensions;
 
@@ -96,13 +125,68 @@ export function plot(options = {}) {
       .call(applyInlineStyles, style)
     .node();
 
-  for (const mark of marks) {
-    const channels = markChannels.get(mark) ?? [];
-    const values = applyScales(channels, scales);
-    let index = markIndex.get(mark);
-    if (mark.filter != null) index = mark.filter(index, channels, values);
-    const node = mark.render(index, scales, values, dimensions, axes);
-    if (node != null) svg.appendChild(node);
+  // When faceting, render axes for fx and fy instead of x and y.
+  const {fx, fy} = scales;
+  const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
+  const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
+  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions));
+  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions));
+
+  // Render (possibly faceted) marks.
+  if (facets !== undefined) {
+    const fyDomain = fy && fy.domain();
+    const fxDomain = fx && fx.domain();
+    const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+    const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+    const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+    const indexByFacet = facetMap(facetChannels);
+    facets.forEach(([key], i) => indexByFacet.set(key, i));
+    const selection = select(svg);
+    if (fy && axes.y) {
+      const axis1 = axes.y, axis2 = nolabel(axis1);
+      const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
+      selection.selectAll()
+        .data(fyDomain)
+        .enter()
+        .append((ky, i) => (i === j ? axis1 : axis2).render(
+          fx && where(fxDomain, kx => indexByFacet.has([kx, ky])),
+          scales,
+          {...dimensions, ...fyMargins, offsetTop: fy(ky)}
+        ));
+    }
+    if (fx && axes.x) {
+      const axis1 = axes.x, axis2 = nolabel(axis1);
+      const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
+      const {marginLeft, marginRight} = dimensions;
+      selection.selectAll()
+        .data(fxDomain)
+        .enter()
+        .append((kx, i) => (i === j ? axis1 : axis2).render(
+          fy && where(fyDomain, ky => indexByFacet.has([kx, ky])),
+          scales,
+          {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)}
+        ));
+    }
+    selection.selectAll()
+      .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
+      .enter()
+      .append("g")
+        .attr("aria-label", "facet")
+        .attr("transform", facetTranslate(fx, fy))
+        .each(function(key) {
+          const j = indexByFacet.get(key);
+          for (const [mark, {channels, values, index, faceted}] of stateByMark) {
+            const renderIndex = mark.filter(faceted ? index[j] : index, channels, values);
+            const node = mark.render(renderIndex, scales, values, subdimensions);
+            if (node != null) this.appendChild(node);
+          }
+        });
+  } else {
+    for (const [mark, {channels, values, index}] of stateByMark) {
+      const renderIndex = mark.filter(index, channels, values);
+      const node = mark.render(renderIndex, scales, values, dimensions);
+      if (node != null) svg.appendChild(node);
+    }
   }
 
   // Wrap the plot in a figure with a caption, if desired.
@@ -138,16 +222,6 @@ export function plot(options = {}) {
   return figure;
 }
 
-function defaultFilter(index, channels, values) {
-  for (const [name, {filter = defined}] of channels) {
-    if (name !== undefined && filter !== null) {
-      const value = values[name];
-      index = index.filter(i => filter(value[i]));
-    }
-  }
-  return index;
-}
-
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
     const {facet = "auto", sort, dx, dy, clip} = options;
@@ -156,7 +230,6 @@ export class Mark {
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
-    this.filter = defaults?.filter === undefined ? defaultFilter : defaults.filter;
     this.transform = transform;
     if (defaults !== undefined) channels = styles(this, options, channels, defaults);
     this.channels = channels.filter(channel => {
@@ -165,26 +238,25 @@ export class Mark {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
-      if (name !== undefined) {
-        const key = `${name}`;
-        if (key === "__proto__") throw new Error("illegal channel name");
-        if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
-        names.add(key);
-      }
+      if (name == null) throw new Error("missing channel name");
+      const key = `${name}`;
+      if (key === "__proto__") throw new Error("illegal channel name");
+      if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
+      names.add(key);
       return true;
     });
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
   }
-  initialize(facets, facetChannels) {
+  initialize(facetIndex, facetChannels) {
     let data = arrayify(this.data);
-    let index = facets === undefined && data != null ? range(data) : facets;
+    let index = facetIndex === undefined && data != null ? range(data) : facetIndex;
     if (data !== undefined && this.transform !== undefined) {
-      if (facets === undefined) index = index.length ? [index] : [];
+      if (facetIndex === undefined) index = index.length ? [index] : [];
       ({facets: index, data} = this.transform(data, index));
       data = arrayify(data);
-      if (facets === undefined && index.length) ([index] = index);
+      if (facetIndex === undefined && index.length) ([index] = index);
     }
     const channels = this.channels.map(channel => {
       const {name} = channel;
@@ -192,6 +264,15 @@ export class Mark {
     });
     if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
     return {index, channels};
+  }
+  filter(index, channels, values) {
+    for (const [name, {filter = defined}] of channels) {
+      if (name !== undefined && filter !== null) {
+        const value = values[name];
+        index = index.filter(i => filter(value[i]));
+      }
+    }
+    return index;
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
@@ -215,132 +296,6 @@ class Render extends Mark {
     this.render = render;
   }
   render() {}
-}
-
-function facets(data, {x, y, ...options}, marks) {
-  return x === undefined && y === undefined
-    ? marks // if no facets are specified, ignore!
-    : [new Facet(data, {x, y, ...options}, marks)];
-}
-
-class Facet extends Mark {
-  constructor(data, {x, y, ...options} = {}, marks = []) {
-    if (data == null) throw new Error("missing facet data");
-    super(
-      data,
-      [
-        {name: "fx", value: x, scale: "fx", optional: true},
-        {name: "fy", value: y, scale: "fy", optional: true}
-      ],
-      options
-    );
-    this.marks = marks.flat(Infinity).map(markify);
-    // The following fields are set by initialize:
-    this.marksChannels = undefined; // array of mark channels
-    this.marksIndexByFacet = undefined; // map from facet key to array of mark indexes
-  }
-  initialize() {
-    const {index, channels} = super.initialize();
-    const facets = index === undefined ? [] : facetGroups(index, channels);
-    const facetsKeys = Array.from(facets, first);
-    const facetsIndex = Array.from(facets, second);
-    const subchannels = [];
-    const marksChannels = this.marksChannels = [];
-    const marksIndexByFacet = this.marksIndexByFacet = facetMap(channels);
-    for (const facetKey of facetsKeys) {
-      marksIndexByFacet.set(facetKey, new Array(this.marks.length));
-    }
-    let facetsExclude;
-    for (let i = 0; i < this.marks.length; ++i) {
-      const mark = this.marks[i];
-      const {facet} = mark;
-      const markFacets = facet === "auto" ? mark.data === this.data ? facetsIndex : undefined
-        : facet === "include" ? facetsIndex
-        : facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(index, f))))
-        : undefined;
-      const {index: I, channels: markChannels} = mark.initialize(markFacets, channels);
-      // If an index is returned by mark.initialize, its structure depends on
-      // whether or not faceting has been applied: it is a flat index ([0, 1, 2,
-      // …]) when not faceted, and a nested index ([[0, 1, …], [2, 3, …], …])
-      // when faceted.
-      if (I !== undefined) {
-        if (markFacets) {
-          for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = I[j];
-          }
-        } else {
-          for (let j = 0; j < facetsKeys.length; ++j) {
-            marksIndexByFacet.get(facetsKeys[j])[i] = I;
-          }
-        }
-      }
-      for (const [, channel] of markChannels) {
-        subchannels.push([, channel]);
-      }
-      marksChannels.push(markChannels);
-    }
-    return {index, channels: [...channels, ...subchannels]};
-  }
-  render(I, scales, _, dimensions, axes) {
-    const {marks, marksChannels, marksIndexByFacet} = this;
-    const {fx, fy} = scales;
-    const fyDomain = fy && fy.domain();
-    const fxDomain = fx && fx.domain();
-    const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
-    const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
-    const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-    const marksValues = marksChannels.map(channels => applyScales(channels, scales));
-    return create("svg:g")
-        .call(g => {
-          if (fy && axes.y) {
-            const axis1 = axes.y, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
-            const fyDimensions = {...dimensions, ...fyMargins};
-            g.selectAll()
-              .data(fyDomain)
-              .join("g")
-              .attr("transform", ky => `translate(0,${fy(ky)})`)
-              .append((ky, i) => (i === j ? axis1 : axis2).render(
-                fx && where(fxDomain, kx => marksIndexByFacet.has([kx, ky])),
-                scales,
-                null,
-                fyDimensions
-              ));
-          }
-          if (fx && axes.x) {
-            const axis1 = axes.x, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
-            const {marginLeft, marginRight} = dimensions;
-            const fxDimensions = {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight};
-            g.selectAll()
-              .data(fxDomain)
-              .join("g")
-              .attr("transform", kx => `translate(${fx(kx)},0)`)
-              .append((kx, i) => (i === j ? axis1 : axis2).render(
-                fy && where(fyDomain, ky => marksIndexByFacet.has([kx, ky])),
-                scales,
-                null,
-                fxDimensions
-              ));
-          }
-        })
-        .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(marksIndexByFacet.has, marksIndexByFacet))
-          .join("g")
-            .attr("transform", facetTranslate(fx, fy))
-            .each(function(key) {
-              const marksFacetIndex = marksIndexByFacet.get(key);
-              for (let i = 0; i < marks.length; ++i) {
-                const mark = marks[i];
-                const values = marksValues[i];
-                let index = marksFacetIndex[i];
-                if (mark.filter != null) index = mark.filter(index, marksChannels[i], values);
-                const node = mark.render(index, scales, values, subdimensions);
-                if (node != null) this.appendChild(node);
-              }
-            }))
-      .node();
-  }
 }
 
 // Derives a copy of the specified axis with the label disabled.

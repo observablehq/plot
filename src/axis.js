@@ -41,7 +41,6 @@ export class AxisX {
   render(
     index,
     {[this.name]: x, fy},
-    channels,
     {
       width,
       height,
@@ -49,6 +48,7 @@ export class AxisX {
       marginRight,
       marginBottom,
       marginLeft,
+      offsetLeft = 0,
       facetMarginTop,
       facetMarginBottom,
       labelMarginLeft = 0,
@@ -71,7 +71,7 @@ export class AxisX {
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g")
         .call(applyAria, this)
-        .attr("transform", `translate(0,${ty})`)
+        .attr("transform", `translate(${offsetLeft},${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
@@ -134,7 +134,6 @@ export class AxisY {
   render(
     index,
     {[this.name]: y, fx},
-    channels,
     {
       width,
       height,
@@ -142,6 +141,7 @@ export class AxisY {
       marginRight,
       marginBottom,
       marginLeft,
+      offsetTop = 0,
       facetMarginLeft,
       facetMarginRight
     }
@@ -162,7 +162,7 @@ export class AxisY {
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g")
         .call(applyAria, this)
-        .attr("transform", `translate(${tx},0)`)
+        .attr("transform", `translate(${tx},${offsetTop})`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)

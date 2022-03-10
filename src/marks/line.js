@@ -7,7 +7,6 @@ import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {applyGroupedMarkers, markers} from "./marker.js";
 
 const defaults = {
-  filter: null,
   ariaLabel: "line",
   fill: "none",
   stroke: "currentColor",
@@ -34,6 +33,9 @@ export class Line extends Mark {
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
+  filter(index) {
+    return index;
+  }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y} = channels;
     const {dx, dy} = this;
@@ -42,7 +44,8 @@ export class Line extends Mark {
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(groupIndex(I, [X, Y], this, channels))
-          .join("path")
+          .enter()
+          .append("path")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
             .call(applyGroupedMarkers, this, channels)

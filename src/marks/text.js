@@ -68,7 +68,8 @@ export class Text extends Mark {
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)
-          .join("text")
+          .enter()
+          .append("text")
             .call(applyDirectStyles, this)
             .call(applyMultilineText, this, T)
             .attr("transform", R ? (X && Y ? i => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
