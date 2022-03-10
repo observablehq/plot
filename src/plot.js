@@ -19,14 +19,15 @@ export function plot(options = {}) {
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
-  // A Map from Mark instance to an object of named channel values.
-  const indexByMark = new Map();
-  const channelsByMark = new Map();
-  const facetsByMark = new Set();
-  const valuesByMark = new Map();
+  // A Map from Mark instance to its render state, including:
+  // index - the data index e.g. [0, 1, 2, 3, …]
+  // channels - an array of materialized channels e.g. [["x", {value}], …]
+  // faceted - a boolean indicating whether this mark is faceted
+  // values - an object of scaled values e.g. {x: [40, 32, …], …}
+  const stateByMark = new Map();
 
   // A Map from scale name to an array of associated channels.
-  const scaleChannels = new Map();
+  const channelsByScale = new Map();
 
   // Faceting!
   let facets; // map from facet key (e.g. "foo") to facet index ([0, 1, 2, …])
@@ -42,12 +43,12 @@ export function plot(options = {}) {
       if (x != null) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
         facetChannels.push(["fx", fx]);
-        scaleChannels.set("fx", [fx]);
+        channelsByScale.set("fx", [fx]);
       }
       if (y != null) {
         const fy = Channel(facetData, {value: y, scale: "fy"});
         facetChannels.push(["fy", fy]);
-        scaleChannels.set("fy", [fy]);
+        channelsByScale.set("fy", [fy]);
       }
       facetIndex = range(facetData);
       facets = facetGroups(facetIndex, facetChannels);
@@ -57,7 +58,7 @@ export function plot(options = {}) {
 
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
   for (const mark of marks) {
-    if (channelsByMark.has(mark)) throw new Error("duplicate mark");
+    if (stateByMark.has(mark)) throw new Error("duplicate mark");
     const markFacets = facets === undefined ? undefined
       : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
       : mark.facet === "include" ? facetsIndex
@@ -67,34 +68,32 @@ export function plot(options = {}) {
     for (const [, channel] of channels) {
       const {scale} = channel;
       if (scale !== undefined) {
-        const scaled = scaleChannels.get(scale);
-        if (scaled !== undefined) scaled.push(channel);
-        else scaleChannels.set(scale, [channel]);
+        const channels = channelsByScale.get(scale);
+        if (channels !== undefined) channels.push(channel);
+        else channelsByScale.set(scale, [channel]);
       }
     }
-    channelsByMark.set(mark, channels);
-    indexByMark.set(mark, index);
-    if (markFacets !== undefined) facetsByMark.add(mark);
+    stateByMark.set(mark, {index, channels, faceted: markFacets !== undefined});
   }
 
   // Apply scale transforms.
-  for (const [scale, channels] of scaleChannels) {
+  for (const [scale, channels] of channelsByScale) {
     const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
     if (transform != null) for (const c of channels) c.value = Array.from(c.value, transform);
   }
 
-  const scaleDescriptors = Scales(scaleChannels, options);
+  const scaleDescriptors = Scales(channelsByScale, options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
-  autoScaleLabels(scaleChannels, scaleDescriptors, axes, dimensions, options);
+  autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  // Compute channel values, applying scales as needed.
-  for (const [mark, channels] of channelsByMark) {
-    valuesByMark.set(mark, applyScales(channels, scales));
+  // Compute value objects, applying scales as needed.
+  for (const state of stateByMark.values()) {
+    state.values = applyScales(state.channels, scales);
   }
 
   const {width, height} = dimensions;
@@ -177,22 +176,16 @@ export function plot(options = {}) {
             .attr("transform", facetTranslate(fx, fy))
             .each(function(key) {
               const j = indexByFacet.get(key);
-              for (const mark of marks) {
-                const channels = channelsByMark.get(mark);
-                const values = valuesByMark.get(mark);
-                const markIndex = indexByMark.get(mark);
-                const markFacetIndex = facetsByMark.has(mark) ? markIndex[j] : markIndex;
-                const index = mark.filter(markFacetIndex, channels, values);
-                const node = mark.render(index, scales, values, subdimensions);
+              for (const [mark, {channels, values, index, faceted}] of stateByMark) {
+                const renderIndex = mark.filter(faceted ? index[j] : index, channels, values);
+                const node = mark.render(renderIndex, scales, values, subdimensions);
                 if (node != null) this.appendChild(node);
               }
             }));
   } else {
-    for (const mark of marks) {
-      const channels = channelsByMark.get(mark);
-      const values = valuesByMark.get(mark);
-      const index = mark.filter(indexByMark.get(mark), channels, values);
-      const node = mark.render(index, scales, values, dimensions);
+    for (const [mark, {channels, values, index}] of stateByMark) {
+      const renderIndex = mark.filter(index, channels, values);
+      const node = mark.render(renderIndex, scales, values, dimensions);
       if (node != null) svg.appendChild(node);
     }
   }
@@ -246,12 +239,11 @@ export class Mark {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
-      if (name !== undefined) {
-        const key = `${name}`;
-        if (key === "__proto__") throw new Error("illegal channel name");
-        if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
-        names.add(key);
-      }
+      if (name == null) throw new Error("missing channel name");
+      const key = `${name}`;
+      if (key === "__proto__") throw new Error("illegal channel name");
+      if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
+      names.add(key);
       return true;
     });
     this.dx = +dx || 0;
