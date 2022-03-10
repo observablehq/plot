@@ -30,7 +30,7 @@ export function plot(options = {}) {
   const channelsByScale = new Map();
 
   // Faceting!
-  let facets; // map from facet key (e.g. "foo") to facet index ([0, 1, 2, …])
+  let facets; // array of facet definitions (e.g. [["foo", [0, 1, 3, …]], …])
   let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
   let facetChannels; // e.g. [["fx", {value}], ["fy", {value}]]
   let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
@@ -76,7 +76,7 @@ export function plot(options = {}) {
     stateByMark.set(mark, {index, channels, faceted: markFacets !== undefined});
   }
 
-  // Apply scale transforms.
+  // Apply scale transforms, mutating channel.value.
   for (const [scale, channels] of channelsByScale) {
     const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
     if (transform != null) for (const c of channels) c.value = Array.from(c.value, transform);
