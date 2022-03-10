@@ -1037,6 +1037,14 @@ Plot.dotY(cars.map(d => d["economy (mpg)"]))
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
+### Hexgrid
+
+The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
+
+#### Plot.hexgrid([*options*])
+
+The *binWidth* option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The *clip* option defaults to true, clipping the mark to the frame’s dimensions.
+
 ### Image
 
 [<img src="./img/image.png" width="320" height="198" alt="a scatterplot of Presidential portraits">](https://observablehq.com/@observablehq/plot-image)
@@ -1524,10 +1532,10 @@ The following aggregation methods are supported:
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-* *x* - the middle the bin’s *x*-extent (when binning on *x*)
+* *x* - the middle of the bin’s *x*-extent (when binning on *x*)
 * *x1* - the lower bound of the bin’s *x*-extent (when binning on *x*)
 * *x2* - the upper bound of the bin’s *x*-extent (when binning on *x*)
-* *y* - the middle the bin’s *y*-extent (when binning on *y*)
+* *y* - the middle of the bin’s *y*-extent (when binning on *y*)
 * *y1* - the lower bound of the bin’s *y*-extent (when binning on *y*)
 * *y2* - the upper bound of the bin’s *y*-extent (when binning on *y*)
 * a function to be passed the array of values for each bin and the extent of the bin
@@ -2144,6 +2152,69 @@ Given an *options* object that may specify some basic transforms (*filter*, *sor
 This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
 
 Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
+
+## Scale-aware transforms
+
+Some transforms need to operate in representation space (such as pixels and colors, *i.e.* after scales have been applied) rather than data space. Such a transform might, for example, modify the marks’ positions in screen space to avoid occlusion. These scale-aware transforms are applied *after* the initial setting of the scales, and can modify the channels or derive new channels—which can in turn be passed to scales.
+
+### Dodge
+
+The dodge transform can be applied to any mark that consumes *x* or *y*, such as the Dot, Image, Text and Vector marks.
+#### Plot.dodgeY([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeY({x: "date"})
+```
+
+If the marks are arranged along the *x* axis, the dodgeY transform piles them vertically, keeping their *x* position unchanged, and creating a *y* position that avoids overlapping.
+
+#### Plot.dodgeX([*layoutOptions*, ]*options*)
+
+```js
+Plot.dodgeX({y: "value"})
+```
+
+Equivalent to Plot.dodgeY, but the piling is horizontal, keeping the marks’ *y* position unchanged, and creating an *x* position that avoids overlapping.
+The dodge transforms accept the following options:
+* **padding** — a number of pixels added to the radius of the mark to estimate its size
+* **anchor** - the frame anchor: one of *middle*, *right*, and *left* (default) for dodgeX, and one of *middle*, *top*, and *bottom* (default) for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
+
+### Hexbin
+
+The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the Dot, Image, Text and Vector marks. It aggregates the values into hexagonal bins of the given *radius* (in pixel space), and computes new values *x* and *y* as the centers of each bin. It can also return new channels by applying a reducer to each bin, such as the number of elements in the bin.
+
+#### Plot.hexbin(*outputs*, *options*)
+
+[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given inputs into hexagonal bins, and creates output channels with the reduced data. The options must specify the *x* and *y* channels, and can optionally indicate the *binWidth* in pixels (defaults to 20), defined as the distance between the centers of two neighboring hexagons. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to Plot.bin’s outputs; each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+
+The following aggregation methods are supported:
+
+* *first* - the first value, in input order
+* *last* - the last value, in input order
+* *count* - the number of elements (frequency)
+* *distinct* - the number of distinct values
+* *sum* - the sum of values
+* *proportion* - the sum proportional to the overall total (weighted frequency)
+* *proportion-facet* - the sum proportional to the facet total
+* *min* - the minimum value
+* *min-index* - the zero-based index of the minimum value
+* *max* - the maximum value
+* *max-index* - the zero-based index of the maximum value
+* *mean* - the mean value (average)
+* *median* - the median value
+* *deviation* - the standard deviation
+* *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
+* *mode* - the value with the most occurrences
+* a function to be passed the array of values for each bin and the extent of the bin
+* an object with a *reduce* method
+
+When the hexbin transform has an *r* output, the bins are returned in decreasing size order.
+
+See also the [hexgrid](#hexgrid) mark.
+
+### Custom scale-aware transforms
+
+When its *options* have an *initialize* property, the initialize function is called after the scales have been computed. It receives as inputs the (possibly transformed) data array, the index of elements of this array that belong to each facet, the input channels (as a key: array object), the scales, and the dimensions, with the mark as this. It must return the data, index, and the channels that need to be scaled in a second pass.
 
 ## Curves
 
