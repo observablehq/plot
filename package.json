@@ -38,6 +38,7 @@
     "@rollup/plugin-json": "4",
     "@rollup/plugin-node-resolve": "13",
     "canvas": "2",
+    "d3-hexbin": "^0.2.2",
     "eslint": "8",
     "htl": "0.3",
     "js-beautify": "1",
