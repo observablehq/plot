@@ -117,7 +117,8 @@ function legendItems(scale, {
         .style("columns", columns)
       .selectAll()
       .data(scale.domain)
-      .join("div")
+      .enter()
+      .append("div")
         .attr("class", `${className}-swatch`)
         .call(swatch, scale)
         .call(item => item.append("div")
@@ -142,7 +143,8 @@ function legendItems(scale, {
     swatches
       .selectAll()
       .data(scale.domain)
-      .join("span")
+      .enter()
+      .append("span")
         .attr("class", `${className}-swatch`)
         .call(swatch, scale)
         .append(function() {

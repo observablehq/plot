@@ -105,9 +105,10 @@ export function legendRamp(color, {
     x = applyRange(scaleLinear().domain([-1, range.length - 1]), [marginLeft, width - marginRight]);
 
     svg.append("g")
-      .selectAll("rect")
+      .selectAll()
       .data(range)
-      .join("rect")
+      .enter()
+      .append("rect")
         .attr("x", (d, i) => x(i - 1))
         .attr("y", marginTop)
         .attr("width", (d, i) => x(i) - x(i - 1))
@@ -123,9 +124,10 @@ export function legendRamp(color, {
     x = applyRange(scaleBand().domain(domain), [marginLeft, width - marginRight]);
 
     svg.append("g")
-      .selectAll("rect")
+      .selectAll()
       .data(domain)
-      .join("rect")
+      .enter()
+      .append("rect")
         .attr("x", x)
         .attr("y", marginTop)
         .attr("width", Math.max(0, x.bandwidth() - 1))
