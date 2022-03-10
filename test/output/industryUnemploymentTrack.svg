@@ -77,7 +77,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
     </g>
   </g>
-  <g transform="translate(0,26)">
+  <g aria-label="facet" transform="translate(0,26)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f1814d">
         <title>745</title>
@@ -457,7 +457,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,46)">
+  <g aria-label="facet" transform="translate(0,46)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#df6263">
         <title>1,000</title>
@@ -837,7 +837,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,66)">
+  <g aria-label="facet" transform="translate(0,66)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f2844b">
         <title>734</title>
@@ -1217,7 +1217,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,86)">
+  <g aria-label="facet" transform="translate(0,86)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#ef7e50">
         <title>782</title>
@@ -1597,7 +1597,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,106)">
+  <g aria-label="facet" transform="translate(0,106)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f68f44">
         <title>655</title>
@@ -1977,7 +1977,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,126)">
+  <g aria-label="facet" transform="translate(0,126)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#febd2a">
         <title>353</title>
@@ -2357,7 +2357,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,146)">
+  <g aria-label="facet" transform="translate(0,146)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fdb130">
         <title>430</title>
@@ -2737,7 +2737,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,166)">
+  <g aria-label="facet" transform="translate(0,166)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd025">
         <title>239</title>
@@ -3117,7 +3117,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,186)">
+  <g aria-label="facet" transform="translate(0,186)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd225">
         <title>228</title>
@@ -3497,7 +3497,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,206)">
+  <g aria-label="facet" transform="translate(0,206)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fcd025">
         <title>236</title>
@@ -3877,7 +3877,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,226)">
+  <g aria-label="facet" transform="translate(0,226)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#fdca26">
         <title>274</title>
@@ -4257,7 +4257,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,246)">
+  <g aria-label="facet" transform="translate(0,246)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f7e425">
         <title>125</title>
@@ -4637,7 +4637,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,266)">
+  <g aria-label="facet" transform="translate(0,266)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f8df25">
         <title>154</title>
@@ -5017,7 +5017,7 @@
       </circle>
     </g>
   </g>
-  <g transform="translate(0,286)">
+  <g aria-label="facet" transform="translate(0,286)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f0f724">
         <title>19</title>

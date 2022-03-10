@@ -171,6 +171,7 @@ export function plot(options = {}) {
       .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
       .enter()
       .append("g")
+        .attr("aria-label", "facet")
         .attr("transform", facetTranslate(fx, fy))
         .each(function(key) {
           const j = indexByFacet.get(key);

@@ -249,7 +249,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Z</text>
     </g>
   </g>
-  <g transform="translate(41,31)">
+  <g aria-label="facet" transform="translate(41,31)">
     <g aria-label="bar">
       <rect x="13" width="9" y="156.97674418604652" height="18.023255813953483"></rect>
       <rect x="23" width="9" y="144.7674418604651" height="30.232558139534888"></rect>
@@ -276,7 +276,7 @@
       <line x1="0" x2="265" y1="175" y2="175"></line>
     </g>
   </g>
-  <g transform="translate(41,225)">
+  <g aria-label="facet" transform="translate(41,225)">
     <g aria-label="bar">
       <rect x="13" width="9" y="172.96511627906978" height="2.0348837209302246"></rect>
       <rect x="23" width="9" y="173.25581395348837" height="1.7441860465116292"></rect>
@@ -299,7 +299,7 @@
       <line x1="0" x2="265" y1="175" y2="175"></line>
     </g>
   </g>
-  <g transform="translate(335,31)">
+  <g aria-label="facet" transform="translate(335,31)">
     <g aria-label="bar">
       <rect x="3" width="9" y="62.063953488372086" height="112.93604651162792"></rect>
       <rect x="43" width="9" y="0" height="175"></rect>
@@ -312,7 +312,7 @@
       <line x1="0" x2="265" y1="175" y2="175"></line>
     </g>
   </g>
-  <g transform="translate(335,225)">
+  <g aria-label="facet" transform="translate(335,225)">
     <g aria-label="bar">
       <rect x="3" width="9" y="172.38372093023256" height="2.616279069767444"></rect>
       <rect x="43" width="9" y="174.12790697674419" height="0.8720930232558146"></rect>

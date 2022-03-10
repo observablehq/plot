@@ -110,7 +110,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
     </g><text fill="currentColor" transform="translate(234,30)" dy="-0.32em" text-anchor="end">Body mass (g) →</text>
   </g>
-  <g transform="translate(41,30)">
+  <g aria-label="facet" transform="translate(41,30)">
     <g aria-label="rect">
       <rect x="1" y="120.00000000000001" width="20" height="19.999999999999986"></rect>
       <rect x="22" y="0" width="19" height="140"></rect>
@@ -120,7 +120,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(41,185)">
+  <g aria-label="facet" transform="translate(41,185)">
     <g aria-label="rect">
       <rect x="1" y="133.33333333333331" width="20" height="6.666666666666686"></rect>
       <rect x="22" y="103.33333333333334" width="19" height="36.66666666666666"></rect>
@@ -131,7 +131,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(41,340)">
+  <g aria-label="facet" transform="translate(41,340)">
     <g aria-label="rect">
       <rect x="42" y="136.66666666666666" width="20" height="3.333333333333343"></rect>
       <rect x="63" y="93.33333333333334" width="19" height="46.66666666666666"></rect>
@@ -142,7 +142,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(223,30)">
+  <g aria-label="facet" transform="translate(223,30)">
     <g aria-label="rect">
       <rect x="22" y="130" width="19" height="10"></rect>
       <rect x="42" y="33.33333333333334" width="20" height="106.66666666666666"></rect>
@@ -153,7 +153,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(223,185)">
+  <g aria-label="facet" transform="translate(223,185)">
     <g aria-label="rect">
       <rect x="22" y="126.66666666666667" width="19" height="13.333333333333329"></rect>
       <rect x="42" y="89.99999999999999" width="20" height="50.000000000000014"></rect>
@@ -164,7 +164,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(223,340)">
+  <g aria-label="facet" transform="translate(223,340)">
     <g aria-label="rect">
       <rect x="83" y="133.33333333333331" width="20" height="6.666666666666686"></rect>
       <rect x="104" y="53.33333333333333" width="19" height="86.66666666666667"></rect>
@@ -175,7 +175,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(405,30)">
+  <g aria-label="facet" transform="translate(405,30)">
     <g aria-label="rect">
       <rect x="1" y="136.66666666666666" width="20" height="3.333333333333343"></rect>
       <rect x="22" y="133.33333333333331" width="19" height="6.666666666666686"></rect>
@@ -186,7 +186,7 @@
       <line x1="0" x2="164" y1="140" y2="140"></line>
     </g>
   </g>
-  <g transform="translate(405,340)">
+  <g aria-label="facet" transform="translate(405,340)">
     <g aria-label="rect">
       <rect x="63" y="136.66666666666666" width="19" height="3.333333333333343"></rect>
       <rect x="83" y="130" width="20" height="10"></rect>

@@ -113,7 +113,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
     </g>
   </g>
-  <g transform="translate(0,20)">
+  <g aria-label="facet" transform="translate(0,20)">
     <g aria-label="rect">
       <rect x="41" y="112.9245283018868" width="65" height="20.075471698113205"></rect>
       <rect x="107" y="0" width="66" height="133"></rect>
@@ -126,7 +126,7 @@
       <line x1="40" x2="570" y1="133" y2="133"></line>
     </g>
   </g>
-  <g transform="translate(0,168)">
+  <g aria-label="facet" transform="translate(0,168)">
     <g aria-label="rect">
       <rect x="107" y="115.43396226415095" width="66" height="17.56603773584905"></rect>
       <rect x="174" y="15.056603773584902" width="65" height="117.9433962264151"></rect>
@@ -140,7 +140,7 @@
       <line x1="40" x2="570" y1="133" y2="133"></line>
     </g>
   </g>
-  <g transform="translate(0,316)">
+  <g aria-label="facet" transform="translate(0,316)">
     <g aria-label="rect">
       <rect x="41" y="130.49056603773585" width="65" height="2.509433962264154"></rect>
       <rect x="107" y="127.9811320754717" width="66" height="5.018867924528294"></rect>

@@ -105,7 +105,7 @@
       <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
     </g><text fill="currentColor" transform="translate(227,30)" dy="-0.32em" text-anchor="end">x →</text>
   </g>
-  <g transform="translate(42,0)">
+  <g aria-label="facet" transform="translate(42,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="118.00829875518673" r="3"></circle>
@@ -121,7 +121,7 @@
       <circle cx="22.46666666666667" cy="157.17842323651453" r="3"></circle>
     </g>
   </g>
-  <g transform="translate(272,0)">
+  <g aria-label="facet" transform="translate(272,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="99.75103734439833" r="3"></circle>
@@ -137,7 +137,7 @@
       <circle cx="22.46666666666667" cy="172.78008298755185" r="3"></circle>
     </g>
   </g>
-  <g transform="translate(502,0)">
+  <g aria-label="facet" transform="translate(502,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="127.63485477178423" r="3"></circle>
@@ -153,7 +153,7 @@
       <circle cx="22.46666666666667" cy="156.34854771784234" r="3"></circle>
     </g>
   </g>
-  <g transform="translate(732,0)">
+  <g aria-label="facet" transform="translate(732,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="59.86666666666667" cy="142.24066390041492" r="3"></circle>
