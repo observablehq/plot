@@ -141,47 +141,45 @@ export function plot(options = {}) {
     const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const indexByFacet = facetMap(facetChannels);
     facets.forEach(([key], i) => indexByFacet.set(key, i));
-    select(svg)
-        .call(g => {
-          if (fy && axes.y) {
-            const axis1 = axes.y, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
-            g.selectAll()
-              .data(fyDomain)
-              .enter()
-              .append((ky, i) => (i === j ? axis1 : axis2).render(
-                fx && where(fxDomain, kx => indexByFacet.has([kx, ky])),
-                scales,
-                {...dimensions, ...fyMargins, offsetTop: fy(ky)}
-              ));
+    const selection = select(svg);
+    if (fy && axes.y) {
+      const axis1 = axes.y, axis2 = nolabel(axis1);
+      const j = axis1.labelAnchor === "bottom" ? fyDomain.length - 1 : axis1.labelAnchor === "center" ? fyDomain.length >> 1 : 0;
+      selection.selectAll()
+        .data(fyDomain)
+        .enter()
+        .append((ky, i) => (i === j ? axis1 : axis2).render(
+          fx && where(fxDomain, kx => indexByFacet.has([kx, ky])),
+          scales,
+          {...dimensions, ...fyMargins, offsetTop: fy(ky)}
+        ));
+    }
+    if (fx && axes.x) {
+      const axis1 = axes.x, axis2 = nolabel(axis1);
+      const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
+      const {marginLeft, marginRight} = dimensions;
+      selection.selectAll()
+        .data(fxDomain)
+        .enter()
+        .append((kx, i) => (i === j ? axis1 : axis2).render(
+          fy && where(fyDomain, ky => indexByFacet.has([kx, ky])),
+          scales,
+          {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)}
+        ));
+    }
+    selection.selectAll()
+      .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
+      .enter()
+      .append("g")
+        .attr("transform", facetTranslate(fx, fy))
+        .each(function(key) {
+          const j = indexByFacet.get(key);
+          for (const [mark, {channels, values, index, faceted}] of stateByMark) {
+            const renderIndex = mark.filter(faceted ? index[j] : index, channels, values);
+            const node = mark.render(renderIndex, scales, values, subdimensions);
+            if (node != null) this.appendChild(node);
           }
-          if (fx && axes.x) {
-            const axis1 = axes.x, axis2 = nolabel(axis1);
-            const j = axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
-            const {marginLeft, marginRight} = dimensions;
-            g.selectAll()
-              .data(fxDomain)
-              .enter()
-              .append((kx, i) => (i === j ? axis1 : axis2).render(
-                fy && where(fyDomain, ky => indexByFacet.has([kx, ky])),
-                scales,
-                {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)}
-              ));
-          }
-        })
-        .call(g => g.selectAll()
-          .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
-          .enter()
-          .append("g")
-            .attr("transform", facetTranslate(fx, fy))
-            .each(function(key) {
-              const j = indexByFacet.get(key);
-              for (const [mark, {channels, values, index, faceted}] of stateByMark) {
-                const renderIndex = mark.filter(faceted ? index[j] : index, channels, values);
-                const node = mark.render(renderIndex, scales, values, subdimensions);
-                if (node != null) this.appendChild(node);
-              }
-            }));
+        });
   } else {
     for (const [mark, {channels, values, index}] of stateByMark) {
       const renderIndex = mark.filter(index, channels, values);
