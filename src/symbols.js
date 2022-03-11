@@ -5,7 +5,7 @@ const t = Math.sqrt(3) / 2; // TODO decide on radius definition
 
 const symbolHexagon = {
   draw(context, size) {
-    const s = Math.sqrt(size / Math.PI), hs = s / 2, ts = s * t;
+    const s = Math.sqrt(size / Math.PI) * 2 / Math.sqrt(3), hs = s / 2, ts = s * t;
     context.moveTo(0, s);
     context.lineTo(ts, hs);
     context.lineTo(ts, -hs);
