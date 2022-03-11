@@ -18,6 +18,7 @@ export {valueof, channel} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
+export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
 export {window, windowX, windowY} from "./transforms/window.js";

@@ -116,7 +116,7 @@ function inferDomain(channels) {
 // If all channels provide a consistent hint, propagate it to the scale.
 function inferSymbolHint(channels) {
   const hint = {};
-  for (const {hint: channelHint} of channels) {
+  for (const {hint: channelHint = {}} of channels) {
     for (const key of ["fill", "stroke"]) {
       const value = channelHint[key];
       if (!(key in hint)) hint[key] = value;
