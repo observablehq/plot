@@ -6,6 +6,7 @@ export {boxX, boxY} from "./marks/box.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {Dot, dot, dotX, dotY} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
+export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Image, image} from "./marks/image.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {Link, link} from "./marks/link.js";

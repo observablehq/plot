@@ -1,17 +1,17 @@
 import {symbolAsterisk, symbolDiamond2, symbolPlus, symbolSquare2, symbolTriangle2, symbolX as symbolTimes} from "d3";
 import {symbolCircle, symbolCross, symbolDiamond, symbolSquare, symbolStar, symbolTriangle, symbolWye} from "d3";
 
-const w = 2 / Math.sqrt(3);
+export const sqrt4_3 = 2 / Math.sqrt(3);
 
 const symbolHexagon = {
   draw(context, size) {
-    const s = Math.sqrt(size / Math.PI), t = s * w, h = t / 2;
-    context.moveTo(0, t);
-    context.lineTo(s, h);
-    context.lineTo(s, -h);
-    context.lineTo(0, -t);
-    context.lineTo(-s, -h);
-    context.lineTo(-s, h);
+    const rx = Math.sqrt(size / Math.PI), ry = rx * sqrt4_3, hy = ry / 2;
+    context.moveTo(0, ry);
+    context.lineTo(rx, hy);
+    context.lineTo(rx, -hy);
+    context.lineTo(0, -ry);
+    context.lineTo(-rx, -hy);
+    context.lineTo(-rx, hy);
     context.closePath();
   }
 };
