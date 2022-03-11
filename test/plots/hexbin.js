@@ -12,13 +12,14 @@ export default async function() {
         y: "culmen_length_mm",
         symbol: "hexagon",
         initialize([index], {x: {value: X}, y: {value: Y}}, {x, y}) {
-          const bins = Hexbin().x(i => x(X[i])).y(i => y(Y[i])).radius(20)(index);
+          const radius = 12;
+          const bins = Hexbin().x(i => x(X[i])).y(i => y(Y[i])).radius(radius * 2 / Math.sqrt(3))(index);
           return {
             facets: [d3.range(bins.length)],
             channels: {
               x: {value: bins.map(bin => bin.x)},
               y: {value: bins.map(bin => bin.y)},
-              r: {value: bins.map(bin => bin.length), radius: 20, scale: "r"}
+              r: {value: bins.map(bin => bin.length), radius, scale: "r"}
             }
           };
         }
