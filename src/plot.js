@@ -97,7 +97,7 @@ export function plot(options = {}) {
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         Object.assign(state.channels, applyScaleTransforms(channels, options));
-        for (const name in channels) newByScale.add(channels[name].scale);
+        for (const {scale} of Object.values(channels)) if (scale != null) newByScale.add(scale);
       }
     }
   }
