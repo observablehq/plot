@@ -3,25 +3,6 @@ import {first, labelof, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
-export function channelObject(channelDescriptors, data) {
-  const channels = {};
-  for (const channel of channelDescriptors) {
-    channels[channel.name] = Channel(data, channel);
-  }
-  return channels;
-}
-
-// TODO use Float64Array.from for position and radius scales?
-export function valueObject(channels, scales) {
-  const values = {};
-  for (const channelName in channels) {
-    const {scale: scaleName, value} = channels[channelName];
-    const scale = scales[scaleName];
-    values[channelName] = scale === undefined ? value : Array.from(value, scale);
-  }
-  return values;
-}
-
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {
   return {
@@ -32,6 +13,25 @@ export function Channel(data, {scale, type, value, filter, hint}) {
     filter,
     hint
   };
+}
+
+export function channelObject(channelDescriptors, data) {
+  const channels = {};
+  for (const channel of channelDescriptors) {
+    channels[channel.name] = Channel(data, channel);
+  }
+  return channels;
+}
+
+// TODO Use Float64Array for scales with numeric ranges, e.g. position?
+export function valueObject(channels, scales) {
+  const values = {};
+  for (const channelName in channels) {
+    const {scale: scaleName, value} = channels[channelName];
+    const scale = scales[scaleName];
+    values[channelName] = scale === undefined ? value : Array.from(value, scale);
+  }
+  return values;
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
