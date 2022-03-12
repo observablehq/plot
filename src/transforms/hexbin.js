@@ -49,17 +49,9 @@ function hexbinn(outputs, {radius = 10, ...options}) {
         channels: {
           x: {value: BX},
           y: {value: BY},
-          ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: scaleof(name), radius: name === "r" ? radius : undefined, value: output.transform()}]))
+          ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? radius : undefined, value: output.transform()}]))
         }
       };
     }
   };
-}
-
-function scaleof(name) {
-  switch (name) {
-    case "fill": case "stroke": return "color";
-    case "fillOpacity": case "strokeOpacity": case "opacity": return "opacity";
-    case "r": case "length": case "symbol": return name;
-  }
 }

@@ -76,7 +76,8 @@ export function plot(options = {}) {
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
     const {facets, channels} = mark.initialize(markFacets, facetChannels);
-    stateByMark.set(mark, {facets, channels: applyScaleTransforms(channels, options)});
+    applyScaleTransforms(channels, options);
+    stateByMark.set(mark, {facets, channels});
   }
 
   // Initalize the scales and axes.
@@ -96,7 +97,9 @@ export function plot(options = {}) {
       const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
-        Object.assign(state.channels, applyScaleTransforms(channels, options));
+        inferChannelScale(channels, mark);
+        applyScaleTransforms(channels, options);
+        Object.assign(state.channels, channels);
         for (const {scale} of Object.values(channels)) if (scale != null) newByScale.add(scale);
       }
     }
@@ -322,6 +325,25 @@ function applyScaleTransforms(channels, options) {
     }
   }
   return channels;
+}
+
+// An initializer may generate channels without knowing how the downstream mark
+// will use them. Marks are typically responsible associated scales with
+// channels, but here we assume common behavior across marks.
+function inferChannelScale(channels) {
+  for (const name in channels) {
+    const channel = channels[name];
+    let {scale} = channel;
+    if (scale === true) {
+      switch (name) {
+        case "fill": case "stroke": scale = "color"; break;
+        case "fillOpacity": case "strokeOpacity": case "opacity": scale = "opacity"; break;
+        case "r": case "length": case "symbol": scale = name; break;
+        default: scale = null;
+      }
+      channel.scale = scale;
+    }
+  }
 }
 
 function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
