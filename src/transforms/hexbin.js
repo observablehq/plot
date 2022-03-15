@@ -10,7 +10,6 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
 
 // TODO group by (implicit) z
 // TODO filter e.g. to show empty hexbins?
-// TODO data output with sort and reverse?
 // TODO disallow x, x1, x2, y, y1, y2 reducers?
 function hexbinn(outputs, {radius = 10, ...options}) {
   radius = +radius;
@@ -44,14 +43,15 @@ function hexbinn(outputs, {radius = 10, ...options}) {
         }
         binFacets.push(binFacet);
       }
-      return {
-        facets: binFacets,
-        channels: {
-          x: {value: BX},
-          y: {value: BY},
-          ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? radius : undefined, value: output.transform()}]))
-        }
+      const channels = {
+        x: {value: BX},
+        y: {value: BY},
+        ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? radius : undefined, value: output.transform()}]))
       };
+      if ("r" in channels) {
+        binFacets.forEach(index => index.sort((i, j) => channels.r.value[j] - channels.r.value[i]));
+      }
+      return {facets: binFacets, channels};
     }
   };
 }
