@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "d3": "^7.3.0",
-    "d3-hexbin": "^0.2.2",
     "isoformat": "0.2"
   },
   "engines": {
