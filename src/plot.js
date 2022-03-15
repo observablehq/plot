@@ -94,7 +94,7 @@ export function plot(options = {}) {
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.reinitialize != null) {
-      const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales);
+      const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales, dimensions);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
