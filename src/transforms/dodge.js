@@ -15,29 +15,29 @@ function maybeAnchor(anchor) {
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "left", padding = 1, compact = false} = maybeAnchor(dodgeOptions);
+  let {anchor = "left", padding = 1, compact = false, iterations = compact ? 30 : undefined} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left": anchor = anchorXLeft; break;
     case "right": anchor = anchorXRight; break;
     case "middle": anchor = anchorXMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("x", "y", anchor, +padding, compact, options);
+  return dodge("x", "y", anchor, +padding, compact, iterations, options);
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "bottom", padding = 1, compact = false} = maybeAnchor(dodgeOptions);
+  let {anchor = "bottom", padding = 1, compact = false, iterations = compact ? 30 : undefined} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top": anchor = anchorYTop; break;
     case "bottom": anchor = anchorYBottom; break;
     case "middle": anchor = anchorYMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("y", "x", anchor, +padding, compact, options);
+  return dodge("y", "x", anchor, +padding, compact, iterations, options);
 }
 
-function dodge(y, x, anchor, padding, compact, options) {
+function dodge(y, x, anchor, padding, compact, iterations, options) {
   return {
     initialize(facets, {[x]: X, r: R}, {[x]: xscale, r: rscale}, dimensions) {
       if (!X) throw new Error(`missing channel ${x}`);
@@ -88,10 +88,10 @@ function dodge(y, x, anchor, padding, compact, options) {
           const nodes = Array.from(I, i => ({i, x: X[i], y: Y[i], r: padding + (R ? R[i] : r)}));
           const sim = forceSimulation(nodes)
               .force("side", () => nodes.forEach(node => k * (node.y - ty) < 0 && (node.y = ty, node.vy = k)))
-              .force("x", forceX(({x}) => x).strength(.03))
-              .force("y", forceY(() => ty).strength(.03))
+              .force("x", forceX(({x}) => x))
+              .force("y", forceY(() => ty))
               .force("c", forceCollide(({r}) => r));
-          sim.tick(410).stop();
+          sim.alpha(0.2).tick(iterations).stop();
           for (const {i, x, y} of nodes) X[i] = x, Y[i] = y;
         }
       }

@@ -6,7 +6,7 @@ export default async function() {
   return Plot.plot({
     height: 200,
     marks: [
-      Plot.dot(penguins, Plot.dodgeY({x: "body_mass_g"}))
+      Plot.dot(penguins, Plot.dodgeY({compact: true, iterations: 40}, {x: "body_mass_g"}))
     ]
   });
 }
