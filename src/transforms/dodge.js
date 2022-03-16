@@ -1,4 +1,4 @@
-import {max} from "d3";
+import {max, forceX, forceY, forceCollide, forceSimulation} from "d3";
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 
@@ -15,29 +15,29 @@ function maybeAnchor(anchor) {
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
+  let {anchor = "left", padding = 1, compact = false} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left": anchor = anchorXLeft; break;
     case "right": anchor = anchorXRight; break;
     case "middle": anchor = anchorXMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("x", "y", anchor, +padding, options);
+  return dodge("x", "y", anchor, +padding, compact, options);
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
-  let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
+  let {anchor = "bottom", padding = 1, compact = false} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top": anchor = anchorYTop; break;
     case "bottom": anchor = anchorYBottom; break;
     case "middle": anchor = anchorYMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("y", "x", anchor, +padding, options);
+  return dodge("y", "x", anchor, +padding, compact, options);
 }
 
-function dodge(y, x, anchor, padding, options) {
+function dodge(y, x, anchor, padding, compact, options) {
   return {
     initialize(facets, {[x]: X, r: R}, {[x]: xscale, r: rscale}, dimensions) {
       if (!X) throw new Error(`missing channel ${x}`);
@@ -45,9 +45,10 @@ function dodge(y, x, anchor, padding, options) {
       const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? +options.r : 3;
       if (R) R = R.value.map(rscale);
       if (X == null) throw new Error(`missing channel: ${x}`);
-      let [ky, ty] = anchor(dimensions);
-      const compare = ky ? compareAscending : compareSymmetric;
-      if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
+      let [k, ty] = anchor(dimensions);
+      const compare = k ? compareAscending : compareSymmetric;
+      if (k) ty += k * ((R ? max(facets.flat(), i => R[i]) : r) + padding);
+      const ky = k || 1;
       const Y = new Float64Array(X.length);
       const radius = R ? i => R[i] : () => r;
       for (let I of facets) {
@@ -83,6 +84,16 @@ function dodge(y, x, anchor, padding, options) {
           tree.insert([l, h, i]);
         }
         for (const i of I) Y[i] = Y[i] * ky + ty;
+        if (compact) {
+          const nodes = Array.from(I, i => ({i, x: X[i], y: Y[i], r: padding + (R ? R[i] : r)}));
+          const sim = forceSimulation(nodes)
+              .force("side", () => nodes.forEach(node => k * (node.y - ty) < 0 && (node.y = ty, node.vy = k)))
+              .force("x", forceX(({x}) => x).strength(.03))
+              .force("y", forceY(() => ty).strength(.03))
+              .force("c", forceCollide(({r}) => r));
+          sim.tick(410).stop();
+          for (const {i, x, y} of nodes) X[i] = x, Y[i] = y;
+        }
       }
       return {facets, channels: {
         [x]: {value: X},
