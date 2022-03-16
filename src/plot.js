@@ -90,11 +90,16 @@ export function plot(options = {}) {
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
+  const {fx, fy} = scales;
+  const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+  const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+  const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.reinitialize != null) {
-      const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales, dimensions);
+      const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales, subdimensions);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
@@ -148,7 +153,6 @@ export function plot(options = {}) {
     .node();
 
   // When faceting, render axes for fx and fy instead of x and y.
-  const {fx, fy} = scales;
   const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
   const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
   if (axisY) svg.appendChild(axisY.render(null, scales, dimensions));
@@ -158,9 +162,6 @@ export function plot(options = {}) {
   if (facets !== undefined) {
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
-    const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
-    const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
-    const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
     const indexByFacet = facetMap(facetChannels);
     facets.forEach(([key], i) => indexByFacet.set(key, i));
     const selection = select(svg);
