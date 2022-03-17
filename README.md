@@ -1866,9 +1866,11 @@ After all values have been stacked from zero, an optional **offset** can be appl
 - *expand* (or *normalize*) - rescale each stack to fill [0, 1]
 - *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
-- a function that receives as arguments a nested index of stacks, the X1 and X2 arrays (resp. Y1 and Y2 for stackY), and Z, and can modify X1 and X2, typically by subtracting the same offset from each of the X1 and X2 values that pertain to a stack.
+- a function to be passed an index and arrays of values
 
 If a given stack has zero total value, the *expand* offset will not adjust the stack’s position. Both the *center* and *wiggle* offsets ensure that the lowest element across stacks starts at zero for better default axes. The *wiggle* offset is recommended for streamgraphs, and if used, changes the default order to *inside-out*; see [Byron & Wattenberg](http://leebyron.com/streamgraph/).
+
+If the offset is specified as a function, it will receive as arguments a nested index of stacks, the X1 and X2 arrays (resp. Y1 and Y2 for stackY), and Z. It can then change the values in X1 and X2, typically by subtracting a common offset from each of the X1 and X2 values that pertain to a stack.
 
 In addition to the **y1** and **y2** output channels, Plot.stackY computes a **y** output channel that represents the midpoint of **y1** and **y2**. Plot.stackX does the same for **x**. This can be used to position a label or a dot in the center of a stacked layer. The **x** and **y** output channels are lazy: they are only computed if needed by a downstream mark or transform.
 
