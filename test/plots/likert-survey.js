@@ -20,7 +20,7 @@ function Likert(responses) {
 }
 
 export default async function() {
-  const survey = await d3.json("data/survey.json");
+  const survey = await d3.csv("data/survey.csv");
   const {order, offset} = Likert([
     ["Strongly Disagree", -1],
     ["Disagree", -1],
