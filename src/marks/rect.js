@@ -50,7 +50,7 @@ export class Rect extends Mark {
     const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, x, y, dx, dy)
+        .call(applyTransform, X1 && X2 ? x : null, Y1 && Y2 ? y : null, dx, dy)
         .call(g => g.selectAll()
           .data(index)
           .enter()
