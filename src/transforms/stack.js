@@ -108,6 +108,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
 
 function maybeOffset(offset) {
   if (offset == null) return;
+  if (typeof offset === "function") return offset;
   switch (`${offset}`.toLowerCase()) {
     case "expand": case "normalize": return offsetExpand;
     case "center": case "silhouette": return offsetCenter;
