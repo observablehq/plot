@@ -956,7 +956,7 @@ The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout
 
 #### Plot.hexgrid([*options*])
 
-The *radius* option specifies the radius of the hexagonal mesh, in pixels (defaults to 10). The *clip* option defaults to true, clipping the mark to the frame’s dimensions.
+The *binWidth* option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The *clip* option defaults to true, clipping the mark to the frame’s dimensions.
 
 ### Image
 
@@ -1979,7 +1979,7 @@ The hexbin transform can be applied to any mark that consumes *x* and *y*, such 
 
 #### Plot.hexbin(*outputs*, *options*)
 
-[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given inputs into hexagonal bins, and creates output channels with the reduced data. The options must specify the *x* and *y* channels, and can optionally indicate the *radius* in pixels of the hexagonal lattice (defaults to 10). If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to Plot.bin’s outputs; each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given inputs into hexagonal bins, and creates output channels with the reduced data. The options must specify the *x* and *y* channels, and can optionally indicate the *binWidth* in pixels (defaults to 20), defined as the distance between the centers of two neighboring hexagons. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to Plot.bin’s outputs; each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
 
 The following aggregation methods are supported:
 
