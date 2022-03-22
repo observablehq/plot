@@ -76,24 +76,40 @@ function* selectorMax(I, X) {
 }
 
 function selectChannel(v, selector, options) {
-  if (v != null) {
-    if (options[v] == null) throw new Error(`missing channel: ${v}`);
-    v = options[v];
-  }
   const z = maybeZ(options);
-  return basic(options, (data, facets) => {
-    const Z = valueof(data, z);
-    const V = valueof(data, v);
-    const selectFacets = [];
-    for (const facet of facets) {
-      const selectFacet = [];
-      for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selector(I, V)) {
-          selectFacet.push(i);
-        }
+  return options.initialize == null
+    ? basic(options, (data, facets) => {
+      const Z = valueof(data, z);
+      if (v != null) {
+        if (options[v] == null) throw new Error(`missing channel: ${v}`);
+        v = options[v];
       }
-      selectFacets.push(selectFacet);
-    }
-    return {data, facets: selectFacets};
-  });
+      const V = valueof(data, v);
+      const selectFacets = [];
+      for (const facet of facets) {
+        const selectFacet = [];
+        for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+          for (const i of selector(I, V)) {
+            selectFacet.push(i);
+          }
+        }
+        selectFacets.push(selectFacet);
+      }
+      return {data, facets: selectFacets};
+    })
+    : basic(options, null, (facets, channels) => {
+      const Z = (channels.z || channels.fill || channels.stroke)?.value;
+      const V = v ? channels[v]?.value : undefined;
+      const selectFacets = [];
+      for (const facet of facets) {
+        const selectFacet = [];
+        for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+          for (const i of selector(I, V)) {
+            selectFacet.push(i);
+          }
+        }
+        selectFacets.push(selectFacet);
+      }
+      return {channels, facets: selectFacets};
+    });
 }

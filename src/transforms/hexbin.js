@@ -1,4 +1,5 @@
 import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
+import {identity} from "../options.js";
 import {sqrt4_3} from "../symbols.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeOutputs} from "./group.js";
@@ -22,10 +23,12 @@ function hexbinn(outputs, {radius = 10, ...options}) {
     ...basic(options, (data, facets) => {
       for (const o of outputs) o.initialize(data);
       return {data, facets};
-    }),
-    initialize(facets, {x: X, y: Y}, {x, y}) {
+    }, (facets, {x: X, y: Y}, scales) => {
       if (X === undefined) throw new Error("missing channel: x");
       if (Y === undefined) throw new Error("missing channel: y");
+      const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
+      const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
+      console.warn({x, y});
       ({value: X} = X);
       ({value: Y} = Y);
       const binsof = Hexbin().x(i => x(X[i])).y(i => y(Y[i])).radius(radius * sqrt4_3);
@@ -52,6 +55,6 @@ function hexbinn(outputs, {radius = 10, ...options}) {
           ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? radius : undefined, value: output.transform()}]))
         }
       };
-    }
+    })
   };
 }
