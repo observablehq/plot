@@ -45,7 +45,7 @@ export function Scales(channels, {
           insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
         } = scaleOptions || {};
         if (transform == null) transform = undefined;
-        else if (typeof transform !== "function") throw new Error("invalid scale transform");
+        else if (typeof transform !== "function") throw new Error(`invalid scale transform; not a function`);
         scale.percent = !!percent;
         scale.transform = transform;
         if (key === "x" || key === "fx") {
@@ -385,10 +385,10 @@ export function scale(options = {}) {
   for (const key in options) {
     if (!registry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
-    if (scale !== undefined) throw new Error("ambiguous scale definition");
+    if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
     scale = exposeScale(normalizeScale(key, options[key]));
   }
-  if (scale === undefined) throw new Error("invalid scale definition");
+  if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;
 }
 

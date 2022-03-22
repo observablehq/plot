@@ -58,7 +58,7 @@ export function plot(options = {}) {
 
   // Initialize the marks’ channels, indexing them by mark and scale as needed.
   for (const mark of marks) {
-    if (stateByMark.has(mark)) throw new Error("duplicate mark");
+    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
     const markFacets = facets === undefined ? undefined
       : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
       : mark.facet === "include" ? facetsIndex
@@ -240,7 +240,7 @@ export class Mark {
       }
       if (name == null) throw new Error("missing channel name");
       const key = `${name}`;
-      if (key === "__proto__") throw new Error("illegal channel name");
+      if (key === "__proto__") throw new Error(`illegal channel name: ${key}`);
       if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
       names.add(key);
       return true;
@@ -292,7 +292,7 @@ class Render extends Mark {
   constructor(render) {
     super();
     if (render == null) return;
-    if (typeof render !== "function") throw new TypeError("invalid mark");
+    if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
     this.render = render;
   }
   render() {}

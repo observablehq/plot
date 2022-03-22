@@ -244,7 +244,7 @@ export function* groupIndex(I, position, {z}, channels) {
 export function maybeClip(clip) {
   if (clip === true) return "frame";
   if (clip == null || clip === false) return false;
-  throw new Error(`clip method not implemented: ${clip}`);
+  throw new Error(`invalid clip method: ${clip}`);
 }
 
 export function applyIndirectStyles(selection, mark, {width, height, marginLeft, marginRight, marginTop, marginBottom}) {
