@@ -64,8 +64,10 @@ export class AxisX {
       labelOffset,
       line,
       name,
+      ticks,
       tickRotate
     } = this;
+    if (!x.interpolate && x.domain().length > 8 * ticks) return; // avoid a huge ordinal domain
     const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
@@ -155,8 +157,10 @@ export class AxisY {
       labelOffset,
       line,
       name,
+      ticks,
       tickRotate
     } = this;
+    if (!y.interpolate && y.domain().length > 8 * ticks) return; // avoid a huge ordinal domain
     const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
