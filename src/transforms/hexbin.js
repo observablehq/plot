@@ -28,7 +28,6 @@ function hexbinn(outputs, {radius = 10, ...options}) {
       if (Y === undefined) throw new Error("missing channel: y");
       const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
       const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
-      console.warn({x, y});
       ({value: X} = X);
       ({value: Y} = Y);
       const binsof = Hexbin().x(i => x(X[i])).y(i => y(Y[i])).radius(radius * sqrt4_3);
