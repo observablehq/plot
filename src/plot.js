@@ -75,9 +75,9 @@ export function plot(options = {}) {
       : mark.facet === "include" ? facetsIndex
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
-    const {facets, channels} = mark.initialize(markFacets, facetChannels);
+    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
-    stateByMark.set(mark, {facets, channels});
+    stateByMark.set(mark, {data, facets, channels});
   }
 
   // Initalize the scales and axes.
@@ -94,7 +94,7 @@ export function plot(options = {}) {
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.reinitialize != null) {
-      const {facets, channels} = mark.reinitialize(state.facets, state.channels, scales);
+      const {facets, channels} = mark.reinitialize(state.data, state.facets, state.channels, scales);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
@@ -278,7 +278,7 @@ export class Mark {
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
     const channels = channelObject(this.channels, data);
     if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
-    return {facets, channels};
+    return {data, facets, channels};
   }
   filter(index, channels, values) {
     for (const name in channels) {

@@ -1,6 +1,5 @@
 import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
 import {sqrt4_3} from "../symbols.js";
-import {basic} from "./basic.js";
 import {hasOutput, maybeOutputs} from "./group.js";
 
 export function hexbin(outputs = {fill: "count"}, options = {}) {
@@ -19,11 +18,8 @@ function hexbinn(outputs, {radius = 10, ...options}) {
     symbol: "hexagon",
     ...!hasOutput(outputs, "r") && {r: radius},
     ...hasOutput(outputs, "fill") && {stroke: "none"},
-    ...basic(options, (data, facets) => {
-      for (const o of outputs) o.initialize(data);
-      return {data, facets};
-    }),
-    initialize(facets, {x: X, y: Y}, {x, y}) {
+    ...options,
+    initialize(data, facets, {x: X, y: Y}, {x, y}) {
       if (X === undefined) throw new Error("missing channel: x");
       if (Y === undefined) throw new Error("missing channel: y");
       ({value: X} = X);
@@ -33,6 +29,7 @@ function hexbinn(outputs, {radius = 10, ...options}) {
       const BX = [];
       const BY = [];
       let i = 0;
+      for (const o of outputs) o.initialize(data);
       for (const facet of facets) {
         const binFacet = [];
         for (const o of outputs) o.scope("facet", facet);
