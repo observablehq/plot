@@ -29,8 +29,8 @@ function hexbinn(outputs, {radius = 10, ...options}) {
     initialize(data, facets, {x: X, y: Y}, {x, y}) {
       if (X === undefined) throw new Error("missing channel: x");
       if (Y === undefined) throw new Error("missing channel: y");
-      ({value: X} = X);
-      ({value: Y} = Y);
+      X = X.value;
+      Y = Y.value;
       const binsof = Hexbin().x(i => x(X[i]) - ox).y(i => y(Y[i]) - oy).radius(radius * sqrt4_3);
       const binFacets = [];
       const BX = [];
