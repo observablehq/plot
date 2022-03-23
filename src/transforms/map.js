@@ -46,7 +46,7 @@ function maybeMap(map) {
     case "rank": return mapFunction(rank);
     case "quantile": return mapFunction(rankQuantile);
   }
-  throw new Error("invalid map");
+  throw new Error(`invalid map: ${map}`);
 }
 
 function rankQuantile(V) {
@@ -58,7 +58,7 @@ function mapFunction(f) {
   return {
     map(I, S, T) {
       const M = f(take(S, I));
-      if (M.length !== I.length) throw new Error("mismatched length");
+      if (M.length !== I.length) throw new Error("map function returned a mismatched length");
       for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
     }
   };

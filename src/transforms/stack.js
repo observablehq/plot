@@ -225,7 +225,7 @@ function maybeOrder(order, offset, ky) {
   }
   if (typeof order === "function") return orderFunction(order);
   if (Array.isArray(order)) return orderGiven(order);
-  throw new Error("invalid order");
+  throw new Error(`invalid order: ${order}`);
 }
 
 // by value

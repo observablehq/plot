@@ -20,7 +20,7 @@ export function window(options = {}) {
     anchor = maybeShift(shift);
     warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
   }
-  if (!((k = Math.floor(k)) > 0)) throw new Error("invalid k");
+  if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
   return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
 }
 
@@ -30,7 +30,7 @@ function maybeAnchor(anchor = "middle", k) {
     case "start": return 0;
     case "end": return k - 1;
   }
-  throw new Error("invalid anchor");
+  throw new Error(`invalid anchor: ${anchor}`);
 }
 
 function maybeShift(shift) {
@@ -39,7 +39,7 @@ function maybeShift(shift) {
     case "leading": return "start";
     case "trailing": return "end";
   }
-  throw new Error("invalid shift");
+  throw new Error(`invalid shift: ${shift}`);
 }
 
 function maybeReduce(reduce = "mean") {
@@ -60,7 +60,7 @@ function maybeReduce(reduce = "mean") {
       case "last": return reduceLast;
     }
   }
-  if (typeof reduce !== "function") throw new Error("invalid reduce");
+  if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
   return reduceSubarray(reduce);
 }
 

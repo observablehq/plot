@@ -16,7 +16,7 @@ export function maybeInterval(interval) {
       range: (lo, hi) => range(Math.ceil(lo / n), hi / n).map(x => n * x)
     };
   }
-  if (typeof interval.floor !== "function" || typeof interval.offset !== "function") throw new Error("invalid interval");
+  if (typeof interval.floor !== "function" || typeof interval.offset !== "function") throw new Error("invalid interval; missing floor or offset function");
   return interval;
 }
 
