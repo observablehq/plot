@@ -2,8 +2,10 @@ import {randomLcg} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {arrayify, isOptions, valueof} from "../options.js";
 
-// If both t1 and t2 are defined, returns a composite transform that first
-// applies t1 and then applies t2.
+// If transforms t1 and t2 are defined, returns a composite transform that first
+// applies t1 and then applies t2. If reinitializers i1 and i2 are defined, also returns
+// a composite reinitializer that applies i1 then i2. A simple transform can not be
+// applied after a reinitializer
 export function basic({
   filter: f1,
   sort: s1,
@@ -17,6 +19,7 @@ export function basic({
     if (s1 != null && !isOptions(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
+  if (t2 !== undefined && i2 === undefined && i1 !== undefined) throw new Error("A data transform can not be applied after a channel transform");
   return {
     ...options,
     ...isOptions(s1) && {sort: s1},
