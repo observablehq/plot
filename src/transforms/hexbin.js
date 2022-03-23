@@ -2,6 +2,13 @@ import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
 import {sqrt4_3} from "../symbols.js";
 import {hasOutput, maybeOutputs} from "./group.js";
 
+// We don’t want the hexagons to align with the edges of the plot frame, as that
+// would cause extreme x-values (the upper bound of the default x-scale domain)
+// to be rounded up into a floating bin to the right of the plot. Therefore,
+// rather than centering the origin hexagon around ⟨0,0⟩ in screen coordinates,
+// we offset slightly to ⟨0.5,0⟩. The hexgrid mark uses the same origin.
+export const ox = 0.5, oy = 0;
+
 export function hexbin(outputs = {fill: "count"}, options = {}) {
   const {radius, ...rest} = outputs;
   return hexbinn(rest, {radius, ...options});
@@ -24,7 +31,7 @@ function hexbinn(outputs, {radius = 10, ...options}) {
       if (Y === undefined) throw new Error("missing channel: y");
       ({value: X} = X);
       ({value: Y} = Y);
-      const binsof = Hexbin().x(i => x(X[i])).y(i => y(Y[i])).radius(radius * sqrt4_3);
+      const binsof = Hexbin().x(i => x(X[i]) - ox).y(i => y(Y[i]) - oy).radius(radius * sqrt4_3);
       const binFacets = [];
       const BX = [];
       const BY = [];
@@ -35,8 +42,8 @@ function hexbinn(outputs, {radius = 10, ...options}) {
         for (const o of outputs) o.scope("facet", facet);
         for (const bin of binsof(facet)) {
           binFacet.push(i++);
-          BX.push(bin.x);
-          BY.push(bin.y);
+          BX.push(bin.x + ox);
+          BY.push(bin.y + oy);
           for (const o of outputs) o.reduce(bin);
         }
         binFacets.push(binFacet);
