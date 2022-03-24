@@ -1,14 +1,25 @@
 # Observable Plot
 
-**Observable Plot** is a JavaScript library for exploratory data visualization.
+**Observable Plot** is a JavaScript library for exploratory data visualization. If you are new to Plot, we highly recommend first reading these notebooks to introduce Plot’s core concepts such as *marks* and *scales*:
 
-* [Introduction](https://observablehq.com/@observablehq/plot)
-* [Installing](#installing)
-* [API Reference](#plotplotoptions)
-* [Changelog](./CHANGELOG.md)
-* [Contributing](./CONTRIBUTING.md)
+* [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot)
+* [Marks](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot)
+* [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot)
+* [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot)
+* [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot)
+* [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot)
 
-For a quick overview, see the interactive [Plot Cheatsheets](https://observablehq.com/@observablehq/plot-cheatsheets) or [download the PDF](https://github.com/observablehq/plot-cheatsheets/raw/main/plot-cheatsheets.pdf).
+For a handy reference guide, see the interactive [Plot Cheatsheets](https://observablehq.com/@observablehq/plot-cheatsheets) or [download the PDF](https://github.com/observablehq/plot-cheatsheets/raw/main/plot-cheatsheets.pdf).
+
+This README is intended as a technical reference for Plot’s API.
+
+For more, please see:
+
+* [Changelog](./CHANGELOG.md) - release notes
+* [Contributing](./CONTRIBUTING.md) - if you’d like to help build Plot
+* [Discussions](https://github.com/observablehq/plot/discussions) - if you’d like help
+* [Forum](https://talk.observablehq.com/c/help/6) - another place to ask for help
+* [Issues] - to file a bug or request a new feature
 
 ## Installing
 
@@ -67,11 +78,18 @@ Plot.plot({
 })
 ```
 
-When drawing a single mark, you can call *mark*.**plot**(*options*) as shorthand.
+Given an existing *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot as [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for Plot.plot with a single mark:
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
+
+If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing options to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
+```
+
 ### Layout options
 
 These options determine the overall layout of the plot; all are specified as numbers in pixels:
@@ -507,6 +525,33 @@ Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-o
 * *scale*.**legend** - if truthy, generate a legend for the given scale
 
 If the *scale*.**legend** option is true, the default legend will be produced for the scale; otherwise, the meaning of the *legend* option depends on the scale. For quantitative color scales, it defaults to *ramp* but may be set to *swatches* for a discrete scale (most commonly for *threshold* color scales); for ordinal color scales and symbol scales, only the *swatches* value is supported.
+
+For example, this scatterplot includes a swatches legend for the ordinal color scale:
+
+```js
+Plot.plot({
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.dot(athletes, {x: "weight", y: "height", stroke: "sex"})
+  ]
+})
+```
+
+Whereas this scatterplot would render a ramp legend for its diverging color scale:
+
+```js
+Plot.plot({
+  color: {
+    type: "diverging",
+    legend: true
+  },
+  marks: [
+    Plot.dot(gistemp, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
+  ]
+})
+```
 
 #### *plot*.legend(*name*, *options*)
 
