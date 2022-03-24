@@ -18,6 +18,7 @@ export {Vector, vector, vectorX, vectorY} from "./marks/vector.js";
 export {valueof, channel} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
+export {dodgeX, dodgeY} from "./transforms/dodge.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
