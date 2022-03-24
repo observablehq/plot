@@ -242,7 +242,7 @@ function maybeThresholds(thresholds, interval) {
       case "sturges": return thresholdSturges;
       case "auto": return thresholdAuto;
     }
-    throw new Error("invalid thresholds");
+    throw new Error(`invalid thresholds: ${thresholds}`);
   }
   return thresholds; // pass array, count, or function to bin.thresholds
 }
@@ -250,7 +250,7 @@ function maybeThresholds(thresholds, interval) {
 // Unlike the interval transform, we require a range method, too.
 function maybeRangeInterval(interval) {
   interval = maybeInterval(interval);
-  if (!isInterval(interval)) throw new Error("invalid interval");
+  if (!isInterval(interval)) throw new Error(`invalid interval: ${interval}`);
   return interval;
 }
 

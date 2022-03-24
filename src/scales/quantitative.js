@@ -150,7 +150,7 @@ export function ScaleThreshold(key, channels, {
   range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse
 }) {
-  if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error("non-ascending domain");
+  if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error(`the ${key} scale has a non-ascending domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
   return {type: "threshold", scale: scaleThreshold(domain, range === undefined ? [] : range).unknown(unknown), domain, range};
 }

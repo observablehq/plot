@@ -223,7 +223,7 @@ export function maybeReduce(reduce, value) {
     case "y1": return reduceY1;
     case "y2": return reduceY2;
   }
-  throw new Error("invalid reduce");
+  throw new Error(`invalid reduce: ${reduce}`);
 }
 
 export function maybeSubgroup(outputs, Z, F, S) {

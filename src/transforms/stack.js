@@ -108,6 +108,7 @@ function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
 
 function maybeOffset(offset) {
   if (offset == null) return;
+  if (typeof offset === "function") return offset;
   switch (`${offset}`.toLowerCase()) {
     case "expand": case "normalize": return offsetExpand;
     case "center": case "silhouette": return offsetCenter;
@@ -224,7 +225,7 @@ function maybeOrder(order, offset, ky) {
   }
   if (typeof order === "function") return orderFunction(order);
   if (Array.isArray(order)) return orderGiven(order);
-  throw new Error("invalid order");
+  throw new Error(`invalid order: ${order}`);
 }
 
 // by value

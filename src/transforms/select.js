@@ -19,10 +19,10 @@ export function select(selector, options = {}) {
   // channel values as input. The selector object must have exactly one key.
   let key, value;
   for (key in selector) {
-    if (value !== undefined) throw new Error("ambiguous select definition");
+    if (value !== undefined) throw new Error("ambiguous selector; multiple inputs");
     value = maybeSelector(selector[key]);
   }
-  if (value === undefined) throw new Error("invalid select definition");
+  if (value === undefined) throw new Error(`invalid selector: ${selector}`);
   return selectChannel(key, value, options);
 }
 

@@ -28,7 +28,7 @@ export function normalize(basis) {
     case "sum": return normalizeSum;
     case "extent": return normalizeExtent;
   }
-  throw new Error("invalid basis");
+  throw new Error(`invalid basis: ${basis}`);
 }
 
 function normalizeBasis(basis) {
