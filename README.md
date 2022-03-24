@@ -81,7 +81,7 @@ Given an existing *mark*, such as the result of calling [Plot.barY](#plotbarydat
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
 
-If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing options to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
+If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing *options* to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
