@@ -696,7 +696,7 @@ Insets are specified in pixels. Corner radii are specified in either pixels or p
 
 #### *mark*.plot(*options*)
 
-Given a *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot to render a plot. This is [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for calling [Plot.plot](#plotplotoptions), where the *marks* option is this single mark.
+Given a *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot to render a plot. This is [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for calling [Plot.plot](#plotplotoptions) where the *marks* option specifies this single mark.
 
 ```js
 {
