@@ -1,7 +1,8 @@
 import {group} from "d3";
 import {sqrt3} from "../symbols.js";
-import {maybeChannel, maybeColorChannel, valueof} from "../options.js";
+import {identity, maybeChannel, maybeColorChannel, valueof} from "../options.js";
 import {hasOutput, maybeOutputs} from "./group.js";
+import {composeInitialize} from "./basic.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -34,14 +35,15 @@ function hexbinn(outputs, {binWidth = 20, fill, stroke, z, ...options}) {
     ...!hasOutput(outputs, "r") && {r: binWidth / 2},
     ...!setGF && {fill},
     ...((hasOutput(outputs, "fill") || setGF) && stroke === undefined) ? {stroke: "none"} : {stroke},
-    ...options,
-    initialize(data, facets, {x: X, y: Y}, {x, y}) {
+    ...composeInitialize(options, function(data, facets, {x: X, y: Y}, scales) {
       if (setGF) setGF(valueof(data, vfill));
       if (setGS) setGS(valueof(data, vstroke));
       if (setGZ) setGZ(valueof(data, z));
       for (const o of outputs) o.initialize(data);
       if (X === undefined) throw new Error("missing channel: x");
       if (Y === undefined) throw new Error("missing channel: y");
+      const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
+      const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
       X = X.value.map(x);
       Y = Y.value.map(y);
       const F = setGF && GF.transform();
@@ -73,8 +75,8 @@ function hexbinn(outputs, {binWidth = 20, fill, stroke, z, ...options}) {
         const R = channels.r.value;
         binFacets.forEach(index => index.sort((i, j) => R[j] - R[i]));
       }
-      return {facets: binFacets, channels};
-    }
+      return {data, facets: binFacets, channels};
+    })
   };
 }
 

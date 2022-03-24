@@ -9,6 +9,7 @@ export function basic({
   sort: s1,
   reverse: r1,
   transform: t1,
+  initialize: i1,
   ...options
 } = {}, t2) {
   if (t1 === undefined) { // explicit transform overrides filter, sort, and reverse
@@ -16,6 +17,7 @@ export function basic({
     if (s1 != null && !isOptions(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
+  if (t2 != null && i1 != null) throw new Error("Data transforms must appear before any channel transform");
   return {
     ...options,
     ...isOptions(s1) && {sort: s1},
@@ -29,6 +31,18 @@ function composeTransform(t1, t2) {
   return (data, facets) => {
     ({data, facets} = t1(data, facets));
     return t2(arrayify(data), facets);
+  };
+}
+
+export function composeInitialize({initialize: i1, ...options} = {}, i2) {
+  return i1 == null
+  ? {...options, initialize: i2}
+  : {
+    ...options,
+    initialize(data, facets, channels, scales, dimensions) {
+      ({data, facets, channels} = i1.call(this, data, facets, channels, scales, dimensions));
+      return i2.call(this, data, facets, channels, scales, dimensions);
+    }
   };
 }
 

@@ -84,7 +84,7 @@ function dodge(y, x, anchor, padding, options) {
         }
         for (const i of I) Y[i] = Y[i] * ky + ty;
       }
-      return {facets, channels: {
+      return {data, facets, channels: {
         [x]: {value: X},
         [y]: {value: Y},
         ...R && {r: {value: R}}
