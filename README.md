@@ -75,20 +75,6 @@ Plot.plot({
 })
 ```
 
-#### *mark*.plot(*options*)
-
-Given an existing *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot as [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for Plot.plot with a single mark:
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
-```
-
-If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing *options* to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
-
-```js
-Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
-```
-
 ### Layout options
 
 These options determine the overall layout of the plot; all are specified as numbers in pixels:
@@ -707,6 +693,20 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
+
+#### *mark*.plot(*options*)
+
+Given an existing *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot as [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for Plot.plot with a single mark:
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
+```
+
+If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing *options* to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
+
+```js
+Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
+```
 
 #### Plot.marks(...*marks*)
 
