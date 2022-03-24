@@ -4,7 +4,7 @@
 
 * [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot) - a quick tour, and Plot’s motivations
 * [Marks](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot) - drawing shapes with Plot
-* [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot) - defining visual encodings for abstract data
+* [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot) - visual encodings for abstract data
 * [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot) - deriving data
 * [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot) - small multiples
 * [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot) - documenting visual encodings
