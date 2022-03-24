@@ -2,12 +2,12 @@
 
 **Observable Plot** is a JavaScript library for exploratory data visualization. If you are new to Plot, we highly recommend first reading these notebooks to introduce Plot’s core concepts such as *marks* and *scales*:
 
-* [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot)
-* [Marks](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot)
-* [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot)
-* [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot)
-* [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot)
-* [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot)
+* [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot) - a quick tour, and Plot’s motivations
+* [Marks](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot) - drawing shapes with Plot
+* [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot) - defining visual encodings for abstract data
+* [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot) - deriving data
+* [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot) - small multiples
+* [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot) - documenting visual encodings
 
 This README is intended as a technical reference for Plot’s API. For more, please see:
 
