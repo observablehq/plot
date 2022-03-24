@@ -75,6 +75,8 @@ Plot.plot({
 })
 ```
 
+#### *mark*.plot(*options*)
+
 Given an existing *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot as [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for Plot.plot with a single mark:
 
 ```js
