@@ -2006,9 +2006,9 @@ When the hexbin transform has an *r* output, the bins are returned in decreasing
 
 See also the [hexgrid](#hexgrid) mark.
 
-### Custom scale-aware transsforms
+### Custom scale-aware transforms
 
-When its *options* have an *initialize* property, the initialize function is called after the data has been faceted and scaled; it receives as inputs the index of the elements to layout, the scales descriptors, the values (the scaled channels as a key: array object), the dimensions, and the mark as this. It must return the index, values, and the channels that need to be scaled in a second pass.
+When its *options* have an *initialize* property, the initialize function is called after the scales have been computed. It receives as inputs the (possibly transformed) data array, the index of elements of this array that belong to each facet, the input channels (as a key: array object), the scales, and the dimensions, with the mark as this. It must return the data, index, and the channels that need to be scaled in a second pass.
 
 ## Curves
 
