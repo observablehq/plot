@@ -9,17 +9,14 @@
 * [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot)
 * [Legends](https://observablehq.com/@observablehq/plot-legends?collection=@observablehq/plot)
 
-For a handy reference guide, see the interactive [Plot Cheatsheets](https://observablehq.com/@observablehq/plot-cheatsheets) or [download the PDF](https://github.com/observablehq/plot-cheatsheets/raw/main/plot-cheatsheets.pdf).
+This README is intended as a technical reference for Plot’s API. For more, please see:
 
-This README is intended as a technical reference for Plot’s API.
-
-For more, please see:
-
+* [Cheatsheets](https://observablehq.com/@observablehq/plot-cheatsheets) - a handy, interactive guide
 * [Changelog](./CHANGELOG.md) - release notes
 * [Contributing](./CONTRIBUTING.md) - if you’d like to help build Plot
 * [Discussions](https://github.com/observablehq/plot/discussions) - if you’d like help
 * [Forum](https://talk.observablehq.com/c/help/6) - another place to ask for help
-* [Issues] - to file a bug or request a new feature
+* [Issues](https://github.com/observablehq/plot/issues) - to file a bug or request a new feature
 
 ## Installing
 
