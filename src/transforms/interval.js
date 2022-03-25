@@ -28,19 +28,37 @@ function maybeIntervalValue(value, {interval}) {
   return value;
 }
 
-function maybeIntervalK(k, maybeInsetK, options) {
+function maybeIntervalK(k, maybeInsetK, options, trivial) {
   const {[k]: v, [`${k}1`]: v1, [`${k}2`]: v2} = options;
   const {value, interval} = maybeIntervalValue(v, options);
-  if (value == null || interval == null) return options;
+  if (value == null || (interval == null && !trivial)) return options;
+  const label = labelof(v);
+  if (interval == null) {
+    let V;
+    const kv = {transform: data => V || (V = valueof(data, value)), label};
+    return {
+      ...options,
+      [k]: undefined,
+      [`${k}1`]: v1 === undefined ? kv : v1,
+      [`${k}2`]: v2 === undefined ? kv : v2
+    };
+  }
   let V1;
   const tv1 = data => V1 || (V1 = valueof(data, value).map(v => interval.floor(v)));
-  const label = labelof(v);
   return maybeInsetK({
     ...options,
     [k]: undefined,
     [`${k}1`]: v1 === undefined ? {transform: tv1, label} : v1,
-    [`${k}2`]: v2 === undefined ? {transform: () => tv1().map(v => interval.offset(v)), label} : v2
+    [`${k}2`]: v2 === undefined ? {transform: data => tv1(data).map(v => interval.offset(v)), label} : v2
   });
+}
+
+export function maybeTrivialIntervalX(options = {}) {
+  return maybeIntervalK("x", maybeInsetX, options, true);
+}
+
+export function maybeTrivialIntervalY(options = {}) {
+  return maybeIntervalK("y", maybeInsetY, options, true);
 }
 
 export function maybeIntervalX(options = {}) {
