@@ -208,6 +208,50 @@ export function colorLegendQuantileImplicit() {
   }).legend("color");
 }
 
+// Quantize scales are implicitly converted to a threshold scale
+export function colorLegendQuantize() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      n: 7,
+      domain: d3.range(1, 120).map(i => i ** 2 / 100),
+      label: "quantize scale"
+    }
+  });
+}
+
+export function colorLegendQuantizeDescending() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: d3.range(1, 220).reverse().map(i => i ** 2 / 100),
+      label: "quantize descending"
+    }
+  });
+}
+
+export function colorLegendQuantizeDescendingReversed() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      reverse: true,
+      domain: d3.range(1, 11).reverse().map(i => i ** 2 / 10),
+      label: "quantize descending reversed"
+    }
+  });
+}
+
+export function colorLegendQuantizeReverse() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      reverse: true,
+      domain: d3.range(1, 120).map(i => i ** 2 / 100 - 50),
+      label: "quantize reversed"
+    }
+  });
+}
+
 export function colorLegendImplicitLabel() {
   return Plot.plot({
     color: {scheme: "viridis"},
