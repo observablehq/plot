@@ -213,15 +213,13 @@ Plot.plot({
 
 #### *plot*.scale(*scaleName*)
 
-Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot. The *scaleName* must be one of the known scale names: `"x"`, `"y"`, `"fx"`, `"fy"`, `"r"`, `"color"`, `"opacity"`, `"symbol"`, or `"length"`.
+Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot. The *scaleName* must be one of the known scale names: `"x"`, `"y"`, `"fx"`, `"fy"`, `"r"`, `"color"`, `"opacity"`, `"symbol"`, or `"length"`. If the associated *plot* has no scale with the given *scaleName*, returns undefined.
 
 ```js
 const plot = Plot.plot(…); // render a plot
 const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
-
-If the associated *plot* has no scale with the given *scaleName*, returns undefined.
 
 #### Plot.scale(*options*)
 
