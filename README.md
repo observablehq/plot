@@ -235,14 +235,14 @@ const color = Plot.scale({color: {type: "linear"}});
 
 Both [*plot*.scale](#plotscalescalename) and [Plot.scale](#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) values encountered in the plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
-To reuse a scale across plots, pass the scale object into another plot specification:
+To reuse a scale across plots, pass the corresponding scale object into another plot specification:
 
 ```js
 const plot1 = Plot.plot(…);
 const plot2 = Plot.plot({…, color: plot1.scale("color")});
 ```
 
-For convenience, the returned *scale* exposes a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, the *scale* object also exposes a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
+For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
 
 ### Position options
 
