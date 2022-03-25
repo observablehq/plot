@@ -41,10 +41,12 @@ In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
 
 import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.4";
 
-document.body.appendChild(Plot.plot(options));
+document.body.append(Plot.plot(options));
 
 </script>
 ```
+
+See also our [Plot + React example](https://github.com/observablehq/plot-create-react-app-example/blob/main/src/App.js).
 
 Plot is also available as a UMD bundle for legacy browsers.
 
