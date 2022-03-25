@@ -540,7 +540,7 @@ Plot.plot({
 
 #### *plot*.legend(*name*, *options*)
 
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a legend for the *plot*’s scale with the given *name*. For example:
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *name*. For example:
 
 ```js
 myplot = Plot.plot(…)
@@ -548,6 +548,14 @@ myplot = Plot.plot(…)
 ```js
 mylegend = myplot.legend("color")
 ```
+
+Or, with additional *options*:
+
+```js
+mylegend = myplot.legend("color", {width: 320})
+```
+
+The *name* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return null.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
@@ -585,12 +593,19 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
 
+The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](#layout-options).
+
 #### Plot.legend(*options*)
 
 Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
 
 ```js
-Plot.legend({color: {type: "linear"}})
+Plot.legend({
+  width: 320,
+  color: {
+    type: "linear"
+  }
+})
 ```
 
 ## Marks
