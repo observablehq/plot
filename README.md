@@ -305,13 +305,14 @@ The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*
 * *cyclical* - equivalent to *linear*, but defaults to the *rainbow* scheme
 * *threshold* - encodes based on the specified discrete thresholds
 * *quantile* - encodes based on the computed quantile thresholds
+* *quantize* - transforms a continuous domain into quantized thresholds; defaults to the *rdylbu* scheme
 * *diverging* - like *linear*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-log* - like *log*, but with a pivot that defaults to 1; defaults to the *rdbu* scheme
 * *diverging-pow* - like *pow*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-sqrt* - like *sqrt*, but with a pivot; defaults to the *rdbu* scheme
 * *diverging-symlog* - like *symlog*, but with a pivot; defaults to the *rdbu* scheme
 
-For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *quantiles* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors.
+For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *quantiles* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors. For a *quantize* scale, the domain will be transformed into approximately *n* quantized values, where *n* is an option that defaults to 5.
 
 By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
 
