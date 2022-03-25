@@ -211,7 +211,7 @@ Plot.plot({
 })
 ```
 
-#### *plot*.**scale**(*scaleName*)
+#### *plot*.scale(*scaleName*)
 
 Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot. The *scaleName* must be one of the known scale names: `"x"`, `"y"`, `"fx"`, `"fy"`, `"r"`, `"color"`, `"opacity"`, `"symbol"`, or `"length"`.
 
@@ -223,9 +223,9 @@ console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 
 If the associated *plot* has no scale with the given *scaleName*, returns undefined.
 
-#### Plot.**scale**(*options*)
+#### Plot.scale(*options*)
 
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale.
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
 const color = Plot.scale({color: {type: "linear"}});
@@ -544,7 +544,7 @@ Plot.plot({
 })
 ```
 
-#### *plot*.**legend**(*scaleName*, *options*)
+#### *plot*.legend(*scaleName*, *options*)
 
 Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
 
@@ -603,14 +603,10 @@ The **style** legend option allows custom styles to override Plot’s defaults; 
 
 #### Plot.legend(*options*)
 
-Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of the default linear color scale, with the default domain of [0, 1] and default scheme *turbo*:
+Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
-Plot.legend({
-  color: {
-    type: "linear"
-  }
-})
+Plot.legend({color: {type: "linear"}})
 ```
 
 The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
