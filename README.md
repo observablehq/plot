@@ -46,8 +46,6 @@ document.body.append(Plot.plot(options));
 </script>
 ```
 
-See also our [Plot + React example](https://github.com/observablehq/plot-create-react-app-example/blob/main/src/App.js).
-
 Plot is also available as a UMD bundle for legacy browsers.
 
 ```html
@@ -55,10 +53,12 @@ Plot is also available as a UMD bundle for legacy browsers.
 <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.4"></script>
 <script>
 
-document.body.appendChild(Plot.plot(options));
+document.body.append(Plot.plot(options));
 
 </script>
 ```
+
+See also our [Plot + React example](https://github.com/observablehq/plot-create-react-app-example/blob/main/src/App.js).
 
 ## Plot.plot(*options*)
 
