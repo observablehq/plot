@@ -734,6 +734,12 @@ More commonly this shorthand is written as a single expression:
 Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot()
 ```
 
+This is equivalent to:
+
+```js
+Plot.plot({marks: [Plot.barY(alphabet, {x: "letter", y: "frequency"})]})
+```
+
 If needed, you can pass additional *options* to *mark*.plot, which is equivalent to passing *options* to Plot.plot. (If the *marks* option is used, additional marks are concatenated with the shorthand *mark*.)
 
 ```js
