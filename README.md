@@ -555,7 +555,7 @@ Or, with additional *options*:
 mylegend = myplot.legend("color", {width: 320})
 ```
 
-The *name* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return null.
+The *name* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return undefined.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
