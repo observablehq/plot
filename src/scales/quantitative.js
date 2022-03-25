@@ -151,8 +151,10 @@ export function ScaleQuantize(key, channels, {
   range,
   reverse
 }) {
-  domain = extent(domain); // TODO preserve descending domains?
+  const descending = order(domain) < 0; // preserve descending domain
+  domain = extent(domain);
   const thresholds = ticks(...domain, n);
+  if (descending) thresholds.reverse();
   if (thresholds[0] <= domain[0]) thresholds.splice(0, 1); // drop exact lower bound
   if (thresholds[thresholds.length - 1] >= domain[1]) thresholds.pop(); // drop exact upper bound
   n = thresholds.length + 1;
@@ -168,9 +170,16 @@ export function ScaleThreshold(key, channels, {
   range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse
 }) {
+  const descending = domain[0] > domain[1];
+  if (descending) domain.reverse();
   if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error(`the ${key} scale has a non-ascending domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range === undefined ? [] : range).unknown(unknown), domain, range};
+  return {
+    type: "threshold",
+    scale: scaleThreshold(domain, range === undefined ? [] : range).unknown(unknown),
+    domain: descending ? domain.slice().reverse() : domain,
+    range
+  };
 }
 
 export function ScaleIdentity() {
