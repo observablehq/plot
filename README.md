@@ -223,7 +223,7 @@ console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 
 #### Plot.**scale**(*options*)
 
-You can also create a standalone scale with Plot.**scale**(*options*):
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale.
 
 ```js
 const color = Plot.scale({color: {type: "linear"}});
@@ -542,9 +542,9 @@ Plot.plot({
 })
 ```
 
-#### *plot*.legend(*scaleName*, *options*)
+#### *plot*.**legend**(*scaleName*, *options*)
 
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. For example:
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
 
 ```js
 myplot = Plot.plot(…)
@@ -559,7 +559,7 @@ Or, with additional *options*:
 mylegend = myplot.legend("color", {width: 320})
 ```
 
-The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return undefined.
+If there is no scale with the given *scaleName* on the given *plot*, then *plot*.legend will return undefined.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
