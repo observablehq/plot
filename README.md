@@ -213,13 +213,15 @@ Plot.plot({
 
 #### *plot*.**scale**(*scaleName*)
 
-Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot.
+Scale definitions can be exposed through the *plot*.**scale**(*scaleName*) function of a returned plot. The *scaleName* must be one of the known scale names: `"x"`, `"y"`, `"fx"`, `"fy"`, `"r"`, `"color"`, `"opacity"`, `"symbol"`, or `"length"`.
 
 ```js
 const plot = Plot.plot(…); // render a plot
 const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
+
+If the associated *plot* has no scale with the given *scaleName*, returns undefined.
 
 #### Plot.**scale**(*options*)
 
@@ -229,6 +231,10 @@ You can also create a standalone scale with Plot.**scale**(*options*). The *opti
 const color = Plot.scale({color: {type: "linear"}});
 ```
 
+#### Scale objects
+
+Both [*plot*.scale](#plotscalescalename) and [Plot.scale](#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) values encountered in the plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+
 To reuse a scale across plots, pass the scale object into another plot specification:
 
 ```js
@@ -236,11 +242,7 @@ const plot1 = Plot.plot(…);
 const plot2 = Plot.plot({…, color: plot1.scale("color")});
 ```
 
-The returned scale object represents the actual (or “materialized”) values encountered in the plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
-
 For convenience, the returned *scale* exposes a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, the *scale* object also exposes a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
-
-The scale object is undefined if the associated plot has no scale with the given *scaleName*, and throws an error if the *scaleName* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 
 ### Position options
 
