@@ -26,6 +26,7 @@ import {positive, negative, finite} from "../defined.js";
 import {constant, order} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
+import {ticks} from "d3";
 
 export const flip = i => t => i(1 - t);
 const unit = [0, 1];
@@ -52,7 +53,7 @@ export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
   zero,
-  domain = (registry.get(key) === radius || registry.get(key) === opacity || registry.get(key) === length ? inferZeroDomain : inferDomain)(channels),
+  domain = inferAutoDomain(key, channels),
   unknown,
   round,
   scheme,
@@ -123,6 +124,10 @@ export function ScaleLog(key, channels, {base = 10, domain = inferLogDomain(chan
   return ScaleQ(key, scaleLog().base(base), channels, {...options, domain});
 }
 
+export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
+  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+}
+
 export function ScaleQuantile(key, channels, {
   quantiles = 5,
   scheme = "rdylbu",
@@ -138,8 +143,21 @@ export function ScaleQuantile(key, channels, {
   });
 }
 
-export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
+export function ScaleQuantize(key, channels, {
+  n = 5, // TODO what if you want an exact number?
+  scheme = "rdylbu",
+  domain = inferAutoDomain(key, channels),
+  interpolate,
+  range,
+  reverse
+}) {
+  domain = extent(domain); // TODO preserve descending domains?
+  const thresholds = ticks(...domain, n);
+  if (thresholds[0] <= domain[0]) thresholds.splice(0, 1); // drop exact lower bound
+  if (thresholds[thresholds.length - 1] >= domain[1]) thresholds.pop(); // drop exact upper bound
+  n = thresholds.length + 1;
+  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
+  return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
 }
 
 export function ScaleThreshold(key, channels, {
@@ -164,6 +182,11 @@ export function inferDomain(channels, f = finite) {
     min(channels, ({value}) => value === undefined ? value : min(value, f)),
     max(channels, ({value}) => value === undefined ? value : max(value, f))
   ] : [0, 1];
+}
+
+function inferAutoDomain(key, channels) {
+  const type = registry.get(key);
+  return (type === radius || type === opacity || type === length ? inferZeroDomain : inferDomain)(channels);
 }
 
 function inferZeroDomain(channels) {
