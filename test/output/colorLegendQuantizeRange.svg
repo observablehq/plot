@@ -1,0 +1,37 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="48" height="10" fill="#eff3ff"></rect>
+    <rect x="48" y="18" width="48" height="10" fill="#bdd7e7"></rect>
+    <rect x="96" y="18" width="48" height="10" fill="#6baed6"></rect>
+    <rect x="144" y="18" width="48" height="10" fill="#3182bd"></rect>
+    <rect x="192" y="18" width="48" height="10" fill="#08519c"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(48.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">29.6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(96.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">58.2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(144.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">86.8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(192.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">115.4</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">quantize scale</text>
+  </g>
+</svg>

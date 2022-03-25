@@ -213,8 +213,8 @@ export function colorLegendQuantize() {
   return Plot.legend({
     color: {
       type: "quantize",
+      domain: [1, 144],
       n: 7,
-      domain: d3.range(1, 120).map(i => i ** 2 / 100),
       label: "quantize scale"
     }
   });
@@ -224,7 +224,7 @@ export function colorLegendQuantizeDescending() {
   return Plot.legend({
     color: {
       type: "quantize",
-      domain: d3.range(1, 220).reverse().map(i => i ** 2 / 100),
+      domain: [144, 1],
       label: "quantize descending"
     }
   });
@@ -234,9 +234,20 @@ export function colorLegendQuantizeDescendingReversed() {
   return Plot.legend({
     color: {
       type: "quantize",
+      domain: [10, 0.1],
       reverse: true,
-      domain: d3.range(1, 11).reverse().map(i => i ** 2 / 10),
       label: "quantize descending reversed"
+    }
+  });
+}
+
+export function colorLegendQuantizeRange() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [1, 144],
+      range: d3.schemeBlues[5],
+      label: "quantize scale"
     }
   });
 }
@@ -245,8 +256,8 @@ export function colorLegendQuantizeReverse() {
   return Plot.legend({
     color: {
       type: "quantize",
+      domain: [-49.99, 91.61],
       reverse: true,
-      domain: d3.range(1, 120).map(i => i ** 2 / 100 - 50),
       label: "quantize reversed"
     }
   });

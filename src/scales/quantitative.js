@@ -129,13 +129,15 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 }
 
 export function ScaleQuantile(key, channels, {
-  quantiles = 5,
+  quantiles,
   scheme = "rdylbu",
   domain = inferQuantileDomain(channels),
   interpolate,
-  range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined,
+  range,
   reverse
 }) {
+  if (quantiles === undefined) quantiles = range === undefined ? 5 : (range = [...range]).length;
+  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined;
   return ScaleThreshold(key, channels, {
     domain: scaleQuantile(domain, range === undefined ? {length: quantiles} : range).quantiles(),
     range,
@@ -144,19 +146,26 @@ export function ScaleQuantile(key, channels, {
 }
 
 export function ScaleQuantize(key, channels, {
-  n = 5, // TODO what if you want an exact number?
+  n,
   scheme = "rdylbu",
   domain = inferAutoDomain(key, channels),
   interpolate,
   range,
   reverse
 }) {
+  if (n === undefined) n = range === undefined ? 5 : (range = [...range]).length;
   const [min, max] = extent(domain);
-  const thresholds = ticks(min, max, n);
+  let thresholds;
+  if (range === undefined) {
+    thresholds = ticks(min, max, n); // approximate number of nice, round thresholds
+    if (thresholds[0] <= min) thresholds.splice(0, 1); // drop exact lower bound
+    if (thresholds[thresholds.length - 1] >= max) thresholds.pop(); // drop exact upper bound
+    n = thresholds.length + 1;
+  } else {
+    thresholds = quantize(interpolateNumber(min, max), n + 1).slice(1, -1); // exactly n - 1 thresholds to match range
+    if (min instanceof Date) thresholds = thresholds.map(x => new Date(x)); // preserve date types
+  }
   if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
-  if (thresholds[0] <= min) thresholds.splice(0, 1); // drop exact lower bound
-  if (thresholds[thresholds.length - 1] >= max) thresholds.pop(); // drop exact upper bound
-  n = thresholds.length + 1;
   if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
   return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
 }
