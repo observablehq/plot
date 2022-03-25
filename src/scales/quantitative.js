@@ -1,5 +1,5 @@
 import {
-  ascending,
+  descending,
   extent,
   interpolateHcl,
   interpolateHsl,
@@ -20,13 +20,13 @@ import {
   scaleQuantile,
   scaleSymlog,
   scaleThreshold,
-  scaleIdentity
+  scaleIdentity,
+  ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {constant, order} from "../options.js";
+import {arrayify, constant, order} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
-import {ticks} from "d3";
 
 export const flip = i => t => i(1 - t);
 const unit = [0, 1];
@@ -151,10 +151,11 @@ export function ScaleQuantize(key, channels, {
   range,
   reverse
 }) {
-  domain = extent(domain); // TODO preserve descending domains?
-  const thresholds = ticks(...domain, n);
-  if (thresholds[0] <= domain[0]) thresholds.splice(0, 1); // drop exact lower bound
-  if (thresholds[thresholds.length - 1] >= domain[1]) thresholds.pop(); // drop exact upper bound
+  const [min, max] = extent(domain);
+  const thresholds = ticks(min, max, n);
+  if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
+  if (thresholds[0] <= min) thresholds.splice(0, 1); // drop exact lower bound
+  if (thresholds[thresholds.length - 1] >= max) thresholds.pop(); // drop exact upper bound
   n = thresholds.length + 1;
   if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
   return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
@@ -168,9 +169,20 @@ export function ScaleThreshold(key, channels, {
   range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
   reverse
 }) {
-  if (!pairs(domain).every(([a, b]) => ascending(a, b) <= 0)) throw new Error(`the ${key} scale has a non-ascending domain`);
+  const sign = order(arrayify(domain)); // preserve descending domain
+  if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign))) throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
-  return {type: "threshold", scale: scaleThreshold(domain, range === undefined ? [] : range).unknown(unknown), domain, range};
+  return {
+    type: "threshold",
+    scale: scaleThreshold(sign < 0 ? reverseof(domain) : domain, range === undefined ? [] : range).unknown(unknown),
+    domain,
+    range
+  };
+}
+
+function isOrdered(a, b, sign) {
+  const s = descending(a, b);
+  return s === 0 || s === sign;
 }
 
 export function ScaleIdentity() {
