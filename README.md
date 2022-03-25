@@ -211,7 +211,7 @@ Plot.plot({
 })
 ```
 
-Scale definitions are exposed through the *plot*.**scale**(*name*) function of the returned plot.
+Scale definitions are exposed through the *plot*.**scale**(*scaleName*) function of the returned plot.
 
 ```js
 const plot = Plot.plot(…); // render a plot
@@ -236,7 +236,7 @@ The returned scale object represents the actual (or “materialized”) values e
 
 For convenience, an apply method is exposed, which returns the scale’s output for any given input. When applicable, an invert method is exposed, which returns the corresponding input from the scale’s domain for any given output. Point and band scales also expose their materialized bandwidth and step.
 
-The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
+The scale object is undefined if the associated plot has no scale with the given *scaleName*, and throws an error if the *scaleName* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*).
 
 ### Position options
 
@@ -538,9 +538,9 @@ Plot.plot({
 })
 ```
 
-#### *plot*.legend(*name*, *options*)
+#### *plot*.legend(*scaleName*, *options*)
 
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *name*. For example:
+Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. For example:
 
 ```js
 myplot = Plot.plot(…)
@@ -555,7 +555,7 @@ Or, with additional *options*:
 mylegend = myplot.legend("color", {width: 320})
 ```
 
-The *name* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return undefined.
+The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. If there is no corresponding scale on the given *plot*, then *plot*.legend will return undefined.
 
 Categorical and ordinal color legends are rendered as swatches, unless *options*.**legend** is set to *ramp*. The swatches can be configured with the following options:
 
@@ -597,7 +597,17 @@ The **style** legend option allows custom styles to override Plot’s defaults; 
 
 #### Plot.legend(*options*)
 
-Returns a standalone legend for the given *scale* definition, passing the *options* described in the previous section. For example:
+Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of the default linear color scale, with the default domain of [0, 1] and default scheme *turbo*:
+
+```js
+Plot.legend({
+  color: {
+    type: "linear"
+  }
+})
+```
+
+The *options* object may also include any additional legend options described in the previous section. For example, to make the above legend slightly wider:
 
 ```js
 Plot.legend({
