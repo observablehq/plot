@@ -840,6 +840,39 @@ it("plot(…).scale('color') can promote a reversed quantile scale to a threshol
   });
 });
 
+it("plot(…).scale('color') can promote a quantized scale to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantize"}});
+  scaleEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3000, 4000, 5000, 6000],
+    range: d3.schemeRdYlBu[5],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a quantized scale to a threshold scale with n thresholds", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantize", n: 10, scheme: "blues"}});
+  scaleEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3000, 3500, 4000, 4500, 5000, 5500, 6000],
+    range: d3.schemeBlues[8],
+    label: "body_mass_g"
+  });
+});
+
+it("plot(…).scale('color') can promote a reversed quantized scale to a threshold scale", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantize", reverse: true}});
+  scaleEqual(plot.scale("color"), {
+    type: "threshold",
+    domain: [3000, 4000, 5000, 6000],
+    range: d3.reverse(d3.schemeRdYlBu[5]),
+    label: "body_mass_g"
+  });
+});
+
 it("plot(…).scale('color') promotes a cyclical scale to a linear scale", () => {
   const plot = Plot.dot([1, 2, 3, 4, 5], {y: d => d, fill: d => d}).plot({color: {type: "cyclical"}});
   scaleEqual(plot.scale("color"), {
