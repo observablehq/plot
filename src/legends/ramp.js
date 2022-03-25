@@ -93,8 +93,7 @@ export function legendRamp(color, {
 
   // Threshold
   else if (type === "threshold") {
-    const thresholds = domain.slice();
-    if (color.descending) thresholds.reverse();
+    const thresholds = domain;
 
     const thresholdFormat
         = tickFormat === undefined ? d => d
