@@ -1,6 +1,7 @@
 import {max} from "d3";
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
+import {composeInitialize} from "./basic.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -38,60 +39,57 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function dodge(y, x, anchor, padding, options) {
-  return {
-    initialize(data, facets, {[x]: X, r: R}, {[x]: xscale, r: rscale}, dimensions) {
-      if (!X) throw new Error(`missing channel ${x}`);
-      X = X.value.map(xscale);
-      const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? +options.r : 3;
-      if (R) R = R.value.map(rscale);
-      if (X == null) throw new Error(`missing channel: ${x}`);
-      let [ky, ty] = anchor(dimensions);
-      const compare = ky ? compareAscending : compareSymmetric;
-      if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
-      const Y = new Float64Array(X.length);
-      const radius = R ? i => R[i] : () => r;
-      for (let I of facets) {
-        const tree = IntervalTree();
-        I = I.filter(R
-          ? i => finite(X[i]) && positive(R[i])
-          : i => finite(X[i]));
-        for (const i of I) {
-          const intervals = [];
-          const l = X[i] - radius(i);
-          const h = X[i] + radius(i);
+  return composeInitialize(options, function(data, facets, {[x]: X, r: R}, {[x]: xscale, r: rscale}, dimensions) {
+    if (!X) throw new Error(`missing channel ${x}`);
+    X = X.value.map(xscale);
+    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? +options.r : 3;
+    if (R) R = R.value.map(rscale);
+    if (X == null) throw new Error(`missing channel: ${x}`);
+    let [ky, ty] = anchor(dimensions);
+    const compare = ky ? compareAscending : compareSymmetric;
+    if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
+    const Y = new Float64Array(X.length);
+    const radius = R ? i => R[i] : () => r;
+    for (let I of facets) {
+      const tree = IntervalTree();
+      I = I.filter(R
+        ? i => finite(X[i]) && positive(R[i])
+        : i => finite(X[i]));
+      for (const i of I) {
+        const intervals = [];
+        const l = X[i] - radius(i);
+        const h = X[i] + radius(i);
 
-          // For any previously placed circles that may overlap this circle, compute
-          // the y-positions that place this circle tangent to these other circles.
-          // https://observablehq.com/@mbostock/circle-offset-along-line
-          tree.queryInterval(l - padding, h + padding, ([,, j]) => {
-            const yj = Y[j];
-            const dx = X[i] - X[j];
-            const dr = padding + (R ? R[i] + R[j] : 2 * r);
-            const dy = Math.sqrt(dr * dr - dx * dx);
-            intervals.push([yj - dy, yj + dy]);
-          });
-  
-          // Find the best y-value where this circle can fit.
-          for (let y of intervals.flat().sort(compare)) {
-            if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
-              Y[i] = y;
-              break;
-            }
+        // For any previously placed circles that may overlap this circle, compute
+        // the y-positions that place this circle tangent to these other circles.
+        // https://observablehq.com/@mbostock/circle-offset-along-line
+        tree.queryInterval(l - padding, h + padding, ([,, j]) => {
+          const yj = Y[j];
+          const dx = X[i] - X[j];
+          const dr = padding + (R ? R[i] + R[j] : 2 * r);
+          const dy = Math.sqrt(dr * dr - dx * dx);
+          intervals.push([yj - dy, yj + dy]);
+        });
+
+        // Find the best y-value where this circle can fit.
+        for (let y of intervals.flat().sort(compare)) {
+          if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
+            Y[i] = y;
+            break;
           }
-  
-          // Insert the placed circle into the interval tree.
-          tree.insert([l, h, i]);
         }
-        for (const i of I) Y[i] = Y[i] * ky + ty;
+
+        // Insert the placed circle into the interval tree.
+        tree.insert([l, h, i]);
       }
-      return {data, facets, channels: {
-        [x]: {value: X},
-        [y]: {value: Y},
-        ...R && {r: {value: R}}
-      }};
-    },
-    ...options
-  };
+      for (const i of I) Y[i] = Y[i] * ky + ty;
+    }
+    return {data, facets, channels: {
+      [x]: {value: X},
+      [y]: {value: Y},
+      ...R && {r: {value: R}}
+    }};
+  });
 }
 
 function compareSymmetric(a, b) {
