@@ -40,7 +40,9 @@ export function composeInitialize({initialize: i1, ...options} = {}, i2) {
   : {
     ...options,
     initialize(data, facets, channels, scales, dimensions) {
-      ({data, facets, channels} = i1.call(this, data, facets, channels, scales, dimensions));
+      let newChannels;
+      ({data, facets, channels: newChannels} = i1.call(this, data, facets, channels, scales, dimensions));
+      Object.assign(channels, newChannels);
       return i2.call(this, data, facets, channels, scales, dimensions);
     }
   };
