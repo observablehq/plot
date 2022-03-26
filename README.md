@@ -722,6 +722,8 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
+For marks that support the <a name="frameanchor">**frameAnchor**</a> option, it may be specified as one of the four sides (*top*, *right*, *bottom*, *left*), one of the four corners (*top-left*, *top-right*, *bottom-right*, *bottom-left*), or the *middle* of the frame.
+
 #### *mark*.plot(*options*)
 
 Given a *mark*, such as the result of calling [Plot.barY](#plotbarydata-options), you can call *mark*.plot to render a plot. This is [shorthand](https://observablehq.com/@observablehq/plot-shorthand?collection=@observablehq/plot) for calling [Plot.plot](#plotplotoptions) where the *marks* option specifies this single mark.
@@ -1001,7 +1003,7 @@ The following dot-specific constant options are also supported:
 * **r** - the effective radius (length); a number in pixels
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 * **symbol** - the categorical symbol; defaults to circle
-* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 
 The **r** option can be specified as either a channel or constant. When the radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. The radius defaults to 4.5 pixels when using the **symbol** channel, and otherwise 3 pixels. Dots with a nonpositive radius are not drawn.
 
@@ -1054,7 +1056,7 @@ The **width** and **height** options default to 16 pixels and can be specified a
 
 The following image-specific constant options are also supported:
 
-* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **preserveAspectRatio** - the [aspect ratio](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/preserveAspectRatio); defaults to “xMidYMid meet”
 * **crossOrigin** - the [cross-origin](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin) behavior
 
@@ -1282,7 +1284,7 @@ The following text-specific constant options are also supported:
 * **fontStyle** - the [font style](https://developer.mozilla.org/en-US/docs/Web/CSS/font-style); defaults to normal
 * **fontVariant** - the [font variant](https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant); defaults to normal
 * **fontWeight** - the [font weight](https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight); defaults to normal
-* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 * **rotate** - the rotation angle in degrees clockwise; defaults to 0
 
 If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
@@ -1363,7 +1365,7 @@ If either of the **x** or **y** channels are not specified, the corresponding po
 The following options are also supported:
 
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
-* **frameAnchor** - the frame anchor; top-left, top, top-right, right, bottom-right, bottom, bottom-left, left, or middle (default)
+* **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 
 If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
 
