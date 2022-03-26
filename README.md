@@ -66,12 +66,12 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 ### Mark options
 
-The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z*-order, last on top. For example, here a single rule at *y* = 0 is drawn on top of bars for the [*alphabet* dataset](./test/data/alphabet.csv).
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z*-order, last on top. For example, here a single rule at *y* = 0 is drawn on top of blue bars for the [*alphabet* dataset](./test/data/alphabet.csv).
 
 ```js
 Plot.plot({
   marks: [
-    Plot.barY(alphabet, {x: "letter", y: "frequency"}),
+    Plot.barY(alphabet, {x: "letter", y: "frequency", fill: "steelblue"}),
     Plot.ruleY([0])
   ]
 })
