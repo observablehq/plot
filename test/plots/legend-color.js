@@ -185,7 +185,7 @@ export function colorLegendQuantile() {
       type: "quantile",
       scheme: "inferno",
       domain: d3.range(100).map(i => i ** 2),
-      quantiles: 7,
+      n: 7,
       label: "Inferno"
     },
     tickFormat: ",d"
@@ -198,7 +198,7 @@ export function colorLegendQuantileImplicit() {
     color: {
       type: "quantile",
       scheme: "inferno",
-      quantiles: 7,
+      n: 7,
       label: "Inferno",
       tickFormat: ",d"
     },

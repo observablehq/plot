@@ -129,31 +129,30 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
 }
 
 export function ScaleQuantile(key, channels, {
-  quantiles,
+  range,
+  quantiles = range === undefined ? 5 : (range = [...range]).length, // deprecated; use n instead
+  n = quantiles,
   scheme = "rdylbu",
   domain = inferQuantileDomain(channels),
   interpolate,
-  range,
   reverse
 }) {
-  if (quantiles === undefined) quantiles = range === undefined ? 5 : (range = [...range]).length;
-  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, quantiles) : registry.get(key) === color ? ordinalRange(scheme, quantiles) : undefined;
+  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
   return ScaleThreshold(key, channels, {
-    domain: scaleQuantile(domain, range === undefined ? {length: quantiles} : range).quantiles(),
+    domain: scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles(),
     range,
     reverse
   });
 }
 
 export function ScaleQuantize(key, channels, {
-  n,
+  range,
+  n = range === undefined ? 5 : (range = [...range]).length,
   scheme = "rdylbu",
   domain = inferAutoDomain(key, channels),
   interpolate,
-  range,
   reverse
 }) {
-  if (n === undefined) n = range === undefined ? 5 : (range = [...range]).length;
   const [min, max] = extent(domain);
   let thresholds;
   if (range === undefined) {
@@ -161,12 +160,12 @@ export function ScaleQuantize(key, channels, {
     if (thresholds[0] <= min) thresholds.splice(0, 1); // drop exact lower bound
     if (thresholds[thresholds.length - 1] >= max) thresholds.pop(); // drop exact upper bound
     n = thresholds.length + 1;
+    range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
   } else {
     thresholds = quantize(interpolateNumber(min, max), n + 1).slice(1, -1); // exactly n - 1 thresholds to match range
     if (min instanceof Date) thresholds = thresholds.map(x => new Date(x)); // preserve date types
   }
   if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
-  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
   return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
 }
 

@@ -808,7 +808,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit conti
 
 it("plot(…).scale('color') can promote a quantile scale with an explicit number of quantiles to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", quantiles: 10}});
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", n: 10}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3300, 3475, 3650, 3800, 4050, 4300, 4650, 4950, 5400],
