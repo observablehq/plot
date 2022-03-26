@@ -1,7 +1,7 @@
 import {parse as isoParse} from "isoformat";
 import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
-import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
+import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleQuantize, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
@@ -196,6 +196,7 @@ function Scale(key, channels = [], options = {}) {
     case "sqrt": return ScaleSqrt(key, channels, options);
     case "threshold": return ScaleThreshold(key, channels, options);
     case "quantile": return ScaleQuantile(key, channels, options);
+    case "quantize": return ScaleQuantize(key, channels, options);
     case "pow": return ScalePow(key, channels, options);
     case "log": return ScaleLog(key, channels, options);
     case "symlog": return ScaleSymlog(key, channels, options);

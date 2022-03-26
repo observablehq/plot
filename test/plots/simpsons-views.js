@@ -13,6 +13,10 @@ export default async function() {
     y: {
       label: "↑ Viewers (U.S., millions)"
     },
+    color: {
+      type: "quantize",
+      legend: true
+    },
     marks: [
       Plot.ruleY([0]),
       Plot.dot(data, {

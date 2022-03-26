@@ -185,7 +185,7 @@ export function colorLegendQuantile() {
       type: "quantile",
       scheme: "inferno",
       domain: d3.range(100).map(i => i ** 2),
-      quantiles: 7,
+      n: 7,
       label: "Inferno"
     },
     tickFormat: ",d"
@@ -198,7 +198,7 @@ export function colorLegendQuantileImplicit() {
     color: {
       type: "quantile",
       scheme: "inferno",
-      quantiles: 7,
+      n: 7,
       label: "Inferno",
       tickFormat: ",d"
     },
@@ -206,6 +206,61 @@ export function colorLegendQuantileImplicit() {
       Plot.dot(d3.range(100), {fill: i => i ** 2})
     ]
   }).legend("color");
+}
+
+// Quantize scales are implicitly converted to a threshold scale
+export function colorLegendQuantize() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [1, 144],
+      n: 7,
+      label: "quantize scale"
+    }
+  });
+}
+
+export function colorLegendQuantizeDescending() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [144, 1],
+      label: "quantize descending"
+    }
+  });
+}
+
+export function colorLegendQuantizeDescendingReversed() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [10, 0.1],
+      reverse: true,
+      label: "quantize descending reversed"
+    }
+  });
+}
+
+export function colorLegendQuantizeRange() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [1, 144],
+      range: d3.schemeBlues[5],
+      label: "quantize scale"
+    }
+  });
+}
+
+export function colorLegendQuantizeReverse() {
+  return Plot.legend({
+    color: {
+      type: "quantize",
+      domain: [-49.99, 91.61],
+      reverse: true,
+      label: "quantize reversed"
+    }
+  });
 }
 
 export function colorLegendImplicitLabel() {

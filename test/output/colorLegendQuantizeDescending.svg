@@ -1,0 +1,49 @@
+<svg class="plot" font-family="system-ui, sans-serif" font-size="10" width="240" height="50" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+      overflow: visible;
+    }
+
+    .plot text {
+      white-space: pre;
+    }
+  </style>
+  <g>
+    <rect x="0" y="18" width="30" height="10" fill="#d73027"></rect>
+    <rect x="30" y="18" width="30" height="10" fill="#f46d43"></rect>
+    <rect x="60" y="18" width="30" height="10" fill="#fdae61"></rect>
+    <rect x="90" y="18" width="30" height="10" fill="#fee090"></rect>
+    <rect x="120" y="18" width="30" height="10" fill="#e0f3f8"></rect>
+    <rect x="150" y="18" width="30" height="10" fill="#abd9e9"></rect>
+    <rect x="180" y="18" width="30" height="10" fill="#74add1"></rect>
+    <rect x="210" y="18" width="30" height="10" fill="#4575b4"></rect>
+  </g>
+  <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(30.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(60.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(120.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(150.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(180.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(210.5,0)">
+      <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">quantize descending</text>
+  </g>
+</svg>
