@@ -4,7 +4,7 @@ import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
-import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
+import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
 const defaults = {
@@ -68,13 +68,13 @@ export class Rect extends Mark {
 }
 
 export function rect(data, options) {
-  return new Rect(data, maybeIntervalX(maybeIntervalY(options)));
+  return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
 export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
-  return new Rect(data, maybeStackX(maybeIntervalY(maybeIdentityX(options))));
+  return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
 }
 
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
-  return new Rect(data, maybeStackY(maybeIntervalX(maybeIdentityY(options))));
+  return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));
 }
