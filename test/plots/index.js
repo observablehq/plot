@@ -80,6 +80,7 @@ export {default as letterFrequencyLollipop} from "./letter-frequency-lollipop.js
 export {default as letterFrequencyWheel} from "./letter-frequency-wheel.js";
 export {default as likertSurvey} from "./likert-survey.js";
 export {default as logDegenerate} from "./log-degenerate.js";
+export {default as markovChain} from "./markov-chain.js";
 export {default as metroInequality} from "./metro-inequality.js";
 export {default as metroInequalityChange} from "./metro-inequality-change.js";
 export {default as metroUnemployment} from "./metro-unemployment.js";

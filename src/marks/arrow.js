@@ -76,8 +76,9 @@ export class Arrow extends Mark {
               // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the
               // ending line angle may be altered for inset swoopy arrows.
               let x1 = X1[i], y1 = Y1[i], x2 = X2[i], y2 = Y2[i];
-              let lineAngle = Math.atan2(y2 - y1, x2 - x1);
               const lineLength = Math.hypot(x2 - x1, y2 - y1);
+              if (lineLength <= insetStart + insetEnd) return null;
+              let lineAngle = Math.atan2(y2 - y1, x2 - x1);
 
               // We don’t allow the wing length to be too large relative to the
               // length of the arrow. (Plot.vector allows arbitrarily large
@@ -156,7 +157,7 @@ function pointPointCenter([ax, ay], [bx, by], r, sign) {
 function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   const dx = bx - ax, dy = by - ay, d = Math.hypot(dx, dy);
   const x = (dx * dx + dy * dy - br * br + ar * ar) / (2 * d);
-  const y = sign * Math.sign(ay) * Math.sqrt(ar * ar - x * x);
+  const y = sign * Math.sqrt(ar * ar - x * x);
   return [ax + (dx * x + dy * y) / d, ay + (dy * x - dx * y) / d];
 }
 
