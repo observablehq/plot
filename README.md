@@ -3,7 +3,7 @@
 **Observable Plot** is a JavaScript library for exploratory data visualization. If you are new to Plot, we highly recommend first reading these notebooks to introduce Plot’s core concepts such as *marks* and *scales*:
 
 * [Introduction](https://observablehq.com/@observablehq/plot?collection=@observablehq/plot) - a quick tour, and Plot’s motivations
-* [Marks](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot) - drawing shapes with Plot
+* [Marks and Channels](https://observablehq.com/@observablehq/plot-marks?collection=@observablehq/plot) - drawing data-driven shapes with Plot
 * [Scales](https://observablehq.com/@observablehq/plot-scales?collection=@observablehq/plot) - visual encodings for abstract data
 * [Transforms](https://observablehq.com/@observablehq/plot-transforms?collection=@observablehq/plot) - deriving data
 * [Facets](https://observablehq.com/@observablehq/plot-facets?collection=@observablehq/plot) - small multiples
