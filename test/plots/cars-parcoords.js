@@ -23,7 +23,7 @@ export default async function() {
   const xy = Plot.normalizeX("extent", {x: "value", y: "dimension", z: "dimension"});
 
   return Plot.plot({
-    marginLeft: 100,
+    marginLeft: 104,
     marginRight: 20,
     x: {
       axis: null
