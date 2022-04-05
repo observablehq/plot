@@ -208,6 +208,8 @@ Quantitative scales can be further customized with additional options:
 
 Clamping is typically used in conjunction with setting an explicit domain since if the domain is inferred, no values will be outside the domain. Clamping is useful for focusing on a subset of the data while ensuring that extreme values remain visible, but use caution: clamped values may need an annotation to avoid misinterpretation. Top-level **clamp**, **nice**, and **zero** options are supported as shorthand for setting the respective option on all scales.
 
+The top-level **daspect** option, if specified, computes a default height such that a variation of 1 unit in the *x* dimension roughly corresponds to the same number of pixels as a variation of *daspect* unit in the *y* dimension. Note: for an exact data aspect ratio, set *fx* and *fy*’s round option to false.
+
 The *scale*.**transform** option allows you to apply a function to all values before they are passed through the scale. This is convenient for transforming a scale’s data, say to convert to thousands or between temperature units.
 
 ```js
