@@ -6,6 +6,7 @@ export default async function() {
   return Plot.plot({
     height: 640,
     grid: true,
+    marginLeft: 44,
     x: {
       label: "Carats →"
     },
