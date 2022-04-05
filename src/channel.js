@@ -25,6 +25,7 @@ export function channelSort(channels, facetChannels, data, options) {
     const X = channels.find(([, {scale}]) => scale === x) || facetChannels && facetChannels.find(([, {scale}]) => scale === x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
     const XV = X[1].value;
+    // const XV = x === "fy" || x === "fx" ? [...new Set(X[1].value)] : X[1].value;
     const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
     if (y == null) {
       X[1].domain = () => {
