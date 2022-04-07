@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, channel, maybeChannel, maybeZ, mid, range, valueof, maybeZero} from "../options.js";
+import {field, channel, maybeChannel, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
@@ -65,7 +65,7 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
-function stack(x, y = () => 1, ky, {offset, order, reverse}, options) {
+function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeChannel(x);
   const [Y1, setY1] = channel(y);

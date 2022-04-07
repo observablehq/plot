@@ -1,12 +1,13 @@
 import {stratify, tree as Tree} from "d3";
-import {channel, isObject, range, valueof} from "../options.js";
+import {channel, isObject, one, range, valueof} from "../options.js";
 
 export function treeNode({
   path, // the delimited path
   delimiter, // how the path is separated
   frameAnchor = "left", // TODO different orientations
-  tree = Tree, // TODO tree sort, tree separation
+  tree = Tree,
   treeSort,
+  treeSeparation,
   ...options
 } = {}) {
   const normalize = normalizer(delimiter);
@@ -21,8 +22,10 @@ export function treeNode({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
+      const layout = tree().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
-      tree().nodeSize([1, 1])(root);
+      if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
+      layout(root);
       const X = setX([]);
       const Y = setY([]);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
@@ -43,8 +46,9 @@ export function treeLink({
   path, // the delimited path
   delimiter, // how the path is separated
   curve = "bump-x", // TODO depends on orientation
-  tree = Tree, // TODO tree sort, tree separation
+  tree = Tree,
   treeSort,
+  treeSeparation,
   ...options
 } = {}) {
   const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.4} = options;
@@ -67,8 +71,10 @@ export function treeLink({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
+      const layout = tree().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
-      tree().nodeSize([1, 1])(root);
+      if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
+      layout(root);
       const X1 = setX1([]);
       const X2 = setX2([]);
       const Y1 = setY1([]);
