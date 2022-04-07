@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined, firstof} from "../defined.js";
-import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeChannel, channel, first, identity, take, labelof, range, second, percentile} from "../options.js";
+import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -51,8 +51,8 @@ function groupn(
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
   // Produce x and y output channels as appropriate.
-  const [GX, setGX] = maybeChannel(x);
-  const [GY, setGY] = maybeChannel(y);
+  const [GX, setGX] = maybeColumn(x);
+  const [GY, setGY] = maybeColumn(y);
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
@@ -65,11 +65,11 @@ function groupn(
     y1, y2, // consumed if y is an output
     ...options
   } = inputs;
-  const [GZ, setGZ] = maybeChannel(z);
+  const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeChannel(vfill);
-  const [GS = stroke, setGS] = maybeChannel(vstroke);
+  const [GF = fill, setGF] = maybeColumn(vfill);
+  const [GS = stroke, setGS] = maybeColumn(vstroke);
 
   return {
     ..."z" in inputs && {z: GZ || z},
@@ -148,7 +148,7 @@ export function maybeOutputs(outputs, inputs) {
 
 export function maybeOutput(name, reduce, inputs) {
   const evaluator = maybeEvaluator(name, reduce, inputs);
-  const [output, setOutput] = channel(evaluator.label);
+  const [output, setOutput] = column(evaluator.label);
   let O;
   return {
     name,

@@ -1,6 +1,6 @@
 import {stratify, tree} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {channel, identity, isObject, one, valueof} from "../options.js";
+import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function treeNode({
@@ -18,8 +18,8 @@ export function treeNode({
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeNodeValue);
-  const [X, setX] = channel();
-  const [Y, setY] = channel();
+  const [X, setX] = column();
+  const [Y, setY] = column();
   return {
     x: X,
     y: Y,
@@ -73,10 +73,10 @@ export function treeLink({
   options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
-  const [X1, setX1] = channel();
-  const [X2, setX2] = channel();
-  const [Y1, setY1] = channel();
-  const [Y2, setY2] = channel();
+  const [X1, setX1] = column();
+  const [X2, setX2] = column();
+  const [Y1, setY1] = column();
+  const [Y2, setY2] = column();
   return {
     x1: X1,
     x2: X2,
@@ -256,7 +256,7 @@ function slash(path, i) {
 }
 
 // These indexes match the array returned by nodeOutputs. The first two elements
-// are always the name of the output and its channel value definition so that
+// are always the name of the output and its column value definition so that
 // the outputs can be passed directly to Object.fromEntries.
 const output_setValues = 2;
 const output_evaluate = 3;
@@ -268,7 +268,7 @@ function treeOutputs(options, maybeTreeValue) {
     const value = options[name];
     const treeValue = maybeTreeValue(value);
     if (treeValue !== undefined) {
-      outputs.push([name, ...channel(value), treeValue]);
+      outputs.push([name, ...column(value), treeValue]);
     }
   }
   return outputs;
