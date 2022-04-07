@@ -6,6 +6,7 @@ export function treeNode({
   delimiter, // how the path is separated
   frameAnchor = "left", // TODO different orientations
   tree = Tree, // TODO tree sort, tree separation
+  treeSort,
   ...options
 } = {}) {
   const normalize = normalizer(delimiter);
@@ -20,6 +21,7 @@ export function treeNode({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
+      if (treeSort != null) root.sort(treeSort);
       tree().nodeSize([1, 1])(root);
       const X = setX([]);
       const Y = setY([]);
@@ -28,7 +30,7 @@ export function treeNode({
         const i = node.data;
         if (i === undefined) continue; // imputed node
         X[i] = node.y;
-        Y[i] = node.x;
+        Y[i] = -node.x;
         for (const o of outputs) o[output_values][i] = o[output_evaluate](node);
       }
       return {data, facets};
@@ -42,6 +44,7 @@ export function treeLink({
   delimiter, // how the path is separated
   curve = "bump-x", // TODO depends on orientation
   tree = Tree, // TODO tree sort, tree separation
+  treeSort,
   ...options
 } = {}) {
   const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.4} = options;
@@ -64,6 +67,7 @@ export function treeLink({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
+      if (treeSort != null) root.sort(treeSort);
       tree().nodeSize([1, 1])(root);
       const X1 = setX1([]);
       const X2 = setX2([]);
@@ -75,8 +79,8 @@ export function treeLink({
         if (i === undefined) continue; // imputed node
         X1[i] = source.y;
         X2[i] = target.y;
-        Y1[i] = source.x;
-        Y2[i] = target.x;
+        Y1[i] = -source.x;
+        Y2[i] = -target.x;
         for (const o of outputs) o[output_values][i] = o[output_evaluate](target, source);
       }
       if (root.data !== undefined) for (const o of outputs) o[output_values][root.data] = o[output_evaluate](root, null);
