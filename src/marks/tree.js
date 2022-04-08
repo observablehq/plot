@@ -1,3 +1,4 @@
+import {cluster as Cluster} from "d3";
 import {marks} from "../plot.js";
 import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
 import {dot} from "./dot.js";
@@ -20,4 +21,8 @@ export function tree(data, {
     dot(data, treeNode({fill: dotFill, ...options})),
     text(data, treeNode({text: textText, fill: textFill, stroke: textStroke, dx, ...options}))
   );
+}
+
+export function cluster(data, options) {
+  return tree(data, {...options, treeLayout: Cluster});
 }

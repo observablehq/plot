@@ -5,7 +5,7 @@ export function treeNode({
   path, // the delimited path
   delimiter, // how the path is separated
   frameAnchor,
-  tree = Tree,
+  treeLayout = Tree,
   treeSort,
   treeSeparation,
   treeAnchor,
@@ -25,7 +25,7 @@ export function treeNode({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
-      const layout = tree().nodeSize([1, 1]);
+      const layout = treeLayout().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
       if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       layout(root);
@@ -48,7 +48,7 @@ export function treeLink({
   path, // the delimited path
   delimiter, // how the path is separated
   curve = "bump-x",
-  tree = Tree,
+  treeLayout = Tree,
   treeSort,
   treeSeparation,
   treeAnchor,
@@ -75,7 +75,7 @@ export function treeLink({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
-      const layout = tree().nodeSize([1, 1]);
+      const layout = treeLayout().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
       if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       layout(root);
