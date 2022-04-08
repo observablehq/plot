@@ -25,9 +25,10 @@ export function treeNode({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
-      const layout = treeLayout().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
-      if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
+      const layout = treeLayout();
+      if (layout.nodeSize) layout.nodeSize([1, 1]);
+      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       layout(root);
       const X = setX([]);
       const Y = setY([]);
@@ -75,9 +76,10 @@ export function treeLink({
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
-      const layout = treeLayout().nodeSize([1, 1]);
       if (treeSort != null) root.sort(treeSort);
-      if (treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
+      const layout = treeLayout();
+      if (layout.nodeSize) layout.nodeSize([1, 1]);
+      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       layout(root);
       const X1 = setX1([]);
       const X2 = setX2([]);

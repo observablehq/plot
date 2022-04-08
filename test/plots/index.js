@@ -53,6 +53,8 @@ export {default as energyProduction} from "./energy-production.js";
 export {default as figcaption} from "./figcaption.js";
 export {default as figcaptionHtml} from "./figcaption-html.js";
 export {default as firstLadies} from "./first-ladies.js";
+export {default as flareCluster} from "./flare-cluster.js";
+export {default as flareIndent} from "./flare-indent.js";
 export {default as flareTree} from "./flare-tree.js";
 export {default as footballCoverage} from "./football-coverage.js";
 export {default as fruitSales} from "./fruit-sales.js";
