@@ -4,12 +4,15 @@ import {channel, isObject, one, range, valueof} from "../options.js";
 export function treeNode({
   path, // the delimited path
   delimiter, // how the path is separated
-  frameAnchor = "left", // TODO different orientations
+  frameAnchor,
   tree = Tree,
   treeSort,
   treeSeparation,
+  treeAnchor,
   ...options
 } = {}) {
+  treeAnchor = maybeTreeAnchor(treeAnchor);
+  if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeNodeValue);
   const [X, setX] = channel();
@@ -17,8 +20,8 @@ export function treeNode({
   return {
     x: X,
     y: Y,
-    frameAnchor,
     ...options,
+    frameAnchor,
     transform(data, facets) {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
@@ -32,8 +35,7 @@ export function treeNode({
       for (const node of root.descendants()) {
         const i = node.data;
         if (i === undefined) continue; // imputed node
-        X[i] = node.y;
-        Y[i] = -node.x;
+        treeAnchor.position(node, i, X, Y);
         for (const o of outputs) o[output_values][i] = o[output_evaluate](node);
       }
       return {data, facets};
@@ -45,12 +47,14 @@ export function treeNode({
 export function treeLink({
   path, // the delimited path
   delimiter, // how the path is separated
-  curve = "bump-x", // TODO depends on orientation
+  curve = "bump-x",
   tree = Tree,
   treeSort,
   treeSeparation,
+  treeAnchor,
   ...options
 } = {}) {
+  treeAnchor = maybeTreeAnchor(treeAnchor);
   const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.4} = options;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
@@ -83,10 +87,8 @@ export function treeLink({
       for (const {source, target} of root.links()) {
         const i = target.data;
         if (i === undefined) continue; // imputed node
-        X1[i] = source.y;
-        X2[i] = target.y;
-        Y1[i] = -source.x;
-        Y2[i] = -target.x;
+        treeAnchor.position(source, i, X1, Y1);
+        treeAnchor.position(target, i, X2, Y2);
         for (const o of outputs) o[output_values][i] = o[output_evaluate](target, source);
       }
       if (root.data !== undefined) for (const o of outputs) o[output_values][root.data] = o[output_evaluate](root, null);
@@ -95,6 +97,32 @@ export function treeLink({
     ...Object.fromEntries(outputs)
   };
 }
+
+export function maybeTreeAnchor(anchor = "left") {
+  switch (`${anchor}`.trim().toLowerCase()) {
+    case "left": return treeAnchorLeft;
+    case "right": return treeAnchorRight;
+  }
+  throw new Error(`invalid tree anchor: ${anchor}`);
+}
+
+const treeAnchorLeft = {
+  frameAnchor: "left",
+  dx: 6,
+  position({x, y}, i, X, Y) {
+    X[i] = y;
+    Y[i] = -x;
+  }
+};
+
+const treeAnchorRight = {
+  frameAnchor: "right",
+  dx: -6,
+  position({x, y}, i, X, Y) {
+    X[i] = -y;
+    Y[i] =  -x;
+  }
+};
 
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"

@@ -1,5 +1,5 @@
 import {marks} from "../plot.js";
-import {treeLink, treeNode} from "../transforms/tree.js";
+import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
@@ -9,9 +9,10 @@ export function tree(data, {
   fill,
   stroke,
   textStroke = "white",
-  dx = 6,
+  dx,
   ...options
 } = {}) {
+  if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   const dotFill = fill === undefined ? "node:internal" : fill;
   const textFill = fill === undefined ? "currentColor" : fill;
   return marks(
