@@ -2018,10 +2018,6 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 
 [Source](./src/transforms/tree.js) · [Examples](https://observablehq.com/@observablehq/plot-tree) · Transforms a tabular dataset into a hierarchy according to the given **path** input channel, which is typically a slash-separated string; then executes the Reingold–Tilford “tidy” algorithm (based on Buchheim _et al._’s linear time approach) to compute **x** and **y** output channels; these channels can then be fed to other marks to construct a node-link diagram.
 
-### Plot.tree(*data*, *options*)
-
-…
-
 ### Plot.treeNode(*options*)
 
 …
@@ -2029,6 +2025,14 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 ### Plot.treeLink(*options*)
 
 …
+
+### Plot.tree(*data*, *options*)
+
+A convenience compound mark for rendering a tree diagram.
+
+### Plot.cluster(*data*, *options*)
+
+Like Plot.tree, except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm, which aligns leaf nodes.
 
 ### Custom transforms
 
