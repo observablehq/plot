@@ -2012,6 +2012,24 @@ Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 
 Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
+### Tree
+
+[<img src="./img/tree.png" width="320" height="198" alt="a node-link tree representing a software hierarchy">](https://observablehq.com/@observablehq/plot-tree)
+
+[Source](./src/transforms/tree.js) · [Examples](https://observablehq.com/@observablehq/plot-tree) · Transforms a tabular dataset into a hierarchy according to the given **path** input channel, which is typically a slash-separated string; then executes the Reingold–Tilford “tidy” algorithm (based on Buchheim _et al._’s linear time approach) to compute **x** and **y** output channels; these channels can then be fed to other marks to construct a node-link diagram.
+
+### Plot.tree(*data*, *options*)
+
+…
+
+### Plot.treeNode(*options*)
+
+…
+
+### Plot.treeLink(*options*)
+
+…
+
 ### Custom transforms
 
 The **transform** option defines a custom transform function, allowing data, indexes, or channels to be derived prior to rendering. Custom transforms are rarely implemented directly; see the built-in transforms above. The transform function (if present) is passed two arguments, *data* and *facets*, representing the mark’s data and facet indexes; it must then return a {data, facets} object representing the resulting transformed data and facet indexes. The *facets* are represented as a nested array of arrays such as [[0, 1, 3, …], [2, 5, 10, …], …]; each element in *facets* specifies the zero-based indexes of elements in *data* that are in a given facet (*i.e.*, have a distinct value in the associated *fx* or *fy* dimension).

@@ -5,9 +5,9 @@ import {link} from "./link.js";
 import {text} from "./text.js";
 
 export function tree(data, {
-  text: textText = "node:name",
   fill,
   stroke,
+  text: textText = "node:name",
   textStroke = "white",
   dx,
   ...options
