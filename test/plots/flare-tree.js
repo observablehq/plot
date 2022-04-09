@@ -8,6 +8,6 @@ export default async function() {
     inset: 10,
     insetRight: 120,
     height: 1800,
-    marks: Plot.tree(flare, {path: "name", delimiter: "."})
+    marks: Plot.tree(flare, {markerEnd: "arrow", path: "name", delimiter: "."})
   });
 }

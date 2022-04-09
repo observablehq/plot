@@ -2016,19 +2016,79 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 
 [<img src="./img/tree.png" width="320" height="198" alt="a node-link tree representing a software hierarchy">](https://observablehq.com/@observablehq/plot-tree)
 
-[Source](./src/transforms/tree.js) · [Examples](https://observablehq.com/@observablehq/plot-tree) · Transforms a tabular dataset into a hierarchy according to the given **path** input channel, which is typically a slash-separated string; then executes the Reingold–Tilford “tidy” algorithm (based on Buchheim _et al._’s linear time approach) to compute **x** and **y** output channels; these channels can then be fed to other marks to construct a node-link diagram.
+[Source](./src/transforms/tree.js) · [Examples](https://observablehq.com/@observablehq/plot-tree) · Transforms a tabular dataset into a hierarchy according to the given **path** input channel, which is typically a slash-separated string; then executes a tree layout algorithm to compute **x** and **y** output channels; these channels can then be fed to other marks to construct a node-link diagram.
+
+The following options control how the tabular data is organized into a hierarchy:
+
+* **path** - a column specifying each node’s hierarchy location
+* **delimiter** - the path separator; defaults to forward slash (/)
+
+The **path** column is typically slash-separated, as with UNIX-based file systems or URLs. For example, given the following hierarchy:
+
+```
+Total
+ ├ Fossil Fuels
+ │  ├ Coal
+ │  ├ Natural Gas
+ │  └ Crude Oil
+ ├ Nuclear
+ └ Renewable
+    ├ Biomass
+    ├ Geothermal
+    ├ Hydroelectric
+    ├ Solar
+    └ Wind
+```
+
+You might use the following path strings:
+
+```
+/Total
+/Total/Fossil Fuels
+/Total/Fossil Fuels/Coal
+/Total/Fossil Fuels/Natural Gas
+/Total/Fossil Fuels/Crude Oil
+/Total/Nuclear
+/Total/Renewable
+/Total/Renewable/Biomass
+/Total/Renewable/Geothermal
+/Total/Renewable/Hydroelectric
+/Total/Renewable/Solar
+/Total/Renewable/Wind
+```
+
+The following options control how the node-link diagram is laid out:
+
+* **treeLayout** - a tree layout algorithm; defaults to [d3.tree](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree)
+* **treeAnchor** - a tree layout orientation, either *left* or *right*; defaults to *left*
+* **treeSort** - a node comparator function, or null to preserve input order
+* **treeSeparation** - a node separation function, or null for uniform separation
+
+The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm based on Buchheim _et al._’s linear time approach. Use [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster) instead to align leaf nodes.
 
 ### Plot.treeNode(*options*)
 
-…
+Populates **x** and **y**.
+
+The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**.
 
 ### Plot.treeLink(*options*)
 
-…
+Populates **x1**, **y1**, **x2**, and **y2**.
+
+The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1, and the default **strokeOpacity** is 0.4.
 
 ### Plot.tree(*data*, *options*)
 
-A convenience compound mark for rendering a tree diagram.
+A convenience compound mark for rendering a tree diagram, including a [link](#link) to render links from parent to child, a [dot](#dot) for nodes, and a [text](#text) for node labels. The link mark uses the [treeLink transform](#plottreelinkoptions), while the dot and text marks use the [treeNode transform](#plottreenodeoptions). The following custom options are supported:
+
+* **fill** - the dot and text fill color; defaults to *node:internal*
+* **stroke** - the link stroke color; inherits **fill** by default
+* **text** - the text label; defaults to *node:name*
+* **textStroke** - the text stroke; defaults to *white*
+* **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored
+
+Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
 ### Plot.cluster(*data*, *options*)
 
@@ -2100,6 +2160,7 @@ The following named markers are supported:
 
 * *none* - no marker (default)
 * *arrow* - an arrowhead
+* *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
 * *circle-stroke* - a hollow circle with a colored stroke and a white fill and 3px radius
 

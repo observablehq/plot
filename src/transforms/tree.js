@@ -1,3 +1,4 @@
+import {sort} from "d3";
 import {stratify, tree as Tree} from "d3";
 import {channel, isObject, one, range, valueof} from "../options.js";
 
@@ -56,7 +57,7 @@ export function treeLink({
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
-  const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.4} = options;
+  const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.5} = options;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
   const [X1, setX1] = channel();
@@ -85,16 +86,18 @@ export function treeLink({
       const X2 = setX2([]);
       const Y1 = setY1([]);
       const Y2 = setY2([]);
+      const D = [];
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const {source, target} of root.links()) {
         const i = target.data;
         if (i === undefined) continue; // imputed node
+        D[i] = target.depth;
         treeAnchor.position(source, i, X1, Y1);
         treeAnchor.position(target, i, X2, Y2);
         for (const o of outputs) o[output_values][i] = o[output_evaluate](target, source);
       }
       if (root.data !== undefined) for (const o of outputs) o[output_values][root.data] = o[output_evaluate](root, null);
-      return {data, facets};
+      return {data, facets: facets.map(f => sort(f, (j, i) => D[i] - D[j]))};
     },
     ...Object.fromEntries(outputs)
   };

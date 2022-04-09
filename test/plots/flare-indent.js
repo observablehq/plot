@@ -12,7 +12,6 @@ export default async function () {
     height: 3600,
     marks: Plot.tree(flare, {
       strokeWidth: 1,
-      strokeOpacity: 1,
       r: 2.5,
       curve: "step-before",
       treeLayout: indent,
