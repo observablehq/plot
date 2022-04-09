@@ -1,6 +1,7 @@
 import {sort} from "d3";
 import {stratify, tree as Tree} from "d3";
 import {channel, isObject, one, range, valueof} from "../options.js";
+import {basic} from "./basic.js";
 
 export function treeNode({
   path, // the delimited path
@@ -21,9 +22,8 @@ export function treeNode({
   return {
     x: X,
     y: Y,
-    ...options,
     frameAnchor,
-    transform(data, facets) {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const root = stratify().path((i) => P[i])(range(data));
       if (treeSort != null) root.sort(treeSort);
@@ -41,7 +41,7 @@ export function treeNode({
         for (const o of outputs) o[output_values][i] = o[output_evaluate](node);
       }
       return {data, facets};
-    },
+    }),
     ...Object.fromEntries(outputs)
   };
 }
@@ -69,12 +69,11 @@ export function treeLink({
     x2: X2,
     y1: Y1,
     y2: Y2,
-    ...options,
     curve,
     stroke,
     strokeWidth,
     strokeOpacity,
-    transform(data, facets) {
+    ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
       if (treeSort != null) root.sort(treeSort);
@@ -98,7 +97,7 @@ export function treeLink({
       }
       if (root.data !== undefined) for (const o of outputs) o[output_values][root.data] = o[output_evaluate](root, null);
       return {data, facets: facets.map(f => sort(f, (j, i) => D[i] - D[j]))};
-    },
+    }),
     ...Object.fromEntries(outputs)
   };
 }
