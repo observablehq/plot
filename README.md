@@ -2064,26 +2064,33 @@ The following options control how the node-link diagram is laid out:
 * **treeSort** - a node comparator function, or null to preserve input order
 * **treeSeparation** - a node separation function, or null for uniform separation
 
-The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm based on Buchheim _et al._’s linear time approach. Use [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster) instead to align leaf nodes.
+The default **treeLayout** implements the Reingold–Tilford “tidy” algorithm based on Buchheim _et al._’s linear time approach. Use [d3.cluster](https://github.com/d3/d3-hierarchy/blob/main/README.md#cluster) instead to align leaf nodes; see also [Plot.cluster](#plotclusterdata-options). If the **treeAnchor** is *left*, the root of the tree will be aligned with the left side of the frame; if **treeAnchor** is *right*, the root of the tree will be aligned with the right side of the frame; use the **insetLeft** and **insetRight** [scale options](#scale-options) if horizontal padding is desired, say to make room for labels.  If the **treeSort** option is not null, it is a function that is passed two nodes in the hierarchy and compares them, similar to [_array_.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort); see [d3-hierarchy’s _node_.sort](https://github.com/d3/d3-hierarchy/blob/main/README.md#node_sort) for more. If the **treeSeparation** is not null, it is a function that is passed two nodes in the hierarchy and returns the desired (relative) amount of separation; see [d3-hierarchy’s _tree_.separation](https://github.com/d3/d3-hierarchy/blob/main/README.md#tree_separation) for more. By default, non-siblings are at least twice as far apart as siblings.
 
 ### Plot.treeNode(*options*)
 
-Populates **x** and **y**.
-
-The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**.
+Based on the tree options described above, populates the **x** and **y** channels with the positions for each node. The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**. This transform is intended to be used with [dot](#dot), [text](#text), and other point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
 ### Plot.treeLink(*options*)
 
-Populates **x1**, **y1**, **x2**, and **y2**.
-
-The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1, and the default **strokeOpacity** is 0.4.
+Based on the tree options described above, populates the **x1**, **y1**, **x2**, and **y2** channels. The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1, and the default **strokeOpacity** is 0.4. This transform is intended to be used with [link](#link), [arrow](#arrow), and other two-point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
 ### Plot.tree(*data*, *options*)
 
-A convenience compound mark for rendering a tree diagram, including a [link](#link) to render links from parent to child, a [dot](#dot) for nodes, and a [text](#text) for node labels. The link mark uses the [treeLink transform](#plottreelinkoptions), while the dot and text marks use the [treeNode transform](#plottreenodeoptions). The following custom options are supported:
+A convenience compound mark for rendering a tree diagram, including a [link](#link) to render links from parent to child, an optional [dot](#dot) for nodes, and a [text](#text) for node labels. The link mark uses the [treeLink transform](#plottreelinkoptions), while the dot and text marks use the [treeNode transform](#plottreenodeoptions). The following options are supported:
 
 * **fill** - the dot and text fill color; defaults to *node:internal*
 * **stroke** - the link stroke color; inherits **fill** by default
+* **strokeWidth** - the link stroke width
+* **strokeOpacity** - the link stroke opacity
+* **strokeLinejoin** - the link stroke linejoin
+* **strokeLinecap** - the link stroke linecap
+* **strokeMiterlimit** - the link stroke miter limit
+* **strokeDasharray** - the link stroke dash array
+* **strokeDashoffset** - the link stroke dash offset
+* **marker** - the link start and end marker
+* **markerStart** - the link start marker
+* **markerEnd** - the link end marker
+* **dot** - if true, whether to render a dot; defaults to false if no link marker
 * **text** - the text label; defaults to *node:name*
 * **textStroke** - the text stroke; defaults to *white*
 * **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored

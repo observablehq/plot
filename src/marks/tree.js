@@ -16,8 +16,10 @@ export function tree(data, {
   strokeMiterlimit,
   strokeDasharray,
   strokeDashoffset,
+  marker,
+  markerStart,
   markerEnd,
-  dot: dotDot = isNoneish(markerEnd),
+  dot: dotDot = isNoneish(marker) && isNoneish(markerStart) && isNoneish(markerEnd),
   text: textText = "node:name",
   textStroke = "white",
   dx,
@@ -25,7 +27,7 @@ export function tree(data, {
 } = {}) {
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
   return marks(
-    link(data, treeLink({markerEnd, stroke: stroke !== undefined ? stroke : fill === undefined ? "node:internal" : fill, strokeWidth, strokeOpacity, strokeLinejoin, strokeLinecap, strokeMiterlimit, strokeDasharray, strokeDashoffset, ...options})),
+    link(data, treeLink({marker, markerStart, markerEnd, stroke: stroke !== undefined ? stroke : fill === undefined ? "node:internal" : fill, strokeWidth, strokeOpacity, strokeLinejoin, strokeLinecap, strokeMiterlimit, strokeDasharray, strokeDashoffset, ...options})),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, ...options})) : null,
     textText != null ? text(data, treeNode({text: textText, fill: fill === undefined ? "currentColor" : fill, stroke: textStroke, dx, ...options})) : null
   );
