@@ -2026,18 +2026,18 @@ The following options control how the tabular data is organized into a hierarchy
 The **path** column is typically slash-separated, as with UNIX-based file systems or URLs. For example, given the following hierarchy:
 
 ```
-Total
- ├ Fossil Fuels
- │  ├ Coal
- │  ├ Natural Gas
- │  └ Crude Oil
- ├ Nuclear
- └ Renewable
-    ├ Biomass
-    ├ Geothermal
-    ├ Hydroelectric
-    ├ Solar
-    └ Wind
+└─ Total
+   ├─ Fossil Fuels
+   │  ├─ Coal
+   │  ├─ Natural Gas
+   │  └─ Crude Oil
+   ├─ Nuclear
+   └─ Renewable
+      ├─ Biomass
+      ├─ Geothermal
+      ├─ Hydroelectric
+      ├─ Solar
+      └─ Wind
 ```
 
 You might use the following path strings:
