@@ -50,6 +50,9 @@ export function treeLink({
   path, // the delimited path
   delimiter, // how the path is separated
   curve = "bump-x",
+  stroke = "#555",
+  strokeWidth = 1.5,
+  strokeOpacity = 0.5,
   treeLayout = Tree,
   treeSort,
   treeSeparation,
@@ -57,7 +60,7 @@ export function treeLink({
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
-  const {stroke = "#555", strokeWidth = 1.5, strokeOpacity = 0.5} = options;
+  options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
   const [X1, setX1] = channel();
@@ -69,10 +72,6 @@ export function treeLink({
     x2: X2,
     y1: Y1,
     y2: Y2,
-    curve,
-    stroke,
-    strokeWidth,
-    strokeOpacity,
     ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
       const root = stratify().path(i => P[i])(range(data));
