@@ -2073,7 +2073,7 @@ Based on the tree options described above, populates the **x** and **y** channel
 The treeNode transform will derive output columns for any *options* that have one of the following named node values:
 
 * *node:name* - the node’s name (the last part of its path)
-* *node:path* - the node’s full path
+* *node:path* - the node’s full, normalized, slash-separated path
 * *node:internal* - true if the node is internal, or false for leaves
 * *node:depth* - the distance from the node to the root
 * *node:height* - the distance from the node to its deepest descendant
@@ -2087,12 +2087,12 @@ Based on the tree options described above, populates the **x1**, **y1**, **x2**,
 The treeLink transform will derive output columns for any *options* that have one of the following named link values:
 
 * *node:name* - the child node’s name (the last part of its path)
-* *node:path* - the child node’s full path
+* *node:path* - the child node’s full, normalized, slash-separated path
 * *node:internal* - true if the child node is internal, or false for leaves
 * *node:depth* - the distance from the child node to the root
 * *node:height* - the distance from the child node to its deepest descendant
 * *parent:name* - the parent node’s name (the last part of its path)
-* *parent:path* - the parent node’s full path
+* *parent:path* - the parent node’s full, normalized, slash-separated path
 * *parent:depth* - the distance from the parent node to the root
 * *parent:height* - the distance from the parent node to its deepest descendant
 
@@ -2115,9 +2115,11 @@ A convenience compound mark for rendering a tree diagram, including a [link](#li
 * **markerStart** - the link start marker
 * **markerEnd** - the link end marker
 * **dot** - if true, whether to render a dot; defaults to false if no link marker
+* **title** - the text and dot title; defaults to *node:path*
 * **text** - the text label; defaults to *node:name*
 * **textStroke** - the text stroke; defaults to *white*
 * **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored
+* **dy** - the text vertical offset; defaults to 0
 
 Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
 
