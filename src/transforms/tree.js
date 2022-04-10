@@ -1,4 +1,5 @@
 import {stratify, tree} from "d3";
+import {ascendingDefined} from "../defined.js";
 import {channel, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -13,6 +14,7 @@ export function treeNode({
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
+  treeSort = maybeTreeSort(treeSort);
   if (frameAnchor === undefined) frameAnchor = treeAnchor.frameAnchor;
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeNodeValue);
@@ -36,13 +38,13 @@ export function treeNode({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet);
+        const root = rootof(facet).each(node => node.data = data[node.data]);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
           treeFacet.push(++treeIndex);
+          treeData[treeIndex] = node.data;
           treeAnchor.position(node, treeIndex, X, Y);
-          if (node.data !== undefined) treeData[treeIndex] = data[node.data];
           for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](node);
         }
         treeFacets.push(treeFacet);
@@ -67,6 +69,7 @@ export function treeLink({
   ...options
 } = {}) {
   treeAnchor = maybeTreeAnchor(treeAnchor);
+  treeSort = maybeTreeSort(treeSort);
   options = {curve, stroke, strokeWidth, strokeOpacity, ...options};
   const normalize = normalizer(delimiter);
   const outputs = treeOutputs(options, maybeLinkValue);
@@ -95,14 +98,14 @@ export function treeLink({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet);
+        const root = rootof(facet).each(node => node.data = data[node.data]);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
           treeFacet.push(++treeIndex);
+          treeData[treeIndex] = target.data;
           treeAnchor.position(source, treeIndex, X1, Y1);
           treeAnchor.position(target, treeIndex, X2, Y2);
-          if (target.data !== undefined) treeData[treeIndex] = data[target.data];
           for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](target, source);
         }
         treeFacets.push(treeFacet);
@@ -138,6 +141,20 @@ const treeAnchorRight = {
     Y[i] =  -x;
   }
 };
+
+function maybeTreeSort(sort) {
+  return sort == null || typeof sort === "function" ? sort
+    : `${sort}`.trim().toLowerCase().startsWith("node:") ? nodeSort(maybeNodeValue(sort))
+    : nodeSort(nodeData(sort));
+}
+
+function nodeSort(value) {
+  return (a, b) => ascendingDefined(value(a), value(b));
+}
+
+function nodeData(field) {
+  return node => node.data?.[field];
+}
 
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
