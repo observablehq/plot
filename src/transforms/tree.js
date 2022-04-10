@@ -1,13 +1,12 @@
-import {sort} from "d3";
-import {stratify, tree as Tree} from "d3";
-import {channel, isObject, one, range, valueof} from "../options.js";
+import {stratify, tree} from "d3";
+import {channel, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function treeNode({
   path, // the delimited path
   delimiter, // how the path is separated
   frameAnchor,
-  treeLayout = Tree,
+  treeLayout = tree,
   treeSort,
   treeSeparation,
   treeAnchor,
@@ -25,22 +24,30 @@ export function treeNode({
     frameAnchor,
     ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
-      const root = stratify().path((i) => P[i])(range(data));
-      if (treeSort != null) root.sort(treeSort);
+      const X = setX([]);
+      const Y = setY([]);
+      let treeIndex = -1;
+      const treeData = [];
+      const treeFacets = [];
+      const rootof = stratify().path((i) => P[i]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
-      layout(root);
-      const X = setX([]);
-      const Y = setY([]);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
-      for (const node of root.descendants()) {
-        const i = node.data;
-        if (i === undefined) continue; // imputed node
-        treeAnchor.position(node, i, X, Y);
-        for (const o of outputs) o[output_values][i] = o[output_evaluate](node);
+      for (const facet of facets) {
+        const treeFacet = [];
+        const root = rootof(facet);
+        if (treeSort != null) root.sort(treeSort);
+        layout(root);
+        for (const node of root.descendants()) {
+          treeFacet.push(++treeIndex);
+          treeAnchor.position(node, treeIndex, X, Y);
+          if (node.data !== undefined) treeData[treeIndex] = data[node.data];
+          for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](node);
+        }
+        treeFacets.push(treeFacet);
       }
-      return {data, facets};
+      return {data: treeData, facets: treeFacets};
     }),
     ...Object.fromEntries(outputs)
   };
@@ -53,7 +60,7 @@ export function treeLink({
   stroke = "#555",
   strokeWidth = 1.5,
   strokeOpacity = 0.5,
-  treeLayout = Tree,
+  treeLayout = tree,
   treeSort,
   treeSeparation,
   treeAnchor,
@@ -74,28 +81,33 @@ export function treeLink({
     y2: Y2,
     ...basic(options, (data, facets) => {
       const P = normalize(valueof(data, path));
-      const root = stratify().path(i => P[i])(range(data));
-      if (treeSort != null) root.sort(treeSort);
-      const layout = treeLayout();
-      if (layout.nodeSize) layout.nodeSize([1, 1]);
-      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
-      layout(root);
       const X1 = setX1([]);
       const X2 = setX2([]);
       const Y1 = setY1([]);
       const Y2 = setY2([]);
-      const D = [];
+      let treeIndex = -1;
+      const treeData = [];
+      const treeFacets = [];
+      const rootof = stratify().path(i => P[i]);
+      const layout = treeLayout();
+      if (layout.nodeSize) layout.nodeSize([1, 1]);
+      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
-      for (const {source, target} of root.links()) {
-        const i = target.data;
-        if (i === undefined) continue; // imputed node
-        D[i] = target.depth;
-        treeAnchor.position(source, i, X1, Y1);
-        treeAnchor.position(target, i, X2, Y2);
-        for (const o of outputs) o[output_values][i] = o[output_evaluate](target, source);
+      for (const facet of facets) {
+        const treeFacet = [];
+        const root = rootof(facet);
+        if (treeSort != null) root.sort(treeSort);
+        layout(root);
+        for (const {source, target} of root.links()) {
+          treeFacet.push(++treeIndex);
+          treeAnchor.position(source, treeIndex, X1, Y1);
+          treeAnchor.position(target, treeIndex, X2, Y2);
+          if (target.data !== undefined) treeData[treeIndex] = data[target.data];
+          for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](target, source);
+        }
+        treeFacets.push(treeFacet);
       }
-      if (root.data !== undefined) for (const o of outputs) o[output_values][root.data] = o[output_evaluate](root, null);
-      return {data, facets: facets.map(f => sort(f, (j, i) => D[i] - D[j]))};
+      return {data: treeData, facets: treeFacets};
     }),
     ...Object.fromEntries(outputs)
   };
