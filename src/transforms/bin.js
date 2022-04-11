@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeChannel, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
+import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity} from "./group.js";
@@ -67,14 +67,14 @@ function binn(
   if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
 
   // Produce x1, x2, y1, and y2 output channels as appropriate (when binning).
-  const [BX1, setBX1] = maybeChannel(bx);
-  const [BX2, setBX2] = maybeChannel(bx);
-  const [BY1, setBY1] = maybeChannel(by);
-  const [BY2, setBY2] = maybeChannel(by);
+  const [BX1, setBX1] = maybeColumn(bx);
+  const [BX2, setBX2] = maybeColumn(bx);
+  const [BY1, setBY1] = maybeColumn(by);
+  const [BY2, setBY2] = maybeColumn(by);
 
   // Produce x or y output channels as appropriate (when grouping).
   const [k, gk] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
-  const [GK, setGK] = maybeChannel(k);
+  const [GK, setGK] = maybeColumn(k);
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
   // constants) so that we can reference them for subdividing groups without
@@ -94,11 +94,11 @@ function binn(
     interval, // eslint-disable-line no-unused-vars
     ...options
   } = inputs;
-  const [GZ, setGZ] = maybeChannel(z);
+  const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeChannel(vfill);
-  const [GS = stroke, setGS] = maybeChannel(vstroke);
+  const [GF = fill, setGF] = maybeColumn(vfill);
+  const [GS = stroke, setGS] = maybeColumn(vstroke);
 
   return {
     ..."z" in inputs && {z: GZ || z},

@@ -15,7 +15,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY} from "./marks/vector.js";
-export {valueof, channel} from "./options.js";
+export {valueof, column} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";

@@ -2139,11 +2139,11 @@ Plot provides a few helpers for implementing transforms.
 
 Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
 
-#### Plot.channel([*source*])
+#### Plot.column([*source*])
 
-This helper for constructing derived channels returns a [*channel*, *setChannel*] array. The *channel* object implements *channel*.transform, returning whatever value was most recently passed to *setChannel*. If *setChannel* is not called, then *channel*.transform returns undefined. If a *source* is specified, then *channel*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *channel*.label is *source*; otherwise *channel*.label propagates *source*.label. This allows derived channels to propagate a human-readable axis or legend label.
+This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
 
-Plot.channel is typically used by options transforms to define new channels; these channels are populated (derived) when the custom *transform* function is invoked.
+Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
 ## Curves
 

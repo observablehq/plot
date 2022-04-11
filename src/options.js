@@ -154,10 +154,10 @@ export function maybeInput(key, options) {
   return options[key];
 }
 
-// Defines a channel whose values are lazily populated by calling the returned
+// Defines a column whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
-// returned channel definition.
-export function channel(source) {
+// returned column definition.
+export function column(source) {
   let value;
   return [
     {
@@ -168,9 +168,9 @@ export function channel(source) {
   ];
 }
 
-// Like channel, but allows the source to be null.
-export function maybeChannel(source) {
-  return source == null ? [source] : channel(source);
+// Like column, but allows the source to be null.
+export function maybeColumn(source) {
+  return source == null ? [source] : column(source);
 }
 
 export function labelof(value, defaultValue) {
@@ -179,10 +179,10 @@ export function labelof(value, defaultValue) {
     : defaultValue;
 }
 
-// Assuming that both x1 and x2 and lazy channels (per above), this derives a
-// new a channel that’s the average of the two, and which inherits the channel
-// label (if any). Both input channels are assumed to be quantitative. If either
-// channel is temporal, the returned channel is also temporal.
+// Assuming that both x1 and x2 and lazy columns (per above), this derives a new
+// a column that’s the average of the two, and which inherits the column label
+// (if any). Both input columns are assumed to be quantitative. If either column
+// is temporal, the returned column is also temporal.
 export function mid(x1, x2) {
   return {
     transform(data) {
