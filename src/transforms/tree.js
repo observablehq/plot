@@ -217,7 +217,7 @@ function nodePath(node) {
 }
 
 function nodeName(node) {
-  return node.id.split("/").pop();
+  return nameof(node.id);
 }
 
 function nodeDepth(node) {
@@ -234,6 +234,25 @@ function nodeInternal(node) {
 
 function parentValue(evaluate) {
   return (child, parent) => parent == null ? undefined : evaluate(parent);
+}
+
+// Walk backwards to find the first slash.
+function nameof(path) {
+  let i = path.length;
+  while (--i > 0) if (slash(path, i)) break;
+  return path.slice(i + 1);
+}
+
+// Slashes can be escaped; to determine whether a slash is a path delimiter, we
+// count the number of preceding backslashes escaping the forward slash: an odd
+// number indicates an escaped forward slash.
+function slash(path, i) {
+  if (path[i] === "/") {
+    let k = 0;
+    while (i > 0 && path[--i] === "\\") ++k;
+    if ((k & 1) === 0) return true;
+  }
+  return false;
 }
 
 // These indexes match the array returned by nodeOutputs. The first two elements
