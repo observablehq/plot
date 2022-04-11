@@ -28,11 +28,19 @@ export function tree(data, {
   ...options
 } = {}) {
   if (dx === undefined) dx = maybeTreeAnchor(options.treeAnchor).dx;
-  return marks(
+  const m = marks(
     link(data, treeLink({markerStart, markerEnd, stroke: stroke !== undefined ? stroke : fill === undefined ? "node:internal" : fill, strokeWidth, strokeOpacity, strokeLinejoin, strokeLinecap, strokeMiterlimit, strokeDasharray, strokeDashoffset, ...options})),
     dotDot ? dot(data, treeNode({fill: fill === undefined ? "node:internal" : fill, title, ...options})) : null,
     textText != null ? text(data, treeNode({text: textText, fill: fill === undefined ? "currentColor" : fill, stroke: textStroke, dx, dy, title, ...options})) : null
   );
+
+  // default options for shorthand tree().plot()
+  const plot = m.plot;
+  // {insetLeft: 10, insetTop: 20, insetBottom: 20, insetRight: 120, x: {axis: null}, y: {axis: null}}
+  m.plot = function({x = {axis: null}, y = {axis: null}, inset = undefined, insetLeft = inset != null ? inset : 10, insetTop = 20, insetBottom = 20, insetRight = 120, ...options} = {}) {
+    return plot.call(this, {x, y, insetLeft, insetRight, insetTop, insetBottom, ...options});
+  };
+  return m;
 }
 
 export function cluster(data, options) {
