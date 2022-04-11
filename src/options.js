@@ -22,6 +22,7 @@ export const field = name => d => d[name];
 export const indexOf = (d, i) => i;
 export const identity = {transform: d => d};
 export const zero = () => 0;
+export const one = () => 1;
 export const string = x => x == null ? x : `${x}`;
 export const number = x => x == null ? x : +x;
 export const boolean = x => x == null ? x : !!x;

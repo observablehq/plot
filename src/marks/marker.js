@@ -18,6 +18,7 @@ function maybeMarker(marker) {
   switch (`${marker}`.toLowerCase()) {
     case "none": return null;
     case "arrow": return markerArrow;
+    case "dot": return markerDot;
     case "circle": case "circle-fill": return markerCircleFill;
     case "circle-stroke": return markerCircleStroke;
   }
@@ -36,6 +37,17 @@ function markerArrow(color) {
       .attr("stroke-linecap", "round")
       .attr("stroke-linejoin", "round")
       .call(marker => marker.append("path").attr("d", "M-1.5,-3l3,3l-3,3"))
+    .node();
+}
+
+function markerDot(color) {
+  return create("svg:marker")
+      .attr("viewBox", "-5 -5 10 10")
+      .attr("markerWidth", 6.67)
+      .attr("markerHeight", 6.67)
+      .attr("fill", color)
+      .attr("stroke", "none")
+      .call(marker => marker.append("circle").attr("r", 2.5))
     .node();
 }
 
