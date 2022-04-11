@@ -158,8 +158,12 @@ function nodeData(field) {
 
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
-    ? P => P // paths are already slash-separated
+    ? P => P.map(pathJoin) // paths are already slash-separated
     : P => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+}
+
+function pathJoin(p) {
+  return Array.isArray(p) ? p.map(str => `${str}`.replace(/\//g, '\\/')).join("/") : p;
 }
 
 function replaceAll(search, replace) {
@@ -217,7 +221,7 @@ function nodePath(node) {
 }
 
 function nodeName(node) {
-  return node.id.split("/").pop();
+  return node.id.replace(/\\\//g, "\0").split("/").pop().replace(/\0/g, "/");
 }
 
 function nodeDepth(node) {
