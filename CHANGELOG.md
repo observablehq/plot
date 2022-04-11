@@ -4,9 +4,21 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
+The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s “tidy” tree layout.
+
 The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit bin transform with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
 
 The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
+
+The stack transform now allows the offset to be specified as a function. This can be used, for example, to more more easily generate diverging stacked bar charts with a neutral category, as when visualizing Likert survey results.
+
+The new _quantize_ scale transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports descending domains.
+
+The rect mark now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
+
+Fix crash when text or title channels contain heterogenous types; each value is now formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension has a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
+
+Plot.column and Plot.transform helpers.
 
 ## 0.4.2
 
