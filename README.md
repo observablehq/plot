@@ -2020,7 +2020,7 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 
 The following options control how the tabular data is organized into a hierarchy:
 
-* **path** - a column specifying each node’s hierarchy location
+* **path** - a column specifying each node’s hierarchy location; defaults to identity
 * **delimiter** - the path separator; defaults to forward slash (/)
 
 The **path** column is typically slash-separated, as with UNIX-based file systems or URLs. For example, given the following hierarchy:
