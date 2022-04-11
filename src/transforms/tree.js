@@ -38,7 +38,7 @@ export function treeNode({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet).each(node => node.data = data[node.data]);
+        const root = rootof(facet.filter(i => P[i] != null)).each(node => node.data = data[node.data]);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
@@ -98,7 +98,7 @@ export function treeLink({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet).each(node => node.data = data[node.data]);
+        const root = rootof(facet.filter(i => P[i] != null)).each(node => node.data = data[node.data]);
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
