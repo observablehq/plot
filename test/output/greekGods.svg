@@ -1,0 +1,52 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+    <path d="M10,154.625C137.25,154.625,137.25,20,264.5,20" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,109.75,264.5,109.75" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,199.5,264.5,199.5" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,289.25,264.5,289.25" stroke="#636363"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,199.5,519,199.5" stroke="#bdbdbd"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,289.25,519,289.25" stroke="#bdbdbd"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,379,519,379" stroke="#bdbdbd"></path>
+  </g>
+  <g aria-label="dot" transform="translate(0.5,0.5)">
+    <circle cx="10" cy="154.625" r="3" fill="#636363">
+      <title>/Chaos</title>
+    </circle>
+    <circle cx="264.5" cy="20" r="3" fill="#bdbdbd">
+      <title>/Chaos/Eros</title>
+    </circle>
+    <circle cx="264.5" cy="109.75" r="3" fill="#bdbdbd">
+      <title>/Chaos/Erebus</title>
+    </circle>
+    <circle cx="264.5" cy="199.5" r="3" fill="#bdbdbd">
+      <title>/Chaos/Tartarus</title>
+    </circle>
+    <circle cx="264.5" cy="289.25" r="3" fill="#636363">
+      <title>/Chaos/Gaia</title>
+    </circle>
+    <circle cx="519" cy="199.5" r="3" fill="#bdbdbd">
+      <title>/Chaos/Gaia/Mountains</title>
+    </circle>
+    <circle cx="519" cy="289.25" r="3" fill="#bdbdbd">
+      <title>/Chaos/Gaia/Pontus</title>
+    </circle>
+    <circle cx="519" cy="379" r="3" fill="#bdbdbd">
+      <title>/Chaos/Gaia/Uranus</title>
+    </circle>
+  </g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(10,154.625)">Chaos<title>/Chaos</title></text><text y="0.32em" transform="translate(264.5,20)">Eros<title>/Chaos/Eros</title></text><text y="0.32em" transform="translate(264.5,109.75)">Erebus<title>/Chaos/Erebus</title></text><text y="0.32em" transform="translate(264.5,199.5)">Tartarus<title>/Chaos/Tartarus</title></text><text y="0.32em" transform="translate(264.5,289.25)">Gaia<title>/Chaos/Gaia</title></text><text y="0.32em" transform="translate(519,199.5)">Mountains<title>/Chaos/Gaia/Mountains</title></text><text y="0.32em" transform="translate(519,289.25)">Pontus<title>/Chaos/Gaia/Pontus</title></text><text y="0.32em" transform="translate(519,379)">Uranus<title>/Chaos/Gaia/Uranus</title></text></g>
+</svg>

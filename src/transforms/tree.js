@@ -164,7 +164,7 @@ function normalizer(delimiter = "/") {
 
 function replaceAll(search, replace) {
   search = new RegExp(regexEscape(search), "g");
-  return value => value?.replace(search, replace);
+  return value => value == null ? null : `${value}`.replace(search, replace);
 }
 
 function regexEscape(string) {
