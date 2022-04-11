@@ -4,7 +4,7 @@ import {channel, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 export function treeNode({
-  path, // the delimited path
+  path = d => d, // the delimited path
   delimiter, // how the path is separated
   frameAnchor,
   treeLayout = tree,
@@ -56,7 +56,7 @@ export function treeNode({
 }
 
 export function treeLink({
-  path, // the delimited path
+  path = d => d, // the delimited path
   delimiter, // how the path is separated
   curve = "bump-x",
   stroke = "#555",
