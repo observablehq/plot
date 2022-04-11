@@ -10,15 +10,15 @@ The [line](./README.md#line) and [area](./README.md#area) marks (specifically li
 
 The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
 
-The stack transform now allows the offset to be specified as a function. This can be used, for example, to more more easily generate diverging stacked bar charts with a neutral category, as when visualizing Likert survey results.
+The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a diverging stacked bar chart.
 
-The new _quantize_ scale transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports descending domains.
+The new [_quantize_ scale type](./README.md#color-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports descending domains.
 
-The rect mark now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
+The [rect mark](./README.md#rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
 
-Fix crash when text or title channels contain heterogenous types; each value is now formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension has a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
+Fix crash when **text** or **title** channels contain heterogenous types; each value is now independently formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension is a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
 
-Plot.column and Plot.transform helpers.
+New helpers make it easier to implement custom transforms. [Plot.column](./README.md#plotcolumnsource) constructs lazily-evaluated columns for derived channels, and [Plot.transform](./README.md#plottransformoptions-transform) composes a [custom data transform](./README.md#custom-transforms) with any of Plot’s built-in [basic transforms](./README.md#transforms).
 
 ## 0.4.2
 
