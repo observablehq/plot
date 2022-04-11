@@ -6,7 +6,7 @@
 
 The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s “tidy” tree layout.
 
-The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit bin transform with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
+The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](./README.md#bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
 
 The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
 
