@@ -47,9 +47,17 @@ https://github.com/tidyverse/ggplot2/blob/master/data-raw/diamonds.csv
 Based on Hannah Fairfield’s Driving Shifts Into Reverse
 https://archive.nytimes.com/www.nytimes.com/imagepages/2010/05/02/business/02metrics.html
 
+## download.csv
+Daily downloads of the npm “@observablehq/cars” package
+https://observablehq.com/@mbostock/npm-daily-downloads?name=@observablehq/cars
+
 ## energy-production.csv
 U.S. Energy Information Administration; monthly energy review, primary energy production by source, Jan. 2022
 https://www.eia.gov/totalenergy/data/monthly/index.php
+
+## flare.csv
+Flare visualization toolkit package hierarchy
+https://observablehq.com/@d3/treemap
 
 ## gistemp.csv
 NASA Goddard Institute for Space Studies
