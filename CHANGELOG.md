@@ -32,7 +32,7 @@ Plot.plot({
 })
 ```
 
-The default **reduce** is *first*, picking the first value in each interval. By using *sum* instead, we can default to zero when data is missing (and add values if the data contains more than one observation per day).
+The default **reduce** is *first*, picking the first value in each interval. If there is no data for a given interval, the value is undefined, resulting in a visible gap in the line or area. By using *sum* instead, you can default to zero when data is missing (and sum values if the data contains more than one observation per time interval).
 
 <img src="./img/dense-series.png" width="640" alt="a time-series area chart showing downloads per day with zeroes for missing data">
 
