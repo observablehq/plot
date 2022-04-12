@@ -4,7 +4,19 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s “tidy” tree layout.
+The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
+
+<img src="./img/tree.png" width="640" alt="a node-link tree diagram representing a software hierarchy">
+
+```js
+Plot.plot({
+  axis: null,
+  inset: 10,
+  insetRight: 120,
+  height: 500,
+  marks: Plot.tree(plotsrc, {markerEnd: "arrow"})
+})
+```
 
 The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](./README.md#bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
 

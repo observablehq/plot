@@ -2014,7 +2014,7 @@ Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** ch
 
 ### Tree
 
-[<img src="./img/tree.png" width="320" height="198" alt="a node-link tree representing a software hierarchy">](https://observablehq.com/@observablehq/plot-tree)
+[<img src="./img/tree.png" width="320" height="250" alt="a node-link tree diagram representing a software hierarchy">](https://observablehq.com/@observablehq/plot-tree)
 
 [Source](./src/transforms/tree.js) · [Examples](https://observablehq.com/@observablehq/plot-tree) · Transforms a tabular dataset into a hierarchy according to the given **path** input channel, which is typically a slash-separated string; then executes a tree layout algorithm to compute **x** and **y** output channels; these channels can then be fed to other marks to construct a node-link diagram.
 
