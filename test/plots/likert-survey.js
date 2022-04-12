@@ -1,7 +1,13 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-function Likert(responses) {
+function Likert(responses = [
+  ["Strongly Disagree", -1],
+  ["Disagree", -1],
+  ["Neutral", 0],
+  ["Agree", 1],
+  ["Strongly Agree", 1]
+]) {
   const map = new Map(responses);
   return {
     order: Array.from(map.keys()),
@@ -21,13 +27,7 @@ function Likert(responses) {
 
 export default async function() {
   const survey = await d3.csv("data/survey.csv");
-  const {order, offset} = Likert([
-    ["Strongly Disagree", -1],
-    ["Disagree", -1],
-    ["Neutral", 0],
-    ["Agree", 1],
-    ["Strongly Agree", 1]
-  ]);
+  const {order, offset} = Likert();
   return Plot.plot({
     x: {
       tickFormat: Math.abs,

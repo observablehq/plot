@@ -46,13 +46,41 @@ Plot.plot({
 })
 ```
 
-The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
-
 The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a diverging stacked bar chart.
+
+<img src="./img/likert.png" width="640" alt="a diverging bar chart of responses to a Likert survey question">
+
+```js
+function Likert(
+  responses = [
+    ["Strongly Disagree", -1],
+    ["Disagree", -1],
+    ["Neutral", 0],
+    ["Agree", 1],
+    ["Strongly Agree", 1]
+  ]
+) {
+  const map = new Map(responses);
+  return {
+    order: Array.from(map.keys()),
+    offset(facetstacks, X1, X2, Z) {
+      for (const stacks of facetstacks) {
+        for (const stack of stacks) {
+          const k = d3.sum(stack, i => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
+          for (const i of stack) {
+            X1[i] -= k;
+            X2[i] -= k;
+          }
+        }
+      }
+    }
+  };
+}
+```
 
 The new [_quantize_ scale type](./README.md#color-options) transforms a continuous domain into discrete, evenly-spaced thresholds. The _threshold_ scale type now supports descending domains.
 
-The [rect mark](./README.md#rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
+The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data. The [rect mark](./README.md#rect) now promotes the _x_ channel to _x1_ and _x2_ if the latter two are not specified, and likewise the _y_ channel to _y1_ and _y2_.
 
 Fix crash when **text** or **title** channels contain heterogenous types; each value is now independently formatted in a type-appropriate default formatter. Fix a rendering bug with one-dimensional rects whose opposite dimension is a band scale. Fix a rendering bug with swoopy arrows. Improve error messages to give more context.
 
