@@ -2,7 +2,7 @@
 
 ## 0.4.3
 
-*Not yet released. These are forthcoming changes in the main branch.*
+Released April 12, 2022.
 
 The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
 
