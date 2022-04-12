@@ -20,6 +20,32 @@ Plot.plot({
 
 The [line](./README.md#line) and [area](./README.md#area) marks (specifically lineX, lineY, areaX, and areaY) now support an implicit [bin transform](./README.md#bin) with the **interval** option. This can be used to “regularize” time series data, say to show gaps or default to zero when data is missing, rather than interpolating across missing data. This is also useful for stacking time series data that is sampled at irregular intervals or with missing samples.
 
+<img src="./img/sparse-series.png" width="640" alt="a time-series area chart showing downloads per day with gaps for missing data">
+
+```js
+Plot.plot({
+  marks: [
+    Plot.lineY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, curve: "step"}),
+    Plot.areaY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, fill: "#eee", curve: "step"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+The default **reduce** is *first*, picking the first value in each interval. By using *sum* instead, we can default to zero when data is missing (and add values if the data contains more than one observation per day).
+
+<img src="./img/dense-series.png" width="640" alt="a time-series area chart showing downloads per day with zeroes for missing data">
+
+```js
+Plot.plot({
+  marks: [
+    Plot.lineY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum", curve: "step"}),
+    Plot.areaY(downloads, {x: "date", y: "downloads", interval: d3.utcDay, reduce: "sum", fill: "#eee", curve: "step"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
 The [bin transform](./README.md#bin) now coerces the input channel (the quantity being binned) to numbers as necessary. In addition, the bin transform now correctly handles typed array input channels representing temporal data.
 
 The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a diverging stacked bar chart.
