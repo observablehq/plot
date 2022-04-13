@@ -46,7 +46,7 @@ Plot.plot({
 })
 ```
 
-The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a diverging stacked bar chart.
+The [stack transform](./README.md#stack) now allows the **offset** option to be specified as a function. For example, this can be used to visualize Likert survey results with a neutral category as a [diverging stacked bar chart](https://observablehq.com/@observablehq/plot-diverging-stacked-bar).
 
 <img src="./img/likert.png" width="640" alt="a diverging bar chart of responses to a Likert survey question">
 
