@@ -2,7 +2,7 @@
 
 ## 0.4.3
 
-Released April 12, 2022.
+[Released April 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.3)
 
 The new [tree](./README.md#tree) mark and transforms can generate hierarchical node-link diagrams using D3’s [“tidy” tree](https://observablehq.com/@d3/tree) or [cluster (dendrogram)](https://observablehq.com/@d3/cluster) layout. The tree transform uses [d3.stratify](https://observablehq.com/@d3/d3-stratify) to convert tabular data into a hierarchy by parsing a slash-separated **path** for each row.
 
@@ -104,7 +104,7 @@ New helpers make it easier to implement custom transforms. [Plot.column](./READM
 
 ## 0.4.2
 
-Released February 26, 2022.
+[Released February 26, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.2)
 
 The new [box mark](./README.md#box) generates a horizontal or vertical boxplot suitable for visualizing one-dimensional distributions. It is a convenience mark that composites a rule, bar, tick, and dot.
 
@@ -136,7 +136,7 @@ The error message when attempting to create a standalone legend without a valid 
 
 ## 0.4.1
 
-Released February 17, 2022.
+[Released February 17, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.1)
 
 The [area](./README.md#area) and [line marks](./README.md#line) now support varying fill, stroke, title, and other channels within series. For example, this chart of unemployment rates by metro area highlights increases in red and decreases in blue using a window transform with the *difference* reducer.
 
@@ -206,7 +206,7 @@ Fix a crash in default tuple accessors for *x* and *y* when data is undefined. F
 
 ## 0.4.0
 
-Released January 20, 2022.
+[Released January 20, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.0)
 
 The new [arrow mark](./README.md#arrow) draws arrows between pairs of points. It is similar to the [link mark](./README.md#link), except it is suitable for directed edges (say for representing change over time) and supports a configurable arrowhead. It also supports “swoopy” arrows with the *bend* option, and insets for arrows to shorten the arrow’s start or end.
 
@@ -314,7 +314,7 @@ To improve compatibility with popular bundlers such as webpack and Rollup, Plot 
 
 ## 0.3.2
 
-Released December 10, 2021.
+[Released December 10, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.2)
 
 The font-variant now only defaults to *tabular-nums* for axis and legend tick labels on non-ordinal scales; on ordinal scales it defaults to *normal*.
 
@@ -322,7 +322,7 @@ If a scale has an implicit label (such as inferred from a channel), the legend w
 
 ## 0.3.1
 
-Released December 10, 2021.
+[Released December 10, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.1)
 
 The normalize transform now also supports the *min*, *max*, and *deviation* basis methods.
 
@@ -332,7 +332,7 @@ Update D3 to 7.2.1.
 
 ## 0.3.0
 
-Released December 4, 2021.
+[Released December 4, 2021.](https://github.com/observablehq/plot/releases/tag/v0.3.0)
 
 Plot can now produce [legends for *color* and *opacity* scales](./README.md#legends)!
 
@@ -385,13 +385,13 @@ Update D3 to 7.2.0.
 
 ## 0.2.9
 
-Released October 12, 2021.
+[Released October 12, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.9)
 
 Update D3 to 7.1.1.
 
 ## 0.2.8
 
-Released October 1, 2021.
+[Released October 1, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.8)
 
 The map transform now supports *rank* and *quantile* map methods. These compute the 0-based ordinal rank or the *p*-quantile of the data, respectively.
 
@@ -407,19 +407,19 @@ Text marks now default strokeLinejoin to “round” to reduce the effect of mit
 
 ## 0.2.7
 
-Released September 27, 2021.
+[Released September 27, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.7)
 
 Implement symmetric diverging scales by extending the domain instead of slicing the interpolator.
 
 ## 0.2.6
 
-Released September 26, 2021.
+[Released September 26, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.6)
 
 Fix the symmetric transform for reversed diverging scales.
 
 ## 0.2.5
 
-Released September 26, 2021.
+[Released September 26, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.5)
 
 The new *plot*.**scale**(*name*) method exposes scales used by a particular plot. This method on returned plots takes the *name* of a scale and returns an object specifying the options that fully describe the scale’s behavior. The returned object represents the actual options in-use, including *scale*.domain, *scale*.range, *scale*.interpolate, *etc.* The *scale*.label, if any, is also returned; however, note that other axis options are not. The scale object is undefined if the associated plot has no scale with the given *name*, and throws an error if the *name* is invalid (*i.e.*, not one of the known scale names: *x*, *y*, *fx*, *fy*, *r*, *color*, or *opacity*). For example, given a plot:
 
@@ -474,13 +474,13 @@ Internal string coercion now uses *object*.toString instead of *object*.valueOf.
 
 ## 0.2.4
 
-Released September 24, 2021.
+[Released September 24, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.4)
 
 Update [Observable Hypertext Literal](https://github.com/observablehq/htl) to [0.3.1](https://github.com/observablehq/htl/releases/tag/v0.3.1).
 
 ## 0.2.3
 
-Released September 24, 2021.
+[Released September 24, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.3)
 
 Rect, bar, and rule marks now accept an *interval* option that allows you to derive *x1* and *x2* from *x*, or *y1* and *y2* from *y*, where appropriate. For example, using d3.utcDay as the interval creates rects that span from UTC midnight to UTC midnight, bounding the associated time instant. The interval is typically specifed as a [D3 time interval](https://github.com/d3/d3-time/blob/main/README.md), but may be any compatible object which implements *interval*.floor and *interval*.offset: *interval*.floor(*x*) returns the start of the interval *x1* for the given *x*, while *interval*.offset(*x*) returns the end of the interval *x2* for the given interval start *x*. If the interval is specified as a number *n*, *x1* and *x2* are the two consecutive multiples of *n* that bracket *x*.
 
@@ -490,13 +490,13 @@ Update [D3](https://github.com/d3/d3) to [7.0.4](https://github.com/d3/d3/releas
 
 ## 0.2.2
 
-Released September 19, 2021.
+[Released September 19, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.2)
 
 Fix a crash with the scale.tickRotate option when there are no ticks to rotate.
 
 ## 0.2.1
 
-Released September 19, 2021.
+[Released September 19, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.1)
 
 The constant *dx* and *dy* options have been extended to all marks, allowing to shift the mark by *dx* pixels horizontally and *dy* pixels vertically. Since only text elements accept the dx and dy properties, in all the other marks these are rendered as a transform (2D transformation) property of the mark’s parent, possibly including a 0.5px offset on low-density screens.
 
@@ -525,7 +525,7 @@ The *x1* and *x2* outputs now default to undefined if *x* is explicitly defined;
 
 ## 0.2.0
 
-Released August 20, 2021.
+[Released August 20, 2021.](https://github.com/observablehq/plot/releases/tag/v0.2.0)
 
 [breaking] Plot is now published as an ES module and requires Node 12 or higher. For more, please read [Sindre Sorhus’s FAQ](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
 
@@ -726,4 +726,4 @@ The select transforms now throw better error messages when required input channe
 
 ## 0.1.0
 
-Released May 3, 2021.
+[Released May 3, 2021.](https://github.com/observablehq/plot/releases/tag/v0.1.0)
