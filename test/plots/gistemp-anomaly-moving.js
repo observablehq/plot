@@ -10,7 +10,6 @@ export default async function() {
       grid: true
     },
     color: {
-      type: "diverging",
       scheme: "BuRd",
       symmetric: false
     },

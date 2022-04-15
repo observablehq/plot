@@ -10,8 +10,8 @@ export default async function() {
       transform: f => f * 9 / 5 + 32 // convert from Celsius
     },
     color: {
-      scheme: "RdBu",
-      reverse: true
+      type: "linear",
+      scheme: "BuRd"
     },
     marks: [
       Plot.ruleX(

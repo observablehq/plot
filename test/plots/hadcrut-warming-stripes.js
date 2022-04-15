@@ -15,7 +15,6 @@ export default async function() {
       round: true
     },
     color: {
-      type: "diverging",
       scheme: "BuRd",
       symmetric: false
     },

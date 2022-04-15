@@ -3,6 +3,7 @@ import {isColor, isEvery, isOrdinal, isFirst, isTemporal, isTemporalString, isNu
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleQuantize, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
+import {isDivergingScheme} from "./scales/schemes.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
@@ -212,7 +213,7 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
-function inferScaleType(key, channels, {type, domain, range, scheme}) {
+function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
 
@@ -266,6 +267,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
+    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
     return "linear";
   }
 
@@ -273,6 +275,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   const values = channels.map(({value}) => value).filter(value => value !== undefined);
   if (values.some(isOrdinal)) return asOrdinalType(kind);
   if (values.some(isTemporal)) return "utc";
+  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
   return "linear";
 }
 
