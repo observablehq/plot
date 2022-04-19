@@ -1,7 +1,8 @@
-import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
+import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {maybeSymbol, isNoneish} from "../options.js";
+import {maybeInterval} from "../transforms/interval.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
@@ -13,7 +14,8 @@ export const ordinalImplicit = Symbol("ordinal");
 
 export function ScaleO(scale, channels, {
   type,
-  domain = inferDomain(channels),
+  interval,
+  domain = inferDomain(channels, interval),
   range,
   reverse,
   hint
@@ -31,7 +33,8 @@ export function ScaleO(scale, channels, {
 
 export function ScaleOrdinal(key, channels, {
   type,
-  domain = inferDomain(channels),
+  interval,
+  domain = inferDomain(channels, interval),
   range,
   scheme,
   unknown,
@@ -102,12 +105,16 @@ function maybeRound(scale, channels, options) {
   return scale;
 }
 
-function inferDomain(channels) {
+function inferDomain(channels, interval) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
     if (domain !== undefined) return domain();
     if (value === undefined) continue;
     for (const v of value) values.add(v);
+  }
+  if ((interval = maybeInterval(interval)) != null) {
+    const [min, max] = extent(values).map(interval.floor, interval);
+    return interval.range(min, interval.offset(max));
   }
   return sort(values, ascendingDefined);
 }

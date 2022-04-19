@@ -8,6 +8,7 @@ import {arrayify, isOptions, keyword, range, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
+import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -78,7 +79,11 @@ export function plot(options = {}) {
 
   // Apply scale transforms, mutating channel.value.
   for (const [scale, channels] of channelsByScale) {
-    const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
+    const {
+      percent,
+      interval,
+      transform = percent ? x => x * 100 : maybeInterval(interval)?.floor
+    } = options[scale] || {};
     if (transform != null) for (const c of channels) c.value = Array.from(c.value, transform);
   }
 
