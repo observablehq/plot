@@ -1,0 +1,83 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,353.812958435208)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">156</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,325.28810105949486)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">158</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,296.76324368378175)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,268.2383863080686)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">162</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,239.7135289323555)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">164</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,211.18867155664233)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">166</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,182.66381418092922)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">168</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,154.13895680521608)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">170</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,125.61409942950294)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">172</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,97.0892420537898)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">174</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,68.5643846780767)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">176</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.03952730236357)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">178</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(114.85897435897435,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(189.2179487179487,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(263.5769230769231,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(337.9358974358974,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(412.2948717948718,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(486.6538461538462,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(561.0128205128206,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
+    </g>
+  </g>
+  <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,151.3569682151591L54.87179487179487,117.55501222493895L69.74358974358974,117.41238793806053L84.61538461538461,104.57620211898951L99.48717948717947,91.59739201304009L114.35897435897435,88.74490627546854L129.23076923076923,108.56968215158938L144.1025641025641,88.17440912795439L158.97435897435895,65.49714751426242L173.84615384615387,40.96577017114913L188.7179487179487,65.92502037489812L203.5897435897436,20L218.46153846153845,30.83944580277084L233.33333333333331,49.52322738386299L248.2051282051282,49.52322738386299L263.0769230769231,50.23634881825597L277.9487179487179,89.31540342298311L292.8205128205128,125.11409942950294L307.69230769230774,151.3569682151591L322.56410256410254,217.39201303993494L337.4358974358974,198.28035859820707L352.30769230769226,194.00162999185034L367.1794871794872,210.68867155664233L382.05128205128204,309.09942950285273L396.9230769230769,370L411.7948717948718,252.1923390383049L426.66666666666663,292.12713936430345L441.53846153846155,338.05215973920156L456.4102564102564,317.65688671556654L471.2820512820513,268.4515077424616L486.1538461538462,252.90546047269788L501.02564102564105,156.63406682966607L515.8974358974358,119.9796251018744L530.7692307692308,124.40097799510995L545.6410256410256,113.2762836185818L560.5128205128206,127.96658516707411L575.3846153846155,101.29584352078268L590.2564102564103,63.072534637326996L605.1282051282051,23.850855745721415L620,21.568867155664435"></path>
+  </g>
+</svg>

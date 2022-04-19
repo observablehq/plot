@@ -1,0 +1,74 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,331.4745219378937)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,292.4490438757875)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,253.42356581368122)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,214.39808775157496)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,175.37260968946873)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,136.34713162736244)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,97.32165356525617)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,58.29617550314994)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(114.85897435897435,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(189.2179487179487,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(263.5769230769231,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(337.9358974358974,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(412.2948717948718,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(486.6538461538462,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(561.0128205128206,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
+    </g>
+  </g>
+  <g aria-label="area">
+    <path d="M40,37.97123264759996L54.87179487179487,33.34671349724036L69.74358974358974,33.327200758209315L84.61538461538461,31.571054245414523L99.48717948717947,29.79539499358868L114.35897435897435,29.405140212967584L129.23076923076923,32.117410938284024L144.1025641025641,29.32708925684338L158.97435897435895,26.224563750905958L173.84615384615387,22.86837263756481L188.7179487179487,26.283101967999123L203.5897435897436,20L218.46153846153845,21.482968166360028L233.33333333333331,24.03913697942798L248.2051282051282,24.03913697942798L263.0769230769231,24.136700674583267L277.9487179487179,29.483191169091864L292.8205128205128,34.38088866588616L307.69230769230774,37.97123264759996L322.56410256410254,47.00563081897754L337.4358974358974,44.390923788816416L352.30769230769226,43.80554161788487L367.1794871794872,46.08853208451805L382.05128205128204,59.552322015944696L396.9230769230769,67.88426158220435L411.7948717948718,51.76673914255451L426.66666666666663,57.230306071249395L441.53846153846155,63.51340803924852L456.4102564102564,60.723086357807915L471.2820512820513,53.99119139209457L486.1538461538462,51.864302837709786L501.02564102564105,38.693203991748916L515.8974358974358,33.678430060768214L530.7692307692308,34.28332497073088L545.6410256410256,32.761331326308735L560.5128205128206,34.771143446507224L575.3846153846155,31.122261247700298L590.2564102564103,25.892847187378063L605.1282051282051,20.526843953838462L620,20.21464012934161L620,370L605.1282051282051,370L590.2564102564103,370L575.3846153846155,370L560.5128205128206,370L545.6410256410256,370L530.7692307692308,370L515.8974358974358,370L501.02564102564105,370L486.1538461538462,370L471.2820512820513,370L456.4102564102564,370L441.53846153846155,370L426.66666666666663,370L411.7948717948718,370L396.9230769230769,370L382.05128205128204,370L367.1794871794872,370L352.30769230769226,370L337.4358974358974,370L322.56410256410254,370L307.69230769230774,370L292.8205128205128,370L277.9487179487179,370L263.0769230769231,370L248.2051282051282,370L233.33333333333331,370L218.46153846153845,370L203.5897435897436,370L188.7179487179487,370L173.84615384615387,370L158.97435897435895,370L144.1025641025641,370L129.23076923076923,370L114.35897435897435,370L99.48717948717947,370L84.61538461538461,370L69.74358974358974,370L54.87179487179487,370L40,370Z"></path>
+  </g>
+</svg>
