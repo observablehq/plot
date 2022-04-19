@@ -170,6 +170,7 @@ export {default as wealthBritainBar} from "./wealth-britain-bar.js";
 export {default as wealthBritainProportionPlot} from "./wealth-britain-proportion-plot.js";
 export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
+export {default as yearlyRequests} from "./yearly-requests.js";
 
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
