@@ -70,6 +70,7 @@ export {default as groupedRects} from "./grouped-rects.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
 export {default as identityScale} from "./identity-scale.js";
+export {default as ibmTrading} from "./ibm-trading.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
 export {default as industryUnemploymentStream} from "./industry-unemployment-stream.js";
