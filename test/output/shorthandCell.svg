@@ -1,0 +1,77 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="200" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,32.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ava</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,53.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Emma</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,74.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jacob</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,95.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mason</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,116.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,137.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Noah</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,158.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Olivia</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,170)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(87.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Ava</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(168.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Emma</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(249.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jacob</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(330.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mason</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(411.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mia</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(492.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Noah</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(573.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Olivia</text>
+    </g>
+  </g>
+  <g aria-label="cell">
+    <rect x="213" width="73" y="149" height="19"></rect>
+    <rect x="375" width="73" y="128" height="19"></rect>
+    <rect x="456" width="73" y="23" height="19"></rect>
+    <rect x="51" width="73" y="86" height="19"></rect>
+    <rect x="537" width="73" y="128" height="19"></rect>
+    <rect x="213" width="73" y="44" height="19"></rect>
+    <rect x="51" width="73" y="128" height="19"></rect>
+    <rect x="456" width="73" y="65" height="19"></rect>
+    <rect x="537" width="73" y="23" height="19"></rect>
+    <rect x="294" width="73" y="44" height="19"></rect>
+    <rect x="213" width="73" y="107" height="19"></rect>
+    <rect x="375" width="73" y="65" height="19"></rect>
+    <rect x="132" width="73" y="65" height="19"></rect>
+  </g>
+</svg>
