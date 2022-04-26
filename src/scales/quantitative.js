@@ -57,6 +57,7 @@ export function ScaleQ(key, scale, channels, {
   unknown,
   round,
   scheme,
+  interval,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === length ? inferLengthRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse
@@ -105,7 +106,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, scale, interpolate};
+  return {type, domain, range, scale, interpolate, interval};
 }
 
 export function ScaleLinear(key, channels, options) {

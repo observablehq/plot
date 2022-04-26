@@ -28,7 +28,7 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, hint};
+  return {type, domain, range, scale, hint, interval};
 }
 
 export function ScaleOrdinal(key, channels, {

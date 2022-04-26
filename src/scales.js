@@ -408,6 +408,7 @@ function exposeScale({
   range,
   label,
   interpolate,
+  interval,
   transform,
   percent,
   pivot
@@ -422,6 +423,7 @@ function exposeScale({
     ...percent && {percent}, // only exposed if truthy
     ...label !== undefined && {label},
     ...unknown !== undefined && {unknown},
+    ...interval !== undefined && {interval},
 
     // quantitative
     ...interpolate !== undefined && {interpolate},
