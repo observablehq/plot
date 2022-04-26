@@ -172,6 +172,7 @@ export {default as wealthBritainProportionPlot} from "./wealth-britain-proportio
 export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
 export {default as yearlyRequests} from "./yearly-requests.js";
+export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
 
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";
