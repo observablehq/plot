@@ -2,6 +2,7 @@ import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
+import {maybeInterval} from "./transforms/interval.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -33,9 +34,19 @@ export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, f
 }
 
 function autoAxisTicksK(scale, axis, k) {
+  tickInterval(scale, axis);
   if (axis.ticks === undefined) {
     const [min, max] = extent(scale.scale.range());
     axis.ticks = (max - min) / k;
+  }
+}
+
+function tickInterval(scale, axis) {
+  const interval = maybeInterval(scale.interval);
+  if (interval != null) {
+    const [min, max] = extent(scale.scale.domain());
+    if (axis.ticks === undefined) axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+    if (scale.type !== "point" && scale.type !== "band" && axis.tickFormat === undefined && typeof scale.interval === "number") axis.tickFormat = ",";
   }
 }
 
