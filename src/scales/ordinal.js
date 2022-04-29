@@ -22,7 +22,7 @@ export function ScaleO(scale, channels, {
   hint
 }) {
   interval = maybeInterval(interval);
-  if (domain === undefined) domain = inferDomain(channels, interval);
+  if (domain === undefined) domain = inferDomain(channels, interval, type);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
@@ -44,7 +44,7 @@ export function ScaleOrdinal(key, channels, {
   ...options
 }) {
   interval = maybeInterval(interval);
-  if (domain === undefined) domain = inferDomain(channels, interval);
+  if (domain === undefined) domain = inferDomain(channels, interval, type);
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
@@ -110,7 +110,7 @@ function maybeRound(scale, channels, options) {
   return scale;
 }
 
-function inferDomain(channels, interval) {
+function inferDomain(channels, interval, type) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
     if (domain !== undefined) return domain(); // see channelDomain
@@ -121,7 +121,7 @@ function inferDomain(channels, interval) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
-  if (values.size > 10e3) throw new Error("This ordinal domain would have more than 10,000 values. If this is intentional, set the domain explicitly.");
+  if (values.size > 10e3 && ["point", "band"].includes(type)) throw new Error("This ordinal domain would have more than 10,000 values. If this is intentional, set the domain explicitly.");
   return sort(values, ascendingDefined);
 }
 
