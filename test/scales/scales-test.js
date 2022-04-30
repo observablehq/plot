@@ -3,6 +3,15 @@ import * as d3 from "d3";
 import assert from "assert";
 import it from "../jsdom.js";
 
+it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
+  assert.ok(Plot.cellX({length: 10000}, {x: d3.randomLcg(42)}).plot());
+  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot());
+});
+
+it("Plot does not throw an error if an ordinal color scale has a huge inferred domain", () => {
+  assert.ok(Plot.dotX({length: 10001}, {x: 0, fill: d3.randomLcg(42)}).plot({color: {type: "ordinal"}}));
+});
+
 it("Plot.scale(description) returns a standalone scale", () => {
   const color = Plot.scale({color: {type: "linear"}});
   scaleEqual(color, {
