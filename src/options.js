@@ -128,12 +128,9 @@ export function maybeZ({z, fill, stroke} = {}) {
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
   const n = data.length;
-  if (n !== undefined) {
-    const r = new Uint32Array(n);
-    for (let i = 0; i < n; ++i) r[i] = i;
-    return r;
-  }
-  return Uint32Array.from(data, indexOf); // seems unnecessary given that all calls to this function have been arrayified
+  const r = new Uint32Array(n);
+  for (let i = 0; i < n; ++i) r[i] = i;
+  return r;
 }
 
 // Returns a filtered range of data given the test function.
