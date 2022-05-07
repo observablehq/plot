@@ -20,7 +20,7 @@ node-pre-gyp WARN Pre-built binaries not installable for canvas@2.9.1 and node@1
 node-pre-gyp WARN Hit error response status 404 Not Found on https://github.com/Automattic/node-canvas/releases/download/v2.9.1/canvas-v2.9.1-node-v93-darwin-unknown-arm64.tar.gz
 ```
 
-If this happens, you will need to [compile node-canvas from source](https://github.com/Automattic/node-canvas/blob/master/Readme.md#compiling)in order to develop Plot. For example, on macOS, you can use Homebrew to install the needed dependencies:
+If this happens, you will need to [compile node-canvas from source](https://github.com/Automattic/node-canvas/blob/master/Readme.md#compiling). On macOS you can use Homebrew to install the needed dependencies:
 
 ```bash
 brew install pkg-config cairo pango libpng jpeg giflib librsvg
