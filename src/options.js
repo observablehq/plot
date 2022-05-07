@@ -80,6 +80,16 @@ export function arrayify(data, type) {
     : (data instanceof type ? data : type.from(data)));
 }
 
+// An optimization of type.from(values, f): if the given values are already an
+// instanceof the desired array type, the faster values.map method is used.
+export function map(values, f, type = Array) {
+  return values instanceof type ? values.map(f) : type.from(values, f);
+}
+
+export function isTypedArray(values) {
+  return values instanceof TypedArray;
+}
+
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
 export function isObject(option) {
   return option?.toString === objectToString;

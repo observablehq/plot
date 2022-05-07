@@ -1,5 +1,5 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {first, labelof, maybeValue, range, valueof} from "./options.js";
+import {first, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
@@ -52,7 +52,7 @@ export function channelSort(channels, facetChannels, data, options) {
 function difference(channels, k1, k2) {
   const X1 = values(channels, k1);
   const X2 = values(channels, k2);
-  return Float64Array.from(X2, (x2, i) => Math.abs(x2 - X1[i]));
+  return map(X2, (x2, i) => Math.abs(x2 - X1[i]), Float64Array);
 }
 
 function values(channels, name, alias) {
