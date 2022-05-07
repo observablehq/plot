@@ -127,7 +127,10 @@ export function maybeZ({z, fill, stroke} = {}) {
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
 export function range(data) {
-  return Uint32Array.from(data, indexOf);
+  const n = data.length;
+  const r = new Uint32Array(n);
+  for (let i = 0; i < n; ++i) r[i] = i;
+  return r;
 }
 
 // Returns a filtered range of data given the test function.
