@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, isTemporalString, isNumericString, isScaleOptions, isTypedArray, map, maybeSymbol, order} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleQuantize, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -171,17 +171,17 @@ function Scale(key, channels = [], options = {}) {
     case "pow":
     case "log":
     case "symlog":
-      options = coerceType(channels, options, coerceNumber, Float64Array);
+      options = coerceType(channels, options, coerceNumbers);
       break;
     case "identity":
       switch (registry.get(key)) {
-        case position: options = coerceType(channels, options, coerceNumber, Float64Array); break;
-        case symbol: options = coerceType(channels, options, maybeSymbol); break;
+        case position: options = coerceType(channels, options, coerceNumbers); break;
+        case symbol: options = coerceType(channels, options, coerceSymbols); break;
       }
       break;
     case "utc":
     case "time":
-      options = coerceType(channels, options, coerceDate);
+      options = coerceType(channels, options, coerceDates);
       break;
   }
 
@@ -352,13 +352,29 @@ export function isCollapsed(scale) {
 }
 
 // Mutates channel.value!
-function coerceType(channels, options, coerce, type) {
-  for (const c of channels) c.value = coerceArray(c.value, coerce, type);
-  return {...options, domain: coerceArray(options.domain, coerce, type)};
+function coerceType(channels, {domain, ...options}, coerceValues) {
+  for (const c of channels) {
+    if (c.value !== undefined) {
+      c.value = coerceValues(c.value);
+    }
+  }
+  return {
+    domain: domain === undefined ? domain : coerceValues(domain),
+    ...options
+  };
 }
 
-function coerceArray(array, coerce, type = Array) {
-  if (array !== undefined) return type.from(array, coerce);
+function coerceSymbols(values) {
+  return map(values, maybeSymbol);
+}
+
+function coerceDates(values) {
+  return map(values, coerceDate);
+}
+
+// If the values are specified as a typed array, no coercion is required.
+function coerceNumbers(values) {
+  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
