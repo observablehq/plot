@@ -12,6 +12,20 @@ To contribute to Observable Plot, you’ll need a local development environment 
 yarn
 ```
 
+You may encounter an error installing [node-canvas](https://github.com/Automattic/node-canvas), such as:
+
+```
+node-pre-gyp ERR! install response status 404 Not Found on https://github.com/Automattic/node-canvas/releases/download/v2.9.1/canvas-v2.9.1-node-v93-darwin-unknown-arm64.tar.gz
+node-pre-gyp WARN Pre-built binaries not installable for canvas@2.9.1 and node@16.15.0 (node-v93 ABI, unknown) (falling back to source compile with node-gyp)
+node-pre-gyp WARN Hit error response status 404 Not Found on https://github.com/Automattic/node-canvas/releases/download/v2.9.1/canvas-v2.9.1-node-v93-darwin-unknown-arm64.tar.gz
+```
+
+If this happens, you will need to [compile node-canvas from source](https://github.com/Automattic/node-canvas/blob/master/Readme.md#compiling)in order to develop Plot. For example, on macOS, you can use Homebrew to install the needed dependencies:
+
+```bash
+brew install pkg-config cairo pango libpng jpeg giflib librsvg
+```
+
 ## Testing
 
 After making changes to Plot’s source code, run Plot’s test suite to verify that your code is doing what you expect and that you haven’t introduced any other unexpected changes in behavior. Plot has two types of tests: **unit tests** and **snapshot tests**. Tests are run automatically on pull requests (via GitHub Actions), but you’ll want to run them locally to verify your changes before opening a pull request. To run the tests, use Yarn:
