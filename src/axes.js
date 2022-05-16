@@ -5,7 +5,7 @@ import {position, registry} from "./scales/index.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, axis = true, grid, line, label, facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}} = {}
+  {x = {}, y = {}, fx = {}, fy = {}, axis = true, grid, line, label, facet: {columns, rows, axis: facetAxis = axis && !(columns || rows), grid: facetGrid, label: facetLabel = label} = {}} = {}
 ) {
   let {axis: xAxis = axis} = x;
   let {axis: yAxis = axis} = y;

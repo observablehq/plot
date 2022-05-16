@@ -502,6 +502,8 @@ The following *facet* constant options are also supported:
 * facet.**margin** - shorthand for the four margins
 * facet.**grid** - if true, draw grid lines for each facet
 * facet.**label** - if null, disable default facet axis labels
+* facet.**columns** - the number of columns for a grid layout
+* facet.**rows** - the number of rows for a grid layout
 
 Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
 
@@ -525,6 +527,8 @@ Plot.plot({
 ```
 
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+
+The *columns* option wraps facets on a grid layout with the given number of columns, which defaults to the square root of the number of facets when *columns* is true. If *columns* is not set, the *rows* option similarly wraps facets with the given number of rows. The layout starts from the top-left and expands horizontally if the facet is given by the *x* channel, and vertically if the facet is given by *y*. Facets are sorted in natural ascending order, but a different order can be given by setting an explicit domain for *fx* or *fy*, or by using a mark’s sort option.
 
 ## Legends
 

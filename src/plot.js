@@ -84,16 +84,17 @@ export function plot(options = {}) {
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
-  const dimensions = Dimensions(scaleDescriptors, axes, options);
+  let dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
-  const {fx, fy} = scales;
-  const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
-  const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
-  const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+  let {fx, fy} = scales;
+  let facetKeys = fx && fy ? cross(fx.domain(), fy.domain()) : fx ? fx.domain() : fy ? fy.domain() : undefined;
+  let fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+  let fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+  let subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
@@ -116,6 +117,50 @@ export function plot(options = {}) {
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
+  }
+
+  // Remap grid facet coordinates into fx+fy…
+  if ((facets !== undefined) && ((facet?.columns != null) || (facet?.rows != null))) {
+    let {columns, rows} = facet;
+    if (columns != null && rows != null) throw new Error("only columns or rows can be specified at a time");
+    if (fx && fy) throw new Error("columns or rows must be applied to one-dimensional facets");
+    if (fy) ([rows, columns] = [columns, rows]);
+
+    // Compute the number of rows and columns. (At most one is specified.)
+    const f = fx ?? fy;
+    const domain = f.domain();
+    const n = columns === true ? Math.floor(Math.sqrt(domain.length))
+      : rows === true ? Math.ceil(Math.sqrt(domain.length))
+      : columns != null ? +columns
+      : Math.ceil(domain.length / +rows);
+    if (isNaN(n)) throw new Error("invalid columns or rows");
+
+    // Redefine facets…
+    let ia = new Map(domain.map((v, i) => [v, i % n]));
+    let ib = new Map(domain.map((v, i) => [v, Math.floor(i / n)]));
+    if (fy) ([ia, ib] = [ib, ia]);
+    facets = facets.map(([key, facet]) => [[ia.get(key), ib.get(key)], facet]);
+
+    // Hack to fix code below…
+    facetChannels = {fx: true, fy: true};
+
+    // Redefine affected scales, axes, and dimensions…
+    const newScaleDescriptors = Scales([["fx", [{scale: "fx", value: [], domain: () => [...range({length: n})]}]], ["fy", [{scale: "fy", value: [], domain: () => [...range({length: Math.ceil(domain.length / n)})]}]]], options);
+    Object.assign(scales, ScaleFunctions(newScaleDescriptors));
+    Object.assign(axes, Axes(newScaleDescriptors, options));
+    dimensions = Dimensions({...scaleDescriptors, ...newScaleDescriptors}, axes, options);
+    ({fx, fy} = scales);
+
+    // Re-apply the scale ranges. TODO Don’t clobber manual ranges.
+    if ("x" in scaleDescriptors) scaleDescriptors.x.range = undefined;
+    if ("y" in scaleDescriptors) scaleDescriptors.y.range = undefined;
+    autoScaleRange({...scaleDescriptors, ...newScaleDescriptors}, dimensions);
+
+    // Ugh, reconstruct this state, too.
+    facetKeys = cross(fx.domain(), fy.domain());
+    fyMargins = {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+    fxMargins = {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+    subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
   }
 
   // Compute value objects, applying scales as needed.
@@ -191,7 +236,7 @@ export function plot(options = {}) {
         ));
     }
     selection.selectAll()
-      .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
+      .data(facetKeys.filter(indexByFacet.has, indexByFacet))
       .enter()
       .append("g")
         .attr("aria-label", "facet")
@@ -367,14 +412,6 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
-}
-
-// Unlike facetGroups, which returns groups in order of input data, this returns
-// keys in order of the associated scale’s domains.
-function facetKeys({fx, fy}) {
-  return fx && fy ? cross(fx.domain(), fy.domain())
-    : fx ? fx.domain()
-    : fy.domain();
 }
 
 // Returns an array of [[key1, index1], [key2, index2], …] representing the data
