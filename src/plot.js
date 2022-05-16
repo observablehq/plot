@@ -1,10 +1,10 @@
-import {create, cross, difference, groups, InternMap, select} from "d3";
+import {create, cross, difference, groups, InternMap, select, sort} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, keyword, range, second, where} from "./options.js";
+import {arrayify, isOptions, keyword, range, first, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
@@ -36,7 +36,11 @@ export function plot(options = {}) {
   let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
   let facetsExclude; // lazily-constructed opposite of facetsIndex
   if (facet !== undefined) {
-    const {x, y} = facet;
+    const {x, y, columns, rows} = facet;
+    if (columns != null || rows != null) {
+      if (columns != null && rows != null) throw new Error("Only columns or rows can be specified at a time.");
+      if (x != null && y != null) throw new Error("Columns or rows must be applied to one-dimensional facets.");
+    }
     if (x != null || y != null) {
       const facetData = arrayify(facet.data);
       facetChannels = [];
@@ -74,6 +78,40 @@ export function plot(options = {}) {
       }
     }
     stateByMark.set(mark, {index, channels, faceted: markFacets !== undefined});
+  }
+
+  // remap grid facet coordinates into fx+fy
+  if (facet !== undefined) {
+    let {x, columns, rows} = facet;
+    if (columns != null || rows != null) {
+      const fz = x ? "fx" : "fy";
+      let domain = options?.[fz]?.domain;
+      if (domain != null) {
+        options = {
+          ...options,
+          ...options.fx && {fx: {...options.fx, domain: undefined}},
+          ...options.fy && {fy: {...options.fy, domain: undefined}}
+        };
+      } else {
+        const f = channelsByScale.get(fz)[0];
+        domain = f.domain !== undefined ? f.domain() : sort(facets.map(first));
+      }
+      if (fz === "fy") ([rows, columns] = [columns, rows]);
+      const len = columns === true ? Math.floor(Math.sqrt(domain.length))
+        : rows === true ? Math.ceil(Math.sqrt(domain.length))
+        : columns != null ? +columns
+        : Math.ceil(domain.length / +rows);
+      let ia = new Map(domain.map((v, i) => [v, i % len]));
+      let ib = new Map(domain.map((v, i) => [v, Math.floor(i / len)]));
+      if (fz === "fy") ([ia, ib] = [ib, ia]);
+      for (const f of facets) {
+        const v = f[0];
+        f[0] = [ia.get(v), ib.get(v)];
+      }
+      channelsByScale.set("fx", [{scale: "fx", value: [], domain: () => ia.values()}]);
+      channelsByScale.set("fy", [{scale: "fy", value: [], domain: () => ib.values()}]);
+      facetChannels = [["fx", {scale: "fx", value: []}], ["fy", {scale: "fy", value: []}]];
+    }
   }
 
   // Apply scale transforms, mutating channel.value.
