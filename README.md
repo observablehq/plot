@@ -2135,6 +2135,16 @@ While transform functions often produce new *data* or *facets*, they may return 
 
 Plot provides a few helpers for implementing transforms.
 
+#### Plot.valueof(*data*, *value*[, *type*])
+
+Given an iterable *data* and a *value*, returns an array of the specified *type* with the value of each element of the data.
+
+The following values are supported:
+* an accessor *function* - to be called with array.from(*data*, *value*), with array the constructor of the specified array type, which defaults to Array.
+* a *string* - corresponding to the field accessor d => d[*value*]
+* a *number*, *Date* or *boolean* — resulting in an array uniformly filled with the *value*
+* an object with a *transform* method — to be called with array.from(*data*, *value.transform*)
+
 #### Plot.transform(*options*, *transform*)
 
 Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
