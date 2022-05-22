@@ -10,6 +10,7 @@
   "type": "module",
   "main": "src/index.js",
   "module": "src/index.js",
+  "types": "src/index.d.ts",
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
@@ -22,10 +23,12 @@
   },
   "files": [
     "dist/**/*.js",
-    "src/**/*.js"
+    "src/**/*.js",
+    "src/**/*.d.ts"
   ],
   "scripts": {
     "test": "mkdir -p test/output && mocha -r module-alias/register 'test/**/*-test.js' test/plot.js && eslint src test",
+    "test-types": "npx tsd",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
@@ -46,6 +49,7 @@
     "module-alias": "2",
     "rollup": "2",
     "rollup-plugin-terser": "7",
+    "tsd": "^0.20.0",
     "vite": "2"
   },
   "dependencies": {
