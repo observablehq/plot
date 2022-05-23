@@ -14,10 +14,12 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "esModuleInterop": true,
   },
+  "files": ["bundle.js"],
   "include": [
-    "bundle.js"
+    "bundle.js",
+    "**/*.ts",
+    "**/*.js",
   ],
   "exclude": [
     "dist"

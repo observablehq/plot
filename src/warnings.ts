@@ -6,7 +6,8 @@ export function consumeWarnings() {
   return w;
 }
 
-export function warn(message) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function warn(message: any) {
   console.warn(message);
   ++warnings;
 }
