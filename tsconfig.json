@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "es6"
+    ],
+    "strict": true,
+    "stripInternal": true,
+    "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+  },
+  "include": [
+    "bundle.js"
+  ],
+  "exclude": [
+    "dist"
+  ]
+}

@@ -3,6 +3,7 @@ import {terser} from "rollup-plugin-terser";
 import json from "@rollup/plugin-json";
 import node from "@rollup/plugin-node-resolve";
 import * as meta from "./package.json";
+import typescript from "@rollup/plugin-typescript";
 
 const filename = meta.name.split("/").pop();
 
@@ -25,6 +26,7 @@ const config = {
     banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
   },
   plugins: [
+    typescript({}),
     json(),
     node()
   ]
