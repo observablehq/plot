@@ -25,7 +25,9 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "mkdir -p test/output && mocha -r ts-node/register 'test/**/*-test.js' test/plot.js && eslint src test",
+    "test": "test:mocha && test:lint",
+    "test:mocha": "mkdir -p test/output && mocha",
+    "test:lint": "eslint src test",
     "prepublishOnly": "rm -rf dist && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "vite"

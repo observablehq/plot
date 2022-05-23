@@ -1,0 +1,14 @@
+{
+  "require": "ts-node/register",
+  "loader": "ts-node/esm",
+  "extensions": ["js", "ts"],
+  "spec": [
+    "test/**/*-test.*",
+    "test/plot.js"
+  ],
+  "watch-files": [
+    "bundle.js",
+    "test",
+    "src"
+  ]
+}
