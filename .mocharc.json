@@ -1,5 +1,5 @@
 {
-  "require": "ts-node/register",
+  "require": ["module-alias/register.js", "ts-node/register"],
   "loader": "ts-node/esm",
   "extensions": ["js", "ts"],
   "spec": [
