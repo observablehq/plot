@@ -8,7 +8,7 @@ import {arrayify, isOptions, keyword, range, second, where} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, applyScales, exposeScales} from "./scales.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic} from "./transforms/basic.js";
-import {consumeWarnings} from "./warnings.ts";
+import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
