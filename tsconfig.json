@@ -3,7 +3,8 @@
     "target": "esnext",
     "module": "esnext",
     "lib": [
-      "es6"
+      "esnext",
+      "dom"
     ],
     "strict": true,
     "stripInternal": true,
@@ -13,7 +14,6 @@
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
     "paths": {
       "@observablehq/plot": ["./src/index.js"]
     }

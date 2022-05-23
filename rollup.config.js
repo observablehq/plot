@@ -26,7 +26,7 @@ const config = {
     banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
   },
   plugins: [
-    typescript({}),
+    typescript({tsconfig: "./tsconfig.json"}),
     json(),
     node()
   ]
