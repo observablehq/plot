@@ -28,7 +28,7 @@
     "test": "yarn test:mocha && yarn test:lint",
     "test:mocha": "mkdir -p test/output && mocha",
     "test:lint": "eslint src test",
-    "prepublishOnly": "rm -rf dist && rollup -c",
+    "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
   },
