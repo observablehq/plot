@@ -1,6 +1,6 @@
 import {mapX, mapY} from "./map.js";
 import {deviation, max, min, median, mode, variance} from "d3";
-import {warn} from "../warnings.ts";
+import {warn} from "../warnings";
 import {percentile} from "../options.js";
 
 export function windowX(windowOptions = {}, options) {
