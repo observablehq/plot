@@ -23,7 +23,7 @@ import {
   scaleIdentity,
   ticks
 } from "d3";
-import {positive, negative, finite} from "../defined";
+import {positive, negative, finite} from "../defined.js";
 import {arrayify, constant, order} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";

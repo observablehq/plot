@@ -1,5 +1,5 @@
 import {stratify, tree} from "d3";
-import {ascendingDefined} from "../defined";
+import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
 

@@ -1,7 +1,7 @@
 import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelSort} from "./channel.js";
-import {defined} from "./defined";
+import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isOptions, keyword, range, second, where} from "./options.js";

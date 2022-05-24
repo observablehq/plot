@@ -1,5 +1,5 @@
 import {group, namespaces} from "d3";
-import {defined, nonempty} from "./defined";
+import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
 import {warn} from "./warnings.js";
