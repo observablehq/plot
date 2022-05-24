@@ -1,5 +1,5 @@
 import {create} from "d3";
-import {radians} from "../math.ts";
+import {radians} from "../math";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSameValue} from "./link.js";

@@ -3,28 +3,18 @@
     "target": "esnext",
     "module": "esnext",
     "lib": [
-      "es6"
+      "esnext",
+      "dom"
     ],
     "strict": true,
     "stripInternal": true,
     "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
     "paths": {
       "@observablehq/plot": ["./src/index.js"]
     }
   },
-  "files": ["bundle.js"],
-  "include": [
-    "bundle.js",
-    "**/*.ts",
-    "**/*.js",
-  ],
-  "exclude": [
-    "dist"
-  ],
+  "include": ["src/**/*"]
 }
