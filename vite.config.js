@@ -17,10 +17,10 @@ export default defineConfig({
       {
         find: RegExp(`^(.*)\.js$`), replacement: "$1", customResolver: (importee, importer) => {
           const base = path.join(path.dirname(importer), importee);
-          const ts = `${base}.ts`;
           const js = `${base}.js`;
-          if (typescriptPaths.has(ts)) return ts;
+          const ts = `${base}.ts`;
           if (javascriptPaths.has(js)) return js;
+          if (typescriptPaths.has(ts)) return ts;
         }
       }
     ]
