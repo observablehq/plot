@@ -13,8 +13,9 @@
   "jsdelivr": "dist/plot.umd.min.js",
   "unpkg": "dist/plot.umd.min.js",
   "exports": {
+    "mocha": "./src/index.js",
     "umd": "./dist/plot.umd.min.js",
-    "default": "./src/index.js"
+    "default": "./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
   ],
   "scripts": {
     "test": "yarn test:mocha && yarn test:lint",
-    "test:mocha": "mkdir -p test/output && mocha --experimental-specifier-resolution=node",
+    "test:mocha": "mkdir -p test/output && mocha --experimental-specifier-resolution=node --conditions=mocha",
     "test:lint": "eslint src test",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
