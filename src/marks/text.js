@@ -1,5 +1,5 @@
 import {create, namespaces} from "d3";
-import {nonempty} from "../defined.js";
+import {nonempty} from "../defined";
 import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
 import {Mark} from "../plot.js";

@@ -7,7 +7,7 @@ import {
   scaleDivergingPow,
   scaleDivergingSymlog
 } from "d3";
-import {positive, negative} from "../defined.js";
+import {positive, negative} from "../defined";
 import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
 import {inferDomain, Interpolator, flip, interpolatePiecewise} from "./quantitative.js";
