@@ -1,5 +1,5 @@
 import {randomLcg} from "d3";
-import {ascendingDefined} from "../defined.js";
+import {ascendingDefined} from "../defined";
 import {arrayify, isOptions, valueof} from "../options.js";
 
 // If both t1 and t2 are defined, returns a composite transform that first

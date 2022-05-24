@@ -1,5 +1,5 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
-import {ascendingDefined, firstof} from "../defined.js";
+import {ascendingDefined, firstof} from "../defined";
 import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 

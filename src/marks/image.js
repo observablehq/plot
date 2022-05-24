@@ -1,5 +1,5 @@
 import {create} from "d3";
-import {positive} from "../defined.js";
+import {positive} from "../defined";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString, applyFrameAnchor} from "../style.js";
