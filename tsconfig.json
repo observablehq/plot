@@ -9,8 +9,6 @@
     "strict": true,
     "stripInternal": true,
     "outDir": "dist",
-    "declaration": true,
-    "declarationDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -18,13 +16,5 @@
       "@observablehq/plot": ["./src/index.js"]
     }
   },
-  "files": ["bundle.js"],
-  "include": [
-    "bundle.js",
-    "**/*.ts",
-    "**/*.js",
-  ],
-  "exclude": [
-    "dist"
-  ],
+  "include": ["src/**/*"]
 }

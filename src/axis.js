@@ -1,7 +1,7 @@
 import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {formatIsoDate} from "./format.js";
-import {radians} from "./math.js";
+import {radians} from "./math.ts";
 import {applyAttr, impliedString} from "./style.js";
 
 export class AxisX {
