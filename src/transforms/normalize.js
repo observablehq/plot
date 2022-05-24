@@ -1,5 +1,5 @@
 import {extent, deviation, max, mean, median, min, sum} from "d3";
-import {defined} from "../defined.js";
+import {defined} from "../defined";
 import {percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
