@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "test": "yarn test:typecheck && yarn test:lint && yarn test:mocha",
-    "test:mocha": "mkdir -p test/output && mocha --experimental-specifier-resolution=node --conditions=mocha",
+    "test:mocha": "mkdir -p test/output && mocha --conditions=mocha",
     "test:lint": "eslint src test",
     "test:typecheck": "yarn tsc --noEmit",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
@@ -50,6 +50,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "canvas": "2",
     "eslint": "^8.16.0",
+    "glob": "^8.0.3",
     "htl": "0.3",
     "js-beautify": "1",
     "jsdom": "19",
