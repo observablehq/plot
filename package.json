@@ -49,6 +49,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "canvas": "2",
     "eslint": "^8.16.0",
+    "glob": "^8.0.3",
     "htl": "0.3",
     "js-beautify": "1",
     "jsdom": "19",

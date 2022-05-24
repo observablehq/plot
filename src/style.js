@@ -2,7 +2,7 @@ import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
-import {warn} from "./warnings";
+import {warn} from "./warnings.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
