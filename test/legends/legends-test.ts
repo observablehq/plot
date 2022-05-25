@@ -11,5 +11,5 @@ it("Plot.legend({}) throws an error", () => {
 });
 
 it("Plot.legend({color: {}}) throws an error", () => {
-  assert.throws(() => Plot.legend({ color: {} }), /unknown legend type/);
+  assert.throws(() => Plot.legend({color: {}}), /unknown legend type/);
 });
