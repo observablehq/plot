@@ -1,5 +1,6 @@
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
+import {warn} from "./warnings.js";
 
 export function Dimensions(
   scales,
@@ -51,9 +52,13 @@ function autoHeight({x, y, fy, fx}, {width, marginLeft, marginRight, marginTop, 
   // If a data aspect ratio is given, tweak the height to match
   if (daspect != null && daspect !== false) {
     if (!(isFinite(daspect) && daspect > 0)) throw new Error(`invalid data aspect ratio: ${daspect}`);
-    const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / daspect);
-    const trueWidth = (fx ? fx.scale.bandwidth() : 1) * (width - marginLeft - marginRight);
-    return (ratio * trueWidth) / (fy ? fy.scale.bandwidth() : 1) + marginTop + marginBottom;
+    if (!["utc", "time", "linear"].includes(x?.type) || !["utc", "time", "linear"].includes(y?.type)) {
+      warn(`invalid x/y scale types for the daspect option: ${x?.type}/${y?.type}`);
+    } else {
+      const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / daspect);
+      const trueWidth = (fx ? fx.scale.bandwidth() : 1) * (width - marginLeft - marginRight);
+      return (ratio * trueWidth) / (fy ? fy.scale.bandwidth() : 1) + marginTop + marginBottom;
+    }
   }
 
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
