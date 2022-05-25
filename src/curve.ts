@@ -18,12 +18,9 @@ import {
   curveNatural,
   curveStep,
   curveStepAfter,
-  curveStepBefore,
-  CurveBundleFactory,
-  CurveCardinalFactory,
-  CurveCatmullRomFactory
+  curveStepBefore
 } from "d3";
-import type { CurveFactory } from "d3";
+import type { CurveFactory, CurveBundleFactory, CurveCardinalFactory, CurveCatmullRomFactory } from "d3";
 
 type CurveFunction = CurveFactory | CurveBundleFactory | CurveCardinalFactory | CurveCatmullRomFactory;
 type CurveName =
