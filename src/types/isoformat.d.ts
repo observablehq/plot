@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+type Dateable = Date | {valueOf: () => number};
+
 declare module 'isoformat' {
-    export function format(value: any, fallback: string): string;
-    export function format(value: any, fallback: any): any;
-    export function parse(value: string): Date;
+    export function format(value: Dateable, fallback: string | ((v: Dateable) => string)): string;
+    export function parse(value: string, fallback: string | ((s: string) => Date)): Date;
 }
