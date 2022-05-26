@@ -45,6 +45,7 @@ expectError(colDate = "colNum1");
 //#endregion Building blocks
 
 //#region -------- StandardMarkOptions --------
+// TODO Exhaustive testing?
 
 const options: StandardMarkOptions<Datum> = {};
 
@@ -82,10 +83,15 @@ options.clip = true;
 options.clip = false;
 options.clip = null;
 
+// Incorrect constant types.
 expectError(options.dx = "stringConstant");
 expectError(options.target = "_unknown");
 expectError(options.clip = "true");
 expectError(options.clip = "frame");
+
+// Any channel values.
+expectError(options.dx = () => 1);
+expectError(options.dx = (d) => d.colNum1);
 
 //#endregion StandardMarkOptions
 
