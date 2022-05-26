@@ -1,42 +1,49 @@
-// "Polyfill" for `ariaDescription`.
-interface SVGElement {
-  ariaDescription: string;
-}
-
 /**
  * Base types for mark properties.
  *
- * These specify the type to which a constant or channel option must resolve.
+ * These specify the type to which a constant or channel option must _resolve_.
  *
- * TODO Add all possible mark properties.
+ * TODO Include all possible mark properties.
+ * TODO Use `csstype`?
  */
 type MarkProperties = {
-  fill: CSSStyleDeclaration["fill"];
-  fillOpacity: CSSStyleDeclaration["fillOpacity"];
-  stroke: CSSStyleDeclaration["stroke"];
-  strokeOpacity: CSSStyleDeclaration["strokeOpacity"];
-  strokeWidth: CSSStyleDeclaration["strokeWidth"];
-  opacity: CSSStyleDeclaration["opacity"];
+  fill: CSSStyleDeclaration["fill"],
+  fillOpacity: CSSStyleDeclaration["fillOpacity"],
+  stroke: CSSStyleDeclaration["stroke"],
+  strokeOpacity: number,
+  strokeWidth: number,
+  opacity: number,
 
-  strokeLinejoin: CSSStyleDeclaration["strokeLinejoin"];
-  strokeLinecap: CSSStyleDeclaration["strokeLinecap"];
-  strokeMiterlimit: CSSStyleDeclaration["strokeMiterlimit"];
-  strokeDasharray: CSSStyleDeclaration["strokeDasharray"];
-  strokeDashoffset: CSSStyleDeclaration["strokeDashoffset"];
-  mixBlendMode: CSSStyleDeclaration["mixBlendMode"];
-  shapeRendering: CSSStyleDeclaration["shapeRendering"];
-  paintOrder: CSSStyleDeclaration["paintOrder"];
-  dx: number;
-  dy: number;
-  target: "_blank" | "_parent" | "_self" | "_top";
-  ariaDescription: SVGElement["ariaDescription"];
-  ariaHidden: SVGGraphicsElement["ariaHidden"];
-  clip: boolean;
+  strokeLinejoin: CSSStyleDeclaration["strokeLinejoin"],
+  strokeLinecap: CSSStyleDeclaration["strokeLinecap"],
+  strokeMiterlimit: CSSStyleDeclaration["strokeMiterlimit"],
+  strokeDasharray: CSSStyleDeclaration["strokeDasharray"],
+  strokeDashoffset: CSSStyleDeclaration["strokeDashoffset"],
+  mixBlendMode: CSSStyleDeclaration["mixBlendMode"],
+  shapeRendering: CSSStyleDeclaration["shapeRendering"],
+  paintOrder: CSSStyleDeclaration["paintOrder"],
+  dx: number,
+  dy: number,
+  target: "_self" | "_blank" | "_parent" | "_top",
+  // `ariaDescription` is not _currently_ supported by TypeScript
+  // because it is not supported by two or more major browser engines.
+  // @see https://github.com/microsoft/TypeScript-DOM-lib-generator#why-is-my-fancy-api-still-not-available-here
+  ariaDescription: string,
+  ariaHidden: boolean,
+  clip: boolean | null,
 
-  title: SVGTitleElement["textContent"];
-  href: SVGAElement["href"];
-  ariaLabel: SVGGraphicsElement["ariaLabel"];
-};
+  title: SVGTitleElement["textContent"],
+  href: SVGAElement["href"],
+  ariaLabel: SVGGraphicsElement["ariaLabel"],
+
+  // TODO Get types from scales?
+  x: any,
+  y: any,
+  z: any,
+
+  facet: "auto" | "include" | "exclude" | false | null,
+  sort: any,
+}
 
 /**
  * Options which can be either constants or channels.
@@ -49,7 +56,9 @@ type ConstantsOrChannels =
   | "stroke"
   | "strokeOpacity"
   | "strokeWidth"
-  | "opacity";
+  | "opacity"
+  | "x"
+  | "y";
 
 /**
  * Options which can *only* be a channel.
@@ -58,26 +67,11 @@ type ConstantsOrChannels =
  */
 type Channels = "title" | "href" | "ariaLabel";
 
-/**
- * Utility type to extract names of properties which match a given type.
- */
-export type ExtractKeysByType<T, Datum> = keyof {
-  [Key in keyof Datum as (Datum[Key] extends T ? Key : never)]: Datum[Key]
-}
-
-export type ChannelOption<PropertyType, Datum = object, ColumnName = Datum extends object ? ExtractKeysByType<PropertyType, Datum> : string> =
-  | ColumnName
-  | ((d?: Datum) => PropertyType | null | undefined);
-
-export type ConstantOrChannelOption<PropertyType, Datum = object> =
-  | PropertyType
-  | ChannelOption<PropertyType, Datum>;
-
 export interface ChannelDefinition {
-  name: string;
-  value: unknown;
-  scale?: "x" | "y";
-  optional?: boolean;
+  name: string,
+  value: unknown,
+  scale?: "x" | "y",
+  optional?: boolean,
 }
 
 /**
@@ -85,7 +79,7 @@ export interface ChannelDefinition {
  *
  * @see https://github.com/observablehq/plot#marks
  */
-type MarkOptions<Datum> =
+type StandardMarkOptions<Datum> =
   {
     [Key in keyof Omit<MarkProperties, Channels | ConstantsOrChannels>]?: MarkProperties[Key]
   }
@@ -94,26 +88,34 @@ type MarkOptions<Datum> =
   }
   & {
     [Key in Channels]?: ChannelOption<MarkProperties[Key], Datum>
-  };
+  }
 
 export function plot(options?: Record<string, unknown>): SVGSVGElement;
 export function marks(...marks: any[]): any[];
 
-export class Mark<Datum, Data = Datum[]> {
+/**
+ * Abstract base class for marks.
+ *
+ * @see https://github.com/observablehq/plot#marks
+ */
+export abstract class Mark<Datum, Data = Datum[]> {
   constructor(
     data: Data,
     channels: ChannelDefinition[],
-    options: MarkOptions<Datum>,
+    options: StandardMarkOptions<Datum>,
     defaults: object
   );
+
   data: Data;
   sort: any;
-  facet: string;
+  facet: StandardMarkOptions<Datum>["facet"];
   transform: any;
   channels: any[];
-  dx: number;
-  dy: number;
-  clip: string | boolean;
+  dx: StandardMarkOptions<Datum>["dx"];
+  dy: StandardMarkOptions<Datum>["dy"];
+  // Internally, the `clip` property is a different type than the mark option.
+  clip: "frame" | false | null;
+
   initialize(
     facetIndex: any,
     facetChannels: any
@@ -131,6 +133,15 @@ export class Mark<Datum, Data = Datum[]> {
         }
     )[][];
   };
+
   filter(index: any, channels: any, values: any): any;
+
   plot({ marks, ...options }?: { marks?: any[] }): SVGSVGElement;
+
+  abstract render(...args: any[]): SVGElement;
 }
+
+import {
+  ChannelOption,
+  ConstantOrChannelOption
+} from "./misc";

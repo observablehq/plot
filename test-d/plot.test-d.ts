@@ -1,7 +1,4 @@
-import { expectError } from "tsd";
-import { ChannelOption, ConstantOrChannelOption, ExtractKeysByType, MarkOptions } from "../src/plot";
-
-//#region Setup ---------------
+//#region -------- Setup --------
 
 type Datum = {
   colString1: string,
@@ -14,7 +11,7 @@ type Datum = {
 //#endregion Setup
 
 
-//#region Building blocks ---------------
+//#region -------- Building blocks --------
 
 let colString: ExtractKeysByType<string, Datum>;
 
@@ -45,39 +42,53 @@ colDate = "colDate";
 expectError(colDate = "colString1");
 expectError(colDate = "colNum1");
 
-let channelString: ChannelOption<string, Datum>;
+//#endregion Building blocks
 
-// As column name, auto column names.
-channelString = "colString1";
+//#region -------- StandardMarkOptions --------
 
-// As function.
-channelString = (d?: Datum) => d ? d.colString1 : "";
+const options: StandardMarkOptions<Datum> = {};
 
-// As function, coerced return type.
-channelString = (d?: Datum) => d ? d.colDate.toString() : "";
-channelString = (d?: Datum) => d ? String(d.colNum1) : "";
+// Constant or channel option.
+options.fill = "#ccc";
+options.fill = (d) => d.colString2;
 
-// As constant that is not a known column name.
-expectError(channelString = "arbitraryString");
+// As function, incorrect return type.
+expectError(options.fill = (d) => d.colNum1);
 
-// As wrong type constant.
-expectError(channelString = 1);
+options.x = "100";
+options.x = (d: Datum) => d.colNum1;
 
-// As function, wrong return type.
-expectError(channelString = (d?: Datum) => d ? d.colNum1 : 0);
+// As function, incorrect return type.
+expectError(options.opacity = (d) => d.colString1);
 
-// As function, wrong datum column name.
-expectError(channelString = (d?: Datum) => d ? d.missingCol : "");
+// Channel-only option.
+options.title = "colString1";
+options.title = (d) => d.colString1;
+options.title = () => "stringConstant";
 
-// As function, wrong param type.
-expectError(channelString = (d?: { colOtherString: string }) => d ? d.colOtherString : "");
+// As constant.
+expectError(options.title = "stringConstant");
 
+// Incorrect return type.
+expectError(options.title = () => 1);
 
-//#region Building blocks
+// Constant-only option.
+options.dx = 1;
+options.target = "_self";
+options.target = "_blank";
+options.target = "_parent";
+options.target = "_top";
+options.clip = true;
+options.clip = false;
+options.clip = null;
 
+expectError(options.dx = "stringConstant");
+expectError(options.target = "_unknown");
+expectError(options.clip = "true");
+expectError(options.clip = "frame");
 
+//#endregion StandardMarkOptions
 
-//#region MarkOptions ---------------
-
-
-//#endregion MarkOptions
+import { expectError } from "tsd";
+import { StandardMarkOptions } from "../src/plot";
+import { ExtractKeysByType } from "../src/misc";
