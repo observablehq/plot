@@ -7,7 +7,7 @@ export default async function() {
     inset: 6,
     x: {type: "linear"},
     y: {type: "linear"},
-    daspect: 1,
+    dataAspectRatio: 10,
     marks: [
       Plot.frame(),
       undefined,

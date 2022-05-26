@@ -7,7 +7,7 @@ export default async function() {
   return Plot.plot({
     x: {label: "temp_min →", nice: true},
     y: {label: "↑ temp amplitude", zero: true},
-    daspect: 1,
+    dataAspectRatio: true,
     color: {
         type: "ordinal",
         scheme: "sinebow",

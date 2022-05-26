@@ -6,9 +6,10 @@ export default async function() {
   const pc = d3.format(".2%");
   return Plot.plot({
     width: 960,
-    daspect: 1,
+    dataAspectRatio: 1,
     insetLeft: 10,
     insetRight: 5,
+    insetBottom: 7,
     marks: [
       Plot.dot(libor, {x: "about", y: "on", fill: "value"}),
       Plot.text(libor, {
