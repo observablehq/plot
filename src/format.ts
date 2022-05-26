@@ -3,8 +3,8 @@ import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
 
 const numberFormat = memoize1((locale: string | string[] | undefined) => new Intl.NumberFormat(locale));
-const monthFormat = memoize1((locale: string | string[] | undefined, month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", month}));
-const weekdayFormat = memoize1((locale: string | string[] | undefined, weekday: "long" | "short" | "narrow" | undefined) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", weekday}));
+const monthFormat = memoize1((locale: string | string[] | undefined, month: IntlDateTimeFormatOptionsMonth) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", month}));
+const weekdayFormat = memoize1((locale: string | string[] | undefined, weekday: IntlDateTimeFormatOptionsWeekday) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", weekday}));
 
 export function formatNumber(locale = "en-US"): (value: unknown) => string | undefined {
   const format = numberFormat(locale);
@@ -14,12 +14,12 @@ export function formatNumber(locale = "en-US"): (value: unknown) => string | und
   };
 }
 
-export function formatMonth(locale = "en-US", month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined = "short") {
+export function formatMonth(locale = "en-US", month: IntlDateTimeFormatOptionsMonth = "short") {
   const format = monthFormat(locale, month);
   return (i: Date | number | null | undefined) => i != null && !isNaN(i = +new Date(Date.UTC(2000, +i))) ? format.format(i) : undefined;
 }
 
-export function formatWeekday(locale = "en-US", weekday: "long" | "short" | "narrow" | undefined = "short") {
+export function formatWeekday(locale = "en-US", weekday: IntlDateTimeFormatOptionsWeekday = "short") {
   const format = weekdayFormat(locale, weekday);
   return (i: Date | number | null | undefined) => i != null && !isNaN(i = +new Date(Date.UTC(2001, 0, +i))) ? format.format(i) : undefined;
 }
