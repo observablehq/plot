@@ -17,7 +17,7 @@ export function basic({
     if (s1 != null && !isOptions(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
-  if (t2 != null && i1 != null) throw new Error("Data transforms must appear before any channel transform");
+  if (t2 != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
   return {
     ...options,
     ...isOptions(s1) && {sort: s1},
