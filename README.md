@@ -66,7 +66,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 ### Mark options
 
-The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z*-order, last on top. For example, here a single rule at *y* = 0 is drawn on top of blue bars for the [*alphabet* dataset](./test/data/alphabet.csv).
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z* order, last on top. For example, here a single rule at *y* = 0 is drawn on top of blue bars for the [*alphabet* dataset](./test/data/alphabet.csv).
 
 ```js
 Plot.plot({
@@ -263,7 +263,7 @@ Similarly, the *y* and *fy* scales support asymmetric insets with:
 
 The inset scale options can provide “breathing room” to separate marks from axes or the plot’s edge. For example, in a scatterplot with a Plot.dot with the default 3-pixel radius and 1.5-pixel stroke width, an inset of 5 pixels prevents dots from overlapping with the axes. The *scale*.round option is useful for crisp edges by rounding to the nearest pixel boundary.
 
-In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x*-scale is a *point* scale while the bottom *x*-scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
+In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x* scale is a *point* scale while the bottom *x* scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
 
 <img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
 
@@ -717,8 +717,8 @@ The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support in
 * **insetRight** - inset the right edge
 * **insetBottom** - inset the bottom edge
 * **insetLeft** - inset the left edge
-* **rx** - the [*x*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
-* **ry** - the [*y*-radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
+* **rx** - the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) for rounded corners
+* **ry** - the [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners
 
 Insets are specified in pixels. Corner radii are specified in either pixels or percentages (strings). Both default to zero. Insets are typically used to ensure a one-pixel gap between adjacent bars; note that the [bin transform](#bin) provides default insets, and that the [band scale padding](#position-options) defaults to 0.1, which also provides separation.
 
@@ -1441,7 +1441,7 @@ The **filter** transform is similar to filtering the data with [*array*.filter](
 Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "frequency"})
 ```
 
-Together the **sort** and **reverse** transforms allow control over *z*-order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
+Together the **sort** and **reverse** transforms allow control over *z* order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
 
 For greater control, you can also implement a [custom transform function](#custom-transforms):
 
@@ -1451,7 +1451,7 @@ The basic transforms are composable: the *filter* transform is applied first, th
 
 Plot’s option transforms, listed below, do more than populate the **transform** function: they derive new mark options and channels. These transforms take a mark’s *options* object (and possibly transform-specific options as the first argument) and return a new, transformed, *options*. Option transforms are composable: you can pass an *options* objects through more than one transform before passing it to a mark. You can also reuse the same transformed *options* on multiple marks.
 
-The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z*-order of rendered marks.
+The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z* order of rendered marks.
 
 #### Plot.sort(*order*, *options*)
 
@@ -1532,12 +1532,12 @@ The following aggregation methods are supported:
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
-* *x* - the middle of the bin’s *x*-extent (when binning on *x*)
-* *x1* - the lower bound of the bin’s *x*-extent (when binning on *x*)
-* *x2* - the upper bound of the bin’s *x*-extent (when binning on *x*)
-* *y* - the middle of the bin’s *y*-extent (when binning on *y*)
-* *y1* - the lower bound of the bin’s *y*-extent (when binning on *y*)
-* *y2* - the upper bound of the bin’s *y*-extent (when binning on *y*)
+* *x* - the middle of the bin’s *x* extent (when binning on *x*)
+* *x1* - the lower bound of the bin’s *x* extent (when binning on *x*)
+* *x2* - the upper bound of the bin’s *x* extent (when binning on *x*)
+* *y* - the middle of the bin’s *y* extent (when binning on *y*)
+* *y1* - the lower bound of the bin’s *y* extent (when binning on *y*)
+* *y2* - the upper bound of the bin’s *y* extent (when binning on *y*)
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduce* method, and optionally a *scope*
 
@@ -1952,7 +1952,7 @@ The following **order** methods are supported:
 - a named field or function of data - order data by priority
 - an array of *z* values
 
-The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y*-value while Plot.stackX uses the *x*-value. For the *appearance* order, Plot.stackY uses the *x*-position of the maximum *y*-value while Plot.stackX uses the *y*-position of the maximum *x*-value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
+The **reverse** option reverses the effective order. For the *value* order, Plot.stackY uses the *y* value while Plot.stackX uses the *x* value. For the *appearance* order, Plot.stackY uses the *x* position of the maximum *y* value while Plot.stackX uses the *y* position of the maximum *x* value. If an array of *z* values are specified, they should enumerate the *z* values for all series in the desired order; this array is typically hard-coded or computed with [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort). Note that the input order (null) and *value* order can produce crossing paths: they do not guarantee a consistent series order across stacks.
 
 The stack transform supports diverging stacks: negative values are stacked below zero while positive values are stacked above zero. For Plot.stackY, the **y1** channel contains the value of lesser magnitude (closer to zero) while the **y2** channel contains the value of greater magnitude (farther from zero); the difference between the two corresponds to the input **y** channel value. For Plot.stackX, the same is true, except for **x1**, **x2**, and **x** respectively.
 
@@ -2155,18 +2155,24 @@ Plot.column is typically used by options transforms to define new channels; the 
 
 ## Scale-aware transforms
 
-Some transforms need to operate in representation space (such as pixels and colors, *i.e.* after scales have been applied) rather than data space. Such a transform might, for example, modify the marks’ positions in screen space to avoid occlusion. These scale-aware transforms are applied *after* the initial setting of the scales, and can modify the channels or derive new channels—which can in turn be passed to scales.
+Some transforms need to operate in visual representation space such as pixel coordinates and colors rather than abstract data space. Such a transform might, for example, modify the marks’ positions to avoid occlusion. These scale-aware transforms are applied *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
 
 ### Dodge
 
-The dodge transform can be applied to any mark that consumes *x* or *y*, such as the Dot, Image, Text and Vector marks.
+The dodge transform can be applied to any mark that consumes *x* or *y* channels, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. The dodge transforms accept the following options:
+
+* **padding** — a number of pixels added to the radius of the mark to estimate its size
+* **anchor** - the dodge anchor; defaults to *left* for dodgeX, or *bottom* for dodgeY
+
+The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
+
 #### Plot.dodgeY([*layoutOptions*, ]*options*)
 
 ```js
 Plot.dodgeY({x: "date"})
 ```
 
-If the marks are arranged along the *x* axis, the dodgeY transform piles them vertically, keeping their *x* position unchanged, and creating a *y* position that avoids overlapping.
+Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
 
 #### Plot.dodgeX([*layoutOptions*, ]*options*)
 
@@ -2174,18 +2180,15 @@ If the marks are arranged along the *x* axis, the dodgeY transform piles them ve
 Plot.dodgeX({y: "value"})
 ```
 
-Equivalent to Plot.dodgeY, but the piling is horizontal, keeping the marks’ *y* position unchanged, and creating an *x* position that avoids overlapping.
-The dodge transforms accept the following options:
-* **padding** — a number of pixels added to the radius of the mark to estimate its size
-* **anchor** - the frame anchor: one of *middle*, *right*, and *left* (default) for dodgeX, and one of *middle*, *top*, and *bottom* (default) for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
+Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position channel that avoids overlapping. The *y* position channel is unchanged.
 
 ### Hexbin
 
-The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the Dot, Image, Text and Vector marks. It aggregates the values into hexagonal bins of the given *radius* (in pixel space), and computes new values *x* and *y* as the centers of each bin. It can also return new channels by applying a reducer to each bin, such as the number of elements in the bin.
+The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. It aggregates values into hexagonal bins of the given **binWidth** (in pixels) and computes new position channels *x* and *y* as the centers of each bin. It can also create new channels by applying a specified reducer to each bin, such as the *count* of elements in the bin.
 
 #### Plot.hexbin(*outputs*, *options*)
 
-[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given inputs into hexagonal bins, and creates output channels with the reduced data. The options must specify the *x* and *y* channels, and can optionally indicate the *binWidth* in pixels (defaults to 20), defined as the distance between the centers of two neighboring hexagons. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to Plot.bin’s outputs; each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+[Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · Aggregates the given input channels into hexagonal bins, creating output channels with the reduced data. The *options* must specify the **x** and **y** channels and can optionally indicate the **binWidth** (defaults to 20), defined as the distance between the centers of two neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to the [bin transform](#bin); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
 
 The following aggregation methods are supported:
 
