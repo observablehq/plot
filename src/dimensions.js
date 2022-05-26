@@ -56,8 +56,8 @@ function autoHeight({x, y, fy, fx}, {width, marginLeft, marginRight, marginTop, 
       warn(`invalid x/y scale types for the daspect option: ${x?.type}/${y?.type}`);
     } else {
       const ratio = Math.abs((y.domain[1] - y.domain[0]) / (x.domain[1] - x.domain[0]) / daspect);
-      const trueWidth = (fx ? fx.scale.bandwidth() : 1) * (width - marginLeft - marginRight);
-      return (ratio * trueWidth) / (fy ? fy.scale.bandwidth() : 1) + marginTop + marginBottom;
+      const trueWidth = (fx ? fx.scale.bandwidth() : 1) * (width - marginLeft - marginRight) - x.insetLeft - x.insetRight;
+      return (ratio * trueWidth + y.insetTop + y.insetBottom) / (fy ? fy.scale.bandwidth() : 1) + marginTop + marginBottom;
     }
   }
 

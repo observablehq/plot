@@ -7,6 +7,8 @@ export default async function() {
   return Plot.plot({
     width: 960,
     daspect: 1,
+    insetLeft: 10,
+    insetRight: 5,
     marks: [
       Plot.dot(libor, {x: "about", y: "on", fill: "value"}),
       Plot.text(libor, {
