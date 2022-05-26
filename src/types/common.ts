@@ -8,6 +8,3 @@ type TypedArray =
         | Uint32Array
         | Float32Array
         | Float64Array;
-
-type IntlDateTimeFormatOptionsMonth = Intl.DateTimeFormatOptions["month"];
-type IntlDateTimeFormatOptionsWeekday = Intl.DateTimeFormatOptions["weekday"];
