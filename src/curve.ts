@@ -70,7 +70,7 @@ const curves = new Map<CurveName, CurveFunction>([
 
 export function Curve(
   curve: CurveName | CurveFunction = curveLinear,
-  tension: number
+  tension?: number
 ): CurveFunction {
   if (typeof curve === "function") return curve; // custom curve
   const c = curves.get(`${curve}`.toLowerCase() as CurveName);
