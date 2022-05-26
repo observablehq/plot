@@ -7,7 +7,6 @@
       "dom"
     ],
     "strict": true,
-    "stripInternal": true,
     "outDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
@@ -16,5 +15,6 @@
       "@observablehq/plot": ["./src/index.js"]
     }
   },
+  "ts-node": { "files": true },
   "include": ["src/**/*"]
 }
