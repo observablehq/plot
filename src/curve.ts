@@ -20,9 +20,19 @@ import {
   curveStepAfter,
   curveStepBefore
 } from "d3";
-import type { CurveFactory, CurveBundleFactory, CurveCardinalFactory, CurveCatmullRomFactory } from "d3";
+import type { CurveFactory, CurveBundleFactory } from "d3";
+interface CurveF extends CurveFactory {
+  beta?: undefined,
+  tension?: (tension: number) => this,
+  alpha?: (tension: number) => this
+}
+interface CurveB extends CurveBundleFactory {
+  beta: (tension: number) => this,
+  tension?: undefined,
+  alpha?: undefined
+}
+type CurveFunction = CurveF | CurveB;
 
-type CurveFunction = CurveFactory | CurveBundleFactory | CurveCardinalFactory | CurveCatmullRomFactory;
 type CurveName =
   | "basis"
   | "basis-closed"
@@ -76,14 +86,9 @@ export function Curve(
   const c = curves.get(`${curve}`.toLowerCase() as CurveName);
   if (!c) throw new Error(`unknown curve: ${curve}`);
 
-  if (tension !== undefined) {
-    if ("beta" in c) {
-      return c.beta(tension);
-    } else if ("tension" in c) {
-      return c.tension(tension);
-    } else if ("alpha" in c) {
-      return c.alpha(tension);
-    }
-  }
-  return c;
+  return tension === undefined ? c
+    : c.beta ? c.beta(tension)
+    : c.tension ? c.tension(tension)
+    : c.alpha ? c.alpha(tension)
+    : c;
 }
