@@ -1,4 +1,6 @@
-import {sqrt3} from "../symbols.js";
+import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
+// import {sqrt3} from "../symbols.js";
+import {sqrt4_3} from "../symbols.js";
 import {identity, maybeColorChannel, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 import {initialize} from "./initialize.js";
@@ -32,8 +34,11 @@ function hexbinn(outputs, {binWidth = 20, z, fill, stroke, ...options}) {
       if (Y === undefined) throw new Error("missing channel: y");
       const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
       const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
-      X = X.value.map(x);
-      Y = Y.value.map(y);
+      X = X.value;
+      Y = Y.value;
+      // X = X.value.map(x); // TODO What if value is e.g. Uint32Array?
+      // Y = Y.value.map(y); // TODO What if value is e.g. Uint32Array?
+      const binsof = Hexbin().x(i => x(X[i]) - ox).y(i => y(Y[i]) - oy).radius(binWidth / 2 * sqrt4_3);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
@@ -56,10 +61,11 @@ function hexbinn(outputs, {binWidth = 20, z, fill, stroke, ...options}) {
         const binFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         for (const [, index] of maybeGroup(facet, G)) {
-          for (const bin of hbin(index, X, Y, binWidth)) {
+          // for (const bin of hbin(index, X, Y, binWidth)) {
+          for (const bin of binsof(index)) {
             binFacet.push(++i);
-            BX.push(bin.x);
-            BY.push(bin.y);
+            BX.push(bin.x + ox);
+            BY.push(bin.y + oy);
             for (const o of outputs) o.reduce(bin);
           }
         }
@@ -82,32 +88,32 @@ function hexbinn(outputs, {binWidth = 20, z, fill, stroke, ...options}) {
   };
 }
 
-function hbin(I, X, Y, dx) {
-  const dy = dx * sqrt3 / 2;
-  const bins = new Map();
-  for (const i of I) {
-    let px = X[i] / dx;
-    let py = Y[i] / dy;
-    if (isNaN(px) || isNaN(py)) continue;
-    let pj = Math.round(py),
-        pi = Math.round(px = px - (pj & 1) / 2),
-        py1 = py - pj;
-    if (Math.abs(py1) * 3 > 1) {
-      let px1 = px - pi,
-        pi2 = pi + (px < pi ? -1 : 1) / 2,
-        pj2 = pj + (py < pj ? -1 : 1),
-        px2 = px - pi2,
-        py2 = py - pj2;
-      if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
-    }
-    const key = `${pi},${pj}`;
-    let g = bins.get(key);
-    if (g === undefined) {
-      bins.set(key, g = []);
-      g.x = (pi + (pj & 1) / 2) * dx;
-      g.y = pj * dy;
-    }
-    g.push(i);
-  }
-  return bins.values();
-}
+// function hbin(I, X, Y, dx) {
+//   const dy = dx * sqrt3 / 2;
+//   const bins = new Map();
+//   for (const i of I) {
+//     let px = X[i] / dx;
+//     let py = Y[i] / dy;
+//     if (isNaN(px) || isNaN(py)) continue;
+//     let pj = Math.round(py),
+//         pi = Math.round(px = px - (pj & 1) / 2),
+//         py1 = py - pj;
+//     if (Math.abs(py1) * 3 > 1) {
+//       let px1 = px - pi,
+//         pi2 = pi + (px < pi ? -1 : 1) / 2,
+//         pj2 = pj + (py < pj ? -1 : 1),
+//         px2 = px - pi2,
+//         py2 = py - pj2;
+//       if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
+//     }
+//     const key = `${pi},${pj}`;
+//     let g = bins.get(key);
+//     if (g === undefined) {
+//       bins.set(key, g = []);
+//       g.x = (pi + (pj & 1) / 2) * dx;
+//       g.y = pj * dy;
+//     }
+//     g.push(i);
+//   }
+//   return bins.values();
+// }
