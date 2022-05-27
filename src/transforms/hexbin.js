@@ -1,7 +1,6 @@
-import {group} from "d3";
 import {sqrt3} from "../symbols.js";
-import {identity, maybeColumn, maybeColorChannel, valueof} from "../options.js";
-import {hasOutput, maybeOutputs} from "./group.js";
+import {identity, maybeColorChannel, valueof} from "../options.js";
+import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 import {initialize} from "./initialize.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
@@ -18,45 +17,45 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
 
 // TODO filter e.g. to show empty hexbins?
 // TODO disallow x, x1, x2, y, y1, y2 reducers?
-function hexbinn(outputs, {binWidth = 20, fill, stroke, z, ...options}) {
+function hexbinn(outputs, {binWidth = 20, z, fill, stroke, ...options}) {
   binWidth = +binWidth;
-  const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeColumn(vfill);
-  const [GS = stroke, setGS] = maybeColumn(vstroke);
-  outputs = maybeOutputs({
-    ...setGF && {fill: "first"},
-    ...setGS && {stroke: "first"},
-    ...outputs
-  }, {fill, stroke, ...options});
+  outputs = maybeOutputs(outputs, {z, fill, stroke, ...options});
   return {
     symbol: "hexagon",
     ...!hasOutput(outputs, "r") && {r: binWidth / 2},
-    ...!setGF && {fill},
-    ...((hasOutput(outputs, "fill") || setGF) && stroke === undefined) ? {stroke: "none"} : {stroke},
+    ...!hasOutput(outputs, "fill") && {fill},
+    ...((hasOutput(outputs, "fill") || vstroke != null) && stroke === undefined) ? {stroke: "none"} : {stroke},
     ...initialize(options, function(data, facets, {x: X, y: Y}, scales) {
-      if (setGF) setGF(valueof(data, vfill));
-      if (setGS) setGS(valueof(data, vstroke));
-      if (setGZ) setGZ(valueof(data, z));
-      for (const o of outputs) o.initialize(data);
       if (X === undefined) throw new Error("missing channel: x");
       if (Y === undefined) throw new Error("missing channel: y");
       const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
       const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
       X = X.value.map(x);
       Y = Y.value.map(y);
-      const F = setGF && GF.transform();
-      const S = setGS && GS.transform();
-      const Z = setGZ ? GZ.transform() : (F || S);
+      const Z = valueof(data, z);
+      const F = valueof(data, vfill);
+      const S = valueof(data, vstroke);
+      const G = maybeSubgroup(outputs, Z, F, S);
+      if (Z && !outputs.find(r => r.name === "z")) {
+        outputs.push(...maybeOutputs({z: "first"}, {z: Z}));
+      }
+      if (F && !outputs.find(r => r.name === "fill")) {
+        outputs.push(...maybeOutputs({fill: "first"}, {fill: F}));
+      }
+      if (S && !outputs.find(r => r.name === "stroke")) {
+        outputs.push(...maybeOutputs({stroke: "first"}, {stroke: S}));
+      }
       const binFacets = [];
       const BX = [];
       const BY = [];
       let i = -1;
+      for (const o of outputs) o.initialize(data);
       for (const facet of facets) {
         const binFacet = [];
         for (const o of outputs) o.scope("facet", facet);
-        for (const index of Z ? group(facet, i => Z[i]).values() : [facet]) {
+        for (const [, index] of maybeGroup(facet, G)) {
           for (const bin of hbin(index, X, Y, binWidth)) {
             binFacet.push(++i);
             BX.push(bin.x);
@@ -69,6 +68,9 @@ function hexbinn(outputs, {binWidth = 20, fill, stroke, z, ...options}) {
       const channels = {
         x: {value: BX},
         y: {value: BY},
+        ...Z && {z: {value: Z}},
+        ...F && {fill: {value: F, scale: true}},
+        ...S && {stroke: {value: S, scale: true}},
         ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, binWidth: name === "r" ? binWidth : undefined, value: output.transform()}]))
       };
       if ("r" in channels) {
