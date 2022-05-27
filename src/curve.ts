@@ -76,14 +76,9 @@ export function Curve(
   const c = curves.get(`${curve}`.toLowerCase() as CurveName);
   if (!c) throw new Error(`unknown curve: ${curve}`);
 
-  if (tension !== undefined) {
-    if ("beta" in c) {
-      return c.beta(tension);
-    } else if ("tension" in c) {
-      return c.tension(tension);
-    } else if ("alpha" in c) {
-      return c.alpha(tension);
-    }
-  }
-  return c;
+  return tension === undefined ? c
+    : "beta" in c ? c.beta(tension)
+    : "tension" in c ? c.tension(tension)
+    : "alpha" in c ? c.alpha(tension)
+    : c;
 }
