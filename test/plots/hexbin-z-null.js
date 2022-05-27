@@ -9,14 +9,15 @@ export default async function() {
     marks: [
       Plot.frame(),
       Plot.hexgrid(),
-      Plot.dot(
-        penguins,
-        Plot.hexbin(
-          { r: "count" },
-          { x: "culmen_length_mm", y: "body_mass_g", stroke: "species", strokeOpacity: 0.8 }
-        )
-      )
-    ],
-    color: {legend: true}
+      Plot.dot(penguins, Plot.hexbin({r: "count"}, {
+        x: "culmen_depth_mm",
+        y: "culmen_length_mm",
+        stroke: "species",
+        fill: "island",
+        z: null,
+        fillOpacity: 0.5,
+        symbol: "dot"
+      }))
+    ]
   });
 }

@@ -75,6 +75,7 @@ export {default as hexbinR} from "./hexbin-r.js";
 export {default as hexbinSymbol} from "./hexbin-symbol.js";
 export {default as hexbinText} from "./hexbin-text.js";
 export {default as hexbinZ} from "./hexbin-z.js";
+export {default as hexbinZNull} from "./hexbin-z-null.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
 export {default as identityScale} from "./identity-scale.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
