@@ -32,7 +32,7 @@ export class Hexgrid extends Mark {
     const m = [];
     for (let j = j0; j < j1; ++j) {
       for (let i = i0; i < i1; ++i) {
-        m.push(`M${i * wx + (j & 1) * rx},${j * wy}${path}`);
+        m.push(`M${i * wx + (j & 1) * rx - ox},${j * wy - oy}${path}`);
       }
     }
     return create("svg:g")
