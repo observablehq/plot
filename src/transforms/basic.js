@@ -20,7 +20,7 @@ export function basic({
   if (t2 != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
   return {
     ...options,
-    ...(s1 == null || isOptions(s1)) && {sort: s1},
+    ...(s1 === null || isOptions(s1)) && {sort: s1},
     transform: composeTransform(t1, t2)
   };
 }
