@@ -424,6 +424,8 @@ Plot.plot({
 
 ### Sort options
 
+#### Ordinal domain sorting
+
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
 ```js
@@ -461,6 +463,20 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
 Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
+
+#### Index sorting
+
+In addition to the [sort transform](#transforms) which allow sorting by data, you can use the **sort** option to sort marks by some other channel value. For example, to sort dots by descending radius:
+
+```js
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r", reverse: true}})
+```
+
+In fact, sorting by descending radius is the default behavior of the dot mark when an *r* channel is specified. You can disable this by setting the sort explicitly to null:
+
+```js
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: null})
+```
 
 ### Facet options
 
@@ -1459,7 +1475,7 @@ The *filter*, *sort* and *reverse* transforms are also available as functions, a
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name.
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
 
 #### Plot.shuffle(*options*)
 
