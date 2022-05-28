@@ -6,17 +6,11 @@ export default async function() {
   return Plot.plot({
     x: {inset: 10},
     y: {inset: 10},
+    color: {legend: true},
     marks: [
       Plot.frame(),
       Plot.hexgrid(),
-      Plot.dot(
-        penguins,
-        Plot.hexbin(
-          { r: "count" },
-          { x: "culmen_length_mm", y: "body_mass_g", stroke: "species", strokeOpacity: 0.8 }
-        )
-      )
-    ],
-    color: {legend: true}
+      Plot.dot(penguins, Plot.hexbin({r: "count"}, {x: "culmen_length_mm", y: "body_mass_g", stroke: "species", strokeOpacity: 0.8})) // TOD remove strokeOpacity
+    ]
   });
 }

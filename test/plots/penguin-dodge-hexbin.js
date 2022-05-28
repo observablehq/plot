@@ -19,7 +19,7 @@ export default async function() {
     marks: [
       Plot.frame(),
       Plot.dot(penguins, Plot.dodgeY("bottom", {x: "body_mass_g", stroke: "red", r: 3})),
-      Plot.dot(penguins, Plot.hexbin({binWidth: 7}, Plot.dodgeY("bottom", {x: "body_mass_g", fill: "black", r: 3})))
+      Plot.dot(penguins, Plot.hexbin({}, Plot.dodgeY("bottom", {x: "body_mass_g", fill: "black", r: 3, binWidth: 7})))
     ],
     color: {legend: true}
   });

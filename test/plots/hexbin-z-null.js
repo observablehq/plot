@@ -14,9 +14,9 @@ export default async function() {
         y: "culmen_length_mm",
         stroke: "species",
         fill: "island",
-        z: null,
         fillOpacity: 0.5,
-        symbol: "dot"
+        z: null,
+        symbol: "dot" // TODO Plot.circle
       }))
     ]
   });

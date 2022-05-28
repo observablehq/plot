@@ -68,8 +68,8 @@ function groupn(
   const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeColumn(vfill);
-  const [GS = stroke, setGS] = maybeColumn(vstroke);
+  const [GF, setGF] = maybeColumn(vfill);
+  const [GS, setGS] = maybeColumn(vstroke);
 
   return {
     ..."z" in inputs && {z: GZ || z},
