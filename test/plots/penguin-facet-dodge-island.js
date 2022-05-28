@@ -8,6 +8,9 @@ export default async function() {
     x: {
       grid: true
     },
+    color: {
+      legend: true
+    },
     facet: {
       data: penguins,
       y: "species",
@@ -16,7 +19,6 @@ export default async function() {
     },
     marks: [
       Plot.dot(penguins, Plot.dodgeY("middle", {x: "body_mass_g", fill: "island"}))
-    ],
-    color: {legend: true}
+    ]
   });
 }
