@@ -9,7 +9,7 @@ export function basic({
   sort: s1,
   reverse: r1,
   transform: t1,
-  initialize: i1,
+  initializer: i1,
   ...options
 } = {}, t2) {
   if (t1 === undefined) { // explicit transform overrides filter, sort, and reverse

@@ -2153,9 +2153,9 @@ This helper for constructing derived columns returns a [*column*, *setColumn*] a
 
 Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
 
-## Scale-aware transforms
+## Initializers
 
-Some transforms need to operate in visual representation space such as pixel coordinates and colors rather than abstract data space. Such a transform might, for example, modify the marks’ positions to avoid occlusion. These scale-aware transforms are applied *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
+Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Initializers are invoked *after* the initial scales are constructed and can modify the channels or derive new channels; these in turn may (or may not, as desired) be passed to scales.
 
 ### Dodge
 
@@ -2215,9 +2215,9 @@ When the hexbin transform has an *r* output, the bins are returned in decreasing
 
 See also the [hexgrid](#hexgrid) mark.
 
-### Custom scale-aware transforms
+### Custom initializers
 
-When its *options* have an *initialize* property, the initialize function is called after the scales have been computed. It receives as inputs the (possibly transformed) data array, the index of elements of this array that belong to each facet, the input channels (as a key: array object), the scales, and the dimensions, with the mark as this. It must return the data, index, and the channels that need to be scaled in a second pass.
+You can specify a custom initializer by specifying a function as the mark *initializer* option. This function is called after the scales have been computed, and receives as inputs the (possibly transformed) array of *data*, the *facets* index of elements of this array that belong to each facet, the input *channels* (as an object of named channels), the *scales*, and the *dimensions*. The mark itself is the *this* context. The initializer function must return an object with *data*, *facets*, and new *channels*. Any new channels are merged with existing channels, replacing channels of the same name.
 
 ## Curves
 

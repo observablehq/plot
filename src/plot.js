@@ -98,8 +98,8 @@ export function plot(options = {}) {
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
-    if (mark.reinitialize != null) {
-      const {facets, channels} = mark.reinitialize(state.data, state.facets, state.channels, scales, subdimensions);
+    if (mark.initializer != null) {
+      const {facets, channels} = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
@@ -250,7 +250,7 @@ export class Mark {
     const {facet = "auto", sort, dx, dy, clip} = options;
     const names = new Set();
     this.data = data;
-    this.reinitialize = options.initialize;
+    this.initializer = options.initializer;
     this.sort = isOptions(sort) ? sort : null;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);

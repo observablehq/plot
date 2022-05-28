@@ -1,13 +1,13 @@
 // If both i1 and i2 are defined, returns a composite initializer that first
 // applies i1 and then applies i2.
-export function initialize({initialize: i1, ...options} = {}, i2) {
+export function initializer({initializer: i1, ...options} = {}, i2) {
   return {
     ...options,
-    initialize: composeInitialize(i1, i2)
+    initializer: composeInitializer(i1, i2)
   };
 }
 
-function composeInitialize(i1, i2) {
+function composeInitializer(i1, i2) {
   if (i1 == null) return i2 === null ? undefined : i2;
   if (i2 == null) return i1 === null ? undefined : i1;
   return function(data, facets, channels, scales, dimensions) {

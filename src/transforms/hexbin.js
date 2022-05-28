@@ -3,7 +3,7 @@ import {coerceNumbers} from "../scales.js";
 import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
-import {initialize} from "./initialize.js";
+import {initializer} from "./initializer.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -30,7 +30,7 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   if (options.symbol === undefined) options.symbol = "hexagon";
   if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initialize(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
+  return initializer(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
 

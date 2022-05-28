@@ -22,7 +22,7 @@ export {bin, binX, binY} from "./transforms/bin.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
-export {initialize} from "./transforms/initialize.js";
+export {initializer} from "./transforms/initializer.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";
 export {map, mapX, mapY} from "./transforms/map.js";
 export {window, windowX, windowY} from "./transforms/window.js";

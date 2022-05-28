@@ -1,7 +1,7 @@
-import {initialize} from "@observablehq/plot";
+import {initializer} from "@observablehq/plot";
 
 export function remap(outputs = {}, options) {
-  return initialize(options, (data, facets, channels, scales) => {
+  return initializer(options, (data, facets, channels, scales) => {
     return {
       data,
       facets,
