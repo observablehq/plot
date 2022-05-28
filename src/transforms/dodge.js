@@ -1,6 +1,8 @@
 import {max} from "d3";
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
+import {identity, number, valueof} from "../options.js";
+import {coerceNumbers} from "../scales.js";
 import {initialize} from "./initialize.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
@@ -39,12 +41,11 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function dodge(y, x, anchor, padding, options) {
-  return initialize(options, function(data, facets, {[x]: X, r: R}, {[x]: xscale, r: rscale}, dimensions) {
-    if (!X) throw new Error(`missing channel ${x}`);
-    X = X.value.map(xscale);
-    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? +options.r : 3;
-    if (R) R = R.value.map(rscale);
-    if (X == null) throw new Error(`missing channel: ${x}`);
+  return initialize(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
+    if (!X) throw new Error(`missing channel: ${x}`);
+    X = coerceNumbers(valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity));
+    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
+    if (R) R = coerceNumbers(valueof(R.value, R.scale !== undefined ? scales[R.scale] : identity));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
@@ -52,9 +53,7 @@ function dodge(y, x, anchor, padding, options) {
     const radius = R ? i => R[i] : () => r;
     for (let I of facets) {
       const tree = IntervalTree();
-      I = I.filter(R
-        ? i => finite(X[i]) && positive(R[i])
-        : i => finite(X[i]));
+      I = I.filter(R ? i => finite(X[i]) && positive(R[i]) : i => finite(X[i]));
       for (const i of I) {
         const intervals = [];
         const l = X[i] - radius(i);
