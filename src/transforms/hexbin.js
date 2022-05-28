@@ -1,4 +1,5 @@
 import {descendingDefined} from "../defined.js";
+import {coerceNumbers} from "../scales.js";
 import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
@@ -32,8 +33,8 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   return initialize(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S}, scales) => {
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
-    X = valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity);
-    Y = valueof(Y.value, Y.scale !== undefined ? scales[Y.scale] : identity);
+    X = coerceNumbers(valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity));
+    Y = coerceNumbers(valueof(Y.value, Y.scale !== undefined ? scales[Y.scale] : identity));
     Z = Z?.value;
     F = F?.value;
     S = S?.value;
@@ -99,13 +100,13 @@ function hbin(I, X, Y, dx) {
       if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
     }
     const key = `${pi},${pj}`;
-    let g = bins.get(key);
-    if (g === undefined) {
-      bins.set(key, g = []);
-      g.x = (pi + (pj & 1) / 2) * dx + ox;
-      g.y = pj * dy + oy;
+    let bin = bins.get(key);
+    if (bin === undefined) {
+      bins.set(key, bin = []);
+      bin.x = (pi + (pj & 1) / 2) * dx + ox;
+      bin.y = pj * dy + oy;
     }
-    g.push(i);
+    bin.push(i);
   }
   return bins.values();
 }

@@ -354,7 +354,7 @@ function coerceDates(values) {
 }
 
 // If the values are specified as a typed array, no coercion is required.
-function coerceNumbers(values) {
+export function coerceNumbers(values) {
   return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
