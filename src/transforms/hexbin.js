@@ -1,7 +1,7 @@
 import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
 // import {sqrt3} from "../symbols.js";
 import {sqrt4_3} from "../symbols.js";
-import {identity, isNoneish, number} from "../options.js";
+import {identity, isNoneish, number, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 import {initialize} from "./initialize.js";
 
@@ -33,14 +33,12 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   return initialize(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S}, scales) => {
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
-    const x = X.scale !== undefined ? scales[X.scale] : identity.transform;
-    const y = Y.scale !== undefined ? scales[Y.scale] : identity.transform;
-    X = X.value;
-    Y = Y.value;
+    X = valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity);
+    Y = valueof(Y.value, Y.scale !== undefined ? scales[Y.scale] : identity);
     Z = Z?.value;
     F = F?.value;
     S = S?.value;
-    const binsof = Hexbin().x(i => x(X[i]) - ox).y(i => y(Y[i]) - oy).radius(binWidth / 2 * sqrt4_3); // TODO inline
+    const binsof = Hexbin().x(i => X[i] - ox).y(i => Y[i] - oy).radius(binWidth / 2 * sqrt4_3); // TODO inline
     const G = maybeSubgroup(outputs, z === null ? null : Z, fill === null ? null : F, stroke === null ? null : S);
     const GZ = Z && [];
     const GF = F && [];
