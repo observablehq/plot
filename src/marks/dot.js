@@ -1,8 +1,9 @@
 import {create, path, symbolCircle} from "d3";
 import {positive} from "../defined.js";
-import {identity, maybeFrameAnchor, maybeNumberChannel, maybeSymbolChannel, maybeTuple} from "../options.js";
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {maybeSymbolChannel} from "../symbols.js";
 
 const defaults = {
   ariaLabel: "dot",
@@ -26,7 +27,7 @@ export class Dot extends Mark {
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
-      options,
+      vr === undefined || options.sort !== undefined ? options : {...options, sort: {channel: "r", reverse: true}},
       defaults
     );
     this.r = cr;
@@ -99,4 +100,12 @@ export function dotX(data, {x = identity, ...options} = {}) {
 
 export function dotY(data, {y = identity, ...options} = {}) {
   return new Dot(data, {...options, y});
+}
+
+export function circle(data, options) {
+  return dot(data, {...options, symbol: "circle"});
+}
+
+export function hexagon(data, options) {
+  return dot(data, {...options, symbol: "hexagon"});
 }

@@ -214,9 +214,11 @@ function inferZeroDomain(channels) {
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
-// be degenerate, so we ignore nonpositive values. We also don’t want the maximum
-// default radius to exceed 30px.
+// be degenerate, so we ignore nonpositive values. We also don’t want the
+// maximum default radius to exceed 30px.
 function inferRadialRange(channels, domain) {
+  const hint = channels.find(({radius}) => radius !== undefined);
+  if (hint !== undefined) return [0, hint.radius]; // a natural maximum radius, e.g. hexbins
   const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
   const range = domain.map(d => 3 * Math.sqrt(d / h25));
   const k = 30 / max(range);

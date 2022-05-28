@@ -1,5 +1,5 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
-import {ascendingDefined, firstof} from "../defined.js";
+import {ascendingDefined} from "../defined.js";
 import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -68,8 +68,8 @@ function groupn(
   const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeColumn(vfill);
-  const [GS = stroke, setGS] = maybeColumn(vstroke);
+  const [GF, setGF] = maybeColumn(vfill);
+  const [GS, setGS] = maybeColumn(vstroke);
 
   return {
     ..."z" in inputs && {z: GZ || z},
@@ -81,7 +81,7 @@ function groupn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = maybeSubgroup(outputs, Z, F, S);
+      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData = [];
       const GX = X && setGX([]);
@@ -226,12 +226,13 @@ export function maybeReduce(reduce, value) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-export function maybeSubgroup(outputs, Z, F, S) {
-  return firstof(
-    outputs.some(o => o.name === "z") ? undefined : Z,
-    outputs.some(o => o.name === "fill") ? undefined : F,
-    outputs.some(o => o.name === "stroke") ? undefined : S
-  );
+export function maybeSubgroup(outputs, inputs) {
+  for (const name in inputs) {
+    const value = inputs[name];
+    if (value !== undefined && !outputs.some(o => o.name === name)) {
+      return value;
+    }
+  }
 }
 
 export function maybeSort(facets, sort, reverse) {

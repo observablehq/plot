@@ -43,6 +43,6 @@ it("Plot.normalize deviation doesn’t crash on equal values", () => {
 
 function testNormalize(data, basis, r) {
   const mark = Plot.dot(data, Plot.normalizeY(basis, {y: data}));
-  const c = new Map(mark.initialize().channels);
-  assert.deepStrictEqual(c.get("y").value, r);
+  const {channels: {y: {value: Y}}} = mark.initialize();
+  assert.deepStrictEqual(Y, r);
 }
