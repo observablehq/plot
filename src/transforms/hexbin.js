@@ -69,7 +69,7 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
       ...Z && {z: {value: GZ}},
       ...F && {fill: {value: GF, scale: true}},
       ...S && {stroke: {value: GS, scale: true}},
-      ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, value: output.transform()}])) // TODO binWidth: name === "r" ? binWidth : undefined?
+      ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}]))
     };
     if ("r" in channels) {
       const R = channels.r.value;
