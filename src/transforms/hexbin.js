@@ -1,6 +1,4 @@
-import {hexbin as Hexbin} from "d3-hexbin"; // TODO inline
-// import {sqrt3} from "../symbols.js";
-import {sqrt4_3} from "../symbols.js";
+import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 import {initialize} from "./initialize.js";
@@ -38,7 +36,6 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
     Z = Z?.value;
     F = F?.value;
     S = S?.value;
-    const binsof = Hexbin().x(i => X[i] - ox).y(i => Y[i] - oy).radius(binWidth / 2 * sqrt4_3); // TODO inline
     const G = maybeSubgroup(outputs, z === null ? null : Z, fill === null ? null : F, stroke === null ? null : S);
     const GZ = Z && [];
     const GF = F && [];
@@ -52,10 +49,10 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
       for (const [f, I] of maybeGroup(facet, G)) {
-        for (const bin of binsof(I)) { // TODO inline hbin(index, X, Y, binWidth)
+        for (const bin of hbin(I, X, Y, binWidth)) {
           binFacet.push(++i);
-          BX.push(bin.x + ox);
-          BY.push(bin.y + oy);
+          BX.push(bin.x);
+          BY.push(bin.y);
           if (Z) GZ.push(G === Z ? f : Z[bin[0]]);
           if (F) GF.push(G === F ? f : F[bin[0]]);
           if (S) GS.push(G === S ? f : S[bin[0]]);
@@ -82,32 +79,32 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   });
 }
 
-// function hbin(I, X, Y, dx) {
-//   const dy = dx * sqrt3 / 2;
-//   const bins = new Map();
-//   for (const i of I) {
-//     let px = X[i] / dx;
-//     let py = Y[i] / dy;
-//     if (isNaN(px) || isNaN(py)) continue;
-//     let pj = Math.round(py),
-//         pi = Math.round(px = px - (pj & 1) / 2),
-//         py1 = py - pj;
-//     if (Math.abs(py1) * 3 > 1) {
-//       let px1 = px - pi,
-//         pi2 = pi + (px < pi ? -1 : 1) / 2,
-//         pj2 = pj + (py < pj ? -1 : 1),
-//         px2 = px - pi2,
-//         py2 = py - pj2;
-//       if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
-//     }
-//     const key = `${pi},${pj}`;
-//     let g = bins.get(key);
-//     if (g === undefined) {
-//       bins.set(key, g = []);
-//       g.x = (pi + (pj & 1) / 2) * dx;
-//       g.y = pj * dy;
-//     }
-//     g.push(i);
-//   }
-//   return bins.values();
-// }
+function hbin(I, X, Y, dx) {
+  const dy = dx * (1.5 / sqrt3);
+  const bins = new Map();
+  for (const i of I) {
+    let px = X[i],
+        py = Y[i];
+    if (isNaN(px) || isNaN(py)) continue;
+    let pj = Math.round(py = (py - oy) / dy),
+        pi = Math.round(px = (px - ox) / dx - (pj & 1) / 2),
+        py1 = py - pj;
+    if (Math.abs(py1) * 3 > 1) {
+      let px1 = px - pi,
+          pi2 = pi + (px < pi ? -1 : 1) / 2,
+          pj2 = pj + (py < pj ? -1 : 1),
+          px2 = px - pi2,
+          py2 = py - pj2;
+      if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
+    }
+    const key = `${pi},${pj}`;
+    let g = bins.get(key);
+    if (g === undefined) {
+      bins.set(key, g = []);
+      g.x = (pi + (pj & 1) / 2) * dx + ox;
+      g.y = pj * dy + oy;
+    }
+    g.push(i);
+  }
+  return bins.values();
+}
