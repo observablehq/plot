@@ -1,4 +1,3 @@
-import {descendingDefined} from "../defined.js";
 import {coerceNumbers} from "../scales.js";
 import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
@@ -89,15 +88,6 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
       ...Q && {symbol: {value: GQ, scale: true}},
       ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}]))
     };
-
-    // When producing a radius channel, implicitly sort by descending radius.
-    // TODO This should be configurable somehow.
-    if ("r" in channels) {
-      const R = channels.r.value;
-      for (const binFacet of binFacets) {
-        binFacet.sort((i, j) => descendingDefined(R[i], R[j]));
-      }
-    }
 
     return {data, facets: binFacets, channels};
   });
