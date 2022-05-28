@@ -23,25 +23,39 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   // none (assuming a mark that defaults to fill and no stroke, such as dot).
   // Note that it’s safe to mutate options here because we just created it with
   // the rest operator above.
-  const {z, fill, stroke} = options;
+  const {z, fill, stroke, symbol} = options;
   if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) options.stroke = "none";
 
   // Populate default values for the r and symbol options, as appropriate.
   if (options.symbol === undefined) options.symbol = "hexagon";
   if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initialize(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S}, scales) => {
+  return initialize(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
+
+    // Coerce the X and Y channels to numbers (so that null is properly treated
+    // as an undefined value rather than being coerced to zero).
     X = coerceNumbers(valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity));
     Y = coerceNumbers(valueof(Y.value, Y.scale !== undefined ? scales[Y.scale] : identity));
-    Z = Z?.value;
+
+    // Extract the values for channels that are eligible for grouping; not all
+    // marks define a z channel, so compute one if it not already computed. If z
+    // was explicitly set to null, ensure that we don’t subdivide bins.
+    Z = Z ? Z.value : valueof(data, z);
     F = F?.value;
     S = S?.value;
-    const G = maybeSubgroup(outputs, z === null ? null : Z, fill === null ? null : F, stroke === null ? null : S);
+    Q = Q?.value;
+
+    // Group on the first of z, fill, stroke, and symbol. Implicitly reduce
+    // these channels using the first corresponding value for each bin.
+    const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S, symbol: Q});
     const GZ = Z && [];
     const GF = F && [];
     const GS = S && [];
+    const GQ = Q && [];
+
+    // Construct the hexbins and populate the output channels.
     const binFacets = [];
     const BX = [];
     const BY = [];
@@ -58,25 +72,33 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
           if (Z) GZ.push(G === Z ? f : Z[bin[0]]);
           if (F) GF.push(G === F ? f : F[bin[0]]);
           if (S) GS.push(G === S ? f : S[bin[0]]);
+          if (Q) GQ.push(G === Q ? f : Q[bin[0]]);
           for (const o of outputs) o.reduce(bin);
         }
       }
       binFacets.push(binFacet);
     }
+
+    // Construct the output channels, and populate the radius scale hint.
     const channels = {
       x: {value: BX},
       y: {value: BY},
       ...Z && {z: {value: GZ}},
       ...F && {fill: {value: GF, scale: true}},
       ...S && {stroke: {value: GS, scale: true}},
+      ...Q && {symbol: {value: GQ, scale: true}},
       ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}]))
     };
+
+    // When producing a radius channel, implicitly sort by descending radius.
+    // TODO This should be configurable somehow.
     if ("r" in channels) {
       const R = channels.r.value;
       for (const binFacet of binFacets) {
-        binFacet.sort((i, j) => descendingDefined(R[i], R[j])); // TODO make this configurable
+        binFacet.sort((i, j) => descendingDefined(R[i], R[j]));
       }
     }
+
     return {data, facets: binFacets, channels};
   });
 }

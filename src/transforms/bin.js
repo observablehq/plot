@@ -109,7 +109,7 @@ function binn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = maybeSubgroup(outputs, Z, F, S);
+      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData = [];
       const GK = K && setGK([]);

@@ -27,11 +27,3 @@ export function positive(x) {
 export function negative(x) {
   return x < 0 && isFinite(x) ? x : NaN;
 }
-
-export function firstof(...values) {
-  for (const v of values) {
-    if (v !== undefined) {
-      return v;
-    }
-  }
-}
