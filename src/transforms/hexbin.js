@@ -23,7 +23,7 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
   // none (assuming a mark that defaults to fill and no stroke, such as dot).
   // Note that it’s safe to mutate options here because we just created it with
   // the rest operator above.
-  const {z, fill, stroke, symbol} = options;
+  const {z, fill, stroke} = options;
   if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) options.stroke = "none";
 
   // Populate default values for the r and symbol options, as appropriate.
