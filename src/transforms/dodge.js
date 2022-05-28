@@ -48,7 +48,7 @@ function dodge(y, x, anchor, padding, options) {
     if (R) R = coerceNumbers(valueof(R.value, R.scale !== undefined ? scales[R.scale] : identity));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    if (ky) ty += ky * ((R ? max(facets.flat(), i => R[i]) : r) + padding); else ky = 1;
+    if (ky) ty += ky * ((R ? max(facets, I => max(I, i => R[i])) : r) + padding); else ky = 1;
     const Y = new Float64Array(X.length);
     const radius = R ? i => R[i] : () => r;
     for (let I of facets) {
