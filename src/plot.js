@@ -1,6 +1,6 @@
 import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, channelObject, channelSort, valueObject} from "./channel.js";
+import {Channel, channelObject, channelDomain, channelSort, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
@@ -247,11 +247,11 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip} = options;
+    const {facet = "auto", sort, dx, dy, clip, initializer} = options;
     const names = new Set();
     this.data = data;
-    this.initializer = options.initializer;
     this.sort = isOptions(sort) ? sort : null;
+    this.initializer = this.sort?.channel == null ? initializer : channelSort(initializer, this.sort);
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
     this.transform = transform;
@@ -278,7 +278,7 @@ export class Mark {
     if (facets === undefined && data != null) facets = [range(data)];
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
     const channels = channelObject(this.channels, data);
-    if (this.sort != null) channelSort(channels, facetChannels, data, this.sort);
+    if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
     return {data, facets, channels};
   }
   filter(index, channels, values) {

@@ -1,7 +1,9 @@
 import {ascending, descending, rollup, sort} from "d3";
+import {ascendingDefined, descendingDefined} from "./defined.js";
 import {first, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
+import {composeInitializer} from "./transforms/initializer.js";
 
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {
@@ -37,10 +39,10 @@ export function valueObject(channels, scales) {
 // Note: mutates channel.domain! This is set to a function so that it is lazily
 // computed; i.e., if the scale’s domain is set explicitly, that takes priority
 // over the sort option, and we don’t need to do additional work.
-export function channelSort(channels, facetChannels, data, options) {
+export function channelDomain(channels, facetChannels, data, options) {
   const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
-    if (!registry.has(x)) continue; // ignore unknown scale keys
+    if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
     let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
     if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer
@@ -69,6 +71,19 @@ export function channelSort(channels, facetChannels, data, options) {
       };
     }
   }
+}
+
+function sortInitializer(name, compare = ascendingDefined) {
+  return (data, facets, {[name]: V}) => {
+    if (!V) throw new Error(`missing channel: ${name}`);
+    V = V.value;
+    const compareValue = (i, j) => compare(V[i], V[j]);
+    return {facets: facets.map(I => I.slice().sort(compareValue))};
+  };
+}
+
+export function channelSort(initializer, {channel, reverse}) {
+  return composeInitializer(initializer, sortInitializer(channel, reverse ? descendingDefined : ascendingDefined));
 }
 
 function findScaleChannel(channels, scale) {

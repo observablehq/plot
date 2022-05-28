@@ -7,7 +7,7 @@ export function initializer({initializer: i1, ...options} = {}, i2) {
   };
 }
 
-function composeInitializer(i1, i2) {
+export function composeInitializer(i1, i2) {
   if (i1 == null) return i2 === null ? undefined : i2;
   if (i2 == null) return i1 === null ? undefined : i1;
   return function(data, facets, channels, scales, dimensions) {
