@@ -1,3 +1,4 @@
+import {descendingDefined} from "../defined.js";
 import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
@@ -71,8 +72,8 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
     };
     if ("r" in channels) {
       const R = channels.r.value;
-      for (const I of binFacets) {
-        I.sort((i, j) => R[j] - R[i]); // TODO make this configurable
+      for (const binFacet of binFacets) {
+        binFacet.sort((i, j) => descendingDefined(R[i], R[j])); // TODO make this configurable
       }
     }
     return {data, facets: binFacets, channels};
