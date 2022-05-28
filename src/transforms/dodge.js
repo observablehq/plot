@@ -25,7 +25,7 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
     case "middle": anchor = anchorXMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("x", "y", anchor, +padding, options);
+  return dodge("x", "y", anchor, number(padding), options);
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
@@ -37,7 +37,7 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
     case "middle": anchor = anchorYMiddle; break;
     default: throw new Error(`unknown dodge anchor: ${anchor}`);
   }
-  return dodge("y", "x", anchor, +padding, options);
+  return dodge("y", "x", anchor, number(padding), options);
 }
 
 function dodge(y, x, anchor, padding, options) {
