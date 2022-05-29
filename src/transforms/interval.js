@@ -1,5 +1,5 @@
 import {range} from "d3";
-import {labelof, maybeValue, valueof} from "../options.js";
+import {isTemporal, labelof, maybeValue, valueof} from "../options.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 
 // TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
@@ -43,13 +43,35 @@ function maybeIntervalK(k, maybeInsetK, options, trivial) {
       [`${k}2`]: v2 === undefined ? kv : v2
     };
   }
-  let V1;
-  const tv1 = data => V1 || (V1 = valueof(data, value).map(v => interval.floor(v)));
+  let D1, V1;
+  function transform(data) {
+    if (V1 !== undefined && data === D1) return V1; // memoize
+    return V1 = Array.from(valueof(D1 = data, value), v => interval.floor(v));
+  }
   return maybeInsetK({
     ...options,
     [k]: undefined,
-    [`${k}1`]: v1 === undefined ? {transform: tv1, label} : v1,
-    [`${k}2`]: v2 === undefined ? {transform: data => tv1(data).map(v => interval.offset(v)), label} : v2
+    [`${k}1`]: v1 === undefined ? {transform, label} : v1,
+    [`${k}2`]: v2 === undefined ? {transform: data => transform(data).map(v => interval.offset(v)), label} : v2
+  });
+}
+
+function maybeIntervalMidK(k, maybeInsetK, options) {
+  const {[k]: v} = options;
+  const {value, interval} = maybeIntervalValue(v, options);
+  if (value == null || interval == null) return options;
+  return maybeInsetK({
+    ...options,
+    [k]: {
+      label: labelof(v),
+      transform: data => {
+        const V1 = Array.from(valueof(data, value), v => interval.floor(v));
+        const V2 = V1.map(v => interval.offset(v));
+        return V1.map(isTemporal(V1)
+          ? (v1, v2) => v1 == null || isNaN(v1 = +v1) || (v2 = V2[v2], v2 == null) || isNaN(v2 = +v2) ? undefined : new Date((v1 + v2) / 2)
+          : (v1, v2) => v1 == null || (v2 = V2[v2], v2 == null) ? NaN : (+v1 + +v2) / 2);
+      }
+    }
   });
 }
 
@@ -67,4 +89,12 @@ export function maybeIntervalX(options = {}) {
 
 export function maybeIntervalY(options = {}) {
   return maybeIntervalK("y", maybeInsetY, options);
+}
+
+export function maybeIntervalMidX(options = {}) {
+  return maybeIntervalMidK("x", maybeInsetX, options);
+}
+
+export function maybeIntervalMidY(options = {}) {
+  return maybeIntervalMidK("y", maybeInsetY, options);
 }

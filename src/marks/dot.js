@@ -4,6 +4,7 @@ import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../opt
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   ariaLabel: "dot",
@@ -95,11 +96,11 @@ export function dot(data, {x, y, ...options} = {}) {
 }
 
 export function dotX(data, {x = identity, ...options} = {}) {
-  return new Dot(data, {...options, x});
+  return new Dot(data, maybeIntervalMidY({...options, x}));
 }
 
 export function dotY(data, {y = identity, ...options} = {}) {
-  return new Dot(data, {...options, y});
+  return new Dot(data, maybeIntervalMidX({...options, y}));
 }
 
 export function circle(data, options) {
