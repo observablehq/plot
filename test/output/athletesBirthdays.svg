@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="300" viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -13,20 +13,80 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rect" fill="none" stroke="black">
-    <rect x="0" y="4" width="620" height="25.887671232876713" rx="8"></rect>
-    <rect x="0" y="37.88767123287671" width="598.8636363636364" height="22.608219178082194" rx="8"></rect>
-    <rect x="0" y="68.4958904109589" width="584.7727272727273" height="25.8876712328767" rx="8"></rect>
-    <rect x="0" y="102.3835616438356" width="584.7727272727273" height="24.79452054794521" rx="8"></rect>
-    <rect x="0" y="135.17808219178082" width="528.4090909090909" height="25.887671232876727" rx="8"></rect>
-    <rect x="0" y="169.06575342465754" width="521.3636363636364" height="24.79452054794521" rx="8"></rect>
-    <rect x="0" y="201.86027397260276" width="521.3636363636364" height="25.88767123287667" rx="8"></rect>
-    <rect x="0" y="235.74794520547943" width="528.4090909090909" height="25.887671232876755" rx="8"></rect>
-    <rect x="0" y="269.6356164383562" width="479.09090909090907" height="24.794520547945183" rx="8"></rect>
-    <rect x="0" y="302.43013698630136" width="465" height="25.887671232876755" rx="8"></rect>
-    <rect x="0" y="336.3178082191781" width="521.3636363636364" height="24.794520547945183" rx="8"></rect>
-    <rect x="0" y="369.1123287671233" width="556.5909090909091" height="25.8876712328767" rx="8"></rect>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
+    <g class="tick" opacity="1" transform="translate(0,35.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jan</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,55.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Feb</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,75.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mar</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,95.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Apr</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,115.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">May</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,135.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jun</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,155.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Jul</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,175.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Aug</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,195.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Sep</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,215.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oct</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,235.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nov</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,255.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dec</text>
+    </g>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(14.5,0.5)"><text y="0.32em" transform="translate(620,16.943835616438356)">88</text><text y="0.32em" transform="translate(598.8636363636364,49.1917808219178)">85</text><text y="0.32em" transform="translate(584.7727272727273,81.43972602739726)">83</text><text y="0.32em" transform="translate(584.7727272727273,114.78082191780821)">83</text><text y="0.32em" transform="translate(528.4090909090909,148.12191780821917)">75</text><text y="0.32em" transform="translate(521.3636363636364,181.46301369863014)">74</text><text y="0.32em" transform="translate(521.3636363636364,214.80410958904108)">74</text><text y="0.32em" transform="translate(528.4090909090909,248.69178082191783)">75</text><text y="0.32em" transform="translate(479.09090909090907,282.03287671232874)">68</text><text y="0.32em" transform="translate(465,315.37397260273974)">66</text><text y="0.32em" transform="translate(521.3636363636364,348.7150684931507)">74</text><text y="0.32em" transform="translate(556.5909090909091,382.0561643835616)">79</text></g>
-  <g aria-label="text" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(310,16.943835616438356)">Jan</text><text y="0.32em" transform="translate(299.4318181818182,49.1917808219178)">Feb</text><text y="0.32em" transform="translate(292.3863636363636,81.43972602739726)">Mar</text><text y="0.32em" transform="translate(292.3863636363636,114.78082191780821)">Apr</text><text y="0.32em" transform="translate(264.20454545454544,148.12191780821917)">May</text><text y="0.32em" transform="translate(260.6818181818182,181.46301369863014)">Jun</text><text y="0.32em" transform="translate(260.6818181818182,214.80410958904108)">Jul</text><text y="0.32em" transform="translate(264.20454545454544,248.69178082191783)">Aug</text><text y="0.32em" transform="translate(239.54545454545453,282.03287671232874)">Sep</text><text y="0.32em" transform="translate(232.5,315.37397260273974)">Oct</text><text y="0.32em" transform="translate(260.6818181818182,348.7150684931507)">Nov</text><text y="0.32em" transform="translate(278.29545454545456,382.0561643835616)">Dec</text></g>
+  <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,270)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(142.50364298724955,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(244.5072859744991,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(346.5109289617486,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">600</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(448.5145719489982,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">800</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(550.5182149362477,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1,000</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
+  </g>
+  <g aria-label="bar">
+    <rect x="40" width="560" y="26" height="18"></rect>
+    <rect x="40" width="487.5774134790528" y="46" height="18"></rect>
+    <rect x="40" width="521.2386156648452" y="66" height="18"></rect>
+    <rect x="40" width="490.63752276867035" y="86" height="18"></rect>
+    <rect x="40" width="524.2987249544627" y="106" height="18"></rect>
+    <rect x="40" width="490.12750455373407" y="126" height="18"></rect>
+    <rect x="40" width="503.89799635701263" y="146" height="18"></rect>
+    <rect x="40" width="504.408014571949" y="166" height="18"></rect>
+    <rect x="40" width="490.12750455373407" y="186" height="18"></rect>
+    <rect x="40" width="433.0054644808743" y="206" height="18"></rect>
+    <rect x="40" width="421.78506375227687" y="226" height="18"></rect>
+    <rect x="40" width="457.4863387978142" y="246" height="18"></rect>
+  </g>
+  <g aria-label="text" text-anchor="start" font-variant="tabular-nums" transform="translate(4.5,9.5)"><text y="0.32em" transform="translate(600,26)">1,098</text><text y="0.32em" transform="translate(527.5774134790528,46)">956</text><text y="0.32em" transform="translate(561.2386156648452,66)">1,022</text><text y="0.32em" transform="translate(530.6375227686704,86)">962</text><text y="0.32em" transform="translate(564.2987249544627,106)">1,028</text><text y="0.32em" transform="translate(530.1275045537341,126)">961</text><text y="0.32em" transform="translate(543.8979963570126,146)">988</text><text y="0.32em" transform="translate(544.408014571949,166)">989</text><text y="0.32em" transform="translate(530.1275045537341,186)">961</text><text y="0.32em" transform="translate(473.0054644808743,206)">849</text><text y="0.32em" transform="translate(461.78506375227687,226)">827</text><text y="0.32em" transform="translate(497.4863387978142,246)">897</text></g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
+    <line x1="40" x2="40" y1="20" y2="270"></line>
+  </g>
 </svg>
