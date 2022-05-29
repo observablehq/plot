@@ -262,7 +262,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   // Otherwise, infer the scale type from the data! Prefer the domain, if
   // present, over channels. (The domain and channels should be consistently
   // typed, and the domain is more explicit and typically much smaller.) We only
-  // check the first defined value for expedience and simplicitly; we expect
+  // check the first defined value for expedience and simplicity; we expect
   // that the types are consistent.
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
