@@ -8,7 +8,6 @@ export default async function() {
       grid: true
     },
     color: {
-      type: "diverging",
       scheme: "buylrd",
       domain: [-0.5, 0.5]
     },

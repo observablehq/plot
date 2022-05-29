@@ -273,7 +273,6 @@ export function colorLegendImplicitLabel() {
 export function colorLegendDiverging() {
   return Plot.legend({
     color: {
-      type: "diverging",
       domain: [-0.1, 0.1],
       scheme: "PiYG",
       label: "Daily change"
@@ -285,7 +284,6 @@ export function colorLegendDiverging() {
 export function colorLegendDivergingPivot() {
   return Plot.legend({
     color: {
-      type: "diverging",
       domain: [1, 4],
       pivot: 3,
       scheme: "PiYG"
@@ -296,7 +294,6 @@ export function colorLegendDivergingPivot() {
 export function colorLegendDivergingPivotAsymmetric() {
   return Plot.legend({
     color: {
-      type: "diverging",
       symmetric: false,
       domain: [1, 4],
       pivot: 3,
