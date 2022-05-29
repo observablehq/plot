@@ -119,7 +119,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
 
 export function text(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return new Text(data, maybeIntervalMidY(maybeIntervalMidX({...options, x, y})));
+  return new Text(data, {...options, x, y});
 }
 
 export function textX(data, {x = identity, ...options} = {}) {

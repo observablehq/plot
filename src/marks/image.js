@@ -3,7 +3,6 @@ import {positive} from "../defined.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, offset, impliedString, applyFrameAnchor} from "../style.js";
-import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -86,5 +85,5 @@ export class Image extends Mark {
 
 export function image(data, {x, y, ...options} = {}) {
   if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
-  return new Image(data, maybeIntervalMidY(maybeIntervalMidX({...options, x, y})));
+  return new Image(data, {...options, x, y});
 }
