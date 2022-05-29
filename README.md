@@ -316,7 +316,7 @@ The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*
 
 For a *threshold* scale, the *domain* represents *n* (typically numeric) thresholds which will produce a *range* of *n* + 1 output colors; the *i*th color of the *range* applies to values that are smaller than the *i*th element of the domain and larger or equal to the *i* - 1th element of the domain. For a *quantile* scale, the *domain* represents all input values to the scale, and the *n* option specifies how many quantiles to compute from the *domain*; *n* quantiles will produce *n* - 1 thresholds, and an output range of *n* colors. For a *quantize* scale, the domain will be transformed into approximately *n* quantized values, where *n* is an option that defaults to 5.
 
-Picking a diverging color scheme name defaults the scale type to *diverging*. By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
+By default, all diverging color scales are symmetric around the pivot; set *symmetric* to false if you want to cover the whole extent on both sides.
 
 Color scales support two additional options:
 
@@ -371,7 +371,7 @@ The following diverging scale schemes are supported:
 * <sub><img src="./img/burd.png" width="32" height="16" alt="burd"></sub> *burd*
 * <sub><img src="./img/buylrd.png" width="32" height="16" alt="buylrd"></sub> *buylrd*
 
-Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
+Picking a diverging color scheme name defaults the scale type to *diverging*; set the scale type to *linear* to treat the color scheme as sequential instead. Diverging color scales support a *scale*.**pivot** option, which defaults to zero. Values below the pivot will use the lower half of the color scheme (*e.g.*, reds for the *rdgy* scheme), while values above the pivot will use the upper half (grays for *rdgy*).
 
 The following cylical color schemes are supported:
 
