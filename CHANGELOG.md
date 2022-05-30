@@ -1,5 +1,33 @@
 # Observable Plot - Changelog
 
+## 0.5.0
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+Mark initializers with the **initializer** option! Plot.initializer for creating custom initializers. [breaking] *mark*.initialize return signature.
+
+Hexbin transform. Hexgrid, circle, and hexagon marks. Mark channels can define a radius hint to set the upper bound of the default range of the *r* scale.
+
+Dodge transform.
+
+[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
+
+The **sort** option now supports index sorting.
+
+~~~js
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r", reverse: true}})
+~~~
+
+The dot mark now sorts by descending radius by default to reduce occlusion.
+
+The dotX, dotY, textX, and textY marks now support the **interval** option.
+
+Fix crash when using area shorthand (no options).
+
+The rule mark now correctly respects the **dx** and **dy** options.
+
+Improve performance of internal array operations and type coercion.
+
 ## 0.4.3
 
 [Released April 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.4.3)
