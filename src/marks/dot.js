@@ -28,7 +28,7 @@ export class Dot extends Mark {
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
-      vr === undefined || options.sort !== undefined ? options : {...options, sort: {channel: "r", reverse: true}},
+      options.sort === undefined ? {...options, sort: {channel: "r", optional: true, reverse: true}} : options,
       defaults
     );
     this.r = cr;
