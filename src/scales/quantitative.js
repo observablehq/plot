@@ -24,7 +24,7 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, order} from "../options.js";
+import {arrayify, constant, order, slice} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
@@ -94,7 +94,7 @@ export function ScaleQ(key, scale, channels, {
   if (zero) {
     const [min, max] = extent(domain);
     if ((min > 0) || (max < 0)) {
-      domain = Array.from(domain);
+      domain = slice(domain);
       if (order(domain) < 0) domain[domain.length - 1] = 0;
       else domain[0] = 0;
     }
