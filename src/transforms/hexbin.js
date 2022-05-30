@@ -27,11 +27,8 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
 
   // Populate default values for the r and symbol options, as appropriate.
   if (options.symbol === undefined) options.symbol = "hexagon";
-  if (hasOutput(outputs, "r")) {
-    options.r = []; // hint that options.r will be set by the initializer and that Plot.dot must sort
-  } else if (options.r === undefined) {
-    options.r = binWidth / 2;
-  }
+  if (hasOutput(outputs, "r")) options.r = []; // hint that r channel will exist (e.g., for dot to sort)
+  else if (options.r === undefined) options.r = binWidth / 2;
 
   return initializer(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
     if (X === undefined) throw new Error("missing channel: x");
