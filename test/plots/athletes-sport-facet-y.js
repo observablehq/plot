@@ -7,7 +7,7 @@ export default async function() {
     height: 700,
     grid: true,
     x: {
-      ticks: 8
+      ticks: 3
     },
     y: {
       ticks: 5
@@ -18,12 +18,12 @@ export default async function() {
     },
     facet: {
       data: athletes,
-      x: "sport",
-      columns: 4
+      y: "sport",
+      columns: 5
     },
     marks: [
       Plot.frame(),
-      Plot.dot(athletes, { x: "weight", y: "height", r: 1, fill: "sex", title: "sport", sort: {fx: "y", reduce: "mean"} }),
+      Plot.dot(athletes, { x: "weight", y: "height", r: 1, fill: "sex", title: "sport", sort: {fy: "y", reduce: "mean"} }),
       Plot.text(athletes, Plot.groupZ({ text: "count"}, { frameAnchor: "bottom", dy: -4 })),
       Plot.text(athletes, Plot.selectFirst({ text: "sport", frameAnchor: "top", dy: 4 }))
     ]

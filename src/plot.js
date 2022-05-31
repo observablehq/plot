@@ -144,8 +144,10 @@ export function plot(options = {}) {
     // Hack to fix code below…
     facetChannels = {fx: true, fy: true};
 
+    const m = Math.ceil(domain.length / n);
+
     // Redefine affected scales, axes, and dimensions…
-    const newScaleDescriptors = Scales([["fx", [{scale: "fx", value: [], domain: () => [...range({length: n})]}]], ["fy", [{scale: "fy", value: [], domain: () => [...range({length: Math.ceil(domain.length / n)})]}]]], options);
+    const newScaleDescriptors = Scales([["fx", [{scale: "fx", value: [], domain: () => [...range({length: fy ? m : n})]}]], ["fy", [{scale: "fy", value: [], domain: () => [...range({length: fy ? n : m})]}]]], options);
     Object.assign(scales, ScaleFunctions(newScaleDescriptors));
     Object.assign(axes, Axes(newScaleDescriptors, options));
     dimensions = Dimensions({...scaleDescriptors, ...newScaleDescriptors}, axes, options);
@@ -158,8 +160,8 @@ export function plot(options = {}) {
 
     // Ugh, reconstruct this state, too.
     facetKeys = cross(fx.domain(), fy.domain());
-    fyMargins = {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     fxMargins = {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
+    fyMargins = {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
     subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
   }
 
