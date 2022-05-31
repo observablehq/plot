@@ -1,5 +1,5 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isTemporal, isTemporalString, isNumericString, isScaleOptions, isTypedArray, map, order} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isTemporal, isTemporalString, isNumericString, isScaleOptions, isTypedArray, map, order, slice} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleQuantize, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
@@ -417,8 +417,8 @@ function exposeScale({
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain: Array.from(domain), // defensive copy
-    ...range !== undefined && {range: Array.from(range)}, // defensive copy
+    domain: slice(domain), // defensive copy
+    ...range !== undefined && {range: slice(range)}, // defensive copy
     ...transform !== undefined && {transform},
     ...percent && {percent}, // only exposed if truthy
     ...label !== undefined && {label},

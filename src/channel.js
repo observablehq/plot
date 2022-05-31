@@ -31,7 +31,7 @@ export function valueObject(channels, scales) {
   for (const channelName in channels) {
     const {scale: scaleName, value} = channels[channelName];
     const scale = scales[scaleName];
-    values[channelName] = scale === undefined ? value : Array.from(value, scale);
+    values[channelName] = scale === undefined ? value : map(value, scale);
   }
   return values;
 }

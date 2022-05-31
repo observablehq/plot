@@ -4,7 +4,7 @@ import {Channel, channelObject, channelDomain, channelSort, valueObject} from ".
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, isScaleOptions, keyword, range, second, where, yes} from "./options.js";
+import {arrayify, isOptions, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -63,7 +63,7 @@ export function plot(options = {}) {
       }
       facetIndex = range(facetData);
       facets = facetGroups(facetIndex, facetChannels);
-      facetsIndex = Array.from(facets, second);
+      facetsIndex = facets.map(second);
     }
   }
 
@@ -322,7 +322,7 @@ function applyScaleTransforms(channels, options) {
     const {scale} = channel;
     if (scale != null) {
       const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
-      if (transform != null) channel.value = Array.from(channel.value, transform);
+      if (transform != null) channel.value = map(channel.value, transform);
     }
   }
   return channels;

@@ -7,11 +7,10 @@ const objectToString = Object.prototype.toString;
 
 // This allows transforms to behave equivalently to channels.
 export function valueof(data, value, arrayType) {
-  const array = arrayType === undefined ? Array : arrayType;
   const type = typeof value;
-  return type === "string" ? array.from(data, field(value))
-    : type === "function" ? array.from(data, value)
-    : type === "number" || value instanceof Date || type === "boolean" ? array.from(data, constant(value))
+  return type === "string" ? map(data, field(value), arrayType)
+    : type === "function" ? map(data, value, arrayType)
+    : type === "number" || value instanceof Date || type === "boolean" ? map(data, constant(value), arrayType)
     : value && typeof value.transform === "function" ? arrayify(value.transform(data), arrayType)
     : arrayify(value, arrayType); // preserve undefined type
 }
@@ -85,6 +84,12 @@ export function map(values, f, type = Array) {
   return values instanceof type ? values.map(f) : type.from(values, f);
 }
 
+// An optimization of type.from(values): if the given values are already an
+// instanceof the desired array type, the faster values.slice method is used.
+export function slice(values, type = Array) {
+  return values instanceof type ? values.slice() : type.from(values);
+}
+
 export function isTypedArray(values) {
   return values instanceof TypedArray;
 }
@@ -149,7 +154,7 @@ export function where(data, test) {
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return Array.from(index, i => values[i]);
+  return map(index, i => values[i]);
 }
 
 // Based on InternMap (d3.group).
@@ -201,8 +206,8 @@ export function mid(x1, x2) {
       const X1 = x1.transform(data);
       const X2 = x2.transform(data);
       return isTemporal(X1) || isTemporal(X2)
-        ? Array.from(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : Float64Array.from(X1, (_, i) => (+X1[i] + +X2[i]) / 2);
+        ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
+        : map(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
     },
     label: x1.label
   };

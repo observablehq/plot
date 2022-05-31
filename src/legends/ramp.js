@@ -1,5 +1,6 @@
 import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
+import {map} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -115,7 +116,7 @@ export function legendRamp(color, {
         .attr("height", height - marginTop - marginBottom)
         .attr("fill", d => d);
 
-    ticks = Array.from(thresholds, (_, i) => i);
+    ticks = map(thresholds, (_, i) => i);
     tickFormat = i => thresholdFormat(thresholds[i], i);
   }
 

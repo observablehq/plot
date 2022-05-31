@@ -1,7 +1,7 @@
 import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {isNoneish} from "../options.js";
+import {isNoneish, map} from "../options.js";
 import {maybeSymbol} from "../symbols.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
@@ -41,7 +41,7 @@ export function ScaleOrdinal(key, channels, {
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
-    range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
+    range = range === undefined ? inferSymbolRange(hint) : map(range, maybeSymbol);
   } else if (registry.get(key) === color) {
     if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
       range = maybeBooleanRange(domain, scheme);
