@@ -1,1 +1,1 @@
-export const radians = Math.PI / 180;
+export const radians: number = Math.PI / 180;
