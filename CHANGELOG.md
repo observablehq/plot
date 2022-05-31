@@ -4,29 +4,37 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Mark initializers with the **initializer** option! Plot.initializer for creating custom initializers. [breaking] *mark*.initialize return signature.
+Plot now supports mark initializers via the **initializer** option; these can be used to transform or derive new channels. Unlike data transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
 
-Hexbin transform. Hexgrid, circle, and hexagon marks. Mark channels can define a radius hint to set the upper bound of the default range of the *r* scale.
+The new hexbin transform functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
-Dodge transform.
+The new hexgrid decoration mark draws a hexagonal grid. It is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
 
-[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
+The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new circle and hexagon marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option.
 
-The **sort** option now supports index sorting.
+The new dodge transform can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
+
+The mark **sort** option now supports index sorting. For example, to sort dots by ascending radius:
 
 ~~~js
-Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r", reverse: true}})
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r"}})
 ~~~
 
 The dot mark now sorts by descending radius by default to reduce occlusion.
 
-The dotX, dotY, textX, and textY marks now support the **interval** option.
-
-Fix crash when using area shorthand (no options).
+The **zero** scale option (like the **nice** and **clamp** options) may now be specified as a top-level option, applying to all quantitative scales.
 
 The rule mark now correctly respects the **dx** and **dy** options.
 
-Improve performance of internal array operations and type coercion.
+Fix crash when using area mark shorthand.
+
+Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
+
+Improve performance of internal array operations, including type coercion.
+
+[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
+
+[breaking] *mark*.initialize return signature.
 
 ## 0.4.3
 
