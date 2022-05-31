@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
+import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal, isIterable} from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity} from "./group.js";
@@ -259,7 +259,7 @@ function thresholdAuto(values, min, max) {
 }
 
 function isTimeThresholds(t) {
-  return isTimeInterval(t) || t && t[Symbol.iterator] && isTemporal(t);
+  return isTimeInterval(t) || (isIterable(t) && isTemporal(t));
 }
 
 function isTimeInterval(t) {
