@@ -47,6 +47,7 @@ export {default as diamondsCaratPrice} from "./diamonds-carat-price.js";
 export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js";
 export {default as diamondsCaratSampling} from "./diamonds-carat-sampling.js";
 export {default as documentationLinks} from "./documentation-links.js";
+export {default as dotSort} from "./dot-sort.js";
 export {default as downloads} from "./downloads.js";
 export {default as driving} from "./driving.js";
 export {default as empty} from "./empty.js";
