@@ -2,7 +2,7 @@ import {max} from "d3";
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, number, valueof} from "../options.js";
-import {coerceNumbers} from "../scales.js";
+import {coerceNumbers, ScaleFunctions, Scales} from "../scales.js";
 import {initializer} from "./initializer.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
@@ -44,8 +44,10 @@ function dodge(y, x, anchor, padding, options) {
   return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity));
-    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
+    if (!R && options.r != null && typeof options.r !== "number") R = {value: valueof(data, options.r), scale: "r"};
+    if (R && !scales.r) Object.assign(scales, ScaleFunctions(Scales([["r", [R]]], options))); // TODO not if r is identity scale
     if (R) R = coerceNumbers(valueof(R.value, R.scale !== undefined ? scales[R.scale] : identity));
+    const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     if (ky) ty += ky * ((R ? max(facets, I => max(I, i => R[i])) : r) + padding); else ky = 1;
@@ -86,7 +88,7 @@ function dodge(y, x, anchor, padding, options) {
     return {data, facets, channels: {
       [x]: {value: X},
       [y]: {value: Y},
-      ...R && {r: {value: R}}
+      ...R && {r: {value: R}} // TODO expose lazily-constructed r scale
     }};
   });
 }

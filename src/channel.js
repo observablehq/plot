@@ -1,6 +1,6 @@
 import {ascending, descending, rollup, sort} from "d3";
 import {ascendingDefined, descendingDefined} from "./defined.js";
-import {first, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 import {composeInitializer} from "./transforms/initializer.js";
@@ -49,7 +49,7 @@ export function channelDomain(channels, facetChannels, data, options) {
     const X = findScaleChannel(channels, x) || facetChannels && findScaleChannel(facetChannels, x);
     if (!X) throw new Error(`missing channel for scale: ${x}`);
     const XV = X.value;
-    const [lo = 0, hi = Infinity] = limit && typeof limit[Symbol.iterator] === "function" ? limit : limit < 0 ? [limit] : [0, limit];
+    const [lo = 0, hi = Infinity] = isIterable(limit) ? limit : limit < 0 ? [limit] : [0, limit];
     if (y == null) {
       X.domain = () => {
         let domain = XV;

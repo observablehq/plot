@@ -228,6 +228,10 @@ export function numberChannel(source) {
   };
 }
 
+export function isIterable(value) {
+  return value && typeof value[Symbol.iterator] === "function";
+}
+
 export function isTextual(values) {
   for (const value of values) {
     if (value == null) continue;
