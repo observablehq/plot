@@ -46,7 +46,7 @@ function filterTransform(value) {
 }
 
 export function reverse(options) {
-  return basic(options, reverseTransform);
+  return {...basic(options, reverseTransform), sort: null};
 }
 
 function reverseTransform(data, facets) {
@@ -54,11 +54,11 @@ function reverseTransform(data, facets) {
 }
 
 export function shuffle({seed, ...options} = {}) {
-  return basic(options, sortValue(seed == null ? Math.random : randomLcg(seed)));
+  return {...basic(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
 }
 
 export function sort(value, options) {
-  return basic(options, sortTransform(value));
+  return {...basic(options, sortTransform(value)), sort: null};
 }
 
 function sortTransform(value) {
