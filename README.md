@@ -2250,8 +2250,6 @@ The following aggregation methods are supported:
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduce* method
 
-When the hexbin transform has an *r* output channel, bins are returned in order of descending radius.
-
 See also the [hexgrid](#hexgrid) mark.
 
 ### Custom initializers

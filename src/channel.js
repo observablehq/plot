@@ -73,17 +73,20 @@ export function channelDomain(channels, facetChannels, data, options) {
   }
 }
 
-function sortInitializer(name, compare = ascendingDefined) {
+function sortInitializer(name, optional, compare = ascendingDefined) {
   return (data, facets, {[name]: V}) => {
-    if (!V) throw new Error(`missing channel: ${name}`);
+    if (!V) {
+      if (optional) return {}; // do nothing if given channel does not exist
+      throw new Error(`missing channel: ${name}`);
+    }
     V = V.value;
     const compareValue = (i, j) => compare(V[i], V[j]);
     return {facets: facets.map(I => I.slice().sort(compareValue))};
   };
 }
 
-export function channelSort(initializer, {channel, reverse}) {
-  return composeInitializer(initializer, sortInitializer(channel, reverse ? descendingDefined : ascendingDefined));
+export function channelSort(initializer, {channel, optional, reverse}) {
+  return composeInitializer(initializer, sortInitializer(channel, optional, reverse ? descendingDefined : ascendingDefined));
 }
 
 function findScaleChannel(channels, scale) {
