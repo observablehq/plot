@@ -76,7 +76,7 @@ export function channelDomain(channels, facetChannels, data, options) {
 function sortInitializer(name, optional, compare = ascendingDefined) {
   return (data, facets, {[name]: V}) => {
     if (!V) {
-      if (optional) return {}; // do nothing if given channel does not exist
+      if (optional) return {facets}; // do nothing if given channel does not exist
       throw new Error(`missing channel: ${name}`);
     }
     V = V.value;
