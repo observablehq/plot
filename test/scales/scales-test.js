@@ -339,6 +339,19 @@ it("plot(…).scale(name) promotes the given zero option to the domain", async (
   });
 });
 
+it("plot(…).scale(name) promotes the given global zero option to the domain", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({zero: true});
+  scaleEqual(plot.scale("x"), {
+    type: "linear",
+    domain: [0, 6300],
+    range: [20, 620],
+    interpolate: d3.interpolateNumber,
+    clamp: false,
+    label: "body_mass_g →"
+  });
+});
+
 it("plot(…).scale(name) handles the zero option correctly for descending domains", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true, domain: [4000, 2000]}});
@@ -1197,6 +1210,7 @@ it("plot({inset, …}).scale('x').range respects the given scale-level inset", (
 it("plot({clamp, …}).scale('x').clamp reflects the given clamp option", () => {
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: false}}).scale("x").clamp, false);
   assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({x: {clamp: true}}).scale("x").clamp, true);
+  assert.strictEqual(Plot.dot([1, 2, 3], {x: d => d}).plot({clamp: true}).scale("x").clamp, true);
 });
 
 it("plot({align, …}).scale('x').align reflects the given align option for point scales", () => {
@@ -1344,6 +1358,7 @@ it("plot(…).scale(name).domain respects the given nice option", async () => {
   assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: true}}).scale("x").domain, [2500, 6500]);
   assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 10}}).scale("x").domain, [2500, 6500]);
   assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {nice: 5}}).scale("x").domain, [2000, 7000]);
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({nice: true}).scale("x").domain, [2500, 6500]);
 });
 
 it("plot(…).scale(name).domain nices an explicit domain, too", async () => {
@@ -1358,6 +1373,7 @@ it("plot(…).scale(name).interpolate reflects the round option for quantitative
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: false}}).scale("x").interpolate, d3.interpolateNumber);
   assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {round: true}}).scale("x").interpolate, d3.interpolateRound);
+  assert.strictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({round: true}).scale("x").interpolate, d3.interpolateRound);
 });
 
 it("plot(…).scale(name).round reflects the round option for point scales", async () => {

@@ -18,6 +18,7 @@ export function Scales(channelsByScale, {
   round,
   nice,
   clamp,
+  zero,
   align,
   padding,
   ...options
@@ -29,6 +30,7 @@ export function Scales(channelsByScale, {
       round: registry.get(key) === position ? round : undefined, // only for position
       nice,
       clamp,
+      zero,
       align,
       padding,
       ...scaleOptions
