@@ -32,7 +32,6 @@ export function styles(
     paintOrder,
     shapeRendering
   },
-  channels,
   {
     ariaLabel: cariaLabel,
     fill: defaultFill = "currentColor",
@@ -125,7 +124,6 @@ export function styles(
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return [
-    ...channels,
     {name: "title", value: title, optional: true},
     {name: "href", value: href, optional: true},
     {name: "ariaLabel", value: variaLabel, optional: true},

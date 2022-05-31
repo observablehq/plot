@@ -17,7 +17,7 @@ function maybeAnchor(anchor) {
 }
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
-  if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
+  if (arguments.length === 1) ([dodgeOptions, options] = mergeOptions(dodgeOptions));
   let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left": anchor = anchorXLeft; break;
@@ -29,7 +29,7 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
 }
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
-  if (arguments.length === 1) [options, dodgeOptions] = [dodgeOptions, options];
+  if (arguments.length === 1) ([dodgeOptions, options] = mergeOptions(dodgeOptions));
   let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top": anchor = anchorYTop; break;
@@ -40,7 +40,14 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
   return dodge("y", "x", anchor, number(padding), options);
 }
 
+function mergeOptions(options) {
+  const {padding, ...rest} = options;
+  return [{padding}, rest];
+}
+
 function dodge(y, x, anchor, padding, options) {
+  const {r, channels} = options;
+  if (r != null && typeof r !== "number") options = {...options, channels: [...channels ?? [], {name: "r", value: r, scale: "r"}]};
   return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
