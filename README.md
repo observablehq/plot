@@ -2213,6 +2213,8 @@ Initializers can be used to transform and derive new channels prior to rendering
 
 The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
 
+The dodge layout is highly dependent on the input data order: the circles placed first will be closest to the dodge anchor. When using the dodge layout with circles of varying radius, the data is sorted by descending radius by default; you can disable this behavior by setting the **sort** or **reverse** option.
+
 #### Plot.dodgeY([*layoutOptions*, ]*options*)
 
 ```js
@@ -2262,7 +2264,9 @@ See also the [hexgrid](#hexgrid) mark.
 
 ### Custom initializers
 
-You can specify a custom initializer by specifying a function as the mark *initializer* option. This function is called after the scales have been computed, and receives as inputs the (possibly transformed) array of *data*, the *facets* index of elements of this array that belong to each facet, the input *channels* (as an object of named channels), the *scales*, and the *dimensions*. The mark itself is the *this* context. The initializer function must return an object with *data*, *facets*, and new *channels*. Any new channels are merged with existing channels, replacing channels of the same name.
+You can specify a custom initializer by specifying a function as the mark **initializer** option. This function is called after the scales have been computed, and receives as inputs the (possibly transformed) array of *data*, the *facets* index of elements of this array that belong to each facet, the input *channels* (as an object of named channels), the *scales*, and the *dimensions*. The mark itself is the *this* context. The initializer function must return an object with *data*, *facets*, and new *channels*. Any new channels are merged with existing channels, replacing channels of the same name.
+
+If an initializer desires a channel that is not supported by the downstream mark, additional channels can be declared using the mark **channels** option.
 
 ## Curves
 

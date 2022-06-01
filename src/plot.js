@@ -87,7 +87,6 @@ export function plot(options = {}) {
   const dimensions = Dimensions(scaleDescriptors, axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
-  autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
   autoAxisTicks(scaleDescriptors, axes);
 
   const {fx, fy} = scales;
@@ -117,6 +116,8 @@ export function plot(options = {}) {
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
+
+  autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -247,7 +248,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip, initializer} = options;
+    const {facet = "auto", sort, dx, dy, clip, initializer, channels: extraChannels} = options;
     const names = new Set();
     this.data = data;
     this.sort = isOptions(sort) ? sort : null;
@@ -255,7 +256,8 @@ export class Mark {
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     const {transform} = basic(options);
     this.transform = transform;
-    if (defaults !== undefined) channels = styles(this, options, channels, defaults);
+    if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
+    if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
