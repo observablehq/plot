@@ -2213,7 +2213,7 @@ Initializers can be used to transform and derive new channels prior to rendering
 
 The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and one of *middle*, *top*, and *bottom* for dodgeY. With the *middle* anchor the piles will grow from the center in both directions; with the other anchors, the piles will grow from the specified anchor towards the opposite direction.
 
-The dodge layout is highly dependent on the input data order. When using the dodge layout with circles of varying radius, we recommend sorting the data by descending radius using [Plot.sort](#plotsortorder-options).
+The dodge layout is highly dependent on the input data order. By default, when using the dodge layout with circles of varying radius, the data is sorted by descending radius.
 
 #### Plot.dodgeY([*layoutOptions*, ]*options*)
 
