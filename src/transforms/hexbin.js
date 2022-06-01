@@ -35,8 +35,8 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
 
     // Coerce the X and Y channels to numbers (so that null is properly treated
     // as an undefined value rather than being coerced to zero).
-    X = coerceNumbers(valueof(X.value, X.scale !== undefined ? scales[X.scale] : identity));
-    Y = coerceNumbers(valueof(Y.value, Y.scale !== undefined ? scales[Y.scale] : identity));
+    X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
+    Y = coerceNumbers(valueof(Y.value, scales[Y.scale] || identity));
 
     // Extract the values for channels that are eligible for grouping; not all
     // marks define a z channel, so compute one if it not already computed. If z
