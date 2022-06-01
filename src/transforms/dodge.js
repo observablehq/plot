@@ -1,4 +1,3 @@
-import {max} from "d3";
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, number, valueof} from "../options.js";
@@ -59,23 +58,26 @@ function dodge(y, x, anchor, padding, options) {
     if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    if (ky) ty += ky * ((R ? max(facets, I => max(I, i => R[i])) : r) + padding); else ky = 1;
     const Y = new Float64Array(X.length);
     const radius = R ? i => R[i] : () => r;
     for (let I of facets) {
       const tree = IntervalTree();
       I = I.filter(R ? i => finite(X[i]) && positive(R[i]) : i => finite(X[i]));
-      const intervals = new Float64Array(2 * I.length);
+      const intervals = new Float64Array(2 * I.length + 2);
       for (const i of I) {
-        const l = X[i] - radius(i);
-        const h = X[i] + radius(i);
+        const ri = radius(i);
+        const y0 = ky ? ri + padding : 0; // offset baseline for varying radius
+        const l = X[i] - ri;
+        const h = X[i] + ri;
+
+        // The first two positions are 0 to test placing the dot on the baseline.
+        let k = 2;
 
         // For any previously placed circles that may overlap this circle, compute
         // the y-positions that place this circle tangent to these other circles.
         // https://observablehq.com/@mbostock/circle-offset-along-line
-        let k = 0;
         tree.queryInterval(l - padding, h + padding, ([,, j]) => {
-          const yj = Y[j];
+          const yj = Y[j] - y0;
           const dx = X[i] - X[j];
           const dr = padding + (R ? R[i] + R[j] : 2 * r);
           const dy = Math.sqrt(dr * dr - dx * dx);
@@ -84,20 +86,27 @@ function dodge(y, x, anchor, padding, options) {
         });
 
         // Find the best y-value where this circle can fit.
-        out: for (const y of intervals.slice(0, k).sort(compare)) {
+        let candidates = intervals.slice(0, k);
+        if (ky) candidates = candidates.filter(y => y >= 0);
+        out: for (const y of candidates.sort(compare)) {
           for (let j = 0; j < k; j += 2) {
-            if (y > intervals[j] && y < intervals[j + 1]) {
+            if (intervals[j] + 1e-6 < y && y < intervals[j + 1] - 1e-6) {
               continue out;
             }
           }
-          Y[i] = y;
+          Y[i] = y + y0;
           break;
         }
 
         // Insert the placed circle into the interval tree.
         tree.insert([l, h, i]);
       }
-      for (const i of I) Y[i] = Y[i] * ky + ty;
+    }
+    if (!ky) ky = 1;
+    for (const I of facets) {
+      for (const i of I) {
+        Y[i] = Y[i] * ky + ty;
+      }
     }
     return {data, facets, channels: {
       [x]: {value: X},
@@ -112,5 +121,5 @@ function compareSymmetric(a, b) {
 }
 
 function compareAscending(a, b) {
-  return (a < 0) - (b < 0) || (a - b);
+  return a - b;
 }
