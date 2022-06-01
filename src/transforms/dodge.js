@@ -73,11 +73,14 @@ function dodge(y, x, anchor, padding, options) {
         });
 
         // Find the best y-value where this circle can fit.
-        loop: for (const y of intervals.slice(0, k).sort(compare)) {
+        out: for (const y of intervals.slice(0, k).sort(compare)) {
           for (let j = 0; j < k; j += 2) {
-            if (y > intervals[j] && y < intervals[j + 1]) continue loop;
+            if (y > intervals[j] && y < intervals[j + 1]) {
+              continue out;
+            }
           }
-          Y[i] = y; break;
+          Y[i] = y;
+          break;
         }
 
         // Insert the placed circle into the interval tree.
