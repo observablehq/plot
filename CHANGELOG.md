@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Plot now supports mark initializers via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike data transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
+Plot now supports mark initializers via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike data transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. Custom mark initializers can be composed thanks to the initializer method. The new hexbin and dodge transforms are implemented as mark initializers.
 
 The new hexbin transform functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
@@ -12,7 +12,20 @@ The new hexgrid decoration mark draws a hexagonal grid. It is intended to be use
 
 The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new circle and hexagon marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option.
 
-The new dodge transform can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
+
+[<img src="./img/hexbin.png" width="610" alt="a faceted hexbin layout">](https://observablehq.com/@observablehq/plot-hexbin)
+
+~~~js
+Plot.dot(penguins, Plot.hexbin({fill: "count"}, {x: "culmen_length_mm", y: "body_mass_g"}))
+~~~
+
+The new dodge transform can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius. The dodge transform supports the **anchor** and **padding** options.
+
+[<img src="./img/dodge.png" width="640" alt="a beeswarm plot">](https://observablehq.com/@observablehq/plot-dodge)
+
+~~~js
+Plot.dot(cars, Plot.dodgeY(Plot.sort("weight (lb)", {x: "weight (lb)"})))
+~~~
 
 The mark **sort** option now supports index sorting. For example, to sort dots by ascending radius:
 
@@ -26,15 +39,15 @@ The **zero** scale option (like the **nice** and **clamp** options) may now be s
 
 The rule mark now correctly respects the **dx** and **dy** options.
 
-Fix crash when using area mark shorthand.
+Fix a crash when using area mark shorthand.
 
 Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
 
-Improve performance of internal array operations, including type coercion.
+Improve performance of internal array operations, including type coercion. (Thanks, @yurivish!)
 
 [breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
 
-[breaking] *mark*.initialize return signature.
+[breaking] the signature of *mark*.initialize has changed; it is now expected to return {data, facets, channels}
 
 ## 0.4.3
 
