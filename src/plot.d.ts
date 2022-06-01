@@ -46,6 +46,18 @@ type MarkProperties = {
 }
 
 /**
+ * Primitive types allowed for an option.
+ *
+ * @see {@link https://github.com/observablehq/plot/blob/8757c028e12ba434ff2f199f8789e338140170fd/src/options.js#L11|valueof()}
+ */
+ export type OptionPrimitive =
+  | string
+  | number
+  | Date
+  | boolean
+  | null;
+
+/**
  * Options which can be either constants or channels.
  *
  * @see https://github.com/observablehq/plot#marks
@@ -67,27 +79,57 @@ type ConstantsOrChannels =
  */
 type Channels = "title" | "href" | "ariaLabel";
 
-export interface ChannelDefinition {
+// TODO Move to scales file.
+export type ScaleName =
+  | "x"
+  | "y"
+  | "r"
+  | "color"
+  | "opacity"
+  | "length"
+  | "symbol";
+
+// TODO Move to scales file.
+export type ScaleType =
+  | "linear"
+  | "pow"
+  | "sqrt"
+  | "log"
+  | "symlog"
+  | "utc"
+  | "time"
+  | "ordinal"
+  | "point"
+  | "band"
+  | "categorical"
+  | "identity";
+
+// TODO Move to channels file.
+export type MarkChannelDefinition = {
   name: string,
   value: unknown,
-  scale?: "x" | "y",
+  scale?: ScaleName,
+  type?: ScaleType,
+  filter?: Function,
   optional?: boolean,
 }
 
 /**
  * Standard mark options.
  *
+ * @template Datum The type of a single datum in the mark dataset.
+ *
  * @see https://github.com/observablehq/plot#marks
  */
 type StandardMarkOptions<Datum> =
   {
-    [Key in keyof Omit<MarkProperties, Channels | ConstantsOrChannels>]?: MarkProperties[Key]
+    [Key in keyof Omit<MarkProperties, Channels | ConstantsOrChannels>]?: OptionPrimitive
   }
   & {
-    [Key in ConstantsOrChannels]?: ConstantOrChannelOption<MarkProperties[Key], Datum>
+    [Key in ConstantsOrChannels]?: ConstantOrChannelOption<Datum>
   }
   & {
-    [Key in Channels]?: ChannelOption<MarkProperties[Key], Datum>
+    [Key in Channels]?: ChannelOption<Datum>
   }
 
 export function plot(options?: Record<string, unknown>): SVGSVGElement;
@@ -96,21 +138,24 @@ export function marks(...marks: any[]): any[];
 /**
  * Abstract base class for marks.
  *
+ * @template Datum The type of a single datum in the mark dataset.
+ * @template [Data=Datum[]] The type of the entire mark dataset.
+ *
  * @see https://github.com/observablehq/plot#marks
  */
 export abstract class Mark<Datum, Data = Datum[]> {
   constructor(
     data: Data,
-    channels: ChannelDefinition[],
-    options: StandardMarkOptions<Datum>,
-    defaults: object
+    channels?: MarkChannelDefinition[],
+    options?: StandardMarkOptions<Datum>,
+    defaults?: Record<string, unknown>
   );
 
   data: Data;
   sort: any;
   facet: StandardMarkOptions<Datum>["facet"];
   transform: any;
-  channels: any[];
+  channels: MarkChannelDefinition[];
   dx: StandardMarkOptions<Datum>["dx"];
   dy: StandardMarkOptions<Datum>["dy"];
   // Internally, the `clip` property is a different type than the mark option.
