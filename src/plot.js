@@ -116,6 +116,7 @@ export function plot(options = {}) {
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
+
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
   // Compute value objects, applying scales as needed.
