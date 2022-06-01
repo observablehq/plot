@@ -46,8 +46,12 @@ function mergeOptions(options) {
 }
 
 function dodge(y, x, anchor, padding, options) {
-  const {r, sort = r, reverse = true, channels} = options;
-  if (r != null && typeof r !== "number") options = {...options, channels: [...channels ?? [], {name: "r", value: r, scale: "r"}], sort, reverse};
+  const {r} = options;
+  if (r != null && typeof r !== "number") {
+    const {channels, sort, reverse} = options;
+    options = {...options, channels: [...channels ?? [], {name: "r", value: r, scale: "r"}]};
+    if (sort === undefined && reverse === undefined) options.sort = r, options.reverse = true;
+  }
   return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
