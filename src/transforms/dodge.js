@@ -54,28 +54,33 @@ function dodge(y, x, anchor, padding, options) {
     for (let I of facets) {
       const tree = IntervalTree();
       I = I.filter(R ? i => finite(X[i]) && positive(R[i]) : i => finite(X[i]));
+      const intervals = new Float64Array(2 * I.length);
       for (const i of I) {
-        const intervals = [];
         const l = X[i] - radius(i);
         const h = X[i] + radius(i);
 
         // For any previously placed circles that may overlap this circle, compute
         // the y-positions that place this circle tangent to these other circles.
         // https://observablehq.com/@mbostock/circle-offset-along-line
+        let k = 0;
         tree.queryInterval(l - padding, h + padding, ([,, j]) => {
           const yj = Y[j];
           const dx = X[i] - X[j];
           const dr = padding + (R ? R[i] + R[j] : 2 * r);
           const dy = Math.sqrt(dr * dr - dx * dx);
-          intervals.push([yj - dy, yj + dy]);
+          intervals[k++] = yj - dy;
+          intervals[k++] = yj + dy;
         });
 
         // Find the best y-value where this circle can fit.
-        for (let y of intervals.flat().sort(compare)) {
-          if (intervals.every(([lo, hi]) => y <= lo || y >= hi)) {
-            Y[i] = y;
-            break;
+        out: for (const y of intervals.slice(0, k).sort(compare)) {
+          for (let j = 0; j < k; j += 2) {
+            if (y > intervals[j] && y < intervals[j + 1]) {
+              continue out;
+            }
           }
+          Y[i] = y;
+          break;
         }
 
         // Insert the placed circle into the interval tree.
