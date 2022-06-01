@@ -121,6 +121,7 @@ export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinDodge} from "./penguin-dodge.js";
 export {default as penguinDodgeHexbin} from "./penguin-dodge-hexbin.js";
 export {default as penguinFacetDodge} from "./penguin-facet-dodge.js";
+export {default as penguinFacetDodgeIdentity} from "./penguin-facet-dodge-identity.js";
 export {default as penguinFacetDodgeIsland} from "./penguin-facet-dodge-island.js";
 export {default as penguinFacetDodgeSymbol} from "./penguin-facet-dodge-symbol.js";
 export {default as penguinIslandUnknown} from "./penguin-island-unknown.js";
