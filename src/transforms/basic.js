@@ -35,8 +35,12 @@ function composeTransform(t1, t2) {
   };
 }
 
+function apply(options, t) {
+  return (options.initializer != null ? initializer : basic)(options, t);
+}
+
 export function filter(value, options) {
-  return basic(options, filterTransform(value));
+  return apply(options, filterTransform(value));
 }
 
 function filterTransform(value) {
@@ -47,8 +51,7 @@ function filterTransform(value) {
 }
 
 export function reverse(options) {
-  const transform = options.initializer != null ? initializer : basic;
-  return {...transform(options, reverseTransform), sort: null};
+  return {...apply(options, reverseTransform), sort: null};
 }
 
 function reverseTransform(data, facets) {
@@ -56,13 +59,11 @@ function reverseTransform(data, facets) {
 }
 
 export function shuffle({seed, ...options} = {}) {
-  const transform = options.initializer != null ? initializer : basic;
-  return {...transform(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
+  return {...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
 }
 
 export function sort(value, options) {
-  const transform = options.initializer != null ? initializer : basic;
-  return {...transform(options, sortTransform(value)), sort: null};
+  return {...apply(options, sortTransform(value)), sort: null};
 }
 
 function sortTransform(value) {
