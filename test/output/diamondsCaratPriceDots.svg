@@ -85,7 +85,7 @@
     <g class="tick" opacity="1" transform="translate(0,49.048387096774164)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="576" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18,000</text>
-    </g><text fill="currentColor" transform="translate(-44,20)" dy="-1em" text-anchor="start">↑ Price ($)</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-44,20)" dy="-1em" text-anchor="start">↑ Price ($)</text>
   </g>
   <g aria-label="x-axis" aria-description="Carats →" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(77.5,0)">
