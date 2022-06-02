@@ -174,6 +174,7 @@ export class AxisY {
           : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
+            .attr("font-variant", fontVariant == null ? null : "normal")
             .attr("transform", `translate(${labelOffset * offsetSign},${
                 labelAnchor === "center" ? (height + marginTop - marginBottom) / 2
                   : labelAnchor === "bottom" ? height - marginBottom

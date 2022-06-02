@@ -50,7 +50,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(0,7.166666666666674)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
-    </g><text fill="currentColor" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ Frequency</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
   <g aria-label="y-axis" transform="translate(40,185)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,140.5)">

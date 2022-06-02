@@ -45,7 +45,7 @@
     <g class="tick" opacity="1" transform="translate(0,48.131578947368425)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
-    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
   <g aria-label="x-axis" aria-description="species" transform="translate(0,370)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(143.5,0)">
