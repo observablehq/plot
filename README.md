@@ -424,8 +424,6 @@ Plot.plot({
 
 ### Sort options
 
-#### Ordinal domain sorting
-
 If an ordinal scale’s domain is not set, it defaults to natural ascending order; to order the domain by associated values in another dimension, either compute the domain manually (consider [d3.groupSort](https://github.com/d3/d3-array/blob/main/README.md#groupSort)) or use an associated mark’s **sort** option. For example, to sort bars by ascending frequency rather than alphabetically by letter:
 
 ```js
@@ -463,20 +461,6 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
 Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
-
-#### Index sorting
-
-In addition to the [sort transform](#transforms) which allow sorting by data, you can use the **sort** option to sort marks by some other channel value. For example, to sort dots by descending radius:
-
-```js
-Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r", reverse: true}})
-```
-
-In fact, sorting by descending radius is the default behavior of the dot mark when an *r* channel is specified. You can disable this by setting the sort explicitly to null:
-
-```js
-Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: null})
-```
 
 ### Facet options
 
@@ -1474,6 +1458,18 @@ Plot.barY(alphabet.filter(d => /[aeiou]/i.test(d.letter)), {x: "letter", y: "fre
 ```
 
 Together the **sort** and **reverse** transforms allow control over *z* order, which can be important when addressing overplotting. If the sort option is a function but does not take exactly one argument, it is assumed to be a [comparator function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#description); otherwise, the sort option is interpreted as a channel value definition and thus may be either as a column name, accessor function, or array of values.
+
+The sort transform can also be used to sort on channel values, including those derived by [initializers](#initializers). For example, to sort dots by descending radius:
+
+```js
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r", order: "descending}})
+```
+
+In fact, sorting by descending radius is the default behavior of the dot mark when an *r* channel is specified. You can disable this by setting the sort explicitly to null:
+
+```js
+Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: null})
+```
 
 For greater control, you can also implement a [custom transform function](#custom-transforms):
 

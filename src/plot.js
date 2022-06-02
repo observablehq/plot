@@ -1,10 +1,10 @@
 import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, channelObject, channelDomain, channelSort, valueObject} from "./channel.js";
+import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -251,7 +251,7 @@ export class Mark {
     const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
     const names = new Set();
     this.data = data;
-    this.sort = isOptions(sort) ? sort : null;
+    this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);

@@ -50,7 +50,7 @@ function dodge(y, x, anchor, padding, options) {
   if (r != null && typeof r !== "number") {
     const {channels, sort, reverse} = options;
     options = {...options, channels: [...channels ?? [], {name: "r", value: r, scale: "r"}]};
-    if (sort === undefined && reverse === undefined) options.sort = "r", options.reverse = true;
+    if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
   return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);

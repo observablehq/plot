@@ -1,6 +1,6 @@
 import {randomLcg} from "d3";
-import {ascendingDefined} from "../defined.js";
-import {arrayify, isOptions, valueof} from "../options.js";
+import {ascendingDefined, descendingDefined} from "../defined.js";
+import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
@@ -14,13 +14,13 @@ export function basic({
 } = {}, t2) {
   if (t1 === undefined) { // explicit transform overrides filter, sort, and reverse
     if (f1 != null) t1 = filterTransform(f1);
-    if (s1 != null && !isOptions(s1)) t1 = composeTransform(t1, sortTransform(s1));
+    if (s1 != null && !isDomainSort(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
   if (t2 != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
   return {
     ...options,
-    ...(s1 === null || isOptions(s1)) && {sort: s1},
+    ...(s1 === null || isDomainSort(s1)) && {sort: s1},
     transform: composeTransform(t1, t2)
   };
 }
@@ -36,7 +36,7 @@ export function initializer({
 } = {}, i2) {
   if (i1 === undefined) { // explicit initializer overrides filter, sort, and reverse
     if (f1 != null) i1 = filterTransform(f1);
-    if (s1 != null && !isOptions(s1)) i1 = composeInitializer(i1, sortTransform(s1));
+    if (s1 != null && !isDomainSort(s1)) i1 = composeInitializer(i1, sortTransform(s1));
     if (r1) i1 = composeInitializer(i1, reverseTransform);
   }
   return {
@@ -54,8 +54,7 @@ function composeTransform(t1, t2) {
   };
 }
 
-// TODO Don’t export.
-export function composeInitializer(i1, i2) {
+function composeInitializer(i1, i2) {
   if (i1 == null) return i2 === null ? undefined : i2;
   if (i2 == null) return i1 === null ? undefined : i1;
   return function(data, facets, channels, scales, dimensions) {
@@ -94,14 +93,14 @@ export function shuffle({seed, ...options} = {}) {
 }
 
 export function sort(value, options) {
-  return {...apply(options, sortTransform(value)), sort: null};
+  return {...(isOptions(value) && value.channel !== undefined ? initializer : apply)(options, sortTransform(value)), sort: null};
 }
 
 function sortTransform(value) {
-  return (typeof value === "function" && value.length !== 1 ? sortCompare : sortValue)(value);
+  return (typeof value === "function" && value.length !== 1 ? sortData : sortValue)(value);
 }
 
-function sortCompare(compare) {
+function sortData(compare) {
   return (data, facets) => {
     const compareData = (i, j) => compare(data[i], data[j]);
     return {data, facets: facets.map(I => I.slice().sort(compareData))};
@@ -109,9 +108,26 @@ function sortCompare(compare) {
 }
 
 function sortValue(value) {
+  let channel, order;
+  ({channel, value, order = ascendingDefined} = {...maybeValue(value)});
+  if (typeof order !== "function") {
+    switch (`${order}`.toLowerCase()) {
+      case "ascending": order = ascendingDefined; break;
+      case "descending": order = descendingDefined; break;
+      default: throw new Error(`invalid order: ${order}`);
+    }
+  }
   return (data, facets, channels) => {
-    const V = channels && value in channels ? channels[value].value : valueof(data, value);
-    const compareValue = (i, j) => ascendingDefined(V[i], V[j]);
+    let V;
+    if (channel === undefined) {
+      V = valueof(data, value);
+    } else {
+      if (channels === undefined) throw new Error("channel sort requires an initializer");
+      V = channels[channel];
+      if (!V) return {}; // ignore missing channel
+      V = V.value;
+    }
+    const compareValue = (i, j) => order(V[i], V[j]);
     return {data, facets: facets.map(I => I.slice().sort(compareValue))};
   };
 }
