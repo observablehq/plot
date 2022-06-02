@@ -3,7 +3,7 @@ import {ascendingDefined, descendingDefined} from "./defined.js";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
-import {composeInitializer} from "./transforms/initializer.js";
+import {composeInitializer} from "./transforms/basic.js";
 
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {

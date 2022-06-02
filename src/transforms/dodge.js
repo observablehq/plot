@@ -3,8 +3,7 @@ import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
-import {sortTransform, reverseTransform} from "./basic.js";
-import {initializer} from "./initializer.js";
+import {initializer} from "./basic.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];

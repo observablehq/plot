@@ -1,8 +1,8 @@
 import {coerceNumbers} from "../scales.js";
 import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
+import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
-import {initializer} from "./initializer.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
