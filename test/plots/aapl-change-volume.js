@@ -20,7 +20,9 @@ export default async function() {
         {
           x: d => (d.Close - d.Open) / d.Open * 100,
           y: "Volume",
-          r: "Volume"
+          r: "Volume",
+          fill: "white",
+          stroke: "black"
         }
       )
     ]
