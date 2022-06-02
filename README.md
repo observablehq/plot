@@ -2211,7 +2211,7 @@ The **anchor** option may one of *middle*, *right*, and *left* for dodgeX, and o
 
 The dodge layout is highly dependent on the input data order: the circles placed first will be closest to the dodge anchor. When using the dodge layout with circles of varying radius, the data is sorted by descending radius by default; you can disable this behavior by setting the **sort** or **reverse** option.
 
-#### Plot.dodgeY([*layoutOptions*, ]*options*)
+#### Plot.dodgeY([*dodgeOptions*, ]*options*)
 
 ```js
 Plot.dodgeY({x: "date"})
@@ -2219,7 +2219,7 @@ Plot.dodgeY({x: "date"})
 
 Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
 
-#### Plot.dodgeX([*layoutOptions*, ]*options*)
+#### Plot.dodgeX([*dodgeOptions*, ]*options*)
 
 ```js
 Plot.dodgeX({y: "value"})
