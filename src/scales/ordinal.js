@@ -106,7 +106,7 @@ function maybeRound(scale, channels, options) {
 function inferDomain(channels) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
-    if (domain !== undefined) return domain(); // see channelSort
+    if (domain !== undefined) return domain(); // see channelDomain
     if (value === undefined) continue;
     for (const v of value) values.add(v);
   }

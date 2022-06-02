@@ -1,14 +1,14 @@
 import {create, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, channelObject, channelDomain, channelSort, valueObject} from "./channel.js";
+import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isOptions, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
-import {basic} from "./transforms/basic.js";
+import {basic, initializer} from "./transforms/basic.js";
 import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -248,14 +248,13 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = [], options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip, initializer, channels: extraChannels} = options;
+    const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
     const names = new Set();
     this.data = data;
-    this.sort = isOptions(sort) ? sort : null;
-    this.initializer = this.sort?.channel == null ? initializer : channelSort(initializer, this.sort);
+    this.sort = isDomainSort(sort) ? sort : null;
+    this.initializer = initializer(options).initializer;
+    this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
-    const {transform} = basic(options);
-    this.transform = transform;
     if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
     if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
     this.channels = channels.filter(channel => {

@@ -4,6 +4,7 @@ import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../opt
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
+import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
@@ -28,7 +29,7 @@ export class Dot extends Mark {
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
-      options.sort === undefined ? {...options, sort: {channel: "r", optional: true, reverse: true}} : options,
+      options.sort === undefined && options.reverse === undefined ? sort({channel: "r", order: "descending"}, options) : options,
       defaults
     );
     this.r = cr;

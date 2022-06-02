@@ -3,7 +3,7 @@ import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
-import {initializer} from "./initializer.js";
+import {initializer} from "./basic.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -50,7 +50,7 @@ function dodge(y, x, anchor, padding, options) {
   if (r != null && typeof r !== "number") {
     const {channels, sort, reverse} = options;
     options = {...options, channels: [...channels ?? [], {name: "r", value: r, scale: "r"}]};
-    if (sort === undefined && reverse === undefined) options.sort = r, options.reverse = true;
+    if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
   return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);

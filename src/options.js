@@ -114,6 +114,12 @@ export function isOptions(option) {
   return isObject(option) && typeof option.transform !== "function";
 }
 
+// Disambiguates a sort transform (e.g., {sort: "date"}) from a channel domain
+// sort definition (e.g., {sort: {y: "x"}}).
+export function isDomainSort(sort) {
+  return isOptions(sort) && sort.value === undefined && sort.channel === undefined;
+}
+
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 export function maybeZero(x, x1, x2, x3 = identity) {
   if (x1 === undefined && x2 === undefined) { // {x} or {}

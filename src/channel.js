@@ -1,9 +1,7 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {ascendingDefined, descendingDefined} from "./defined.js";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
-import {composeInitializer} from "./transforms/initializer.js";
 
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {
@@ -71,22 +69,6 @@ export function channelDomain(channels, facetChannels, data, options) {
       };
     }
   }
-}
-
-function sortInitializer(name, optional, compare = ascendingDefined) {
-  return (data, facets, {[name]: V}) => {
-    if (!V) {
-      if (optional) return {}; // do nothing if given channel does not exist
-      throw new Error(`missing channel: ${name}`);
-    }
-    V = V.value;
-    const compareValue = (i, j) => compare(V[i], V[j]);
-    return {facets: facets.map(I => I.slice().sort(compareValue))};
-  };
-}
-
-export function channelSort(initializer, {channel, optional, reverse}) {
-  return composeInitializer(initializer, sortInitializer(channel, optional, reverse ? descendingDefined : ascendingDefined));
 }
 
 function findScaleChannel(channels, scale) {

@@ -15,14 +15,11 @@ export default async function() {
     grid: true,
     marks: [
       Plot.ruleX([0]),
-      Plot.dot(
-        data,
-        {
-          x: d => (d.Close - d.Open) / d.Open * 100,
-          y: "Volume",
-          r: "Volume"
-        }
-      )
+      Plot.dot(data, {
+        x: d => (d.Close - d.Open) / d.Open * 100,
+        y: "Volume",
+        r: "Volume"
+      })
     ]
   });
 }
