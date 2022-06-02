@@ -149,14 +149,16 @@ export function legendRamp(color, {
       .attr("font-family", null)
       .attr("font-variant", impliedString(fontVariant, "normal"))
       .call(tickAdjust)
-      .call(g => g.select(".domain").remove())
-      .call(label === undefined ? () => {} : g => g.append("text")
-          .attr("x", marginLeft)
-          .attr("y", marginTop + marginBottom - height - 6)
-          .attr("fill", "currentColor") // TODO move to stylesheet?
-          .attr("text-anchor", "start")
-          .attr("font-weight", "bold")
-          .text(label));
+      .call(g => g.select(".domain").remove());
+
+  if (label !== undefined) {
+    svg.append("text")
+        .attr("x", marginLeft)
+        .attr("y", marginTop - 6)
+        .attr("fill", "currentColor") // TODO move to stylesheet?
+        .attr("font-weight", "bold")
+        .text(label);
+  }
 
   return svg.node();
 }
