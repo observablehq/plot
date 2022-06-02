@@ -43,6 +43,6 @@
     </g>
     <g class="tick" opacity="1" transform="translate(222.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">≥70</text>
-    </g><text x="0" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">Age (years)</text>
-  </g>
+    </g>
+  </g><text x="0" y="12" fill="currentColor" font-weight="bold">Age (years)</text>
 </svg>

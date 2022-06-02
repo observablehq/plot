@@ -23,6 +23,6 @@
     </g>
     <g class="tick" opacity="1" transform="translate(350.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-    </g><text x="150" y="-16" fill="currentColor" text-anchor="start" font-weight="bold">I feel blue</text>
-  </g>
+    </g>
+  </g><text x="150" y="12" fill="currentColor" font-weight="bold">I feel blue</text>
 </svg>
