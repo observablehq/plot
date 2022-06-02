@@ -197,6 +197,7 @@ export {default as usCongressAgeSymbolExplicit} from "./us-congress-age-symbol-e
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPopulationStateAgeDots} from "./us-population-state-age-dots.js";
 export {default as usPresidentFavorabilityDots} from "./us-president-favorability-dots.js";
+export {default as usPresidentGallery} from "./us-president-gallery.js";
 export {default as usPresidentialElection2020} from "./us-presidential-election-2020.js";
 export {default as usPresidentialForecast2016} from "./us-presidential-forecast-2016.js";
 export {default as usRetailSales} from "./us-retail-sales.js";

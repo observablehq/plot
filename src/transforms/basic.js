@@ -1,6 +1,7 @@
 import {randomLcg} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {arrayify, isOptions, valueof} from "../options.js";
+import {initializer} from "./initializer.js";
 
 // If both t1 and t2 are defined, returns a composite transform that first
 // applies t1 and then applies t2.
@@ -46,7 +47,8 @@ function filterTransform(value) {
 }
 
 export function reverse(options) {
-  return {...basic(options, reverseTransform), sort: null};
+  const transform = options.initializer != null ? initializer : basic;
+  return {...transform(options, reverseTransform), sort: null};
 }
 
 function reverseTransform(data, facets) {
@@ -54,11 +56,13 @@ function reverseTransform(data, facets) {
 }
 
 export function shuffle({seed, ...options} = {}) {
-  return {...basic(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
+  const transform = options.initializer != null ? initializer : basic;
+  return {...transform(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
 }
 
 export function sort(value, options) {
-  return {...basic(options, sortTransform(value)), sort: null};
+  const transform = options.initializer != null ? initializer : basic;
+  return {...transform(options, sortTransform(value)), sort: null};
 }
 
 function sortTransform(value) {
@@ -73,8 +77,8 @@ function sortCompare(compare) {
 }
 
 function sortValue(value) {
-  return (data, facets) => {
-    const V = valueof(data, value);
+  return (data, facets, channels) => {
+    const V = channels && value in channels ? channels[value].value : valueof(data, value);
     const compareValue = (i, j) => ascendingDefined(V[i], V[j]);
     return {data, facets: facets.map(I => I.slice().sort(compareValue))};
   };
