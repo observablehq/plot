@@ -1,6 +1,20 @@
+import {isOptions} from "../options.js";
+import {filterTransform, reverseTransform, sortTransform} from "./basic.js";
+
 // If both i1 and i2 are defined, returns a composite initializer that first
 // applies i1 and then applies i2.
-export function initializer({initializer: i1, ...options} = {}, i2) {
+export function initializer({
+  filter: f1,
+  sort: s1,
+  reverse: r1,
+  initializer: i1,
+  ...options
+} = {}, i2) {
+  if (i1 === undefined) { // explicit initializer overrides filter, sort, and reverse
+    if (f1 != null) i1 = filterTransform(f1);
+    if (s1 != null && !isOptions(s1)) i1 = composeInitializer(i1, sortTransform(s1));
+    if (r1) i1 = composeInitializer(i1, reverseTransform);
+  }
   return {
     ...options,
     initializer: composeInitializer(i1, i2)

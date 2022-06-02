@@ -43,7 +43,7 @@ export function filter(value, options) {
   return apply(options, filterTransform(value));
 }
 
-function filterTransform(value) {
+export function filterTransform(value) {
   return (data, facets) => {
     const V = valueof(data, value);
     return {data, facets: facets.map(I => I.filter(i => V[i]))};
@@ -54,7 +54,7 @@ export function reverse(options) {
   return {...apply(options, reverseTransform), sort: null};
 }
 
-function reverseTransform(data, facets) {
+export function reverseTransform(data, facets) {
   return {data, facets: facets.map(I => I.slice().reverse())};
 }
 
@@ -66,7 +66,7 @@ export function sort(value, options) {
   return {...apply(options, sortTransform(value)), sort: null};
 }
 
-function sortTransform(value) {
+export function sortTransform(value) {
   return (typeof value === "function" && value.length !== 1 ? sortCompare : sortValue)(value);
 }
 
