@@ -40,8 +40,8 @@ export function dodgeY(dodgeOptions = {}, options = {}) {
 }
 
 function mergeOptions(options) {
-  const {padding, ...rest} = options;
-  return [{padding}, rest];
+  const {anchor, padding, ...rest} = options;
+  return [{anchor, padding}, rest];
 }
 
 function dodge(y, x, anchor, padding, options) {
