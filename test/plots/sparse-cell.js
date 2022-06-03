@@ -18,6 +18,7 @@ export default async function() {
     },
     color: {
       scheme: "PiYG",
+      type: "linear",
       unknown: "#ddd"
     },
     height: 640,
