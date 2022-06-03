@@ -35,6 +35,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
+    "@rollup/plugin-commonjs": "22",
     "@rollup/plugin-json": "4",
     "@rollup/plugin-node-resolve": "13",
     "canvas": "2",
@@ -42,7 +43,7 @@
     "htl": "0.3",
     "js-beautify": "1",
     "jsdom": "19",
-    "mocha": "9",
+    "mocha": "10",
     "module-alias": "2",
     "rollup": "2",
     "rollup-plugin-terser": "7",
@@ -50,6 +51,7 @@
   },
   "dependencies": {
     "d3": "^7.3.0",
+    "interval-tree-1d": "1",
     "isoformat": "0.2"
   },
   "engines": {

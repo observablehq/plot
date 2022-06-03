@@ -101,3 +101,9 @@ it("text(data, {fontSize}) allows fontSize to be a channel", () => {
   assert.strictEqual(text.fontSize, undefined);
   assert.strictEqual(text.channels.find(c => c.name === "fontSize").value, "x");
 });
+
+it("text({length}) can take length-only data", () => {
+  const data = {length: 100};
+  const text = Plot.text(data);
+  assert.strictEqual(text.data, data);
+});

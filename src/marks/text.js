@@ -1,9 +1,10 @@
 import {create, namespaces} from "d3";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
-import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual} from "../options.js";
+import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual, isIterable} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   ariaLabel: "text",
@@ -17,7 +18,7 @@ export class Text extends Mark {
     const {
       x,
       y,
-      text = data != null && isTextual(data) ? identity : indexOf,
+      text = isIterable(data) && isTextual(data) ? identity : indexOf,
       frameAnchor,
       textAnchor = /right$/i.test(frameAnchor) ? "end" : /left$/i.test(frameAnchor) ? "start" : "middle",
       lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
@@ -122,11 +123,11 @@ export function text(data, {x, y, ...options} = {}) {
 }
 
 export function textX(data, {x = identity, ...options} = {}) {
-  return new Text(data, {...options, x});
+  return new Text(data, maybeIntervalMidY({...options, x}));
 }
 
 export function textY(data, {y = identity, ...options} = {}) {
-  return new Text(data, {...options, y});
+  return new Text(data, maybeIntervalMidX({...options, y}));
 }
 
 function applyIndirectTextStyles(selection, mark, T) {

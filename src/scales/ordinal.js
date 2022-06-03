@@ -1,8 +1,9 @@
 import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {maybeSymbol, isNoneish} from "../options.js";
+import {isNoneish, map} from "../options.js";
 import {maybeInterval} from "../transforms/interval.js";
+import {maybeSymbol} from "../symbols.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
@@ -43,7 +44,7 @@ export function ScaleOrdinal(key, channels, {
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
-    range = range === undefined ? inferSymbolRange(hint) : Array.from(range, maybeSymbol);
+    range = range === undefined ? inferSymbolRange(hint) : map(range, maybeSymbol);
   } else if (registry.get(key) === color) {
     if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
       range = maybeBooleanRange(domain, scheme);
@@ -108,7 +109,7 @@ function maybeRound(scale, channels, options) {
 function inferDomain(channels, interval) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
-    if (domain !== undefined) return domain();
+    if (domain !== undefined) return domain(); // see channelDomain
     if (value === undefined) continue;
     for (const v of value) values.add(v);
   }
@@ -120,16 +121,22 @@ function inferDomain(channels, interval) {
 }
 
 // If all channels provide a consistent hint, propagate it to the scale.
-function inferSymbolHint(channels) {
-  const hint = {};
-  for (const {hint: channelHint} of channels) {
-    for (const key of ["fill", "stroke"]) {
-      const value = channelHint[key];
-      if (!(key in hint)) hint[key] = value;
-      else if (hint[key] !== value) hint[key] = undefined;
-    }
+function inferHint(channels, key) {
+  let value;
+  for (const {hint} of channels) {
+    const candidate = hint?.[key];
+    if (candidate === undefined) continue; // no hint here
+    if (value === undefined) value = candidate; // first hint
+    else if (value !== candidate) return; // inconsistent hint
   }
-  return hint;
+  return value;
+}
+
+function inferSymbolHint(channels) {
+  return {
+    fill: inferHint(channels, "fill"),
+    stroke: inferHint(channels, "stroke")
+  };
 }
 
 function inferSymbolRange(hint) {

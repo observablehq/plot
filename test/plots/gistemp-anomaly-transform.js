@@ -12,7 +12,6 @@ export default async function() {
       grid: true
     },
     color: {
-      type: "diverging",
       scheme: "BuRd",
       domain: [-1, 1],
       transform

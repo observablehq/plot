@@ -14,6 +14,7 @@ export default async function() {
       label: "Season"
     },
     color: {
+      type: "linear",
       scheme: "PiYG",
       unknown: "#ddd"
     },

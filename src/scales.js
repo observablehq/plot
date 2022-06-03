@@ -1,13 +1,15 @@
 import {parse as isoParse} from "isoformat";
-import {isColor, isEvery, isOrdinal, isFirst, isSymbol, isTemporal, maybeSymbol, order, isTemporalString, isNumericString, isScaleOptions} from "./options.js";
+import {isColor, isEvery, isOrdinal, isFirst, isTemporal, isTemporalString, isNumericString, isScaleOptions, isTypedArray, map, order, slice} from "./options.js";
 import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {ScaleLinear, ScaleSqrt, ScalePow, ScaleLog, ScaleSymlog, ScaleQuantile, ScaleQuantize, ScaleThreshold, ScaleIdentity} from "./scales/quantitative.js";
 import {ScaleDiverging, ScaleDivergingSqrt, ScaleDivergingPow, ScaleDivergingLog, ScaleDivergingSymlog} from "./scales/diverging.js";
+import {isDivergingScheme} from "./scales/schemes.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
+import {isSymbol, maybeSymbol} from "./symbols.js";
 import {warn} from "./warnings.js";
 
-export function Scales(channels, {
+export function Scales(channelsByScale, {
   inset: globalInset = 0,
   insetTop: globalInsetTop = globalInset,
   insetRight: globalInsetRight = globalInset,
@@ -16,47 +18,46 @@ export function Scales(channels, {
   round,
   nice,
   clamp,
+  zero,
   align,
   padding,
   ...options
 } = {}) {
   const scales = {};
-  for (const key of registry.keys()) {
-    const scaleChannels = channels.get(key);
+  for (const [key, channels] of channelsByScale) {
     const scaleOptions = options[key];
-    if (scaleChannels || scaleOptions) {
-      const scale = Scale(key, scaleChannels, {
-        round: registry.get(key) === position ? round : undefined, // only for position
-        nice,
-        clamp,
-        align,
-        padding,
-        ...scaleOptions
-      });
-      if (scale) {
-        // populate generic scale options (percent, transform, insets)
-        let {
-          percent,
-          transform,
-          inset,
-          insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
-          insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
-          insetBottom = inset !== undefined ? inset : key === "y" ? globalInsetBottom : 0, // not fy
-          insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
-        } = scaleOptions || {};
-        if (transform == null) transform = undefined;
-        else if (typeof transform !== "function") throw new Error(`invalid scale transform; not a function`);
-        scale.percent = !!percent;
-        scale.transform = transform;
-        if (key === "x" || key === "fx") {
-          scale.insetLeft = +insetLeft;
-          scale.insetRight = +insetRight;
-        } else if (key === "y" || key === "fy") {
-          scale.insetTop = +insetTop;
-          scale.insetBottom = +insetBottom;
-        }
-        scales[key] = scale;
+    const scale = Scale(key, channels, {
+      round: registry.get(key) === position ? round : undefined, // only for position
+      nice,
+      clamp,
+      zero,
+      align,
+      padding,
+      ...scaleOptions
+    });
+    if (scale) {
+      // populate generic scale options (percent, transform, insets)
+      let {
+        percent,
+        transform,
+        inset,
+        insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
+        insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
+        insetBottom = inset !== undefined ? inset : key === "y" ? globalInsetBottom : 0, // not fy
+        insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
+      } = scaleOptions || {};
+      if (transform == null) transform = undefined;
+      else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
+      scale.percent = !!percent;
+      scale.transform = transform;
+      if (key === "x" || key === "fx") {
+        scale.insetLeft = +insetLeft;
+        scale.insetRight = +insetRight;
+      } else if (key === "y" || key === "fy") {
+        scale.insetTop = +insetTop;
+        scale.insetBottom = +insetBottom;
       }
+      scales[key] = scale;
     }
   }
   return scales;
@@ -171,17 +172,17 @@ function Scale(key, channels = [], options = {}) {
     case "pow":
     case "log":
     case "symlog":
-      options = coerceType(channels, options, coerceNumber, Float64Array);
+      options = coerceType(channels, options, coerceNumbers);
       break;
     case "identity":
       switch (registry.get(key)) {
-        case position: options = coerceType(channels, options, coerceNumber, Float64Array); break;
-        case symbol: options = coerceType(channels, options, maybeSymbol); break;
+        case position: options = coerceType(channels, options, coerceNumbers); break;
+        case symbol: options = coerceType(channels, options, coerceSymbols); break;
       }
       break;
     case "utc":
     case "time":
-      options = coerceType(channels, options, coerceDate);
+      options = coerceType(channels, options, coerceDates);
       break;
   }
 
@@ -214,7 +215,7 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
-function inferScaleType(key, channels, {type, domain, range, scheme}) {
+function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
 
@@ -263,11 +264,12 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   // Otherwise, infer the scale type from the data! Prefer the domain, if
   // present, over channels. (The domain and channels should be consistently
   // typed, and the domain is more explicit and typically much smaller.) We only
-  // check the first defined value for expedience and simplicitly; we expect
+  // check the first defined value for expedience and simplicity; we expect
   // that the types are consistent.
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
+    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
     return "linear";
   }
 
@@ -275,6 +277,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme}) {
   const values = channels.map(({value}) => value).filter(value => value !== undefined);
   if (values.some(isOrdinal)) return asOrdinalType(kind);
   if (values.some(isTemporal)) return "utc";
+  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
   return "linear";
 }
 
@@ -319,23 +322,6 @@ export function scaleOrder({range, domain = range}) {
   return Math.sign(order(domain)) * Math.sign(order(range));
 }
 
-// TODO use Float64Array.from for position and radius scales?
-export function applyScales(channels, scales) {
-  const values = Object.create(null);
-  for (let [name, {value, scale}] of channels) {
-    if (name !== undefined) {
-      if (scale !== undefined) {
-        scale = scales[scale];
-        if (scale !== undefined) {
-          value = Array.from(value, scale);
-        }
-      }
-      values[name] = value;
-    }
-  }
-  return values;
-}
-
 // Certain marks have special behavior if a scale is collapsed, i.e. if the
 // domain is degenerate and represents only a single value such as [3, 3]; for
 // example, a rect will span the full extent of the chart along a collapsed
@@ -352,13 +338,29 @@ export function isCollapsed(scale) {
 }
 
 // Mutates channel.value!
-function coerceType(channels, options, coerce, type) {
-  for (const c of channels) c.value = coerceArray(c.value, coerce, type);
-  return {...options, domain: coerceArray(options.domain, coerce, type)};
+function coerceType(channels, {domain, ...options}, coerceValues) {
+  for (const c of channels) {
+    if (c.value !== undefined) {
+      c.value = coerceValues(c.value);
+    }
+  }
+  return {
+    domain: domain === undefined ? domain : coerceValues(domain),
+    ...options
+  };
 }
 
-function coerceArray(array, coerce, type = Array) {
-  if (array !== undefined) return type.from(array, coerce);
+function coerceSymbols(values) {
+  return map(values, maybeSymbol);
+}
+
+function coerceDates(values) {
+  return map(values, coerceDate);
+}
+
+// If the values are specified as a typed array, no coercion is required.
+export function coerceNumbers(values) {
+  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
@@ -415,8 +417,8 @@ function exposeScale({
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,
-    domain: Array.from(domain), // defensive copy
-    ...range !== undefined && {range: Array.from(range)}, // defensive copy
+    domain: slice(domain), // defensive copy
+    ...range !== undefined && {range: slice(range)}, // defensive copy
     ...transform !== undefined && {transform},
     ...percent && {percent}, // only exposed if truthy
     ...label !== undefined && {label},

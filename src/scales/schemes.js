@@ -258,3 +258,21 @@ export function quantitativeScheme(scheme) {
   if (!quantitativeSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
   return quantitativeSchemes.get(s);
 }
+
+const divergingSchemes = new Set([
+  "brbg",
+  "prgn",
+  "piyg",
+  "puor",
+  "rdbu",
+  "rdgy",
+  "rdylbu",
+  "rdylgn",
+  "spectral",
+  "burd",
+  "buylrd"
+]);
+
+export function isDivergingScheme(scheme) {
+  return scheme != null && divergingSchemes.has(`${scheme}`.toLowerCase());
+}

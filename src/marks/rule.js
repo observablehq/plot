@@ -37,10 +37,10 @@ export class RuleX extends Mark {
   render(index, {x, y}, channels, dimensions) {
     const {x: X, y1: Y1, y2: Y2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
-    const {insetTop, insetBottom} = this;
+    const {insetTop, insetBottom, dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, X && x, null, offset, 0)
+        .call(applyTransform, X && x, null, offset + dx, dy)
         .call(g => g.selectAll()
           .data(index)
           .enter()

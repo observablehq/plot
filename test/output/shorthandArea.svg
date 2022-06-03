@@ -1,0 +1,74 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,331.47452085004517)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,292.44904170009033)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,253.42356255013553)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,214.39808340018072)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,175.37260425022592)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,136.34712510027106)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,97.32164595031625)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">140</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,58.29616680036145)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(91.37719298245614,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 07</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(162.60526315789474,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(233.83333333333331,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(305.0614035087719,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 28</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(376.2894736842106,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 04</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(447.5175438596491,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 11</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(518.7456140350877,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(589.9736842105262,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 25</text>
+    </g>
+  </g>
+  <g aria-label="area">
+    <path d="M40,37.97121558708858L50.17543859649122,33.34670606418869L60.35087719298246,33.32720503225745L70.52631578947368,31.57104090904391L101.05263157894737,29.795373802625072L111.22807017543859,29.405124864947403L121.40350877192982,32.11739371459534L131.57894736842104,29.327087565565186L141.75438596491227,26.224567826965682L182.45614035087718,22.868374668795646L192.63157894736844,26.283104094416657L202.80701754385964,20L212.98245614035088,21.482956500054513L243.50877192982455,24.039121481828644L253.68421052631578,24.039121481828644L263.859649122807,24.136691033525413L274.03508771929825,29.48319143343899L284.2105263157894,34.380879310388536L314.7368421052631,37.97121558708858L324.91228070175436,47.00562376667287L335.08771929824564,44.39092446872178L345.2631578947369,43.80553642765058L355.4385964912281,46.08852305537498L385.96491228070175,59.55230165446565L396.140350877193,67.88424925807684L406.3157894736842,51.766738076789224L416.49122807017545,57.230311011604755L426.66666666666663,63.51338583691212L457.1929824561403,60.72307773660802L467.36842105263156,53.991188437062725L477.5438596491228,51.864307628485996L487.71929824561397,38.69320841537625L497.89473684210526,33.67841873441538L538.5964912280702,34.28330975869177L548.7719298245614,32.76131802311748L558.9473684210526,34.771128248066205L569.1228070175438,31.12225570391523L599.6491228070175,25.89282588762962L609.8245614035087,20.52682250451082L620,20.21464013532474L620,370L609.8245614035087,370L599.6491228070175,370L569.1228070175438,370L558.9473684210526,370L548.7719298245614,370L538.5964912280702,370L497.89473684210526,370L487.71929824561397,370L477.5438596491228,370L467.36842105263156,370L457.1929824561403,370L426.66666666666663,370L416.49122807017545,370L406.3157894736842,370L396.140350877193,370L385.96491228070175,370L355.4385964912281,370L345.2631578947369,370L335.08771929824564,370L324.91228070175436,370L314.7368421052631,370L284.2105263157894,370L274.03508771929825,370L263.859649122807,370L253.68421052631578,370L243.50877192982455,370L212.98245614035088,370L202.80701754385964,370L192.63157894736844,370L182.45614035087718,370L141.75438596491227,370L131.57894736842104,370L121.40350877192982,370L111.22807017543859,370L101.05263157894737,370L70.52631578947368,370L60.35087719298246,370L50.17543859649122,370L40,370Z"></path>
+  </g>
+</svg>

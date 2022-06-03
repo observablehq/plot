@@ -185,7 +185,7 @@
     <g class="tick" opacity="1" transform="translate(0,35.266512033796545)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="900" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
-    </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Total number of votes</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Total number of votes</text>
   </g>
   <g aria-label="x-axis" aria-description="← Biden · Vote margin (%) · Trump →" transform="translate(0,610)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(108.542956836157,0)">

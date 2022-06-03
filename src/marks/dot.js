@@ -1,8 +1,11 @@
 import {create, path, symbolCircle} from "d3";
 import {positive} from "../defined.js";
-import {identity, maybeFrameAnchor, maybeNumberChannel, maybeSymbolChannel, maybeTuple} from "../options.js";
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {maybeSymbolChannel} from "../symbols.js";
+import {sort} from "../transforms/basic.js";
+import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
   ariaLabel: "dot",
@@ -26,7 +29,7 @@ export class Dot extends Mark {
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
-      options,
+      options.sort === undefined && options.reverse === undefined ? sort({channel: "r", order: "descending"}, options) : options,
       defaults
     );
     this.r = cr;
@@ -94,9 +97,17 @@ export function dot(data, {x, y, ...options} = {}) {
 }
 
 export function dotX(data, {x = identity, ...options} = {}) {
-  return new Dot(data, {...options, x});
+  return new Dot(data, maybeIntervalMidY({...options, x}));
 }
 
 export function dotY(data, {y = identity, ...options} = {}) {
-  return new Dot(data, {...options, y});
+  return new Dot(data, maybeIntervalMidX({...options, y}));
+}
+
+export function circle(data, options) {
+  return dot(data, {...options, symbol: "circle"});
+}
+
+export function hexagon(data, options) {
+  return dot(data, {...options, symbol: "hexagon"});
 }

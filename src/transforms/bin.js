@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal} from "../options.js";
+import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal, isIterable} from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity} from "./group.js";
@@ -27,7 +27,7 @@ export function bin(outputs = {fill: "count"}, options = {}) {
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
 
-function maybeDenseInterval(bin, k, options) {
+function maybeDenseInterval(bin, k, options = {}) {
   return options?.interval == null ? options : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
 }
 
@@ -97,8 +97,8 @@ function binn(
   const [GZ, setGZ] = maybeColumn(z);
   const [vfill] = maybeColorChannel(fill);
   const [vstroke] = maybeColorChannel(stroke);
-  const [GF = fill, setGF] = maybeColumn(vfill);
-  const [GS = stroke, setGS] = maybeColumn(vstroke);
+  const [GF, setGF] = maybeColumn(vfill);
+  const [GS, setGS] = maybeColumn(vstroke);
 
   return {
     ..."z" in inputs && {z: GZ || z},
@@ -109,7 +109,7 @@ function binn(
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
       const S = valueof(data, vstroke);
-      const G = maybeSubgroup(outputs, Z, F, S);
+      const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData = [];
       const GK = K && setGK([]);
@@ -259,7 +259,7 @@ function thresholdAuto(values, min, max) {
 }
 
 function isTimeThresholds(t) {
-  return isTimeInterval(t) || t && t[Symbol.iterator] && isTemporal(t);
+  return isTimeInterval(t) || (isIterable(t) && isTemporal(t));
 }
 
 function isTimeInterval(t) {

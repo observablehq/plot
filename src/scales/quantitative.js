@@ -24,7 +24,7 @@ import {
   ticks
 } from "d3";
 import {positive, negative, finite} from "../defined.js";
-import {arrayify, constant, order} from "../options.js";
+import {arrayify, constant, order, slice} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
@@ -94,7 +94,7 @@ export function ScaleQ(key, scale, channels, {
   if (zero) {
     const [min, max] = extent(domain);
     if ((min > 0) || (max < 0)) {
-      domain = Array.from(domain);
+      domain = slice(domain);
       if (order(domain) < 0) domain[domain.length - 1] = 0;
       else domain[0] = 0;
     }
@@ -214,9 +214,11 @@ function inferZeroDomain(channels) {
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
-// be degenerate, so we ignore nonpositive values. We also don’t want the maximum
-// default radius to exceed 30px.
+// be degenerate, so we ignore nonpositive values. We also don’t want the
+// maximum default radius to exceed 30px.
 function inferRadialRange(channels, domain) {
+  const hint = channels.find(({radius}) => radius !== undefined);
+  if (hint !== undefined) return [0, hint.radius]; // a natural maximum radius, e.g. hexbins
   const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
   const range = domain.map(d => 3 * Math.sqrt(d / h25));
   const k = 30 / max(range);

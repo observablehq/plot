@@ -1,0 +1,122 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,353.8129822001173)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">156</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,325.2881166877269)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">158</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,296.76325117533656)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">160</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,268.23838566294626)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">162</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,239.71352015055587)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">164</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,211.18865463816553)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">166</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,182.66378912577517)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">168</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,154.13892361338483)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">170</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,125.61405810099448)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">172</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,97.08919258860415)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">174</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,68.56432707621377)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">176</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,40.03946156382344)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">178</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(91.37719298245614,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 07</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(162.60526315789474,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(233.83333333333331,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(305.0614035087719,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Jan 28</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(376.2894736842106,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 04</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(447.5175438596491,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 11</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(518.7456140350877,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(589.9736842105262,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Feb 25</text>
+    </g>
+  </g>
+  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <path d="M40,157.35687732266277l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M50.17543859649122,123.55498300264374l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M60.35087719298246,123.41244424967823l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M70.52631578947368,110.57612640720804l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M101.05263157894737,97.59725554933921l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M111.22807017543859,94.74481178539847l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M121.40350877192982,114.56957905407724l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M131.57894736842104,94.17441431217982l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M141.75438596491227,71.49718901712802l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M182.45614035087718,46.96579041403959l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M192.63157894736844,71.92504773738116l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M202.80701754385964,26l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M212.98245614035088,36.839363320111474l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M243.50877192982455,55.523121705861755l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M253.68421052631578,55.523121705861755l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M263.859649122807,56.23628613096983l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M274.03508771929825,95.31542319510834l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M284.2105263157894,131.1140581009945l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M314.7368421052631,157.35687732266277l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M324.91228070175436,223.39201229600997l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M335.08771929824564,204.2804094524397l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M345.2631578947369,200.0016368382828l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M355.4385964912281,216.68865463816553l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M385.96491228070175,315.0993550813156l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M396.140350877193,376l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M406.3157894736842,258.19239100842435l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M416.49122807017545,298.1272455130691l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M426.66666666666663,344.0520793139591l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M457.1929824561403,323.6569003096293l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M467.36842105263156,274.4515500880543l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M477.5438596491228,258.9055554335324l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M487.71929824561397,162.634134329215l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M497.89473684210526,125.97956804633131l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M538.5964912280702,130.4008936758864l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M548.7719298245614,119.27621038848687l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M558.9473684210526,133.9665018649352l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M569.1228070175438,107.29582392301417l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M599.6491228070175,69.07239003694883l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M609.8245614035087,29.8506999574121l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+    <path d="M620,27.568867603181275l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
+  </g>
+</svg>

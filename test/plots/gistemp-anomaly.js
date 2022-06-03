@@ -10,8 +10,7 @@ export default async function() {
       grid: true
     },
     color: {
-      type: "diverging",
-      reverse: true
+      scheme: "BuRd"
     },
     marks: [
       Plot.ruleY([0]),

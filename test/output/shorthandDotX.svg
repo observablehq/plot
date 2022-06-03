@@ -1,0 +1,75 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(24.65647921760361,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">155</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(146.90586797065987,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">160</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(269.15525672371615,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">165</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(391.40464547677243,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">170</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(513.6540342298288,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">175</text>
+    </g>
+  </g>
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+    <circle cx="394.8166259168701" cy="15" r="3"></circle>
+    <circle cx="452.76283618581897" cy="15" r="3"></circle>
+    <circle cx="453.0073349633248" cy="15" r="3"></circle>
+    <circle cx="475.0122249388751" cy="15" r="3"></circle>
+    <circle cx="497.2616136919313" cy="15" r="3"></circle>
+    <circle cx="502.15158924205394" cy="15" r="3"></circle>
+    <circle cx="468.16625916870396" cy="15" r="3"></circle>
+    <circle cx="503.1295843520782" cy="15" r="3"></circle>
+    <circle cx="542.0048899755501" cy="15" r="3"></circle>
+    <circle cx="584.0586797066015" cy="15" r="3"></circle>
+    <circle cx="541.2713936430318" cy="15" r="3"></circle>
+    <circle cx="620" cy="15" r="3"></circle>
+    <circle cx="601.4180929095357" cy="15" r="3"></circle>
+    <circle cx="569.3887530562348" cy="15" r="3"></circle>
+    <circle cx="569.3887530562348" cy="15" r="3"></circle>
+    <circle cx="568.166259168704" cy="15" r="3"></circle>
+    <circle cx="501.17359413202894" cy="15" r="3"></circle>
+    <circle cx="439.80440097799493" cy="15" r="3"></circle>
+    <circle cx="394.8166259168701" cy="15" r="3"></circle>
+    <circle cx="281.61369193154013" cy="15" r="3"></circle>
+    <circle cx="314.3765281173593" cy="15" r="3"></circle>
+    <circle cx="321.71149144254224" cy="15" r="3"></circle>
+    <circle cx="293.1051344743274" cy="15" r="3"></circle>
+    <circle cx="124.4009779951096" cy="15" r="3"></circle>
+    <circle cx="20" cy="15" r="3"></circle>
+    <circle cx="221.95599022004873" cy="15" r="3"></circle>
+    <circle cx="153.49633251833697" cy="15" r="3"></circle>
+    <circle cx="74.76772616136874" cy="15" r="3"></circle>
+    <circle cx="109.73105134474301" cy="15" r="3"></circle>
+    <circle cx="194.08312958435155" cy="15" r="3"></circle>
+    <circle cx="220.73349633251792" cy="15" r="3"></circle>
+    <circle cx="385.7701711491439" cy="15" r="3"></circle>
+    <circle cx="448.6063569682153" cy="15" r="3"></circle>
+    <circle cx="441.0268948655258" cy="15" r="3"></circle>
+    <circle cx="460.0977995110026" cy="15" r="3"></circle>
+    <circle cx="434.91442542787297" cy="15" r="3"></circle>
+    <circle cx="480.63569682151547" cy="15" r="3"></circle>
+    <circle cx="546.1613691931537" cy="15" r="3"></circle>
+    <circle cx="613.3985330073347" cy="15" r="3"></circle>
+    <circle cx="617.3105134474324" cy="15" r="3"></circle>
+  </g>
+</svg>

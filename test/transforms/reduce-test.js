@@ -20,6 +20,6 @@ it("function reducers reduce as expected", () => {
 
 function testReducer(data, x, r) {
   const mark = Plot.dot(data, Plot.groupZ({x}, {x: d => d}));
-  const c = new Map(mark.initialize().channels);
-  assert.deepStrictEqual(c.get("x").value, [r]);
+  const {channels: {x: {value: X}}} = mark.initialize();
+  assert.deepStrictEqual(X, [r]);
 }

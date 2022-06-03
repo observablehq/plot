@@ -14,8 +14,7 @@ export default async function() {
       label: "↑ Inequality"
     },
     color: {
-      type: "diverging",
-      reverse: true,
+      scheme: "BuRd",
       symmetric: false
     },
     marks: [

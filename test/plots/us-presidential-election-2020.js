@@ -18,8 +18,7 @@ export default async function() {
       label: "↑ Total number of votes"
     },
     color: {
-      type: "diverging",
-      reverse: true,
+      scheme: "BuRd",
       symmetric: false
     },
     marks: [

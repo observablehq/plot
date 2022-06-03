@@ -65,7 +65,7 @@
     <g class="tick" opacity="1" transform="translate(0,49.730769230769226)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">58</text>
       <path stroke="currentColor" stroke-opacity="0.1" d="M0,0h180M200,0h180M400,0h180"></path>
-    </g><text fill="currentColor" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ culmen_length_mm</text>
   </g>
   <g aria-label="fx-axis" aria-description="sex" transform="translate(0,30)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(130.5,0)">
