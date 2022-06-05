@@ -8,13 +8,34 @@ Plot now supports mark initializers via the **initializer** option. Initializers
 
 The new hexbin transform functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
+<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">
+
+```js
+Plot.plot({
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.hexagon(
+      cars,
+      Plot.hexbin(
+        {r: "count", fill: "mean"},
+        {x:  "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"}
+      )
+    )
+  ]
+})
+```
+
 The new hexgrid decoration mark draws a hexagonal grid. It is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
 
 The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new circle and hexagon marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option.
 
 The new dodge transform can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
 
-The mark **sort** option now supports index sorting. For example, to sort dots by ascending radius:
+[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type. This includes the *brbg*, *prgn*, *piyg*, *puor*, *rdbu*, *rdgy*, *rdylbu*, *rdylgn*, *spectral*, *burd*, and *buylrd* schemes. If you want to use a diverging color scheme with a linear color scale, set the scale **type** to *linear*. Color scales will also default to diverging if the scale **pivot** option is set. (For diverging scales, the **pivot** option defaults to zero.)
+
+The **sort** transform option now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
 
 ~~~js
 Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r"}})
@@ -31,8 +52,6 @@ Fix crash when using area mark shorthand.
 Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
 
 Improve performance of internal array operations, including type coercion.
-
-[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
 
 [breaking] *mark*.initialize return signature.
 
