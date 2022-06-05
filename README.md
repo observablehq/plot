@@ -2229,6 +2229,8 @@ Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position 
 
 ### Hexbin
 
+[<img src="./img/hexbin.png" width="320" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/@observablehq/plot-hexbin)
+
 [Source](./src/transforms/hexbin.js) · [Examples](https://observablehq.com/@observablehq/plot-hexbin) · The hexbin transform can be applied to any mark that consumes *x* and *y*, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. It aggregates values into hexagonal bins of the given **binWidth** (in pixels) and computes new position channels *x* and *y* as the centers of each bin. It can also create new channels by applying a specified reducer to each bin, such as the *count* of elements in the bin.
 
 #### Plot.hexbin(*outputs*, *options*)
