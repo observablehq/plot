@@ -27,8 +27,6 @@ Plot.plot({
 })
 ```
 
-The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid. It is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
-
 The new [dodge transform](./README.md#dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
 
 <img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">
@@ -66,15 +64,17 @@ The dot mark now sorts by descending radius by default to reduce occlusion.
 
 The [dot mark](./README.md#dot) now supports the *hexagon* symbol type for pointy-topped hexagons. The new [circle](./README.md#plotcircledata-options) and [hexagon](./README.md#plothexagondata-options) marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option.
 
+The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid. It is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
+
 The **zero** scale option (like the **nice** and **clamp** options) may now be specified as a top-level option, applying to all quantitative scales.
 
 The rule mark now correctly respects the **dx** and **dy** options.
 
-Fix crash when using area mark shorthand.
+Fix a crash when using area mark shorthand.
 
 Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
 
-Improve performance of internal array operations, including type coercion.
+Improve the performance of internal array operations, including type coercion. Thanks, @yurivish!
 
 [breaking] *mark*.initialize return signature.
 
