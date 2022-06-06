@@ -31,6 +31,29 @@ The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid. I
 
 The new [dodge transform](./README.md#dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
 
+<img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">
+
+```js
+Plot.plot({
+  height: 400,
+  x: {
+    domain: [-100, -20],
+    percent: true,
+    label: "← Reduction in travel (%)"
+  },
+  r: {
+    range: [0, 20]
+  },
+  color: {
+    legend: true,
+    tickFormat: d => d ? "lockdown" : "no lockdown"
+  },
+  marks: [
+    Plot.dot(lockdown, Plot.dodgeY("middle", {x: "pct_change", r: "pop", fill: "in_lockdown"}))
+  ]
+})
+```
+
 [breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type. This includes the *brbg*, *prgn*, *piyg*, *puor*, *rdbu*, *rdgy*, *rdylbu*, *rdylgn*, *spectral*, *burd*, and *buylrd* schemes. If you want to use a diverging color scheme with a linear color scale, set the scale **type** to *linear*. Color scales will also default to diverging if the scale **pivot** option is set. (For diverging scales, the **pivot** option defaults to zero.)
 
 The **sort** transform option now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
