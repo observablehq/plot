@@ -2266,6 +2266,10 @@ You can specify a custom initializer by specifying a function as the mark **init
 
 If an initializer desires a channel that is not supported by the downstream mark, additional channels can be declared using the mark **channels** option.
 
+#### Plot.initializer(*options*, *initializer*)
+
+This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
+
 ## Curves
 
 A curve defines how to turn a discrete representation of a line as a sequence of points [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] into a continuous path; *i.e.*, how to interpolate between points. Curves are used by the [line](#line), [area](#area), and [link](#link) mark, and are implemented by [d3-shape](https://github.com/d3/d3-shape/blob/main/README.md#curves).
