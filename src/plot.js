@@ -76,7 +76,7 @@ export function plot(options = {}) {
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
     const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
-    applyScaleTransforms(channels, options);
+    applyScaleTransforms(channels, stateByMark, options);
     stateByMark.set(mark, {data, facets, channels});
   }
 
@@ -102,7 +102,7 @@ export function plot(options = {}) {
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
-        applyScaleTransforms(channels, options);
+        applyScaleTransforms(channels, stateByMark, options);
         Object.assign(state.channels, channels);
         for (const {scale} of Object.values(channels)) if (scale != null) newByScale.add(scale);
       }
@@ -251,6 +251,7 @@ export class Mark {
     const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
     const names = new Set();
     this.data = data;
+    this.options = options;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
@@ -295,6 +296,19 @@ export class Mark {
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});
   }
+  with(Mark, options) {
+    const m = [
+      this,
+      Mark(this.data, {
+        ...this.options,
+        ...Object.fromEntries(this.channels.map(({name}) => [name, ({alias: (stateByMark) => stateByMark.get(this).channels[name].value})])),
+        ...options
+      })
+    ];
+    m.with = () => m; // TODO chained with
+    m.plot = Mark.prototype.plot;
+    return m;
+  }
 }
 
 export function marks(...marks) {
@@ -317,11 +331,13 @@ class Render extends Mark {
 }
 
 // Note: mutates channel.value to apply the scale transform, if any.
-function applyScaleTransforms(channels, options) {
+function applyScaleTransforms(channels, stateByMark, options) {
   for (const name in channels) {
     const channel = channels[name];
-    const {scale} = channel;
-    if (scale != null) {
+    const {value, scale} = channel;
+    if (value && value.alias !== undefined) {
+      channel.value = value.alias(stateByMark);
+    } else if (scale != null) {
       const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
       if (transform != null) channel.value = map(channel.value, transform);
     }

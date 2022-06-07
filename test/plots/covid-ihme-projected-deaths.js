@@ -36,10 +36,7 @@ export default async function() {
         x: "date",
         y: "mean",
         fill: "currentColor"
-      }),
-      Plot.text([data[i]], {
-        x: "date",
-        y: "mean",
+      }).with(Plot.text, {
         text: "mean",
         textAnchor: "start",
         dx: 6
