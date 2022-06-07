@@ -2202,6 +2202,8 @@ Initializers can be used to transform and derive new channels prior to rendering
 
 ### Dodge
 
+[<img src="./img/dodge.png" width="320" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">](https://observablehq.com/@observablehq/plot-dodge)
+
 [Source](./src/transforms/dodge.js) · [Examples](https://observablehq.com/@observablehq/plot-dodge) · The dodge transform can be applied to any mark that consumes *x* or *y* channels, such as the [dot](#dot), [image](#image), [text](#text), and [vector](#vector) marks. The dodge transforms accept the following options:
 
 * **padding** — a number of pixels added to the radius of the mark to estimate its size
