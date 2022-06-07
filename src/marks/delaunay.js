@@ -19,6 +19,13 @@ const meshDefaults = {
   strokeOpacity: 0.1
 };
 
+const hullDefaults = {
+  ariaLabel: "hull",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5
+};
+
 export class DelaunayLink extends Mark {
   constructor(data, options = {}) {
     const {x, y, curve, tension} = options;
@@ -119,6 +126,35 @@ export class DelaunayMesh extends Mark {
   }
 }
 
+export class Hull extends Mark {
+  constructor(data, options = {}) {
+    const {x, y} = options;
+    super(
+      data,
+      [
+        {name: "x", value: x, scale: "x"},
+        {name: "y", value: y, scale: "y"}
+      ],
+      options,
+      hullDefaults
+    );
+  }
+  render(index, {x, y}, channels, dimensions) {
+    const {x: X, y: Y} = channels;
+    const {dx, dy} = this;
+    // TODO Group by z or stroke.
+    // TODO Use faster monotone chain algorithm?
+    const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
+    return create("svg:g")
+        .call(applyIndirectStyles, this, dimensions)
+        .call(g => g.append("path")
+          .call(applyDirectStyles, this)
+          .call(applyTransform, x, y, offset + dx, offset + dy)
+          .attr("d", delaunay.renderHull()))
+      .node();
+  }
+}
+
 export function delaunayLink(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   return new DelaunayLink(data, {...options, x, y});
@@ -127,4 +163,9 @@ export function delaunayLink(data, {x, y, ...options} = {}) {
 export function delaunayMesh(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   return new DelaunayMesh(data, {...options, x, y});
+}
+
+export function hull(data, {x, y, ...options} = {}) {
+  ([x, y] = maybeTuple(x, y));
+  return new Hull(data, {...options, x, y});
 }
