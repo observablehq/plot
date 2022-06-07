@@ -99,7 +99,7 @@ export class DelaunayLink extends Mark {
 }
 
 export class DelaunayMesh extends Mark {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults = meshDefaults) {
     const {x, y} = options;
     super(
       data,
@@ -108,50 +108,31 @@ export class DelaunayMesh extends Mark {
         {name: "y", value: y, scale: "y"}
       ],
       options,
-      meshDefaults
+      defaults
     );
   }
+  _render(index, {x: X, y: Y}) {
+    return Delaunay.from(index, i => X[i], i => Y[i]).render();
+  }
   render(index, {x, y}, channels, dimensions) {
-    const {x: X, y: Y} = channels;
     const {dx, dy} = this;
     // TODO Group by z or stroke.
-    const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
           .call(applyTransform, x, y, offset + dx, offset + dy)
-          .attr("d", delaunay.render()))
+          .attr("d", this._render(index, channels)))
       .node();
   }
 }
 
-export class Hull extends Mark {
+export class Hull extends DelaunayMesh {
   constructor(data, options = {}) {
-    const {x, y} = options;
-    super(
-      data,
-      [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"}
-      ],
-      options,
-      hullDefaults
-    );
+    super(data, options, hullDefaults);
   }
-  render(index, {x, y}, channels, dimensions) {
-    const {x: X, y: Y} = channels;
-    const {dx, dy} = this;
-    // TODO Group by z or stroke.
-    // TODO Use faster monotone chain algorithm?
-    const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
-    return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
-        .call(g => g.append("path")
-          .call(applyDirectStyles, this)
-          .call(applyTransform, x, y, offset + dx, offset + dy)
-          .attr("d", delaunay.renderHull()))
-      .node();
+  _render(index, {x: X, y: Y}) {
+    return Delaunay.from(index, i => X[i], i => Y[i]).renderHull();
   }
 }
 
