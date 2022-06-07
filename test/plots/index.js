@@ -123,6 +123,7 @@ export {default as ordinalBar} from "./ordinal-bar.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
 export {default as penguinCulmenArray} from "./penguin-culmen-array.js";
 export {default as penguinCulmenDelaunay} from "./penguin-culmen-delaunay.js";
+export {default as penguinCulmenVoronoi} from "./penguin-culmen-voronoi.js";
 export {default as penguinDodge} from "./penguin-dodge.js";
 export {default as penguinDodgeHexbin} from "./penguin-dodge-hexbin.js";
 export {default as penguinFacetDodge} from "./penguin-facet-dodge.js";

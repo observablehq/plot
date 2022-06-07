@@ -23,16 +23,7 @@ function delaunayLinkTransform(options) {
 
     // TODO Group by z or stroke.
     for (const I of facets) {
-      const newFacet = [];
-      const {halfedges, hull, triangles} = Delaunay.from(I, i => X[i], i => Y[i]);
-      for (let i = 0; i < halfedges.length; ++i) { // inner edges
-        const j = halfedges[i];
-        if (j > i) link(triangles[i], triangles[j]);
-      }
-      for (let i = 0; i < hull.length; ++i) { // convex hull
-        link(hull[i], hull[(i + 1) % hull.length]);
-      }
-      function link(ti, tj) {
+      const link = (ti, tj) => {
         ti = I[ti];
         tj = I[tj];
         newFacet.push(++newIndex);
@@ -43,6 +34,15 @@ function delaunayLinkTransform(options) {
         for (const key in channels) {
           newChannels[key].value.push(channels[key].value[tj]);
         }
+      };
+      const newFacet = [];
+      const {halfedges, hull, triangles} = Delaunay.from(I, i => X[i], i => Y[i]);
+      for (let i = 0; i < halfedges.length; ++i) { // inner edges
+        const j = halfedges[i];
+        if (j > i) link(triangles[i], triangles[j]);
+      }
+      for (let i = 0; i < hull.length; ++i) { // convex hull
+        link(hull[i], hull[(i + 1) % hull.length]);
       }
       newFacets.push(newFacet);
     }
