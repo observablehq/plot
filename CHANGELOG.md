@@ -2,7 +2,7 @@
 
 ## 0.5.0
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
 
 Plot now supports [mark initializers](./README.md#initializers) via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike [data transforms](./README.md#transforms) which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
 
