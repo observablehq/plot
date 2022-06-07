@@ -39,7 +39,7 @@ In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
 ```html
 <script type="module">
 
-import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.4";
+import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.5";
 
 document.body.append(Plot.plot(options));
 
@@ -50,7 +50,7 @@ Plot is also available as a UMD bundle for legacy browsers.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.5"></script>
 <script>
 
 document.body.append(Plot.plot(options));
