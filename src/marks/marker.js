@@ -77,11 +77,11 @@ function markerCircleStroke(color) {
 
 let nextMarkerId = 0;
 
-export function applyMarkers(path, mark, {stroke: S}) {
+export function applyMarkers(path, mark, {stroke: S} = {}) {
   return applyMarkersColor(path, mark, S && (i => S[i]));
 }
 
-export function applyGroupedMarkers(path, mark, {stroke: S}) {
+export function applyGroupedMarkers(path, mark, {stroke: S} = {}) {
   return applyMarkersColor(path, mark, S && (([i]) => S[i]));
 }
 

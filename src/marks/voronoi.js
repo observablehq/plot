@@ -4,7 +4,7 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
-  ariaLabel: "dot",
+  ariaLabel: "voronoi",
   fill: "none",
   stroke: "currentColor"
 };
