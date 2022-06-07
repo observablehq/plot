@@ -1,4 +1,4 @@
-import {create, Delaunay} from "d3";
+import {create, group, select, Delaunay} from "d3";
 import {maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
@@ -11,12 +11,13 @@ const defaults = {
 
 export class Voronoi extends Mark {
   constructor(data, options = {}) {
-    const {x, y} = options;
+    const {x, y, z} = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"}
+        {name: "y", value: y, scale: "y"},
+        {name: "z", value: z, optional: true}
       ],
       options,
       defaults
@@ -24,28 +25,34 @@ export class Voronoi extends Mark {
   }
   render(index, {x, y}, channels, dimensions) {
     const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-    const {x: X, y: Y} = channels;
+    const {x: X, y: Y, z: Z} = channels;
     const {dx, dy} = this;
-    // TODO Group by z, fill, or stroke.
-    const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
-    const voronoi = delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
+
+    function cells(index) {
+      const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
+      const voronoi = delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
+      select(this)
+        .selectAll()
+        .data(index)
+        .enter()
+        .append("path")
+          .call(applyDirectStyles, this)
+          .attr("d", (_, i) => voronoi.renderCell(i))
+          .call(applyChannelStyles, this, channels);
+    }
+
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
-        .call(g => g.selectAll()
-          .data(index)
-          .enter()
-          .append("path")
-            .call(applyDirectStyles, this)
-            .attr("d", (_, i) => voronoi.renderCell(i))
-            .call(applyChannelStyles, this, channels))
+        .call(Z
+          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(cells)
+          : g => g.datum(index).each(cells))
       .node();
   }
 }
 
+// TODO voronoiX, voronoiY?
 export function voronoi(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   return new Voronoi(data, {...options, x, y});
 }
-
-// TODO voronoiX, voronoiY?
