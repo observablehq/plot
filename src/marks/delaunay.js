@@ -121,20 +121,18 @@ class DelaunayLink extends Mark {
 }
 
 class AbstractDelaunayMark extends Mark {
-  constructor(data, options = {}, defaults) {
-    const {x, y, z, stroke} = options;
-    const nofill = defaults.fill === null;
+  constructor(data, options = {}, defaults, zof) {
+    const {x, y} = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ(nofill ? {z, stroke} : options), optional: true}
+        {name: "z", value: zof(options), optional: true}
       ],
       options,
       defaults
     );
-    if (nofill) this.fill = "none";
   }
   render(index, {x, y}, {x: X, y: Y, z: Z, ...channels}, dimensions) {
     const {dx, dy} = this;
@@ -161,7 +159,8 @@ class AbstractDelaunayMark extends Mark {
 
 class DelaunayMesh extends AbstractDelaunayMark {
   constructor(data, options = {}) {
-    super(data, options, delaunayMeshDefaults);
+    super(data, options, delaunayMeshDefaults, ({z, stroke}) => maybeZ({z, stroke}));
+    this.fill = "none";
   }
   _render(delaunay) {
     return delaunay.render();
@@ -170,7 +169,7 @@ class DelaunayMesh extends AbstractDelaunayMark {
 
 class Hull extends AbstractDelaunayMark {
   constructor(data, options = {}) {
-    super(data, options, hullDefaults);
+    super(data, options, hullDefaults, maybeZ);
   }
   _render(delaunay) {
     return delaunay.renderHull();
@@ -220,7 +219,8 @@ class Voronoi extends Mark {
 
 class VoronoiMesh extends AbstractDelaunayMark {
   constructor(data, options) {
-    super(data, options, voronoiMeshDefaults);
+    super(data, options, voronoiMeshDefaults, ({z}) => z);
+    this.fill = "none";
   }
   _render(delaunay, dimensions) {
     return voronoiof(delaunay, dimensions).render();
