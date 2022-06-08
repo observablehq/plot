@@ -982,6 +982,30 @@ Plot.cellY(simpsons.map(d => d.imdb_rating))
 
 Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
+### Delaunay
+
+Plot provides a handful of marks for Delaunay and Voronoi diagrams (using [d3-delaunay](https://github.com/d3/d3-delaunay) and [Delaunator](https://github.com/mapbox/delaunator)). These marks require the **x** and **y** channels to be specified.
+
+#### Plot.delaunayLink(*data*, *options*)
+
+[Source](./src/marks/delaunay.js) · Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels.
+
+#### Plot.delaunayMesh(*data*, *options*)
+
+[Source](./src/marks/delaunay.js) · Draws a mesh of the Delaunay triangulation of the points given by the **x** and **y** channels.
+
+#### Plot.hull(*data*, *options*)
+
+[Source](./src/marks/delaunay.js) · Draws a convex hull around the points given by the **x** and **y** channels.
+
+#### Plot.voronoi(*data*, *options*)
+
+[Source](./src/marks/voronoi.js) · Draws polygons for each cell of the Voronoi tesselation of the points given by the **x** and **y** channels.
+
+#### Plot.voronoiMesh(*data*, *options*)
+
+[Source](./src/marks/voronoi.js) · Draws a mesh for the cell boundaries of the Voronoi tesselation of the points given by the **x** and **y** channels.
+
 ### Dot
 
 [<img src="./img/dot.png" width="320" height="198" alt="a scatterplot">](https://observablehq.com/@observablehq/plot-dot)
