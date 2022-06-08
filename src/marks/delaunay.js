@@ -211,11 +211,6 @@ class Voronoi extends Mark {
   }
 }
 
-function voronoiof(delaunay, dimensions) {
-  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-  return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
-}
-
 class VoronoiMesh extends DelaunayMesh {
   constructor(data, options) {
     super(data, options, voronoiMeshDefaults);
@@ -225,7 +220,12 @@ class VoronoiMesh extends DelaunayMesh {
   }
 }
 
-export function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
+function voronoiof(delaunay, dimensions) {
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
+}
+
+function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
   return new DelaunayMark(data, {...options, x, y});
 }
@@ -242,7 +242,6 @@ export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
-// TODO voronoiX, voronoiY?
 export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
 }
