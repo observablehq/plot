@@ -3,6 +3,7 @@ import {radians} from "../math.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSameValue} from "./link.js";
+import {constant} from "../options.js";
 
 const defaults = {
   ariaLabel: "arrow",
@@ -47,7 +48,7 @@ export class Arrow extends Mark {
   render(index, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
     const {dx, dy, strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
-    const sw = SW ? i => SW[i] : () => strokeWidth;
+    const sw = SW ? i => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
     // When bending, the offset between the straight line between the two points
     // and the outgoing tangent from the start point. (Also the negative
