@@ -16,7 +16,7 @@ const meshDefaults = {
   ariaLabel: "delaunay mesh",
   fill: null,
   stroke: "currentColor",
-  strokeOpacity: 0.1
+  strokeOpacity: 0.2
 };
 
 const hullDefaults = {
@@ -110,6 +110,7 @@ export class DelaunayMesh extends Mark {
       options,
       defaults
     );
+    this.fill = "none";
   }
   _render(delaunay) {
     return delaunay.render();
@@ -123,7 +124,7 @@ export class DelaunayMesh extends Mark {
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
           .call(applyTransform, x, y, offset + dx, offset + dy)
-          .attr("d", this._render(delaunay)))
+          .attr("d", this._render(delaunay, dimensions)))
       .node();
   }
 }

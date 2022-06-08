@@ -17,7 +17,7 @@ export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {tree, cluster} from "./marks/tree.js";
 export {Vector, vector, vectorX, vectorY} from "./marks/vector.js";
-export {voronoi} from "./marks/voronoi.js";
+export {voronoi, voronoiMesh} from "./marks/voronoi.js";
 export {valueof, column} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
