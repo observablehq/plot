@@ -984,7 +984,7 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 ### Delaunay
 
-[Source](./src/marks/delaunay.js) · Plot provides a handful of marks for Delaunay and Voronoi diagrams (using [d3-delaunay](https://github.com/d3/d3-delaunay) and [Delaunator](https://github.com/mapbox/delaunator)). These marks require the **x** and **y** channels to be specified.
+[Source](./src/marks/delaunay.js) · [Examples](https://observablehq.com/@observablehq/plot-delaunay) · Plot provides a handful of marks for Delaunay and Voronoi diagrams (using [d3-delaunay](https://github.com/d3/d3-delaunay) and [Delaunator](https://github.com/mapbox/delaunator)). These marks require the **x** and **y** channels to be specified.
 
 #### Plot.delaunayLink(*data*, *options*)
 

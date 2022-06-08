@@ -120,8 +120,8 @@ class DelaunayLink extends Mark {
   }
 }
 
-class DelaunayMesh extends Mark {
-  constructor(data, options = {}, defaults = delaunayMeshDefaults) {
+class AbstractDelaunayMark extends Mark {
+  constructor(data, options = {}, defaults) {
     const {x, y, z, stroke} = options;
     super(
       data,
@@ -133,10 +133,7 @@ class DelaunayMesh extends Mark {
       options,
       defaults
     );
-    this.fill = "none";
-  }
-  _render(delaunay) {
-    return delaunay.render();
+    if (defaults.fill === null) this.fill = "none";
   }
   render(index, {x, y}, {x: X, y: Y, z: Z, ...channels}, dimensions) {
     const {dx, dy} = this;
@@ -161,7 +158,16 @@ class DelaunayMesh extends Mark {
   }
 }
 
-class Hull extends DelaunayMesh {
+class DelaunayMesh extends AbstractDelaunayMark {
+  constructor(data, options = {}) {
+    super(data, options, delaunayMeshDefaults);
+  }
+  _render(delaunay) {
+    return delaunay.render();
+  }
+}
+
+class Hull extends AbstractDelaunayMark {
   constructor(data, options = {}) {
     super(data, options, hullDefaults);
   }
@@ -211,7 +217,7 @@ class Voronoi extends Mark {
   }
 }
 
-class VoronoiMesh extends DelaunayMesh {
+class VoronoiMesh extends AbstractDelaunayMark {
   constructor(data, options) {
     super(data, options, voronoiMeshDefaults);
   }
