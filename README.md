@@ -984,27 +984,39 @@ Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** optio
 
 ### Delaunay
 
+[<img src="./img/voronoi.png" width="320" height="198" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+
 [Source](./src/marks/delaunay.js) · [Examples](https://observablehq.com/@observablehq/plot-delaunay) · Plot provides a handful of marks for Delaunay and Voronoi diagrams (using [d3-delaunay](https://github.com/d3/d3-delaunay) and [Delaunator](https://github.com/mapbox/delaunator)). These marks require the **x** and **y** channels to be specified.
 
 #### Plot.delaunayLink(*data*, *options*)
 
-Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels.
+Draws links for each edge of the Delaunay triangulation of the points given by the **x** and **y** channels. Supports the same options as the [link mark](#link), except that **x1**, **y1**, **x2**, and **y2** are derived automatically from **x** and **y**. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the link inherits the corresponding channel value from one of its two endpoints arbitrarily.
+
+If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group.
 
 #### Plot.delaunayMesh(*data*, *options*)
 
-Draws a mesh of the Delaunay triangulation of the points given by the **x** and **y** channels.
+Draws a mesh of the Delaunay triangulation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
+
+If a **z** channel is specified, the input points are grouped by *z*, and separate Delaunay triangulations are constructed for each group. If the **z** channel is not specified, it defaults to the **stroke** channel, if any.
 
 #### Plot.hull(*data*, *options*)
 
-Draws a convex hull around the points given by the **x** and **y** channels.
+Draws a convex hull around the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_ and the **fill** option defaults to _none_. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the hull inherits the corresponding channel value from one of its constituent points arbitrarily.
+
+If a **z** channel is specified, the input points are grouped by *z*, and separate convex hulls are constructed for each group. If the **z** channel is not specified, it defaults to either the **fill** channel, if any, or the **stroke** channel, if any.
 
 #### Plot.voronoi(*data*, *options*)
 
 Draws polygons for each cell of the Voronoi tesselation of the points given by the **x** and **y** channels.
 
+If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group.
+
 #### Plot.voronoiMesh(*data*, *options*)
 
-Draws a mesh for the cell boundaries of the Voronoi tesselation of the points given by the **x** and **y** channels.
+Draws a mesh for the cell boundaries of the Voronoi tesselation of the points given by the **x** and **y** channels. The **stroke** option defaults to _currentColor_, and the **strokeOpacity** defaults to 0.2. The **fill** option is not supported. When an aesthetic channel is specified (such as **stroke** or **strokeWidth**), the mesh inherits the corresponding channel value from one of its constituent points arbitrarily.
+
+If a **z** channel is specified, the input points are grouped by *z*, and separate Voronoi tesselations are constructed for each group. If the **z** channel is not specified, it defaults to the **stroke** channel, if any.
 
 ### Dot
 
