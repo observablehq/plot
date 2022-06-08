@@ -123,17 +123,18 @@ class DelaunayLink extends Mark {
 class AbstractDelaunayMark extends Mark {
   constructor(data, options = {}, defaults) {
     const {x, y, z, stroke} = options;
+    const nofill = defaults.fill === null;
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ({z, stroke}), optional: true}
+        {name: "z", value: maybeZ(nofill ? {z, stroke} : options), optional: true}
       ],
       options,
       defaults
     );
-    if (defaults.fill === null) this.fill = "none";
+    if (nofill) this.fill = "none";
   }
   render(index, {x, y}, {x: X, y: Y, z: Z, ...channels}, dimensions) {
     const {dx, dy} = this;
