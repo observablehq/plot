@@ -5,14 +5,14 @@ import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
-const linkDefaults = {
+const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
   fill: "none",
   stroke: "currentColor",
   strokeMiterlimit: 1
 };
 
-const meshDefaults = {
+const delaunayMeshDefaults = {
   ariaLabel: "delaunay mesh",
   fill: null,
   stroke: "currentColor",
@@ -23,10 +23,25 @@ const hullDefaults = {
   ariaLabel: "hull",
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 1.5
+  strokeWidth: 1.5,
+  strokeMiterlimit: 1
 };
 
-export class DelaunayLink extends Mark {
+const voronoiDefaults = {
+  ariaLabel: "voronoi",
+  fill: "none",
+  stroke: "currentColor",
+  strokeMiterlimit: 1
+};
+
+const voronoiMeshDefaults = {
+  ariaLabel: "voronoi mesh",
+  fill: null,
+  stroke: "currentColor",
+  strokeOpacity: 0.2
+};
+
+class DelaunayLink extends Mark {
   constructor(data, options = {}) {
     const {x, y, z, curve, tension} = options;
     super(
@@ -37,7 +52,7 @@ export class DelaunayLink extends Mark {
         {name: "z", value: z, optional: true}
       ],
       options,
-      linkDefaults
+      delaunayLinkDefaults
     );
     this.curve = Curve(curve, tension);
     markers(this, options);
@@ -105,8 +120,8 @@ export class DelaunayLink extends Mark {
   }
 }
 
-export class DelaunayMesh extends Mark {
-  constructor(data, options = {}, defaults = meshDefaults) {
+class DelaunayMesh extends Mark {
+  constructor(data, options = {}, defaults = delaunayMeshDefaults) {
     const {x, y, z, stroke} = options;
     super(
       data,
@@ -146,12 +161,67 @@ export class DelaunayMesh extends Mark {
   }
 }
 
-export class Hull extends DelaunayMesh {
+class Hull extends DelaunayMesh {
   constructor(data, options = {}) {
     super(data, options, hullDefaults);
   }
   _render(delaunay) {
     return delaunay.renderHull();
+  }
+}
+
+class Voronoi extends Mark {
+  constructor(data, options = {}) {
+    const {x, y, z} = options;
+    super(
+      data,
+      [
+        {name: "x", value: x, scale: "x"},
+        {name: "y", value: y, scale: "y"},
+        {name: "z", value: z, optional: true}
+      ],
+      options,
+      voronoiDefaults
+    );
+  }
+  render(index, {x, y}, channels, dimensions) {
+    const {x: X, y: Y, z: Z} = channels;
+    const {dx, dy} = this;
+
+    function cells(index) {
+      const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
+      const voronoi = voronoiof(delaunay, dimensions);
+      select(this)
+        .selectAll()
+        .data(index)
+        .enter()
+        .append("path")
+          .call(applyDirectStyles, this)
+          .attr("d", (_, i) => voronoi.renderCell(i))
+          .call(applyChannelStyles, this, channels);
+    }
+
+    return create("svg:g")
+        .call(applyIndirectStyles, this, dimensions)
+        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(Z
+          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(cells)
+          : g => g.datum(index).each(cells))
+      .node();
+  }
+}
+
+function voronoiof(delaunay, dimensions) {
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
+}
+
+class VoronoiMesh extends DelaunayMesh {
+  constructor(data, options) {
+    super(data, options, voronoiMeshDefaults);
+  }
+  _render(delaunay, dimensions) {
+    return voronoiof(delaunay, dimensions).render();
   }
 }
 
@@ -170,4 +240,13 @@ export function delaunayMesh(data, options) {
 
 export function hull(data, options) {
   return delaunayMark(Hull, data, options);
+}
+
+// TODO voronoiX, voronoiY?
+export function voronoi(data, options) {
+  return delaunayMark(Voronoi, data, options);
+}
+
+export function voronoiMesh(data, options) {
+  return delaunayMark(VoronoiMesh, data, options);
 }
