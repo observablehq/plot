@@ -5,8 +5,7 @@ export default async function() {
   const data = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     marks: [
-      Plot.delaunayLink(data, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "culmen_length_mm", z: null}),
-      Plot.hull(data, {x: "culmen_depth_mm", y: "culmen_length_mm"})
+      Plot.delaunayLink(data, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "culmen_length_mm"})
     ]
   });
 }

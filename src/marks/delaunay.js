@@ -28,13 +28,13 @@ const hullDefaults = {
 
 export class DelaunayLink extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, stroke, curve, tension} = options;
+    const {x, y, z, curve, tension} = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ({z, stroke}), optional: true}
+        {name: "z", value: z, optional: true}
       ],
       options,
       linkDefaults
