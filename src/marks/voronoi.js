@@ -1,7 +1,7 @@
 import {create, group, select, Delaunay} from "d3";
-import {maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {delaunayMark} from "./delaunay.js";
 
 const defaults = {
   ariaLabel: "voronoi",
@@ -52,7 +52,6 @@ export class Voronoi extends Mark {
 }
 
 // TODO voronoiX, voronoiY?
-export function voronoi(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
-  return new Voronoi(data, {...options, x, y});
+export function voronoi(data, options) {
+  return delaunayMark(Voronoi, data, options);
 }

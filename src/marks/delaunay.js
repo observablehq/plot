@@ -6,15 +6,15 @@ import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransfo
 import {markers, applyMarkers} from "./marker.js";
 
 const linkDefaults = {
-  ariaLabel: "delaunay",
+  ariaLabel: "delaunay link",
   fill: "none",
   stroke: "currentColor",
   strokeMiterlimit: 1
 };
 
 const meshDefaults = {
-  ariaLabel: "delaunay",
-  fill: "none",
+  ariaLabel: "delaunay mesh",
+  fill: null,
   stroke: "currentColor",
   strokeOpacity: 0.1
 };
@@ -111,18 +111,19 @@ export class DelaunayMesh extends Mark {
       defaults
     );
   }
-  _render(index, {x: X, y: Y}) {
-    return Delaunay.from(index, i => X[i], i => Y[i]).render();
+  _render(delaunay) {
+    return delaunay.render();
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, {x, y}, {x: X, y: Y}, dimensions) {
     const {dx, dy} = this;
     // TODO Group by z or stroke.
+    const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
           .call(applyTransform, x, y, offset + dx, offset + dy)
-          .attr("d", this._render(index, channels)))
+          .attr("d", this._render(delaunay)))
       .node();
   }
 }
@@ -131,22 +132,24 @@ export class Hull extends DelaunayMesh {
   constructor(data, options = {}) {
     super(data, options, hullDefaults);
   }
-  _render(index, {x: X, y: Y}) {
-    return Delaunay.from(index, i => X[i], i => Y[i]).renderHull();
+  _render(delaunay) {
+    return delaunay.renderHull();
   }
 }
 
-export function delaunayLink(data, {x, y, ...options} = {}) {
+export function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new DelaunayLink(data, {...options, x, y});
+  return new DelaunayMark(data, {...options, x, y});
 }
 
-export function delaunayMesh(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
-  return new DelaunayMesh(data, {...options, x, y});
+export function delaunayLink(data, options) {
+  return delaunayMark(DelaunayLink, data, options);
 }
 
-export function hull(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
-  return new Hull(data, {...options, x, y});
+export function delaunayMesh(data, options) {
+  return delaunayMark(DelaunayMesh, data, options);
+}
+
+export function hull(data, options) {
+  return delaunayMark(Hull, data, options);
 }

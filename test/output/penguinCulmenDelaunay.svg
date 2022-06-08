@@ -80,7 +80,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">21</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">culmen_depth_mm →</text>
   </g>
-  <g aria-label="delaunay" fill="none" stroke-miterlimit="1" transform="translate(0.5,0.5)">
+  <g aria-label="delaunay link" fill="none" stroke-miterlimit="1" transform="translate(0.5,0.5)">
     <path d="M330.00000000000006,196.9090909090909L330.00000000000006,180.3636363636364" stroke="rgb(181, 242, 66)"></path>
     <path d="M330.00000000000006,180.3636363636364L316.1904761904763,194.3636363636364" stroke="rgb(150, 250, 80)"></path>
     <path d="M316.1904761904763,194.3636363636364L330.00000000000006,196.9090909090909" stroke="rgb(144, 251, 83)"></path>
