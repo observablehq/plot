@@ -17,7 +17,8 @@ export default async function() {
         y1: 0,
         x2: (d, i) => -Math.cos((0.5 + i) * Math.PI / 26) * d.frequency / m,
         y2: (d, i) => Math.sin((0.5 + i) * Math.PI / 26) * d.frequency / m,
-        strokeWidth: 2
+        strokeWidth: 2,
+        insetStart: 4
       }),
       Plot.text(alphabet, {
         x: (d, i) => -Math.cos((0.5 + i) * Math.PI / 26),
