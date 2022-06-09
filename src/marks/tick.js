@@ -64,11 +64,11 @@ export class TickX extends AbstractTick {
   }
   _y1({y}, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y && !isCollapsed(y) ? i => Y[i] + insetTop : marginTop + insetTop;
+    return Y && isBandScale(y) ? i => Y[i] + insetTop : marginTop + insetTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
     const {insetBottom} = this;
-    return Y  && !isCollapsed(y) ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
+    return Y && isBandScale(y) ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
   }
 }
 
@@ -97,11 +97,11 @@ export class TickY extends AbstractTick {
   }
   _x1({x}, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X && !isCollapsed(x) ? i => X[i] + insetLeft : marginLeft + insetLeft;
+    return X && isBandScale(x) ? i => X[i] + insetLeft : marginLeft + insetLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
     const {insetRight} = this;
-    return X && !isCollapsed(x) ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
+    return X && isBandScale(x) ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
   }
   _y1(scales, {y: Y}) {
     return i => Y[i];
@@ -117,4 +117,8 @@ export function tickX(data, {x = identity, ...options} = {}) {
 
 export function tickY(data, {y = identity, ...options} = {}) {
   return new TickY(data, {...options, y});
+}
+
+function isBandScale(x) {
+  return x && x.bandwidth && !isCollapsed(x);
 }
