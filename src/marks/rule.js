@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
-import {isCollapsed} from "../scales.js";
+import {bandwidth, isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
@@ -49,7 +49,7 @@ export class RuleX extends Mark {
             .attr("x1", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
             .attr("y1", Y1 && !isCollapsed(y) ? i => Y1[i] + insetTop : marginTop + insetTop)
-            .attr("y2", Y2 && !isCollapsed(y) ? (y.bandwidth ? i => Y2[i] + y.bandwidth() - insetBottom : i => Y2[i] - insetBottom) : height - marginBottom - insetBottom)
+            .attr("y2", Y2 && !isCollapsed(y) ? i => Y2[i] + bandwidth(y) - insetBottom : height - marginBottom - insetBottom)
             .call(applyChannelStyles, this, channels))
       .node();
   }
@@ -91,7 +91,7 @@ export class RuleY extends Mark {
           .append("line")
             .call(applyDirectStyles, this)
             .attr("x1", X1 && !isCollapsed(x) ? i => X1[i] + insetLeft : marginLeft + insetLeft)
-            .attr("x2", X2 && !isCollapsed(x) ? (x.bandwidth ? i => X2[i] + x.bandwidth() - insetRight : i => X2[i] - insetRight) : width - marginRight - insetRight)
+            .attr("x2", X2 && !isCollapsed(x) ? i => X2[i] + bandwidth(x) - insetRight : width - marginRight - insetRight)
             .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
             .call(applyChannelStyles, this, channels))

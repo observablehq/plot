@@ -317,6 +317,10 @@ export function isDivergingScale({type}) {
   return /^diverging($|-)/.test(type);
 }
 
+export function bandwidth(scale) {
+  return scale && scale.bandwidth ? scale.bandwidth() : 0;
+}
+
 // If the domain is undefined, we assume an identity scale.
 export function scaleOrder({range, domain = range}) {
   return Math.sign(order(domain)) * Math.sign(order(range));

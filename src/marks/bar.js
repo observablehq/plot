@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
 import {identity, indexOf, number} from "../options.js";
-import {isCollapsed} from "../scales.js";
+import {bandwidth, isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
@@ -47,13 +47,13 @@ export class AbstractBar extends Mark {
   }
   _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
-    const bandwidth = X ? x.bandwidth() : width - marginRight - marginLeft;
-    return Math.max(0, bandwidth - insetLeft - insetRight);
+    const barwidth = X ? bandwidth(x) : width - marginRight - marginLeft;
+    return Math.max(0, barwidth - insetLeft - insetRight);
   }
   _height({y}, {y: Y}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
-    const bandwidth = Y ? y.bandwidth() : height - marginTop - marginBottom;
-    return Math.max(0, bandwidth - insetTop - insetBottom);
+    const barheight = Y ? bandwidth(y) : height - marginTop - marginBottom;
+    return Math.max(0, barheight - insetTop - insetBottom);
   }
 }
 
