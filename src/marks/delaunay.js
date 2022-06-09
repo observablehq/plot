@@ -121,7 +121,7 @@ class DelaunayLink extends Mark {
 }
 
 class AbstractDelaunayMark extends Mark {
-  constructor(data, options = {}, defaults, zof) {
+  constructor(data, options = {}, defaults, zof = ({z}) => z) {
     const {x, y} = options;
     super(
       data,
@@ -159,7 +159,7 @@ class AbstractDelaunayMark extends Mark {
 
 class DelaunayMesh extends AbstractDelaunayMark {
   constructor(data, options = {}) {
-    super(data, options, delaunayMeshDefaults, ({z, stroke}) => maybeZ({z, stroke}));
+    super(data, options, delaunayMeshDefaults);
     this.fill = "none";
   }
   _render(delaunay) {
@@ -219,7 +219,7 @@ class Voronoi extends Mark {
 
 class VoronoiMesh extends AbstractDelaunayMark {
   constructor(data, options) {
-    super(data, options, voronoiMeshDefaults, ({z}) => z);
+    super(data, options, voronoiMeshDefaults);
     this.fill = "none";
   }
   _render(delaunay, dimensions) {
