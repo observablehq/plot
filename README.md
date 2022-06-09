@@ -691,6 +691,7 @@ All marks support the following style options:
 * **target** - link target (e.g., “_blank” for a new window); for use with the **href** channel
 * **ariaDescription** - a textual description of the mark’s contents
 * **ariaHidden** - if true, hide this content from the accessibility tree
+* **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - if true, the mark is clipped to the frame’s dimensions
 
 For all marks except [text](#plottextdata-options), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
