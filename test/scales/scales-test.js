@@ -1399,7 +1399,7 @@ it("plot(…).scale(name).interval changes the domain and sets the transform opt
     align: 0.5,
     bandwidth: 29,
     domain: d3.range(2002, 2020),
-    interval: 1,
+    interval: ["floor", "offset", "range"],
     label: "0",
     paddingInner: 0.1,
     paddingOuter: 0.1,
@@ -1417,7 +1417,7 @@ it("plot(…).scale(name).interval reflects the interval option for quantitative
     clamp: false,
     domain: [2700, 6300],
     interpolate: d3.interpolateNumber,
-    interval: 50,
+    interval: ["floor", "offset", "range"],
     label: "body_mass_g →",
     range: [20, 620],
     type: "linear"
@@ -1530,6 +1530,7 @@ function scaleEqual({...scale}, spec) {
   } else {
     delete scale.apply;
   }
+  if (scale.interval) scale.interval = Object.keys(scale.interval);
   if (typeof scale.invert !== "function" && !(["band", "point", "threshold", "ordinal", "diverging", "diverging-log", "diverging-symlog", "diverging-pow" ].includes(scale.type))) {
     scale.invert = typeof scale.invert;
   } else {

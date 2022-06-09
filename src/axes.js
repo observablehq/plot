@@ -3,6 +3,7 @@ import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
 import {maybeInterval} from "./transforms/interval.js";
+import {formatDefault} from "./format.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -41,12 +42,18 @@ function autoAxisTicksK(scale, axis, k) {
   }
 }
 
+// Scales defined with an interval default to regular ticks.
+// If the interval is specified as an integer, the tick format should not produce decimal dots.
 function tickInterval(scale, axis) {
   const interval = maybeInterval(scale.interval);
-  if (interval != null) {
-    const [min, max] = extent(scale.scale.domain());
-    if (axis.ticks === undefined) axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
-    if (scale.type !== "point" && scale.type !== "band" && axis.tickFormat === undefined && typeof scale.interval === "number") axis.tickFormat = ",";
+  if (interval !== undefined) {
+    if (axis.ticks === undefined) {
+      const [min, max] = extent(scale.scale.domain());
+      axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+    }
+    if (axis.tickFormat === undefined) {
+      axis.tickFormat = formatDefault;
+    }
   }
 }
 

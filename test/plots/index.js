@@ -70,6 +70,7 @@ export {default as groupedRects} from "./grouped-rects.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
 export {default as identityScale} from "./identity-scale.js";
+export {default as integerInterval} from "./integer-interval.js";
 export {default as ibmTrading} from "./ibm-trading.js";
 export {default as industryUnemployment} from "./industry-unemployment.js";
 export {default as industryUnemploymentShare} from "./industry-unemployment-share.js";
@@ -173,6 +174,7 @@ export {default as wordCloud} from "./word-cloud.js";
 export {default as wordLengthMobyDick} from "./word-length-moby-dick.js";
 export {default as yearlyRequests} from "./yearly-requests.js";
 export {default as yearlyRequestsDot} from "./yearly-requests-dot.js";
+export {default as yearlyRequestsLine} from "./yearly-requests-line.js";
 
 export * from "./legend-color.js";
 export * from "./legend-opacity.js";

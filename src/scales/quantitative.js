@@ -26,6 +26,7 @@ import {
 import {positive, negative, finite} from "../defined.js";
 import {arrayify, constant, order} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
+import {maybeInterval} from "../transforms/interval.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
 export const flip = i => t => i(1 - t);
@@ -106,7 +107,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, scale, interpolate, interval};
+  return {type, domain, range, scale, interpolate, interval: maybeInterval(interval)};
 }
 
 export function ScaleLinear(key, channels, options) {

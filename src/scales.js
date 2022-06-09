@@ -143,7 +143,7 @@ function Scale(key, channels = [], options = {}) {
   if (options.type === undefined
       && options.domain === undefined
       && options.range === undefined
-      && options.interval == null
+      && options.interval === undefined
       && key !== "fx"
       && key !== "fy"
       && isOrdinalScale({type})) {
