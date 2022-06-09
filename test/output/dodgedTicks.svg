@@ -1,0 +1,95 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="60" viewBox="0 0 640 60" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(20.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(80.49999999999999,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.49999999999997,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(200.50000000000003,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(260.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1.8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(320.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(380.50000000000006,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(440.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(500.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(560.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3.0</text>
+    </g>
+  </g>
+  <g aria-label="dot" fill="black" transform="translate(0.5,0.5)">
+    <circle cx="20" cy="26" r="3"></circle>
+    <circle cx="20" cy="19" r="3"></circle>
+    <circle cx="110.00000000000001" cy="26" r="3"></circle>
+    <circle cx="110.00000000000001" cy="19" r="3"></circle>
+    <circle cx="320" cy="26" r="3"></circle>
+    <circle cx="620" cy="26" r="3"></circle>
+  </g>
+  <g aria-label="tick" stroke="red" stroke-width="2" transform="translate(-3.5,0)">
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+  <g aria-label="tick" stroke="blue" stroke-width="2" transform="translate(0.5,0)">
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+  <g aria-label="tick" stroke="green" stroke-width="2" transform="translate(4.5,0)">
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="20" x2="20" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+  <g aria-label="rule" stroke="red" stroke-width="2" transform="translate(-3.5,0)">
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+  <g aria-label="rule" stroke="blue" stroke-width="2" transform="translate(0.5,0)">
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+  <g aria-label="rule" stroke="green" stroke-width="2" transform="translate(4.5,0)">
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="110.00000000000001" x2="110.00000000000001" y1="0" y2="30"></line>
+    <line x1="320" x2="320" y1="0" y2="30"></line>
+    <line x1="620" x2="620" y1="0" y2="30"></line>
+  </g>
+</svg>

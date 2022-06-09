@@ -51,6 +51,7 @@ export {default as diamondsCaratPriceDots} from "./diamonds-carat-price-dots.js"
 export {default as diamondsCaratSampling} from "./diamonds-carat-sampling.js";
 export {default as documentationLinks} from "./documentation-links.js";
 export {default as dodgeTextRadius} from "./dodge-text-radius.js";
+export {default as dodgedTicks} from "./dodged-ticks.js";
 export {default as dotSort} from "./dot-sort.js";
 export {default as downloads} from "./downloads.js";
 export {default as downloadsOrdinal} from "./downloads-ordinal.js";
