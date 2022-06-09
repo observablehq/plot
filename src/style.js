@@ -122,7 +122,7 @@ export function styles(
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.paintOrder = impliedString(paintOrder, "normal");
-  mark.pointerEvents = impliedString(pointerEvents, "visiblePainted");
+  mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return [
