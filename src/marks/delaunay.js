@@ -1,6 +1,6 @@
 import {create, group, path, select, Delaunay} from "d3";
 import {Curve} from "../curve.js";
-import {maybeTuple, maybeZ} from "../options.js";
+import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
@@ -47,8 +47,8 @@ class DelaunayLink extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true}
       ],
       options,
@@ -59,6 +59,7 @@ class DelaunayLink extends Mark {
   }
   render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
+    if (!(X || Y)) throw new Error("missing channel values: x or y");
     const {dx, dy, curve} = this;
     const mark = this;
 
@@ -76,14 +77,14 @@ class DelaunayLink extends Mark {
         ti = index[ti];
         tj = index[tj];
         newIndex.push(++i);
-        X1[i] = X[ti];
-        Y1[i] = Y[ti];
-        X2[i] = X[tj];
-        Y2[i] = Y[tj];
+        X1[i] = X ? X[ti] : 0;
+        Y1[i] = Y ? Y[ti] : 0;
+        X2[i] = X ? X[tj] : 0;
+        Y2[i] = Y ? Y[tj] : 0;
         for (const k in channels) newChannels[k].push(channels[k][tj]);
       }
 
-      const {halfedges, hull, triangles} = Delaunay.from(index, i => X[i], i => Y[i]);
+      const {halfedges, hull, triangles} = diagram(index, X, Y);
       for (let i = 0; i < halfedges.length; ++i) { // inner edges
         const j = halfedges[i];
         if (j > i) link(triangles[i], triangles[j]);
@@ -126,8 +127,8 @@ class AbstractDelaunayMark extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: zof(options), optional: true}
       ],
       options,
@@ -135,11 +136,12 @@ class AbstractDelaunayMark extends Mark {
     );
   }
   render(index, {x, y}, {x: X, y: Y, z: Z, ...channels}, dimensions) {
+    if (!(X || Y)) throw new Error("missing channel values: x or y");
     const {dx, dy} = this;
     const mark = this;
     function mesh(render) {
       return function(index) {
-        const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
+        const delaunay = diagram(index, X, Y);
         select(this).append("path")
           .datum(index[0])
           .call(applyDirectStyles, mark)
@@ -182,8 +184,8 @@ class Voronoi extends Mark {
     super(
       data,
       [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
+        {name: "x", value: x, scale: "x", optional: true},
+        {name: "y", value: y, scale: "y", optional: true},
         {name: "z", value: z, optional: true}
       ],
       options,
@@ -192,10 +194,11 @@ class Voronoi extends Mark {
   }
   render(index, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
+    if (!(X || Y)) throw new Error("missing channel values: x or y");
     const {dx, dy} = this;
 
     function cells(index) {
-      const delaunay = Delaunay.from(index, i => X[i], i => Y[i]);
+      const delaunay = diagram(index, X, Y);
       const voronoi = voronoiof(delaunay, dimensions);
       select(this)
         .selectAll()
@@ -255,4 +258,8 @@ export function voronoi(data, options) {
 
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
+}
+
+function diagram(index, X, Y) {
+  return Delaunay.from(index, X ? i => X[i] : constant(0), Y ? i => Y[i] : constant(0));
 }
