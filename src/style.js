@@ -30,6 +30,7 @@ export function styles(
     opacity,
     mixBlendMode,
     paintOrder,
+    pointerEvents,
     shapeRendering
   },
   {
@@ -121,6 +122,7 @@ export function styles(
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.paintOrder = impliedString(paintOrder, "normal");
+  mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
   return [
@@ -261,6 +263,7 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
   applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
+  applyAttr(selection, "pointer-events", mark.pointerEvents);
   if (mark.clip === "frame") {
     const id = `plot-clip-${++nextClipId}`;
     selection
