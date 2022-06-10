@@ -196,6 +196,13 @@ export function maybeColumn(source) {
   return source == null ? [source] : column(source);
 }
 
+// Used by initializers to declare channels that will be initialized. The
+// initial value of these channels is undefined (since they aren’t constructed
+// until the initializer is invoked).
+export function initialized() {
+  return {transform() {}};
+}
+
 export function labelof(value, defaultValue) {
   return typeof value === "string" ? value
     : value && value.label !== undefined ? value.label
