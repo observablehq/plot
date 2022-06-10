@@ -63,6 +63,7 @@ export function ScaleQ(key, scale, channels, {
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse
 }) {
+  interval = maybeInterval(interval);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 
@@ -107,7 +108,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, scale, interpolate, interval: maybeInterval(interval)};
+  return {type, domain, range, scale, interpolate, interval};
 }
 
 export function ScaleLinear(key, channels, options) {
