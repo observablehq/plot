@@ -185,7 +185,7 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**range** - typically [*min*, *max*], or an array of ordinal or categorical values
 * *scale*.**unknown** - the desired output value (defaults to undefined) for invalid input values
 * *scale*.**reverse** - reverses the domain (or in somes cases, the range), say to flip the chart along *x* or *y*
-* *scale*.**interval** - an interval to create an array of ordinal values
+* *scale*.**interval** - an interval or time interval (for interval data; see below)
 
 For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-options) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 

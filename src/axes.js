@@ -1,8 +1,8 @@
 import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
+import {formatDefault} from "./format.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
-import {formatDefault} from "./format.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
