@@ -1,7 +1,8 @@
-import {InternSet, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
+import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {isNoneish, map} from "../options.js";
+import {maybeInterval} from "../transforms/interval.js";
 import {maybeSymbol} from "../symbols.js";
 import {registry, color, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
@@ -14,11 +15,14 @@ export const ordinalImplicit = Symbol("ordinal");
 
 export function ScaleO(scale, channels, {
   type,
-  domain = inferDomain(channels),
+  interval,
+  domain,
   range,
   reverse,
   hint
 }) {
+  interval = maybeInterval(interval);
+  if (domain === undefined) domain = inferDomain(channels, interval);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
@@ -27,17 +31,20 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, hint};
+  return {type, domain, range, scale, hint, interval};
 }
 
 export function ScaleOrdinal(key, channels, {
   type,
-  domain = inferDomain(channels),
+  interval,
+  domain,
   range,
   scheme,
   unknown,
   ...options
 }) {
+  interval = maybeInterval(interval);
+  if (domain === undefined) domain = inferDomain(channels, interval);
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
@@ -103,12 +110,16 @@ function maybeRound(scale, channels, options) {
   return scale;
 }
 
-function inferDomain(channels) {
+function inferDomain(channels, interval) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
     if (domain !== undefined) return domain(); // see channelDomain
     if (value === undefined) continue;
     for (const v of value) values.add(v);
+  }
+  if (interval !== undefined) {
+    const [min, max] = extent(values).map(interval.floor, interval);
+    return interval.range(min, interval.offset(max));
   }
   return sort(values, ascendingDefined);
 }

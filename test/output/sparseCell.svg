@@ -1,0 +1,259 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="Season" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,42.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,63.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,84.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,105.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,126.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,147.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,168.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">7</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,189.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,210.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">9</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,231.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,252.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">11</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,273.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,294.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">13</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,315.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,336.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,357.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,378.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">17</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,399.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,420.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">19</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,441.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,462.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,483.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,504.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">23</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,525.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">24</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,546.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,567.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">26</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,588.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">27</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,609.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">28</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,325) rotate(-90)" dy="0.75em" text-anchor="middle">Season</text>
+  </g>
+  <g aria-label="x-axis" aria-description="Episode" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(57.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(83.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(109.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(135.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(161.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(187.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(213.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">7</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(239.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(265.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">9</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(291.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(317.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">11</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(343.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(369.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">13</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(395.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(421.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(447.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(473.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">17</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(499.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(525.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">19</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(551.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(577.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(603.5,0)">
+      <line stroke="currentColor" y2="-6"></line>
+      <line stroke="currentColor" y2="590" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">22</text>
+    </g><text fill="currentColor" transform="translate(330,-30)" dy="1em" text-anchor="middle">Episode</text>
+  </g>
+  <g aria-label="cell">
+    <rect x="45" width="25" y="32" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="71" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="97" width="25" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="123" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="149" width="25" y="32" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="175" width="25" y="32" height="20" fill="rgb(245, 243, 239)"></rect>
+    <rect x="201" width="25" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
+    <rect x="227" width="25" y="32" height="20" fill="rgb(239, 245, 229)"></rect>
+    <rect x="253" width="25" y="32" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="279" width="25" y="32" height="20" fill="rgb(250, 226, 239)"></rect>
+    <rect x="305" width="25" y="32" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="331" width="25" y="32" height="20" fill="rgb(133, 190, 76)"></rect>
+    <rect x="357" width="25" y="32" height="20" fill="rgb(216, 239, 187)"></rect>
+    <rect x="45" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="71" width="25" y="53" height="20" fill="rgb(133, 190, 76)"></rect>
+    <rect x="97" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="123" width="25" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="149" width="25" y="53" height="20" fill="rgb(249, 236, 242)"></rect>
+    <rect x="175" width="25" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
+    <rect x="201" width="25" y="53" height="20" fill="rgb(239, 245, 229)"></rect>
+    <rect x="227" width="25" y="53" height="20" fill="rgb(111, 174, 56)"></rect>
+    <rect x="253" width="25" y="53" height="20" fill="rgb(178, 220, 129)"></rect>
+    <rect x="279" width="25" y="53" height="20" fill="rgb(230, 244, 211)"></rect>
+    <rect x="305" width="25" y="53" height="20" fill="rgb(39, 100, 25)"></rect>
+    <rect x="331" width="25" y="53" height="20" fill="rgb(155, 206, 100)"></rect>
+    <rect x="357" width="25" y="53" height="20" fill="rgb(199, 231, 159)"></rect>
+    <rect x="461" width="25" y="578" height="20" fill="rgb(165, 13, 100)"></rect>
+    <rect x="487" width="25" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
+    <rect x="513" width="25" y="578" height="20" fill="rgb(239, 174, 211)"></rect>
+    <rect x="539" width="25" y="578" height="20" fill="rgb(201, 55, 138)"></rect>
+    <rect x="565" width="25" y="578" height="20" fill="rgb(142, 1, 82)"></rect>
+    <rect x="591" width="25" y="578" height="20" fill="rgb(223, 121, 177)"></rect>
+    <rect x="45" width="25" y="599" height="20" fill="rgb(185, 29, 118)"></rect>
+    <rect x="71" width="25" y="599" height="20" fill="#ddd"></rect>
+    <rect x="97" width="25" y="599" height="20" fill="#ddd"></rect>
+    <rect x="123" width="25" y="599" height="20" fill="#ddd"></rect>
+  </g>
+  <g aria-label="text" transform="translate(13,10.5)"><text y="0.32em" transform="translate(45,32)">8.2<title>Simpsons Roasting on an Open Fire</title></text><text y="0.32em" transform="translate(71,32)">7.8<title>Bart the Genius</title></text><text y="0.32em" transform="translate(97,32)">7.5<title>Homer's Odyssey</title></text><text y="0.32em" transform="translate(123,32)">7.8<title>There's No Disgrace Like Home</title></text><text y="0.32em" transform="translate(149,32)">8.1<title>Bart the General</title></text><text y="0.32em" transform="translate(175,32)">7.6<title>Moaning Lisa</title></text><text y="0.32em" transform="translate(201,32)">7.9<title>The Call of the Simpsons</title></text><text y="0.32em" transform="translate(227,32)">7.7<title>The Telltale Head</title></text><text y="0.32em" transform="translate(253,32)">7.5<title>Life on the Fast Lane</title></text><text y="0.32em" transform="translate(279,32)">7.4<title>Homer's Night Out</title></text><text y="0.32em" transform="translate(305,32)">7.8<title>The Crepes of Wrath</title></text><text y="0.32em" transform="translate(331,32)">8.3<title>Krusty Gets Busted</title></text><text y="0.32em" transform="translate(357,32)">7.9<title>Some Enchanted Evening</title></text><text y="0.32em" transform="translate(45,53)">8.2<title>Bart Gets an "F"</title></text><text y="0.32em" transform="translate(71,53)">8.3<title>Simpson and Delilah</title></text><text y="0.32em" transform="translate(97,53)">8.2<title>Treehouse of Horror</title></text><text y="0.32em" transform="translate(123,53)">8.1<title>Two Cars in Every Garage and Three Eyes on Every Fish</title></text><text y="0.32em" transform="translate(149,53)">7.5<title>Dancin' Homer</title></text><text y="0.32em" transform="translate(175,53)">8.0<title>Dead Putting Society</title></text><text y="0.32em" transform="translate(201,53)">7.7<title>Bart vs. Thanksgiving</title></text><text y="0.32em" transform="translate(227,53)">8.4<title>Bart the Daredevil</title></text><text y="0.32em" transform="translate(253,53)">8.1<title>Itchy &amp; Scratchy &amp; Marge</title></text><text y="0.32em" transform="translate(279,53)">7.8<title>Bart Gets Hit by a Car</title></text><text y="0.32em" transform="translate(305,53)">8.8<title>One Fish, Two Fish, Blowfish, Blue Fish</title></text><text y="0.32em" transform="translate(331,53)">8.2<title>The Way We Was</title></text><text y="0.32em" transform="translate(357,53)">8.0<title>Homer vs. Lisa and the 8th Commandment</title></text><text y="0.32em" transform="translate(461,578)">6.5<title>The Burns Cage</title></text><text y="0.32em" transform="translate(487,578)">6.4<title>How Lisa Got Her Marge Back</title></text><text y="0.32em" transform="translate(513,578)">7.1<title>Fland Canyon</title></text><text y="0.32em" transform="translate(539,578)">6.7<title>To Courier with Love</title></text><text y="0.32em" transform="translate(565,578)">6.4<title>Simprovised</title></text><text y="0.32em" transform="translate(591,578)">6.9<title>Orange Is the New Yellow</title></text><text y="0.32em" transform="translate(45,599)">6.6<title>Monty Burns' Fleeing Circus</title></text><text y="0.32em" transform="translate(71,599)">-<title>Friends and Family"[203]</title></text><text y="0.32em" transform="translate(97,599)">-<title>The Town"[205]</title></text><text y="0.32em" transform="translate(123,599)">-<title>Treehouse of Horror XXVII"[207]</title></text></g>
+</svg>

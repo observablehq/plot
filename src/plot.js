@@ -9,6 +9,7 @@ import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js"
 import {registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
+import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
@@ -322,7 +323,11 @@ function applyScaleTransforms(channels, options) {
     const channel = channels[name];
     const {scale} = channel;
     if (scale != null) {
-      const {percent, transform = percent ? x => x * 100 : undefined} = options[scale] || {};
+      const {
+        percent,
+        interval,
+        transform = percent ? x => x * 100 : maybeInterval(interval)?.floor
+      } = options[scale] || {};
       if (transform != null) channel.value = map(channel.value, transform);
     }
   }

@@ -1,5 +1,6 @@
 import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
+import {formatDefault} from "./format.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
 
@@ -18,8 +19,8 @@ export function Axes(
   return {
     ...xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})},
     ...yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})},
-    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, ...fx, axis: fxAxis})},
-    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, ...fy, axis: fyAxis})}
+    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fxScale), ...fx, axis: fxAxis})},
+    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fyScale), ...fy, axis: fyAxis})}
   };
 }
 
@@ -34,8 +35,20 @@ export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, f
 
 function autoAxisTicksK(scale, axis, k) {
   if (axis.ticks === undefined) {
-    const [min, max] = extent(scale.scale.range());
-    axis.ticks = (max - min) / k;
+    const interval = scale.interval;
+    if (interval !== undefined) {
+      const [min, max] = extent(scale.scale.domain());
+      axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+    } else {
+      const [min, max] = extent(scale.scale.range());
+      axis.ticks = (max - min) / k;
+    }
+  }
+  // D3’s ordinal scales simply use toString by default, but if the ordinal
+  // scale domain (or ticks) are numbers or dates (say because we’re applying a
+  // time interval to the ordinal scale), we want Plot’s default formatter.
+  if (axis.tickFormat === undefined && isOrdinalScale(scale)) {
+    axis.tickFormat = formatDefault;
   }
 }
 
@@ -144,5 +157,5 @@ function inferLabel(channels = [], scale, axis, key) {
 }
 
 export function inferFontVariant(scale) {
-  return isOrdinalScale(scale) ? undefined : "tabular-nums";
+  return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
 }

@@ -1,0 +1,121 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,335.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,300.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,265.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,230.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,195.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,160.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,125.50000000000001)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,90.49999999999999)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,55.49999999999999)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,20.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(58.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2002</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(90.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2003</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(122.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2004</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(154.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2005</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(186.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2006</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(218.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2007</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(250.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2008</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(282.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2009</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(314.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(346.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2011</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(378.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2012</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(410.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2013</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(442.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2014</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(474.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(506.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2016</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(538.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2017</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(570.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2018</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(602.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2019</text>
+    </g>
+  </g>
+  <g aria-label="bar">
+    <rect x="44" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="76" width="29" y="72.5" height="297.5"></rect>
+    <rect x="108" width="29" y="160" height="210"></rect>
+    <rect x="140" width="29" y="282.5" height="87.5"></rect>
+    <rect x="172" width="29" y="160" height="210"></rect>
+    <rect x="204" width="29" y="54.99999999999999" height="315"></rect>
+    <rect x="236" width="29" y="89.99999999999999" height="280"></rect>
+    <rect x="268" width="29" y="177.49999999999997" height="192.50000000000003"></rect>
+    <rect x="300" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="332" width="29" y="230" height="140"></rect>
+    <rect x="364" width="29" y="212.50000000000003" height="157.49999999999997"></rect>
+    <rect x="588" width="29" y="20" height="350"></rect>
+  </g>
+</svg>

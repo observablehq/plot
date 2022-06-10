@@ -1,0 +1,164 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ Volume (USD, millions)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,335.5)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,304.5899188978348)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,273.6798377956696)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,242.76975669350443)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,211.85967559133928)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,180.94959448917407)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,150.03951338700895)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,119.12943228484376)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,88.21935118267857)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,57.309270080513386)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,26.3991889783482)">
+      <line stroke="currentColor" x2="-6"></line>
+      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Volume (USD, millions)</text>
+  </g>
+  <g aria-label="x-axis" transform="translate(0,335)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(55.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(77.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-17</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(99.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(121.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-19</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(143.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(165.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(187.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-22</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(209.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-23</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(231.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-24</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(253.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(275.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-26</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(297.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-27</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(319.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-28</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(341.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-29</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(363.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-30</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(385.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-01</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(407.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-02</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(429.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-03</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(451.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-04</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(473.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-05</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(495.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-06</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(517.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-07</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(539.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-08</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(561.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-09</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(583.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(605.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-05-11</text>
+    </g>
+  </g>
+  <g aria-label="bar">
+    <rect x="45" width="20" y="270.29283622072745" height="64.70716377927255"></rect>
+    <rect x="67" width="20" y="177.24267357482447" height="157.75732642517553"></rect>
+    <rect x="89" width="20" y="20" height="315"></rect>
+    <rect x="111" width="20" y="210.02899659989106" height="124.97100340010894"></rect>
+    <rect x="133" width="20" y="207.25481682097177" height="127.74518317902823"></rect>
+    <rect x="199" width="20" y="252.84718644666538" height="82.15281355333462"></rect>
+    <rect x="221" width="20" y="259.0152931306024" height="75.9847068693976"></rect>
+    <rect x="243" width="20" y="221.77019090654855" height="113.22980909345145"></rect>
+    <rect x="265" width="20" y="269.0718880171919" height="65.9281119828081"></rect>
+    <rect x="287" width="20" y="285.45886751350474" height="49.54113248649526"></rect>
+    <rect x="353" width="20" y="266.75826844669484" height="68.24173155330516"></rect>
+    <rect x="375" width="20" y="266.48162322083044" height="68.51837677916956"></rect>
+    <rect x="397" width="20" y="254.71260984118106" height="80.28739015881894"></rect>
+    <rect x="419" width="20" y="257.4373334903369" height="77.56266650966307"></rect>
+    <rect x="441" width="20" y="266.96382048602425" height="68.03617951397575"></rect>
+    <rect x="507" width="20" y="278.48091670469097" height="56.51908329530903"></rect>
+    <rect x="529" width="20" y="252.02034177718247" height="82.97965822281753"></rect>
+    <rect x="551" width="20" y="270.1506498476575" height="64.84935015234248"></rect>
+    <rect x="573" width="20" y="277.40524588233563" height="57.594754117664365"></rect>
+    <rect x="595" width="20" y="287.5622985325071" height="47.4377014674929"></rect>
+  </g>
+</svg>

@@ -26,6 +26,7 @@ import {
 import {positive, negative, finite} from "../defined.js";
 import {arrayify, constant, order, slice} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
+import {maybeInterval} from "../transforms/interval.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
 export const flip = i => t => i(1 - t);
@@ -57,10 +58,12 @@ export function ScaleQ(key, scale, channels, {
   unknown,
   round,
   scheme,
+  interval,
   range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === length ? inferLengthRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
   interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
   reverse
 }) {
+  interval = maybeInterval(interval);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
 
@@ -105,7 +108,7 @@ export function ScaleQ(key, scale, channels, {
   if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
-  return {type, domain, range, scale, interpolate};
+  return {type, domain, range, scale, interpolate, interval};
 }
 
 export function ScaleLinear(key, channels, options) {
