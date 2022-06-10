@@ -63,7 +63,7 @@
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
-  <g aria-label="dot" fill="#ccc" stroke="#333" stroke-width="1.5" transform="translate(0.5,0.5)">
+  <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="80" cy="184.7058823529412" r="3"></circle>
     <circle cx="246.51459854014598" cy="20" r="3"></circle>
     <circle cx="580" cy="267.0588235294117" r="3"></circle>

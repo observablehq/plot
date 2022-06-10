@@ -7,7 +7,11 @@ export default async function() {
   return Plot.plot({
     width: 960,
     marginBottom: 55,
-    x: {interval: d3.utcDay, tickRotate: -45, tickFormat: "%b %d"},
+    x: {
+      interval: d3.utcDay,
+      tickRotate: -90,
+      tickFormat: "%b %d"
+    },
     marks: [
       Plot.barY(downloads, {x: "date", y: "downloads", fill: "#ccc"}),
       Plot.tickY(downloads, {x: "date", y: "downloads"}),

@@ -19,8 +19,8 @@ export function Axes(
   return {
     ...xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})},
     ...yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})},
-    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, ...fx, axis: fxAxis})},
-    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, ...fy, axis: fyAxis})}
+    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fxScale), ...fx, axis: fxAxis})},
+    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fyScale), ...fy, axis: fyAxis})}
   };
 }
 
@@ -157,5 +157,5 @@ function inferLabel(channels = [], scale, axis, key) {
 }
 
 export function inferFontVariant(scale) {
-  return isOrdinalScale(scale) ? undefined : "tabular-nums";
+  return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
 }

@@ -51,144 +51,144 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
     </g><text fill="currentColor" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ downloads</text>
   </g>
-  <g aria-label="x-axis" aria-description="date" transform="translate(0,345)" fill="none" text-anchor="middle">
+  <g aria-label="x-axis" aria-description="date" transform="translate(0,345)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(62.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 01</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 01</text>
     </g>
     <g class="tick" opacity="1" transform="translate(81.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 02</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 02</text>
     </g>
     <g class="tick" opacity="1" transform="translate(100.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 03</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 03</text>
     </g>
     <g class="tick" opacity="1" transform="translate(119.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 04</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 04</text>
     </g>
     <g class="tick" opacity="1" transform="translate(138.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 05</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 05</text>
     </g>
     <g class="tick" opacity="1" transform="translate(157.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 06</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 06</text>
     </g>
     <g class="tick" opacity="1" transform="translate(176.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 07</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 07</text>
     </g>
     <g class="tick" opacity="1" transform="translate(195.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 08</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 08</text>
     </g>
     <g class="tick" opacity="1" transform="translate(214.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 09</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 09</text>
     </g>
     <g class="tick" opacity="1" transform="translate(233.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 10</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(252.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 11</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 11</text>
     </g>
     <g class="tick" opacity="1" transform="translate(271.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 12</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 12</text>
     </g>
     <g class="tick" opacity="1" transform="translate(290.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 13</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 13</text>
     </g>
     <g class="tick" opacity="1" transform="translate(309.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 14</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 14</text>
     </g>
     <g class="tick" opacity="1" transform="translate(328.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 15</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 15</text>
     </g>
     <g class="tick" opacity="1" transform="translate(347.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 16</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 16</text>
     </g>
     <g class="tick" opacity="1" transform="translate(366.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 17</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 17</text>
     </g>
     <g class="tick" opacity="1" transform="translate(385.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 18</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 18</text>
     </g>
     <g class="tick" opacity="1" transform="translate(404.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 19</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 19</text>
     </g>
     <g class="tick" opacity="1" transform="translate(423.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 20</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 20</text>
     </g>
     <g class="tick" opacity="1" transform="translate(442.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 21</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 21</text>
     </g>
     <g class="tick" opacity="1" transform="translate(461.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 22</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 22</text>
     </g>
     <g class="tick" opacity="1" transform="translate(480.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 23</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 23</text>
     </g>
     <g class="tick" opacity="1" transform="translate(499.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 24</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 24</text>
     </g>
     <g class="tick" opacity="1" transform="translate(518.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 25</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 25</text>
     </g>
     <g class="tick" opacity="1" transform="translate(537.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 26</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 26</text>
     </g>
     <g class="tick" opacity="1" transform="translate(556.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 27</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 27</text>
     </g>
     <g class="tick" opacity="1" transform="translate(575.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 28</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 28</text>
     </g>
     <g class="tick" opacity="1" transform="translate(594.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 29</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 29</text>
     </g>
     <g class="tick" opacity="1" transform="translate(613.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 30</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 30</text>
     </g>
     <g class="tick" opacity="1" transform="translate(632.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Jan 31</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Jan 31</text>
     </g>
     <g class="tick" opacity="1" transform="translate(651.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 01</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 01</text>
     </g>
     <g class="tick" opacity="1" transform="translate(670.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 02</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 02</text>
     </g>
     <g class="tick" opacity="1" transform="translate(689.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 03</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 03</text>
     </g>
     <g class="tick" opacity="1" transform="translate(708.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 04</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 04</text>
     </g>
     <g class="tick" opacity="1" transform="translate(727.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 05</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 05</text>
     </g>
     <g class="tick" opacity="1" transform="translate(746.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 06</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 06</text>
     </g>
     <g class="tick" opacity="1" transform="translate(765.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 07</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 07</text>
     </g>
     <g class="tick" opacity="1" transform="translate(784.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 08</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 08</text>
     </g>
     <g class="tick" opacity="1" transform="translate(803.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 09</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 09</text>
     </g>
     <g class="tick" opacity="1" transform="translate(822.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 10</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(841.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 11</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 11</text>
     </g>
     <g class="tick" opacity="1" transform="translate(860.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 12</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 12</text>
     </g>
     <g class="tick" opacity="1" transform="translate(879.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 13</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 13</text>
     </g>
     <g class="tick" opacity="1" transform="translate(898.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 14</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 14</text>
     </g>
     <g class="tick" opacity="1" transform="translate(917.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 11.82842712474619) rotate(-45)" text-anchor="end">Feb 15</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 9) rotate(-90)" text-anchor="end">Feb 15</text>
     </g><text fill="currentColor" transform="translate(490,55)" dy="-0.32em" text-anchor="middle">date</text>
   </g>
   <g aria-label="bar" fill="#ccc">
