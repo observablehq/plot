@@ -126,6 +126,7 @@ export {default as penguinCulmenDelaunay} from "./penguin-culmen-delaunay.js";
 export {default as penguinCulmenDelaunayMesh} from "./penguin-culmen-delaunay-mesh.js";
 export {default as penguinCulmenDelaunaySpecies} from "./penguin-culmen-delaunay-species.js";
 export {default as penguinCulmenVoronoi} from "./penguin-culmen-voronoi.js";
+export {default as penguinVoronoi1D} from "./penguin-voronoi-1d.js";
 export {default as penguinDodge} from "./penguin-dodge.js";
 export {default as penguinDodgeHexbin} from "./penguin-dodge-hexbin.js";
 export {default as penguinFacetDodge} from "./penguin-facet-dodge.js";
