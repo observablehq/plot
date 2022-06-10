@@ -1408,6 +1408,52 @@ it("plot(…).scale(name) reflects the given custom interpolator", async () => {
   });
 });
 
+it("plot(…).scale(name).interval changes the domain and sets the transform option for ordinal scales", async () => {
+  const requests = [[2002,9],[2003,17],[2004,12],[2005,5],[2006,12],[2007,18],[2008,16],[2009,11],[2010,9],[2011,8],[2012,9],[2019,20]];
+  const plot = Plot.barY(requests, {x: "0", y: "1"}).plot({x: {interval: 1}});
+  scaleEqual(plot.scale("x"), {
+    align: 0.5,
+    bandwidth: 29,
+    domain: d3.range(2002, 2020),
+    interval: ["floor", "offset", "range"],
+    label: "0",
+    paddingInner: 0.1,
+    paddingOuter: 0.1,
+    range: [40, 620],
+    round: true,
+    step: 32,
+    type: "band"
+  });
+});
+
+it("plot(…).scale(name).interval reflects the interval option for quantitative scales", async () => {
+  const penguins = await d3.csv("data/penguins.csv", d3.autoType);
+  const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {interval: 50}});
+  scaleEqual(plot.scale("x"), {
+    clamp: false,
+    domain: [2700, 6300],
+    interpolate: d3.interpolateNumber,
+    interval: ["floor", "offset", "range"],
+    label: "body_mass_g →",
+    range: [20, 620],
+    type: "linear"
+  });
+});
+
+it("The interval option is reusable for ordinal scales", async () => {
+  const requests = [[2002,9],[2003.5,17],[2005.9,5]];
+  const plot1 = Plot.barY(requests, {x: "0", y: "1"}).plot({x: {interval: 1}, className: "a"});
+  const plot2 = Plot.barY(requests, {x: "0", y: "1"}).plot({x: plot1.scale("x"), className: "a"});
+  assert.strictEqual(plot1.innerHTML, plot2.innerHTML);
+});
+
+it("The interval option is reusable for quantitative scales", async () => {
+  const requests = [[2002,9],[2003.5,17],[2005.9,5]];
+  const plot1 = Plot.dot(requests, {x: "0", y: "1"}).plot({x: {interval: 1}, className: "a"});
+  const plot2 = Plot.dot(requests, {x: "0", y: "1"}).plot({x: plot1.scale("x"), className: "a"});
+  assert.strictEqual(plot1.innerHTML, plot2.innerHTML);
+});
+
 it("plot(…).scale('color') allows a range to be specified in conjunction with a scheme", async () => {
   const gistemp = await d3.csv("data/gistemp.csv", d3.autoType);
   const plot = Plot.dot(gistemp, {x: "Date", fill: "Anomaly"}).plot({color: {range: [0, 0.5], scheme: "cool"}});
@@ -1500,6 +1546,7 @@ function scaleEqual({...scale}, spec) {
   } else {
     delete scale.apply;
   }
+  if (scale.interval) scale.interval = Object.keys(scale.interval);
   if (typeof scale.invert !== "function" && !(["band", "point", "threshold", "ordinal", "diverging", "diverging-log", "diverging-symlog", "diverging-pow" ].includes(scale.type))) {
     scale.invert = typeof scale.invert;
   } else {

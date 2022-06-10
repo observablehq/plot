@@ -16,11 +16,13 @@ export const ordinalImplicit = Symbol("ordinal");
 export function ScaleO(scale, channels, {
   type,
   interval,
-  domain = inferDomain(channels, interval),
+  domain,
   range,
   reverse,
   hint
 }) {
+  interval = maybeInterval(interval);
+  if (domain === undefined) domain = inferDomain(channels, interval);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
@@ -29,18 +31,20 @@ export function ScaleO(scale, channels, {
     if (typeof range === "function") range = range(domain);
     scale.range(range);
   }
-  return {type, domain, range, scale, hint};
+  return {type, domain, range, scale, hint, interval};
 }
 
 export function ScaleOrdinal(key, channels, {
   type,
   interval,
-  domain = inferDomain(channels, interval),
+  domain,
   range,
   scheme,
   unknown,
   ...options
 }) {
+  interval = maybeInterval(interval);
+  if (domain === undefined) domain = inferDomain(channels, interval);
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
@@ -113,7 +117,7 @@ function inferDomain(channels, interval) {
     if (value === undefined) continue;
     for (const v of value) values.add(v);
   }
-  if ((interval = maybeInterval(interval)) != null) {
+  if (interval !== undefined) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
