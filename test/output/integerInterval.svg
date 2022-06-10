@@ -43,20 +43,20 @@
     </g>
   </g>
   <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(70.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2</text>
+    <g class="tick" opacity="1" transform="translate(40.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2.0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(243.83333333333331,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3</text>
+    <g class="tick" opacity="1" transform="translate(233.83333333333331,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3.0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(417.16666666666663,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4</text>
+    <g class="tick" opacity="1" transform="translate(427.16666666666663,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4.0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(590.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5.0</text>
     </g>
   </g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
-    <path d="M70,184.7058823529412L243.33333333333331,20L590,122.94117647058823"></path>
+    <path d="M40,184.7058823529412L233.33333333333331,20L233.33333333333331,164.11764705882354L620,122.94117647058823"></path>
   </g>
 </svg>

@@ -2,7 +2,6 @@ import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
-import {maybeInterval} from "./transforms/interval.js";
 import {formatDefault} from "./format.js";
 
 export function Axes(
@@ -35,25 +34,21 @@ export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, f
 }
 
 function autoAxisTicksK(scale, axis, k) {
-  tickInterval(scale, axis);
   if (axis.ticks === undefined) {
-    const [min, max] = extent(scale.scale.range());
-    axis.ticks = (max - min) / k;
-  }
-}
-
-// Scales defined with an interval default to regular ticks.
-// If the interval is specified as an integer, the tick format should not produce decimal dots.
-function tickInterval(scale, axis) {
-  const interval = maybeInterval(scale.interval);
-  if (interval !== undefined) {
-    if (axis.ticks === undefined) {
+    const interval = scale.interval;
+    if (interval !== undefined) {
       const [min, max] = extent(scale.scale.domain());
       axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+    } else {
+      const [min, max] = extent(scale.scale.range());
+      axis.ticks = (max - min) / k;
     }
-    if (axis.tickFormat === undefined) {
-      axis.tickFormat = formatDefault;
-    }
+  }
+  // D3’s ordinal scales simply use toString by default, but if the ordinal
+  // scale domain (or ticks) are numbers or dates (say because we’re applying a
+  // time interval to the ordinal scale), we want Plot’s default formatter.
+  if (axis.tickFormat === undefined && isOrdinalScale(scale)) {
+    axis.tickFormat = formatDefault;
   }
 }
 
