@@ -144,22 +144,22 @@ class AbstractDelaunayMark extends Mark {
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
     const mark = this;
-    function mesh(render) {
-      return function(index) {
-        const delaunay = Delaunay.from(index, xi, yi);
-        select(this).append("path")
-          .datum(index[0])
-          .call(applyDirectStyles, mark)
-          .attr("d", render(delaunay, dimensions))
-          .call(applyChannelStyles, mark, channels);
-      };
+
+    function mesh(index) {
+      const delaunay = Delaunay.from(index, xi, yi);
+      select(this).append("path")
+        .datum(index[0])
+        .call(applyDirectStyles, mark)
+        .attr("d", mark._render(delaunay, dimensions))
+        .call(applyChannelStyles, mark, channels);
     }
+
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(Z
-          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(mesh(this._render))
-          : g => g.datum(index).each(mesh(this._render)))
+          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(mesh)
+          : g => g.datum(index).each(mesh))
       .node();
   }
 }
