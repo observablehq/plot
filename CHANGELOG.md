@@ -2,39 +2,93 @@
 
 ## 0.5.0
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
 
-Plot now supports mark initializers via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike data transforms which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
+Plot now supports [mark initializers](./README.md#initializers) via the **initializer** option. Initializers can transform data, channels, and indexes. Unlike [data transforms](./README.md#transforms) which operate in abstract data space, initializers can operate in screen space such as pixel coordinates and colors. For example, initializers can modify a marks’ positions to avoid occlusion. The new hexbin and dodge transforms are implemented as mark initializers.
 
-The new hexbin transform functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
+The new [hexbin transform](./README.md#hexbin) functions similarly to the bin transform, except it aggregates both *x* and *y* into hexagonal bins before reducing. The size of the hexagons can be specified with the **binWidth** option, which controls the width of the (pointy-topped) hexagons.
 
-The new hexgrid decoration mark draws a hexagonal grid. It is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
+[<img src="./img/hexbin.png" width="640" alt="a chart showing the inverse relationship of fuel economy to engine displacement, and the positive correlation of engine displacement and weight; hexagonal bins of varying size represent the number of cars at each location, while color encodes the mean weight of nearby cars">](https://observablehq.com/@observablehq/plot-hexbin)
 
-The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new circle and hexagon marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option.
+```js
+Plot.plot({
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.hexagon(
+      cars,
+      Plot.hexbin(
+        {r: "count", fill: "mean"},
+        {x:  "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"}
+      )
+    )
+  ]
+})
+```
 
-The new dodge transform can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel. If an *r* channel is specified, the circles may have varying radius.
+The new [dodge transform](./README.md#dodge) can be used to produce beeswarm plots. Given an *x* channel representing the desired horizontal position of circles, the dodgeY transform derives a new *y* (vertical position) channel such that the circles do not overlap; the dodgeX transform similarly derives a new *x* channel given a *y* channel.
 
-The mark **sort** option now supports index sorting. For example, to sort dots by ascending radius:
+[<img src="./img/dodge-random.png" width="640" alt="a beeswarm chart showing a random normal distribution; each of 800 samples is represented by a dot positioned along the x-axis, stacked on top of the y-axis like grains of sand">](https://observablehq.com/@observablehq/plot-dodge)
+
+```js
+Plot.plot({
+  height: 320,
+  x: {
+    domain: [-3, 3]
+  },
+  marks: [
+    Plot.dotX(Array.from({length: 800}, d3.randomNormal()), Plot.dodgeY())
+  ]
+})
+```
+
+If an *r* channel is specified, the circles may have varying radius. By default, the dodge transform sorts the input data by descending radius, such that the largest circles are placed first. The order of placement greatly affects the resulting layout; to change the placement order, use the standard mark **sort** option.
+
+[<img src="./img/dodge.png" width="640" alt="a chart showing the monthly percent change in travel by U.S. county in March 2020 after the coronavirus outbreak; each county is represented as a circle with area proportional to its population, positioned according to the change in travel; most counties, and especially those with stay-at-home orders, show a significant reduction in travel">](https://observablehq.com/@observablehq/plot-dodge)
+
+```js
+Plot.plot({
+  height: 400,
+  x: {
+    domain: [-100, -20],
+    percent: true,
+    label: "← Reduction in travel (%)"
+  },
+  r: {
+    range: [0, 20]
+  },
+  color: {
+    legend: true,
+    tickFormat: d => d ? "lockdown" : "no lockdown"
+  },
+  marks: [
+    Plot.dot(lockdown, Plot.dodgeY("middle", {x: "pct_change", r: "pop", fill: "in_lockdown"}))
+  ]
+})
+```
+
+When using the dodgeY transform, you should set the height of your plot explicitly; otherwise dots may be drawn outside the canvas. You can also adjust the **range** of the *r* scale to produce denser beeswarms.
+
+[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type. This includes the *brbg*, *prgn*, *piyg*, *puor*, *rdbu*, *rdgy*, *rdylbu*, *rdylgn*, *spectral*, *burd*, and *buylrd* schemes. If you want to use a diverging color scheme with a linear color scale, set the scale **type** option to *linear*. Color scales will also default to diverging if the scale **pivot** option is set. (For diverging scales, the pivot defaults to zero.)
+
+The [sort transform](./README.md#plotsortorder-options) now supports sorting on an existing channel, avoiding the need to duplicate the channel definition. For example, to sort dots by ascending radius:
 
 ~~~js
 Plot.dot(earthquakes, {x: "longitude", y: "latitude", r: "intensity", sort: {channel: "r"}})
 ~~~
 
-The dot mark now sorts by descending radius by default to reduce occlusion.
+The [dot mark](./README.md#dot) now sorts by descending radius by default to reduce occlusion. The dot mark now supports the *hexagon* symbol type for pointy-topped hexagons. The new [circle](./README.md#plotcircledata-options) and [hexagon](./README.md#plothexagondata-options) marks are convenience shorthand for dot marks with the *circle* and *hexagon* symbol, respectively. The dotX, dotY, textX, and textY marks now support the **interval** option. The rule mark now correctly respects the **dx** and **dy** options. The new [hexgrid decoration mark](./README.md#hexgrid) draws a hexagonal grid; it is intended to be used with the hexbin transform as an alternative to the default horizontal and vertical axis grid.
 
-The **zero** scale option (like the **nice** and **clamp** options) may now be specified as a top-level option, applying to all quantitative scales.
-
-The rule mark now correctly respects the **dx** and **dy** options.
-
-Fix crash when using area mark shorthand.
+The **zero** scale option (like the **nice** and **clamp** scale options) may now be specified as a top-level option, applying to all quantitative scales.
 
 Marks can now define a channel hint to set the default range of the *r* scale. This is used by the hexbin transform when producing an *r* output channel.
 
-Improve performance of internal array operations, including type coercion.
+Improve the performance of internal array operations, including type coercion. Thanks, @yurivish!
 
-[breaking] Color scales with diverging color schemes now default to the *diverging* scale type instead of the *linear* scale type.
+Fix a crash when using the [area mark](./README.md#area) shorthand.
 
-[breaking] *mark*.initialize return signature.
+[breaking] The return signature of the internal *mark*.initialize method has changed. It now returns a {data, facets, channels} object instead of {index, channels}, and *channels* is now represented as an object with named properties representing channels rather than an iterable of [*name*, *channel*].
 
 ## 0.4.3
 

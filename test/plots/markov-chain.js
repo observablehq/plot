@@ -19,6 +19,7 @@ export default async function() {
         y2: ({j}) => centers[j][1],
         strokeOpacity: "value",
         bend: true,
+        strokeWidth: 1,
         inset: 55
       }),
       Plot.text(centers, {text: ["A", "B", "C"], dy: 55}),
