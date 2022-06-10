@@ -1,7 +1,6 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
 import {identity, number} from "../options.js";
-import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
@@ -64,11 +63,11 @@ export class TickX extends AbstractTick {
   }
   _y1({y}, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y && isBandScale(y) ? i => Y[i] + insetTop : marginTop + insetTop;
+    return Y && y?.bandwidth ? i => Y[i] + insetTop : marginTop + insetTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
     const {insetBottom} = this;
-    return Y && isBandScale(y) ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
+    return Y && y?.bandwidth ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
   }
 }
 
@@ -97,11 +96,11 @@ export class TickY extends AbstractTick {
   }
   _x1({x}, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X && isBandScale(x) ? i => X[i] + insetLeft : marginLeft + insetLeft;
+    return X && x?.bandwidth ? i => X[i] + insetLeft : marginLeft + insetLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
     const {insetRight} = this;
-    return X && isBandScale(x) ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
+    return X && x?.bandwidth ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
   }
   _y1(scales, {y: Y}) {
     return i => Y[i];
@@ -117,8 +116,4 @@ export function tickX(data, {x = identity, ...options} = {}) {
 
 export function tickY(data, {y = identity, ...options} = {}) {
   return new TickY(data, {...options, y});
-}
-
-function isBandScale(x) {
-  return x && x.bandwidth && !isCollapsed(x);
 }
