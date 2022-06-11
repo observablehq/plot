@@ -98,8 +98,8 @@ export function ScaleQ(key, scale, channels, {
     const [min, max] = extent(domain);
     if ((min > 0) || (max < 0)) {
       domain = slice(domain);
-      if (order(domain) < 0) domain[domain.length - 1] = 0;
-      else domain[0] = 0;
+      if (order(domain) !== Math.sign(min)) domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
+      else domain[0] = 0; // [1, 2] or [-1, -2]
     }
   }
 
