@@ -51,7 +51,7 @@ export function plot(options = {}) {
     const {x, y} = facet;
     if (x != null || y != null) {
       const facetData = arrayify(facet.data);
-      if (facetData == null) throw new Error("facet specification requires a data property");
+      if (facetData == null) throw new Error("missing facet data");
       facetChannels = {};
       if (x != null) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
