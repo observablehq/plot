@@ -47,12 +47,12 @@ export class AbstractBar extends Mark {
   }
   _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
-    const bandwidth = X ? x.bandwidth() : width - marginRight - marginLeft;
+    const bandwidth = X && x ? x.bandwidth() : width - marginRight - marginLeft;
     return Math.max(0, bandwidth - insetLeft - insetRight);
   }
   _height({y}, {y: Y}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
-    const bandwidth = Y ? y.bandwidth() : height - marginTop - marginBottom;
+    const bandwidth = Y && y ? y.bandwidth() : height - marginTop - marginBottom;
     return Math.max(0, bandwidth - insetTop - insetBottom);
   }
 }
