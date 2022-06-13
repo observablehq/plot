@@ -6,7 +6,7 @@ import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
-import {registry as scaleRegistry} from "./scales/index.js";
+import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
@@ -113,6 +113,7 @@ export function plot(options = {}) {
 
   // Reconstruct scales if new scaled channels were created during reinitialization.
   if (newByScale.size) {
+    for (const key of newByScale) if (scaleRegistry.get(key) === position) throw new Error(`initializers cannot declare position scales: ${key}`);
     const newScaleDescriptors = Scales(addScaleChannels(new Map(), stateByMark, key => newByScale.has(key)), options);
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
@@ -346,8 +347,7 @@ function inferChannelScale(channels) {
       switch (name) {
         case "fill": case "stroke": scale = "color"; break;
         case "fillOpacity": case "strokeOpacity": case "opacity": scale = "opacity"; break;
-        case "r": case "length": case "symbol": scale = name; break;
-        default: scale = null;
+        default: scale = scaleRegistry.has(name) ? name : null; break;
       }
       channel.scale = scale;
     }

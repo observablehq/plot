@@ -61,13 +61,13 @@ export class TickX extends AbstractTick {
   _x2(scales, {x: X}) {
     return i => X[i];
   }
-  _y1(scales, {y: Y}, {marginTop}) {
+  _y1({y}, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y ? i => Y[i] + insetTop : marginTop + insetTop;
+    return Y && y ? i => Y[i] + insetTop : marginTop + insetTop;
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
     const {insetBottom} = this;
-    return Y ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
+    return Y && y ? i => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
   }
 }
 
@@ -94,13 +94,13 @@ export class TickY extends AbstractTick {
   _transform(selection, {y}, dx, dy) {
     selection.call(applyTransform, null, y, dx, offset + dy);
   }
-  _x1(scales, {x: X}, {marginLeft}) {
+  _x1({x}, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X ? i => X[i] + insetLeft : marginLeft + insetLeft;
+    return X && x ? i => X[i] + insetLeft : marginLeft + insetLeft;
   }
   _x2({x}, {x: X}, {width, marginRight}) {
     const {insetRight} = this;
-    return X ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
+    return X && x ? i => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
   }
   _y1(scales, {y: Y}) {
     return i => Y[i];
