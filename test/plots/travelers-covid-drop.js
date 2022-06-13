@@ -11,8 +11,8 @@ export default async function() {
       tickFormat: "%"
     },
     marks: [
-      Plot.line(travelers, {x: "date", y: d => d.current / d.previous - 1, strokeWidth: 0.25, curve: "step"}),
-      Plot.line(travelers, Plot.windowY({x: "date", y: d => d.current / d.previous - 1, k: 7, stroke: "steelblue"}))
+      Plot.lineY(travelers, {x: "date", y: d => d.current / d.previous - 1, strokeWidth: 0.25, curve: "step"}),
+      Plot.lineY(travelers, Plot.windowY({x: "date", y: d => d.current / d.previous - 1, k: 7, stroke: "steelblue"}))
     ],
     width: 960
   });
