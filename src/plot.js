@@ -102,10 +102,14 @@ export function plot(options = {}) {
       const {facets, channels} = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions);
       if (facets !== undefined) state.facets = facets;
       if (channels !== undefined) {
-        inferChannelScale(channels, mark);
+        for (const name in channels) {
+          const channel = channels[name];
+          const def = mark.channelDefs[name];
+          if (channel.scale === true) channel.scale = def.scale;
+          newByScale.add(def.scale);
+        }
         applyScaleTransforms(channels, options);
         Object.assign(state.channels, channels);
-        for (const {scale} of Object.values(channels)) if (scale != null) newByScale.add(scale);
       }
     }
   }
@@ -258,14 +262,16 @@ export class Mark {
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
     if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
+    this.channelDefs = {};
     this.channels = channels.filter(channel => {
       const {name, value, optional} = channel;
+      const key = `${name}`;
+      this.channelDefs[key] = channel;
       if (value == null) {
         if (optional) return false;
         throw new Error(`missing channel value: ${name}`);
       }
       if (name == null) throw new Error("missing channel name");
-      const key = `${name}`;
       if (key === "__proto__") throw new Error(`illegal channel name: ${key}`);
       if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
       names.add(key);
@@ -332,25 +338,6 @@ function applyScaleTransforms(channels, options) {
     }
   }
   return channels;
-}
-
-// An initializer may generate channels without knowing how the downstream mark
-// will use them. Marks are typically responsible associated scales with
-// channels, but here we assume common behavior across marks.
-function inferChannelScale(channels) {
-  for (const name in channels) {
-    const channel = channels[name];
-    let {scale} = channel;
-    if (scale === true) {
-      switch (name) {
-        case "fill": case "stroke": scale = "color"; break;
-        case "fillOpacity": case "strokeOpacity": case "opacity": scale = "opacity"; break;
-        case "r": case "length": case "symbol": scale = name; break;
-        default: scale = null;
-      }
-      channel.scale = scale;
-    }
-  }
 }
 
 function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
