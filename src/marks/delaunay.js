@@ -1,4 +1,4 @@
-import {group, path, select, Delaunay} from "d3";
+import {bisector, extent, group, path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
@@ -297,4 +297,131 @@ export function voronoi(data, options) {
 
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
+}
+
+class GabrielMesh extends AbstractDelaunayMark {
+  constructor(data, options) {
+    super(data, options, voronoiMeshDefaults);
+    this.fill = "none";
+  }
+  _accept(delaunay) {
+    const {points, triangles} = delaunay;
+    return (i) => {
+      const a = triangles[i];
+      const b = triangles[i % 3 === 2 ? i - 2 : i + 1];
+      return [a, b].includes(
+        delaunay.find((points[2 * a] + points[2 * b]) / 2, (points[2 * a + 1] + points[2 * b + 1]) / 2, a)
+      );
+    };
+  }
+  _render(delaunay) {
+    const p = new path();
+    const {points, halfedges, triangles} = delaunay;
+    const accept = this._accept(delaunay);
+    for (let i = 0, n = triangles.length; i < n; ++i) {
+      const j = halfedges[i];
+      if (i < j) continue;
+      if (accept(i)) {
+        const a = triangles[i];
+        const b = triangles[i % 3 === 2 ? i - 2 : i + 1];
+        p.moveTo(points[2 * a], points[2 * a + 1]);
+        p.lineTo(points[2 * b], points[2 * b + 1]);
+      }
+    }
+    return "" + p;
+  }
+}
+
+class UrquhartMesh extends GabrielMesh {
+  constructor(data, options) {
+    super(data, options, voronoiMeshDefaults);
+    this.fill = "none";
+  }
+  _accept(delaunay, score = euclidean2) {
+    const {halfedges, points, triangles} = delaunay;
+    const n = triangles.length;
+    const removed = new Uint8Array(n);
+    for (let e = 0; e < n; e += 3) {
+      const p0 = triangles[e],
+        p1 = triangles[e + 1],
+        p2 = triangles[e + 2];
+      const p01 = score(points, p0, p1),
+        p12 = score(points, p1, p2),
+        p20 = score(points, p2, p0);
+      removed[
+        p20 > p01 && p20 > p12
+          ? Math.max(e + 2, halfedges[e + 2])
+          : p12 > p01 && p12 > p20
+          ? Math.max(e + 1, halfedges[e + 1])
+          : Math.max(e, halfedges[e])
+      ] = 1;
+    }
+    return (i) => !removed[i];
+  }
+}
+
+function euclidean2(points, i, j) {
+  return (points[i * 2] - points[j * 2]) ** 2 + (points[i * 2 + 1] - points[j * 2 + 1]) ** 2;
+}
+
+class MSTMesh extends GabrielMesh {
+  constructor(data, options) {
+    super(data, options, voronoiMeshDefaults);
+    this.fill = "none";
+  }
+  _accept(delaunay, score = euclidean2) {
+    const {points, triangles} = delaunay;
+    const set = new Uint8Array(points.length / 2);
+    const tree = new Set();
+    const heap = [];
+
+    const bisect = bisector(([v]) => -v).left;
+    function heap_insert(x, v) {
+      heap.splice(bisect(heap, -v), 0, [v, x]);
+    }
+    function heap_pop() {
+      return heap.length && heap.pop()[1];
+    }
+
+    // Initialize the heap with the outgoing edges of vertex zero.
+    set[0] = 1;
+    for (const i of delaunay.neighbors(0)) {
+      heap_insert([0, i], score(points, 0, i));
+    }
+
+    // For each remaining minimum edge in the heap…
+    let edge;
+    while ((edge = heap_pop())) {
+      const [i, j] = edge;
+
+      // If j is already connected, skip; otherwise add the new edge to point j.
+      if (set[j]) continue;
+      set[j] = 1;
+      tree.add(`${extent([i, j])}`);
+
+      // Add each unconnected neighbor k of point j to the heap.
+      for (const k of delaunay.neighbors(j)) {
+        if (set[k]) continue;
+        heap_insert([j, k], score(points, j, k));
+      }
+    }
+
+    return (i) => {
+      const a = triangles[i];
+      const b = triangles[i % 3 === 2 ? i - 2 : i + 1];
+      return tree.has(`${extent([a, b])}`);
+    };
+  }
+}
+
+export function gabrielMesh(data, options) {
+  return delaunayMark(GabrielMesh, data, options);
+}
+
+export function urquhartMesh(data, options) {
+  return delaunayMark(UrquhartMesh, data, options);
+}
+
+export function mstMesh(data, options) {
+  return delaunayMark(MSTMesh, data, options);
 }
