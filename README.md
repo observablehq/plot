@@ -1214,6 +1214,11 @@ The link mark supports the [standard mark options](#marks). The **stroke** defau
 
 The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrowhead) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
+The following additional options are supported when using the default curve:
+* **insetEnd** - inset at the end of the link (useful if the link points to a dot)
+* **insetStart** - inset at the start of the link
+* **inset** - shorthand for the two insets
+
 #### Plot.link(*data*, *options*)
 
 ```js

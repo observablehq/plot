@@ -1,4 +1,4 @@
-import {create, path} from "d3";
+import {create, curveLinear, path} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
@@ -13,7 +13,17 @@ const defaults = {
 
 export class Link extends Mark {
   constructor(data, options = {}) {
-    const {x1, y1, x2, y2, curve, tension} = options;
+    const {
+      x1,
+      y1,
+      x2,
+      y2,
+      curve,
+      tension,
+      inset = 0,
+      insetStart = inset,
+      insetEnd = inset
+    } = options;
     super(
       data,
       [
@@ -26,11 +36,30 @@ export class Link extends Mark {
       defaults
     );
     this.curve = Curve(curve, tension);
+    this.insetStart = +insetStart;
+    this.insetEnd = +insetEnd;
+    if ((this.insetStart || this.insetEnd) && this.curve !== curveLinear) {
+      throw new Error("link insets are only compatible with the default linear curve");
+    }
     markers(this, options);
   }
   render(index, {x, y}, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    const {dx, dy, curve} = this;
+    const {dx, dy, curve, insetStart, insetEnd} = this;
+    const coords = this.insetStart || this.insetEnd
+    ? (i) => {
+      const dx = X2[i] - X1[i];
+      const dy = Y2[i] - Y1[i];
+      const lineLength = Math.hypot(dx, dy);
+      if (lineLength <= insetStart + insetEnd || lineLength === 0) return [];
+      return [
+        X1[i] + insetStart * dx / lineLength,
+        Y1[i] + insetStart * dy / lineLength,
+        X2[i] - insetEnd * dx / lineLength,
+        Y2[i] - insetEnd * dy / lineLength
+      ];
+    }
+    : (i) => [X1[i], Y1[i], X2[i], Y2[i]];
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -43,8 +72,11 @@ export class Link extends Mark {
               const p = path();
               const c = curve(p);
               c.lineStart();
-              c.point(X1[i], Y1[i]);
-              c.point(X2[i], Y2[i]);
+              const [x1, y1, x2, y2] = coords(i);
+              if (x1 !== undefined) {
+                c.point(x1, y1);
+                c.point(x2, y2);
+              }
               c.lineEnd();
               return p;
             })
