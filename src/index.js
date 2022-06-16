@@ -5,6 +5,7 @@ export {BarX, BarY, barX, barY} from "./marks/bar.js";
 export {boxX, boxY} from "./marks/box.js";
 export {Cell, cell, cellX, cellY} from "./marks/cell.js";
 export {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "./marks/delaunay.js";
+export {Density, density} from "./marks/density.js";
 export {Dot, dot, dotX, dotY, circle, hexagon} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
 export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
