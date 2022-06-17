@@ -32,6 +32,7 @@ export {default as caltrainDirection} from "./caltrain-direction.js";
 export {default as carsDodge} from "./cars-dodge.js";
 export {default as carsHexbin} from "./cars-hexbin.js";
 export {default as carsJitter} from "./cars-jitter.js";
+export {default as carsLinearRegression} from "./cars-linear-regression.js";
 export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
