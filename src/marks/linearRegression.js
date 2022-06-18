@@ -1,4 +1,4 @@
-import {create, sum, area as shapeArea, range, min, max} from "d3";
+import {create, extent, range, sum, area as shapeArea} from "d3";
 import {identity, indexOf, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
@@ -49,8 +49,7 @@ class LinearRegressionY extends Mark {
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
             .attr("d", I => {
-              const x1 = min(I, i => X[i]);
-              const x2 = max(I, i => X[i]);
+              const [x1, x2] = extent(I, i => X[i]);
               const f = linearRegressionF(I, X, Y);
               const g = confidenceIntervalF(I, X, Y, p, f);
               return shapeArea()
@@ -64,8 +63,7 @@ class LinearRegressionY extends Mark {
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
             .attr("d", I => {
-              const x1 = min(I, i => X[i]);
-              const x2 = max(I, i => X[i]);
+              const [x1, x2] = extent(I, i => X[i]);
               const f = linearRegressionF(I, X, Y);
               return `M${x1},${f(x1)}L${x2},${f(x2)}`;
             })))
@@ -74,7 +72,7 @@ class LinearRegressionY extends Mark {
 }
 
 export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill = stroke, ...options} = {}) {
-  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke, sort: {channel: "x"}}));
+  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke}));
 }
 
 function linearRegressionF(I, X, Y) {
