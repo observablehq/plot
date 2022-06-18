@@ -1,13 +1,14 @@
 import {create, sum, area as shapeArea, range, min, max} from "d3";
 import {identity, indexOf, maybeZ} from "../options.js";
-import {Mark, marks} from "../plot.js";
+import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
 import {maybeDenseIntervalX} from "../transforms/bin.js";
 
-const lineDefaults = {
+const defaults = {
   ariaLabel: "linear-regression",
-  fill: "none",
+  fill: "currentColor",
+  fillOpacity: 0.1,
   stroke: "currentColor",
   strokeWidth: 1.5,
   strokeLinecap: "round",
@@ -15,61 +16,7 @@ const lineDefaults = {
   strokeMiterlimit: 1
 };
 
-const bandDefaults = {
-  ariaLabel: "linear-regression-band",
-  fillOpacity: 0.1,
-  strokeWidth: 1,
-  strokeLinecap: "round",
-  strokeLinejoin: "round",
-  strokeMiterlimit: 1
-};
-
-export function linearRegressionY(data, {x = indexOf, y = identity, z, stroke, fill = stroke, p, ...options} = {}) {
-  z = maybeZ({z, fill, stroke}); // enforce consistent z
-  const line = new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, z, stroke, sort: {channel: "x"}}));
-  if (p === null || p === 0) return line;
-  const band = new LinearRegressionBandY(data, maybeDenseIntervalX({...options, x, y, z, p, fill, sort: {channel: "x"}}));
-  return marks(band, line);
-}
-
 class LinearRegressionY extends Mark {
-  constructor(data, options = {}) {
-    const {x, y, z} = options;
-    super(
-      data,
-      [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
-        {name: "z", value: z, optional: true}
-      ],
-      options,
-      lineDefaults
-    );
-    this.z = z;
-  }
-  render(I, {x, y}, channels, dimensions) {
-    const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy} = this;
-    return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
-        .call(g => g.selectAll()
-          .data(Z ? groupZ(I, Z, this.z) : [I])
-          .enter()
-          .append("path")
-            .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, this, channels)
-            .attr("d", I => {
-              const x1 = min(I, i => X[i]);
-              const x2 = max(I, i => X[i]);
-              const f = linearRegressionF(I, X, Y);
-              return `M${x1},${f(x1)}L${x2},${f(x2)}`;
-            }))
-      .node();
-  }
-}
-
-class LinearRegressionBandY extends Mark {
   constructor(data, options = {}) {
     const {x, y, z, p = 0.05, precision = 4} = options;
     super(
@@ -77,28 +24,40 @@ class LinearRegressionBandY extends Mark {
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: z, optional: true}
+        {name: "z", value: maybeZ(options), optional: true}
       ],
       options,
-      bandDefaults
+      defaults
     );
     this.z = z;
     this.p = +p;
     this.precision = +precision;
-    if (!(0 < this.p && this.p < 0.5)) throw new Error(`p not in (0, 0.5): ${p}`);
+    if (!(0 < this.p && this.p < 0.5)) throw new Error(`invalid p; not in (0, 0.5): ${p}`);
+    if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const {dx, dy, p, precision} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, {...this, stroke: null, fill: null}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(Z ? groupZ(I, Z, this.z) : [I])
           .enter()
-          .append("path")
+          .call(enter => enter.append("path")
+            .call(applyIndirectStyles, {stroke: this.stroke})
             .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, this, channels)
+            .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
+            .attr("d", I => {
+              const x1 = min(I, i => X[i]);
+              const x2 = max(I, i => X[i]);
+              const f = linearRegressionF(I, X, Y);
+              return `M${x1},${f(x1)}L${x2},${f(x2)}`;
+            }))
+          .call(enter => enter.append("path")
+            .call(applyIndirectStyles, {fill: this.fill})
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null})
             .attr("d", I => {
               const x1 = min(I, i => X[i]);
               const x2 = max(I, i => X[i]);
@@ -109,9 +68,13 @@ class LinearRegressionBandY extends Mark {
                   .y0(x => g(x, -1))
                   .y1(x => g(x, +1))
                 (range(x1, x2 - precision / 2, precision).concat(x2));
-            }))
+            })))
       .node();
   }
+}
+
+export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill = stroke, ...options} = {}) {
+  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke, sort: {channel: "x"}}));
 }
 
 function linearRegressionF(I, X, Y) {
