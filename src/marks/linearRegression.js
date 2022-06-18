@@ -3,7 +3,7 @@ import {identity, indexOf, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
-import {maybeDenseIntervalX} from "../transforms/bin.js";
+import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
   ariaLabel: "linear-regression",
@@ -16,7 +16,7 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-class LinearRegressionY extends Mark {
+class LinearRegression extends Mark {
   constructor(data, options = {}) {
     const {x, y, z, p = 0.05, precision = 4} = options;
     super(
@@ -37,7 +37,7 @@ class LinearRegressionY extends Mark {
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy, p, precision} = this;
+    const {dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -48,27 +48,62 @@ class LinearRegressionY extends Mark {
             .attr("stroke", "none")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
-            .attr("d", I => {
-              const [x1, x2] = extent(I, i => X[i]);
-              const f = linearRegressionF(I, X, Y);
-              const g = confidenceIntervalF(I, X, Y, p, f);
-              return shapeArea()
-                  .x(x => x)
-                  .y0(x => g(x, -1))
-                  .y1(x => g(x, +1))
-                (range(x1, x2 - precision / 2, precision).concat(x2));
-            }))
+            .attr("d", I => this._renderBand(I, X, Y)))
           .call(enter => enter.append("path")
             .attr("fill", "none")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
-            .attr("d", I => {
-              const [x1, x2] = extent(I, i => X[i]);
-              const f = linearRegressionF(I, X, Y);
-              return `M${x1},${f(x1)}L${x2},${f(x2)}`;
-            })))
+            .attr("d", I => this._renderLine(I, X, Y))))
       .node();
   }
+}
+
+class LinearRegressionX extends LinearRegression {
+  constructor(data, options) {
+    super(data, options);
+  }
+  _renderBand(I, X, Y) {
+    const {p, precision} = this;
+    const [y1, y2] = extent(I, i => Y[i]);
+    const f = linearRegressionF(I, Y, X);
+    const g = confidenceIntervalF(I, Y, X, p, f);
+    return shapeArea()
+        .y(y => y)
+        .x0(y => g(y, -1))
+        .x1(y => g(y, +1))
+      (range(y1, y2 - precision / 2, precision).concat(y2));
+  }
+  _renderLine(I, X, Y) {
+    const [y1, y2] = extent(I, i => Y[i]);
+    const f = linearRegressionF(I, Y, X);
+    return `M${f(y1)},${y1}L${f(y2)},${y2}`;
+  }
+}
+
+class LinearRegressionY extends LinearRegression {
+  constructor(data, options) {
+    super(data, options);
+  }
+  _renderBand(I, X, Y) {
+    const {p, precision} = this;
+    const [x1, x2] = extent(I, i => X[i]);
+    const f = linearRegressionF(I, X, Y);
+    const g = confidenceIntervalF(I, X, Y, p, f);
+    return shapeArea()
+        .x(x => x)
+        .y0(x => g(x, -1))
+        .y1(x => g(x, +1))
+      (range(x1, x2 - precision / 2, precision).concat(x2));
+  }
+  _renderLine(I, X, Y) {
+    const [x1, x2] = extent(I, i => X[i]);
+    const f = linearRegressionF(I, X, Y);
+    return `M${x1},${f(x1)}L${x2},${f(x2)}`;
+  }
+}
+
+export function linearRegressionX(data, {y = indexOf, x = identity, stroke, fill = stroke, ...options} = {}) {
+  return new LinearRegressionX(data, maybeDenseIntervalY({...options, x, y, fill, stroke}));
 }
 
 export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill = stroke, ...options} = {}) {
