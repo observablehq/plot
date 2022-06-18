@@ -141,6 +141,7 @@ export {default as penguinFacetDodgeIdentity} from "./penguin-facet-dodge-identi
 export {default as penguinFacetDodgeIsland} from "./penguin-facet-dodge-island.js";
 export {default as penguinFacetDodgeSymbol} from "./penguin-facet-dodge-symbol.js";
 export {default as penguinIslandUnknown} from "./penguin-island-unknown.js";
+export {default as penguinLinearRegression} from "./penguin-linear-regression.js";
 export {default as penguinMass} from "./penguin-mass.js";
 export {default as penguinMassSex} from "./penguin-mass-sex.js";
 export {default as penguinMassSexSpecies} from "./penguin-mass-sex-species.js";
