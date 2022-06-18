@@ -1,5 +1,5 @@
 import {create, extent, range, sum, area as shapeArea} from "d3";
-import {identity, indexOf, maybeZ} from "../options.js";
+import {identity, indexOf, isNone, maybeZ, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
@@ -30,9 +30,9 @@ class LinearRegression extends Mark {
       defaults
     );
     this.z = z;
-    this.p = +p;
+    this.p = number(p);
     this.precision = +precision;
-    if (!(0 < this.p && this.p < 0.5)) throw new Error(`invalid p; not in (0, 0.5): ${p}`);
+    if (this.p !== null && !(0 < this.p && this.p < 0.5)) throw new Error(`invalid p; not in [0, 0.5): ${p}`);
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
   render(I, {x, y}, channels, dimensions) {
@@ -44,11 +44,11 @@ class LinearRegression extends Mark {
         .call(g => g.selectAll()
           .data(Z ? groupZ(I, Z, this.z) : [I])
           .enter()
-          .call(enter => enter.append("path")
+          .call(this.p && !isNone(this.fill) ? enter => enter.append("path")
             .attr("stroke", "none")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
-            .attr("d", I => this._renderBand(I, X, Y)))
+            .attr("d", I => this._renderBand(I, X, Y)) : () => {})
           .call(enter => enter.append("path")
             .attr("fill", "none")
             .call(applyDirectStyles, this)
