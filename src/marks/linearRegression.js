@@ -1,6 +1,6 @@
 import {create, sum, area as shapeArea, range} from "d3";
 import {identity, indexOf, maybeZ} from "../options.js";
-import {Mark} from "../plot.js";
+import {Mark, marks} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
 import {maybeDenseIntervalX} from "../transforms/bin.js";
@@ -24,11 +24,11 @@ const bandDefaults = {
   strokeMiterlimit: 1
 };
 
-export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill, ...options} = {}) { // eslint-disable-line no-unused-vars
-  return [
-    new LinearRegressionBandY(data, maybeDenseIntervalX({...options, x, y, fill: stroke, sort: {channel: "x"}})),
-    new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, stroke, sort: {channel: "x"}}))
-  ];
+export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill, p, ...options} = {}) { // eslint-disable-line no-unused-vars
+  const line = new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, stroke, sort: {channel: "x"}}));
+  if (p === null || p === 0) return line;
+  const band = new LinearRegressionBandY(data, maybeDenseIntervalX({...options, x, y, fill: stroke, sort: {channel: "x"}}));
+  return marks(band, line);
 }
 
 class LinearRegressionY extends Mark {
@@ -84,6 +84,7 @@ class LinearRegressionBandY extends Mark {
     );
     this.z = z;
     this.p = +p;
+    if (!(0 < this.p && this.p < 0.5)) throw new Error(`p not in (0, 0.5): ${p}`);
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
