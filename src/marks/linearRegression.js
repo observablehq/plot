@@ -1,4 +1,4 @@
-import {create, sum, area as shapeArea, range} from "d3";
+import {create, sum, area as shapeArea, range, min, max} from "d3";
 import {identity, indexOf, maybeZ} from "../options.js";
 import {Mark, marks} from "../plot.js";
 import {qt} from "../stats.js";
@@ -50,9 +50,6 @@ class LinearRegressionY extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const {dx, dy} = this;
-    const {width, marginLeft, marginRight} = dimensions;
-    const x1 = marginLeft;
-    const x2 = width - marginRight;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -63,6 +60,8 @@ class LinearRegressionY extends Mark {
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
             .attr("d", I => {
+              const x1 = min(I, i => X[i]);
+              const x2 = max(I, i => X[i]);
               const f = linearRegressionF(I, X, Y);
               return `M${x1},${f(x1)}L${x2},${f(x2)}`;
             }))
@@ -90,9 +89,6 @@ class LinearRegressionBandY extends Mark {
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const {dx, dy, p} = this;
-    const {width, marginLeft, marginRight} = dimensions;
-    const x1 = marginLeft;
-    const x2 = width - marginRight;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -103,6 +99,8 @@ class LinearRegressionBandY extends Mark {
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, channels)
             .attr("d", I => {
+              const x1 = min(I, i => X[i]);
+              const x2 = max(I, i => X[i]);
               const f = linearRegressionF(I, X, Y);
               const g = confidenceIntervalF(I, X, Y, p, f);
               return shapeArea()
