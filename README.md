@@ -1132,6 +1132,44 @@ Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
 
 Returns a new image with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
+### Linear regression
+
+[<img src="./img/linear-regression.png" width="600" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+
+[Source](./src/marks/linearRegression.js) · [Examples](https://observablehq.com/@observablehq/plot-linear-regression) · Draws linear regression plots with confidence bands.
+
+The linear regression mark is a composite mark consisting of two marks:
+
+* a [line](#line) representing the estimated relation between the dependent variable and the independent variable
+* an [area](#area) representing the band where the line lay with the given level of confidence.
+
+Multiple series can be defined by specifying the *z*, *fill*, or *stroke* channel.
+
+The given *options* are passed through to these underlying marks, with the exception of the following options:
+
+* **stroke** - the stroke color of the regression line; defaults to *currentColor*
+* **fill** - the fill color of the confidence band; defaults to the line’s *stroke*
+* **fillOpacity** - the fill opacity of the confidence band, defaults to 0.1
+* **p** - the probability that the band ……… ; set p=null to ignore the band
+* **precision** - the distance (in pixels) between samples of the confidence interval, defaults to 4
+
+#### Plot.linearRegressionX(*data*, *options*)
+
+```js
+Plot.linearRegressionX(simpsons.map(d => d.imdb_rating))
+```
+
+Returns a linear regression mark where *x* is the dependent variable, and *y* the independent variable.
+
+#### Plot.linearRegressionY(*data*, *options*)
+
+```js
+Plot.linearRegressionY(simpsons.map(d => d.imdb_rating))
+```
+
+Returns a linear regression mark where *y* is the dependent variable, and *x* the independent variable.
+
 ### Line
 
 [<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@observablehq/plot-line)
