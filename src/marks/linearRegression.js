@@ -71,7 +71,7 @@ class LinearRegressionY extends Mark {
 
 class LinearRegressionBandY extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, p = 0.05} = options;
+    const {x, y, z, p = 0.05, precision = 4} = options;
     super(
       data,
       [
@@ -84,11 +84,12 @@ class LinearRegressionBandY extends Mark {
     );
     this.z = z;
     this.p = +p;
+    this.precision = +precision;
     if (!(0 < this.p && this.p < 0.5)) throw new Error(`p not in (0, 0.5): ${p}`);
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy, p} = this;
+    const {dx, dy, p, precision} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -105,9 +106,9 @@ class LinearRegressionBandY extends Mark {
               const g = confidenceIntervalF(I, X, Y, p, f);
               return shapeArea()
                   .x(x => x)
-                  .y0(x => g(x)[0])
-                  .y1(x => g(x)[1])
-                (range(x1, x2 - 1, 4).concat(x2));
+                  .y0(x => g(x, -1))
+                  .y1(x => g(x, +1))
+                (range(x1, x2 - precision / 2, precision).concat(x2));
             }))
       .node();
   }
@@ -138,9 +139,9 @@ function confidenceIntervalF(I, X, Y, p, f) {
   }
   const sy = Math.sqrt(b / (I.length - 2));
   const t = qt(p, I.length - 2);
-  return x => {
+  return (x, k) => {
     const Y = f(x);
     const se = sy * Math.sqrt(1 / I.length + (x - mean) ** 2 / a);
-    return [Y - t * se, Y + t * se];
+    return Y + k * t * se;
   };
 }
