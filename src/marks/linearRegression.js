@@ -39,25 +39,15 @@ class LinearRegressionY extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {dx, dy, p, precision} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, {...this, stroke: null, fill: null}, dimensions)
+        .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(Z ? groupZ(I, Z, this.z) : [I])
           .enter()
           .call(enter => enter.append("path")
-            .call(applyIndirectStyles, {stroke: this.stroke})
+            .attr("stroke", "none")
             .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
-            .attr("d", I => {
-              const x1 = min(I, i => X[i]);
-              const x2 = max(I, i => X[i]);
-              const f = linearRegressionF(I, X, Y);
-              return `M${x1},${f(x1)}L${x2},${f(x2)}`;
-            }))
-          .call(enter => enter.append("path")
-            .call(applyIndirectStyles, {fill: this.fill})
-            .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null})
+            .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
             .attr("d", I => {
               const x1 = min(I, i => X[i]);
               const x2 = max(I, i => X[i]);
@@ -68,6 +58,16 @@ class LinearRegressionY extends Mark {
                   .y0(x => g(x, -1))
                   .y1(x => g(x, +1))
                 (range(x1, x2 - precision / 2, precision).concat(x2));
+            }))
+          .call(enter => enter.append("path")
+            .attr("fill", "none")
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
+            .attr("d", I => {
+              const x1 = min(I, i => X[i]);
+              const x2 = max(I, i => X[i]);
+              const f = linearRegressionF(I, X, Y);
+              return `M${x1},${f(x1)}L${x2},${f(x2)}`;
             })))
       .node();
   }
