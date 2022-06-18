@@ -24,10 +24,11 @@ const bandDefaults = {
   strokeMiterlimit: 1
 };
 
-export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill, p, ...options} = {}) { // eslint-disable-line no-unused-vars
-  const line = new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, stroke, sort: {channel: "x"}}));
+export function linearRegressionY(data, {x = indexOf, y = identity, z, stroke, fill = stroke, p, ...options} = {}) {
+  z = maybeZ({z, fill, stroke}); // enforce consistent z
+  const line = new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, z, stroke, sort: {channel: "x"}}));
   if (p === null || p === 0) return line;
-  const band = new LinearRegressionBandY(data, maybeDenseIntervalX({...options, x, y, fill: stroke, sort: {channel: "x"}}));
+  const band = new LinearRegressionBandY(data, maybeDenseIntervalX({...options, x, y, z, p, fill, sort: {channel: "x"}}));
   return marks(band, line);
 }
 
@@ -39,7 +40,7 @@ class LinearRegressionY extends Mark {
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ(options), optional: true}
+        {name: "z", value: z, optional: true}
       ],
       options,
       lineDefaults
@@ -77,7 +78,7 @@ class LinearRegressionBandY extends Mark {
       [
         {name: "x", value: x, scale: "x"},
         {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ(options), optional: true}
+        {name: "z", value: z, optional: true}
       ],
       options,
       bandDefaults

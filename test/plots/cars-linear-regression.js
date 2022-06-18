@@ -6,7 +6,7 @@ export default async function () {
   return Plot.plot({
     marks: [
       Plot.dot(cars, {x: "weight (lb)", y: "economy (mpg)", r: 2}),
-      Plot.linearRegressionY(cars, {x: "weight (lb)", y: "economy (mpg)", p: 0.01})
+      Plot.linearRegressionY(cars, {x: "weight (lb)", y: "economy (mpg)", p: 0.4, stroke: "cylinders"})
     ]
   });
 }
