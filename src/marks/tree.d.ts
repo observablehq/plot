@@ -1,0 +1,21 @@
+export function tree(data: any, { fill, stroke, strokeWidth, strokeOpacity, strokeLinejoin, strokeLinecap, strokeMiterlimit, strokeDasharray, strokeDashoffset, marker, markerStart, markerEnd, dot: dotDot, text: textText, textStroke, title, dx, dy, ...options }?: {
+    fill: any;
+    stroke: any;
+    strokeWidth: any;
+    strokeOpacity: any;
+    strokeLinejoin: any;
+    strokeLinecap: any;
+    strokeMiterlimit: any;
+    strokeDasharray: any;
+    strokeDashoffset: any;
+    marker: any;
+    markerStart?: any;
+    markerEnd?: any;
+    dot?: boolean;
+    text?: string;
+    textStroke?: string;
+    title?: string;
+    dx: any;
+    dy: any;
+}): any[];
+export function cluster(data: any, options: any): any[];
