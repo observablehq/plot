@@ -1,11 +1,9 @@
 export type RectOptions<Datum> =
   StandardMarkOptions<Datum>
-  & MixinExpandXYOptions<"x", Datum>
-  & MixinExpandXYOptions<"y", Datum>
-  & MixinInsetOptions
-  & {
-    interval: unknown,
-  };
+  & ExpandXYOptions<"x", Datum>
+  & ExpandXYOptions<"y", Datum>
+  & InsetOptions
+  & IntervalOptions;
 
 export function rect<Datum, Data = Datum[]>(data: Data, options: RectOptions<Datum>): Rect<Datum, Data>;
 
@@ -40,8 +38,10 @@ import {
 } from "../plot";
 
 import {
-  MixinExpandXYOptions,
-  MixinInsetOptions,
+  ExpandXYOptions,
+  InsetOptions,
   RenderFunctionChannels,
   RenderFunctionDimensions
 } from "../misc";
+
+import { IntervalOptions } from "../transforms/interval";

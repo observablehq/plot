@@ -53,14 +53,14 @@ export type RenderFunctionDimensions = {
  * @template XY The option to expand. Either "x" or "y".
  * @template Datum The type of a single datum in the mark dataset.
  */
-export type MixinExpandXYOptions<XY extends "x" | "y", Datum = object> = {
+export type ExpandXYOptions<XY extends "x" | "y", Datum = object> = {
   [V in ("1" | "2") as `${XY}${V}`]?: StandardMarkOptions<Datum>[XY]
 }
 
 /**
  * Utility type for adding `inset` properties.
  */
-export type MixinInsetOptions = {
+export type InsetOptions = {
   inset?: number,
   insetTop?: number,
   insetRight?: number,
