@@ -6,11 +6,14 @@ export type BinOptions<Options> =
             | "freedman-diaconis"
             | "scott"
             | "sturges"
-            | number // a count (hint) representing the desired number of bins
-            | unknown[] // an array of n threshold values for n + 1 bins
-            | number // an interval or time interval (for temporal binning; see below)
+            // a count (hint) representing the desired number of bins
+            | number
+            // an array of n threshold values for n + 1 bins
+            | unknown[]
+            // an interval or time interval (for temporal binning; see below)
+            | Required<Interval>
             // a function that returns an array, count, or time interval
-            | (() => unknown[] | number | unknown)
+            | ((values: unknown[], domainMin: unknown, domainMax: unknown) => unknown[] | number | TimeInterval)
     }
 
 export function binX<MarkOptions>(outputs?: object, options?: BinOptions<MarkOptions>): MarkOptions;
@@ -26,4 +29,5 @@ export function bin<MarkOptions>(outputs?: {
 export function maybeDenseIntervalX(options: any): any;
 export function maybeDenseIntervalY(options: any): any;
 
-import { StandardMarkOptions } from "../plot";
+import { TimeInterval } from "d3";
+import { Interval } from "./interval";
