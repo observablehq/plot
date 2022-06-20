@@ -1,5 +1,5 @@
 import {create, extent, range, sum, area as shapeArea, namespaces} from "d3";
-import {identity, indexOf, isNone, maybeZ, number} from "../options.js";
+import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
@@ -18,7 +18,7 @@ const defaults = {
 
 class LinearRegression extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, p = 0.05, precision = 4} = options;
+    const {x, y, z, ci = 0.95, precision = 4} = options;
     super(
       data,
       [
@@ -30,14 +30,14 @@ class LinearRegression extends Mark {
       defaults
     );
     this.z = z;
-    this.p = number(p);
+    this.ci = +ci;
     this.precision = +precision;
-    if (this.p !== null && !(0 < this.p && this.p < 0.5)) throw new Error(`invalid p; not in [0, 0.5): ${p}`);
+    if (!(0 <= this.ci && this.ci < 1)) throw new Error(`invalid ci; not in [0, 1): ${ci}`);
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
   render(I, {x, y}, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy} = this;
+    const {dx, dy, ci} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
@@ -49,7 +49,7 @@ class LinearRegression extends Mark {
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
             .attr("d", I => this._renderLine(I, X, Y))
-          .call(this.p && !isNone(this.fill) ? path => path.select(pathBefore)
+          .call(ci && !isNone(this.fill) ? path => path.select(pathBefore)
             .attr("stroke", "none")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
@@ -67,10 +67,10 @@ class LinearRegressionX extends LinearRegression {
     super(data, options);
   }
   _renderBand(I, X, Y) {
-    const {p, precision} = this;
+    const {ci, precision} = this;
     const [y1, y2] = extent(I, i => Y[i]);
     const f = linearRegressionF(I, Y, X);
-    const g = confidenceIntervalF(I, Y, X, p, f);
+    const g = confidenceIntervalF(I, Y, X, (1 - ci) / 2, f);
     return shapeArea()
         .y(y => y)
         .x0(y => g(y, -1))
@@ -89,10 +89,10 @@ class LinearRegressionY extends LinearRegression {
     super(data, options);
   }
   _renderBand(I, X, Y) {
-    const {p, precision} = this;
+    const {ci, precision} = this;
     const [x1, x2] = extent(I, i => X[i]);
     const f = linearRegressionF(I, X, Y);
-    const g = confidenceIntervalF(I, X, Y, p, f);
+    const g = confidenceIntervalF(I, X, Y, (1 - ci) / 2, f);
     return shapeArea()
         .x(x => x)
         .y0(x => g(x, -1))
@@ -106,11 +106,11 @@ class LinearRegressionY extends LinearRegression {
   }
 }
 
-export function linearRegressionX(data, {y = indexOf, x = identity, stroke, fill = stroke, ...options} = {}) {
+export function linearRegressionX(data, {y = indexOf, x = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}) {
   return new LinearRegressionX(data, maybeDenseIntervalY({...options, x, y, fill, stroke}));
 }
 
-export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill = stroke, ...options} = {}) {
+export function linearRegressionY(data, {x = indexOf, y = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}) {
   return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke}));
 }
 
