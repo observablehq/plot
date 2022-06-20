@@ -1,4 +1,4 @@
-import {create, extent, range, sum, area as shapeArea} from "d3";
+import {create, extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {identity, indexOf, isNone, maybeZ, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
@@ -44,18 +44,22 @@ class LinearRegression extends Mark {
         .call(g => g.selectAll()
           .data(Z ? groupZ(I, Z, this.z) : [I])
           .enter()
-          .call(this.p && !isNone(this.fill) ? enter => enter.append("path")
-            .attr("stroke", "none")
-            .call(applyDirectStyles, this)
-            .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
-            .attr("d", I => this._renderBand(I, X, Y)) : () => {})
           .call(enter => enter.append("path")
             .attr("fill", "none")
             .call(applyDirectStyles, this)
             .call(applyGroupedChannelStyles, this, {...channels, fill: null, fillOpacity: null})
-            .attr("d", I => this._renderLine(I, X, Y))))
+            .attr("d", I => this._renderLine(I, X, Y))
+          .call(this.p && !isNone(this.fill) ? path => path.select(pathBefore)
+            .attr("stroke", "none")
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, {...channels, stroke: null, strokeOpacity: null, strokeWidth: null})
+            .attr("d", I => this._renderBand(I, X, Y)) : () => {})))
       .node();
   }
+}
+
+function pathBefore() {
+  return this.parentNode.insertBefore(this.ownerDocument.createElementNS(namespaces.svg, "path"), this);
 }
 
 class LinearRegressionX extends LinearRegression {
