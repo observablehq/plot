@@ -1132,6 +1132,39 @@ Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
 
 Returns a new image with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
+### Linear regression
+
+[<img src="./img/linear-regression.png" width="600" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+
+[Source](./src/marks/linearRegression.js) · [Examples](https://observablehq.com/@observablehq/plot-linear-regression) · Draws [linear regression](https://en.wikipedia.org/wiki/Linear_regression) lines with confidence bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*). The linear regression line is fit using the [least squares](https://en.wikipedia.org/wiki/Least_squares) approach. See Torben Jansen’s [“Linear regression with confidence bands”](https://observablehq.com/@toja/linear-regression-with-confidence-bands) and [this StatExchange question](https://stats.stackexchange.com/questions/101318/understanding-shape-and-calculation-of-confidence-bands-in-linear-regression) for details on the confidence interval calculation.
+
+The given *options* are passed through to these underlying marks, with the exception of the following options:
+
+* **stroke** - the stroke color of the regression line; defaults to *currentColor*
+* **fill** - the fill color of the confidence band; defaults to the line’s *stroke*
+* **fillOpacity** - the fill opacity of the confidence band; defaults to 0.1
+* **ci** - the confidence interval in [0, 1), or 0 to hide bands; defaults to 0.95
+* **precision** - the distance (in pixels) between samples of the confidence band; defaults to 4
+
+Multiple regressions can be defined by specifying the *z*, *fill*, or *stroke* channel.
+
+#### Plot.linearRegressionX(*data*, *options*)
+
+```js
+Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
+```
+
+Returns a linear regression mark where *x* is the dependent variable and *y* is the independent variable.
+
+#### Plot.linearRegressionY(*data*, *options*)
+
+```js
+Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
+```
+
+Returns a linear regression mark where *y* is the dependent variable and *x* is the independent variable.
+
 ### Line
 
 [<img src="./img/line.png" width="320" height="198" alt="a line chart">](https://observablehq.com/@observablehq/plot-line)

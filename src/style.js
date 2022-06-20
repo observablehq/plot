@@ -184,7 +184,7 @@ function groupAesthetics({ariaLabel: AL, title: T, fill: F, fillOpacity: FO, str
   return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined);
 }
 
-function groupZ(I, Z, z) {
+export function groupZ(I, Z, z) {
   const G = group(I, i => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {
     warn(`Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`);
@@ -247,7 +247,7 @@ export function maybeClip(clip) {
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles(selection, mark, {width, height, marginLeft, marginRight, marginTop, marginBottom}) {
+export function applyIndirectStyles(selection, mark, dimensions) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -265,6 +265,7 @@ export function applyIndirectStyles(selection, mark, {width, height, marginLeft,
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
   if (mark.clip === "frame") {
+    const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
     const id = `plot-clip-${++nextClipId}`;
     selection
         .attr("clip-path", `url(#${id})`)

@@ -71,6 +71,10 @@ https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
 
+## mtcars.csv
+1974 *Motor Trend* US magazine
+https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars
+
 ## moby-dick-chapter-1.txt
 *Moby Dick; or The Whale* by Herman Melville
 https://www.gutenberg.org/files/2701/2701-h/2701-h.htm

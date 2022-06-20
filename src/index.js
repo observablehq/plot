@@ -10,6 +10,7 @@ export {Frame, frame} from "./marks/frame.js";
 export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Image, image} from "./marks/image.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
+export {linearRegressionX, linearRegressionY} from "./marks/linearRegression.js";
 export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
