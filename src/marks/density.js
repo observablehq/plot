@@ -12,12 +12,13 @@ const defaults = {
 
 export class Density extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, bandwidth = 20, thresholds = 20} = options;
+    const {x, y, z, weight, bandwidth = 20, thresholds = 20} = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
+        {name: "weight", value: weight, optional: true},
         {name: "z", value: maybeZ(options), optional: true}
       ],
       options,
@@ -60,13 +61,14 @@ function initializer(bandwidth, thresholds, f, s) {
   return function (data, facets, channels, scales, dimensions) {
     const X = valueof(channels.x.value, scales.x);
     const Y = valueof(channels.y.value, scales.y);
+    const W = channels.weight?.value;
     const Z = channels.z?.value;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
     const newFacets = [];
     const contours = [];
     const {z} = this;
-    const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y").map(([key, d]) => [key, {...d, value: []}]);
+    const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y" && key !== "weight").map(([key, d]) => [key, {...d, value: []}]);
     if (f) newChannels.push(["fill", {value: [], scale: "color"}]);
     if (s) newChannels.push(["stroke", {value: [], scale: "color"}]);
     let j = 0;
@@ -77,6 +79,7 @@ function initializer(bandwidth, thresholds, f, s) {
         for (const contour of contourDensity()
           .x(X ? i => X[i] : constant(cx))
           .y(Y ? i => Y[i] : constant(cy))
+          .weight(W ? i => W[i] : 1)
           .size([width, height])
           .bandwidth(bandwidth)
           .thresholds(thresholds)
