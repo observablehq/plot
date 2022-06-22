@@ -139,6 +139,7 @@ export {default as penguinCulmenDelaunaySpecies} from "./penguin-culmen-delaunay
 export {default as penguinCulmenVoronoi} from "./penguin-culmen-voronoi.js";
 export {default as penguinVoronoi1D} from "./penguin-voronoi-1d.js";
 export {default as penguinDensity} from "./penguin-density.js";
+export {default as penguinDensityFill} from "./penguin-density-fill.js";
 export {default as penguinDodge} from "./penguin-dodge.js";
 export {default as penguinDodgeHexbin} from "./penguin-dodge-hexbin.js";
 export {default as penguinDodgeVoronoi} from "./penguin-dodge-voronoi.js";

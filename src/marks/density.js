@@ -48,13 +48,15 @@ export class Density extends Mark {
   }
 }
 
-export function density(data, {x, y, bandwidth = 20, thresholds = 20, ...options} = {}) {
+export function density(data, {x, y, stroke, fill, bandwidth = 20, thresholds = 20, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  return new Density(data, {...options, x, y, initializer: initializer(+bandwidth, +thresholds)});
+  let f, s;
+  if (fill === "density") { fill = undefined; f = true; }
+  if (stroke === "density") { stroke = undefined; s = true; }
+  return new Density(data, {...options, x, y, fill, stroke, initializer: initializer(+bandwidth, +thresholds, f, s)});
 }
 
-// todo: stroke = level, fill = level
-function initializer(bandwidth, thresholds) {
+function initializer(bandwidth, thresholds, f, s) {
   return function (data, facets, channels, scales, dimensions) {
     const X = valueof(channels.x.value, scales.x);
     const Y = valueof(channels.y.value, scales.y);
@@ -65,6 +67,8 @@ function initializer(bandwidth, thresholds) {
     const contours = [];
     const {z} = this;
     const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y").map(([key, d]) => [key, {...d, value: []}]);
+    if (f) newChannels.push(["fill", {value: [], scale: "color"}]);
+    if (s) newChannels.push(["stroke", {value: [], scale: "color"}]);
     let j = 0;
     for (const facet of facets) {
       const newFacet = [];
@@ -80,7 +84,9 @@ function initializer(bandwidth, thresholds) {
             newFacet.push(j++);
             contours.push(contour);
             for (const [key, {value}] of newChannels) {
-              value.push(channels[key].value[index[0]]);
+              value.push(
+                (f && key === "fill") || (s && key === "stroke") ? contour.value
+                : channels[key].value[index[0]]);
             }
         }
       }
