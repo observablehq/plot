@@ -1,7 +1,7 @@
 import {contourDensity, create, geoPath} from "d3";
-import {constant, maybeTuple, valueof} from "../options.js";
+import {constant, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyFrameAnchor, applyGroupedChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 
 const defaults = {
   ariaLabel: "density",
@@ -12,32 +12,39 @@ const defaults = {
 
 export class Density extends Mark {
   constructor(data, options = {}) {
-    const {x, y, bandwidth = 20, thresholds = 20} = options;
+    const {x, y, z, bandwidth = 20, thresholds = 20} = options;
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true}
+        {name: "y", value: y, scale: "y", optional: true},
+        {name: "z", value: maybeZ(options), optional: true}
       ],
       options,
       defaults
     );
     this.bandwidth = +bandwidth;
     this.thresholds = +thresholds;
+    this.z = z;
     this.path = geoPath();
   }
+  filter(index) {
+    return index;
+  }
   render(index, scales, channels, dimensions) {
-    const {contours: C} = channels;
+    const {contours} = channels;
     const {path} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()
-          .data(index)
+          .data(Array.from(index, i => [i]))
           .enter()
           .append("path")
-            .attr("d", i => path(C[i])))
-      .node();
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, channels)
+            .attr("d", ([i]) => path(contours[i])))
+        .node();
   }
 }
 
@@ -46,29 +53,41 @@ export function density(data, {x, y, bandwidth = 20, thresholds = 20, ...options
   return new Density(data, {...options, x, y, initializer: initializer(+bandwidth, +thresholds)});
 }
 
+// todo: stroke = level, fill = level
 function initializer(bandwidth, thresholds) {
   return function (data, facets, channels, scales, dimensions) {
     const X = valueof(channels.x.value, scales.x);
     const Y = valueof(channels.y.value, scales.y);
+    const Z = channels.z?.value;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
     const newFacets = [];
     const contours = [];
-    for (const index of facets) {
+    const {z} = this;
+    const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y").map(([key, d]) => [key, {...d, value: []}]);
+    let j = 0;
+    for (const facet of facets) {
       const newFacet = [];
       newFacets.push(newFacet);
-      for (const contour of contourDensity()
-        .x(X ? i => X[i] : constant(cx))
-        .y(Y ? i => Y[i] : constant(cy))
-        .size([width, height])
-        .bandwidth(bandwidth)
-        .thresholds(thresholds)
-        (index)) {
-          const i = newFacet.length;
-          newFacet.push(i);
-          contours.push(contour);
+      for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
+        for (const contour of contourDensity()
+          .x(X ? i => X[i] : constant(cx))
+          .y(Y ? i => Y[i] : constant(cy))
+          .size([width, height])
+          .bandwidth(bandwidth)
+          .thresholds(thresholds)
+          (index)) {
+            newFacet.push(j++);
+            contours.push(contour);
+            for (const [key, {value}] of newChannels) {
+              value.push(channels[key].value[index[0]]);
+            }
+        }
       }
     }
-    return {data, facets: newFacets, channels: {contours: {value: contours}}};
+    return {data, facets: newFacets, channels: {
+      contours: {value: contours},
+      ...Object.fromEntries(newChannels)
+    }};
   };
 }
