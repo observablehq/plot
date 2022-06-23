@@ -69,6 +69,7 @@ export {default as flareCluster} from "./flare-cluster.js";
 export {default as flareIndent} from "./flare-indent.js";
 export {default as flareTree} from "./flare-tree.js";
 export {default as footballCoverage} from "./football-coverage.js";
+export {default as frameCorners} from "./frame-corners.js";
 export {default as fruitSales} from "./fruit-sales.js";
 export {default as fruitSalesDate} from "./fruit-sales-date.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
