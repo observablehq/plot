@@ -1036,7 +1036,7 @@ If a **z**, **stroke** or **fill** channel is specified, the input points are gr
 
 If stroke or fill is specified as *density*, a color channel is returned with values representing the density normalized between 0 and 1.
 
-This mark requires the **x** and **y** channels to be specified.
+If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
 ### Dot
 

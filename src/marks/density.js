@@ -52,18 +52,17 @@ export class Density extends Mark {
 
 export function density(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  if (x === undefined || y === undefined) throw new Error("x and y must be defined");
   return new Density(data, {...options, x, y});
 }
 
 function densityInitializer(options, bandwidth, thresholds, f, s) {
   return initializer(options, function(data, facets, channels, scales, dimensions) {
-    const X = channels.x.scale ? valueof(channels.x.value, scales[channels.x.scale]) : channels.x.value;
-    const Y = channels.y.scale ? valueof(channels.y.value, scales[channels.y.scale]) : channels.y.value;
+    const X = channels.x?.scale ? valueof(channels.x.value, scales[channels.x.scale]) : channels.x?.value;
+    const Y = channels.y?.scale ? valueof(channels.y.value, scales[channels.y.scale]) : channels.y?.value;
     const W = channels.weight?.value;
     const Z = channels.z?.value;
     const {z} = this;
-    const [cx, cy] = applyFrameAnchor(this, dimensions);
+    const [cx, cy] = applyFrameAnchor(options, dimensions);
     const {width, height} = dimensions;
     const newFacets = [];
     const contours = [];
