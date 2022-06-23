@@ -273,8 +273,8 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
       .append("clipPath")
         .attr("id", id)
       .append("rect")
-        .attr("x", marginLeft - (x && x.bandwidth ? x.bandwidth() / 2 : 0))
-        .attr("y", marginTop - (y && y.bandwidth ? y.bandwidth() / 2 : 0))
+        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
+        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
         .attr("width", width - marginRight - marginLeft)
         .attr("height", height - marginTop - marginBottom);
   }
@@ -308,8 +308,8 @@ export function applyStyle(selection, name, value) {
 export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset) {
   tx += mark.dx;
   ty += mark.dy;
-  if (x && x.bandwidth) tx += x.bandwidth() / 2;
-  if (y && y.bandwidth) ty += y.bandwidth() / 2;
+  if (x?.bandwidth) tx += x.bandwidth() / 2;
+  if (y?.bandwidth) ty += y.bandwidth() / 2;
   if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);
 }
 
