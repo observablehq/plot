@@ -2,7 +2,7 @@ import {create} from "d3";
 import {radians} from "../math.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
   ariaLabel: "vector",
@@ -33,9 +33,9 @@ export class Vector extends Mark {
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, length: L, rotate: R} = channels;
-    const {dx, dy, length, rotate, anchor} = this;
+    const {length, rotate, anchor} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const fl = L ? i => L[i] : () => length;
     const fr = R ? i => R[i] : () => rotate;
@@ -44,8 +44,8 @@ export class Vector extends Mark {
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g")
         .attr("fill", "none")
-        .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyIndirectStyles, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(index)
           .enter()

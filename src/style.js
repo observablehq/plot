@@ -247,7 +247,7 @@ export function maybeClip(clip) {
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles(selection, mark, dimensions) {
+export function applyIndirectStyles(selection, mark, scales, dimensions) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -265,6 +265,7 @@ export function applyIndirectStyles(selection, mark, dimensions) {
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
   if (mark.clip === "frame") {
+    const {x, y} = scales;
     const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
     const id = `plot-clip-${++nextClipId}`;
     selection
@@ -272,8 +273,8 @@ export function applyIndirectStyles(selection, mark, dimensions) {
       .append("clipPath")
         .attr("id", id)
       .append("rect")
-        .attr("x", marginLeft)
-        .attr("y", marginTop)
+        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
+        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
         .attr("width", width - marginRight - marginLeft)
         .attr("height", height - marginTop - marginBottom);
   }
@@ -304,9 +305,11 @@ export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform(selection, x, y, tx, ty) {
-  if (x && x.bandwidth) tx += x.bandwidth() / 2;
-  if (y && y.bandwidth) ty += y.bandwidth() / 2;
+export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset) {
+  tx += mark.dx;
+  ty += mark.dy;
+  if (x?.bandwidth) tx += x.bandwidth() / 2;
+  if (y?.bandwidth) ty += y.bandwidth() / 2;
   if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);
 }
 

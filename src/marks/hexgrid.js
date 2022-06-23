@@ -22,7 +22,7 @@ export class Hexgrid extends Mark {
     this.binWidth = number(binWidth);
   }
   render(index, scales, channels, dimensions) {
-    const {dx, dy, binWidth} = this;
+    const {binWidth} = this;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const x0 = marginLeft - ox, x1 = width - marginRight - ox, y0 = marginTop - oy, y1 = height - marginBottom - oy;
     const rx = binWidth / 2, ry = rx * sqrt4_3, hy = ry / 2, wx = rx * 2, wy = ry * 1.5;
@@ -36,10 +36,10 @@ export class Hexgrid extends Mark {
       }
     }
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
-          .call(applyTransform, null, null, offset + dx + ox, offset + dy + oy)
+          .call(applyTransform, this, {}, offset + ox, offset + oy)
           .attr("d", m.join("")))
       .node();
   }

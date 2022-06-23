@@ -36,14 +36,13 @@ export class Area extends Mark {
   filter(index) {
     return index;
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    const {dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, x, y, dx, dy)
+        .call(applyIndirectStyles, this, scales, dimensions)
+        .call(applyTransform, this, scales, 0, 0)
         .call(g => g.selectAll()
-          .data(groupIndex(I, [X1, Y1, X2, Y2], this, channels))
+          .data(groupIndex(index, [X1, Y1, X2, Y2], this, channels))
           .enter()
           .append("path")
             .call(applyDirectStyles, this)

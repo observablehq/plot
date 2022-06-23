@@ -2,7 +2,7 @@ import {create, extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
-import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ, offset} from "../style.js";
+import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
@@ -35,14 +35,14 @@ class LinearRegression extends Mark {
     if (!(0 <= this.ci && this.ci < 1)) throw new Error(`invalid ci; not in [0, 1): ${ci}`);
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy, ci} = this;
+    const {ci} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyIndirectStyles, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(g => g.selectAll()
-          .data(Z ? groupZ(I, Z, this.z) : [I])
+          .data(Z ? groupZ(index, Z, this.z) : [index])
           .enter()
           .call(enter => enter.append("path")
             .attr("fill", "none")
