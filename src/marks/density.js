@@ -52,6 +52,7 @@ export class Density extends Mark {
 
 export function density(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
+  if (x === undefined || y === undefined) throw new Error("x and y must be defined");
   return new Density(data, {...options, x, y});
 }
 
