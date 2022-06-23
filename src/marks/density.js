@@ -71,32 +71,58 @@ function initializer(bandwidth, thresholds, f, s) {
     const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y" && key !== "weight").map(([key, d]) => [key, {...d, value: []}]);
     if (f) newChannels.push(["fill", {value: [], scale: "color"}]);
     if (s) newChannels.push(["stroke", {value: [], scale: "color"}]);
-    let j = 0;
-    for (const facet of facets) {
-      const newFacet = [];
-      newFacets.push(newFacet);
+    let max = 0, maxn = 0;
+    const density = contourDensity()
+      .x(X ? i => X[i] : constant(cx))
+      .y(Y ? i => Y[i] : constant(cy))
+      .weight(W ? i => W[i] : 1)
+      .size([width, height])
+      .bandwidth(bandwidth)
+      .thresholds(thresholds);
+
+    // First pass: seek the maximum density across all facets and series; memoize for performance.
+    const memo = [];
+    for (const [facetIndex, facet] of facets.entries()) {
+      newFacets.push([]);
       for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
-        for (const contour of contourDensity()
-          .x(X ? i => X[i] : constant(cx))
-          .y(Y ? i => Y[i] : constant(cy))
-          .weight(W ? i => W[i] : 1)
-          .size([width, height])
-          .bandwidth(bandwidth)
-          .thresholds(thresholds)
-          (index)) {
-            newFacet.push(j++);
-            contours.push(contour);
-            for (const [key, {value}] of newChannels) {
-              value.push(
-                (f && key === "fill") || (s && key === "stroke") ? contour.value
-                : channels[key].value[index[0]]);
-            }
+        const c = density(index);
+        const d = c[c.length - 1];
+        if (d.value > max) {
+          max = d.value;
+          maxn = c.length;
+          thresholds = c.map(d => d.value);
+        }
+        memo.push({facetIndex, index, c, top: d.value});
+      }
+    }
+
+    // Second pass: generate contours with the thresholds derived above
+    // https://github.com/d3/d3-contour/pull/57
+    const thf = Math.pow(2, density.cellSize());
+    thresholds = thresholds.map(value => value * thf);
+
+    density.thresholds(thresholds);
+    for (const {facetIndex, index, c: memoc, top} of memo) {
+      const c = top < max ? density(index) : memoc;
+      for (const contour of c) {
+        newFacets[facetIndex].push(contours.length);
+        contours.push(contour);
+        for (const [key, {value}] of newChannels) {
+          value.push(
+            (f && key === "fill") || (s && key === "stroke") ? contour.value
+            : channels[key].value[index[0]]
+          );
         }
       }
     }
-    return {data, facets: newFacets, channels: {
-      contours: {value: contours},
-      ...Object.fromEntries(newChannels)
-    }};
+
+    channels = {contours: {value: contours}, ...Object.fromEntries(newChannels)};
+    // normalize colors to a thresholds scale
+    if (f || s) {
+      const m = max * (maxn + 1) / maxn;
+      if (f) channels.fill.value = channels.fill.value.map(v => v / m);
+      if (s) channels.stroke.value = channels.stroke.value.map(v => v / m);
+    }
+    return {data, facets: newFacets, channels};
   };
 }

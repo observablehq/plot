@@ -11,18 +11,17 @@ export default async function() {
       x: "island"
     },
     inset: 20,
-    color: {
-      scheme: "magma",
-      reverse: true,
-      legend: true
-    },
     marks: [
       Plot.density(penguins, {
         x: "flipper_length_mm",
         y: "culmen_length_mm",
-        stroke: "density",
-        fill: "density",
-        thresholds: 20,
+        stroke: "species",
+        fill: "species",
+        title: "species",
+        fillOpacity: 0.1,
+        thresholds: 10,
+        strokeWidth: 0.5,
+        mixBlendMode: "multiply",
         clip: true
       }),
       Plot.frame()
