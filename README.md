@@ -1024,7 +1024,7 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 
 ### Density
 
-[<img src="./img/density-contours.png" width="650" height="408" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="325" height="204" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
 [Source](./src/marks/density.js) · [Examples](https://observablehq.com/@observablehq/plot-density) · Draws regions of a two-dimensional point distribution in which the number of points per unit of screen space exceeds a certain density.
 
