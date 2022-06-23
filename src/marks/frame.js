@@ -16,17 +16,21 @@ export class Frame extends Mark {
       insetTop = inset,
       insetRight = inset,
       insetBottom = inset,
-      insetLeft = inset
+      insetLeft = inset,
+      rx,
+      ry
     } = options;
     super(undefined, undefined, options, defaults);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
+    this.rx = number(rx);
+    this.ry = number(ry);
   }
   render(index, scales, channels, dimensions) {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
-    const {insetTop, insetRight, insetBottom, insetLeft} = this;
+    const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:rect")
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyDirectStyles, this)
@@ -35,7 +39,9 @@ export class Frame extends Mark {
         .attr("y", marginTop + insetTop)
         .attr("width", width - marginLeft - marginRight - insetLeft - insetRight)
         .attr("height", height - marginTop - marginBottom - insetTop - insetBottom)
-      .node();
+        .attr("rx", rx)
+        .attr("ry", ry)
+  .node();
   }
 }
 

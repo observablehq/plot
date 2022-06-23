@@ -1500,7 +1500,7 @@ Decorations are static marks that do not represent data. Currently this includes
 
 [Source](./src/marks/frame.js) · [Examples](https://observablehq.com/@observablehq/plot-frame) · Draws a simple frame around the entire plot (or facet).
 
-The frame mark supports the [standard mark options](#marks), but does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
+The frame mark supports the [standard mark options](#marks), and the **rx** and **ry** options to set the [*x* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/rx) and [*y* radius](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/ry) for rounded corners. It does not accept any data or support channels. The default **stroke** is currentColor, and the default **fill** is none.
 
 #### Plot.frame(*options*)
 
