@@ -2,6 +2,7 @@ import {contourDensity, create, geoPath} from "d3";
 import {constant, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyFrameAnchor, applyGroupedChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
+import {initializer} from "../transforms/basic.js";
 
 const defaults = {
   ariaLabel: "density",
@@ -11,21 +12,21 @@ const defaults = {
 };
 
 export class Density extends Mark {
-  constructor(data, options = {}) {
-    const {x, y, z, weight, bandwidth = 20, thresholds = 20} = options;
+  constructor(data, {x, y, z, weight, stroke, fill, bandwidth = 20, thresholds = 20, ...options} = {}) {
+    let f, s;
+    if (fill === "density") { fill = undefined; f = true; }
+    if (stroke === "density") { stroke = undefined; s = true; }
     super(
       data,
       [
         {name: "x", value: x, scale: "x", optional: true},
         {name: "y", value: y, scale: "y", optional: true},
         {name: "weight", value: weight, optional: true},
-        {name: "z", value: maybeZ(options), optional: true}
+        {name: "z", value: maybeZ({z, fill, stroke}), optional: true}
       ],
-      options,
+      densityInitializer({...options, fill, stroke}, +bandwidth, +thresholds, f, s),
       defaults
     );
-    this.bandwidth = +bandwidth;
-    this.thresholds = +thresholds;
     this.z = z;
     this.path = geoPath();
   }
@@ -49,25 +50,22 @@ export class Density extends Mark {
   }
 }
 
-export function density(data, {x, y, stroke, fill, bandwidth = 20, thresholds = 20, ...options} = {}) {
+export function density(data, {x, y, ...options} = {}) {
   ([x, y] = maybeTuple(x, y));
-  let f, s;
-  if (fill === "density") { fill = undefined; f = true; }
-  if (stroke === "density") { stroke = undefined; s = true; }
-  return new Density(data, {...options, x, y, fill, stroke, initializer: initializer(+bandwidth, +thresholds, f, s)});
+  return new Density(data, {...options, x, y});
 }
 
-function initializer(bandwidth, thresholds, f, s) {
-  return function (data, facets, channels, scales, dimensions) {
+function densityInitializer(options, bandwidth, thresholds, f, s) {
+  return initializer(options, function(data, facets, channels, scales, dimensions) {
     const X = valueof(channels.x.value, scales.x);
     const Y = valueof(channels.y.value, scales.y);
     const W = channels.weight?.value;
     const Z = channels.z?.value;
+    const {z} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
     const newFacets = [];
     const contours = [];
-    const {z} = this;
     const newChannels = Object.entries(channels).filter(([key]) => key !== "x" && key !== "y" && key !== "weight").map(([key, d]) => [key, {...d, value: []}]);
     if (f) newChannels.push(["fill", {value: [], scale: "color"}]);
     if (s) newChannels.push(["stroke", {value: [], scale: "color"}]);
@@ -118,11 +116,10 @@ function initializer(bandwidth, thresholds, f, s) {
 
     channels = {contours: {value: contours}, ...Object.fromEntries(newChannels)};
     // normalize colors to a thresholds scale
-    if (f || s) {
-      const m = max * (maxn + 1) / maxn;
-      if (f) channels.fill.value = channels.fill.value.map(v => v / m);
-      if (s) channels.stroke.value = channels.stroke.value.map(v => v / m);
-    }
+    const m = max * (maxn + 1) / maxn;
+    if (f) channels.fill.value = channels.fill.value.map(v => v / m);
+    if (s) channels.stroke.value = channels.stroke.value.map(v => v / m);
+
     return {data, facets: newFacets, channels};
-  };
+  });
 }
