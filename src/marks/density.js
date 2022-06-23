@@ -58,8 +58,8 @@ export function density(data, {x, y, ...options} = {}) {
 
 function densityInitializer(options, bandwidth, thresholds, f, s) {
   return initializer(options, function(data, facets, channels, scales, dimensions) {
-    const X = valueof(channels.x.value, scales.x);
-    const Y = valueof(channels.y.value, scales.y);
+    const X = channels.x.scale ? valueof(channels.x.value, scales[channels.x.scale]) : channels.x.value;
+    const Y = channels.y.scale ? valueof(channels.y.value, scales[channels.y.scale]) : channels.y.value;
     const W = channels.weight?.value;
     const Z = channels.z?.value;
     const {z} = this;
@@ -81,17 +81,20 @@ function densityInitializer(options, bandwidth, thresholds, f, s) {
 
     // First pass: seek the maximum density across all facets and series; memoize for performance.
     const memo = [];
+    thresholds = [];
     for (const [facetIndex, facet] of facets.entries()) {
       newFacets.push([]);
       for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
         const c = density(index);
         const d = c[c.length - 1];
-        if (d.value > max) {
-          max = d.value;
-          maxn = c.length;
-          thresholds = c.map(d => d.value);
+        if (d) {
+          if (d.value > max) {
+            max = d.value;
+            maxn = c.length;
+            thresholds = c.map(d => d.value);
+          }
+          memo.push({facetIndex, index, c, top: d.value});
         }
-        memo.push({facetIndex, index, c, top: d.value});
       }
     }
 
