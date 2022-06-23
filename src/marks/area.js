@@ -2,7 +2,7 @@ import {area as shapeArea, create} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
+import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -40,7 +40,8 @@ export class Area extends Mark {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const {dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, dx, dy)
         .call(g => g.selectAll()
           .data(groupIndex(I, [X1, Y1, X2, Y2], this, channels))

@@ -2,7 +2,7 @@ import {create} from "d3";
 import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
+import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -49,7 +49,8 @@ export class Rect extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, dx, dy, rx, ry} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, X1 && X2 ? x : null, Y1 && Y2 ? y : null, dx, dy)
         .call(g => g.selectAll()
           .data(index)

@@ -2,7 +2,7 @@ import {create} from "d3";
 import {radians} from "../math.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyClip, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 
 const defaults = {
   ariaLabel: "vector",
@@ -44,7 +44,8 @@ export class Vector extends Mark {
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g")
         .attr("fill", "none")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)

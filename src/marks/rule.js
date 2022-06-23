@@ -2,7 +2,7 @@ import {create} from "d3";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
@@ -39,7 +39,8 @@ export class RuleX extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom, dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, X && x, null, offset + dx, dy)
         .call(g => g.selectAll()
           .data(index)
@@ -83,7 +84,8 @@ export class RuleY extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight, dx, dy} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, null, Y && y, dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)

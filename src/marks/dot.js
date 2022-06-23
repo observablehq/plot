@@ -2,7 +2,7 @@ import {create, path, symbolCircle} from "d3";
 import {positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyClip, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
@@ -57,7 +57,8 @@ export class Dot extends Mark {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(g => g.selectAll()
           .data(index)

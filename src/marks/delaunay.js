@@ -2,7 +2,7 @@ import {create, group, path, select, Delaunay} from "d3";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyClip, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
 const delaunayLinkDefaults = {
@@ -114,7 +114,8 @@ class DelaunayLink extends Mark {
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(links)
@@ -155,7 +156,8 @@ class AbstractDelaunayMark extends Mark {
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(mesh)
@@ -218,7 +220,8 @@ class Voronoi extends Mark {
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, dimensions)
+        .call(applyIndirectStyles, this)
+        .call(applyClip, this, {x, y}, dimensions)
         .call(applyTransform, x, y, offset + dx, offset + dy)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(cells)

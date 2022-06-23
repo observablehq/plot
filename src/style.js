@@ -247,7 +247,7 @@ export function maybeClip(clip) {
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles(selection, mark, dimensions) {
+export function applyIndirectStyles(selection, mark) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -264,6 +264,9 @@ export function applyIndirectStyles(selection, mark, dimensions) {
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
+}
+
+export function applyClip(selection, mark, {x, y}, dimensions) {
   if (mark.clip === "frame") {
     const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
     const id = `plot-clip-${++nextClipId}`;
@@ -272,8 +275,8 @@ export function applyIndirectStyles(selection, mark, dimensions) {
       .append("clipPath")
         .attr("id", id)
       .append("rect")
-        .attr("x", marginLeft)
-        .attr("y", marginTop)
+        .attr("x", marginLeft - (x && x.bandwidth ? x.bandwidth() / 2 : 0))
+        .attr("y", marginTop - (y && y.bandwidth ? y.bandwidth() / 2 : 0))
         .attr("width", width - marginRight - marginLeft)
         .attr("height", height - marginTop - marginBottom);
   }
