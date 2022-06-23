@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
 import {identity, number} from "../options.js";
-import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
   ariaLabel: "tick",
@@ -15,8 +15,7 @@ class AbstractTick extends Mark {
   }
   render(index, scales, channels, dimensions) {
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(this._transform, this, scales)
         .call(g => g.selectAll()
           .data(index)

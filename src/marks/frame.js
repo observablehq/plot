@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
 import {number} from "../options.js";
-import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
   ariaLabel: "frame",
@@ -28,9 +28,8 @@ export class Frame extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft} = this;
     return create("svg:rect")
-        .call(applyIndirectStyles, this)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyDirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
         .call(applyTransform, this, {})
         .attr("x", marginLeft + insetLeft)
         .attr("y", marginTop + insetTop)

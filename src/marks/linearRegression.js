@@ -2,7 +2,7 @@ import {create, extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
-import {applyClip, applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
+import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
@@ -39,8 +39,7 @@ class LinearRegression extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(Z ? groupZ(index, Z, this.z) : [index])

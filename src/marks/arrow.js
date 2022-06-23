@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {radians} from "../math.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyClip, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 import {constant} from "../options.js";
 
@@ -66,8 +66,7 @@ export class Arrow extends Mark {
     const wingScale = headLength / 1.5;
 
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(index)

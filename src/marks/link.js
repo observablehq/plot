@@ -1,7 +1,7 @@
 import {create, path} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyClip, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
 const defaults = {
@@ -32,8 +32,7 @@ export class Link extends Mark {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const {curve} = this;
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(index)

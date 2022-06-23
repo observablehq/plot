@@ -1,7 +1,7 @@
 import {create} from "d3";
 import {Mark} from "../plot.js";
 import {number} from "../options.js";
-import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {sqrt4_3} from "../symbols.js";
 import {ox, oy} from "../transforms/hexbin.js";
 
@@ -36,8 +36,7 @@ export class Hexgrid extends Mark {
       }
     }
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)
           .call(applyTransform, this, {}, offset + ox, offset + oy)

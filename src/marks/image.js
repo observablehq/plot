@@ -2,7 +2,7 @@ import {create} from "d3";
 import {positive} from "../defined.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, impliedString, applyFrameAnchor} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, impliedString, applyFrameAnchor} from "../style.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -63,8 +63,7 @@ export class Image extends Mark {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g")
-        .call(applyIndirectStyles, this)
-        .call(applyClip, this, scales, dimensions)
+        .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(index)
