@@ -3,7 +3,7 @@ import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual, isIterable} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyClip, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, offset, impliedString, applyFrameAnchor} from "../style.js";
+import {applyChannelStyles, applyClip, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, impliedString, applyFrameAnchor} from "../style.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
@@ -59,15 +59,15 @@ export class Text extends Mark {
     this.fontWeight = string(fontWeight);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
-    const {dx, dy, rotate} = this;
+    const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyIndirectTextStyles, this, T, dimensions)
-        .call(applyClip, this, {x, y}, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyClip, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(g => g.selectAll()
           .data(index)
           .enter()

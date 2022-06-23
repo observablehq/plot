@@ -307,7 +307,9 @@ export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform(selection, x, y, tx, ty) {
+export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset) {
+  tx += mark.dx;
+  ty += mark.dy;
   if (x && x.bandwidth) tx += x.bandwidth() / 2;
   if (y && y.bandwidth) ty += y.bandwidth() / 2;
   if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);

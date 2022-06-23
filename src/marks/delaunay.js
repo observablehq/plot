@@ -2,7 +2,7 @@ import {create, group, path, select, Delaunay} from "d3";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyClip, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform, offset} from "../style.js";
+import {applyChannelStyles, applyClip, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
 const delaunayLinkDefaults = {
@@ -57,9 +57,9 @@ class DelaunayLink extends Mark {
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy, curve} = this;
+    const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
@@ -115,8 +115,8 @@ class DelaunayLink extends Mark {
 
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyClip, this, {x, y}, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyClip, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(links)
           : g => g.datum(index).each(links))
@@ -138,9 +138,8 @@ class AbstractDelaunayMark extends Mark {
       defaults
     );
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
@@ -157,8 +156,8 @@ class AbstractDelaunayMark extends Mark {
 
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyClip, this, {x, y}, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyClip, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(mesh)
           : g => g.datum(index).each(mesh))
@@ -199,9 +198,8 @@ class Voronoi extends Mark {
       voronoiDefaults
     );
   }
-  render(index, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
-    const {dx, dy} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
@@ -221,8 +219,8 @@ class Voronoi extends Mark {
 
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyClip, this, {x, y}, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyClip, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(Z
           ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(cells)
           : g => g.datum(index).each(cells))

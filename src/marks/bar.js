@@ -19,11 +19,11 @@ export class AbstractBar extends Mark {
     this.ry = impliedString(ry, "auto");
   }
   render(index, scales, channels, dimensions) {
-    const {dx, dy, rx, ry} = this;
+    const {rx, ry} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this)
         .call(applyClip, this, scales, dimensions)
-        .call(this._transform, scales, dx, dy)
+        .call(this._transform, this, scales)
         .call(g => g.selectAll()
           .data(index)
           .enter()
@@ -76,8 +76,8 @@ export class BarX extends AbstractBar {
       defaults
     );
   }
-  _transform(selection, {x}, dx, dy) {
-    selection.call(applyTransform, x, null, dx, dy);
+  _transform(selection, mark, {x}) {
+    selection.call(applyTransform, mark, {x}, 0, 0);
   }
   _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
     const {insetLeft} = this;
@@ -103,8 +103,8 @@ export class BarY extends AbstractBar {
       defaults
     );
   }
-  _transform(selection, {y}, dx, dy) {
-    selection.call(applyTransform, null, y, dx, dy);
+  _transform(selection, mark, {y}) {
+    selection.call(applyTransform, mark, {y}, 0, 0);
   }
   _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
     const {insetTop} = this;

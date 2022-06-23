@@ -2,7 +2,7 @@ import {create, line as shapeLine} from "d3";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, offset, groupIndex} from "../style.js";
+import {applyClip, applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {applyGroupedMarkers, markers} from "./marker.js";
 
@@ -36,15 +36,14 @@ export class Line extends Mark {
   filter(index) {
     return index;
   }
-  render(I, {x, y}, channels, dimensions) {
+  render(index, scales, channels, dimensions) {
     const {x: X, y: Y} = channels;
-    const {dx, dy} = this;
     return create("svg:g")
         .call(applyIndirectStyles, this)
-        .call(applyClip, this, {x, y}, dimensions)
-        .call(applyTransform, x, y, offset + dx, offset + dy)
+        .call(applyClip, this, scales, dimensions)
+        .call(applyTransform, this, scales)
         .call(g => g.selectAll()
-          .data(groupIndex(I, [X, Y], this, channels))
+          .data(groupIndex(index, [X, Y], this, channels))
           .enter()
           .append("path")
             .call(applyDirectStyles, this)
