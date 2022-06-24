@@ -98,10 +98,6 @@ function densityInitializer(options, bandwidth, thresholds, f, s) {
     }
 
     // Second pass: generate contours with the thresholds derived above
-    // https://github.com/d3/d3-contour/pull/57
-    const thf = Math.pow(2, density.cellSize());
-    thresholds = thresholds.map(value => value * thf);
-
     density.thresholds(thresholds);
     for (const {facetIndex, index, c: memoc, top} of memo) {
       const c = top < max ? density(index) : memoc;
