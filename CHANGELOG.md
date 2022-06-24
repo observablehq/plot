@@ -1,5 +1,23 @@
 # Observable Plot - Changelog
 
+## 0.5.1
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The new density mark creates density contours.
+
+The new linear regression marks produce linear regressions with confidence interval bands.
+
+The new Delaunay marks produce Delaunay triangulations. Plot.delaunayLink, Plot.delaunayMesh, and Plot.hull.
+
+The new Voronoi marks produce Voronoi tesselations. Plot.voronoi and Plot.voronoiMesh.
+
+For data at regular intervals, such as integer values or daily samples, the new *scale*.**interval** option can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+
+All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events).
+
+The frame decoration mark now supports the **rx** and **ry** options.
+
 ## 0.5.0
 
 [Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
