@@ -18,6 +18,22 @@ All marks now support the **pointerEvents** option to set the [pointer-events at
 
 The frame decoration mark now supports the **rx** and **ry** options.
 
+Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one.
+
+Fix the *scale*.**zero** option when the domain is negative.
+
+Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform.
+
+Fix the **clip** mark option when *x* or *y* is a *band* scale.
+
+Fix the fill color of text marks using the **href** option.
+
+Improve the error message when the **facet** option is used without **data**.
+
+Throw an error if initializers attempt to create position scales.
+
+Throw an error if an implicit ordinal position domain has more than 10,000 values.
+
 ## 0.5.0
 
 [Released June 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.0)
