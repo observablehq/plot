@@ -6,10 +6,7 @@ export default async function() {
   return Plot.plot({
     inset: 30,
     marks: [
-      Plot.density(penguins, {
-        x: "flipper_length_mm",
-        y: "culmen_length_mm"
-      }),
+      Plot.density(penguins, {x: "flipper_length_mm", y: "culmen_length_mm"}),
       Plot.frame()
     ]
   });
