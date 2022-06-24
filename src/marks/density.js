@@ -2,7 +2,7 @@ import {contourDensity, create, geoPath} from "d3";
 import {identity, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {coerceNumbers} from "../scales.js";
-import {applyFrameAnchor, applyDirectStyles, applyIndirectStyles, applyChannelStyles, applyTransform, distinctZ, groupZ} from "../style.js";
+import {applyFrameAnchor, applyDirectStyles, applyIndirectStyles, applyChannelStyles, applyTransform, distinct, groupZ} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 
 const defaults = {
@@ -101,7 +101,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     // thresholds to all the other facet-series. TODO With API changes to
     // d3-contour, we could avoid recomputing the blurred grid and cache
     // individual contours, making this more efficient.
-    if (facets.length > 1 || Z && facets.length > 0 && distinctZ(facets[0], Z)) {
+    if (facets.length > 1 || Z && facets.length > 0 && distinct(facets[0], Z)) {
       let maxValue = 0;
       let maxContours = [];
       for (const facet of facets) {
