@@ -128,55 +128,55 @@
       <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">likes →</text>
   </g>
-  <g aria-label="bar"><a href="https://observablehq.com/@observablehq/plot" target="_blank">
+  <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-marks" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-marks" target="_blank">
       <rect x="140" width="187.3170731707317" y="46" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-scales" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-scales" target="_blank">
       <rect x="140" width="210.7317073170732" y="66" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-transforms" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-transforms" target="_blank">
       <rect x="140" width="70.2439024390244" y="86" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-facets" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-facets" target="_blank">
       <rect x="140" width="117.07317073170731" y="106" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-area" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-area" target="_blank">
       <rect x="140" width="35.1219512195122" y="126" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-bar" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-bar" target="_blank">
       <rect x="140" width="105.3658536585366" y="146" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-cell" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-cell" target="_blank">
       <rect x="140" width="199.02439024390242" y="166" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-dot" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-dot" target="_blank">
       <rect x="140" width="58.536585365853654" y="186" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-image" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-image" target="_blank">
       <rect x="140" width="128.78048780487802" y="206" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-line" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-line" target="_blank">
       <rect x="140" width="93.65853658536588" y="226" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-link" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-link" target="_blank">
       <rect x="140" width="23.414634146341456" y="246" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-rect" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-rect" target="_blank">
       <rect x="140" width="23.414634146341456" y="266" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-rule" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-rule" target="_blank">
       <rect x="140" width="46.82926829268294" y="286" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-text" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-text" target="_blank">
       <rect x="140" width="58.536585365853654" y="306" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-tick" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-tick" target="_blank">
       <rect x="140" width="11.707317073170742" y="326" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-frame" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-frame" target="_blank">
       <rect x="140" width="35.1219512195122" y="346" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-group" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-group" target="_blank">
       <rect x="140" width="81.95121951219511" y="366" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-bin" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-bin" target="_blank">
       <rect x="140" width="140.48780487804873" y="386" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-stack" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-stack" target="_blank">
       <rect x="140" width="152.1951219512195" y="406" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-map" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-map" target="_blank">
       <rect x="140" width="70.2439024390244" y="426" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-window" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-window" target="_blank">
       <rect x="140" width="35.1219512195122" y="446" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-select" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-select" target="_blank">
       <rect x="140" width="70.2439024390244" y="466" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-interval" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-interval" target="_blank">
       <rect x="140" width="81.95121951219511" y="486" height="18"></rect>
-    </a><a href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
+    </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-legends" target="_blank">
       <rect x="140" width="210.7317073170732" y="506" height="18"></rect>
     </a></g>
   <g aria-label="text" fill="white" text-anchor="end" transform="translate(-2.5,9.5)"><text y="0.32em" transform="translate(620,26)">⚡︎ 296</text><text y="0.32em" transform="translate(327.3170731707317,46)"> 16</text><text y="0.32em" transform="translate(350.7317073170732,66)"> 18</text><text y="0.32em" transform="translate(210.2439024390244,86)"> 6</text><text y="0.32em" transform="translate(257.0731707317073,106)"> 10</text><text y="0.32em" transform="translate(175.1219512195122,126)"> 3</text><text y="0.32em" transform="translate(245.3658536585366,146)"> 9</text><text y="0.32em" transform="translate(339.0243902439024,166)"> 17</text><text y="0.32em" transform="translate(198.53658536585365,186)"> 5</text><text y="0.32em" transform="translate(268.780487804878,206)"> 11</text><text y="0.32em" transform="translate(233.65853658536588,226)"> 8</text><text y="0.32em" transform="translate(163.41463414634146,246)"> 2</text><text y="0.32em" transform="translate(163.41463414634146,266)"> 2</text><text y="0.32em" transform="translate(186.82926829268294,286)"> 4</text><text y="0.32em" transform="translate(198.53658536585365,306)"> 5</text><text y="0.32em" transform="translate(151.70731707317074,326)"> 1</text><text y="0.32em" transform="translate(175.1219512195122,346)"> 3</text><text y="0.32em" transform="translate(221.9512195121951,366)"> 7</text><text y="0.32em" transform="translate(280.48780487804873,386)"> 12</text><text y="0.32em" transform="translate(292.1951219512195,406)"> 13</text><text y="0.32em" transform="translate(210.2439024390244,426)"> 6</text><text y="0.32em" transform="translate(175.1219512195122,446)"> 3</text><text y="0.32em" transform="translate(210.2439024390244,466)"> 6</text><text y="0.32em" transform="translate(221.9512195121951,486)"> 7</text><text y="0.32em" transform="translate(350.7317073170732,506)"> 18</text></g>

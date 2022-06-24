@@ -90,6 +90,7 @@ export {default as hexbinText} from "./hexbin-text.js";
 export {default as hexbinZ} from "./hexbin-z.js";
 export {default as hexbinZNull} from "./hexbin-z-null.js";
 export {default as highCardinalityOrdinal} from "./high-cardinality-ordinal.js";
+export {default as hrefFill} from "./href-fill.js";
 export {default as identityScale} from "./identity-scale.js";
 export {default as integerInterval} from "./integer-interval.js";
 export {default as ibmTrading} from "./ibm-trading.js";
