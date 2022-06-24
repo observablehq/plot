@@ -1024,7 +1024,7 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 
 ### Density
 
-[<img src="./img/density-contours.png" width="325" height="204" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="320" height="200" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
 [Source](./src/marks/density.js) · [Examples](https://observablehq.com/@observablehq/plot-density) · Draws regions of a two-dimensional point distribution in which the number of points per unit of screen space exceeds a certain density.
 
@@ -1151,7 +1151,7 @@ Returns a new image with the given *data* and *options*. If neither the **x** no
 
 ### Linear regression
 
-[<img src="./img/linear-regression.png" width="600" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+[<img src="./img/linear-regression.png" width="320" height="200" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
 [Source](./src/marks/linearRegression.js) · [Examples](https://observablehq.com/@observablehq/plot-linear-regression) · Draws [linear regression](https://en.wikipedia.org/wiki/Linear_regression) lines with confidence bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*). The linear regression line is fit using the [least squares](https://en.wikipedia.org/wiki/Least_squares) approach. See Torben Jansen’s [“Linear regression with confidence bands”](https://observablehq.com/@toja/linear-regression-with-confidence-bands) and [this StatExchange question](https://stats.stackexchange.com/questions/101318/understanding-shape-and-calculation-of-confidence-bands-in-linear-regression) for details on the confidence interval calculation.
 
