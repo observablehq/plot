@@ -4,7 +4,7 @@ import {ascendingDefined} from "../defined.js";
 import {isNoneish, map} from "../options.js";
 import {maybeInterval} from "../transforms/interval.js";
 import {maybeSymbol} from "../symbols.js";
-import {registry, color, symbol} from "./index.js";
+import {registry, color, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 // This denotes an implicitly ordinal color scale: the scale type was not set,
@@ -13,7 +13,7 @@ import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js
 // of this by setting the type explicitly.
 export const ordinalImplicit = Symbol("ordinal");
 
-export function ScaleO(scale, channels, {
+function ScaleO(key, scale, channels, {
   type,
   interval,
   domain,
@@ -22,7 +22,7 @@ export function ScaleO(scale, channels, {
   hint
 }) {
   interval = maybeInterval(interval);
-  if (domain === undefined) domain = inferDomain(channels, interval);
+  if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
   if (reverse) domain = reverseof(domain);
   scale.domain(domain);
@@ -44,7 +44,7 @@ export function ScaleOrdinal(key, channels, {
   ...options
 }) {
   interval = maybeInterval(interval);
-  if (domain === undefined) domain = inferDomain(channels, interval);
+  if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
@@ -68,7 +68,7 @@ export function ScaleOrdinal(key, channels, {
     }
   }
   if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
-  return ScaleO(scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
+  return ScaleO(key, scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
 }
 
 export function ScalePoint(key, channels, {
@@ -81,7 +81,8 @@ export function ScalePoint(key, channels, {
       .align(align)
       .padding(padding),
     channels,
-    options
+    options,
+    key
   );
 }
 
@@ -98,19 +99,20 @@ export function ScaleBand(key, channels, {
       .paddingInner(paddingInner)
       .paddingOuter(paddingOuter),
     channels,
-    options
+    options,
+    key
   );
 }
 
-function maybeRound(scale, channels, options) {
+function maybeRound(scale, channels, options, key) {
   let {round} = options;
   if (round !== undefined) scale.round(round = !!round);
-  scale = ScaleO(scale, channels, options);
+  scale = ScaleO(key, scale, channels, options);
   scale.round = round; // preserve for autoScaleRound
   return scale;
 }
 
-function inferDomain(channels, interval) {
+function inferDomain(channels, interval, key) {
   const values = new InternSet();
   for (const {value, domain} of channels) {
     if (domain !== undefined) return domain(); // see channelDomain
@@ -121,6 +123,7 @@ function inferDomain(channels, interval) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
+  if (values.size > 10e3 && registry.get(key) === position) throw new Error("implicit ordinal position domain has more than 10,000 values");
   return sort(values, ascendingDefined);
 }
 
