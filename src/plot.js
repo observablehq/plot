@@ -222,17 +222,11 @@ export function plot(options = {}) {
   if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
-    if (legends.length > 0) {
-      figure.appendChild(...legends);
-    }
+    if (legends.length > 0) figure.appendChild(...legends);
     figure.appendChild(svg);
     if (caption != null) {
       const figcaption = document.createElement("figcaption");
-      if (!isObject(caption)) {
-        figcaption.innerHTML = caption;
-      } else {
-        figcaption.appendChild(caption);
-      }
+      typeof caption === "object" ? figcaption.appendChild(caption) : (figcaption.innerHTML = caption);
       figure.appendChild(figcaption);
     }
   }
