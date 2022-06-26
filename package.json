@@ -50,7 +50,7 @@
     "vite": "2"
   },
   "dependencies": {
-    "d3": "^7.4.5",
+    "d3": "^7.5.0",
     "interval-tree-1d": "1",
     "isoformat": "0.2"
   },
