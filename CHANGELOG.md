@@ -41,8 +41,8 @@ The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay tria
 ```js
 Plot.plot({
   marks: [
-    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "currentColor", r: 1.5}),
-    Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "species"})
+    Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "species", fillOpacity: 0.2, stroke: "white"}),
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "species"})
   ]
 })
 ```
