@@ -47,7 +47,7 @@ Plot.plot({
 })
 ```
 
-For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, for ordinal scales the default *scale*.**domain** is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
 All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options.
 
