@@ -7,7 +7,7 @@ export default async function() {
     inset: 20,
     marks: [
       Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", strokeWidth: 0.25}),
-      Plot.density(faithful, {x: "waiting", y: "eruptions", thresholds: 4, stroke: "steelblue"}),
+      Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", thresholds: 4}),
       Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
     ]
   });

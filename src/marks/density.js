@@ -1,4 +1,4 @@
-import {contourDensity, create, geoPath, ticks} from "d3";
+import {contourDensity, create, geoPath} from "d3";
 import {identity, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {coerceNumbers} from "../scales.js";
@@ -110,7 +110,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     }
 
     // Generate contours for each facet-series.
-    const T = ticks(Number.MIN_VALUE, maxValue, thresholds);
+    const T = Array.from({length: thresholds - 1}, (_, i) => maxValue * (i + 1) / thresholds);
     const newFacets = [];
     const contours = [];
     for (const facetContours of facetsContours) {
