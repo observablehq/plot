@@ -222,11 +222,12 @@ export function plot(options = {}) {
   if (caption != null || legends.length > 0) {
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
-    figure.append(...legends, svg);
+    for (const legend of legends) figure.appendChild(legend);
+    figure.appendChild(svg);
     if (caption != null) {
       const figcaption = document.createElement("figcaption");
-      figcaption.append(caption);
-      figure.append(figcaption);
+      figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+      figure.appendChild(figcaption);
     }
   }
 
