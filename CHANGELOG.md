@@ -49,9 +49,9 @@ Plot.plot({
 
 For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, for ordinal scales the default *scale*.**domain** is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
-All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options.
+All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options. The cell mark now respects the **dx** and **dy** options.
 
-Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one. Fix the *scale*.**zero** option when the domain is negative. Fix the **clip** mark option when *x* or *y* is a *band* scale. Fix the fill color of text marks using the **href** option. Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform.
+Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one. Fix the *scale*.**zero** option when the domain is negative. Fix the **clip** mark option when *x* or *y* is a *band* scale. Fix the fill color of text marks using the **href** option. Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform. Use *element*.appendChild instead of *element*.append for the benefit of DOM implementations that do not support the full DOM standard.
 
 Improve the error message when the **facet** option is used without **data**. Throw an error if initializers attempt to create position scales. Throw an error if an implicit ordinal position domain has more than 10,000 values.
 
