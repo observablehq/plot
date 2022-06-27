@@ -80,6 +80,7 @@ export {default as gistempAnomalyTransform} from "./gistemp-anomaly-transform.js
 export {default as googleTrendsRidgeline} from "./google-trends-ridgeline.js";
 export {default as greekGods} from "./greek-gods.js";
 export {default as gridChoropleth} from "./grid-choropleth.js";
+export {default as gridChoroplethDx} from "./grid-choropleth-dx.js";
 export {default as groupedRects} from "./grouped-rects.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
 export {default as hexbin} from "./hexbin.js";
