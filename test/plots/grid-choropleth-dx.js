@@ -22,8 +22,8 @@ export default async function() {
       scheme: "piyg"
     },
     marks: [
-      Plot.cell(states, {x: "x", y: "y", fill: change}),
-      Plot.cell(states, {x: "x", y: "y", stroke: "black", dx: 4, dy: 4}),
+      Plot.cell(states, {x: "x", y: "y", fill: change, dx: -1.5, dy: -1.5}),
+      Plot.cell(states, {x: "x", y: "y", stroke: "black", dx: 1.5, dy: 1.5}),
       Plot.text(states, {x: "x", y: "y", text: "key", dy: -6}),
       Plot.text(states, {x: "x", y: "y", text: (f => d => f(change(d) - 1))(d3.format("+.0%")), dy: 6, fillOpacity: 0.6})
     ]
