@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new density mark creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of point clouds.
+The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of point clouds.
 
 [<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
@@ -19,7 +19,7 @@ Plot.plot({
 })
 ```
 
-The new linear regression marks produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
+The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
 [<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
@@ -34,31 +34,26 @@ Plot.plot({
 })
 ```
 
-The new Delaunay marks produce Delaunay triangulations. Plot.delaunayLink, Plot.delaunayMesh, and Plot.hull.
+The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations. Plot.delaunayLink, Plot.delaunayMesh, Plot.hull, Plot.voronoi, and Plot.voronoiMesh.
 
-The new Voronoi marks produce Voronoi tesselations. Plot.voronoi and Plot.voronoiMesh.
+[<img src="./img/voronoi.png" width="640" height="396" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
 
-For data at regular intervals, such as integer values or daily samples, the new *scale*.**interval** option can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", fill: "currentColor", r: 1.5}),
+    Plot.voronoi(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm", stroke: "species"})
+  ]
+})
+```
 
-All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events).
+For data at regular intervals, such as integer values or daily samples, the new [*scale*.**interval** option](./README.md#scale-options) can be used to enforce uniformity. The specified *interval*—such as d3.utcMonth—must expose an *interval*.floor(*value*), *interval*.offset(*value*), and *interval*.range(*start*, *stop*) functions. The option can also be specified as a number, in which case it will be promoted to a numeric interval with the given step. This option sets the default *scale*.transform to the given interval’s *interval*.floor function. In addition, the default *scale*.domain is an array of uniformly-spaced values spanning the extent of the values associated with the scale.
 
-The frame decoration mark now supports the **rx** and **ry** options.
+All marks now support the **pointerEvents** option to set the [pointer-events attribute](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events). The frame decoration mark now supports the **rx** and **ry** options.
 
-Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one.
+Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one. Fix the *scale*.**zero** option when the domain is negative. Fix the **clip** mark option when *x* or *y* is a *band* scale. Fix the fill color of text marks using the **href** option. Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform.
 
-Fix the *scale*.**zero** option when the domain is negative.
-
-Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform.
-
-Fix the **clip** mark option when *x* or *y* is a *band* scale.
-
-Fix the fill color of text marks using the **href** option.
-
-Improve the error message when the **facet** option is used without **data**.
-
-Throw an error if initializers attempt to create position scales.
-
-Throw an error if an implicit ordinal position domain has more than 10,000 values.
+Improve the error message when the **facet** option is used without **data**. Throw an error if initializers attempt to create position scales. Throw an error if an implicit ordinal position domain has more than 10,000 values.
 
 ## 0.5.0
 
