@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of point clouds.
+The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** can be configured.
 
 [<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
@@ -16,6 +16,20 @@ Plot.plot({
     Plot.density(faithful, {x: "waiting", y: "eruptions", thresholds: 4, stroke: "steelblue"}),
     Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
   ]
+})
+```
+
+By default, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
+
+[<img src="./img/density-fill.png" width="640" height="500" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+
+```js
+Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
+  height: 500,
+  grid: true,
+  x: {type: "log"},
+  y: {type: "log"},
+  color: {scheme: "ylgnbu"}
 })
 ```
 
