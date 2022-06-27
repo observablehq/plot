@@ -1,5 +1,5 @@
 import {contourDensity, create, geoPath} from "d3";
-import {identity, maybeTuple, maybeZ, valueof} from "../options.js";
+import {identity, isTypedArray, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {coerceNumbers} from "../scales.js";
 import {applyFrameAnchor, applyDirectStyles, applyIndirectStyles, applyChannelStyles, applyTransform, groupZ} from "../style.js";
@@ -63,9 +63,10 @@ export function density(data, {x, y, ...options} = {}) {
 const dropChannels = new Set(["x", "y", "z", "weight"]);
 
 function densityInitializer(options, fillDensity, strokeDensity) {
+  const k = 100; // arbitrary scale factor for readability
   let {bandwidth, thresholds} = options;
   bandwidth = bandwidth === undefined ? 20 : +bandwidth;
-  thresholds = thresholds === undefined ? 20 : +thresholds; // TODO Allow an array of thresholds?
+  thresholds = thresholds === undefined ? 20 : typeof thresholds?.[Symbol.iterator] === "function" ? coerceNumbers(thresholds) : +thresholds;
   return initializer(options, function(data, facets, channels, scales, dimensions) {
     const X = channels.x ? coerceNumbers(valueof(channels.x.value, scales[channels.x.scale] || identity)) : null;
     const Y = channels.y ? coerceNumbers(valueof(channels.y.value, scales[channels.y.scale] || identity)) : null;
@@ -85,7 +86,6 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     // If the fill or stroke encodes density, construct new output channels.
     const FD = fillDensity && [];
     const SD = strokeDensity && [];
-    const k = 100; // arbitrary scale factor for readability
 
     const density = contourDensity()
         .x(X ? i => X[i] : cx)
@@ -94,23 +94,32 @@ function densityInitializer(options, fillDensity, strokeDensity) {
         .size([width, height])
         .bandwidth(bandwidth);
 
-    // Compute the grid for each facet-series; find the maximum density of all
-    // grids and use this to compute contour thresholds.
-    let maxValue = 0;
+    // Compute the grid for each facet-series.
     const facetsContours = [];
     for (const facet of facets) {
       const facetContours = [];
       facetsContours.push(facetContours);
       for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
         const contour = density.contours(index);
-        const max = contour.max;
-        if (max > maxValue) maxValue = max;
         facetContours.push([index, contour]);
       }
     }
 
+    // If explicit thresholds were not specified, find the maximum density of
+    // all grids and use this to compute thresholds.
+    let T = thresholds;
+    if (!isTypedArray(T)) {
+      let maxValue = 0;
+      for (const facetContours of facetsContours) {
+        for (const [, contour] of facetContours) {
+          const max = contour.max;
+          if (max > maxValue) maxValue = max;
+        }
+      }
+      T = Float64Array.from({length: thresholds - 1}, (_, i) => maxValue * k * (i + 1) / thresholds);
+    }
+
     // Generate contours for each facet-series.
-    const T = Array.from({length: thresholds - 1}, (_, i) => maxValue * (i + 1) / thresholds);
     const newFacets = [];
     const contours = [];
     for (const facetContours of facetsContours) {
@@ -119,9 +128,9 @@ function densityInitializer(options, fillDensity, strokeDensity) {
       for (const [index, contour] of facetContours) {
         for (const t of T) {
           newFacet.push(contours.length);
-          contours.push(contour(t));
-          if (FD) FD.push(t * k);
-          if (SD) SD.push(t * k);
+          contours.push(contour(t / k));
+          if (FD) FD.push(t);
+          if (SD) SD.push(t);
           for (const key in newChannels) {
             newChannels[key].value.push(channels[key].value[index[0]]);
           }
