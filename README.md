@@ -1026,17 +1026,15 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 
 [<img src="./img/density-contours.png" width="320" height="200" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
-[Source](./src/marks/density.js) · [Examples](https://observablehq.com/@observablehq/plot-density) · Draws regions of a two-dimensional point distribution in which the number of points per unit of screen space exceeds a certain density.
+[Source](./src/marks/density.js) · [Examples](https://observablehq.com/@observablehq/plot-density) · Draws contours representing the density of point clouds, implementing [two-dimensional kernel density estimation](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation). Each contour represents the area where the point density is greater than or equal to a given density value.
 
 #### Plot.density(*data*, *options*)
 
-Draws a region for each density level where the number of points given by the **x** and **y** channels, and possibly weighted by the **weight** channel, exceeds the given level. The **thresholds** option, which defaults to 20, indicates the approximate number of levels that will be computed at even intervals between 0 and the maximum density.
+Draws contours representing the density of the two-dimensional points given by the **x** and **y** channels, and possibly weighted by the **weight** channel. If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
-If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series.
+The **thresholds** option, which defaults to 20, specifies the approximate number of contours that will be computed at even intervals between 0 (exclusive) and the maximum density. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
 
-If stroke or fill is specified as *density*, a color channel is returned with values representing the density normalized between 0 and 1.
-
-If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
+If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
 
 ### Dot
 
