@@ -4,9 +4,35 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new density mark creates density contours.
+The new density mark creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of point clouds.
 
-The new linear regression marks produce linear regressions with confidence interval bands.
+[<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+
+```js
+Plot.plot({
+  inset: 20,
+  marks: [
+    Plot.density(faithful, {x: "waiting", y: "eruptions", stroke: "steelblue", strokeWidth: 0.25}),
+    Plot.density(faithful, {x: "waiting", y: "eruptions", thresholds: 4, stroke: "steelblue"}),
+    Plot.dot(faithful, {x: "waiting", y: "eruptions", fill: "currentColor", r: 1.5})
+  ]
+})
+```
+
+The new linear regression marks produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
+
+[<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+
+```js
+Plot.plot({
+  grid: true,
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species"}),
+    Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
+    Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
 
 The new Delaunay marks produce Delaunay triangulations. Plot.delaunayLink, Plot.delaunayMesh, and Plot.hull.
 
