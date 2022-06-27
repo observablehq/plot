@@ -66,7 +66,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
   const k = 100; // arbitrary scale factor for readability
   let {bandwidth, thresholds} = options;
   bandwidth = bandwidth === undefined ? 20 : +bandwidth;
-  thresholds = thresholds === undefined ? 20 : typeof thresholds?.[Symbol.iterator] === "function" ? coerceNumbers(thresholds).map(t => t / k) : +thresholds;
+  thresholds = thresholds === undefined ? 20 : typeof thresholds?.[Symbol.iterator] === "function" ? coerceNumbers(thresholds) : +thresholds;
   return initializer(options, function(data, facets, channels, scales, dimensions) {
     const X = channels.x ? coerceNumbers(valueof(channels.x.value, scales[channels.x.scale] || identity)) : null;
     const Y = channels.y ? coerceNumbers(valueof(channels.y.value, scales[channels.y.scale] || identity)) : null;
@@ -116,7 +116,7 @@ function densityInitializer(options, fillDensity, strokeDensity) {
           if (max > maxValue) maxValue = max;
         }
       }
-      T = Float64Array.from({length: thresholds - 1}, (_, i) => maxValue * (i + 1) / thresholds);
+      T = Float64Array.from({length: thresholds - 1}, (_, i) => maxValue * k * (i + 1) / thresholds);
     }
 
     // Generate contours for each facet-series.
@@ -128,9 +128,9 @@ function densityInitializer(options, fillDensity, strokeDensity) {
       for (const [index, contour] of facetContours) {
         for (const t of T) {
           newFacet.push(contours.length);
-          contours.push(contour(t));
-          if (FD) FD.push(t * k);
-          if (SD) SD.push(t * k);
+          contours.push(contour(t / k));
+          if (FD) FD.push(t);
+          if (SD) SD.push(t);
           for (const key in newChannels) {
             newChannels[key].value.push(channels[key].value[index[0]]);
           }
