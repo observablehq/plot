@@ -1,4 +1,5 @@
 import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
+import {applyTransform} from "../style.js";
 import {AbstractBar} from "./bar.js";
 
 const defaults = {
@@ -17,8 +18,9 @@ export class Cell extends AbstractBar {
       defaults
     );
   }
-  _transform() {
-    // noop
+  _transform(selection, mark) {
+    // apply dx, dy
+    selection.call(applyTransform, mark, {}, 0, 0);
   }
 }
 
