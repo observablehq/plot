@@ -184,16 +184,6 @@ function groupAesthetics({ariaLabel: AL, title: T, fill: F, fillOpacity: FO, str
   return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined);
 }
 
-export function distinct(I, X) {
-  const x = keyof(X[0]);
-  for (const i of I) {
-    if (keyof(X[i]) !== x) {
-      return true;
-    }
-  }
-  return false;
-}
-
 export function groupZ(I, Z, z) {
   const G = group(I, i => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {

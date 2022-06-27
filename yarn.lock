@@ -543,9 +543,9 @@ d3-chord@3:
   integrity sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==
 
 d3-contour@3:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/d3-contour/-/d3-contour-3.0.2.tgz#eff71df949788ae5803b05a24cbb1f527c3ada65"
-  integrity sha512-n0zP1c2sqsdZEGStDhYXpzihrzmQHFcKXsXatX2jc+uJx9Va0kKB5qepJ9V0hbgFWM+05wrJ0Npo+dXKP3GZ8Q==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/d3-contour/-/d3-contour-3.1.0.tgz#708484a5d89be9558dfdda4a95b3df2fdebb65ab"
+  integrity sha512-vV3xtwrYK5p1J4vyukr70m57mtFTEQYqoaDC1ylBfht/hkdUF0nfWZ1b3V2EPBUVkUkoqq5/fbRoBImBWJgOsg==
   dependencies:
     d3-array "2 - 3"
 
@@ -715,10 +715,10 @@ d3-zoom@3:
     d3-selection "2 - 3"
     d3-transition "2 - 3"
 
-d3@^7.4.5:
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-7.4.5.tgz#9f12c46bd91519bf2d7f2617978ac081d316aed2"
-  integrity sha512-Jl349p+A0oTrTeoSFSD6oIlKVDi2B4eJDOhn2kFSE+Fq7wRABBTWLwbG8IZKKdUFI3/fBgMxjUYwTjyoAB0EJg==
+d3@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/d3/-/d3-7.5.0.tgz#495a2eb30159c34ad54dacf872ac056dd763f3ae"
+  integrity sha512-b0hUpzWOI99VOek1VpmARF67izlrvd6C83wAAP+Wm7c3Prx7080W26ETt51XTiUn5HDdgVytjrz1UX/0P48VdQ==
   dependencies:
     d3-array "3"
     d3-axis "3"

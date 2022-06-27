@@ -2,7 +2,7 @@ import {contourDensity, create, geoPath} from "d3";
 import {identity, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {coerceNumbers} from "../scales.js";
-import {applyFrameAnchor, applyDirectStyles, applyIndirectStyles, applyChannelStyles, applyTransform, distinct, groupZ} from "../style.js";
+import {applyFrameAnchor, applyDirectStyles, applyIndirectStyles, applyChannelStyles, applyTransform, groupZ} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 
 const defaults = {
@@ -92,45 +92,36 @@ function densityInitializer(options, fillDensity, strokeDensity) {
         .y(Y ? i => Y[i] : cy)
         .weight(W ? i => W[i] : 1)
         .size([width, height])
-        .bandwidth(bandwidth)
-        .thresholds(thresholds);
+        .bandwidth(bandwidth);
 
-    // If there are multiple facets or multiple series, first compute the
-    // contours for each facet-series independently; choose the set of contours
-    // with the maximum threshold value (density), and then apply this set’s
-    // thresholds to all the other facet-series. TODO With API changes to
-    // d3-contour, we could avoid recomputing the blurred grid and cache
-    // individual contours, making this more efficient.
-    if (facets.length > 1 || Z && facets.length > 0 && distinct(facets[0], Z)) {
-      let maxValue = 0;
-      let maxContours = [];
-      for (const facet of facets) {
-        for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
-          const C = density(index);
-          if (C.length > 0) {
-            const c = C[C.length - 1];
-            if (c.value > maxValue) {
-              maxValue = c.value;
-              maxContours = C;
-            }
-          }
-        }
+    // Compute the grid for each facet-series; find the maximum density of all
+    // grids and use this to compute contour thresholds.
+    let maxValue = 0;
+    const facetsContours = [];
+    for (const facet of facets) {
+      const facetContours = [];
+      facetsContours.push(facetContours);
+      for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
+        const contour = density.contours(index);
+        const max = contour.max;
+        if (max > maxValue) maxValue = max;
+        facetContours.push([index, contour]);
       }
-      density.thresholds(maxContours.map(c => c.value));
     }
 
     // Generate contours for each facet-series.
+    const T = Array.from({length: thresholds - 1}, (_, i) => maxValue * (i + 1) / thresholds);
     const newFacets = [];
     const contours = [];
-    for (const facet of facets) {
-      const contourFacet = [];
-      newFacets.push(contourFacet);
-      for (const index of Z ? groupZ(facet, Z, z) : [facet]) {
-        for (const contour of density(index)) {
-          contourFacet.push(contours.length);
-          contours.push(contour);
-          if (FD) FD.push(contour.value * k);
-          if (SD) SD.push(contour.value * k);
+    for (const facetContours of facetsContours) {
+      const newFacet = [];
+      newFacets.push(newFacet);
+      for (const [index, contour] of facetContours) {
+        for (const t of T) {
+          newFacet.push(contours.length);
+          contours.push(contour(t));
+          if (FD) FD.push(t * k);
+          if (SD) SD.push(t * k);
           for (const key in newChannels) {
             newChannels[key].value.push(channels[key].value[index[0]]);
           }
