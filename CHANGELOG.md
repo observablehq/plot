@@ -2,7 +2,7 @@
 
 ## 0.5.1
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released June 27, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.1)
 
 The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
