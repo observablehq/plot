@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 
-export default async function() {
+export default async function () {
   const requests = [
     [2002, 9],
     [2003, 17],
@@ -25,8 +25,6 @@ export default async function() {
     y: {
       zero: true
     },
-    marks: [
-      Plot.line(requests)
-    ]
+    marks: [Plot.line(requests)]
   });
 }

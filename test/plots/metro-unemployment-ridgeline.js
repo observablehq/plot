@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const data = await d3.csv("data/bls-metro-unemployment.csv", d3.autoType);
   return Plot.plot({
     width: 960,
@@ -21,7 +21,11 @@ export default async function() {
     },
     marks: [
       Plot.areaY(data, {x: "date", y: "unemployment", fill: "#eee"}),
-      Plot.line(data, {x: "date", y: "unemployment", sort: {fy: "y", reverse: true}}),
+      Plot.line(data, {
+        x: "date",
+        y: "unemployment",
+        sort: {fy: "y", reverse: true}
+      }),
       Plot.ruleY([0])
     ]
   });

@@ -6,9 +6,20 @@ export default async function () {
   return Plot.plot({
     grid: true,
     marks: [
-      Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "species"}),
-      Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", stroke: "species"}),
-      Plot.linearRegressionY(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+      Plot.dot(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        fill: "species"
+      }),
+      Plot.linearRegressionY(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm",
+        stroke: "species"
+      }),
+      Plot.linearRegressionY(penguins, {
+        x: "culmen_length_mm",
+        y: "culmen_depth_mm"
+      })
     ]
   });
 }

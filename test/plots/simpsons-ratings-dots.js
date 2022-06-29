@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const simpsons = await d3.csv("data/simpsons.csv", d3.autoType);
   return Plot.plot({
     x: {
@@ -13,8 +13,17 @@ export default async function() {
       label: "↑ IMDb rating"
     },
     marks: [
-      Plot.ruleX(simpsons, Plot.groupX({y1: "min", y2: "max"}, {x: "season", y: "imdb_rating"})),
-      Plot.line(simpsons, Plot.groupX({y: "median"}, {x: "season", y: "imdb_rating", stroke: "red"})),
+      Plot.ruleX(
+        simpsons,
+        Plot.groupX({y1: "min", y2: "max"}, {x: "season", y: "imdb_rating"})
+      ),
+      Plot.line(
+        simpsons,
+        Plot.groupX(
+          {y: "median"},
+          {x: "season", y: "imdb_rating", stroke: "red"}
+        )
+      ),
       Plot.dot(simpsons, {x: "season", y: "imdb_rating"})
     ]
   });

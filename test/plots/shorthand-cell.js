@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 
-export default async function() {
+export default async function () {
   const matrix = [
     ["Jacob", "Olivia"],
     ["Mia", "Noah"],

@@ -7,8 +7,10 @@ export function select(selector, options = {}) {
   // input channel such as first or last.
   if (typeof selector === "string") {
     switch (selector.toLowerCase()) {
-      case "first": return selectFirst(options);
-      case "last": return selectLast(options);
+      case "first":
+        return selectFirst(options);
+      case "last":
+        return selectLast(options);
     }
   }
   if (typeof selector === "function") {
@@ -19,7 +21,8 @@ export function select(selector, options = {}) {
   // channel values as input. The selector object must have exactly one key.
   let key, value;
   for (key in selector) {
-    if (value !== undefined) throw new Error("ambiguous selector; multiple inputs");
+    if (value !== undefined)
+      throw new Error("ambiguous selector; multiple inputs");
     value = maybeSelector(selector[key]);
   }
   if (value === undefined) throw new Error(`invalid selector: ${selector}`);
@@ -29,8 +32,10 @@ export function select(selector, options = {}) {
 function maybeSelector(selector) {
   if (typeof selector === "function") return selector;
   switch (`${selector}`.toLowerCase()) {
-    case "min": return selectorMin;
-    case "max": return selectorMax;
+    case "min":
+      return selectorMin;
+    case "max":
+      return selectorMax;
   }
   throw new Error(`unknown selector: ${selector}`);
 }
@@ -68,11 +73,11 @@ function* selectorLast(I) {
 }
 
 function* selectorMin(I, X) {
-  yield least(I, i => X[i]);
+  yield least(I, (i) => X[i]);
 }
 
 function* selectorMax(I, X) {
-  yield greatest(I, i => X[i]);
+  yield greatest(I, (i) => X[i]);
 }
 
 function selectChannel(v, selector, options) {
@@ -87,7 +92,7 @@ function selectChannel(v, selector, options) {
     const selectFacets = [];
     for (const facet of facets) {
       const selectFacet = [];
-      for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+      for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
         for (const i of selector(I, V)) {
           selectFacet.push(i);
         }

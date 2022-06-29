@@ -1,12 +1,12 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   let votes = await d3.csv("data/nc-absentee-votes.csv", d3.autoType);
 
   // Filter for mail ballots.
   const types = ["MAIL"];
-  votes = votes.filter(d => types.includes(d.ballot_req_type));
+  votes = votes.filter((d) => types.includes(d.ballot_req_type));
 
   // Filter for specific races.
   // const races = ["BLACK or AFRICAN AMERICAN", "WHITE"];
@@ -28,7 +28,7 @@ export default async function() {
     ["NO TIME FOR CURE - CONTACTED", "REJECTED"],
     ["NOT PROPERLY NOTARIZED", "REJECTED"]
   ]);
-  votes = votes.map(d => ({
+  votes = votes.map((d) => ({
     ...d,
     status: statuses.get(d.ballot_rtn_status) || d.ballot_rtn_status
   }));
@@ -38,9 +38,9 @@ export default async function() {
   // then rollup the count for each group.
   let rollup = d3.rollups(
     votes,
-    votes => d3.sum(votes, d => d.count),
-    d => d.race,
-    d => d.status
+    (votes) => d3.sum(votes, (d) => d.count),
+    (d) => d.race,
+    (d) => d.status
   );
 
   // Compute the count for each race,
@@ -48,7 +48,7 @@ export default async function() {
   rollup = rollup.flatMap(([race, group]) => {
     const total = d3.sum(group, ([, count]) => count);
     return group.map(([status, count]) => {
-      return {race, status, percent: count / total * 100};
+      return {race, status, percent: (count / total) * 100};
     });
   });
 
@@ -78,10 +78,10 @@ export default async function() {
         x: "percent",
         y: "status",
         fill: "status",
-        title: d => `${d.percent.toFixed(1)}%`,
+        title: (d) => `${d.percent.toFixed(1)}%`,
         sort: {
           fy: "data",
-          reduce: data => data.find(d => d.status === "ACCEPTED").percent,
+          reduce: (data) => data.find((d) => d.status === "ACCEPTED").percent,
           reverse: true
         }
       }),

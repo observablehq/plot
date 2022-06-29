@@ -2,7 +2,13 @@ import {create, group, path, select, Delaunay} from "d3";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {
+  applyChannelStyles,
+  applyDirectStyles,
+  applyFrameAnchor,
+  applyIndirectStyles,
+  applyTransform
+} from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
 const delaunayLinkDefaults = {
@@ -61,8 +67,8 @@ class DelaunayLink extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? i => X[i] : constant(cx);
-    const yi = Y ? i => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i] : constant(cx);
+    const yi = Y ? (i) => Y[i] : constant(cy);
     const mark = this;
 
     function links(index) {
@@ -87,11 +93,13 @@ class DelaunayLink extends Mark {
       }
 
       const {halfedges, hull, triangles} = Delaunay.from(index, xi, yi);
-      for (let i = 0; i < halfedges.length; ++i) { // inner edges
+      for (let i = 0; i < halfedges.length; ++i) {
+        // inner edges
         const j = halfedges[i];
         if (j > i) link(triangles[i], triangles[j]);
       }
-      for (let i = 0; i < hull.length; ++i) { // convex hull
+      for (let i = 0; i < hull.length; ++i) {
+        // convex hull
         link(hull[i], hull[(i + 1) % hull.length]);
       }
 
@@ -99,26 +107,34 @@ class DelaunayLink extends Mark {
         .selectAll()
         .data(newIndex)
         .join("path")
-          .call(applyDirectStyles, mark)
-          .attr("d", i => {
-            const p = path();
-            const c = curve(p);
-            c.lineStart();
-            c.point(X1[i], Y1[i]);
-            c.point(X2[i], Y2[i]);
-            c.lineEnd();
-            return p;
-          })
-          .call(applyChannelStyles, mark, newChannels)
-          .call(applyMarkers, mark, newChannels);
+        .call(applyDirectStyles, mark)
+        .attr("d", (i) => {
+          const p = path();
+          const c = curve(p);
+          c.lineStart();
+          c.point(X1[i], Y1[i]);
+          c.point(X2[i], Y2[i]);
+          c.lineEnd();
+          return p;
+        })
+        .call(applyChannelStyles, mark, newChannels)
+        .call(applyMarkers, mark, newChannels);
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(Z
-          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(links)
-          : g => g.datum(index).each(links))
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call(
+        Z
+          ? (g) =>
+              g
+                .selectAll()
+                .data(group(index, (i) => Z[i]).values())
+                .enter()
+                .append("g")
+                .each(links)
+          : (g) => g.datum(index).each(links)
+      )
       .node();
   }
 }
@@ -140,13 +156,14 @@ class AbstractDelaunayMark extends Mark {
   render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? i => X[i] : constant(cx);
-    const yi = Y ? i => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i] : constant(cx);
+    const yi = Y ? (i) => Y[i] : constant(cy);
     const mark = this;
 
     function mesh(index) {
       const delaunay = Delaunay.from(index, xi, yi);
-      select(this).append("path")
+      select(this)
+        .append("path")
         .datum(index[0])
         .call(applyDirectStyles, mark)
         .attr("d", mark._render(delaunay, dimensions))
@@ -154,11 +171,19 @@ class AbstractDelaunayMark extends Mark {
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(Z
-          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(mesh)
-          : g => g.datum(index).each(mesh))
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call(
+        Z
+          ? (g) =>
+              g
+                .selectAll()
+                .data(group(index, (i) => Z[i]).values())
+                .enter()
+                .append("g")
+                .each(mesh)
+          : (g) => g.datum(index).each(mesh)
+      )
       .node();
   }
 }
@@ -199,8 +224,8 @@ class Voronoi extends Mark {
   render(index, scales, channels, dimensions) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? i => X[i] : constant(cx);
-    const yi = Y ? i => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i] : constant(cx);
+    const yi = Y ? (i) => Y[i] : constant(cy);
 
     function cells(index) {
       const delaunay = Delaunay.from(index, xi, yi);
@@ -210,17 +235,25 @@ class Voronoi extends Mark {
         .data(index)
         .enter()
         .append("path")
-          .call(applyDirectStyles, this)
-          .attr("d", (_, i) => voronoi.renderCell(i))
-          .call(applyChannelStyles, this, channels);
+        .call(applyDirectStyles, this)
+        .attr("d", (_, i) => voronoi.renderCell(i))
+        .call(applyChannelStyles, this, channels);
     }
 
     return create("svg:g")
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(Z
-          ? g => g.selectAll().data(group(index, i => Z[i]).values()).enter().append("g").each(cells)
-          : g => g.datum(index).each(cells))
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call(
+        Z
+          ? (g) =>
+              g
+                .selectAll()
+                .data(group(index, (i) => Z[i]).values())
+                .enter()
+                .append("g")
+                .each(cells)
+          : (g) => g.datum(index).each(cells)
+      )
       .node();
   }
 }
@@ -236,12 +269,18 @@ class VoronoiMesh extends AbstractDelaunayMark {
 }
 
 function voronoiof(delaunay, dimensions) {
-  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
-  return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} =
+    dimensions;
+  return delaunay.voronoi([
+    marginLeft,
+    marginTop,
+    width - marginRight,
+    height - marginBottom
+  ]);
 }
 
 function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  [x, y] = maybeTuple(x, y);
   return new DelaunayMark(data, {...options, x, y});
 }
 

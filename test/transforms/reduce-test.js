@@ -14,12 +14,16 @@ it("baked-in reducers reduce as expected", () => {
 
 it("function reducers reduce as expected", () => {
   const data = [0, 1, 2, 4, 5, 9];
-  testReducer(data, v => v.length, 6);
-  testReducer(data, v => v.join(", "), "0, 1, 2, 4, 5, 9");
+  testReducer(data, (v) => v.length, 6);
+  testReducer(data, (v) => v.join(", "), "0, 1, 2, 4, 5, 9");
 });
 
 function testReducer(data, x, r) {
-  const mark = Plot.dot(data, Plot.groupZ({x}, {x: d => d}));
-  const {channels: {x: {value: X}}} = mark.initialize();
+  const mark = Plot.dot(data, Plot.groupZ({x}, {x: (d) => d}));
+  const {
+    channels: {
+      x: {value: X}
+    }
+  } = mark.initialize();
   assert.deepStrictEqual(X, [r]);
 }

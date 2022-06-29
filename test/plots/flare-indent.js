@@ -22,5 +22,6 @@ export default async function () {
 }
 
 function indent() {
-  return root => root.eachBefore((node, i) => (node.y = node.depth, node.x = i));
+  return (root) =>
+    root.eachBefore((node, i) => ((node.y = node.depth), (node.x = i)));
 }

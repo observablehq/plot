@@ -5,9 +5,18 @@ it("tickX() has the expected defaults", () => {
   const tick = Plot.tickX();
   assert.strictEqual(tick.data, undefined);
   assert.strictEqual(tick.transform, undefined);
-  assert.deepStrictEqual(tick.channels.map(c => c.name), ["x"]);
-  assert.deepStrictEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(tick.channels.map(c => c.scale), ["x"]);
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.name),
+    ["x"]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.scale),
+    ["x"]
+  );
   assert.strictEqual(tick.fill, undefined);
   assert.strictEqual(tick.fillOpacity, undefined);
   assert.strictEqual(tick.stroke, "currentColor");
@@ -24,15 +33,21 @@ it("tickX() has the expected defaults", () => {
 
 it("tickX(data, {y}) uses a band scale", () => {
   const tick = Plot.tickX(undefined, {y: "x"});
-  assert.deepStrictEqual(tick.channels.map(c => c.name), ["x", "y"]);
-  assert.deepStrictEqual(tick.channels.map(c => c.scale), ["x", "y"]);
-  assert.strictEqual(tick.channels.find(c => c.name === "y").type, "band");
-  assert.strictEqual(tick.channels.find(c => c.name === "y").value, "x");
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.name),
+    ["x", "y"]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.scale),
+    ["x", "y"]
+  );
+  assert.strictEqual(tick.channels.find((c) => c.name === "y").type, "band");
+  assert.strictEqual(tick.channels.find((c) => c.name === "y").value, "x");
 });
 
 it("tickX(data, {title}) specifies an optional title channel", () => {
   const tick = Plot.tickX(undefined, {title: "x"});
-  const title = tick.channels.find(c => c.name === "title");
+  const title = tick.channels.find((c) => c.name === "title");
   assert.strictEqual(title.value, "x");
   assert.strictEqual(title.scale, undefined);
 });
@@ -50,7 +65,7 @@ it("tickX(data, {stroke}) allows stroke to be null", () => {
 it("tickX(data, {stroke}) allows stroke to be a variable color", () => {
   const tick = Plot.tickX(undefined, {stroke: "x"});
   assert.strictEqual(tick.stroke, undefined);
-  const stroke = tick.channels.find(c => c.name === "stroke");
+  const stroke = tick.channels.find((c) => c.name === "stroke");
   assert.strictEqual(stroke.value, "x");
   assert.strictEqual(stroke.scale, "color");
 });
@@ -59,9 +74,18 @@ it("tickY() has the expected defaults", () => {
   const tick = Plot.tickY();
   assert.strictEqual(tick.data, undefined);
   assert.strictEqual(tick.transform, undefined);
-  assert.deepStrictEqual(tick.channels.map(c => c.name), ["y"]);
-  assert.deepStrictEqual(tick.channels.map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(tick.channels.map(c => c.scale), ["y"]);
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.name),
+    ["y"]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.scale),
+    ["y"]
+  );
   assert.strictEqual(tick.fill, undefined);
   assert.strictEqual(tick.fillOpacity, undefined);
   assert.strictEqual(tick.stroke, "currentColor");
@@ -78,15 +102,21 @@ it("tickY() has the expected defaults", () => {
 
 it("tickY(data, {x}) uses a band scale", () => {
   const tick = Plot.tickY(undefined, {x: "y"});
-  assert.deepStrictEqual(tick.channels.map(c => c.name), ["y", "x"]);
-  assert.deepStrictEqual(tick.channels.map(c => c.scale), ["y", "x"]);
-  assert.strictEqual(tick.channels.find(c => c.name === "x").type, "band");
-  assert.strictEqual(tick.channels.find(c => c.name === "x").value, "y");
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.name),
+    ["y", "x"]
+  );
+  assert.deepStrictEqual(
+    tick.channels.map((c) => c.scale),
+    ["y", "x"]
+  );
+  assert.strictEqual(tick.channels.find((c) => c.name === "x").type, "band");
+  assert.strictEqual(tick.channels.find((c) => c.name === "x").value, "y");
 });
 
 it("tickY(data, {title}) specifies an optional title channel", () => {
   const tick = Plot.tickY(undefined, {title: "x"});
-  const title = tick.channels.find(c => c.name === "title");
+  const title = tick.channels.find((c) => c.name === "title");
   assert.strictEqual(title.value, "x");
   assert.strictEqual(title.scale, undefined);
 });
@@ -104,7 +134,7 @@ it("tickY(data, {stroke}) allows stroke to be null", () => {
 it("tickY(data, {stroke}) allows stroke to be a variable color", () => {
   const tick = Plot.tickY(undefined, {stroke: "x"});
   assert.strictEqual(tick.stroke, undefined);
-  const stroke = tick.channels.find(c => c.name === "stroke");
+  const stroke = tick.channels.find((c) => c.name === "stroke");
   assert.strictEqual(stroke.value, "x");
   assert.strictEqual(stroke.scale, "color");
 });

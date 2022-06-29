@@ -25,16 +25,18 @@ export class Cell extends AbstractBar {
 }
 
 export function cell(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  [x, y] = maybeTuple(x, y);
   return new Cell(data, {...options, x, y});
 }
 
 export function cellX(data, {x = indexOf, fill, stroke, ...options} = {}) {
-  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
+  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined)
+    fill = identity;
   return new Cell(data, {...options, x, fill, stroke});
 }
 
 export function cellY(data, {y = indexOf, fill, stroke, ...options} = {}) {
-  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
+  if (fill === undefined && maybeColorChannel(stroke)[0] === undefined)
+    fill = identity;
   return new Cell(data, {...options, y, fill, stroke});
 }

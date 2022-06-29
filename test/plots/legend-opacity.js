@@ -5,15 +5,22 @@ export function opacityLegend() {
 }
 
 export function opacityLegendRange() {
-  return Plot.legend({opacity: {domain: [0, 1], range: [0.5, 1], label: "Range"}});
+  return Plot.legend({
+    opacity: {domain: [0, 1], range: [0.5, 1], label: "Range"}
+  });
 }
 
 export function opacityLegendLinear() {
-  return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}});
+  return Plot.legend({
+    opacity: {type: "linear", domain: [0, 10], label: "Linear"}
+  });
 }
 
 export function opacityLegendColor() {
-  return Plot.legend({opacity: {type: "linear", domain: [0, 10], label: "Linear"}, color: "steelblue"});
+  return Plot.legend({
+    opacity: {type: "linear", domain: [0, 10], label: "Linear"},
+    color: "steelblue"
+  });
 }
 
 export function opacityLegendLog() {

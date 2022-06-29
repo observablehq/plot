@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const stargazers = await d3.csv("data/stargazers.csv", d3.autoType);
   const format = d3.utcFormat("%Y-%m-%d");
   return Plot.plot({
@@ -13,7 +13,11 @@ export default async function() {
       Plot.rectY(
         stargazers,
         Plot.binX(
-          {y: "count", title: (d, {x1, x2}) => `${format(x1)} to ${format(x2)}\n${d.length}`},
+          {
+            y: "count",
+            title: (d, {x1, x2}) =>
+              `${format(x1)} to ${format(x2)}\n${d.length}`
+          },
           {x: "date", thresholds: d3.utcWeek}
         )
       ),

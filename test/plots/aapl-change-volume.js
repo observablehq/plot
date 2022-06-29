@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const data = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.plot({
     x: {
@@ -16,7 +16,7 @@ export default async function() {
     marks: [
       Plot.ruleX([0]),
       Plot.dot(data, {
-        x: d => (d.Close - d.Open) / d.Open * 100,
+        x: (d) => ((d.Close - d.Open) / d.Open) * 100,
         y: "Volume",
         r: "Volume"
       })

@@ -30,7 +30,7 @@ it("Plot.normalize sum", () => {
 });
 
 it("Plot.normalize extent", () => {
-  testNormalize([1, 2, 3], "extent", [0, .5, 1]);
+  testNormalize([1, 2, 3], "extent", [0, 0.5, 1]);
 });
 
 it("Plot.normalize deviation", () => {
@@ -43,6 +43,10 @@ it("Plot.normalize deviation doesn’t crash on equal values", () => {
 
 function testNormalize(data, basis, r) {
   const mark = Plot.dot(data, Plot.normalizeY(basis, {y: data}));
-  const {channels: {y: {value: Y}}} = mark.initialize();
+  const {
+    channels: {
+      y: {value: Y}
+    }
+  } = mark.initialize();
   assert.deepStrictEqual(Y, r);
 }

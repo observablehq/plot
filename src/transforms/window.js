@@ -18,7 +18,9 @@ export function window(options = {}) {
   let {k, reduce, shift, anchor} = options;
   if (anchor === undefined && shift !== undefined) {
     anchor = maybeShift(shift);
-    warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
+    warn(
+      `Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`
+    );
   }
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
   return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
@@ -26,18 +28,24 @@ export function window(options = {}) {
 
 function maybeAnchor(anchor = "middle", k) {
   switch (`${anchor}`.toLowerCase()) {
-    case "middle": return (k - 1) >> 1;
-    case "start": return 0;
-    case "end": return k - 1;
+    case "middle":
+      return (k - 1) >> 1;
+    case "start":
+      return 0;
+    case "end":
+      return k - 1;
   }
   throw new Error(`invalid anchor: ${anchor}`);
 }
 
 function maybeShift(shift) {
   switch (`${shift}`.toLowerCase()) {
-    case "centered": return "middle";
-    case "leading": return "start";
-    case "trailing": return "end";
+    case "centered":
+      return "middle";
+    case "leading":
+      return "start";
+    case "trailing":
+      return "end";
   }
   throw new Error(`invalid shift: ${shift}`);
 }
@@ -46,28 +54,41 @@ function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
     if (/^p\d{2}$/i.test(reduce)) return reduceSubarray(percentile(reduce));
     switch (reduce.toLowerCase()) {
-      case "deviation": return reduceSubarray(deviation);
-      case "max": return reduceSubarray(max);
-      case "mean": return reduceMean;
-      case "median": return reduceSubarray(median);
-      case "min": return reduceSubarray(min);
-      case "mode": return reduceSubarray(mode);
-      case "sum": return reduceSum;
-      case "variance": return reduceSubarray(variance);
-      case "difference": return reduceDifference;
-      case "ratio": return reduceRatio;
-      case "first": return reduceFirst;
-      case "last": return reduceLast;
+      case "deviation":
+        return reduceSubarray(deviation);
+      case "max":
+        return reduceSubarray(max);
+      case "mean":
+        return reduceMean;
+      case "median":
+        return reduceSubarray(median);
+      case "min":
+        return reduceSubarray(min);
+      case "mode":
+        return reduceSubarray(mode);
+      case "sum":
+        return reduceSum;
+      case "variance":
+        return reduceSubarray(variance);
+      case "difference":
+        return reduceDifference;
+      case "ratio":
+        return reduceRatio;
+      case "first":
+        return reduceFirst;
+      case "last":
+        return reduceLast;
     }
   }
-  if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
+  if (typeof reduce !== "function")
+    throw new Error(`invalid reduce: ${reduce}`);
   return reduceSubarray(reduce);
 }
 
 function reduceSubarray(f) {
   return (k, s) => ({
     map(I, S, T) {
-      const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
+      const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
       let nans = 0;
       for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
