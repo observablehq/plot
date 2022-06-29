@@ -3,3 +3,5 @@ dist/
 node_modules/
 test/output/*-changed.svg
 test/output/*-changed.html
+tsconfig.tsbuildinfo
+yarn-error.log

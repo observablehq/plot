@@ -88,10 +88,10 @@ function binn(
     stroke,
     x1, x2, // consumed if x is an output
     y1, y2, // consumed if y is an output
-    domain, // eslint-disable-line no-unused-vars
-    cumulative, // eslint-disable-line no-unused-vars
-    thresholds, // eslint-disable-line no-unused-vars
-    interval, // eslint-disable-line no-unused-vars
+    domain,
+    cumulative,
+    thresholds,
+    interval,
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeColumn(z);

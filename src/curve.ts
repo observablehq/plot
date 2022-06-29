@@ -20,8 +20,41 @@ import {
   curveStepAfter,
   curveStepBefore
 } from "d3";
+import type {
+  CurveFactory,
+  CurveBundleFactory,
+  CurveCardinalFactory,
+  CurveCatmullRomFactory
+} from "d3";
 
-const curves = new Map([
+type CurveFunction =
+  | CurveFactory
+  | CurveBundleFactory
+  | CurveCardinalFactory
+  | CurveCatmullRomFactory;
+type CurveName =
+  | "basis"
+  | "basis-closed"
+  | "basis-open"
+  | "bundle"
+  | "bump-x"
+  | "bump-y"
+  | "cardinal"
+  | "cardinal-closed"
+  | "cardinal-open"
+  | "catmull-rom"
+  | "catmull-rom-closed"
+  | "catmull-rom-open"
+  | "linear"
+  | "linear-closed"
+  | "monotone-x"
+  | "monotone-y"
+  | "natural"
+  | "step"
+  | "step-after"
+  | "step-before";
+
+const curves = new Map<CurveName, CurveFunction>([
   ["basis", curveBasis],
   ["basis-closed", curveBasisClosed],
   ["basis-open", curveBasisOpen],
@@ -44,19 +77,20 @@ const curves = new Map([
   ["step-before", curveStepBefore]
 ]);
 
-export function Curve(curve = curveLinear, tension) {
+export function Curve(
+  curve: CurveName | CurveFunction = curveLinear,
+  tension?: number
+): CurveFunction {
   if (typeof curve === "function") return curve; // custom curve
-  const c = curves.get(`${curve}`.toLowerCase());
+  const c = curves.get(`${curve}`.toLowerCase() as CurveName);
   if (!c) throw new Error(`unknown curve: ${curve}`);
   if (tension !== undefined) {
-    switch (c) {
-      case curveBundle: return c.beta(tension);
-      case curveCardinalClosed:
-      case curveCardinalOpen:
-      case curveCardinal: return c.tension(tension);
-      case curveCatmullRomClosed:
-      case curveCatmullRomOpen:
-      case curveCatmullRom: return c.alpha(tension);
+    if ("beta" in c) {
+      return c.beta(tension);
+    } else if ("tension" in c) {
+      return c.tension(tension);
+    } else if ("alpha" in c) {
+      return c.alpha(tension);
     }
   }
   return c;
