@@ -63,7 +63,7 @@ class DelaunayLink extends Mark {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
-    const mark = this; // eslint-disable-line @typescript-eslint/no-this-alias
+    const mark = this;
 
     function links(index) {
       let i = -1;
@@ -142,7 +142,7 @@ class AbstractDelaunayMark extends Mark {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
     const yi = Y ? i => Y[i] : constant(cy);
-    const mark = this; // eslint-disable-line @typescript-eslint/no-this-alias
+    const mark = this;
 
     function mesh(index) {
       const delaunay = Delaunay.from(index, xi, yi);
