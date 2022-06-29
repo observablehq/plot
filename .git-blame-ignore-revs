@@ -1,0 +1,12 @@
+# When making commits that are strictly formatting/style changes, add the
+# commit hash here, so git blame can ignore the change. See docs for more
+# details:
+# https://docs.github.com/en/repositories/working-with-files/using-files/viewing-a-file#ignore-commits-in-the-blame-view
+#
+# Github will use this file to ignore these commits for blame.
+#
+# Run this to configure git locally to also ignore these commits:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Ran prettier on the entire codebase
+28f436d0f3c10bd0beb774b7c3a353b4ac947cf1
