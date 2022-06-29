@@ -16,9 +16,11 @@ export default defineConfig({
   publicDir: path.resolve("./test"),
   resolve: {
     alias: [
-      { find: "@observablehq/plot", replacement: path.resolve("./src/index.js") },
+      {find: "@observablehq/plot", replacement: path.resolve("./src/index.js")},
       {
-        find: RegExp(`^(.*).js$`), replacement: "$1", customResolver: (importee, importer) => {
+        find: /^(.*)\.js$/,
+        replacement: "$1",
+        customResolver: (importee, importer) => {
           const base = path.join(path.dirname(importer), importee);
           const js = `${base}.js`;
           const ts = `${base}.ts`;
