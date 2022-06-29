@@ -1,0 +1,4 @@
+test/output
+.rollup.cache
+dist
+*.md
