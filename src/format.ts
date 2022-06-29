@@ -1,8 +1,7 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {format as isoFormat} from "isoformat";
 import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
-
 
 const numberFormat = memoize1<Intl.NumberFormat>((locale: string | string[] | undefined) => new Intl.NumberFormat(locale));
 const monthFormat = memoize1<Intl.DateTimeFormat>((locale: string | string[] | undefined, month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", month}));
