@@ -159,8 +159,14 @@ export function plot(options = {}) {
   // When faceting, render axes for fx and fy instead of x and y.
   const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
   const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
-  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions));
-  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions));
+  if (axisY) {
+    const node = axisY.render(null, scales, dimensions);
+    if (node) svg.appendChild(node);
+  }
+  if (axisX) {
+    const node = axisX.render(null, scales, dimensions);
+    if (node) svg.appendChild(node);
+  }
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
