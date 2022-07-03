@@ -1,7 +1,7 @@
 import {path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
-import {create} from "../create.js";
+import {Context, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -71,21 +71,21 @@ export function legendSymbols(symbol, {
   );
 }
 
-function legendItems(scale, {
-  columns,
-  tickFormat,
-  fontVariant = inferFontVariant(scale),
-  // TODO label,
-  swatchSize = 15,
-  swatchWidth = swatchSize,
-  swatchHeight = swatchSize,
-  marginLeft = 0,
-  className,
-  style,
-  width,
-  document = window.document
-} = {}, swatch, swatchStyle) {
-  const context = {document};
+function legendItems(scale, options = {}, swatch, swatchStyle) {
+  let {
+    columns,
+    tickFormat,
+    fontVariant = inferFontVariant(scale),
+    // TODO label,
+    swatchSize = 15,
+    swatchWidth = swatchSize,
+    swatchHeight = swatchSize,
+    marginLeft = 0,
+    className,
+    style,
+    width
+  } = options;
+  const context = Context(options);
   className = maybeClassName(className);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 
@@ -151,7 +151,7 @@ function legendItems(scale, {
         .attr("class", `${className}-swatch`)
         .call(swatch, scale)
         .append(function() {
-          return document.createTextNode(tickFormat.apply(this, arguments));
+          return this.ownerDocument.createTextNode(tickFormat.apply(this, arguments));
         });
   }
 

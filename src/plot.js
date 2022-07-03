@@ -1,7 +1,7 @@
 import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
-import {create} from "./create.js";
+import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
@@ -14,7 +14,7 @@ import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
-  const {facet, style, caption, ariaLabel, ariaDescription, document = window.document} = options;
+  const {facet, style, caption, ariaLabel, ariaDescription} = options;
 
   // className for inline styles
   const className = maybeClassName(options.className);
@@ -88,7 +88,7 @@ export function plot(options = {}) {
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
-  const context = {document};
+  const context = Context(options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -224,6 +224,7 @@ export function plot(options = {}) {
   let figure = svg;
   const legends = Legends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
+    const {document} = context;
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
     for (const legend of legends) figure.appendChild(legend);

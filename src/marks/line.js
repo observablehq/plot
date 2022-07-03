@@ -1,5 +1,5 @@
 import {line as shapeLine} from "d3";
-import {create} from "../create.js";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";

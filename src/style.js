@@ -289,7 +289,7 @@ function applyHref(selection, href, target) {
   selection.each(function(i) {
     const h = href(i);
     if (h != null) {
-      const a = document.createElementNS(namespaces.svg, "a");
+      const a = this.ownerDocument.createElementNS(namespaces.svg, "a");
       a.setAttribute("fill", "inherit");
       a.setAttributeNS(namespaces.xlink, "href", h);
       if (target != null) a.setAttribute("target", target);

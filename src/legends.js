@@ -1,8 +1,9 @@
 import {rgb} from "d3";
-import {inherit, isScaleOptions} from "./options.js";
-import {normalizeScale} from "./scales.js";
+import {Context} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
+import {inherit, isScaleOptions} from "./options.js";
+import {normalizeScale} from "./scales.js";
 
 const legendRegistry = new Map([
   ["symbol", legendSymbols],
@@ -14,8 +15,7 @@ export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isScaleOptions(scale)) { // e.g., ignore {color: "red"}
-      const {document = window.document} = options;
-      const context = {document};
+      const context = Context(options);
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
@@ -40,8 +40,8 @@ export function exposeLegends(scales, context, defaults = {}) {
   };
 }
 
-function legendOptions({document}, {label, ticks, tickFormat} = {}, options) {
-  return inherit(options, {document, label, ticks, tickFormat});
+function legendOptions(context, {label, ticks, tickFormat} = {}, options) {
+  return inherit(options, context, {label, ticks, tickFormat});
 }
 
 function legendColor(color, {

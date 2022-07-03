@@ -1,4 +1,4 @@
-import {create} from "../create.js";
+import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";

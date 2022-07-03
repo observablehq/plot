@@ -1,28 +1,28 @@
 import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
-import {create} from "../create.js";
+import {Context, create} from "../context.js";
 import {map} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
-export function legendRamp(color, {
-  label = color.label,
-  tickSize = 6,
-  width = 240,
-  height = 44 + tickSize,
-  marginTop = 18,
-  marginRight = 0,
-  marginBottom = 16 + tickSize,
-  marginLeft = 0,
-  style,
-  ticks = (width - marginLeft - marginRight) / 64,
-  tickFormat,
-  fontVariant = inferFontVariant(color),
-  round = true,
-  className,
-  document = window.document
-}) {
-  const context = {document};
+export function legendRamp(color, options) {
+  let {
+    label = color.label,
+    tickSize = 6,
+    width = 240,
+    height = 44 + tickSize,
+    marginTop = 18,
+    marginRight = 0,
+    marginBottom = 16 + tickSize,
+    marginLeft = 0,
+    style,
+    ticks = (width - marginLeft - marginRight) / 64,
+    tickFormat,
+    fontVariant = inferFontVariant(color),
+    round = true,
+    className
+  } = options;
+  const context = Context(options);
   className = maybeClassName(className);
   if (tickFormat === null) tickFormat = () => null;
 
@@ -88,7 +88,7 @@ export function legendRamp(color, {
 
     // Construct a 256×1 canvas, filling each pixel using the interpolator.
     const n = 256;
-    const canvas = document.createElement("canvas");
+    const canvas = context.document.createElement("canvas");
     canvas.width = n;
     canvas.height = 1;
     const context2 = canvas.getContext("2d");
