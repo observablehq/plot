@@ -307,7 +307,7 @@ export function marks(...marks) {
 }
 
 function markify(mark) {
-  return mark instanceof Mark ? mark : new Render(mark);
+  return typeof mark?.render === "function" ? mark : new Render(mark);
 }
 
 class Render extends Mark {
