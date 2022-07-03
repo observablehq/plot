@@ -1,6 +1,7 @@
-import {create, path} from "d3";
+import {path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
+import {create} from "../create.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -81,12 +82,14 @@ function legendItems(scale, {
   marginLeft = 0,
   className,
   style,
-  width
+  width,
+  document = window.document
 } = {}, swatch, swatchStyle) {
+  const context = {document};
   className = maybeClassName(className);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 
-  const swatches = create("div")
+  const swatches = create("div", context)
       .attr("class", className)
       .attr("style", `
         --swatchWidth: ${+swatchWidth}px;

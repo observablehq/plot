@@ -1,5 +1,6 @@
-import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
+import {create} from "../create.js";
 import {map} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
@@ -18,12 +19,14 @@ export function legendRamp(color, {
   tickFormat,
   fontVariant = inferFontVariant(color),
   round = true,
-  className
+  className,
+  document = window.document
 }) {
+  const context = {document};
   className = maybeClassName(className);
   if (tickFormat === null) tickFormat = () => null;
 
-  const svg = create("svg")
+  const svg = create("svg", context)
       .attr("class", className)
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
@@ -83,13 +86,24 @@ export function legendRamp(color, {
       )
     );
 
+    // Construct a 256×1 canvas, filling each pixel using the interpolator.
+    const n = 256;
+    const canvas = document.createElement("canvas");
+    canvas.width = n;
+    canvas.height = 1;
+    const context2 = canvas.getContext("2d");
+    for (let i = 0, j = n - 1; i < n; ++i) {
+      context2.fillStyle = interpolator(i / j);
+      context2.fillRect(i, 0, 1, 1);
+    }
+
     svg.append("image")
         .attr("x", marginLeft)
         .attr("y", marginTop)
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
         .attr("preserveAspectRatio", "none")
-        .attr("xlink:href", ramp(interpolator).toDataURL());
+        .attr("xlink:href", canvas.toDataURL());
   }
 
   // Threshold
@@ -161,14 +175,4 @@ export function legendRamp(color, {
   }
 
   return svg.node();
-}
-
-function ramp(color, n = 256) {
-  const canvas = create("canvas").attr("width", n).attr("height", 1).node();
-  const context = canvas.getContext("2d");
-  for (let i = 0; i < n; ++i) {
-    context.fillStyle = color(i / (n - 1));
-    context.fillRect(i, 0, 1, 1);
-  }
-  return canvas;
 }
