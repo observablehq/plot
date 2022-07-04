@@ -17,13 +17,15 @@ export function legendSwatches(color, options) {
   return legendItems(
     color,
     options,
-    selection => selection.style("--color", color.scale),
-    className => `.${className}-swatch::before {
-        content: "";
+    (selection, scale) => selection.append("svg")
+        .attr("fill", scale.scale)
+      .append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%"),
+    className => `.${className}-swatch svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);
         margin-right: 0.5em;
-        background: var(--color);
       }`
   );
 }
