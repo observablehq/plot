@@ -2,7 +2,7 @@
 
 ## 0.5.2
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released July 4, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.2)
 
 Swatches legends are now rendered in SVG, supporting patterns and gradients. Swatches legends now require an *ordinal*, *categorical*, or *threshold* color scale and will throw an error if you attempt to use them with an unsupported color scale type (such as a *linear* or *diverging* scale).
 
