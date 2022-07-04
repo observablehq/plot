@@ -11,7 +11,8 @@ export default async function() {
         "url(#grouped-12512014-2)",
         "url(#grouped-12512014-3)",
         "url(#grouped-12512014-4)"
-      ]
+      ],
+      legend: true
     },
     marks: [
       // Based on https://observablehq.com/@tomshanley/cheysson-color-palettes
