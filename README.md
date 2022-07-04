@@ -88,6 +88,7 @@ These options determine the overall layout of the plot; all are specified as num
 * **margin** - shorthand for the four margins
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
+* **document** - the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create the plot, defaults to window.document.
 
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396.
 
