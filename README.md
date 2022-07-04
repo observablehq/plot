@@ -88,7 +88,6 @@ These options determine the overall layout of the plot; all are specified as num
 * **margin** - shorthand for the four margins
 * **width** - the outer width of the plot (including margins)
 * **height** - the outer height of the plot (including margins)
-* **document** - the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements; defaults to window.document
 
 The default **width** is 640. On Observable, the width can be set to the [standard width](https://github.com/observablehq/stdlib/blob/main/README.md#width) to make responsive plots. The default **height** is chosen automatically based on the plot’s associated scales; for example, if *y* is linear and there is no *fy* scale, it might be 396.
 
@@ -116,6 +115,8 @@ Plot.plot({
 ```
 
 The generated SVG element has a random class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
+
+The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, way when using a virtual DOM library for server-side rendering in Node.
 
 ### Scale options
 
