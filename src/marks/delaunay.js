@@ -1,4 +1,5 @@
-import {create, group, path, select, Delaunay} from "d3";
+import {group, path, select, Delaunay} from "d3";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
@@ -57,7 +58,7 @@ class DelaunayLink extends Mark {
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -113,7 +114,7 @@ class DelaunayLink extends Mark {
           .call(applyMarkers, mark, newChannels);
     }
 
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(Z
@@ -137,7 +138,7 @@ class AbstractDelaunayMark extends Mark {
       defaults
     );
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
@@ -153,7 +154,7 @@ class AbstractDelaunayMark extends Mark {
         .call(applyChannelStyles, mark, channels);
     }
 
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(Z
@@ -196,7 +197,7 @@ class Voronoi extends Mark {
       voronoiDefaults
     );
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? i => X[i] : constant(cx);
@@ -215,7 +216,7 @@ class Voronoi extends Mark {
           .call(applyChannelStyles, this, channels);
     }
 
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(Z

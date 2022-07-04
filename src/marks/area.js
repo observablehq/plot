@@ -1,7 +1,8 @@
-import {area as shapeArea, create} from "d3";
+import {area as shapeArea} from "d3";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {Mark} from "../plot.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -36,9 +37,9 @@ export class Area extends Mark {
   filter(index) {
     return index;
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales, 0, 0)
         .call(g => g.selectAll()

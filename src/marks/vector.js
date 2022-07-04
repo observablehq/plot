@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create} from "../context.js";
 import {radians} from "../math.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
@@ -33,7 +33,7 @@ export class Vector extends Mark {
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {length, rotate, anchor} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -42,7 +42,7 @@ export class Vector extends Mark {
     const fx = X ? i => X[i] : () => cx;
     const fy = Y ? i => Y[i] : () => cy;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
-    return create("svg:g")
+    return create("svg:g", context)
         .attr("fill", "none")
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)

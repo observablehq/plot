@@ -1,6 +1,7 @@
-import {create, cross, difference, groups, InternMap, select} from "d3";
+import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
+import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
@@ -87,6 +88,7 @@ export function plot(options = {}) {
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
+  const context = Context(options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -129,7 +131,7 @@ export function plot(options = {}) {
 
   const {width, height} = dimensions;
 
-  const svg = create("svg")
+  const svg = create("svg", context)
       .attr("class", className)
       .attr("fill", "currentColor")
       .attr("font-family", "system-ui, sans-serif")
@@ -159,8 +161,8 @@ export function plot(options = {}) {
   // When faceting, render axes for fx and fy instead of x and y.
   const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
   const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
-  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions));
-  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions));
+  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions, context));
+  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
@@ -178,7 +180,8 @@ export function plot(options = {}) {
         .append((ky, i) => (i === j ? axis1 : axis2).render(
           fx && where(fxDomain, kx => indexByFacet.has([kx, ky])),
           scales,
-          {...dimensions, ...fyMargins, offsetTop: fy(ky)}
+          {...dimensions, ...fyMargins, offsetTop: fy(ky)},
+          context
         ));
     }
     if (fx && axes.x) {
@@ -191,7 +194,8 @@ export function plot(options = {}) {
         .append((kx, i) => (i === j ? axis1 : axis2).render(
           fy && where(fyDomain, ky => indexByFacet.has([kx, ky])),
           scales,
-          {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)}
+          {...dimensions, ...fxMargins, labelMarginLeft: marginLeft, labelMarginRight: marginRight, offsetLeft: fx(kx)},
+          context
         ));
     }
     selection.selectAll()
@@ -204,22 +208,23 @@ export function plot(options = {}) {
           const j = indexByFacet.get(key);
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
-            const node = mark.render(facet, scales, values, subdimensions);
+            const node = mark.render(facet, scales, values, subdimensions, context);
             if (node != null) this.appendChild(node);
           }
         });
   } else {
     for (const [mark, {channels, values, facets}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
-      const node = mark.render(facet, scales, values, dimensions);
+      const node = mark.render(facet, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
     }
   }
 
   // Wrap the plot in a figure with a caption, if desired.
   let figure = svg;
-  const legends = Legends(scaleDescriptors, options);
+  const legends = Legends(scaleDescriptors, context, options);
   if (caption != null || legends.length > 0) {
+    const {document} = context;
     figure = document.createElement("figure");
     figure.style.maxWidth = "initial";
     for (const legend of legends) figure.appendChild(legend);
@@ -232,7 +237,7 @@ export function plot(options = {}) {
   }
 
   figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = exposeLegends(scaleDescriptors, options);
+  figure.legend = exposeLegends(scaleDescriptors, context, options);
 
   const w = consumeWarnings();
   if (w > 0) {

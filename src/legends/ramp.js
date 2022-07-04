@@ -1,29 +1,32 @@
-import {create, quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
+import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
+import {Context, create} from "../context.js";
 import {map} from "../options.js";
 import {interpolatePiecewise} from "../scales/quantitative.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
-export function legendRamp(color, {
-  label = color.label,
-  tickSize = 6,
-  width = 240,
-  height = 44 + tickSize,
-  marginTop = 18,
-  marginRight = 0,
-  marginBottom = 16 + tickSize,
-  marginLeft = 0,
-  style,
-  ticks = (width - marginLeft - marginRight) / 64,
-  tickFormat,
-  fontVariant = inferFontVariant(color),
-  round = true,
-  className
-}) {
+export function legendRamp(color, options) {
+  let {
+    label = color.label,
+    tickSize = 6,
+    width = 240,
+    height = 44 + tickSize,
+    marginTop = 18,
+    marginRight = 0,
+    marginBottom = 16 + tickSize,
+    marginLeft = 0,
+    style,
+    ticks = (width - marginLeft - marginRight) / 64,
+    tickFormat,
+    fontVariant = inferFontVariant(color),
+    round = true,
+    className
+  } = options;
+  const context = Context(options);
   className = maybeClassName(className);
   if (tickFormat === null) tickFormat = () => null;
 
-  const svg = create("svg")
+  const svg = create("svg", context)
       .attr("class", className)
       .attr("font-family", "system-ui, sans-serif")
       .attr("font-size", 10)
@@ -83,13 +86,24 @@ export function legendRamp(color, {
       )
     );
 
+    // Construct a 256×1 canvas, filling each pixel using the interpolator.
+    const n = 256;
+    const canvas = context.document.createElement("canvas");
+    canvas.width = n;
+    canvas.height = 1;
+    const context2 = canvas.getContext("2d");
+    for (let i = 0, j = n - 1; i < n; ++i) {
+      context2.fillStyle = interpolator(i / j);
+      context2.fillRect(i, 0, 1, 1);
+    }
+
     svg.append("image")
         .attr("x", marginLeft)
         .attr("y", marginTop)
         .attr("width", width - marginLeft - marginRight)
         .attr("height", height - marginTop - marginBottom)
         .attr("preserveAspectRatio", "none")
-        .attr("xlink:href", ramp(interpolator).toDataURL());
+        .attr("xlink:href", canvas.toDataURL());
   }
 
   // Threshold
@@ -161,14 +175,4 @@ export function legendRamp(color, {
   }
 
   return svg.node();
-}
-
-function ramp(color, n = 256) {
-  const canvas = create("canvas").attr("width", n).attr("height", 1).node();
-  const context = canvas.getContext("2d");
-  for (let i = 0; i < n; ++i) {
-    context.fillStyle = color(i / (n - 1));
-    context.fillRect(i, 0, 1, 1);
-  }
-  return canvas;
 }

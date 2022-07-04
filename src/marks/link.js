@@ -1,4 +1,5 @@
-import {create, path} from "d3";
+import {path} from "d3";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
@@ -28,10 +29,10 @@ export class Link extends Mark {
     this.curve = Curve(curve, tension);
     markers(this, options);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const {curve} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

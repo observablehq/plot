@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create} from "../context.js";
 import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
@@ -44,12 +44,12 @@ export class Rect extends Mark {
     this.rx = impliedString(rx, "auto"); // number or percentage
     this.ry = impliedString(ry, "auto");
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, {x: X1 && X2 ? x : null, y: Y1 && Y2 ? y : null}, 0, 0)
         .call(g => g.selectAll()

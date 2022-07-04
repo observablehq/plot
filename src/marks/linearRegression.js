@@ -1,4 +1,5 @@
-import {create, extent, range, sum, area as shapeArea, namespaces} from "d3";
+import {extent, range, sum, area as shapeArea, namespaces} from "d3";
+import {create} from "../context.js";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
@@ -35,10 +36,10 @@ class LinearRegression extends Mark {
     if (!(0 <= this.ci && this.ci < 1)) throw new Error(`invalid ci; not in [0, 1): ${ci}`);
     if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

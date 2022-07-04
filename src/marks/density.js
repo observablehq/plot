@@ -38,10 +38,10 @@ export class Density extends Mark {
   filter(index) {
     return index; // don’t filter contours constructed by initializer
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {contours} = channels;
     const path = geoPath();
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

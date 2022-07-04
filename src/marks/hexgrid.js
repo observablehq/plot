@@ -1,6 +1,6 @@
-import {create} from "d3";
-import {Mark} from "../plot.js";
+import {create} from "../context.js";
 import {number} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {sqrt4_3} from "../symbols.js";
 import {ox, oy} from "../transforms/hexbin.js";
@@ -21,7 +21,7 @@ export class Hexgrid extends Mark {
     super(undefined, undefined, {clip, ...options}, defaults);
     this.binWidth = number(binWidth);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {binWidth} = this;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const x0 = marginLeft - ox, x1 = width - marginRight - ox, y0 = marginTop - oy, y1 = height - marginBottom - oy;
@@ -35,7 +35,7 @@ export class Hexgrid extends Mark {
         m.push(`M${i * wx + (j & 1) * rx},${j * wy}${path}`);
       }
     }
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(g => g.append("path")
           .call(applyDirectStyles, this)

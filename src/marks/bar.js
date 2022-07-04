@@ -1,6 +1,6 @@
-import {create} from "d3";
-import {Mark} from "../plot.js";
+import {create} from "../context.js";
 import {identity, indexOf, number} from "../options.js";
+import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
@@ -18,9 +18,9 @@ export class AbstractBar extends Mark {
     this.rx = impliedString(rx, "auto"); // number or percentage
     this.ry = impliedString(ry, "auto");
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {rx, ry} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(this._transform, this, scales)
         .call(g => g.selectAll()

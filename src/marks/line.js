@@ -1,7 +1,8 @@
-import {create, line as shapeLine} from "d3";
+import {line as shapeLine} from "d3";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {Mark} from "../plot.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
+import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {applyGroupedMarkers, markers} from "./marker.js";
@@ -36,9 +37,9 @@ export class Line extends Mark {
   filter(index) {
     return index;
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

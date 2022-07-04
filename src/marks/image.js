@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
@@ -59,10 +59,10 @@ export class Image extends Mark {
     this.crossOrigin = string(crossOrigin);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

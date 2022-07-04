@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create} from "../context.js";
 
 export function markers(mark, {
   marker,
@@ -25,8 +25,8 @@ function maybeMarker(marker) {
   throw new Error(`invalid marker: ${marker}`);
 }
 
-function markerArrow(color) {
-  return create("svg:marker")
+function markerArrow(color, context) {
+  return create("svg:marker", context)
       .attr("viewBox", "-5 -5 10 10")
       .attr("markerWidth", 6.67)
       .attr("markerHeight", 6.67)
@@ -40,8 +40,8 @@ function markerArrow(color) {
     .node();
 }
 
-function markerDot(color) {
-  return create("svg:marker")
+function markerDot(color, context) {
+  return create("svg:marker", context)
       .attr("viewBox", "-5 -5 10 10")
       .attr("markerWidth", 6.67)
       .attr("markerHeight", 6.67)
@@ -51,8 +51,8 @@ function markerDot(color) {
     .node();
 }
 
-function markerCircleFill(color) {
-  return create("svg:marker")
+function markerCircleFill(color, context) {
+  return create("svg:marker", context)
       .attr("viewBox", "-5 -5 10 10")
       .attr("markerWidth", 6.67)
       .attr("markerHeight", 6.67)
@@ -63,8 +63,8 @@ function markerCircleFill(color) {
     .node();
 }
 
-function markerCircleStroke(color) {
-  return create("svg:marker")
+function markerCircleStroke(color, context) {
+  return create("svg:marker", context)
       .attr("viewBox", "-5 -5 10 10")
       .attr("markerWidth", 6.67)
       .attr("markerHeight", 6.67)
@@ -95,7 +95,8 @@ function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, st
       if (!iriByColor) iriByMarkerColor.set(marker, iriByColor = new Map());
       let iri = iriByColor.get(color);
       if (!iri) {
-        const node = this.parentNode.insertBefore(marker(color), this);
+        const context = {document: this.ownerDocument};
+        const node = this.parentNode.insertBefore(marker(color, context), this);
         const id = `plot-marker-${++nextMarkerId}`;
         node.setAttribute("id", id);
         iriByColor.set(color, iri = `url(#${id})`);

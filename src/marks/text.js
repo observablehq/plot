@@ -1,4 +1,5 @@
-import {create, namespaces} from "d3";
+import {namespaces} from "d3";
+import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual, isIterable} from "../options.js";
@@ -59,11 +60,11 @@ export class Text extends Mark {
     this.fontWeight = string(fontWeight);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyIndirectTextStyles, this, T, dimensions)
         .call(applyTransform, this, scales)
@@ -104,7 +105,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
         if (!lines[i]) continue;
-        const tspan = document.createElementNS(namespaces.svg, "tspan");
+        const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
         tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
         tspan.textContent = lines[i];

@@ -1,4 +1,5 @@
-import {create, path, symbolCircle} from "d3";
+import {path, symbolCircle} from "d3";
+import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
@@ -51,11 +52,11 @@ export class Dot extends Mark {
       };
     }
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, scales)
         .call(g => g.selectAll()

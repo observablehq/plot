@@ -1,8 +1,9 @@
 import {rgb} from "d3";
-import {isScaleOptions} from "./options.js";
-import {normalizeScale} from "./scales.js";
+import {Context} from "./context.js";
 import {legendRamp} from "./legends/ramp.js";
 import {legendSwatches, legendSymbols} from "./legends/swatches.js";
+import {inherit, isScaleOptions} from "./options.js";
+import {normalizeScale} from "./scales.js";
 
 const legendRegistry = new Map([
   ["symbol", legendSymbols],
@@ -14,6 +15,7 @@ export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];
     if (isScaleOptions(scale)) { // e.g., ignore {color: "red"}
+      const context = Context(options);
       let hint;
       // For symbol legends, pass a hint to the symbol scale.
       if (key === "symbol") {
@@ -22,7 +24,7 @@ export function legend(options = {}) {
       }
       return value(
         normalizeScale(key, scale, hint),
-        legendOptions(scale, options),
+        legendOptions(context, scale, options),
         key => isScaleOptions(options[key]) ? normalizeScale(key, options[key]) : null
       );
     }
@@ -30,16 +32,16 @@ export function legend(options = {}) {
   throw new Error("unknown legend type; no scale found");
 }
 
-export function exposeLegends(scales, defaults = {}) {
+export function exposeLegends(scales, context, defaults = {}) {
   return (key, options) => {
     if (!legendRegistry.has(key)) throw new Error(`unknown legend type: ${key}`);
     if (!(key in scales)) return;
-    return legendRegistry.get(key)(scales[key], legendOptions(defaults[key], options), key => scales[key]);
+    return legendRegistry.get(key)(scales[key], legendOptions(context, defaults[key], options), key => scales[key]);
   };
 }
 
-function legendOptions({label, ticks, tickFormat} = {}, options = {}) {
-  return {label, ticks, tickFormat, ...options};
+function legendOptions(context, {label, ticks, tickFormat} = {}, options) {
+  return inherit(options, context, {label, ticks, tickFormat});
 }
 
 function legendColor(color, {
@@ -71,12 +73,12 @@ function interpolateOpacity(color) {
   return t => `rgba(${r},${g},${b},${t})`;
 }
 
-export function Legends(scales, options) {
+export function Legends(scales, context, options) {
   const legends = [];
   for (const [key, value] of legendRegistry) {
     const o = options[key];
     if (o?.legend && (key in scales)) {
-      const legend = value(scales[key], legendOptions(scales[key], o), key => scales[key]);
+      const legend = value(scales[key], legendOptions(context, scales[key], o), key => scales[key]);
       if (legend != null) legends.push(legend);
     }
   }

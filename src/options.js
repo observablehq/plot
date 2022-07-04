@@ -346,3 +346,19 @@ export function order(values) {
   const last = values[values.length - 1];
   return descending(first, last);
 }
+
+// Unlike {...defaults, ...options}, this ensures that any undefined (but
+// present) properties in options inherit the given default value.
+export function inherit(options = {}, ...rest) {
+  let o = options;
+  for (const defaults of rest) {
+    for (const key in defaults) {
+      if (o[key] === undefined) {
+        const value = defaults[key];
+        if (o === options) o = {...o, [key]: value};
+        else o[key] = value;
+      }
+    }
+  }
+  return o;
+}

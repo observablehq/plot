@@ -1,4 +1,4 @@
-import {create} from "d3";
+import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
@@ -34,12 +34,12 @@ export class RuleX extends Mark {
     this.insetTop = number(insetTop);
     this.insetBottom = number(insetBottom);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y1: Y1, y2: Y2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, {x: X && x}, offset, 0)
         .call(g => g.selectAll()
@@ -79,12 +79,12 @@ export class RuleY extends Mark {
     this.insetRight = number(insetRight);
     this.insetLeft = number(insetLeft);
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {y: Y, x1: X1, x2: X2} = channels;
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight} = this;
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyIndirectStyles, this, scales, dimensions)
         .call(applyTransform, this, {y: Y && y}, 0, offset)
         .call(g => g.selectAll()

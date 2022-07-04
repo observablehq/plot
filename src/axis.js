@@ -1,7 +1,8 @@
-import {axisTop, axisBottom, axisRight, axisLeft, create, format, utcFormat} from "d3";
-import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
+import {axisTop, axisBottom, axisRight, axisLeft, format, utcFormat} from "d3";
+import {create} from "./context.js";
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
+import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {applyAttr, impliedString} from "./style.js";
 
 export class AxisX {
@@ -53,7 +54,8 @@ export class AxisX {
       facetMarginBottom,
       labelMarginLeft = 0,
       labelMarginRight = 0
-    }
+    },
+    context
   ) {
     const {
       axis,
@@ -69,7 +71,7 @@ export class AxisX {
     const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyAria, this)
         .attr("transform", `translate(${offsetLeft},${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
@@ -144,7 +146,8 @@ export class AxisY {
       offsetTop = 0,
       facetMarginLeft,
       facetMarginRight
-    }
+    },
+    context
   ) {
     const {
       axis,
@@ -160,7 +163,7 @@ export class AxisY {
     const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
-    return create("svg:g")
+    return create("svg:g", context)
         .call(applyAria, this)
         .attr("transform", `translate(${tx},${offsetTop})`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
