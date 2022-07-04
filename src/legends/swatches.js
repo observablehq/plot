@@ -3,7 +3,7 @@ import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
 import {Context, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
-import {isOrdinalScale} from "../scales.js";
+import {isOrdinalScale, isThresholdScale} from "../scales.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
 function maybeScale(scale, key) {
@@ -14,7 +14,7 @@ function maybeScale(scale, key) {
 }
 
 export function legendSwatches(color, options) {
-  if (!isOrdinalScale(color)) throw new Error(`swatches legend requires ordinal color scale (not ${color.type})`);
+  if (!isOrdinalScale(color) && !isThresholdScale(color)) throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
   return legendItems(
     color,
     options,

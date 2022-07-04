@@ -306,7 +306,7 @@ export function isOrdinalScale({type}) {
   return type === "ordinal" || type === "point" || type === "band" || type === ordinalImplicit;
 }
 
-function isThresholdScale({type}) {
+export function isThresholdScale({type}) {
   return type === "threshold";
 }
 

@@ -178,7 +178,7 @@ export function colorLegendThresholdTickSize() {
   });
 }
 
-// This quantile scale is implicitly converted to a threshold scale!
+// Quantile scales are implicitly converted to threshold scales.
 export function colorLegendQuantile() {
   return Plot.legend({
     color: {
@@ -192,7 +192,6 @@ export function colorLegendQuantile() {
   });
 }
 
-// This quantile scale is implicitly converted to a threshold scale!
 export function colorLegendQuantileImplicit() {
   return Plot.plot({
     color: {
@@ -208,7 +207,21 @@ export function colorLegendQuantileImplicit() {
   }).legend("color");
 }
 
-// Quantize scales are implicitly converted to a threshold scale
+export function colorLegendQuantileSwatches() {
+  return Plot.legend({
+    legend: "swatches",
+    color: {
+      type: "quantile",
+      scheme: "inferno",
+      domain: d3.range(100).map(i => i ** 2),
+      n: 7,
+      label: "Inferno"
+    },
+    tickFormat: ",d"
+  });
+}
+
+// Quantize scales are implicitly converted to threshold scales.
 export function colorLegendQuantize() {
   return Plot.legend({
     color: {

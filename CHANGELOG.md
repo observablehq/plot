@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-Swatches legends are now rendered in SVG, supporting patterns and gradients. Swatches legends now require an ordinal color scale and will throw an error if you attempt to use them with a non-ordinal color scale (such as a linear or diverging scale).
+Swatches legends are now rendered in SVG, supporting patterns and gradients. Swatches legends now require an *ordinal*, *categorical*, or *threshold* color scale and will throw an error if you attempt to use them with an unsupported color scale type (such as a *linear* or *diverging* scale).
 
 The new top-level **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM library for server-side rendering in Node.
 
