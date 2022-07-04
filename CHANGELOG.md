@@ -1,5 +1,19 @@
 # Observable Plot - Changelog
 
+## 0.5.2
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+Swatches legends are now rendered in SVG, supporting patterns and gradients. Swatches legends now require an ordinal color scale and will throw an error if you attempt to use them with a non-ordinal color scale (such as a linear or diverging scale).
+
+The new top-level **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM library for server-side rendering in Node.
+
+Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) for a faster blur operator supporting fractional bandwidths when computing density contours.
+
+Plot now uses a duck test to detect marks (rather than strict instanceof), allowing marks from different versions of Plot to be combined into a single plot.
+
+Plot is now partially written in TypeScript. In the future, Plot will be written entirely in TypeScript and will export TypeScript type definition files to assist Plot development.
+
 ## 0.5.1
 
 [Released June 27, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.1)
@@ -68,6 +82,8 @@ All marks now support the **pointerEvents** option to set the [pointer-events at
 Fix a bug where arrow heads would not render correctly when the **strokeWidth** was exactly one. Fix the *scale*.**zero** option when the domain is negative. Fix the **clip** mark option when *x* or *y* is a *band* scale. Fix the fill color of text marks using the **href** option. Fix a crash in the bar and tick mark when the associated band scale is not present, as when these marks are used (erroneously) with the dodge transform. Use *element*.appendChild instead of *element*.append for the benefit of DOM implementations that do not support the full DOM standard.
 
 Improve the error message when the **facet** option is used without **data**. Throw an error if initializers attempt to create position scales. Throw an error if an implicit ordinal position domain has more than 10,000 values.
+
+[breaking] Plot now requires [D3 ^7.5.0](https://github.com/d3/d3/releases/tag/v7.5.0).
 
 ## 0.5.0
 
