@@ -18,6 +18,7 @@ export class AxisX {
     label,
     labelAnchor,
     labelOffset,
+    axisClass,
     line,
     tickRotate,
     ariaLabel,
@@ -34,6 +35,7 @@ export class AxisX {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
+    this.axisClass = boolean(axisClass);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
     this.ariaLabel = string(ariaLabel);
@@ -64,6 +66,7 @@ export class AxisX {
       label,
       labelAnchor,
       labelOffset,
+      axisClass,
       line,
       name,
       tickRotate
@@ -72,6 +75,7 @@ export class AxisX {
     const offsetSign = axis === "top" ? -1 : 1;
     const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g", context)
+        .call(applyCssClass, this, 'axis')
         .call(applyAria, this)
         .attr("transform", `translate(${offsetLeft},${ty})`)
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
@@ -84,6 +88,7 @@ export class AxisX {
           : fy ? gridFacetX(index, fy, -ty)
           : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(!label ? () => {} : g => g.append("text")
+            .call(applyCssClass, this, 'axis-label')
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
                 labelAnchor === "center" ? (width + marginLeft - marginRight) / 2
@@ -112,6 +117,7 @@ export class AxisY {
     label,
     labelAnchor,
     labelOffset,
+    axisClass,
     line,
     tickRotate,
     ariaLabel,
@@ -128,6 +134,7 @@ export class AxisY {
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
+    this.axisClass = boolean(axisClass);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
     this.ariaLabel = string(ariaLabel);
@@ -156,6 +163,7 @@ export class AxisY {
       label,
       labelAnchor,
       labelOffset,
+      axisClass,
       line,
       name,
       tickRotate
@@ -164,6 +172,7 @@ export class AxisY {
     const offsetSign = axis === "left" ? -1 : 1;
     const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g", context)
+        .call(applyCssClass, this, "axis")
         .call(applyAria, this)
         .attr("transform", `translate(${tx},${offsetTop})`)
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
@@ -176,6 +185,7 @@ export class AxisY {
           : fx ? gridFacetY(index, fx, -tx)
           : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(!label ? () => {} : g => g.append("text")
+            .call(applyCssClass, this, 'axis-label')
             .attr("fill", "currentColor")
             .attr("font-variant", fontVariant == null ? null : "normal")
             .attr("transform", `translate(${labelOffset * offsetSign},${
@@ -202,6 +212,15 @@ function applyAria(selection, {
 }) {
   applyAttr(selection, "aria-label", ariaLabel);
   applyAttr(selection, "aria-description", ariaDescription);
+}
+
+function applyCssClass(selection, {
+  name,
+  axisClass,
+}, cssClass) {
+  if(axisClass === true) {
+    applyAttr(selection, "class", `${name}-${cssClass}`);
+  }
 }
 
 function gridX(y2) {

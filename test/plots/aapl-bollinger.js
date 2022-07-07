@@ -4,8 +4,12 @@ import * as d3 from "d3";
 export default async function() {
   const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.plot({
+    x: {
+      axisClass: true
+    },
     y: {
-      grid: true
+      grid: true,
+      axisClass: true
     },
     marks: [
       Plot.areaY(AAPL, Plot.map({y1: bollinger(20, -2), y2: bollinger(20, 2)}, {x: "Date", y: "Close", fillOpacity: 0.2})),
