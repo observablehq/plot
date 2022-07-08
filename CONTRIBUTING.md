@@ -39,7 +39,7 @@ This will also run ESLint on Plot’s source to help catch simple mistakes, such
 Please run Prettier before submitting any pull request. Check “format on save” in your code editor, or run:
 
 ```bash
-yarn prettier --write src test
+yarn prettier --write .
 ```
 
 ### Unit tests
