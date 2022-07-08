@@ -1,14 +1,9 @@
-import {create, line as shapeLine} from "d3";
+import {line as shapeLine} from "d3";
+import {create} from "../context.js";
 import {Curve} from "../curve.js";
-import {Mark} from "../plot.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyGroupedChannelStyles,
-  groupIndex
-} from "../style.js";
+import {Mark} from "../plot.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {applyGroupedMarkers, markers} from "./marker.js";
 
@@ -42,35 +37,29 @@ export class Line extends Mark {
   filter(index) {
     return index;
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
-    return create("svg:g")
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
+    return create("svg:g", context)
+        .call(applyIndirectStyles, this, scales, dimensions)
+        .call(applyTransform, this, scales)
+        .call(g => g.selectAll()
           .data(groupIndex(index, [X, Y], this, channels))
           .enter()
           .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyGroupedChannelStyles, this, channels)
-          .call(applyGroupedMarkers, this, channels)
-          .attr(
-            "d",
-            shapeLine()
+            .call(applyDirectStyles, this)
+            .call(applyGroupedChannelStyles, this, channels)
+            .call(applyGroupedMarkers, this, channels)
+            .attr("d", shapeLine()
               .curve(this.curve)
-              .defined((i) => i >= 0)
-              .x((i) => X[i])
-              .y((i) => Y[i])
-          )
-      )
+              .defined(i => i >= 0)
+              .x(i => X[i])
+              .y(i => Y[i])))
       .node();
   }
 }
 
 export function line(data, {x, y, ...options} = {}) {
-  [x, y] = maybeTuple(x, y);
+  ([x, y] = maybeTuple(x, y));
   return new Line(data, {...options, x, y});
 }
 

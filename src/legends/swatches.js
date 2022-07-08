@@ -1,7 +1,9 @@
-import {create, path} from "d3";
+import {path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
+import {Context, create} from "../context.js";
 import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
+import {isOrdinalScale, isThresholdScale} from "../scales.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
 function maybeScale(scale, key) {
@@ -12,37 +14,32 @@ function maybeScale(scale, key) {
 }
 
 export function legendSwatches(color, options) {
+  if (!isOrdinalScale(color) && !isThresholdScale(color)) throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
   return legendItems(
     color,
     options,
-    (selection) => selection.style("--color", color.scale),
-    (className) => `.${className}-swatch::before {
-        content: "";
+    (selection, scale) => selection.append("svg")
+        .attr("fill", scale.scale)
+      .append("rect")
+        .attr("width", "100%")
+        .attr("height", "100%"),
+    className => `.${className}-swatch svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);
         margin-right: 0.5em;
-        background: var(--color);
       }`
   );
 }
 
-export function legendSymbols(
-  symbol,
-  {
-    fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
-    fillOpacity = 1,
-    stroke = symbol.hint?.stroke !== undefined
-      ? symbol.hint.stroke
-      : isNoneish(fill)
-      ? "currentColor"
-      : "none",
-    strokeOpacity = 1,
-    strokeWidth = 1.5,
-    r = 4.5,
-    ...options
-  } = {},
-  scale
-) {
+export function legendSymbols(symbol, {
+  fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
+  fillOpacity = 1,
+  stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : isNoneish(fill) ? "currentColor" : "none",
+  strokeOpacity = 1,
+  strokeWidth = 1.5,
+  r = 4.5,
+  ...options
+} = {}, scale) {
   const [vf, cf] = maybeColorChannel(fill);
   const [vs, cs] = maybeColorChannel(stroke);
   const sf = maybeScale(scale, vf);
@@ -54,19 +51,17 @@ export function legendSymbols(
   return legendItems(
     symbol,
     options,
-    (selection) =>
-      selection
-        .append("svg")
+    selection => selection.append("svg")
         .attr("viewBox", "-8 -8 16 16")
-        .attr("fill", vf === "color" ? (d) => sf.scale(d) : null)
-        .attr("stroke", vs === "color" ? (d) => ss.scale(d) : null)
-        .append("path")
-        .attr("d", (d) => {
+        .attr("fill", vf === "color" ? d => sf.scale(d) : null)
+        .attr("stroke", vs === "color" ? d => ss.scale(d) : null)
+      .append("path")
+        .attr("d", d => {
           const p = path();
           symbol.scale(d).draw(p, size);
           return p;
         }),
-    (className) => `.${className}-swatch > svg {
+    className => `.${className}-swatch > svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);
         margin-right: 0.5em;
@@ -80,9 +75,8 @@ export function legendSymbols(
   );
 }
 
-function legendItems(
-  scale,
-  {
+function legendItems(scale, options = {}, swatch, swatchStyle) {
+  let {
     columns,
     tickFormat,
     fontVariant = inferFontVariant(scale),
@@ -94,22 +88,17 @@ function legendItems(
     className,
     style,
     width
-  } = {},
-  swatch,
-  swatchStyle
-) {
+  } = options;
+  const context = Context(options);
   className = maybeClassName(className);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 
-  const swatches = create("div")
-    .attr("class", className)
-    .attr(
-      "style",
-      `
+  const swatches = create("div", context)
+      .attr("class", className)
+      .attr("style", `
         --swatchWidth: ${+swatchWidth}px;
         --swatchHeight: ${+swatchHeight}px;
-      `
-    );
+      `);
 
   let extraStyle;
 
@@ -132,20 +121,17 @@ function legendItems(
     `;
 
     swatches
-      .style("columns", columns)
+        .style("columns", columns)
       .selectAll()
       .data(scale.domain)
       .enter()
       .append("div")
-      .attr("class", `${className}-swatch`)
-      .call(swatch, scale)
-      .call((item) =>
-        item
-          .append("div")
-          .attr("class", `${className}-label`)
-          .attr("title", tickFormat)
-          .text(tickFormat)
-      );
+        .attr("class", `${className}-swatch`)
+        .call(swatch, scale)
+        .call(item => item.append("div")
+            .attr("class", `${className}-label`)
+            .attr("title", tickFormat)
+            .text(tickFormat));
   } else {
     extraStyle = `
       .${className} {
@@ -166,36 +152,26 @@ function legendItems(
       .data(scale.domain)
       .enter()
       .append("span")
-      .attr("class", `${className}-swatch`)
-      .call(swatch, scale)
-      .append(function () {
-        return document.createTextNode(tickFormat.apply(this, arguments));
-      });
+        .attr("class", `${className}-swatch`)
+        .call(swatch, scale)
+        .append(function() {
+          return this.ownerDocument.createTextNode(tickFormat.apply(this, arguments));
+        });
   }
 
   return swatches
-    .call((div) =>
-      div.insert("style", "*").text(`
+      .call(div => div.insert("style", "*").text(`
         .${className} {
           font-family: system-ui, sans-serif;
           font-size: 10px;
-          margin-bottom: 0.5em;${
-            marginLeft === undefined
-              ? ""
-              : `
-          margin-left: ${+marginLeft}px;`
-          }${
-        width === undefined
-          ? ""
-          : `
-          width: ${width}px;`
-      }
+          margin-bottom: 0.5em;${marginLeft === undefined ? "" : `
+          margin-left: ${+marginLeft}px;`}${width === undefined ? "" : `
+          width: ${width}px;`}
         }
         ${swatchStyle(className)}
         ${extraStyle}
-      `)
-    )
-    .style("font-variant", impliedString(fontVariant, "normal"))
-    .call(applyInlineStyles, style)
+      `))
+      .style("font-variant", impliedString(fontVariant, "normal"))
+      .call(applyInlineStyles, style)
     .node();
 }

@@ -1,19 +1,9 @@
-import {create, path, symbolCircle} from "d3";
+import {path, symbolCircle} from "d3";
+import {create} from "../context.js";
 import {positive} from "../defined.js";
-import {
-  identity,
-  maybeFrameAnchor,
-  maybeNumberChannel,
-  maybeTuple
-} from "../options.js";
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyFrameAnchor,
-  applyIndirectStyles,
-  applyTransform
-} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
@@ -40,9 +30,7 @@ export class Dot extends Mark {
         {name: "rotate", value: vrotate, optional: true},
         {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
       ],
-      options.sort === undefined && options.reverse === undefined
-        ? sort({channel: "r", order: "descending"}, options)
-        : options,
+      options.sort === undefined && options.reverse === undefined ? sort({channel: "r", order: "descending"}, options) : options,
       defaults
     );
     this.r = cr;
@@ -59,75 +47,52 @@ export class Dot extends Mark {
       const fillChannel = channels.find(({name}) => name === "fill");
       const strokeChannel = channels.find(({name}) => name === "stroke");
       symbolChannel.hint = {
-        fill: fillChannel
-          ? fillChannel.value === symbolChannel.value
-            ? "color"
-            : "currentColor"
-          : this.fill,
-        stroke: strokeChannel
-          ? strokeChannel.value === symbolChannel.value
-            ? "color"
-            : "currentColor"
-          : this.stroke
+        fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
+        stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
       };
     }
   }
-  render(index, scales, channels, dimensions) {
+  render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
-    return create("svg:g")
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
+    return create("svg:g", context)
+        .call(applyIndirectStyles, this, scales, dimensions)
+        .call(applyTransform, this, scales)
+        .call(g => g.selectAll()
           .data(index)
           .enter()
           .append(circle ? "circle" : "path")
-          .call(applyDirectStyles, this)
-          .call(
-            circle
-              ? (selection) => {
-                  selection
-                    .attr("cx", X ? (i) => X[i] : cx)
-                    .attr("cy", Y ? (i) => Y[i] : cy)
-                    .attr("r", R ? (i) => R[i] : this.r);
-                }
-              : (selection) => {
-                  const translate =
-                    X && Y
-                      ? (i) => `translate(${X[i]},${Y[i]})`
-                      : X
-                      ? (i) => `translate(${X[i]},${cy})`
-                      : Y
-                      ? (i) => `translate(${cx},${Y[i]})`
-                      : () => `translate(${cx},${cy})`;
-                  selection
-                    .attr(
-                      "transform",
-                      A
-                        ? (i) => `${translate(i)} rotate(${A[i]})`
-                        : this.rotate
-                        ? (i) => `${translate(i)} rotate(${this.rotate})`
-                        : translate
-                    )
-                    .attr("d", (i) => {
-                      const p = path(),
-                        r = R ? R[i] : this.r;
+            .call(applyDirectStyles, this)
+            .call(circle
+              ? selection => {
+                selection
+                    .attr("cx", X ? i => X[i] : cx)
+                    .attr("cy", Y ? i => Y[i] : cy)
+                    .attr("r", R ? i => R[i] : this.r);
+              }
+              : selection => {
+                const translate = X && Y ? i => `translate(${X[i]},${Y[i]})`
+                  : X ? i => `translate(${X[i]},${cy})`
+                  : Y ? i => `translate(${cx},${Y[i]})`
+                  : () => `translate(${cx},${cy})`;
+                selection
+                    .attr("transform", A ? i => `${translate(i)} rotate(${A[i]})`
+                      : this.rotate ? i => `${translate(i)} rotate(${this.rotate})`
+                      : translate)
+                    .attr("d", i => {
+                      const p = path(), r = R ? R[i] : this.r;
                       (S ? S[i] : this.symbol).draw(p, r * r * Math.PI);
                       return p;
                     });
-                }
-          )
-          .call(applyChannelStyles, this, channels)
-      )
+              })
+            .call(applyChannelStyles, this, channels))
       .node();
   }
 }
 
 export function dot(data, {x, y, ...options} = {}) {
-  if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
+  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
   return new Dot(data, {...options, x, y});
 }
 

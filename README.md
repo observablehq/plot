@@ -116,6 +116,8 @@ Plot.plot({
 
 The generated SVG element has a random class name which applies a default stylesheet. Use the top-level **className** option to specify that class name.
 
+The **document** option specifies the [document](https://developer.mozilla.org/en-US/docs/Web/API/Document) used to create plot elements. It defaults to window.document, but can be changed to another document, say when using a virtual DOM library for server-side rendering in Node.
+
 ### Scale options
 
 Plot passes data through [scales](https://observablehq.com/@observablehq/plot-scales) as needed before rendering marks. A scale maps abstract values such as time or temperature to visual values such as position or color. Within a given plot, marks share scales. For example, if a plot has two Plot.line marks, both share the same *x* and *y* scales for a consistent representation of data. (Plot does not currently support dual-axis charts, which are [not advised](https://blog.datawrapper.de/dualaxis/).)
@@ -295,7 +297,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
 * *scale*.**labelOffset** - the label position offset (in pixels; default 0, typically for facet axes)
-* *scale*.**fontVariant** - the font-variant attribute for axis ticks; defaults to tabular-nums for quantitative axes.
+* *scale*.**fontVariant** - the font-variant attribute for axis ticks; defaults to tabular-nums for quantitative axes
 * *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
 * *scale*.**ariaDescription** - a textual description for the axis
 

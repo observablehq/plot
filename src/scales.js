@@ -455,7 +455,7 @@ export function isOrdinalScale({type}) {
   );
 }
 
-function isThresholdScale({type}) {
+export function isThresholdScale({type}) {
   return type === "threshold";
 }
 
