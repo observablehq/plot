@@ -245,7 +245,7 @@ export function colorLegendQuantileSwatches() {
     color: {
       type: "quantile",
       scheme: "inferno",
-      domain: d3.range(100).map(i => i ** 2),
+      domain: d3.range(100).map((i) => i ** 2),
       n: 7,
       label: "Inferno"
     },
