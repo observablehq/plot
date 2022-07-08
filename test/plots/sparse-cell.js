@@ -2,10 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function () {
-  const simpsons = d3.sort(
-    await d3.csv("data/simpsons.csv", d3.autoType),
-    (d) => d.number_in_series
-  );
+  const simpsons = d3.sort(await d3.csv("data/simpsons.csv", d3.autoType), (d) => d.number_in_series);
   const data = [...simpsons.slice(0, 26), ...simpsons.slice(-10)];
   return Plot.plot({
     grid: true,

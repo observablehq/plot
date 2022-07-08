@@ -1,12 +1,6 @@
 import {create} from "../context.js";
 import {radians} from "../math.js";
-import {
-  maybeFrameAnchor,
-  maybeNumberChannel,
-  maybeTuple,
-  keyword,
-  identity
-} from "../options.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -72,9 +66,7 @@ export class Vector extends Mark {
               y = -Math.cos(a) * l;
             const d = (x + y) / 5,
               e = (x - y) / 5;
-            return `M${fx(i) - x * k},${
-              fy(i) - y * k
-            }l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
+            return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
           })
           .call(applyChannelStyles, this, channels)
       )

@@ -15,11 +15,6 @@ export default async function () {
       label: null,
       marginLeft: 60
     },
-    marks: [
-      Plot.dot(
-        penguins,
-        Plot.dodgeY("middle", {x: "body_mass_g", r: (d) => (d.sex ? 2.5 : 4)})
-      )
-    ]
+    marks: [Plot.dot(penguins, Plot.dodgeY("middle", {x: "body_mass_g", r: (d) => (d.sex ? 2.5 : 4)}))]
   });
 }

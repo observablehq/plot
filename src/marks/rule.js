@@ -2,13 +2,7 @@ import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyChannelStyles,
-  offset
-} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 
 const defaults = {
@@ -19,14 +13,7 @@ const defaults = {
 
 export class RuleX extends Mark {
   constructor(data, options = {}) {
-    const {
-      x,
-      y1,
-      y2,
-      inset = 0,
-      insetTop = inset,
-      insetBottom = inset
-    } = options;
+    const {x, y1, y2, inset = 0, insetTop = inset, insetBottom = inset} = options;
     super(
       data,
       [
@@ -43,8 +30,7 @@ export class RuleX extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y1: Y1, y2: Y2} = channels;
-    const {width, height, marginTop, marginRight, marginLeft, marginBottom} =
-      dimensions;
+    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
@@ -58,12 +44,7 @@ export class RuleX extends Mark {
           .call(applyDirectStyles, this)
           .attr("x1", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
           .attr("x2", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
-          .attr(
-            "y1",
-            Y1 && !isCollapsed(y)
-              ? (i) => Y1[i] + insetTop
-              : marginTop + insetTop
-          )
+          .attr("y1", Y1 && !isCollapsed(y) ? (i) => Y1[i] + insetTop : marginTop + insetTop)
           .attr(
             "y2",
             Y2 && !isCollapsed(y)
@@ -80,14 +61,7 @@ export class RuleX extends Mark {
 
 export class RuleY extends Mark {
   constructor(data, options = {}) {
-    const {
-      x1,
-      x2,
-      y,
-      inset = 0,
-      insetRight = inset,
-      insetLeft = inset
-    } = options;
+    const {x1, x2, y, inset = 0, insetRight = inset, insetLeft = inset} = options;
     super(
       data,
       [
@@ -104,8 +78,7 @@ export class RuleY extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {y: Y, x1: X1, x2: X2} = channels;
-    const {width, height, marginTop, marginRight, marginLeft, marginBottom} =
-      dimensions;
+    const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
@@ -117,12 +90,7 @@ export class RuleY extends Mark {
           .enter()
           .append("line")
           .call(applyDirectStyles, this)
-          .attr(
-            "x1",
-            X1 && !isCollapsed(x)
-              ? (i) => X1[i] + insetLeft
-              : marginLeft + insetLeft
-          )
+          .attr("x1", X1 && !isCollapsed(x) ? (i) => X1[i] + insetLeft : marginLeft + insetLeft)
           .attr(
             "x2",
             X2 && !isCollapsed(x)

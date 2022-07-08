@@ -2,16 +2,7 @@ import {axisTop, axisBottom, axisRight, axisLeft, format, utcFormat} from "d3";
 import {create} from "./context.js";
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
-import {
-  boolean,
-  take,
-  number,
-  string,
-  keyword,
-  maybeKeyword,
-  constant,
-  isTemporal
-} from "./options.js";
+import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {applyAttr, impliedString} from "./style.js";
 
 export class AxisX {
@@ -41,11 +32,7 @@ export class AxisX {
     this.fontVariant = impliedString(fontVariant, "normal");
     this.grid = boolean(grid);
     this.label = string(label);
-    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", [
-      "center",
-      "left",
-      "right"
-    ]);
+    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
@@ -70,27 +57,10 @@ export class AxisX {
     },
     context
   ) {
-    const {
-      axis,
-      fontVariant,
-      grid,
-      label,
-      labelAnchor,
-      labelOffset,
-      line,
-      name,
-      tickRotate
-    } = this;
-    const offset =
-      name === "x"
-        ? 0
-        : axis === "top"
-        ? marginTop - facetMarginTop
-        : marginBottom - facetMarginBottom;
+    const {axis, fontVariant, grid, label, labelAnchor, labelOffset, line, name, tickRotate} = this;
+    const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
-    const ty =
-      offsetSign * offset +
-      (axis === "top" ? marginTop : height - marginBottom);
+    const ty = offsetSign * offset + (axis === "top" ? marginTop : height - marginBottom);
     return create("svg:g", context)
       .call(applyAria, this)
       .attr("transform", `translate(${offsetLeft},${ty})`)
@@ -101,11 +71,7 @@ export class AxisX {
       .attr("font-variant", fontVariant)
       .call(!line ? (g) => g.select(".domain").remove() : () => {})
       .call(
-        !grid
-          ? () => {}
-          : fy
-          ? gridFacetX(index, fy, -ty)
-          : gridX(offsetSign * (marginBottom + marginTop - height))
+        !grid ? () => {} : fy ? gridFacetX(index, fy, -ty) : gridX(offsetSign * (marginBottom + marginTop - height))
       )
       .call(
         !label
@@ -125,14 +91,7 @@ export class AxisX {
                   },${labelOffset * offsetSign})`
                 )
                 .attr("dy", axis === "top" ? "1em" : "-0.32em")
-                .attr(
-                  "text-anchor",
-                  labelAnchor === "center"
-                    ? "middle"
-                    : labelAnchor === "right"
-                    ? "end"
-                    : "start"
-                )
+                .attr("text-anchor", labelAnchor === "center" ? "middle" : labelAnchor === "right" ? "end" : "start")
                 .text(label)
       )
       .node();
@@ -166,11 +125,7 @@ export class AxisY {
     this.fontVariant = impliedString(fontVariant, "normal");
     this.grid = boolean(grid);
     this.label = string(label);
-    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", [
-      "center",
-      "top",
-      "bottom"
-    ]);
+    this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
     this.line = boolean(line);
     this.tickRotate = number(tickRotate);
@@ -180,40 +135,13 @@ export class AxisY {
   render(
     index,
     {[this.name]: y, fx},
-    {
-      width,
-      height,
-      marginTop,
-      marginRight,
-      marginBottom,
-      marginLeft,
-      offsetTop = 0,
-      facetMarginLeft,
-      facetMarginRight
-    },
+    {width, height, marginTop, marginRight, marginBottom, marginLeft, offsetTop = 0, facetMarginLeft, facetMarginRight},
     context
   ) {
-    const {
-      axis,
-      fontVariant,
-      grid,
-      label,
-      labelAnchor,
-      labelOffset,
-      line,
-      name,
-      tickRotate
-    } = this;
-    const offset =
-      name === "y"
-        ? 0
-        : axis === "left"
-        ? marginLeft - facetMarginLeft
-        : marginRight - facetMarginRight;
+    const {axis, fontVariant, grid, label, labelAnchor, labelOffset, line, name, tickRotate} = this;
+    const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
-    const tx =
-      offsetSign * offset +
-      (axis === "right" ? width - marginRight : marginLeft);
+    const tx = offsetSign * offset + (axis === "right" ? width - marginRight : marginLeft);
     return create("svg:g", context)
       .call(applyAria, this)
       .attr("transform", `translate(${tx},${offsetTop})`)
@@ -223,13 +151,7 @@ export class AxisY {
       .attr("font-family", null)
       .attr("font-variant", fontVariant)
       .call(!line ? (g) => g.select(".domain").remove() : () => {})
-      .call(
-        !grid
-          ? () => {}
-          : fx
-          ? gridFacetY(index, fx, -tx)
-          : gridY(offsetSign * (marginLeft + marginRight - width))
-      )
+      .call(!grid ? () => {} : fx ? gridFacetY(index, fx, -tx) : gridY(offsetSign * (marginLeft + marginRight - width)))
       .call(
         !label
           ? () => {}
@@ -258,44 +180,24 @@ export class AxisY {
                     ? "1.4em"
                     : "-1em"
                 )
-                .attr(
-                  "text-anchor",
-                  labelAnchor === "center"
-                    ? "middle"
-                    : axis === "right"
-                    ? "end"
-                    : "start"
-                )
+                .attr("text-anchor", labelAnchor === "center" ? "middle" : axis === "right" ? "end" : "start")
                 .text(label)
       )
       .node();
   }
 }
 
-function applyAria(
-  selection,
-  {name, label, ariaLabel = `${name}-axis`, ariaDescription = label}
-) {
+function applyAria(selection, {name, label, ariaLabel = `${name}-axis`, ariaDescription = label}) {
   applyAttr(selection, "aria-label", ariaLabel);
   applyAttr(selection, "aria-description", ariaDescription);
 }
 
 function gridX(y2) {
-  return (g) =>
-    g
-      .selectAll(".tick line")
-      .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("y2", y2);
+  return (g) => g.selectAll(".tick line").clone(true).attr("stroke-opacity", 0.1).attr("y2", y2);
 }
 
 function gridY(x2) {
-  return (g) =>
-    g
-      .selectAll(".tick line")
-      .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("x2", x2);
+  return (g) => g.selectAll(".tick line").clone(true).attr("stroke-opacity", 0.1).attr("x2", x2);
 }
 
 function gridFacetX(index, fy, ty) {
@@ -307,12 +209,7 @@ function gridFacetX(index, fy, ty) {
       .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr(
-        "d",
-        (index ? take(domain, index) : domain)
-          .map((v) => `M0,${fy(v) + ty}v${dy}`)
-          .join("")
-      );
+      .attr("d", (index ? take(domain, index) : domain).map((v) => `M0,${fy(v) + ty}v${dy}`).join(""));
 }
 
 function gridFacetY(index, fx, tx) {
@@ -324,12 +221,7 @@ function gridFacetY(index, fx, tx) {
       .append("path")
       .attr("stroke", "currentColor")
       .attr("stroke-opacity", 0.1)
-      .attr(
-        "d",
-        (index ? take(domain, index) : domain)
-          .map((v) => `M${fx(v) + tx},0h${dx}`)
-          .join("")
-      );
+      .attr("d", (index ? take(domain, index) : domain).map((v) => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
 function maybeTicks(ticks) {
@@ -350,11 +242,7 @@ export function maybeAutoTickFormat(tickFormat, domain) {
       : string
     : typeof tickFormat === "function"
     ? tickFormat
-    : (typeof tickFormat === "string"
-        ? isTemporal(domain)
-          ? utcFormat
-          : format
-        : constant)(tickFormat);
+    : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format) : constant)(tickFormat);
 }
 
 function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
@@ -362,10 +250,7 @@ function createAxis(axis, scale, {ticks, tickSize, tickPadding, tickFormat}) {
     tickFormat = maybeAutoTickFormat(tickFormat, scale.domain());
   }
   return axis(scale)
-    .ticks(
-      Array.isArray(ticks) ? null : ticks,
-      typeof tickFormat === "function" ? null : tickFormat
-    )
+    .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "function" ? null : tickFormat)
     .tickFormat(typeof tickFormat === "function" ? tickFormat : null)
     .tickSizeInner(tickSize)
     .tickSizeOuter(0)
@@ -380,32 +265,15 @@ function maybeTickRotate(g, rotate) {
     const y = +text.getAttribute("y");
     if (Math.abs(y) > Math.abs(x)) {
       const s = Math.sign(y);
-      text.setAttribute(
-        "transform",
-        `translate(0, ${
-          y + s * 4 * Math.cos(rotate * radians)
-        }) rotate(${rotate})`
-      );
-      text.setAttribute(
-        "text-anchor",
-        Math.abs(rotate) < 10
-          ? "middle"
-          : (rotate < 0) ^ (s > 0)
-          ? "start"
-          : "end"
-      );
+      text.setAttribute("transform", `translate(0, ${y + s * 4 * Math.cos(rotate * radians)}) rotate(${rotate})`);
+      text.setAttribute("text-anchor", Math.abs(rotate) < 10 ? "middle" : (rotate < 0) ^ (s > 0) ? "start" : "end");
     } else {
       const s = Math.sign(x);
       text.setAttribute(
         "transform",
-        `translate(${
-          x + s * 4 * Math.abs(Math.sin(rotate * radians))
-        }, 0) rotate(${rotate})`
+        `translate(${x + s * 4 * Math.abs(Math.sin(rotate * radians))}, 0) rotate(${rotate})`
       );
-      text.setAttribute(
-        "text-anchor",
-        Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end"
-      );
+      text.setAttribute("text-anchor", Math.abs(rotate) > 60 ? "middle" : s > 0 ? "start" : "end");
     }
     text.removeAttribute("x");
     text.removeAttribute("y");

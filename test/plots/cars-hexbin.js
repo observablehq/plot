@@ -12,10 +12,7 @@ export default async function () {
     marks: [
       Plot.hexagon(
         cars,
-        Plot.hexbin(
-          {r: "count", fill: "mean"},
-          {x: "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"}
-        )
+        Plot.hexbin({r: "count", fill: "mean"}, {x: "displacement (cc)", y: "economy (mpg)", fill: "weight (lb)"})
       )
     ]
   });

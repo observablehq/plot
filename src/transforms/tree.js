@@ -34,22 +34,18 @@ export function treeNode({
       const rootof = stratify().path((i) => P[i]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
-      if (layout.separation && treeSeparation !== undefined)
-        layout.separation(treeSeparation ?? one);
+      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each(
-          (node) => (node.data = data[node.data])
-        );
+        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
           treeFacet.push(++treeIndex);
           treeData[treeIndex] = node.data;
           treeAnchor.position(node, treeIndex, X, Y);
-          for (const o of outputs)
-            o[output_values][treeIndex] = o[output_evaluate](node);
+          for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](node);
         }
         treeFacets.push(treeFacet);
       }
@@ -98,14 +94,11 @@ export function treeLink({
       const rootof = stratify().path((i) => P[i]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
-      if (layout.separation && treeSeparation !== undefined)
-        layout.separation(treeSeparation ?? one);
+      if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each(
-          (node) => (node.data = data[node.data])
-        );
+        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
@@ -113,8 +106,7 @@ export function treeLink({
           treeData[treeIndex] = target.data;
           treeAnchor.position(source, treeIndex, X1, Y1);
           treeAnchor.position(target, treeIndex, X2, Y2);
-          for (const o of outputs)
-            o[output_values][treeIndex] = o[output_evaluate](target, source);
+          for (const o of outputs) o[output_values][treeIndex] = o[output_evaluate](target, source);
         }
         treeFacets.push(treeFacet);
       }
@@ -176,8 +168,7 @@ function normalizer(delimiter = "/") {
 
 function replaceAll(search, replace) {
   search = new RegExp(regexEscape(search), "g");
-  return (value) =>
-    value == null ? null : `${value}`.replace(search, replace);
+  return (value) => (value == null ? null : `${value}`.replace(search, replace));
 }
 
 function regexEscape(string) {

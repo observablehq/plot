@@ -6,11 +6,6 @@ export default async function () {
   return Plot.plot({
     grid: true,
     height: 640,
-    marks: [
-      Plot.dot(
-        athletes,
-        Plot.shuffle({seed: 42, x: "weight", y: "height", fill: "sport"})
-      )
-    ]
+    marks: [Plot.dot(athletes, Plot.shuffle({seed: 42, x: "weight", y: "height", fill: "sport"}))]
   });
 }

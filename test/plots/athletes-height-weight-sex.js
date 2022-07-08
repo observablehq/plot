@@ -11,13 +11,7 @@ export default async function () {
       ticks: 10
     },
     marks: [
-      Plot.rect(
-        athletes,
-        Plot.bin(
-          {fillOpacity: "count"},
-          {x: "weight", y: "height", fill: "sex", thresholds: 50}
-        )
-      )
+      Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height", fill: "sex", thresholds: 50}))
     ]
   });
 }

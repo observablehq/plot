@@ -10,12 +10,7 @@ import {
 import {positive, negative} from "../defined.js";
 import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
-import {
-  inferDomain,
-  Interpolator,
-  flip,
-  interpolatePiecewise
-} from "./quantitative.js";
+import {inferDomain, Interpolator, flip, interpolatePiecewise} from "./quantitative.js";
 
 function ScaleD(
   key,
@@ -57,9 +52,7 @@ function ScaleD(
   // If an explicit range is specified, promote it to a piecewise interpolator.
   if (range !== undefined) {
     interpolate =
-      interpolate.length === 1
-        ? interpolatePiecewise(interpolate)(...range)
-        : piecewise(interpolate, range);
+      interpolate.length === 1 ? interpolatePiecewise(interpolate)(...range) : piecewise(interpolate, range);
   }
 
   // Reverse before normalization.
@@ -89,39 +82,21 @@ export function ScaleDivergingSqrt(key, channels, options) {
 }
 
 export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
-  return ScaleD(
-    key,
-    scaleDivergingPow().exponent((exponent = +exponent)),
-    transformPow(exponent),
-    channels,
-    {...options, type: "diverging-pow"}
-  );
+  return ScaleD(key, scaleDivergingPow().exponent((exponent = +exponent)), transformPow(exponent), channels, {
+    ...options,
+    type: "diverging-pow"
+  });
 }
 
 export function ScaleDivergingLog(
   key,
   channels,
-  {
-    base = 10,
-    pivot = 1,
-    domain = inferDomain(channels, pivot < 0 ? negative : positive),
-    ...options
-  }
+  {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}
 ) {
-  return ScaleD(
-    key,
-    scaleDivergingLog().base((base = +base)),
-    transformLog,
-    channels,
-    {domain, pivot, ...options}
-  );
+  return ScaleD(key, scaleDivergingLog().base((base = +base)), transformLog, channels, {domain, pivot, ...options});
 }
 
-export function ScaleDivergingSymlog(
-  key,
-  channels,
-  {constant = 1, ...options}
-) {
+export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
   return ScaleD(
     key,
     scaleDivergingSymlog().constant((constant = +constant)),

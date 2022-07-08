@@ -1,12 +1,7 @@
 import {create} from "../context.js";
 import {number} from "../options.js";
 import {Mark} from "../plot.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  offset
-} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, offset} from "../style.js";
 import {sqrt4_3} from "../symbols.js";
 import {ox, oy} from "../transforms/hexbin.js";
 
@@ -28,8 +23,7 @@ export class Hexgrid extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {binWidth} = this;
-    const {marginTop, marginRight, marginBottom, marginLeft, width, height} =
-      dimensions;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const x0 = marginLeft - ox,
       x1 = width - marginRight - ox,
       y0 = marginTop - oy,

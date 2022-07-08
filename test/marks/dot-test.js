@@ -88,10 +88,7 @@ it("dot(data, {fill}) allows fill to be a variable color", () => {
 it("dot(data, {fill}) defaults stroke to undefined if fill is not none", () => {
   assert.strictEqual(Plot.dot(undefined, {fill: "red"}).stroke, undefined);
   assert.strictEqual(Plot.dot(undefined, {fill: "x"}).stroke, undefined);
-  assert.strictEqual(
-    Plot.dot(undefined, {fill: "none"}).stroke,
-    "currentColor"
-  );
+  assert.strictEqual(Plot.dot(undefined, {fill: "none"}).stroke, "currentColor");
 });
 
 it("dot(data, {stroke}) allows stroke to be a constant color", () => {
@@ -115,8 +112,5 @@ it("dot(data, {stroke}) allows stroke to be a variable color", () => {
 it("dot(data, {stroke}) defaults strokeWidth to 1.5 if stroke is defined", () => {
   assert.strictEqual(Plot.dot(undefined, {stroke: "red"}).strokeWidth, 1.5);
   assert.strictEqual(Plot.dot(undefined, {stroke: "x"}).strokeWidth, 1.5);
-  assert.strictEqual(
-    Plot.dot(undefined, {stroke: null}).strokeWidth,
-    undefined
-  );
+  assert.strictEqual(Plot.dot(undefined, {stroke: null}).strokeWidth, undefined);
 });

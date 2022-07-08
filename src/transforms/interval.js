@@ -16,10 +16,7 @@ export function maybeInterval(interval) {
       range: (lo, hi) => range(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
-  if (
-    typeof interval.floor !== "function" ||
-    typeof interval.offset !== "function"
-  )
+  if (typeof interval.floor !== "function" || typeof interval.offset !== "function")
     throw new Error("invalid interval; missing floor or offset function");
   return interval;
 }
@@ -28,9 +25,7 @@ export function maybeInterval(interval) {
 // interval}. The former is used, for example, for Plot.rect.
 function maybeIntervalValue(value, {interval}) {
   value = {...maybeValue(value)};
-  value.interval = maybeInterval(
-    value.interval === undefined ? interval : value.interval
-  );
+  value.interval = maybeInterval(value.interval === undefined ? interval : value.interval);
   return value;
 }
 
@@ -82,16 +77,10 @@ function maybeIntervalMidK(k, maybeInsetK, options) {
         return V1.map(
           isTemporal(V1)
             ? (v1, v2) =>
-                v1 == null ||
-                isNaN((v1 = +v1)) ||
-                ((v2 = V2[v2]), v2 == null) ||
-                isNaN((v2 = +v2))
+                v1 == null || isNaN((v1 = +v1)) || ((v2 = V2[v2]), v2 == null) || isNaN((v2 = +v2))
                   ? undefined
                   : new Date((v1 + v2) / 2)
-            : (v1, v2) =>
-                v1 == null || ((v2 = V2[v2]), v2 == null)
-                  ? NaN
-                  : (+v1 + +v2) / 2
+            : (v1, v2) => (v1 == null || ((v2 = V2[v2]), v2 == null) ? NaN : (+v1 + +v2) / 2)
         );
       }
     }

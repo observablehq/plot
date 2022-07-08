@@ -12,10 +12,7 @@ export default async function () {
     marks: [
       Plot.ruleY([0]),
       Plot.line(stargazers, {x: "date", y: (_, i) => i}),
-      Plot.text(
-        stargazers,
-        Plot.selectLast({x: "date", y: (_, i) => i, textAnchor: "start", dx: 3})
-      )
+      Plot.text(stargazers, Plot.selectLast({x: "date", y: (_, i) => i, textAnchor: "start", dx: 3}))
     ]
   });
 }

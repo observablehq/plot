@@ -4,17 +4,11 @@ export function defined(x: Primitive | undefined): boolean {
   return x != null && !Number.isNaN(x);
 }
 
-export function ascendingDefined(
-  a: Primitive | undefined,
-  b: Primitive | undefined
-): number {
+export function ascendingDefined(a: Primitive | undefined, b: Primitive | undefined): number {
   return +defined(b) - +defined(a) || ascending(a, b);
 }
 
-export function descendingDefined(
-  a: Primitive | undefined,
-  b: Primitive | undefined
-): number {
+export function descendingDefined(a: Primitive | undefined, b: Primitive | undefined): number {
   return +defined(b) - +defined(a) || descending(a, b);
 }
 

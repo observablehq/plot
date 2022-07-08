@@ -76,8 +76,7 @@ function groupn(
   outputs = maybeOutputs(outputs, inputs);
   reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter =
-    filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeColumn(x);
@@ -168,14 +167,10 @@ export function hasOutput(outputs, ...names) {
 export function maybeOutputs(outputs, inputs) {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
-  if (inputs.title != null && outputs.title === undefined)
-    entries.push(["title", reduceTitle]);
-  if (inputs.href != null && outputs.href === undefined)
-    entries.push(["href", reduceFirst]);
+  if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
+  if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries.map(([name, reduce]) => {
-    return reduce == null
-      ? {name, initialize() {}, scope() {}, reduce() {}}
-      : maybeOutput(name, reduce, inputs);
+    return reduce == null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
   });
 }
 
@@ -217,9 +212,7 @@ export function maybeEvaluator(name, reduce, inputs) {
       }
     },
     reduce(I, extent) {
-      return reducer.scope == null
-        ? reducer.reduce(I, V, extent)
-        : reducer.reduce(I, V, context, extent);
+      return reducer.scope == null ? reducer.reduce(I, V, extent) : reducer.reduce(I, V, context, extent);
     }
   };
 }
@@ -348,14 +341,9 @@ const reduceTitle = {
     const top = groups.slice(-n).reverse();
     if (top.length < groups.length) {
       const bottom = groups.slice(0, 1 - n);
-      top[n - 1] = [
-        `… ${bottom.length.toLocaleString("en-US")} more`,
-        sum(bottom, second)
-      ];
+      top[n - 1] = [`… ${bottom.length.toLocaleString("en-US")} more`, sum(bottom, second)];
     }
-    return top
-      .map(([key, value]) => `${key} (${value.toLocaleString("en-US")})`)
-      .join("\n");
+    return top.map(([key, value]) => `${key} (${value.toLocaleString("en-US")})`).join("\n");
   }
 };
 

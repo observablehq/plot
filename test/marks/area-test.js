@@ -112,14 +112,8 @@ it("area(data, {stroke}) implies a default z channel if stroke is variable", () 
 });
 
 it("area(data, {curve}) specifies a named curve or function", () => {
-  assert.strictEqual(
-    Plot.area(undefined, {x1: "0", y1: "1", curve: "step"}).curve,
-    curveStep
-  );
-  assert.strictEqual(
-    Plot.area(undefined, {x1: "0", y1: "1", curve: curveStep}).curve,
-    curveStep
-  );
+  assert.strictEqual(Plot.area(undefined, {x1: "0", y1: "1", curve: "step"}).curve, curveStep);
+  assert.strictEqual(Plot.area(undefined, {x1: "0", y1: "1", curve: curveStep}).curve, curveStep);
 });
 
 it("areaX(data, {x, y}) defaults x1 to zero, x2 to x, and y1 to y", () => {

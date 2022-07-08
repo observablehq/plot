@@ -13,10 +13,7 @@ export default async function () {
           <stop offset="100%" stop-color="gold" />
         </linearGradient>
       </defs>`,
-      Plot.barY(
-        penguins,
-        Plot.groupX({y: "count"}, {x: "species", fill: "url(#gradient)"})
-      ),
+      Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "species", fill: "url(#gradient)"})),
       Plot.ruleY([0])
     ]
   });

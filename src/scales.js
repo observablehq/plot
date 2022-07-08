@@ -13,15 +13,7 @@ import {
   order,
   slice
 } from "./options.js";
-import {
-  registry,
-  color,
-  position,
-  radius,
-  opacity,
-  symbol,
-  length
-} from "./scales/index.js";
+import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   ScaleLinear,
   ScaleSqrt,
@@ -42,12 +34,7 @@ import {
 } from "./scales/diverging.js";
 import {isDivergingScheme} from "./scales/schemes.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
-import {
-  ScaleOrdinal,
-  ScalePoint,
-  ScaleBand,
-  ordinalImplicit
-} from "./scales/ordinal.js";
+import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
 import {warn} from "./warnings.js";
 
@@ -86,30 +73,13 @@ export function Scales(
         percent,
         transform,
         inset,
-        insetTop = inset !== undefined
-          ? inset
-          : key === "y"
-          ? globalInsetTop
-          : 0, // not fy
-        insetRight = inset !== undefined
-          ? inset
-          : key === "x"
-          ? globalInsetRight
-          : 0, // not fx
-        insetBottom = inset !== undefined
-          ? inset
-          : key === "y"
-          ? globalInsetBottom
-          : 0, // not fy
-        insetLeft = inset !== undefined
-          ? inset
-          : key === "x"
-          ? globalInsetLeft
-          : 0 // not fx
+        insetTop = inset !== undefined ? inset : key === "y" ? globalInsetTop : 0, // not fy
+        insetRight = inset !== undefined ? inset : key === "x" ? globalInsetRight : 0, // not fx
+        insetBottom = inset !== undefined ? inset : key === "y" ? globalInsetBottom : 0, // not fy
+        insetLeft = inset !== undefined ? inset : key === "x" ? globalInsetLeft : 0 // not fx
       } = scaleOptions || {};
       if (transform == null) transform = undefined;
-      else if (typeof transform !== "function")
-        throw new Error("invalid scale transform; not a function");
+      else if (typeof transform !== "function") throw new Error("invalid scale transform; not a function");
       scale.percent = !!percent;
       scale.transform = transform;
       if (key === "x" || key === "fx") {
@@ -126,9 +96,7 @@ export function Scales(
 }
 
 export function ScaleFunctions(scales) {
-  return Object.fromEntries(
-    Object.entries(scales).map(([name, {scale}]) => [name, scale])
-  );
+  return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
 }
 
 // Mutates scale.range!
@@ -167,11 +135,7 @@ function autoScaleRangeY(scale, dimensions) {
 }
 
 function autoScaleRound(scale) {
-  if (
-    scale.round === undefined &&
-    isBandScale(scale) &&
-    roundError(scale) <= 30
-  ) {
+  if (scale.round === undefined && isBandScale(scale) && roundError(scale) <= 30) {
     scale.scale.round(true);
   }
 }
@@ -184,9 +148,7 @@ function roundError({scale}) {
   const n = scale.domain().length;
   const [start, stop] = scale.range();
   const paddingInner = scale.paddingInner ? scale.paddingInner() : 1;
-  const paddingOuter = scale.paddingOuter
-    ? scale.paddingOuter()
-    : scale.padding();
+  const paddingOuter = scale.paddingOuter ? scale.paddingOuter() : scale.padding();
   const m = n - paddingInner;
   const step = Math.abs(stop - start) / Math.max(1, m + paddingOuter * 2);
   return (step - Math.floor(step)) * m;
@@ -196,10 +158,7 @@ function piecewiseRange(scale) {
   const length = scale.scale.domain().length + isThresholdScale(scale);
   if (!(length > 2)) return scale.range;
   const [start, end] = scale.range;
-  return Array.from(
-    {length},
-    (_, i) => start + (i / (length - 1)) * (end - start)
-  );
+  return Array.from({length}, (_, i) => start + (i / (length - 1)) * (end - start));
 }
 
 export function normalizeScale(key, scale, hint) {
@@ -223,9 +182,7 @@ function Scale(key, channels = [], options = {}) {
     key !== "fy" &&
     isOrdinalScale({type})
   ) {
-    const values = channels
-      .map(({value}) => value)
-      .filter((value) => value !== undefined);
+    const values = channels.map(({value}) => value).filter((value) => value !== undefined);
     if (values.some(isTemporal))
       warn(
         `Warning: some data associated with the ${key} scale are dates. Dates are typically associated with a "utc" or "time" scale rather than a "${formatScaleType(
@@ -331,9 +288,7 @@ function Scale(key, channels = [], options = {}) {
     case "band":
       return ScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position
-        ? ScaleIdentity()
-        : {type: "identity"};
+      return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
     case undefined:
       return;
     default:
@@ -355,16 +310,14 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   for (const {type: t} of channels) {
     if (t === undefined) continue;
     else if (type === undefined) type = t;
-    else if (type !== t)
-      throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
+    else if (type !== t) throw new Error(`scale incompatible with channel: ${type} !== ${t}`);
   }
 
   // If the scale, a channel, or user specified a (consistent) type, return it.
   if (type !== undefined) return type;
 
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
-  if (domain === undefined && !channels.some(({value}) => value !== undefined))
-    return;
+  if (domain === undefined && !channels.some(({value}) => value !== undefined)) return;
 
   const kind = registry.get(key);
 
@@ -373,21 +326,11 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   // are valid colors, then default to the identity scale. This allows, for
   // example, a fill channel to return literal colors; without this, the colors
   // would be remapped to a categorical scheme!
-  if (
-    kind === color &&
-    range === undefined &&
-    scheme === undefined &&
-    isAll(domain, channels, isColor)
-  )
+  if (kind === color && range === undefined && scheme === undefined && isAll(domain, channels, isColor))
     return "identity";
 
   // Similarly for symbols…
-  if (
-    kind === symbol &&
-    range === undefined &&
-    isAll(domain, channels, isSymbol)
-  )
-    return "identity";
+  if (kind === symbol && range === undefined && isAll(domain, channels, isSymbol)) return "identity";
 
   // Some scales have default types.
   if (kind === radius) return "sqrt";
@@ -407,19 +350,15 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   if (domain !== undefined) {
     if (isOrdinal(domain)) return asOrdinalType(kind);
     if (isTemporal(domain)) return "utc";
-    if (kind === color && (pivot != null || isDivergingScheme(scheme)))
-      return "diverging";
+    if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
     return "linear";
   }
 
   // If any channel is ordinal or temporal, it takes priority.
-  const values = channels
-    .map(({value}) => value)
-    .filter((value) => value !== undefined);
+  const values = channels.map(({value}) => value).filter((value) => value !== undefined);
   if (values.some(isOrdinal)) return asOrdinalType(kind);
   if (values.some(isTemporal)) return "utc";
-  if (kind === color && (pivot != null || isDivergingScheme(scheme)))
-    return "diverging";
+  if (kind === color && (pivot != null || isDivergingScheme(scheme))) return "diverging";
   return "linear";
 }
 
@@ -447,12 +386,7 @@ export function isTemporalScale({type}) {
 }
 
 export function isOrdinalScale({type}) {
-  return (
-    type === "ordinal" ||
-    type === "point" ||
-    type === "band" ||
-    type === ordinalImplicit
-  );
+  return type === "ordinal" || type === "point" || type === "band" || type === ordinalImplicit;
 }
 
 export function isThresholdScale({type}) {
@@ -511,9 +445,7 @@ function coerceDates(values) {
 
 // If the values are specified as a typed array, no coercion is required.
 export function coerceNumbers(values) {
-  return isTypedArray(values)
-    ? values
-    : map(values, coerceNumber, Float64Array);
+  return isTypedArray(values) ? values : map(values, coerceNumber, Float64Array);
 }
 
 // Unlike Mark’s number, here we want to convert null and undefined to NaN,
@@ -544,39 +476,22 @@ export function scale(options = {}) {
   for (const key in options) {
     if (!registry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
-    if (scale !== undefined)
-      throw new Error("ambiguous scale definition; multiple scales found");
+    if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
     scale = exposeScale(normalizeScale(key, options[key]));
   }
-  if (scale === undefined)
-    throw new Error("invalid scale definition; no scale found");
+  if (scale === undefined) throw new Error("invalid scale definition; no scale found");
   return scale;
 }
 
 export function exposeScales(scaleDescriptors) {
   return (key) => {
-    if (!registry.has((key = `${key}`)))
-      throw new Error(`unknown scale: ${key}`);
-    return key in scaleDescriptors
-      ? exposeScale(scaleDescriptors[key])
-      : undefined;
+    if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
+    return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
   };
 }
 
-function exposeScale({
-  scale,
-  type,
-  domain,
-  range,
-  label,
-  interpolate,
-  interval,
-  transform,
-  percent,
-  pivot
-}) {
-  if (type === "identity")
-    return {type: "identity", apply: (d) => d, invert: (d) => d};
+function exposeScale({scale, type, domain, range, label, interpolate, interval, transform, percent, pivot}) {
+  if (type === "identity") return {type: "identity", apply: (d) => d, invert: (d) => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
   return {
     type,

@@ -27,13 +27,7 @@ export default async function () {
           }
         )
       ),
-      Plot.text(
-        penguins,
-        Plot.hexbin(
-          {text: "count"},
-          {x: "culmen_depth_mm", y: "culmen_length_mm"}
-        )
-      )
+      Plot.text(penguins, Plot.hexbin({text: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
     ]
   });
 }

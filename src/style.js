@@ -1,20 +1,10 @@
 import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {
-  string,
-  number,
-  maybeColorChannel,
-  maybeNumberChannel,
-  isNoneish,
-  isNone,
-  isRound,
-  keyof
-} from "./options.js";
+import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
 import {warn} from "./warnings.js";
 
-export const offset =
-  typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
+export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
 let nextClipId = 0;
 
@@ -81,15 +71,9 @@ export function styles(
   }
 
   const [vfill, cfill] = maybeColorChannel(fill, defaultFill);
-  const [vfillOpacity, cfillOpacity] = maybeNumberChannel(
-    fillOpacity,
-    defaultFillOpacity
-  );
+  const [vfillOpacity, cfillOpacity] = maybeNumberChannel(fillOpacity, defaultFillOpacity);
   const [vstroke, cstroke] = maybeColorChannel(stroke, defaultStroke);
-  const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(
-    strokeOpacity,
-    defaultStrokeOpacity
-  );
+  const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(strokeOpacity, defaultStrokeOpacity);
   const [vopacity, copacity] = maybeNumberChannel(opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
@@ -103,13 +87,11 @@ export function styles(
 
     // The default stroke miterlimit need not be applied if the current stroke
     // is the constant round; this only has effect on miter joins.
-    if (strokeMiterlimit === undefined && !isRound(strokeLinejoin))
-      strokeMiterlimit = defaultStrokeMiterlimit;
+    if (strokeMiterlimit === undefined && !isRound(strokeLinejoin)) strokeMiterlimit = defaultStrokeMiterlimit;
 
     // The paint order only takes effect if there is both a fill and a stroke
     // (at least if we ignore markers, which no built-in marks currently use).
-    if (!isNone(cfill) && paintOrder === undefined)
-      paintOrder = defaultPaintOrder;
+    if (!isNone(cfill) && paintOrder === undefined) paintOrder = defaultPaintOrder;
   }
 
   const [vstrokeWidth, cstrokeWidth] = maybeNumberChannel(strokeWidth);
@@ -340,8 +322,7 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   applyAttr(selection, "pointer-events", mark.pointerEvents);
   if (mark.clip === "frame") {
     const {x, y} = scales;
-    const {width, height, marginLeft, marginRight, marginTop, marginBottom} =
-      dimensions;
+    const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
     const id = `plot-clip-${++nextClipId}`;
     selection
       .attr("clip-path", `url(#${id})`)
@@ -381,13 +362,7 @@ export function applyStyle(selection, name, value) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform(
-  selection,
-  mark,
-  {x, y},
-  tx = offset,
-  ty = offset
-) {
+export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset) {
   tx += mark.dx;
   ty += mark.dy;
   if (x?.bandwidth) tx += x.bandwidth() / 2;
@@ -409,8 +384,7 @@ const validClassName =
 export function maybeClassName(name) {
   if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
   name = `${name}`;
-  if (!validClassName.test(name))
-    throw new Error(`invalid class name: ${name}`);
+  if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
 }
 
@@ -424,10 +398,7 @@ export function applyInlineStyles(selection, style) {
   }
 }
 
-export function applyFrameAnchor(
-  {frameAnchor},
-  {width, height, marginTop, marginRight, marginBottom, marginLeft}
-) {
+export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, marginRight, marginBottom, marginLeft}) {
   return [
     /left$/.test(frameAnchor)
       ? marginLeft

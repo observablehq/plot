@@ -17,15 +17,7 @@ import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}, defaults) {
     super(data, channels, options, defaults);
-    const {
-      inset = 0,
-      insetTop = inset,
-      insetRight = inset,
-      insetBottom = inset,
-      insetLeft = inset,
-      rx,
-      ry
-    } = options;
+    const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
@@ -70,8 +62,7 @@ export class AbstractBar extends Mark {
   }
   _height({y}, {y: Y}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
-    const bandwidth =
-      Y && y ? y.bandwidth() : height - marginTop - marginBottom;
+    const bandwidth = Y && y ? y.bandwidth() : height - marginTop - marginBottom;
     return Math.max(0, bandwidth - insetTop - insetBottom);
   }
 }
@@ -99,9 +90,7 @@ export class BarX extends AbstractBar {
   }
   _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
     const {insetLeft} = this;
-    return isCollapsed(x)
-      ? marginLeft + insetLeft
-      : (i) => Math.min(X1[i], X2[i]) + insetLeft;
+    return isCollapsed(x) ? marginLeft + insetLeft : (i) => Math.min(X1[i], X2[i]) + insetLeft;
   }
   _width({x}, {x1: X1, x2: X2}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
@@ -130,9 +119,7 @@ export class BarY extends AbstractBar {
   }
   _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
     const {insetTop} = this;
-    return isCollapsed(y)
-      ? marginTop + insetTop
-      : (i) => Math.min(Y1[i], Y2[i]) + insetTop;
+    return isCollapsed(y) ? marginTop + insetTop : (i) => Math.min(Y1[i], Y2[i]) + insetTop;
   }
   _height({y}, {y1: Y1, y2: Y2}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;

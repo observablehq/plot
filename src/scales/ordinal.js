@@ -1,23 +1,11 @@
-import {
-  InternSet,
-  extent,
-  quantize,
-  reverse as reverseof,
-  sort,
-  symbolsFill,
-  symbolsStroke
-} from "d3";
+import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {isNoneish, map} from "../options.js";
 import {maybeInterval} from "../transforms/interval.js";
 import {maybeSymbol} from "../symbols.js";
 import {registry, color, position, symbol} from "./index.js";
-import {
-  maybeBooleanRange,
-  ordinalScheme,
-  quantitativeScheme
-} from "./schemes.js";
+import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 // This denotes an implicitly ordinal color scale: the scale type was not set,
 // but the associated values are strings or booleans. If the associated defined
@@ -25,12 +13,7 @@ import {
 // of this by setting the type explicitly.
 export const ordinalImplicit = Symbol("ordinal");
 
-function ScaleO(
-  key,
-  scale,
-  channels,
-  {type, interval, domain, range, reverse, hint}
-) {
+function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
   interval = maybeInterval(interval);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
@@ -44,23 +27,15 @@ function ScaleO(
   return {type, domain, range, scale, hint, interval};
 }
 
-export function ScaleOrdinal(
-  key,
-  channels,
-  {type, interval, domain, range, scheme, unknown, ...options}
-) {
+export function ScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
   interval = maybeInterval(interval);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
   if (registry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
-    range =
-      range === undefined ? inferSymbolRange(hint) : map(range, maybeSymbol);
+    range = range === undefined ? inferSymbolRange(hint) : map(range, maybeSymbol);
   } else if (registry.get(key) === color) {
-    if (
-      range === undefined &&
-      (type === "ordinal" || type === ordinalImplicit)
-    ) {
+    if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
       range = maybeBooleanRange(domain, scheme);
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
     }
@@ -78,8 +53,7 @@ export function ScaleOrdinal(
       }
     }
   }
-  if (unknown === scaleImplicit)
-    throw new Error("implicit unknown is not supported");
+  if (unknown === scaleImplicit) throw new Error("implicit unknown is not supported");
   return ScaleO(key, scaleOrdinal().unknown(unknown), channels, {
     ...options,
     type,
@@ -89,17 +63,8 @@ export function ScaleOrdinal(
   });
 }
 
-export function ScalePoint(
-  key,
-  channels,
-  {align = 0.5, padding = 0.5, ...options}
-) {
-  return maybeRound(
-    scalePoint().align(align).padding(padding),
-    channels,
-    options,
-    key
-  );
+export function ScalePoint(key, channels, {align = 0.5, padding = 0.5, ...options}) {
+  return maybeRound(scalePoint().align(align).padding(padding), channels, options, key);
 }
 
 export function ScaleBand(
@@ -114,10 +79,7 @@ export function ScaleBand(
   }
 ) {
   return maybeRound(
-    scaleBand()
-      .align(align)
-      .paddingInner(paddingInner)
-      .paddingOuter(paddingOuter),
+    scaleBand().align(align).paddingInner(paddingInner).paddingOuter(paddingOuter),
     channels,
     options,
     key
@@ -144,9 +106,7 @@ function inferDomain(channels, interval, key) {
     return interval.range(min, interval.offset(max));
   }
   if (values.size > 10e3 && registry.get(key) === position)
-    throw new Error(
-      "implicit ordinal position domain has more than 10,000 values"
-    );
+    throw new Error("implicit ordinal position domain has more than 10,000 values");
   return sort(values, ascendingDefined);
 }
 

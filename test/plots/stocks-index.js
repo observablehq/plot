@@ -13,9 +13,7 @@ async function loadSymbol(name) {
 }
 
 export default async function () {
-  const stocks = (
-    await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))
-  ).flat();
+  const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     style: "overflow: visible;",
     y: {

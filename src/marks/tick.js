@@ -1,13 +1,7 @@
 import {create} from "../context.js";
 import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
-import {
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform,
-  applyChannelStyles,
-  offset
-} from "../style.js";
+import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
 const defaults = {
   ariaLabel: "tick",
@@ -69,9 +63,7 @@ export class TickX extends AbstractTick {
   }
   _y2({y}, {y: Y}, {height, marginBottom}) {
     const {insetBottom} = this;
-    return Y && y
-      ? (i) => Y[i] + y.bandwidth() - insetBottom
-      : height - marginBottom - insetBottom;
+    return Y && y ? (i) => Y[i] + y.bandwidth() - insetBottom : height - marginBottom - insetBottom;
   }
 }
 
@@ -98,9 +90,7 @@ export class TickY extends AbstractTick {
   }
   _x2({x}, {x: X}, {width, marginRight}) {
     const {insetRight} = this;
-    return X && x
-      ? (i) => X[i] + x.bandwidth() - insetRight
-      : width - marginRight - insetRight;
+    return X && x ? (i) => X[i] + x.bandwidth() - insetRight : width - marginRight - insetRight;
   }
   _y1(scales, {y: Y}) {
     return (i) => Y[i];

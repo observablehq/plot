@@ -32,10 +32,7 @@ export default async function () {
       scheme: "blues"
     },
     marks: [
-      Plot.barX(
-        data,
-        stack({fill: "version", insetLeft: 0.5, insetRight: 0.5})
-      ),
+      Plot.barX(data, stack({fill: "version", insetLeft: 0.5, insetRight: 0.5})),
       Plot.text(data, stack({text: "version"})),
       Plot.ruleX([0, 1])
     ]

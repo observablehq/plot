@@ -1,71 +1,45 @@
-import {
-  InternMap,
-  cumsum,
-  group,
-  groupSort,
-  greatest,
-  max,
-  min,
-  rollup,
-  sum
-} from "d3";
+import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {
-  field,
-  column,
-  maybeColumn,
-  maybeZ,
-  mid,
-  range,
-  valueof,
-  maybeZero,
-  one
-} from "../options.js";
+import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
 export function stackX(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
   const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
 export function stackX1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackX2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, , X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
 export function stackY(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
 export function stackY1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
 export function stackY2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1)
-    [stackOptions, options] = mergeOptions(stackOptions);
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, , Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
@@ -109,9 +83,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
-        const stacks = X
-          ? Array.from(group(facet, (i) => X[i]).values())
-          : [facet];
+        const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0,
@@ -234,9 +206,7 @@ function offsetCenterFacets(facetstacks, Y1, Y2) {
   const n = facetstacks.length;
   if (n === 1) return;
   const facets = facetstacks.map((stacks) => stacks.flat());
-  const m = facets.map(
-    (I) => (min(I, (i) => Y1[i]) + max(I, (i) => Y2[i])) / 2
-  );
+  const m = facets.map((I) => (min(I, (i) => Y1[i]) + max(I, (i) => Y2[i])) / 2);
   const m0 = min(m);
   for (let j = 0; j < n; j++) {
     const p = m0 - m[j];

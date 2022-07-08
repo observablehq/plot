@@ -15,11 +15,7 @@ export function Axes(
     grid,
     line,
     label,
-    facet: {
-      axis: facetAxis = axis,
-      grid: facetGrid,
-      label: facetLabel = label
-    } = {}
+    facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}
   } = {}
 ) {
   let {axis: xAxis = axis} = x;
@@ -80,10 +76,7 @@ export function Axes(
 
 // Mutates axis.ticks!
 // TODO Populate tickFormat if undefined, too?
-export function autoAxisTicks(
-  {x, y, fx, fy},
-  {x: xAxis, y: yAxis, fx: fxAxis, fy: fyAxis}
-) {
+export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, fy: fyAxis}) {
   if (fxAxis) autoAxisTicksK(fx, fxAxis, 80);
   if (fyAxis) autoAxisTicksK(fy, fyAxis, 35);
   if (xAxis) autoAxisTicksK(x, xAxis, 80);
@@ -95,10 +88,7 @@ function autoAxisTicksK(scale, axis, k) {
     const interval = scale.interval;
     if (interval !== undefined) {
       const [min, max] = extent(scale.scale.domain());
-      axis.ticks = interval.range(
-        interval.floor(min),
-        interval.offset(interval.floor(max))
-      );
+      axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
     } else {
       const [min, max] = extent(scale.scale.range());
       axis.ticks = (max - min) / k;
@@ -113,13 +103,7 @@ function autoAxisTicksK(scale, axis, k) {
 }
 
 // Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
-export function autoScaleLabels(
-  channels,
-  scales,
-  {x, y, fx, fy},
-  dimensions,
-  options
-) {
+export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, options) {
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
     if (fx.labelOffset === undefined) {
@@ -137,23 +121,15 @@ export function autoScaleLabels(
   if (x) {
     autoAxisLabelsX(x, scales.x, channels.get("x"));
     if (x.labelOffset === undefined) {
-      const {marginTop, marginBottom, facetMarginTop, facetMarginBottom} =
-        dimensions;
-      x.labelOffset =
-        x.axis === "top"
-          ? marginTop - facetMarginTop
-          : marginBottom - facetMarginBottom;
+      const {marginTop, marginBottom, facetMarginTop, facetMarginBottom} = dimensions;
+      x.labelOffset = x.axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     }
   }
   if (y) {
     autoAxisLabelsY(y, x, scales.y, channels.get("y"));
     if (y.labelOffset === undefined) {
-      const {marginRight, marginLeft, facetMarginLeft, facetMarginRight} =
-        dimensions;
-      y.labelOffset =
-        y.axis === "left"
-          ? marginLeft - facetMarginLeft
-          : marginRight - facetMarginRight;
+      const {marginRight, marginLeft, facetMarginLeft, facetMarginRight} = dimensions;
+      y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     }
   }
   for (const [key, type] of registry) {
@@ -167,11 +143,7 @@ export function autoScaleLabels(
 // Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = isOrdinalScale(scale)
-      ? "center"
-      : scaleOrder(scale) < 0
-      ? "left"
-      : "right";
+    axis.labelAnchor = isOrdinalScale(scale) ? "center" : scaleOrder(scale) < 0 ? "left" : "right";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "x");
@@ -224,8 +196,7 @@ function inferLabel(channels = [], scale, axis, key) {
         const order = scaleOrder(scale);
         if (order) {
           if (key === "x" || (axis && axis.labelAnchor === "center")) {
-            candidate =
-              (key === "x") === order < 0 ? `← ${candidate}` : `${candidate} →`;
+            candidate = (key === "x") === order < 0 ? `← ${candidate}` : `${candidate} →`;
           } else {
             candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
           }
@@ -237,7 +208,5 @@ function inferLabel(channels = [], scale, axis, key) {
 }
 
 export function inferFontVariant(scale) {
-  return isOrdinalScale(scale) && scale.interval === undefined
-    ? undefined
-    : "tabular-nums";
+  return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
 }

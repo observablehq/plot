@@ -14,16 +14,10 @@ export default async function () {
       scheme: "YlGnBu"
     },
     marks: [
+      Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height", thresholds: 50})),
       Plot.rect(
         athletes,
-        Plot.bin({fill: "count"}, {x: "weight", y: "height", thresholds: 50})
-      ),
-      Plot.rect(
-        athletes,
-        Plot.bin(
-          {filter: (d) => d.length > 20},
-          {x: "weight", y: "height", stroke: "grey", inset: 0, thresholds: 50}
-        )
+        Plot.bin({filter: (d) => d.length > 20}, {x: "weight", y: "height", stroke: "grey", inset: 0, thresholds: 50})
       )
     ]
   });

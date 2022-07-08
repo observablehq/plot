@@ -13,8 +13,6 @@ export default async function () {
     color: {
       scheme: "YlGnBu"
     },
-    marks: [
-      Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
-    ]
+    marks: [Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))]
   });
 }

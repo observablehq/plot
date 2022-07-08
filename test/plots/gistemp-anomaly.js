@@ -12,9 +12,6 @@ export default async function () {
     color: {
       scheme: "BuRd"
     },
-    marks: [
-      Plot.ruleY([0]),
-      Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
-    ]
+    marks: [Plot.ruleY([0]), Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})]
   });
 }

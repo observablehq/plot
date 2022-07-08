@@ -8,8 +8,6 @@ export default async function () {
     x: {
       line: true
     },
-    marks: [
-      Plot.dot(cars, Plot.dodgeY({x: "weight (lb)", sort: "weight (lb)"}))
-    ]
+    marks: [Plot.dot(cars, Plot.dodgeY({x: "weight (lb)", sort: "weight (lb)"}))]
   });
 }

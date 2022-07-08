@@ -4,9 +4,7 @@ import * as d3 from "d3";
 export default async function () {
   const states = await d3.csv("data/us-population-state-age.csv", d3.autoType);
   const ages = states.columns.slice(1);
-  const stateage = ages.flatMap((age) =>
-    states.map((d) => ({state: d.name, age, population: d[age]}))
-  );
+  const stateage = ages.flatMap((age) => states.map((d) => ({state: d.name, age, population: d[age]})));
   const position = Plot.normalizeX("sum", {
     z: "state",
     x: "population",

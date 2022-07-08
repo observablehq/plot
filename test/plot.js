@@ -9,32 +9,16 @@ for (const [name, plot] of Object.entries(plots)) {
   it(`plot ${name}`, async () => {
     const root = await plot();
     const ext = root.tagName === "svg" ? "svg" : "html";
-    for (const svg of root.tagName === "svg"
-      ? [root]
-      : root.querySelectorAll("svg")) {
-      svg.setAttributeNS(
-        "http://www.w3.org/2000/xmlns/",
-        "xmlns",
-        "http://www.w3.org/2000/svg"
-      );
-      svg.setAttributeNS(
-        "http://www.w3.org/2000/xmlns/",
-        "xmlns:xlink",
-        "http://www.w3.org/1999/xlink"
-      );
+    for (const svg of root.tagName === "svg" ? [root] : root.querySelectorAll("svg")) {
+      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", "http://www.w3.org/2000/svg");
+      svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
     }
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
     const actual = beautify.html(root.outerHTML, {indent_size: 2});
-    const outfile = path.resolve(
-      "./test/output",
-      `${path.basename(name, ".js")}.${ext}`
-    );
-    const diffile = path.resolve(
-      "./test/output",
-      `${path.basename(name, ".js")}-changed.${ext}`
-    );
+    const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
+    const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
     let expected;
 
     try {
@@ -76,17 +60,9 @@ function reindexStyle(root) {
     const parent = style.parentNode;
     const uid = parent.getAttribute("class");
     for (const child of [parent, ...parent.querySelectorAll("[class]")]) {
-      child.setAttribute(
-        "class",
-        child
-          .getAttribute("class")
-          .replace(new RegExp(`\\b${uid}\\b`, "g"), name)
-      );
+      child.setAttribute("class", child.getAttribute("class").replace(new RegExp(`\\b${uid}\\b`, "g"), name));
     }
-    style.textContent = style.textContent.replace(
-      new RegExp(`[.]${uid}`, "g"),
-      `.${name}`
-    );
+    style.textContent = style.textContent.replace(new RegExp(`[.]${uid}`, "g"), `.${name}`);
   }
 }
 

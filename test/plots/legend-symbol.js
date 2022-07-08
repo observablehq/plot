@@ -43,9 +43,7 @@ export function symbolLegendExplicitColor() {
 // function for both channels.
 export function symbolLegendImplicitRange() {
   const identity = (d) => d;
-  return Plot.dotX("ABCDEF", {fill: identity, symbol: identity})
-    .plot()
-    .legend("symbol");
+  return Plot.dotX("ABCDEF", {fill: identity, symbol: identity}).plot().legend("symbol");
 }
 
 export function symbolLegendStroke() {

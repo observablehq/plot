@@ -18,9 +18,7 @@ export function window(options = {}) {
   let {k, reduce, shift, anchor} = options;
   if (anchor === undefined && shift !== undefined) {
     anchor = maybeShift(shift);
-    warn(
-      `Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`
-    );
+    warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
   }
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
   return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
@@ -80,8 +78,7 @@ function maybeReduce(reduce = "mean") {
         return reduceLast;
     }
   }
-  if (typeof reduce !== "function")
-    throw new Error(`invalid reduce: ${reduce}`);
+  if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
   return reduceSubarray(reduce);
 }
 

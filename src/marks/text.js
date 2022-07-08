@@ -42,16 +42,8 @@ export class Text extends Mark {
       y,
       text = isIterable(data) && isTextual(data) ? identity : indexOf,
       frameAnchor,
-      textAnchor = /right$/i.test(frameAnchor)
-        ? "end"
-        : /left$/i.test(frameAnchor)
-        ? "start"
-        : "middle",
-      lineAnchor = /^top/i.test(frameAnchor)
-        ? "top"
-        : /^bottom/i.test(frameAnchor)
-        ? "bottom"
-        : "middle",
+      textAnchor = /right$/i.test(frameAnchor) ? "end" : /left$/i.test(frameAnchor) ? "start" : "middle",
+      lineAnchor = /^top/i.test(frameAnchor) ? "top" : /^bottom/i.test(frameAnchor) ? "bottom" : "middle",
       lineHeight = 1,
       lineWidth = Infinity,
       monospace,
@@ -78,11 +70,7 @@ export class Text extends Mark {
     );
     this.rotate = crotate;
     this.textAnchor = impliedString(textAnchor, "middle");
-    this.lineAnchor = keyword(lineAnchor, "lineAnchor", [
-      "top",
-      "middle",
-      "bottom"
-    ]);
+    this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.monospace = !!monospace;
@@ -142,11 +130,7 @@ export class Text extends Mark {
   }
 }
 
-function applyMultilineText(
-  selection,
-  {monospace, lineAnchor, lineHeight, lineWidth},
-  T
-) {
+function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineWidth}, T) {
   if (!T) return;
   const linesof = isFinite(lineWidth)
     ? monospace
@@ -156,19 +140,11 @@ function applyMultilineText(
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
-    const y =
-      lineAnchor === "top"
-        ? 0.71
-        : lineAnchor === "bottom"
-        ? 1 - n
-        : (164 - n * 100) / 200;
+    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
         if (!lines[i]) continue;
-        const tspan = this.ownerDocument.createElementNS(
-          namespaces.svg,
-          "tspan"
-        );
+        const tspan = this.ownerDocument.createElementNS(namespaces.svg, "tspan");
         tspan.setAttribute("x", 0);
         tspan.setAttribute("y", `${(y + i) * lineHeight}em`);
         tspan.textContent = lines[i];
@@ -202,9 +178,7 @@ function applyIndirectTextStyles(selection, mark, T) {
   applyAttr(
     selection,
     "font-variant",
-    mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T))
-      ? "tabular-nums"
-      : mark.fontVariant
+    mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : mark.fontVariant
   );
   applyAttr(selection, "font-weight", mark.fontWeight);
 }
@@ -237,12 +211,10 @@ const fontSizes = new Set([
 // - string <percentage>: e.g., "80%"
 // Anything else is assumed to be a channel definition.
 function maybeFontSizeChannel(fontSize) {
-  if (fontSize == null || typeof fontSize === "number")
-    return [undefined, fontSize];
+  if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
   if (typeof fontSize !== "string") return [fontSize, undefined];
   fontSize = fontSize.trim().toLowerCase();
-  return fontSizes.has(fontSize) ||
-    /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
+  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
     ? [undefined, fontSize]
     : [fontSize, undefined];
 }

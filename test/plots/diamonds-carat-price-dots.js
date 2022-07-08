@@ -17,11 +17,6 @@ export default async function () {
       domain: [0, 100],
       range: [0, 3]
     },
-    marks: [
-      Plot.dot(
-        data,
-        Plot.bin({r: "count"}, {x: "carat", y: "price", thresholds: 100})
-      )
-    ]
+    marks: [Plot.dot(data, Plot.bin({r: "count"}, {x: "carat", y: "price", thresholds: 100}))]
   });
 }

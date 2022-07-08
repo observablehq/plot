@@ -15,19 +15,12 @@ function maybeScale(scale, key) {
 
 export function legendSwatches(color, options) {
   if (!isOrdinalScale(color) && !isThresholdScale(color))
-    throw new Error(
-      `swatches legend requires ordinal or threshold color scale (not ${color.type})`
-    );
+    throw new Error(`swatches legend requires ordinal or threshold color scale (not ${color.type})`);
   return legendItems(
     color,
     options,
     (selection, scale) =>
-      selection
-        .append("svg")
-        .attr("fill", scale.scale)
-        .append("rect")
-        .attr("width", "100%")
-        .attr("height", "100%"),
+      selection.append("svg").attr("fill", scale.scale).append("rect").attr("width", "100%").attr("height", "100%"),
     (className) => `.${className}-swatch svg {
         width: var(--swatchWidth);
         height: var(--swatchHeight);
@@ -41,11 +34,7 @@ export function legendSymbols(
   {
     fill = symbol.hint?.fill !== undefined ? symbol.hint.fill : "none",
     fillOpacity = 1,
-    stroke = symbol.hint?.stroke !== undefined
-      ? symbol.hint.stroke
-      : isNoneish(fill)
-      ? "currentColor"
-      : "none",
+    stroke = symbol.hint?.stroke !== undefined ? symbol.hint.stroke : isNoneish(fill) ? "currentColor" : "none",
     strokeOpacity = 1,
     strokeWidth = 1.5,
     r = 4.5,
@@ -147,11 +136,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       .attr("class", `${className}-swatch`)
       .call(swatch, scale)
       .call((item) =>
-        item
-          .append("div")
-          .attr("class", `${className}-label`)
-          .attr("title", tickFormat)
-          .text(tickFormat)
+        item.append("div").attr("class", `${className}-label`).attr("title", tickFormat).text(tickFormat)
       );
   } else {
     extraStyle = `
@@ -176,9 +161,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       .attr("class", `${className}-swatch`)
       .call(swatch, scale)
       .append(function () {
-        return this.ownerDocument.createTextNode(
-          tickFormat.apply(this, arguments)
-        );
+        return this.ownerDocument.createTextNode(tickFormat.apply(this, arguments));
       });
   }
 

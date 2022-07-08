@@ -10,12 +10,6 @@ export default async function () {
       grid: true,
       tickFormat: (x) => `${x.toPrecision(1)}×`
     },
-    marks: [
-      Plot.line(
-        data,
-        Plot.normalizeY({x: "date", y: "unemployment", z: "division"})
-      ),
-      Plot.ruleY([1])
-    ]
+    marks: [Plot.line(data, Plot.normalizeY({x: "date", y: "unemployment", z: "division"})), Plot.ruleY([1])]
   });
 }

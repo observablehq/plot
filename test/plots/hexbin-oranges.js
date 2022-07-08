@@ -10,13 +10,7 @@ export default async function () {
     },
     marks: [
       Plot.frame(),
-      Plot.circle(
-        penguins,
-        Plot.hexbin(
-          {fill: "count"},
-          {x: "culmen_depth_mm", y: "culmen_length_mm"}
-        )
-      )
+      Plot.circle(penguins, Plot.hexbin({fill: "count"}, {x: "culmen_depth_mm", y: "culmen_length_mm"}))
     ]
   });
 }

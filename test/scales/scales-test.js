@@ -5,9 +5,7 @@ import it from "../jsdom.js";
 
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {
   assert.ok(Plot.cellX({length: 10000}, {x: d3.randomLcg(42)}).plot());
-  assert.throws(() =>
-    Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot()
-  );
+  assert.throws(() => Plot.cellX({length: 10001}, {x: d3.randomLcg(42)}).plot());
 });
 
 it("Plot does not throw an error if an ordinal color scale has a huge inferred domain", () => {
@@ -537,11 +535,7 @@ it("plot(…).scale('color') can return a diverging scale with an explicit range
     clamp: false,
     label: "Anomaly"
   });
-  const interpolateColors = d3.piecewise(d3.interpolateRgb, [
-    "red",
-    "white",
-    "blue"
-  ]);
+  const interpolateColors = d3.piecewise(d3.interpolateRgb, ["red", "white", "blue"]);
   for (const t of d3.ticks(0, 1, 100)) {
     assert.strictEqual(interpolate(t), interpolateColors(t));
   }
@@ -847,9 +841,7 @@ it("plot(…).scale('color') can return a polylinear piecewise symlog scale with
 
 it("plot(…).scale('color') can return a threshold scale with the default domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "threshold"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "threshold"}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
@@ -861,9 +853,7 @@ it("plot(…).scale('color') can return a threshold scale with the default domai
 it("plot(…).scale('color') can return a threshold scale with an explicit domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const domain = d3.ticks(...d3.extent(penguins, (d) => d.body_mass_g), 5);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "threshold", domain}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "threshold", domain}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
@@ -874,9 +864,9 @@ it("plot(…).scale('color') can return a threshold scale with an explicit domai
 
 it("plot(…).scale('color') can return a threshold scale with an explicit scheme", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "threshold", scheme: "blues"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "threshold", scheme: "blues"}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
@@ -887,9 +877,9 @@ it("plot(…).scale('color') can return a threshold scale with an explicit schem
 
 it("plot(…).scale('color') can return a threshold scale with an explicit interpolator", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "threshold", interpolate: d3.interpolateReds}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "threshold", interpolate: d3.interpolateReds}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [0],
@@ -900,9 +890,7 @@ it("plot(…).scale('color') can return a threshold scale with an explicit inter
 
 it("plot(…).scale('color') can promote a quantile scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile"}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
@@ -913,9 +901,9 @@ it("plot(…).scale('color') can promote a quantile scale to a threshold scale",
 
 it("plot(…).scale('color') can promote a quantile scale with an explicit discrete scheme to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", scheme: "spectral"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantile", scheme: "spectral"}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
@@ -926,9 +914,9 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit discr
 
 it("plot(…).scale('color') can promote a quantile scale with an explicit continuous scheme to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", scheme: "warm"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantile", scheme: "warm"}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
@@ -939,9 +927,9 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit conti
 
 it("plot(…).scale('color') can promote a quantile scale with an explicit continuous interpolator to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", interpolate: d3.interpolateRainbow}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantile", interpolate: d3.interpolateRainbow}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
@@ -952,9 +940,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit conti
 
 it("plot(…).scale('color') can promote a quantile scale with an explicit number of quantiles to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", n: 10}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", n: 10}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3300, 3475, 3650, 3800, 4050, 4300, 4650, 4950, 5400],
@@ -966,9 +952,7 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit numbe
 it("plot(…).scale('color') can promote a quantile scale with an explicit range to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const range = ["red", "yellow", "blue", "green"]; // for quartiles
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", range}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantile", range}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3550, 4050, 4750],
@@ -979,9 +963,9 @@ it("plot(…).scale('color') can promote a quantile scale with an explicit range
 
 it("plot(…).scale('color') can promote a reversed quantile scale to a threshold scale with a reversed range", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantile", reverse: true}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantile", reverse: true}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3475, 3800, 4300, 4950],
@@ -992,9 +976,7 @@ it("plot(…).scale('color') can promote a reversed quantile scale to a threshol
 
 it("plot(…).scale('color') can promote a quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantize"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({color: {type: "quantize"}});
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
@@ -1005,9 +987,9 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale"
 
 it("plot(…).scale('color') can promote a quantized scale to a threshold scale with n thresholds", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantize", n: 10, scheme: "blues"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantize", n: 10, scheme: "blues"}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 3500, 4000, 4500, 5000, 5500, 6000],
@@ -1018,9 +1000,9 @@ it("plot(…).scale('color') can promote a quantized scale to a threshold scale 
 
 it("plot(…).scale('color') can promote a reversed quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {type: "quantize", reverse: true}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {type: "quantize", reverse: true}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [3000, 4000, 5000, 6000],
@@ -1031,9 +1013,9 @@ it("plot(…).scale('color') can promote a reversed quantized scale to a thresho
 
 it("plot(…).scale('color') can promote a descending quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {domain: [6500, 2500], type: "quantize"}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {domain: [6500, 2500], type: "quantize"}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [6000, 5000, 4000, 3000],
@@ -1044,9 +1026,9 @@ it("plot(…).scale('color') can promote a descending quantized scale to a thres
 
 it("plot(…).scale('color') can promote a reverse and descending quantized scale to a threshold scale", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot(
-    {color: {domain: [6500, 2500], type: "quantize", reverse: true}}
-  );
+  const plot = Plot.dot(penguins, {x: "body_mass_g", fill: "body_mass_g"}).plot({
+    color: {domain: [6500, 2500], type: "quantize", reverse: true}
+  });
   scaleEqual(plot.scale("color"), {
     type: "threshold",
     domain: [6000, 5000, 4000, 3000],
@@ -1349,10 +1331,7 @@ it("plot(…).scale('opacity') can return a linear scale", () => {
 
 it("plot(…).scale('opacity') can return a linear scale for penguins", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.rectX(
-    penguins,
-    Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20})
-  ).plot();
+  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "count"}, {x: "body_mass_g", thresholds: 20})).plot();
   scaleEqual(plot.scale("opacity"), {
     type: "linear",
     domain: [0, 40],
@@ -1365,10 +1344,9 @@ it("plot(…).scale('opacity') can return a linear scale for penguins", async ()
 
 it("plot(…).scale('opacity') respects the percent option, affecting domain and label", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const plot = Plot.rectX(
-    penguins,
-    Plot.binX({fillOpacity: "proportion"}, {x: "body_mass_g", thresholds: 20})
-  ).plot({opacity: {percent: true}});
+  const plot = Plot.rectX(penguins, Plot.binX({fillOpacity: "proportion"}, {x: "body_mass_g", thresholds: 20})).plot({
+    opacity: {percent: true}
+  });
   scaleEqual(plot.scale("opacity"), {
     type: "linear",
     domain: [0, 11.627906976744185],
@@ -1381,27 +1359,17 @@ it("plot(…).scale('opacity') respects the percent option, affecting domain and
 });
 
 it("plot({inset, …}).scale('x') does not allow insets or margins to invert the range", () => {
+  assert.deepStrictEqual(Plot.plot({x: {type: "linear", inset: 60}, width: 100}).scale("x").range, [80, 80]);
   assert.deepStrictEqual(
-    Plot.plot({x: {type: "linear", inset: 60}, width: 100}).scale("x").range,
-    [80, 80]
-  );
-  assert.deepStrictEqual(
-    Plot.plot({x: {type: "linear", inset: 30}, margin: 30, width: 100}).scale(
-      "x"
-    ).range,
+    Plot.plot({x: {type: "linear", inset: 30}, margin: 30, width: 100}).scale("x").range,
     [60, 60]
   );
 });
 
 it("plot({inset, …}).scale('y') does not allow insets or margins to invert the range", () => {
+  assert.deepStrictEqual(Plot.plot({y: {type: "linear", inset: 60}, height: 100}).scale("y").range, [80, 80]);
   assert.deepStrictEqual(
-    Plot.plot({y: {type: "linear", inset: 60}, height: 100}).scale("y").range,
-    [80, 80]
-  );
-  assert.deepStrictEqual(
-    Plot.plot({y: {type: "linear", inset: 30}, margin: 30, height: 100}).scale(
-      "y"
-    ).range,
+    Plot.plot({y: {type: "linear", inset: 30}, margin: 30, height: 100}).scale("y").range,
     [60, 60]
   );
 });
@@ -1932,11 +1900,7 @@ it("plot(…).scale(name).domain respects the given nice option", async () => {
       .scale("x").domain,
     [2000, 7000]
   );
-  assert.deepStrictEqual(
-    Plot.dotX(penguins, {x: "body_mass_g"}).plot({nice: true}).scale("x")
-      .domain,
-    [2500, 6500]
-  );
+  assert.deepStrictEqual(Plot.dotX(penguins, {x: "body_mass_g"}).plot({nice: true}).scale("x").domain, [2500, 6500]);
 });
 
 it("plot(…).scale(name).domain nices an explicit domain, too", async () => {
@@ -1982,18 +1946,14 @@ it("plot(…).scale(name).interpolate reflects the round option for quantitative
     d3.interpolateRound
   );
   assert.strictEqual(
-    Plot.dotX(penguins, {x: "body_mass_g"}).plot({round: true}).scale("x")
-      .interpolate,
+    Plot.dotX(penguins, {x: "body_mass_g"}).plot({round: true}).scale("x").interpolate,
     d3.interpolateRound
   );
 });
 
 it("plot(…).scale(name).round reflects the round option for point scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.strictEqual(
-    Plot.dot(penguins, {x: "species"}).plot().scale("x").round,
-    true
-  );
+  assert.strictEqual(Plot.dot(penguins, {x: "species"}).plot().scale("x").round, true);
   assert.strictEqual(
     Plot.dot(penguins, {x: "species"})
       .plot({x: {round: 1}})
@@ -2022,10 +1982,7 @@ it("plot(…).scale(name).round reflects the round option for point scales", asy
 
 it("plot(…).scale(name).round reflects the round option for band scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.strictEqual(
-    Plot.cell(penguins, {x: "species"}).plot().scale("x").round,
-    true
-  );
+  assert.strictEqual(Plot.cell(penguins, {x: "species"}).plot().scale("x").round, true);
   assert.strictEqual(
     Plot.cell(penguins, {x: "species"})
       .plot({x: {round: 1}})
@@ -2178,10 +2135,7 @@ it("plot(…).scale('color') allows a range to be specified in conjunction with 
 });
 
 it("plot(…).scale('color') promotes the given scheme option to an interpolator for quantitative scales", () => {
-  assert.strictEqual(
-    Plot.dotX([], {fill: "x"}).plot().scale("color").interpolate,
-    d3.interpolateTurbo
-  );
+  assert.strictEqual(Plot.dotX([], {fill: "x"}).plot().scale("color").interpolate, d3.interpolateTurbo);
   assert.strictEqual(
     Plot.dotX([], {fill: "x"})
       .plot({color: {scheme: "warm"}})
@@ -2198,10 +2152,7 @@ it("plot(…).scale('color') promotes the given scheme option to an interpolator
 
 it("plot(…).scale('color') promotes the given scheme option to a range for ordinal scales", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  assert.deepStrictEqual(
-    Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range,
-    d3.schemeTableau10
-  );
+  assert.deepStrictEqual(Plot.dotX(penguins, {fill: "island"}).plot().scale("color").range, d3.schemeTableau10);
   assert.deepStrictEqual(
     Plot.dotX(penguins, {fill: "island"})
       .plot({color: {type: "categorical"}})

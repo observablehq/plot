@@ -3,13 +3,7 @@ import {create} from "../context.js";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
-import {
-  applyDirectStyles,
-  applyGroupedChannelStyles,
-  applyIndirectStyles,
-  applyTransform,
-  groupZ
-} from "../style.js";
+import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
 const defaults = {
@@ -39,10 +33,8 @@ class LinearRegression extends Mark {
     this.z = z;
     this.ci = +ci;
     this.precision = +precision;
-    if (!(0 <= this.ci && this.ci < 1))
-      throw new Error(`invalid ci; not in [0, 1): ${ci}`);
-    if (!(this.precision > 0))
-      throw new Error(`invalid precision: ${precision}`);
+    if (!(0 <= this.ci && this.ci < 1)) throw new Error(`invalid ci; not in [0, 1): ${ci}`);
+    if (!(this.precision > 0)) throw new Error(`invalid precision: ${precision}`);
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
@@ -89,10 +81,7 @@ class LinearRegression extends Mark {
 }
 
 function pathBefore() {
-  return this.parentNode.insertBefore(
-    this.ownerDocument.createElementNS(namespaces.svg, "path"),
-    this
-  );
+  return this.parentNode.insertBefore(this.ownerDocument.createElementNS(namespaces.svg, "path"), this);
 }
 
 class LinearRegressionX extends LinearRegression {
@@ -139,34 +128,16 @@ class LinearRegressionY extends LinearRegression {
 
 export function linearRegressionX(
   data,
-  {
-    y = indexOf,
-    x = identity,
-    stroke,
-    fill = isNoneish(stroke) ? "currentColor" : stroke,
-    ...options
-  } = {}
+  {y = indexOf, x = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}
 ) {
-  return new LinearRegressionX(
-    data,
-    maybeDenseIntervalY({...options, x, y, fill, stroke})
-  );
+  return new LinearRegressionX(data, maybeDenseIntervalY({...options, x, y, fill, stroke}));
 }
 
 export function linearRegressionY(
   data,
-  {
-    x = indexOf,
-    y = identity,
-    stroke,
-    fill = isNoneish(stroke) ? "currentColor" : stroke,
-    ...options
-  } = {}
+  {x = indexOf, y = identity, stroke, fill = isNoneish(stroke) ? "currentColor" : stroke, ...options} = {}
 ) {
-  return new LinearRegressionY(
-    data,
-    maybeDenseIntervalX({...options, x, y, fill, stroke})
-  );
+  return new LinearRegressionY(data, maybeDenseIntervalX({...options, x, y, fill, stroke}));
 }
 
 function linearRegressionF(I, X, Y) {

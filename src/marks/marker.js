@@ -1,9 +1,6 @@
 import {create} from "../context.js";
 
-export function markers(
-  mark,
-  {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}
-) {
+export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
   mark.markerStart = maybeMarker(markerStart);
   mark.markerMid = maybeMarker(markerMid);
   mark.markerEnd = maybeMarker(markerEnd);
@@ -89,11 +86,7 @@ export function applyGroupedMarkers(path, mark, {stroke: S} = {}) {
   return applyMarkersColor(path, mark, S && (([i]) => S[i]));
 }
 
-function applyMarkersColor(
-  path,
-  {markerStart, markerMid, markerEnd, stroke},
-  strokeof = () => stroke
-) {
+function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke) {
   const iriByMarkerColor = new Map();
 
   function applyMarker(marker) {

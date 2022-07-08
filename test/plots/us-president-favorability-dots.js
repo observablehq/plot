@@ -21,10 +21,7 @@ export default async function () {
       Plot.image(data, {
         x: "First Inauguration Date",
         y: (d) =>
-          (d["Very Favorable %"] +
-            d["Somewhat Favorable %"] -
-            d["Very Unfavorable %"] -
-            d["Somewhat Unfavorable %"]) /
+          (d["Very Favorable %"] + d["Somewhat Favorable %"] - d["Very Unfavorable %"] - d["Somewhat Unfavorable %"]) /
           100,
         width: 60,
         src: "Portrait URL",

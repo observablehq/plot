@@ -36,8 +36,7 @@
   };
 
   select.onkeydown = (event) => {
-    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey)
-      return;
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     switch (event.key) {
       case "ArrowLeft": {
         if (select.selectedIndex > 0) {
@@ -80,9 +79,7 @@
 
   async function render() {
     if (currentChart) currentChart.remove();
-    const div = (currentChart = document.body.appendChild(
-      document.createElement("DIV")
-    ));
+    const div = (currentChart = document.body.appendChild(document.createElement("DIV")));
     div.append(await tests[select.value]());
   }
 

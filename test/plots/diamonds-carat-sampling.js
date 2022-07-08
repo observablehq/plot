@@ -7,10 +7,7 @@ function samples(array, m) {
   const n = array.length;
   if (!(n > m)) return [...array]; // return everything
   if (m === 1) return [array[n >> 1]]; // return the midpoint
-  return Array.from(
-    {length: m},
-    (_, i) => array[Math.round((i / (m - 1)) * (n - 1))]
-  );
+  return Array.from({length: m}, (_, i) => array[Math.round((i / (m - 1)) * (n - 1))]);
 }
 
 function sample(n, options) {

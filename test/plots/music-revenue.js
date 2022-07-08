@@ -25,10 +25,7 @@ export default async function () {
           title: (d) => `${d.format}\n${d.group}`
         })
       ),
-      Plot.lineY(
-        data,
-        Plot.stackY2({...stack, stroke: "white", strokeWidth: 1})
-      ),
+      Plot.lineY(data, Plot.stackY2({...stack, stroke: "white", strokeWidth: 1})),
       Plot.ruleY([0])
     ]
   });

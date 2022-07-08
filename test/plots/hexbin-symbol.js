@@ -8,14 +8,6 @@ export default async function () {
     symbol: {
       legend: true
     },
-    marks: [
-      Plot.dot(
-        penguins,
-        Plot.hexbin(
-          {r: "count"},
-          {symbol: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"}
-        )
-      )
-    ]
+    marks: [Plot.dot(penguins, Plot.hexbin({r: "count"}, {symbol: "sex", x: "culmen_depth_mm", y: "culmen_length_mm"}))]
   });
 }

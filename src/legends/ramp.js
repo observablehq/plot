@@ -1,12 +1,4 @@
-import {
-  quantize,
-  interpolateNumber,
-  piecewise,
-  format,
-  scaleBand,
-  scaleLinear,
-  axisBottom
-} from "d3";
+import {quantize, interpolateNumber, piecewise, format, scaleBand, scaleLinear, axisBottom} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {Context, create} from "../context.js";
 import {map} from "../options.js";
@@ -58,16 +50,13 @@ export function legendRamp(color, options) {
     )
     .call(applyInlineStyles, style);
 
-  let tickAdjust = (g) =>
-    g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
+  let tickAdjust = (g) => g.selectAll(".tick line").attr("y1", marginTop + marginBottom - height);
 
   let x;
 
   // Some D3 scales use scale.interpolate, some scale.interpolator, and some
   // scale.round; this normalizes the API so it works with all scale types.
-  const applyRange = round
-    ? (x, range) => x.rangeRound(range)
-    : (x, range) => x.range(range);
+  const applyRange = round ? (x, range) => x.rangeRound(range) : (x, range) => x.range(range);
 
   const {type, domain, range, interpolate, scale, pivot} = color;
 
@@ -79,12 +68,7 @@ export function legendRamp(color, options) {
     const interpolator =
       range === undefined
         ? interpolate
-        : piecewise(
-            interpolate.length === 1
-              ? interpolatePiecewise(interpolate)
-              : interpolate,
-            range
-          );
+        : piecewise(interpolate.length === 1 ? interpolatePiecewise(interpolate) : interpolate, range);
 
     // Construct a D3 scale of the same type, but with a range that evenly
     // divides the horizontal extent of the legend. (In the common case, the
@@ -95,10 +79,7 @@ export function legendRamp(color, options) {
       scale.copy(),
       quantize(
         interpolateNumber(marginLeft, width - marginRight),
-        Math.min(
-          domain.length + (pivot !== undefined),
-          range === undefined ? Infinity : range.length
-        )
+        Math.min(domain.length + (pivot !== undefined), range === undefined ? Infinity : range.length)
       )
     );
 
@@ -128,18 +109,11 @@ export function legendRamp(color, options) {
     const thresholds = domain;
 
     const thresholdFormat =
-      tickFormat === undefined
-        ? (d) => d
-        : typeof tickFormat === "string"
-        ? format(tickFormat)
-        : tickFormat;
+      tickFormat === undefined ? (d) => d : typeof tickFormat === "string" ? format(tickFormat) : tickFormat;
 
     // Construct a linear scale with evenly-spaced ticks for each of the
     // thresholds; the domain extends one beyond the threshold extent.
-    x = applyRange(scaleLinear().domain([-1, range.length - 1]), [
-      marginLeft,
-      width - marginRight
-    ]);
+    x = applyRange(scaleLinear().domain([-1, range.length - 1]), [marginLeft, width - marginRight]);
 
     svg
       .append("g")
@@ -159,10 +133,7 @@ export function legendRamp(color, options) {
 
   // Ordinal (hopefully!)
   else {
-    x = applyRange(scaleBand().domain(domain), [
-      marginLeft,
-      width - marginRight
-    ]);
+    x = applyRange(scaleBand().domain(domain), [marginLeft, width - marginRight]);
 
     svg
       .append("g")
@@ -184,10 +155,7 @@ export function legendRamp(color, options) {
     .attr("transform", `translate(0,${height - marginBottom})`)
     .call(
       axisBottom(x)
-        .ticks(
-          Array.isArray(ticks) ? null : ticks,
-          typeof tickFormat === "string" ? tickFormat : undefined
-        )
+        .ticks(Array.isArray(ticks) ? null : ticks, typeof tickFormat === "string" ? tickFormat : undefined)
         .tickFormat(typeof tickFormat === "function" ? tickFormat : undefined)
         .tickSize(tickSize)
         .tickValues(Array.isArray(ticks) ? ticks : null)

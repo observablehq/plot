@@ -3,9 +3,7 @@ import * as d3 from "d3";
 
 export default async function () {
   const mobydick = await d3.text("data/moby-dick-chapter-1.txt");
-  const letters = [...mobydick].map((d) =>
-    /\w/.test(d) ? d.toUpperCase() : "*"
-  );
+  const letters = [...mobydick].map((d) => (/\w/.test(d) ? d.toUpperCase() : "*"));
   const pairs = d3.pairs(letters).map(([letter, next]) => ({letter, next}));
   return Plot.plot({
     x: {axis: null},

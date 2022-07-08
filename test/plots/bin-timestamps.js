@@ -11,8 +11,5 @@ export default async function () {
     1609891200000,
     1609977600000
   );
-  return Plot.rectY(
-    timestamps,
-    Plot.binX({y: "count"}, {interval: d3.utcDay})
-  ).plot();
+  return Plot.rectY(timestamps, Plot.binX({y: "count"}, {interval: d3.utcDay})).plot();
 }

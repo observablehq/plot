@@ -47,20 +47,14 @@ export function percentile(reduce) {
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
-  return value === null
-    ? [undefined, "none"]
-    : isColor(value)
-    ? [undefined, value]
-    : [value, undefined];
+  return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
 
 // Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumberChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
-  return value === null || typeof value === "number"
-    ? [undefined, value]
-    : [value, undefined];
+  return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
 
 // Validates the specified optional string against the allowed list of keywords.
@@ -118,10 +112,7 @@ export function isObject(option) {
 // with inferScaleType when there are no channels associated with the scale, and
 // if this returns true, then normalizeScale must return non-null.
 export function isScaleOptions(option) {
-  return (
-    isObject(option) &&
-    (option.type !== undefined || option.domain !== undefined)
-  );
+  return isObject(option) && (option.type !== undefined || option.domain !== undefined);
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
@@ -133,9 +124,7 @@ export function isOptions(option) {
 // Disambiguates a sort transform (e.g., {sort: "date"}) from a channel domain
 // sort definition (e.g., {sort: {y: "x"}}).
 export function isDomainSort(sort) {
-  return (
-    isOptions(sort) && sort.value === undefined && sort.channel === undefined
-  );
+  return isOptions(sort) && sort.value === undefined && sort.channel === undefined;
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
@@ -224,11 +213,7 @@ export function maybeColumn(source) {
 }
 
 export function labelof(value, defaultValue) {
-  return typeof value === "string"
-    ? value
-    : value && value.label !== undefined
-    ? value.label
-    : defaultValue;
+  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new

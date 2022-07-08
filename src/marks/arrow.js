@@ -2,12 +2,7 @@ import {create} from "../context.js";
 import {radians} from "../math.js";
 import {constant} from "../options.js";
 import {Mark} from "../plot.js";
-import {
-  applyChannelStyles,
-  applyDirectStyles,
-  applyIndirectStyles,
-  applyTransform
-} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSameValue} from "./link.js";
 
 const defaults = {
@@ -52,11 +47,8 @@ export class Arrow extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
-    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} =
-      this;
-    const sw = SW
-      ? (i) => SW[i]
-      : constant(strokeWidth === undefined ? 1 : strokeWidth);
+    const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
+    const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
     // When bending, the offset between the straight line between the two points
     // and the outgoing tangent from the start point. (Also the negative
@@ -101,8 +93,7 @@ export class Arrow extends Mark {
 
             // The radius of the circle that intersects with the two endpoints
             // and has the specified bend angle.
-            const r =
-              Math.hypot(lineLength / Math.tan(bendAngle), lineLength) / 2;
+            const r = Math.hypot(lineLength / Math.tan(bendAngle), lineLength) / 2;
 
             // Apply insets.
             if (insetStart || insetEnd) {
@@ -114,24 +105,15 @@ export class Arrow extends Mark {
                 const sign = Math.sign(bendAngle);
                 const [cx, cy] = pointPointCenter([x1, y1], [x2, y2], r, sign);
                 if (insetStart) {
-                  [x1, y1] = circleCircleIntersect(
-                    [cx, cy, r],
-                    [x1, y1, insetStart],
-                    -sign * Math.sign(insetStart)
-                  );
+                  [x1, y1] = circleCircleIntersect([cx, cy, r], [x1, y1, insetStart], -sign * Math.sign(insetStart));
                 }
                 // For the end inset, rotate the arrowhead so that it aligns
                 // with the truncated end of the arrow. Since the arrow is a
                 // segment of the circle centered at ⟨cx,cy⟩, we can compute
                 // the angular difference to the new endpoint.
                 if (insetEnd) {
-                  const [x, y] = circleCircleIntersect(
-                    [cx, cy, r],
-                    [x2, y2, insetEnd],
-                    sign * Math.sign(insetEnd)
-                  );
-                  lineAngle +=
-                    Math.atan2(y - cy, x - cx) - Math.atan2(y2 - cy, x2 - cx);
+                  const [x, y] = circleCircleIntersect([cx, cy, r], [x2, y2, insetEnd], sign * Math.sign(insetEnd));
+                  lineAngle += Math.atan2(y - cy, x - cx) - Math.atan2(y2 - cy, x2 - cx);
                   (x2 = x), (y2 = y);
                 }
               } else {
@@ -139,10 +121,8 @@ export class Arrow extends Mark {
                 const dx = x2 - x1,
                   dy = y2 - y1,
                   d = Math.hypot(dx, dy);
-                if (insetStart)
-                  (x1 += (dx / d) * insetStart), (y1 += (dy / d) * insetStart);
-                if (insetEnd)
-                  (x2 -= (dx / d) * insetEnd), (y2 -= (dy / d) * insetEnd);
+                if (insetStart) (x1 += (dx / d) * insetStart), (y1 += (dy / d) * insetStart);
+                if (insetEnd) (x2 -= (dx / d) * insetEnd), (y2 -= (dy / d) * insetEnd);
               }
             }
 

@@ -11,9 +11,6 @@ export default async function () {
     y: {
       grid: true
     },
-    marks: [
-      Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g"})),
-      Plot.ruleY([0])
-    ]
+    marks: [Plot.rectY(data, Plot.binX({y: "count"}, {x: "body_mass_g"})), Plot.ruleY([0])]
   });
 }

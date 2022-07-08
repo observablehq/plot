@@ -10,13 +10,7 @@ export default async function () {
       reverse: true
     },
     marks: [
-      Plot.barX(
-        sales,
-        Plot.groupY(
-          {x: "sum"},
-          {x: "units", y: "fruit", sort: {y: "x", reverse: true}}
-        )
-      ),
+      Plot.barX(sales, Plot.groupY({x: "sum"}, {x: "units", y: "fruit", sort: {y: "x", reverse: true}})),
       Plot.ruleX([0])
     ]
   });

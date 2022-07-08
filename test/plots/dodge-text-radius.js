@@ -12,9 +12,6 @@ export default async function () {
     r: {
       range: [0, 22]
     },
-    marks: [
-      Plot.dot({length}, Plot.dodgeY({x: X, r: R})),
-      Plot.text({length}, Plot.dodgeY({x: X, r: R}))
-    ]
+    marks: [Plot.dot({length}, Plot.dodgeY({x: X, r: R})), Plot.text({length}, Plot.dodgeY({x: X, r: R}))]
   });
 }

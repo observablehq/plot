@@ -6,9 +6,7 @@ export default async function () {
     await d3.csv("data/us-state-grid.csv", d3.autoType).then(gridmap),
     await d3.csv("data/us-state-population-2010-2019.csv", d3.autoType)
   ]);
-  const states = data
-    .filter((d) => grid.has(d.State))
-    .map((d) => ({...d, ...grid.get(d.State)}));
+  const states = data.filter((d) => grid.has(d.State)).map((d) => ({...d, ...grid.get(d.State)}));
   return Plot.plot({
     height: 420,
     x: {

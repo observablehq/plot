@@ -24,44 +24,14 @@ it("window max skips NaN", () => {
   const data = [1, 1, 1, NaN, 1, 1, 1, 1, 1, NaN, NaN, NaN, NaN, 1];
   const m3 = Plot.windowX({reduce: "max", k: 3, x: (d) => d});
   m3.transform(data, [range(data.length)]);
-  assert.deepStrictEqual(m3.x.transform(), [
-    ,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    1,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    NaN,
-    NaN,
-    ,
-  ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN, ,]);
 });
 
 it("window max treats null as NaN", () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, null, null, null, 1];
   const m3 = Plot.windowX({reduce: "max", k: 3, x: (d) => d});
   m3.transform(data, [range(data.length)]);
-  assert.deepStrictEqual(m3.x.transform(), [
-    ,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    1,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    NaN,
-    NaN,
-    ,
-  ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN, ,]);
 });
 
 it("window max respects anchor", () => {

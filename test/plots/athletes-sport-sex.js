@@ -15,14 +15,6 @@ export default async function () {
     y: {
       label: null
     },
-    marks: [
-      Plot.barX(
-        athletes,
-        Plot.groupY(
-          {x: "mean"},
-          {x: (d) => d.sex === "female", y: "sport", sort: {y: "x"}}
-        )
-      )
-    ]
+    marks: [Plot.barX(athletes, Plot.groupY({x: "mean"}, {x: (d) => d.sex === "female", y: "sport", sort: {y: "x"}}))]
   });
 }

@@ -59,33 +59,18 @@ it("image(data, {title, src}) specifies an optional title channel", () => {
 });
 
 it("image(data, {src}) allows src to be a constant", () => {
-  assert.strictEqual(
-    Plot.image(undefined, {src: "./foo.png"}).src,
-    "./foo.png"
-  );
-  assert.strictEqual(
-    Plot.image(undefined, {src: "../foo.png"}).src,
-    "../foo.png"
-  );
+  assert.strictEqual(Plot.image(undefined, {src: "./foo.png"}).src, "./foo.png");
+  assert.strictEqual(Plot.image(undefined, {src: "../foo.png"}).src, "../foo.png");
   assert.strictEqual(Plot.image(undefined, {src: "/foo.png"}).src, "/foo.png");
-  assert.strictEqual(
-    Plot.image(undefined, {src: "https://example.com/foo.png"}).src,
-    "https://example.com/foo.png"
-  );
-  assert.strictEqual(
-    Plot.image(undefined, {src: "http://example.com/foo.png"}).src,
-    "http://example.com/foo.png"
-  );
+  assert.strictEqual(Plot.image(undefined, {src: "https://example.com/foo.png"}).src, "https://example.com/foo.png");
+  assert.strictEqual(Plot.image(undefined, {src: "http://example.com/foo.png"}).src, "http://example.com/foo.png");
   assert.strictEqual(
     Plot.image(undefined, {
       src: "blob:https://login.worker.test:5000/67f16cef-373a-4019-aefe-d4d68937e5fa"
     }).src,
     "blob:https://login.worker.test:5000/67f16cef-373a-4019-aefe-d4d68937e5fa"
   );
-  assert.strictEqual(
-    Plot.image(undefined, {src: "data:image/png;base64,=="}).src,
-    "data:image/png;base64,=="
-  );
+  assert.strictEqual(Plot.image(undefined, {src: "data:image/png;base64,=="}).src, "data:image/png;base64,==");
 });
 
 it("image(data, {src}) allows src to be a channel", () => {

@@ -15,10 +15,7 @@ export function chooseOne(responses, y, title) {
 
 export function chooseMany(responses, y, title) {
   return bars(
-    Array.from(new Set(responses.flatMap((d) => d[y])), (v) => [
-      v,
-      d3.mean(responses, (d) => d[y].includes(v))
-    ]),
+    Array.from(new Set(responses.flatMap((d) => d[y])), (v) => [v, d3.mean(responses, (d) => d[y].includes(v))]),
     title
   );
 }

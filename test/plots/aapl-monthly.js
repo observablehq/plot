@@ -12,14 +12,8 @@ export default async function () {
     },
     marks: [
       Plot.ruleY([0]),
-      Plot.ruleX(
-        data,
-        Plot.binX({y1: "min", y2: "max"}, {...bin, stroke: "#999"})
-      ),
-      Plot.rect(
-        data,
-        Plot.binX({y1: "p25", y2: "p75"}, {...bin, fill: "#bbb"})
-      ),
+      Plot.ruleX(data, Plot.binX({y1: "min", y2: "max"}, {...bin, stroke: "#999"})),
+      Plot.rect(data, Plot.binX({y1: "p25", y2: "p75"}, {...bin, fill: "#bbb"})),
       Plot.ruleY(data, Plot.binX({y: "p50"}, {...bin, strokeWidth: 2}))
     ]
   });

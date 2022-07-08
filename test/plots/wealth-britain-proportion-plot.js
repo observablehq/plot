@@ -4,11 +4,8 @@ import * as d3 from "d3";
 export default async function () {
   const wide = await d3.csv("data/wealth-britain.csv", d3.autoType);
   const columns = wide.columns.slice(1);
-  const data = columns.flatMap((type) =>
-    wide.map((d) => ({age: d.age, type, value: d[type]}))
-  );
-  const stack = (options) =>
-    Plot.stackY({}, {x: "type", y: "value", z: "age", ...options});
+  const data = columns.flatMap((type) => wide.map((d) => ({age: d.age, type, value: d[type]})));
+  const stack = (options) => Plot.stackY({}, {x: "type", y: "value", z: "age", ...options});
   return Plot.plot({
     x: {
       domain: columns,

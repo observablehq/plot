@@ -1,11 +1,6 @@
 import {create} from "../context.js";
 import {positive} from "../defined.js";
-import {
-  maybeFrameAnchor,
-  maybeNumberChannel,
-  maybeTuple,
-  string
-} from "../options.js";
+import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -40,23 +35,12 @@ function isUrl(string) {
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
 function maybePathChannel(value) {
-  return typeof value === "string" && (isPath(value) || isUrl(value))
-    ? [undefined, value]
-    : [value, undefined];
+  return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
 }
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {
-      x,
-      y,
-      width,
-      height,
-      src,
-      preserveAspectRatio,
-      crossOrigin,
-      frameAnchor
-    } = options;
+    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePathChannel(src);

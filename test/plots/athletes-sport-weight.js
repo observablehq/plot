@@ -17,11 +17,6 @@ export default async function () {
       marginLeft: 100,
       y: "sport"
     },
-    marks: [
-      Plot.barX(
-        athletes,
-        Plot.binX({fill: "proportion-facet"}, {x: "weight", thresholds: 60})
-      )
-    ]
+    marks: [Plot.barX(athletes, Plot.binX({fill: "proportion-facet"}, {x: "weight", thresholds: 60}))]
   });
 }

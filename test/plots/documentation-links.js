@@ -2,9 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function () {
-  const data = await d3
-    .json("data/plot-documentation.json")
-    .then((d) => d.listings);
+  const data = await d3.json("data/plot-documentation.json").then((d) => d.listings);
   return Plot.plot({
     marginLeft: 140,
     x: {

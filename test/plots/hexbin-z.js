@@ -11,13 +11,7 @@ export default async function () {
     marks: [
       Plot.hexgrid(),
       Plot.frame(),
-      Plot.dot(
-        penguins,
-        Plot.hexbin(
-          {r: "count"},
-          {x: "culmen_length_mm", y: "body_mass_g", stroke: "species"}
-        )
-      )
+      Plot.dot(penguins, Plot.hexbin({r: "count"}, {x: "culmen_length_mm", y: "body_mass_g", stroke: "species"}))
     ]
   });
 }

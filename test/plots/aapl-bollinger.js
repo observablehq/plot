@@ -10,15 +10,9 @@ export default async function () {
     marks: [
       Plot.areaY(
         AAPL,
-        Plot.map(
-          {y1: bollinger(20, -2), y2: bollinger(20, 2)},
-          {x: "Date", y: "Close", fillOpacity: 0.2}
-        )
+        Plot.map({y1: bollinger(20, -2), y2: bollinger(20, 2)}, {x: "Date", y: "Close", fillOpacity: 0.2})
       ),
-      Plot.line(
-        AAPL,
-        Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})
-      ),
+      Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
       Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1})
     ]
   });

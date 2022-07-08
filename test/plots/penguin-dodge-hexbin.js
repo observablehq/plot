@@ -21,10 +21,7 @@ export default async function () {
     },
     marks: [
       Plot.frame(),
-      Plot.dot(
-        penguins,
-        Plot.dodgeY("bottom", {x: "body_mass_g", stroke: "red", r: 3})
-      ),
+      Plot.dot(penguins, Plot.dodgeY("bottom", {x: "body_mass_g", stroke: "red", r: 3})),
       Plot.dot(
         penguins,
         Plot.hexbin(

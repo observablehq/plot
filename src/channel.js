@@ -1,13 +1,5 @@
 import {ascending, descending, rollup, sort} from "d3";
-import {
-  first,
-  isIterable,
-  labelof,
-  map,
-  maybeValue,
-  range,
-  valueof
-} from "./options.js";
+import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
@@ -46,31 +38,16 @@ export function valueObject(channels, scales) {
 // computed; i.e., if the scale’s domain is set explicitly, that takes priority
 // over the sort option, and we don’t need to do additional work.
 export function channelDomain(channels, facetChannels, data, options) {
-  const {
-    reverse: defaultReverse,
-    reduce: defaultReduce = true,
-    limit: defaultLimit
-  } = options;
+  const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
     if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
-    let {
-      value: y,
-      reverse = defaultReverse,
-      reduce = defaultReduce,
-      limit = defaultLimit
-    } = maybeValue(options[x]);
+    let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
     if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer
-    const X =
-      findScaleChannel(channels, x) ||
-      (facetChannels && findScaleChannel(facetChannels, x));
+    const X = findScaleChannel(channels, x) || (facetChannels && findScaleChannel(facetChannels, x));
     if (!X) throw new Error(`missing channel for scale: ${x}`);
     const XV = X.value;
-    const [lo = 0, hi = Infinity] = isIterable(limit)
-      ? limit
-      : limit < 0
-      ? [limit]
-      : [0, limit];
+    const [lo = 0, hi = Infinity] = isIterable(limit) ? limit : limit < 0 ? [limit] : [0, limit];
     if (y == null) {
       X.domain = () => {
         let domain = XV;
@@ -86,11 +63,7 @@ export function channelDomain(channels, facetChannels, data, options) {
           ? difference(channels, "y1", "y2")
           : y === "width"
           ? difference(channels, "x1", "x2")
-          : values(
-              channels,
-              y,
-              y === "y" ? "y2" : y === "x" ? "x2" : undefined
-            );
+          : values(channels, y, y === "y" ? "y2" : y === "x" ? "x2" : undefined);
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X.domain = () => {
         let domain = rollup(

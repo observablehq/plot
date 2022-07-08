@@ -16,8 +16,7 @@ function Likert(
     offset(facetstacks, X1, X2, Z) {
       for (const stacks of facetstacks) {
         for (const stack of stacks) {
-          const k =
-            d3.sum(stack, (i) => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
+          const k = d3.sum(stack, (i) => (X2[i] - X1[i]) * (1 - map.get(Z[i]))) / 2;
           for (const i of stack) {
             X1[i] -= k;
             X2[i] -= k;
@@ -46,13 +45,7 @@ export default async function () {
       scheme: "RdBu"
     },
     marks: [
-      Plot.barX(
-        survey,
-        Plot.groupY(
-          {x: "count"},
-          {y: "Question", fill: "Response", order, offset}
-        )
-      ),
+      Plot.barX(survey, Plot.groupY({x: "count"}, {y: "Question", fill: "Response", order, offset})),
       Plot.ruleX([0])
     ]
   });

@@ -5,8 +5,7 @@ export default async function () {
   const alphabet = await d3.csv("data/alphabet.csv", d3.autoType);
   return Plot.plot({
     ariaLabel: "letter-frequency chart",
-    ariaDescription:
-      "A horizontal bar chart showing the relative frequency of letters in the English language.",
+    ariaDescription: "A horizontal bar chart showing the relative frequency of letters in the English language.",
     x: {
       label: "Frequency (%) →",
       transform: (x) => x * 100,

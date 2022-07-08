@@ -19,14 +19,6 @@ export default async function () {
       grid: true,
       percent: true
     },
-    marks: [
-      Plot.barY(
-        words,
-        Plot.groupX(
-          {y: "proportion", title: "mode"},
-          {x: "length", title: (d) => d}
-        )
-      )
-    ]
+    marks: [Plot.barY(words, Plot.groupX({y: "proportion", title: "mode"}, {x: "length", title: (d) => d}))]
   });
 }

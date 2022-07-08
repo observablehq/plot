@@ -8,12 +8,6 @@ export default async function () {
       domain: ["Dream"],
       unknown: "#ccc"
     },
-    marks: [
-      Plot.barY(
-        penguins,
-        Plot.groupX({y: "count"}, {x: "sex", fill: "island"})
-      ),
-      Plot.ruleY([0])
-    ]
+    marks: [Plot.barY(penguins, Plot.groupX({y: "count"}, {x: "sex", fill: "island"})), Plot.ruleY([0])]
   });
 }

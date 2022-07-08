@@ -7,12 +7,8 @@ export default async function () {
     [0.1, 0.7, 0.2],
     [0.1, 0.1, 0.8]
   ];
-  const centers = matrix.map((m, i) =>
-    d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100)
-  );
-  const factors = matrix.flatMap((m, i) =>
-    m.map((value, j) => ({i, j, value}))
-  );
+  const centers = matrix.map((m, i) => d3.pointRadial(((2 - i) * 2 * Math.PI) / matrix.length, 100));
+  const factors = matrix.flatMap((m, i) => m.map((value, j) => ({i, j, value})));
   return Plot.plot({
     width: 400,
     height: 380,
@@ -32,12 +28,8 @@ export default async function () {
       }),
       Plot.text(centers, {text: ["A", "B", "C"], dy: 55}),
       Plot.text(factors, {
-        x: ({i, j}) =>
-          (centers[i][0] + centers[j][0]) / 2 +
-          (centers[i][1] - centers[j][1]) * 0.16,
-        y: ({i, j}) =>
-          (centers[i][1] + centers[j][1]) / 2 -
-          (centers[i][0] - centers[j][0]) * 0.16,
+        x: ({i, j}) => (centers[i][0] + centers[j][0]) / 2 + (centers[i][1] - centers[j][1]) * 0.16,
+        y: ({i, j}) => (centers[i][1] + centers[j][1]) / 2 - (centers[i][0] - centers[j][0]) * 0.16,
         text: "value"
       })
     ]

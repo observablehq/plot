@@ -16,14 +16,8 @@ export default async function () {
         curve: "step",
         fill: "#ccc"
       }),
-      Plot.line(
-        temperatures,
-        Plot.windowY({x: "date", y: "low", k: 7, curve: "step", stroke: "blue"})
-      ),
-      Plot.line(
-        temperatures,
-        Plot.windowY({x: "date", y: "high", k: 7, curve: "step", stroke: "red"})
-      )
+      Plot.line(temperatures, Plot.windowY({x: "date", y: "low", k: 7, curve: "step", stroke: "blue"})),
+      Plot.line(temperatures, Plot.windowY({x: "date", y: "high", k: 7, curve: "step", stroke: "red"}))
     ],
     width: 960
   });

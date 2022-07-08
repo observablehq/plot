@@ -1,11 +1,4 @@
-import {
-  bin as binner,
-  extent,
-  thresholdFreedmanDiaconis,
-  thresholdScott,
-  thresholdSturges,
-  utcTickInterval
-} from "d3";
+import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {
   valueof,
   range,
@@ -41,28 +34,14 @@ import {maybeInterval} from "./interval.js";
 export function binX(outputs = {y: "count"}, options = {}) {
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
-  return binn(
-    maybeBinValue(x, options, identity),
-    null,
-    null,
-    y,
-    outputs,
-    maybeInsetX(options)
-  );
+  return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
 export function binY(outputs = {x: "count"}, options = {}) {
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
-  return binn(
-    null,
-    maybeBinValue(y, options, identity),
-    x,
-    null,
-    outputs,
-    maybeInsetY(options)
-  );
+  return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
@@ -113,8 +92,7 @@ function binn(
   outputs = maybeOutputs(outputs, inputs);
   reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter =
-    filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
 
   // Don’t group on a channel if an output requires it as an input!
   if (gx != null && hasOutput(outputs, "x", "x1", "x2")) gx = null;
@@ -214,28 +192,19 @@ function binn(
       maybeSort(groupFacets, sort, reverse);
       return {data: groupData, facets: groupFacets};
     }),
-    ...(!hasOutput(outputs, "x") &&
-      (BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x, x1, x2})),
-    ...(!hasOutput(outputs, "y") &&
-      (BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y, y1, y2})),
+    ...(!hasOutput(outputs, "x") && (BX1 ? {x1: BX1, x2: BX2, x: mid(BX1, BX2)} : {x, x1, x2})),
+    ...(!hasOutput(outputs, "y") && (BY1 ? {y1: BY1, y2: BY2, y: mid(BY1, BY2)} : {y, y1, y2})),
     ...(GK && {[gk]: GK}),
     ...Object.fromEntries(outputs.map(({name, output}) => [name, output]))
   };
 }
 
 // Allow bin options to be specified as part of outputs; merge them into options.
-function mergeOptions(
-  {cumulative, domain, thresholds, interval, ...outputs},
-  options
-) {
+function mergeOptions({cumulative, domain, thresholds, interval, ...outputs}, options) {
   return [outputs, {cumulative, domain, thresholds, interval, ...options}];
 }
 
-function maybeBinValue(
-  value,
-  {cumulative, domain, thresholds, interval},
-  defaultValue
-) {
+function maybeBinValue(value, {cumulative, domain, thresholds, interval}, defaultValue) {
   value = {...maybeValue(value)};
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
@@ -263,10 +232,7 @@ function maybeBin(options) {
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
       V = V.map(coerceDate);
       let [min, max] = typeof domain === "function" ? domain(V) : domain;
-      let t =
-        typeof thresholds === "function" && !isInterval(thresholds)
-          ? thresholds(V, min, max)
-          : thresholds;
+      let t = typeof thresholds === "function" && !isInterval(thresholds) ? thresholds(V, min, max) : thresholds;
       if (typeof t === "number") t = utcTickInterval(min, max, t);
       if (isInterval(t)) {
         if (domain === extent) {
@@ -292,8 +258,7 @@ function maybeBin(options) {
       bin.thresholds(t).domain(d);
     }
     let bins = bin(range(data)).map(binset);
-    if (cumulative)
-      bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
+    if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.map(binfilter);
   };
   bin.label = labelof(value);
@@ -302,9 +267,7 @@ function maybeBin(options) {
 
 function maybeThresholds(thresholds, interval) {
   if (thresholds === undefined) {
-    return interval === undefined
-      ? thresholdAuto
-      : maybeRangeInterval(interval);
+    return interval === undefined ? thresholdAuto : maybeRangeInterval(interval);
   }
   if (typeof thresholds === "string") {
     switch (thresholds.toLowerCase()) {

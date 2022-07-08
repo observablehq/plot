@@ -270,14 +270,8 @@ class VoronoiMesh extends AbstractDelaunayMark {
 }
 
 function voronoiof(delaunay, dimensions) {
-  const {width, height, marginTop, marginRight, marginBottom, marginLeft} =
-    dimensions;
-  return delaunay.voronoi([
-    marginLeft,
-    marginTop,
-    width - marginRight,
-    height - marginBottom
-  ]);
+  const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return delaunay.voronoi([marginLeft, marginTop, width - marginRight, height - marginBottom]);
 }
 
 function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {

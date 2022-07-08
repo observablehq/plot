@@ -16,9 +16,6 @@ export default async function () {
       domain: [-1, 1],
       transform
     },
-    marks: [
-      Plot.ruleY([0]),
-      Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
-    ]
+    marks: [Plot.ruleY([0]), Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})]
   });
 }

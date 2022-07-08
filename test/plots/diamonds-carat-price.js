@@ -10,11 +10,6 @@ export default async function () {
       scheme: "bupu",
       type: "symlog"
     },
-    marks: [
-      Plot.rect(
-        data,
-        Plot.bin({fill: "count"}, {x: "carat", y: "price", thresholds: 100})
-      )
-    ]
+    marks: [Plot.rect(data, Plot.bin({fill: "count"}, {x: "carat", y: "price", thresholds: 100}))]
   });
 }

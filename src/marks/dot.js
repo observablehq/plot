@@ -1,12 +1,7 @@
 import {path, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {positive} from "../defined.js";
-import {
-  identity,
-  maybeFrameAnchor,
-  maybeNumberChannel,
-  maybeTuple
-} from "../options.js";
+import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -60,16 +55,8 @@ export class Dot extends Mark {
       const fillChannel = channels.find(({name}) => name === "fill");
       const strokeChannel = channels.find(({name}) => name === "stroke");
       symbolChannel.hint = {
-        fill: fillChannel
-          ? fillChannel.value === symbolChannel.value
-            ? "color"
-            : "currentColor"
-          : this.fill,
-        stroke: strokeChannel
-          ? strokeChannel.value === symbolChannel.value
-            ? "color"
-            : "currentColor"
-          : this.stroke
+        fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
+        stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
       };
     }
   }

@@ -24,42 +24,14 @@ it("window mean skips NaN", () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, NaN, 1, 1, 1];
   const m3 = Plot.windowX({k: 3, x: (d) => d});
   m3.transform(data, [d3.range(data.length)]);
-  assert.deepStrictEqual(m3.x.transform(), [
-    ,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    1,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    ,
-  ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1, ,]);
 });
 
 it("window mean treats null as NaN", () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, 1, 1, 1];
   const m3 = Plot.windowX({k: 3, x: (d) => d});
   m3.transform(data, [d3.range(data.length)]);
-  assert.deepStrictEqual(m3.x.transform(), [
-    ,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    1,
-    1,
-    NaN,
-    NaN,
-    NaN,
-    1,
-    ,
-  ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, 1, ,]);
 });
 
 it("window mean respects anchor", () => {

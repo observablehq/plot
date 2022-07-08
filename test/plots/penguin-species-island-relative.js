@@ -14,12 +14,6 @@ export default async function () {
       data: penguins,
       x: "species"
     },
-    marks: [
-      Plot.barY(
-        penguins,
-        Plot.groupZ({y: "proportion-facet"}, {fill: "island"})
-      ),
-      Plot.ruleY([0])
-    ]
+    marks: [Plot.barY(penguins, Plot.groupZ({y: "proportion-facet"}, {fill: "island"})), Plot.ruleY([0])]
   });
 }

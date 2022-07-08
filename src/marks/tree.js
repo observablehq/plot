@@ -37,12 +37,7 @@ export function tree(
       treeLink({
         markerStart,
         markerEnd,
-        stroke:
-          stroke !== undefined
-            ? stroke
-            : fill === undefined
-            ? "node:internal"
-            : fill,
+        stroke: stroke !== undefined ? stroke : fill === undefined ? "node:internal" : fill,
         strokeWidth,
         strokeOpacity,
         strokeLinejoin,
