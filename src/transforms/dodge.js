@@ -1,5 +1,5 @@
 import IntervalTree from "interval-tree-1d";
-import {finite, positive} from "../defined.js";
+import {finite, positive} from "../defined";
 import {identity, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";

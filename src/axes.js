@@ -1,6 +1,6 @@
 import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
-import {formatDefault} from "./format.js";
+import {formatDefault} from "./format";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 import {position, registry} from "./scales/index.js";
 

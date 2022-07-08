@@ -1,6 +1,6 @@
 import {InternSet, extent, quantize, reverse as reverseof, sort, symbolsFill, symbolsStroke} from "d3";
 import {scaleBand, scaleOrdinal, scalePoint, scaleImplicit} from "d3";
-import {ascendingDefined} from "../defined.js";
+import {ascendingDefined} from "../defined";
 import {isNoneish, map} from "../options.js";
 import {maybeInterval} from "../transforms/interval.js";
 import {maybeSymbol} from "../symbols.js";

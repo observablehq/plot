@@ -1,5 +1,5 @@
 import {create} from "../context.js";
-import {radians} from "../math.js";
+import {radians} from "../math";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";

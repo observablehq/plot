@@ -1,6 +1,6 @@
 import {line as shapeLine} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {Curve} from "../curve";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyGroupedChannelStyles, groupIndex} from "../style.js";

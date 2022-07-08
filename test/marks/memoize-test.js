@@ -1,4 +1,4 @@
-import {memoize1} from "../../src/memoize.js";
+import {memoize1} from "../../src/memoize";
 import assert from "assert";
 
 it("memoize1(compute) returns the cached value with repeated calls", () => {

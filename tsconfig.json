@@ -16,6 +16,5 @@
       "@observablehq/plot": ["./src/index.js"]
     }
   },
-  "ts-node": { "files": true },
   "include": ["src/**/*"]
 }

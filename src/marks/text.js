@@ -1,7 +1,7 @@
 import {namespaces} from "d3";
 import {create} from "../context.js";
-import {nonempty} from "../defined.js";
-import {formatDefault} from "../format.js";
+import {nonempty} from "../defined";
+import {formatDefault} from "../format";
 import {indexOf, identity, string, maybeNumberChannel, maybeTuple, numberChannel, isNumeric, isTemporal, keyword, maybeFrameAnchor, isTextual, isIterable} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyAttr, applyTransform, impliedString, applyFrameAnchor} from "../style.js";

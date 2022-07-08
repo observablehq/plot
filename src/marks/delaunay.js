@@ -1,6 +1,6 @@
 import {group, path, select, Delaunay} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
+import {Curve} from "../curve";
 import {constant, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
