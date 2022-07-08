@@ -9,9 +9,7 @@ import typescript from "@rollup/plugin-typescript";
 const filename = meta.name.split("/").pop();
 
 // Resolve D3 dependency.
-const d3 = JSON.parse(
-  fs.readFileSync("./node_modules/d3/package.json", "utf-8")
-);
+const d3 = JSON.parse(fs.readFileSync("./node_modules/d3/package.json", "utf-8"));
 if (typeof d3.jsdelivr === "undefined") throw new Error("unable to resolve d3");
 const d3Path = `d3@${d3.version}/${d3.jsdelivr}`;
 
@@ -27,9 +25,7 @@ const config = {
   external: ["d3"],
   output: {
     indent: false,
-    banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(
-      ", "
-    )}`
+    banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
   },
   plugins: [typescript(), commonjs(), json(), node()]
 };
