@@ -36,7 +36,8 @@ yarn test
 
 This will also run ESLint on Plot’s source to help catch simple mistakes, such as unused imports.
 
-Please run prettier before submitting any pull request. Check “format on save” in your code editor, or run:
+Please run Prettier before submitting any pull request. Check “format on save” in your code editor, or run:
+
 ```bash
 yarn prettier --write src test
 ```
