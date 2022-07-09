@@ -1,9 +1,9 @@
-import {path, symbolCircle} from "d3";
+import {path, select, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyAttr, applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
@@ -42,10 +42,9 @@ export class Dot extends Mark {
     // appropriate default symbols based on whether the dots are filled or
     // stroked, and for the symbol legend to match the appearance of the dots.
     const {channels} = this;
-    const symbolChannel = channels.find(({scale}) => scale === "symbol");
+    const {symbol: symbolChannel} = channels;
     if (symbolChannel) {
-      const fillChannel = channels.find(({name}) => name === "fill");
-      const strokeChannel = channels.find(({name}) => name === "stroke");
+      const {fill: fillChannel, stroke: strokeChannel} = channels;
       symbolChannel.hint = {
         fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
         stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
@@ -87,6 +86,18 @@ export class Dot extends Mark {
                     });
               })
             .call(applyChannelStyles, this, channels))
+      .node();
+  }
+  // TODO Support symbols.
+  // TODO Support other things being changed besides x and y channels.
+  // TODO Memoize the selection for faster updates?
+  // TODO Access to old channels as well as new channels.
+  update(g, index, scales, channels) {
+    const {x: X, y: Y} = channels;
+    return select(g)
+        .call(g => g.selectChildren()
+          .call(applyAttr, "cx", X && (i => X[i]))
+          .call(applyAttr, "cy", Y && (i => Y[i])))
       .node();
   }
 }
