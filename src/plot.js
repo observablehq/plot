@@ -253,7 +253,7 @@ export function plot(options = {}) {
   // TODO Re-apply transforms and initializers?
   // TODO Update mark state.
   // TODO If mark.update returns a node, replace the old one?
-  figure.replot = ({mark, data, ...options}) => {
+  figure.replot = ({mark, data, animation, ...options}) => {
     const {facets, nodes} = stateByMark.get(mark);
     const channels = {};
     for (const name in options) {
@@ -262,9 +262,15 @@ export function plot(options = {}) {
       channels[name] = {value: options[name], scale: channel.scale};
     }
     const values = valueObject(channels, scales);
+    const promises = [];
     for (let i = 0, n = facets.length; i < n; ++i) {
-      mark.update(nodes[i], facets[i], scales, values);
+      if (animation === undefined) {
+        mark.renderUpdate(nodes[i], facets[i], scales, values);
+      } else {
+        promises.push(mark.renderAnimation(nodes[i], facets[i], scales, values, animation));
+      }
     }
+    return Promise.all(promises);
   };
 
   const w = consumeWarnings();

@@ -92,13 +92,39 @@ export class Dot extends Mark {
   // TODO Support other things being changed besides x and y channels.
   // TODO Memoize the selection for faster updates?
   // TODO Access to old channels as well as new channels.
-  update(g, index, scales, channels) {
+  renderUpdate(g, index, scales, channels) {
     const {x: X, y: Y} = channels;
-    return select(g)
-        .call(g => g.selectChildren()
-          .call(applyAttr, "cx", X && (i => X[i]))
-          .call(applyAttr, "cy", Y && (i => Y[i])))
-      .node();
+    select(g).selectChildren()
+        .call(applyAttr, "cx", X && (i => X[i]))
+        .call(applyAttr, "cy", Y && (i => Y[i]));
+  }
+  renderAnimation(g, index, scales, channels, timing) {
+    const {x: X, y: Y} = channels;
+    const finishes = [];
+    const mark = this;
+    select(g).selectChildren().each(function(i) {
+      const animation = this.animate(
+        [{cx: X ? X[i] : undefined, cy: Y ? Y[i] : undefined}],
+        // TODO Should this be mark.data here (which is not arrayify’d), or
+        // should it be the transformed data that is in stateByMark, which would
+        // need to be passed-in to this function, perhaps as a “data” channel?
+        typeof timing === "function" ? timing(mark.data[i], i) : timing
+      );
+      // Per the spec: “Authors are discouraged from using fill modes to produce
+      // animations whose effect is applied indefinitely… [Fill modes] produce
+      // situations where animation state would be accumulated indefinitely
+      // necessitating the automatic removal of animations defined in §5.5
+      // Replacing animations. Furthermore, indefinitely filling animations can
+      // cause changes to specified style to be ineffective long after all
+      // animations have completed since the animation style takes precedence in
+      // the CSS cascade [css-cascade-3].”
+      // https://drafts.csswg.org/web-animations-1/#example-515a2006
+      finishes.push(animation.finished.then(() => {
+        if (X) this.setAttribute("cx", X[i]);
+        if (Y) this.setAttribute("cy", Y[i]);
+      }));
+    });
+    return Promise.all(finishes);
   }
 }
 
