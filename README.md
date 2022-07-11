@@ -1784,6 +1784,7 @@ The following aggregation methods are supported:
 * *max-index* - the zero-based index of the maximum value
 * *mean* - the mean value (average)
 * *median* - the median value
+* *mode* - the value with the most occurrences
 * *pXX* - the percentile value, where XX is a number in [00,99]
 * *deviation* - the standard deviation
 * *variance* - the variance per [Welford’s algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
