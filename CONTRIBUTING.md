@@ -50,6 +50,12 @@ it("formatMonth(locale, format) does the right thing", () => {
 
 Plot’s unit tests are written with [Mocha](https://mochajs.org).
 
+If you like, you can also run Mocha in watch mode for a specific file, so that unit tests re-run automatically when you make changes. For example:
+
+```bash
+yarn run mocha --conditions=mocha --parallel --watch test/marks/bar-test.js
+```
+
 ### Snapshot tests
 
 Snapshot tests live in `test/plots` and are registered in [`test/plots/index.js`](./test/plots/index.js); see [`test/plots/aapl-bollinger.js`](./test/plots/aapl-bollinger.js) for example. Unlike unit tests which only test individual methods, snapshot tests actually visualize data—they’re more representative of how we expect people will use Plot. Snapshot tests can also serve as examples of how to use the Plot API, though note that some of the examples intentionally test edge case of the API and may not embody best practices. Each snapshot test defines a plot by exporting a default async function. For example, here’s a line chart using BLS unemployment data:

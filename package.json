@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "test": "yarn test:typecheck && yarn test:lint && yarn test:mocha",
-    "test:mocha": "mkdir -p test/output && mocha --conditions=mocha",
+    "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:typecheck": "tsc --noEmit",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
