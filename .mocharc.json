@@ -1,14 +1,5 @@
 {
   "require": ["module-alias/register.js"],
   "loader": "./loader.js",
-  "extensions": ["js", "ts"],
-  "spec": [
-    "test/**/*-test.*",
-    "test/plot.js"
-  ],
-  "watch-files": [
-    "bundle.js",
-    "test",
-    "src"
-  ]
+  "extensions": ["js", "ts"]
 }
