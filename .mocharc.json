@@ -1,6 +1,6 @@
 {
-  "require": ["module-alias/register.js", "ts-node/register"],
-  "loader": "ts-node/esm",
+  "require": ["module-alias/register.js"],
+  "loader": "./loader.js",
   "extensions": ["js", "ts"],
   "spec": [
     "test/**/*-test.*",
