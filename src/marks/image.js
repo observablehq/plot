@@ -1,5 +1,5 @@
 import {create} from "../context.js";
-import {positive} from "../defined";
+import {positive} from "../defined.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, impliedString, applyFrameAnchor} from "../style.js";

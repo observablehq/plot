@@ -39,7 +39,7 @@
   },
   "sideEffects": false,
   "devDependencies": {
-    "@esbuild-kit/esm-loader": "^2.4.0",
+    "@esbuild-kit/core-utils": "^2.0.2",
     "@rollup/plugin-commonjs": "22",
     "@rollup/plugin-json": "4",
     "@rollup/plugin-node-resolve": "13",
@@ -52,6 +52,7 @@
     "@typescript-eslint/parser": "^5.25.0",
     "canvas": "2",
     "eslint": "^8.16.0",
+    "get-tsconfig": "^4.1.0",
     "glob": "^8.0.3",
     "htl": "0.3",
     "js-beautify": "1",

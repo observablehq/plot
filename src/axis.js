@@ -1,7 +1,7 @@
 import {axisTop, axisBottom, axisRight, axisLeft, format, utcFormat} from "d3";
 import {create} from "./context.js";
-import {formatIsoDate} from "./format";
-import {radians} from "./math";
+import {formatIsoDate} from "./format.js";
+import {radians} from "./math.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
 import {applyAttr, impliedString} from "./style.js";
 

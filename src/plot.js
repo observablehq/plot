@@ -2,7 +2,7 @@ import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
-import {defined} from "./defined";
+import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
@@ -11,7 +11,7 @@ import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
-import {consumeWarnings} from "./warnings";
+import {consumeWarnings} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;

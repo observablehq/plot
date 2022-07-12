@@ -7,7 +7,7 @@ import {isDivergingScheme} from "./scales/schemes.js";
 import {ScaleTime, ScaleUtc} from "./scales/temporal.js";
 import {ScaleOrdinal, ScalePoint, ScaleBand, ordinalImplicit} from "./scales/ordinal.js";
 import {isSymbol, maybeSymbol} from "./symbols.js";
-import {warn} from "./warnings";
+import {warn} from "./warnings.js";
 
 export function Scales(channelsByScale, {
   inset: globalInset = 0,

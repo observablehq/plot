@@ -1,5 +1,5 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
-import {ascendingDefined} from "../defined";
+import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 

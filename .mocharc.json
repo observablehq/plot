@@ -1,6 +1,6 @@
 {
   "require": ["module-alias/register.js"],
-  "loader": "@esbuild-kit/esm-loader",
+  "loader": "./loader.js",
   "extensions": ["js", "ts"],
   "spec": [
     "test/**/*-test.*",
