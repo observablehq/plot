@@ -1,7 +1,7 @@
 import {creator, select} from "d3";
 
-export function Context({document = window.document} = {}) {
-  return {document};
+export function Context({document = window.document} = {}, axes) {
+  return {axes, document};
 }
 
 export function create(name, {document}) {
