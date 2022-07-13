@@ -1,0 +1,405 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="240" viewBox="0 0 960 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ y" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
+      <g transform="translate(2,0.5)">
+        <path d="M0,205h207"></path>
+        <path d="M0,196.5h207"></path>
+        <path d="M0,188h207"></path>
+        <path d="M0,179.5h207"></path>
+        <path d="M0,171h207"></path>
+        <path d="M0,162.5h207"></path>
+        <path d="M0,154h207"></path>
+        <path d="M0,145.5h207"></path>
+        <path d="M0,137h207"></path>
+        <path d="M0,128.5h207"></path>
+        <path d="M0,120h207"></path>
+        <path d="M0,111.49999999999999h207"></path>
+        <path d="M0,103h207"></path>
+        <path d="M0,94.5h207"></path>
+        <path d="M0,86h207"></path>
+        <path d="M0,77.5h207"></path>
+        <path d="M0,69h207"></path>
+        <path d="M0,60.5h207"></path>
+        <path d="M0,52h207"></path>
+        <path d="M0,43.50000000000001h207"></path>
+        <path d="M0,35h207"></path>
+      </g>
+      <g transform="translate(232,0.5)">
+        <path d="M0,205h207"></path>
+        <path d="M0,196.5h207"></path>
+        <path d="M0,188h207"></path>
+        <path d="M0,179.5h207"></path>
+        <path d="M0,171h207"></path>
+        <path d="M0,162.5h207"></path>
+        <path d="M0,154h207"></path>
+        <path d="M0,145.5h207"></path>
+        <path d="M0,137h207"></path>
+        <path d="M0,128.5h207"></path>
+        <path d="M0,120h207"></path>
+        <path d="M0,111.49999999999999h207"></path>
+        <path d="M0,103h207"></path>
+        <path d="M0,94.5h207"></path>
+        <path d="M0,86h207"></path>
+        <path d="M0,77.5h207"></path>
+        <path d="M0,69h207"></path>
+        <path d="M0,60.5h207"></path>
+        <path d="M0,52h207"></path>
+        <path d="M0,43.50000000000001h207"></path>
+        <path d="M0,35h207"></path>
+      </g>
+      <g transform="translate(462,0.5)">
+        <path d="M0,205h207"></path>
+        <path d="M0,196.5h207"></path>
+        <path d="M0,188h207"></path>
+        <path d="M0,179.5h207"></path>
+        <path d="M0,171h207"></path>
+        <path d="M0,162.5h207"></path>
+        <path d="M0,154h207"></path>
+        <path d="M0,145.5h207"></path>
+        <path d="M0,137h207"></path>
+        <path d="M0,128.5h207"></path>
+        <path d="M0,120h207"></path>
+        <path d="M0,111.49999999999999h207"></path>
+        <path d="M0,103h207"></path>
+        <path d="M0,94.5h207"></path>
+        <path d="M0,86h207"></path>
+        <path d="M0,77.5h207"></path>
+        <path d="M0,69h207"></path>
+        <path d="M0,60.5h207"></path>
+        <path d="M0,52h207"></path>
+        <path d="M0,43.50000000000001h207"></path>
+        <path d="M0,35h207"></path>
+      </g>
+      <g transform="translate(692,0.5)">
+        <path d="M0,205h207"></path>
+        <path d="M0,196.5h207"></path>
+        <path d="M0,188h207"></path>
+        <path d="M0,179.5h207"></path>
+        <path d="M0,171h207"></path>
+        <path d="M0,162.5h207"></path>
+        <path d="M0,154h207"></path>
+        <path d="M0,145.5h207"></path>
+        <path d="M0,137h207"></path>
+        <path d="M0,128.5h207"></path>
+        <path d="M0,120h207"></path>
+        <path d="M0,111.49999999999999h207"></path>
+        <path d="M0,103h207"></path>
+        <path d="M0,94.5h207"></path>
+        <path d="M0,86h207"></path>
+        <path d="M0,77.5h207"></path>
+        <path d="M0,69h207"></path>
+        <path d="M0,60.5h207"></path>
+        <path d="M0,52h207"></path>
+        <path d="M0,43.50000000000001h207"></path>
+        <path d="M0,35h207"></path>
+      </g>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,188.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,154.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,120.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,86.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,52.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ y</text>
+  </g>
+  <g aria-label="fx-axis" aria-description="series" transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(145.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(375.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(605.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(835.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">4</text>
+    </g><text fill="currentColor" transform="translate(490,-30)" dy="1em" text-anchor="middle">series</text>
+  </g>
+  <g aria-label="x-axis" transform="translate(42,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
+      <g transform="translate(0.5,0)">
+        <path d="M5,0v-180"></path>
+        <path d="M11.15625,0v-180"></path>
+        <path d="M17.3125,0v-180"></path>
+        <path d="M23.46875,0v-180"></path>
+        <path d="M29.625,0v-180"></path>
+        <path d="M35.78125,0v-180"></path>
+        <path d="M41.9375,0v-180"></path>
+        <path d="M48.09375,0v-180"></path>
+        <path d="M54.25,0v-180"></path>
+        <path d="M60.40625,0v-180"></path>
+        <path d="M66.5625,0v-180"></path>
+        <path d="M72.71875,0v-180"></path>
+        <path d="M78.875,0v-180"></path>
+        <path d="M85.03125,0v-180"></path>
+        <path d="M91.1875,0v-180"></path>
+        <path d="M97.34375,0v-180"></path>
+        <path d="M103.5,0v-180"></path>
+        <path d="M109.65625,0v-180"></path>
+        <path d="M115.8125,0v-180"></path>
+        <path d="M121.96875,0v-180"></path>
+        <path d="M128.125,0v-180"></path>
+        <path d="M134.28125,0v-180"></path>
+        <path d="M140.4375,0v-180"></path>
+        <path d="M146.59375,0v-180"></path>
+        <path d="M152.75,0v-180"></path>
+        <path d="M158.90625,0v-180"></path>
+        <path d="M165.0625,0v-180"></path>
+        <path d="M171.21875,0v-180"></path>
+        <path d="M177.375,0v-180"></path>
+        <path d="M183.53125,0v-180"></path>
+        <path d="M189.6875,0v-180"></path>
+        <path d="M195.84375,0v-180"></path>
+        <path d="M202,0v-180"></path>
+      </g>
+    </g>
+    <g class="tick" opacity="1" transform="translate(17.8125,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(79.375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.9375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(202.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(272,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
+      <g transform="translate(0.5,0)">
+        <path d="M5,0v-180"></path>
+        <path d="M11.15625,0v-180"></path>
+        <path d="M17.3125,0v-180"></path>
+        <path d="M23.46875,0v-180"></path>
+        <path d="M29.625,0v-180"></path>
+        <path d="M35.78125,0v-180"></path>
+        <path d="M41.9375,0v-180"></path>
+        <path d="M48.09375,0v-180"></path>
+        <path d="M54.25,0v-180"></path>
+        <path d="M60.40625,0v-180"></path>
+        <path d="M66.5625,0v-180"></path>
+        <path d="M72.71875,0v-180"></path>
+        <path d="M78.875,0v-180"></path>
+        <path d="M85.03125,0v-180"></path>
+        <path d="M91.1875,0v-180"></path>
+        <path d="M97.34375,0v-180"></path>
+        <path d="M103.5,0v-180"></path>
+        <path d="M109.65625,0v-180"></path>
+        <path d="M115.8125,0v-180"></path>
+        <path d="M121.96875,0v-180"></path>
+        <path d="M128.125,0v-180"></path>
+        <path d="M134.28125,0v-180"></path>
+        <path d="M140.4375,0v-180"></path>
+        <path d="M146.59375,0v-180"></path>
+        <path d="M152.75,0v-180"></path>
+        <path d="M158.90625,0v-180"></path>
+        <path d="M165.0625,0v-180"></path>
+        <path d="M171.21875,0v-180"></path>
+        <path d="M177.375,0v-180"></path>
+        <path d="M183.53125,0v-180"></path>
+        <path d="M189.6875,0v-180"></path>
+        <path d="M195.84375,0v-180"></path>
+        <path d="M202,0v-180"></path>
+      </g>
+    </g>
+    <g class="tick" opacity="1" transform="translate(17.8125,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(79.375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.9375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(202.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(502,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
+      <g transform="translate(0.5,0)">
+        <path d="M5,0v-180"></path>
+        <path d="M11.15625,0v-180"></path>
+        <path d="M17.3125,0v-180"></path>
+        <path d="M23.46875,0v-180"></path>
+        <path d="M29.625,0v-180"></path>
+        <path d="M35.78125,0v-180"></path>
+        <path d="M41.9375,0v-180"></path>
+        <path d="M48.09375,0v-180"></path>
+        <path d="M54.25,0v-180"></path>
+        <path d="M60.40625,0v-180"></path>
+        <path d="M66.5625,0v-180"></path>
+        <path d="M72.71875,0v-180"></path>
+        <path d="M78.875,0v-180"></path>
+        <path d="M85.03125,0v-180"></path>
+        <path d="M91.1875,0v-180"></path>
+        <path d="M97.34375,0v-180"></path>
+        <path d="M103.5,0v-180"></path>
+        <path d="M109.65625,0v-180"></path>
+        <path d="M115.8125,0v-180"></path>
+        <path d="M121.96875,0v-180"></path>
+        <path d="M128.125,0v-180"></path>
+        <path d="M134.28125,0v-180"></path>
+        <path d="M140.4375,0v-180"></path>
+        <path d="M146.59375,0v-180"></path>
+        <path d="M152.75,0v-180"></path>
+        <path d="M158.90625,0v-180"></path>
+        <path d="M165.0625,0v-180"></path>
+        <path d="M171.21875,0v-180"></path>
+        <path d="M177.375,0v-180"></path>
+        <path d="M183.53125,0v-180"></path>
+        <path d="M189.6875,0v-180"></path>
+        <path d="M195.84375,0v-180"></path>
+        <path d="M202,0v-180"></path>
+      </g>
+    </g>
+    <g class="tick" opacity="1" transform="translate(17.8125,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(79.375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.9375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(202.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" aria-description="x →" transform="translate(732,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="grid" stroke="currentColor" stroke-opacity="0.1">
+      <g transform="translate(0.5,0)">
+        <path d="M5,0v-180"></path>
+        <path d="M11.15625,0v-180"></path>
+        <path d="M17.3125,0v-180"></path>
+        <path d="M23.46875,0v-180"></path>
+        <path d="M29.625,0v-180"></path>
+        <path d="M35.78125,0v-180"></path>
+        <path d="M41.9375,0v-180"></path>
+        <path d="M48.09375,0v-180"></path>
+        <path d="M54.25,0v-180"></path>
+        <path d="M60.40625,0v-180"></path>
+        <path d="M66.5625,0v-180"></path>
+        <path d="M72.71875,0v-180"></path>
+        <path d="M78.875,0v-180"></path>
+        <path d="M85.03125,0v-180"></path>
+        <path d="M91.1875,0v-180"></path>
+        <path d="M97.34375,0v-180"></path>
+        <path d="M103.5,0v-180"></path>
+        <path d="M109.65625,0v-180"></path>
+        <path d="M115.8125,0v-180"></path>
+        <path d="M121.96875,0v-180"></path>
+        <path d="M128.125,0v-180"></path>
+        <path d="M134.28125,0v-180"></path>
+        <path d="M140.4375,0v-180"></path>
+        <path d="M146.59375,0v-180"></path>
+        <path d="M152.75,0v-180"></path>
+        <path d="M158.90625,0v-180"></path>
+        <path d="M165.0625,0v-180"></path>
+        <path d="M171.21875,0v-180"></path>
+        <path d="M177.375,0v-180"></path>
+        <path d="M183.53125,0v-180"></path>
+        <path d="M189.6875,0v-180"></path>
+        <path d="M195.84375,0v-180"></path>
+        <path d="M202,0v-180"></path>
+      </g>
+    </g>
+    <g class="tick" opacity="1" transform="translate(17.8125,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(79.375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(140.9375,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(202.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
+    </g><text fill="currentColor" transform="translate(227,30)" dy="-0.32em" text-anchor="end">x →</text>
+  </g>
+  <g aria-label="facet" transform="translate(42,0)">
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="78.875" cy="119.32000000000002" r="3"></circle>
+      <circle cx="54.25" cy="137.85" r="3"></circle>
+      <circle cx="115.8125" cy="127.14000000000001" r="3"></circle>
+      <circle cx="66.5625" cy="106.22999999999999" r="3"></circle>
+      <circle cx="91.1875" cy="114.39" r="3"></circle>
+      <circle cx="128.125" cy="86.67999999999999" r="3"></circle>
+      <circle cx="29.625" cy="132.92" r="3"></circle>
+      <circle cx="5" cy="183.57999999999998" r="3"></circle>
+      <circle cx="103.5" cy="71.72" r="3"></circle>
+      <circle cx="41.9375" cy="174.23000000000002" r="3"></circle>
+      <circle cx="17.3125" cy="159.44" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(272,0)">
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="78.875" cy="100.61999999999998" r="3"></circle>
+      <circle cx="54.25" cy="117.62" r="3"></circle>
+      <circle cx="115.8125" cy="107.41999999999999" r="3"></circle>
+      <circle cx="66.5625" cy="106.91" r="3"></circle>
+      <circle cx="91.1875" cy="98.58" r="3"></circle>
+      <circle cx="128.125" cy="118.30000000000001" r="3"></circle>
+      <circle cx="29.625" cy="151.79000000000002" r="3"></circle>
+      <circle cx="5" cy="203.29999999999998" r="3"></circle>
+      <circle cx="103.5" cy="100.78999999999998" r="3"></circle>
+      <circle cx="41.9375" cy="132.58" r="3"></circle>
+      <circle cx="17.3125" cy="175.42" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(502,0)">
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="78.875" cy="129.18" r="3"></circle>
+      <circle cx="54.25" cy="140.91" r="3"></circle>
+      <circle cx="115.8125" cy="39.42" r="3"></circle>
+      <circle cx="66.5625" cy="135.13" r="3"></circle>
+      <circle cx="91.1875" cy="123.23000000000002" r="3"></circle>
+      <circle cx="128.125" cy="105.72" r="3"></circle>
+      <circle cx="29.625" cy="152.64" r="3"></circle>
+      <circle cx="5" cy="164.37" r="3"></circle>
+      <circle cx="103.5" cy="117.45" r="3"></circle>
+      <circle cx="41.9375" cy="146.86" r="3"></circle>
+      <circle cx="17.3125" cy="158.59" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(732,0)">
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="54.25" cy="144.14000000000001" r="3"></circle>
+      <circle cx="54.25" cy="158.07999999999998" r="3"></circle>
+      <circle cx="54.25" cy="124.93" r="3"></circle>
+      <circle cx="54.25" cy="105.72" r="3"></circle>
+      <circle cx="54.25" cy="112.00999999999999" r="3"></circle>
+      <circle cx="54.25" cy="136.32" r="3"></circle>
+      <circle cx="54.25" cy="166.75" r="3"></circle>
+      <circle cx="189.6875" cy="43.50000000000001" r="3"></circle>
+      <circle cx="54.25" cy="161.48000000000002" r="3"></circle>
+      <circle cx="54.25" cy="121.53" r="3"></circle>
+      <circle cx="54.25" cy="138.87" r="3"></circle>
+    </g>
+  </g>
+</svg>
