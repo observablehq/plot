@@ -3,7 +3,7 @@ import {create} from "./context.js";
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
-import {applyAttr, impliedString} from "./style.js";
+import {applyAttr, impliedString, offset} from "./style.js";
 
 export class AxisX {
   constructor({
@@ -30,7 +30,7 @@ export class AxisX {
     this.tickPadding = number(tickPadding);
     this.tickFormat = maybeTickFormat(tickFormat);
     this.fontVariant = impliedString(fontVariant, "normal");
-    this.grid = boolean(grid);
+    this.grid = maybeGrid(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "left", "right"]);
     this.labelOffset = number(labelOffset);
@@ -66,7 +66,8 @@ export class AxisX {
       labelOffset,
       line,
       name,
-      tickRotate
+      tickRotate,
+      ticks
     } = this;
     const offset = name === "x" ? 0 : axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
     const offsetSign = axis === "top" ? -1 : 1;
@@ -74,15 +75,19 @@ export class AxisX {
     return create("svg:g", context)
         .call(applyAria, this)
         .attr("transform", `translate(${offsetLeft},${ty})`)
+        .call(!grid ? () => {}
+        : createGridX(
+          grid(x, ticks),
+          x,
+          fy ? fy.bandwidth() : offsetSign * (marginBottom + marginTop - height),
+          fy ? (index ? take(fy.domain(), index) : fy.domain()).map(d => fy(d) - ty) : [0]
+        ))
         .call(createAxis(axis === "top" ? axisTop : axisBottom, x, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fy ? gridFacetX(index, fy, -ty)
-          : gridX(offsetSign * (marginBottom + marginTop - height)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("transform", `translate(${
@@ -124,7 +129,7 @@ export class AxisY {
     this.tickPadding = number(tickPadding);
     this.tickFormat = maybeTickFormat(tickFormat);
     this.fontVariant = impliedString(fontVariant, "normal");
-    this.grid = boolean(grid);
+    this.grid = maybeGrid(grid);
     this.label = string(label);
     this.labelAnchor = maybeKeyword(labelAnchor, "labelAnchor", ["center", "top", "bottom"]);
     this.labelOffset = number(labelOffset);
@@ -158,7 +163,8 @@ export class AxisY {
       labelOffset,
       line,
       name,
-      tickRotate
+      tickRotate,
+      ticks
     } = this;
     const offset = name === "y" ? 0 : axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     const offsetSign = axis === "left" ? -1 : 1;
@@ -166,15 +172,19 @@ export class AxisY {
     return create("svg:g", context)
         .call(applyAria, this)
         .attr("transform", `translate(${tx},${offsetTop})`)
+        .call(!grid ? () => {}
+          : createGridY(
+              grid(y, ticks),
+              y,
+              fx ? fx.bandwidth() : offsetSign * (marginLeft + marginRight - width),
+              fx ? (index ? take(fx.domain(), index) : fx.domain()).map(d => fx(d) - tx) : [0]
+            ))
         .call(createAxis(axis === "right" ? axisRight : axisLeft, y, this))
         .call(maybeTickRotate, tickRotate)
         .attr("font-size", null)
         .attr("font-family", null)
         .attr("font-variant", fontVariant)
         .call(!line ? g => g.select(".domain").remove() : () => {})
-        .call(!grid ? () => {}
-          : fx ? gridFacetY(index, fx, -tx)
-          : gridY(offsetSign * (marginLeft + marginRight - width)))
         .call(!label ? () => {} : g => g.append("text")
             .attr("fill", "currentColor")
             .attr("font-variant", fontVariant == null ? null : "normal")
@@ -202,40 +212,6 @@ function applyAria(selection, {
 }) {
   applyAttr(selection, "aria-label", ariaLabel);
   applyAttr(selection, "aria-description", ariaDescription);
-}
-
-function gridX(y2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("y2", y2);
-}
-
-function gridY(x2) {
-  return g => g.selectAll(".tick line")
-    .clone(true)
-      .attr("stroke-opacity", 0.1)
-      .attr("x2", x2);
-}
-
-function gridFacetX(index, fy, ty) {
-  const dy = fy.bandwidth();
-  const domain = fy.domain();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", (index ? take(domain, index) : domain).map(v => `M0,${fy(v) + ty}v${dy}`).join(""));
-}
-
-function gridFacetY(index, fx, tx) {
-  const dx = fx.bandwidth();
-  const domain = fx.domain();
-  return g => g.selectAll(".tick")
-    .append("path")
-      .attr("stroke", "currentColor")
-      .attr("stroke-opacity", 0.1)
-      .attr("d", (index ? take(domain, index) : domain).map(v => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
 function maybeTicks(ticks) {
@@ -287,4 +263,42 @@ function maybeTickRotate(g, rotate) {
     text.removeAttribute("y");
     text.setAttribute("dy", "0.32em");
   }
+}
+
+function createGridX(ticks, x, dy, steps) {
+  return g => g.append("g")
+      .attr("class", "grid")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", "0.1")
+      .selectAll()
+      .data(steps)
+      .join("g")
+        .attr("transform", v => `translate(${offset},${v})`)
+        .selectAll()
+        .data(ticks)
+        .join("path")
+        .attr("d", d => `M${x(d)},0v${dy}`);
+}
+
+function createGridY(ticks, y, dx, steps) {
+  return g => g.append("g")
+      .attr("class", "grid")
+      .attr("stroke", "currentColor")
+      .attr("stroke-opacity", "0.1")
+      .selectAll()
+      .data(steps)
+      .join("g")
+        .attr("transform", v => `translate(${v},${offset})`)
+        .selectAll()
+        .data(ticks)
+        .join("path")
+        .attr("d", d => `M0,${y(d)}h${dx}`);
+}
+
+function maybeGrid(grid) {
+  if (!grid) return false;
+  if (grid === true) return (scale, ticks) => (scale.ticks ? scale.ticks(ticks) : scale.domain());
+  if (Array.isArray(grid)) return constant(grid.map(d => d == null ? null : +d).filter(d => !isNaN(d)));
+  if (grid === +grid) return (scale) => (scale.ticks ? scale.ticks.apply(scale, [grid]) : scale.domain());
+  throw new Error(`Unexpected grid option: ${grid}`);
 }

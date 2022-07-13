@@ -292,7 +292,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
 * *scale*.**tickFormat** - to format tick values, either a function or format specifier string; see [Formats](#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* *scale*.**grid** - if true, draw grid lines across the plot for each tick
+* *scale*.**grid** - if true, a positive number, or an array of tick values, draw grid lines across the plot for each tick; if specified as an array, the default domain includes them
 * *scale*.**line** - if true, draw the axis line
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*

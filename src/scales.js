@@ -19,6 +19,7 @@ export function Scales(channelsByScale, {
   nice,
   clamp,
   zero,
+  grid,
   align,
   padding,
   ...options
@@ -31,6 +32,7 @@ export function Scales(channelsByScale, {
       nice,
       clamp,
       zero,
+      grid,
       align,
       padding,
       ...scaleOptions

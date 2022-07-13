@@ -54,7 +54,8 @@ export function ScaleQ(key, scale, channels, {
   nice,
   clamp,
   zero,
-  domain = inferAutoDomain(key, channels),
+  grid,
+  domain = inferAutoDomain(key, channels, grid),
   unknown,
   round,
   scheme,
@@ -207,8 +208,9 @@ export function inferDomain(channels, f = finite) {
   ] : [0, 1];
 }
 
-function inferAutoDomain(key, channels) {
+function inferAutoDomain(key, channels, grid) {
   const type = registry.get(key);
+  if (["x", "y"].includes(key) && Array.isArray(grid)) channels = [...channels, {value: grid}];
   return (type === radius || type === opacity || type === length ? inferZeroDomain : inferDomain)(channels);
 }
 
