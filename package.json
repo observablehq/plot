@@ -64,7 +64,7 @@
     "tslib": "^2.4.0",
     "typescript": "^4.6.4",
     "typescript-module-alias": "^1.0.2",
-    "vite": "2"
+    "vite": "3"
   },
   "dependencies": {
     "d3": "^7.5.0",
