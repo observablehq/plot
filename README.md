@@ -2026,9 +2026,25 @@ Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"
 
 Selects the first point of each series according to input order.
 
+#### Plot.selectFirstX(*options*)
+
+Selects the first point of each series according to input order whose *x* value is defined.
+
+#### Plot.selectFirstY(*options*)
+
+Selects the first point of each series according to input order whose *y* value is defined.
+
 #### Plot.selectLast(*options*)
 
 Selects the last point of each series according to input order.
+
+#### Plot.selectLastX(*options*)
+
+Selects the last point of each series according to input order whose *x* value is defined.
+
+#### Plot.selectLastY(*options*)
+
+Selects the last point of each series according to input order whose *y* value is defined.
 
 #### Plot.selectMinX(*options*)
 

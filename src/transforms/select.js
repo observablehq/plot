@@ -1,4 +1,5 @@
 import {greatest, group, least} from "d3";
+import {defined} from "../defined.js";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -29,6 +30,8 @@ export function select(selector, options = {}) {
 function maybeSelector(selector) {
   if (typeof selector === "function") return selector;
   switch (`${selector}`.toLowerCase()) {
+    case "first": return selectorFirstDefined;
+    case "last": return selectorLastDefined;
     case "min": return selectorMin;
     case "max": return selectorMax;
   }
@@ -39,8 +42,24 @@ export function selectFirst(options) {
   return selectChannel(null, selectorFirst, options);
 }
 
+export function selectFirstX(options) {
+  return selectChannel("x", selectorFirstDefined, options);
+}
+
+export function selectFirstY(options) {
+  return selectChannel("y", selectorFirstDefined, options);
+}
+
 export function selectLast(options) {
   return selectChannel(null, selectorLast, options);
+}
+
+export function selectLastX(options) {
+  return selectChannel("x", selectorLastDefined, options);
+}
+
+export function selectLastY(options) {
+  return selectChannel("y", selectorLastDefined, options);
 }
 
 export function selectMinX(options) {
@@ -65,6 +84,25 @@ function* selectorFirst(I) {
 
 function* selectorLast(I) {
   yield I[I.length - 1];
+}
+
+function* selectorFirstDefined(I, V) {
+  for (const i of I) {
+    if (defined(V[i])) {
+      yield i;
+      break;
+    }
+  }
+}
+
+function* selectorLastDefined(I, V) {
+  for (let j = I.length - 1; j >= 0; --j) {
+    const i = I[j];
+    if (defined(V[i])) {
+      yield i;
+      break;
+    }
+  }
 }
 
 function* selectorMin(I, X) {
