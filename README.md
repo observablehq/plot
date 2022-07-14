@@ -292,7 +292,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
 * *scale*.**tickFormat** - to format tick values, either a function or format specifier string; see [Formats](#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
-* *scale*.**grid** - if true, draw grid lines across the plot for each tick
+* *scale*.**grid** - if true, draw grid lines across the plot for each tick; specify a number or an array of tick values to generate different ticks; see [grid marks](#grid) for more options
 * *scale*.**line** - if true, draw the axis line
 * *scale*.**label** - a string to label the axis
 * *scale*.**labelAnchor** - the label anchor: *top*, *right*, *bottom*, *left*, or *center*
@@ -1104,6 +1104,27 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 #### Plot.hexagon(*data*, *options*)
 
 Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+
+### Grid
+
+The grid mark draw a line for each tick of the *x* or *y* axis. Specify a number to generate new ticks from the scale, or an explicit array of tick values. The [standard mark options](#marks) can be specified as a constant, or a function of the tick value and tick index, with a *stroke* which defaults to currentColor, and a strokeOpacity which defaults to 0.1. If the ticks are specified as an array of tick values, they will be considered as a channel when building the default domain.
+
+#### Plot.gridX([*options*])
+
+```js
+Plot.gridX([3, 4, 5], {stroke: "red"})
+```
+
+Returns a new grid along the *x* axis with the given *options*. The *ticks* option can be specified as the first argument.
+
+#### Plot.gridY([*options*])
+
+```js
+Plot.gridY([3, 4, 5], {stroke: "red"})
+```
+
+Returns a new grid along the *y* axis with the given *options*. The *ticks* option can be specified as the first argument.
+
 
 ### Hexgrid
 
