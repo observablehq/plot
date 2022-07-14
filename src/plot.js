@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
+import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
@@ -198,6 +198,9 @@ export function plot(options = {}) {
           context
         ));
     }
+    for (const state of stateByMark.values()) {
+      state.nodes = new Array(facets.length);
+    }
     selection.selectAll()
       .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
       .enter()
@@ -206,16 +209,20 @@ export function plot(options = {}) {
         .attr("transform", facetTranslate(fx, fy))
         .each(function(key) {
           const j = indexByFacet.get(key);
-          for (const [mark, {channels, values, facets}] of stateByMark) {
+          for (const [mark, state] of stateByMark) {
+            const {channels, values, facets} = state;
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
             const node = mark.render(facet, scales, values, subdimensions, context);
+            state.nodes[j] = node;
             if (node != null) this.appendChild(node);
           }
         });
   } else {
-    for (const [mark, {channels, values, facets}] of stateByMark) {
+    for (const [mark, state] of stateByMark) {
+      const {channels, values, facets} = state;
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const node = mark.render(facet, scales, values, dimensions, context);
+      state.nodes = [node];
       if (node != null) svg.appendChild(node);
     }
   }
@@ -238,6 +245,33 @@ export function plot(options = {}) {
 
   figure.scale = exposeScales(scaleDescriptors);
   figure.legend = exposeLegends(scaleDescriptors, context, options);
+
+  // TODO Combine multiple updates.
+  // TODO Update scale domains and axes.
+  // TODO Apply valueof for channel values expressed as accessors.
+  // TODO Reuse an existing array when instantiating channel values.
+  // TODO Re-apply transforms and initializers?
+  // TODO Update mark state.
+  // TODO If mark.update returns a node, replace the old one?
+  figure.replot = ({mark, data, animation, ...options}) => {
+    const {facets, nodes} = stateByMark.get(mark);
+    const channels = {};
+    for (const name in options) {
+      const channel = mark.channels[name];
+      if (!channel) throw new Error(`missing channel: ${name}`);
+      channels[name] = {value: options[name], scale: channel.scale};
+    }
+    const values = valueObject(channels, scales);
+    const promises = [];
+    for (let i = 0, n = facets.length; i < n; ++i) {
+      if (animation === undefined) {
+        mark.renderUpdate(nodes[i], facets[i], scales, values);
+      } else {
+        promises.push(mark.renderAnimation(nodes[i], facets[i], scales, values, animation));
+      }
+    }
+    return Promise.all(promises);
+  };
 
   const w = consumeWarnings();
   if (w > 0) {
@@ -266,7 +300,7 @@ export class Mark {
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
     if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
-    this.channels = channels.filter(channel => {
+    this.channels = Object.fromEntries(channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
         if (optional) return false;
@@ -278,7 +312,7 @@ export class Mark {
       if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
       names.add(key);
       return true;
-    });
+    }).map(channel => [channel.name, channel]));
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
@@ -287,7 +321,7 @@ export class Mark {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
-    const channels = channelObject(this.channels, data);
+    const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
     return {data, facets, channels};
   }

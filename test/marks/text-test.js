@@ -5,9 +5,9 @@ it("text() has the expected defaults", () => {
   const text = Plot.text();
   assert.strictEqual(text.data, undefined);
   assert.strictEqual(text.transform, undefined);
-  assert.deepStrictEqual(text.channels.map(c => c.name), ["x", "y", "text"]);
-  assert.deepStrictEqual(text.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
-  assert.deepStrictEqual(text.channels.map(c => c.scale), ["x", "y", undefined]);
+  assert.deepStrictEqual(Object.keys(text.channels), ["x", "y", "text"]);
+  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
+  assert.deepStrictEqual(Object.values(text.channels).map(c => c.scale), ["x", "y", undefined]);
   assert.strictEqual(text.fill, undefined);
   assert.strictEqual(text.fillOpacity, undefined);
   assert.strictEqual(text.stroke, undefined);
@@ -33,8 +33,8 @@ it("text(strings, {frameAnchor}) has the expected defaults", () => {
   const text = Plot.text(data, {frameAnchor: "middle"});
   assert.strictEqual(text.data, data);
   assert.strictEqual(text.transform, undefined);
-  assert.deepStrictEqual(text.channels.map(c => c.name), ["text"]);
-  assert.deepStrictEqual(text.channels.map(c => Plot.valueof(data, c.value)), [data]);
+  assert.deepStrictEqual(Object.keys(text.channels), ["text"]);
+  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof(data, c.value)), [data]);
   assert.strictEqual(text.textAnchor, undefined);
   assert.strictEqual(text.lineAnchor, "middle");
   assert.strictEqual(text.frameAnchor, "middle");
@@ -45,8 +45,8 @@ it("text(dates, {frameAnchor}) has the expected defaults", () => {
   const text = Plot.text(data, {frameAnchor: "middle"});
   assert.strictEqual(text.data, data);
   assert.strictEqual(text.transform, undefined);
-  assert.deepStrictEqual(text.channels.map(c => c.name), ["text"]);
-  assert.deepStrictEqual(text.channels.map(c => Plot.valueof(data, c.value)), [data]);
+  assert.deepStrictEqual(Object.keys(text.channels), ["text"]);
+  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof(data, c.value)), [data]);
   assert.strictEqual(text.textAnchor, undefined);
   assert.strictEqual(text.lineAnchor, "middle");
   assert.strictEqual(text.frameAnchor, "middle");
@@ -54,7 +54,7 @@ it("text(dates, {frameAnchor}) has the expected defaults", () => {
 
 it("text(data, {title}) specifies an optional title channel", () => {
   const text = Plot.text(undefined, {title: "x"});
-  const title = text.channels.find(c => c.name === "title");
+  const {title} = text.channels;
   assert.strictEqual(title.value, "x");
   assert.strictEqual(title.scale, undefined);
 });
@@ -72,7 +72,7 @@ it("text(data, {fill}) allows fill to be null", () => {
 it("text(data, {fill}) allows fill to be a variable color", () => {
   const text = Plot.text(undefined, {fill: "x"});
   assert.strictEqual(text.fill, undefined);
-  const fill = text.channels.find(c => c.name === "fill");
+  const {fill} = text.channels;
   assert.strictEqual(fill.value, "x");
   assert.strictEqual(fill.scale, "color");
 });
@@ -99,7 +99,7 @@ it("text(data, {fontSize}) allows fontSize to be a number, length, keyword, or p
 it("text(data, {fontSize}) allows fontSize to be a channel", () => {
   const text = Plot.text(undefined, {fontSize: "x"});
   assert.strictEqual(text.fontSize, undefined);
-  assert.strictEqual(text.channels.find(c => c.name === "fontSize").value, "x");
+  assert.strictEqual(text.channels.fontSize.value, "x");
 });
 
 it("text({length}) can take length-only data", () => {

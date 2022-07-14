@@ -1,9 +1,9 @@
-import {path, symbolCircle} from "d3";
+import {path, select, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyAttr, applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
 import {maybeSymbolChannel} from "../symbols.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
@@ -42,10 +42,9 @@ export class Dot extends Mark {
     // appropriate default symbols based on whether the dots are filled or
     // stroked, and for the symbol legend to match the appearance of the dots.
     const {channels} = this;
-    const symbolChannel = channels.find(({scale}) => scale === "symbol");
+    const {symbol: symbolChannel} = channels;
     if (symbolChannel) {
-      const fillChannel = channels.find(({name}) => name === "fill");
-      const strokeChannel = channels.find(({name}) => name === "stroke");
+      const {fill: fillChannel, stroke: strokeChannel} = channels;
       symbolChannel.hint = {
         fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
         stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
@@ -88,6 +87,44 @@ export class Dot extends Mark {
               })
             .call(applyChannelStyles, this, channels))
       .node();
+  }
+  // TODO Support symbols.
+  // TODO Support other things being changed besides x and y channels.
+  // TODO Memoize the selection for faster updates?
+  // TODO Access to old channels as well as new channels.
+  renderUpdate(g, index, scales, channels) {
+    const {x: X, y: Y} = channels;
+    select(g).selectChildren()
+        .call(applyAttr, "cx", X && (i => X[i]))
+        .call(applyAttr, "cy", Y && (i => Y[i]));
+  }
+  renderAnimation(g, index, scales, channels, timing) {
+    const {x: X, y: Y} = channels;
+    const finishes = [];
+    const mark = this;
+    select(g).selectChildren().each(function(i) {
+      const animation = this.animate(
+        [{cx: X ? X[i] : undefined, cy: Y ? Y[i] : undefined}],
+        // TODO Should this be mark.data here (which is not arrayify’d), or
+        // should it be the transformed data that is in stateByMark, which would
+        // need to be passed-in to this function, perhaps as a “data” channel?
+        typeof timing === "function" ? timing(mark.data[i], i) : timing
+      );
+      // Per the spec: “Authors are discouraged from using fill modes to produce
+      // animations whose effect is applied indefinitely… [Fill modes] produce
+      // situations where animation state would be accumulated indefinitely
+      // necessitating the automatic removal of animations defined in §5.5
+      // Replacing animations. Furthermore, indefinitely filling animations can
+      // cause changes to specified style to be ineffective long after all
+      // animations have completed since the animation style takes precedence in
+      // the CSS cascade [css-cascade-3].”
+      // https://drafts.csswg.org/web-animations-1/#example-515a2006
+      finishes.push(animation.finished.then(() => {
+        if (X) this.setAttribute("cx", X[i]);
+        if (Y) this.setAttribute("cy", Y[i]);
+      }));
+    });
+    return Promise.all(finishes);
   }
 }
 
