@@ -8,9 +8,9 @@ export default async function () {
   const position = Plot.normalizeX("sum", {z: "state", x: "population", y: "state"});
   return Plot.plot({
     height: 660,
-    grid: true,
     x: {
       axis: "top",
+      grid: true,
       label: "Percent (%) →",
       transform: (d) => d * 100
     },

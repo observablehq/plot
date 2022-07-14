@@ -213,6 +213,7 @@ export {default as stargazersBinned} from "./stargazers-binned.js";
 export {default as stargazersHourly} from "./stargazers-hourly.js";
 export {default as stargazersHourlyGroup} from "./stargazers-hourly-group.js";
 export {default as stocksIndex} from "./stocks-index.js";
+export {default as superGrid} from "./super-grid.js";
 export {default as thisIsJustToSay} from "./this-is-just-to-say.js";
 export {default as trafficHorizon} from "./traffic-horizon.js";
 export {default as travelersYearOverYear} from "./travelers-year-over-year.js";

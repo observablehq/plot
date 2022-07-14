@@ -12,6 +12,7 @@ import {
   keyword,
   map,
   maybeNamed,
+  number,
   range,
   second,
   where,
@@ -19,7 +20,16 @@ import {
 } from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
+import {
+  applyInlineStyles,
+  applyDirectStyles,
+  applyChannelStyles,
+  applyIndirectStyles,
+  applyTransform,
+  maybeClassName,
+  maybeClip,
+  styles
+} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
@@ -32,6 +42,12 @@ export function plot(options = {}) {
 
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
+
+  // Prepend grid marks if passed a grid option
+  const gridx = options.x?.grid ?? options.grid;
+  if (gridx != null) marks.unshift(new Grid(gridx, "auto", false));
+  const gridy = options.y?.grid ?? options.grid;
+  if (gridy != null) marks.unshift(new Grid(gridy, false, "auto"));
 
   // A Map from Mark instance to its render state, including:
   // index - the data index e.g. [0, 1, 2, 3, …]
@@ -195,52 +211,88 @@ export function plot(options = {}) {
     const indexByFacet = facetMap(facetChannels);
     facets.forEach(([key], i) => indexByFacet.set(key, i));
     const selection = select(svg);
-    if (fy && axes.y) {
-      const axis1 = axes.y,
-        axis2 = nolabel(axis1);
-      const j =
-        axis1.labelAnchor === "bottom"
-          ? fyDomain.length - 1
-          : axis1.labelAnchor === "center"
-          ? fyDomain.length >> 1
-          : 0;
-      selection
-        .selectAll()
-        .data(fyDomain)
-        .enter()
-        .append((ky, i) =>
-          (i === j ? axis1 : axis2).render(
-            fx && where(fxDomain, (kx) => indexByFacet.has([kx, ky])),
-            scales,
-            {...dimensions, ...fyMargins, offsetTop: fy(ky)},
-            context
-          )
-        );
+    if (fy) {
+      if (options.fy?.grid === true) {
+        const ty = fy.bandwidth() / 2;
+        selection
+          .selectAll()
+          .data(fyDomain.map((d) => fy(d) + ty))
+          .enter()
+          .append("line")
+          .attr("y1", (d) => d)
+          .attr("y2", (d) => d)
+          .attr("x1", dimensions.marginLeft)
+          .attr("x2", dimensions.width - dimensions.marginRight)
+          .attr("stroke", "currentColor")
+          .attr("stroke-opacity", 0.1);
+      }
+      if (axes.y) {
+        const axis1 = axes.y,
+          axis2 = nolabel(axis1);
+        const j =
+          axis1.labelAnchor === "bottom"
+            ? fyDomain.length - 1
+            : axis1.labelAnchor === "center"
+            ? fyDomain.length >> 1
+            : 0;
+        selection
+          .selectAll()
+          .data(fyDomain)
+          .enter()
+          .append((ky, i) =>
+            (i === j ? axis1 : axis2).render(
+              fx && where(fxDomain, (kx) => indexByFacet.has([kx, ky])),
+              scales,
+              {...dimensions, ...fyMargins, offsetTop: fy(ky)},
+              context
+            )
+          );
+      }
     }
-    if (fx && axes.x) {
-      const axis1 = axes.x,
-        axis2 = nolabel(axis1);
-      const j =
-        axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
-      const {marginLeft, marginRight} = dimensions;
-      selection
-        .selectAll()
-        .data(fxDomain)
-        .enter()
-        .append((kx, i) =>
-          (i === j ? axis1 : axis2).render(
-            fy && where(fyDomain, (ky) => indexByFacet.has([kx, ky])),
-            scales,
-            {
-              ...dimensions,
-              ...fxMargins,
-              labelMarginLeft: marginLeft,
-              labelMarginRight: marginRight,
-              offsetLeft: fx(kx)
-            },
-            context
-          )
-        );
+    if (fx) {
+      if (options.fx?.grid === true) {
+        const cx = fx.bandwidth() / 2;
+        selection
+          .selectAll()
+          .data(fxDomain.map((d) => fx(d) + cx))
+          .enter()
+          .append("line")
+          .attr("x1", (d) => d)
+          .attr("x2", (d) => d)
+          .attr("y1", dimensions.marginTop)
+          .attr("y2", dimensions.height - dimensions.marginBottom)
+          .attr("stroke", "currentColor")
+          .attr("stroke-opacity", 0.1);
+      }
+      if (axes.x) {
+        const axis1 = axes.x,
+          axis2 = nolabel(axis1);
+        const j =
+          axis1.labelAnchor === "right"
+            ? fxDomain.length - 1
+            : axis1.labelAnchor === "center"
+            ? fxDomain.length >> 1
+            : 0;
+        const {marginLeft, marginRight} = dimensions;
+        selection
+          .selectAll()
+          .data(fxDomain)
+          .enter()
+          .append((kx, i) =>
+            (i === j ? axis1 : axis2).render(
+              fy && where(fyDomain, (ky) => indexByFacet.has([kx, ky])),
+              scales,
+              {
+                ...dimensions,
+                ...fxMargins,
+                labelMarginLeft: marginLeft,
+                labelMarginRight: marginRight,
+                offsetLeft: fx(kx)
+              },
+              context
+            )
+          );
+      }
     }
     selection
       .selectAll()
@@ -503,4 +555,94 @@ class FacetMap2 extends FacetMap {
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
+}
+
+// The Grid class is defined here so we can prepend it per the grid option
+// see grid.js for the helpers
+const defaults = {
+  ariaLabel: "grid",
+  fill: "none",
+  stroke: "currentColor",
+  strokeOpacity: 0.1
+};
+
+export class Grid extends Mark {
+  constructor(options = {}, x, y) {
+    const {ticks, inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset} = options;
+    let channels = undefined,
+      data = undefined;
+    if (Array.isArray(ticks)) {
+      channels = [];
+      data = ticks;
+      channels.push(x ? {name: "x", value: ticks, scale: "x"} : {name: "y", value: ticks, scale: "y"});
+    }
+    super(data, channels, options, defaults);
+    this.insetTop = number(insetTop);
+    this.insetRight = number(insetRight);
+    this.insetBottom = number(insetBottom);
+    this.insetLeft = number(insetLeft);
+    this.ticks = ticks;
+    this.x = x;
+    this.y = y;
+  }
+  render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
+    const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {insetTop, insetRight, insetBottom, insetLeft, ticks} = this;
+    const {axes} = context;
+    const ax = this.x === "auto" ? !!x : this.x;
+    const ay = this.y === "auto" ? !!y : this.y;
+    if (ax && !x) throw new Error("missing scale: x");
+    if (ay && !y) throw new Error("missing scale: y");
+    const tx = !ax ? [] : tickValues(x, ticks !== undefined ? ticks : axes.x?.ticks);
+    const ty = !ay ? [] : tickValues(y, ticks !== undefined ? ticks : axes.y?.ticks);
+    const xb =
+      x && x.bandwidth
+        ? (
+            (k) => (d) =>
+              x(d) + k
+          )(x.bandwidth() / 2)
+        : x;
+    const yb =
+      y && y.bandwidth
+        ? (
+            (k) => (d) =>
+              y(d) + k
+          )(y.bandwidth() / 2)
+        : y;
+    return create("svg:g", context)
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, {})
+      .call((g) =>
+        g
+          .selectAll()
+          .data(range(tx))
+          .enter()
+          .append("line")
+          .call(applyDirectStyles, this)
+          .attr("x1", (i) => xb(tx[i]))
+          .attr("x2", (i) => xb(tx[i]))
+          .attr("y1", marginTop + insetTop)
+          .attr("y2", height - marginBottom - insetBottom)
+          .call(applyChannelStyles, this, channels)
+      )
+      .call((g) =>
+        g
+          .selectAll()
+          .data(range(ty))
+          .enter()
+          .append("line")
+          .call(applyDirectStyles, this)
+          .attr("y1", (i) => yb(ty[i]))
+          .attr("y2", (i) => yb(ty[i]))
+          .attr("x1", marginLeft + insetLeft)
+          .attr("x2", width - marginRight - insetRight)
+          .call(applyChannelStyles, this, channels)
+      )
+      .node();
+  }
+}
+
+function tickValues(scale, ticks) {
+  return Array.isArray(ticks) ? ticks : scale.ticks ? scale.ticks(ticks) : scale.domain();
 }

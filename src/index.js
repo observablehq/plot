@@ -1,4 +1,4 @@
-export {plot, Mark, marks} from "./plot.js";
+export {plot, Mark, marks, Grid} from "./plot.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {Arrow, arrow} from "./marks/arrow.js";
 export {BarX, BarY, barX, barY} from "./marks/bar.js";
@@ -8,7 +8,7 @@ export {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "./marks/de
 export {Density, density} from "./marks/density.js";
 export {Dot, dot, dotX, dotY, circle, hexagon} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
-export {Grid, grid, gridX, gridY} from "./marks/grid.js";
+export {grid, gridX, gridY} from "./marks/grid.js";
 export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Image, image} from "./marks/image.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
