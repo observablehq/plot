@@ -15,52 +15,40 @@
   </style>
   <g aria-label="y-axis" aria-description="↑ Annual revenue (billions, adj.)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,339.223518391829)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,307.947036783658)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,276.670555175487)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,245.39407356731593)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,214.117591959145)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,182.84111035097393)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,151.56462874280294)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,120.28814713463191)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,89.01166552646092)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,57.735183918289906)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,26.458702310118873)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Annual revenue (billions, adj.)</text>
   </g>
   <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
@@ -91,6 +79,20 @@
     <g class="tick" opacity="1" transform="translate(570.0637164454497,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
     </g>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line y1="370" y2="370" x1="40" x2="620"></line>
+    <line y1="338.723518391829" y2="338.723518391829" x1="40" x2="620"></line>
+    <line y1="307.447036783658" y2="307.447036783658" x1="40" x2="620"></line>
+    <line y1="276.170555175487" y2="276.170555175487" x1="40" x2="620"></line>
+    <line y1="244.89407356731593" y2="244.89407356731593" x1="40" x2="620"></line>
+    <line y1="213.617591959145" y2="213.617591959145" x1="40" x2="620"></line>
+    <line y1="182.34111035097393" y2="182.34111035097393" x1="40" x2="620"></line>
+    <line y1="151.06462874280294" y2="151.06462874280294" x1="40" x2="620"></line>
+    <line y1="119.78814713463191" y2="119.78814713463191" x1="40" x2="620"></line>
+    <line y1="88.51166552646092" y2="88.51166552646092" x1="40" x2="620"></line>
+    <line y1="57.235183918289906" y2="57.235183918289906" x1="40" x2="620"></line>
+    <line y1="25.958702310118873" y2="25.958702310118873" x1="40" x2="620"></line>
   </g>
   <g aria-label="area">
     <path fill="#59a14f" d="M40,189.81867466765047L52.60044044997322,192.6921157372799L65.20088089994643,193.2619741970133L77.80132134991965,178.0385037450436L90.43628355455033,139.03803965242096L103.03672400452353,116.66487768124L115.63716445449676,167.59299821345698L128.23760490446998,191.3503263093337L140.87256710910063,195.2172906910758L153.47300755907386,219.6659128416274L166.07344800904707,218.01070375846368L178.6738884590203,203.20262126617496L191.30885066365096,207.90534510369991L203.9092911136242,200.71487874622608L216.5097315635974,174.18124545670472L229.11017201357063,158.6183699829738L241.74513421820126,157.8177379658656L254.34557466817452,139.3227427760558L266.9460151181477,140.0342751262014L279.5464555681209,112.84973596174571L292.1814177727516,92.03065976513972L304.78185822272485,44.438751172682345L317.382298672698,46.79210871561994L329.98273912267126,50.621677634177274L342.6177013273019,65.18347735858312L355.2181417772752,33.69490241776766L367.8185822272484,20L380.4190226772216,37.44177622254324L393.0539848818523,59.56037330662412L405.65442533182545,89.59601852730398L418.2548657817987,112.42289390812434L430.8553062317719,108.71871216123773L443.4902684364025,118.41101907507029L456.09070888637586,136.7917145486879L468.69114933634904,164.58482910921083L481.2915897863223,207.02098613173447L493.92655199095293,224.06451875445072L506.5269924409261,241.40295640159596L519.1274328908994,243.1730747190271L531.7278733408725,247.8315803229437L544.3628355455032,249.25460271327066L556.9632759954765,256.93893339284097L569.5637164454497,256.8011789747098L582.1641568954229,243.75501636868074L594.7991191000536,226.52383118645642L607.3995595500268,213.2337290214316L620,196.23437575567266L620,196.23437575567266L607.3995595500268,213.2337290214316L594.7991191000536,226.52383118645642L582.1641568954229,243.75501636868074L569.5637164454497,256.8011789747098L556.9632759954765,256.93893339284097L544.3628355455032,249.25460271327066L531.7278733408725,247.8315803229437L519.1274328908994,243.1730747190271L506.5269924409261,241.40295640159596L493.92655199095293,224.06451875445072L481.2915897863223,207.02098613173447L468.69114933634904,164.58482910921083L456.09070888637586,136.7917145486879L443.4902684364025,118.41101907507029L430.8553062317719,108.71871216123773L418.2548657817987,112.42289390812434L405.65442533182545,89.59601852730398L393.0539848818523,59.56037330662412L380.4190226772216,37.44177622254324L367.8185822272484,20L355.2181417772752,33.69490241776766L342.6177013273019,65.18347735858312L329.98273912267126,50.621677634177274L317.382298672698,46.79210871561994L304.78185822272485,44.438751172682345L292.1814177727516,92.03065976513972L279.5464555681209,112.84973596174571L266.9460151181477,140.0342751262014L254.34557466817452,139.3227427760558L241.74513421820126,157.8177379658656L229.11017201357063,158.6183699829738L216.5097315635974,174.18124545670472L203.9092911136242,200.71487874622608L191.30885066365096,207.90534510369991L178.6738884590203,203.20262126617496L166.07344800904707,218.01070375846368L153.47300755907386,221.15740430538358L140.87256710910063,208.9838699348043L128.23760490446998,216.92025746568592L115.63716445449676,205.27693622628593L103.03672400452353,174.7956591630027L90.43628355455033,192.5430295043352L77.80132134991965,225.691663888069L65.20088089994643,236.58631290305988L52.60044044997322,237.22998192972346L40,233.85095653489793Z">

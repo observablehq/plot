@@ -36,286 +36,240 @@
   <g aria-label="x-axis" aria-description="yield →" transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(110.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(183.83333333333331,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(257.16666666666663,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(330.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(403.8333333333333,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(477.1666666666667,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(550.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">yield →</text>
   </g>
   <g aria-label="y-axis" transform="translate(110,20)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(110,147)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(110,274)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g>
   </g>
   <g aria-label="y-axis" aria-description="variety" transform="translate(110,401)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g><text fill="currentColor" transform="translate(-110,57) rotate(-90)" dy="0.75em" text-anchor="middle">variety</text>
   </g>
   <g aria-label="y-axis" transform="translate(110,528)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g>
   </g>
   <g aria-label="y-axis" transform="translate(110,655)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,20)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="395.02224666666666" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -341,6 +295,27 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,147)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="329.51108666666664" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -366,6 +341,27 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,274)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="237.84449333333333" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -391,6 +387,27 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,401)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="234.66666666666669" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -416,6 +433,27 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,528)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="249.08891333333332" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -441,6 +479,27 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,655)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="12" y2="12" x1="110" x2="550"></line>
+      <line y1="22" y2="22" x1="110" x2="550"></line>
+      <line y1="32" y2="32" x1="110" x2="550"></line>
+      <line y1="42" y2="42" x1="110" x2="550"></line>
+      <line y1="52" y2="52" x1="110" x2="550"></line>
+      <line y1="62" y2="62" x1="110" x2="550"></line>
+      <line y1="72" y2="72" x1="110" x2="550"></line>
+      <line y1="82" y2="82" x1="110" x2="550"></line>
+      <line y1="92" y2="92" x1="110" x2="550"></line>
+      <line y1="102" y2="102" x1="110" x2="550"></line>
+    </g>
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="278.42224666666664" cy="82" r="3" stroke="#4e79a7"></circle>

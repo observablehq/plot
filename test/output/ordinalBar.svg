@@ -15,32 +15,25 @@
   </style>
   <g aria-label="y-axis" transform="translate(40,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,53.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">A</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">A</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,74.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">B</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">B</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">C</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">C</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,116.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">D</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">D</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,137.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">E</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">E</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,158.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">F</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">F</text>
     </g>
   </g>
   <g aria-label="x-axis" transform="translate(0,170)" fill="none" text-anchor="middle">
@@ -62,6 +55,15 @@
     <g class="tick" opacity="1" transform="translate(568.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
     </g>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line y1="32" y2="32" x1="40" x2="620"></line>
+    <line y1="53" y2="53" x1="40" x2="620"></line>
+    <line y1="74" y2="74" x1="40" x2="620"></line>
+    <line y1="95" y2="95" x1="40" x2="620"></line>
+    <line y1="116" y2="116" x1="40" x2="620"></line>
+    <line y1="137" y2="137" x1="40" x2="620"></line>
+    <line y1="158" y2="158" x1="40" x2="620"></line>
   </g>
   <g aria-label="bar">
     <rect x="50" width="86" y="32" height="21"></rect>

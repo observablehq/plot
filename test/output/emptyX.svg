@@ -13,5 +13,19 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)"></g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line x1="0" x2="0" y1="0" y2="59"></line>
+    <line x1="63.900000000000006" x2="63.900000000000006" y1="0" y2="59"></line>
+    <line x1="127.80000000000001" x2="127.80000000000001" y1="0" y2="59"></line>
+    <line x1="191.7" x2="191.7" y1="0" y2="59"></line>
+    <line x1="255.60000000000002" x2="255.60000000000002" y1="0" y2="59"></line>
+    <line x1="319.5" x2="319.5" y1="0" y2="59"></line>
+    <line x1="383.4" x2="383.4" y1="0" y2="59"></line>
+    <line x1="447.29999999999995" x2="447.29999999999995" y1="0" y2="59"></line>
+    <line x1="511.20000000000005" x2="511.20000000000005" y1="0" y2="59"></line>
+    <line x1="575.1" x2="575.1" y1="0" y2="59"></line>
+    <line x1="639" x2="639" y1="0" y2="59"></line>
+  </g>
   <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="639" height="59"></rect>
 </svg>

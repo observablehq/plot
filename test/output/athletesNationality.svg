@@ -77,29 +77,31 @@
   </g>
   <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,430)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(40.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(142.79276895943562,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
     </g>
     <g class="tick" opacity="1" transform="translate(245.08553791887124,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">200</text>
     </g>
     <g class="tick" opacity="1" transform="translate(347.3783068783069,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">300</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">300</text>
     </g>
     <g class="tick" opacity="1" transform="translate(449.6710758377425,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">400</text>
     </g>
     <g class="tick" opacity="1" transform="translate(551.963844797178,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-410" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">500</text>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line x1="40" x2="40" y1="20" y2="430"></line>
+    <line x1="142.29276895943562" x2="142.29276895943562" y1="20" y2="430"></line>
+    <line x1="244.58553791887124" x2="244.58553791887124" y1="20" y2="430"></line>
+    <line x1="346.8783068783069" x2="346.8783068783069" y1="20" y2="430"></line>
+    <line x1="449.1710758377425" x2="449.1710758377425" y1="20" y2="430"></line>
+    <line x1="551.463844797178" x2="551.463844797178" y1="20" y2="430"></line>
   </g>
   <g aria-label="bar">
     <rect x="40" width="228.11287477954141" y="306" height="18"></rect>

@@ -27,34 +27,36 @@
   <g aria-label="x-axis" aria-description="body_mass_g →" transform="translate(0,270)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(113,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(188.83333333333334,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">3,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(264.6666666666667,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(340.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">4,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(416.3333333333333,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(492.1666666666667,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">5,500</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(568,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-250v77M0,-164v77M0,-78v77"></path>
     </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">body_mass_g →</text>
   </g>
   <g aria-label="facet" transform="translate(0,20)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
+      <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
+      <line x1="264.1666666666667" x2="264.1666666666667" y1="0" y2="77"></line>
+      <line x1="340" x2="340" y1="0" y2="77"></line>
+      <line x1="415.8333333333333" x2="415.8333333333333" y1="0" y2="77"></line>
+      <line x1="491.6666666666667" x2="491.6666666666667" y1="0" y2="77"></line>
+      <line x1="567.5" x2="567.5" y1="0" y2="77"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="226.25" cy="73" r="3"></circle>
@@ -363,6 +365,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
+      <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
+      <line x1="264.1666666666667" x2="264.1666666666667" y1="0" y2="77"></line>
+      <line x1="340" x2="340" y1="0" y2="77"></line>
+      <line x1="415.8333333333333" x2="415.8333333333333" y1="0" y2="77"></line>
+      <line x1="491.6666666666667" x2="491.6666666666667" y1="0" y2="77"></line>
+      <line x1="567.5" x2="567.5" y1="0" y2="77"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="188.33333333333334" cy="73" r="3"></circle>
@@ -506,6 +517,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,192)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
+      <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
+      <line x1="264.1666666666667" x2="264.1666666666667" y1="0" y2="77"></line>
+      <line x1="340" x2="340" y1="0" y2="77"></line>
+      <line x1="415.8333333333333" x2="415.8333333333333" y1="0" y2="77"></line>
+      <line x1="491.6666666666667" x2="491.6666666666667" y1="0" y2="77"></line>
+      <line x1="567.5" x2="567.5" y1="0" y2="77"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="340" cy="73" r="3"></circle>

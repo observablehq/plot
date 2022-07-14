@@ -32,61 +32,47 @@
   <g aria-label="y-axis" aria-description="↑ Frequency" transform="translate(40,31)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,175.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,146.43023255813955)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,117.36046511627907)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,88.29069767441861)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,59.22093023255814)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,30.151162790697676)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1.081395348837213)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,0)" dy="-1em" text-anchor="start">↑ Frequency</text>
   </g>
   <g aria-label="y-axis" transform="translate(40,225)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,175.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,146.43023255813955)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">200</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,117.36046511627907)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">400</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,88.29069767441861)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">600</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,59.22093023255814)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">800</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,30.151162790697676)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,000</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
     <g class="tick" opacity="1" transform="translate(0,1.081395348837213)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">1,200</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M1,0h265M295,0h265"></path>
     </g>
   </g>
   <g aria-label="x-axis" transform="translate(41,400)" fill="none" text-anchor="middle">
@@ -250,6 +236,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(41,31)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="175" y2="175" x1="0" x2="265"></line>
+      <line y1="145.93023255813955" y2="145.93023255813955" x1="0" x2="265"></line>
+      <line y1="116.86046511627907" y2="116.86046511627907" x1="0" x2="265"></line>
+      <line y1="87.79069767441861" y2="87.79069767441861" x1="0" x2="265"></line>
+      <line y1="58.72093023255814" y2="58.72093023255814" x1="0" x2="265"></line>
+      <line y1="29.651162790697676" y2="29.651162790697676" x1="0" x2="265"></line>
+      <line y1="0.5813953488372131" y2="0.5813953488372131" x1="0" x2="265"></line>
+    </g>
     <g aria-label="bar">
       <rect x="13" width="9" y="156.97674418604652" height="18.023255813953483"></rect>
       <rect x="23" width="9" y="144.7674418604651" height="30.232558139534888"></rect>
@@ -277,6 +272,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(41,225)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="175" y2="175" x1="0" x2="265"></line>
+      <line y1="145.93023255813955" y2="145.93023255813955" x1="0" x2="265"></line>
+      <line y1="116.86046511627907" y2="116.86046511627907" x1="0" x2="265"></line>
+      <line y1="87.79069767441861" y2="87.79069767441861" x1="0" x2="265"></line>
+      <line y1="58.72093023255814" y2="58.72093023255814" x1="0" x2="265"></line>
+      <line y1="29.651162790697676" y2="29.651162790697676" x1="0" x2="265"></line>
+      <line y1="0.5813953488372131" y2="0.5813953488372131" x1="0" x2="265"></line>
+    </g>
     <g aria-label="bar">
       <rect x="13" width="9" y="172.96511627906978" height="2.0348837209302246"></rect>
       <rect x="23" width="9" y="173.25581395348837" height="1.7441860465116292"></rect>
@@ -300,6 +304,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(335,31)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="175" y2="175" x1="0" x2="265"></line>
+      <line y1="145.93023255813955" y2="145.93023255813955" x1="0" x2="265"></line>
+      <line y1="116.86046511627907" y2="116.86046511627907" x1="0" x2="265"></line>
+      <line y1="87.79069767441861" y2="87.79069767441861" x1="0" x2="265"></line>
+      <line y1="58.72093023255814" y2="58.72093023255814" x1="0" x2="265"></line>
+      <line y1="29.651162790697676" y2="29.651162790697676" x1="0" x2="265"></line>
+      <line y1="0.5813953488372131" y2="0.5813953488372131" x1="0" x2="265"></line>
+    </g>
     <g aria-label="bar">
       <rect x="3" width="9" y="62.063953488372086" height="112.93604651162792"></rect>
       <rect x="43" width="9" y="0" height="175"></rect>
@@ -313,6 +326,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(335,225)">
+    <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+      <line y1="175" y2="175" x1="0" x2="265"></line>
+      <line y1="145.93023255813955" y2="145.93023255813955" x1="0" x2="265"></line>
+      <line y1="116.86046511627907" y2="116.86046511627907" x1="0" x2="265"></line>
+      <line y1="87.79069767441861" y2="87.79069767441861" x1="0" x2="265"></line>
+      <line y1="58.72093023255814" y2="58.72093023255814" x1="0" x2="265"></line>
+      <line y1="29.651162790697676" y2="29.651162790697676" x1="0" x2="265"></line>
+      <line y1="0.5813953488372131" y2="0.5813953488372131" x1="0" x2="265"></line>
+    </g>
     <g aria-label="bar">
       <rect x="3" width="9" y="172.38372093023256" height="2.616279069767444"></rect>
       <rect x="43" width="9" y="174.12790697674419" height="0.8720930232558146"></rect>

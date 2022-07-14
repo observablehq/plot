@@ -15,32 +15,25 @@
   </style>
   <g aria-label="y-axis" aria-description="↑ Temperature anomaly (°F)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0,333.6194574856547)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−1.0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">−1.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,287.9752217005738)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">−0.5</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">−0.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,242.330985915493)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+0.0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">+0.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,196.6867501304121)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+0.5</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">+0.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,151.04251434533128)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+1.0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">+1.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,105.39827856025045)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+1.5</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">+1.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,59.75404277516958)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">+2.0</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">+2.0</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Temperature anomaly (°F)</text>
   </g>
   <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
@@ -65,6 +58,15 @@
     <g class="tick" opacity="1" transform="translate(548.8350663893777,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
     </g>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line y1="333.1194574856547" y2="333.1194574856547" x1="40" x2="620"></line>
+    <line y1="287.4752217005738" y2="287.4752217005738" x1="40" x2="620"></line>
+    <line y1="241.830985915493" y2="241.830985915493" x1="40" x2="620"></line>
+    <line y1="196.1867501304121" y2="196.1867501304121" x1="40" x2="620"></line>
+    <line y1="150.54251434533128" y2="150.54251434533128" x1="40" x2="620"></line>
+    <line y1="104.89827856025045" y2="104.89827856025045" x1="40" x2="620"></line>
+    <line y1="59.25404277516958" y2="59.25404277516958" x1="40" x2="620"></line>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="241.830985915493" y2="241.830985915493"></line>

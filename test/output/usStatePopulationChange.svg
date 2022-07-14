@@ -15,251 +15,255 @@
   </style>
   <g aria-label="y-axis" transform="translate(100,0)" fill="none" text-anchor="end">
     <g class="tick" opacity="1" transform="translate(0,48.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Texas</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Texas</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Florida</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Florida</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,76.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">California</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">California</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,90.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">North Carolina</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">North Carolina</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,104.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Georgia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Georgia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,118.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Washington</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Washington</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,132.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Arizona</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Arizona</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,146.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Colorado</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Colorado</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,160.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Virginia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Virginia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,174.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">South Carolina</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">South Carolina</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,188.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Tennessee</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tennessee</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,202.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Utah</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Utah</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,216.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Massachusetts</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Massachusetts</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,230.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Oregon</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oregon</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,244.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Nevada</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nevada</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,258.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Minnesota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Minnesota</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,272.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Maryland</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Maryland</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,286.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Indiana</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Indiana</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,300.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Idaho</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Idaho</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,314.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Oklahoma</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Oklahoma</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,328.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Ohio</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Ohio</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,342.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Missouri</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Missouri</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,356.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Kentucky</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kentucky</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,384.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Alabama</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Alabama</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,398.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Louisiana</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Louisiana</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,412.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Iowa</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Iowa</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,426.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Nebraska</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Nebraska</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,440.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">District of Columbia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">District of Columbia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,454.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Michigan</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Michigan</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,468.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Arkansas</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Arkansas</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,482.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Pennsylvania</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Pennsylvania</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,496.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Jersey</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Jersey</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,510.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">North Dakota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">North Dakota</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,524.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Montana</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Montana</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,538.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Delaware</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Delaware</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,552.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New York</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New York</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,566.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">South Dakota</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">South Dakota</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,580.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Kansas</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Kansas</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,594.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Hawaii</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Hawaii</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,608.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Hampshire</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Hampshire</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,622.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">New Mexico</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">New Mexico</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,636.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Alaska</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Alaska</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,650.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Maine</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Maine</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,664.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wyoming</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Wyoming</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,678.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Mississippi</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Mississippi</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,692.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Rhode Island</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Rhode Island</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,706.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Vermont</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Vermont</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,720.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Connecticut</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Connecticut</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,734.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">West Virginia</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">West Virginia</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,748.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Illinois</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Illinois</text>
     </g>
     <g class="tick" opacity="1" transform="translate(0,762.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="520" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Puerto Rico</text>
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Puerto Rico</text>
     </g>
   </g>
   <g aria-label="x-axis" aria-description="← decrease · Change in population, 2010–2019 (millions) · increase →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(110.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">−0.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(168.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+0.0</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+0.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(226.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+0.5</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+0.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(284.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+1.0</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+1.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(342.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+1.5</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+1.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(400.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+2.0</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+2.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(457.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+2.5</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+2.5</text>
     </g>
     <g class="tick" opacity="1" transform="translate(515.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+3.0</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+3.0</text>
     </g>
     <g class="tick" opacity="1" transform="translate(573.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="750" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">+3.5</text>
+      <line stroke="currentColor" y2="-6"></line><text fill="currentColor" y="-9" dy="0em">+3.5</text>
     </g><text fill="currentColor" transform="translate(360,-30)" dy="1em" text-anchor="middle">← decrease · Change in population, 2010–2019 (millions) · increase →</text>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line y1="48.5" y2="48.5" x1="100" x2="620"></line>
+    <line y1="62.5" y2="62.5" x1="100" x2="620"></line>
+    <line y1="76.5" y2="76.5" x1="100" x2="620"></line>
+    <line y1="90.5" y2="90.5" x1="100" x2="620"></line>
+    <line y1="104.5" y2="104.5" x1="100" x2="620"></line>
+    <line y1="118.5" y2="118.5" x1="100" x2="620"></line>
+    <line y1="132.5" y2="132.5" x1="100" x2="620"></line>
+    <line y1="146.5" y2="146.5" x1="100" x2="620"></line>
+    <line y1="160.5" y2="160.5" x1="100" x2="620"></line>
+    <line y1="174.5" y2="174.5" x1="100" x2="620"></line>
+    <line y1="188.5" y2="188.5" x1="100" x2="620"></line>
+    <line y1="202.5" y2="202.5" x1="100" x2="620"></line>
+    <line y1="216.5" y2="216.5" x1="100" x2="620"></line>
+    <line y1="230.5" y2="230.5" x1="100" x2="620"></line>
+    <line y1="244.5" y2="244.5" x1="100" x2="620"></line>
+    <line y1="258.5" y2="258.5" x1="100" x2="620"></line>
+    <line y1="272.5" y2="272.5" x1="100" x2="620"></line>
+    <line y1="286.5" y2="286.5" x1="100" x2="620"></line>
+    <line y1="300.5" y2="300.5" x1="100" x2="620"></line>
+    <line y1="314.5" y2="314.5" x1="100" x2="620"></line>
+    <line y1="328.5" y2="328.5" x1="100" x2="620"></line>
+    <line y1="342.5" y2="342.5" x1="100" x2="620"></line>
+    <line y1="356.5" y2="356.5" x1="100" x2="620"></line>
+    <line y1="370.5" y2="370.5" x1="100" x2="620"></line>
+    <line y1="384.5" y2="384.5" x1="100" x2="620"></line>
+    <line y1="398.5" y2="398.5" x1="100" x2="620"></line>
+    <line y1="412.5" y2="412.5" x1="100" x2="620"></line>
+    <line y1="426.5" y2="426.5" x1="100" x2="620"></line>
+    <line y1="440.5" y2="440.5" x1="100" x2="620"></line>
+    <line y1="454.5" y2="454.5" x1="100" x2="620"></line>
+    <line y1="468.5" y2="468.5" x1="100" x2="620"></line>
+    <line y1="482.5" y2="482.5" x1="100" x2="620"></line>
+    <line y1="496.5" y2="496.5" x1="100" x2="620"></line>
+    <line y1="510.5" y2="510.5" x1="100" x2="620"></line>
+    <line y1="524.5" y2="524.5" x1="100" x2="620"></line>
+    <line y1="538.5" y2="538.5" x1="100" x2="620"></line>
+    <line y1="552.5" y2="552.5" x1="100" x2="620"></line>
+    <line y1="566.5" y2="566.5" x1="100" x2="620"></line>
+    <line y1="580.5" y2="580.5" x1="100" x2="620"></line>
+    <line y1="594.5" y2="594.5" x1="100" x2="620"></line>
+    <line y1="608.5" y2="608.5" x1="100" x2="620"></line>
+    <line y1="622.5" y2="622.5" x1="100" x2="620"></line>
+    <line y1="636.5" y2="636.5" x1="100" x2="620"></line>
+    <line y1="650.5" y2="650.5" x1="100" x2="620"></line>
+    <line y1="664.5" y2="664.5" x1="100" x2="620"></line>
+    <line y1="678.5" y2="678.5" x1="100" x2="620"></line>
+    <line y1="692.5" y2="692.5" x1="100" x2="620"></line>
+    <line y1="706.5" y2="706.5" x1="100" x2="620"></line>
+    <line y1="720.5" y2="720.5" x1="100" x2="620"></line>
+    <line y1="734.5" y2="734.5" x1="100" x2="620"></line>
+    <line y1="748.5" y2="748.5" x1="100" x2="620"></line>
+    <line y1="762.5" y2="762.5" x1="100" x2="620"></line>
+  </g>
+  <g aria-label="grid" fill="none" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0.5)">
+    <line x1="110" x2="110" y1="30" y2="780"></line>
+    <line x1="168" x2="168" y1="30" y2="780"></line>
+    <line x1="226" x2="226" y1="30" y2="780"></line>
+    <line x1="284" x2="284" y1="30" y2="780"></line>
+    <line x1="342" x2="342" y1="30" y2="780"></line>
+    <line x1="400" x2="400" y1="30" y2="780"></line>
+    <line x1="457" x2="457" y1="30" y2="780"></line>
+    <line x1="515" x2="515" y1="30" y2="780"></line>
+    <line x1="573" x2="573" y1="30" y2="780"></line>
   </g>
   <g aria-label="bar">
     <rect x="168" width="261" y="70" height="13" fill="rgb(78, 121, 167)"></rect>
