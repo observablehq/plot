@@ -102,6 +102,26 @@ it(`windowX({reduce: "mean", k, extend: true, anchor: "end"}) truncates the wind
   assert.deepStrictEqual(m4.x.transform(), [0, 0.5, 1, 1.5, 2.5, 3.5]);
 });
 
+it(`windowX({reduce: "mean", k, extend: true}) handles k being bigger than the data size`, () => {
+  const data = range(6);
+  const m3 = applyTransform(Plot.windowX({k: 3, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [0.5, 1, 2, 3, 4, 4.5]);
+  const m5 = applyTransform(Plot.windowX({k: 5, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m5.x.transform(), [1, 1.5, 2, 3, 3.5, 4]);
+  const m6 = applyTransform(Plot.windowX({k: 6, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m6.x.transform(), [1.5, 2, 2.5, 3, 3.5, 4]);
+  const m7 = applyTransform(Plot.windowX({k: 7, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m7.x.transform(), [1.5, 2, 2.5, 2.5, 3, 3.5]);
+  const m8 = applyTransform(Plot.windowX({k: 8, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m8.x.transform(), [2, 2.5, 2.5, 2.5, 3, 3.5]);
+  const m9 = applyTransform(Plot.windowX({k: 9, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m9.x.transform(), [2, 2.5, 2.5, 2.5, 2.5, 3]);
+  const m10 = applyTransform(Plot.windowX({k: 10, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m10.x.transform(), [2.5, 2.5, 2.5, 2.5, 2.5, 3]);
+  const m11 = applyTransform(Plot.windowX({k: 11, extend: true}, {x: d => d}), data);
+  assert.deepStrictEqual(m11.x.transform(), [2.5, 2.5, 2.5, 2.5, 2.5, 2.5]);
+});
+
 it(`windowX({reduce: "max", k}) computes a moving maximum of window size k`, () => {
   const data = [0, 1, 2, 3, 4, 5];
   const m1 = applyTransform(Plot.windowX({reduce: "max", k: 1, x: d => d}), data);

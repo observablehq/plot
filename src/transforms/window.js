@@ -71,12 +71,15 @@ function extendReducer(reducer) {
     const reduce = reducer(k, s);
     return {
       map(I, S, T) {
+        const n = I.length;
         reduce.map(I, S, T);
         for (let i = 0; i < s; ++i) {
-          reducer(k - s + i, i).map(I.subarray(0, k - s + i), S, T);
+          const j = Math.min(n, i + k - s);
+          reducer(j, i).map(I.subarray(0, j), S, T);
         }
-        for (let n = I.length, i = 0, l = k - s - 1; i < l; ++i) {
-          reducer(k - i - 1, s).map(I.subarray(n - k + i + 1), S, T);
+        for (let i = n - k + s + 1; i < n; ++i) {
+          const j = Math.max(0, i - s);
+          reducer(n - j, i - j).map(I.subarray(j, n), S, T);
         }
       }
     };
