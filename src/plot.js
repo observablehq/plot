@@ -44,9 +44,9 @@ export function plot(options = {}) {
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
   // Prepend grid marks if passed a grid option
-  const gridx = options.x?.grid ?? options.grid;
+  const gridx = options.x?.grid === undefined ? options.grid : options.x?.grid;
   if (gridx != null) marks.unshift(new Grid(gridx, "auto", false));
-  const gridy = options.y?.grid ?? options.grid;
+  const gridy = options.y?.grid === undefined ? options.grid : options.y?.grid;
   if (gridy != null) marks.unshift(new Grid(gridy, false, "auto"));
 
   // A Map from Mark instance to its render state, including:
