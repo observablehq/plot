@@ -1,6 +1,7 @@
 import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
+import {defined} from "../defined.js";
 
 export function select(selector, options = {}) {
   // If specified selector is a string or function, it’s a selector without an
@@ -75,18 +76,24 @@ function* selectorMax(I, X) {
   yield greatest(I, i => X[i]);
 }
 
-function selectChannel(v, selector, options) {
+function selectChannel(v, selector, {valid, ...options}) {
   if (v != null) {
     if (options[v] == null) throw new Error(`missing channel: ${v}`);
     v = options[v];
+  }
+  if (valid != null) {
+    if (!Array.isArray(valid)) valid = [valid];
+    for (const c of valid) if (options[c] == null) throw new Error(`missing channel: ${c}`);
   }
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
     const Z = valueof(data, z);
     const V = valueof(data, v);
+    const F = valid ? valid.map(c => valueof(data, options[c])) : undefined;
     const selectFacets = [];
-    for (const facet of facets) {
+    for (let facet of facets) {
       const selectFacet = [];
+      if (F) facet = facet.filter(i => F.every(f => defined(f[i])));
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
         for (const i of selector(I, V)) {
           selectFacet.push(i);
