@@ -16,5 +16,5 @@ export default async function() {
 }
 
 function bollinger(N, K) {
-  return Plot.window({k: N, reduce: Y => d3.mean(Y) + K * d3.deviation(Y), anchor: "end"});
+  return Plot.window({k: N, reduce: Y => d3.mean(Y) + K * d3.deviation(Y), strict: true, anchor: "end"});
 }

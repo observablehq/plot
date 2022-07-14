@@ -9,8 +9,8 @@ export default async function() {
       label: "↑ Daily temperature range (°F)"
     },
     marks: [
-      Plot.areaY(temperatures, Plot.windowY({k: 7, x: "date", y1: "low", y2: "high", curve: "step", fill: "#ccc"})),
-      Plot.line(temperatures, Plot.windowY({k: 7, x: "date", y: d => (d.low + d.high) / 2, curve: "step"}))
+      Plot.areaY(temperatures, Plot.windowY({k: 7, strict: true, x: "date", y1: "low", y2: "high", curve: "step", fill: "#ccc"})),
+      Plot.line(temperatures, Plot.windowY({k: 7, strict: true, x: "date", y: d => (d.low + d.high) / 2, curve: "step"}))
     ],
     width: 960
   });

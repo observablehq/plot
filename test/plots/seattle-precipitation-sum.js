@@ -3,8 +3,8 @@ import * as d3 from "d3";
 
 export default async function() {
   const weather = (await d3.csv("data/seattle-weather.csv", d3.autoType)).slice(-28);
-  const y = Plot.window({k: 7, reduce: "sum", anchor: "end"});
-  const text = Plot.window({k: 7, reduce: V => Math.round(d3.sum(V)), anchor: "end"});
+  const y = Plot.window({k: 7, strict: true, reduce: "sum", anchor: "end"});
+  const text = Plot.window({k: 7, strict: true, reduce: V => Math.round(d3.sum(V)), anchor: "end"});
   return Plot.plot({
     marks: [
       Plot.rectY(weather, Plot.map({y}, {x: "date", y: "precipitation", interval: d3.utcDay})),

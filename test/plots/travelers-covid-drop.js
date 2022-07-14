@@ -13,7 +13,7 @@ export default async function() {
     },
     marks: [
       Plot.lineY(travelers, {x: "date", y: d => d.current / d.previous - 1, strokeWidth: 0.25, curve: "step"}),
-      Plot.lineY(travelers, Plot.windowY({x: "date", y: d => d.current / d.previous - 1, k: 7, stroke: "steelblue"}))
+      Plot.lineY(travelers, Plot.windowY({x: "date", y: d => d.current / d.previous - 1, k: 7, strict: true, stroke: "steelblue"}))
     ]
   });
 }

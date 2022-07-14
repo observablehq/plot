@@ -1890,9 +1890,9 @@ The Plot.windowX and Plot.windowY transforms compute a moving window around each
 * **k** - the window size (the number of elements in the window)
 * **anchor** - how to align the window: *start*, *middle*, or *end*
 * **reduce** - the aggregation method (window reducer)
-* **extend** - whether to extend output values by truncating the window; defaults to false
+* **strict** - if true, disallow window truncation; defaults to false
 
-If the **extend** option is true, note that the resulting start values or end values or both (depending on the **anchor**) of each series may be noisy, as the window size will be truncated. For example, if **k** is 24 and **anchor** is *middle*, then the initial 11 values have effective window sizes of 13, 14, 15, … 23, and likewise the last 12 values have effective window sizes of 23, 22, 21, … 12. On the other hand, if the **extend** option is false, then some start values or end values will be undefined if **k** is greater than one.
+If the **strict** option is true, the resulting start values or end values or both (depending on the **anchor**) of each series may be undefined since there are not enough elements to create a window of size **k**. If the **strict** option is false (the default), the window will be automatically truncated as needed. For example, if **k** is 24 and **anchor** is *middle*, then the initial 11 values have effective window sizes of 13, 14, 15, … 23, and likewise the last 12 values have effective window sizes of 23, 22, 21, … 12. Values computed with a truncated window may be noiser; if you would prefer to not show this data, set the **strict** option to true.
 
 The following window reducers are supported:
 
