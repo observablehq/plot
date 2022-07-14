@@ -16,7 +16,7 @@ export default async function() {
     marks: [
       Plot.ruleY([0]),
       Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"}),
-      Plot.line(data, Plot.windowY(24, {x: "Date", y: "Anomaly"}))
+      Plot.line(data, Plot.windowY({k: 24, extend: true}, {x: "Date", y: "Anomaly"}))
     ]
   });
 }

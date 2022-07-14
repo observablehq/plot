@@ -15,13 +15,15 @@ export function windowY(windowOptions = {}, options) {
 
 export function window(options = {}) {
   if (typeof options === "number") options = {k: options};
-  let {k, reduce, shift, anchor} = options;
+  let {k, reduce, shift, anchor, extend} = options;
   if (anchor === undefined && shift !== undefined) {
     anchor = maybeShift(shift);
     warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
   }
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
-  return maybeReduce(reduce)(k, maybeAnchor(anchor, k));
+  const r = maybeReduce(reduce);
+  const s = maybeAnchor(anchor, k);
+  return (extend ? extendReducer(r) : r)(k, s);
 }
 
 function maybeAnchor(anchor = "middle", k) {
@@ -62,6 +64,23 @@ function maybeReduce(reduce = "mean") {
   }
   if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
   return reduceSubarray(reduce);
+}
+
+function extendReducer(reducer) {
+  return (k, s) => {
+    const reduce = reducer(k, s);
+    return {
+      map(I, S, T) {
+        reduce.map(I, S, T);
+        for (let i = 0; i < s; ++i) {
+          reducer(k - s + i, i).map(I.subarray(0, k - s + i), S, T);
+        }
+        for (let n = I.length, i = 0, l = k - s - 1; i < l; ++i) {
+          reducer(k - i - 1, s).map(I.subarray(n - k + i + 1), S, T);
+        }
+      }
+    };
+  };
 }
 
 function reduceSubarray(f) {

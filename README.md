@@ -1890,6 +1890,7 @@ The Plot.windowX and Plot.windowY transforms compute a moving window around each
 * **k** - the window size (the number of elements in the window)
 * **anchor** - how to align the window: *start*, *middle*, or *end*
 * **reduce** - the aggregation method (window reducer)
+* **extend** - whether to extend output values by truncating the window; defaults to false
 
 The following window reducers are supported:
 
