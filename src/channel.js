@@ -15,10 +15,10 @@ export function Channel(data, {scale, type, value, filter, hint}) {
   };
 }
 
-export function channelObject(channelDescriptors, data) {
+export function Channels(channelDescriptors, data) {
   const channels = {};
-  for (const channel of channelDescriptors) {
-    channels[channel.name] = Channel(data, channel);
+  for (const name in channelDescriptors) {
+    channels[name] = Channel(data, channelDescriptors[name]);
   }
   return channels;
 }

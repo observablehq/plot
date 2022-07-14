@@ -1,6 +1,6 @@
 import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, channelObject, channelDomain, valueObject} from "./channel.js";
+import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
@@ -266,7 +266,7 @@ export class Mark {
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
     if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
-    this.channels = channels.filter(channel => {
+    this.channels = Object.fromEntries(channels.filter(channel => {
       const {name, value, optional} = channel;
       if (value == null) {
         if (optional) return false;
@@ -278,7 +278,7 @@ export class Mark {
       if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
       names.add(key);
       return true;
-    });
+    }).map(channel => [channel.name, channel]));
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
@@ -287,7 +287,7 @@ export class Mark {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
-    const channels = channelObject(this.channels, data);
+    const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
     return {data, facets, channels};
   }

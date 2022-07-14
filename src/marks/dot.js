@@ -42,10 +42,9 @@ export class Dot extends Mark {
     // appropriate default symbols based on whether the dots are filled or
     // stroked, and for the symbol legend to match the appearance of the dots.
     const {channels} = this;
-    const symbolChannel = channels.find(({scale}) => scale === "symbol");
+    const {symbol: symbolChannel} = channels;
     if (symbolChannel) {
-      const fillChannel = channels.find(({name}) => name === "fill");
-      const strokeChannel = channels.find(({name}) => name === "stroke");
+      const {fill: fillChannel, stroke: strokeChannel} = channels;
       symbolChannel.hint = {
         fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
         stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke
