@@ -146,16 +146,16 @@ it(`windowX({reduce: "max", k, strict: true}) computes a moving maximum of windo
   assert.deepStrictEqual(m4.x.transform(), [, 3, 4, 5,,, ]);
 });
 
-it(`windowX({reduce: "max", k, strict: true}) produces NaN if the current window contains NaN`, () => {
+it(`windowX({reduce: "max", k, strict: true}) produces undefined if the current window contains NaN`, () => {
   const data = [1, 1, 1, NaN, 1, 1, 1, 1, 1, NaN, NaN, NaN, NaN, 1];
   const m3 = applyTransform(Plot.windowX({reduce: "max", k: 3, strict: true, x: d => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN,, ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1,,,, 1, 1, 1,,,,,,, ]);
 });
 
 it(`windowX({reduce: "max", k, strict: true}) treats null as NaN`, () => {
   const data = [1, 1, 1, null, 1, 1, 1, 1, 1, null, null, null, null, 1];
   const m3 = applyTransform(Plot.windowX({reduce: "max", k: 3, strict: true, x: d => d}), data);
-  assert.deepStrictEqual(m3.x.transform(), [, 1, NaN, NaN, NaN, 1, 1, 1, NaN, NaN, NaN, NaN, NaN,, ]);
+  assert.deepStrictEqual(m3.x.transform(), [, 1,,,, 1, 1, 1,,,,,,, ]);
 });
 
 it(`windowX({reduce: "max", k, strict: true, anchor}) respects the given anchor`, () => {
@@ -166,6 +166,18 @@ it(`windowX({reduce: "max", k, strict: true, anchor}) respects the given anchor`
   assert.deepStrictEqual(ml.x.transform(), [2, 3, 4, 5,,, ]);
   const mt = applyTransform(Plot.windowX({reduce: "max", k: 3, strict: true, anchor: "end", x: d => d}), data);
   assert.deepStrictEqual(mt.x.transform(), [,, 2, 3, 4, 5]);
+});
+
+it(`windowX({reduce: "max", k}) does not coerce to numbers`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "max", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), ["B", "B", "B", "C", "C", "C", "C", "B", "B", "B"]);
+});
+
+it(`windowX({reduce: "min", k}) does not coerce to numbers`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "min", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), ["A", "A", "A", "A", "C", "A", "A", "A", "B", "B"]);
 });
 
 it(`windowX({reduce: "mode", k}) does not coerce to numbers`, () => {

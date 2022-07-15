@@ -48,10 +48,10 @@ function maybeReduce(reduce = "mean") {
     if (/^p\d{2}$/i.test(reduce)) return reduceNumbers(percentile(reduce));
     switch (reduce.toLowerCase()) {
       case "deviation": return reduceNumbers(deviation);
-      case "max": return reduceNumbers(max);
+      case "max": return reduceArray(max);
       case "mean": return reduceMean;
       case "median": return reduceNumbers(median);
-      case "min": return reduceNumbers(min);
+      case "min": return reduceArray(min);
       case "mode": return reduceArray(mode);
       case "sum": return reduceSum;
       case "variance": return reduceNumbers(variance);
