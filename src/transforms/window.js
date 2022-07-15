@@ -232,7 +232,7 @@ function reduceDifference(k, s, strict) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
         const a = firstNumber(S, I, i, k);
         const b = lastNumber(S, I, i, k);
-        T[I[i + s]] = a === null || b === null ? NaN : b - a;
+        T[I[i + s]] = b - a;
       }
     }
   });
@@ -252,7 +252,7 @@ function reduceRatio(k, s, strict) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
         const a = firstNumber(S, I, i, k);
         const b = lastNumber(S, I, i, k);
-        T[I[i + s]] = a === null || b === null ? NaN : b / a;
+        T[I[i + s]] = b / a;
       }
     }
   });
