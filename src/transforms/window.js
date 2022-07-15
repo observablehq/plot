@@ -21,9 +21,7 @@ export function window(options = {}) {
     warn(`Warning: the shift option is deprecated; please use anchor "${anchor}" instead.`);
   }
   if (!((k = Math.floor(k)) > 0)) throw new Error(`invalid k: ${k}`);
-  const r = maybeReduce(reduce);
-  const s = maybeAnchor(anchor, k);
-  return (strict ? r : looseReducer(r))(k, s);
+  return maybeReduce(reduce)(k, maybeAnchor(anchor, k), strict);
 }
 
 function maybeAnchor(anchor = "middle", k) {
@@ -66,48 +64,38 @@ function maybeReduce(reduce = "mean") {
   return reduceSubarray(reduce);
 }
 
-function looseReducer(reducer) {
-  return (k, s) => {
-    const reduce = reducer(k, s);
-    return {
-      map(I, S, T) {
-        const n = I.length;
-        reduce.map(I, S, T, true);
-        for (let i = 0; i < s; ++i) {
-          const j = Math.min(n, i + k - s);
-          reducer(j, i).map(slice(I, 0, j), S, T);
-        }
-        for (let i = n - k + s + 1; i < n; ++i) {
-          const j = Math.max(0, i - s);
-          reducer(n - j, i - j).map(slice(I, j, n), S, T);
-        }
-      }
-    };
-  };
-}
-
-function slice(I, i, j) {
-  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
-}
-
+// Note that the subarray may contain NaN even in the strict case; we expect the
+// function f to handle that itself (e.g., by filtering as needed). The D3
+// reducers (e.g., min, max, mean, median) already handle NaN input, so it’s
+// faster to avoid redundant filtering.
 function reduceSubarray(f) {
-  return (k, s) => ({
-    map(I, S, T, skipNaN) {
+  return (k, s, strict) => strict ? ({
+    map(I, S, T) {
       const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
       let nans = 0;
       for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
         if (isNaN(C[i + k - 1])) ++nans;
-        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : skipNaN ? f(C.subarray(i, i + k).filter(d => !isNaN(d))) : NaN;
+        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
         if (isNaN(C[i])) --nans;
+      }
+    }
+  }) : ({
+    map(I, S, T) {
+      const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
+      for (let i = -s; i < 0; ++i) {
+        T[I[i + s]] = f(C.subarray(0, Math.max(0, i + k)));
+      }
+      for (let i = 0, n = I.length - s; i < n; ++i) {
+        T[I[i + s]] = f(C.subarray(i, i + k));
       }
     }
   });
 }
 
-function reduceSum(k, s) {
-  return {
-    map(I, S, T, skipNaN) {
+function reduceSum(k, s, strict) {
+  return strict ? ({
+    map(I, S, T) {
       let nans = 0;
       let sum = 0;
       for (let i = 0; i < k - 1; ++i) {
@@ -120,26 +108,61 @@ function reduceSum(k, s) {
         const b = S[I[i + k - 1]];
         if (b === null || isNaN(b)) ++nans;
         else sum += +b;
-        T[I[i + s]] = nans === 0 || skipNaN ? sum : NaN;
+        T[I[i + s]] = nans !== 0 ? NaN : sum;
         if (a === null || isNaN(a)) --nans;
         else sum -= +a;
       }
     }
-  };
-}
-
-function reduceMean(k, s,) {
-  const sum = reduceSum(k, s);
-  return {
-    map(I, S, T, skipNaN) {
-      sum.map(I, S, T, skipNaN);
-      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        T[I[i + s]] /= k;
+  }) : ({
+    map(I, S, T) {
+      let sum = 0;
+      const n = I.length;
+      for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
+        sum += +S[I[i]] || 0;
+      }
+      for (let i = -s, j = n - s; i < j; ++i) {
+        sum += +S[I[i + k - 1]] || 0;
+        T[I[i + s]] = sum;
+        sum -= +S[I[i]] || 0;
       }
     }
-  };
+  });
 }
 
+function reduceMean(k, s, strict) {
+  if (strict) {
+    const sum = reduceSum(k, s, strict);
+    return {
+      map(I, S, T) {
+        sum.map(I, S, T);
+        for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+          T[I[i + s]] /= k;
+        }
+      }
+    };
+  } else {
+    return {
+      map(I, S, T) {
+        let sum = 0;
+        let count = 0;
+        const n = I.length;
+        for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
+          let v = S[I[i]];
+          if (v !== null && !isNaN(v = +v)) sum += v, ++count;
+        }
+        for (let i = -s, j = n - s; i < j; ++i) {
+          let a = S[I[i + k - 1]];
+          let b = S[I[i]];
+          if (a !== null && !isNaN(a = +a)) sum += a, ++count;
+          T[I[i + s]] = sum / count;
+          if (b !== null && !isNaN(b = +b)) sum -= b, --count;
+        }
+      }
+    };
+  }
+}
+
+// TODO implement non-strict
 function reduceDifference(k, s) {
   return {
     map(I, S, T) {
@@ -152,6 +175,7 @@ function reduceDifference(k, s) {
   };
 }
 
+// TODO implement non-strict
 function reduceRatio(k, s) {
   return {
     map(I, S, T) {
@@ -164,6 +188,7 @@ function reduceRatio(k, s) {
   };
 }
 
+// TODO implement non-strict
 function reduceFirst(k, s) {
   return {
     map(I, S, T) {
@@ -174,6 +199,7 @@ function reduceFirst(k, s) {
   };
 }
 
+// TODO implement non-strict
 function reduceLast(k, s) {
   return {
     map(I, S, T) {
