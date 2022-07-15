@@ -216,6 +216,12 @@ it(`windowX({reduce: "first", k}) returns the expected values`, () => {
   assert.deepStrictEqual(m3.x.transform(), [1, 1, 2, 4, 8, 8, 16, 32, 64, 128, undefined, undefined, 256, 256]);
 });
 
+it(`windowX({reduce: "first", k}) does not coerce to numbers`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "first", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), ["A", "A", "B", "A", "C", "C", "C", "A", "B", "B"]);
+});
+
 it(`windowX({reduce: "last", k, strict: true}) produces NaN if the current window ends with NaN`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, strict: true, x: d => d}), data);
@@ -226,4 +232,10 @@ it(`windowX({reduce: "last", k}) returns the expected values`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: d => d}), data);
   assert.deepStrictEqual(m3.x.transform(), [2, 4, 4, 8, 16, 32, 64, 128, 128, 128, undefined, undefined, 256, 256]);
+});
+
+it(`windowX({reduce: "last", k}) does not coerce to numbers`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), ["B", "A", "A", "C", "C", "A", "B", "B", "B", "B"]);
 });

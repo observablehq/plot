@@ -190,21 +190,31 @@ function reduceMean(k, s, strict) {
   }
 }
 
-function valid(x) {
-  return x !== null && !isNaN(x);
-}
-
-function first(S, I, i, k) {
+function firstDefined(S, I, i, k) {
   for (let j = i + k; i < j; ++i) {
     const v = S[I[i]];
-    if (valid(v)) return v;
+    if (defined(v)) return v;
   }
 }
 
-function last(S, I, i, k) {
+function lastDefined(S, I, i, k) {
   for (let j = i + k - 1; j >= i; --j) {
     const v = S[I[j]];
-    if (valid(v)) return v;
+    if (defined(v)) return v;
+  }
+}
+
+function firstNumber(S, I, i, k) {
+  for (let j = i + k; i < j; ++i) {
+    let v = S[I[i]];
+    if (v !== null && !isNaN(v = +v)) return v;
+  }
+}
+
+function lastNumber(S, I, i, k) {
+  for (let j = i + k - 1; j >= i; --j) {
+    let v = S[I[j]];
+    if (v !== null && !isNaN(v = +v)) return v;
   }
 }
 
@@ -220,8 +230,8 @@ function reduceDifference(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        const a = first(S, I, i, k);
-        const b = last(S, I, i, k);
+        const a = firstNumber(S, I, i, k);
+        const b = lastNumber(S, I, i, k);
         T[I[i + s]] = a === null || b === null ? NaN : b - a;
       }
     }
@@ -240,8 +250,8 @@ function reduceRatio(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        const a = first(S, I, i, k);
-        const b = last(S, I, i, k);
+        const a = firstNumber(S, I, i, k);
+        const b = lastNumber(S, I, i, k);
         T[I[i + s]] = a === null || b === null ? NaN : b / a;
       }
     }
@@ -258,7 +268,7 @@ function reduceFirst(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = first(S, I, i, k);
+        T[I[i + s]] = firstDefined(S, I, i, k);
       }
     }
   });
@@ -274,7 +284,7 @@ function reduceLast(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = last(S, I, i, k);
+        T[I[i + s]] = lastDefined(S, I, i, k);
       }
     }
   });
