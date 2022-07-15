@@ -84,7 +84,7 @@ function reduceSubarray(f) {
     map(I, S, T) {
       const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
       for (let i = -s; i < 0; ++i) {
-        T[I[i + s]] = f(C.subarray(0, Math.max(0, i + k)));
+        T[I[i + s]] = f(C.subarray(0, i + k));
       }
       for (let i = 0, n = I.length - s; i < n; ++i) {
         T[I[i + s]] = f(C.subarray(i, i + k));
@@ -108,7 +108,7 @@ function reduceSum(k, s, strict) {
         const b = S[I[i + k - 1]];
         if (b === null || isNaN(b)) ++nans;
         else sum += +b;
-        T[I[i + s]] = nans !== 0 ? NaN : sum;
+        T[I[i + s]] = nans === 0 ? sum : NaN;
         if (a === null || isNaN(a)) --nans;
         else sum -= +a;
       }
