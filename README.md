@@ -1107,7 +1107,7 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 
 ### Grid
 
-The grid mark draw a line for each tick of the *x* or *y* axis. Specify a number to generate new ticks from the scale, or an explicit array of tick values. The [standard mark options](#marks) can be specified as a constant, or a function of the tick value and tick index, with a *stroke* which defaults to currentColor, and a strokeOpacity which defaults to 0.1. If the ticks are specified as an array of tick values, they will be considered as a channel when building the default domain.
+The grid mark draw a line for each tick of the *x* or *y* axis. Specify a number to generate new ticks from the scale, or an explicit array of tick values. The [standard mark options](#marks) can be specified as a constant, or a function of the tick value and tick index, with a *stroke* which defaults to currentColor, and a *strokeOpacity* which defaults to 0.1. If the ticks are specified as an array of tick values, they will be considered as a channel when building the default domain. 
 
 #### Plot.gridX([*options*])
 
@@ -1117,6 +1117,12 @@ Plot.gridX([3, 4, 5], {stroke: "red"})
 
 Returns a new grid along the *x* axis with the given *options*. The *ticks* option can be specified as the first argument.
 
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **insetTop** - insets the top edge
+* **insetBottom** - insets the bottom edge
+* **inset** - shorthand for insetTop and insetBottom
+
 #### Plot.gridY([*options*])
 
 ```js
@@ -1125,6 +1131,11 @@ Plot.gridY([3, 4, 5], {stroke: "red"})
 
 Returns a new grid along the *y* axis with the given *options*. The *ticks* option can be specified as the first argument.
 
+In addition to the [standard mark options](#marks), the following optional channels are supported:
+
+* **insetLeft** - insets the left edge
+* **insetRight** - insets the right edge
+* **inset** - shorthand for insetLeft and insetRight
 
 ### Hexgrid
 
