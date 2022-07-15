@@ -69,10 +69,10 @@ function slice(I, i, j) {
   return I.subarray ? I.subarray(i, j) : I.slice(i, j);
 }
 
-// Note that the subarray may NaN in the non-strict case; we expect the function
-// f to handle that itself (e.g., by filtering as needed). The D3 reducers
-// (e.g., min, max, mean, median) already handle NaN input, so it’s faster to
-// avoid redundant filtering.
+// Note that the subarray may include NaN in the non-strict case; we expect the
+// function f to handle that itself (e.g., by filtering as needed). The D3
+// reducers (e.g., min, max, mean, median) do, and it’s faster to avoid
+// redundant filtering.
 function reduceNumbers(f) {
   return (k, s, strict) => strict ? ({
     map(I, S, T) {
