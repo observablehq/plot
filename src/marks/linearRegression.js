@@ -22,11 +22,11 @@ class LinearRegression extends Mark {
     const {x, y, z, ci = 0.95, precision = 4} = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y"},
-        {name: "z", value: maybeZ(options), optional: true}
-      ],
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
+        z: {value: maybeZ(options), optional: true}
+      },
       options,
       defaults
     );

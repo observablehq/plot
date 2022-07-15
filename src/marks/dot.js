@@ -23,13 +23,13 @@ export class Dot extends Mark {
     const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "r", value: vr, scale: "r", filter: positive, optional: true},
-        {name: "rotate", value: vrotate, optional: true},
-        {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
+        rotate: {value: vrotate, optional: true},
+        symbol: {value: vsymbol, scale: "symbol", optional: true}
+      },
       options.sort === undefined && options.reverse === undefined ? sort({channel: "r", order: "descending"}, options) : options,
       defaults
     );
@@ -42,10 +42,9 @@ export class Dot extends Mark {
     // appropriate default symbols based on whether the dots are filled or
     // stroked, and for the symbol legend to match the appearance of the dots.
     const {channels} = this;
-    const symbolChannel = channels.find(({scale}) => scale === "symbol");
+    const {symbol: symbolChannel} = channels;
     if (symbolChannel) {
-      const fillChannel = channels.find(({name}) => name === "fill");
-      const strokeChannel = channels.find(({name}) => name === "stroke");
+      const {fill: fillChannel, stroke: strokeChannel} = channels;
       symbolChannel.hint = {
         fill: fillChannel ? (fillChannel.value === symbolChannel.value ? "color" : "currentColor") : this.fill,
         stroke: strokeChannel ? (strokeChannel.value === symbolChannel.value ? "color" : "currentColor") : this.stroke

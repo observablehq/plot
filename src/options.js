@@ -362,3 +362,23 @@ export function inherit(options = {}, ...rest) {
   }
   return o;
 }
+
+// Given an iterable of named things (objects with a name property), returns a
+// corresponding object with properties associated with the given name.
+export function Named(things) {
+  console.warn("named iterables are deprecated; please use an object instead");
+  const names = new Set();
+  return Object.fromEntries(Array.from(things, thing => {
+    const {name} = thing;
+    if (name == null) throw new Error("missing name");
+    const key = `${name}`;
+    if (key === "__proto__") throw new Error(`illegal name: ${key}`);
+    if (names.has(key)) throw new Error(`duplicate name: ${key}`);
+    names.add(key);
+    return [name, thing];
+  }));
+}
+
+export function maybeNamed(things) {
+  return isIterable(things) ? Named(things) : things;
+}

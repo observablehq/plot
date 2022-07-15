@@ -15,23 +15,18 @@ export function Channel(data, {scale, type, value, filter, hint}) {
   };
 }
 
-export function channelObject(channelDescriptors, data) {
-  const channels = {};
-  for (const channel of channelDescriptors) {
-    channels[channel.name] = Channel(data, channel);
-  }
-  return channels;
+export function Channels(descriptors, data) {
+  return Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => {
+    return [name, Channel(data, channel)];
+  }));
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales) {
-  const values = {};
-  for (const channelName in channels) {
-    const {scale: scaleName, value} = channels[channelName];
+  return Object.fromEntries(Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
     const scale = scales[scaleName];
-    values[channelName] = scale === undefined ? value : map(value, scale);
-  }
-  return values;
+    return [name, scale === undefined ? value : map(value, scale)];
+  }));
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily

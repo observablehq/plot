@@ -47,11 +47,11 @@ class DelaunayLink extends Mark {
     const {x, y, z, curve, tension} = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "z", value: z, optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        z: {value: z, optional: true}
+      },
       options,
       delaunayLinkDefaults
     );
@@ -129,11 +129,11 @@ class AbstractDelaunayMark extends Mark {
     const {x, y} = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "z", value: zof(options), optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        z: {value: zof(options), optional: true}
+      },
       options,
       defaults
     );
@@ -188,11 +188,11 @@ class Voronoi extends Mark {
     const {x, y, z} = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "z", value: z, optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        z: {value: z, optional: true}
+      },
       options,
       voronoiDefaults
     );

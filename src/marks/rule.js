@@ -23,11 +23,11 @@ export class RuleX extends Mark {
     } = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y1", value: y1, scale: "y", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y1: {value: y1, scale: "y", optional: true},
+        y2: {value: y2, scale: "y", optional: true}
+      },
       options,
       defaults
     );
@@ -68,11 +68,11 @@ export class RuleY extends Mark {
     } = options;
     super(
       data,
-      [
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "x1", value: x1, scale: "x", optional: true},
-        {name: "x2", value: x2, scale: "x", optional: true}
-      ],
+      {
+        y: {value: y, scale: "y", optional: true},
+        x1: {value: x1, scale: "x", optional: true},
+        x2: {value: x2, scale: "x", optional: true}
+      },
       options,
       defaults
     );

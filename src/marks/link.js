@@ -17,12 +17,12 @@ export class Link extends Mark {
     const {x1, y1, x2, y2, curve, tension} = options;
     super(
       data,
-      [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "y1", value: y1, scale: "y"},
-        {name: "x2", value: x2, scale: "x", optional: true},
-        {name: "y2", value: y2, scale: "y", optional: true}
-      ],
+      {
+        x1: {value: x1, scale: "x"},
+        y1: {value: y1, scale: "y"},
+        x2: {value: x2, scale: "x", optional: true},
+        y2: {value: y2, scale: "y", optional: true}
+      },
       options,
       defaults
     );

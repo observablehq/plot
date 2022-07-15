@@ -42,10 +42,10 @@ export class TickX extends AbstractTick {
     } = options;
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band", optional: true}
-      ],
+      {
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
       options
     );
     this.insetTop = number(insetTop);
@@ -81,10 +81,10 @@ export class TickY extends AbstractTick {
     } = options;
     super(
       data,
-      [
-        {name: "y", value: y, scale: "y"},
-        {name: "x", value: x, scale: "x", type: "band", optional: true}
-      ],
+      {
+        y: {value: y, scale: "y"},
+        x: {value: x, scale: "x", type: "band", optional: true}
+      },
       options
     );
     this.insetRight = number(insetRight);

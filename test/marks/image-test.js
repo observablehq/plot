@@ -5,9 +5,9 @@ it("image(undefined, {src}) has the expected defaults", () => {
   const image = Plot.image(undefined, {src: "foo"});
   assert.strictEqual(image.data, undefined);
   assert.strictEqual(image.transform, undefined);
-  assert.deepStrictEqual(image.channels.map(c => c.name), ["x", "y", "src"]);
-  assert.deepStrictEqual(image.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [undefined, undefined]]);
-  assert.deepStrictEqual(image.channels.map(c => c.scale), ["x", "y", undefined]);
+  assert.deepStrictEqual(Object.keys(image.channels), ["x", "y", "src"]);
+  assert.deepStrictEqual(Object.values(image.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [undefined, undefined]]);
+  assert.deepStrictEqual(Object.values(image.channels).map(c => c.scale), ["x", "y", undefined]);
   assert.strictEqual(image.width, 16);
   assert.strictEqual(image.height, 16);
   assert.strictEqual(image.preserveAspectRatio, undefined);
@@ -24,15 +24,15 @@ it("image(data, {width, height, src}) allows width and height to be a variable a
   const image = Plot.image(undefined, {width: "x", height: "y", src: "foo"});
   assert.strictEqual(image.width, undefined);
   assert.strictEqual(image.height, undefined);
-  const width = image.channels.find(c => c.name === "width");
-  const height = image.channels.find(c => c.name === "height");
+  const {width} = image.channels;
+  const {height} = image.channels;
   assert.strictEqual(width.value, "x");
   assert.strictEqual(height.value, "y");
 });
 
 it("image(data, {title, src}) specifies an optional title channel", () => {
   const image = Plot.image(undefined, {title: "x", src: "foo"});
-  const title = image.channels.find(c => c.name === "title");
+  const {title} = image.channels;
   assert.strictEqual(title.value, "x");
   assert.strictEqual(title.scale, undefined);
 });
@@ -49,7 +49,7 @@ it("image(data, {src}) allows src to be a constant", () => {
 
 it("image(data, {src}) allows src to be a channel", () => {
   const image = Plot.image(undefined, {src: "foo"});
-  const src = image.channels.find(c => c.name === "src");
+  const {src} = image.channels;
   assert.strictEqual(src.value, "foo");
   assert.strictEqual(src.scale, undefined);
 });

@@ -6,9 +6,9 @@ it("line() has the expected defaults", () => {
   const line = Plot.line();
   assert.strictEqual(line.data, undefined);
   assert.strictEqual(line.transform, undefined);
-  assert.deepStrictEqual(line.channels.map(c => c.name), ["x", "y"]);
-  assert.deepStrictEqual(line.channels.map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  assert.deepStrictEqual(line.channels.map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(Object.keys(line.channels), ["x", "y"]);
+  assert.deepStrictEqual(Object.values(line.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
+  assert.deepStrictEqual(Object.values(line.channels).map(c => c.scale), ["x", "y"]);
   assert.strictEqual(line.curve, curveLinear);
   assert.strictEqual(line.fill, "none");
   assert.strictEqual(line.fillOpacity, undefined);
@@ -26,14 +26,14 @@ it("line() has the expected defaults", () => {
 
 it("line(data, {z}) specifies an optional z channel", () => {
   const line = Plot.line(undefined, {z: "2"});
-  const z = line.channels.find(c => c.name === "z");
+  const {z} = line.channels;
   assert.strictEqual(z.value, "2");
   assert.strictEqual(z.scale, undefined);
 });
 
 it("line(data, {title}) specifies an optional title channel", () => {
   const line = Plot.line(undefined, {title: "2"});
-  const title = line.channels.find(c => c.name === "title");
+  const {title} = line.channels;
   assert.strictEqual(title.value, "2");
   assert.strictEqual(title.scale, undefined);
 });
@@ -51,14 +51,14 @@ it("line(data, {fill}) allows fill to be null", () => {
 it("line(data, {fill}) allows fill to be a variable color", () => {
   const line = Plot.line(undefined, {fill: "x"});
   assert.strictEqual(line.fill, undefined);
-  const fill = line.channels.find(c => c.name === "fill");
+  const {fill} = line.channels;
   assert.strictEqual(fill.value, "x");
   assert.strictEqual(fill.scale, "color");
 });
 
 it("line(data, {fill}) implies a default z channel if fill is variable", () => {
   const line = Plot.line(undefined, {fill: "2"});
-  const z = line.channels.find(c => c.name === "z");
+  const {z} = line.channels;
   assert.strictEqual(z.value, "2");
   assert.strictEqual(z.scale, undefined);
 });
@@ -81,14 +81,14 @@ it("line(data, {stroke}) implies no stroke width if stroke is null", () => {
 it("line(data, {stroke}) allows stroke to be a variable color", () => {
   const line = Plot.line(undefined, {stroke: "x", fill: "3"}); // stroke takes priority
   assert.strictEqual(line.stroke, undefined);
-  const stroke = line.channels.find(c => c.name === "stroke");
+  const {stroke} = line.channels;
   assert.strictEqual(stroke.value, "x");
   assert.strictEqual(stroke.scale, "color");
 });
 
 it("line(data, {stroke}) implies a default z channel if stroke is variable", () => {
   const line = Plot.line(undefined, {stroke: "2"});
-  const z = line.channels.find(c => c.name === "z");
+  const {z} = line.channels;
   assert.strictEqual(z.value, "2");
   assert.strictEqual(z.scale, undefined);
 });

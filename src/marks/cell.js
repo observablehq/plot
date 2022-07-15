@@ -10,10 +10,10 @@ export class Cell extends AbstractBar {
   constructor(data, {x, y, ...options} = {}) {
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", type: "band", optional: true},
-        {name: "y", value: y, scale: "y", type: "band", optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", type: "band", optional: true},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
       options,
       defaults
     );
