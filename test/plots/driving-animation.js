@@ -7,7 +7,7 @@ export default async function() {
     inset: 10,
     grid: true,
     marks: [
-      Plot.line(driving, {x: "miles", y: "gas", time: "year"})
+      Plot.line(driving, {x: "miles", y: "gas", time: "year", timeFilter: "lte"})
     ]
   });
 }

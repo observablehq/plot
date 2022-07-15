@@ -75,6 +75,7 @@ export {default as footballCoverage} from "./football-coverage.js";
 export {default as frameCorners} from "./frame-corners.js";
 export {default as fruitSales} from "./fruit-sales.js";
 export {default as fruitSalesDate} from "./fruit-sales-date.js";
+export {default as gapminder} from "./gapminder.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
 export {default as gistempAnomalyMoving} from "./gistemp-anomaly-moving.js";
 export {default as gistempAnomalyTransform} from "./gistemp-anomaly-transform.js";

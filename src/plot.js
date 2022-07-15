@@ -9,6 +9,7 @@ import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range,
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
+import {maybeTimeFilter} from "./time.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
@@ -233,12 +234,12 @@ export function plot(options = {}) {
           const {mark, node} = timeMark;
           const {channels, values, facets} = stateByMark.get(mark);
           const facet = facets ? mark.filter(facets[0], channels, values) : null;
-          const index = facet.filter(i => channels.time.value[i] <= time);
+          const index = mark.timeFilter(facet, values.time, time);
           const timeNode = mark.render(index, scales, values, dimensions, context);
           node.replaceWith(timeNode);
           timeMark.node = timeNode;
         }
-        requestAnimationFrame(tick);
+        setTimeout(tick, 1500 / times.length); // TODO
       });
     }
   }
@@ -280,12 +281,13 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, time, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, time, timeFilter, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+    this.timeFilter = maybeTimeFilter(timeFilter);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
