@@ -105,7 +105,7 @@ function reduceArray(f) {
       for (let i = 0; i < k - 1; ++i) count += defined(S[I[i]]);
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
         count += defined(S[I[i + k - 1]]);
-        T[I[i + s]] = count === k ? f(take(S, slice(I, i, i + k))) : NaN;
+        if (count === k) T[I[i + s]] = f(take(S, slice(I, i, i + k)));
         count -= defined(S[I[i]]);
       }
     }

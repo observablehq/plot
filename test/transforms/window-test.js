@@ -168,6 +168,18 @@ it(`windowX({reduce: "max", k, strict: true, anchor}) respects the given anchor`
   assert.deepStrictEqual(mt.x.transform(), [,, 2, 3, 4, 5]);
 });
 
+it(`windowX({reduce: "mode", k}) does not coerce to numbers`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "mode", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), ["A", "A", "B", "A", "C", "C", "C", "B", "B", "B"]);
+});
+
+it(`windowX({reduce: "mode", k, strict: true}) produces undefined if some input values are not defined`, () => {
+  const data = ["A", "B", "A", null, "C", "C", "A", "B", "B", NaN];
+  const m3 = applyTransform(Plot.windowX({reduce: "mode", k: 3, strict: true, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [, "A",,,, "C", "C", "B",,, ]);
+});
+
 it(`windowX({reduce: "difference", k, strict: true}) produces invalid values if the current window contains invalid values`, () => {
   const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
   const m3 = applyTransform(Plot.windowX({reduce: "difference", k: 3, strict: true, x: d => d}), data);
