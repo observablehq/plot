@@ -1,4 +1,4 @@
-import {cross, difference, groups, InternMap, select} from "d3";
+import {bisectLeft, cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -9,6 +9,7 @@ import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range,
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
+import {maybeTimeFilter} from "./time.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
@@ -124,6 +125,9 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
+  // Aggregate and sort time channels.
+  const times = aggregateTimes(stateByMark);
+
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
     state.values = valueObject(state.channels, scales);
@@ -213,10 +217,30 @@ export function plot(options = {}) {
           }
         });
   } else {
+    const timeMarks = [];
     for (const [mark, {channels, values, facets}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
-      const node = mark.render(facet, scales, values, dimensions, context);
+      const index = channels.time ? [] : facet;
+      const node = mark.render(index, scales, values, dimensions, context);
+      if (channels.time) timeMarks.push({mark, node});
       if (node != null) svg.appendChild(node);
+    }
+    if (timeMarks.length) {
+      let timeIndex = -1;
+      requestAnimationFrame(function tick() {
+        if (++timeIndex >= times.length) return;
+        const time = times[timeIndex];
+        for (const timeMark of timeMarks) {
+          const {mark, node} = timeMark;
+          const {channels, values, facets} = stateByMark.get(mark);
+          const facet = facets ? mark.filter(facets[0], channels, values) : null;
+          const index = mark.timeFilter(facet, values.time, time);
+          const timeNode = mark.render(index, scales, values, dimensions, context);
+          node.replaceWith(timeNode);
+          timeMark.node = timeNode;
+        }
+        setTimeout(tick, 1500 / times.length); // TODO
+      });
     }
   }
 
@@ -257,15 +281,17 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, time, timeFilter, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+    this.timeFilter = maybeTimeFilter(timeFilter);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
+    if (time != null) channels = {time: {value: time}, ...channels};
     this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
       if (value != null) return true;
       if (optional) return false;
@@ -365,6 +391,21 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
     }
   }
   return channelsByScale;
+}
+
+function aggregateTimes(stateByMark) {
+  const times = [];
+  for (const {channels: {time}} of stateByMark.values()) {
+    if (time) {
+      for (let t of time.value) {
+        if (t == null || isNaN(t = +t)) continue;
+        const i = bisectLeft(times, t);
+        if (times[i] === t) continue;
+        times.splice(i, 0, t);
+      }
+    }
+  }
+  return times;
 }
 
 // Derives a copy of the specified axis with the label disabled.
