@@ -190,9 +190,12 @@ function reduceMean(k, s, strict) {
   }
 }
 
-// TODO implement non-strict
-function reduceDifference(k, s) {
-  return {
+function valid(x) {
+  return x !== null && !isNaN(x);
+}
+
+function reduceDifference(k, s, strict) {
+  return strict ? ({
     map(I, S, T) {
       for (let i = 0, n = I.length - k; i < n; ++i) {
         const a = S[I[i]];
@@ -200,12 +203,21 @@ function reduceDifference(k, s) {
         T[I[i + s]] = a === null || b === null ? NaN : b - a;
       }
     }
-  };
+  }) : ({
+    map(I, S, T) {
+      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
+        const a = S[I[j]];
+        j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
+        const b = S[I[j]];
+        T[I[i + s]] = a === null || b === null ? NaN : b - a;
+      }
+    }
+  });
 }
 
-// TODO implement non-strict
-function reduceRatio(k, s) {
-  return {
+function reduceRatio(k, s, strict) {
+  return strict ? ({
     map(I, S, T) {
       for (let i = 0, n = I.length - k; i < n; ++i) {
         const a = S[I[i]];
@@ -213,27 +225,49 @@ function reduceRatio(k, s) {
         T[I[i + s]] = a === null || b === null ? NaN : b / a;
       }
     }
-  };
+  }) : ({
+    map(I, S, T) {
+      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
+        const a = S[I[j]];
+        j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
+        const b = S[I[j]];
+        T[I[i + s]] = a === null || b === null ? NaN : b / a;
+      }
+    }
+  });
 }
 
-// TODO implement non-strict
-function reduceFirst(k, s) {
-  return {
+function reduceFirst(k, s, strict) {
+  return strict ? ({
     map(I, S, T) {
       for (let i = 0, n = I.length - k; i < n; ++i) {
         T[I[i + s]] = S[I[i]];
       }
     }
-  };
+  }) : ({
+    map(I, S, T) {
+      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
+        T[I[i + s]] = S[I[j]];
+      }
+    }
+  });
 }
 
-// TODO implement non-strict
-function reduceLast(k, s) {
-  return {
+function reduceLast(k, s, strict) {
+  return strict ? ({
     map(I, S, T) {
       for (let i = 0, n = I.length - k; i < n; ++i) {
         T[I[i + s]] = S[I[i + k - 1]];
       }
     }
-  };
+  }) : ({
+    map(I, S, T) {
+      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+        let j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
+        T[I[i + s]] = S[I[j]];
+      }
+    }
+  });
 }

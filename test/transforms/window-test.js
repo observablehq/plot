@@ -167,3 +167,51 @@ it(`windowX({reduce: "max", k, strict: true, anchor}) respects the given anchor`
   const mt = applyTransform(Plot.windowX({reduce: "max", k: 3, strict: true, anchor: "end", x: d => d}), data);
   assert.deepStrictEqual(mt.x.transform(), [,, 2, 3, 4, 5]);
 });
+
+it(`windowX({reduce: "difference", k, strict: true}) produces invalid values if the current window contains invalid values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "difference", k: 3, strict: true, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [, 4 - 1, NaN, 8 - 4, NaN, 32 - 8, 64 - 16, 128 - 32, NaN, NaN, NaN, NaN,,, ]);
+});
+
+it(`windowX({reduce: "difference", k}) returns the expected values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "difference", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [2 - 1, 4 - 1, 4 - 2, 8 - 4, 16 - 8, 32 - 8, 64 - 16, 128 - 32, 128 - 64, 128 - 128, NaN, NaN, 256 - 256, 256 - 256]);
+});
+
+it(`windowX({reduce: "ratio", k, strict: true}) produces invalid values if the current window contains invalid values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "ratio", k: 3, strict: true, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [, 4 / 1, NaN, 8 / 4, NaN, 32 / 8, 64 / 16, 128 / 32, NaN, NaN, NaN, NaN,,, ]);
+});
+
+it(`windowX({reduce: "ratio", k}) returns the expected values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "ratio", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [2 / 1, 4 / 1, 4 / 2, 8 / 4, 16 / 8, 32 / 8, 64 / 16, 128 / 32, 128 / 64, 128 / 128, NaN, NaN, 256 / 256, 256 / 256]);
+});
+
+it(`windowX({reduce: "first", k, strict: true}) produces invalid values if the current window starts with an invalid value`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "first", k: 3, strict: true, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [, 1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN,,, ]);
+});
+
+it(`windowX({reduce: "first", k}) returns the expected values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "first", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [1, 1, 2, 4, 8, 8, 16, 32, 64, 128, NaN, 256, 256, 256]);
+});
+
+it(`windowX({reduce: "last", k, strict: true}) produces invalid values if the current window ends with an invalid value`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, strict: true, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN,,, ]);
+});
+
+it(`windowX({reduce: "last", k}) returns the expected values`, () => {
+  const data = [1, 2, 4, NaN, 8, 16, 32, 64, 128, NaN, NaN, NaN, NaN, 256];
+  const m3 = applyTransform(Plot.windowX({reduce: "last", k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [2, 4, 4, 8, 16, 32, 64, 128, 128, 128, NaN, NaN, 256, 256]);
+});
