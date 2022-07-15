@@ -230,9 +230,7 @@ function reduceDifference(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        const a = firstNumber(S, I, i, k);
-        const b = lastNumber(S, I, i, k);
-        T[I[i + s]] = b - a;
+        T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
       }
     }
   });
@@ -250,9 +248,7 @@ function reduceRatio(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        const a = firstNumber(S, I, i, k);
-        const b = lastNumber(S, I, i, k);
-        T[I[i + s]] = b / a;
+        T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
       }
     }
   });
