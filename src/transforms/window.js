@@ -195,15 +195,17 @@ function valid(x) {
 }
 
 function first(S, I, i, k) {
-  let j = i;
-  do; while (!valid(S[I[j]]) && ++j < i + k);
-  return S[I[j]];
+  for (let j = i + k; i < j; ++i) {
+    const v = S[I[i]];
+    if (valid(v)) return v;
+  }
 }
 
 function last(S, I, i, k) {
-  let j = i + k - 1;
-  do; while (!valid(S[I[j]]) && --j > i);
-  return S[I[j]];
+  for (let j = i + k - 1; j >= i; --j) {
+    const v = S[I[j]];
+    if (valid(v)) return v;
+  }
 }
 
 function reduceDifference(k, s, strict) {
