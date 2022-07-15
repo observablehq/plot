@@ -72,7 +72,7 @@ function looseReducer(reducer) {
     return {
       map(I, S, T) {
         const n = I.length;
-        reduce.map(I, S, T);
+        reduce.map(I, S, T, true);
         for (let i = 0; i < s; ++i) {
           const j = Math.min(n, i + k - s);
           reducer(j, i).map(slice(I, 0, j), S, T);
@@ -92,13 +92,13 @@ function slice(I, i, j) {
 
 function reduceSubarray(f) {
   return (k, s) => ({
-    map(I, S, T) {
+    map(I, S, T, skipNaN) {
       const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
       let nans = 0;
       for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
         if (isNaN(C[i + k - 1])) ++nans;
-        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
+        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : skipNaN ? f(C.subarray(i, i + k).filter(d => !isNaN(d))) : NaN;
         if (isNaN(C[i])) --nans;
       }
     }
@@ -107,7 +107,7 @@ function reduceSubarray(f) {
 
 function reduceSum(k, s) {
   return {
-    map(I, S, T) {
+    map(I, S, T, skipNaN) {
       let nans = 0;
       let sum = 0;
       for (let i = 0; i < k - 1; ++i) {
@@ -120,7 +120,7 @@ function reduceSum(k, s) {
         const b = S[I[i + k - 1]];
         if (b === null || isNaN(b)) ++nans;
         else sum += +b;
-        T[I[i + s]] = nans === 0 ? sum : NaN;
+        T[I[i + s]] = nans === 0 || skipNaN ? sum : NaN;
         if (a === null || isNaN(a)) --nans;
         else sum -= +a;
       }
@@ -128,11 +128,11 @@ function reduceSum(k, s) {
   };
 }
 
-function reduceMean(k, s) {
+function reduceMean(k, s,) {
   const sum = reduceSum(k, s);
   return {
-    map(I, S, T) {
-      sum.map(I, S, T);
+    map(I, S, T, skipNaN) {
+      sum.map(I, S, T, skipNaN);
       for (let i = 0, n = I.length - k + 1; i < n; ++i) {
         T[I[i + s]] /= k;
       }

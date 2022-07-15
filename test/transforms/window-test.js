@@ -90,6 +90,18 @@ it(`windowX({k, anchor: "start"}) truncates the window at the end`, () => {
   assert.deepStrictEqual(m4.x.transform(), [1.5, 2.5, 3.5, 4, 4.5, 5]);
 });
 
+it(`windowX({k}) ignores nulls and NaN`, () => {
+  const data = [3, 3, 3, null, 3, 3, 3, NaN, 3, null, 3, 3, 3];
+  const m3 = applyTransform(Plot.windowX({k: 3, x: d => d}), data);
+  assert.deepStrictEqual(m3.x.transform(), [3, 3, 2, 2, 2, 3, 2, 2, 1, 2, 2, 3, 3]);
+});
+
+it(`windowX({k, reduce: "sum"}) ignores nulls and NaN`, () => {
+  const data = [1, 1, 1, null, 1, 1, 1, NaN, 1, null, 1, 1, 1];
+  const m3 = applyTransform(Plot.windowX({k: 3, x: d => d, reduce: "sum"}), data);
+  assert.deepStrictEqual(m3.x.transform(), [2, 3, 2, 2, 2, 3, 2, 2, 1, 2, 2, 3, 2]);
+});
+
 it(`windowX({k, anchor: "end"}) truncates the window at the start`, () => {
   const data = range(6);
   const m1 = applyTransform(Plot.windowX({k: 1, anchor: "end"}, {x: d => d}), data);
