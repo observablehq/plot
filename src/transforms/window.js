@@ -194,6 +194,18 @@ function valid(x) {
   return x !== null && !isNaN(x);
 }
 
+function first(S, I, i, k) {
+  let j = i;
+  do; while (!valid(S[I[j]]) && ++j < i + k);
+  return S[I[j]];
+}
+
+function last(S, I, i, k) {
+  let j = i + k - 1;
+  do; while (!valid(S[I[j]]) && --j > i);
+  return S[I[j]];
+}
+
 function reduceDifference(k, s, strict) {
   return strict ? ({
     map(I, S, T) {
@@ -206,10 +218,8 @@ function reduceDifference(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
-        const a = S[I[j]];
-        j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
-        const b = S[I[j]];
+        const a = first(S, I, i, k);
+        const b = last(S, I, i, k);
         T[I[i + s]] = a === null || b === null ? NaN : b - a;
       }
     }
@@ -228,10 +238,8 @@ function reduceRatio(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
-        const a = S[I[j]];
-        j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
-        const b = S[I[j]];
+        const a = first(S, I, i, k);
+        const b = last(S, I, i, k);
         T[I[i + s]] = a === null || b === null ? NaN : b / a;
       }
     }
@@ -248,8 +256,7 @@ function reduceFirst(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        let j = i; do; while (!valid(S[I[j]]) && ++j < i + k);
-        T[I[i + s]] = S[I[j]];
+        T[I[i + s]] = first(S, I, i, k);
       }
     }
   });
@@ -265,8 +272,7 @@ function reduceLast(k, s, strict) {
   }) : ({
     map(I, S, T) {
       for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        let j = i + k - 1; do; while (!valid(S[I[j]]) && --j > i);
-        T[I[i + s]] = S[I[j]];
+        T[I[i + s]] = last(S, I, i, k);
       }
     }
   });
