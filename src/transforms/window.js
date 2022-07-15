@@ -1,7 +1,8 @@
-import {mapX, mapY} from "./map.js";
 import {deviation, max, min, median, mode, variance} from "d3";
+import {defined} from "../defined.js";
+import {percentile, take} from "../options.js";
 import {warn} from "../warnings.js";
-import {percentile} from "../options.js";
+import {mapX, mapY} from "./map.js";
 
 export function windowX(windowOptions = {}, options) {
   if (arguments.length === 1) options = windowOptions;
@@ -44,16 +45,16 @@ function maybeShift(shift) {
 
 function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
-    if (/^p\d{2}$/i.test(reduce)) return reduceSubarray(percentile(reduce));
+    if (/^p\d{2}$/i.test(reduce)) return reduceNumbers(percentile(reduce));
     switch (reduce.toLowerCase()) {
-      case "deviation": return reduceSubarray(deviation);
-      case "max": return reduceSubarray(max);
+      case "deviation": return reduceNumbers(deviation);
+      case "max": return reduceNumbers(max);
       case "mean": return reduceMean;
-      case "median": return reduceSubarray(median);
-      case "min": return reduceSubarray(min);
-      case "mode": return reduceSubarray(mode);
+      case "median": return reduceNumbers(median);
+      case "min": return reduceNumbers(min);
+      case "mode": return reduceArray(mode);
       case "sum": return reduceSum;
-      case "variance": return reduceSubarray(variance);
+      case "variance": return reduceNumbers(variance);
       case "difference": return reduceDifference;
       case "ratio": return reduceRatio;
       case "first": return reduceFirst;
@@ -61,14 +62,18 @@ function maybeReduce(reduce = "mean") {
     }
   }
   if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
-  return reduceSubarray(reduce);
+  return reduceArray(reduce);
 }
 
-// Note that the subarray may contain NaN even in the strict case; we expect the
-// function f to handle that itself (e.g., by filtering as needed). The D3
-// reducers (e.g., min, max, mean, median) already handle NaN input, so it’s
-// faster to avoid redundant filtering.
-function reduceSubarray(f) {
+function slice(I, i, j) {
+  return I.subarray ? I.subarray(i, j) : I.slice(i, j);
+}
+
+// Note that the subarray may NaN in the non-strict case; we expect the function
+// f to handle that itself (e.g., by filtering as needed). The D3 reducers
+// (e.g., min, max, mean, median) already handle NaN input, so it’s faster to
+// avoid redundant filtering.
+function reduceNumbers(f) {
   return (k, s, strict) => strict ? ({
     map(I, S, T) {
       const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
@@ -88,6 +93,29 @@ function reduceSubarray(f) {
       }
       for (let i = 0, n = I.length - s; i < n; ++i) {
         T[I[i + s]] = f(C.subarray(i, i + k));
+      }
+    }
+  });
+}
+
+function reduceArray(f) {
+  return (k, s, strict) => strict ? ({
+    map(I, S, T) {
+      let count = 0;
+      for (let i = 0; i < k - 1; ++i) count += defined(S[I[i]]);
+      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+        count += defined(S[I[i + k - 1]]);
+        T[I[i + s]] = count === k ? f(take(S, slice(I, i, i + k))) : NaN;
+        count -= defined(S[I[i]]);
+      }
+    }
+  }) : ({
+    map(I, S, T) {
+      for (let i = -s; i < 0; ++i) {
+        T[I[i + s]] = f(take(S, slice(I, 0, i + k)));
+      }
+      for (let i = 0, n = I.length - s; i < n; ++i) {
+        T[I[i + s]] = f(take(S, slice(I, i, i + k)));
       }
     }
   });
