@@ -24,6 +24,8 @@ function withJsdom(run) {
     global.Node = jsdom.window.Node;
     global.NodeList = jsdom.window.NodeList;
     global.HTMLCollection = jsdom.window.HTMLCollection;
+    global.requestAnimationFrame = () => 0;
+    global.cancelAnimationFrame = () => {};
     global.fetch = async (href) => new Response(path.resolve("./test", href));
     try {
       return await run();
@@ -35,6 +37,8 @@ function withJsdom(run) {
       delete global.Node;
       delete global.NodeList;
       delete global.HTMLCollection;
+      delete global.requestAnimationFrame;
+      delete global.cancelAnimationFrame;
       delete global.fetch;
     }
   };
