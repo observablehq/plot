@@ -23,13 +23,13 @@ export class Dot extends Mark {
     const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "r", value: vr, scale: "r", filter: positive, optional: true},
-        {name: "rotate", value: vrotate, optional: true},
-        {name: "symbol", value: vsymbol, scale: "symbol", optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        r: {value: vr, scale: "r", filter: positive, optional: true},
+        rotate: {value: vrotate, optional: true},
+        symbol: {value: vsymbol, scale: "symbol", optional: true}
+      },
       options.sort === undefined && options.reverse === undefined ? sort({channel: "r", order: "descending"}, options) : options,
       defaults
     );

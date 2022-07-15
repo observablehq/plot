@@ -19,12 +19,12 @@ export class Vector extends Mark {
     const [vr, cr] = maybeNumberChannel(rotate, 0);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "length", value: vl, scale: "length", optional: true},
-        {name: "rotate", value: vr, optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        length: {value: vl, scale: "length", optional: true},
+        rotate: {value: vr, optional: true}
+      },
       options,
       defaults
     );

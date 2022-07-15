@@ -37,13 +37,13 @@ export class Text extends Mark {
     const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "fontSize", value: vfontSize, optional: true},
-        {name: "rotate", value: numberChannel(vrotate), optional: true},
-        {name: "text", value: text, filter: nonempty}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        fontSize: {value: vfontSize, optional: true},
+        rotate: {value: numberChannel(vrotate), optional: true},
+        text: {value: text, filter: nonempty}
+      },
       options,
       defaults
     );

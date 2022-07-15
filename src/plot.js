@@ -5,7 +5,7 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, range, second, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -256,29 +256,21 @@ export function plot(options = {}) {
 }
 
 export class Mark {
-  constructor(data, channels = [], options = {}, defaults) {
+  constructor(data, channels = {}, options = {}, defaults) {
     const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
-    const names = new Set();
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
-    if (extraChannels !== undefined) channels = [...channels, ...extraChannels.filter(e => !channels.some(c => c.name === e.name))];
-    if (defaults !== undefined) channels = [...channels, ...styles(this, options, defaults)];
-    this.channels = Object.fromEntries(channels.filter(channel => {
-      const {name, value, optional} = channel;
-      if (value == null) {
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      }
-      if (name == null) throw new Error("missing channel name");
-      const key = `${name}`;
-      if (key === "__proto__") throw new Error(`illegal channel name: ${key}`);
-      if (names.has(key)) throw new Error(`duplicate channel: ${key}`);
-      names.add(key);
-      return true;
-    }).map(channel => [channel.name, channel]));
+    channels = maybeNamed(channels);
+    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
+    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
+    this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
+      if (value != null) return true;
+      if (optional) return false;
+      throw new Error(`missing channel value: ${name}`);
+    }));
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);

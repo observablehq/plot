@@ -66,11 +66,11 @@ export class BarX extends AbstractBar {
     const {x1, x2, y} = options;
     super(
       data,
-      [
-        {name: "x1", value: x1, scale: "x"},
-        {name: "x2", value: x2, scale: "x"},
-        {name: "y", value: y, scale: "y", type: "band", optional: true}
-      ],
+      {
+        x1: {value: x1, scale: "x"},
+        x2: {value: x2, scale: "x"},
+        y: {value: y, scale: "y", type: "band", optional: true}
+      },
       options,
       defaults
     );
@@ -93,11 +93,11 @@ export class BarY extends AbstractBar {
     const {x, y1, y2} = options;
     super(
       data,
-      [
-        {name: "y1", value: y1, scale: "y"},
-        {name: "y2", value: y2, scale: "y"},
-        {name: "x", value: x, scale: "x", type: "band", optional: true}
-      ],
+      {
+        y1: {value: y1, scale: "y"},
+        y2: {value: y2, scale: "y"},
+        x: {value: x, scale: "x", type: "band", optional: true}
+      },
       options,
       defaults
     );

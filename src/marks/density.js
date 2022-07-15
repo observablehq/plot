@@ -22,12 +22,12 @@ export class Density extends Mark {
     const strokeDensity = isDensity(stroke) && (stroke = "currentColor", true);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "z", value: maybeZ({z, fill, stroke}), optional: true},
-        {name: "weight", value: weight, optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        z: {value: maybeZ({z, fill, stroke}), optional: true},
+        weight: {value: weight, optional: true}
+      },
       densityInitializer({...options, fill, stroke}, fillDensity, strokeDensity),
       defaults
     );

@@ -42,13 +42,13 @@ export class Image extends Mark {
     const [vh, ch] = maybeNumberChannel(height, 16);
     super(
       data,
-      [
-        {name: "x", value: x, scale: "x", optional: true},
-        {name: "y", value: y, scale: "y", optional: true},
-        {name: "width", value: vw, filter: positive, optional: true},
-        {name: "height", value: vh, filter: positive, optional: true},
-        {name: "src", value: vs, optional: true}
-      ],
+      {
+        x: {value: x, scale: "x", optional: true},
+        y: {value: y, scale: "y", optional: true},
+        width: {value: vw, filter: positive, optional: true},
+        height: {value: vh, filter: positive, optional: true},
+        src: {value: vs, optional: true}
+      },
       options,
       defaults
     );

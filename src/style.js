@@ -125,17 +125,17 @@ export function styles(
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
-  return [
-    {name: "title", value: title, optional: true},
-    {name: "href", value: href, optional: true},
-    {name: "ariaLabel", value: variaLabel, optional: true},
-    {name: "fill", value: vfill, scale: "color", optional: true},
-    {name: "fillOpacity", value: vfillOpacity, scale: "opacity", optional: true},
-    {name: "stroke", value: vstroke, scale: "color", optional: true},
-    {name: "strokeOpacity", value: vstrokeOpacity, scale: "opacity", optional: true},
-    {name: "strokeWidth", value: vstrokeWidth, optional: true},
-    {name: "opacity", value: vopacity, scale: "opacity", optional: true}
-  ];
+  return {
+    title: {value: title, optional: true},
+    href: {value: href, optional: true},
+    ariaLabel: {value: variaLabel, optional: true},
+    fill: {value: vfill, scale: "color", optional: true},
+    fillOpacity: {value: vfillOpacity, scale: "opacity", optional: true},
+    stroke: {value: vstroke, scale: "color", optional: true},
+    strokeOpacity: {value: vstrokeOpacity, scale: "opacity", optional: true},
+    strokeWidth: {value: vstrokeWidth, optional: true},
+    opacity: {value: vopacity, scale: "opacity", optional: true}
+  };
 }
 
 // Applies the specified titles via selection.call.
