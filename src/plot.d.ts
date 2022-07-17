@@ -6,7 +6,7 @@
  * TODO Include all possible mark properties.
  * TODO Use `csstype`?
  */
-type MarkProperties = {
+export type MarkProperties = {
   fill: CSSStyleDeclaration["fill"],
   fillOpacity: CSSStyleDeclaration["fillOpacity"],
   stroke: CSSStyleDeclaration["stroke"],

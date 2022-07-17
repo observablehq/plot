@@ -13,7 +13,7 @@ export type AggregationMethod =
     | "mean"
     | "median"
     | "mode"
-    | "pXX"
+    | PXX
     | "deviation"
     | "variance"
     | "x"
@@ -23,11 +23,12 @@ export type AggregationMethod =
     | "y1"
     | "y2";
 
-export interface ReducerObject<OutputType, Datum = object> {
-    reduce: (d: Datum[]) => OutputType;
-}
+/**
+ * Union of strings `"p[00-99]"`.
+ */
+type PXX = `p${Digit}${Digit}`;
 
-export type Reducer<OutputType, Datum = object> =
-    | AggregationMethod
-    | ReducerObject<OutputType, Datum>
-
+/**
+ * Digits 0-9 for deriving `PXX` type.
+ */
+type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;

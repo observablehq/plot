@@ -1,6 +1,6 @@
 export { scale } from "./scales.js";
 export { legend } from "./legends.js";
-export { plot, Mark, marks, MarkChannelDefinition, StandardMarkOptions } from "./plot.js";
+export { plot, Mark, marks, MarkProperties, MarkChannelDefinition, StandardMarkOptions } from "./plot.js";
 export { Area, area, areaX, areaY } from "./marks/area.js";
 export { Arrow, arrow } from "./marks/arrow.js";
 export { BarX, BarY, barX, barY } from "./marks/bar.js";
@@ -18,9 +18,17 @@ export { TickX, TickY, tickX, tickY } from "./marks/tick.js";
 export { tree, cluster } from "./marks/tree.js";
 export { Vector, vector, vectorX, vectorY } from "./marks/vector.js";
 export { valueof, column } from "./options.js";
-export { Reducer } from "./transforms";
+export { AggregationMethod } from "./transforms";
 export { filter, reverse, sort, shuffle, basic as transform } from "./transforms/basic.js";
-export { bin, binX, binY, BinOptions } from "./transforms/bin.js";
+export {
+  bin,
+  binX,
+  binY,
+  BinOptions,
+  ReduceMethod as BinReduceMethod,
+  ReduceMethodWithScope as BinReduceMethodWithScope,
+  ReducerObject as BinReducerObject,
+  ReduceMethodExtent as BinReduceMethodExtent } from "./transforms/bin.js";
 export { group, groupX, groupY, groupZ } from "./transforms/group.js";
 export { normalize, normalizeX, normalizeY } from "./transforms/normalize.js";
 export { map, mapX, mapY } from "./transforms/map.js";
