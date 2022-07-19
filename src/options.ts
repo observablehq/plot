@@ -122,13 +122,13 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 export function arrayify(data: DataSourceOptional, type?: ArrayType) {
   return data == null ? data : (type === undefined
     ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
-    : (data instanceof type ? data : type.from(data)));
+    : (data instanceof type ? data : (type as ArrayConstructor).from(data)));
 }
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values: DataSource, f: IAccessor, type: ArrayType = Array) {
-  return values instanceof type ? values.map(f) : type.from(values, f);
+  return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
@@ -152,7 +152,7 @@ export function isObject(option: any): boolean {
 // with inferScaleType when there are no channels associated with the scale, and
 // if this returns true, then normalizeScale must return non-null.
 export function isScaleOptions(option: any): boolean {
-  return isObject(option) && option.type !== undefined || option.domain !== undefined;
+  return isObject(option) && (option.type !== undefined || option.domain !== undefined);
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
