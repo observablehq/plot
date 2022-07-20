@@ -1,48 +1,18 @@
-type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
-
-type PXX = `p${Digit}${Digit}`;
-
-type DataSource = Iterable<unknown> | ArrayLike<unknown>;
-
-type DataSourceOptional = DataSource | null | undefined;
-
-type UnknownFn = (d: unknown) => unknown;
-
-type UserOption = unknown;
-
-type Field = string | UnknownFn;
-
-type ConstantOrFieldOption = number | Field | undefined;
-
-interface UserOptionsDefined {
-  x?: ConstantOrFieldOption;
-  x1?: ConstantOrFieldOption;
-  x2?: ConstantOrFieldOption;
-  y?: ConstantOrFieldOption;
-  y1?: ConstantOrFieldOption;
-  y2?: ConstantOrFieldOption;
-  z?: ConstantOrFieldOption;
-  fill?: ConstantOrFieldOption;
-  stroke?: ConstantOrFieldOption;
-  filter?: ConstantOrFieldOption;
-  transform?: ConstantOrFieldOption;
-}
-
-type UserOptionsKey = "x" | "x1" | "x2" | "y" | "y1" | "y2" | "z" | "fill" | "stroke";
-
-type UserOptions = UserOptionsDefined | undefined;
-
-type ObjectDatum = Record<string, unknown>;
-
-type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
-
-type IAccessor = (d: any, i: number, data?: ArrayLike<any>) => any;
-
-type booleanish = boolean | undefined;
-
-interface ITransform {
-  transform: (data: DataSource) => DataSource;
-}
+import {
+  PXX,
+  DataSource,
+  DataSourceOptional,
+  UserOption,
+  ConstantOrFieldOption,
+  UserOptionsDefined,
+  UserOptionsKey,
+  UserOptions,
+  ObjectDatum,
+  ArrayType, 
+  IAccessor,
+  booleanish,
+  ITransform
+} from "./common.js";
 
 
 import {parse as isoParse} from "isoformat";

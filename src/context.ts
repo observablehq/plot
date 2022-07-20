@@ -1,8 +1,5 @@
+import {IContext} from "./common.js";
 import {creator, select} from "d3";
-
-interface IContext {
-  document: Document;
-}
 
 export function Context({document = window.document} = {}): IContext {
   return {document};
