@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {nullish} from "./common.js";
+import type {nullish} from "./common.js";
 
 import {format as isoFormat} from "isoformat";
 import {string} from "./options.js";

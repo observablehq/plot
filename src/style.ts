@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {IMark, IDimensions, ChannelObject, IScale, ISelection, IStyleObject, booleanOption, numberOption, stringOption, NumberChannel, TextChannel, UserOption, nullish} from "./common.js";
+import type {IMark, IDimensions, ChannelObject, IScale, ISelection, IStyleObject, booleanOption, numberOption, stringOption, NumberChannel, TextChannel, UserOption, nullish} from "./common.js";
 
 import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
