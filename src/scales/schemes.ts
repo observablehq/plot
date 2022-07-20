@@ -1,3 +1,6 @@
+type ColorInterpolator = (t: number) => string; // t is in [0, 1]
+type OrdinalScheme = string[] | (({length}: {length: number}) => string[]); // n is the number of colors
+
 import {
   interpolateBlues,
   interpolateBrBG,
@@ -91,27 +94,27 @@ const ordinalSchemes = new Map([
   ["tableau10", schemeTableau10],
 
   // diverging
-  ["brbg", scheme11(schemeBrBG, interpolateBrBG)],
-  ["prgn", scheme11(schemePRGn, interpolatePRGn)],
-  ["piyg", scheme11(schemePiYG, interpolatePiYG)],
-  ["puor", scheme11(schemePuOr, interpolatePuOr)],
-  ["rdbu", scheme11(schemeRdBu, interpolateRdBu)],
-  ["rdgy", scheme11(schemeRdGy, interpolateRdGy)],
-  ["rdylbu", scheme11(schemeRdYlBu, interpolateRdYlBu)],
-  ["rdylgn", scheme11(schemeRdYlGn, interpolateRdYlGn)],
-  ["spectral", scheme11(schemeSpectral, interpolateSpectral)],
+  ["brbg", scheme11(schemeBrBG as Array<string[]>, interpolateBrBG)],
+  ["prgn", scheme11(schemePRGn as Array<string[]>, interpolatePRGn)],
+  ["piyg", scheme11(schemePiYG as Array<string[]>, interpolatePiYG)],
+  ["puor", scheme11(schemePuOr as Array<string[]>, interpolatePuOr)],
+  ["rdbu", scheme11(schemeRdBu as Array<string[]>, interpolateRdBu)],
+  ["rdgy", scheme11(schemeRdGy as Array<string[]>, interpolateRdGy)],
+  ["rdylbu", scheme11(schemeRdYlBu as Array<string[]>, interpolateRdYlBu)],
+  ["rdylgn", scheme11(schemeRdYlGn as Array<string[]>, interpolateRdYlGn)],
+  ["spectral", scheme11(schemeSpectral as Array<string[]>, interpolateSpectral)],
 
   // reversed diverging (for temperature data)
-  ["burd", scheme11r(schemeRdBu, interpolateRdBu)],
-  ["buylrd", scheme11r(schemeRdYlBu, interpolateRdYlBu)],
+  ["burd", scheme11r(schemeRdBu as Array<string[]>, interpolateRdBu)],
+  ["buylrd", scheme11r(schemeRdYlBu as Array<string[]>, interpolateRdYlBu)],
 
   // sequential (single-hue)
-  ["blues", scheme9(schemeBlues, interpolateBlues)],
-  ["greens", scheme9(schemeGreens, interpolateGreens)],
-  ["greys", scheme9(schemeGreys, interpolateGreys)],
-  ["oranges", scheme9(schemeOranges, interpolateOranges)],
-  ["purples", scheme9(schemePurples, interpolatePurples)],
-  ["reds", scheme9(schemeReds, interpolateReds)],
+  ["blues", scheme9(schemeBlues as Array<string[]>, interpolateBlues)],
+  ["greens", scheme9(schemeGreens as Array<string[]>, interpolateGreens)],
+  ["greys", scheme9(schemeGreys as Array<string[]>, interpolateGreys)],
+  ["oranges", scheme9(schemeOranges as Array<string[]>, interpolateOranges)],
+  ["purples", scheme9(schemePurples as Array<string[]>, interpolatePurples)],
+  ["reds", scheme9(schemeReds as Array<string[]>, interpolateReds)],
 
   // sequential (multi-hue)
   ["turbo", schemei(interpolateTurbo)],
@@ -123,26 +126,26 @@ const ordinalSchemes = new Map([
   ["cubehelix", schemei(interpolateCubehelixDefault)],
   ["warm", schemei(interpolateWarm)],
   ["cool", schemei(interpolateCool)],
-  ["bugn", scheme9(schemeBuGn, interpolateBuGn)],
-  ["bupu", scheme9(schemeBuPu, interpolateBuPu)],
-  ["gnbu", scheme9(schemeGnBu, interpolateGnBu)],
-  ["orrd", scheme9(schemeOrRd, interpolateOrRd)],
-  ["pubu", scheme9(schemePuBu, interpolatePuBu)],
-  ["pubugn", scheme9(schemePuBuGn, interpolatePuBuGn)],
-  ["purd", scheme9(schemePuRd, interpolatePuRd)],
-  ["rdpu", scheme9(schemeRdPu, interpolateRdPu)],
-  ["ylgn", scheme9(schemeYlGn, interpolateYlGn)],
-  ["ylgnbu", scheme9(schemeYlGnBu, interpolateYlGnBu)],
-  ["ylorbr", scheme9(schemeYlOrBr, interpolateYlOrBr)],
-  ["ylorrd", scheme9(schemeYlOrRd, interpolateYlOrRd)],
+  ["bugn", scheme9(schemeBuGn as Array<string[]>, interpolateBuGn)],
+  ["bupu", scheme9(schemeBuPu as Array<string[]>, interpolateBuPu)],
+  ["gnbu", scheme9(schemeGnBu as Array<string[]>, interpolateGnBu)],
+  ["orrd", scheme9(schemeOrRd as Array<string[]>, interpolateOrRd)],
+  ["pubu", scheme9(schemePuBu as Array<string[]>, interpolatePuBu)],
+  ["pubugn", scheme9(schemePuBuGn as Array<string[]>, interpolatePuBuGn)],
+  ["purd", scheme9(schemePuRd as Array<string[]>, interpolatePuRd)],
+  ["rdpu", scheme9(schemeRdPu as Array<string[]>, interpolateRdPu)],
+  ["ylgn", scheme9(schemeYlGn as Array<string[]>, interpolateYlGn)],
+  ["ylgnbu", scheme9(schemeYlGnBu as Array<string[]>, interpolateYlGnBu)],
+  ["ylorbr", scheme9(schemeYlOrBr as Array<string[]>, interpolateYlOrBr)],
+  ["ylorrd", scheme9(schemeYlOrRd as Array<string[]>, interpolateYlOrRd)],
 
   // cyclical
   ["rainbow", schemeicyclical(interpolateRainbow)],
   ["sinebow", schemeicyclical(interpolateSinebow)]
-]);
+] as Array<[string, OrdinalScheme]>);
 
-function scheme9(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme9(scheme: string[][], interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => {
     if (n === 1) return [scheme[3][1]]; // favor midpoint
     if (n === 2) return [scheme[3][1], scheme[3][2]]; // favor darker
     n = Math.max(3, Math.floor(n));
@@ -150,37 +153,37 @@ function scheme9(scheme, interpolate) {
   };
 }
 
-function scheme11(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme11(scheme: string[][], interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => {
     if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor diverging extrema
     n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize(interpolate, n) : scheme[n];
   };
 }
 
-function scheme11r(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme11r(scheme: string[][], interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => {
     if (n === 2) return [scheme[3][2], scheme[3][0]]; // favor diverging extrema
     n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize(t => interpolate(1 - t), n) : scheme[n].slice().reverse();
   };
 }
 
-function schemei(interpolate) {
-  return ({length: n}) => quantize(interpolate, Math.max(2, Math.floor(n)));
+function schemei(interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => quantize(interpolate, Math.max(2, Math.floor(n)));
 }
 
-function schemeicyclical(interpolate) {
-  return ({length: n}) => quantize(interpolate, Math.floor(n) + 1).slice(0, -1);
+function schemeicyclical(interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => quantize(interpolate, Math.floor(n) + 1).slice(0, -1);
 }
 
-export function ordinalScheme(scheme) {
+export function ordinalScheme(scheme: string) {
   const s = `${scheme}`.toLowerCase();
   if (!ordinalSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
-  return ordinalSchemes.get(s);
+  return ordinalSchemes.get(s) as OrdinalScheme;
 }
 
-export function ordinalRange(scheme, length) {
+export function ordinalRange(scheme: string, length: number) {
   const s = ordinalScheme(scheme);
   const r = typeof s === "function" ? s({length}) : s;
   return r.length !== length ? r.slice(0, length) : r;
@@ -189,7 +192,7 @@ export function ordinalRange(scheme, length) {
 // If the specified domain contains only booleans (ignoring null and undefined),
 // returns a corresponding range where false is mapped to the low color and true
 // is mapped to the high color of the specified scheme.
-export function maybeBooleanRange(domain, scheme = "greys") {
+export function maybeBooleanRange(domain: (boolean | number | Date | string | null | undefined)[], scheme = "greys") {
   const range = new Set();
   const [f, t] = ordinalRange(scheme, 2);
   for (const value of domain) {
@@ -253,7 +256,7 @@ const quantitativeSchemes = new Map([
   ["sinebow", interpolateSinebow]
 ]);
 
-export function quantitativeScheme(scheme) {
+export function quantitativeScheme(scheme: string) {
   const s = `${scheme}`.toLowerCase();
   if (!quantitativeSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
   return quantitativeSchemes.get(s);
@@ -273,6 +276,6 @@ const divergingSchemes = new Set([
   "buylrd"
 ]);
 
-export function isDivergingScheme(scheme) {
+export function isDivergingScheme(scheme: string | null | undefined) {
   return scheme != null && divergingSchemes.has(`${scheme}`.toLowerCase());
 }
