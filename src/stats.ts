@@ -20,12 +20,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-export function ibetainv(p, a, b) {
-  var EPS = 1e-8;
-  var a1 = a - 1;
-  var b1 = b - 1;
-  var j = 0;
-  var lna, lnb, pp, t, u, err, x, al, h, w, afac;
+export function ibetainv(p: number, a: number, b: number) {
+  const EPS = 1e-8;
+  const a1 = a - 1;
+  const b1 = b - 1;
+  let j = 0;
+  let lna, lnb, pp, t, u, err, x, al, h, w;
   if (p <= 0) return 0;
   if (p >= 1) return 1;
   if (a >= 1 && b >= 1) {
@@ -48,10 +48,10 @@ export function ibetainv(p, a, b) {
     if (p < t / w) x = Math.pow(a * w * p, 1 / a);
     else x = 1 - Math.pow(b * w * (1 - p), 1 / b);
   }
-  afac = -gammaln(a) - gammaln(b) + gammaln(a + b);
+  const afac = -gammaln(a) - gammaln(b) + gammaln(a + b);
   for (; j < 10; j++) {
     if (x === 0 || x === 1) return x;
-    err = ibeta(x, a, b) - p;
+    err = ibeta(x, a, b) as number - p;
     t = Math.exp(a1 * Math.log(x) + b1 * Math.log(1 - x) + afac);
     u = err / t;
     x -= t = u / (1 - 0.5 * Math.min(1, u * (a1 / x - b1 / (1 - x))));
@@ -62,9 +62,9 @@ export function ibetainv(p, a, b) {
   return x;
 }
 
-export function ibeta(x, a, b) {
+export function ibeta(x: number, a: number, b: number) {
   // Factors in front of the continued fraction.
-  var bt =
+  const bt =
     x === 0 || x === 1
       ? 0
       : Math.exp(
@@ -82,15 +82,15 @@ export function ibeta(x, a, b) {
   return 1 - (bt * betacf(1 - x, b, a)) / b;
 }
 
-export function betacf(x, a, b) {
-  var fpmin = 1e-30;
-  var m = 1;
-  var qab = a + b;
-  var qap = a + 1;
-  var qam = a - 1;
-  var c = 1;
-  var d = 1 - (qab * x) / qap;
-  var m2, aa, del, h;
+export function betacf(x: number, a: number, b: number) {
+  const fpmin = 1e-30;
+  let m = 1;
+  const qab = a + b;
+  const qap = a + 1;
+  const qam = a - 1;
+  let c = 1;
+  let d = 1 - (qab * x) / qap;
+  let m2, aa, del, h;
 
   // These q's will be used in factors that occur in the coefficients
   if (Math.abs(d) < fpmin) d = fpmin;
@@ -122,22 +122,22 @@ export function betacf(x, a, b) {
   return h;
 }
 
-export function gammaln(x) {
-  var j = 0;
-  var cof = [
+export function gammaln(x: number) {
+  let j = 0;
+  const cof = [
     76.18009172947146, -86.5053203294167, 24.01409824083091, -1.231739572450155,
     0.1208650973866179e-2, -0.5395239384953e-5
   ];
-  var ser = 1.000000000190015;
-  var xx, y, tmp;
+  let ser = 1.000000000190015;
+  let xx, y, tmp;
   tmp = (y = xx = x) + 5.5;
   tmp -= (xx + 0.5) * Math.log(tmp);
   for (; j < 6; j++) ser += cof[j] / ++y;
   return Math.log((2.506628274631 * ser) / xx) - tmp;
 }
 
-export function qt(p, dof) {
-  var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+export function qt(p: number, dof: number) {
+  let x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
   x = Math.sqrt((dof * (1 - x)) / x);
   return p > 0.5 ? x : -x;
 }
