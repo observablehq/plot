@@ -5,15 +5,17 @@ import type {
   DataSourceOptional,
   UserOption,
   ConstantOrFieldOption,
+  LazyColumn,
+  LazyColumnOptions,
   MarkOptionsDefined,
-  MarkOptionsKey,
+  FieldOptionsKey,
   MarkOptions,
-  ObjectDatum,
   ArrayType, 
   IAccessor,
   booleanish,
   ITransform,
   stringOption,
+  IndexArray,
   nullish
 } from "./common.js";
 
@@ -35,9 +37,9 @@ export function valueof(data: DataSource, value: ConstantOrFieldOption, arrayTyp
     : arrayify(value as DataSource, arrayType); // preserve undefined type
 }
 
-export const field = (name: string) => (d: ObjectDatum) => d[name];
-export const indexOf = (d: ObjectDatum, i: number) => i;
-export const identity = {transform: (d: ObjectDatum) => d};
+export const field = (name: string) => (d: any) => d[name];
+export const indexOf = (d: any, i: number) => i;
+export const identity = {transform: (d: any) => d};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
@@ -52,7 +54,7 @@ export const constant = (x: any) => () => x;
 // accessor function f, returning the corresponding percentile value.
 export function percentile(reduce: PXX) {
   const p = +`${reduce}`.slice(1) / 100;
-  return (I: Uint32Array, f: (i: number) => number) => quantile(I, p, f);
+  return (I: IndexArray, f: (i: number) => number) => quantile(I, p, f);
 }
 
 // Some channels may allow a string constant to be specified; to differentiate
@@ -153,7 +155,7 @@ export function maybeZero(x: UserOption, x1: UserOption, x2: UserOption, x3: Use
 }
 
 // For marks that have x and y channels (e.g., cell, dot, line, text).
-export function maybeTuple(x: UserOption, y: UserOption) {
+export function maybeTuple(x: ConstantOrFieldOption, y: ConstantOrFieldOption): [ConstantOrFieldOption, ConstantOrFieldOption] {
   return x === undefined && y === undefined ? [first, second] : [x, y];
 }
 
@@ -179,7 +181,7 @@ export function where(data: ArrayLike<any>, test: IAccessor) {
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
-export function take(values: ArrayLike<any>, index: number[]) {
+export function take(values: ArrayLike<any>, index: IndexArray) {
   return map(index, i => values[i]);
 }
 
@@ -188,7 +190,7 @@ export function keyof(value: any) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;
 }
 
-export function maybeInput(key: MarkOptionsKey, options: MarkOptionsDefined): UserOption {
+export function maybeInput(key: FieldOptionsKey, options: MarkOptionsDefined) {
   if (options[key] !== undefined) return options[key];
   switch (key) {
     case "x1": case "x2": key = "x"; break;
@@ -200,15 +202,8 @@ export function maybeInput(key: MarkOptionsKey, options: MarkOptionsDefined): Us
 // Defines a column whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned column definition.
-interface LazyColumnOptions {
-  transform: () => Array<any>;
-  label?: string
-}
-type LazyColumnSetter = (v: Array<any>) => Array<any>;
-type LazyColumn = [ LazyColumnOptions | null | undefined, LazyColumnSetter? ];
-
 export function column(source: UserOption): LazyColumn {
-  let value: Array<any>;
+  let value: any[];
   return [
     {
       transform: () => value,
@@ -220,7 +215,7 @@ export function column(source: UserOption): LazyColumn {
 
 // Like column, but allows the source to be null.
 export function maybeColumn(source: UserOption) {
-  return source == null ? [source] as LazyColumn : column(source);
+  return source == null ? [source] : column(source);
 }
 
 export function labelof(value: any, defaultValue?: string) {

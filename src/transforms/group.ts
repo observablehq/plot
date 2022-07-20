@@ -1,30 +1,33 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, LazyColumnSetter, FacetArray, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, Reducer, OutputOptions} from "../common.js";
+
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ(outputs, options) {
+export function groupZ(outputs: OutputOptions, options: MarkOptions) {
   return groupn(null, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x.
-export function groupX(outputs = {y: "count"}, options = {}) {
+export function groupX(outputs: OutputOptions = {y: "count"}, options: MarkOptionsDefined = {}) {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y.
-export function groupY(outputs = {x: "count"}, options = {}) {
+export function groupY(outputs: OutputOptions = {x: "count"}, options: MarkOptionsDefined = {}) {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y.
-export function group(outputs = {fill: "count"}, options = {}) {
-  let {x, y} = options;
+export function group(outputs: OutputOptions = {fill: "count"}, options: MarkOptionsDefined = {}) {
+  let {x, y}: {x?: ConstantOrFieldOption, y?: ConstantOrFieldOption} = options;
   ([x, y] = maybeTuple(x, y));
   if (x == null) throw new Error("missing channel: x");
   if (y == null) throw new Error("missing channel: y");
@@ -32,23 +35,23 @@ export function group(outputs = {fill: "count"}, options = {}) {
 }
 
 function groupn(
-  x, // optionally group on x
-  y, // optionally group on y
+  x: ConstantOrFieldOption, // optionally group on x
+  y: ConstantOrFieldOption, // optionally group on y
   {
-    data: reduceData = reduceIdentity,
-    filter,
-    sort,
+    data: reduceData1 = reduceIdentity,
+    filter: filter1,
+    sort: sort1,
     reverse,
-    ...outputs // output channel definitions
-  } = {},
-  inputs = {} // input channels and options
+    ...outputs1 // output channel definitions
+  }: OutputOptions = {},
+  inputs: MarkOptionsDefined = {} // input channels and options
 ) {
 
   // Compute the outputs.
-  outputs = maybeOutputs(outputs, inputs);
-  reduceData = maybeReduce(reduceData, identity);
-  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  const outputs = maybeOutputs(outputs1, inputs);
+  const reduceData = maybeReduce(reduceData1, identity);
+  const sort = sort1 == null ? undefined : maybeOutput("sort", sort1, inputs);
+  const filter = filter1 == null ? undefined : maybeEvaluator("filter", filter1, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeColumn(x);
@@ -83,17 +86,17 @@ function groupn(
       const S = valueof(data, vstroke);
       const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
-      const groupData = [];
-      const GX = X && setGX([]);
-      const GY = Y && setGY([]);
-      const GZ = Z && setGZ([]);
-      const GF = F && setGF([]);
-      const GS = S && setGS([]);
+      const groupData: number[] = [];
+      const GX = X && (setGX as LazyColumnSetter)([]);
+      const GY = Y && (setGY as LazyColumnSetter)([]);
+      const GZ = Z && (setGZ as LazyColumnSetter)([]);
+      const GF = F && (setGF as LazyColumnSetter)([]);
+      const GS = S && (setGS as LazyColumnSetter)([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
       if (filter) filter.initialize(data);
-      for (const facet of facets) {
+      for (const facet of facets as FacetArray) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
@@ -104,11 +107,11 @@ function groupn(
               if (filter && !filter.reduce(g)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
-              if (X) GX.push(x);
-              if (Y) GY.push(y);
-              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
-              if (F) GF.push(G === F ? f : F[g[0]]);
-              if (S) GS.push(G === S ? f : S[g[0]]);
+              if (GX) GX.push(x);
+              if (GY) GY.push(y);
+              if (GZ) GZ.push(G === Z ? f : Z[g[0]]);
+              if (GF) GF.push(G === F ? f : F[g[0]]);
+              if (GS) GS.push(G === S ? f : S[g[0]]);
               for (const o of outputs) o.reduce(g);
               if (sort) sort.reduce(g);
             }
@@ -125,65 +128,65 @@ function groupn(
   };
 }
 
-export function hasOutput(outputs, ...names) {
+export function hasOutput(outputs: Reducer[], ...names: string[]) {
   for (const {name} of outputs) {
-    if (names.includes(name)) {
+    if (names.includes(name as string)) {
       return true;
     }
   }
   return false;
 }
 
-export function maybeOutputs(outputs, inputs) {
+export function maybeOutputs(outputs: OutputOptions, inputs: MarkOptionsDefined): Reducer[] {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
-  return entries.map(([name, reduce]) => {
+  return entries.map(([name, reduce]: [string, AggregationMethod | undefined]) => {
     return reduce == null
-      ? {name, initialize() {}, scope() {}, reduce() {}}
-      : maybeOutput(name, reduce, inputs);
+      ? {name, initialize() {}, scope() {}, reduce() {}} as Reducer // type name to a FieldOptionsKey
+      : maybeOutput(name as FieldOptionsKey, reduce, inputs);
   });
 }
 
-export function maybeOutput(name, reduce, inputs) {
+export function maybeOutput(name: FieldOptionsKey, reduce: any, inputs: any) {
   const evaluator = maybeEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;
   return {
     name,
     output,
-    initialize(data) {
+    initialize(data: any) {
       evaluator.initialize(data);
-      O = setOutput([]);
+      O = (setOutput as LazyColumnSetter)([]);
     },
-    scope(scope, I) {
+    scope(scope?: "data" | "facet", I?: IndexArray) {
       evaluator.scope(scope, I);
     },
-    reduce(I, extent) {
+    reduce(I: IndexArray, extent?: string) {
       O.push(evaluator.reduce(I, extent));
     }
   };
 }
 
-export function maybeEvaluator(name, reduce, inputs) {
-  const input = maybeInput(name, inputs);
+export function maybeEvaluator(name: string, reduce: any, inputs: any): Reducer {
+  const input = maybeInput(name as FieldOptionsKey, inputs);
   const reducer = maybeReduce(reduce, input);
-  let V, context;
+  let V: ArrayLike<any> | nullish, context: any;
   return {
     label: labelof(reducer === reduceCount ? null : input, reducer.label),
-    initialize(data) {
+    initialize(data: ArrayLike<any>) {
       V = input === undefined ? data : valueof(data, input);
       if (reducer.scope === "data") {
         context = reducer.reduce(range(data), V);
       }
     },
-    scope(scope, I) {
+    scope(scope?: "data" | "facet", I?: IndexArray) {
       if (reducer.scope === scope) {
-        context = reducer.reduce(I, V);
+        context = reducer.reduce(I as IndexArray, V);
       }
     },
-    reduce(I, extent) {
+    reduce(I: IndexArray, extent?: string) {
       return reducer.scope == null
         ? reducer.reduce(I, V, extent)
         : reducer.reduce(I, V, context, extent);
@@ -191,14 +194,14 @@ export function maybeEvaluator(name, reduce, inputs) {
   };
 }
 
-export function maybeGroup(I, X) {
+export function maybeGroup(I: IndexArray, X: ArrayLike<any> | nullish): [any, IndexArray][] {
   return X ? sort(grouper(I, i => X[i]), first) : [[, I]];
 }
 
-export function maybeReduce(reduce, value) {
-  if (reduce && typeof reduce.reduce === "function") return reduce;
+export function maybeReduce(reduce: AggregationMethod, value: any): Reduce1 {
+  if (reduce && typeof (reduce as Reduce1).reduce === "function") return reduce as Reduce1;
   if (typeof reduce === "function") return reduceFunction(reduce);
-  if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
+  if (/^p\d{2}$/i.test(reduce as string)) return reduceAccessor(percentile(reduce as PXX));
   switch (`${reduce}`.toLowerCase()) {
     case "first": return reduceFirst;
     case "last": return reduceLast;
@@ -226,19 +229,19 @@ export function maybeReduce(reduce, value) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-export function maybeSubgroup(outputs, inputs) {
+export function maybeSubgroup(outputs: Reducer[], inputs: {z?: any, stroke?: any, fill?: any}) {
   for (const name in inputs) {
-    const value = inputs[name];
+    const value = inputs[name as "z" | "stroke" | "fill"];
     if (value !== undefined && !outputs.some(o => o.name === name)) {
       return value;
     }
   }
 }
 
-export function maybeSort(facets, sort, reverse) {
+export function maybeSort(facets: FacetArray, sort: TodoChannel, reverse: booleanOption) {
   if (sort) {
     const S = sort.output.transform();
-    const compare = (i, j) => ascendingDefined(S[i], S[j]);
+    const compare = (i: number, j: number) => ascendingDefined(S[i], S[j]);
     facets.forEach(f => f.sort(compare));
   }
   if (reverse) {
@@ -246,36 +249,36 @@ export function maybeSort(facets, sort, reverse) {
   }
 }
 
-function reduceFunction(f) {
+function reduceFunction(f: (X?: ArrayLike<any>, extent?: any) => any) {
   return {
-    reduce(I, X, extent) {
+    reduce(I: IndexArray, X: any[], extent?: any) {
       return f(take(X, I), extent);
     }
   };
 }
 
-function reduceAccessor(f) {
+function reduceAccessor(f: (I: IndexArray, a: (i: number) => any) => any) {
   return {
-    reduce(I, X) {
-      return f(I, i => X[i]);
+    reduce(I: IndexArray, X: ArrayLike<any>) {
+      return f(I, (i: number) => X[i]);
     }
   };
 }
 
 export const reduceIdentity = {
-  reduce(I, X) {
+  reduce(I: IndexArray, X: any) {
     return take(X, I);
   }
 };
 
 export const reduceFirst = {
-  reduce(I, X) {
+  reduce(I: IndexArray, X: any) {
     return X[I[0]];
   }
 };
 
 const reduceTitle = {
-  reduce(I, X) {
+  reduce(I: IndexArray, X: any) {
     const n = 5;
     const groups = sort(rollup(I, V => V.length, i => X[i]), second);
     const top = groups.slice(-n).reverse();
@@ -288,21 +291,21 @@ const reduceTitle = {
 };
 
 const reduceLast = {
-  reduce(I, X) {
+  reduce(I: IndexArray, X: any) {
     return X[I[I.length - 1]];
   }
 };
 
 export const reduceCount = {
   label: "Frequency",
-  reduce(I) {
+  reduce(I: IndexArray) {
     return I.length;
   }
 };
 
 const reduceDistinct = {
   label: "Distinct",
-  reduce: (I, X) => {
+  reduce: (I: IndexArray, X: any) => {
     const s = new InternSet();
     for (const i of I) s.add(X[i]);
     return s.size;
@@ -311,49 +314,49 @@ const reduceDistinct = {
 
 const reduceSum = reduceAccessor(sum);
 
-function reduceProportion(value, scope) {
+function reduceProportion(value: any, scope: "data" | "facet") {
   return value == null
-      ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
-      : {scope, reduce: (I, V, basis = 1) => sum(I, i => V[i]) / basis};
+      ? {scope, label: "Frequency", reduce: (I: IndexArray, V: any, basis = 1) => I.length / basis}
+      : {scope, reduce: (I: IndexArray, V: any, basis = 1) => sum(I, i => V[i]) / basis};
 }
 
-function mid(x1, x2) {
+function mid(x1: number | Date, x2: number | Date): number | Date {
   const m = (+x1 + +x2) / 2;
   return x1 instanceof Date ? new Date(m) : m;
 }
 
 const reduceX = {
-  reduce(I, X, {x1, x2}) {
+  reduce(I: IndexArray, X: any, {x1, x2}: any) {
     return mid(x1, x2);
   }
 };
 
 const reduceY = {
-  reduce(I, X, {y1, y2}) {
+  reduce(I: IndexArray, X: any, {y1, y2}: any) {
     return mid(y1, y2);
   }
 };
 
 const reduceX1 = {
-  reduce(I, X, {x1}) {
+  reduce(I: IndexArray, X: any, {x1}: any) {
     return x1;
   }
 };
 
 const reduceX2 = {
-  reduce(I, X, {x2}) {
+  reduce(I: IndexArray, X: any, {x2}: any) {
     return x2;
   }
 };
 
 const reduceY1 = {
-  reduce(I, X, {y1}) {
+  reduce(I: IndexArray, X: any, {y1}: any) {
     return y1;
   }
 };
 
 const reduceY2 = {
-  reduce(I, X, {y2}) {
+  reduce(I: IndexArray, X: any, {y2}: any) {
     return y2;
   }
 };

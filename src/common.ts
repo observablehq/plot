@@ -3,7 +3,7 @@
 export type nullish = null | undefined;
 export type DataSource = Iterable<unknown> | ArrayLike<unknown>;
 export type DataSourceOptional = DataSource | nullish;
-export type UserOption = unknown;
+export type UserOption = unknown; // TODO: remove this type by checking which options are allowed in each case
 export type booleanOption = boolean | nullish;
 export type numberOption = number | nullish;
 export type stringOption = number | any[] | string | nullish;
@@ -12,15 +12,54 @@ export type NumberChannel = number[] | Float32Array | Float64Array;
 export type Channel = TextChannel | NumberChannel | any[];
 export type ConstantOrFieldOption = number | string | Channel | Date | ITransform | IAccessor | nullish;
 export type Comparator = (a: any, b: any) => number;
+export type IndexArray = number[] | Uint32Array;
 
 /**
  * Definition for both transform and initializer functions.
  */
-export type MaybeFacetArray = number[][] | undefined;
+export type FacetArray = number[][];
+export type MaybeFacetArray = FacetArray | undefined;
 export type TransformFunction = (this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales ?: any, dimensions?: IDimensions) => {data?: any, facets?: number[][], channels?: any};
 
+/**
+ * Aggregation options for the group transform
+ * a string
+ * * a function - passed the array of values for each group
+ * * an object with a reduce method, an optionally a scope
+ */
+ export type Reduce1 = {
+  label?: string;
+  reduce: (I: IndexArray, X: any, context?: any, extent?: any) => any;
+  scope?: "data" | "facet"
+};
+export type AggregationMethod = Reduce1 | "first" | "last" | "count" | "sum" | "proportion" | "proportion-facet" | "min" | "min-index" | "max" | "max-index" | "mean" | "median" | "mode" | "deviation" | "variance" | ((data?: ArrayLike<any>, extent?: any) => any) | PXX;
 
-export interface MarkOptionsDefined {
+export type Reducer = {
+  name?: FieldOptionsKey,
+  output?: (() => void) | LazyColumnOptions,
+  initialize: (data: any) => void,
+  scope: (scope?: any, I?: IndexArray) => void,
+  reduce: (I: IndexArray, data?: any) => any,
+  label?: string
+};
+
+export type OutputOptions = Partial<{[P in FieldOptionsKey]: AggregationMethod}> & {
+  data?: any;
+  reverse?: boolean;
+}
+
+
+/**
+ * Plot.column()
+ */
+export interface LazyColumnOptions {
+  transform: () => any[];
+  label?: string
+}
+export type LazyColumnSetter = (v: Array<any>) => Array<any>;
+export type LazyColumn = [ LazyColumnOptions, LazyColumnSetter? ];
+ 
+export interface FieldOptions {
   x?: ConstantOrFieldOption;
   x1?: ConstantOrFieldOption;
   x2?: ConstantOrFieldOption;
@@ -30,16 +69,20 @@ export interface MarkOptionsDefined {
   z?: ConstantOrFieldOption;
   fill?: ConstantOrFieldOption;
   stroke?: ConstantOrFieldOption;
-
+  title?: ConstantOrFieldOption;
+  href?: ConstantOrFieldOption;
   filter?: ConstantOrFieldOption;
-  transform?: TransformFunction | null;
   sort?: ConstantOrFieldOption;
-  reverse?: ConstantOrFieldOption;
-  initializer?: TransformFunction | null;
 }
-export type MarkOptionsKey = "x" | "x1" | "x2" | "y" | "y1" | "y2" | "z" | "fill" | "stroke";
+
+export interface MarkOptionsDefined extends FieldOptions {
+  transform?: TransformFunction | null;
+  initializer?: TransformFunction | null;
+  reverse?: boolean;
+}
+
+export type FieldOptionsKey = keyof FieldOptions;
 export type MarkOptions = MarkOptionsDefined | undefined;
-export type ObjectDatum = Record<string, unknown>;
 export type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
 export type IAccessor = (d: any, i: number, data?: ArrayLike<any>) => any;
 export type booleanish = boolean | undefined;
