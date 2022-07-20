@@ -5,9 +5,9 @@ import type {
   DataSourceOptional,
   UserOption,
   ConstantOrFieldOption,
-  UserOptionsDefined,
-  UserOptionsKey,
-  UserOptions,
+  MarkOptionsDefined,
+  MarkOptionsKey,
+  MarkOptions,
   ObjectDatum,
   ArrayType, 
   IAccessor,
@@ -26,7 +26,7 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 // This allows transforms to behave equivalently to channels.
-export function valueof(data: DataSource, value: string | IAccessor | number | Date | ITransform, arrayType?: ArrayType) {
+export function valueof(data: DataSource, value: ConstantOrFieldOption, arrayType?: ArrayType) {
   const type = typeof value;
   return type === "string" ? map(data, field(value as string), arrayType)
   : type === "function" ? map(data, value as IAccessor, arrayType)
@@ -94,7 +94,7 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify(data: DataSourceOptional, type?: ArrayType) {
   return data == null ? data : (type === undefined
-    ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
+    ? (data instanceof Array || data instanceof TypedArray) ? data as any[] : Array.from(data)
     : (data instanceof type ? data : (type as ArrayConstructor).from(data)));
 }
 
@@ -159,7 +159,7 @@ export function maybeTuple(x: UserOption, y: UserOption) {
 
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
-export function maybeZ({z, fill, stroke}: UserOptions = {}) {
+export function maybeZ({z, fill, stroke}: MarkOptions = {}) {
   if (z === undefined) ([z] = maybeColorChannel(fill));
   if (z === undefined) ([z] = maybeColorChannel(stroke));
   return z;
@@ -188,7 +188,7 @@ export function keyof(value: any) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;
 }
 
-export function maybeInput(key: UserOptionsKey, options: UserOptionsDefined): UserOption {
+export function maybeInput(key: MarkOptionsKey, options: MarkOptionsDefined): UserOption {
   if (options[key] !== undefined) return options[key];
   switch (key) {
     case "x1": case "x2": key = "x"; break;
@@ -247,7 +247,7 @@ export function mid(x1: LazyColumnOptions, x2: LazyColumnOptions) {
 }
 
 // This distinguishes between per-dimension options and a standalone value.
-export function maybeValue(value: any) {
+export function maybeValue(value: any): undefined | {channel?: string, value?: any} {
   return value === undefined || isOptions(value) ? value : {value};
 }
 

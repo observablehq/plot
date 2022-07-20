@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-const */
+import type {IDimensions, IMark, Comparator, Channel, ConstantOrFieldOption, MarkOptions, MaybeFacetArray, TransformFunction, nullish} from "../common.js";
+
 import {randomLcg} from "d3";
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
@@ -11,7 +15,7 @@ export function basic({
   transform: t1,
   initializer: i1,
   ...options
-} = {}, t2) {
+}: MarkOptions = {}, t2: TransformFunction): MarkOptions {
   if (t1 === undefined) { // explicit transform overrides filter, sort, and reverse
     if (f1 != null) t1 = filterTransform(f1);
     if (s1 != null && !isDomainSort(s1)) t1 = composeTransform(t1, sortTransform(s1));
@@ -33,7 +37,7 @@ export function initializer({
   reverse: r1,
   initializer: i1,
   ...options
-} = {}, i2) {
+}: MarkOptions = {}, i2: TransformFunction): MarkOptions {
   if (i1 === undefined) { // explicit initializer overrides filter, sort, and reverse
     if (f1 != null) i1 = filterTransform(f1);
     if (s1 != null && !isDomainSort(s1)) i1 = composeInitializer(i1, sortTransform(s1));
@@ -45,19 +49,19 @@ export function initializer({
   };
 }
 
-function composeTransform(t1, t2) {
+function composeTransform(t1: TransformFunction | nullish, t2: TransformFunction | nullish) {
   if (t1 == null) return t2 === null ? undefined : t2;
   if (t2 == null) return t1 === null ? undefined : t1;
-  return function(data, facets) {
+  return function(this: IMark, data: any, facets: MaybeFacetArray) {
     ({data, facets} = t1.call(this, data, facets));
     return t2.call(this, arrayify(data), facets);
   };
 }
 
-function composeInitializer(i1, i2) {
+function composeInitializer(i1: TransformFunction | nullish, i2: TransformFunction | nullish) {
   if (i1 == null) return i2 === null ? undefined : i2;
   if (i2 == null) return i1 === null ? undefined : i1;
-  return function(data, facets, channels, scales, dimensions) {
+  return function(this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales?: any, dimensions?: IDimensions) {
     let c1, d1, f1, c2, d2, f2;
     ({data: d1 = data, facets: f1 = facets, channels: c1} = i1.call(this, data, facets, channels, scales, dimensions));
     ({data: d2 = d1, facets: f2 = f1, channels: c2} = i2.call(this, d1, f1, {...channels, ...c1}, scales, dimensions));
@@ -65,50 +69,50 @@ function composeInitializer(i1, i2) {
   };
 }
 
-function apply(options, t) {
+function apply(options: any, t: any): MarkOptions {
   return (options.initializer != null ? initializer : basic)(options, t);
 }
 
-export function filter(value, options) {
+export function filter(value: ConstantOrFieldOption, options: MarkOptions) {
   return apply(options, filterTransform(value));
 }
 
-function filterTransform(value) {
+function filterTransform(value: ConstantOrFieldOption): TransformFunction {
   return (data, facets) => {
-    const V = valueof(data, value);
-    return {data, facets: facets.map(I => I.filter(i => V[i]))};
+    const V = valueof(data, value) || [];
+    return {data, facets: facets && facets.map(I => I.filter((i: number) => V[i]))};
   };
 }
 
-export function reverse(options) {
+export function reverse(options: MarkOptions) {
   return {...apply(options, reverseTransform), sort: null};
 }
 
-function reverseTransform(data, facets) {
-  return {data, facets: facets.map(I => I.slice().reverse())};
+function reverseTransform(data: any, facets: MaybeFacetArray) {
+  return {data, facets: facets && facets.map(I => I.slice().reverse())};
 }
 
-export function shuffle({seed, ...options} = {}) {
+export function shuffle({seed, ...options}: {seed?: number | null} = {}) {
   return {...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
 }
 
-export function sort(value, options) {
+export function sort(value: any, options: MarkOptions) {
   return {...(isOptions(value) && value.channel !== undefined ? initializer : apply)(options, sortTransform(value)), sort: null};
 }
 
-function sortTransform(value) {
+function sortTransform(value: any): TransformFunction {
   return (typeof value === "function" && value.length !== 1 ? sortData : sortValue)(value);
 }
 
-function sortData(compare) {
-  return (data, facets) => {
-    const compareData = (i, j) => compare(data[i], data[j]);
-    return {data, facets: facets.map(I => I.slice().sort(compareData))};
+function sortData(compare: Comparator): TransformFunction {
+  return (data: any, facets: MaybeFacetArray) => {
+    const compareData = (i: number, j: number) => compare(data[i], data[j]);
+    return {data, facets: facets && facets.map(I => I.slice().sort(compareData))};
   };
 }
 
-function sortValue(value) {
-  let channel, order;
+function sortValue(value: any): TransformFunction {
+  let channel: string | undefined, order: Comparator;
   ({channel, value, order = ascendingDefined} = {...maybeValue(value)});
   if (typeof order !== "function") {
     switch (`${order}`.toLowerCase()) {
@@ -117,17 +121,16 @@ function sortValue(value) {
       default: throw new Error(`invalid order: ${order}`);
     }
   }
-  return (data, facets, channels) => {
-    let V;
+  return (data: any, facets: MaybeFacetArray, channels: any) => {
+    let V: Channel | nullish;
     if (channel === undefined) {
       V = valueof(data, value);
     } else {
       if (channels === undefined) throw new Error("channel sort requires an initializer");
-      V = channels[channel];
+      V = channels[channel]?.value;
       if (!V) return {}; // ignore missing channel
-      V = V.value;
     }
-    const compareValue = (i, j) => order(V[i], V[j]);
-    return {data, facets: facets.map(I => I.slice().sort(compareValue))};
+    const compareValue = (i: number, j: number) => order((V as Channel)[i], (V as Channel)[j]);
+    return {data, facets: facets && facets.map((I: number[]) => I.slice().sort(compareValue))};
   };
 }

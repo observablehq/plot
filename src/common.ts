@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type UnknownFn = (d: unknown) => unknown;
-type Field = string | UnknownFn;
 export type nullish = null | undefined;
 export type DataSource = Iterable<unknown> | ArrayLike<unknown>;
 export type DataSourceOptional = DataSource | nullish;
@@ -10,11 +8,19 @@ export type booleanOption = boolean | nullish;
 export type numberOption = number | nullish;
 export type stringOption = number | any[] | string | nullish;
 export type TextChannel = string[];
-export type NumberChannel = string[];
-type Channel = TextChannel | NumberChannel | any[];
-export type ConstantOrFieldOption = numberOption | stringOption | Field | Channel | nullish;
+export type NumberChannel = number[] | Float32Array | Float64Array;
+export type Channel = TextChannel | NumberChannel | any[];
+export type ConstantOrFieldOption = number | string | Channel | Date | ITransform | IAccessor | nullish;
+export type Comparator = (a: any, b: any) => number;
 
-export interface UserOptionsDefined {
+/**
+ * Definition for both transform and initializer functions.
+ */
+export type MaybeFacetArray = number[][] | undefined;
+export type TransformFunction = (this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales ?: any, dimensions?: IDimensions) => {data?: any, facets?: number[][], channels?: any};
+
+
+export interface MarkOptionsDefined {
   x?: ConstantOrFieldOption;
   x1?: ConstantOrFieldOption;
   x2?: ConstantOrFieldOption;
@@ -24,11 +30,15 @@ export interface UserOptionsDefined {
   z?: ConstantOrFieldOption;
   fill?: ConstantOrFieldOption;
   stroke?: ConstantOrFieldOption;
+
   filter?: ConstantOrFieldOption;
-  transform?: ConstantOrFieldOption;
+  transform?: TransformFunction | null;
+  sort?: ConstantOrFieldOption;
+  reverse?: ConstantOrFieldOption;
+  initializer?: TransformFunction | null;
 }
-export type UserOptionsKey = "x" | "x1" | "x2" | "y" | "y1" | "y2" | "z" | "fill" | "stroke";
-export type UserOptions = UserOptionsDefined | undefined;
+export type MarkOptionsKey = "x" | "x1" | "x2" | "y" | "y1" | "y2" | "z" | "fill" | "stroke";
+export type MarkOptions = MarkOptionsDefined | undefined;
 export type ObjectDatum = Record<string, unknown>;
 export type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
 export type IAccessor = (d: any, i: number, data?: ArrayLike<any>) => any;
