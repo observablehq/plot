@@ -1,4 +1,5 @@
-import {ISelection, IMark, IContext, MarkerOption, MarkerFunction, MaybeMarkerFunction} from "../common.js";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {ISelection, IMark, IContext, MarkerOption, MarkerFunction, MaybeMarkerFunction, nullish} from "../common.js";
 
 import {create} from "../context.js";
 
@@ -100,7 +101,7 @@ function applyMarkersColor(
     markerEnd,
     stroke
   }: IMark,
-  strokeof: ((i: any) => string | undefined) = (() => stroke) // any is really number or number[]
+  strokeof: ((i: any) => string | nullish) = (() => stroke) // any is really number or number[]
 ) {
   const iriByMarkerColor = new Map();
 

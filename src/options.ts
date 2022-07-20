@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   PXX,
   DataSource,
@@ -11,7 +12,9 @@ import {
   ArrayType, 
   IAccessor,
   booleanish,
-  ITransform
+  ITransform,
+  stringOption,
+  nullish
 } from "./common.js";
 
 
@@ -38,8 +41,8 @@ export const identity = {transform: (d: ObjectDatum) => d};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
-export const string = (x: any) => x == null ? x : `${x}`;
-export const number = (x: any) => x == null ? x : +x;
+export const string = (x: any) => x == null ? x as nullish : `${x}`;
+export const number = (x: any) => x == null ? x as nullish : +x;
 export const boolean = (x: any) => x == null ? x : !!x;
 export const first = (x: any[]) => x ? x[0] : undefined;
 export const second = (x: any[]) => x ? x[1] : undefined;
@@ -58,10 +61,10 @@ export function percentile(reduce: PXX) {
 // tuple [channel, constant] where one of the two is undefined, and the other is
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
-export function maybeColorChannel(value: ConstantOrFieldOption, defaultValue?: string) {
+export function maybeColorChannel(value: ConstantOrFieldOption, defaultValue?: string): [any, string | undefined] {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"]
-    : isColor(value) ? [undefined, value]
+    : isColor(value) ? [undefined, value as string]
     : [value, undefined];
 }
 
@@ -345,16 +348,16 @@ export function isColor(value: UserOption): boolean {
     || color(value as string) !== null;
 }
 
-export function isNoneish(value: undefined | null | string) {
+export function isNoneish(value: stringOption) {
   return value == null || isNone(value);
 }
 
-export function isNone(value: string) {
-  return /^\s*none\s*$/i.test(value);
+export function isNone(value: stringOption) {
+  return /^\s*none\s*$/i.test(value as string);
 }
 
-export function isRound(value: string) {
-  return /^\s*round\s*$/i.test(value);
+export function isRound(value: stringOption) {
+  return /^\s*round\s*$/i.test(value as string);
 }
 
 export function maybeFrameAnchor(value = "middle") {

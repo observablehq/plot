@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import {nullish} from "./common.js";
+
 import {format as isoFormat} from "isoformat";
 import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
@@ -26,7 +28,7 @@ export function formatIsoDate(date: Date): string {
   return isoFormat(date, "Invalid Date");
 }
 
-export function formatAuto(locale = "en-US"): (value: any) => string | number | undefined {
+export function formatAuto(locale = "en-US"): (value: any) => string | number | nullish {
   const number = formatNumber(locale);
   return (v: any) => (v instanceof Date ? formatIsoDate : typeof v === "number" ? number : string)(v);
 }
