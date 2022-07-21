@@ -30,7 +30,11 @@ export type MaybeFacetArray = IndexArray[] | undefined;
  export type IndexArray = number[] | Uint32Array;
 
 
- 
+/**
+ * The inset option is a number
+ */
+export type InsetOption = number | undefined;
+
 /*
  * COMMON
  */
