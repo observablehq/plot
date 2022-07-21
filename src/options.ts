@@ -5,8 +5,8 @@ import type {
   DataSourceOptional,
   UserOption,
   ConstantOrFieldOption,
-  LazyColumn,
-  LazyColumnOptions,
+  Column,
+  ColumnGetter,
   MarkOptionsDefined,
   FieldOptionsKey,
   MarkOptions,
@@ -202,7 +202,7 @@ export function maybeInput(key: FieldOptionsKey, options: MarkOptionsDefined) {
 // Defines a column whose values are lazily populated by calling the returned
 // setter. If the given source is labeled, the label is propagated to the
 // returned column definition.
-export function column(source: UserOption): LazyColumn {
+export function column(source: UserOption): Column {
   let value: any[];
   return [
     {
@@ -228,7 +228,7 @@ export function labelof(value: any, defaultValue?: string) {
 // a column that’s the average of the two, and which inherits the column label
 // (if any). Both input columns are assumed to be quantitative. If either column
 // is temporal, the returned column is also temporal.
-export function mid(x1: LazyColumnOptions, x2: LazyColumnOptions) {
+export function mid(x1: ColumnGetter, x2: ColumnGetter) {
   return {
     transform() {
       const X1 = x1.transform(); // there was a type error here!!

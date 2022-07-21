@@ -72,12 +72,9 @@ export type OutputOptions = Partial<{[P in FieldOptionsKey]: AggregationMethod}>
 /**
  * Plot.column()
  */
-export interface LazyColumnOptions {
-  transform: () => any[];
-  label?: string
-} // TODO: API, Rename to ColumnOptions
-export type LazyColumnSetter = (v: Array<any>) => Array<any>;
-export type LazyColumn = [ LazyColumnOptions, LazyColumnSetter? ];
+export type ColumnGetter = {transform: () => any[]; label?: string}
+export type ColumnSetter = (v: Array<any>) => Array<any>;
+export type Column = [ ColumnGetter, ColumnSetter ];
  
 export interface FieldOptions {
   x?: ConstantOrFieldOption;

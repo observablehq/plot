@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, LazyColumnSetter, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, OutputOptions, LazyColumnOptions} from "../common.js";
+import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, ColumnSetter, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, OutputOptions, ColumnGetter} from "../common.js";
 
 type ComputedReducer = {
   name?: FieldOptionsKey,
-  output?: LazyColumnOptions,
+  output?: ColumnGetter,
   initialize: (data: any) => void,
   scope: (scope?: any, I?: IndexArray) => void,
   reduce: (I: IndexArray, data?: any) => any,
@@ -97,11 +97,11 @@ function groupn(
       const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData: number[] = [];
-      const GX = X && (setGX as LazyColumnSetter)([]);
-      const GY = Y && (setGY as LazyColumnSetter)([]);
-      const GZ = Z && (setGZ as LazyColumnSetter)([]);
-      const GF = F && (setGF as LazyColumnSetter)([]);
-      const GS = S && (setGS as LazyColumnSetter)([]);
+      const GX = X && (setGX as ColumnSetter)([]);
+      const GY = Y && (setGY as ColumnSetter)([]);
+      const GZ = Z && (setGZ as ColumnSetter)([]);
+      const GF = F && (setGF as ColumnSetter)([]);
+      const GS = S && (setGS as ColumnSetter)([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -168,7 +168,7 @@ export function maybeOutput(name: FieldOptionsKey, reduce: any, inputs: any) {
     output,
     initialize(data: any) {
       evaluator.initialize(data);
-      O = (setOutput as LazyColumnSetter)([]);
+      O = (setOutput as ColumnSetter)([]);
     },
     scope(scope?: "data" | "facet", I?: IndexArray) {
       evaluator.scope(scope, I);
@@ -248,7 +248,7 @@ export function maybeSubgroup(outputs: ComputedReducer[], inputs: {z?: any, stro
   }
 }
 
-export function maybeSort(facets: IndexArray[], sort: ComputedReducer & {output: LazyColumnOptions} | nullish, reverse: booleanOption) {
+export function maybeSort(facets: IndexArray[], sort: ComputedReducer & {output: ColumnGetter} | nullish, reverse: booleanOption) {
   if (sort) {
     const S = sort.output.transform();
     const compare = (i: number, j: number) => ascendingDefined(S[i], S[j]);
