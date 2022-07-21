@@ -39,10 +39,20 @@ export type InsetOption = number | undefined;
  * Plot.column()
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
  */
- export type Column = [ ColumnGetter, ColumnSetter ];
- export type ColumnGetter = {transform: () => any[]; label?: string}
- export type ColumnSetter = (v: Array<any>) => Array<any>;
+export type Column = [ ColumnGetter, ColumnSetter ];
+export type ColumnGetter = {transform: () => any[]; label?: string}
+export type ColumnSetter = (v: Array<any>) => Array<any>;
  
+
+/**
+ * Map methods for Plot.map, Plot.mapX, Plot.mapY
+ * * cumsum - a cumulative sum
+ * * rank - the rank of each value in the sorted array
+ * * quantile - the rank, normalized between 0 and 1
+ * * a function to be passed an array of values, returning new values
+ * * an object that implements the map method
+ */
+export type MapMethod = "cumsum" | "rank" | "quantile" | ((S: Channel) => Channel) | {map: (I: IndexArray, S: Channel, T: any[]) => any};
 
 /*
  * COMMON

@@ -1,23 +1,28 @@
-import {count, group, rank} from "d3";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type {MapMethod, IndexArray, Channel, FieldOptions, FieldOptionsKey, nullish} from "../common.js";
+type ComputedMapMethod = {map: (I: IndexArray, S: Channel, T: any[]) => any};
+
+
+import {count, group, Numeric, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
-export function mapX(m, options = {}) {
+export function mapX(m: MapMethod, options: FieldOptions = {}) {
   return map(Object.fromEntries(["x", "x1", "x2"]
-    .filter(key => options[key] != null)
+    .filter(key => options[key as "x" | "x1" | "x2"] != null)
     .map(key => [key, m])), options);
 }
 
-export function mapY(m, options = {}) {
+export function mapY(m: MapMethod, options: FieldOptions = {}) {
   return map(Object.fromEntries(["y", "y1", "y2"]
-    .filter(key => options[key] != null)
+    .filter(key => options[key as "y" | "y1" | "y2"] != null)
     .map(key => [key, m])), options);
 }
 
-export function map(outputs = {}, options = {}) {
+export function map(outputs: Record<string,MapMethod> = {}, options = {}) {
   const z = maybeZ(options);
   const channels = Object.entries(outputs).map(([key, map]) => {
-    const input = maybeInput(key, options);
+    const input = maybeInput(key as FieldOptionsKey, options);
     if (input == null) throw new Error(`missing channel: ${key}`);
     const [output, setOutput] = column(input);
     return {key, input, output, setOutput, map: maybeMap(map)};
@@ -27,9 +32,9 @@ export function map(outputs = {}, options = {}) {
       const Z = valueof(data, z);
       const X = channels.map(({input}) => valueof(data, input));
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
-      for (const facet of facets) {
+      for (const facet of facets as IndexArray[]) {
         for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-          channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
+          channels.forEach(({map}, i) => map.map(I, X[i] as any[], MX[i]));
         }
       }
       return {data, facets};
@@ -38,9 +43,9 @@ export function map(outputs = {}, options = {}) {
   };
 }
 
-function maybeMap(map) {
-  if (map && typeof map.map === "function") return map;
-  if (typeof map === "function") return mapFunction(map);
+function maybeMap(map: MapMethod): ComputedMapMethod {
+  if (map && typeof (map as ComputedMapMethod).map === "function") return map as ComputedMapMethod;
+  if (typeof map === "function") return mapFunction(map as () => any);
   switch (`${map}`.toLowerCase()) {
     case "cumsum": return mapCumsum;
     case "rank": return mapFunction(rank);
@@ -49,14 +54,14 @@ function maybeMap(map) {
   throw new Error(`invalid map: ${map}`);
 }
 
-function rankQuantile(V) {
+function rankQuantile(V: Iterable<Numeric | nullish>) {
   const n = count(V) - 1;
   return rank(V).map(r => r / n);
 }
 
-function mapFunction(f) {
+function mapFunction(f: (S: Iterable<any>) => any) {
   return {
-    map(I, S, T) {
+    map(I: IndexArray, S: Channel, T: any[]) {
       const M = f(take(S, I));
       if (M.length !== I.length) throw new Error("map function returned a mismatched length");
       for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
@@ -65,7 +70,7 @@ function mapFunction(f) {
 }
 
 const mapCumsum = {
-  map(I, S, T) {
+  map(I: IndexArray, S: Channel, T: any[]) {
     let sum = 0;
     for (const i of I) T[i] = sum += S[i];
   }
