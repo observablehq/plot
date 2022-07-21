@@ -35,6 +35,15 @@ export type MaybeFacetArray = IndexArray[] | undefined;
  */
 export type InsetOption = number | undefined;
 
+/**
+ * Plot.column()
+ * @link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
+ */
+ export type Column = [ ColumnGetter, ColumnSetter ];
+ export type ColumnGetter = {transform: () => any[]; label?: string}
+ export type ColumnSetter = (v: Array<any>) => Array<any>;
+ 
+
 /*
  * COMMON
  */
@@ -69,13 +78,7 @@ export type OutputOptions = Partial<{[P in FieldOptionsKey]: AggregationMethod}>
 }
 
 
-/**
- * Plot.column()
- */
-export type ColumnGetter = {transform: () => any[]; label?: string}
-export type ColumnSetter = (v: Array<any>) => Array<any>;
-export type Column = [ ColumnGetter, ColumnSetter ];
- 
+
 export interface FieldOptions {
   x?: ConstantOrFieldOption;
   x1?: ConstantOrFieldOption;
