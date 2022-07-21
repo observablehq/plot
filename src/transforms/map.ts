@@ -3,7 +3,7 @@ import type {MapMethod, IndexArray, Channel, FieldOptions, FieldOptionsKey, null
 type ComputedMapMethod = {map: (I: IndexArray, S: Channel, T: any[]) => any};
 
 
-import {count, group, Numeric, rank} from "d3";
+import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -54,7 +54,7 @@ function maybeMap(map: MapMethod): ComputedMapMethod {
   throw new Error(`invalid map: ${map}`);
 }
 
-function rankQuantile(V: Iterable<Numeric | nullish>) {
+function rankQuantile(V: Iterable<number | nullish>) {
   const n = count(V) - 1;
   return rank(V).map(r => r / n);
 }
