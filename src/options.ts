@@ -5,7 +5,6 @@ import type {
   UserOption,
   ConstantOrFieldOption,
   Column,
-  ColumnGetter,
   MarkOptionsDefined,
   FieldOptionsKey,
   MarkOptions,
@@ -230,7 +229,7 @@ export function labelof(value: any, defaultValue?: string) {
 // a column that’s the average of the two, and which inherits the column label
 // (if any). Both input columns are assumed to be quantitative. If either column
 // is temporal, the returned column is also temporal.
-export function mid(x1: ColumnGetter, x2: ColumnGetter) {
+export function mid(x1: Column[0], x2: Column[0]) {
   return {
     transform() {
       const X1 = x1.transform(); // there was a type error here!!

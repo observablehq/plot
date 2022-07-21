@@ -39,9 +39,9 @@ export type InsetOption = number | undefined;
  * Plot.column()
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
  */
-export type Column = [ ColumnGetter, ColumnSetter ];
-export type ColumnGetter = {transform: () => any[]; label?: string}
-export type ColumnSetter = (v: Array<any>) => Array<any>;
+export type Column = [column, setColumn];
+export type column = {transform: () => any[]; label?: string}
+export type setColumn = (v: Array<any>) => Array<any>;
  
 
 /**
