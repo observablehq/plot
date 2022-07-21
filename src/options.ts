@@ -388,7 +388,7 @@ export function inherit(options: Record<string, any> = {}, ...rest : Array<Recor
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function Named(things) {
+export function Named(things: Iterable<{name: any}>): Record<string, any> {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(Array.from(things, thing => {
@@ -402,6 +402,6 @@ export function Named(things) {
   }));
 }
 
-export function maybeNamed(things) {
+export function maybeNamed(things: any) {
   return isIterable(things) ? Named(things) : things;
 }
