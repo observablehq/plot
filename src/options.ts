@@ -2,7 +2,6 @@
 import type {
   PXX,
   DataSource,
-  DataSourceOptional,
   UserOption,
   ConstantOrFieldOption,
   Column,
@@ -28,13 +27,16 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 // This allows transforms to behave equivalently to channels.
-export function valueof(data: DataSource, value: ConstantOrFieldOption, arrayType?: ArrayType) {
-  const type = typeof value;
-  return type === "string" ? map(data, field(value as string), arrayType)
-  : type === "function" ? map(data, value as IAccessor, arrayType)
-  : type === "number" || value instanceof Date || type === "boolean" ? map(data, constant(value), arrayType)
-    : value && typeof (value as ITransform).transform === "function" ? arrayify((value as ITransform).transform(data), arrayType)
-    : arrayify(value as DataSource, arrayType); // preserve undefined type
+/**
+ * @link https://github.com/observablehq/plot/blob/main/README.md#plotvalueofdata-value-type 
+ */
+export function valueof(data: DataSource | nullish, value: ConstantOrFieldOption, arrayType?: ArrayType) {
+  return data == null ? data
+  : typeof value === "string" ? map(data, field(value as string), arrayType)
+  : typeof value === "function" ? map(data, value as IAccessor, arrayType)
+  : typeof value === "number" || value instanceof Date || typeof value === "boolean" ? map(data, constant(value), arrayType)
+  : value && typeof (value as ITransform).transform === "function" ? arrayify((value as ITransform).transform(data), arrayType)
+  : arrayify(value as ConstantOrFieldOption & Iterable<any>, arrayType); // preserve undefined type
 }
 
 export const field = (name: string) => (d: any) => d[name];
@@ -94,7 +96,7 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // type is provided (e.g., Array), then the returned array will strictly be of
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
-export function arrayify(data: DataSourceOptional, type?: ArrayType) {
+export function arrayify(data: DataSource | nullish, type?: ArrayType) {
   return data == null ? data : (type === undefined
     ? (data instanceof Array || data instanceof TypedArray) ? data as any[] : Array.from(data)
     : (data instanceof type ? data : (type as ArrayConstructor).from(data)));

@@ -54,8 +54,7 @@ export type InsetOption = number | undefined;
  */
 
 export type nullish = null | undefined;
-export type DataSource = Iterable<unknown> | ArrayLike<unknown>;
-export type DataSourceOptional = DataSource | nullish;
+export type DataSource = Iterable<any> | ArrayLike<any>;
 export type UserOption = unknown; // TODO: remove this type by checking which options are allowed in each case
 export type booleanOption = boolean | nullish;
 export type numberOption = number | nullish;
@@ -63,11 +62,12 @@ export type stringOption = number | any[] | string | nullish;
 export type TextChannel = string[];
 export type NumberChannel = number[] | Float32Array | Float64Array;
 export type Channel = TextChannel | NumberChannel | any[];
-export type ConstantOrFieldOption = number | string | Channel | Date | ITransform | IAccessor | nullish;
+export type ConstantOrFieldOption = string | IAccessor | number | Channel | Date | ITransform | nullish;
 export type Comparator = (a: any, b: any) => number;
 
 /**
  * Definition for both transform and initializer functions.
+ * TODO: clarify the difference (when facets are returned or not, in the case of an initializer)
  */
 export type TransformFunction = (this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales ?: any, dimensions?: IDimensions) => {data?: any, facets?: IndexArray[], channels?: any};
 
@@ -106,9 +106,7 @@ export type MarkOptions = MarkOptionsDefined | undefined;
 export type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
 export type IAccessor = (d: any, i: number, data?: ArrayLike<any>) => any;
 export type booleanish = boolean | undefined;
-export interface ITransform {
-  transform: (data: DataSource) => DataSource;
-}
+export type ITransform = {transform: (data: DataSource) => DataSource};
 
 /**
  * The document context, used to create new DOM elements.
