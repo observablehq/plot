@@ -1,8 +1,14 @@
+import type {IndexArray, Channel, MarkOptions, MarkOptionsDefined, FieldOptionsKey, FieldOptions, ConstantOrFieldOption, nullish} from "../common.js";
+
 import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function select(selector, options = {}) {
+export type Selector = string | "first" | "last" | ComputedSelector;
+export type MultiSelector = Record<string, Selector>;
+type ComputedSelector = (((I: IndexArray, X: Channel) => IterableIterator<number> | Generator<number | undefined>) | ((I: IndexArray, X?: Channel) => IterableIterator<number> | Generator<number | undefined>));
+
+export function select(selector: Selector | MultiSelector, options: MarkOptions = {}): MarkOptions {
   // If specified selector is a string or function, it’s a selector without an
   // input channel such as first or last.
   if (typeof selector === "string") {
@@ -10,6 +16,7 @@ export function select(selector, options = {}) {
       case "first": return selectFirst(options);
       case "last": return selectLast(options);
     }
+    throw new Error(`invalid selector: ${selector}`);
   }
   if (typeof selector === "function") {
     return selectChannel(null, selector, options);
@@ -20,13 +27,13 @@ export function select(selector, options = {}) {
   let key, value;
   for (key in selector) {
     if (value !== undefined) throw new Error("ambiguous selector; multiple inputs");
-    value = maybeSelector(selector[key]);
+    value = maybeSelector(selector[key as string]);
   }
   if (value === undefined) throw new Error(`invalid selector: ${selector}`);
-  return selectChannel(key, value, options);
+  return selectChannel(key as FieldOptionsKey, value, options);
 }
 
-function maybeSelector(selector) {
+function maybeSelector(selector: Selector): ComputedSelector {
   if (typeof selector === "function") return selector;
   switch (`${selector}`.toLowerCase()) {
     case "min": return selectorMin;
@@ -35,61 +42,64 @@ function maybeSelector(selector) {
   throw new Error(`unknown selector: ${selector}`);
 }
 
-export function selectFirst(options) {
+export function selectFirst(options: MarkOptionsDefined) {
   return selectChannel(null, selectorFirst, options);
 }
 
-export function selectLast(options) {
+export function selectLast(options: MarkOptionsDefined) {
   return selectChannel(null, selectorLast, options);
 }
 
-export function selectMinX(options) {
+export function selectMinX(options: MarkOptionsDefined) {
   return selectChannel("x", selectorMin, options);
 }
 
-export function selectMinY(options) {
+export function selectMinY(options: MarkOptionsDefined) {
   return selectChannel("y", selectorMin, options);
 }
 
-export function selectMaxX(options) {
+export function selectMaxX(options: MarkOptionsDefined) {
   return selectChannel("x", selectorMax, options);
 }
 
-export function selectMaxY(options) {
+export function selectMaxY(options: MarkOptionsDefined) {
   return selectChannel("y", selectorMax, options);
 }
 
-function* selectorFirst(I) {
+function* selectorFirst(I: IndexArray) {
   yield I[0];
 }
 
-function* selectorLast(I) {
+function* selectorLast(I: IndexArray) {
   yield I[I.length - 1];
 }
 
-function* selectorMin(I, X) {
+function* selectorMin(I: IndexArray, X: Channel) {
   yield least(I, i => X[i]);
 }
 
-function* selectorMax(I, X) {
+function* selectorMax(I: IndexArray, X: Channel) {
   yield greatest(I, i => X[i]);
 }
 
-function selectChannel(v, selector, options) {
-  if (v != null) {
-    if (options[v] == null) throw new Error(`missing channel: ${v}`);
-    v = options[v];
+function selectChannel(v1: FieldOptionsKey | nullish, selector: ComputedSelector, options: FieldOptions) {
+  let v: ConstantOrFieldOption;
+  if (v1 != null) {
+    if (options[v1] == null) throw new Error(`missing channel: ${v}`);
+    v = options[v1];
+  } else {
+    v = v1;
   }
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
     const Z = valueof(data, z);
     const V = valueof(data, v);
     const selectFacets = [];
-    for (const facet of facets) {
+    for (const facet of facets as IndexArray[]) {
       const selectFacet = [];
       for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
-        for (const i of selector(I, V)) {
-          selectFacet.push(i);
+        for (const i of selector(I, V as Channel)) {
+          if (i !== undefined) selectFacet.push(i);
         }
       }
       selectFacets.push(selectFacet);

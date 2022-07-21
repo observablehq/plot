@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, ColumnSetter, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, OutputOptions, ColumnGetter} from "../common.js";
+import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, OutputOptions, Column} from "../common.js";
 
 type ComputedReducer = {
   name?: FieldOptionsKey,
-  output?: ColumnGetter,
+  output?: Column[0],
   initialize: (data: any) => void,
   scope: (scope?: any, I?: IndexArray) => void,
   reduce: (I: IndexArray, data?: any) => any,
   label?: string
 };
-
 
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined} from "../defined.js";
@@ -97,11 +96,11 @@ function groupn(
       const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData: number[] = [];
-      const GX = X && (setGX as ColumnSetter)([]);
-      const GY = Y && (setGY as ColumnSetter)([]);
-      const GZ = Z && (setGZ as ColumnSetter)([]);
-      const GF = F && (setGF as ColumnSetter)([]);
-      const GS = S && (setGS as ColumnSetter)([]);
+      const GX = X && (setGX as Column[1])([]);
+      const GY = Y && (setGY as Column[1])([]);
+      const GZ = Z && (setGZ as Column[1])([]);
+      const GF = F && (setGF as Column[1])([]);
+      const GS = S && (setGS as Column[1])([]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -168,7 +167,7 @@ export function maybeOutput(name: FieldOptionsKey, reduce: any, inputs: any) {
     output,
     initialize(data: any) {
       evaluator.initialize(data);
-      O = (setOutput as ColumnSetter)([]);
+      O = (setOutput as Column[1])([]);
     },
     scope(scope?: "data" | "facet", I?: IndexArray) {
       evaluator.scope(scope, I);
@@ -248,7 +247,7 @@ export function maybeSubgroup(outputs: ComputedReducer[], inputs: {z?: any, stro
   }
 }
 
-export function maybeSort(facets: IndexArray[], sort: ComputedReducer & {output: ColumnGetter} | nullish, reverse: booleanOption) {
+export function maybeSort(facets: IndexArray[], sort: ComputedReducer & {output: Column[0]} | nullish, reverse: booleanOption) {
   if (sort) {
     const S = sort.output.transform();
     const compare = (i: number, j: number) => ascendingDefined(S[i], S[j]);
