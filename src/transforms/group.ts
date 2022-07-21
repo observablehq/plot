@@ -1,5 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, LazyColumnSetter, FacetArray, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, Reducer, OutputOptions} from "../common.js";
+import type {MarkOptions, MarkOptionsDefined, ConstantOrFieldOption, LazyColumnSetter, PXX, FieldOptionsKey, nullish, IndexArray, booleanOption, Reduce1, AggregationMethod, OutputOptions, LazyColumnOptions} from "../common.js";
+
+type ComputedReducer = {
+  name?: FieldOptionsKey,
+  output?: LazyColumnOptions,
+  initialize: (data: any) => void,
+  scope: (scope?: any, I?: IndexArray) => void,
+  reduce: (I: IndexArray, data?: any) => any,
+  label?: string
+};
+
 
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined} from "../defined.js";
@@ -96,7 +106,7 @@ function groupn(
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
       if (filter) filter.initialize(data);
-      for (const facet of facets as FacetArray) {
+      for (const facet of facets as IndexArray[]) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
@@ -128,7 +138,7 @@ function groupn(
   };
 }
 
-export function hasOutput(outputs: Reducer[], ...names: string[]) {
+export function hasOutput(outputs: ComputedReducer[], ...names: string[]) {
   for (const {name} of outputs) {
     if (names.includes(name as string)) {
       return true;
@@ -137,14 +147,14 @@ export function hasOutput(outputs: Reducer[], ...names: string[]) {
   return false;
 }
 
-export function maybeOutputs(outputs: OutputOptions, inputs: MarkOptionsDefined): Reducer[] {
+export function maybeOutputs(outputs: OutputOptions, inputs: MarkOptionsDefined): ComputedReducer[] {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries.map(([name, reduce]: [string, AggregationMethod | undefined]) => {
     return reduce == null
-      ? {name, initialize() {}, scope() {}, reduce() {}} as Reducer // type name to a FieldOptionsKey
+      ? {name, initialize() {}, scope() {}, reduce() {}} as ComputedReducer // type name to a FieldOptionsKey
       : maybeOutput(name as FieldOptionsKey, reduce, inputs);
   });
 }
@@ -169,7 +179,7 @@ export function maybeOutput(name: FieldOptionsKey, reduce: any, inputs: any) {
   };
 }
 
-export function maybeEvaluator(name: string, reduce: any, inputs: any): Reducer {
+export function maybeEvaluator(name: string, reduce: any, inputs: any): ComputedReducer {
   const input = maybeInput(name as FieldOptionsKey, inputs);
   const reducer = maybeReduce(reduce, input);
   let V: ArrayLike<any> | nullish, context: any;
@@ -229,7 +239,7 @@ export function maybeReduce(reduce: AggregationMethod, value: any): Reduce1 {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-export function maybeSubgroup(outputs: Reducer[], inputs: {z?: any, stroke?: any, fill?: any}) {
+export function maybeSubgroup(outputs: ComputedReducer[], inputs: {z?: any, stroke?: any, fill?: any}) {
   for (const name in inputs) {
     const value = inputs[name as "z" | "stroke" | "fill"];
     if (value !== undefined && !outputs.some(o => o.name === name)) {
@@ -238,7 +248,7 @@ export function maybeSubgroup(outputs: Reducer[], inputs: {z?: any, stroke?: any
   }
 }
 
-export function maybeSort(facets: FacetArray, sort: TodoChannel, reverse: booleanOption) {
+export function maybeSort(facets: IndexArray[], sort: ComputedReducer & {output: LazyColumnOptions} | nullish, reverse: booleanOption) {
   if (sort) {
     const S = sort.output.transform();
     const compare = (i: number, j: number) => ascendingDefined(S[i], S[j]);

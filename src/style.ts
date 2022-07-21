@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {IMark, IDimensions, Channel, ChannelObject, IScale, ISelection, IStyleObject, booleanOption, numberOption, stringOption, NumberChannel, TextChannel, UserOption, nullish} from "./common.js";
+import type {IMark, IDimensions, IndexArray, Channel, ChannelObject, IScale, ISelection, IStyleObject, booleanOption, numberOption, stringOption, NumberChannel, TextChannel, UserOption, nullish} from "./common.js";
 
 import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
@@ -234,7 +234,7 @@ function groupAesthetics({
   return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined) as (TextChannel | NumberChannel)[];
 }
 
-export function groupZ(I: number[], Z: Channel, z: UserOption) {
+export function groupZ(I: IndexArray, Z: Channel, z: UserOption) {
   const G = group(I, i => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {
     warn(`Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`);
@@ -242,7 +242,7 @@ export function groupZ(I: number[], Z: Channel, z: UserOption) {
   return G.values();
 }
 
-export function* groupIndex(I: number[], position: NumberChannel[], {z}: IMark, channels: ChannelObject) {
+export function* groupIndex(I: IndexArray, position: NumberChannel[], {z}: IMark, channels: ChannelObject) {
   const {z: Z} = channels; // group channel
   const A = groupAesthetics(channels); // aesthetic channels
   const C = [...position, ...A]; // all channels

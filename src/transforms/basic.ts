@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
-import type {IDimensions, IMark, Comparator, Channel, ConstantOrFieldOption, MarkOptions, MaybeFacetArray, TransformFunction, nullish} from "../common.js";
+import type {IDimensions, IMark, Comparator, Channel, ConstantOrFieldOption, MarkOptions, MaybeFacetArray, TransformFunction, nullish, IndexArray} from "../common.js";
 
 import {randomLcg} from "d3";
 import {ascendingDefined, descendingDefined} from "../defined.js";
@@ -131,6 +131,6 @@ function sortValue(value: any): TransformFunction {
       if (!V) return {}; // ignore missing channel
     }
     const compareValue = (i: number, j: number) => order((V as Channel)[i], (V as Channel)[j]);
-    return {data, facets: facets && facets.map((I: number[]) => I.slice().sort(compareValue))};
+    return {data, facets: facets && facets.map((I: IndexArray) => I.slice().sort(compareValue))};
   };
 }

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {ISelection, IMark, IContext, MarkerOption, MarkerFunction, MaybeMarkerFunction, nullish} from "../common.js";
+import {ISelection, IMark, IContext, MarkerOption, MarkerFunction, MaybeMarkerFunction, nullish, IndexArray} from "../common.js";
 
 import {create} from "../context.js";
 
@@ -90,7 +90,7 @@ export function applyMarkers(path: ISelection, mark: IMark, {stroke: S}: {stroke
 }
 
 export function applyGroupedMarkers(path: ISelection, mark: IMark, {stroke: S}: {stroke?: string[]} = {}) {
-  return applyMarkersColor(path, mark, S && (([i]: number[]) => S[i]));
+  return applyMarkersColor(path, mark, S && (([i]: IndexArray) => S[i]));
 }
 
 function applyMarkersColor(

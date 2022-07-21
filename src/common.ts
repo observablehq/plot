@@ -1,5 +1,45 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+/*
+ * API
+ */
+
+/**
+ * Aggregation options for the group transform:
+ * * a string describing an aggregation (first, min, sum, count…)
+ * * a function - passed the array of values for each group
+ * * an object with a reduce method, an optionally a scope
+ * @link https://github.com/observablehq/plot/blob/main/README.md#group
+ */
+export type AggregationMethod = "first" | "last" | "count" | "sum" | "proportion" | "proportion-facet" | "min" | "min-index" | "max" | "max-index" | "mean" | "median" | "mode" | PXX | "deviation" | "variance" | ReduceFunction | Reduce1;
+export type Reduce1 = {
+  label?: string;
+  reduce: (I: IndexArray, X: any, context?: any, extent?: any) => any;
+  scope?: "data" | "facet"
+}; // TODO: rename to ReduceMethod + ReduceObject?
+type ReduceFunction = ((data?: ArrayLike<any>, extent?: any) => any);
+
+/**
+ * Facets expressed as an array of arrays of indices
+ */
+export type MaybeFacetArray = IndexArray[] | undefined;
+
+/**
+ * Array of indices into the data
+ */
+ export type IndexArray = number[] | Uint32Array;
+
+
+ 
+/*
+ * COMMON
+ */
+
+
+/*
+ * UNSORTED
+ */
+
 export type nullish = null | undefined;
 export type DataSource = Iterable<unknown> | ArrayLike<unknown>;
 export type DataSourceOptional = DataSource | nullish;
@@ -12,36 +52,12 @@ export type NumberChannel = number[] | Float32Array | Float64Array;
 export type Channel = TextChannel | NumberChannel | any[];
 export type ConstantOrFieldOption = number | string | Channel | Date | ITransform | IAccessor | nullish;
 export type Comparator = (a: any, b: any) => number;
-export type IndexArray = number[] | Uint32Array;
 
 /**
  * Definition for both transform and initializer functions.
  */
-export type FacetArray = number[][];
-export type MaybeFacetArray = FacetArray | undefined;
-export type TransformFunction = (this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales ?: any, dimensions?: IDimensions) => {data?: any, facets?: number[][], channels?: any};
+export type TransformFunction = (this: IMark, data: any, facets: MaybeFacetArray, channels?: any, scales ?: any, dimensions?: IDimensions) => {data?: any, facets?: IndexArray[], channels?: any};
 
-/**
- * Aggregation options for the group transform
- * a string
- * * a function - passed the array of values for each group
- * * an object with a reduce method, an optionally a scope
- */
- export type Reduce1 = {
-  label?: string;
-  reduce: (I: IndexArray, X: any, context?: any, extent?: any) => any;
-  scope?: "data" | "facet"
-};
-export type AggregationMethod = Reduce1 | "first" | "last" | "count" | "sum" | "proportion" | "proportion-facet" | "min" | "min-index" | "max" | "max-index" | "mean" | "median" | "mode" | "deviation" | "variance" | ((data?: ArrayLike<any>, extent?: any) => any) | PXX;
-
-export type Reducer = {
-  name?: FieldOptionsKey,
-  output?: (() => void) | LazyColumnOptions,
-  initialize: (data: any) => void,
-  scope: (scope?: any, I?: IndexArray) => void,
-  reduce: (I: IndexArray, data?: any) => any,
-  label?: string
-};
 
 export type OutputOptions = Partial<{[P in FieldOptionsKey]: AggregationMethod}> & {
   data?: any;
@@ -55,7 +71,7 @@ export type OutputOptions = Partial<{[P in FieldOptionsKey]: AggregationMethod}>
 export interface LazyColumnOptions {
   transform: () => any[];
   label?: string
-}
+} // TODO: API, Rename to ColumnOptions
 export type LazyColumnSetter = (v: Array<any>) => Array<any>;
 export type LazyColumn = [ LazyColumnOptions, LazyColumnSetter? ];
  
