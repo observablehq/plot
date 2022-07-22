@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   "plugins": ["@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "env": {
@@ -12,8 +12,6 @@
     "no-constant-condition": 0,
     "no-sparse-arrays": 0,
     "no-unexpected-multiline": 0,
-    "comma-dangle": ["error", "never"],
-    "semi": [2, "always"],
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-this-alias": 0,
     "@typescript-eslint/no-unused-vars": ["error", {"ignoreRestSiblings": true}]

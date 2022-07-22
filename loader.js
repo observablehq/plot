@@ -1,9 +1,4 @@
-import {
-  transform,
-  applySourceMap,
-  installSourceMapSupport,
-  resolveTsPath
-} from "@esbuild-kit/core-utils";
+import {transform, applySourceMap, installSourceMapSupport, resolveTsPath} from "@esbuild-kit/core-utils";
 import {getTsconfig} from "get-tsconfig";
 
 const sourcemaps = installSourceMapSupport();
@@ -23,9 +18,7 @@ export async function resolve(specifier, context, defaultResolve) {
     }
   }
   const resolved = await defaultResolve(specifier, context, defaultResolve);
-  return resolved.format === undefined
-    ? {...resolved, format: "module"}
-    : resolved;
+  return resolved.format === undefined ? {...resolved, format: "module"} : resolved;
 }
 
 export async function load(url, context, defaultLoad) {
