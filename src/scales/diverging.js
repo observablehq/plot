@@ -12,19 +12,29 @@ import {quantitativeScheme} from "./schemes.js";
 import {registry, color} from "./index.js";
 import {inferDomain, Interpolator, flip, interpolatePiecewise} from "./quantitative.js";
 
-function ScaleD(key, scale, transform, channels, {
-  type,
-  nice,
-  clamp,
-  domain = inferDomain(channels),
-  unknown,
-  pivot = 0,
-  scheme,
-  range,
-  symmetric = true,
-  interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : "rdbu")) : interpolateNumber,
-  reverse
-}) {
+function ScaleD(
+  key,
+  scale,
+  transform,
+  channels,
+  {
+    type,
+    nice,
+    clamp,
+    domain = inferDomain(channels),
+    unknown,
+    pivot = 0,
+    scheme,
+    range,
+    symmetric = true,
+    interpolate = registry.get(key) === color
+      ? scheme == null && range !== undefined
+        ? interpolateRgb
+        : quantitativeScheme(scheme !== undefined ? scheme : "rdbu")
+      : interpolateNumber,
+    reverse
+  }
+) {
   pivot = +pivot;
   let [min, max] = domain;
   min = Math.min(min, pivot);
@@ -41,9 +51,8 @@ function ScaleD(key, scale, transform, channels, {
 
   // If an explicit range is specified, promote it to a piecewise interpolator.
   if (range !== undefined) {
-    interpolate = interpolate.length === 1
-      ? interpolatePiecewise(interpolate)(...range)
-      : piecewise(interpolate, range);
+    interpolate =
+      interpolate.length === 1 ? interpolatePiecewise(interpolate)(...range) : piecewise(interpolate, range);
   }
 
   // Reverse before normalization.
@@ -73,15 +82,28 @@ export function ScaleDivergingSqrt(key, channels, options) {
 }
 
 export function ScaleDivergingPow(key, channels, {exponent = 1, ...options}) {
-  return ScaleD(key, scaleDivergingPow().exponent(exponent = +exponent), transformPow(exponent), channels, {...options, type: "diverging-pow"});
+  return ScaleD(key, scaleDivergingPow().exponent((exponent = +exponent)), transformPow(exponent), channels, {
+    ...options,
+    type: "diverging-pow"
+  });
 }
 
-export function ScaleDivergingLog(key, channels, {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}) {
-  return ScaleD(key, scaleDivergingLog().base(base = +base), transformLog, channels, {domain, pivot, ...options});
+export function ScaleDivergingLog(
+  key,
+  channels,
+  {base = 10, pivot = 1, domain = inferDomain(channels, pivot < 0 ? negative : positive), ...options}
+) {
+  return ScaleD(key, scaleDivergingLog().base((base = +base)), transformLog, channels, {domain, pivot, ...options});
 }
 
 export function ScaleDivergingSymlog(key, channels, {constant = 1, ...options}) {
-  return ScaleD(key, scaleDivergingSymlog().constant(constant = +constant), transformSymlog(constant), channels, options);
+  return ScaleD(
+    key,
+    scaleDivergingSymlog().constant((constant = +constant)),
+    transformSymlog(constant),
+    channels,
+    options
+  );
 }
 
 const transformIdentity = {
@@ -108,14 +130,16 @@ const transformSqrt = {
 };
 
 function transformPow(exponent) {
-  return exponent === 0.5 ? transformSqrt : {
-    apply(x) {
-      return Math.sign(x) * Math.pow(Math.abs(x), exponent);
-    },
-    invert(x) {
-      return Math.sign(x) * Math.pow(Math.abs(x), 1 / exponent);
-    }
-  };
+  return exponent === 0.5
+    ? transformSqrt
+    : {
+        apply(x) {
+          return Math.sign(x) * Math.pow(Math.abs(x), exponent);
+        },
+        invert(x) {
+          return Math.sign(x) * Math.pow(Math.abs(x), 1 / exponent);
+        }
+      };
 }
 
 function transformSymlog(constant) {

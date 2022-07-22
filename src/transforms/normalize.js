@@ -18,15 +18,24 @@ export function normalize(basis) {
   if (typeof basis === "function") return normalizeBasis((I, S) => basis(take(S, I)));
   if (/^p\d{2}$/i.test(basis)) return normalizeAccessor(percentile(basis));
   switch (`${basis}`.toLowerCase()) {
-    case "deviation": return normalizeDeviation;
-    case "first": return normalizeFirst;
-    case "last": return normalizeLast;
-    case "max": return normalizeMax;
-    case "mean": return normalizeMean;
-    case "median": return normalizeMedian;
-    case "min": return normalizeMin;
-    case "sum": return normalizeSum;
-    case "extent": return normalizeExtent;
+    case "deviation":
+      return normalizeDeviation;
+    case "first":
+      return normalizeFirst;
+    case "last":
+      return normalizeLast;
+    case "max":
+      return normalizeMax;
+    case "mean":
+      return normalizeMean;
+    case "median":
+      return normalizeMedian;
+    case "min":
+      return normalizeMin;
+    case "sum":
+      return normalizeSum;
+    case "extent":
+      return normalizeExtent;
   }
   throw new Error(`invalid basis: ${basis}`);
 }
@@ -43,12 +52,13 @@ function normalizeBasis(basis) {
 }
 
 function normalizeAccessor(f) {
-  return normalizeBasis((I, S) => f(I, i => S[i]));
+  return normalizeBasis((I, S) => f(I, (i) => S[i]));
 }
 
 const normalizeExtent = {
   map(I, S, T) {
-    const [s1, s2] = extent(I, i => S[i]), d = s2 - s1;
+    const [s1, s2] = extent(I, (i) => S[i]),
+      d = s2 - s1;
     for (const i of I) {
       T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
     }
@@ -71,8 +81,8 @@ const normalizeLast = normalizeBasis((I, S) => {
 
 const normalizeDeviation = {
   map(I, S, T) {
-    const m = mean(I, i => S[i]);
-    const d = deviation(I, i => S[i]);
+    const m = mean(I, (i) => S[i]);
+    const d = deviation(I, (i) => S[i]);
     for (const i of I) {
       T[i] = S[i] === null ? NaN : d ? (S[i] - m) / d : 0;
     }

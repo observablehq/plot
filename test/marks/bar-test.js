@@ -7,7 +7,10 @@ it("barX() has the expected defaults", () => {
   // assert.strictEqual(bar.transform, undefined);
   assert.deepStrictEqual(Object.keys(bar.channels), ["x1", "x2", "y"]);
   // assert.deepStrictEqual(Object.values(bar.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(bar.channels).map(c => c.scale), ["x", "x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(bar.channels).map((c) => c.scale),
+    ["x", "x", "y"]
+  );
   assert.strictEqual(bar.fill, undefined);
   assert.strictEqual(bar.fillOpacity, undefined);
   assert.strictEqual(bar.stroke, undefined);
@@ -29,7 +32,10 @@ it("barX() has the expected defaults", () => {
 it("barX(data, {y}) uses a band scale", () => {
   const bar = Plot.barX(undefined, {y: "x"});
   assert.deepStrictEqual(Object.keys(bar.channels), ["x1", "x2", "y"]);
-  assert.deepStrictEqual(Object.values(bar.channels).map(c => c.scale), ["x", "x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(bar.channels).map((c) => c.scale),
+    ["x", "x", "y"]
+  );
   assert.strictEqual(bar.channels.y.type, "band");
   assert.strictEqual(bar.channels.y.value.label, "x");
 });
@@ -101,7 +107,10 @@ it("barY() has the expected defaults", () => {
   // assert.strictEqual(bar.transform, undefined);
   assert.deepStrictEqual(Object.keys(bar.channels), ["y1", "y2", "x"]);
   // assert.deepStrictEqual(Object.values(bar.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[0, 0, 0], [1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(bar.channels).map(c => c.scale), ["y", "y", "x"]);
+  assert.deepStrictEqual(
+    Object.values(bar.channels).map((c) => c.scale),
+    ["y", "y", "x"]
+  );
   assert.strictEqual(bar.fill, undefined);
   assert.strictEqual(bar.fillOpacity, undefined);
   assert.strictEqual(bar.stroke, undefined);
@@ -123,7 +132,10 @@ it("barY() has the expected defaults", () => {
 it("barY(data, {x}) uses a band scale", () => {
   const bar = Plot.barY(undefined, {x: "y"});
   assert.deepStrictEqual(Object.keys(bar.channels), ["y1", "y2", "x"]);
-  assert.deepStrictEqual(Object.values(bar.channels).map(c => c.scale), ["y", "y", "x"]);
+  assert.deepStrictEqual(
+    Object.values(bar.channels).map((c) => c.scale),
+    ["y", "y", "x"]
+  );
   assert.strictEqual(bar.channels.x.type, "band");
   assert.strictEqual(bar.channels.x.value.label, "y");
 });

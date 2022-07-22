@@ -2,7 +2,13 @@ import {create} from "../context.js";
 import {radians} from "../math.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyFrameAnchor, applyIndirectStyles, applyTransform} from "../style.js";
+import {
+  applyChannelStyles,
+  applyDirectStyles,
+  applyFrameAnchor,
+  applyIndirectStyles,
+  applyTransform
+} from "../style.js";
 
 const defaults = {
   ariaLabel: "vector",
@@ -37,33 +43,39 @@ export class Vector extends Mark {
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {length, rotate, anchor} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const fl = L ? i => L[i] : () => length;
-    const fr = R ? i => R[i] : () => rotate;
-    const fx = X ? i => X[i] : () => cx;
-    const fy = Y ? i => Y[i] : () => cy;
+    const fl = L ? (i) => L[i] : () => length;
+    const fr = R ? (i) => R[i] : () => rotate;
+    const fx = X ? (i) => X[i] : () => cx;
+    const fy = Y ? (i) => Y[i] : () => cy;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g", context)
-        .attr("fill", "none")
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(g => g.selectAll()
+      .attr("fill", "none")
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("path")
-            .call(applyDirectStyles, this)
-            .attr("d", i => {
-              const l = fl(i), a = fr(i) * radians;
-              const x = Math.sin(a) * l, y = -Math.cos(a) * l;
-              const d = (x + y) / 5, e = (x - y) / 5;
-              return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
-            })
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("d", (i) => {
+            const l = fl(i),
+              a = fr(i) * radians;
+            const x = Math.sin(a) * l,
+              y = -Math.cos(a) * l;
+            const d = (x + y) / 5,
+              e = (x - y) / 5;
+            return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
+          })
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
 }
 
 export function vector(data, {x, y, ...options} = {}) {
-  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Vector(data, {...options, x, y});
 }
 

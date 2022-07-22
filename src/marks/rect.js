@@ -2,7 +2,14 @@ import {create} from "../context.js";
 import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
+import {
+  applyDirectStyles,
+  applyIndirectStyles,
+  applyTransform,
+  impliedString,
+  applyAttr,
+  applyChannelStyles
+} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -50,20 +57,33 @@ export class Rect extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, {x: X1 && X2 ? x : null, y: Y1 && Y2 ? y : null}, 0, 0)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, {x: X1 && X2 ? x : null, y: Y1 && Y2 ? y : null}, 0, 0)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("rect")
-            .call(applyDirectStyles, this)
-            .attr("x", X1 && X2 && !isCollapsed(x) ? i => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
-            .attr("y", Y1 && Y2 && !isCollapsed(y) ? i => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
-            .attr("width", X1 && X2 && !isCollapsed(x) ? i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight) : width - marginRight - marginLeft - insetRight - insetLeft)
-            .attr("height", Y1 && Y2 && !isCollapsed(y) ? i => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom) : height - marginTop - marginBottom - insetTop - insetBottom)
-            .call(applyAttr, "rx", rx)
-            .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("x", X1 && X2 && !isCollapsed(x) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
+          .attr("y", Y1 && Y2 && !isCollapsed(y) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+          .attr(
+            "width",
+            X1 && X2 && !isCollapsed(x)
+              ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
+              : width - marginRight - marginLeft - insetRight - insetLeft
+          )
+          .attr(
+            "height",
+            Y1 && Y2 && !isCollapsed(y)
+              ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
+              : height - marginTop - marginBottom - insetTop - insetBottom
+          )
+          .call(applyAttr, "rx", rx)
+          .call(applyAttr, "ry", ry)
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
 }

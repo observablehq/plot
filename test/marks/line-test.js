@@ -7,8 +7,25 @@ it("line() has the expected defaults", () => {
   assert.strictEqual(line.data, undefined);
   assert.strictEqual(line.transform, undefined);
   assert.deepStrictEqual(Object.keys(line.channels), ["x", "y"]);
-  assert.deepStrictEqual(Object.values(line.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  assert.deepStrictEqual(Object.values(line.channels).map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(line.channels).map((c) =>
+      Plot.valueof(
+        [
+          [1, 2],
+          [3, 4]
+        ],
+        c.value
+      )
+    ),
+    [
+      [1, 3],
+      [2, 4]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(line.channels).map((c) => c.scale),
+    ["x", "y"]
+  );
   assert.strictEqual(line.curve, curveLinear);
   assert.strictEqual(line.fill, "none");
   assert.strictEqual(line.fillOpacity, undefined);

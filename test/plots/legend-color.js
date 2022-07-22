@@ -45,15 +45,7 @@ export function colorLegendOrdinalRamp() {
 export function colorLegendOrdinalRampTickSize() {
   return Plot.legend({
     color: {
-      domain: [
-        "<20",
-        "20-29",
-        "30-39",
-        "40-49",
-        "50-59",
-        "60-69",
-        "≥70"
-      ],
+      domain: ["<20", "20-29", "30-39", "40-49", "50-59", "60-69", "≥70"],
       scheme: "Spectral",
       label: "Age (years)"
     },
@@ -83,7 +75,7 @@ export function colorLegendOrdinalTickFormat() {
 }
 
 export function colorLegendOrdinalTickFormatFunction() {
-  return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: d => d.toFixed(1)}});
+  return Plot.legend({color: {type: "ordinal", domain: [1, 2, 3, 4, 5], tickFormat: (d) => d.toFixed(1)}});
 }
 
 export function colorLegendQuantitative() {
@@ -184,7 +176,7 @@ export function colorLegendQuantile() {
     color: {
       type: "quantile",
       scheme: "inferno",
-      domain: d3.range(100).map(i => i ** 2),
+      domain: d3.range(100).map((i) => i ** 2),
       n: 7,
       label: "Inferno"
     },
@@ -201,9 +193,7 @@ export function colorLegendQuantileImplicit() {
       label: "Inferno",
       tickFormat: ",d"
     },
-    marks: [
-      Plot.dot(d3.range(100), {fill: i => i ** 2})
-    ]
+    marks: [Plot.dot(d3.range(100), {fill: (i) => i ** 2})]
   }).legend("color");
 }
 
@@ -213,7 +203,7 @@ export function colorLegendQuantileSwatches() {
     color: {
       type: "quantile",
       scheme: "inferno",
-      domain: d3.range(100).map(i => i ** 2),
+      domain: d3.range(100).map((i) => i ** 2),
       n: 7,
       label: "Inferno"
     },
@@ -279,7 +269,12 @@ export function colorLegendQuantizeReverse() {
 export function colorLegendImplicitLabel() {
   return Plot.plot({
     color: {scheme: "viridis"},
-    marks: [Plot.dot(d3.range(100).map(i => ({thing: i})), {fill: "thing"})]
+    marks: [
+      Plot.dot(
+        d3.range(100).map((i) => ({thing: i})),
+        {fill: "thing"}
+      )
+    ]
   }).legend("color");
 }
 
@@ -436,9 +431,7 @@ export function colorSchemesQuantitative() {
     "rainbow",
     "sinebow"
   ]) {
-    div.append(
-      Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10})
-    );
+    div.append(Plot.legend({color: {type: "linear", scheme}, label: scheme, ticks: 0, tickSize: 0, marginBottom: 10}));
   }
   return div;
 }

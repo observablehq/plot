@@ -46,7 +46,6 @@ export function styles(
     paintOrder: defaultPaintOrder
   }
 ) {
-
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill === null) {
     fill = null;
@@ -140,35 +139,71 @@ export function styles(
 
 // Applies the specified titles via selection.call.
 export function applyTitle(selection, L) {
-  if (L) selection.filter(i => nonempty(L[i])).append("title").call(applyText, L);
+  if (L)
+    selection
+      .filter((i) => nonempty(L[i]))
+      .append("title")
+      .call(applyText, L);
 }
 
 // Like applyTitle, but for grouped data (lines, areas).
 export function applyTitleGroup(selection, L) {
-  if (L) selection.filter(([i]) => nonempty(L[i])).append("title").call(applyTextGroup, L);
+  if (L)
+    selection
+      .filter(([i]) => nonempty(L[i]))
+      .append("title")
+      .call(applyTextGroup, L);
 }
 
 export function applyText(selection, T) {
-  if (T) selection.text(i => formatDefault(T[i]));
+  if (T) selection.text((i) => formatDefault(T[i]));
 }
 
 export function applyTextGroup(selection, T) {
   if (T) selection.text(([i]) => formatDefault(T[i]));
 }
 
-export function applyChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
-  if (AL) applyAttr(selection, "aria-label", i => AL[i]);
-  if (F) applyAttr(selection, "fill", i => F[i]);
-  if (FO) applyAttr(selection, "fill-opacity", i => FO[i]);
-  if (S) applyAttr(selection, "stroke", i => S[i]);
-  if (SO) applyAttr(selection, "stroke-opacity", i => SO[i]);
-  if (SW) applyAttr(selection, "stroke-width", i => SW[i]);
-  if (O) applyAttr(selection, "opacity", i => O[i]);
-  if (H) applyHref(selection, i => H[i], target);
+export function applyChannelStyles(
+  selection,
+  {target},
+  {
+    ariaLabel: AL,
+    title: T,
+    fill: F,
+    fillOpacity: FO,
+    stroke: S,
+    strokeOpacity: SO,
+    strokeWidth: SW,
+    opacity: O,
+    href: H
+  }
+) {
+  if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
+  if (F) applyAttr(selection, "fill", (i) => F[i]);
+  if (FO) applyAttr(selection, "fill-opacity", (i) => FO[i]);
+  if (S) applyAttr(selection, "stroke", (i) => S[i]);
+  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i]);
+  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
+  if (O) applyAttr(selection, "opacity", (i) => O[i]);
+  if (H) applyHref(selection, (i) => H[i], target);
   applyTitle(selection, T);
 }
 
-export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
+export function applyGroupedChannelStyles(
+  selection,
+  {target},
+  {
+    ariaLabel: AL,
+    title: T,
+    fill: F,
+    fillOpacity: FO,
+    stroke: S,
+    strokeOpacity: SO,
+    strokeWidth: SW,
+    opacity: O,
+    href: H
+  }
+) {
   if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i]);
   if (F) applyAttr(selection, "fill", ([i]) => F[i]);
   if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
@@ -180,14 +215,26 @@ export function applyGroupedChannelStyles(selection, {target}, {ariaLabel: AL, t
   applyTitleGroup(selection, T);
 }
 
-function groupAesthetics({ariaLabel: AL, title: T, fill: F, fillOpacity: FO, stroke: S, strokeOpacity: SO, strokeWidth: SW, opacity: O, href: H}) {
-  return [AL, T, F, FO, S, SO, SW, O, H].filter(c => c !== undefined);
+function groupAesthetics({
+  ariaLabel: AL,
+  title: T,
+  fill: F,
+  fillOpacity: FO,
+  stroke: S,
+  strokeOpacity: SO,
+  strokeWidth: SW,
+  opacity: O,
+  href: H
+}) {
+  return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
 }
 
 export function groupZ(I, Z, z) {
-  const G = group(I, i => Z[i]);
+  const G = group(I, (i) => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {
-    warn(`Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`);
+    warn(
+      `Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`
+    );
   }
   return G.values();
 }
@@ -202,7 +249,6 @@ export function* groupIndex(I, position, {z}, channels) {
     let Ag; // the A-values (aesthetics) of the current group, if any
     let Gg; // the current group index (a subset of G, and I), if any
     out: for (const i of G) {
-
       // If any channel has an undefined value for this index, skip it.
       for (const c of C) {
         if (!defined(c[i])) {
@@ -215,7 +261,7 @@ export function* groupIndex(I, position, {z}, channels) {
       // group. Yield the current group and start a new one.
       if (Ag === undefined) {
         if (Gg) yield Gg;
-        Ag = A.map(c => keyof(c[i])), Gg = [i];
+        (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
         continue;
       }
 
@@ -227,7 +273,7 @@ export function* groupIndex(I, position, {z}, channels) {
         const k = keyof(A[j][i]);
         if (k !== Ag[j]) {
           yield Gg;
-          Ag = A.map(c => keyof(c[i])), Gg = [i];
+          (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
           continue out;
         }
       }
@@ -269,14 +315,14 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
     const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
     const id = `plot-clip-${++nextClipId}`;
     selection
-        .attr("clip-path", `url(#${id})`)
+      .attr("clip-path", `url(#${id})`)
       .append("clipPath")
-        .attr("id", id)
+      .attr("id", id)
       .append("rect")
-        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-        .attr("width", width - marginRight - marginLeft)
-        .attr("height", height - marginTop - marginBottom);
+      .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
+      .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
+      .attr("width", width - marginRight - marginLeft)
+      .attr("height", height - marginTop - marginBottom);
   }
 }
 
@@ -286,7 +332,7 @@ export function applyDirectStyles(selection, mark) {
 }
 
 function applyHref(selection, href, target) {
-  selection.each(function(i) {
+  selection.each(function (i) {
     const h = href(i);
     if (h != null) {
       const a = this.ownerDocument.createElementNS(namespaces.svg, "a");
@@ -322,7 +368,8 @@ export function impliedNumber(value, impliedValue) {
   if ((value = number(value)) !== impliedValue) return value;
 }
 
-const validClassName = /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
+const validClassName =
+  /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
 
 export function maybeClassName(name) {
   if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
@@ -343,7 +390,15 @@ export function applyInlineStyles(selection, style) {
 
 export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, marginRight, marginBottom, marginLeft}) {
   return [
-    /left$/.test(frameAnchor) ? marginLeft : /right$/.test(frameAnchor) ? width - marginRight : (marginLeft + width - marginRight) / 2,
-    /^top/.test(frameAnchor) ? marginTop : /^bottom/.test(frameAnchor) ? height - marginBottom : (marginTop + height - marginBottom) / 2
+    /left$/.test(frameAnchor)
+      ? marginLeft
+      : /right$/.test(frameAnchor)
+      ? width - marginRight
+      : (marginLeft + width - marginRight) / 2,
+    /^top/.test(frameAnchor)
+      ? marginTop
+      : /^bottom/.test(frameAnchor)
+      ? height - marginBottom
+      : (marginTop + height - marginBottom) / 2
   ];
 }

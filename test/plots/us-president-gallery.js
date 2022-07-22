@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const data = await d3.csv("data/us-president-favorability.csv", d3.autoType);
   const opts = Plot.sort(
     {channel: "y"},
@@ -19,9 +19,6 @@ export default async function() {
     inset: 30,
     width: 960,
     height: 300,
-    marks: [
-      Plot.image(data, opts),
-      Plot.dot(data, {...opts, dy: -5})
-    ]
+    marks: [Plot.image(data, opts), Plot.dot(data, {...opts, dy: -5})]
   });
 }

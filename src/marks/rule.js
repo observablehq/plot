@@ -13,14 +13,7 @@ const defaults = {
 
 export class RuleX extends Mark {
   constructor(data, options = {}) {
-    const {
-      x,
-      y1,
-      y2,
-      inset = 0,
-      insetTop = inset,
-      insetBottom = inset
-    } = options;
+    const {x, y1, y2, inset = 0, insetTop = inset, insetBottom = inset} = options;
     super(
       data,
       {
@@ -40,32 +33,35 @@ export class RuleX extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetTop, insetBottom} = this;
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, {x: X && x}, offset, 0)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, {x: X && x}, offset, 0)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("line")
-            .call(applyDirectStyles, this)
-            .attr("x1", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
-            .attr("x2", X ? i => X[i] : (marginLeft + width - marginRight) / 2)
-            .attr("y1", Y1 && !isCollapsed(y) ? i => Y1[i] + insetTop : marginTop + insetTop)
-            .attr("y2", Y2 && !isCollapsed(y) ? (y.bandwidth ? i => Y2[i] + y.bandwidth() - insetBottom : i => Y2[i] - insetBottom) : height - marginBottom - insetBottom)
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("x1", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
+          .attr("x2", X ? (i) => X[i] : (marginLeft + width - marginRight) / 2)
+          .attr("y1", Y1 && !isCollapsed(y) ? (i) => Y1[i] + insetTop : marginTop + insetTop)
+          .attr(
+            "y2",
+            Y2 && !isCollapsed(y)
+              ? y.bandwidth
+                ? (i) => Y2[i] + y.bandwidth() - insetBottom
+                : (i) => Y2[i] - insetBottom
+              : height - marginBottom - insetBottom
+          )
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
 }
 
 export class RuleY extends Mark {
   constructor(data, options = {}) {
-    const {
-      x1,
-      x2,
-      y,
-      inset = 0,
-      insetRight = inset,
-      insetLeft = inset
-    } = options;
+    const {x1, x2, y, inset = 0, insetRight = inset, insetLeft = inset} = options;
     super(
       data,
       {
@@ -85,31 +81,41 @@ export class RuleY extends Mark {
     const {width, height, marginTop, marginRight, marginLeft, marginBottom} = dimensions;
     const {insetLeft, insetRight} = this;
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, {y: Y && y}, 0, offset)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, {y: Y && y}, 0, offset)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("line")
-            .call(applyDirectStyles, this)
-            .attr("x1", X1 && !isCollapsed(x) ? i => X1[i] + insetLeft : marginLeft + insetLeft)
-            .attr("x2", X2 && !isCollapsed(x) ? (x.bandwidth ? i => X2[i] + x.bandwidth() - insetRight : i => X2[i] - insetRight) : width - marginRight - insetRight)
-            .attr("y1", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .attr("y2", Y ? i => Y[i] : (marginTop + height - marginBottom) / 2)
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("x1", X1 && !isCollapsed(x) ? (i) => X1[i] + insetLeft : marginLeft + insetLeft)
+          .attr(
+            "x2",
+            X2 && !isCollapsed(x)
+              ? x.bandwidth
+                ? (i) => X2[i] + x.bandwidth() - insetRight
+                : (i) => X2[i] - insetRight
+              : width - marginRight - insetRight
+          )
+          .attr("y1", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
+          .attr("y2", Y ? (i) => Y[i] : (marginTop + height - marginBottom) / 2)
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
 }
 
 export function ruleX(data, options) {
   let {x = identity, y, y1, y2, ...rest} = maybeIntervalY(options);
-  ([y1, y2] = maybeOptionalZero(y, y1, y2));
+  [y1, y2] = maybeOptionalZero(y, y1, y2);
   return new RuleX(data, {...rest, x, y1, y2});
 }
 
 export function ruleY(data, options) {
   let {y = identity, x, x1, x2, ...rest} = maybeIntervalX(options);
-  ([x1, x2] = maybeOptionalZero(x, x1, x2));
+  [x1, x2] = maybeOptionalZero(x, x1, x2);
   return new RuleY(data, {...rest, y, x1, x2});
 }
 

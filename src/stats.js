@@ -35,9 +35,7 @@ export function ibetainv(p, a, b) {
     if (p < 0.5) x = -x;
     al = (x * x - 3) / 6;
     h = 2 / (1 / (2 * a - 1) + 1 / (2 * b - 1));
-    w =
-      (x * Math.sqrt(al + h)) / h -
-      (1 / (2 * b - 1) - 1 / (2 * a - 1)) * (al + 5 / 6 - 2 / (3 * h));
+    w = (x * Math.sqrt(al + h)) / h - (1 / (2 * b - 1) - 1 / (2 * a - 1)) * (al + 5 / 6 - 2 / (3 * h));
     x = a / (a + b * Math.exp(2 * w));
   } else {
     lna = Math.log(a / (a + b));
@@ -65,15 +63,7 @@ export function ibetainv(p, a, b) {
 export function ibeta(x, a, b) {
   // Factors in front of the continued fraction.
   var bt =
-    x === 0 || x === 1
-      ? 0
-      : Math.exp(
-          gammaln(a + b) -
-            gammaln(a) -
-            gammaln(b) +
-            a * Math.log(x) +
-            b * Math.log(1 - x)
-        );
+    x === 0 || x === 1 ? 0 : Math.exp(gammaln(a + b) - gammaln(a) - gammaln(b) + a * Math.log(x) + b * Math.log(1 - x));
   if (x < 0 || x > 1) return false;
   if (x < (a + 1) / (a + b + 2))
     // Use continued fraction directly.
@@ -125,8 +115,8 @@ export function betacf(x, a, b) {
 export function gammaln(x) {
   var j = 0;
   var cof = [
-    76.18009172947146, -86.5053203294167, 24.01409824083091, -1.231739572450155,
-    0.1208650973866179e-2, -0.5395239384953e-5
+    76.18009172947146, -86.5053203294167, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2,
+    -0.5395239384953e-5
   ];
   var ser = 1.000000000190015;
   var xx, y, tmp;

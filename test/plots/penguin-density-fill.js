@@ -17,7 +17,13 @@ export default async function () {
       x: "island"
     },
     marks: [
-      Plot.density(penguins, {x: "flipper_length_mm", y: "culmen_length_mm", fill: "density", thresholds: 10, clip: true}),
+      Plot.density(penguins, {
+        x: "flipper_length_mm",
+        y: "culmen_length_mm",
+        fill: "density",
+        thresholds: 10,
+        clip: true
+      }),
       Plot.frame()
     ]
   });

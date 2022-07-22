@@ -1,20 +1,20 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const cars = await d3.csv("data/cars.csv", d3.autoType);
   const dimensions = cars.columns.slice(1);
 
   // Reshape wide data to make it tidy.
-  const data = dimensions.flatMap(dimension => {
+  const data = dimensions.flatMap((dimension) => {
     return cars.map(({name, year, [dimension]: value}) => {
       return {name: `${name}-${year}`, dimension, value};
     });
   });
 
   // Compute ticks for each dimension.
-  const ticks = dimensions.flatMap(dimension => {
-    return d3.ticks(...d3.extent(cars, d => d[dimension]), 7).map(value => {
+  const ticks = dimensions.flatMap((dimension) => {
+    return d3.ticks(...d3.extent(cars, (d) => d[dimension]), 7).map((value) => {
       return {dimension, value};
     });
   });

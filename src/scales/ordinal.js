@@ -13,14 +13,7 @@ import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js
 // of this by setting the type explicitly.
 export const ordinalImplicit = Symbol("ordinal");
 
-function ScaleO(key, scale, channels, {
-  type,
-  interval,
-  domain,
-  range,
-  reverse,
-  hint
-}) {
+function ScaleO(key, scale, channels, {type, interval, domain, range, reverse, hint}) {
   interval = maybeInterval(interval);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   if (type === "categorical" || type === ordinalImplicit) type = "ordinal"; // shorthand for color schemes
@@ -34,15 +27,7 @@ function ScaleO(key, scale, channels, {
   return {type, domain, range, scale, hint, interval};
 }
 
-export function ScaleOrdinal(key, channels, {
-  type,
-  interval,
-  domain,
-  range,
-  scheme,
-  unknown,
-  ...options
-}) {
+export function ScaleOrdinal(key, channels, {type, interval, domain, range, scheme, unknown, ...options}) {
   interval = maybeInterval(interval);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
@@ -60,8 +45,9 @@ export function ScaleOrdinal(key, channels, {
     if (scheme !== undefined) {
       if (range !== undefined) {
         const interpolate = quantitativeScheme(scheme);
-        const t0 = range[0], d = range[1] - range[0];
-        range = ({length: n}) => quantize(t => interpolate(t0 + d * t), n);
+        const t0 = range[0],
+          d = range[1] - range[0];
+        range = ({length: n}) => quantize((t) => interpolate(t0 + d * t), n);
       } else {
         range = ordinalScheme(scheme);
       }
@@ -71,33 +57,23 @@ export function ScaleOrdinal(key, channels, {
   return ScaleO(key, scaleOrdinal().unknown(unknown), channels, {...options, type, domain, range, hint});
 }
 
-export function ScalePoint(key, channels, {
-  align = 0.5,
-  padding = 0.5,
-  ...options
-}) {
-  return maybeRound(
-    scalePoint()
-      .align(align)
-      .padding(padding),
-    channels,
-    options,
-    key
-  );
+export function ScalePoint(key, channels, {align = 0.5, padding = 0.5, ...options}) {
+  return maybeRound(scalePoint().align(align).padding(padding), channels, options, key);
 }
 
-export function ScaleBand(key, channels, {
-  align = 0.5,
-  padding = 0.1,
-  paddingInner = padding,
-  paddingOuter = key === "fx" || key === "fy" ? 0 : padding,
-  ...options
-}) {
+export function ScaleBand(
+  key,
+  channels,
+  {
+    align = 0.5,
+    padding = 0.1,
+    paddingInner = padding,
+    paddingOuter = key === "fx" || key === "fy" ? 0 : padding,
+    ...options
+  }
+) {
   return maybeRound(
-    scaleBand()
-      .align(align)
-      .paddingInner(paddingInner)
-      .paddingOuter(paddingOuter),
+    scaleBand().align(align).paddingInner(paddingInner).paddingOuter(paddingOuter),
     channels,
     options,
     key
@@ -106,7 +82,7 @@ export function ScaleBand(key, channels, {
 
 function maybeRound(scale, channels, options, key) {
   let {round} = options;
-  if (round !== undefined) scale.round(round = !!round);
+  if (round !== undefined) scale.round((round = !!round));
   scale = ScaleO(key, scale, channels, options);
   scale.round = round; // preserve for autoScaleRound
   return scale;
@@ -123,7 +99,8 @@ function inferDomain(channels, interval, key) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
-  if (values.size > 10e3 && registry.get(key) === position) throw new Error("implicit ordinal position domain has more than 10,000 values");
+  if (values.size > 10e3 && registry.get(key) === position)
+    throw new Error("implicit ordinal position domain has more than 10,000 values");
   return sort(values, ascendingDefined);
 }
 
@@ -133,7 +110,8 @@ function inferHint(channels, key) {
   for (const {hint} of channels) {
     const candidate = hint?.[key];
     if (candidate === undefined) continue; // no hint here
-    if (value === undefined) value = candidate; // first hint
+    if (value === undefined) value = candidate;
+    // first hint
     else if (value !== candidate) return; // inconsistent hint
   }
   return value;

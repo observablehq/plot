@@ -6,8 +6,14 @@ it("link(data, options) has the expected defaults", () => {
   assert.strictEqual(link.data, undefined);
   assert.strictEqual(link.transform, undefined);
   assert.deepStrictEqual(Object.keys(link.channels), ["x1", "y1", "x2", "y2"]);
-  assert.deepStrictEqual(Object.values(link.channels).map(c => c.value), ["0", "1", "2", "3"]);
-  assert.deepStrictEqual(Object.values(link.channels).map(c => c.scale), ["x", "y", "x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(link.channels).map((c) => c.value),
+    ["0", "1", "2", "3"]
+  );
+  assert.deepStrictEqual(
+    Object.values(link.channels).map((c) => c.scale),
+    ["x", "y", "x", "y"]
+  );
   assert.strictEqual(link.fill, "none");
   assert.strictEqual(link.fillOpacity, undefined);
   assert.strictEqual(link.stroke, "currentColor");

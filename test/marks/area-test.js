@@ -7,8 +7,14 @@ it("area(data, options) has the expected defaults", () => {
   assert.strictEqual(area.data, undefined);
   // assert.strictEqual(area.transform, undefined);
   assert.deepStrictEqual(Object.keys(area.channels), ["x1", "y1"]);
-  assert.deepStrictEqual(Object.values(area.channels).map(c => c.value), ["0", "1"]);
-  assert.deepStrictEqual(Object.values(area.channels).map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(area.channels).map((c) => c.value),
+    ["0", "1"]
+  );
+  assert.deepStrictEqual(
+    Object.values(area.channels).map((c) => c.scale),
+    ["x", "y"]
+  );
   assert.strictEqual(area.curve, curveLinear);
   assert.strictEqual(area.fill, undefined);
   assert.strictEqual(area.fillOpacity, undefined);

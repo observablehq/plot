@@ -27,18 +27,24 @@ export function window(options = {}) {
 
 function maybeAnchor(anchor = "middle", k) {
   switch (`${anchor}`.toLowerCase()) {
-    case "middle": return (k - 1) >> 1;
-    case "start": return 0;
-    case "end": return k - 1;
+    case "middle":
+      return (k - 1) >> 1;
+    case "start":
+      return 0;
+    case "end":
+      return k - 1;
   }
   throw new Error(`invalid anchor: ${anchor}`);
 }
 
 function maybeShift(shift) {
   switch (`${shift}`.toLowerCase()) {
-    case "centered": return "middle";
-    case "leading": return "start";
-    case "trailing": return "end";
+    case "centered":
+      return "middle";
+    case "leading":
+      return "start";
+    case "trailing":
+      return "end";
   }
   throw new Error(`invalid shift: ${shift}`);
 }
@@ -47,18 +53,30 @@ function maybeReduce(reduce = "mean") {
   if (typeof reduce === "string") {
     if (/^p\d{2}$/i.test(reduce)) return reduceNumbers(percentile(reduce));
     switch (reduce.toLowerCase()) {
-      case "deviation": return reduceNumbers(deviation);
-      case "max": return reduceArray(max);
-      case "mean": return reduceMean;
-      case "median": return reduceNumbers(median);
-      case "min": return reduceArray(min);
-      case "mode": return reduceArray(mode);
-      case "sum": return reduceSum;
-      case "variance": return reduceNumbers(variance);
-      case "difference": return reduceDifference;
-      case "ratio": return reduceRatio;
-      case "first": return reduceFirst;
-      case "last": return reduceLast;
+      case "deviation":
+        return reduceNumbers(deviation);
+      case "max":
+        return reduceArray(max);
+      case "mean":
+        return reduceMean;
+      case "median":
+        return reduceNumbers(median);
+      case "min":
+        return reduceArray(min);
+      case "mode":
+        return reduceArray(mode);
+      case "sum":
+        return reduceSum;
+      case "variance":
+        return reduceNumbers(variance);
+      case "difference":
+        return reduceDifference;
+      case "ratio":
+        return reduceRatio;
+      case "first":
+        return reduceFirst;
+      case "last":
+        return reduceLast;
     }
   }
   if (typeof reduce !== "function") throw new Error(`invalid reduce: ${reduce}`);
@@ -74,87 +92,95 @@ function slice(I, i, j) {
 // reducers (e.g., min, max, mean, median) do, and it’s faster to avoid
 // redundant filtering.
 function reduceNumbers(f) {
-  return (k, s, strict) => strict ? ({
-    map(I, S, T) {
-      const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
-      let nans = 0;
-      for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
-      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        if (isNaN(C[i + k - 1])) ++nans;
-        T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
-        if (isNaN(C[i])) --nans;
-      }
-    }
-  }) : ({
-    map(I, S, T) {
-      const C = Float64Array.from(I, i => S[i] === null ? NaN : S[i]);
-      for (let i = -s; i < 0; ++i) {
-        T[I[i + s]] = f(C.subarray(0, i + k));
-      }
-      for (let i = 0, n = I.length - s; i < n; ++i) {
-        T[I[i + s]] = f(C.subarray(i, i + k));
-      }
-    }
-  });
+  return (k, s, strict) =>
+    strict
+      ? {
+          map(I, S, T) {
+            const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
+            let nans = 0;
+            for (let i = 0; i < k - 1; ++i) if (isNaN(C[i])) ++nans;
+            for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+              if (isNaN(C[i + k - 1])) ++nans;
+              T[I[i + s]] = nans === 0 ? f(C.subarray(i, i + k)) : NaN;
+              if (isNaN(C[i])) --nans;
+            }
+          }
+        }
+      : {
+          map(I, S, T) {
+            const C = Float64Array.from(I, (i) => (S[i] === null ? NaN : S[i]));
+            for (let i = -s; i < 0; ++i) {
+              T[I[i + s]] = f(C.subarray(0, i + k));
+            }
+            for (let i = 0, n = I.length - s; i < n; ++i) {
+              T[I[i + s]] = f(C.subarray(i, i + k));
+            }
+          }
+        };
 }
 
 function reduceArray(f) {
-  return (k, s, strict) => strict ? ({
-    map(I, S, T) {
-      let count = 0;
-      for (let i = 0; i < k - 1; ++i) count += defined(S[I[i]]);
-      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        count += defined(S[I[i + k - 1]]);
-        if (count === k) T[I[i + s]] = f(take(S, slice(I, i, i + k)));
-        count -= defined(S[I[i]]);
-      }
-    }
-  }) : ({
-    map(I, S, T) {
-      for (let i = -s; i < 0; ++i) {
-        T[I[i + s]] = f(take(S, slice(I, 0, i + k)));
-      }
-      for (let i = 0, n = I.length - s; i < n; ++i) {
-        T[I[i + s]] = f(take(S, slice(I, i, i + k)));
-      }
-    }
-  });
+  return (k, s, strict) =>
+    strict
+      ? {
+          map(I, S, T) {
+            let count = 0;
+            for (let i = 0; i < k - 1; ++i) count += defined(S[I[i]]);
+            for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+              count += defined(S[I[i + k - 1]]);
+              if (count === k) T[I[i + s]] = f(take(S, slice(I, i, i + k)));
+              count -= defined(S[I[i]]);
+            }
+          }
+        }
+      : {
+          map(I, S, T) {
+            for (let i = -s; i < 0; ++i) {
+              T[I[i + s]] = f(take(S, slice(I, 0, i + k)));
+            }
+            for (let i = 0, n = I.length - s; i < n; ++i) {
+              T[I[i + s]] = f(take(S, slice(I, i, i + k)));
+            }
+          }
+        };
 }
 
 function reduceSum(k, s, strict) {
-  return strict ? ({
-    map(I, S, T) {
-      let nans = 0;
-      let sum = 0;
-      for (let i = 0; i < k - 1; ++i) {
-        const v = S[I[i]];
-        if (v === null || isNaN(v)) ++nans;
-        else sum += +v;
+  return strict
+    ? {
+        map(I, S, T) {
+          let nans = 0;
+          let sum = 0;
+          for (let i = 0; i < k - 1; ++i) {
+            const v = S[I[i]];
+            if (v === null || isNaN(v)) ++nans;
+            else sum += +v;
+          }
+          for (let i = 0, n = I.length - k + 1; i < n; ++i) {
+            const a = S[I[i]];
+            const b = S[I[i + k - 1]];
+            if (b === null || isNaN(b)) ++nans;
+            else sum += +b;
+            T[I[i + s]] = nans === 0 ? sum : NaN;
+            if (a === null || isNaN(a)) --nans;
+            else sum -= +a;
+          }
+        }
       }
-      for (let i = 0, n = I.length - k + 1; i < n; ++i) {
-        const a = S[I[i]];
-        const b = S[I[i + k - 1]];
-        if (b === null || isNaN(b)) ++nans;
-        else sum += +b;
-        T[I[i + s]] = nans === 0 ? sum : NaN;
-        if (a === null || isNaN(a)) --nans;
-        else sum -= +a;
-      }
-    }
-  }) : ({
-    map(I, S, T) {
-      let sum = 0;
-      const n = I.length;
-      for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
-        sum += +S[I[i]] || 0;
-      }
-      for (let i = -s, j = n - s; i < j; ++i) {
-        sum += +S[I[i + k - 1]] || 0;
-        T[I[i + s]] = sum;
-        sum -= +S[I[i]] || 0;
-      }
-    }
-  });
+    : {
+        map(I, S, T) {
+          let sum = 0;
+          const n = I.length;
+          for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
+            sum += +S[I[i]] || 0;
+          }
+          for (let i = -s, j = n - s; i < j; ++i) {
+            sum += +S[I[i + k - 1]] || 0;
+            T[I[i + s]] = sum;
+            sum -= +S[I[i]] || 0;
+          }
+        }
+      };
 }
 
 function reduceMean(k, s, strict) {
@@ -176,14 +202,14 @@ function reduceMean(k, s, strict) {
         const n = I.length;
         for (let i = 0, j = Math.min(n, k - s - 1); i < j; ++i) {
           let v = S[I[i]];
-          if (v !== null && !isNaN(v = +v)) sum += v, ++count;
+          if (v !== null && !isNaN((v = +v))) (sum += v), ++count;
         }
         for (let i = -s, j = n - s; i < j; ++i) {
           let a = S[I[i + k - 1]];
           let b = S[I[i]];
-          if (a !== null && !isNaN(a = +a)) sum += a, ++count;
+          if (a !== null && !isNaN((a = +a))) (sum += a), ++count;
           T[I[i + s]] = sum / count;
-          if (b !== null && !isNaN(b = +b)) sum -= b, --count;
+          if (b !== null && !isNaN((b = +b))) (sum -= b), --count;
         }
       }
     };
@@ -207,81 +233,89 @@ function lastDefined(S, I, i, k) {
 function firstNumber(S, I, i, k) {
   for (let j = i + k; i < j; ++i) {
     let v = S[I[i]];
-    if (v !== null && !isNaN(v = +v)) return v;
+    if (v !== null && !isNaN((v = +v))) return v;
   }
 }
 
 function lastNumber(S, I, i, k) {
   for (let j = i + k - 1; j >= i; --j) {
     let v = S[I[j]];
-    if (v !== null && !isNaN(v = +v)) return v;
+    if (v !== null && !isNaN((v = +v))) return v;
   }
 }
 
 function reduceDifference(k, s, strict) {
-  return strict ? ({
-    map(I, S, T) {
-      for (let i = 0, n = I.length - k; i < n; ++i) {
-        const a = S[I[i]];
-        const b = S[I[i + k - 1]];
-        T[I[i + s]] = a === null || b === null ? NaN : b - a;
+  return strict
+    ? {
+        map(I, S, T) {
+          for (let i = 0, n = I.length - k; i < n; ++i) {
+            const a = S[I[i]];
+            const b = S[I[i + k - 1]];
+            T[I[i + s]] = a === null || b === null ? NaN : b - a;
+          }
+        }
       }
-    }
-  }) : ({
-    map(I, S, T) {
-      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
-      }
-    }
-  });
+    : {
+        map(I, S, T) {
+          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+            T[I[i + s]] = lastNumber(S, I, i, k) - firstNumber(S, I, i, k);
+          }
+        }
+      };
 }
 
 function reduceRatio(k, s, strict) {
-  return strict ? ({
-    map(I, S, T) {
-      for (let i = 0, n = I.length - k; i < n; ++i) {
-        const a = S[I[i]];
-        const b = S[I[i + k - 1]];
-        T[I[i + s]] = a === null || b === null ? NaN : b / a;
+  return strict
+    ? {
+        map(I, S, T) {
+          for (let i = 0, n = I.length - k; i < n; ++i) {
+            const a = S[I[i]];
+            const b = S[I[i + k - 1]];
+            T[I[i + s]] = a === null || b === null ? NaN : b / a;
+          }
+        }
       }
-    }
-  }) : ({
-    map(I, S, T) {
-      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
-      }
-    }
-  });
+    : {
+        map(I, S, T) {
+          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+            T[I[i + s]] = lastNumber(S, I, i, k) / firstNumber(S, I, i, k);
+          }
+        }
+      };
 }
 
 function reduceFirst(k, s, strict) {
-  return strict ? ({
-    map(I, S, T) {
-      for (let i = 0, n = I.length - k; i < n; ++i) {
-        T[I[i + s]] = S[I[i]];
+  return strict
+    ? {
+        map(I, S, T) {
+          for (let i = 0, n = I.length - k; i < n; ++i) {
+            T[I[i + s]] = S[I[i]];
+          }
+        }
       }
-    }
-  }) : ({
-    map(I, S, T) {
-      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = firstDefined(S, I, i, k);
-      }
-    }
-  });
+    : {
+        map(I, S, T) {
+          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+            T[I[i + s]] = firstDefined(S, I, i, k);
+          }
+        }
+      };
 }
 
 function reduceLast(k, s, strict) {
-  return strict ? ({
-    map(I, S, T) {
-      for (let i = 0, n = I.length - k; i < n; ++i) {
-        T[I[i + s]] = S[I[i + k - 1]];
+  return strict
+    ? {
+        map(I, S, T) {
+          for (let i = 0, n = I.length - k; i < n; ++i) {
+            T[I[i + s]] = S[I[i + k - 1]];
+          }
+        }
       }
-    }
-  }) : ({
-    map(I, S, T) {
-      for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
-        T[I[i + s]] = lastDefined(S, I, i, k);
-      }
-    }
-  });
+    : {
+        map(I, S, T) {
+          for (let i = -s, n = I.length - k + s + 1; i < n; ++i) {
+            T[I[i + s]] = lastDefined(S, I, i, k);
+          }
+        }
+      };
 }

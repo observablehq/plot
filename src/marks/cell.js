@@ -25,7 +25,7 @@ export class Cell extends AbstractBar {
 }
 
 export function cell(data, {x, y, ...options} = {}) {
-  ([x, y] = maybeTuple(x, y));
+  [x, y] = maybeTuple(x, y);
   return new Cell(data, {...options, x, y});
 }
 

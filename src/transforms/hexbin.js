@@ -9,7 +9,8 @@ import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 // to be rounded up into a floating bin to the right of the plot. Therefore,
 // rather than centering the origin hexagon around ⟨0,0⟩ in screen coordinates,
 // we offset slightly to ⟨0.5,0⟩. The hexgrid mark uses the same origin.
-export const ox = 0.5, oy = 0;
+export const ox = 0.5,
+  oy = 0;
 
 // TODO filter e.g. to show empty hexbins?
 // TODO disallow x, x1, x2, y, y1, y2 reducers?
@@ -82,11 +83,16 @@ export function hexbin(outputs = {fill: "count"}, inputs = {}) {
     const channels = {
       x: {value: BX},
       y: {value: BY},
-      ...Z && {z: {value: GZ}},
-      ...F && {fill: {value: GF, scale: true}},
-      ...S && {stroke: {value: GS, scale: true}},
-      ...Q && {symbol: {value: GQ, scale: true}},
-      ...Object.fromEntries(outputs.map(({name, output}) => [name, {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}]))
+      ...(Z && {z: {value: GZ}}),
+      ...(F && {fill: {value: GF, scale: true}}),
+      ...(S && {stroke: {value: GS, scale: true}}),
+      ...(Q && {symbol: {value: GQ, scale: true}}),
+      ...Object.fromEntries(
+        outputs.map(({name, output}) => [
+          name,
+          {scale: true, radius: name === "r" ? binWidth / 2 : undefined, value: output.transform()}
+        ])
+      )
     };
 
     return {data, facets: binFacets, channels};
@@ -98,23 +104,23 @@ function hbin(I, X, Y, dx) {
   const bins = new Map();
   for (const i of I) {
     let px = X[i],
-        py = Y[i];
+      py = Y[i];
     if (isNaN(px) || isNaN(py)) continue;
-    let pj = Math.round(py = (py - oy) / dy),
-        pi = Math.round(px = (px - ox) / dx - (pj & 1) / 2),
-        py1 = py - pj;
+    let pj = Math.round((py = (py - oy) / dy)),
+      pi = Math.round((px = (px - ox) / dx - (pj & 1) / 2)),
+      py1 = py - pj;
     if (Math.abs(py1) * 3 > 1) {
       let px1 = px - pi,
-          pi2 = pi + (px < pi ? -1 : 1) / 2,
-          pj2 = pj + (py < pj ? -1 : 1),
-          px2 = px - pi2,
-          py2 = py - pj2;
-      if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) pi = pi2 + (pj & 1 ? 1 : -1) / 2, pj = pj2;
+        pi2 = pi + (px < pi ? -1 : 1) / 2,
+        pj2 = pj + (py < pj ? -1 : 1),
+        px2 = px - pi2,
+        py2 = py - pj2;
+      if (px1 * px1 + py1 * py1 > px2 * px2 + py2 * py2) (pi = pi2 + (pj & 1 ? 1 : -1) / 2), (pj = pj2);
     }
     const key = `${pi},${pj}`;
     let bin = bins.get(key);
     if (bin === undefined) {
-      bins.set(key, bin = []);
+      bins.set(key, (bin = []));
       bin.x = (pi + (pj & 1) / 2) * dx + ox;
       bin.y = pj * dy + oy;
     }

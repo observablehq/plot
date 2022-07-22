@@ -6,7 +6,9 @@ export const sqrt4_3 = 2 / sqrt3;
 
 const symbolHexagon = {
   draw(context, size) {
-    const rx = Math.sqrt(size / Math.PI), ry = rx * sqrt4_3, hy = ry / 2;
+    const rx = Math.sqrt(size / Math.PI),
+      ry = rx * sqrt4_3,
+      hy = ry / 2;
     context.moveTo(0, ry);
     context.lineTo(rx, hy);
     context.lineTo(rx, -hy);

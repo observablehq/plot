@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const data = await d3.csv("data/gistemp.csv", d3.autoType);
   return Plot.plot({
     y: {
@@ -12,9 +12,6 @@ export default async function() {
     color: {
       scheme: "BuRd"
     },
-    marks: [
-      Plot.ruleY([0]),
-      Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})
-    ]
+    marks: [Plot.ruleY([0]), Plot.dot(data, {x: "Date", y: "Anomaly", stroke: "Anomaly"})]
   });
 }

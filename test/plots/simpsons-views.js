@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const data = await d3.csv("data/simpsons.csv", d3.autoType);
   return Plot.plot({
     height: 640,
@@ -23,7 +23,7 @@ export default async function() {
         x: "imdb_rating",
         y: "us_viewers_in_millions",
         fill: "season",
-        title: d => `${d.title} S${d.season}E${d.number_in_season}`
+        title: (d) => `${d.title} S${d.season}E${d.number_in_season}`
       })
     ]
   });

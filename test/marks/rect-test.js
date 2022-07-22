@@ -6,8 +6,14 @@ it("rect(data, options) has the expected defaults", () => {
   assert.strictEqual(rect.data, undefined);
   assert.strictEqual(rect.transform, undefined);
   assert.deepStrictEqual(Object.keys(rect.channels), ["x1", "y1", "x2", "y2"]);
-  assert.deepStrictEqual(Object.values(rect.channels).map(c => c.value), ["0", "1", "2", "3"]);
-  assert.deepStrictEqual(Object.values(rect.channels).map(c => c.scale), ["x", "y", "x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(rect.channels).map((c) => c.value),
+    ["0", "1", "2", "3"]
+  );
+  assert.deepStrictEqual(
+    Object.values(rect.channels).map((c) => c.scale),
+    ["x", "y", "x", "y"]
+  );
   assert.strictEqual(rect.fill, undefined);
   assert.strictEqual(rect.fillOpacity, undefined);
   assert.strictEqual(rect.stroke, undefined);

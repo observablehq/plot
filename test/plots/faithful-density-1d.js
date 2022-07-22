@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const faithful = await d3.tsv("data/faithful.tsv", d3.autoType);
   return Plot.plot({
     height: 100,

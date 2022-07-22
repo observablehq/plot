@@ -25,11 +25,11 @@ const types = new Map([
   ["Total Renewable Energy Production", "Renewable"]
 ]);
 
-export default async function() {
+export default async function () {
   const energy = (await d3.csv("data/energy-production.csv"))
-    .filter(d => d.YYYYMM.slice(-2) === "13") // only take annual data
-    .filter(d => types.has(d.Description)) // don’t double-count categories
-    .map(d => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
+    .filter((d) => d.YYYYMM.slice(-2) === "13") // only take annual data
+    .filter((d) => types.has(d.Description)) // don’t double-count categories
+    .map((d) => ({...d, Year: +d.YYYYMM.slice(0, 4), Value: +d.Value}));
   return Plot.plot({
     x: {
       tickFormat: "d",
@@ -39,7 +39,7 @@ export default async function() {
       label: "↑ Annual production (quads)"
     },
     color: {
-      tickFormat: t => types.get(t),
+      tickFormat: (t) => types.get(t),
       legend: true
     },
     marks: [

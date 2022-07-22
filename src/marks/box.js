@@ -9,17 +9,20 @@ import {tickX, tickY} from "./tick.js";
 
 // Returns a composite mark for producing a horizontal box plot, applying the
 // necessary statistical transforms. The boxes are grouped by y, if present.
-export function boxX(data, {
-  x = {transform: x => x},
-  y = null,
-  fill = "#ccc",
-  fillOpacity,
-  stroke = "currentColor",
-  strokeOpacity,
-  strokeWidth = 2,
-  sort,
-  ...options
-} = {}) {
+export function boxX(
+  data,
+  {
+    x = {transform: (x) => x},
+    y = null,
+    fill = "#ccc",
+    fillOpacity,
+    stroke = "currentColor",
+    strokeOpacity,
+    strokeWidth = 2,
+    sort,
+    ...options
+  } = {}
+) {
   const group = y != null ? groupY : groupZ;
   return marks(
     ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
@@ -31,17 +34,20 @@ export function boxX(data, {
 
 // Returns a composite mark for producing a vertical box plot, applying the
 // necessary statistical transforms. The boxes are grouped by x, if present.
-export function boxY(data, {
-  y = {transform: y => y},
-  x = null,
-  fill = "#ccc",
-  fillOpacity,
-  stroke = "currentColor",
-  strokeOpacity,
-  strokeWidth = 2,
-  sort,
-  ...options
-} = {}) {
+export function boxY(
+  data,
+  {
+    y = {transform: (y) => y},
+    x = null,
+    fill = "#ccc",
+    fillOpacity,
+    stroke = "currentColor",
+    strokeOpacity,
+    strokeWidth = 2,
+    sort,
+    ...options
+  } = {}
+) {
   const group = x != null ? groupX : groupZ;
   return marks(
     ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
@@ -55,17 +61,17 @@ export function boxY(data, {
 function oqr(values) {
   const r1 = loqr1(values);
   const r2 = hiqr2(values);
-  return values.map(v => v < r1 || v > r2 ? v : NaN);
+  return values.map((v) => (v < r1 || v > r2 ? v : NaN));
 }
 
 function loqr1(values, value) {
   const lo = quartile1(values, value) * 2.5 - quartile3(values, value) * 1.5;
-  return min(values, d => d >= lo ? d : NaN);
+  return min(values, (d) => (d >= lo ? d : NaN));
 }
 
 function hiqr2(values, value) {
   const hi = quartile3(values, value) * 2.5 - quartile1(values, value) * 1.5;
-  return max(values, d => d <= hi ? d : NaN);
+  return max(values, (d) => (d <= hi ? d : NaN));
 }
 
 function quartile1(values, value) {

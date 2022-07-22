@@ -8,25 +8,29 @@ const objectToString = Object.prototype.toString;
 // This allows transforms to behave equivalently to channels.
 export function valueof(data, value, arrayType) {
   const type = typeof value;
-  return type === "string" ? map(data, field(value), arrayType)
-    : type === "function" ? map(data, value, arrayType)
-    : type === "number" || value instanceof Date || type === "boolean" ? map(data, constant(value), arrayType)
-    : value && typeof value.transform === "function" ? arrayify(value.transform(data), arrayType)
+  return type === "string"
+    ? map(data, field(value), arrayType)
+    : type === "function"
+    ? map(data, value, arrayType)
+    : type === "number" || value instanceof Date || type === "boolean"
+    ? map(data, constant(value), arrayType)
+    : value && typeof value.transform === "function"
+    ? arrayify(value.transform(data), arrayType)
     : arrayify(value, arrayType); // preserve undefined type
 }
 
-export const field = name => d => d[name];
+export const field = (name) => (d) => d[name];
 export const indexOf = (d, i) => i;
-export const identity = {transform: d => d};
+export const identity = {transform: (d) => d};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
-export const string = x => x == null ? x : `${x}`;
-export const number = x => x == null ? x : +x;
-export const boolean = x => x == null ? x : !!x;
-export const first = x => x ? x[0] : undefined;
-export const second = x => x ? x[1] : undefined;
-export const constant = x => () => x;
+export const string = (x) => (x == null ? x : `${x}`);
+export const number = (x) => (x == null ? x : +x);
+export const boolean = (x) => (x == null ? x : !!x);
+export const first = (x) => (x ? x[0] : undefined);
+export const second = (x) => (x ? x[1] : undefined);
+export const constant = (x) => () => x;
 
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
@@ -43,17 +47,14 @@ export function percentile(reduce) {
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
-  return value === null ? [undefined, "none"]
-    : isColor(value) ? [undefined, value]
-    : [value, undefined];
+  return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
 
 // Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumberChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
-  return value === null || typeof value === "number" ? [undefined, value]
-    : [value, undefined];
+  return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
 
 // Validates the specified optional string against the allowed list of keywords.
@@ -73,9 +74,15 @@ export function keyword(input, name, allowed) {
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify(data, type) {
-  return data == null ? data : (type === undefined
-    ? (data instanceof Array || data instanceof TypedArray) ? data : Array.from(data)
-    : (data instanceof type ? data : type.from(data)));
+  return data == null
+    ? data
+    : type === undefined
+    ? data instanceof Array || data instanceof TypedArray
+      ? data
+      : Array.from(data)
+    : data instanceof type
+    ? data
+    : type.from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -122,11 +129,14 @@ export function isDomainSort(sort) {
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 export function maybeZero(x, x1, x2, x3 = identity) {
-  if (x1 === undefined && x2 === undefined) { // {x} or {}
-    x1 = 0, x2 = x === undefined ? x3 : x;
-  } else if (x1 === undefined) { // {x, x2} or {x2}
+  if (x1 === undefined && x2 === undefined) {
+    // {x} or {}
+    (x1 = 0), (x2 = x === undefined ? x3 : x);
+  } else if (x1 === undefined) {
+    // {x, x2} or {x2}
     x1 = x === undefined ? 0 : x;
-  } else if (x2 === undefined) { // {x, x1} or {x1}
+  } else if (x2 === undefined) {
+    // {x, x1} or {x1}
     x2 = x === undefined ? 0 : x;
   }
   return [x1, x2];
@@ -140,8 +150,8 @@ export function maybeTuple(x, y) {
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
 export function maybeZ({z, fill, stroke} = {}) {
-  if (z === undefined) ([z] = maybeColorChannel(fill));
-  if (z === undefined) ([z] = maybeColorChannel(stroke));
+  if (z === undefined) [z] = maybeColorChannel(fill);
+  if (z === undefined) [z] = maybeColorChannel(stroke);
   return z;
 }
 
@@ -155,12 +165,12 @@ export function range(data) {
 
 // Returns a filtered range of data given the test function.
 export function where(data, test) {
-  return range(data).filter(i => test(data[i], i, data));
+  return range(data).filter((i) => test(data[i], i, data));
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
 export function take(values, index) {
-  return map(index, i => values[i]);
+  return map(index, (i) => values[i]);
 }
 
 // Based on InternMap (d3.group).
@@ -171,8 +181,14 @@ export function keyof(value) {
 export function maybeInput(key, options) {
   if (options[key] !== undefined) return options[key];
   switch (key) {
-    case "x1": case "x2": key = "x"; break;
-    case "y1": case "y2": key = "y"; break;
+    case "x1":
+    case "x2":
+      key = "x";
+      break;
+    case "y1":
+    case "y2":
+      key = "y";
+      break;
   }
   return options[key];
 }
@@ -187,7 +203,7 @@ export function column(source) {
       transform: () => value,
       label: labelof(source)
     },
-    v => value = v
+    (v) => (value = v)
   ];
 }
 
@@ -197,9 +213,7 @@ export function maybeColumn(source) {
 }
 
 export function labelof(value, defaultValue) {
-  return typeof value === "string" ? value
-    : value && value.label !== undefined ? value.label
-    : defaultValue;
+  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new
@@ -228,10 +242,12 @@ export function maybeValue(value) {
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
 export function numberChannel(source) {
-  return source == null ? null : {
-    transform: data => valueof(data, source, Float64Array),
-    label: labelof(source)
-  };
+  return source == null
+    ? null
+    : {
+        transform: (data) => valueof(data, source, Float64Array),
+        label: labelof(source)
+      };
 }
 
 export function isIterable(value) {
@@ -314,11 +330,13 @@ export function isEvery(values, is) {
 export function isColor(value) {
   if (typeof value !== "string") return false;
   value = value.toLowerCase().trim();
-  return value === "none"
-    || value === "currentcolor"
-    || (value.startsWith("url(") && value.endsWith(")")) // <funciri>, e.g. pattern or gradient
-    || (value.startsWith("var(") && value.endsWith(")")) // CSS variable
-    || color(value) !== null;
+  return (
+    value === "none" ||
+    value === "currentcolor" ||
+    (value.startsWith("url(") && value.endsWith(")")) || // <funciri>, e.g. pattern or gradient
+    (value.startsWith("var(") && value.endsWith(")")) || // CSS variable
+    color(value) !== null
+  );
 }
 
 export function isNoneish(value) {
@@ -334,7 +352,17 @@ export function isRound(value) {
 }
 
 export function maybeFrameAnchor(value = "middle") {
-  return keyword(value, "frameAnchor", ["middle", "top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"]);
+  return keyword(value, "frameAnchor", [
+    "middle",
+    "top-left",
+    "top",
+    "top-right",
+    "right",
+    "bottom-right",
+    "bottom",
+    "bottom-left",
+    "left"
+  ]);
 }
 
 // Like a sort comparator, returns a positive value if the given array of values
@@ -368,15 +396,17 @@ export function inherit(options = {}, ...rest) {
 export function Named(things) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
-  return Object.fromEntries(Array.from(things, thing => {
-    const {name} = thing;
-    if (name == null) throw new Error("missing name");
-    const key = `${name}`;
-    if (key === "__proto__") throw new Error(`illegal name: ${key}`);
-    if (names.has(key)) throw new Error(`duplicate name: ${key}`);
-    names.add(key);
-    return [name, thing];
-  }));
+  return Object.fromEntries(
+    Array.from(things, (thing) => {
+      const {name} = thing;
+      if (name == null) throw new Error("missing name");
+      const key = `${name}`;
+      if (key === "__proto__") throw new Error(`illegal name: ${key}`);
+      if (names.has(key)) throw new Error(`duplicate name: ${key}`);
+      names.add(key);
+      return [name, thing];
+    })
+  );
 }
 
 export function maybeNamed(things) {

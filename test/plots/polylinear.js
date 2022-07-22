@@ -21,9 +21,9 @@ const events = [
   {date: "2013-04-18T15:00Z", text: "Brake"},
   {date: "2013-04-20T10:00Z", text: "Stop"},
   {date: "2013-04-23T14:00Z", text: "Shutdown"}
-].map(d => ({text: d.text, date: d3.isoParse(d.date)}));
+].map((d) => ({text: d.text, date: d3.isoParse(d.date)}));
 
-export default async function() {
+export default async function () {
   return Plot.plot({
     grid: true,
     x: {
@@ -41,7 +41,7 @@ export default async function() {
       scheme: "cool"
     },
     marks: [
-      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: d3.utcDay, fill: d => d}),
+      Plot.barX(d3.utcDays(...d3.extent(times)), {interval: d3.utcDay, fill: (d) => d}),
       Plot.dotX(events, {x: "date", fill: "white"}),
       Plot.textX(events, {x: "date", text: "text", dx: -5, dy: -10, fill: "white", textAnchor: "start"})
     ],

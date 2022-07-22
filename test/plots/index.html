@@ -1,89 +1,87 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <head></head>
 <style>
+  body {
+    max-width: 960px;
+    margin: 1em auto;
+    padding: 0 1em;
+  }
 
-body {
-  max-width: 960px;
-  margin: 1em auto;
-  padding: 0 1em;
-}
+  figure {
+    font: 13px/1.2 system-ui;
+    margin: 0;
+    max-width: 640px;
+  }
 
-figure {
-  font: 13px/1.2 system-ui;
-  margin: 0;
-  max-width: 640px;
-}
-
-figcaption {
-  color: #838383;
-}
-
+  figcaption {
+    color: #838383;
+  }
 </style>
 <script type="module">
+  import * as tests from "./index.js";
 
-import * as tests from "./index.js";
-
-if (location.pathname !== "/") {
-  location = `/${location.search}${location.hash}`;
-  throw new Error("unexpected path");
-}
-
-const select = document.createElement("select");
-select.autofocus = true;
-select.style.margin = "1em 0";
-select.onchange = () => {
-  const {value} = select;
-  history.pushState({value}, "", `?test=${value}`);
-  render();
-};
-
-select.onkeydown = (event) => {
-  if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
-  switch (event.key) {
-    case "ArrowLeft": {
-      if (select.selectedIndex > 0) {
-        --select.selectedIndex;
-        select.onchange();
-      }
-      break;
-    }
-    case "ArrowRight": {
-      if (select.selectedIndex < select.options.length - 1) {
-        ++select.selectedIndex;
-        select.onchange();
-      }
-      break;
-    }
+  if (location.pathname !== "/") {
+    location = `/${location.search}${location.hash}`;
+    throw new Error("unexpected path");
   }
-};
 
-select.append(...Object.keys(tests).map(key => {
-  const option = document.createElement("option");
-  option.value = key;
-  option.textContent = key;
-  return option;
-}));
+  const select = document.createElement("select");
+  select.autofocus = true;
+  select.style.margin = "1em 0";
+  select.onchange = () => {
+    const {value} = select;
+    history.pushState({value}, "", `?test=${value}`);
+    render();
+  };
 
-addEventListener("popstate", (event) => {
-  const {value} = history.state;
-  select.value = value;
+  select.onkeydown = (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    switch (event.key) {
+      case "ArrowLeft": {
+        if (select.selectedIndex > 0) {
+          --select.selectedIndex;
+          select.onchange();
+        }
+        break;
+      }
+      case "ArrowRight": {
+        if (select.selectedIndex < select.options.length - 1) {
+          ++select.selectedIndex;
+          select.onchange();
+        }
+        break;
+      }
+    }
+  };
+
+  select.append(
+    ...Object.keys(tests).map((key) => {
+      const option = document.createElement("option");
+      option.value = key;
+      option.textContent = key;
+      return option;
+    })
+  );
+
+  addEventListener("popstate", (event) => {
+    const {value} = history.state;
+    select.value = value;
+    render();
+  });
+
+  const initialValue = new URL(location).searchParams.get("test");
+  if (tests[initialValue]) select.value = initialValue;
+
+  document.body.append(select);
+
+  let currentChart = document.createElement("DIV");
+
+  async function render() {
+    if (currentChart) currentChart.remove();
+    const div = (currentChart = document.body.appendChild(document.createElement("DIV")));
+    div.append(await tests[select.value]());
+  }
+
   render();
-});
-
-const initialValue = new URL(location).searchParams.get("test");
-if (tests[initialValue]) select.value = initialValue;
-
-document.body.append(select);
-
-let currentChart = document.createElement("DIV");
-
-async function render() {
-  if (currentChart) currentChart.remove();
-  const div = currentChart = document.body.appendChild(document.createElement("DIV"));
-  div.append(await tests[select.value]());
-}
-
-render();
-
 </script>

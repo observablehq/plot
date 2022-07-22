@@ -1,4 +1,5 @@
-import {ascending, descending, type Primitive} from "d3";
+import type {Primitive} from "d3";
+import {ascending, descending} from "d3";
 
 export function defined(x: Primitive | undefined): boolean {
   return x != null && !Number.isNaN(x);

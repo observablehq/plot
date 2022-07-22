@@ -3,23 +3,36 @@ import {format as isoFormat} from "isoformat";
 import {string} from "./options.js";
 import {memoize1} from "./memoize.js";
 
-const numberFormat = memoize1<Intl.NumberFormat>((locale: string | string[] | undefined) => new Intl.NumberFormat(locale));
-const monthFormat = memoize1<Intl.DateTimeFormat>((locale: string | string[] | undefined, month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", month}));
-const weekdayFormat = memoize1<Intl.DateTimeFormat>((locale: string | string[] | undefined, weekday: "long" | "short" | "narrow" | undefined) => new Intl.DateTimeFormat(locale, {timeZone: "UTC", weekday}));
+const numberFormat = memoize1<Intl.NumberFormat>(
+  (locale: string | string[] | undefined) => new Intl.NumberFormat(locale)
+);
+const monthFormat = memoize1<Intl.DateTimeFormat>(
+  (locale: string | string[] | undefined, month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined) =>
+    new Intl.DateTimeFormat(locale, {timeZone: "UTC", month})
+);
+const weekdayFormat = memoize1<Intl.DateTimeFormat>(
+  (locale: string | string[] | undefined, weekday: "long" | "short" | "narrow" | undefined) =>
+    new Intl.DateTimeFormat(locale, {timeZone: "UTC", weekday})
+);
 
 export function formatNumber(locale = "en-US"): (value: any) => string | undefined {
   const format = numberFormat(locale);
-  return (i: any) => i != null && !isNaN(i) ? format.format(i) : undefined;
+  return (i: any) => (i != null && !isNaN(i) ? format.format(i) : undefined);
 }
 
-export function formatMonth(locale = "en-US", month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined = "short") {
+export function formatMonth(
+  locale = "en-US",
+  month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined = "short"
+) {
   const format = monthFormat(locale, month);
-  return (i: Date | number | null | undefined) => i != null && !isNaN(i = +new Date(Date.UTC(2000, +i))) ? format.format(i) : undefined;
+  return (i: Date | number | null | undefined) =>
+    i != null && !isNaN((i = +new Date(Date.UTC(2000, +i)))) ? format.format(i) : undefined;
 }
 
 export function formatWeekday(locale = "en-US", weekday: "long" | "short" | "narrow" | undefined = "short") {
   const format = weekdayFormat(locale, weekday);
-  return (i: Date | number | null | undefined) => i != null && !isNaN(i = +new Date(Date.UTC(2001, 0, +i))) ? format.format(i) : undefined;
+  return (i: Date | number | null | undefined) =>
+    i != null && !isNaN((i = +new Date(Date.UTC(2001, 0, +i)))) ? format.format(i) : undefined;
 }
 
 export function formatIsoDate(date: Date): string {

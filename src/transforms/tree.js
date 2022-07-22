@@ -38,7 +38,7 @@ export function treeNode({
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter(i => P[i] != null)).each(node => node.data = data[node.data]);
+        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
@@ -91,14 +91,14 @@ export function treeLink({
       let treeIndex = -1;
       const treeData = [];
       const treeFacets = [];
-      const rootof = stratify().path(i => P[i]);
+      const rootof = stratify().path((i) => P[i]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter(i => P[i] != null)).each(node => node.data = data[node.data]);
+        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {
@@ -118,8 +118,10 @@ export function treeLink({
 
 export function maybeTreeAnchor(anchor = "left") {
   switch (`${anchor}`.trim().toLowerCase()) {
-    case "left": return treeAnchorLeft;
-    case "right": return treeAnchorRight;
+    case "left":
+      return treeAnchorLeft;
+    case "right":
+      return treeAnchorRight;
   }
   throw new Error(`invalid tree anchor: ${anchor}`);
 }
@@ -138,13 +140,15 @@ const treeAnchorRight = {
   dx: -6,
   position({x, y}, i, X, Y) {
     X[i] = -y;
-    Y[i] =  -x;
+    Y[i] = -x;
   }
 };
 
 function maybeTreeSort(sort) {
-  return sort == null || typeof sort === "function" ? sort
-    : `${sort}`.trim().toLowerCase().startsWith("node:") ? nodeSort(maybeNodeValue(sort))
+  return sort == null || typeof sort === "function"
+    ? sort
+    : `${sort}`.trim().toLowerCase().startsWith("node:")
+    ? nodeSort(maybeNodeValue(sort))
     : nodeSort(nodeData(sort));
 }
 
@@ -153,18 +157,18 @@ function nodeSort(value) {
 }
 
 function nodeData(field) {
-  return node => node.data?.[field];
+  return (node) => node.data?.[field];
 }
 
 function normalizer(delimiter = "/") {
   return `${delimiter}` === "/"
-    ? P => P // paths are already slash-separated
-    : P => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
+    ? (P) => P // paths are already slash-separated
+    : (P) => P.map(replaceAll(delimiter, "/")); // TODO string.replaceAll when supported
 }
 
 function replaceAll(search, replace) {
   search = new RegExp(regexEscape(search), "g");
-  return value => value == null ? null : `${value}`.replace(search, replace);
+  return (value) => (value == null ? null : `${value}`.replace(search, replace));
 }
 
 function regexEscape(string) {
@@ -184,11 +188,16 @@ function maybeNodeValue(value) {
   value = `${value}`.trim().toLowerCase();
   if (!value.startsWith("node:")) return;
   switch (value) {
-    case "node:name": return nodeName;
-    case "node:path": return nodePath;
-    case "node:internal": return nodeInternal;
-    case "node:depth": return nodeDepth;
-    case "node:height": return nodeHeight;
+    case "node:name":
+      return nodeName;
+    case "node:path":
+      return nodePath;
+    case "node:internal":
+      return nodeInternal;
+    case "node:depth":
+      return nodeDepth;
+    case "node:height":
+      return nodeHeight;
   }
   throw new Error(`invalid node value: ${value}`);
 }
@@ -199,15 +208,24 @@ function maybeLinkValue(value) {
   value = `${value}`.trim().toLowerCase();
   if (!value.startsWith("node:") && !value.startsWith("parent:")) return;
   switch (value) {
-    case "parent:name": return parentValue(nodeName);
-    case "parent:path": return parentValue(nodePath);
-    case "parent:depth": return parentValue(nodeDepth);
-    case "parent:height": return parentValue(nodeHeight);
-    case "node:name": return nodeName;
-    case "node:path": return nodePath;
-    case "node:internal": return nodeInternal;
-    case "node:depth": return nodeDepth;
-    case "node:height": return nodeHeight;
+    case "parent:name":
+      return parentValue(nodeName);
+    case "parent:path":
+      return parentValue(nodePath);
+    case "parent:depth":
+      return parentValue(nodeDepth);
+    case "parent:height":
+      return parentValue(nodeHeight);
+    case "node:name":
+      return nodeName;
+    case "node:path":
+      return nodePath;
+    case "node:internal":
+      return nodeInternal;
+    case "node:depth":
+      return nodeDepth;
+    case "node:height":
+      return nodeHeight;
   }
   throw new Error(`invalid link value: ${value}`);
 }
@@ -233,7 +251,7 @@ function nodeInternal(node) {
 }
 
 function parentValue(evaluate) {
-  return (child, parent) => parent == null ? undefined : evaluate(parent);
+  return (child, parent) => (parent == null ? undefined : evaluate(parent));
 }
 
 // Walk backwards to find the first slash.

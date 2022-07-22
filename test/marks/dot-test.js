@@ -6,8 +6,25 @@ it("dot() has the expected defaults", () => {
   assert.strictEqual(dot.data, undefined);
   assert.strictEqual(dot.transform, undefined);
   assert.deepStrictEqual(Object.keys(dot.channels), ["x", "y"]);
-  assert.deepStrictEqual(Object.values(dot.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  assert.deepStrictEqual(Object.values(dot.channels).map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(dot.channels).map((c) =>
+      Plot.valueof(
+        [
+          [1, 2],
+          [3, 4]
+        ],
+        c.value
+      )
+    ),
+    [
+      [1, 3],
+      [2, 4]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(dot.channels).map((c) => c.scale),
+    ["x", "y"]
+  );
   assert.strictEqual(dot.r, 3);
   assert.strictEqual(dot.fill, "none");
   assert.strictEqual(dot.fillOpacity, undefined);

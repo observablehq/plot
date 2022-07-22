@@ -16,17 +16,21 @@ export function Channel(data, {scale, type, value, filter, hint}) {
 }
 
 export function Channels(descriptors, data) {
-  return Object.fromEntries(Object.entries(descriptors).map(([name, channel]) => {
-    return [name, Channel(data, channel)];
-  }));
+  return Object.fromEntries(
+    Object.entries(descriptors).map(([name, channel]) => {
+      return [name, Channel(data, channel)];
+    })
+  );
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales) {
-  return Object.fromEntries(Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
-    const scale = scales[scaleName];
-    return [name, scale === undefined ? value : map(value, scale)];
-  }));
+  return Object.fromEntries(
+    Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
+      const scale = scales[scaleName];
+      return [name, scale === undefined ? value : map(value, scale)];
+    })
+  );
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
@@ -39,7 +43,7 @@ export function channelDomain(channels, facetChannels, data, options) {
     let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
     if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer
-    const X = findScaleChannel(channels, x) || facetChannels && findScaleChannel(facetChannels, x);
+    const X = findScaleChannel(channels, x) || (facetChannels && findScaleChannel(facetChannels, x));
     if (!X) throw new Error(`missing channel for scale: ${x}`);
     const XV = X.value;
     const [lo = 0, hi = Infinity] = isIterable(limit) ? limit : limit < 0 ? [limit] : [0, limit];
@@ -51,13 +55,21 @@ export function channelDomain(channels, facetChannels, data, options) {
         return domain;
       };
     } else {
-      const YV = y === "data" ? data
-          : y === "height" ? difference(channels, "y1", "y2")
-          : y === "width" ? difference(channels, "x1", "x2")
+      const YV =
+        y === "data"
+          ? data
+          : y === "height"
+          ? difference(channels, "y1", "y2")
+          : y === "width"
+          ? difference(channels, "x1", "x2")
           : values(channels, y, y === "y" ? "y2" : y === "x" ? "x2" : undefined);
       const reducer = maybeReduce(reduce === true ? "max" : reduce, YV);
       X.domain = () => {
-        let domain = rollup(range(XV), I => reducer.reduce(I, YV), i => XV[i]);
+        let domain = rollup(
+          range(XV),
+          (I) => reducer.reduce(I, YV),
+          (i) => XV[i]
+        );
         domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
         if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
         return domain.map(first);

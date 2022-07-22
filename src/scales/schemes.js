@@ -162,7 +162,7 @@ function scheme11r(scheme, interpolate) {
   return ({length: n}) => {
     if (n === 2) return [scheme[3][2], scheme[3][0]]; // favor diverging extrema
     n = Math.max(3, Math.floor(n));
-    return n > 11 ? quantize(t => interpolate(1 - t), n) : scheme[n].slice().reverse();
+    return n > 11 ? quantize((t) => interpolate(1 - t), n) : scheme[n].slice().reverse();
   };
 }
 
@@ -214,8 +214,8 @@ const quantitativeSchemes = new Map([
   ["spectral", interpolateSpectral],
 
   // reversed diverging (for temperature data)
-  ["burd", t => interpolateRdBu(1 - t)],
-  ["buylrd", t => interpolateRdYlBu(1 - t)],
+  ["burd", (t) => interpolateRdBu(1 - t)],
+  ["buylrd", (t) => interpolateRdYlBu(1 - t)],
 
   // sequential (single-hue)
   ["blues", interpolateBlues],

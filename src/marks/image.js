@@ -2,7 +2,15 @@ import {create} from "../context.js";
 import {positive} from "../defined.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, applyAttr, impliedString, applyFrameAnchor} from "../style.js";
+import {
+  applyChannelStyles,
+  applyDirectStyles,
+  applyIndirectStyles,
+  applyTransform,
+  applyAttr,
+  impliedString,
+  applyFrameAnchor
+} from "../style.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -27,9 +35,7 @@ function isUrl(string) {
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
 function maybePathChannel(value) {
-  return typeof value === "string" && (isPath(value) || isUrl(value))
-    ? [undefined, value]
-    : [value, undefined];
+  return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
 }
 
 export class Image extends Mark {
@@ -63,26 +69,47 @@ export class Image extends Mark {
     const {x: X, y: Y, width: W, height: H, src: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("image")
-            .call(applyDirectStyles, this)
-            .attr("x", W && X ? i => X[i] - W[i] / 2 : W ? i => cx - W[i] / 2 : X ? i => X[i] - this.width / 2 : cx - this.width / 2)
-            .attr("y", H && Y ? i => Y[i] - H[i] / 2 : H ? i => cy - H[i] / 2 : Y ? i => Y[i] - this.height / 2 : cy - this.height / 2)
-            .attr("width", W ? i => W[i] : this.width)
-            .attr("height", H ? i => H[i] : this.height)
-            .call(applyAttr, "href", S ? i => S[i] : this.src)
-            .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
-            .call(applyAttr, "crossorigin", this.crossOrigin)
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr(
+            "x",
+            W && X
+              ? (i) => X[i] - W[i] / 2
+              : W
+              ? (i) => cx - W[i] / 2
+              : X
+              ? (i) => X[i] - this.width / 2
+              : cx - this.width / 2
+          )
+          .attr(
+            "y",
+            H && Y
+              ? (i) => Y[i] - H[i] / 2
+              : H
+              ? (i) => cy - H[i] / 2
+              : Y
+              ? (i) => Y[i] - this.height / 2
+              : cy - this.height / 2
+          )
+          .attr("width", W ? (i) => W[i] : this.width)
+          .attr("height", H ? (i) => H[i] : this.height)
+          .call(applyAttr, "href", S ? (i) => S[i] : this.src)
+          .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
+          .call(applyAttr, "crossorigin", this.crossOrigin)
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
 }
 
 export function image(data, {x, y, ...options} = {}) {
-  if (options.frameAnchor === undefined) ([x, y] = maybeTuple(x, y));
+  if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Image(data, {...options, x, y});
 }

@@ -2,7 +2,14 @@ import {create} from "../context.js";
 import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {isCollapsed} from "../scales.js";
-import {applyDirectStyles, applyIndirectStyles, applyTransform, impliedString, applyAttr, applyChannelStyles} from "../style.js";
+import {
+  applyDirectStyles,
+  applyIndirectStyles,
+  applyTransform,
+  impliedString,
+  applyAttr,
+  applyChannelStyles
+} from "../style.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
@@ -21,29 +28,32 @@ export class AbstractBar extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {rx, ry} = this;
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(this._transform, this, scales)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(this._transform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("rect")
-            .call(applyDirectStyles, this)
-            .attr("x", this._x(scales, channels, dimensions))
-            .attr("width", this._width(scales, channels, dimensions))
-            .attr("y", this._y(scales, channels, dimensions))
-            .attr("height", this._height(scales, channels, dimensions))
-            .call(applyAttr, "rx", rx)
-            .call(applyAttr, "ry", ry)
-            .call(applyChannelStyles, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("x", this._x(scales, channels, dimensions))
+          .attr("width", this._width(scales, channels, dimensions))
+          .attr("y", this._y(scales, channels, dimensions))
+          .attr("height", this._height(scales, channels, dimensions))
+          .call(applyAttr, "rx", rx)
+          .call(applyAttr, "ry", ry)
+          .call(applyChannelStyles, this, channels)
+      )
       .node();
   }
   _x(scales, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X ? i => X[i] + insetLeft : marginLeft + insetLeft;
+    return X ? (i) => X[i] + insetLeft : marginLeft + insetLeft;
   }
   _y(scales, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y ? i => Y[i] + insetTop : marginTop + insetTop;
+    return Y ? (i) => Y[i] + insetTop : marginTop + insetTop;
   }
   _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
@@ -80,11 +90,13 @@ export class BarX extends AbstractBar {
   }
   _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
     const {insetLeft} = this;
-    return isCollapsed(x) ? marginLeft + insetLeft : i => Math.min(X1[i], X2[i]) + insetLeft;
+    return isCollapsed(x) ? marginLeft + insetLeft : (i) => Math.min(X1[i], X2[i]) + insetLeft;
   }
   _width({x}, {x1: X1, x2: X2}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
-    return isCollapsed(x) ? width - marginRight - marginLeft - insetLeft - insetRight : i => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
+    return isCollapsed(x)
+      ? width - marginRight - marginLeft - insetLeft - insetRight
+      : (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
   }
 }
 
@@ -107,11 +119,13 @@ export class BarY extends AbstractBar {
   }
   _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
     const {insetTop} = this;
-    return isCollapsed(y) ? marginTop + insetTop : i => Math.min(Y1[i], Y2[i]) + insetTop;
+    return isCollapsed(y) ? marginTop + insetTop : (i) => Math.min(Y1[i], Y2[i]) + insetTop;
   }
   _height({y}, {y1: Y1, y2: Y2}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
-    return isCollapsed(y) ? height - marginTop - marginBottom - insetTop - insetBottom : i => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
+    return isCollapsed(y)
+      ? height - marginTop - marginBottom - insetTop - insetBottom
+      : (i) => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
   }
 }
 

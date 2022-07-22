@@ -9,10 +9,10 @@ function formatChange(x) {
 
 async function loadSymbol(name) {
   const Symbol = name.toUpperCase();
-  return d3.csv(`data/${name}.csv`, d => ({Symbol, ...d3.autoType(d)}));
+  return d3.csv(`data/${name}.csv`, (d) => ({Symbol, ...d3.autoType(d)}));
 }
 
-export default async function() {
+export default async function () {
   const stocks = (await Promise.all(["aapl", "amzn", "goog", "ibm"].map(loadSymbol))).flat();
   return Plot.plot({
     style: "overflow: visible;",
@@ -24,19 +24,27 @@ export default async function() {
     },
     marks: [
       Plot.ruleY([1]),
-      Plot.line(stocks, Plot.normalizeY({
-        x: "Date",
-        y: "Close",
-        stroke: "Symbol"
-      })),
-      Plot.text(stocks, Plot.selectLast(Plot.normalizeY({
-        x: "Date",
-        y: "Close",
-        z: "Symbol",
-        text: d => d.Symbol.toUpperCase(),
-        textAnchor: "start",
-        dx: 3
-      })))
+      Plot.line(
+        stocks,
+        Plot.normalizeY({
+          x: "Date",
+          y: "Close",
+          stroke: "Symbol"
+        })
+      ),
+      Plot.text(
+        stocks,
+        Plot.selectLast(
+          Plot.normalizeY({
+            x: "Date",
+            y: "Close",
+            z: "Symbol",
+            text: (d) => d.Symbol.toUpperCase(),
+            textAnchor: "start",
+            dx: 3
+          })
+        )
+      )
     ]
   });
 }

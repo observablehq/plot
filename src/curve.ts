@@ -20,18 +20,9 @@ import {
   curveStepAfter,
   curveStepBefore
 } from "d3";
-import type {
-  CurveFactory,
-  CurveBundleFactory,
-  CurveCardinalFactory,
-  CurveCatmullRomFactory
-} from "d3";
+import type {CurveFactory, CurveBundleFactory, CurveCardinalFactory, CurveCatmullRomFactory} from "d3";
 
-type CurveFunction =
-  | CurveFactory
-  | CurveBundleFactory
-  | CurveCardinalFactory
-  | CurveCatmullRomFactory;
+type CurveFunction = CurveFactory | CurveBundleFactory | CurveCardinalFactory | CurveCatmullRomFactory;
 type CurveName =
   | "basis"
   | "basis-closed"
@@ -77,10 +68,7 @@ const curves = new Map<CurveName, CurveFunction>([
   ["step-before", curveStepBefore]
 ]);
 
-export function Curve(
-  curve: CurveName | CurveFunction = curveLinear,
-  tension?: number
-): CurveFunction {
+export function Curve(curve: CurveName | CurveFunction = curveLinear, tension?: number): CurveFunction {
   if (typeof curve === "function") return curve; // custom curve
   const c = curves.get(`${curve}`.toLowerCase() as CurveName);
   if (!c) throw new Error(`unknown curve: ${curve}`);

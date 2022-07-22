@@ -4,17 +4,18 @@ import * as d3 from "d3";
 // TODO consolidate bars into Other category
 export function chooseOne(responses, y, title) {
   return bars(
-    d3.rollups(responses, group => group.length / responses.length, d => d[y]),
+    d3.rollups(
+      responses,
+      (group) => group.length / responses.length,
+      (d) => d[y]
+    ),
     title
   );
 }
 
 export function chooseMany(responses, y, title) {
   return bars(
-    Array.from(
-      new Set(responses.flatMap(d => d[y])),
-      v => [v, d3.mean(responses, d => d[y].includes(v))]
-    ),
+    Array.from(new Set(responses.flatMap((d) => d[y])), (v) => [v, d3.mean(responses, (d) => d[y].includes(v))]),
     title
   );
 }
@@ -29,7 +30,7 @@ function bars(groups, title) {
       axis: "top",
       domain: [0, 100],
       label: "Frequency (%) →",
-      transform: x => x * 100
+      transform: (x) => x * 100
     },
     y: {
       padding: 0,

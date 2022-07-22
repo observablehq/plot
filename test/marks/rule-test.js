@@ -6,8 +6,14 @@ it("ruleX() has the expected defaults", () => {
   assert.strictEqual(rule.data, undefined);
   assert.strictEqual(rule.transform, undefined);
   assert.deepStrictEqual(Object.keys(rule.channels), ["x"]);
-  assert.deepStrictEqual(Object.values(rule.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(rule.channels).map(c => c.scale), ["x"]);
+  assert.deepStrictEqual(
+    Object.values(rule.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    Object.values(rule.channels).map((c) => c.scale),
+    ["x"]
+  );
   assert.strictEqual(rule.fill, undefined);
   assert.strictEqual(rule.fillOpacity, undefined);
   assert.strictEqual(rule.stroke, "currentColor");
@@ -95,8 +101,14 @@ it("ruleY() has the expected defaults", () => {
   assert.strictEqual(rule.data, undefined);
   assert.strictEqual(rule.transform, undefined);
   assert.deepStrictEqual(Object.keys(rule.channels), ["y"]);
-  assert.deepStrictEqual(Object.values(rule.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(rule.channels).map(c => c.scale), ["y"]);
+  assert.deepStrictEqual(
+    Object.values(rule.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    Object.values(rule.channels).map((c) => c.scale),
+    ["y"]
+  );
   assert.strictEqual(rule.fill, undefined);
   assert.strictEqual(rule.fillOpacity, undefined);
   assert.strictEqual(rule.stroke, "currentColor");

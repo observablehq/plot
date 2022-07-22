@@ -6,8 +6,25 @@ it("cell() has the expected defaults", () => {
   assert.strictEqual(cell.data, undefined);
   assert.strictEqual(cell.transform, undefined);
   assert.deepStrictEqual(Object.keys(cell.channels), ["x", "y"]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4]]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) =>
+      Plot.valueof(
+        [
+          [1, 2],
+          [3, 4]
+        ],
+        c.value
+      )
+    ),
+    [
+      [1, 3],
+      [2, 4]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) => c.scale),
+    ["x", "y"]
+  );
   assert.strictEqual(cell.channels.x.type, "band");
   assert.strictEqual(cell.channels.y.type, "band");
   assert.strictEqual(cell.fill, undefined);
@@ -76,8 +93,17 @@ it("cellX() defaults x to identity and y to null", () => {
   assert.strictEqual(cell.data, undefined);
   assert.strictEqual(cell.transform, undefined);
   assert.deepStrictEqual(Object.keys(cell.channels), ["fill", "x"]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3], [0, 1, 2]]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => c.scale), ["color", "x"]);
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [
+      [1, 2, 3],
+      [0, 1, 2]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) => c.scale),
+    ["color", "x"]
+  );
   assert.strictEqual(cell.channels.x.type, "band");
 });
 
@@ -86,7 +112,16 @@ it("cellY() defaults y to identity and x to null", () => {
   assert.strictEqual(cell.data, undefined);
   assert.strictEqual(cell.transform, undefined);
   assert.deepStrictEqual(Object.keys(cell.channels), ["fill", "y"]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3], [0, 1, 2]]);
-  assert.deepStrictEqual(Object.values(cell.channels).map(c => c.scale), ["color", "y"]);
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [
+      [1, 2, 3],
+      [0, 1, 2]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(cell.channels).map((c) => c.scale),
+    ["color", "y"]
+  );
   assert.strictEqual(cell.channels.y.type, "band");
 });

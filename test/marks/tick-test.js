@@ -6,8 +6,14 @@ it("tickX() has the expected defaults", () => {
   assert.strictEqual(tick.data, undefined);
   assert.strictEqual(tick.transform, undefined);
   assert.deepStrictEqual(Object.keys(tick.channels), ["x"]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => c.scale), ["x"]);
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => c.scale),
+    ["x"]
+  );
   assert.strictEqual(tick.fill, undefined);
   assert.strictEqual(tick.fillOpacity, undefined);
   assert.strictEqual(tick.stroke, "currentColor");
@@ -25,7 +31,10 @@ it("tickX() has the expected defaults", () => {
 it("tickX(data, {y}) uses a band scale", () => {
   const tick = Plot.tickX(undefined, {y: "x"});
   assert.deepStrictEqual(Object.keys(tick.channels), ["x", "y"]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => c.scale), ["x", "y"]);
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => c.scale),
+    ["x", "y"]
+  );
   assert.strictEqual(tick.channels.y.type, "band");
   assert.strictEqual(tick.channels.y.value, "x");
 });
@@ -60,8 +69,14 @@ it("tickY() has the expected defaults", () => {
   assert.strictEqual(tick.data, undefined);
   assert.strictEqual(tick.transform, undefined);
   assert.deepStrictEqual(Object.keys(tick.channels), ["y"]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => Plot.valueof([1, 2, 3], c.value)), [[1, 2, 3]]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => c.scale), ["y"]);
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => Plot.valueof([1, 2, 3], c.value)),
+    [[1, 2, 3]]
+  );
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => c.scale),
+    ["y"]
+  );
   assert.strictEqual(tick.fill, undefined);
   assert.strictEqual(tick.fillOpacity, undefined);
   assert.strictEqual(tick.stroke, "currentColor");
@@ -79,7 +94,10 @@ it("tickY() has the expected defaults", () => {
 it("tickY(data, {x}) uses a band scale", () => {
   const tick = Plot.tickY(undefined, {x: "y"});
   assert.deepStrictEqual(Object.keys(tick.channels), ["y", "x"]);
-  assert.deepStrictEqual(Object.values(tick.channels).map(c => c.scale), ["y", "x"]);
+  assert.deepStrictEqual(
+    Object.values(tick.channels).map((c) => c.scale),
+    ["y", "x"]
+  );
   assert.strictEqual(tick.channels.x.type, "band");
   assert.strictEqual(tick.channels.x.value, "y");
 });

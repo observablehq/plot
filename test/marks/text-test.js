@@ -6,8 +6,26 @@ it("text() has the expected defaults", () => {
   assert.strictEqual(text.data, undefined);
   assert.strictEqual(text.transform, undefined);
   assert.deepStrictEqual(Object.keys(text.channels), ["x", "y", "text"]);
-  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof([[1, 2], [3, 4]], c.value)), [[1, 3], [2, 4], [0, 1]]);
-  assert.deepStrictEqual(Object.values(text.channels).map(c => c.scale), ["x", "y", undefined]);
+  assert.deepStrictEqual(
+    Object.values(text.channels).map((c) =>
+      Plot.valueof(
+        [
+          [1, 2],
+          [3, 4]
+        ],
+        c.value
+      )
+    ),
+    [
+      [1, 3],
+      [2, 4],
+      [0, 1]
+    ]
+  );
+  assert.deepStrictEqual(
+    Object.values(text.channels).map((c) => c.scale),
+    ["x", "y", undefined]
+  );
   assert.strictEqual(text.fill, undefined);
   assert.strictEqual(text.fillOpacity, undefined);
   assert.strictEqual(text.stroke, undefined);
@@ -34,7 +52,10 @@ it("text(strings, {frameAnchor}) has the expected defaults", () => {
   assert.strictEqual(text.data, data);
   assert.strictEqual(text.transform, undefined);
   assert.deepStrictEqual(Object.keys(text.channels), ["text"]);
-  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof(data, c.value)), [data]);
+  assert.deepStrictEqual(
+    Object.values(text.channels).map((c) => Plot.valueof(data, c.value)),
+    [data]
+  );
   assert.strictEqual(text.textAnchor, undefined);
   assert.strictEqual(text.lineAnchor, "middle");
   assert.strictEqual(text.frameAnchor, "middle");
@@ -46,7 +67,10 @@ it("text(dates, {frameAnchor}) has the expected defaults", () => {
   assert.strictEqual(text.data, data);
   assert.strictEqual(text.transform, undefined);
   assert.deepStrictEqual(Object.keys(text.channels), ["text"]);
-  assert.deepStrictEqual(Object.values(text.channels).map(c => Plot.valueof(data, c.value)), [data]);
+  assert.deepStrictEqual(
+    Object.values(text.channels).map((c) => Plot.valueof(data, c.value)),
+    [data]
+  );
   assert.strictEqual(text.textAnchor, undefined);
   assert.strictEqual(text.lineAnchor, "middle");
   assert.strictEqual(text.frameAnchor, "middle");

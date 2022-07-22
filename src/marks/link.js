@@ -33,31 +33,34 @@ export class Link extends Mark {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
     const {curve} = this;
     return create("svg:g", context)
-        .call(applyIndirectStyles, this, scales, dimensions)
-        .call(applyTransform, this, scales)
-        .call(g => g.selectAll()
+      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyTransform, this, scales)
+      .call((g) =>
+        g
+          .selectAll()
           .data(index)
           .enter()
           .append("path")
-            .call(applyDirectStyles, this)
-            .attr("d", i => {
-              const p = path();
-              const c = curve(p);
-              c.lineStart();
-              c.point(X1[i], Y1[i]);
-              c.point(X2[i], Y2[i]);
-              c.lineEnd();
-              return p;
-            })
-            .call(applyChannelStyles, this, channels)
-            .call(applyMarkers, this, channels))
+          .call(applyDirectStyles, this)
+          .attr("d", (i) => {
+            const p = path();
+            const c = curve(p);
+            c.lineStart();
+            c.point(X1[i], Y1[i]);
+            c.point(X2[i], Y2[i]);
+            c.lineEnd();
+            return p;
+          })
+          .call(applyChannelStyles, this, channels)
+          .call(applyMarkers, this, channels)
+      )
       .node();
   }
 }
 
 export function link(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
-  ([x1, x2] = maybeSameValue(x, x1, x2));
-  ([y1, y2] = maybeSameValue(y, y1, y2));
+  [x1, x2] = maybeSameValue(x, x1, x2);
+  [y1, y2] = maybeSameValue(y, y1, y2);
   return new Link(data, {...options, x1, x2, y1, y2});
 }
 

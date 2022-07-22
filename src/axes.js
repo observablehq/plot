@@ -6,21 +6,53 @@ import {position, registry} from "./scales/index.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {x = {}, y = {}, fx = {}, fy = {}, axis = true, grid, line, label, facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}} = {}
+  {
+    x = {},
+    y = {},
+    fx = {},
+    fy = {},
+    axis = true,
+    grid,
+    line,
+    label,
+    facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}
+  } = {}
 ) {
   let {axis: xAxis = axis} = x;
   let {axis: yAxis = axis} = y;
   let {axis: fxAxis = facetAxis} = fx;
   let {axis: fyAxis = facetAxis} = fy;
-  if (!xScale) xAxis = null; else if (xAxis === true) xAxis = "bottom";
-  if (!yScale) yAxis = null; else if (yAxis === true) yAxis = "left";
-  if (!fxScale) fxAxis = null; else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-  if (!fyScale) fyAxis = null; else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+  if (!xScale) xAxis = null;
+  else if (xAxis === true) xAxis = "bottom";
+  if (!yScale) yAxis = null;
+  else if (yAxis === true) yAxis = "left";
+  if (!fxScale) fxAxis = null;
+  else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
+  if (!fyScale) fyAxis = null;
+  else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
   return {
-    ...xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})},
-    ...yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})},
-    ...fxAxis && {fx: new AxisX({name: "fx", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fxScale), ...fx, axis: fxAxis})},
-    ...fyAxis && {fy: new AxisY({name: "fy", grid: facetGrid, label: facetLabel, fontVariant: inferFontVariant(fyScale), ...fy, axis: fyAxis})}
+    ...(xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})}),
+    ...(yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})}),
+    ...(fxAxis && {
+      fx: new AxisX({
+        name: "fx",
+        grid: facetGrid,
+        label: facetLabel,
+        fontVariant: inferFontVariant(fxScale),
+        ...fx,
+        axis: fxAxis
+      })
+    }),
+    ...(fyAxis && {
+      fy: new AxisY({
+        name: "fy",
+        grid: facetGrid,
+        label: facetLabel,
+        fontVariant: inferFontVariant(fyScale),
+        ...fy,
+        axis: fyAxis
+      })
+    })
   };
 }
 
@@ -83,7 +115,8 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
     }
   }
   for (const [key, type] of registry) {
-    if (type !== position && scales[key]) { // not already handled above
+    if (type !== position && scales[key]) {
+      // not already handled above
       autoScaleLabel(key, scales[key], channels.get(key), options[key]);
     }
   }
@@ -92,9 +125,7 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
 // Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsX(axis, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = isOrdinalScale(scale) ? "center"
-      : scaleOrder(scale) < 0 ? "left"
-      : "right";
+    axis.labelAnchor = isOrdinalScale(scale) ? "center" : scaleOrder(scale) < 0 ? "left" : "right";
   }
   if (axis.label === undefined) {
     axis.label = inferLabel(channels, scale, axis, "x");
@@ -105,8 +136,10 @@ function autoAxisLabelsX(axis, scale, channels) {
 // Mutates axis.labelAnchor, axis.label, scale.label!
 function autoAxisLabelsY(axis, opposite, scale, channels) {
   if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = isOrdinalScale(scale) ? "center"
-      : opposite && opposite.axis === "top" ? "bottom" // TODO scaleOrder?
+    axis.labelAnchor = isOrdinalScale(scale)
+      ? "center"
+      : opposite && opposite.axis === "top"
+      ? "bottom" // TODO scaleOrder?
       : "top";
   }
   if (axis.label === undefined) {
@@ -145,7 +178,7 @@ function inferLabel(channels = [], scale, axis, key) {
         const order = scaleOrder(scale);
         if (order) {
           if (key === "x" || (axis && axis.labelAnchor === "center")) {
-            candidate = key === "x" === order < 0 ? `← ${candidate}` : `${candidate} →`;
+            candidate = (key === "x") === order < 0 ? `← ${candidate}` : `${candidate} →`;
           } else {
             candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
           }

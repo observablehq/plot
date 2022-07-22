@@ -3,15 +3,17 @@ import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
 export function mapX(m, options = {}) {
-  return map(Object.fromEntries(["x", "x1", "x2"]
-    .filter(key => options[key] != null)
-    .map(key => [key, m])), options);
+  return map(
+    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, m])),
+    options
+  );
 }
 
 export function mapY(m, options = {}) {
-  return map(Object.fromEntries(["y", "y1", "y2"]
-    .filter(key => options[key] != null)
-    .map(key => [key, m])), options);
+  return map(
+    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, m])),
+    options
+  );
 }
 
 export function map(outputs = {}, options = {}) {
@@ -28,7 +30,7 @@ export function map(outputs = {}, options = {}) {
       const X = channels.map(({input}) => valueof(data, input));
       const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
       for (const facet of facets) {
-        for (const I of Z ? group(facet, i => Z[i]).values() : [facet]) {
+        for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
           channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
         }
       }
@@ -42,16 +44,19 @@ function maybeMap(map) {
   if (map && typeof map.map === "function") return map;
   if (typeof map === "function") return mapFunction(map);
   switch (`${map}`.toLowerCase()) {
-    case "cumsum": return mapCumsum;
-    case "rank": return mapFunction(rank);
-    case "quantile": return mapFunction(rankQuantile);
+    case "cumsum":
+      return mapCumsum;
+    case "rank":
+      return mapFunction(rank);
+    case "quantile":
+      return mapFunction(rankQuantile);
   }
   throw new Error(`invalid map: ${map}`);
 }
 
 function rankQuantile(V) {
   const n = count(V) - 1;
-  return rank(V).map(r => r / n);
+  return rank(V).map((r) => r / n);
 }
 
 function mapFunction(f) {

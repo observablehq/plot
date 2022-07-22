@@ -2,7 +2,7 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 import {svg} from "htl";
 
-export default async function() {
+export default async function () {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   return Plot.plot({
     color: {

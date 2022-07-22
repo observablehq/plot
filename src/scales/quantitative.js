@@ -29,7 +29,7 @@ import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {maybeInterval} from "../transforms/interval.js";
 import {registry, radius, opacity, color, length} from "./index.js";
 
-export const flip = i => t => i(1 - t);
+export const flip = (i) => (t) => i(1 - t);
 const unit = [0, 1];
 
 const interpolators = new Map([
@@ -49,20 +49,37 @@ export function Interpolator(interpolate) {
   return interpolators.get(i);
 }
 
-export function ScaleQ(key, scale, channels, {
-  type,
-  nice,
-  clamp,
-  zero,
-  domain = inferAutoDomain(key, channels),
-  unknown,
-  round,
-  scheme,
-  interval,
-  range = registry.get(key) === radius ? inferRadialRange(channels, domain) : registry.get(key) === length ? inferLengthRange(channels, domain) : registry.get(key) === opacity ? unit : undefined,
-  interpolate = registry.get(key) === color ? (scheme == null && range !== undefined ? interpolateRgb : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")) : round ? interpolateRound : interpolateNumber,
-  reverse
-}) {
+export function ScaleQ(
+  key,
+  scale,
+  channels,
+  {
+    type,
+    nice,
+    clamp,
+    zero,
+    domain = inferAutoDomain(key, channels),
+    unknown,
+    round,
+    scheme,
+    interval,
+    range = registry.get(key) === radius
+      ? inferRadialRange(channels, domain)
+      : registry.get(key) === length
+      ? inferLengthRange(channels, domain)
+      : registry.get(key) === opacity
+      ? unit
+      : undefined,
+    interpolate = registry.get(key) === color
+      ? scheme == null && range !== undefined
+        ? interpolateRgb
+        : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")
+      : round
+      ? interpolateRound
+      : interpolateNumber,
+    reverse
+  }
+) {
   interval = maybeInterval(interval);
   if (type === "cyclical" || type === "sequential") type = "linear"; // shorthand for color schemes
   reverse = !!reverse;
@@ -96,16 +113,17 @@ export function ScaleQ(key, scale, channels, {
   // two values for a “poly” scale. And lastly be careful not to mutate input!
   if (zero) {
     const [min, max] = extent(domain);
-    if ((min > 0) || (max < 0)) {
+    if (min > 0 || max < 0) {
       domain = slice(domain);
-      if (order(domain) !== Math.sign(min)) domain[domain.length - 1] = 0; // [2, 1] or [-2, -1]
+      if (order(domain) !== Math.sign(min)) domain[domain.length - 1] = 0;
+      // [2, 1] or [-2, -1]
       else domain[0] = 0; // [1, 2] or [-1, -2]
     }
   }
 
   if (reverse) domain = reverseof(domain);
   scale.domain(domain).unknown(unknown);
-  if (nice) scale.nice(nice === true ? undefined : nice), domain = scale.domain();
+  if (nice) scale.nice(nice === true ? undefined : nice), (domain = scale.domain());
   if (range !== undefined) scale.range(range);
   if (clamp) scale.clamp(clamp);
   return {type, domain, range, scale, interpolate, interval};
@@ -131,16 +149,26 @@ export function ScaleSymlog(key, channels, {constant = 1, ...options}) {
   return ScaleQ(key, scaleSymlog().constant(constant), channels, options);
 }
 
-export function ScaleQuantile(key, channels, {
-  range,
-  quantiles = range === undefined ? 5 : (range = [...range]).length, // deprecated; use n instead
-  n = quantiles,
-  scheme = "rdylbu",
-  domain = inferQuantileDomain(channels),
-  interpolate,
-  reverse
-}) {
-  if (range === undefined) range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
+export function ScaleQuantile(
+  key,
+  channels,
+  {
+    range,
+    quantiles = range === undefined ? 5 : (range = [...range]).length, // deprecated; use n instead
+    n = quantiles,
+    scheme = "rdylbu",
+    domain = inferQuantileDomain(channels),
+    interpolate,
+    reverse
+  }
+) {
+  if (range === undefined)
+    range =
+      interpolate !== undefined
+        ? quantize(interpolate, n)
+        : registry.get(key) === color
+        ? ordinalRange(scheme, n)
+        : undefined;
   return ScaleThreshold(key, channels, {
     domain: scaleQuantile(domain, range === undefined ? {length: n} : range).quantiles(),
     range,
@@ -148,14 +176,18 @@ export function ScaleQuantile(key, channels, {
   });
 }
 
-export function ScaleQuantize(key, channels, {
-  range,
-  n = range === undefined ? 5 : (range = [...range]).length,
-  scheme = "rdylbu",
-  domain = inferAutoDomain(key, channels),
-  interpolate,
-  reverse
-}) {
+export function ScaleQuantize(
+  key,
+  channels,
+  {
+    range,
+    n = range === undefined ? 5 : (range = [...range]).length,
+    scheme = "rdylbu",
+    domain = inferAutoDomain(key, channels),
+    interpolate,
+    reverse
+  }
+) {
   const [min, max] = extent(domain);
   let thresholds;
   if (range === undefined) {
@@ -163,25 +195,39 @@ export function ScaleQuantize(key, channels, {
     if (thresholds[0] <= min) thresholds.splice(0, 1); // drop exact lower bound
     if (thresholds[thresholds.length - 1] >= max) thresholds.pop(); // drop exact upper bound
     n = thresholds.length + 1;
-    range = interpolate !== undefined ? quantize(interpolate, n) : registry.get(key) === color ? ordinalRange(scheme, n) : undefined;
+    range =
+      interpolate !== undefined
+        ? quantize(interpolate, n)
+        : registry.get(key) === color
+        ? ordinalRange(scheme, n)
+        : undefined;
   } else {
     thresholds = quantize(interpolateNumber(min, max), n + 1).slice(1, -1); // exactly n - 1 thresholds to match range
-    if (min instanceof Date) thresholds = thresholds.map(x => new Date(x)); // preserve date types
+    if (min instanceof Date) thresholds = thresholds.map((x) => new Date(x)); // preserve date types
   }
   if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
   return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
 }
 
-export function ScaleThreshold(key, channels, {
-  domain = [0], // explicit thresholds in ascending order
-  unknown,
-  scheme = "rdylbu",
-  interpolate,
-  range = interpolate !== undefined ? quantize(interpolate, domain.length + 1) : registry.get(key) === color ? ordinalRange(scheme, domain.length + 1) : undefined,
-  reverse
-}) {
+export function ScaleThreshold(
+  key,
+  channels,
+  {
+    domain = [0], // explicit thresholds in ascending order
+    unknown,
+    scheme = "rdylbu",
+    interpolate,
+    range = interpolate !== undefined
+      ? quantize(interpolate, domain.length + 1)
+      : registry.get(key) === color
+      ? ordinalRange(scheme, domain.length + 1)
+      : undefined,
+    reverse
+  }
+) {
   const sign = order(arrayify(domain)); // preserve descending domain
-  if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign))) throw new Error(`the ${key} scale has a non-monotonic domain`);
+  if (!pairs(domain).every(([a, b]) => isOrdered(a, b, sign)))
+    throw new Error(`the ${key} scale has a non-monotonic domain`);
   if (reverse) range = reverseof(range); // domain ascending, so reverse range
   return {
     type: "threshold",
@@ -201,10 +247,12 @@ export function ScaleIdentity() {
 }
 
 export function inferDomain(channels, f = finite) {
-  return channels.length ? [
-    min(channels, ({value}) => value === undefined ? value : min(value, f)),
-    max(channels, ({value}) => value === undefined ? value : max(value, f))
-  ] : [0, 1];
+  return channels.length
+    ? [
+        min(channels, ({value}) => (value === undefined ? value : min(value, f))),
+        max(channels, ({value}) => (value === undefined ? value : max(value, f)))
+      ]
+    : [0, 1];
 }
 
 function inferAutoDomain(key, channels) {
@@ -213,7 +261,7 @@ function inferAutoDomain(key, channels) {
 }
 
 function inferZeroDomain(channels) {
-  return [0, channels.length ? max(channels, ({value}) => value === undefined ? value : max(value, finite)) : 1];
+  return [0, channels.length ? max(channels, ({value}) => (value === undefined ? value : max(value, finite))) : 1];
 }
 
 // We don’t want the upper bound of the radial domain to be zero, as this would
@@ -222,20 +270,20 @@ function inferZeroDomain(channels) {
 function inferRadialRange(channels, domain) {
   const hint = channels.find(({radius}) => radius !== undefined);
   if (hint !== undefined) return [0, hint.radius]; // a natural maximum radius, e.g. hexbins
-  const h25 = quantile(channels, 0.5, ({value}) => value === undefined ? NaN : quantile(value, 0.25, positive));
-  const range = domain.map(d => 3 * Math.sqrt(d / h25));
+  const h25 = quantile(channels, 0.5, ({value}) => (value === undefined ? NaN : quantile(value, 0.25, positive)));
+  const range = domain.map((d) => 3 * Math.sqrt(d / h25));
   const k = 30 / max(range);
-  return k < 1 ? range.map(r => r * k) : range;
+  return k < 1 ? range.map((r) => r * k) : range;
 }
 
 // We want a length scale’s domain to go from zero to a positive value, and to
 // treat negative lengths if any as inverted vectors of equivalent magnitude. We
 // also don’t want the maximum default length to exceed 60px.
 function inferLengthRange(channels, domain) {
-  const h50 = median(channels, ({value}) => value === undefined ? NaN : median(value, Math.abs));
-  const range = domain.map(d => 12 * d / h50);
+  const h50 = median(channels, ({value}) => (value === undefined ? NaN : median(value, Math.abs)));
+  const range = domain.map((d) => (12 * d) / h50);
   const k = 60 / max(range);
-  return k < 1 ? range.map(r => r * k) : range;
+  return k < 1 ? range.map((r) => r * k) : range;
 }
 
 function inferLogDomain(channels) {
@@ -261,5 +309,5 @@ function inferQuantileDomain(channels) {
 }
 
 export function interpolatePiecewise(interpolate) {
-  return (i, j) => t => interpolate(i + t * (j - i));
+  return (i, j) => (t) => interpolate(i + t * (j - i));
 }
