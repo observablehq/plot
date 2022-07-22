@@ -12,7 +12,16 @@ export default async function () {
       Plot.barX(athletes, Plot.groupY({x: "count"}, {y: (d) => d.date_of_birth.getUTCMonth()})),
       Plot.textX(
         athletes,
-        Plot.groupY({x: "count", text: "count"}, {y: (d) => d.date_of_birth.getUTCMonth(), dx: 4, textAnchor: "start"})
+        Plot.groupY(
+          {
+            x: "count",
+            text: "count",
+            textAnchor: (data) => (data.length >= 1000 ? "end" : "start"),
+            fill: (data) => (data.length >= 1000 ? "white" : "black"),
+            dx: (data) => (data.length >= 1000 ? -4 : 4)
+          },
+          {y: (d) => d.date_of_birth.getUTCMonth()}
+        )
       ),
       Plot.ruleX([0])
     ]

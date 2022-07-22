@@ -14,7 +14,9 @@ import {
   keyword,
   maybeFrameAnchor,
   isTextual,
-  isIterable
+  isIterable,
+  labelof,
+  valueof
 } from "../options.js";
 import {Mark} from "../plot.js";
 import {
@@ -55,7 +57,12 @@ export class Text extends Mark {
       rotate
     } = options;
     const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
+    const [vtextAnchor, ctextAnchor] = maybeTextAnchorChannel(textAnchor);
     const [vfontSize, cfontSize] = maybeFontSizeChannel(fontSize);
+    const [vfontFamily, cfontFamily] = maybeFontChannel(fontFamily);
+    const [vfontStyle, cfontStyle] = maybeFontChannel(fontStyle);
+    const [vfontVariant, cfontVariant] = maybeFontChannel(fontVariant);
+    const [vfontWeight, cfontWeight] = maybeFontChannel(fontWeight);
     super(
       data,
       {
@@ -63,26 +70,42 @@ export class Text extends Mark {
         y: {value: y, scale: "y", optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
-        text: {value: text, filter: nonempty}
+        text: {value: text, filter: nonempty},
+        textAnchor: {value: keywordChannel(vtextAnchor, ["start", "end"]), optional: true, filter: null},
+        fontFamily: {value: vfontFamily, optional: true, filter: null},
+        fontStyle: {value: vfontStyle, optional: true, filter: null},
+        fontVariant: {value: vfontVariant, optional: true, filter: null},
+        fontWeight: {value: vfontWeight, optional: true, filter: null}
       },
       options,
       defaults
     );
     this.rotate = crotate;
-    this.textAnchor = impliedString(textAnchor, "middle");
+    this.textAnchor = ctextAnchor;
     this.lineAnchor = keyword(lineAnchor, "lineAnchor", ["top", "middle", "bottom"]);
     this.lineHeight = +lineHeight;
     this.lineWidth = +lineWidth;
     this.monospace = !!monospace;
-    this.fontFamily = string(fontFamily);
     this.fontSize = cfontSize;
-    this.fontStyle = string(fontStyle);
-    this.fontVariant = string(fontVariant);
-    this.fontWeight = string(fontWeight);
+    this.fontFamily = cfontFamily;
+    this.fontStyle = cfontStyle;
+    this.fontVariant = cfontVariant;
+    this.fontWeight = cfontWeight;
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
+    const {
+      x: X,
+      y: Y,
+      rotate: R,
+      text: T,
+      fontSize: FS,
+      textAnchor: TA,
+      fontFamily: FF,
+      fontStyle: FT,
+      fontVariant: FV,
+      fontWeight: FW
+    } = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
@@ -124,6 +147,11 @@ export class Text extends Mark {
               : `translate(${cx},${cy})`
           )
           .call(applyAttr, "font-size", FS && ((i) => FS[i]))
+          .call(applyAttr, "text-anchor", TA && ((i) => TA[i]))
+          .call(applyAttr, "font-family", FF && ((i) => FF[i]))
+          .call(applyAttr, "font-style", FT && ((i) => FT[i]))
+          .call(applyAttr, "font-variant", FV && ((i) => FV[i]))
+          .call(applyAttr, "font-weight", FW && ((i) => FW[i]))
           .call(applyChannelStyles, this, channels)
       )
       .node();
@@ -217,6 +245,29 @@ function maybeFontSizeChannel(fontSize) {
   return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
     ? [undefined, fontSize]
     : [fontSize, undefined];
+}
+
+// The text-anchor can be a constant "middle" | "start" | "end"
+// Any other value is a channel definition.
+function maybeTextAnchorChannel(textAnchor) {
+  if (textAnchor == null || ["middle", "start", "end"].includes(textAnchor))
+    return [undefined, impliedString(textAnchor, "middle")];
+  return [textAnchor, undefined];
+}
+
+// Other font properties can only be set as channels if they are defined as functions
+// and a constant strings otherwise.
+function maybeFontChannel(font) {
+  return ["string", "number"].includes(typeof font) ? [undefined, string(font)] : [font, undefined];
+}
+
+function keywordChannel(value, words) {
+  return value == null
+    ? null
+    : {
+        transform: (data) => valueof(data, value).map((d) => (words.includes((d = `${d}`)) ? d : null)),
+        label: labelof(value)
+      };
 }
 
 // This is a greedy algorithm for line wrapping. It would be better to use the

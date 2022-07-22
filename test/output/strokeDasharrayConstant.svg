@@ -1,0 +1,156 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="640" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="facet" transform="translate(1,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="0"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(1,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="2"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(1,261)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="20"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(1,391)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="60"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(1,521)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)"></g>
+  </g>
+  <g aria-label="facet" transform="translate(131,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="0"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(131,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="2"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(131,261)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="20"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(131,391)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="60"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(131,521)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)"></g>
+  </g>
+  <g aria-label="facet" transform="translate(261,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="0"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(261,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="2"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(261,261)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="20"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(261,391)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="60"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(261,521)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)"></g>
+  </g>
+  <g aria-label="facet" transform="translate(391,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="0"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(391,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="2"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(391,261)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="20"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(391,391)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="60"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(391,521)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)"></g>
+  </g>
+  <g aria-label="facet" transform="translate(521,1)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="0"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(521,131)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="2"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(521,261)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="20"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(521,391)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)">
+      <path d="M10,107A179.23262930718965,179.23262930718965 0,0,1 107,10M107,10L107,10L107,10" stroke-dashoffset="60"></path>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(521,521)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="117" height="117"></rect>
+    <g aria-label="arrow" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="1" stroke-dasharray="1,2,3" transform="translate(0.5,0.5)"></g>
+  </g>
+</svg>
