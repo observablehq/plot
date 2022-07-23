@@ -1,3 +1,15 @@
+import type {
+  ChannelStyles,
+  DefaultOptions,
+  Dimensions,
+  InstantiatedMark,
+  MarkOptions,
+  Scales,
+  Selection
+} from "./api.js";
+import type {Datum, index, Series, ValueArray} from "./data.js";
+import type {ValueAccessor} from "./options.js";
+
 import {group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
@@ -8,8 +20,8 @@ export const offset = typeof window !== "undefined" && window.devicePixelRatio >
 
 let nextClipId = 0;
 
-export function styles(
-  mark,
+export function styles<T extends Datum>(
+  mark: InstantiatedMark<T>,
   {
     title,
     href,
@@ -32,7 +44,7 @@ export function styles(
     paintOrder,
     pointerEvents,
     shapeRendering
-  },
+  }: MarkOptions<T>,
   {
     ariaLabel: cariaLabel,
     fill: defaultFill = "currentColor",
@@ -44,7 +56,7 @@ export function styles(
     strokeLinejoin: defaultStrokeLinejoin,
     strokeMiterlimit: defaultStrokeMiterlimit,
     paintOrder: defaultPaintOrder
-  }
+  }: DefaultOptions
 ) {
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill === null) {
@@ -117,7 +129,7 @@ export function styles(
   mark.target = string(target);
   mark.ariaLabel = string(cariaLabel);
   mark.ariaDescription = string(ariaDescription);
-  mark.ariaHidden = string(ariaHidden);
+  mark.ariaHidden = string(ariaHidden) as "true" | "false" | undefined;
   mark.opacity = impliedNumber(copacity, 1);
   mark.mixBlendMode = impliedString(mixBlendMode, "normal");
   mark.paintOrder = impliedString(paintOrder, "normal");
@@ -138,34 +150,34 @@ export function styles(
 }
 
 // Applies the specified titles via selection.call.
-export function applyTitle(selection, L) {
+export function applyTitle(selection: Selection, L?: ValueArray) {
   if (L)
     selection
-      .filter((i) => nonempty(L[i]))
+      .filter((i: index) => nonempty(L[i]))
       .append("title")
       .call(applyText, L);
 }
 
 // Like applyTitle, but for grouped data (lines, areas).
-export function applyTitleGroup(selection, L) {
+export function applyTitleGroup(selection: Selection, L?: ValueArray) {
   if (L)
     selection
-      .filter(([i]) => nonempty(L[i]))
+      .filter(([i]: Series) => nonempty(L[i]))
       .append("title")
       .call(applyTextGroup, L);
 }
 
-export function applyText(selection, T) {
-  if (T) selection.text((i) => formatDefault(T[i]));
+export function applyText(selection: Selection, T?: ValueArray) {
+  if (T) selection.text((i: index) => formatDefault(T[i]));
 }
 
-export function applyTextGroup(selection, T) {
-  if (T) selection.text(([i]) => formatDefault(T[i]));
+export function applyTextGroup(selection: Selection, T?: ValueArray) {
+  if (T) selection.text(([i]: Series) => formatDefault(T[i]));
 }
 
 export function applyChannelStyles(
-  selection,
-  {target},
+  selection: Selection,
+  {target}: {target?: string},
   {
     ariaLabel: AL,
     title: T,
@@ -176,22 +188,22 @@ export function applyChannelStyles(
     strokeWidth: SW,
     opacity: O,
     href: H
-  }
+  }: ChannelStyles
 ) {
-  if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
-  if (F) applyAttr(selection, "fill", (i) => F[i]);
-  if (FO) applyAttr(selection, "fill-opacity", (i) => FO[i]);
-  if (S) applyAttr(selection, "stroke", (i) => S[i]);
-  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i]);
-  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
-  if (O) applyAttr(selection, "opacity", (i) => O[i]);
-  if (H) applyHref(selection, (i) => H[i], target);
+  if (AL) applyAttr(selection, "aria-label", (i) => AL[i] as string);
+  if (F) applyAttr(selection, "fill", (i) => F[i] as string);
+  if (FO) applyAttr(selection, "fill-opacity", (i) => FO[i] as number);
+  if (S) applyAttr(selection, "stroke", (i) => S[i] as string);
+  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i] as number);
+  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i] as number);
+  if (O) applyAttr(selection, "opacity", (i) => O[i] as number);
+  if (H) applyHref(selection, (i) => H[i] as string, target);
   applyTitle(selection, T);
 }
 
 export function applyGroupedChannelStyles(
-  selection,
-  {target},
+  selection: Selection,
+  {target}: {target?: string},
   {
     ariaLabel: AL,
     title: T,
@@ -202,16 +214,16 @@ export function applyGroupedChannelStyles(
     strokeWidth: SW,
     opacity: O,
     href: H
-  }
+  }: ChannelStyles
 ) {
-  if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i]);
-  if (F) applyAttr(selection, "fill", ([i]) => F[i]);
-  if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
-  if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
-  if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i]);
-  if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
-  if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
-  if (H) applyHref(selection, ([i]) => H[i], target);
+  if (AL) applyAttr(selection, "aria-label", ([i]: Series) => AL[i] as string);
+  if (F) applyAttr(selection, "fill", ([i]: Series) => F[i] as string);
+  if (FO) applyAttr(selection, "fill-opacity", ([i]: Series) => FO[i] as number);
+  if (S) applyAttr(selection, "stroke", ([i]: Series) => S[i] as string);
+  if (SO) applyAttr(selection, "stroke-opacity", ([i]: Series) => SO[i] as number);
+  if (SW) applyAttr(selection, "stroke-width", ([i]: Series) => SW[i] as number);
+  if (O) applyAttr(selection, "opacity", ([i]: Series) => O[i] as number);
+  if (H) applyHref(selection, ([i]: Series) => H[i] as string, target);
   applyTitleGroup(selection, T);
 }
 
@@ -225,11 +237,11 @@ function groupAesthetics({
   strokeWidth: SW,
   opacity: O,
   href: H
-}) {
-  return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined);
+}: ChannelStyles) {
+  return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined) as ValueArray[];
 }
 
-export function groupZ(I, Z, z) {
+export function groupZ<T extends Datum>(I: Series, Z: ValueArray, z: ValueAccessor<T>) {
   const G = group(I, (i) => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {
     warn(
@@ -239,13 +251,19 @@ export function groupZ(I, Z, z) {
   return G.values();
 }
 
-export function* groupIndex(I, position, {z}, channels) {
+export function* groupIndex<T extends Datum>(
+  I: Series,
+  position: ValueArray[],
+  {z}: InstantiatedMark<T>,
+  channels: ChannelStyles
+) {
   const {z: Z} = channels; // group channel
   const A = groupAesthetics(channels); // aesthetic channels
   const C = [...position, ...A]; // all channels
 
   // Group the current index by Z (if any).
-  for (const G of Z ? groupZ(I, Z, z) : [I]) {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  for (const G of Z ? groupZ(I, Z, z!) : [I]) {
     let Ag; // the A-values (aesthetics) of the current group, if any
     let Gg; // the current group index (a subset of G, and I), if any
     out: for (const i of G) {
@@ -268,7 +286,7 @@ export function* groupIndex(I, position, {z}, channels) {
       // Otherwise, add the current index to the current group. Then, if any of
       // the aesthetics don’t match the current group, yield the current group
       // and start a new group of the current index.
-      Gg.push(i);
+      (Gg as index[]).push(i);
       for (let j = 0; j < A.length; ++j) {
         const k = keyof(A[j][i]);
         if (k !== Ag[j]) {
@@ -287,13 +305,18 @@ export function* groupIndex(I, position, {z}, channels) {
 // clip: true clips to the frame
 // TODO: accept other types of clips (paths, urls, x, y, other marks?…)
 // https://github.com/observablehq/plot/issues/181
-export function maybeClip(clip) {
+export function maybeClip(clip: boolean | null | undefined) {
   if (clip === true) return "frame";
   if (clip == null || clip === false) return false;
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles(selection, mark, scales, dimensions) {
+export function applyIndirectStyles<T extends Datum>(
+  selection: Selection,
+  mark: InstantiatedMark<T>,
+  scales: Scales,
+  dimensions: Dimensions
+) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -326,33 +349,48 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   }
 }
 
-export function applyDirectStyles(selection, mark) {
+export function applyDirectStyles<T extends Datum>(selection: Selection, mark: InstantiatedMark<T>) {
   applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
   applyAttr(selection, "opacity", mark.opacity);
 }
 
-function applyHref(selection, href, target) {
-  selection.each(function (i) {
+function applyHref(selection: Selection, href: (i: index & Series) => string, target?: string) {
+  selection.each(function (this: SVGElement, i) {
     const h = href(i);
     if (h != null) {
       const a = this.ownerDocument.createElementNS(namespaces.svg, "a");
       a.setAttribute("fill", "inherit");
       a.setAttributeNS(namespaces.xlink, "href", h);
       if (target != null) a.setAttribute("target", target);
-      this.parentNode.insertBefore(a, this).appendChild(this);
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      this.parentNode!.insertBefore(a, this).appendChild(this);
     }
   });
 }
 
-export function applyAttr(selection, name, value) {
+export function applyAttr(
+  selection: Selection,
+  name: string,
+  value?: number | string | null | ((i: index & Series) => number | string)
+) {
   if (value != null) selection.attr(name, value);
 }
 
-export function applyStyle(selection, name, value) {
+export function applyStyle(
+  selection: Selection,
+  name: string,
+  value?: number | string | null | ((i: index & Series) => number | string)
+) {
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset) {
+export function applyTransform<T extends Datum>(
+  selection: Selection,
+  mark: InstantiatedMark<T>,
+  {x, y}: Scales,
+  tx = offset,
+  ty = offset
+) {
   tx += mark.dx;
   ty += mark.dy;
   if (x?.bandwidth) tx += x.bandwidth() / 2;
@@ -360,25 +398,28 @@ export function applyTransform(selection, mark, {x, y}, tx = offset, ty = offset
   if (tx || ty) selection.attr("transform", `translate(${tx},${ty})`);
 }
 
-export function impliedString(value, impliedValue) {
-  if ((value = string(value)) !== impliedValue) return value;
+export function impliedString(
+  value: number | string | number[] | null | undefined,
+  impliedValue: string
+): string | null | undefined {
+  if ((value = string(value)) !== impliedValue) return value as string | null | undefined;
 }
 
-export function impliedNumber(value, impliedValue) {
-  if ((value = number(value)) !== impliedValue) return value;
+export function impliedNumber(value: Datum, impliedValue: number): number | null | undefined {
+  if ((value = number(value)) !== impliedValue) return value as number | null | undefined;
 }
 
 const validClassName =
   /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
 
-export function maybeClassName(name) {
+export function maybeClassName(name: string | undefined) {
   if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
 }
 
-export function applyInlineStyles(selection, style) {
+export function applyInlineStyles(selection: Selection, style: string | CSSStyleDeclaration) {
   if (typeof style === "string") {
     selection.property("style", style);
   } else if (style != null) {
@@ -388,16 +429,19 @@ export function applyInlineStyles(selection, style) {
   }
 }
 
-export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, marginRight, marginBottom, marginLeft}) {
+export function applyFrameAnchor<T extends Datum>(
+  {frameAnchor}: InstantiatedMark<T>,
+  {width, height, marginTop, marginRight, marginBottom, marginLeft}: Dimensions
+) {
   return [
-    /left$/.test(frameAnchor)
+    /left$/.test(frameAnchor as string)
       ? marginLeft
-      : /right$/.test(frameAnchor)
+      : /right$/.test(frameAnchor as string)
       ? width - marginRight
       : (marginLeft + width - marginRight) / 2,
-    /^top/.test(frameAnchor)
+    /^top/.test(frameAnchor as string)
       ? marginTop
-      : /^bottom/.test(frameAnchor)
+      : /^bottom/.test(frameAnchor as string)
       ? height - marginBottom
       : (marginTop + height - marginBottom) / 2
   ];

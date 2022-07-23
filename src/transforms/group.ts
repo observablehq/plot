@@ -1,3 +1,12 @@
+import type {AggregationMethod, Aggregate, BinExtent, MarkOptions, OutputOptions, Reducer} from "../api.js";
+import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
+import type {pXX, ValueAccessor} from "../options.js";
+
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
+// TODO: check types of the d3.quantile function
+type ArrayReducer = (I: Series, value: (i: index) => Value) => Value;
+
 import {
   group as grouper,
   sort,
@@ -33,26 +42,35 @@ import {
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ(outputs, options) {
+export function groupZ<T extends Datum>(outputs: OutputOptions<T>, options: MarkOptions<T>): MarkOptions<T> {
   return groupn(null, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x.
-export function groupX(outputs = {y: "count"}, options = {}) {
+export function groupX<T extends Datum>(
+  outputs: OutputOptions<T> = {y: "count"},
+  options: MarkOptions<T> = {}
+): MarkOptions<T> {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y.
-export function groupY(outputs = {x: "count"}, options = {}) {
+export function groupY<T extends Datum>(
+  outputs: OutputOptions<T> = {x: "count"},
+  options: MarkOptions<T> = {}
+): MarkOptions<T> {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y.
-export function group(outputs = {fill: "count"}, options = {}) {
+export function group<T extends Datum>(
+  outputs: OutputOptions<T> = {fill: "count"},
+  options: MarkOptions<T> = {}
+): MarkOptions<T> {
   let {x, y} = options;
   [x, y] = maybeTuple(x, y);
   if (x == null) throw new Error("missing channel: x");
@@ -60,23 +78,23 @@ export function group(outputs = {fill: "count"}, options = {}) {
   return groupn(x, y, outputs, options);
 }
 
-function groupn(
-  x, // optionally group on x
-  y, // optionally group on y
+function groupn<T extends Datum>(
+  x: number | ValueAccessor<T> | null | undefined, // optionally group on x
+  y: number | ValueAccessor<T> | null | undefined, // optionally group on y
   {
-    data: reduceData = reduceIdentity,
-    filter,
-    sort,
+    data: reduceData = reduceIdentity, // TODO: not tested and not documented (https://github.com/observablehq/plot/pull/272)
+    filter: filter0,
+    sort: sort0,
     reverse,
-    ...outputs // output channel definitions
-  } = {},
-  inputs = {} // input channels and options
+    ...outputs0 // output channel definitions
+  }: OutputOptions<T> = {},
+  inputs: MarkOptions<T> = {} // input channels and options
 ) {
   // Compute the outputs.
-  outputs = maybeOutputs(outputs, inputs);
+  const outputs = maybeOutputs(outputs0, inputs);
   reduceData = maybeReduce(reduceData, identity);
-  sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
-  filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);
+  const sort = sort0 == null ? undefined : maybeOutput("sort", sort0, inputs);
+  const filter = filter0 == null ? undefined : maybeEvaluator("filter", filter0, inputs);
 
   // Produce x and y output channels as appropriate.
   const [GX, setGX] = maybeColumn(x);
@@ -114,11 +132,11 @@ function groupn(
       const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
       const groupData = [];
-      const GX = X && setGX([]);
-      const GY = Y && setGY([]);
-      const GZ = Z && setGZ([]);
-      const GF = F && setGF([]);
-      const GS = S && setGS([]);
+      const GX = X && (setGX!([]) as Value[]); // For .push; TODO: type setColumn?
+      const GY = Y && (setGY!([]) as Value[]);
+      const GZ = Z && (setGZ!([]) as Value[]);
+      const GF = F && (setGF!([]) as Value[]);
+      const GS = S && (setGS!([]) as Value[]);
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
@@ -134,11 +152,11 @@ function groupn(
               if (filter && !filter.reduce(g)) continue;
               groupFacet.push(i++);
               groupData.push(reduceData.reduce(g, data));
-              if (X) GX.push(x);
-              if (Y) GY.push(y);
-              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
-              if (F) GF.push(G === F ? f : F[g[0]]);
-              if (S) GS.push(G === S ? f : S[g[0]]);
+              if (X) GX!.push(x);
+              if (Y) GY!.push(y);
+              if (Z) GZ!.push(G === Z ? f : Z[g[0]]);
+              if (F) GF!.push(G === F ? f : F[g[0]]);
+              if (S) GS!.push(G === S ? f : S[g[0]]);
               for (const o of outputs) o.reduce(g);
               if (sort) sort.reduce(g);
             }
@@ -155,7 +173,7 @@ function groupn(
   };
 }
 
-export function hasOutput(outputs, ...names) {
+export function hasOutput<T extends Datum>(outputs: Reducer<T>[], ...names: Array<Reducer<T>["name"]>) {
   for (const {name} of outputs) {
     if (names.includes(name)) {
       return true;
@@ -164,17 +182,17 @@ export function hasOutput(outputs, ...names) {
   return false;
 }
 
-export function maybeOutputs(outputs, inputs) {
+export function maybeOutputs<T extends Datum>(outputs: OutputOptions<T>, inputs: MarkOptions<T>) {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries.map(([name, reduce]) => {
     return reduce == null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
-  });
+  }) as Reducer<T>[];
 }
 
-export function maybeOutput(name, reduce, inputs) {
+export function maybeOutput<T extends Datum>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T>) {
   const evaluator = maybeEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;
@@ -185,39 +203,39 @@ export function maybeOutput(name, reduce, inputs) {
       evaluator.initialize(data);
       O = setOutput([]);
     },
-    scope(scope, I) {
+    scope(scope, I: Series) {
       evaluator.scope(scope, I);
     },
-    reduce(I, extent) {
+    reduce(I: Series, extent: BinExtent) {
       O.push(evaluator.reduce(I, extent));
     }
-  };
+  } as Reducer<T>;
 }
 
-export function maybeEvaluator(name, reduce, inputs) {
+export function maybeEvaluator<T extends Datum>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T>) {
   const input = maybeInput(name, inputs);
   const reducer = maybeReduce(reduce, input);
-  let V, context;
+  let V: ValueArray, context: Value | null | undefined;
   return {
     label: labelof(reducer === reduceCount ? null : input, reducer.label),
-    initialize(data) {
-      V = input === undefined ? data : valueof(data, input);
+    initialize(data: DataArray<T>) {
+      V = (input === undefined ? data : valueof(data, input)) as ValueArray;
       if (reducer.scope === "data") {
         context = reducer.reduce(range(data), V);
       }
     },
-    scope(scope, I) {
+    scope(scope: Aggregate["scope"], I: Series) {
       if (reducer.scope === scope) {
         context = reducer.reduce(I, V);
       }
     },
-    reduce(I, extent) {
+    reduce(I: Series, extent?: BinExtent) {
       return reducer.scope == null ? reducer.reduce(I, V, extent) : reducer.reduce(I, V, context, extent);
     }
   };
 }
 
-export function maybeGroup(I, X) {
+export function maybeGroup(I: Series, X: ValueArray | null | undefined): [Value, Series][] {
   return X
     ? sort(
         grouper(I, (i) => X[i]),
@@ -226,10 +244,10 @@ export function maybeGroup(I, X) {
     : [[, I]];
 }
 
-export function maybeReduce(reduce, value) {
-  if (reduce && typeof reduce.reduce === "function") return reduce;
+export function maybeReduce<T extends Datum>(reduce: AggregationMethod, value: ValueAccessor<T>): Aggregate {
+  if (reduce && typeof reduce.reduce === "function") return reduce as Aggregate;
   if (typeof reduce === "function") return reduceFunction(reduce);
-  if (/^p\d{2}$/i.test(reduce)) return reduceAccessor(percentile(reduce));
+  if (/^p\d{2}$/i.test(reduce as string)) return reduceAccessor(percentile(reduce as pXX) as ArrayReducer);
   switch (`${reduce}`.toLowerCase()) {
     case "first":
       return reduceFirst;
@@ -262,7 +280,7 @@ export function maybeReduce(reduce, value) {
     case "variance":
       return reduceAccessor(variance);
     case "mode":
-      return reduceAccessor(mode);
+      return reduceAccessor(mode); // TODO: mode can return a string
     case "x":
       return reduceX;
     case "x1":
@@ -279,19 +297,30 @@ export function maybeReduce(reduce, value) {
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-export function maybeSubgroup(outputs, inputs) {
+export function maybeSubgroup<T extends Datum>(
+  outputs: Reducer<T>[],
+  inputs: {
+    z?: ValueArray | null;
+    fill?: ValueArray | null;
+    stroke?: ValueArray | null;
+  }
+) {
   for (const name in inputs) {
-    const value = inputs[name];
+    const value = inputs[name as "z" | "fill" | "stroke"];
     if (value !== undefined && !outputs.some((o) => o.name === name)) {
       return value;
     }
   }
 }
 
-export function maybeSort(facets, sort, reverse) {
+export function maybeSort<T extends Datum>(
+  facets: Series[],
+  sort: Reducer<T> | undefined,
+  reverse: boolean | undefined
+) {
   if (sort) {
     const S = sort.output.transform();
-    const compare = (i, j) => ascendingDefined(S[i], S[j]);
+    const compare = (i: index, j: index) => ascendingDefined(S[i], S[j]);
     facets.forEach((f) => f.sort(compare));
   }
   if (reverse) {
@@ -299,36 +328,38 @@ export function maybeSort(facets, sort, reverse) {
   }
 }
 
-function reduceFunction(f) {
+function reduceFunction(f: (X: ValueArray, extent?: BinExtent) => Value): Aggregate {
   return {
-    reduce(I, X, extent) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    reduce(I: Series, X: ValueArray, extent?: BinExtent) {
       return f(take(X, I), extent);
     }
   };
 }
 
-function reduceAccessor(f) {
+function reduceAccessor(f: ArrayReducer): Aggregate {
   return {
-    reduce(I, X) {
-      return f(I, (i) => X[i]);
+    reduce(I: Series, X: ValueArray) {
+      return f(I, (i: index) => X[i]);
     }
   };
 }
 
 export const reduceIdentity = {
-  reduce(I, X) {
+  reduce(I: Series, X: ValueArray) {
     return take(X, I);
   }
 };
 
 export const reduceFirst = {
-  reduce(I, X) {
+  reduce(I: Series, X: ValueArray) {
     return X[I[0]];
   }
 };
 
 const reduceTitle = {
-  reduce(I, X) {
+  reduce(I: Series, X: ValueArray) {
     const n = 5;
     const groups = sort(
       rollup(
@@ -341,28 +372,31 @@ const reduceTitle = {
     const top = groups.slice(-n).reverse();
     if (top.length < groups.length) {
       const bottom = groups.slice(0, 1 - n);
-      top[n - 1] = [`… ${bottom.length.toLocaleString("en-US")} more`, sum(bottom, second)];
+      top[n - 1] = [
+        `… ${bottom.length.toLocaleString("en-US")} more`,
+        sum(bottom, second as (d: [Value, number]) => number)
+      ];
     }
     return top.map(([key, value]) => `${key} (${value.toLocaleString("en-US")})`).join("\n");
   }
 };
 
-const reduceLast = {
-  reduce(I, X) {
+const reduceLast: Aggregate = {
+  reduce(I: Series, X: ValueArray) {
     return X[I[I.length - 1]];
   }
 };
 
-export const reduceCount = {
+export const reduceCount: Aggregate = {
   label: "Frequency",
-  reduce(I) {
+  reduce(I: Series) {
     return I.length;
   }
 };
 
-const reduceDistinct = {
+const reduceDistinct: Aggregate = {
   label: "Distinct",
-  reduce: (I, X) => {
+  reduce: (I: Series, X: ValueArray) => {
     const s = new InternSet();
     for (const i of I) s.add(X[i]);
     return s.size;
@@ -371,49 +405,61 @@ const reduceDistinct = {
 
 const reduceSum = reduceAccessor(sum);
 
-function reduceProportion(value, scope) {
+function reduceProportion<T extends Datum>(value: ValueAccessor<T>, scope: Aggregate["scope"]): Aggregate {
   return value == null
-    ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
-    : {scope, reduce: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
+    ? {scope, label: "Frequency", reduce: (I: Series, V: ValueArray, basis = 1) => I.length / (basis as number)}
+    : {scope, reduce: (I: Series, V: ValueArray, basis = 1) => sum(I, (i) => V[i] as number) / (basis as number)};
 }
 
-function mid(x1, x2) {
-  const m = (+x1 + +x2) / 2;
+function mid(x1: Date | number | undefined, x2: Date | number | undefined) {
+  const m = (+(x1 as number) + +(x2 as number)) / 2;
   return x1 instanceof Date ? new Date(m) : m;
 }
 
-const reduceX = {
-  reduce(I, X, {x1, x2}) {
+const reduceX: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {x1, x2}: BinExtent) {
     return mid(x1, x2);
   }
 };
 
-const reduceY = {
-  reduce(I, X, {y1, y2}) {
+const reduceY: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {y1, y2}: BinExtent) {
     return mid(y1, y2);
   }
 };
 
-const reduceX1 = {
-  reduce(I, X, {x1}) {
+const reduceX1: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {x1}: BinExtent) {
     return x1;
   }
 };
 
-const reduceX2 = {
-  reduce(I, X, {x2}) {
+const reduceX2: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {x2}: BinExtent) {
     return x2;
   }
 };
 
-const reduceY1 = {
-  reduce(I, X, {y1}) {
+const reduceY1: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {y1}: BinExtent) {
     return y1;
   }
 };
 
-const reduceY2 = {
-  reduce(I, X, {y2}) {
+const reduceY2: Aggregate = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  reduce(I: Series, X: ValueArray, {y2}: BinExtent) {
     return y2;
   }
 };

@@ -1,81 +1,93 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type {MarkOptions, OffsetFunction, StackOrder} from "../api.js";
+import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
+import type {GetColumn, ValueAccessor} from "../options.js";
+
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
-export function stackX(stackOptions = {}, options = {}) {
+export function stackX<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
+  const [transform, Y, x1, x2] = stack<T>(y, x, "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackX1<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackX2<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, , X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackY<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackY1<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2(stackOptions = {}, options = {}) {
+export function stackY2<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, , Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function maybeStackX({x, x1, x2, ...options} = {}) {
+export function maybeStackX<T extends Datum>({x, x1, x2, ...options}: MarkOptions<T> = {}) {
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
-  [x1, x2] = maybeZero(x, x1, x2);
-  return {...options, x1, x2};
+  const [x1b, x2b] = maybeZero(x, x1, x2);
+  return {...options, x1: x1b, x2: x2b};
 }
 
-export function maybeStackY({y, y1, y2, ...options} = {}) {
+export function maybeStackY<T extends Datum>({y, y1, y2, ...options}: MarkOptions<T> = {}) {
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
-  [y1, y2] = maybeZero(y, y1, y2);
-  return {...options, y1, y2};
+  const [y1b, y2b] = maybeZero(y, y1, y2);
+  return {...options, y1: y1b, y2: y2b};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic
 // transform. If only one options object is specified, we interpret it as a
 // stack option, and therefore must remove it from the propagated options.
-function mergeOptions(options) {
+function mergeOptions<T extends Datum>(options: MarkOptions<T>) {
   const {offset, order, reverse, ...rest} = options;
   return [{offset, order, reverse}, rest];
 }
 
-function stack(x, y = one, ky, {offset, order, reverse}, options) {
+function stack<T extends Datum>(
+  x: ValueAccessor<T> | number | undefined,
+  y: ValueAccessor<T> | number = one,
+  ky: string,
+  {offset: offset0, order: order0, reverse}: MarkOptions<T>,
+  options: MarkOptions<T>
+): [MarkOptions<T>, GetColumn | null | undefined, GetColumn, GetColumn] {
+  if (y === null) throw new Error(`null channel ${ky}`);
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
   const [Y1, setY1] = column(y);
   const [Y2, setY2] = column(y);
-  offset = maybeOffset(offset);
-  order = maybeOrder(order, offset, ky);
+  const offset = maybeOffset(offset0);
+  const order = maybeOrder(order0, offset, ky);
   return [
     basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
-      const Y = valueof(data, y, Float64Array);
+      const X = x == null ? undefined : setX!(valueof(data, x)!);
+      const Y = valueof(data, y, Float64Array) as Float64Array; // TODO
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
       const n = data.length;
@@ -107,7 +119,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   ];
 }
 
-function maybeOffset(offset) {
+function maybeOffset(offset: string | OffsetFunction | null | undefined) {
   if (offset == null) return;
   if (typeof offset === "function") return offset;
   switch (`${offset}`.toLowerCase()) {
@@ -126,7 +138,7 @@ function maybeOffset(offset) {
 // Given a single stack, returns the minimum and maximum values from the given
 // Y2 column. Note that this relies on Y2 always being the outer column for
 // diverging values.
-function extent(stack, Y2) {
+function extent(stack: Series, Y2: Float64Array) {
   let min = 0,
     max = 0;
   for (const i of stack) {
@@ -137,7 +149,7 @@ function extent(stack, Y2) {
   return [min, max];
 }
 
-function offsetExpand(facetstacks, Y1, Y2) {
+function offsetExpand(facetstacks: Series[][], Y1: Float64Array, Y2: Float64Array) {
   for (const stacks of facetstacks) {
     for (const stack of stacks) {
       const [yn, yp] = extent(stack, Y2);
@@ -150,7 +162,7 @@ function offsetExpand(facetstacks, Y1, Y2) {
   }
 }
 
-function offsetCenter(facetstacks, Y1, Y2) {
+function offsetCenter(facetstacks: Series[][], Y1: Float64Array, Y2: Float64Array) {
   for (const stacks of facetstacks) {
     for (const stack of stacks) {
       const [yn, yp] = extent(stack, Y2);
@@ -165,15 +177,15 @@ function offsetCenter(facetstacks, Y1, Y2) {
   offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
-function offsetWiggle(facetstacks, Y1, Y2, Z) {
+function offsetWiggle(facetstacks: Series[][], Y1: Float64Array, Y2: Float64Array, Z: ValueArray | null | undefined) {
   for (const stacks of facetstacks) {
     const prev = new InternMap();
     let y = 0;
     for (const stack of stacks) {
-      let j = -1;
-      const Fi = stack.map((i) => Math.abs(Y2[i] - Y1[i]));
-      const Df = stack.map((i) => {
-        j = Z ? Z[i] : ++j;
+      let j: Value = -1; // type: j is a number of Z is null, otherwise it's the z value
+      const Fi = stack.map((i: index) => Math.abs(Y2[i] - Y1[i]));
+      const Df = stack.map((i: index) => {
+        j = Z ? Z[i] : ++(j as number);
         const value = Y2[i] - Y1[i];
         const diff = prev.has(j) ? value - prev.get(j) : 0;
         prev.set(j, value);
@@ -192,8 +204,8 @@ function offsetWiggle(facetstacks, Y1, Y2, Z) {
   offsetCenterFacets(facetstacks, Y1, Y2);
 }
 
-function offsetZero(stacks, Y1, Y2) {
-  const m = min(stacks, (stack) => min(stack, (i) => Y1[i]));
+function offsetZero(stacks: Series[], Y1: Float64Array, Y2: Float64Array) {
+  const m = min(stacks, (stack) => min(stack, (i) => Y1[i])) as number;
   for (const stack of stacks) {
     for (const i of stack) {
       Y1[i] -= m;
@@ -202,12 +214,12 @@ function offsetZero(stacks, Y1, Y2) {
   }
 }
 
-function offsetCenterFacets(facetstacks, Y1, Y2) {
+function offsetCenterFacets(facetstacks: Series[][], Y1: Float64Array, Y2: Float64Array) {
   const n = facetstacks.length;
   if (n === 1) return;
-  const facets = facetstacks.map((stacks) => stacks.flat());
-  const m = facets.map((I) => (min(I, (i) => Y1[i]) + max(I, (i) => Y2[i])) / 2);
-  const m0 = min(m);
+  const facets = facetstacks.map((stacks) => stacks.flat()) as Series[];
+  const m = facets.map((I) => ((min(I, (i: index) => Y1[i]) as number) + (max(I, (i: index) => Y2[i]) as number)) / 2);
+  const m0 = min(m) as number;
   for (let j = 0; j < n; j++) {
     const p = m0 - m[j];
     for (const i of facets[j]) {
@@ -217,7 +229,20 @@ function offsetCenterFacets(facetstacks, Y1, Y2) {
   }
 }
 
-function maybeOrder(order, offset, ky) {
+function maybeOrder<T extends Datum>(
+  order: StackOrder | undefined,
+  offset: OffsetFunction | undefined,
+  ky: string
+):
+  | ((data: DataArray<T>) => ValueArray)
+  | ((data: DataArray<T>, X: ValueArray | undefined, Y: Float64Array) => ValueArray)
+  | ((
+      data: DataArray<T>,
+      X: ValueArray | undefined,
+      Y: Float64Array,
+      Z: ValueArray | null | undefined
+    ) => ValueArray | null | undefined)
+  | undefined {
   if (order === undefined && offset === offsetWiggle) return orderInsideOut;
   if (order == null) return;
   if (typeof order === "string") {
@@ -242,17 +267,28 @@ function maybeOrder(order, offset, ky) {
 }
 
 // by value
-function orderY(data, X, Y) {
+function orderY<T extends Datum>(data: DataArray<T>, X: ValueArray | undefined, Y: Float64Array) {
   return Y;
 }
 
 // by location
-function orderZ(order, X, Y, Z) {
+function orderZ<T extends Datum>(
+  data: DataArray<T>,
+  X: ValueArray | undefined,
+  Y: Float64Array,
+  Z: ValueArray | null | undefined
+) {
   return Z;
 }
 
 // by sum of value (a.k.a. “ascending”)
-function orderSum(data, X, Y, Z) {
+function orderSum<T extends Datum>(
+  data: DataArray<T>,
+  X: ValueArray | undefined,
+  Y: Float64Array,
+  Z?: ValueArray | null
+) {
+  if (Z == null) throw new Error(`missing channel: Z`);
   return orderZDomain(
     Z,
     groupSort(
@@ -260,16 +296,23 @@ function orderSum(data, X, Y, Z) {
       (I) => sum(I, (i) => Y[i]),
       (i) => Z[i]
     )
-  );
+  ) as ValueArray;
 }
 
 // by x = argmax of value
-function orderAppearance(data, X, Y, Z) {
+function orderAppearance<T extends Datum>(
+  data: DataArray<T>,
+  X: ValueArray | undefined,
+  Y: Float64Array,
+  Z?: ValueArray | null
+) {
+  if (X === undefined) throw new Error(`cannot order by appearance without a base`);
+  if (Z == null) throw new Error(`cannot order by appearance without a Z channel`);
   return orderZDomain(
     Z,
     groupSort(
       range(data),
-      (I) => X[greatest(I, (i) => Y[i])],
+      (I) => X[greatest(I, (i) => Y[i]) as index],
       (i) => Z[i]
     )
   );
@@ -277,11 +320,18 @@ function orderAppearance(data, X, Y, Z) {
 
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
-function orderInsideOut(data, X, Y, Z) {
+function orderInsideOut<T extends Datum>(
+  data: DataArray<T>,
+  X: ValueArray | undefined,
+  Y: Float64Array,
+  Z?: ValueArray | null
+) {
+  if (X === undefined) throw new Error(`cannot order by appearance without a base`);
+  if (Z == null) throw new Error(`cannot order by appearance without a Z channel`);
   const I = range(data);
   const K = groupSort(
     I,
-    (I) => X[greatest(I, (i) => Y[i])],
+    (I) => X[greatest(I, (i) => Y[i]) as number],
     (i) => Z[i]
   );
   const sums = rollup(
@@ -294,33 +344,36 @@ function orderInsideOut(data, X, Y, Z) {
   let s = 0;
   for (const k of K) {
     if (s < 0) {
-      s += sums.get(k);
+      s += sums.get(k)!;
       Kp.push(k);
     } else {
-      s -= sums.get(k);
+      s -= sums.get(k)!;
       Kn.push(k);
     }
   }
   return orderZDomain(Z, Kn.reverse().concat(Kp));
 }
 
-function orderFunction(f) {
-  return (data) => valueof(data, f);
+function orderFunction<T extends Datum>(f: (d: T) => Value) {
+  return (data: DataArray<T>) => valueof(data, f);
 }
 
-function orderGiven(domain) {
-  return (data, X, Y, Z) => orderZDomain(Z, domain);
+function orderGiven<T extends Datum>(domain: Value[]) {
+  return (data: DataArray<T>, X: ValueArray | undefined, Y: Float64Array, Z: ValueArray | null | undefined) => {
+    if (Z == null) throw new Error(`missing channel: Z`);
+    return orderZDomain(Z, domain);
+  };
 }
 
 // Given an explicit ordering of distinct values in z, returns a parallel column
 // O that can be used with applyOrder to sort stacks. Note that this is a series
 // order: it will be consistent across stacks.
-function orderZDomain(Z, domain) {
-  domain = new InternMap(domain.map((d, i) => [d, i]));
-  return Z.map((z) => domain.get(z));
+function orderZDomain(Z: ValueArray, domain0: Value[]) {
+  const domain = new InternMap(domain0.map((d, i) => [d, i]));
+  return Z.map((z) => domain.get(z)!);
 }
 
-function applyOrder(stacks, O) {
+function applyOrder(stacks: Series[], O: ValueArray) {
   for (const stack of stacks) {
     stack.sort((i, j) => ascendingDefined(O[i], O[j]));
   }

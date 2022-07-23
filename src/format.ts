@@ -39,7 +39,7 @@ export function formatIsoDate(date: Date): string {
   return isoFormat(date, "Invalid Date");
 }
 
-export function formatAuto(locale = "en-US"): (value: any) => string | number | undefined {
+export function formatAuto(locale = "en-US"): (value: any) => string | null | undefined {
   const number = formatNumber(locale);
   return (v: any) => (v instanceof Date ? formatIsoDate : typeof v === "number" ? number : string)(v);
 }

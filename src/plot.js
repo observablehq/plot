@@ -31,6 +31,8 @@ export function plot(options = {}) {
   const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
   // A Map from Mark instance to its render state, including:

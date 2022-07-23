@@ -1,12 +1,18 @@
+import type {Context, InstantiatedMark, MarkerFunction, MarkerOption, MarkerOptions, Selection} from "../api.js";
+import type {Datum, index, Series} from "../data.js";
+
 import {create} from "../context.js";
 
-export function markers(mark, {marker, markerStart = marker, markerMid = marker, markerEnd = marker} = {}) {
+export function markers<T extends Datum>(
+  mark: InstantiatedMark<T>,
+  {marker, markerStart = marker, markerMid = marker, markerEnd = marker}: MarkerOptions = {}
+) {
   mark.markerStart = maybeMarker(markerStart);
   mark.markerMid = maybeMarker(markerMid);
   mark.markerEnd = maybeMarker(markerEnd);
 }
 
-function maybeMarker(marker) {
+function maybeMarker(marker: MarkerOption) {
   if (marker == null || marker === false) return null;
   if (marker === true) return markerCircleFill;
   if (typeof marker === "function") return marker;
@@ -26,8 +32,8 @@ function maybeMarker(marker) {
   throw new Error(`invalid marker: ${marker}`);
 }
 
-function markerArrow(color, context) {
-  return create("svg:marker", context)
+function markerArrow(color: string, document: Context["document"]) {
+  return create("svg:marker", {document})
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
@@ -38,22 +44,22 @@ function markerArrow(color, context) {
     .attr("stroke-linecap", "round")
     .attr("stroke-linejoin", "round")
     .call((marker) => marker.append("path").attr("d", "M-1.5,-3l3,3l-3,3"))
-    .node();
+    .node() as SVGElement;
 }
 
-function markerDot(color, context) {
-  return create("svg:marker", context)
+function markerDot(color: string, document: Context["document"]) {
+  return create("svg:marker", {document})
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
     .attr("fill", color)
     .attr("stroke", "none")
     .call((marker) => marker.append("circle").attr("r", 2.5))
-    .node();
+    .node() as SVGElement;
 }
 
-function markerCircleFill(color, context) {
-  return create("svg:marker", context)
+function markerCircleFill(color: string, document: Context["document"]) {
+  return create("svg:marker", {document})
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
@@ -61,11 +67,11 @@ function markerCircleFill(color, context) {
     .attr("stroke", "white")
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
-    .node();
+    .node() as SVGElement;
 }
 
-function markerCircleStroke(color, context) {
-  return create("svg:marker", context)
+function markerCircleStroke(color: string, document: Context["document"]) {
+  return create("svg:marker", {document})
     .attr("viewBox", "-5 -5 10 10")
     .attr("markerWidth", 6.67)
     .attr("markerHeight", 6.67)
@@ -73,31 +79,50 @@ function markerCircleStroke(color, context) {
     .attr("stroke", color)
     .attr("stroke-width", 1.5)
     .call((marker) => marker.append("circle").attr("r", 3))
-    .node();
+    .node() as SVGElement;
 }
 
 let nextMarkerId = 0;
 
-export function applyMarkers(path, mark, {stroke: S} = {}) {
-  return applyMarkersColor(path, mark, S && ((i) => S[i]));
+export function applyMarkers<T extends Datum>(
+  path: Selection,
+  mark: InstantiatedMark<T>,
+  {stroke: S}: {stroke?: string[]} = {}
+) {
+  return applyMarkersColor(path, mark, S && ((i: index) => S[i]));
 }
 
-export function applyGroupedMarkers(path, mark, {stroke: S} = {}) {
-  return applyMarkersColor(path, mark, S && (([i]) => S[i]));
+export function applyGroupedMarkers<T extends Datum>(
+  path: Selection,
+  mark: InstantiatedMark<T>,
+  {stroke: S}: {stroke?: string[]} = {}
+) {
+  return applyMarkersColor(path, mark, S && (([i]: Series) => S[i]));
 }
 
-function applyMarkersColor(path, {markerStart, markerMid, markerEnd, stroke}, strokeof = () => stroke) {
-  const iriByMarkerColor = new Map();
+// we're cheating typescript here by using index & Series:
+// the stroke function can be applied either on an individual or on a grouped mark;
+// the datum on the path will be either an index or a Series.
+// The stroke is either a color channel or a (non nullish) string constant.
+type StrokeAttr = (i: index & Series) => string;
+type IriColorMap = Map<string | null | undefined, string | undefined>;
 
-  function applyMarker(marker) {
-    return function (i) {
+function applyMarkersColor<T extends Datum>(
+  path: Selection,
+  {markerStart, markerMid, markerEnd, stroke}: InstantiatedMark<T>,
+  strokeof: StrokeAttr = () => stroke as string
+) {
+  const iriByMarkerColor = new Map<MarkerFunction, IriColorMap>();
+
+  function applyMarker(marker: MarkerFunction) {
+    return function (this: SVGElement, i: index & Series) {
       const color = strokeof(i);
       let iriByColor = iriByMarkerColor.get(marker);
       if (!iriByColor) iriByMarkerColor.set(marker, (iriByColor = new Map()));
       let iri = iriByColor.get(color);
       if (!iri) {
-        const context = {document: this.ownerDocument};
-        const node = this.parentNode.insertBefore(marker(color, context), this);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const node = this.parentNode!.insertBefore(marker(color, this.ownerDocument), this);
         const id = `plot-marker-${++nextMarkerId}`;
         node.setAttribute("id", id);
         iriByColor.set(color, (iri = `url(#${id})`));

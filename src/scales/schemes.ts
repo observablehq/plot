@@ -1,3 +1,10 @@
+import type {OrdinalSchemes, QuantitativeSchemes} from "../api.js";
+import type {Value} from "../data.js";
+
+type ColorInterpolator = (t: number) => string; // t is in [0, 1]
+type OrdinalSchemeArray = readonly (readonly string[])[];
+type OrdinalScheme = readonly string[] | (({length}: {length: number}) => readonly string[]); // n is the number of colors
+
 import {
   interpolateBlues,
   interpolateBrBG,
@@ -77,7 +84,7 @@ import {
   schemeYlOrRd
 } from "d3";
 
-const ordinalSchemes = new Map([
+const ordinalSchemes = new Map<OrdinalSchemes, OrdinalScheme>([
   // categorical
   ["accent", schemeAccent],
   ["category10", schemeCategory10],
@@ -141,8 +148,8 @@ const ordinalSchemes = new Map([
   ["sinebow", schemeicyclical(interpolateSinebow)]
 ]);
 
-function scheme9(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme9(scheme: OrdinalSchemeArray, interpolate: ColorInterpolator) {
+  return ({length: n}: ArrayLike<void>) => {
     if (n === 1) return [scheme[3][1]]; // favor midpoint
     if (n === 2) return [scheme[3][1], scheme[3][2]]; // favor darker
     n = Math.max(3, Math.floor(n));
@@ -150,37 +157,37 @@ function scheme9(scheme, interpolate) {
   };
 }
 
-function scheme11(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme11(scheme: OrdinalSchemeArray, interpolate: ColorInterpolator) {
+  return ({length: n}: {length: number}) => {
     if (n === 2) return [scheme[3][0], scheme[3][2]]; // favor diverging extrema
     n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize(interpolate, n) : scheme[n];
   };
 }
 
-function scheme11r(scheme, interpolate) {
-  return ({length: n}) => {
+function scheme11r(scheme: OrdinalSchemeArray, interpolate: ColorInterpolator) {
+  return ({length: n}: ArrayLike<void>) => {
     if (n === 2) return [scheme[3][2], scheme[3][0]]; // favor diverging extrema
     n = Math.max(3, Math.floor(n));
     return n > 11 ? quantize((t) => interpolate(1 - t), n) : scheme[n].slice().reverse();
   };
 }
 
-function schemei(interpolate) {
-  return ({length: n}) => quantize(interpolate, Math.max(2, Math.floor(n)));
+function schemei(interpolate: ColorInterpolator) {
+  return ({length: n}: ArrayLike<void>) => quantize(interpolate, Math.max(2, Math.floor(n)));
 }
 
-function schemeicyclical(interpolate) {
-  return ({length: n}) => quantize(interpolate, Math.floor(n) + 1).slice(0, -1);
+function schemeicyclical(interpolate: ColorInterpolator) {
+  return ({length: n}: ArrayLike<void>) => quantize(interpolate, Math.floor(n) + 1).slice(0, -1);
 }
 
-export function ordinalScheme(scheme) {
-  const s = `${scheme}`.toLowerCase();
+export function ordinalScheme(scheme: string) {
+  const s = `${scheme}`.toLowerCase() as OrdinalSchemes;
   if (!ordinalSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
-  return ordinalSchemes.get(s);
+  return ordinalSchemes.get(s) as OrdinalScheme; // https://github.com/microsoft/TypeScript/issues/13086
 }
 
-export function ordinalRange(scheme, length) {
+export function ordinalRange(scheme: OrdinalSchemes, length: number) {
   const s = ordinalScheme(scheme);
   const r = typeof s === "function" ? s({length}) : s;
   return r.length !== length ? r.slice(0, length) : r;
@@ -189,7 +196,7 @@ export function ordinalRange(scheme, length) {
 // If the specified domain contains only booleans (ignoring null and undefined),
 // returns a corresponding range where false is mapped to the low color and true
 // is mapped to the high color of the specified scheme.
-export function maybeBooleanRange(domain, scheme = "greys") {
+export function maybeBooleanRange(domain: Iterable<Value>, scheme: OrdinalSchemes = "greys") {
   const range = new Set();
   const [f, t] = ordinalRange(scheme, 2);
   for (const value of domain) {
@@ -201,7 +208,7 @@ export function maybeBooleanRange(domain, scheme = "greys") {
   return [...range];
 }
 
-const quantitativeSchemes = new Map([
+const quantitativeSchemes = new Map<QuantitativeSchemes, ColorInterpolator>([
   // diverging
   ["brbg", interpolateBrBG],
   ["prgn", interpolatePRGn],
@@ -253,10 +260,10 @@ const quantitativeSchemes = new Map([
   ["sinebow", interpolateSinebow]
 ]);
 
-export function quantitativeScheme(scheme) {
-  const s = `${scheme}`.toLowerCase();
+export function quantitativeScheme(scheme: string) {
+  const s = `${scheme}`.toLowerCase() as QuantitativeSchemes;
   if (!quantitativeSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
-  return quantitativeSchemes.get(s);
+  return quantitativeSchemes.get(s) as ColorInterpolator; // https://github.com/microsoft/TypeScript/issues/13086
 }
 
 const divergingSchemes = new Set([
@@ -273,6 +280,6 @@ const divergingSchemes = new Set([
   "buylrd"
 ]);
 
-export function isDivergingScheme(scheme) {
+export function isDivergingScheme(scheme: string | undefined) {
   return scheme != null && divergingSchemes.has(`${scheme}`.toLowerCase());
 }

@@ -1,16 +1,20 @@
-import type {Primitive} from "d3";
+import type {Value} from "./data.js";
+
+// TODO: @types/d3 doesn't consider null as a Primitive
+type NN = string | number | boolean | Date | undefined;
+
 import {ascending, descending} from "d3";
 
-export function defined(x: Primitive | undefined): boolean {
+export function defined(x: Value): boolean {
   return x != null && !Number.isNaN(x);
 }
 
-export function ascendingDefined(a: Primitive | undefined, b: Primitive | undefined): number {
-  return +defined(b) - +defined(a) || ascending(a, b);
+export function ascendingDefined(a: Value, b: Value): number {
+  return +defined(b) - +defined(a) || ascending(a as NN, b as NN);
 }
 
-export function descendingDefined(a: Primitive | undefined, b: Primitive | undefined): number {
-  return +defined(b) - +defined(a) || descending(a, b);
+export function descendingDefined(a: Value, b: Value): number {
+  return +defined(b) - +defined(a) || descending(a as NN, b as NN);
 }
 
 export function nonempty(x: unknown): boolean {
