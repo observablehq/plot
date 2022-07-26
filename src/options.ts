@@ -1,42 +1,117 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type {ArrayType, Value, DataArray, Datum, index, Data, Series, ValueArray} from "./data.js";
 import {parse as isoParse} from "isoformat";
-import {color, descending, quantile} from "d3";
+import {color, descending, quantile, TypedArray} from "d3";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-// This allows transforms to behave equivalently to channels.
-export function valueof(data, value, arrayType) {
-  const type = typeof value;
-  return type === "string"
+/**
+
+#### Plot.valueof(*data*, *value*, *type*)
+
+Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
+
+- a string - corresponding to the field accessor (`d => d[value]`)
+- an accessor function - called as *type*.from(*data*, *value*)
+- a number, Date, or boolean — resulting in an array uniformly filled with the *value*
+- an object with a transform method — called as *value*.transform(*data*)
+- an array of values - returning the same
+- null or undefined - returning the same
+
+If *type* is specified, it must be Array or a similar class that implements the [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) interface such as a typed array. When *type* is Array or a typed array class, the return value of valueof will be an instance of the same (or null or undefined). If *type* is not specified, valueof may return either an array or a typed array (or null or undefined).
+
+Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
+
+@link https://github.com/observablehq/plot/blob/main/README.md#plotvalueofdata-value-type
+
+ */
+export function valueof<N extends null | undefined, T extends ArrayType>(data: N, value: ValueAccessor, type: T): N;
+export function valueof<N extends null | undefined>(data: N, value: ValueAccessor): N;
+export function valueof(
+  data: Data | null | undefined,
+  value: ValueAccessor,
+  type: Float64ArrayConstructor
+): Float64Array;
+export function valueof(
+  data: Data | null | undefined,
+  value: ValueAccessor,
+  type: Float32ArrayConstructor
+): Float32Array;
+export function valueof(data: Data | null | undefined, value: ValueAccessor, type: ArrayConstructor): ValueArray;
+export function valueof(
+  data: Data | null | undefined,
+  value: ValueAccessor,
+  arrayType?: ArrayType
+): ValueArray | Float32Array | Float64Array | null | undefined;
+export function valueof(
+  data: Data | null | undefined,
+  value: ValueAccessor,
+  arrayType?: ArrayType
+): ValueArray | Float32Array | Float64Array | null | undefined {
+  return data == null
+    ? data
+    : typeof value === "string"
     ? map(data, field(value), arrayType)
-    : type === "function"
+    : typeof value === "function"
     ? map(data, value, arrayType)
-    : type === "number" || value instanceof Date || type === "boolean"
+    : typeof value === "number" || value instanceof Date || typeof value === "boolean"
     ? map(data, constant(value), arrayType)
-    : value && typeof value.transform === "function"
-    ? arrayify(value.transform(data), arrayType)
-    : arrayify(value, arrayType); // preserve undefined type
+    : value && typeof (value as TransformMethod).transform === "function"
+    ? arrayify((value as TransformMethod).transform(data), arrayType)
+    : arrayify(value as ValueArray, arrayType); // preserve undefined type
 }
 
-export const field = (name) => (d) => d[name];
-export const indexOf = (d, i) => i;
-export const identity = {transform: (d) => d};
+/**
+ * See Plot.valueof()
+ */
+export type ValueAccessor =
+  | string
+  | AccessorFunction
+  | number
+  | Date
+  | boolean
+  | TransformMethod
+  | ValueArray
+  | null
+  | undefined;
+type AccessorFunction = ((d: any) => V) | ((d: any, i: number) => V);
+type TransformMethod = {
+  transform: (data: Data | null | undefined) => Data;
+};
+
+// Type: the field accessor might crash if the datum is not a generic object
+export const field =
+  (name: string) =>
+  (d: Datum): Value =>
+    (d as {[x: string]: Value})[name];
+export const indexOf = (d: Datum, i: index) => i;
+export const identity = {transform: (d: Datum | DataArray) => d};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
-export const string = (x) => (x == null ? x : `${x}`);
-export const number = (x) => (x == null ? x : +x);
-export const boolean = (x) => (x == null ? x : !!x);
-export const first = (x) => (x ? x[0] : undefined);
-export const second = (x) => (x ? x[1] : undefined);
-export const constant = (x) => () => x;
+export const string = (x: any) => (x == null ? x : `${x}`);
+export const number = (x: any) => (x == null ? x : +x);
+export const boolean = (x: any) => (x == null ? x : !!x);
+
+// Type: the first and second accessors might crash if the datum is not an array
+export const first = (x: any) => (x ? (x as Value[])[0] : undefined);
+export const second = (x: any) => (x ? (x as Value[])[1] : undefined);
+export const constant = (x: Value) => () => x;
+
+/**
+ * A perticentile reducer, specified by a string like “p25”
+ */
+export type percentile = `p${number}`;
+// `p${Digit}${Digit}`; //  would be nicer but expands to p00 p01…p99
+// type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
-export function percentile(reduce) {
+export function percentile(reduce: percentile) {
   const p = +`${reduce}`.slice(1) / 100;
-  return (I, f) => quantile(I, p, f);
+  return (I: Series, f: (i: index) => any) => quantile(I, p, f);
 }
 
 // Some channels may allow a string constant to be specified; to differentiate
@@ -45,25 +120,25 @@ export function percentile(reduce) {
 // tuple [channel, constant] where one of the two is undefined, and the other is
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
-export function maybeColorChannel(value, defaultValue) {
+export function maybeColorChannel(value: ValueAccessor, defaultValue?: string): [ValueAccessor?, string?] {
   if (value === undefined) value = defaultValue;
-  return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
+  return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value as string] : [value, undefined];
 }
 
 // Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
-export function maybeNumberChannel(value, defaultValue) {
+export function maybeNumberChannel(value: number | ValueAccessor | undefined, defaultValue?: number) {
   if (value === undefined) value = defaultValue;
   return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
 
 // Validates the specified optional string against the allowed list of keywords.
-export function maybeKeyword(input, name, allowed) {
+export function maybeKeyword(input: string | null | undefined, name: string, allowed: string[]) {
   if (input != null) return keyword(input, name, allowed);
 }
 
 // Validates the specified required string against the allowed list of keywords.
-export function keyword(input, name, allowed) {
+export function keyword(input: string | null | undefined, name: string, allowed: string[]) {
   const i = `${input}`.toLowerCase();
   if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
   return i;
@@ -73,36 +148,59 @@ export function keyword(input, name, allowed) {
 // type is provided (e.g., Array), then the returned array will strictly be of
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
-export function arrayify(data, type) {
+export function arrayify(data: undefined, type: ArrayType | undefined): undefined;
+export function arrayify(data: null, type: ArrayType | undefined): null;
+export function arrayify(data: Data): Array<Datum> | TypedArray;
+export function arrayify(data: Data, type: ArrayConstructor): Array<Datum>;
+export function arrayify(data: Data, type: Float32ArrayConstructor): Float32Array;
+export function arrayify(data: Data, type: Float64ArrayConstructor): Float64Array;
+export function arrayify(data: Data, type?: ArrayType): Array<Datum> | Float32Array | Float64Array;
+export function arrayify(data: Data | null | undefined): Array<Datum> | TypedArray | null | undefined;
+export function arrayify(data: Data | null | undefined, type: ArrayConstructor): Array<Datum> | null | undefined;
+export function arrayify(data: Data | null | undefined, type: Float32ArrayConstructor): Float32Array | null | undefined;
+export function arrayify(data: Data | null | undefined, type: Float64ArrayConstructor): Float64Array | null | undefined;
+export function arrayify(
+  data: Data | null | undefined,
+  type?: ArrayType
+): TypedArray | Array<Datum> | null | undefined {
   return data == null
     ? data
     : type === undefined
     ? data instanceof Array || data instanceof TypedArray
-      ? data
+      ? (data as ValueArray)
       : Array.from(data)
     : data instanceof type
     ? data
-    : type.from(data);
+    : (type as ArrayConstructor).from(data);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
-export function map(values, f, type = Array) {
-  return values instanceof type ? values.map(f) : type.from(values, f);
+type U = Data;
+type V = Value;
+export function map<V extends Value>(values: U, f: (d: any, i: number) => V, type: ArrayConstructor): V[];
+export function map(values: U, f: (d: any, i: number) => number, type: Float32ArrayConstructor): Float32Array;
+export function map(values: U, f: (d: any, i: number) => number, type: Float64ArrayConstructor): Float64Array;
+export function map(values: U, f: AccessorFunction, type: ArrayType | undefined): V[];
+export function map(values: U, f: AccessorFunction): V[];
+export function map(values: U, f: (d: any, i: number) => any, type: ArrayType = Array) {
+  return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
 // instanceof the desired array type, the faster values.slice method is used.
-export function slice(values, type = Array) {
-  return values instanceof type ? values.slice() : type.from(values);
+export function slice(values: DataArray, type: ArrayType = Array) {
+  return values instanceof type ? values.slice() : (type as ArrayConstructor).from(values);
 }
 
-export function isTypedArray(values) {
+export function isTypedArray(values: DataArray) {
   return values instanceof TypedArray;
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
-export function isObject(option) {
+export function isObject(option: undefined): false;
+export function isObject(option: any): boolean;
+export function isObject(option: any) {
   return option?.toString === objectToString;
 }
 
@@ -111,24 +209,31 @@ export function isObject(option) {
 // this is used to test whether a scale is defined; this should be consistent
 // with inferScaleType when there are no channels associated with the scale, and
 // if this returns true, then normalizeScale must return non-null.
-export function isScaleOptions(option) {
+export function isScaleOptions(option: any): boolean {
   return isObject(option) && (option.type !== undefined || option.domain !== undefined);
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
-export function isOptions(option) {
-  return isObject(option) && typeof option.transform !== "function";
+export function isOptions(option: any): boolean {
+  return isObject(option) && typeof (option as {transform: null}).transform !== "function";
 }
 
 // Disambiguates a sort transform (e.g., {sort: "date"}) from a channel domain
 // sort definition (e.g., {sort: {y: "x"}}).
-export function isDomainSort(sort) {
-  return isOptions(sort) && sort.value === undefined && sort.channel === undefined;
+export function isDomainSort(sort: any): boolean {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return isObject(sort) && sort!.value === undefined && sort!.channel === undefined;
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
-export function maybeZero(x, x1, x2, x3 = identity) {
+type Identity = {transform: (d: Datum) => Datum};
+export function maybeZero(
+  x: ValueAccessor | undefined,
+  x1: ValueAccessor | undefined | 0,
+  x2: ValueAccessor | undefined | Identity | 0,
+  x3 = identity
+) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
     (x1 = 0), (x2 = x === undefined ? x3 : x);
@@ -143,20 +248,23 @@ export function maybeZero(x, x1, x2, x3 = identity) {
 }
 
 // For marks that have x and y channels (e.g., cell, dot, line, text).
-export function maybeTuple(x, y) {
-  return x === undefined && y === undefined ? [first, second] : [x, y];
+export function maybeTuple<T>(x: T | undefined, y: T | undefined): [T | undefined, T | undefined] {
+  return x === undefined && y === undefined
+    ? [first as unknown as T | undefined, second as unknown as T | undefined]
+    : [x, y];
 }
 
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
-export function maybeZ({z, fill, stroke} = {}) {
+type ZOptions = {fill?: ValueAccessor; stroke?: ValueAccessor; z?: ValueAccessor};
+export function maybeZ({z, fill, stroke}: ZOptions = {}) {
   if (z === undefined) [z] = maybeColorChannel(fill);
   if (z === undefined) [z] = maybeColorChannel(stroke);
   return z;
 }
 
 // Returns a Uint32Array with elements [0, 1, 2, … data.length - 1].
-export function range(data) {
+export function range(data: ArrayLike<Datum>): Uint32Array {
   const n = data.length;
   const r = new Uint32Array(n);
   for (let i = 0; i < n; ++i) r[i] = i;
@@ -164,21 +272,22 @@ export function range(data) {
 }
 
 // Returns a filtered range of data given the test function.
-export function where(data, test) {
+export function where(data: ArrayLike<Datum>, test: (d: any, i?: index, data?: ArrayLike<Datum>) => boolean) {
   return range(data).filter((i) => test(data[i], i, data));
 }
 
 // Returns an array [values[index[0]], values[index[1]], …].
-export function take(values, index) {
-  return map(index, (i) => values[i]);
+export function take(values: ValueArray, index: Series): ValueArray {
+  return map(index, (i: index) => values[i]);
 }
 
 // Based on InternMap (d3.group).
-export function keyof(value) {
+export function keyof(value: Datum) {
   return value !== null && typeof value === "object" ? value.valueOf() : value;
 }
 
-export function maybeInput(key, options) {
+// note: maybeInput doesn't type check if the field is an accessor
+export function maybeInput(key: string, options: {[key: string]: any}) {
   if (options[key] !== undefined) return options[key];
   switch (key) {
     case "x1":
@@ -193,75 +302,88 @@ export function maybeInput(key, options) {
   return options[key];
 }
 
-// Defines a column whose values are lazily populated by calling the returned
-// setter. If the given source is labeled, the label is propagated to the
-// returned column definition.
-export function column(source) {
-  let value;
+/**
+
+#### Plot.column([*source*])
+
+This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
+
+Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
+
+@link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
+ */
+export function column(source: any): [getColumn, setColumn] {
+  let value: ValueArray;
   return [
     {
       transform: () => value,
       label: labelof(source)
     },
-    (v) => (value = v)
+    (v) => ((value = v), v)
   ];
 }
+export type getColumn = {transform: () => ValueArray; label?: string};
+type setColumn = <T extends ValueArray | Float32Array | Float64Array>(v: T) => T;
 
 // Like column, but allows the source to be null.
-export function maybeColumn(source) {
+export function maybeColumn(source: ValueAccessor | ((data: DataArray) => void)): [getColumn, setColumn] | [null?] {
   return source == null ? [source] : column(source);
 }
 
-export function labelof(value, defaultValue) {
-  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
+export function labelof(value: any, defaultValue?: string) {
+  return typeof value === "string"
+    ? value
+    : value && (value as {label?: string}).label !== undefined
+    ? (value as {label?: string}).label
+    : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new
 // a column that’s the average of the two, and which inherits the column label
 // (if any). Both input columns are assumed to be quantitative. If either column
 // is temporal, the returned column is also temporal.
-export function mid(x1, x2) {
+export function mid(x1: getColumn, x2: getColumn) {
   return {
-    transform(data) {
-      const X1 = x1.transform(data);
-      const X2 = x2.transform(data);
+    transform() {
+      const X1 = x1.transform();
+      const X2 = x2.transform();
       return isTemporal(X1) || isTemporal(X2)
-        ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : map(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
+        ? map(X1, (_: Date, i: index) => new Date((+(X1[i] as number) + +(X2[i] as number)) / 2))
+        : map(X1, (_: Date, i: index) => (+(X1[i] as number) + +(X2[i] as number)) / 2, Float64Array);
     },
     label: x1.label
   };
 }
 
 // This distinguishes between per-dimension options and a standalone value.
-export function maybeValue(value) {
+export function maybeValue(value: any) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
-export function numberChannel(source) {
+export function numberChannel(source: ValueArray) {
   return source == null
     ? null
     : {
-        transform: (data) => valueof(data, source, Float64Array),
+        transform: (data: DataArray) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
 }
 
-export function isIterable(value) {
+export function isIterable(value: any): boolean {
   return value && typeof value[Symbol.iterator] === "function";
 }
 
-export function isTextual(values) {
+export function isTextual(values: Iterable<Datum>) {
   for (const value of values) {
     if (value == null) continue;
     return typeof value !== "object" || value instanceof Date;
   }
 }
 
-export function isOrdinal(values) {
+export function isOrdinal(values: Iterable<Datum>) {
   for (const value of values) {
     if (value == null) continue;
     const type = typeof value;
@@ -269,7 +391,7 @@ export function isOrdinal(values) {
   }
 }
 
-export function isTemporal(values) {
+export function isTemporal(values: Iterable<Value>) {
   for (const value of values) {
     if (value == null) continue;
     return value instanceof Date;
@@ -280,30 +402,30 @@ export function isTemporal(values) {
 // because we want to ignore false positives on numbers; for example, the string
 // "1192" is more likely to represent a number than a date even though it is
 // valid ISO 8601 representing 1192-01-01.
-export function isTemporalString(values) {
+export function isTemporalString(values: Iterable<Datum>) {
   for (const value of values) {
     if (value == null) continue;
-    return typeof value === "string" && isNaN(value) && isoParse(value);
+    return typeof value === "string" && isNaN(value as unknown as number) && (isoParse(value) as unknown as boolean);
   }
 }
 
 // Are these strings that might represent numbers? This is stricter than
 // coercion because we want to ignore false positives on e.g. empty strings.
-export function isNumericString(values) {
+export function isNumericString(values: Iterable<Datum>) {
   for (const value of values) {
     if (value == null || value === "") continue;
-    return typeof value === "string" && !isNaN(value);
+    return typeof value === "string" && !isNaN(value as unknown as number);
   }
 }
 
-export function isNumeric(values) {
+export function isNumeric(values: Iterable<Datum>) {
   for (const value of values) {
     if (value == null) continue;
     return typeof value === "number";
   }
 }
 
-export function isFirst(values, is) {
+export function isFirst(values: IterableIterator<Datum>, is: (d: Datum) => boolean) {
   for (const value of values) {
     if (value == null) continue;
     return is(value);
@@ -314,7 +436,7 @@ export function isFirst(values, is) {
 // an empty array, this tests all defined values and only returns true if all of
 // them are valid colors. It also returns true for an empty array, and thus
 // should generally be used in conjunction with isFirst.
-export function isEvery(values, is) {
+export function isEvery(values: IterableIterator<Datum>, is: (d: Datum) => boolean) {
   for (const value of values) {
     if (value == null) continue;
     if (!is(value)) return false;
@@ -327,9 +449,9 @@ export function isEvery(values, is) {
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
-export function isColor(value) {
-  if (typeof value !== "string") return false;
-  value = value.toLowerCase().trim();
+export function isColor(v: ValueAccessor | undefined): boolean {
+  if (typeof v !== "string") return false;
+  const value = v.toLowerCase().trim();
   return (
     value === "none" ||
     value === "currentcolor" ||
@@ -339,16 +461,16 @@ export function isColor(value) {
   );
 }
 
-export function isNoneish(value) {
+export function isNoneish(value: ValueAccessor | undefined) {
   return value == null || isNone(value);
 }
 
-export function isNone(value) {
-  return /^\s*none\s*$/i.test(value);
+export function isNone(value: ValueAccessor | undefined) {
+  return /^\s*none\s*$/i.test(value as string);
 }
 
-export function isRound(value) {
-  return /^\s*round\s*$/i.test(value);
+export function isRound(value: string | undefined) {
+  return /^\s*round\s*$/i.test(value as string);
 }
 
 export function maybeFrameAnchor(value = "middle") {
@@ -368,7 +490,7 @@ export function maybeFrameAnchor(value = "middle") {
 // Like a sort comparator, returns a positive value if the given array of values
 // is in ascending order, a negative value if the values are in descending
 // order. Assumes monotonicity; only tests the first and last values.
-export function order(values) {
+export function order(values: null | undefined | string[] | number[] | Float32Array | Float64Array) {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];
@@ -377,7 +499,7 @@ export function order(values) {
 
 // Unlike {...defaults, ...options}, this ensures that any undefined (but
 // present) properties in options inherit the given default value.
-export function inherit(options = {}, ...rest) {
+export function inherit(options: Record<string, any> = {}, ...rest: Array<Record<string, any>>) {
   let o = options;
   for (const defaults of rest) {
     for (const key in defaults) {
@@ -393,12 +515,12 @@ export function inherit(options = {}, ...rest) {
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function Named(things) {
+export function Named(things: any) {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(
     Array.from(things, (thing) => {
-      const {name} = thing;
+      const {name} = thing as {name: string};
       if (name == null) throw new Error("missing name");
       const key = `${name}`;
       if (key === "__proto__") throw new Error(`illegal name: ${key}`);
@@ -409,6 +531,6 @@ export function Named(things) {
   );
 }
 
-export function maybeNamed(things) {
+export function maybeNamed(things: any) {
   return isIterable(things) ? Named(things) : things;
 }
