@@ -1,4 +1,5 @@
 export function maybeTimeFilter(filter = "eq") {
+  if (typeof filter === "function") return timeFunction(filter);
   switch (`${filter}`.toLowerCase()) {
     case "lt": return timeLt;
     case "lte": return timeLte;
@@ -7,6 +8,12 @@ export function maybeTimeFilter(filter = "eq") {
     case "eq": return timeEq;
   }
   throw new Error(`invalid time filter: ${filter}`);
+}
+
+function timeFunction(f) {
+  return (I, T, time) => {
+    return I.filter(i => f(T[i], time));
+  };
 }
 
 function timeLt(I, T, time) {
