@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-export type Datum = any; // A Datum… who knows what it is?
+type ObjectDatum = Record<string, unknown>;
+export type Datum = ObjectDatum | Value;
+export type DatumKeys<T> = T extends ObjectDatum ? keyof T : never;
 
 /**
  * The marks's data contains the data for the mark; typically an array
  * of objects or values, but can also be defined as an iterable compatible
  * with Array.from.
  */
-export type Data = ArrayLike<Datum> | Iterable<Datum>;
+export type Data<T extends Datum> = ArrayLike<T> | Iterable<T>;
 
 /**
  * An array or typed array constructor, or any class that implements Array.from
