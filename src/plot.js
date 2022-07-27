@@ -106,7 +106,7 @@ export function plot(options = {}) {
       facetIndex?.length > 1
     ) {
       warn(
-        `Facet data must strictly equal ${mark.ariaLabel} mark data for the appropriate faceting. This can be cause by ufing a filter function in the facet. If you intend for this mark to be faceted, set the facet option to true; otherwise set the facet option to false to disable this warning`
+        `Facet data must strictly equal ${mark.ariaLabel} mark data for the appropriate faceting. This can be cause by using a filter function in the facet. If you intend for this mark to be faceted, set the facet option to true; otherwise set the facet option to false to disable this warning`
       );
     }
     applyScaleTransforms(channels, options);
