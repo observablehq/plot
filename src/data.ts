@@ -1,16 +1,14 @@
-type ObjectDatum = Record<string, unknown>;
-export type Datum = ObjectDatum | Value;
-export type DatumKeys<T> = T extends ObjectDatum ? keyof T : never;
-
 /**
  * The marks's data contains the data for the mark; typically an array
  * of objects or values, but can also be defined as an iterable compatible
  * with Array.from.
  */
 export type Data<T extends Datum> = ArrayLike<T> | Iterable<T>;
+export type Datum = unknown;
 
 /**
  * An array or typed array constructor, or any class that implements Array.from
+ * We only do internal typechecks for Float32Array | Float64Array
  */
 export type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
 

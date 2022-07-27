@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {ArrayType, Value, DataArray, Datum, index, Data, Series, ValueArray, DatumKeys} from "./data.js";
+import type {ArrayType, Value, DataArray, Datum, index, Data, Series, ValueArray} from "./data.js";
 import {parse as isoParse} from "isoformat";
 import {color, descending, quantile, TypedArray} from "d3";
 
@@ -54,6 +54,10 @@ export function valueof<N extends Datum>(
   value: ValueAccessor<N>,
   arrayType?: ArrayType
 ): ValueArray | Float32Array | Float64Array | null | undefined {
+  if (isTransform(value)) {
+    data = value.transform(data) as Data<N> | null | undefined;
+    value = (d) => d as Value;
+  }
   if (data == null) {
     return data;
   } else if (typeof value === "string") {
@@ -62,32 +66,31 @@ export function valueof<N extends Datum>(
     return map(data, value, arrayType);
   } else if (typeof value === "number" || value instanceof Date || typeof value === "boolean") {
     return map(data, constant(value), arrayType);
-  } else if (isTransform(value)) {
-    return arrayify(value.transform(data), arrayType); // Not sure what's wrong here
   }
-  return arrayify(value, arrayType); // preserve undefined type
+  return arrayify(value as ValueArray, arrayType); // preserve undefined type
 }
 
-function isTransform<T extends Datum>(value: ValueAccessor<T>): value is TransformMethod<T> {
-  return !!value && typeof value == "object" && "function" in value;
+function isTransform<T extends Datum>(value: ValueAccessor<T>): value is TransformMethod {
+  return !!value && isObject(value) && typeof (value as {transform?: any}).transform == "function";
 }
 
 /**
  * See Plot.valueof()
  */
+type DatumKeys<T> = T extends Record<string, unknown> ? keyof T : never;
 export type ValueAccessor<T extends Datum> =
   | DatumKeys<T>
   | AccessorFunction<T>
   | number
   | Date
   | boolean
-  | TransformMethod<T>
-  // | ValueArray // This didn't seem right, how would we use ValueArray as an accessor?
+  | TransformMethod
+  | ValueArray
   | null
   | undefined;
 type AccessorFunction<T extends Datum> = ((d: T) => Value) & ((d: T, i: number) => Value);
-type TransformMethod<T extends Datum> = {
-  transform: ((data: Data<T>) => Data<T>) & ((data: null) => null) & ((data: undefined) => undefined);
+type TransformMethod = {
+  transform: (data: Data<Datum> | null | undefined) => Data<Value> | null | undefined;
 };
 
 // Type: the field accessor might crash if the datum is not a generic object
@@ -130,15 +133,15 @@ export function percentile(reduce: percentile) {
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel<T extends Datum>(
-  value: ValueAccessor<T>,
-  defaultValue?: DatumKeys<T>
+  value: string | ValueAccessor<T>,
+  defaultValue?: string
 ): [ValueAccessor<T>?, string?] {
   if (value === undefined) value = defaultValue;
   return value === null
     ? [undefined, "none"]
-    : isColor(value)
-    ? [undefined, value as DatumKeys<T>]
-    : [value, undefined];
+    : isColor(value as string)
+    ? [undefined, value as string]
+    : [value as ValueAccessor<T>, undefined];
 }
 
 // Similar to maybeColorChannel, this tests whether the given value is a number
@@ -170,26 +173,11 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 export function arrayify(data: undefined, type: ArrayType | undefined): undefined;
 export function arrayify(data: null, type: ArrayType | undefined): null;
 export function arrayify(data: null | undefined, type: ArrayType | undefined): null | undefined;
-export function arrayify<T extends Datum>(data: Data<T>): Array<Datum> | TypedArray;
-export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): Array<Datum>;
+export function arrayify<T extends Datum>(data: Data<T>): Array<T> | TypedArray;
+export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): Array<T>;
 export function arrayify<T extends Datum>(data: Data<T>, type: Float32ArrayConstructor): Float32Array;
 export function arrayify<T extends Datum>(data: Data<T>, type: Float64ArrayConstructor): Float64Array;
-export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): Array<Datum> | Float32Array | Float64Array;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined
-): Array<Datum> | TypedArray | null | undefined;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
-  type: ArrayConstructor
-): Array<Datum> | null | undefined;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
-  type: Float32ArrayConstructor
-): Float32Array | null | undefined;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
-  type: Float64ArrayConstructor
-): Float64Array | null | undefined;
+export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): Array<T> | Float32Array | Float64Array;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
   type?: ArrayType
@@ -197,8 +185,10 @@ export function arrayify<T extends Datum>(
   return data == null
     ? data
     : type === undefined
-    ? data instanceof Array || data instanceof TypedArray
-      ? (data as T[]) // is this change from ValueArray to T[] correct?
+    ? data instanceof Array
+      ? data
+      : data instanceof TypedArray
+      ? (data as TypedArray)
       : Array.from(data)
     : data instanceof type
     ? data
@@ -207,6 +197,39 @@ export function arrayify<T extends Datum>(
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
+export function map(values: ValueArray, f: (d: Value, i: number) => Value): ValueArray;
+export function map(
+  values: ValueArray,
+  f: (d: any, i: number) => Value,
+  type: ArrayConstructor | undefined
+): ValueArray;
+export function map(
+  values: ValueArray,
+  f: (d: Value, i: number) => number,
+  type: Float32ArrayConstructor
+): Float32Array;
+export function map(
+  values: ValueArray,
+  f: (d: Value, i: number) => number,
+  type: Float64ArrayConstructor
+): Float64Array;
+export function map<T extends Value>(
+  values: Data<T>,
+  f: (d: any, i: number) => number,
+  type: Float32ArrayConstructor
+): Float32Array;
+export function map<T extends Value>(
+  values: Data<T>,
+  f: (d: any, i: number) => number,
+  type: Float64ArrayConstructor
+): Float64Array;
+export function map<T extends Value>(values: Data<T>, f: AccessorFunction<T>, type: ArrayType | undefined): Value[];
+export function map<T extends Value>(values: Data<T>, f: AccessorFunction<T>): Value[];
+export function map<T extends Value>(
+  values: Data<T>,
+  f: (d: any, i: number) => any,
+  type: ArrayType | undefined
+): Value[];
 export function map<T extends Datum, V extends Value>(
   values: Data<T>,
   f: (d: any, i: number) => V,
@@ -229,7 +252,11 @@ export function map<T extends Datum>(
   f: (d: any, i: number) => any,
   type: ArrayType | undefined
 ): Value[];
-export function map<T extends Datum>(values: Data<T>, f: (d: any, i: number) => any, type: ArrayType = Array) {
+export function map(
+  values: Data<Datum> | Data<Value>,
+  f: (d: any, i: number) => any,
+  type: ArrayType = Array
+): ValueArray {
   return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values, f);
 }
 
@@ -278,7 +305,7 @@ export function maybeZero<T extends Datum>(
   x: ValueAccessor<T> | undefined,
   x1: ValueAccessor<T> | undefined | 0,
   x2: ValueAccessor<T> | undefined | Identity<T> | 0,
-  x3 = identity
+  x3 = identity as Identity<T>
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
@@ -302,7 +329,11 @@ export function maybeTuple<T>(x: T | undefined, y: T | undefined): [T | undefine
 
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
-type ZOptions<T extends Datum> = {fill?: ValueAccessor<T>; stroke?: ValueAccessor<T>; z?: ValueAccessor<T>};
+type ZOptions<T extends Datum> = {
+  fill?: ValueAccessor<T> | string;
+  stroke?: ValueAccessor<T> | string;
+  z?: ValueAccessor<T>;
+};
 export function maybeZ<T extends Datum>({z, fill, stroke}: ZOptions<T> = {}) {
   if (z === undefined) [z] = maybeColorChannel(fill);
   if (z === undefined) [z] = maybeColorChannel(stroke);
@@ -378,9 +409,12 @@ export function maybeColumn<T extends Datum>(
   return source == null ? [source] : column(source);
 }
 
-type MaybeLabel = string | {label: string} | null | undefined;
-export function labelof(value: MaybeLabel, defaultValue?: string) {
-  return typeof value === "string" ? value : value && "label" in value ? value.label : defaultValue;
+export function labelof(value: any, defaultValue?: string) {
+  return typeof value === "string"
+    ? value
+    : value && (value as {label: string}).label != null
+    ? (value as {label: string}).label
+    : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new
@@ -393,8 +427,8 @@ export function mid(x1: getColumn, x2: getColumn) {
       const X1 = x1.transform();
       const X2 = x2.transform();
       return isTemporal(X1) || isTemporal(X2)
-        ? map(X1, (_: Date, i: index) => new Date((+(X1[i] as number) + +(X2[i] as number)) / 2))
-        : map(X1, (_: Date, i: index) => (+(X1[i] as number) + +(X2[i] as number)) / 2, Float64Array);
+        ? map(X1, (_, i) => new Date((+(X1[i] as number) + +(X2[i] as number)) / 2))
+        : map(X1, (_, i) => (+(X1[i] as number) + +(X2[i] as number)) / 2, Float64Array);
     },
     label: x1.label
   };
@@ -408,7 +442,7 @@ export function maybeValue(value: any) {
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
-export function numberChannel(source: ValueArray) {
+export function numberChannel(source: any) {
   return source == null
     ? null
     : {
