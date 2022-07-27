@@ -1,3 +1,4 @@
+export {default as facet_warning} from "./facet_warning.js";
 export {default as aaplBollinger} from "./aapl-bollinger.js";
 export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";

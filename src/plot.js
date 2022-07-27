@@ -22,7 +22,7 @@ import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
-import {consumeWarnings} from "./warnings.js";
+import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
@@ -83,7 +83,10 @@ export function plot(options = {}) {
 
   // Initialize the marks’ state.
   for (const mark of marks) {
-    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");    
+    if(facet && mark.data.length === facet.data.length && mark.data !== facet.data && facet.data.length > 1) {
+      warn("Facet data must strictly equal mark data for appropriate faceting. Make sure you aren't filtering your facet data in the Plot command.")
+    }
     const markFacets =
       facetsIndex === undefined
         ? undefined
