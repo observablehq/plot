@@ -84,17 +84,6 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    if (
-      facet?.data &&
-      mark?.data &&
-      mark.data.length === facet.data.length &&
-      mark.data !== facet.data &&
-      facet.data.length > 1
-    ) {
-      warn(
-        "Facet data must strictly equal mark data for appropriate faceting. Make sure you aren't filtering your facet data in the Plot command."
-      );
-    }
     const markFacets =
       facetsIndex === undefined
         ? undefined
@@ -108,6 +97,18 @@ export function plot(options = {}) {
         ? facetsExclude || (facetsExclude = facetsIndex.map((f) => Uint32Array.from(difference(facetIndex, f))))
         : undefined;
     const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+    if (
+      facets && // if truthy, faceting is used
+      mark.facet === "auto" && // if the user didn't specify a facet
+      mark.data &&
+      (mark.data.length === facetIndex?.length || mark.data.size === facetIndex?.length) && // for Maps
+      mark.data !== facet?.data &&
+      facetIndex?.length > 1
+    ) {
+      warn(
+        `Facet data must strictly equal ${mark.ariaLabel} mark data for the appropriate faceting. This can be cause by ufing a filter function in the facet. If you intend for this mark to be faceted, set the facet option to true; otherwise set the facet option to false to disable this warning`
+      );
+    }
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }
