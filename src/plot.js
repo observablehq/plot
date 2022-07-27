@@ -83,9 +83,17 @@ export function plot(options = {}) {
 
   // Initialize the marks’ state.
   for (const mark of marks) {
-    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");    
-    if(facet?.data && mark?.data  && mark.data.length === facet.data.length && mark.data !== facet.data && facet.data.length > 1) {
-      warn("Facet data must strictly equal mark data for appropriate faceting. Make sure you aren't filtering your facet data in the Plot command.")
+    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+    if (
+      facet?.data &&
+      mark?.data &&
+      mark.data.length === facet.data.length &&
+      mark.data !== facet.data &&
+      facet.data.length > 1
+    ) {
+      warn(
+        "Facet data must strictly equal mark data for appropriate faceting. Make sure you aren't filtering your facet data in the Plot command."
+      );
     }
     const markFacets =
       facetsIndex === undefined
