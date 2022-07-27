@@ -1,13 +1,14 @@
-import {bisectLeft, cross, difference, groups, InternMap, select} from "d3";
+import {bisectLeft, cross, difference, groups, InternMap, interpolate, interpolateNumber, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, where, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, take, where, yes} from "./options.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales, coerceNumbers} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
+import {inferDomain} from "./scales/quantitative.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {maybeTimeFilter} from "./time.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -126,7 +127,9 @@ export function plot(options = {}) {
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
   // Aggregate and sort time channels.
-  const times = aggregateTimes(stateByMark);
+  const timeChannels = findTimeChannels(stateByMark);
+  const timeDomain = inferDomain(timeChannels);
+  const times = aggregateTimes(timeChannels);
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -226,20 +229,60 @@ export function plot(options = {}) {
       if (node != null) svg.appendChild(node);
     }
     if (timeMarks.length) {
-      let timeIndex = -1;
+      // TODO There needs to be an option to avoid interpolation and just play
+      // the distinct times, as given, in ascending order, as keyframes. And
+      // there needs to be an option to control the delay, duration, iterations,
+      // and other timing parameters of the animation.
+      const interpolateTime = interpolateNumber(...timeDomain);
+      const delay = 0; // TODO configurable; delay initial rendering
+      const duration = 5000; // TODO configurable
+      const startTime = performance.now() + delay;
       requestAnimationFrame(function tick() {
-        if (++timeIndex >= times.length) return;
-        const time = times[timeIndex];
+        const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
+        const currentTime = interpolateTime(t);
+        const i0 = bisectLeft(times, currentTime);
+        const time0 = times[i0 - 1];
+        const time1 = times[i0];
+        const timet = (currentTime - time0) / (time1 - time0);
         for (const timeMark of timeMarks) {
           const {mark, node} = timeMark;
           const {channels, values, facets} = stateByMark.get(mark);
           const facet = facets ? mark.filter(facets[0], channels, values) : null;
-          const index = mark.timeFilter(facet, values.time, time);
-          const timeNode = mark.render(index, scales, values, dimensions, context);
+          const {time: T} = values;
+          let timeNode;
+          if (isFinite(timet)) {
+            const I0 = facet.filter(i => T[i] === time0);
+            const I1 = facet.filter(i => T[i] === time1);
+            const interp = {};
+            // TODO This is interpolating the already-scaled values, but we
+            // probably want to interpolate in data space instead and then
+            // re-apply the scales. I’m not sure what to do for ordinal data,
+            // but interpolating in data space will ensure that the resulting
+            // instantaneous visualization is meaningful and valid. TODO If the
+            // data is sparse (not all series have values for all times), or if
+            // the data is inconsistently ordered, then we will need a separate
+            // key channel to align the start and end values for interpolation;
+            // this code currently assumes that the data is complete and the
+            // order is consistent. TODO The sort transform (which happens by
+            // default with the dot mark) breaks consistent ordering! TODO If
+            // the time filter is not “eq” (strict equals) here, then we’ll need
+            // to combine the interpolated data with the filtered data.
+            for (const k in values) {
+              if (k === "time") continue; // avoid unnecessary interpolation
+              const V0 = take(values[k], I0);
+              const V1 = take(values[k], I1);
+              interp[k] = interpolate(V0, V1)(timet);
+            }
+            const index = range(I0);
+            timeNode = mark.render(index, scales, interp, dimensions, context);
+          } else {
+            const index = facet.filter(i => T[i] === time0);
+            timeNode = mark.render(index, scales, values, dimensions, context);
+          }
           node.replaceWith(timeNode);
           timeMark.node = timeNode;
         }
-        setTimeout(tick, 1500 / times.length); // TODO
+        if (t < 1) requestAnimationFrame(tick);
       });
     }
   }
@@ -393,16 +436,29 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
   return channelsByScale;
 }
 
-function aggregateTimes(stateByMark) {
-  const times = [];
+// TODO There should be a way to set at explicit domain of the time scale, and
+// probably also a way to control whether times are expressed (and coerced) to
+// numbers or dates. And maybe non-linear (log or sqrt) time, too, or should
+// that be controlled with easing?
+function findTimeChannels(stateByMark) {
+  const channels = [];
   for (const {channels: {time}} of stateByMark.values()) {
     if (time) {
-      for (let t of time.value) {
-        if (t == null || isNaN(t = +t)) continue;
-        const i = bisectLeft(times, t);
-        if (times[i] === t) continue;
-        times.splice(i, 0, t);
-      }
+      coerceNumbers(time.value); // Note: mutates!
+      channels.push(time);
+    }
+  }
+  return channels;
+}
+
+function aggregateTimes(channels) {
+  const times = [];
+  for (const {value} of channels) {
+    for (let t of value) {
+      if (t == null || isNaN(t = +t)) continue;
+      const i = bisectLeft(times, t);
+      if (times[i] === t) continue;
+      times.splice(i, 0, t);
     }
   }
   return times;

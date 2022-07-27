@@ -10,8 +10,8 @@ export default async function() {
       type: "log"
     },
     marks: [
-      Plot.line(gapminder, {x: "gdpPercap", y: "lifeExp", z: "country", stroke: "continent", strokeWidth: 0.5, time: "year", timeFilter: "lte"}),
-      Plot.dot(gapminder, {x: "gdpPercap", y: "lifeExp", r: "pop", stroke: "continent", time: "year"})
+      Plot.line(gapminder, {x: "gdpPercap", y: "lifeExp", z: "country", sort: null, stroke: "continent", strokeWidth: 0.5, time: "year", timeFilter: "lte"}),
+      Plot.dot(gapminder, {x: "gdpPercap", y: "lifeExp", r: "pop", sort: null, stroke: "continent", time: "year"})
     ]
   });
 }
