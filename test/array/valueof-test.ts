@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import assert from "assert";
 import {valueof} from "../../src/options.js";
 
@@ -43,13 +45,10 @@ it("valueof does not crash on non iterable values with an accessor", () => {
     );
 });
 
-/*
+// A function is not a valid input Data
+// @ts-expect-error
+valueof(() => {}, "red");
 
-// field names are inferred
-valueof([{a: 1}, {b: 2}], "a");
-valueof([{a: 1}, {b: 2}], "b");
-
-// TODO: test for ts failure:
-valueof([{a: 1}, {b: 2}], "c");
-
-*/
+// A Promise is not a valid input Data
+// @ts-expect-error
+valueof(new Promise(() => {}), "red");
