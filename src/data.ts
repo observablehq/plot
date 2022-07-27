@@ -1,24 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
-export type Datum = any; // A Datum… who knows what it is?
-
 /**
  * The marks's data contains the data for the mark; typically an array
  * of objects or values, but can also be defined as an iterable compatible
  * with Array.from.
  */
 export type Data = ArrayLike<Datum> | Iterable<Datum>;
+export type Datum = unknown;
 
 /**
  * An array or typed array constructor, or any class that implements Array.from
  */
-export type ArrayType = ArrayConstructor | Float32ArrayConstructor | Float64ArrayConstructor;
+export type ArrayType = ArrayConstructor | TypedArrayConstructor;
 
 /**
  * The data is then arrayified, and a range of indices is computed, serving as pointers
  * into a the column representation of Plot.valueof
  */
-export type DataArray = ArrayLike<Datum>;
+export type DataArray = Datum[] | TypedArray;
 
 /**
  * Channels are arrays of values
@@ -35,5 +32,30 @@ export type index = number; // integer
 export type Series = index[] | Uint32Array; // a Series is a list of pointers into columnar data
 export type Facets = Series[];
 
-export type NumericArray = number[] | Float32Array | Float64Array;
+export type NumericArray = number[] | TypedArray;
 export type ValueArray = NumericArray | Value[];
+
+/**
+ * Typed arrays are preserved through arrayify
+ */
+export type TypedArray =
+  | Int8Array
+  | Uint8Array
+  | Int16Array
+  | Uint16Array
+  | Int32Array
+  | Uint32Array
+  | Uint8ClampedArray
+  | Float32Array
+  | Float64Array;
+
+export type TypedArrayConstructor =
+  | Int8ArrayConstructor
+  | Uint8ArrayConstructor
+  | Int16ArrayConstructor
+  | Uint16ArrayConstructor
+  | Int32ArrayConstructor
+  | Uint32ArrayConstructor
+  | Uint8ClampedArrayConstructor
+  | Float32ArrayConstructor
+  | Float64ArrayConstructor;
