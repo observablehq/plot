@@ -122,13 +122,13 @@ export const constant = (x: Value) => () => x;
 /**
  * A perticentile reducer, specified by a string like “p25”
  */
-export type percentile = `p${number}`;
-// `p${Digit}${Digit}`; //  would be nicer but expands to p00 p01…p99
-// type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type pXX = `p${Digit}${Digit}` & {};
+type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
-export function percentile(reduce: percentile) {
+export function percentile(reduce: pXX) {
   const p = +`${reduce}`.slice(1) / 100;
   return (I: Series, f: (i: index) => any) => quantile(I, p, f);
 }
