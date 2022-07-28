@@ -106,9 +106,8 @@ export function plot(options = {}) {
     if (
       facetIndex?.length > 1 && // non-trivial faceting
       mark.facet === "auto" && // no explicit mark facet option
-      mark.data &&
       mark.data !== facet.data && // mark not implicitly faceted (different data)
-      arrayify(mark.data).length === facetDataLength // mark data seems parallel to facet data
+      arrayify(mark.data)?.length === facetDataLength // mark data seems parallel to facet data
     ) {
       warn(
         `Warning: did you want to facet the ${mark.ariaLabel} mark? The mark data and facet data are distinct, but they have the same length. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
