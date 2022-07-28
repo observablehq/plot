@@ -22,7 +22,7 @@ import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
-import {consumeWarnings} from "./warnings.js";
+import {consumeWarnings, warn} from "./warnings.js";
 
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
@@ -59,10 +59,11 @@ export function plot(options = {}) {
   let facetChannels; // e.g. {fx: {value}, fy: {value}}
   let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
   let facetsExclude; // lazily-constructed opposite of facetsIndex
+  let facetData;
   if (facet !== undefined) {
     const {x, y} = facet;
     if (x != null || y != null) {
-      const facetData = arrayify(facet.data);
+      facetData = arrayify(facet.data);
       if (facetData == null) throw new Error("missing facet data");
       facetChannels = {};
       if (x != null) {
@@ -99,6 +100,18 @@ export function plot(options = {}) {
     const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
+
+    // Warn for the common pitfall of wanting to facet mapped data.
+    if (
+      facetIndex?.length > 1 && // non-trivial faceting
+      mark.facet === "auto" && // no explicit mark facet option
+      mark.data !== facet.data && // mark not implicitly faceted (different data)
+      arrayify(mark.data)?.length === facetData.length // mark data seems parallel to facet data
+    ) {
+      warn(
+        `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
+      );
+    }
   }
 
   // Initalize the scales and axes.

@@ -1,0 +1,200 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="960" height="240" viewBox="0 0 960 240" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ y" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,179.7280701754386)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">5</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,151.6578947368421)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,123.58771929824562)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">7</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,95.51754385964912)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,67.44736842105264)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">9</text>
+      <path stroke="currentColor" stroke-opacity="0.1" d="M2,0h207M232,0h207M462,0h207M692,0h207"></path>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,30)" dy="-1em" text-anchor="start">↑ y</text>
+  </g>
+  <g aria-label="fx-axis" aria-description="series" transform="translate(0,30)" fill="none" text-anchor="middle">
+    <g class="tick" opacity="1" transform="translate(145.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">1</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(375.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(605.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">3</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(835.5,0)">
+      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">4</text>
+    </g><text fill="currentColor" transform="translate(490,-30)" dy="1em" text-anchor="middle">series</text>
+  </g>
+  <g aria-label="x-axis" transform="translate(42,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(29.200000000000003,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(122.69999999999999,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(272,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(29.200000000000003,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(122.69999999999999,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" transform="translate(502,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(29.200000000000003,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(122.69999999999999,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g>
+  </g>
+  <g aria-label="x-axis" aria-description="x →" transform="translate(732,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(29.200000000000003,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(122.69999999999999,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-180" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
+    </g><text fill="currentColor" transform="translate(227,30)" dy="-0.32em" text-anchor="end">x →</text>
+  </g>
+  <g aria-label="facet" transform="translate(42,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="84.80000000000001" cy="124.49122807017545" r="3"></circle>
+      <circle cx="103.5" cy="72.28070175438597" r="3"></circle>
+      <circle cx="197" cy="40" r="3"></circle>
+      <circle cx="10" cy="200" r="3"></circle>
+      <circle cx="66.1" cy="184.56140350877195" r="3"></circle>
+      <circle cx="122.19999999999999" cy="63.01754385964912" r="3"></circle>
+      <circle cx="178.3" cy="74.24561403508774" r="3"></circle>
+      <circle cx="140.89999999999998" cy="59.64912280701757" r="3"></circle>
+      <circle cx="47.400000000000006" cy="147.50877192982458" r="3"></circle>
+      <circle cx="159.60000000000002" cy="63.29824561403509" r="3"></circle>
+      <circle cx="28.700000000000003" cy="186.5263157894737" r="3"></circle>
+      <circle cx="84.80000000000001" cy="129.54385964912285" r="3"></circle>
+      <circle cx="103.5" cy="120" r="3"></circle>
+      <circle cx="197" cy="71.4385964912281" r="3"></circle>
+      <circle cx="10" cy="168.28070175438597" r="3"></circle>
+      <circle cx="66.1" cy="139.3684210526316" r="3"></circle>
+      <circle cx="84.80000000000001" cy="134.87719298245617" r="3"></circle>
+      <circle cx="84.80000000000001" cy="103.15789473684212" r="3"></circle>
+      <circle cx="84.80000000000001" cy="81.82456140350878" r="3"></circle>
+      <circle cx="84.80000000000001" cy="172.21052631578948" r="3"></circle>
+      <circle cx="84.80000000000001" cy="163.50877192982458" r="3"></circle>
+      <circle cx="84.80000000000001" cy="126.17543859649125" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(272,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="84.80000000000001" cy="124.49122807017545" r="3"></circle>
+      <circle cx="103.5" cy="72.28070175438597" r="3"></circle>
+      <circle cx="197" cy="40" r="3"></circle>
+      <circle cx="10" cy="200" r="3"></circle>
+      <circle cx="66.1" cy="184.56140350877195" r="3"></circle>
+      <circle cx="122.19999999999999" cy="63.01754385964912" r="3"></circle>
+      <circle cx="178.3" cy="74.24561403508774" r="3"></circle>
+      <circle cx="140.89999999999998" cy="59.64912280701757" r="3"></circle>
+      <circle cx="47.400000000000006" cy="147.50877192982458" r="3"></circle>
+      <circle cx="159.60000000000002" cy="63.29824561403509" r="3"></circle>
+      <circle cx="28.700000000000003" cy="186.5263157894737" r="3"></circle>
+      <circle cx="84.80000000000001" cy="129.54385964912285" r="3"></circle>
+      <circle cx="103.5" cy="120" r="3"></circle>
+      <circle cx="197" cy="71.4385964912281" r="3"></circle>
+      <circle cx="10" cy="168.28070175438597" r="3"></circle>
+      <circle cx="66.1" cy="139.3684210526316" r="3"></circle>
+      <circle cx="84.80000000000001" cy="134.87719298245617" r="3"></circle>
+      <circle cx="84.80000000000001" cy="103.15789473684212" r="3"></circle>
+      <circle cx="84.80000000000001" cy="81.82456140350878" r="3"></circle>
+      <circle cx="84.80000000000001" cy="172.21052631578948" r="3"></circle>
+      <circle cx="84.80000000000001" cy="163.50877192982458" r="3"></circle>
+      <circle cx="84.80000000000001" cy="126.17543859649125" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(502,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="84.80000000000001" cy="124.49122807017545" r="3"></circle>
+      <circle cx="103.5" cy="72.28070175438597" r="3"></circle>
+      <circle cx="197" cy="40" r="3"></circle>
+      <circle cx="10" cy="200" r="3"></circle>
+      <circle cx="66.1" cy="184.56140350877195" r="3"></circle>
+      <circle cx="122.19999999999999" cy="63.01754385964912" r="3"></circle>
+      <circle cx="178.3" cy="74.24561403508774" r="3"></circle>
+      <circle cx="140.89999999999998" cy="59.64912280701757" r="3"></circle>
+      <circle cx="47.400000000000006" cy="147.50877192982458" r="3"></circle>
+      <circle cx="159.60000000000002" cy="63.29824561403509" r="3"></circle>
+      <circle cx="28.700000000000003" cy="186.5263157894737" r="3"></circle>
+      <circle cx="84.80000000000001" cy="129.54385964912285" r="3"></circle>
+      <circle cx="103.5" cy="120" r="3"></circle>
+      <circle cx="197" cy="71.4385964912281" r="3"></circle>
+      <circle cx="10" cy="168.28070175438597" r="3"></circle>
+      <circle cx="66.1" cy="139.3684210526316" r="3"></circle>
+      <circle cx="84.80000000000001" cy="134.87719298245617" r="3"></circle>
+      <circle cx="84.80000000000001" cy="103.15789473684212" r="3"></circle>
+      <circle cx="84.80000000000001" cy="81.82456140350878" r="3"></circle>
+      <circle cx="84.80000000000001" cy="172.21052631578948" r="3"></circle>
+      <circle cx="84.80000000000001" cy="163.50877192982458" r="3"></circle>
+      <circle cx="84.80000000000001" cy="126.17543859649125" r="3"></circle>
+    </g>
+  </g>
+  <g aria-label="facet" transform="translate(732,0)">
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="207" height="180"></rect>
+    <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
+      <circle cx="84.80000000000001" cy="124.49122807017545" r="3"></circle>
+      <circle cx="103.5" cy="72.28070175438597" r="3"></circle>
+      <circle cx="197" cy="40" r="3"></circle>
+      <circle cx="10" cy="200" r="3"></circle>
+      <circle cx="66.1" cy="184.56140350877195" r="3"></circle>
+      <circle cx="122.19999999999999" cy="63.01754385964912" r="3"></circle>
+      <circle cx="178.3" cy="74.24561403508774" r="3"></circle>
+      <circle cx="140.89999999999998" cy="59.64912280701757" r="3"></circle>
+      <circle cx="47.400000000000006" cy="147.50877192982458" r="3"></circle>
+      <circle cx="159.60000000000002" cy="63.29824561403509" r="3"></circle>
+      <circle cx="28.700000000000003" cy="186.5263157894737" r="3"></circle>
+      <circle cx="84.80000000000001" cy="129.54385964912285" r="3"></circle>
+      <circle cx="103.5" cy="120" r="3"></circle>
+      <circle cx="197" cy="71.4385964912281" r="3"></circle>
+      <circle cx="10" cy="168.28070175438597" r="3"></circle>
+      <circle cx="66.1" cy="139.3684210526316" r="3"></circle>
+      <circle cx="84.80000000000001" cy="134.87719298245617" r="3"></circle>
+      <circle cx="84.80000000000001" cy="103.15789473684212" r="3"></circle>
+      <circle cx="84.80000000000001" cy="81.82456140350878" r="3"></circle>
+      <circle cx="84.80000000000001" cy="172.21052631578948" r="3"></circle>
+      <circle cx="84.80000000000001" cy="163.50877192982458" r="3"></circle>
+      <circle cx="84.80000000000001" cy="126.17543859649125" r="3"></circle>
+    </g>
+  </g><text x="960" y="20" dy="-1em" text-anchor="end" font-family="initial">⚠️<title>1 warning. Please check the console.</title></text>
+</svg>
