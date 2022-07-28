@@ -59,13 +59,12 @@ export function plot(options = {}) {
   let facetChannels; // e.g. {fx: {value}, fy: {value}}
   let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
   let facetsExclude; // lazily-constructed opposite of facetsIndex
-  let facetDataLength;
+  let facetData;
   if (facet !== undefined) {
     const {x, y} = facet;
     if (x != null || y != null) {
-      const facetData = arrayify(facet.data);
+      facetData = arrayify(facet.data);
       if (facetData == null) throw new Error("missing facet data");
-      facetDataLength = facetData.length;
       facetChannels = {};
       if (x != null) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
@@ -107,7 +106,7 @@ export function plot(options = {}) {
       facetIndex?.length > 1 && // non-trivial faceting
       mark.facet === "auto" && // no explicit mark facet option
       mark.data !== facet.data && // mark not implicitly faceted (different data)
-      arrayify(mark.data)?.length === facetDataLength // mark data seems parallel to facet data
+      arrayify(mark.data)?.length === facetData.length // mark data seems parallel to facet data
     ) {
       warn(
         `Warning: did you want to facet the ${mark.ariaLabel} mark? The mark data and facet data are distinct, but they have the same length. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
