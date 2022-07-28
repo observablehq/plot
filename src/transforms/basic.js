@@ -2,20 +2,24 @@ import {randomLcg} from "d3";
 import {ascendingDefined, descendingDefined} from "../defined.js";
 import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
-// If both t1 and t2 are defined, returns a composite transform that first
-// applies t1 and then applies t2.
-export function basic({filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options} = {}, t2) {
+/**
+ * Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
+ */
+export function basic(options = {}, transform) {
+  let {filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...remainingOptions} = options;
+  // If both t1 and t2 are defined, returns a composite transform that first
+  // applies t1 and then applies t2.
   if (t1 === undefined) {
     // explicit transform overrides filter, sort, and reverse
     if (f1 != null) t1 = filterTransform(f1);
     if (s1 != null && !isDomainSort(s1)) t1 = composeTransform(t1, sortTransform(s1));
     if (r1) t1 = composeTransform(t1, reverseTransform);
   }
-  if (t2 != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
+  if (transform != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
   return {
-    ...options,
+    ...remainingOptions,
     ...((s1 === null || isDomainSort(s1)) && {sort: s1}),
-    transform: composeTransform(t1, t2)
+    transform: composeTransform(t1, transform)
   };
 }
 
