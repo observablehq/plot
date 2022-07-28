@@ -105,7 +105,7 @@ export function plot(options = {}) {
       arrayify(mark.data)?.length === facetIndex.length // mark data seems parallel to facet data
     ) {
       warn(
-        `Facet data must strictly equal ${mark.ariaLabel} mark data for the appropriate faceting. This can be cause by using a filter function in the facet. If you intend for this mark to be faceted, set the facet option to true; otherwise set the facet option to false to disable this warning`
+        `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
       );
     }
     applyScaleTransforms(channels, options);
