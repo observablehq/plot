@@ -250,10 +250,10 @@ export function plot(options = {}) {
           const facet = facets ? mark.filter(facets[0], channels, values) : null;
           const {time: T} = values;
           let timeNode;
+          const interp = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, value.slice()]));
           if (isFinite(timet)) {
             const I0 = facet.filter(i => T[i] === time0);
             const I1 = facet.filter(i => T[i] === time1);
-            const interp = {};
             // TODO This is interpolating the already-scaled values, but we
             // probably want to interpolate in data space instead and then
             // re-apply the scales. I’m not sure what to do for ordinal data,
@@ -267,16 +267,27 @@ export function plot(options = {}) {
             // default with the dot mark) breaks consistent ordering! TODO If
             // the time filter is not “eq” (strict equals) here, then we’ll need
             // to combine the interpolated data with the filtered data.
+
+            // IS will receive the interpolated values; it is I0 if the time
+            // filter is going forward (lte), and I1 if backward (gte). IR will be
+            // restored to its true value.
+            const [IS, IR, timer] = mark.timeFilter([I0[0]], T, currentTime).length ? [I1, I0, time0] : [I0, I1, time1];
             for (const k in values) {
-              if (k === "time") continue; // avoid unnecessary interpolation
-              const V0 = take(values[k], I0);
-              const V1 = take(values[k], I1);
-              interp[k] = interpolate(V0, V1)(timet);
+              if (k === "time") {
+                for (const i of IS) interp[k][i] = currentTime;
+                for (const i of IR) interp[k][i] = timer;
+                continue; // avoid unnecessary interpolation
+              }
+              const V = interpolate(take(values[k], I0), take(values[k], I1))(timet);
+              for (let i = 0; i < V.length; ++i) {
+                interp[k][IS[i]] = V[i];
+                interp[k][IR[i]] = values[k][IR[i]];
+              }
             }
-            const index = range(I0);
+            const index = mark.timeFilter(facet, interp["time"], currentTime);
             timeNode = mark.render(index, scales, interp, dimensions, context);
           } else {
-            const index = facet.filter(i => T[i] === time0);
+            const index = mark.timeFilter(facet, T, time0);
             timeNode = mark.render(index, scales, values, dimensions, context);
           }
           node.replaceWith(timeNode);
