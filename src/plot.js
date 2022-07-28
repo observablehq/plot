@@ -109,7 +109,7 @@ export function plot(options = {}) {
       arrayify(mark.data)?.length === facetData.length // mark data seems parallel to facet data
     ) {
       warn(
-        `Warning: did you want to facet the ${mark.ariaLabel} mark? The mark data and facet data are distinct, but they have the same length. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
+        `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
       );
     }
   }
