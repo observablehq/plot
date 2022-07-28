@@ -98,12 +98,11 @@ export function plot(options = {}) {
         : undefined;
     const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     if (
-      facets && // if truthy, faceting is used
-      mark.facet === "auto" && // if the user didn't specify a facet
-      mark.data &&
-      (mark.data.length === facetIndex?.length || mark.data.size === facetIndex?.length) && // for Maps
-      mark.data !== facet?.data &&
-      facetIndex?.length > 1
+      facets && // faceting is present
+      facetIndex.length > 1 && // more than one facet (non-trivial faceting)
+      mark.facet === "auto" && // no explicit mark facet option
+      mark.data !== facet.data && // mark is implicitly not faceted (different data)
+      arrayify(mark.data)?.length === facetIndex.length // mark data seems parallel to facet data
     ) {
       warn(
         `Facet data must strictly equal ${mark.ariaLabel} mark data for the appropriate faceting. This can be cause by using a filter function in the facet. If you intend for this mark to be faceted, set the facet option to true; otherwise set the facet option to false to disable this warning`
