@@ -225,7 +225,7 @@ export function plot(options = {}) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const index = channels.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (channels.time) timeMarks.push({mark, node});
+      if (channels.time) timeMarks.push({mark, node, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
       if (node != null) svg.appendChild(node);
     }
     if (timeMarks.length) {
@@ -245,15 +245,17 @@ export function plot(options = {}) {
         const time1 = times[i0];
         const timet = (currentTime - time0) / (time1 - time0);
         for (const timeMark of timeMarks) {
-          const {mark, node} = timeMark;
+          const {mark, node, interp} = timeMark;
           const {channels, values, facets} = stateByMark.get(mark);
           const facet = facets ? mark.filter(facets[0], channels, values) : null;
           const {time: T} = values;
           let timeNode;
           if (isFinite(timet)) {
-            const I0 = facet.filter(i => T[i] === time0);
-            const I1 = facet.filter(i => T[i] === time1);
-            const interp = {};
+            const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
+            const I1 = facet.filter(i => T[i] === time1); // following keyframe
+            const n = I0.length; // TODO enter, exit, key
+            const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
+
             // TODO This is interpolating the already-scaled values, but we
             // probably want to interpolate in data space instead and then
             // re-apply the scales. I’m not sure what to do for ordinal data,
@@ -268,15 +270,26 @@ export function plot(options = {}) {
             // the time filter is not “eq” (strict equals) here, then we’ll need
             // to combine the interpolated data with the filtered data.
             for (const k in values) {
-              if (k === "time") continue; // avoid unnecessary interpolation
-              const V0 = take(values[k], I0);
-              const V1 = take(values[k], I1);
-              interp[k] = interpolate(V0, V1)(timet);
+              if (k === "time") {
+                for (let i = 0; i < n; ++i) {
+                  interp[k][Ii[i]] = currentTime;
+                }
+              } else {
+                for (let i = 0; i < n; ++i) {
+                  interp[k][Ii[i]] = interpolate(values[k][I0[i]], values[k][I1[i]])(timet);
+                }
+              }
             }
-            const index = range(I0);
+
+            // TODO We need to switch to using temporal facets so that the
+            // facets are guaranteed to be in chronological order. (Within a
+            // facet, there’s no guarantee that the index is sorted
+            // chronologically.)
+            const ifacet = [...facet.filter(i => T[i] <= time0), ...Ii, ...facet.filter(i => T[i] > time0)];
+            const index = mark.timeFilter(ifacet, interp.time, currentTime);
             timeNode = mark.render(index, scales, interp, dimensions, context);
           } else {
-            const index = facet.filter(i => T[i] === time0);
+            const index = mark.timeFilter(facet, T, currentTime);
             timeNode = mark.render(index, scales, values, dimensions, context);
           }
           node.replaceWith(timeNode);
