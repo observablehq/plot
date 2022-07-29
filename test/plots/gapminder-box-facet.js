@@ -7,6 +7,7 @@ export default async function () {
     marginLeft: 70,
     inset: 10,
     grid: true,
+    facet:{ data: gapminder, y: "continent"},
     x: {
       type: "log",
       transform: d => Math.pow(10, d)
@@ -14,7 +15,6 @@ export default async function () {
     marks: [
       Plot.boxX(gapminder, {
         x: d => Math.log10(d.gdpPercap),
-        y: "continent",
         stroke: "continent",
         strokeWidth: 0.5,
         time: "year",
