@@ -5,7 +5,7 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, valueof, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, coerceNumbers} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {inferDomain} from "./scales/quantitative.js";
@@ -366,7 +366,29 @@ export class Mark {
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
+    if (this.transform != null) {
+      if (this.channels.time) {
+        // Split facets by keyframe, transform
+        const {value} = this.channels.time;
+        const T = valueof(data, value);
+        const times = [...new Set(T)];
+        const n = facets.length;
+        facets = facets.flatMap(facet => times.map(time => facet.filter(i => T[i] === time)));
+        ({data, facets} = this.transform(data, facets));
+
+        // and reassemble
+        const TT = []; // keyframes for the new indices
+        this.channels.time.value = { transform: () => TT};
+        for (let i = 0; i < facets.length; ++i) {
+          const time = times[i % times.length];
+          for (const j of facets[i]) TT[j] = time;
+        }
+        facets = Array.from({length: n}, (_, i) => facets.filter((_, j) => j % n === i).flat());
+      } else {
+        ({facets, data} = this.transform(data, facets));
+      }
+      data = arrayify(data);
+    }
     const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
     return {data, facets, channels};

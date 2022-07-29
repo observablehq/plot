@@ -76,6 +76,8 @@ export {default as frameCorners} from "./frame-corners.js";
 export {default as fruitSales} from "./fruit-sales.js";
 export {default as fruitSalesDate} from "./fruit-sales-date.js";
 export {default as gapminder} from "./gapminder.js";
+export {default as gapminderBox} from "./gapminder-box.js";
+export {default as gapminderDodge} from "./gapminder-dodge.js";
 export {default as gapminderContinent} from "./gapminder-continent.js";
 export {default as gistempAnomaly} from "./gistemp-anomaly.js";
 export {default as gistempAnomalyMoving} from "./gistemp-anomaly-moving.js";
