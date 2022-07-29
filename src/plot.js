@@ -282,7 +282,8 @@ export function plot(options = {}) {
               }
             } else {
               for (let i = 0; i < n; ++i) {
-                interp[k][Ii[i]] = interpolate(values[k][I0[i]], values[k][I1[i]])(timet);
+                const past = values[k][I0[i]], future = values[k][I1[i]];
+                interp[k][Ii[i]] = past == future ? past : interpolate(past, future)(timet);
               }
             }
           }
