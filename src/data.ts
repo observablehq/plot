@@ -1,6 +1,6 @@
-type ObjectDatum = Record<string, unknown>;
-export type Datum = ObjectDatum | Value;
-export type DatumKeys<T> = T extends ObjectDatum ? keyof T : never;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type Datum = Record<string, Value> | Value;
+export type DatumKeys<T> = T extends Record<string, unknown> ? keyof T : never;
 
 /**
  * The marks's data contains the data for the mark; typically an array

@@ -54,22 +54,18 @@ export function valueof<N extends Datum>(
   value: ValueAccessor<N>,
   arrayType?: ArrayType
 ): ValueArray | Float32Array | Float64Array | null | undefined {
-  if (data == null) {
-    return data;
-  } else if (typeof value === "string") {
-    return map(data, field(value), arrayType);
-  } else if (typeof value === "function") {
-    return map(data, value, arrayType);
-  } else if (typeof value === "number" || value instanceof Date || typeof value === "boolean") {
+  if (data == null) return data;
+  if (value == null) return value;
+  if (typeof value === "string") return map(data, field(value), arrayType);
+  if (typeof value === "function") return map(data, value, arrayType);
+  if (typeof value === "number" || value instanceof Date || typeof value === "boolean")
     return map(data, constant(value), arrayType);
-  } else if (isTransform(value)) {
-    return arrayify(value.transform(data), arrayType); // Not sure what's wrong here
-  }
+  if (isTransform(value)) return arrayify(value.transform(data), arrayType);
   return arrayify(value, arrayType); // preserve undefined type
 }
 
 function isTransform<T extends Datum>(value: ValueAccessor<T>): value is TransformMethod<T> {
-  return !!value && typeof value == "object" && "function" in value;
+  return !!value && isObject(value) && typeof (value as {transform?: any}).transform == "function";
 }
 
 /**
@@ -82,12 +78,14 @@ export type ValueAccessor<T extends Datum> =
   | Date
   | boolean
   | TransformMethod<T>
-  // | ValueArray // This didn't seem right, how would we use ValueArray as an accessor?
+  | ValueArray
   | null
-  | undefined;
-type AccessorFunction<T extends Datum> = ((d: T) => Value) & ((d: T, i: number) => Value);
-type TransformMethod<T extends Datum> = {
-  transform: ((data: Data<T>) => Data<T>) & ((data: null) => null) & ((data: undefined) => undefined);
+  | undefined
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  | (string & {});
+type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
+export type TransformMethod<T extends Datum> = {
+  transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value>;
 };
 
 // Type: the field accessor might crash if the datum is not a generic object
@@ -96,7 +94,7 @@ export const field =
   (d: Datum): Value =>
     (d as {[x: string]: Value})[name];
 export const indexOf = (d: Datum, i: index) => i;
-export const identity = {transform: (d: Datum | DataArray) => d};
+export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray}; // This cast seems bad
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
@@ -112,13 +110,13 @@ export const constant = (x: Value) => () => x;
 /**
  * A perticentile reducer, specified by a string like “p25”
  */
-export type percentile = `p${number}`;
+export type Percentile = `p${number}`;
 // `p${Digit}${Digit}`; //  would be nicer but expands to p00 p01…p99
 // type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
-export function percentile(reduce: percentile) {
+export function percentile(reduce: Percentile): (I: Series, f: (i: index) => any) => number | undefined {
   const p = +`${reduce}`.slice(1) / 100;
   return (I: Series, f: (i: index) => any) => quantile(I, p, f);
 }
@@ -131,33 +129,31 @@ export function percentile(reduce: percentile) {
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel<T extends Datum>(
   value: ValueAccessor<T>,
-  defaultValue?: DatumKeys<T>
-): [ValueAccessor<T>?, string?] {
+  defaultValue?: string
+): [ValueAccessor<T>, undefined] | [undefined, string] {
   if (value === undefined) value = defaultValue;
-  return value === null
-    ? [undefined, "none"]
-    : isColor(value)
-    ? [undefined, value as DatumKeys<T>]
-    : [value, undefined];
+  return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
 
 // Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumberChannel<T extends Datum>(
-  value: number | ValueAccessor<T> | undefined,
+  value: ValueAccessor<T>,
   defaultValue?: number
-) {
+): [ValueAccessor<T>, undefined] | [undefined, number | null] {
   if (value === undefined) value = defaultValue;
   return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
 
 // Validates the specified optional string against the allowed list of keywords.
-export function maybeKeyword(input: string | null | undefined, name: string, allowed: string[]) {
+export function maybeKeyword(input: null | undefined, name: string, allowed: string[]): undefined;
+export function maybeKeyword(input: string, name: string, allowed: string[]): string | undefined;
+export function maybeKeyword(input: string | null | undefined, name: string, allowed: string[]): string | undefined {
   if (input != null) return keyword(input, name, allowed);
 }
 
 // Validates the specified required string against the allowed list of keywords.
-export function keyword(input: string | null | undefined, name: string, allowed: string[]) {
+export function keyword(input: string | null | undefined, name: string, allowed: string[]): string {
   const i = `${input}`.toLowerCase();
   if (!allowed.includes(i)) throw new Error(`invalid ${name}: ${input}`);
   return i;
@@ -169,19 +165,16 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify(data: undefined, type: ArrayType | undefined): undefined;
 export function arrayify(data: null, type: ArrayType | undefined): null;
-export function arrayify(data: null | undefined, type: ArrayType | undefined): null | undefined;
-export function arrayify<T extends Datum>(data: Data<T>): Array<Datum> | TypedArray;
-export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): Array<Datum>;
+export function arrayify<T extends Datum>(data: Data<T>): ValueArray | TypedArray;
+export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): ValueArray;
 export function arrayify<T extends Datum>(data: Data<T>, type: Float32ArrayConstructor): Float32Array;
 export function arrayify<T extends Datum>(data: Data<T>, type: Float64ArrayConstructor): Float64Array;
-export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): Array<Datum> | Float32Array | Float64Array;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined
-): Array<Datum> | TypedArray | null | undefined;
+export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): ValueArray | Float32Array | Float64Array;
+export function arrayify<T extends Datum>(data: Data<T> | null | undefined): ValueArray | TypedArray | null | undefined;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
   type: ArrayConstructor
-): Array<Datum> | null | undefined;
+): ValueArray | null | undefined;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
   type: Float32ArrayConstructor
@@ -235,11 +228,11 @@ export function map<T extends Datum>(values: Data<T>, f: (d: any, i: number) => 
 
 // An optimization of type.from(values): if the given values are already an
 // instanceof the desired array type, the faster values.slice method is used.
-export function slice(values: DataArray, type: ArrayType = Array) {
+export function slice(values: DataArray, type: ArrayType = Array): any[] | Float32Array | Float64Array {
   return values instanceof type ? values.slice() : (type as ArrayConstructor).from(values);
 }
 
-export function isTypedArray(values: DataArray) {
+export function isTypedArray(values: DataArray): values is TypedArray {
   return values instanceof TypedArray;
 }
 
@@ -273,12 +266,12 @@ export function isDomainSort(sort: any): boolean {
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
-type Identity<T extends Datum> = {transform: (d: T) => T};
+// type Identity<T extends Datum> = {transform: (d: T) => T};
 export function maybeZero<T extends Datum>(
   x: ValueAccessor<T> | undefined,
   x1: ValueAccessor<T> | undefined | 0,
-  x2: ValueAccessor<T> | undefined | Identity<T> | 0,
-  x3 = identity
+  x2: ValueAccessor<T> | undefined | 0,
+  x3: TransformMethod<T> = identity
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
@@ -358,7 +351,7 @@ Plot.column is typically used by options transforms to define new channels; the 
 
 @link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
  */
-export function column(source: any): [getColumn, setColumn] {
+export function column(source: any): [GetColumn, SetColumn] {
   let value: ValueArray;
   return [
     {
@@ -368,47 +361,51 @@ export function column(source: any): [getColumn, setColumn] {
     (v) => ((value = v), v)
   ];
 }
-export type getColumn = {transform: () => ValueArray; label?: string};
-type setColumn = <T extends ValueArray | Float32Array | Float64Array>(v: T) => T;
+export type GetColumn = {transform: () => ValueArray; label?: string};
+type SetColumn = <T extends ValueArray | Float32Array | Float64Array>(v: T) => T;
 
 // Like column, but allows the source to be null.
 export function maybeColumn<T extends Datum>(
   source: ValueAccessor<T> | ((data: DataArray) => void)
-): [getColumn, setColumn] | [null?] {
+): [GetColumn, SetColumn] | [null?] {
   return source == null ? [source] : column(source);
 }
 
-type MaybeLabel = string | {label: string} | null | undefined;
+type MaybeLabel = string | {label?: string} | null | undefined;
+export function labelof(value: string | {label?: string}, defaultValue?: string): string;
+export function labelof<T extends string | undefined>(value: null | undefined, defaultValue?: T): T;
 export function labelof(value: MaybeLabel, defaultValue?: string) {
-  return typeof value === "string" ? value : value && "label" in value ? value.label : defaultValue;
+  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new
 // a column that’s the average of the two, and which inherits the column label
 // (if any). Both input columns are assumed to be quantitative. If either column
 // is temporal, the returned column is also temporal.
-export function mid(x1: getColumn, x2: getColumn) {
+export function mid(x1: GetColumn, x2: GetColumn): {transform(): Float64Array | Value[]; label: string | undefined} {
   return {
     transform() {
       const X1 = x1.transform();
       const X2 = x2.transform();
       return isTemporal(X1) || isTemporal(X2)
-        ? map(X1, (_: Date, i: index) => new Date((+(X1[i] as number) + +(X2[i] as number)) / 2))
-        : map(X1, (_: Date, i: index) => (+(X1[i] as number) + +(X2[i] as number)) / 2, Float64Array);
+        ? map(X1, (_, i) => new Date((+X1[i]! + +X2[i]!) / 2)) // Do we need to handle null or undefined in either of these cases?
+        : map(X1, (_, i) => (+X1[i]! + +X2[i]!) / 2, Float64Array); // e.g. X1[i] == null ? X1[i] : X2[i] == null ? X2[i] : ...
     },
     label: x1.label
   };
 }
 
 // This distinguishes between per-dimension options and a standalone value.
-export function maybeValue(value: any) {
+export function maybeValue(value: any): any {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
-export function numberChannel(source: ValueArray) {
+export function numberChannel(
+  source: ValueArray & {label?: string}
+): {transform: (data: DataArray) => Float64Array; label: string | undefined} | null {
   return source == null
     ? null
     : {
@@ -417,57 +414,63 @@ export function numberChannel(source: ValueArray) {
       };
 }
 
-export function isIterable(value: any): boolean {
+export function isIterable(value: any): value is Iterable<any> {
   return value && typeof value[Symbol.iterator] === "function";
 }
 
-export function isTextual(values: Iterable<Datum>) {
+export function isTextual(values: Iterable<Datum>): boolean {
   for (const value of values) {
     if (value == null) continue;
     return typeof value !== "object" || value instanceof Date;
   }
+  return false;
 }
 
-export function isOrdinal(values: Iterable<Datum>) {
+export function isOrdinal(values: Iterable<Datum>): boolean {
   for (const value of values) {
     if (value == null) continue;
     const type = typeof value;
     return type === "string" || type === "boolean";
   }
+  return false;
 }
 
-export function isTemporal(values: Iterable<Value>) {
+export function isTemporal(values: Iterable<Value>): boolean {
   for (const value of values) {
     if (value == null) continue;
     return value instanceof Date;
   }
+  return false;
 }
 
 // Are these strings that might represent dates? This is stricter than ISO 8601
 // because we want to ignore false positives on numbers; for example, the string
 // "1192" is more likely to represent a number than a date even though it is
 // valid ISO 8601 representing 1192-01-01.
-export function isTemporalString(values: Iterable<Datum>) {
+export function isTemporalString(values: Iterable<Datum>): boolean {
   for (const value of values) {
     if (value == null) continue;
     return typeof value === "string" && isNaN(value as unknown as number) && (isoParse(value) as unknown as boolean);
   }
+  return false;
 }
 
 // Are these strings that might represent numbers? This is stricter than
 // coercion because we want to ignore false positives on e.g. empty strings.
-export function isNumericString(values: Iterable<Datum>) {
+export function isNumericString(values: Iterable<Datum>): boolean {
   for (const value of values) {
     if (value == null || value === "") continue;
     return typeof value === "string" && !isNaN(value as unknown as number);
   }
+  return false;
 }
 
-export function isNumeric(values: Iterable<Datum>) {
+export function isNumeric(values: Iterable<Datum>): boolean {
   for (const value of values) {
     if (value == null) continue;
     return typeof value === "number";
   }
+  return false;
 }
 
 export function isFirst(values: IterableIterator<Datum>, is: (d: Datum) => boolean) {
@@ -481,7 +484,7 @@ export function isFirst(values: IterableIterator<Datum>, is: (d: Datum) => boole
 // an empty array, this tests all defined values and only returns true if all of
 // them are valid colors. It also returns true for an empty array, and thus
 // should generally be used in conjunction with isFirst.
-export function isEvery(values: IterableIterator<Datum>, is: (d: Datum) => boolean) {
+export function isEvery(values: IterableIterator<Datum>, is: (d: Datum) => boolean): boolean {
   for (const value of values) {
     if (value == null) continue;
     if (!is(value)) return false;
@@ -494,7 +497,7 @@ export function isEvery(values: IterableIterator<Datum>, is: (d: Datum) => boole
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
-export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): boolean {
+export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): v is string {
   if (typeof v !== "string") return false;
   const value = v.toLowerCase().trim();
   return (
@@ -506,19 +509,19 @@ export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): boole
   );
 }
 
-export function isNoneish<T extends Datum>(value: ValueAccessor<T> | undefined) {
+export function isNoneish<T extends Datum>(value: ValueAccessor<T> | undefined): boolean {
   return value == null || isNone(value);
 }
 
-export function isNone<T extends Datum>(value: ValueAccessor<T> | undefined) {
+export function isNone<T extends Datum>(value: ValueAccessor<T> | undefined): boolean {
   return /^\s*none\s*$/i.test(value as string);
 }
 
-export function isRound(value: string | undefined) {
+export function isRound(value: string | undefined): boolean {
   return /^\s*round\s*$/i.test(value as string);
 }
 
-export function maybeFrameAnchor(value = "middle") {
+export function maybeFrameAnchor(value = "middle"): string {
   return keyword(value, "frameAnchor", [
     "middle",
     "top-left",
@@ -535,7 +538,9 @@ export function maybeFrameAnchor(value = "middle") {
 // Like a sort comparator, returns a positive value if the given array of values
 // is in ascending order, a negative value if the values are in descending
 // order. Assumes monotonicity; only tests the first and last values.
-export function order(values: null | undefined | string[] | number[] | Float32Array | Float64Array) {
+export function order(
+  values: null | undefined | string[] | number[] | Float32Array | Float64Array
+): number | undefined {
   if (values == null) return;
   const first = values[0];
   const last = values[values.length - 1];
@@ -560,7 +565,7 @@ export function inherit(options: Record<string, any> = {}, ...rest: Array<Record
 
 // Given an iterable of named things (objects with a name property), returns a
 // corresponding object with properties associated with the given name.
-export function Named(things: any) {
+export function Named(things: any): {[k: string]: unknown} {
   console.warn("named iterables are deprecated; please use an object instead");
   const names = new Set();
   return Object.fromEntries(
@@ -576,6 +581,6 @@ export function Named(things: any) {
   );
 }
 
-export function maybeNamed(things: any) {
+export function maybeNamed(things: any): any {
   return isIterable(things) ? Named(things) : things;
 }
