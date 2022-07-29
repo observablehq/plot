@@ -5,7 +5,7 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, take, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales, coerceNumbers} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {inferDomain} from "./scales/quantitative.js";
@@ -172,6 +172,7 @@ export function plot(options = {}) {
   if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
+  const timeMarks = [];
   if (facets !== undefined) {
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
@@ -216,88 +217,88 @@ export function plot(options = {}) {
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
             const node = mark.render(facet, scales, values, subdimensions, context);
+            if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
             if (node != null) this.appendChild(node);
           }
         });
   } else {
-    const timeMarks = [];
     for (const [mark, {channels, values, facets}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const index = channels.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (channels.time) timeMarks.push({mark, node, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
+      if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
       if (node != null) svg.appendChild(node);
     }
-    if (timeMarks.length) {
-      // TODO There needs to be an option to avoid interpolation and just play
-      // the distinct times, as given, in ascending order, as keyframes. And
-      // there needs to be an option to control the delay, duration, iterations,
-      // and other timing parameters of the animation.
-      const interpolateTime = interpolateNumber(...timeDomain);
-      const delay = 0; // TODO configurable; delay initial rendering
-      const duration = 5000; // TODO configurable
-      const startTime = performance.now() + delay;
-      requestAnimationFrame(function tick() {
-        const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
-        const currentTime = interpolateTime(t);
-        const i0 = bisectLeft(times, currentTime);
-        const time0 = times[i0 - 1];
-        const time1 = times[i0];
-        const timet = (currentTime - time0) / (time1 - time0);
-        for (const timeMark of timeMarks) {
-          const {mark, node, interp} = timeMark;
-          const {channels, values, facets} = stateByMark.get(mark);
-          const facet = facets ? mark.filter(facets[0], channels, values) : null;
-          const {time: T} = values;
-          let timeNode;
-          if (isFinite(timet)) {
-            const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
-            const I1 = facet.filter(i => T[i] === time1); // following keyframe
-            const n = I0.length; // TODO enter, exit, key
-            const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
+  }
 
-            // TODO This is interpolating the already-scaled values, but we
-            // probably want to interpolate in data space instead and then
-            // re-apply the scales. I’m not sure what to do for ordinal data,
-            // but interpolating in data space will ensure that the resulting
-            // instantaneous visualization is meaningful and valid. TODO If the
-            // data is sparse (not all series have values for all times), or if
-            // the data is inconsistently ordered, then we will need a separate
-            // key channel to align the start and end values for interpolation;
-            // this code currently assumes that the data is complete and the
-            // order is consistent. TODO The sort transform (which happens by
-            // default with the dot mark) breaks consistent ordering! TODO If
-            // the time filter is not “eq” (strict equals) here, then we’ll need
-            // to combine the interpolated data with the filtered data.
-            for (const k in values) {
-              if (k === "time") {
-                for (let i = 0; i < n; ++i) {
-                  interp[k][Ii[i]] = currentTime;
-                }
-              } else {
-                for (let i = 0; i < n; ++i) {
-                  interp[k][Ii[i]] = interpolate(values[k][I0[i]], values[k][I1[i]])(timet);
-                }
+  if (timeMarks.length) {
+    // TODO There needs to be an option to avoid interpolation and just play
+    // the distinct times, as given, in ascending order, as keyframes. And
+    // there needs to be an option to control the delay, duration, iterations,
+    // and other timing parameters of the animation.
+    const interpolateTime = interpolateNumber(...timeDomain);
+    const delay = 0; // TODO configurable; delay initial rendering
+    const duration = 5000; // TODO configurable
+    const startTime = performance.now() + delay;
+    requestAnimationFrame(function tick() {
+      const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
+      const currentTime = interpolateTime(t);
+      const i0 = bisectLeft(times, currentTime);
+      const time0 = times[i0 - 1];
+      const time1 = times[i0];
+      const timet = (currentTime - time0) / (time1 - time0);
+      for (const timeMark of timeMarks) {
+        const {mark, node, facet, interp} = timeMark;
+        const {values} = stateByMark.get(mark);
+        const {time: T} = values;
+        let timeNode;
+        if (isFinite(timet)) {
+          const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
+          const I1 = facet.filter(i => T[i] === time1); // following keyframe
+          const n = I0.length; // TODO enter, exit, key
+          const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
+
+          // TODO This is interpolating the already-scaled values, but we
+          // probably want to interpolate in data space instead and then
+          // re-apply the scales. I’m not sure what to do for ordinal data,
+          // but interpolating in data space will ensure that the resulting
+          // instantaneous visualization is meaningful and valid. TODO If the
+          // data is sparse (not all series have values for all times), or if
+          // the data is inconsistently ordered, then we will need a separate
+          // key channel to align the start and end values for interpolation;
+          // this code currently assumes that the data is complete and the
+          // order is consistent. TODO The sort transform (which happens by
+          // default with the dot mark) breaks consistent ordering! TODO If
+          // the time filter is not “eq” (strict equals) here, then we’ll need
+          // to combine the interpolated data with the filtered data.
+          for (const k in values) {
+            if (k === "time") {
+              for (let i = 0; i < n; ++i) {
+                interp[k][Ii[i]] = currentTime;
+              }
+            } else {
+              for (let i = 0; i < n; ++i) {
+                interp[k][Ii[i]] = interpolate(values[k][I0[i]], values[k][I1[i]])(timet);
               }
             }
-
-            // TODO We need to switch to using temporal facets so that the
-            // facets are guaranteed to be in chronological order. (Within a
-            // facet, there’s no guarantee that the index is sorted
-            // chronologically.)
-            const ifacet = [...facet.filter(i => T[i] <= time0), ...Ii, ...facet.filter(i => T[i] > time0)];
-            const index = mark.timeFilter(ifacet, interp.time, currentTime);
-            timeNode = mark.render(index, scales, interp, dimensions, context);
-          } else {
-            const index = mark.timeFilter(facet, T, currentTime);
-            timeNode = mark.render(index, scales, values, dimensions, context);
           }
-          node.replaceWith(timeNode);
-          timeMark.node = timeNode;
+
+          // TODO We need to switch to using temporal facets so that the
+          // facets are guaranteed to be in chronological order. (Within a
+          // facet, there’s no guarantee that the index is sorted
+          // chronologically.)
+          const ifacet = [...facet.filter(i => T[i] <= time0), ...Ii, ...facet.filter(i => T[i] > time0)];
+          const index = mark.timeFilter(ifacet, interp.time, currentTime);
+          timeNode = mark.render(index, scales, interp, dimensions, context);
+        } else {
+          const index = mark.timeFilter(facet, T, currentTime);
+          timeNode = mark.render(index, scales, values, dimensions, context);
         }
-        if (t < 1) requestAnimationFrame(tick);
-      });
-    }
+        node.replaceWith(timeNode);
+        timeMark.node = timeNode;
+      }
+      if (t < 1) requestAnimationFrame(tick);
+    });
   }
 
   // Wrap the plot in a figure with a caption, if desired.
