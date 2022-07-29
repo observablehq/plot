@@ -287,7 +287,7 @@ export function plot(options = {}) {
           // facets are guaranteed to be in chronological order. (Within a
           // facet, there’s no guarantee that the index is sorted
           // chronologically.)
-          const ifacet = [...facet.filter(i => T[i] <= time0), ...Ii, ...facet.filter(i => T[i] > time0)];
+          const ifacet = [...facet.filter(i => T[i] < time1), ...(currentTime < time1) ? Ii : [], ...facet.filter(i => T[i] >= time1)];
           const index = mark.timeFilter(ifacet, interp.time, currentTime);
           timeNode = mark.render(index, scales, interp, dimensions, context);
         } else {
