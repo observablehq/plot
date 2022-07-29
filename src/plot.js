@@ -130,6 +130,7 @@ export function plot(options = {}) {
   const timeChannels = findTimeChannels(stateByMark);
   const timeDomain = inferDomain(timeChannels);
   const times = aggregateTimes(timeChannels);
+  const timeMarks = [];
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -172,7 +173,6 @@ export function plot(options = {}) {
   if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
-  const timeMarks = [];
   if (facets !== undefined) {
     const fyDomain = fy && fy.domain();
     const fxDomain = fx && fx.domain();
@@ -217,8 +217,10 @@ export function plot(options = {}) {
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
             const node = mark.render(facet, scales, values, subdimensions, context);
-            if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
-            if (node != null) this.appendChild(node);
+            if (node != null) {
+              this.appendChild(node);
+              if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
+            }
           }
         });
   } else {
@@ -226,8 +228,10 @@ export function plot(options = {}) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const index = channels.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
-      if (node != null) svg.appendChild(node);
+      if (node != null) {
+        svg.appendChild(node);
+        if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
+      }
     }
   }
 
@@ -248,7 +252,7 @@ export function plot(options = {}) {
       const time1 = times[i0];
       const timet = (currentTime - time0) / (time1 - time0);
       for (const timeMark of timeMarks) {
-        const {mark, node, facet, interp} = timeMark;
+        const {mark, facet, interp} = timeMark;
         const {values} = stateByMark.get(mark);
         const {time: T} = values;
         let timeNode;
@@ -291,11 +295,11 @@ export function plot(options = {}) {
           const index = mark.timeFilter(ifacet, interp.time, currentTime);
           timeNode = mark.render(index, scales, interp, dimensions, context);
         } else {
+          // here typically t = 0;
           const index = mark.timeFilter(facet, T, currentTime);
           timeNode = mark.render(index, scales, values, dimensions, context);
         }
-        node.replaceWith(timeNode);
-        timeMark.node = timeNode;
+        timeMark.node.replaceWith(timeMark.node = timeNode);        
       }
       if (t < 1) requestAnimationFrame(tick);
     });
