@@ -17,38 +17,34 @@ import {color, descending, quantile, TypedArray} from "d3";
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
+type Nullish = null | undefined;
 
-export function valueof<N extends null | undefined>(data: N, value: ValueAccessorStrict<N>, type?: ArrayType): N;
-export function valueof<N extends Datum>(
-  data: Data<N> | null | undefined,
-  value: ValueAccessorStrict<N>,
-  type: Float64ArrayConstructor
-): Float64Array;
-export function valueof<N extends Datum>(
-  data: Data<N> | null | undefined,
-  value: ValueAccessorStrict<N>,
-  type: Float32ArrayConstructor
-): Float32Array;
-export function valueof<N extends Datum>(
-  data: Data<N> | null | undefined,
-  value: ValueAccessorStrict<N>,
-  type: ArrayConstructor
-): ValueArray;
-export function valueof<Const extends number | Date | boolean>(
-  data: Data<Datum> | null | undefined,
-  value: Const,
-  arrayType?: ArrayType
-): Const[];
-export function valueof<N extends Datum>(
-  data: Data<N>,
-  value: ValueAccessorStrict<N>,
-  arrayType?: ArrayType
-): ValueArray | Float32Array | Float64Array | null | undefined;
-export function valueof<N extends Datum>(
-  data: Data<N> | null | undefined,
-  value: ValueAccessorStrict<N>,
-  arrayType?: ArrayType
-): ValueArray | Float32Array | Float64Array | null | undefined {
+// Not sure about naming of this, but this was created because valueof doesn't
+// support color constants as values, so we shouldn't allow arbitrary strings.
+// Used by valueof.
+export type Accessor<T extends Datum> =
+  | DatumKeys<T>
+  | AccessorFunction<T>
+  | TransformMethod<T>
+  | ValueArray
+  | number
+  | Date
+  | boolean
+  | null
+  | undefined;
+
+type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
+export type TransformMethod<T extends Datum> = {
+  transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value>;
+};
+
+export function valueof<D extends Nullish>(data: D, v: Accessor<D>, t?: ArrayType): D;
+export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, type: Float64ArrayConstructor): Float64Array;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, type: Float32ArrayConstructor): Float32Array;
+export function valueof<T extends Datum>(d: Data<T>, value: Accessor<T>, type: ArrayConstructor): ValueArray;
+export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType): ValueArray;
+export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType) {
   if (data == null) return data;
   if (value == null) return value;
   if (typeof value === "string") return map(data, field(value), arrayType);
@@ -63,30 +59,8 @@ function isTransform<T extends Datum>(value: ValueAccessor<T>): value is Transfo
   return !!value && isObject(value) && typeof (value as {transform?: any}).transform == "function";
 }
 
-/**
- * See Plot.valueof()
- */
-// Not sure about naming of this, but this was created because valueof doesn't
-// support color constants as values, so we shouldn't allow arbitrary strings.
-export type ValueAccessorStrict<T extends Datum> =
-  | DatumKeys<T>
-  | AccessorFunction<T>
-  | number
-  | Date
-  | boolean
-  | TransformMethod<T>
-  | ValueArray
-  | null
-  | undefined;
-
-export type ValueAccessor<T extends Datum> =
-  | ValueAccessorStrict<T>
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  | (string & {});
-type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
-export type TransformMethod<T extends Datum> = {
-  transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value>;
-};
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ValueAccessor<T extends Datum> = Accessor<T> | (string & {});
 
 // Type: the field accessor might crash if the datum is not a generic object
 export const field = (name: string) => (d: ObjectDatum) => d[name];

@@ -26,11 +26,11 @@ const nullTransform: TransformMethod<any> = {
   transform: () => [1, 2, 3]
 };
 
-expectType<ValueArray | null | undefined>(valueof({length: 10}, (d, i) => i));
-expectType<ValueArray | null | undefined>(valueof([1, 2, 3], numberTransform));
-expectType<ValueArray | null | undefined>(valueof([1, 2, 3], nullTransform));
-expectType<ValueArray | null | undefined>(valueof({length: 10}, nullTransform));
-expectType<ValueArray | null | undefined>(valueof([{one: "one", two: "two"}], "one"));
+expectType<ValueArray>(valueof({length: 10}, (d, i) => i));
+expectType<ValueArray>(valueof([1, 2, 3], numberTransform));
+expectType<ValueArray>(valueof([1, 2, 3], nullTransform));
+expectType<ValueArray>(valueof({length: 10}, nullTransform));
+expectType<ValueArray>(valueof([{one: "one", two: "two"}], "one"));
 expectType<Date[]>(valueof({length: 10}, new Date()));
 expectType<undefined>(valueof(undefined, (_, i) => i + 10));
 expectType<undefined>(valueof(undefined, nullTransform));
@@ -45,6 +45,9 @@ valueof([true, false], (d) => {
   expectType<boolean>(d);
   return d;
 });
+expectType<Float32Array>(valueof([1, 2, 3], (d) => d * 2, Float32Array));
+expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
+expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array)); // <-- is this what we expect?
 
 // @ts-expect-error: can't do a number transform on "one"
 expectError(() => valueof(["one", 2, 3], numberTransform));
