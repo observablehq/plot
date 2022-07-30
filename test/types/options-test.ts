@@ -33,8 +33,8 @@ expectType<ValueArray>(valueof({length: 10}, nullTransform));
 expectType<ValueArray>(valueof([{one: "one", two: "two"}], "one"));
 expectType<Date[]>(valueof({length: 10}, new Date()));
 expectType<undefined>(valueof(undefined, (_, i) => i + 10));
-expectType<undefined>(valueof(undefined, nullTransform));
-expectType<null>(valueof(null, nullTransform));
+expectType<ValueArray>(valueof(undefined, nullTransform));
+expectType<ValueArray>(valueof(null, nullTransform));
 expectType<number[]>(valueof({length: 10}, 1));
 expectType<boolean[]>(valueof({length: 10}, true));
 valueof([{one: "one", two: "two"}], (d) => {

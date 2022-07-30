@@ -40,19 +40,32 @@ Plot.valueof is not guaranteed to return a new array. When a transform method is
 @link https://github.com/observablehq/plot/blob/main/README.md#plotvalueofdata-value-type
 
 */
-export function valueof<D extends null | undefined>(data: D, v: Accessor<D>, t?: ArrayType): D;
-export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, type: TypedArrayConstructor): TypedArray;
-export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
-export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType): ValueArray;
-export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType) {
-  if (data == null) return data;
-  if (value == null) return value;
-  if (typeof value === "string") return map(data, field(value), arrayType);
-  if (typeof value === "function") return map(data, value, arrayType);
-  if (typeof value === "number" || value instanceof Date || typeof value === "boolean")
-    return map(data, constant(value), arrayType);
-  if (isTransform(value)) return arrayify(value.transform(data), arrayType);
-  return arrayify(value, arrayType); // preserve undefined type
+
+export function valueof<T extends null | undefined>(d: T, v: TransformMethod<T> | ValueArray): TypedArray;
+export function valueof<T extends null | undefined>(d: T, v: Accessor<T>): T;
+export function valueof<T extends null | undefined>(
+  d: T,
+  v: TransformMethod<T> | ValueArray,
+  t: ArrayConstructor | TypedArrayConstructor
+): ValueArray;
+export function valueof<T extends null | undefined>(d: T, v: Accessor<T>, t: TypedArrayConstructor): T;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t: TypedArrayConstructor): TypedArray;
+export function valueof<V extends number | Date | boolean>(d: Data<Datum>, v: V, t?: ArrayType): V[];
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t?: ArrayType): ValueArray;
+export function valueof<T extends Datum>(
+  data: Data<T> | null | undefined,
+  value: Accessor<T>,
+  arrayType?: ArrayType
+): ValueArray | null | undefined {
+  return typeof value === "string"
+    ? data && map(data, field(value), arrayType)
+    : typeof value === "function"
+    ? data && map(data, value, arrayType)
+    : typeof value === "number" || value instanceof Date || typeof value === "boolean"
+    ? data && map(data, constant(value), arrayType)
+    : value && isTransform(value)
+    ? arrayify(value.transform(data), arrayType)
+    : arrayify(value, arrayType); // preserve undefined type
 }
 
 /**
