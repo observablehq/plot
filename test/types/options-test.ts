@@ -47,7 +47,7 @@ valueof([true, false], (d) => {
 });
 expectType<Float32Array>(valueof([1, 2, 3], (d) => d * 2, Float32Array));
 expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
-expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array)); // <-- is this what we expect?
+expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array));
 
 // @ts-expect-error: can't do a number transform on "one"
 expectError(() => valueof(["one", 2, 3], numberTransform));
