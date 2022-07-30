@@ -1,12 +1,26 @@
 /**
- * The mark's data contains the data for the mark; typically an array
- * of objects or values, but can also be defined as an iterable compatible
- * with Array.from.
+ * Values are associated to screen encodings (positions, colors…) via scales.
+ */
+export type Value = number | string | Date | boolean | null | undefined;
+
+/**
+ * A Row represents a data point with values attached to field names; typically,
+ * a row from a tabular dataset.
+ */
+export type Row = Record<string, Value>;
+
+/**
+ * A single Datum is either a Value or an Row; if a Row, possible field names
+ * can be inferred from its keys to define accessors
+ */
+export type Datum = Row | Value;
+export type FieldNames<T> = T extends Row ? keyof T : never;
+
+/**
+ * The marks data; typically an array of Datum, but can also
+ * be defined as an iterable compatible with Array.from.
  */
 export type Data<T extends Datum> = ArrayLike<T> | Iterable<T>;
-export type ObjectDatum = Record<string, Value>;
-export type Datum = ObjectDatum | Value;
-export type DatumKeys<T> = T extends ObjectDatum ? keyof T : never;
 
 /**
  * An array or typed array constructor, or any class that implements Array.from
@@ -15,17 +29,9 @@ export type ArrayType = ArrayConstructor | TypedArrayConstructor;
 
 /**
  * The data is then arrayified, and a range of indices is computed, serving as pointers
- * into a the column representation of Plot.valueof
+ * into the columnar representation of each channel
  */
 export type DataArray = Datum[] | TypedArray;
-
-/**
- * Channels are arrays of values
- */
-export type Value = number | string | Date | boolean | null | undefined;
-export type Channel = Value[];
-export type TextChannel = string[];
-export type NumberChannel = number[] | Float32Array | Float64Array;
 
 /**
  * A series is an array of indices, used to group data into classes (e.g., groups and facets)

@@ -4,10 +4,10 @@ import type {
   Value,
   DataArray,
   Datum,
-  DatumKeys,
+  FieldNames,
   index,
   Data,
-  ObjectDatum,
+  Row,
   Series,
   TypedArray,
   TypedArrayConstructor,
@@ -71,7 +71,7 @@ export function valueof<T extends Datum>(
 /**
  * See Plot.valueof()
  */
-export type Accessor<T extends Datum> = DatumKeys<T> | AccessorFunction<T> | TransformMethod<T> | ValueArray;
+export type Accessor<T extends Datum> = FieldNames<T> | AccessorFunction<T> | TransformMethod<T> | ValueArray;
 
 type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
 
@@ -87,7 +87,7 @@ function isTransform<T extends Datum>(value: ValueAccessor<T>): value is Transfo
 export type ValueAccessor<T extends Datum> = Accessor<T> | (string & {});
 
 // Type: the field accessor might crash if the datum is not a generic object
-export const field = (name: string) => (d: ObjectDatum) => d[name];
+export const field = (name: string) => (d: Row) => d[name];
 export const indexOf = (d: Datum, i: index) => i;
 // The below cast to ValueArray is bad but necessary because identity is used as a transform
 export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
