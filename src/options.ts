@@ -127,9 +127,9 @@ type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel<T extends Datum>(
-  value: ValueAccessor<T> | undefined,
+  value: ValueAccessor<T> | null | undefined,
   defaultValue?: string
-): [ValueAccessor<T> | undefined, undefined] | [undefined, string | undefined] {
+): [ValueAccessor<T> | undefined, undefined] | [undefined, string | null | undefined] {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
@@ -508,11 +508,11 @@ export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): v is 
   );
 }
 
-export function isNoneish<T extends Datum>(value: ValueAccessor<T> | undefined): boolean {
+export function isNoneish<T extends Datum>(value: ValueAccessor<T> | null | undefined): boolean {
   return value == null || isNone(value);
 }
 
-export function isNone<T extends Datum>(value: ValueAccessor<T> | undefined): boolean {
+export function isNone<T extends Datum>(value: ValueAccessor<T> | null | undefined): boolean {
   return /^\s*none\s*$/i.test(value as string);
 }
 
