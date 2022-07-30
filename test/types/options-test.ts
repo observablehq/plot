@@ -1,5 +1,7 @@
 import {expectError, expectType} from "tsd";
-import {Value, ValueArray} from "../../src/data.js";
+import type {TypedArray, Value, ValueArray} from "../../src/data.js";
+import type {TransformMethod, ValueAccessor} from "../../src/options.js";
+
 import {
   constant,
   field,
@@ -9,8 +11,6 @@ import {
   maybeKeyword,
   maybeNumberChannel,
   percentile,
-  TransformMethod,
-  ValueAccessor,
   valueof
 } from "../../src/options.js";
 
@@ -45,8 +45,8 @@ valueof([true, false], (d) => {
   expectType<boolean>(d);
   return d;
 });
-expectType<Float32Array>(valueof([1, 2, 3], (d) => d * 2, Float32Array));
-expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
+expectType<TypedArray>(valueof([1, 2, 3], (d) => d * 2, Float32Array));
+expectType<TypedArray>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
 expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array));
 
 // @ts-expect-error: can't do a number transform on "one"
@@ -89,14 +89,17 @@ expectError(percentile("p99")([1, 2, 3, 4, 5]));
 // maybeColorChannel
 // _____________________________________________________________________
 
-expectType<[ValueAccessor<string>, undefined] | [undefined, string]>(maybeColorChannel("red"));
-expectType<[ValueAccessor<string>, undefined] | [undefined, string]>(maybeColorChannel(1));
+expectType<[ValueAccessor<string> | undefined, undefined] | [undefined, string]>(maybeColorChannel("red"));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+expectType<[ValueAccessor<any> | undefined, undefined] | [undefined, string]>(maybeColorChannel(1));
 
 // maybeNumberChannel
 // _____________________________________________________________________
 
-expectType<[ValueAccessor<number>, undefined] | [undefined, number | null]>(maybeNumberChannel("red"));
-expectType<[ValueAccessor<number>, undefined] | [undefined, number | null]>(maybeNumberChannel(1));
+expectType<[ValueAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(
+  maybeNumberChannel("red")
+);
+expectType<[ValueAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(maybeNumberChannel(1));
 
 // maybeKeyword
 // _____________________________________________________________________
@@ -157,9 +160,6 @@ expectType<undefined>(labelof(undefined));
 expectType<undefined>(labelof(null));
 expectType<string>(labelof({label: "my label"}, "fallback"));
 expectType<string>(labelof({label: "my label"}));
-expectType<string>(labelof({label: "my label"}));
-
-// @ts-expect-error: expected
 expectError(() => labelof(1));
 
 // mid
