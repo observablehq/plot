@@ -1,6 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Datum = Record<string, Value> | Value;
-export type DatumKeys<T> = T extends Record<string, unknown> ? keyof T : never;
+export type ObjectDatum = Record<string, Value>;
+export type Datum = ObjectDatum | Value;
+export type DatumKeys<T> = T extends ObjectDatum ? keyof T : never;
 
 /**
  * The marks's data contains the data for the mark; typically an array
@@ -24,7 +24,7 @@ export type DataArray = ArrayLike<Datum>;
  * Channels are arrays of values
  */
 export type Value = number | string | Date | boolean | null | undefined;
-export type Channel = ArrayLike<Value>;
+export type Channel = Value[];
 export type TextChannel = string[];
 export type NumberChannel = number[] | Float32Array | Float64Array;
 

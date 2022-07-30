@@ -1,6 +1,9 @@
 import {expectError, expectType} from "tsd";
-import {ValueArray} from "../../src/data.js";
+import {Value, ValueArray} from "../../src/data.js";
 import {
+  constant,
+  field,
+  identity,
   labelof,
   maybeColorChannel,
   maybeKeyword,
@@ -18,18 +21,22 @@ const numberTransform: TransformMethod<number> = {
   transform: (data) => (data ? Array.from(data, (d) => d + 1) : [])
 };
 
-const nullTransform: TransformMethod<number> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const nullTransform: TransformMethod<any> = {
   transform: () => [1, 2, 3]
 };
 
-expectType<null>(valueof(null, "red"));
-expectType<undefined>(valueof(undefined, (_, i) => i + 10));
 expectType<ValueArray | null | undefined>(valueof({length: 10}, (d, i) => i));
 expectType<ValueArray | null | undefined>(valueof([1, 2, 3], numberTransform));
 expectType<ValueArray | null | undefined>(valueof([1, 2, 3], nullTransform));
-expectType<ValueArray | null | undefined>(valueof(null, nullTransform));
-expectType<ValueArray | null | undefined>(valueof(undefined, nullTransform));
 expectType<ValueArray | null | undefined>(valueof({length: 10}, nullTransform));
+expectType<ValueArray | null | undefined>(valueof([{one: "one", two: "two"}], "one"));
+expectType<Date[]>(valueof({length: 10}, new Date()));
+expectType<undefined>(valueof(undefined, (_, i) => i + 10));
+expectType<undefined>(valueof(undefined, nullTransform));
+expectType<null>(valueof(null, nullTransform));
+expectType<number[]>(valueof({length: 10}, 1));
+expectType<boolean[]>(valueof({length: 10}, true));
 valueof([{one: "one", two: "two"}], (d) => {
   expectType<{one: string; two: string}>(d);
   return d.one;
@@ -39,8 +46,34 @@ valueof([true, false], (d) => {
   return d;
 });
 
-// @ts-expect-error: expected
+// @ts-expect-error: can't do a number transform on "one"
 expectError(() => valueof(["one", 2, 3], numberTransform));
+// @ts-expect-error: red is not one of the keys, and valueof doesn't support colors
+expectError(() => valueof([{one: "one", two: "two"}], "red"));
+// @ts-expect-error: red is not one of the keys, and valueof doesn't support colors
+expectType<null>(valueof(null, "red"));
+
+// field
+// _____________________________________________________________________
+
+expectType<Value>(field("key")({key: "value"}));
+expectType<Value>(field("foo")({key: "value"}));
+
+// identity
+// _____________________________________________________________________
+
+expectType<ValueArray>(identity.transform([2, 3, 4]));
+expectType<ValueArray>(identity.transform(null)); // :(
+expectType<ValueArray>(identity.transform(undefined)); // :(
+
+// constant
+// _____________________________________________________________________
+
+expectType<"foo">(constant("foo")());
+expectType<1>(constant(1)());
+expectType<true>(constant(true)());
+expectType<false>(constant(false)());
+expectType<null>(constant(null)());
 
 // percentile
 // _____________________________________________________________________

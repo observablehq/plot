@@ -1,5 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type {ArrayType, Value, DataArray, Datum, index, Data, Series, ValueArray, DatumKeys} from "./data.js";
+import type {
+  ArrayType,
+  Value,
+  DataArray,
+  Datum,
+  index,
+  Data,
+  Series,
+  ValueArray,
+  DatumKeys,
+  ObjectDatum
+} from "./data.js";
 import {parse as isoParse} from "isoformat";
 import {color, descending, quantile, TypedArray} from "d3";
 
@@ -7,51 +18,35 @@ import {color, descending, quantile, TypedArray} from "d3";
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-/**
-
-#### Plot.valueof(*data*, *value*, *type*)
-
-Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
-
-- a string - corresponding to the field accessor (`d => d[value]`)
-- an accessor function - called as *type*.from(*data*, *value*)
-- a number, Date, or boolean — resulting in an array uniformly filled with the *value*
-- an object with a transform method — called as *value*.transform(*data*)
-- an array of values - returning the same
-- null or undefined - returning the same
-
-If *type* is specified, it must be Array or a similar class that implements the [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) interface such as a typed array. When *type* is Array or a typed array class, the return value of valueof will be an instance of the same (or null or undefined). If *type* is not specified, valueof may return either an array or a typed array (or null or undefined).
-
-Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
-
-@link https://github.com/observablehq/plot/blob/main/README.md#plotvalueofdata-value-type
-
- */
-export function valueof<N extends null | undefined, T extends ArrayType>(data: N, value: ValueAccessor<N>, type: T): N;
-export function valueof<N extends null | undefined>(data: N, value: ValueAccessor<N>): N;
+export function valueof<N extends null | undefined>(data: N, value: ValueAccessorStrict<N>, type?: ArrayType): N;
 export function valueof<N extends Datum>(
   data: Data<N> | null | undefined,
-  value: ValueAccessor<N>,
+  value: ValueAccessorStrict<N>,
   type: Float64ArrayConstructor
 ): Float64Array;
 export function valueof<N extends Datum>(
   data: Data<N> | null | undefined,
-  value: ValueAccessor<N>,
+  value: ValueAccessorStrict<N>,
   type: Float32ArrayConstructor
 ): Float32Array;
 export function valueof<N extends Datum>(
   data: Data<N> | null | undefined,
-  value: ValueAccessor<N>,
+  value: ValueAccessorStrict<N>,
   type: ArrayConstructor
 ): ValueArray;
+export function valueof<Const extends number | Date | boolean>(
+  data: Data<Datum> | null | undefined,
+  value: Const,
+  arrayType?: ArrayType
+): Const[];
 export function valueof<N extends Datum>(
-  data: Data<N> | null | undefined,
-  value: ValueAccessor<N>,
+  data: Data<N>,
+  value: ValueAccessorStrict<N>,
   arrayType?: ArrayType
 ): ValueArray | Float32Array | Float64Array | null | undefined;
 export function valueof<N extends Datum>(
   data: Data<N> | null | undefined,
-  value: ValueAccessor<N>,
+  value: ValueAccessorStrict<N>,
   arrayType?: ArrayType
 ): ValueArray | Float32Array | Float64Array | null | undefined {
   if (data == null) return data;
@@ -71,7 +66,9 @@ function isTransform<T extends Datum>(value: ValueAccessor<T>): value is Transfo
 /**
  * See Plot.valueof()
  */
-export type ValueAccessor<T extends Datum> =
+// Not sure about naming of this, but this was created because valueof doesn't
+// support color constants as values, so we shouldn't allow arbitrary strings.
+export type ValueAccessorStrict<T extends Datum> =
   | DatumKeys<T>
   | AccessorFunction<T>
   | number
@@ -80,7 +77,10 @@ export type ValueAccessor<T extends Datum> =
   | TransformMethod<T>
   | ValueArray
   | null
-  | undefined
+  | undefined;
+
+export type ValueAccessor<T extends Datum> =
+  | ValueAccessorStrict<T>
   // eslint-disable-next-line @typescript-eslint/ban-types
   | (string & {});
 type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
@@ -89,12 +89,10 @@ export type TransformMethod<T extends Datum> = {
 };
 
 // Type: the field accessor might crash if the datum is not a generic object
-export const field =
-  (name: string) =>
-  (d: Datum): Value =>
-    (d as {[x: string]: Value})[name];
+export const field = (name: string) => (d: ObjectDatum) => d[name];
 export const indexOf = (d: Datum, i: index) => i;
-export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray}; // This cast seems bad
+// The below cast to ValueArray is bad but necessary because identity is used as a transform
+export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
@@ -103,9 +101,12 @@ export const number = (x: any) => (x == null ? x : +x);
 export const boolean = (x: any) => (x == null ? x : !!x);
 
 // Type: the first and second accessors might crash if the datum is not an array
-export const first = (x: any) => (x ? (x as Value[])[0] : undefined);
-export const second = (x: any) => (x ? (x as Value[])[1] : undefined);
-export const constant = (x: Value) => () => x;
+export const first = (x: Value[] | null | undefined) => (x ? x[0] : undefined);
+export const second = (x: Value[] | null | undefined) => (x ? x[1] : undefined);
+export const constant =
+  <T extends Value>(x: T) =>
+  (): T =>
+    x;
 
 /**
  * A perticentile reducer, specified by a string like “p25”
@@ -271,7 +272,7 @@ export function maybeZero<T extends Datum>(
   x: ValueAccessor<T> | undefined,
   x1: ValueAccessor<T> | undefined | 0,
   x2: ValueAccessor<T> | undefined | 0,
-  x3: TransformMethod<T> = identity
+  x3: ValueAccessor<T> = identity
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
