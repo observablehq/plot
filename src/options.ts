@@ -39,10 +39,9 @@ export type TransformMethod<T extends Datum> = {
 };
 
 export function valueof<D extends Nullish>(data: D, v: Accessor<D>, t?: ArrayType): D;
-export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
 export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, type: Float64ArrayConstructor): Float64Array;
 export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, type: Float32ArrayConstructor): Float32Array;
-export function valueof<T extends Datum>(d: Data<T>, value: Accessor<T>, type: ArrayConstructor): ValueArray;
+export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
 export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType): ValueArray;
 export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T>, arrayType?: ArrayType) {
   if (data == null) return data;
