@@ -24,7 +24,7 @@ export function mapY<T extends Datum>(m: MapMethods, options: MarkOptions<T> = {
 }
 
 export function map<T extends Datum>(outputs: {[key: string]: MapMethods} = {}, options: MarkOptions<T> = {}) {
-  const z = maybeZ<T>(options); // ValueAccessor | null | undefined
+  const z = maybeZ<T>(options);
   const channels = Object.entries(outputs).map(([key, map]) => {
     const input = maybeInput(key, options);
     if (input == null) throw new Error(`missing channel: ${key}`);

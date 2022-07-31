@@ -1,6 +1,6 @@
 import type {MarkOptions, OutputOptions, BinValue} from "../api.js";
 import type {DataArray, Datum, index, Series, Value} from "../data.js";
-import type {GetColumn, ValueAccessor} from "../options.js";
+import type {Accessor, GetColumn} from "../options.js";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -77,10 +77,10 @@ export function maybeDenseIntervalY<T extends Datum>(options: MarkOptions<T>) {
 }
 
 function binn<T extends Datum>(
-  bx: BinValue<T> | null, // optionally bin on x (exclusive with gx)
-  by: BinValue<T> | null, // optionally bin on y (exclusive with gy)
-  gx: number | ValueAccessor<T> | null | undefined, // optionally group on x (exclusive with bx and gy)
-  gy: number | ValueAccessor<T> | null | undefined, // optionally group on y (exclusive with by and gx)
+  bx0: BinValue<T> | null, // optionally bin on x (exclusive with gx)
+  by0: BinValue<T> | null, // optionally bin on y (exclusive with gy)
+  gx: number | Accessor<T> | null | undefined, // optionally group on x (exclusive with bx and gy)
+  gy: number | Accessor<T> | null | undefined, // optionally group on y (exclusive with by and gx)
   {
     data: reduceData = reduceIdentity,
     filter: filter0 = reduceCount, // return only non-empty bins by default
@@ -90,8 +90,8 @@ function binn<T extends Datum>(
   }: OutputOptions<T> = {},
   inputs: MarkOptions<T> = {} // input channels and options
 ): MarkOptions<T> {
-  const bx1 = maybeBin<T>(bx); // TODO change name bx1 is confusing
-  const by1 = maybeBin<T>(by);
+  const bx = maybeBin<T>(bx0); // TODO change name bx1 is confusing
+  const by = maybeBin<T>(by0);
 
   // Compute the outputs.
   const outputs = maybeOutputs(outputs0, inputs);
@@ -104,13 +104,13 @@ function binn<T extends Datum>(
   if (gy != null && hasOutput(outputs, "y", "y1", "y2")) gy = null;
 
   // Produce x1, x2, y1, and y2 output channels as appropriate (when binning).
-  const [BX1, setBX1] = maybeColumn(bx1);
-  const [BX2, setBX2] = maybeColumn(bx1);
-  const [BY1, setBY1] = maybeColumn(by1);
-  const [BY2, setBY2] = maybeColumn(by1);
+  const [BX1, setBX1] = maybeColumn(bx);
+  const [BX2, setBX2] = maybeColumn(bx);
+  const [BY1, setBY1] = maybeColumn(by);
+  const [BY2, setBY2] = maybeColumn(by);
 
   // Produce x or y output channels as appropriate (when grouping).
-  const [k, gk] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
+  const [k, gk]: [(number | Accessor<T> | null)?, string?] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
   const [GK, setGK] = maybeColumn(k);
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
@@ -155,8 +155,8 @@ function binn<T extends Datum>(
       const GZ = Z && (setGZ!([]) as Value[]);
       const GF = F && (setGF!([]) as Value[]);
       const GS = S && (setGS!([]) as Value[]);
-      const BX = bx1 ? bx1(data) : ([[, , (I: Series) => I]] as BinFilter[]);
-      const BY = by1 ? by1(data) : ([[, , (I: Series) => I]] as BinFilter[]);
+      const BX = bx ? bx(data) : ([[, , (I: Series) => I]] as [BinFilter]);
+      const BY = by ? by(data) : ([[, , (I: Series) => I]] as [BinFilter]);
       const BX1 = bx && (setBX1!([]) as Value[]);
       const BX2 = bx && (setBX2!([]) as Value[]);
       const BY1 = by && (setBY1!([]) as Value[]);
@@ -213,9 +213,9 @@ function mergeOptions<T extends Datum>(
 }
 
 function maybeBinValue<T extends Datum>(
-  value0: BinValue<T> | ValueAccessor<T> | number | undefined,
+  value0: BinValue<T> | Accessor<T> | number | undefined,
   {cumulative, domain, thresholds, interval}: MarkOptions<T>,
-  defaultValue?: ValueAccessor<T>
+  defaultValue?: Accessor<T>
 ) {
   const value = (maybeValue(value0) || {}) as BinValue<T>;
   if (value.domain === undefined) value.domain = domain;

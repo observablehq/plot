@@ -1,6 +1,6 @@
 import type {Interval, IntervalObject, MarkOptions} from "../api.js";
 import type {DataArray, Datum, index, Value, ValueArray} from "../data.js";
-import type {Accessor, ValueAccessor} from "../options.js";
+import type {Accessor} from "../options.js";
 
 import {range} from "d3";
 import {isTemporal, labelof, map, maybeValue, valueof} from "../options.js";
@@ -30,7 +30,7 @@ export function maybeInterval(interval: Interval | undefined) {
 // @link https://github.com/observablehq/plot/blob/main/README.md#rect
 type IntervalValue<T extends Datum> = {interval?: IntervalObject; value?: Accessor<T>};
 function maybeIntervalValue<T extends Datum>(
-  value: number | ValueAccessor<T> | undefined,
+  value: number | Accessor<T> | undefined,
   {interval}: MarkOptions<T>
 ): IntervalValue<T> {
   // TODO: value = {...maybeValue(value)};

@@ -1,6 +1,6 @@
 import type {AggregationMethod, Aggregate, BinExtent, MarkOptions, OutputOptions, Reducer} from "../api.js";
 import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
-import type {pXX, ValueAccessor} from "../options.js";
+import type {pXX, Accessor} from "../options.js";
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 
@@ -79,8 +79,8 @@ export function group<T extends Datum>(
 }
 
 function groupn<T extends Datum>(
-  x: number | ValueAccessor<T> | null | undefined, // optionally group on x
-  y: number | ValueAccessor<T> | null | undefined, // optionally group on y
+  x: number | Accessor<T> | null | undefined, // optionally group on x
+  y: number | Accessor<T> | null | undefined, // optionally group on y
   {
     data: reduceData = reduceIdentity, // TODO: not tested and not documented (https://github.com/observablehq/plot/pull/272)
     filter: filter0,
@@ -244,7 +244,7 @@ export function maybeGroup(I: Series, X: ValueArray | null | undefined): [Value,
     : [[, I]];
 }
 
-export function maybeReduce<T extends Datum>(reduce: AggregationMethod, value: ValueAccessor<T>): Aggregate {
+export function maybeReduce<T extends Datum>(reduce: AggregationMethod, value: Accessor<T>): Aggregate {
   if (reduce && typeof reduce.reduce === "function") return reduce as Aggregate;
   if (typeof reduce === "function") return reduceFunction(reduce);
   if (/^p\d{2}$/i.test(reduce as string)) return reduceAccessor(percentile(reduce as pXX) as ArrayReducer);
@@ -405,7 +405,7 @@ const reduceDistinct: Aggregate = {
 
 const reduceSum = reduceAccessor(sum);
 
-function reduceProportion<T extends Datum>(value: ValueAccessor<T>, scope: Aggregate["scope"]): Aggregate {
+function reduceProportion<T extends Datum>(value: Accessor<T>, scope: Aggregate["scope"]): Aggregate {
   return value == null
     ? {scope, label: "Frequency", reduce: (I: Series, V: ValueArray, basis = 1) => I.length / (basis as number)}
     : {scope, reduce: (I: Series, V: ValueArray, basis = 1) => sum(I, (i) => V[i] as number) / (basis as number)};

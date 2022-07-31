@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type {MarkOptions, OffsetFunction, StackOrder} from "../api.js";
 import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
-import type {GetColumn, ValueAccessor} from "../options.js";
+import type {GetColumn, Accessor} from "../options.js";
 
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
@@ -71,8 +71,8 @@ function mergeOptions<T extends Datum>(options: MarkOptions<T>) {
 }
 
 function stack<T extends Datum>(
-  x: ValueAccessor<T> | number | undefined,
-  y: ValueAccessor<T> | number = one,
+  x: Accessor<T> | number | undefined,
+  y: Accessor<T> | number = one,
   ky: string,
   {offset: offset0, order: order0, reverse}: MarkOptions<T>,
   options: MarkOptions<T>

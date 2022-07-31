@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type {Data, DataArray, Datum, Series, Value, ValueArray} from "./data.js";
-import type {Accessor, GetColumn, pXX, ValueAccessor} from "./options.js";
+import type {Accessor, GetColumn, pXX, ColorAccessor} from "./options.js";
 /**
  * Plot API
  * @link https://github.com/observablehq/plot/blob/main/README.md
@@ -35,8 +35,8 @@ type LayoutOptions = {
 type FacetOptions<T extends Datum> = {
   facet?: {
     data: Data<T>;
-    x?: ValueAccessor<T>;
-    y?: ValueAccessor<T>;
+    x?: Accessor<T>;
+    y?: Accessor<T>;
     marginTop?: pixels; // the top margin
     marginRight?: pixels; // the right margin
     marginBottom?: pixels; // the bottom margin
@@ -77,7 +77,7 @@ type ScalesOptions = {
  */
 export type InstantiatedMark<T extends Datum> = {
   initialize: (data: Data<T>) => void;
-  z?: ValueAccessor<T>; // copy the user option for error messages
+  z?: Accessor<T>; // copy the user option for error messages
   clip?: "frame";
   dx: number;
   dy: number;
@@ -162,17 +162,17 @@ export type MaybeSymbol<T extends Datum> = Accessor<T> | SymbolName | SymbolObje
  * Mark channel options
  */
 export type CommonChannelOptions<T extends Datum> = {
-  x?: ValueAccessor<T> | number; // TODO: OptionsX
-  x1?: ValueAccessor<T> | number;
-  x2?: ValueAccessor<T> | number;
-  y?: ValueAccessor<T> | number; // TODO: OptionsY
-  y1?: ValueAccessor<T> | number;
-  y2?: ValueAccessor<T> | number;
-  z?: ValueAccessor<T>;
-  fill?: ValueAccessor<T> | null;
+  x?: Accessor<T> | number; // TODO: OptionsX
+  x1?: Accessor<T> | number;
+  x2?: Accessor<T> | number;
+  y?: Accessor<T> | number; // TODO: OptionsY
+  y1?: Accessor<T> | number;
+  y2?: Accessor<T> | number;
+  z?: Accessor<T>;
+  fill?: ColorAccessor<T> | null;
   fillOpacity?: Accessor<T> | number | null;
   r?: Accessor<T>; // TODO: OptionsR
-  stroke?: ValueAccessor<T> | null;
+  stroke?: ColorAccessor<T> | null;
   strokeOpacity?: Accessor<T> | number | null;
   strokeWidth?: Accessor<T> | number | null;
   symbol?: MaybeSymbol<T>;
@@ -292,9 +292,9 @@ type BasisFunction = (V: ValueArray) => Value;
  */
 type OtherMarkOptions<T extends Datum> = {
   // the following are necessarily channels
-  title?: ValueAccessor<T>;
-  href?: ValueAccessor<T>;
-  ariaLabel?: ValueAccessor<T>;
+  title?: Accessor<T>;
+  href?: Accessor<T>;
+  ariaLabel?: Accessor<T>;
   // filter & sort
   filter?: Accessor<T>;
   sort?: SortOption | null;
@@ -490,7 +490,7 @@ export type InitializerOption<T extends Datum> = InitializerFunction<T> | Transf
  * @link https://github.com/observablehq/plot/blob/main/README.md#bin
  */
 export type BinValue<T extends Datum> = {
-  value?: ValueAccessor<T>;
+  value?: Accessor<T>;
   thresholds?: any;
   interval?: number | IntervalObject;
   domain?: number[] | ((V: ValueArray) => ValueArray);
@@ -660,7 +660,7 @@ export type WindowOptions = {
  * The bin options can be specified as part of the inputs or of the outputs
  */
 export type BinOptions<T extends Datum> = {
-  value?: ValueAccessor<T>;
+  value?: Accessor<T>;
   cumulative?: boolean;
   domain?: number[];
   thresholds?: number | number[];
