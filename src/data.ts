@@ -11,7 +11,7 @@ export type Row = Record<string, Value>;
 
 /**
  * A single Datum is often a Value, a Row, or an array of values; if a Row, possible field names
- * can be inferred from its keys to define accessors; if an array, typical indices are indices,
+ * can be inferred from its keys to define accessors; if an array, typical accessors are indices,
  * and length, expressed as strings
  */
 export type Datum = Row | Value | Value[];
@@ -43,7 +43,7 @@ export type DataArray<T extends Datum> = T[] | TypedArray;
  * A series is an array of indices, used to group data into classes (e.g., groups and facets)
  */
 export type index = number; // integer
-export type Series = index[] | Uint32Array; // a Series is a list of pointers into columnar data
+export type Series = index[] | Uint32Array;
 export type Facets = Series[];
 
 export type NumericArray = number[] | TypedArray;
