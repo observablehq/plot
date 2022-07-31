@@ -11,7 +11,7 @@ export type Row = Record<string, Value>;
 
 /**
  * A single Datum is often a Value, a Row, or an array of values; if a Row, possible field names
- * can be inferred from its keys to define accessors; if an array, typical indices are indices,
+ * can be inferred from its keys to define accessors; if an array, typical accessors are indices,
  * and length, expressed as strings
  */
 export type Datum = Row | Value | Value[];
