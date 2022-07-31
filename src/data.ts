@@ -10,17 +10,23 @@ export type Value = number | string | Date | boolean | null | undefined;
 export type Row = Record<string, Value>;
 
 /**
- * A single Datum is either a Value or an Row; if a Row, possible field names
- * can be inferred from its keys to define accessors
+ * A single Datum is often a Value, a Row, or an array of values; if a Row, possible field names
+ * can be inferred from its keys to define accessors; if an array, typical indices are indices,
+ * and length, expressed as strings
  */
-export type Datum = Row | Value;
-export type FieldNames<T> = T extends Row ? keyof T : never;
+export type Datum = Row | Value | Value[];
+export type FieldNames<T> = T extends Row
+  ? keyof T
+  : T extends Value[]
+  ? // eslint-disable-next-line @typescript-eslint/ban-types
+    "length" | "0" | "1" | "2" | (string & {})
+  : never;
 
 /**
  * The marks data; typically an array of Datum, but can also
  * be defined as an iterable compatible with Array.from.
  */
-export type Data<T extends Datum> = ArrayLike<T> | Iterable<T>;
+export type Data<T extends Datum> = ArrayLike<T> | Iterable<T> | TypedArray;
 
 /**
  * An array or typed array constructor, or any class that implements Array.from
@@ -31,7 +37,7 @@ export type ArrayType = ArrayConstructor | TypedArrayConstructor;
  * The data is then arrayified, and a range of indices is computed, serving as pointers
  * into the columnar representation of each channel
  */
-export type DataArray = Datum[] | TypedArray;
+export type DataArray<T extends Datum> = T[] | TypedArray;
 
 /**
  * A series is an array of indices, used to group data into classes (e.g., groups and facets)

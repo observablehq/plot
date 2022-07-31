@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type {
   ArrayType,
   Value,
@@ -41,20 +43,26 @@ Plot.valueof is not guaranteed to return a new array. When a transform method is
 
 */
 
-export function valueof<T extends null | undefined>(d: T, v: TransformMethod<T> | ValueArray): TypedArray;
-export function valueof<T extends null | undefined>(d: T, v: Accessor<T>): T;
+export function valueof<T extends null | undefined>(d: T, v: TransformMethod<T> | ValueArray): ValueArray;
+export function valueof<T extends null | undefined>(d: T, v: ValueAccessor<T> | null): T;
 export function valueof<T extends null | undefined>(
   d: T,
   v: TransformMethod<T> | ValueArray,
   t: ArrayConstructor | TypedArrayConstructor
 ): ValueArray;
-export function valueof<T extends null | undefined>(d: T, v: Accessor<T>, t: TypedArrayConstructor): T;
-export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t: TypedArrayConstructor): TypedArray;
+export function valueof<T extends null | undefined>(d: T, v: ValueAccessor<T> | null, t: TypedArrayConstructor): T;
+export function valueof<T extends Datum>(d: Data<T>, v: ValueAccessor<T>, t: TypedArrayConstructor): TypedArray;
 export function valueof<V extends number | Date | boolean>(d: Data<Datum>, v: V, t?: ArrayType): V[];
-export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t?: ArrayType): ValueArray;
+export function valueof<T extends Datum>(d: Data<T>, v: ValueAccessor<T>, t?: ArrayType): ValueArray;
+export function valueof<T extends Datum, N extends null | undefined>(d: Data<T>, v: N, t?: ArrayType): N;
 export function valueof<T extends Datum>(
   data: Data<T> | null | undefined,
-  value: Accessor<T>,
+  value: ValueAccessor<T> | number | Date | boolean | null | undefined,
+  arrayType?: ArrayType
+): ValueArray | null | undefined;
+export function valueof<T extends Datum>(
+  data: Data<T> | null | undefined,
+  value: ValueAccessor<T> | number | Date | boolean | null | undefined,
   arrayType?: ArrayType
 ): ValueArray | null | undefined {
   return typeof value === "string"
@@ -87,7 +95,7 @@ function isTransform<T extends Datum>(value: ValueAccessor<T>): value is Transfo
 export type ValueAccessor<T extends Datum> = Accessor<T> | (string & {});
 
 // Type: the field accessor might crash if the datum is not a generic object
-export const field = (name: string) => (d: Row) => d[name];
+export const field = (name: string) => (d: any) => d && (d as Row)[name];
 export const indexOf = (d: Datum, i: index) => i;
 // The below cast to ValueArray is bad but necessary because identity is used as a transform
 export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
@@ -99,7 +107,7 @@ export const number = (x: any) => (x == null ? x : +x);
 export const boolean = (x: any) => (x == null ? x : !!x);
 
 // Type: the first and second accessors might crash if the datum is not an array
-export const first = (x: Value[] | null | undefined) => (x ? x[0] : undefined);
+export const first = (x: Value[] | [Value, any] | null | undefined) => (x ? x[0] : undefined);
 export const second = (x: Value[] | null | undefined) => (x ? x[1] : undefined);
 export const constant =
   <T extends Value>(x: T) =>
@@ -164,24 +172,26 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify(data: undefined, type: ArrayType | undefined): undefined;
 export function arrayify(data: null, type: ArrayType | undefined): null;
-export function arrayify<T extends Datum>(data: Data<T>): ValueArray | TypedArray;
-export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): ValueArray;
-export function arrayify<T extends Datum>(data: Data<T>, type: Float32ArrayConstructor): Float32Array;
-export function arrayify<T extends Datum>(data: Data<T>, type: Float64ArrayConstructor): Float64Array;
-export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): ValueArray | Float32Array | Float64Array;
+export function arrayify(data: TypedArray): TypedArray;
+export function arrayify(data: TypedArray, type: ArrayConstructor): number[];
+export function arrayify(data: TypedArray, type: TypedArrayConstructor): TypedArray;
+export function arrayify(
+  data: ValueArray | null | undefined,
+  type: ArrayType | undefined
+): ValueArray | TypedArray | undefined;
+export function arrayify<T extends Datum>(data: Data<T>): DataArray<T>;
+export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): DataArray<T> | TypedArray;
+export function arrayify<T extends Datum>(data: Data<T>, type: TypedArrayConstructor): TypedArray;
+export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): ValueArray | TypedArray;
 export function arrayify<T extends Datum>(data: Data<T> | null | undefined): ValueArray | TypedArray | null | undefined;
 export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
+  data: Data<T> | ValueArray | null | undefined,
   type: ArrayConstructor
 ): ValueArray | null | undefined;
 export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
-  type: Float32ArrayConstructor
-): Float32Array | null | undefined;
-export function arrayify<T extends Datum>(
-  data: Data<T> | null | undefined,
-  type: Float64ArrayConstructor
-): Float64Array | null | undefined;
+  data: Data<T> | ValueArray | null | undefined,
+  type: TypedArrayConstructor
+): TypedArray | null | undefined;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
   type?: ArrayType
@@ -189,12 +199,14 @@ export function arrayify<T extends Datum>(
   return data == null
     ? data
     : type === undefined
-    ? data instanceof Array || data instanceof TypedArray
+    ? data instanceof Array
+      ? data
+      : data instanceof TypedArray
       ? (data as TypedArray)
-      : Array.from(data)
+      : Array.from(data as T[])
     : data instanceof type
     ? data
-    : (type as ArrayConstructor).from(data);
+    : (type as ArrayConstructor).from(data as T[]);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
@@ -217,16 +229,16 @@ export function map<T extends Datum>(
   type: ArrayType | undefined
 ): Value[];
 export function map<T extends Datum>(values: Data<T>, f: (d: any, i: number) => any, type: ArrayType = Array) {
-  return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values, f);
+  return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values as T[], f);
 }
 
 // An optimization of type.from(values): if the given values are already an
 // instanceof the desired array type, the faster values.slice method is used.
-export function slice(values: DataArray, type: ArrayType = Array): any[] | TypedArray {
+export function slice(values: ValueArray, type: ArrayType = Array): any[] | TypedArray {
   return values instanceof type ? values.slice() : (type as ArrayConstructor).from(values);
 }
 
-export function isTypedArray(values: DataArray): values is TypedArray {
+export function isTypedArray(values: ValueArray): values is TypedArray {
   return values instanceof TypedArray;
 }
 
@@ -248,7 +260,7 @@ export function isScaleOptions(option: any): boolean {
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a channel value
 // definition expressed as a channel transform (e.g., {transform: …}).
-export function isOptions(option: any): boolean {
+export function isOptions(option: any): option is {value?: any; channel?: any; transform: never} {
   return isObject(option) && typeof (option as {transform: null}).transform !== "function";
 }
 
@@ -261,9 +273,9 @@ export function isDomainSort(sort: any): boolean {
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 export function maybeZero<T extends Datum>(
-  x: ValueAccessor<T> | undefined,
-  x1: ValueAccessor<T> | undefined | 0,
-  x2: ValueAccessor<T> | undefined | 0,
+  x: ValueAccessor<T> | number | undefined,
+  x1: ValueAccessor<T> | number | undefined,
+  x2: ValueAccessor<T> | number | undefined,
   x3: ValueAccessor<T> = identity
 ) {
   if (x1 === undefined && x2 === undefined) {
@@ -288,7 +300,11 @@ export function maybeTuple<T>(x: T | undefined, y: T | undefined): [T | undefine
 
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
-type ZOptions<T extends Datum> = {fill?: ValueAccessor<T>; stroke?: ValueAccessor<T>; z?: ValueAccessor<T>};
+type ZOptions<T extends Datum> = {
+  fill?: ValueAccessor<T> | null;
+  stroke?: ValueAccessor<T> | null;
+  z?: ValueAccessor<T> | null;
+};
 export function maybeZ<T extends Datum>({z, fill, stroke}: ZOptions<T> = {}) {
   if (z === undefined) [z] = maybeColorChannel(fill);
   if (z === undefined) [z] = maybeColorChannel(stroke);
@@ -358,9 +374,7 @@ export type GetColumn = {transform: () => ValueArray; label?: string};
 type SetColumn = <T extends ValueArray | Float32Array | Float64Array>(v: T) => T;
 
 // Like column, but allows the source to be null.
-export function maybeColumn<T extends Datum>(
-  source: ValueAccessor<T> | ((data: DataArray) => void)
-): [GetColumn, SetColumn] | [null?] {
+export function maybeColumn(source: any): [GetColumn, SetColumn] | [null?] {
   return source == null ? [source] : column(source);
 }
 
@@ -395,7 +409,7 @@ export function mid(x1: GetColumn, x2: GetColumn): {transform(): ValueArray; lab
 }
 
 // This distinguishes between per-dimension options and a standalone value.
-export function maybeValue(value: any): any {
+export function maybeValue(value: any) {
   return value === undefined || isOptions(value) ? value : {value};
 }
 
@@ -404,11 +418,11 @@ export function maybeValue(value: any): any {
 // where we don’t wish to allow unexpected behavior for weird input.
 export function numberChannel(
   source: ValueArray & {label?: string}
-): {transform: (data: DataArray) => TypedArray; label: string | undefined} | null {
+): {transform: (data: ValueArray) => TypedArray; label: string | undefined} | null {
   return source == null
     ? null
     : {
-        transform: (data: DataArray) => valueof(data, source, Float64Array),
+        transform: (data: ValueArray) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
 }
