@@ -44,25 +44,29 @@ Plot.valueof is not guaranteed to return a new array. When a transform method is
 */
 
 export function valueof<T extends null | undefined>(d: T, v: TransformMethod<T> | ValueArray): ValueArray;
-export function valueof<T extends null | undefined>(d: T, v: ValueAccessor<T> | null): T;
+export function valueof<T extends null | undefined>(d: T, v: Accessor<T> | null): T;
 export function valueof<T extends null | undefined>(
   d: T,
   v: TransformMethod<T> | ValueArray,
   t: ArrayConstructor | TypedArrayConstructor
 ): ValueArray;
-export function valueof<T extends null | undefined>(d: T, v: ValueAccessor<T> | null, t: TypedArrayConstructor): T;
-export function valueof<T extends Datum>(d: Data<T>, v: ValueAccessor<T>, t: TypedArrayConstructor): TypedArray;
+export function valueof<T extends null | undefined>(d: T, v: Accessor<T> | null, t: TypedArrayConstructor): T;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t: TypedArrayConstructor): TypedArray;
 export function valueof<V extends number | Date | boolean>(d: Data<Datum>, v: V, t?: ArrayType): V[];
-export function valueof<T extends Datum>(d: Data<T>, v: ValueAccessor<T>, t?: ArrayType): ValueArray;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t?: ArrayType): ValueArray;
 export function valueof<T extends Datum, N extends null | undefined>(d: Data<T>, v: N, t?: ArrayType): N;
 export function valueof<T extends Datum>(
   data: Data<T> | null | undefined,
-  value: ValueAccessor<T> | number | Date | boolean | null | undefined,
+  value: Accessor<T> | number | Date | boolean | null | undefined,
   arrayType?: ArrayType
 ): ValueArray | null | undefined;
 export function valueof<T extends Datum>(
   data: Data<T> | null | undefined,
-  value: ValueAccessor<T> | number | Date | boolean | null | undefined,
+  value: Accessor<T> | number | Date | boolean | null | undefined
+): ValueArray | null | undefined;
+export function valueof<T extends Datum>(
+  data: Data<T> | null | undefined,
+  value: Accessor<T> | number | Date | boolean | null | undefined,
   arrayType?: ArrayType
 ): ValueArray | null | undefined {
   return typeof value === "string"
@@ -87,12 +91,12 @@ export type TransformMethod<T extends Datum> = {
   transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value>;
 };
 
-function isTransform<T extends Datum>(value: ValueAccessor<T>): value is TransformMethod<T> {
+function isTransform<T extends Datum>(value: ColorAccessor<T>): value is TransformMethod<T> {
   return !!value && isObject(value) && typeof (value as TransformMethod<T>).transform == "function";
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ValueAccessor<T extends Datum> = Accessor<T> | (string & {});
+export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 
 // Type: the field accessor might crash if the datum is not a generic object
 export const field = (name: string) => (d: any) => d && (d as Row)[name];
@@ -135,9 +139,9 @@ type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 // the given value. If you wish to reference a named field that is also a valid
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel<T extends Datum>(
-  value: ValueAccessor<T> | null | undefined,
+  value: ColorAccessor<T> | null | undefined,
   defaultValue?: string
-): [ValueAccessor<T> | undefined, undefined] | [undefined, string | null | undefined] {
+): [Accessor<T> | undefined, undefined] | [undefined, string | null | undefined] {
   if (value === undefined) value = defaultValue;
   return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
@@ -145,9 +149,9 @@ export function maybeColorChannel<T extends Datum>(
 // Similar to maybeColorChannel, this tests whether the given value is a number
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumberChannel<T extends Datum>(
-  value: ValueAccessor<T> | null | number | undefined,
+  value: Accessor<T> | null | number | undefined,
   defaultValue?: number
-): [ValueAccessor<T> | null | undefined, undefined] | [undefined, number | null | undefined] {
+): [Accessor<T> | null | undefined, undefined] | [undefined, number | null | undefined] {
   if (value === undefined) value = defaultValue;
   return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
@@ -273,10 +277,10 @@ export function isDomainSort(sort: any): boolean {
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 export function maybeZero<T extends Datum>(
-  x: ValueAccessor<T> | number | undefined,
-  x1: ValueAccessor<T> | number | undefined,
-  x2: ValueAccessor<T> | number | undefined,
-  x3: ValueAccessor<T> = identity
+  x: Accessor<T> | number | undefined,
+  x1: Accessor<T> | number | undefined,
+  x2: Accessor<T> | number | undefined,
+  x3: Accessor<T> = identity
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
@@ -301,9 +305,9 @@ export function maybeTuple<T>(x: T | undefined, y: T | undefined): [T | undefine
 // A helper for extracting the z channel, if it is variable. Used by transforms
 // that require series, such as moving average and normalize.
 type ZOptions<T extends Datum> = {
-  fill?: ValueAccessor<T> | null;
-  stroke?: ValueAccessor<T> | null;
-  z?: ValueAccessor<T> | null;
+  fill?: ColorAccessor<T> | null;
+  stroke?: ColorAccessor<T> | null;
+  z?: Accessor<T> | null;
 };
 export function maybeZ<T extends Datum>({z, fill, stroke}: ZOptions<T> = {}) {
   if (z === undefined) [z] = maybeColorChannel(fill);
@@ -510,7 +514,7 @@ export function isEvery(values: IterableIterator<Datum>, is: (d: Datum) => boole
 // coercion here, though note that d3-color instances would need to support
 // valueOf to work correctly with InternMap.
 // https://www.w3.org/TR/SVG11/painting.html#SpecifyingPaint
-export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): v is string {
+export function isColor<T extends Datum>(v: ColorAccessor<T> | undefined): v is string {
   if (typeof v !== "string") return false;
   const value = v.toLowerCase().trim();
   return (
@@ -522,11 +526,11 @@ export function isColor<T extends Datum>(v: ValueAccessor<T> | undefined): v is 
   );
 }
 
-export function isNoneish<T extends Datum>(value: ValueAccessor<T> | null | undefined): boolean {
+export function isNoneish<T extends Datum>(value: ColorAccessor<T> | null | undefined): boolean {
   return value == null || isNone(value);
 }
 
-export function isNone<T extends Datum>(value: ValueAccessor<T> | null | undefined): boolean {
+export function isNone<T extends Datum>(value: ColorAccessor<T> | null | undefined): boolean {
   return /^\s*none\s*$/i.test(value as string);
 }
 
