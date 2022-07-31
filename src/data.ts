@@ -43,7 +43,7 @@ export type DataArray<T extends Datum> = T[] | TypedArray;
  * A series is an array of indices, used to group data into classes (e.g., groups and facets)
  */
 export type index = number; // integer
-export type Series = index[] | Uint32Array; // a Series is a list of pointers into columnar data
+export type Series = index[] | Uint32Array;
 export type Facets = Series[];
 
 export type NumericArray = number[] | TypedArray;

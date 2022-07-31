@@ -92,7 +92,7 @@ export type TransformMethod<T extends Datum> = {
 };
 
 function isTransform<T extends Datum>(value: ColorAccessor<T>): value is TransformMethod<T> {
-  return !!value && isObject(value) && typeof (value as TransformMethod<T>).transform == "function";
+  return isObject(value) && typeof (value as TransformMethod<T>).transform == "function";
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -247,9 +247,9 @@ export function isTypedArray(values: ValueArray): values is TypedArray {
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
-export function isObject(option: undefined): false;
+export function isObject(option: null | undefined): false;
 export function isObject(option: any): boolean;
-export function isObject(option: any) {
+export function isObject(option: any): boolean {
   return option?.toString === objectToString;
 }
 
