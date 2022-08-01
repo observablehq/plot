@@ -71,7 +71,7 @@ function composeTransform<T extends Datum>(t1: TransformOption<T>, t2: Transform
   if (t2 == null) return t1 === null ? undefined : t1;
   return function (this: InstantiatedMark<T>, data: DataArray<T>, facets: Series[]) {
     ({data, facets} = t1.call(this, data, facets));
-    return t2.call(this, arrayify(data), facets);
+    return t2.call(this, arrayify(data), facets); // I believe this arrayify to be useless
   };
 }
 

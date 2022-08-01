@@ -59,10 +59,10 @@ function maybeIntervalK<T extends Datum>(
       [`${k}2`]: v2 === undefined ? kv : v2
     };
   }
-  let D1: DataArray<T>, V1: ValueArray | undefined;
+  let D1: DataArray<T>, V1: ValueArray;
   function transform(data: DataArray<T>) {
     if (V1 !== undefined && data === D1) return V1; // memoize
-    // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return (V1 = map(valueof((D1 = data), value!), (v: Datum) => interval!.floor(v as number)));
   }
   return maybeInsetK({
