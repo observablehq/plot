@@ -1,6 +1,6 @@
 import {expectError, expectType} from "tsd";
 import type {TypedArray, Value, ValueArray} from "../../src/data.js";
-import type {TransformMethod, ValueAccessor} from "../../src/options.js";
+import {ColorAccessor, IdentityTransformMethod, maybeZero, TransformMethod} from "../../src/options.js";
 
 import {
   constant,
@@ -65,9 +65,18 @@ expectType<Value>(field("foo")({key: "value"}));
 // identity
 // _____________________________________________________________________
 
-expectType<ValueArray>(identity.transform([2, 3, 4]));
-expectType<ValueArray>(identity.transform(null)); // :(
-expectType<ValueArray>(identity.transform(undefined)); // :(
+expectType<number[]>(identity.transform([2, 3, 4]));
+expectType<boolean[]>(identity.transform([true]));
+expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
+expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
+// @ts-expect-error: not supported.
+expectType<Set<string>>(identity.transform(null));
+// @ts-expect-error: needs a proper accessor.
+expectError(valueof({length: 10}, identity));
+// @ts-expect-error: has to be array like.
+expectError(identity.transform(true));
+// @ts-expect-error: need to use non-identity accessor here.
+expectError(identity.transform({length: 10}));
 
 // constant
 // _____________________________________________________________________
@@ -89,17 +98,17 @@ expectError(percentile("p99")([1, 2, 3, 4, 5]));
 // maybeColorChannel
 // _____________________________________________________________________
 
-expectType<[ValueAccessor<string> | undefined, undefined] | [undefined, string]>(maybeColorChannel("red"));
+expectType<[ColorAccessor<string> | undefined, undefined] | [undefined, string]>(maybeColorChannel("red"));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-expectType<[ValueAccessor<any> | undefined, undefined] | [undefined, string]>(maybeColorChannel(1));
+expectType<[ColorAccessor<any> | undefined, undefined] | [undefined, string]>(maybeColorChannel(1));
 
 // maybeNumberChannel
 // _____________________________________________________________________
 
-expectType<[ValueAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(
+expectType<[ColorAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(
   maybeNumberChannel("red")
 );
-expectType<[ValueAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(maybeNumberChannel(1));
+expectType<[ColorAccessor<number> | null | undefined, undefined] | [undefined, number | null]>(maybeNumberChannel(1));
 
 // maybeKeyword
 // _____________________________________________________________________
@@ -122,6 +131,12 @@ expectType<string | undefined>(maybeKeyword("bar", "foo", ["bar"]));
 
 // maybeZero
 // _____________________________________________________________________
+
+expectType<[0, IdentityTransformMethod]>(maybeZero(undefined, undefined, undefined));
+expectType<[0, 10]>(maybeZero(10, undefined, undefined));
+expectType<[0, 10]>(maybeZero(undefined, undefined, 10));
+expectType<[0, 10]>(maybeZero(10, undefined, 10));
+expectType<[20, 10]>(maybeZero(10, 20, undefined));
 
 // maybeTuple
 // _____________________________________________________________________

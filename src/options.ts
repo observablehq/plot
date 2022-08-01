@@ -83,7 +83,12 @@ export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 
 export const field = (name: string) => (d: any) => d && (d as Row)[name];
 export const indexOf = (d: Datum, i: index) => i;
-export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
+export type IdentityTransformMethod = {
+  transform: <T extends Iterable<Value> | ValueArray | undefined | null>(data: T) => T;
+};
+export const identity = {
+  transform: <T extends Iterable<Value> | ValueArray | undefined | null>(data: T): T => data
+};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
@@ -227,11 +232,18 @@ export function isDomainSort(sort: any): boolean {
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 // TODO: move this function to stack.ts?
+export function maybeZero(
+  x: undefined,
+  x1: undefined,
+  x2: undefined,
+  x3?: IdentityTransformMethod
+): [0, IdentityTransformMethod];
+export function maybeZero<T extends Datum>(x: T, x1: undefined, x2: undefined, x3?: IdentityTransformMethod): [0, T];
 export function maybeZero<T extends Datum>(
   x: Accessor<T> | number | undefined,
   x1: Accessor<T> | number | undefined,
-  x2: Accessor<T> | number | undefined,
-  x3: Accessor<T> = identity // this assumes the Data is numbers
+  x2: IdentityTransformMethod | Accessor<T> | number | undefined,
+  x3 = identity // this assumes the Data is numbers
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
