@@ -3,16 +3,15 @@
 
 import type {
   ArrayType,
-  Value,
+  Data,
   DataArray,
   Datum,
   FieldNames,
   index,
-  Data,
   Row,
   Series,
   TypedArray,
-  TypedArrayConstructor,
+  Value,
   ValueArray
 } from "./data.js";
 import {parse as isoParse} from "isoformat";
@@ -43,26 +42,11 @@ Plot.valueof is not guaranteed to return a new array. When a transform method is
 
 */
 
-export function valueof<T extends null | undefined>(d: T, v: TransformMethod<T> | ValueArray): ValueArray;
-export function valueof<T extends null | undefined>(d: T, v: Accessor<T> | null): T;
-export function valueof<T extends null | undefined>(
-  d: T,
-  v: TransformMethod<T> | ValueArray,
-  t: ArrayConstructor | TypedArrayConstructor
-): ValueArray;
-export function valueof<T extends null | undefined>(d: T, v: Accessor<T> | null, t: TypedArrayConstructor): T;
-export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t: TypedArrayConstructor): TypedArray;
-export function valueof<V extends number | Date | boolean>(d: Data<Datum>, v: V, t?: ArrayType): V[];
-export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>, t?: ArrayType): ValueArray;
-export function valueof<T extends Datum, N extends null | undefined>(d: Data<T>, v: N, t?: ArrayType): N;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>): ValueArray; // for interval.ts
 export function valueof<T extends Datum>(
-  data: Data<T> | null | undefined,
-  value: Accessor<T> | number | Date | boolean | null | undefined,
-  arrayType?: ArrayType
-): ValueArray | null | undefined;
-export function valueof<T extends Datum>(
-  data: Data<T> | null | undefined,
-  value: Accessor<T> | number | Date | boolean | null | undefined
+  d: Data<T> | null | undefined,
+  v: Accessor<T> | number | Date | boolean | null | undefined,
+  t?: ArrayType
 ): ValueArray | null | undefined;
 export function valueof<T extends Datum>(
   data: Data<T> | null | undefined,
@@ -76,7 +60,7 @@ export function valueof<T extends Datum>(
     : typeof value === "number" || value instanceof Date || typeof value === "boolean"
     ? data && map(data, constant(value), arrayType)
     : value && isTransform(value)
-    ? arrayify(value.transform(data), arrayType)
+    ? arrayify(value.transform(data) ?? [], arrayType)
     : arrayify(value, arrayType); // preserve undefined type
 }
 
@@ -88,7 +72,8 @@ export type Accessor<T extends Datum> = FieldNames<T> | AccessorFunction<T> | Tr
 type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
 
 export type TransformMethod<T extends Datum> = {
-  transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value>;
+  transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value> | null | undefined;
+  label?: string;
 };
 
 function isTransform<T extends Datum>(value: ColorAccessor<T>): value is TransformMethod<T> {
@@ -174,32 +159,15 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // type is provided (e.g., Array), then the returned array will strictly be of
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
-export function arrayify(data: undefined, type: ArrayType | undefined): undefined;
-export function arrayify(data: null, type: ArrayType | undefined): null;
-export function arrayify(data: TypedArray): TypedArray;
-export function arrayify(data: TypedArray, type: ArrayConstructor): number[];
-export function arrayify(data: TypedArray, type: TypedArrayConstructor): TypedArray;
-export function arrayify(
-  data: ValueArray | null | undefined,
-  type: ArrayType | undefined
-): ValueArray | TypedArray | undefined;
-export function arrayify<T extends Datum>(data: Data<T>): DataArray<T>;
-export function arrayify<T extends Datum>(data: Data<T>, type: ArrayConstructor): DataArray<T> | TypedArray;
-export function arrayify<T extends Datum>(data: Data<T>, type: TypedArrayConstructor): TypedArray;
-export function arrayify<T extends Datum>(data: Data<T>, type?: ArrayType): ValueArray | TypedArray;
-export function arrayify<T extends Datum>(data: Data<T> | null | undefined): ValueArray | TypedArray | null | undefined;
+export function arrayify<T extends Datum>(d: Data<T>): DataArray<T>;
 export function arrayify<T extends Datum>(
-  data: Data<T> | ValueArray | null | undefined,
-  type: ArrayConstructor
-): ValueArray | null | undefined;
-export function arrayify<T extends Datum>(
-  data: Data<T> | ValueArray | null | undefined,
-  type: TypedArrayConstructor
-): TypedArray | null | undefined;
+  d: Data<T> | null | undefined,
+  t?: ArrayType
+): DataArray<T> | null | undefined;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
   type?: ArrayType
-): TypedArray | Array<T> | null | undefined {
+): DataArray<T> | null | undefined {
   return data == null
     ? data
     : type === undefined
@@ -215,24 +183,11 @@ export function arrayify<T extends Datum>(
 
 // An optimization of type.from(values, f): if the given values are already an
 // instanceof the desired array type, the faster values.map method is used.
-export function map<T extends Datum, V extends Value>(
-  values: Data<T>,
-  f: (d: any, i: number) => V,
-  type: ArrayConstructor
-): V[];
 export function map<T extends Datum>(
-  values: Data<T>,
-  f: (d: any, i: number) => number,
-  type: TypedArrayConstructor
-): TypedArray;
-export function map<T extends Datum>(values: Data<T>, f: AccessorFunction<T>, type: ArrayType | undefined): Value[];
-export function map<T extends Datum>(values: Data<T>, f: AccessorFunction<T>): Value[];
-export function map<T extends Datum>(
-  values: Data<T>,
+  values: Data<T> | ValueArray,
   f: (d: any, i: number) => any,
-  type: ArrayType | undefined
-): Value[];
-export function map<T extends Datum>(values: Data<T>, f: (d: any, i: number) => any, type: ArrayType = Array) {
+  type: ArrayType = Array
+) {
   return values instanceof type ? values.map(f) : (type as ArrayConstructor).from(values as T[], f);
 }
 
@@ -420,13 +375,11 @@ export function maybeValue(value: any) {
 // Coerces the given channel values (if any) to numbers. This is useful when
 // values will be interpolated into other code, such as an SVG transform, and
 // where we don’t wish to allow unexpected behavior for weird input.
-export function numberChannel(
-  source: ValueArray & {label?: string}
-): {transform: (data: ValueArray) => TypedArray; label: string | undefined} | null {
+export function numberChannel<T extends Datum>(source: Accessor<T> | null | undefined): TransformMethod<T> | null {
   return source == null
     ? null
     : {
-        transform: (data: ValueArray) => valueof(data, source, Float64Array),
+        transform: (data: Data<T> | null | undefined) => valueof(data, source, Float64Array),
         label: labelof(source)
       };
 }
