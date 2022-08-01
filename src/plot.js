@@ -1,4 +1,4 @@
-import {bisectLeft, cross, difference, groups, InternMap, interpolate, interpolateNumber, select} from "d3";
+import {bisectLeft, cross, difference, groups, InternMap, interpolate, interpolateNumber, select, sort} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -166,12 +166,12 @@ export function plot(options = {}) {
       const newTimes = [];
       for (let k = 0; k < facets.length; ++k) {
         const j = Math.floor(k / times.length);
-        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
+        const f = sort(facets[k]); // ensures object consistency; todo: key
+        newFacets[j] = newFacets[j] ? newFacets[j].concat(f) : f;
         for (const i of facets[k]) newTimes[i] = times[k % times.length];
       }
       state.facets = newFacets;
       timeMarks.set(mark, newTimes);
-      console.warn(newFacets);
     }
   }
 
@@ -274,7 +274,7 @@ export function plot(options = {}) {
   } else {
     for (const [mark, {channels, values, facets}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
-      const index = channels.time ? [] : facet;
+      const index = timeMarks.has(mark) ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
       if (node != null) {
         svg.appendChild(node);
@@ -336,7 +336,7 @@ export function plot(options = {}) {
           for (const k in values) {
             for (let i = 0; i < n; ++i) {
               const past = values[k][I0[i]], future = values[k][I1[i]];
-              interp[k][Ii[i]] = past == future ? past : interpolate(past, future)(timet);
+              interp[k][Ii[i]] = past == future || typeof past === "string" ? past : interpolate(past, future)(timet);
             }
           }
 
