@@ -6,7 +6,7 @@ import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, valueof, where, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, coerceNumbers} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {inferDomain} from "./scales/quantitative.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -529,17 +529,6 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
 // probably also a way to control whether times are expressed (and coerced) to
 // numbers or dates. And maybe non-linear (log or sqrt) time, too, or should
 // that be controlled with easing?
-function findTimeChannels(stateByMark) {
-  const channels = [];
-  for (const {channels: {time}} of stateByMark.values()) {
-    if (time) {
-      coerceNumbers(time.value); // Note: mutates!
-      channels.push(time);
-    }
-  }
-  return channels;
-}
-
 function aggregateTimes(channels) {
   const times = [];
   for (const {value} of channels) {
