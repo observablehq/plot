@@ -7,7 +7,7 @@ export default async function () {
     marginLeft: 70,
     inset: 10,
     grid: true,
-    facet:{ data: gapminder, y: "continent"},
+    facet: {data: gapminder, y: "continent"},
     x: {
       type: "log",
       transform: d => Math.pow(10, d)

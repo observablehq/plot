@@ -264,6 +264,7 @@ export function plot(options = {}) {
                   mark,
                   node,
                   facet,
+                  dimensions: subdimensions,
                   time: timeMarks.get(mark),
                   interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
                 });
@@ -283,6 +284,7 @@ export function plot(options = {}) {
             mark,
             node,
             facet,
+            dimensions: dimensions,
             time: timeMarks.get(mark),
             interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
           });
@@ -308,7 +310,7 @@ export function plot(options = {}) {
       const time1 = times[i0];
       const timet = (currentTime - time0) / (time1 - time0);
       for (const timeMark of animateMarks) {
-        const {mark, facet, time: T, interp} = timeMark;
+        const {mark, facet, time: T, interp, dimensions} = timeMark;
         interp.time = T.slice();
         const {values} = stateByMark.get(mark);
         let timeNode;
