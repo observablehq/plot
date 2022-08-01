@@ -72,9 +72,22 @@ export function plot(options = {}) {
     }
   }
 
+  // Aggregate and sort time channels.
+  const timeMarks = new Map();
+  for (const mark of marks) {
+    if (mark.timeChannel) {
+      timeMarks.set(mark, valueof(mark.data, mark.timeChannel.time.value));
+    }
+  }
+  const timeChannels = Array.from(timeMarks, ([,times]) => ({value: times}));
+  const timeDomain = inferDomain(timeChannels);
+  const times = aggregateTimes(timeChannels);
+
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+
+    // TODO: augment the facets with time, for time-aware marks
     const markFacets = facetsIndex === undefined ? undefined
       : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
       : mark.facet === "include" ? facetsIndex
@@ -125,12 +138,6 @@ export function plot(options = {}) {
   }
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
-
-  // Aggregate and sort time channels.
-  const timeChannels = findTimeChannels(stateByMark);
-  const timeDomain = inferDomain(timeChannels);
-  const times = aggregateTimes(timeChannels);
-  const timeMarks = [];
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -217,10 +224,7 @@ export function plot(options = {}) {
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
             const node = mark.render(facet, scales, values, subdimensions, context);
-            if (node != null) {
-              this.appendChild(node);
-              if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
-            }
+            if (node != null) this.appendChild(node);
           }
         });
   } else {
@@ -228,14 +232,11 @@ export function plot(options = {}) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const index = channels.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (node != null) {
-        svg.appendChild(node);
-        if (channels.time) timeMarks.push({mark, node, facet, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
-      }
+      if (node != null) svg.appendChild(node);
     }
   }
 
-  if (timeMarks.length) {
+  if (timeMarks.size > 0) {
     // TODO There needs to be an option to avoid interpolation and just play
     // the distinct times, as given, in ascending order, as keyframes. And
     // there needs to be an option to control the delay, duration, iterations,
@@ -244,7 +245,9 @@ export function plot(options = {}) {
     const delay = 0; // TODO configurable; delay initial rendering
     const duration = 5000; // TODO configurable
     const startTime = performance.now() + delay;
-    requestAnimationFrame(function tick() {
+    console.warn(timeMarks);
+
+    if (false) requestAnimationFrame(function tick() {
       const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
       const currentTime = interpolateTime(t);
       const i0 = bisectLeft(times, currentTime);
@@ -353,7 +356,7 @@ export class Mark {
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    if (time != null) channels = {time: {value: time}, ...channels};
+    this.timeChannel = (time != null) ? {time: {value: time}} : null;
     this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
       if (value != null) return true;
       if (optional) return false;
