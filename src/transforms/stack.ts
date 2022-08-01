@@ -52,14 +52,14 @@ export function stackY2<T extends Datum>(stackOptions: MarkOptions<T> = {}, opti
 
 export function maybeStackX<T extends Datum>({x, x1, x2, ...options}: MarkOptions<T> = {}) {
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
-  const [x1b, x2b] = maybeZero(x, x1, x2);
-  return {...options, x1: x1b, x2: x2b};
+  [x1, x2] = maybeZero(x, x1, x2);
+  return {...options, x1: x1, x2: x2};
 }
 
 export function maybeStackY<T extends Datum>({y, y1, y2, ...options}: MarkOptions<T> = {}) {
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
-  const [y1b, y2b] = maybeZero(y, y1, y2);
-  return {...options, y1: y1b, y2: y2b};
+  [y1, y2] = maybeZero(y, y1, y2);
+  return {...options, y1, y2};
 }
 
 // The reverse option is ambiguous: it is both a stack option and a basic

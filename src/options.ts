@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import type {
   ArrayType,
   Data,
@@ -83,10 +81,8 @@ function isTransform<T extends Datum>(value: ColorAccessor<T>): value is Transfo
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 
-// Type: the field accessor might crash if the datum is not a generic object
 export const field = (name: string) => (d: any) => d && (d as Row)[name];
 export const indexOf = (d: Datum, i: index) => i;
-// The below cast to ValueArray is bad but necessary because identity is used as a transform
 export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
 export const zero = () => 0;
 export const one = () => 1;
@@ -95,16 +91,15 @@ export const string = (x: any) => (x == null ? x : `${x}`);
 export const number = (x: any) => (x == null ? x : +x);
 export const boolean = (x: any) => (x == null ? x : !!x);
 
-// Type: the first and second accessors might crash if the datum is not an array
-export const first = (x: Value[] | [Value, any] | null | undefined) => (x ? x[0] : undefined);
-export const second = (x: Value[] | null | undefined) => (x ? x[1] : undefined);
+export const first = (x: Value[] | [Value, any] | null | undefined) => x && x[0];
+export const second = (x: Value[] | null | undefined) => x && x[1];
 export const constant =
   <T extends Value>(x: T) =>
   (): T =>
     x;
 
 /**
- * A perticentile reducer, specified by a string like “p25”
+ * A percentile reducer, specified by a string like “p25”
  */
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
@@ -231,11 +226,12 @@ export function isDomainSort(sort: any): boolean {
 }
 
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
+// TODO: move this function to stack.ts?
 export function maybeZero<T extends Datum>(
   x: Accessor<T> | number | undefined,
   x1: Accessor<T> | number | undefined,
   x2: Accessor<T> | number | undefined,
-  x3: Accessor<T> = identity
+  x3: Accessor<T> = identity // this assumes the Data is numbers
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
@@ -360,8 +356,10 @@ export function mid(x1: GetColumn, x2: GetColumn): {transform(): ValueArray; lab
       const X1 = x1.transform();
       const X2 = x2.transform();
       return isTemporal(X1) || isTemporal(X2)
-        ? map(X1, (_, i) => new Date((+X1[i]! + +X2[i]!) / 2)) // Do we need to handle null or undefined in either of these cases?
-        : map(X1, (_, i) => (+X1[i]! + +X2[i]!) / 2, Float64Array); // e.g. X1[i] == null ? X1[i] : X2[i] == null ? X2[i] : ...
+        ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          map(X1, (_, i) => new Date((+X1[i]! + +X2[i]!) / 2)) // Do we need to handle null or undefined in either of these cases?
+        : // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          map(X1, (_, i) => (+X1[i]! + +X2[i]!) / 2, Float64Array); // e.g. X1[i] == null ? X1[i] : X2[i] == null ? X2[i] : ...
     },
     label: x1.label
   };
