@@ -79,22 +79,49 @@ export function plot(options = {}) {
       timeMarks.set(mark, valueof(mark.data, mark.timeChannel.time.value));
     }
   }
-  const timeChannels = Array.from(timeMarks, ([,times]) => ({value: times}));
+  const timeChannels = Array.from(timeMarks, ([, times]) => ({value: times}));
   const timeDomain = inferDomain(timeChannels);
   const times = aggregateTimes(timeChannels);
+  const timesIndex = new Map(times.map((d,i) => [d,i]));
 
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
 
-    // TODO: augment the facets with time, for time-aware marks
-    const markFacets = facetsIndex === undefined ? undefined
+    let markFacets = facetsIndex === undefined ? undefined
       : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
       : mark.facet === "include" ? facetsIndex
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
-    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+
+    // Split across time facets
+    if (timeMarks.has(mark) && times.length > 1) {
+      const T = timeMarks.get(mark);
+      markFacets = (markFacets || [range(mark.data)]).flatMap(facet => {
+        const keyFrames = Array.from(times, () => []);
+        for (const i of facet) {
+          keyFrames[timesIndex.get(T[i])].push(i);
+        }
+        return keyFrames;
+      });
+    }
+
+    let {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
+
+    // Reassemble across time facets
+    if (timeMarks.has(mark) && times.length > 1) {
+      const newFacets = [];
+      const newTimes = [];
+      for (let k = 0; k < facets.length; ++k) {
+        const j = Math.floor(k / times.length);
+        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
+        for (const i of facets[k]) newTimes[i] = times[k % times.length];
+      }
+      facets = newFacets;
+      timeMarks.set(mark, newTimes);
+    }
+
     stateByMark.set(mark, {data, facets, channels});
   }
 
@@ -143,6 +170,8 @@ export function plot(options = {}) {
   for (const state of stateByMark.values()) {
     state.values = valueObject(state.channels, scales);
   }
+
+  const animateMarks = [];
 
   const {width, height} = dimensions;
 
@@ -224,7 +253,18 @@ export function plot(options = {}) {
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
             const node = mark.render(facet, scales, values, subdimensions, context);
-            if (node != null) this.appendChild(node);
+            if (node != null) {
+              this.appendChild(node);
+              if (timeMarks.has(mark)) {
+                animateMarks.push({
+                  mark,
+                  node,
+                  facet,
+                  time: timeMarks.get(mark),
+                  interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
+                });
+              }
+            }
           }
         });
   } else {
@@ -232,11 +272,22 @@ export function plot(options = {}) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
       const index = channels.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (node != null) svg.appendChild(node);
+      if (node != null) {
+        svg.appendChild(node);
+        if (timeMarks.has(mark)) {
+          animateMarks.push({
+            mark,
+            node,
+            facet,
+            time: timeMarks.get(mark),
+            interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
+          });
+        }
+      }
     }
   }
 
-  if (timeMarks.size > 0) {
+  if (animateMarks.length > 0) {
     // TODO There needs to be an option to avoid interpolation and just play
     // the distinct times, as given, in ascending order, as keyframes. And
     // there needs to be an option to control the delay, duration, iterations,
@@ -245,26 +296,23 @@ export function plot(options = {}) {
     const delay = 0; // TODO configurable; delay initial rendering
     const duration = 5000; // TODO configurable
     const startTime = performance.now() + delay;
-    console.warn(timeMarks);
-
-    if (false) requestAnimationFrame(function tick() {
+    requestAnimationFrame(function tick() {
       const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
       const currentTime = interpolateTime(t);
       const i0 = bisectLeft(times, currentTime);
       const time0 = times[i0 - 1];
       const time1 = times[i0];
       const timet = (currentTime - time0) / (time1 - time0);
-      for (const timeMark of timeMarks) {
-        const {mark, facet, interp} = timeMark;
+      for (const timeMark of animateMarks) {
+        const {mark, facet, time: T, interp} = timeMark;
+        interp.time = T.slice();
         const {values} = stateByMark.get(mark);
-        const {time: T} = values;
         let timeNode;
         if (isFinite(timet)) {
           const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
           const I1 = facet.filter(i => T[i] === time1); // following keyframe
           const n = I0.length; // TODO enter, exit, key
           const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
-
           // TODO This is interpolating the already-scaled values, but we
           // probably want to interpolate in data space instead and then
           // re-apply the scales. I’m not sure what to do for ordinal data,
@@ -278,16 +326,13 @@ export function plot(options = {}) {
           // default with the dot mark) breaks consistent ordering! TODO If
           // the time filter is not “eq” (strict equals) here, then we’ll need
           // to combine the interpolated data with the filtered data.
+          for (let i = 0; i < n; ++i) {
+            interp.time[Ii[i]] = currentTime;
+          }
           for (const k in values) {
-            if (k === "time") {
-              for (let i = 0; i < n; ++i) {
-                interp[k][Ii[i]] = currentTime;
-              }
-            } else {
-              for (let i = 0; i < n; ++i) {
-                const past = values[k][I0[i]], future = values[k][I1[i]];
-                interp[k][Ii[i]] = past == future ? past : interpolate(past, future)(timet);
-              }
+            for (let i = 0; i < n; ++i) {
+              const past = values[k][I0[i]], future = values[k][I1[i]];
+              interp[k][Ii[i]] = past == future ? past : interpolate(past, future)(timet);
             }
           }
 
