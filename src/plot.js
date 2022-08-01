@@ -109,19 +109,6 @@ export function plot(options = {}) {
     let {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
 
-    // Reassemble across time facets
-    if (timeMarks.has(mark) && times.length > 1) {
-      const newFacets = [];
-      const newTimes = [];
-      for (let k = 0; k < facets.length; ++k) {
-        const j = Math.floor(k / times.length);
-        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
-        for (const i of facets[k]) newTimes[i] = times[k % times.length];
-      }
-      facets = newFacets;
-      timeMarks.set(mark, newTimes);
-    }
-
     stateByMark.set(mark, {data, facets, channels});
   }
 
@@ -169,6 +156,23 @@ export function plot(options = {}) {
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
     state.values = valueObject(state.channels, scales);
+  }
+
+  for (const [mark, state] of stateByMark) {
+    // Reassemble across time facets
+    const {facets} = state;
+    if (timeMarks.has(mark) && times.length > 1) {
+      const newFacets = [];
+      const newTimes = [];
+      for (let k = 0; k < facets.length; ++k) {
+        const j = Math.floor(k / times.length);
+        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
+        for (const i of facets[k]) newTimes[i] = times[k % times.length];
+      }
+      state.facets = newFacets;
+      timeMarks.set(mark, newTimes);
+      console.warn(newFacets);
+    }
   }
 
   const animateMarks = [];
