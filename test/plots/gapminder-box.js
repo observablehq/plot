@@ -17,8 +17,7 @@ export default async function () {
         y: "continent",
         stroke: "continent",
         strokeWidth: 0.5,
-        time: "year",
-        timeFilter: "lte"
+        time: "year"
       })
     ]
   });

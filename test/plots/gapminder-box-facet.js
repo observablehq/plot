@@ -17,8 +17,7 @@ export default async function () {
         x: d => Math.log10(d.gdpPercap),
         stroke: "continent",
         strokeWidth: 0.5,
-        time: "year",
-        timeFilter: "lte"
+        time: "year"
       })
     ]
   });
