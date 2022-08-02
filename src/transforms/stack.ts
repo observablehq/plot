@@ -53,7 +53,7 @@ export function stackY2<T extends Datum>(stackOptions: MarkOptions<T> = {}, opti
 export function maybeStackX<T extends Datum>({x, x1, x2, ...options}: MarkOptions<T> = {}) {
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
-  return {...options, x1: x1, x2: x2};
+  return {...options, x1, x2};
 }
 
 export function maybeStackY<T extends Datum>({y, y1, y2, ...options}: MarkOptions<T> = {}) {

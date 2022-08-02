@@ -58,7 +58,7 @@ export function valueof<T extends Datum>(
     : typeof value === "number" || value instanceof Date || typeof value === "boolean"
     ? data && map(data, constant(value), arrayType)
     : value && isTransform(value)
-    ? arrayify(value.transform(data) ?? [], arrayType)
+    ? arrayify(value.transform(data), arrayType)
     : arrayify(value, arrayType); // preserve undefined type
 }
 
@@ -81,9 +81,13 @@ function isTransform<T extends Datum>(value: ColorAccessor<T>): value is Transfo
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 
+// TODO: type this
+// This function serves as default when no accessor is specified
+// It assumes that the Data is already an Iterable of Values.
+export const identity = {transform: (data: any): ValueArray => data};
+
 export const field = (name: string) => (d: any) => d && (d as Row)[name];
 export const indexOf = (d: Datum, i: index) => i;
-export const identity = {transform: <T extends Datum>(data: Data<T> | null | undefined) => data as ValueArray};
 export const zero = () => 0;
 export const one = () => 1;
 export const yes = () => true;
@@ -231,7 +235,7 @@ export function maybeZero<T extends Datum>(
   x: Accessor<T> | number | undefined,
   x1: Accessor<T> | number | undefined,
   x2: Accessor<T> | number | undefined,
-  x3: Accessor<T> = identity // this assumes the Data is numbers
+  x3: Accessor<T> = identity
 ) {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
