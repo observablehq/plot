@@ -7,7 +7,7 @@ import type {
   Scales,
   Selection
 } from "./api.js";
-import type {Datum, index, Series, ValueArray} from "./data.js";
+import type {Datum, index, Series, Value, ValueArray} from "./data.js";
 import type {Accessor} from "./options.js";
 
 import {group, namespaces} from "d3";
@@ -241,7 +241,7 @@ function groupAesthetics({
   return [AL, T, F, FO, S, SO, SW, O, H].filter((c) => c !== undefined) as ValueArray[];
 }
 
-export function groupZ<T extends Datum>(I: Series, Z: ValueArray, z: Accessor<T>) {
+export function groupZ<T extends Datum, U extends Value>(I: Series, Z: ValueArray, z: Accessor<T, U>) {
   const G = group(I, (i) => Z[i]);
   if (z === undefined && G.size > I.length >> 1) {
     warn(
