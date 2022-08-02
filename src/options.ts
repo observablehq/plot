@@ -73,7 +73,7 @@ export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
     ? data && map(data, constant(value), arrayType)
     : value && isTransform(value)
     ? arrayify(value.transform(data), arrayType)
-    : arrayify(value as undefined | null, arrayType); // preserve undefined type
+    : arrayify(value, arrayType); // preserve undefined type
 }
 
 /**
@@ -267,22 +267,16 @@ export function isDomainSort(sort: any): boolean {
 // For marks specified either as [0, x] or [x1, x2], such as areas and bars.
 // TODO: move this function to stack.ts?
 
-export function maybeZero(
-  x: undefined,
-  x1: undefined,
-  x2: undefined,
-  x3?: IdentityTransformMethod
-): [0, IdentityTransformMethod];
-export function maybeZero<T extends Datum>(x: T, x1: undefined, x2: undefined, x3?: IdentityTransformMethod): [0, T];
 export function maybeZero<T extends Datum, U extends Value>(
   x: Accessor<T, U> | number | undefined,
   x1: Accessor<T, U> | number | undefined,
-  x2: IdentityTransformMethod | Accessor<T, U> | number | undefined,
-  x3 = identity // this assumes the Data is numbers
-) {
+  x2: Accessor<T, U> | number | undefined,
+  x3: Accessor<T, U> = identity
+): [Accessor<T, U> | number, Accessor<T, U> | number] {
   if (x1 === undefined && x2 === undefined) {
     // {x} or {}
-    (x1 = 0), (x2 = x === undefined ? x3 : x);
+    x1 = 0;
+    x2 = x === undefined ? x3 : x;
   } else if (x1 === undefined) {
     // {x, x2} or {x2}
     x1 = x === undefined ? 0 : x;

@@ -1,14 +1,6 @@
 import {expectError, expectType} from "tsd";
 import type {Data, Row, Value, ValueArray} from "../../src/data.js";
-import {
-  Accessor,
-  arrayify,
-  ColorAccessor,
-  IdentityTransformMethod,
-  map,
-  maybeZero,
-  TransformMethod
-} from "../../src/options.js";
+import {Accessor, arrayify, ColorAccessor, map, maybeZero, TransformMethod} from "../../src/options.js";
 
 import {
   constant,
@@ -76,16 +68,17 @@ expectType<Value>(field("foo")({key: "value"}));
 // identity
 // _____________________________________________________________________
 
-expectType<number[]>(identity.transform([2, 3, 4]));
-expectType<boolean[]>(identity.transform([true]));
-expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
-expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
-// @ts-expect-error: not supported.
-expectType<Set<string>>(identity.transform(null));
-// @ts-expect-error: has to be array like.
-expectError(identity.transform(true));
-// @ts-expect-error: need to use non-identity accessor here.
-expectError(identity.transform({length: 10}));
+// TODO: delete?
+// expectType<number[]>(identity.transform([2, 3, 4]));
+// expectType<boolean[]>(identity.transform([true]));
+// expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
+// expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
+// // @ts-expect-error: not supported.
+// expectType<Set<string>>(identity.transform(null));
+// // @ts-expect-error: has to be array like.
+// expectError(identity.transform(true));
+// // @ts-expect-error: need to use non-identity accessor here.
+// expectError(identity.transform({length: 10}));
 
 // constant
 // _____________________________________________________________________
@@ -161,8 +154,7 @@ expectType<Float64Array>(map([{one: 2}] as Data<Row>, field("one"), Float64Array
 // maybeZero
 // _____________________________________________________________________
 
-expectType<[0, IdentityTransformMethod]>(maybeZero(undefined, undefined, undefined));
-expectType<[0, 10]>(maybeZero(10, undefined, undefined));
+expectType<[number, number]>(maybeZero<number, number>(10, undefined, undefined));
 expectType<[0, 10]>(maybeZero(undefined, undefined, 10));
 expectType<[0, 10]>(maybeZero(10, undefined, 10));
 expectType<[20, 10]>(maybeZero(10, 20, undefined));
