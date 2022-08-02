@@ -1,23 +1,34 @@
+import type {Dimensions, MarkOptions} from "../api.js";
+type anchorX = "left" | "right" | "middle";
+type anchorY = "top" | "bottom" | "middle";
+type anchorOptions = {anchor: anchorX | anchorY; padding?: number};
+type anchorFunction = (dimensions: Dimensions) => [number, number];
+
 import IntervalTree from "interval-tree-1d";
 import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
 
-const anchorXLeft = ({marginLeft}) => [1, marginLeft];
-const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
-const anchorXMiddle = ({width, marginLeft, marginRight}) => [0, (marginLeft + width - marginRight) / 2];
-const anchorYTop = ({marginTop}) => [1, marginTop];
-const anchorYBottom = ({height, marginBottom}) => [-1, height - marginBottom];
-const anchorYMiddle = ({height, marginTop, marginBottom}) => [0, (marginTop + height - marginBottom) / 2];
+const anchorXLeft: anchorFunction = ({marginLeft}) => [1, marginLeft];
+const anchorXRight: anchorFunction = ({width, marginRight}) => [-1, width - marginRight];
+const anchorXMiddle: anchorFunction = ({width, marginLeft, marginRight}) => [0, (marginLeft + width - marginRight) / 2];
+const anchorYTop: anchorFunction = ({marginTop}) => [1, marginTop];
+const anchorYBottom: anchorFunction = ({height, marginBottom}) => [-1, height - marginBottom];
+const anchorYMiddle: anchorFunction = ({height, marginTop, marginBottom}) => [
+  0,
+  (marginTop + height - marginBottom) / 2
+];
 
-function maybeAnchor(anchor) {
+function maybeAnchor(anchor: anchorOptions["anchor"] | anchorOptions): anchorOptions {
   return typeof anchor === "string" ? {anchor} : anchor;
 }
 
 export function dodgeX(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
-  let {anchor = "left", padding = 1} = maybeAnchor(dodgeOptions);
+  // eslint-disable-next-line prefer-const
+  let {anchor = "left", padding = 1}: {anchor: anchorX | anchorY | anchorFunction; padding: number} =
+    maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "left":
       anchor = anchorXLeft;
@@ -36,6 +47,7 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
 
 export function dodgeY(dodgeOptions = {}, options = {}) {
   if (arguments.length === 1) [dodgeOptions, options] = mergeOptions(dodgeOptions);
+  // eslint-disable-next-line prefer-const
   let {anchor = "bottom", padding = 1} = maybeAnchor(dodgeOptions);
   switch (`${anchor}`.toLowerCase()) {
     case "top":
@@ -134,10 +146,10 @@ function dodge(y, x, anchor, padding, options) {
   });
 }
 
-function compareSymmetric(a, b) {
+function compareSymmetric(a: number, b: number) {
   return Math.abs(a) - Math.abs(b);
 }
 
-function compareAscending(a, b) {
+function compareAscending(a: number, b: number) {
   return a - b;
 }
