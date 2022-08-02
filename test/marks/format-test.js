@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
+import * as assert from "assert";
 
 it("formatMonth(locale, format) does the right thing", () => {
   assert.strictEqual(Plot.formatMonth("en", "long")(0), "January");

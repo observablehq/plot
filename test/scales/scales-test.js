@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
-import assert from "assert";
+import * as assert from "assert";
 import it from "../jsdom.js";
 
 it("Plot throws an error if an ordinal position scale has a huge inferred domain", () => {

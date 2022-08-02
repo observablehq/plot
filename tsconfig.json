@@ -13,5 +13,5 @@
       "@observablehq/plot": ["./src/index.js"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "test/**/*-test.ts"]
 }

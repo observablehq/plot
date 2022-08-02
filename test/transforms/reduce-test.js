@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
+import * as assert from "assert";
 
 it("baked-in reducers reduce as expected", () => {
   const data = [0, 1, 2, 4, 5, 9];

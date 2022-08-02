@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
+import * as assert from "assert";
 
 it("tickX() has the expected defaults", () => {
   const tick = Plot.tickX();

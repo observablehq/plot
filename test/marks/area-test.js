@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import {curveLinear, curveStep} from "d3";
-import assert from "assert";
+import * as assert from "assert";
 
 it("area(data, options) has the expected defaults", () => {
   const area = Plot.area(undefined, {x1: "0", y1: "1"});

@@ -1,5 +1,5 @@
 import {memoize1} from "../../src/memoize.js";
-import assert from "assert";
+import * as assert from "assert";
 
 it("memoize1(compute) returns the cached value with repeated calls", () => {
   let index = 0;

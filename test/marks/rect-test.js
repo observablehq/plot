@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import assert from "assert";
+import * as assert from "assert";
 
 it("rect(data, options) has the expected defaults", () => {
   const rect = Plot.rect(undefined, {x1: "0", y1: "1", x2: "2", y2: "3"});

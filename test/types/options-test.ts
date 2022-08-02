@@ -194,7 +194,6 @@ expectType<undefined>(labelof(undefined));
 expectType<undefined>(labelof(null));
 expectType<string>(labelof({label: "my label"}, "fallback"));
 expectType<string>(labelof({label: "my label"}));
-expectError(() => labelof(1));
 
 // mid
 // _____________________________________________________________________
