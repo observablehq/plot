@@ -329,21 +329,17 @@ export function plot(options = {}) {
           const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
           const keyIndex = new Map(Array.from(I0, (i, j) => [K[i], j]));
           const I1 = sort(facet.filter(i => T[i] === time1), i => keyIndex.get(K[i])); // following keyframe, in the same order
-          const n = I0.length; // TODO enter, exit, key
+          const n = Math.min(I0.length, I1.length); // TODO enter, exit, key
           const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
           // TODO This is interpolating the already-scaled values, but we
           // probably want to interpolate in data space instead and then
           // re-apply the scales. I’m not sure what to do for ordinal data,
           // but interpolating in data space will ensure that the resulting
           // instantaneous visualization is meaningful and valid. TODO If the
-          // data is sparse (not all series have values for all times), or if
-          // the data is inconsistently ordered, then we will need a separate
-          // key channel to align the start and end values for interpolation;
-          // this code currently assumes that the data is complete and the
-          // order is consistent. TODO The sort transform (which happens by
-          // default with the dot mark) breaks consistent ordering! TODO If
-          // the time filter is not “eq” (strict equals) here, then we’ll need
-          // to combine the interpolated data with the filtered data.
+          // data is sparse (not all series have values for all times), then
+          // we will need a separate key channel to align the start and end
+          // values for interpolation; this code currently assumes that the
+          // data is complete.
           for (let i = 0; i < n; ++i) {
             interp.time[Ii[i]] = currentTime;
           }
@@ -353,11 +349,6 @@ export function plot(options = {}) {
               interp[k][Ii[i]] = past == future || typeof past === "string" ? past : interpolate(past, future)(timet);
             }
           }
-
-          // TODO We need to switch to using temporal facets so that the
-          // facets are guaranteed to be in chronological order. (Within a
-          // facet, there’s no guarantee that the index is sorted
-          // chronologically.)
           const ifacet = [...facet.filter(i => T[i] < time1), ...(currentTime < time1) ? Ii : [], ...facet.filter(i => T[i] >= time1)];
           const index = mark.timeFilter(ifacet, interp.time, currentTime);
           timeNode = mark.render(index, scales, interp, dimensions, context);
