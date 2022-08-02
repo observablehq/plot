@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 
 it("image(undefined, {src}) has the expected defaults", () => {
   const image = Plot.image(undefined, {src: "foo"});

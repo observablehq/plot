@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 import it from "../jsdom.js";
 
 it(`Plot.legend({color: {type: "identity"}}) returns undefined`, () => {

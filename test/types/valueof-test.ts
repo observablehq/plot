@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert from "assert";
 import {valueof} from "../../src/options.js";
 
 it("valueof reads arrays", () => {

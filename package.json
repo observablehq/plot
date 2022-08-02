@@ -29,7 +29,7 @@
     "test": "yarn test:typecheck && yarn test:lint && yarn test:mocha",
     "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
-    "test:typecheck": "tsc --noEmit",
+    "test:typecheck": "tsc --noEmit && tsc --noEmit -p test/tsconfig.json",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
     "dev": "vite"

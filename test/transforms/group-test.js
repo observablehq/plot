@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 
 it("Plot.group does not return unspecified options", () => {
   const A = Plot.group({});

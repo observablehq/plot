@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import {range} from "d3";
-import * as assert from "assert";
+import assert from "assert";
 
 function applyTransform(options, data) {
   options.transform(data, [Uint32Array.from(data, (_, i) => i)]);

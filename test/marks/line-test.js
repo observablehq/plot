@@ -1,6 +1,6 @@
 import * as Plot from "@observablehq/plot";
 import {curveLinear, curveStep} from "d3";
-import * as assert from "assert";
+import assert from "assert";
 
 it("line() has the expected defaults", () => {
   const line = Plot.line();

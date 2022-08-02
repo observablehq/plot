@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert from "assert";
 import {arrayify} from "../../src/options.js";
 
 it("arrayify null, undefined", () => {

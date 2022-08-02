@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 
 it("barX() has the expected defaults", () => {
   const bar = Plot.barX();

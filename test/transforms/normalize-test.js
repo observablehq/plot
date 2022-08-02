@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 
 it("Plot.normalize first", () => {
   testNormalize([1, 2, 4, 5], "first", [1, 2, 4, 5]);

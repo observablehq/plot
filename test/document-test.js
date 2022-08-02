@@ -1,5 +1,5 @@
 import * as Plot from "@observablehq/plot";
-import * as assert from "assert";
+import assert from "assert";
 import {JSDOM} from "jsdom";
 
 it("Plot.plot supports the document option", () => {

@@ -1,4 +1,4 @@
-import * as assert from "assert";
+import assert from "assert";
 import {promises as fs} from "fs";
 import * as path from "path";
 import beautify from "js-beautify";
