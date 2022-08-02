@@ -5,7 +5,6 @@ import {Accessor, arrayify, ColorAccessor, map, maybeZero, TransformMethod} from
 import {
   constant,
   field,
-  identity,
   labelof,
   maybeColorChannel,
   maybeKeyword,
@@ -54,9 +53,8 @@ expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
 expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array));
 expectType<string[]>(valueof({length: 10}, (_, i) => `My String #${i}`));
 
-// @ts-expect-error: red is not one of the keys, and valueof doesn't support colors
+// red is not one of the keys, no autocompletion
 expectError(() => valueof([{one: "one", two: "two"}], "red"));
-// @ts-expect-error: red is not one of the keys, and valueof doesn't support colors
 expectType<null>(valueof(null, "red"));
 
 // field
@@ -154,10 +152,10 @@ expectType<Float64Array>(map([{one: 2}] as Data<Row>, field("one"), Float64Array
 // maybeZero
 // _____________________________________________________________________
 
-expectType<[number, number]>(maybeZero<number, number>(10, undefined, undefined));
-expectType<[0, 10]>(maybeZero(undefined, undefined, 10));
-expectType<[0, 10]>(maybeZero(10, undefined, 10));
-expectType<[20, 10]>(maybeZero(10, 20, undefined));
+expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(10, undefined, undefined)); // [0, 10]
+expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(undefined, undefined, 10)); // [0, 10]
+expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(5, undefined, 10)); // [5, 10]
+expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(5, 20, undefined)); // [20, 5]
 
 // maybeTuple
 // _____________________________________________________________________

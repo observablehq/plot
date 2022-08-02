@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "paths": {
-      "@observablehq/plot": ["./src/index.js"]
+      "@observablehq/plot": ["./src/index.js", "./test/types/*-test.ts"]
     }
   },
   "include": ["src/**/*"]

@@ -82,8 +82,8 @@ export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
 export type Accessor<T extends Datum, U extends Value> =
   | FieldNames<T>
   | AccessorFunction<T, U>
-  | TransformMethod
-  | ValueArray;
+  | Iterable<U>
+  | TransformMethod;
 export type AccessorValue<T extends Datum, U extends Value, V extends Accessor<T, U>> = V extends keyof T
   ? T[V]
   : V extends AccessorFunction<T, infer Val>
@@ -183,9 +183,16 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
 export function arrayify<T extends null | undefined>(d: T, type?: ArrayType): T;
+export function arrayify<T extends TypedArray>(d: T, t?: undefined): T;
+export function arrayify<T extends Value>(d: T[], t?: undefined): T[];
+export function arrayify<T extends Value>(d: Iterable<T>, t?: ArrayConstructor): DataArray<T>;
+export function arrayify<T extends TypedArray>(d: TypedArray | Iterable<any>, type: Constructor<T>): T;
+export function arrayify<T extends Value>(
+  d: Iterable<T> | null | undefined,
+  t?: ArrayType
+): DataArray<T> | null | undefined;
 export function arrayify<T extends Datum>(d: T[], type?: ArrayConstructor): T[];
 export function arrayify<T extends Datum, U extends TypedArray>(d: T[], type: Constructor<U>): U;
-export function arrayify<T extends TypedArray>(d: TypedArray, type: Constructor<T>): T;
 export function arrayify<T extends Datum>(d: Data<T>, t?: ArrayType): DataArray<T>;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
@@ -284,7 +291,7 @@ export function maybeZero<T extends Datum, U extends Value>(
     // {x, x1} or {x1}
     x2 = x === undefined ? 0 : x;
   }
-  return [x1, x2];
+  return [x1, x2!];
 }
 
 // For marks that have x and y channels (e.g., cell, dot, line, text).
