@@ -77,17 +77,18 @@ export function plot(options = {}) {
   for (const mark of marks) {
     if (mark.time) {
       const time = valueof(mark.data, mark.time);
+      const domain = sort(new Set(time));
       const tkey = new Map();
       const key = mark.key
         ? valueof(mark.data, mark.key)
         : time.map((t) => (tkey.set(t, tkey.has(t) ? 1 + tkey.get(t) : 0), tkey.get(t)));
-        markTimes.set(mark, {time, key});
+        markTimes.set(mark, {time, domain, key});
     }
   }
   const timeChannels = Array.from(markTimes, ([, {time}]) => ({value: time}));
   const timeDomain = inferDomain(timeChannels);
   const times = aggregateTimes(timeChannels);
-  const timesIndex = new Map(times.map((d,i) => [d,i]));
+  const timesIndex = new Map(times.map((d, i) => [d, i]));
 
   // Initialize the marks’ state.
   for (const mark of marks) {
@@ -170,7 +171,7 @@ export function plot(options = {}) {
       const newFacets = [];
       const newTimes = [];
       const newKeys = [];
-      const {key} = markTimes.get(mark);
+      const {key, domain} = markTimes.get(mark);
       for (let k = 0; k < facets.length; ++k) {
         const j = Math.floor(k / times.length);
         newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
@@ -182,7 +183,8 @@ export function plot(options = {}) {
       state.facets = newFacets;
       markTimes.set(mark, {
         key: newKeys,
-        time: newTimes
+        time: newTimes,
+        domain
       });
     }
   }
@@ -315,13 +317,13 @@ export function plot(options = {}) {
     requestAnimationFrame(function tick() {
       const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
       const currentTime = interpolateTime(t);
-      const i0 = bisectLeft(times, currentTime);
-      const time0 = times[i0 - 1];
-      const time1 = times[i0];
-      const timet = (currentTime - time0) / (time1 - time0);
       for (const timeMark of animateMarks) {
         const {mark, facet, interp, dimensions} = timeMark;
-        const {time: T, key: K} = markTimes.get(mark);
+        const {time: T, domain, key: K} = markTimes.get(mark);
+        const i0 = bisectLeft(domain, currentTime);
+        const time0 = domain[i0 - 1];
+        const time1 = domain[i0];
+        const timet = (currentTime - time0) / (time1 - time0);
         interp.time = T.slice();
         const {values} = stateByMark.get(mark);
         let timeNode;
