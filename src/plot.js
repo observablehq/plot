@@ -73,13 +73,18 @@ export function plot(options = {}) {
   }
 
   // Aggregate and sort time channels.
-  const timeMarks = new Map();
+  const markTimes = new Map();
   for (const mark of marks) {
-    if (mark.timeChannel) {
-      timeMarks.set(mark, valueof(mark.data, mark.timeChannel.time.value));
+    if (mark.time) {
+      const time = valueof(mark.data, mark.time);
+      const tkey = new Map();
+      const key = mark.key
+        ? valueof(mark.data, mark.key)
+        : time.map((t) => (tkey.set(t, tkey.has(t) ? 1 + tkey.get(t) : 0), tkey.get(t)));
+        markTimes.set(mark, {time, key});
     }
   }
-  const timeChannels = Array.from(timeMarks, ([, times]) => ({value: times}));
+  const timeChannels = Array.from(markTimes, ([, {time}]) => ({value: time}));
   const timeDomain = inferDomain(timeChannels);
   const times = aggregateTimes(timeChannels);
   const timesIndex = new Map(times.map((d,i) => [d,i]));
@@ -95,8 +100,8 @@ export function plot(options = {}) {
       : undefined;
 
     // Split across time facets
-    if (timeMarks.has(mark) && times.length > 1) {
-      const T = timeMarks.get(mark);
+    if (mark.time && times.length > 1) {
+      const {time: T} = markTimes.get(mark);
       markFacets = (markFacets || [range(mark.data)]).flatMap(facet => {
         const keyFrames = Array.from(times, () => []);
         for (const i of facet) {
@@ -161,17 +166,24 @@ export function plot(options = {}) {
   for (const [mark, state] of stateByMark) {
     // Reassemble across time facets
     const {facets} = state;
-    if (timeMarks.has(mark) && times.length > 1) {
+    if (mark.time && times.length > 1) {
       const newFacets = [];
       const newTimes = [];
+      const newKeys = [];
+      const {key} = markTimes.get(mark);
       for (let k = 0; k < facets.length; ++k) {
         const j = Math.floor(k / times.length);
-        const f = sort(facets[k]); // ensures object consistency; todo: key
-        newFacets[j] = newFacets[j] ? newFacets[j].concat(f) : f;
-        for (const i of facets[k]) newTimes[i] = times[k % times.length];
+        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
+        for (const i of facets[k]) {
+          newTimes[i] = times[k % times.length];
+          newKeys[i] = key[i]; // TODO: a transform can change keys
+        }
       }
       state.facets = newFacets;
-      timeMarks.set(mark, newTimes);
+      markTimes.set(mark, {
+        key: newKeys,
+        time: newTimes
+      });
     }
   }
 
@@ -259,13 +271,12 @@ export function plot(options = {}) {
             const node = mark.render(facet, scales, values, subdimensions, context);
             if (node != null) {
               this.appendChild(node);
-              if (timeMarks.has(mark)) {
+              if (mark.time) {
                 animateMarks.push({
                   mark,
                   node,
                   facet,
                   dimensions: subdimensions,
-                  time: timeMarks.get(mark),
                   interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
                 });
               }
@@ -275,17 +286,16 @@ export function plot(options = {}) {
   } else {
     for (const [mark, {channels, values, facets}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
-      const index = timeMarks.has(mark) ? [] : facet;
+      const index = mark.time ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
       if (node != null) {
         svg.appendChild(node);
-        if (timeMarks.has(mark)) {
+        if (mark.time) {
           animateMarks.push({
             mark,
             node,
             facet,
-            dimensions: dimensions,
-            time: timeMarks.get(mark),
+            dimensions,
             interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))
           });
         }
@@ -310,13 +320,15 @@ export function plot(options = {}) {
       const time1 = times[i0];
       const timet = (currentTime - time0) / (time1 - time0);
       for (const timeMark of animateMarks) {
-        const {mark, facet, time: T, interp, dimensions} = timeMark;
+        const {mark, facet, interp, dimensions} = timeMark;
+        const {time: T, key: K} = markTimes.get(mark);
         interp.time = T.slice();
         const {values} = stateByMark.get(mark);
         let timeNode;
         if (isFinite(timet)) {
           const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
-          const I1 = facet.filter(i => T[i] === time1); // following keyframe
+          const keyIndex = new Map(Array.from(I0, (i, j) => [K[i], j]));
+          const I1 = sort(facet.filter(i => T[i] === time1), i => keyIndex.get(K[i])); // following keyframe, in the same order
           const n = I0.length; // TODO enter, exit, key
           const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
           // TODO This is interpolating the already-scaled values, but we
@@ -397,7 +409,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, time, timeFilter, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, time, key, timeFilter, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -407,7 +419,8 @@ export class Mark {
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    this.timeChannel = (time != null) ? {time: {value: time}} : null;
+    this.time = time;
+    this.key = key;
     this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
       if (value != null) return true;
       if (optional) return false;
