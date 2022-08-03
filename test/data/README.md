@@ -27,6 +27,9 @@ https://www.bls.gov/
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## category-brands.csv
+TK
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
