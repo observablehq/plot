@@ -1,4 +1,4 @@
-import {bisectLeft, cross, difference, groups, InternMap, interpolate, interpolateNumber, select, sort} from "d3";
+import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, select, sort} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -306,9 +306,7 @@ export function plot(options = {}) {
   }
 
   if (animateMarks.length > 0) {
-    // TODO There needs to be an option to avoid interpolation and just play
-    // the distinct times, as given, in ascending order, as keyframes. And
-    // there needs to be an option to control the delay, duration, iterations,
+    // There needs to be an option to control the delay, duration, iterations,
     // and other timing parameters of the animation.
     const interpolateTime = interpolateNumber(...timeDomain);
     const delay = 0; // TODO configurable; delay initial rendering
@@ -326,13 +324,20 @@ export function plot(options = {}) {
         const timet = (currentTime - time0) / (time1 - time0);
         interp.time = T.slice();
         const {values} = stateByMark.get(mark);
+        if (mark.animation === "fade") {
+          console.warn(facet, values.x);
+          interp.opacity = new Float32Array(values.x.length);
+        }
         let timeNode;
         if (isFinite(timet)) {
           const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
           const keyIndex = new Map(Array.from(I0, (i, j) => [K[i], j]));
           const I1 = sort(facet.filter(i => T[i] === time1), i => keyIndex.get(K[i])); // following keyframe, in the same order
-          const n = Math.min(I0.length, I1.length); // TODO enter, exit, key
-          const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
+          const [n, stride] = mark.animation === "interpolate" ? [Math.min(I0.length, I1.length), 1]
+           : mark.animation === "fade" ? [Math.max(I0.length, I1.length), 2]
+           : [0, 0]; // TODO enter, exit, key
+          const Ii = Uint32Array.from({length: n * stride}).map((_, i) => i + facet.length);
+
           // TODO This is interpolating the already-scaled values, but we
           // probably want to interpolate in data space instead and then
           // re-apply the scales. I’m not sure what to do for ordinal data,
@@ -344,12 +349,28 @@ export function plot(options = {}) {
           // data is complete.
           for (let i = 0; i < n; ++i) {
             interp.time[Ii[i]] = currentTime;
-          }
-          for (const k in values) {
-            for (let i = 0; i < n; ++i) {
-              const past = values[k][I0[i]], future = values[k][I1[i]];
-              interp[k][Ii[i]] = past == future || typeof past === "string" ? past : interpolate(past, future)(timet);
+            if (stride === 2) {
+              interp.opacity[Ii[i]] = easeQuadInOut(timet); // todo: easeQuadInOut
+              interp.opacity[I1[i + n]] = easeQuadInOut(1 - timet);
             }
+          }
+          switch(stride) {
+            case 1:
+              for (const k in values) {
+                for (let i = 0; i < n; ++i) {
+                  const past = values[k][I0[i]], future = values[k][I1[i]];
+                  interp[k][Ii[i]] = (past == future || typeof past === "string") ? past : interpolate(past, future)(timet);
+                }
+              }
+              break;
+            case 2:
+              for (const k in values) {
+                for (let i = 0; i < n; ++i) {
+                  const past = values[k][I0[i]], future = values[k][I1[i]];
+                  interp[k][Ii[i]] = past;
+                  interp[k][Ii[i + n]] = future;
+                }
+              }
           }
           const ifacet = [...facet.filter(i => T[i] < time1), ...(currentTime < time1) ? Ii : [], ...facet.filter(i => T[i] >= time1)];
           const index = mark.timeFilter(ifacet, interp.time, currentTime);
@@ -402,7 +423,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, time, key, timeFilter, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, time, key, timeFilter, animation = "interpolate", dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -414,6 +435,7 @@ export class Mark {
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.time = time;
     this.key = key;
+    this.animation = maybeAnimation(animation);
     this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
       if (value != null) return true;
       if (optional) return false;
@@ -630,4 +652,8 @@ class FacetMap2 extends FacetMap {
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
+}
+
+function maybeAnimation(animation) {
+  return keyword(animation, "animation", ["interpolate", "fade"]);
 }
