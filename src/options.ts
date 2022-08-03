@@ -42,12 +42,12 @@ Plot.valueof is not guaranteed to return a new array. When a transform method is
 
 */
 
-export function valueof<T extends undefined | null>(data: T, v: Accessor<T, any>, t?: ArrayType): T;
-export function valueof<T extends Datum, U extends TypedArray>(
+export function valueof<T extends undefined | null, U extends Value>(data: T, v: Accessor<T, U>, t?: ArrayType): T;
+export function valueof<T extends Datum, U extends Value, V extends TypedArray>(
   data: Data<T>,
-  v: Accessor<T, any> | number | Date | boolean,
-  type: Constructor<U>
-): U;
+  v: Accessor<T, U> | number | Date | boolean,
+  type: Constructor<V>
+): V;
 export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
 export function valueof<T extends Datum, U extends keyof T>(
   data: Data<T>,
@@ -59,7 +59,7 @@ export function valueof<T extends Datum, U extends Value>(
   value: AccessorFunction<T, U>,
   arrayType?: ArrayConstructor
 ): U[];
-export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T, Value>, arrayType?: ArrayType): ValueArray;
+export function valueof<T extends Datum, U extends Value>(data: Data<T>, value: Accessor<T, U>, arrayType?: ArrayType): ValueArray;
 export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
   data: Data<T> | null | undefined,
   value: Accessor<T, U> | number | Date | boolean | null | undefined,

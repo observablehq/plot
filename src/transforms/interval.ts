@@ -28,25 +28,25 @@ export function maybeInterval(interval: Interval | undefined) {
 // The interval may be specified either as x: {value, interval} or as {x,
 // interval}. The former is used, for example, for Plot.rect.
 // @link https://github.com/observablehq/plot/blob/main/README.md#rect
-type IntervalValue<T extends Datum> = {interval?: IntervalObject; value?: Accessor<T>};
-function maybeIntervalValue<T extends Datum>(
-  value: number | Accessor<T> | undefined,
-  {interval}: MarkOptions<T>
-): IntervalValue<T> {
+type IntervalValue<T extends Datum, U extends Value> = {interval?: IntervalObject; value?: Accessor<T, U>};
+function maybeIntervalValue<T extends Datum, U extends Value>(
+  value: number | Accessor<T, U> | undefined,
+  {interval}: MarkOptions<T, U>
+): IntervalValue<T, U> {
   // TODO: value = {...maybeValue(value)};
   const value1 = {...(maybeValue(value) || {})};
   value1.interval = maybeInterval(value1.interval === undefined ? interval : value1.interval);
   return value1;
 }
 
-function maybeIntervalK<T extends Datum>(
+function maybeIntervalK<T extends Datum, U extends Value>(
   k: "x" | "y",
-  maybeInsetK: (options: MarkOptions<T>) => MarkOptions<T>,
-  options: MarkOptions<T>,
+  maybeInsetK: (options: MarkOptions<T, U>) => MarkOptions<T, U>,
+  options: MarkOptions<T, U>,
   trivial?: true
-): MarkOptions<T> {
+): MarkOptions<T, U> {
   const {[k]: v, [`${k}1` as "x1" | "y1"]: v1, [`${k}2` as "x2" | "y2"]: v2} = options;
-  const {value, interval} = maybeIntervalValue<T>(v, options);
+  const {value, interval} = maybeIntervalValue<T, U>(v, options);
   if (value == null || (interval == null && !trivial)) return options;
   const label = labelof(v);
   if (interval == null) {
@@ -76,10 +76,10 @@ function maybeIntervalK<T extends Datum>(
   });
 }
 
-function maybeIntervalMidK<T extends Datum>(
+function maybeIntervalMidK<T extends Datum, U extends Value>(
   k: "x" | "y",
-  maybeInsetK: (options: MarkOptions<T>) => MarkOptions<T>,
-  options: MarkOptions<T>
+  maybeInsetK: (options: MarkOptions<T, U>) => MarkOptions<T, U>,
+  options: MarkOptions<T, U>
 ) {
   const {[k]: v} = options;
   const {value, interval} = maybeIntervalValue(v, options);
@@ -108,26 +108,26 @@ function maybeIntervalMidK<T extends Datum>(
   });
 }
 
-export function maybeTrivialIntervalX<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeTrivialIntervalX<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalK("x", maybeInsetX, options, true);
 }
 
-export function maybeTrivialIntervalY<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeTrivialIntervalY<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalK("y", maybeInsetY, options, true);
 }
 
-export function maybeIntervalX<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeIntervalX<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalK("x", maybeInsetX, options);
 }
 
-export function maybeIntervalY<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeIntervalY<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalK("y", maybeInsetY, options);
 }
 
-export function maybeIntervalMidX<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeIntervalMidX<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalMidK("x", maybeInsetX, options);
 }
 
-export function maybeIntervalMidY<T extends Datum>(options: MarkOptions<T> = {}) {
+export function maybeIntervalMidY<T extends Datum, U extends Value>(options: MarkOptions<T, U> = {}) {
   return maybeIntervalMidK("y", maybeInsetY, options);
 }

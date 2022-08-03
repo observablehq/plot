@@ -1,5 +1,5 @@
 import type {MarkOptions, Selector, SelectorFunction} from "../api.js";
-import type {DataArray, Datum, index, Series, ValueArray} from "../data.js";
+import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
 
 type InstantiatedSelector =
   | ((I: Series, X: ValueArray) => Iterable<index> | Generator<number | undefined, void, unknown>)
@@ -9,7 +9,7 @@ import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
-export function select<T extends Datum>(selector: Selector, options: MarkOptions<T> = {}) {
+export function select<T extends Datum, U extends Value>(selector: Selector, options: MarkOptions<T, U> = {}) {
   // If specified selector is a string or function, it’s a selector without an
   // input channel such as first or last.
   if (typeof selector === "string") {
@@ -47,27 +47,27 @@ function maybeSelector(selector: SelectorFunction): InstantiatedSelector {
   throw new Error(`unknown selector: ${selector}`);
 }
 
-export function selectFirst<T extends Datum>(options: MarkOptions<T>) {
+export function selectFirst<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel(null, selectorFirst, options);
 }
 
-export function selectLast<T extends Datum>(options: MarkOptions<T>) {
+export function selectLast<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel(null, selectorLast, options);
 }
 
-export function selectMinX<T extends Datum>(options: MarkOptions<T>) {
+export function selectMinX<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel("x", selectorMin, options);
 }
 
-export function selectMinY<T extends Datum>(options: MarkOptions<T>) {
+export function selectMinY<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel("y", selectorMin, options);
 }
 
-export function selectMaxX<T extends Datum>(options: MarkOptions<T>) {
+export function selectMaxX<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel("x", selectorMax, options);
 }
 
-export function selectMaxY<T extends Datum>(options: MarkOptions<T>) {
+export function selectMaxY<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return selectChannel("y", selectorMax, options);
 }
 
@@ -87,16 +87,16 @@ function* selectorMax(I: Series, X: ValueArray) {
   yield greatest(I, (i) => X[i]);
 }
 
-function selectChannel<T extends Datum>(
+function selectChannel<T extends Datum, U extends Value>(
   v0: string | null | undefined,
   selector: InstantiatedSelector,
-  options: MarkOptions<T>
+  options: MarkOptions<T, U>
 ) {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   let v: any = v0;
   if (v0 != null) {
-    if ((options[v0 as keyof MarkOptions<T>] as ValueArray) == null) throw new Error(`missing channel: ${v}`);
-    v = options[v0 as keyof MarkOptions<T>];
+    if ((options[v0 as keyof MarkOptions<T, U>] as ValueArray) == null) throw new Error(`missing channel: ${v}`);
+    v = options[v0 as keyof MarkOptions<T, U>];
   }
   const z = maybeZ(options);
   return basic(options, (data: DataArray<T>, facets: Series[]) => {

@@ -38,60 +38,60 @@ import {maybeInsetX, maybeInsetY} from "./inset.js";
 import {maybeInterval} from "./interval.js";
 
 // Group on {z, fill, stroke}, then optionally on y, then bin x.
-export function binX<T extends Datum>(outputs: OutputOptions<T> = {y: "count"}, options: MarkOptions<T> = {}) {
+export function binX<T extends Datum, U extends Value>(outputs: OutputOptions<T, U> = {y: "count"}, options: MarkOptions<T, U> = {}) {
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
 // Group on {z, fill, stroke}, then optionally on x, then bin y.
-export function binY<T extends Datum>(outputs: OutputOptions<T> = {x: "count"}, options: MarkOptions<T> = {}) {
+export function binY<T extends Datum, U extends Value>(outputs: OutputOptions<T, U> = {x: "count"}, options: MarkOptions<T, U> = {}) {
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
 // Group on {z, fill, stroke}, then bin on x and y.
-export function bin<T extends Datum>(outputs: OutputOptions<T> = {fill: "count"}, options: MarkOptions<T> = {}) {
+export function bin<T extends Datum, U extends Value>(outputs: OutputOptions<T, U> = {fill: "count"}, options: MarkOptions<T, U> = {}) {
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));
 }
 
-function maybeDenseInterval<T extends Datum>(
-  bin: (outputs: OutputOptions<T>, options: MarkOptions<T>) => MarkOptions<T>,
+function maybeDenseInterval<T extends Datum, U extends Value>(
+  bin: (outputs: OutputOptions<T, U>, options: MarkOptions<T, U>) => MarkOptions<T, U>,
   k: "x" | "y",
-  options: MarkOptions<T> = {}
+  options: MarkOptions<T, U> = {}
 ) {
   return options?.interval == null
     ? options
     : bin({[k]: options?.reduce === undefined ? reduceFirst : options.reduce, filter: null}, options);
 }
 
-export function maybeDenseIntervalX<T extends Datum>(options: MarkOptions<T>) {
+export function maybeDenseIntervalX<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return maybeDenseInterval(binX, "y", options);
 }
 
-export function maybeDenseIntervalY<T extends Datum>(options: MarkOptions<T>) {
+export function maybeDenseIntervalY<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   return maybeDenseInterval(binY, "x", options);
 }
 
-function binn<T extends Datum>(
-  bx0: BinValue<T> | null, // optionally bin on x (exclusive with gx)
-  by0: BinValue<T> | null, // optionally bin on y (exclusive with gy)
-  gx: number | Accessor<T> | null | undefined, // optionally group on x (exclusive with bx and gy)
-  gy: number | Accessor<T> | null | undefined, // optionally group on y (exclusive with by and gx)
+function binn<T extends Datum, U extends Value>(
+  bx0: BinValue<T, U> | null, // optionally bin on x (exclusive with gx)
+  by0: BinValue<T, U> | null, // optionally bin on y (exclusive with gy)
+  gx: number | Accessor<T, U> | null | undefined, // optionally group on x (exclusive with bx and gy)
+  gy: number | Accessor<T, U> | null | undefined, // optionally group on y (exclusive with by and gx)
   {
     data: reduceData = reduceIdentity,
     filter: filter0 = reduceCount, // return only non-empty bins by default
     sort: sort0,
     reverse,
     ...outputs0 // output channel definitions
-  }: OutputOptions<T> = {},
-  inputs: MarkOptions<T> = {} // input channels and options
-): MarkOptions<T> {
-  const bx = maybeBin<T>(bx0); // TODO change name bx1 is confusing
-  const by = maybeBin<T>(by0);
+  }: OutputOptions<T, U> = {},
+  inputs: MarkOptions<T, U> = {} // input channels and options
+): MarkOptions<T, U> {
+  const bx = maybeBin<T, U>(bx0); // TODO change name bx1 is confusing
+  const by = maybeBin<T, U>(by0);
 
   // Compute the outputs.
   const outputs = maybeOutputs(outputs0, inputs);
@@ -110,7 +110,7 @@ function binn<T extends Datum>(
   const [BY2, setBY2] = maybeColumn(by);
 
   // Produce x or y output channels as appropriate (when grouping).
-  const [k, gk]: [(number | Accessor<T> | null)?, string?] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
+  const [k, gk]: [(number | Accessor<T, U> | null)?, string?] = gx != null ? [gx, "x"] : gy != null ? [gy, "y"] : [];
   const [GK, setGK] = maybeColumn(k);
 
   // Greedily materialize the z, fill, and stroke channels (if channels and not
@@ -205,19 +205,19 @@ function binn<T extends Datum>(
 }
 
 // Allow bin options to be specified as part of outputs; merge them into options.
-function mergeOptions<T extends Datum>(
-  {cumulative, domain, thresholds, interval, ...outputs}: OutputOptions<T>,
-  options: MarkOptions<T>
-): [OutputOptions<T>, MarkOptions<T>] {
+function mergeOptions<T extends Datum, U extends Value>(
+  {cumulative, domain, thresholds, interval, ...outputs}: OutputOptions<T, U>,
+  options: MarkOptions<T, U>
+): [OutputOptions<T, U>, MarkOptions<T, U>] {
   return [outputs, {cumulative, domain, thresholds, interval, ...options}];
 }
 
-function maybeBinValue<T extends Datum>(
-  value0: BinValue<T> | Accessor<T> | number | undefined,
-  {cumulative, domain, thresholds, interval}: MarkOptions<T>,
-  defaultValue?: Accessor<T>
+function maybeBinValue<T extends Datum, U extends Value>(
+  value0: BinValue<T, U> | Accessor<T, U> | number | undefined,
+  {cumulative, domain, thresholds, interval}: MarkOptions<T, U>,
+  defaultValue?: Accessor<T, U>
 ) {
-  const value = (maybeValue(value0) || {}) as BinValue<T>;
+  const value = (maybeValue(value0) || {}) as BinValue<T, U>;
   if (value.domain === undefined) value.domain = domain;
   if (value.cumulative === undefined) value.cumulative = cumulative;
   if (value.thresholds === undefined) value.thresholds = thresholds;
@@ -228,7 +228,7 @@ function maybeBinValue<T extends Datum>(
   return value;
 }
 
-function maybeBinValueTuple<T extends Datum>(options: MarkOptions<T>) {
+function maybeBinValueTuple<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   const {x, y} = options;
   const x1 = maybeBinValue(x, options);
   const y1 = maybeBinValue(y, options);
@@ -240,7 +240,7 @@ type Bin = [{x0: number; x1: number}, Set<index>];
 type BinFilter = [number | undefined, number | undefined, (I: Series) => Series];
 
 /* : ((data: DataArray) => BinFilter[]) | undefined */
-function maybeBin<T extends Datum>(options: BinValue<T> | null) {
+function maybeBin<T extends Datum, U extends Value>(options: BinValue<T, U> | null) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
   const bin = (data: DataArray<T>) => {

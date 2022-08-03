@@ -1,11 +1,11 @@
 import type {MapMethod, MapMethods, MarkOptions} from "../api.js";
-import type {Datum, Series, ValueArray} from "../data.js";
+import type {Datum, Series, Value, ValueArray} from "../data.js";
 
 import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
-export function mapX<T extends Datum>(m: MapMethods, options: MarkOptions<T> = {}) {
+export function mapX<T extends Datum, U extends Value>(m: MapMethods, options: MarkOptions<T, U> = {}) {
   return map(
     Object.fromEntries(
       ["x", "x1", "x2"].filter((key) => options[key as "x" | "x1" | "x2"] != null).map((key) => [key, m])
@@ -14,7 +14,7 @@ export function mapX<T extends Datum>(m: MapMethods, options: MarkOptions<T> = {
   );
 }
 
-export function mapY<T extends Datum>(m: MapMethods, options: MarkOptions<T> = {}) {
+export function mapY<T extends Datum, U extends Value>(m: MapMethods, options: MarkOptions<T, U> = {}) {
   return map(
     Object.fromEntries(
       ["y", "y1", "y2"].filter((key) => options[key as "y" | "y1" | "y2"] != null).map((key) => [key, m])
@@ -23,7 +23,7 @@ export function mapY<T extends Datum>(m: MapMethods, options: MarkOptions<T> = {
   );
 }
 
-export function map<T extends Datum>(outputs: {[key: string]: MapMethods} = {}, options: MarkOptions<T> = {}) {
+export function map<T extends Datum, U extends Value>(outputs: {[key: string]: MapMethods} = {}, options: MarkOptions<T, U> = {}) {
   const z = maybeZ<T>(options);
   const channels = Object.entries(outputs).map(([key, map]) => {
     const input = maybeInput(key, options);

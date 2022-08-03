@@ -44,20 +44,20 @@ function isSymbolObject(value: any) {
   return value && typeof (value as SymbolObject).draw === "function";
 }
 
-export function isSymbol<T extends Datum>(value: MaybeSymbol<T>) {
+export function isSymbol<T extends Datum, U extends Value>(value: MaybeSymbol<T, U>) {
   if (isSymbolObject(value)) return true;
   if (typeof value !== "string") return false;
   return symbols.has(value.toLowerCase());
 }
 
-export function maybeSymbol<T extends Datum>(symbol: MaybeSymbol<T>) {
+export function maybeSymbol<T extends Datum, U extends Value>(symbol: MaybeSymbol<T, U>) {
   if (symbol == null || isSymbolObject(symbol)) return symbol;
   const value = symbols.get(`${symbol}`.toLowerCase());
   if (value) return value;
   throw new Error(`invalid symbol: ${symbol}`);
 }
 
-export function maybeSymbolChannel<T extends Datum>(symbol: MaybeSymbol<T>) {
+export function maybeSymbolChannel<T extends Datum, U extends Value>(symbol: MaybeSymbol<T, U>) {
   if (symbol == null || isSymbolObject(symbol)) return [undefined, symbol];
   if (typeof symbol === "string") {
     const value = symbols.get(`${symbol}`.toLowerCase());

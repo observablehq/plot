@@ -32,11 +32,11 @@ type LayoutOptions = {
 /**
  * Facet options
  */
-type FacetOptions<T extends Datum> = {
+type FacetOptions<T extends Datum, U extends Value> = {
   facet?: {
     data: Data<T>;
-    x?: Accessor<T>;
-    y?: Accessor<T>;
+    x?: Accessor<T, U>;
+    y?: Accessor<T, U>;
     marginTop?: pixels; // the top margin
     marginRight?: pixels; // the right margin
     marginBottom?: pixels; // the bottom margin
@@ -75,9 +75,9 @@ type ScalesOptions = {
 /**
  * An instantiated mark
  */
-export type InstantiatedMark<T extends Datum> = {
+export type InstantiatedMark<T extends Datum, U extends Value> = {
   initialize: (data: Data<T>) => void;
-  z?: Accessor<T>; // copy the user option for error messages
+  z?: Accessor<T, U>; // copy the user option for error messages
   clip?: "frame";
   dx: number;
   dy: number;
@@ -117,8 +117,8 @@ export type InstantiatedMark<T extends Datum> = {
 /**
  * A mark
  */
-type Mark<T extends Datum> = InstantiatedMark<T> | (() => SVGElement | null | undefined) | Mark<T>[];
-type MarksOptions<T extends Datum> = {marks?: Mark<T>[]};
+type Mark<T extends Datum, U extends Value> = InstantiatedMark<T, U> | (() => SVGElement | null | undefined) | Mark<T, U>[];
+type MarksOptions<T extends Datum, U extends Value> = {marks?: Mark<T, U>[]};
 
 /**
  * Other top-level options
@@ -134,9 +134,9 @@ type TopLevelOptions = {
 /**
  * Plot options
  */
-export type PlotOptions<T extends Datum> = LayoutOptions &
-  FacetOptions<T> &
-  MarksOptions<T> &
+export type PlotOptions<T extends Datum, U extends Value> = LayoutOptions &
+  FacetOptions<T, U> &
+  MarksOptions<T, U> &
   PlotStyleOptions &
   ScalesOptions &
   TopLevelOptions;
@@ -156,27 +156,27 @@ export interface Chart extends HTMLElement {
   legend: (scaleName: "color" | "opacity" | "symbol", legendOptions: LegendOptions) => HTMLElement | undefined;
 }
 
-export type MaybeSymbol<T extends Datum> = Accessor<T> | SymbolName | SymbolObject | null | undefined;
+export type MaybeSymbol<T extends Datum, U extends Value> = Accessor<T, U> | SymbolName | SymbolObject | null | undefined;
 
 /**
  * Mark channel options
  */
-export type CommonChannelOptions<T extends Datum> = {
-  x?: Accessor<T> | number; // TODO: OptionsX
-  x1?: Accessor<T> | number;
-  x2?: Accessor<T> | number;
-  y?: Accessor<T> | number; // TODO: OptionsY
-  y1?: Accessor<T> | number;
-  y2?: Accessor<T> | number;
-  z?: Accessor<T>;
-  fill?: ColorAccessor<T> | null;
-  fillOpacity?: Accessor<T> | number | null;
-  r?: Accessor<T>; // TODO: OptionsR
-  stroke?: ColorAccessor<T> | null;
-  strokeOpacity?: Accessor<T> | number | null;
-  strokeWidth?: Accessor<T> | number | null;
-  symbol?: MaybeSymbol<T>;
-  opacity?: Accessor<T> | number | null;
+export type CommonChannelOptions<T extends Datum, U extends Value> = {
+  x?: Accessor<T, U> | number; // TODO: OptionsX
+  x1?: Accessor<T, U> | number;
+  x2?: Accessor<T, U> | number;
+  y?: Accessor<T, U> | number; // TODO: OptionsY
+  y1?: Accessor<T, U> | number;
+  y2?: Accessor<T, U> | number;
+  z?: Accessor<T, U>;
+  fill?: ColorAccessor<T, U> | null;
+  fillOpacity?: Accessor<T, U> | number | null;
+  r?: Accessor<T, U>; // TODO: OptionsR
+  stroke?: ColorAccessor<T, U> | null;
+  strokeOpacity?: Accessor<T, U> | number | null;
+  strokeWidth?: Accessor<T, U> | number | null;
+  symbol?: MaybeSymbol<T, U>;
+  opacity?: Accessor<T, U> | number | null;
 };
 
 /**
@@ -290,13 +290,13 @@ type BasisFunction = (V: ValueArray) => Value;
 /**
  * Other Mark options
  */
-type OtherMarkOptions<T extends Datum> = {
+type OtherMarkOptions<T extends Datum, U extends Value> = {
   // the following are necessarily channels
-  title?: Accessor<T>;
-  href?: Accessor<T>;
-  ariaLabel?: Accessor<T>;
+  title?: Accessor<T, U>;
+  href?: Accessor<T, U>;
+  ariaLabel?: Accessor<T, U>;
   // filter & sort
-  filter?: Accessor<T>;
+  filter?: Accessor<T, U>;
   sort?: SortOption | null;
   reverse?: boolean;
   // include in facet
@@ -306,8 +306,8 @@ type OtherMarkOptions<T extends Datum> = {
   // basis for the normalize transform
   basis?: Basis;
   // transform
-  transform?: TransformOption<T>;
-  initializer?: InitializerOption<T>;
+  transform?: TransformOption<T, U>;
+  initializer?: InitializerOption<T, U>;
 };
 
 /**
@@ -428,8 +428,8 @@ type SortValue = {
 /**
  * Definition for the transform and initializer functions.
  */
-export type TransformFunction<T extends Datum> = (
-  this: InstantiatedMark<T>,
+export type TransformFunction<T extends Datum, U extends Value> = (
+  this: InstantiatedMark<T, U>,
   data: DataArray<T>,
   facets: Series[]
 ) => {data: DataArray<T>; facets: Series[]; channels?: never};
@@ -438,7 +438,7 @@ export type TransformFunction<T extends Datum> = (
  * Plot’s transforms provide a convenient mechanism for transforming data as part of a plot specification.
  * @link https://github.com/observablehq/plot/blob/main/README.md#transforms
  */
-export type TransformOption<T extends Datum> = TransformFunction<T> | null | undefined;
+export type TransformOption<T extends Datum, U extends Value> = TransformFunction<T, U> | null | undefined;
 
 /**
  * Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which
@@ -448,15 +448,15 @@ export type TransformOption<T extends Datum> = TransformFunction<T> | null | und
  * may not, as desired) be passed to scales.
  * @link https://github.com/observablehq/plot/blob/main/README.md#initializers
  */
-export type InitializerFunction<T extends Datum> = (
-  this: InstantiatedMark<T>,
+export type InitializerFunction<T extends Datum, U extends Value> = (
+  this: InstantiatedMark<T, U>,
   data: DataArray<T>,
   facets: Series[],
   channels?: any,
   scales?: any,
   dimensions?: Dimensions
 ) => {data: DataArray<T>; facets: Series[]; channels?: any};
-export type InitializerOption<T extends Datum> = InitializerFunction<T> | TransformOption<T>; // TODO
+export type InitializerOption<T extends Datum, U extends Value> = InitializerFunction<T, U> | TransformOption<T, U>; // TODO
 
 /**
  * The bin transform’s value option
@@ -489,8 +489,8 @@ export type InitializerOption<T extends Datum> = InitializerFunction<T> | Transf
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#bin
  */
-export type BinValue<T extends Datum> = {
-  value?: Accessor<T>;
+export type BinValue<T extends Datum, U extends Value> = {
+  value?: Accessor<T, U>;
   thresholds?: any;
   interval?: number | IntervalObject;
   domain?: number[] | ((V: ValueArray) => ValueArray);
@@ -502,7 +502,7 @@ export type BinValue<T extends Datum> = {
 /**
  * The group transform's output options
  */
-export type OutputOptions<T extends Datum> = Partial<{[P in keyof CommonChannelOptions<T>]: AggregationMethod}> & {
+export type OutputOptions<T extends Datum, U extends Value> = Partial<{[P in keyof CommonChannelOptions<T, U>]: AggregationMethod}> & {
   data?: any; // TODO: this option is not tested in any example, and not documented (https://github.com/observablehq/plot/pull/272)
   title?: AggregationMethod;
   href?: AggregationMethod;
@@ -510,10 +510,10 @@ export type OutputOptions<T extends Datum> = Partial<{[P in keyof CommonChannelO
   sort?: AggregationMethod;
   reverse?: boolean;
   interval?: number | Interval;
-} & BinOptions<T>;
+} & BinOptions<T, U>;
 
-export type Reducer<T extends Datum> = {
-  name?: keyof OutputOptions<T>;
+export type Reducer<T extends Datum, U extends Value> = {
+  name?: keyof OutputOptions<T, U>;
   output: GetColumn;
   initialize: (data: DataArray<T>) => void;
   scope: (scope: Aggregate["scope"], I?: Series) => void;
@@ -659,8 +659,8 @@ export type WindowOptions = {
 /**
  * The bin options can be specified as part of the inputs or of the outputs
  */
-export type BinOptions<T extends Datum> = {
-  value?: Accessor<T>;
+export type BinOptions<T extends Datum, U extends Value> = {
+  value?: Accessor<T, U>;
   cumulative?: boolean;
   domain?: number[];
   thresholds?: number | number[];
@@ -670,14 +670,14 @@ export type BinOptions<T extends Datum> = {
 /**
  * Mark options (as passed by the user or returned by a transform)
  */
-export type MarkOptions<T extends Datum> = CommonChannelOptions<T> &
+export type MarkOptions<T extends Datum, U extends Value> = CommonChannelOptions<T, U> &
   ConstantStyleOptions &
   InsetOptions &
-  BinOptions<T> &
+  BinOptions<T, U> &
   StackOptions &
   WindowOptions &
-  OtherMarkOptions<T>;
-export type LineOptions<T extends Datum> = MarkOptions<T> & MarkerOptions;
+  OtherMarkOptions<T, U>;
+export type LineOptions<T extends Datum, U extends Value> = MarkOptions<T, U> & MarkerOptions;
 // export type RectOptions = MarkOptions & InsetOptions; // TODO: only add inset options where they are meaningful (bars, rects, etc)
 
 /**

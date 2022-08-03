@@ -1,24 +1,24 @@
-import type {Datum} from "../data.js";
+import type {Datum, Value} from "../data.js";
 import type {MarkOptions} from "../api.js";
 
 import {offset} from "../style.js";
 
-export function maybeInsetX<T extends Datum>({
+export function maybeInsetX<T extends Datum, U extends Value>({
   inset,
   insetLeft,
   insetRight,
   ...options
-}: MarkOptions<T> = {}): MarkOptions<T> {
+}: MarkOptions<T, U> = {}): MarkOptions<T, U> {
   [insetLeft, insetRight] = maybeInset(inset, insetLeft, insetRight);
   return {inset, insetLeft, insetRight, ...options};
 }
 
-export function maybeInsetY<T extends Datum>({
+export function maybeInsetY<T extends Datum, U extends Value>({
   inset,
   insetTop,
   insetBottom,
   ...options
-}: MarkOptions<T> = {}): MarkOptions<T> {
+}: MarkOptions<T, U> = {}): MarkOptions<T, U> {
   [insetTop, insetBottom] = maybeInset(inset, insetTop, insetBottom);
   return {inset, insetTop, insetBottom, ...options};
 }

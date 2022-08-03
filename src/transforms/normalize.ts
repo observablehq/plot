@@ -7,13 +7,13 @@ import {defined} from "../defined.js";
 import {percentile, take} from "../options.js";
 import {mapX, mapY} from "./map.js";
 
-export function normalizeX<T extends Datum>(basis: Basis | MarkOptions<T> | undefined, options?: MarkOptions<T>) {
-  if (arguments.length === 1) ({basis, ...options} = basis as MarkOptions<T>);
+export function normalizeX<T extends Datum, U extends Value>(basis: Basis | MarkOptions<T, U> | undefined, options?: MarkOptions<T, U>) {
+  if (arguments.length === 1) ({basis, ...options} = basis as MarkOptions<T, U>);
   return mapX(normalize(basis as Basis), options);
 }
 
-export function normalizeY<T extends Datum>(basis: Basis | MarkOptions<T> | undefined, options?: MarkOptions<T>) {
-  if (arguments.length === 1) ({basis, ...options} = basis as MarkOptions<T>);
+export function normalizeY<T extends Datum, U extends Value>(basis: Basis | MarkOptions<T, U> | undefined, options?: MarkOptions<T, U>) {
+  if (arguments.length === 1) ({basis, ...options} = basis as MarkOptions<T, U>);
   return mapY(normalize(basis as Basis), options);
 }
 

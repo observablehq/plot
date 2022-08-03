@@ -20,8 +20,8 @@ export const offset = typeof window !== "undefined" && window.devicePixelRatio >
 
 let nextClipId = 0;
 
-export function styles<T extends Datum>(
-  mark: InstantiatedMark<T>,
+export function styles<T extends Datum, U extends Value>(
+  mark: InstantiatedMark<T, U>,
   {
     title,
     href,
@@ -44,7 +44,7 @@ export function styles<T extends Datum>(
     paintOrder,
     pointerEvents,
     shapeRendering
-  }: MarkOptions<T>,
+  }: MarkOptions<T, U>,
   {
     ariaLabel: cariaLabel,
     fill: defaultFill = "currentColor",
@@ -251,10 +251,10 @@ export function groupZ<T extends Datum, U extends Value>(I: Series, Z: ValueArra
   return G.values();
 }
 
-export function* groupIndex<T extends Datum>(
+export function* groupIndex<T extends Datum, U extends Value>(
   I: Series,
   position: ValueArray[],
-  {z}: InstantiatedMark<T>,
+  {z}: InstantiatedMark<T, U>,
   channels: ChannelStyles
 ) {
   const {z: Z} = channels; // group channel
@@ -311,9 +311,9 @@ export function maybeClip(clip: boolean | null | undefined) {
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles<T extends Datum>(
+export function applyIndirectStyles<T extends Datum, U extends Value>(
   selection: Selection,
-  mark: InstantiatedMark<T>,
+  mark: InstantiatedMark<T, U>,
   scales: Scales,
   dimensions: Dimensions
 ) {
@@ -349,7 +349,7 @@ export function applyIndirectStyles<T extends Datum>(
   }
 }
 
-export function applyDirectStyles<T extends Datum>(selection: Selection, mark: InstantiatedMark<T>) {
+export function applyDirectStyles<T extends Datum, U extends Value>(selection: Selection, mark: InstantiatedMark<T, U>) {
   applyStyle(selection, "mix-blend-mode", mark.mixBlendMode);
   applyAttr(selection, "opacity", mark.opacity);
 }
@@ -384,9 +384,9 @@ export function applyStyle(
   if (value != null) selection.style(name, value);
 }
 
-export function applyTransform<T extends Datum>(
+export function applyTransform<T extends Datum, U extends Value>(
   selection: Selection,
-  mark: InstantiatedMark<T>,
+  mark: InstantiatedMark<T, U>,
   {x, y}: Scales,
   tx = offset,
   ty = offset
@@ -429,8 +429,8 @@ export function applyInlineStyles(selection: Selection, style: string | CSSStyle
   }
 }
 
-export function applyFrameAnchor<T extends Datum>(
-  {frameAnchor}: InstantiatedMark<T>,
+export function applyFrameAnchor<T extends Datum, U extends Value>(
+  {frameAnchor}: InstantiatedMark<T, U>,
   {width, height, marginTop, marginRight, marginBottom, marginLeft}: Dimensions
 ) {
   return [

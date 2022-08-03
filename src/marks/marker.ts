@@ -3,8 +3,8 @@ import type {Datum, index, Series} from "../data.js";
 
 import {create} from "../context.js";
 
-export function markers<T extends Datum>(
-  mark: InstantiatedMark<T>,
+export function markers<T extends Datum, U extends Value>(
+  mark: InstantiatedMark<T, U>,
   {marker, markerStart = marker, markerMid = marker, markerEnd = marker}: MarkerOptions = {}
 ) {
   mark.markerStart = maybeMarker(markerStart);
@@ -84,17 +84,17 @@ function markerCircleStroke(color: string, document: Context["document"]) {
 
 let nextMarkerId = 0;
 
-export function applyMarkers<T extends Datum>(
+export function applyMarkers<T extends Datum, U extends Value>(
   path: Selection,
-  mark: InstantiatedMark<T>,
+  mark: InstantiatedMark<T, U>,
   {stroke: S}: {stroke?: string[]} = {}
 ) {
   return applyMarkersColor(path, mark, S && ((i: index) => S[i]));
 }
 
-export function applyGroupedMarkers<T extends Datum>(
+export function applyGroupedMarkers<T extends Datum, U extends Value>(
   path: Selection,
-  mark: InstantiatedMark<T>,
+  mark: InstantiatedMark<T, U>,
   {stroke: S}: {stroke?: string[]} = {}
 ) {
   return applyMarkersColor(path, mark, S && (([i]: Series) => S[i]));
@@ -107,9 +107,9 @@ export function applyGroupedMarkers<T extends Datum>(
 type StrokeAttr = (i: index & Series) => string;
 type IriColorMap = Map<string | null | undefined, string | undefined>;
 
-function applyMarkersColor<T extends Datum>(
+function applyMarkersColor<T extends Datum, U extends Value>(
   path: Selection,
-  {markerStart, markerMid, markerEnd, stroke}: InstantiatedMark<T>,
+  {markerStart, markerMid, markerEnd, stroke}: InstantiatedMark<T, U>,
   strokeof: StrokeAttr = () => stroke as string
 ) {
   const iriByMarkerColor = new Map<MarkerFunction, IriColorMap>();

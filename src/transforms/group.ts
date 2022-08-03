@@ -42,35 +42,35 @@ import {
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
-export function groupZ<T extends Datum>(outputs: OutputOptions<T>, options: MarkOptions<T>): MarkOptions<T> {
+export function groupZ<T extends Datum, U extends Value>(outputs: OutputOptions<T, U>, options: MarkOptions<T, U>): MarkOptions<T, U> {
   return groupn(null, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x.
-export function groupX<T extends Datum>(
-  outputs: OutputOptions<T> = {y: "count"},
-  options: MarkOptions<T> = {}
-): MarkOptions<T> {
+export function groupX<T extends Datum, U extends Value>(
+  outputs: OutputOptions<T, U> = {y: "count"},
+  options: MarkOptions<T, U> = {}
+): MarkOptions<T, U> {
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on y.
-export function groupY<T extends Datum>(
-  outputs: OutputOptions<T> = {x: "count"},
-  options: MarkOptions<T> = {}
-): MarkOptions<T> {
+export function groupY<T extends Datum, U extends Value>(
+  outputs: OutputOptions<T, U> = {x: "count"},
+  options: MarkOptions<T, U> = {}
+): MarkOptions<T, U> {
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
 // Group on {z, fill, stroke}, then on x and y.
-export function group<T extends Datum>(
-  outputs: OutputOptions<T> = {fill: "count"},
-  options: MarkOptions<T> = {}
-): MarkOptions<T> {
+export function group<T extends Datum, U extends Value>(
+  outputs: OutputOptions<T, U> = {fill: "count"},
+  options: MarkOptions<T, U> = {}
+): MarkOptions<T, U> {
   let {x, y} = options;
   [x, y] = maybeTuple(x, y);
   if (x == null) throw new Error("missing channel: x");
@@ -78,17 +78,17 @@ export function group<T extends Datum>(
   return groupn(x, y, outputs, options);
 }
 
-function groupn<T extends Datum>(
-  x: number | Accessor<T> | null | undefined, // optionally group on x
-  y: number | Accessor<T> | null | undefined, // optionally group on y
+function groupn<T extends Datum, U extends Value>(
+  x: number | Accessor<T, U> | null | undefined, // optionally group on x
+  y: number | Accessor<T, U> | null | undefined, // optionally group on y
   {
     data: reduceData = reduceIdentity, // TODO: not tested and not documented (https://github.com/observablehq/plot/pull/272)
     filter: filter0,
     sort: sort0,
     reverse,
     ...outputs0 // output channel definitions
-  }: OutputOptions<T> = {},
-  inputs: MarkOptions<T> = {} // input channels and options
+  }: OutputOptions<T, U> = {},
+  inputs: MarkOptions<T, U> = {} // input channels and options
 ) {
   // Compute the outputs.
   const outputs = maybeOutputs(outputs0, inputs);
@@ -131,7 +131,7 @@ function groupn<T extends Datum>(
       const S = valueof(data, vstroke);
       const G = maybeSubgroup(outputs, {z: Z, fill: F, stroke: S});
       const groupFacets = [];
-      const groupData = [];
+      const groupData = [] as any[];
       const GX = X && (setGX!([]) as Value[]); // For .push; TODO: type setColumn?
       const GY = Y && (setGY!([]) as Value[]);
       const GZ = Z && (setGZ!([]) as Value[]);
@@ -173,7 +173,7 @@ function groupn<T extends Datum>(
   };
 }
 
-export function hasOutput<T extends Datum>(outputs: Reducer<T>[], ...names: Array<Reducer<T>["name"]>) {
+export function hasOutput<T extends Datum, U extends Value>(outputs: Reducer<T, U>[], ...names: Array<Reducer<T, U>["name"]>) {
   for (const {name} of outputs) {
     if (names.includes(name)) {
       return true;
@@ -182,17 +182,17 @@ export function hasOutput<T extends Datum>(outputs: Reducer<T>[], ...names: Arra
   return false;
 }
 
-export function maybeOutputs<T extends Datum>(outputs: OutputOptions<T>, inputs: MarkOptions<T>) {
+export function maybeOutputs<T extends Datum, U extends Value>(outputs: OutputOptions<T, U>, inputs: MarkOptions<T, U>) {
   const entries = Object.entries(outputs);
   // Propagate standard mark channels by default.
   if (inputs.title != null && outputs.title === undefined) entries.push(["title", reduceTitle]);
   if (inputs.href != null && outputs.href === undefined) entries.push(["href", reduceFirst]);
   return entries.map(([name, reduce]) => {
     return reduce == null ? {name, initialize() {}, scope() {}, reduce() {}} : maybeOutput(name, reduce, inputs);
-  }) as Reducer<T>[];
+  }) as Reducer<T, U>[];
 }
 
-export function maybeOutput<T extends Datum>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T>) {
+export function maybeOutput<T extends Datum, U extends Value>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T, U>) {
   const evaluator = maybeEvaluator(name, reduce, inputs);
   const [output, setOutput] = column(evaluator.label);
   let O;
@@ -209,10 +209,10 @@ export function maybeOutput<T extends Datum>(name: string, reduce: AggregationMe
     reduce(I: Series, extent: BinExtent) {
       O.push(evaluator.reduce(I, extent));
     }
-  } as Reducer<T>;
+  } as Reducer<T, U>;
 }
 
-export function maybeEvaluator<T extends Datum>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T>) {
+export function maybeEvaluator<T extends Datum, U extends Value>(name: string, reduce: AggregationMethod, inputs: MarkOptions<T, U>) {
   const input = maybeInput(name, inputs);
   const reducer = maybeReduce(reduce, input);
   let V: ValueArray, context: Value | null | undefined;
@@ -244,7 +244,7 @@ export function maybeGroup(I: Series, X: ValueArray | null | undefined): [Value,
     : [[, I]];
 }
 
-export function maybeReduce<T extends Datum>(reduce: AggregationMethod, value: Accessor<T>): Aggregate {
+export function maybeReduce<T extends Datum, U extends Value>(reduce: AggregationMethod, value: Accessor<T, U>): Aggregate {
   if (reduce && typeof reduce.reduce === "function") return reduce as Aggregate;
   if (typeof reduce === "function") return reduceFunction(reduce);
   if (/^p\d{2}$/i.test(reduce as string)) return reduceAccessor(percentile(reduce as pXX) as ArrayReducer);
@@ -297,8 +297,8 @@ export function maybeReduce<T extends Datum>(reduce: AggregationMethod, value: A
   throw new Error(`invalid reduce: ${reduce}`);
 }
 
-export function maybeSubgroup<T extends Datum>(
-  outputs: Reducer<T>[],
+export function maybeSubgroup<T extends Datum, U extends Value>(
+  outputs: Reducer<T, U>[],
   inputs: {
     z?: ValueArray | null;
     fill?: ValueArray | null;
@@ -313,9 +313,9 @@ export function maybeSubgroup<T extends Datum>(
   }
 }
 
-export function maybeSort<T extends Datum>(
+export function maybeSort<T extends Datum, U extends Value>(
   facets: Series[],
-  sort: Reducer<T> | undefined,
+  sort: Reducer<T, U> | undefined,
   reverse: boolean | undefined
 ) {
   if (sort) {
@@ -405,7 +405,7 @@ const reduceDistinct: Aggregate = {
 
 const reduceSum = reduceAccessor(sum);
 
-function reduceProportion<T extends Datum>(value: Accessor<T>, scope: Aggregate["scope"]): Aggregate {
+function reduceProportion<T extends Datum, U extends Value>(value: Accessor<T, U>, scope: Aggregate["scope"]): Aggregate {
   return value == null
     ? {scope, label: "Frequency", reduce: (I: Series, V: ValueArray, basis = 1) => I.length / (basis as number)}
     : {scope, reduce: (I: Series, V: ValueArray, basis = 1) => sum(I, (i) => V[i] as number) / (basis as number)};

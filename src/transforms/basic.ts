@@ -10,7 +10,7 @@ import type {
   TransformFunction,
   TransformOption
 } from "../api.js";
-import type {DataArray, Datum, index, Series, ValueArray} from "../data.js";
+import type {DataArray, Datum, index, Series, Value, ValueArray} from "../data.js";
 
 import type {Accessor} from "../options.js";
 
@@ -29,53 +29,53 @@ Given an *options* object that may specify some basic transforms (*filter*, *sor
 @link https://github.com/observablehq/plot/blob/main/README.md#plottransformoptions-transform
 
  */
-export function basic<T extends Datum>(
-  {filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options}: MarkOptions<T> = {},
-  t2: TransformOption<T>
-): MarkOptions<T> {
+export function basic<T extends Datum, U extends Value>(
+  {filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...options}: MarkOptions<T, U> = {},
+  t2: TransformOption<T, U>
+): MarkOptions<T, U> {
   if (t1 === undefined) {
     // explicit transform overrides filter, sort, and reverse
-    if (f1 != null) t1 = filterTransform<T>(f1);
-    if (s1 != null && !isDomainSort(s1)) t1 = composeTransform<T>(t1, sortTransform<T>(s1) as TransformOption<T>);
-    if (r1) t1 = composeTransform<T>(t1, reverseTransform);
+    if (f1 != null) t1 = filterTransform<T, U>(f1);
+    if (s1 != null && !isDomainSort(s1)) t1 = composeTransform<T, U>(t1, sortTransform<T, U>(s1) as TransformOption<T, U>);
+    if (r1) t1 = composeTransform<T, U>(t1, reverseTransform);
   }
   if (t2 != null && i1 != null) throw new Error("transforms cannot be applied after initializers");
 
   return {
     ...options,
     ...((s1 === null || isDomainSort(s1)) && {sort: s1}),
-    transform: composeTransform<T>(t1, t2)
+    transform: composeTransform<T, U>(t1, t2)
   };
 }
 
 // If both i1 and i2 are defined, returns a composite initializer that first
 // applies i1 and then applies i2.
-export function initializer<T extends Datum>(
-  {filter: f1, sort: s1, reverse: r1, initializer: i1, ...options}: MarkOptions<T> = {},
-  i2: InitializerOption<T>
-): MarkOptions<T> {
+export function initializer<T extends Datum, U extends Value>(
+  {filter: f1, sort: s1, reverse: r1, initializer: i1, ...options}: MarkOptions<T, U> = {},
+  i2: InitializerOption<T, U>
+): MarkOptions<T, U> {
   if (i1 === undefined) {
     // explicit initializer overrides filter, sort, and reverse
     if (f1 != null) i1 = filterTransform(f1);
-    if (s1 != null && !isDomainSort(s1)) i1 = composeInitializer<T>(i1, sortTransform<T>(s1) as TransformOption<T>);
-    if (r1) i1 = composeInitializer<T>(i1, reverseTransform);
+    if (s1 != null && !isDomainSort(s1)) i1 = composeInitializer<T, U>(i1, sortTransform<T, U>(s1) as TransformOption<T, U>);
+    if (r1) i1 = composeInitializer<T, U>(i1, reverseTransform);
   }
   return {
     ...options,
-    initializer: composeInitializer<T>(i1, i2)
+    initializer: composeInitializer<T, U>(i1, i2)
   };
 }
 
-function composeTransform<T extends Datum>(t1: TransformOption<T>, t2: TransformOption<T>): TransformOption<T> {
+function composeTransform<T extends Datum, U extends Value>(t1: TransformOption<T, U>, t2: TransformOption<T, U>): TransformOption<T, U> {
   if (t1 == null) return t2 === null ? undefined : t2;
   if (t2 == null) return t1 === null ? undefined : t1;
-  return function (this: InstantiatedMark<T>, data: DataArray<T>, facets: Series[]) {
+  return function (this: InstantiatedMark<T, U>, data: DataArray<T>, facets: Series[]) {
     ({data, facets} = t1.call(this, data, facets));
     return t2.call(this, arrayify(data), facets); // I believe this arrayify to be useless
   };
 }
 
-function composeInitializer<T extends Datum>(i1: InitializerOption<T>, i2: InitializerOption<T>): InitializerOption<T> {
+function composeInitializer<T extends Datum, U extends Value>(i1: InitializerOption<T, U>, i2: InitializerOption<T, U>): InitializerOption<T, U> {
   if (i1 == null) return i2 === null ? undefined : i2;
   if (i2 == null) return i1 === null ? undefined : i1;
   return function (data, facets, channels, scales: Scales, dimensions?: Dimensions) {
@@ -88,8 +88,8 @@ function composeInitializer<T extends Datum>(i1: InitializerOption<T>, i2: Initi
   };
 }
 
-function apply<T extends Datum>(options: MarkOptions<T>, t: TransformOption<T> | InitializerOption<T>): MarkOptions<T> {
-  return options.initializer != null ? initializer(options, t) : basic(options, t as TransformOption<T>);
+function apply<T extends Datum, U extends Value>(options: MarkOptions<T, U>, t: TransformOption<T, U> | InitializerOption<T, U>): MarkOptions<T, U> {
+  return options.initializer != null ? initializer(options, t) : basic(options, t as TransformOption<T, U>);
 }
 
 /**
@@ -99,11 +99,11 @@ function apply<T extends Datum>(options: MarkOptions<T>, t: TransformOption<T> |
  * (which receives the _datum_ and _index_), or as a channel value definition such as a field
  * name; truthy values are retained.
  */
-export function filter<T extends Datum>(value: Accessor<T>, options: MarkOptions<T>) {
+export function filter<T extends Datum, U extends Value>(value: Accessor<T, U>, options: MarkOptions<T, U>) {
   return apply(options, filterTransform(value));
 }
 
-function filterTransform<T extends Datum>(value: Accessor<T>): TransformFunction<T> {
+function filterTransform<T extends Datum, U extends Value>(value: Accessor<T, U>): TransformFunction<T, U> {
   return (data: DataArray<T>, facets: Series[]) => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const V = valueof(data, value)!;
@@ -111,8 +111,8 @@ function filterTransform<T extends Datum>(value: Accessor<T>): TransformFunction
   };
 }
 
-export function reverse<T extends Datum>(options: MarkOptions<T>): MarkOptions<T> {
-  return {...apply<T>(options, reverseTransform), sort: null};
+export function reverse<T extends Datum, U extends Value>(options: MarkOptions<T, U>): MarkOptions<T, U> {
+  return {...apply<T, U>(options, reverseTransform), sort: null};
 }
 
 function reverseTransform<T extends Datum>(data: DataArray<T>, facets: Series[]) {
@@ -125,28 +125,28 @@ function reverseTransform<T extends Datum>(data: DataArray<T>, facets: Series[])
  * otherwise, Math.random is used.
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotshuffleoptions
  */
-export function shuffle<T extends Datum>({seed, ...options}: ShuffleOptions & MarkOptions<T> = {}): MarkOptions<T> {
+export function shuffle<T extends Datum, U extends Value>({seed, ...options}: ShuffleOptions & MarkOptions<T, U> = {}): MarkOptions<T, U> {
   return {
-    ...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed)) as TransformOption<T>),
+    ...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed)) as TransformOption<T, U>),
     sort: null
   };
 }
 
-export function sort<T extends Datum>(value: SortOption, options: MarkOptions<T>) {
+export function sort<T extends Datum, U extends Value>(value: SortOption, options: MarkOptions<T, U>) {
   return {
     ...(isOptions(value) && value.channel !== undefined
-      ? initializer(options, sortTransform<T>(value) as InitializerOption<T>)
-      : apply(options, sortTransform<T>(value) as TransformOption<T>)),
+      ? initializer(options, sortTransform<T, U>(value) as InitializerOption<T, U>)
+      : apply(options, sortTransform<T, U>(value) as TransformOption<T, U>)),
     sort: null
   };
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function sortTransform<T extends Datum>(value: SortOption): TransformOption<T> | {} {
+function sortTransform<T extends Datum, U extends Value>(value: SortOption): TransformOption<T, U> | {} {
   return typeof value === "function" && value.length !== 1 ? sortData(value as Comparator) : sortValue(value);
 }
 
-function sortData<T extends Datum>(compare: Comparator): TransformOption<T> {
+function sortData<T extends Datum, U extends Value>(compare: Comparator): TransformOption<T, U> {
   return (data: DataArray<T>, facets: Series[]) => {
     const compareData = (i: index, j: index) => compare(data[i], data[j]);
     return {data, facets: facets.map((I) => I.slice().sort(compareData))};
@@ -158,7 +158,7 @@ type InstantiatedChannel = {value: ValueArray};
 type InstantiatedChannels = Record<ValueChannels, InstantiatedChannel>;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-function sortValue<T extends Datum>(v: SortOption): TransformOption<T> | InitializerOption<T> | {} {
+function sortValue<T extends Datum, U extends Value>(v: SortOption): TransformOption<T, U> | InitializerOption<T, U> | {} {
   let {
     channel, // eslint-disable-line prefer-const
     value, // eslint-disable-line prefer-const

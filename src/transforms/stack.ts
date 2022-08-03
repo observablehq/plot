@@ -8,55 +8,55 @@ import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
-export function stackX<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+export function stackX<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stack<T>(y, x, "x", stackOptions, rest);
+  const [transform, Y, x1, x2] = stack<T, U>(y, x, "x", stackOptions, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
+export function stackX1<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T, U>(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
+export function stackX2<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T, U>(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, , X] = stack(y, x, "x", stackOptions, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
+export function stackY<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T, U>(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T>(stackOptions);
+export function stackY1<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions<T, U>(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2<T extends Datum>(stackOptions: MarkOptions<T> = {}, options: MarkOptions<T> = {}) {
+export function stackY2<T extends Datum, U extends Value>(stackOptions: MarkOptions<T, U> = {}, options: MarkOptions<T, U> = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, , Y] = stack(x, y, "y", stackOptions, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function maybeStackX<T extends Datum>({x, x1, x2, ...options}: MarkOptions<T> = {}) {
+export function maybeStackX<T extends Datum, U extends Value>({x, x1, x2, ...options}: MarkOptions<T, U> = {}) {
   if (x1 === undefined && x2 === undefined) return stackX({x, ...options});
   [x1, x2] = maybeZero(x, x1, x2);
   return {...options, x1, x2};
 }
 
-export function maybeStackY<T extends Datum>({y, y1, y2, ...options}: MarkOptions<T> = {}) {
+export function maybeStackY<T extends Datum, U extends Value>({y, y1, y2, ...options}: MarkOptions<T, U> = {}) {
   if (y1 === undefined && y2 === undefined) return stackY({y, ...options});
   [y1, y2] = maybeZero(y, y1, y2);
   return {...options, y1, y2};
@@ -65,18 +65,18 @@ export function maybeStackY<T extends Datum>({y, y1, y2, ...options}: MarkOption
 // The reverse option is ambiguous: it is both a stack option and a basic
 // transform. If only one options object is specified, we interpret it as a
 // stack option, and therefore must remove it from the propagated options.
-function mergeOptions<T extends Datum>(options: MarkOptions<T>) {
+function mergeOptions<T extends Datum, U extends Value>(options: MarkOptions<T, U>) {
   const {offset, order, reverse, ...rest} = options;
   return [{offset, order, reverse}, rest];
 }
 
-function stack<T extends Datum>(
-  x: Accessor<T> | number | undefined,
-  y: Accessor<T> | number = one,
+function stack<T extends Datum, U extends Value>(
+  x: Accessor<T, U> | number | undefined,
+  y: Accessor<T, number> | Accessor<T, U> | number = one,
   ky: string,
-  {offset: offset0, order: order0, reverse}: MarkOptions<T>,
-  options: MarkOptions<T>
-): [MarkOptions<T>, GetColumn | null | undefined, GetColumn, GetColumn] {
+  {offset: offset0, order: order0, reverse}: MarkOptions<T, U>,
+  options: MarkOptions<T, U>
+): [MarkOptions<T, U>, GetColumn | null | undefined, GetColumn, GetColumn] {
   if (y === null) throw new Error(`null channel ${ky}`);
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
@@ -229,7 +229,7 @@ function offsetCenterFacets(facetstacks: Series[][], Y1: Float64Array, Y2: Float
   }
 }
 
-function maybeOrder<T extends Datum>(
+function maybeOrder<T extends Datum, U extends Value>(
   order: StackOrder | undefined,
   offset: OffsetFunction | undefined,
   ky: string

@@ -8,24 +8,24 @@ import {take} from "../options.js";
 import {warn} from "../warnings.js";
 import {mapX, mapY} from "./map.js";
 
-export function windowX<T extends Datum>(
-  windowOptions: number | MarkOptions<T> = {},
-  options: number | MarkOptions<T>
+export function windowX<T extends Datum, U extends Value>(
+  windowOptions: number | MarkOptions<T, U> = {},
+  options: number | MarkOptions<T, U>
 ) {
   if (arguments.length === 1) options = windowOptions;
-  return mapX(window(windowOptions), options as MarkOptions<T>);
+  return mapX(window(windowOptions), options as MarkOptions<T, U>);
 }
 
-export function windowY<T extends Datum>(
-  windowOptions: number | MarkOptions<T> = {},
-  options: number | MarkOptions<T>
+export function windowY<T extends Datum, U extends Value>(
+  windowOptions: number | MarkOptions<T, U> = {},
+  options: number | MarkOptions<T, U>
 ) {
   if (arguments.length === 1) options = windowOptions;
-  return mapY(window(windowOptions), options as MarkOptions<T>);
+  return mapY(window(windowOptions), options as MarkOptions<T, U>);
 }
 
-export function window<T extends Datum>(options: number | MarkOptions<T> = {}) {
-  if (typeof options === "number") options = {k: options} as MarkOptions<T>;
+export function window<T extends Datum, U extends Value>(options: number | MarkOptions<T, U> = {}) {
+  if (typeof options === "number") options = {k: options} as MarkOptions<T, U>;
   // eslint-disable-next-line prefer-const
   let {k, reduce, shift, anchor, strict} = options;
   if (anchor === undefined && shift !== undefined) {
