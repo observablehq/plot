@@ -1,6 +1,6 @@
 import {expectError, expectType} from "tsd";
 import type {Data, Row, Value, ValueArray} from "../../src/data.js";
-import {Accessor, arrayify, ColorAccessor, map, maybeZero, TransformMethod} from "../../src/options.js";
+import {Accessor, arrayify, ColorAccessor, map, TransformMethod} from "../../src/options.js";
 
 import {
   constant,
@@ -16,8 +16,9 @@ import {
 // valueof
 // _____________________________________________________________________
 
-const numberTransform: TransformMethod<number[], number> = {
-  transform: (data) => (data ? Array.from(data, (d) => d + 1) : [])
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const numberTransform: TransformMethod = {
+  transform: (data) => (data ? Array.from(data, (d) => (d ? +d + 1 : 0)) : [])
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -53,9 +54,10 @@ expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
 expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array));
 expectType<string[]>(valueof({length: 10}, (_, i) => `My String #${i}`));
 
-// red is not one of the keys, no autocompletion
-expectError(() => valueof([{one: "one", two: "two"}], "red"));
-expectType<null>(valueof(null, "red"));
+// @ts-expect-error: red is not one of the keys
+valueof([{one: "one", two: "two"}], "red");
+// @ts-expect-error: red is not one of the keys
+valueof(null, "red");
 
 // field
 // _____________________________________________________________________
@@ -65,18 +67,6 @@ expectType<Value>(field("foo")({key: "value"}));
 
 // identity
 // _____________________________________________________________________
-
-// TODO: delete?
-// expectType<number[]>(identity.transform([2, 3, 4]));
-// expectType<boolean[]>(identity.transform([true]));
-// expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
-// expectType<Set<string>>(identity.transform(new Set(["one", "two"])));
-// // @ts-expect-error: not supported.
-// expectType<Set<string>>(identity.transform(null));
-// // @ts-expect-error: has to be array like.
-// expectError(identity.transform(true));
-// // @ts-expect-error: need to use non-identity accessor here.
-// expectError(identity.transform({length: 10}));
 
 // constant
 // _____________________________________________________________________
@@ -98,9 +88,9 @@ expectError(percentile("p99")([1, 2, 3, 4, 5]));
 // maybeColorChannel
 // _____________________________________________________________________
 
-expectType<[Accessor<string, Value> | undefined, string | null | undefined]>(maybeColorChannel("red"));
+expectType<[Accessor<string> | undefined, string | null | undefined]>(maybeColorChannel("red"));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-expectType<[ColorAccessor<any, number> | undefined, string | null | undefined]>(maybeColorChannel(1));
+expectType<[ColorAccessor<any> | undefined, string | null | undefined]>(maybeColorChannel(1));
 
 // maybeNumberChannel
 // _____________________________________________________________________
@@ -151,11 +141,6 @@ expectType<Float64Array>(map([{one: 2}] as Data<Row>, field("one"), Float64Array
 
 // maybeZero
 // _____________________________________________________________________
-
-expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(10, undefined, undefined)); // [0, 10]
-expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(undefined, undefined, 10)); // [0, 10]
-expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(5, undefined, 10)); // [5, 10]
-expectType<[number | Accessor<number, number>, number | Accessor<number, number>]>(maybeZero(5, 20, undefined)); // [20, 5]
 
 // maybeTuple
 // _____________________________________________________________________
