@@ -52,12 +52,12 @@ export function valueof<T extends Datum>(
   arrayType?: ArrayType
 ): ValueArray | null | undefined {
   return typeof value === "string"
-    ? data && map(data, field(value), arrayType)
+    ? data && map(data, field(value), arrayType) // JS change: avoid crash on valueof(null, "x")
     : typeof value === "function"
-    ? data && map(data, value, arrayType)
+    ? data && map(data, value, arrayType) // JS change: avoid crash on valueof(null, () => {})
     : typeof value === "number" || value instanceof Date || typeof value === "boolean"
-    ? data && map(data, constant(value), arrayType)
-    : value && isTransform(value)
+    ? data && map(data, constant(value), arrayType) // JS change: avoid crash on valueof(null, () => 1)
+    : value && isTransform(value) // JS change: isTransform is used to assert that value is a TransformMethod
     ? arrayify(value.transform(data), arrayType)
     : arrayify(value, arrayType); // preserve undefined type
 }
@@ -86,7 +86,7 @@ export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 // It assumes that the Data is already an Iterable of Values.
 export const identity = {transform: (data: any): ValueArray => data};
 
-export const field = (name: string) => (d: any) => d && (d as Row)[name];
+export const field = (name: string) => (d: any) => d && (d as Row)[name]; // JS change: avoids crash on field(name)(null)
 export const indexOf = (d: Datum, i: index) => i;
 export const zero = () => 0;
 export const one = () => 1;
@@ -95,8 +95,8 @@ export const string = (x: any) => (x == null ? x : `${x}`);
 export const number = (x: any) => (x == null ? x : +x);
 export const boolean = (x: any) => (x == null ? x : !!x);
 
-export const first = (x: Value[] | [Value, any] | null | undefined) => x && x[0];
-export const second = (x: Value[] | null | undefined) => x && x[1];
+export const first = (x: Value[] | [Value, any] | null | undefined) => (x ? x[0] : undefined);
+export const second = (x: Value[] | null | undefined) => (x ? x[1] : undefined);
 export const constant =
   <T extends Value>(x: T) =>
   (): T =>
@@ -170,14 +170,12 @@ export function arrayify<T extends Datum>(
   return data == null
     ? data
     : type === undefined
-    ? data instanceof Array
-      ? data
-      : data instanceof TypedArray
-      ? (data as TypedArray)
-      : Array.from(data as T[])
+    ? data instanceof Array || data instanceof TypedArray
+      ? (data as any[])
+      : Array.from(data as any[])
     : data instanceof type
     ? data
-    : (type as ArrayConstructor).from(data as T[]);
+    : (type as ArrayConstructor).from(data as any[]);
 }
 
 // An optimization of type.from(values, f): if the given values are already an
