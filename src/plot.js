@@ -1,4 +1,4 @@
-import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, select, sort} from "d3";
+import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, scaleLinear, select, sort} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -300,19 +300,71 @@ export function plot(options = {}) {
     }
   }
 
+  // Wrap the plot in a figure with a caption, if desired.
+  let figure = svg;
+  const legends = Legends(scaleDescriptors, context, options);
+  if (caption != null || legends.length > 0) {
+    const {document} = context;
+    figure = document.createElement("figure");
+    figure.style.maxWidth = "initial";
+    for (const legend of legends) figure.appendChild(legend);
+    figure.appendChild(svg);
+    if (caption != null) {
+      const figcaption = document.createElement("figcaption");
+      figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
+      figure.appendChild(figcaption);
+    }
+  }
+
+  figure.scale = exposeScales(scaleDescriptors);
+  figure.legend = exposeLegends(scaleDescriptors, context, options);
+
+  const w = consumeWarnings();
+  if (w > 0) {
+    select(svg).append("text")
+        .attr("x", width)
+        .attr("y", 20)
+        .attr("dy", "-1em")
+        .attr("text-anchor", "end")
+        .attr("font-family", "initial") // fix emoji rendering in Chrome
+        .text("\u26a0\ufe0f") // emoji variation selector
+      .append("title")
+        .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
+  }
+
   if (animateMarks.length > 0) {
-    // There needs to be an option to control the delay, duration, iterations,
-    // and other timing parameters of the animation.
-    const interpolateTime = interpolateNumber(...timeDomain);
-    const {delay = 0, duration = 5000} = time == null ? {} : time;
-    if (typeof delay !== "number") throw new Error("The delay must be a number of milliseconds");
-    if (typeof duration !== "number") throw new Error("The duration must be a number of milliseconds");
-    // TODO: negative duration
-    // TODO: fixed time point
-    const startTime = performance.now() + delay;
-    const tick = () => {
-      const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
-      const currentTime = interpolateTime(t);
+    const interpolateTime = scaleLinear(timeDomain); // TODO: time scale
+    const {
+      delay = 0,
+      duration = 5000,
+      direction,
+      initial,
+      autoplay = true,
+      iterations = 0,
+      loop = !!iterations,
+      alternate = false,
+      loopDelay = 1000
+    } = time == null ? {} : time;
+    if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
+    if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
+    if (direction === -1) interpolateTime.domain([1, 0]); else if (direction != null && direction !== 1) throw new Error(`Unsupported direction ${direction}.`);
+    if (initial != null && Number.isNaN(interpolateTime.invert(initial))) throw new Error(`Unsupported initial time ${initial}.`);
+    if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
+    if (typeof loop !== "boolean") throw new Error(`Unsupported loop option ${loop}.`);
+    if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
+    if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
+
+    let startTime = performance.now();
+    let t1, currentTime, ended = false, paused = !autoplay;
+
+    const timeupdate = (t) => {
+      if (t1 === (t = Math.max(0, Math.min(1, t)))) return;
+
+      currentTime = interpolateTime(t1 = t);
+
+      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
+      figure.dispatchEvent(new CustomEvent("timeupdate"));
+
       for (const timeMark of animateMarks) {
         const {mark, facet, dimensions} = timeMark;
         const {domain, key: K} = markTimes.get(mark);
@@ -384,41 +436,69 @@ export function plot(options = {}) {
         }
         timeMark.node.replaceWith(timeMark.node = timeNode);        
       }
-      if (t < 1) requestAnimationFrame(tick);
     };
+
+    const tick = function() {
+      let t = (performance.now() - startTime);
+      t = Math.max(0, t - delay);
+      t /= duration;
+      if (loop) {
+        const s = 1 + loopDelay / duration;
+        const t0 = Math.floor(t / s);
+        if (iterations && t0 >= iterations) {
+          t = 2;
+        } else {
+          const dt = t - s * t0;
+          if (alternate) {
+            t = t0 % 2 ? 1 - dt : dt;
+          } else {
+            t = dt;
+          }
+          t = Math.max(0, Math.min(1, t));
+        }
+      }
+      timeupdate(t);
+      if (!paused) {
+        if (t <= 1) requestAnimationFrame(tick); else ended = true;
+      }
+    };
+
+    const setTime = (time) => {
+      currentTime = time;
+      const t = interpolateTime.invert(currentTime);
+      startTime = performance.now() - delay - (ended ? 0 : duration * t);
+      t1 = undefined;
+      if (paused) requestAnimationFrame(tick);
+    };
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
+    figure.play = () => {
+      setTime(currentTime);
+      if (paused) { paused = false; tick(); }
+      return new Promise(r => r());
+    };
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause
+    figure.pause = () => (paused = true, undefined);
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration
+    Object.defineProperty(figure, 'duration', {get: () => duration / 1000});
+    
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/paused
+    Object.defineProperty(figure, 'paused', {get: () => paused});
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/ended
+    Object.defineProperty(figure, 'ended', {get: () => ended});
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
+    Object.defineProperty(figure, 'currentTime', {
+      get: () => currentTime,
+      set: setTime
+    });
+
+    if (initial != null) setTime(initial);
+
     tick();
-  }
-
-  // Wrap the plot in a figure with a caption, if desired.
-  let figure = svg;
-  const legends = Legends(scaleDescriptors, context, options);
-  if (caption != null || legends.length > 0) {
-    const {document} = context;
-    figure = document.createElement("figure");
-    figure.style.maxWidth = "initial";
-    for (const legend of legends) figure.appendChild(legend);
-    figure.appendChild(svg);
-    if (caption != null) {
-      const figcaption = document.createElement("figcaption");
-      figcaption.appendChild(caption instanceof Node ? caption : document.createTextNode(caption));
-      figure.appendChild(figcaption);
-    }
-  }
-
-  figure.scale = exposeScales(scaleDescriptors);
-  figure.legend = exposeLegends(scaleDescriptors, context, options);
-
-  const w = consumeWarnings();
-  if (w > 0) {
-    select(svg).append("text")
-        .attr("x", width)
-        .attr("y", 20)
-        .attr("dy", "-1em")
-        .attr("text-anchor", "end")
-        .attr("font-family", "initial") // fix emoji rendering in Chrome
-        .text("\u26a0\ufe0f") // emoji variation selector
-      .append("title")
-        .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
 
   return figure;

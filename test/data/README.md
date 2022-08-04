@@ -28,7 +28,8 @@ https://www.bls.gov/
 http://lib.stat.cmu.edu/datasets/
 
 ## category-brands.csv
-TK
+Interbrand
+https://interbrand.com/best-brands/
 
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
