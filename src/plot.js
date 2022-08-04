@@ -328,9 +328,9 @@ export function plot(options = {}) {
           const I1 = facet.filter(i => T[i] === time1); // following keyframe
           const K0 = new Set(I0.map(i => K[i]));
           const K1 = new Set(I1.map(i => K[i]));
-          const Kenter = mark.animation === "fade" ? K1 : difference(K1, K0);
-          const Kupdate = mark.animation === "fade" ? new Set([]) : intersection(K0, K1);
-          const Kexit = mark.animation === "fade" ? K0 : difference(K0, K1);
+          const Kenter = difference(K1, K0);
+          const Kupdate = intersection(K0, K1);
+          const Kexit = difference(K0, K1);
           const enter = I1.filter(i => Kenter.has(K[i]));
           const update = I0.filter(i => Kupdate.has(K[i]));
           const target = update.map(i => I1.find(j => K[i] === K[j])); // TODO: use an index
