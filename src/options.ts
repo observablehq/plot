@@ -39,7 +39,11 @@ export function valueof<T extends Datum, U extends Value>(
   arrayType?: ArrayConstructor
 ): U[];
 export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T, Value>, arrayType?: ArrayType): ValueArray;
-export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T, Value> | number | null | undefined, arrayType?: ArrayType): ValueArray | null | undefined;
+export function valueof<T extends Datum>(
+  data: Data<T>,
+  value: Accessor<T, Value> | number | null | undefined,
+  arrayType?: ArrayType
+): ValueArray | null | undefined;
 export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
   data: Data<T> | null | undefined,
   value: Accessor<T, U> | number | Date | boolean | null | undefined,
