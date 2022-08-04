@@ -172,7 +172,7 @@ expectType<Float64Array>(map([{one: 2}] as Data<Row>, field("one"), Float64Array
 // labelof
 // _____________________________________________________________________
 
-expectType<string>(labelof("some label"));
+expectType<number>(labelof("some label"));
 expectType<string>(labelof(undefined, "fallback"));
 expectType<string>(labelof(null, "fallback"));
 expectType<undefined>(labelof(undefined));
