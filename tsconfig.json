@@ -5,6 +5,8 @@
     "lib": ["esnext", "dom"],
     "strict": true,
     "stripInternal": true,
+    "declaration": true,
+    "declarationDir": "types",
     "outDir": "dist",
     "allowJs": true,
     "resolveJsonModule": true,
