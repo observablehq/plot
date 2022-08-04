@@ -73,21 +73,3 @@ export type TypedArrayConstructor =
   | Uint8ClampedArrayConstructor
   | Float32ArrayConstructor
   | Float64ArrayConstructor;
-
-export type Constructor<T extends TypedArray> = T extends Int8Array
-  ? Int8ArrayConstructor
-  : T extends Uint8Array
-  ? Uint8ArrayConstructor
-  : T extends Int16Array
-  ? Int16ArrayConstructor
-  : T extends Int32Array
-  ? Int32ArrayConstructor
-  : T extends Uint32Array
-  ? Uint32ArrayConstructor
-  : T extends Uint8ClampedArray
-  ? Uint8ClampedArrayConstructor
-  : T extends Float32Array
-  ? Float32ArrayConstructor
-  : T extends Float64Array
-  ? Float64ArrayConstructor
-  : never;

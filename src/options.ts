@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type {
   ArrayType,
-  Constructor,
   Data,
   DataArray,
   Datum,
@@ -10,7 +9,6 @@ import type {
   Row,
   Series,
   TypedArray,
-  TypedArrayConstructor,
   Value,
   ValueArray
 } from "./data.js";
@@ -20,27 +18,6 @@ import {color, descending, quantile} from "d3";
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
-
-/**
-
-#### Plot.valueof(*data*, *value*, *type*)
-
-Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
-
-- a string - corresponding to the field accessor (`d => d[value]`)
-- an accessor function - called as *type*.from(*data*, *value*)
-- a number, Date, or boolean — resulting in an array uniformly filled with the *value*
-- an object with a transform method — called as *value*.transform(*data*)
-- an array of values - returning the same
-- null or undefined - returning the same
-
-If *type* is specified, it must be Array or a similar class that implements the [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) interface such as a typed array. When *type* is Array or a typed array class, the return value of valueof will be an instance of the same (or null or undefined). If *type* is not specified, valueof may return either an array or a typed array (or null or undefined).
-
-Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
-
-@link https://github.com/observablehq/plot/blob/main/README.md#plotvalueofdata-value-type
-
-*/
 
 export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T>): ValueArray; // for interval.ts
 export function valueof<T extends Datum>(
@@ -64,9 +41,6 @@ export function valueof<T extends Datum>(
     : arrayify(value, arrayType); // preserve undefined type
 }
 
-/**
- * See Plot.valueof()
- */
 export type Accessor<T extends Datum> = FieldNames<T> | AccessorFunction<T> | TransformMethod<T> | ValueArray;
 
 type AccessorFunction<T extends Datum> = (d: T, i: number) => Value;
@@ -83,7 +57,6 @@ function isTransform<T extends Datum>(value: ColorAccessor<T>): value is Transfo
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColorAccessor<T extends Datum> = Accessor<T> | (string & {});
 
-// TODO: type this
 // This function serves as default when no accessor is specified
 // It assumes that the Data is already an Iterable of Values.
 export const identity = {transform: (data: any): ValueArray => data};
@@ -104,9 +77,6 @@ export const constant =
   (): T =>
     x;
 
-/**
- * A percentile reducer, specified by a string like “p25”
- */
 // Converts a string like “p25” into a function that takes an index I and an
 // accessor function f, returning the corresponding percentile value.
 export function percentile(reduce: pXX): (I: Series, f: (i: index) => any) => number | undefined {
@@ -309,16 +279,6 @@ export function maybeInput(key: string, options: {[key: string]: any}) {
   return options[key];
 }
 
-/**
-
-#### Plot.column([*source*])
-
-This helper for constructing derived columns returns a [*column*, *setColumn*] array. The *column* object implements *column*.transform, returning whatever value was most recently passed to *setColumn*. If *setColumn* is not called, then *column*.transform returns undefined. If a *source* is specified, then *column*.label exposes the given *source*’s label, if any: if *source* is a string as when representing a named field of data, then *column*.label is *source*; otherwise *column*.label propagates *source*.label. This allows derived columns to propagate a human-readable axis or legend label.
-
-Plot.column is typically used by options transforms to define new channels; the associated columns are populated (derived) when the **transform** option function is invoked.
-
-@link https://github.com/observablehq/plot/blob/main/README.md#plotcolumnsource
- */
 export function column(source: any): [GetColumn, SetColumn] {
   let value: ValueArray;
   return [
