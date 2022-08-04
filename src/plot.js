@@ -333,7 +333,7 @@ export function plot(options = {}) {
   }
 
   if (animateMarks.length > 0) {
-    const interpolateTime = scaleLinear(timeDomain); // TODO: time scale
+    const interpolateTime = scaleLinear().range(timeDomain); // TODO: time scale
     const {
       delay = 0,
       duration = 5000,
@@ -363,7 +363,7 @@ export function plot(options = {}) {
       currentTime = interpolateTime(t1 = t);
 
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
-      figure.dispatchEvent(new CustomEvent("timeupdate"));
+      if (window.CustomEvent) figure.dispatchEvent(new window.CustomEvent("timeupdate"));
 
       for (const timeMark of animateMarks) {
         const {mark, facet, dimensions} = timeMark;
@@ -457,29 +457,34 @@ export function plot(options = {}) {
           t = Math.max(0, Math.min(1, t));
         }
       }
-      timeupdate(t);
-      if (!paused) {
-        if (t <= 1) requestAnimationFrame(tick); else ended = true;
+      ended = t > 1;
+      if (ended) {
+        paused = true;
+      } else if (!paused) {
+        requestAnimationFrame(tick);
       }
+      timeupdate(t);
     };
 
-    const setTime = (time) => {
-      currentTime = time;
-      const t = interpolateTime.invert(currentTime);
-      startTime = performance.now() - delay - (ended ? 0 : duration * t);
+    const setTime = function(time) {
+      const t = interpolateTime.invert(time);
+      currentTime = interpolateTime(t);
+      startTime = performance.now() - delay - duration * t;
+      if (t <= 1) ended = false;
       t1 = undefined;
       if (paused) requestAnimationFrame(tick);
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
     figure.play = () => {
-      setTime(currentTime);
-      if (paused) { paused = false; tick(); }
+      const time = ended ? initial == null ? interpolateTime(0) : initial : currentTime;
+      setTime(time);
+      if (ended || paused) { paused = false; tick(); }
       return new Promise(r => r());
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause
-    figure.pause = () => (paused = true, undefined);
+    figure.pause = () => {paused = true;};
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration
     Object.defineProperty(figure, 'duration', {get: () => duration / 1000});
@@ -491,10 +496,7 @@ export function plot(options = {}) {
     Object.defineProperty(figure, 'ended', {get: () => ended});
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
-    Object.defineProperty(figure, 'currentTime', {
-      get: () => currentTime,
-      set: setTime
-    });
+    Object.defineProperty(figure, 'currentTime', {get: () => currentTime, set: setTime});
 
     if (initial != null) setTime(initial);
 
