@@ -354,7 +354,7 @@ export function plot(options = {}) {
     if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
     if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
 
-    let startTime = performance.now();
+    let startTime;
     let t1, currentTime, ended = false, paused = !autoplay;
 
     const timeupdate = (t) => {
@@ -439,7 +439,9 @@ export function plot(options = {}) {
     };
 
     const tick = function() {
-      let t = (performance.now() - startTime);
+      let t = startTime === undefined
+        ? (startTime = performance.now(), 0)
+        : performance.now() - startTime;
       t = Math.max(0, t - delay);
       t /= duration;
       if (loop) {

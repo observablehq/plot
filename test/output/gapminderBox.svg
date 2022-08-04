@@ -141,8 +141,30 @@
       <line stroke="currentColor" y2="-110" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100k</text>
     </g>
   </g>
-  <g aria-label="rule" transform="translate(0,8)"></g>
-  <g aria-label="bar" fill="#ccc"></g>
-  <g aria-label="tick" stroke-width="0.5" transform="translate(0.5,0)"></g>
-  <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)"></g>
+  <g aria-label="rule" transform="translate(0,8)">
+    <line x1="98.46770702009958" x2="336.22119902989596" y1="33" y2="33" stroke="#4e79a7"></line>
+    <line x1="231.32055676531786" x2="378.15809295129986" y1="50" y2="50" stroke="#f28e2c"></line>
+    <line x1="107.26814230085148" x2="399.6283881229658" y1="67" y2="67" stroke="#e15759"></line>
+    <line x1="200.1744555384464" x2="434.15943451487294" y1="84" y2="84" stroke="#76b7b2"></line>
+    <line x1="401.1210358936533" x2="405.4452513853944" y1="101" y2="101" stroke="#59a14f"></line>
+  </g>
+  <g aria-label="bar" fill="#ccc">
+    <rect x="148.58501567132984" width="86.1866056705185" y="33" height="15"></rect>
+    <rect x="278.8862614193483" width="41.68240412754852" y="50" height="15"></rect>
+    <rect x="177.67300930977484" width="120.43096212946875" y="67" height="15"></rect>
+    <rect x="303.6433735094826" width="69.28352414353378" y="84" height="15"></rect>
+    <rect x="402.2020897665885" width="2.162107745870742" y="101" height="15"></rect>
+  </g>
+  <g aria-label="tick" stroke-width="0.5" transform="translate(0.5,0)">
+    <line x1="201.10559010167935" x2="201.10559010167935" y1="33" y2="48" stroke="#4e79a7"></line>
+    <line x1="298.47137018209844" x2="298.47137018209844" y1="50" y2="65" stroke="#f28e2c"></line>
+    <line x1="218.68298502837868" x2="218.68298502837868" y1="67" y2="82" stroke="#e15759"></line>
+    <line x1="343.49966450941" x2="343.49966450941" y1="84" y2="99" stroke="#76b7b2"></line>
+    <line x1="403.28314363952376" x2="403.28314363952376" y1="101" y2="116" stroke="#59a14f"></line>
+  </g>
+  <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,8)">
+    <circle cx="411.8163022373456" cy="50" r="3" stroke="#f28e2c"></circle>
+    <circle cx="606.0091305417593" cy="67" r="3" stroke="#e15759"></circle>
+    <circle cx="429.6987906028122" cy="50" r="3" stroke="#f28e2c"></circle>
+  </g>
 </svg>

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function() {
   const brands = await d3.csv("data/category-brands.csv", d3.autoType);
-  const a = Plot.plot({
+  return Plot.plot({
     marginTop: 20,
     marginLeft: 10,
     x: {axis: null},
@@ -76,14 +76,6 @@ export default async function() {
       }))
     ]
   });
-
-  a.pause();
-  setTimeout(() => a.play(), 1000);
-  setTimeout(() => a.pause(), 1100);
-  setTimeout(() => a.currentTime = -1, 1500);
-  setTimeout(() => a.play(), 2000);
-
-  return a;
 
   // TODO: In this example we would want to set "enter-tween" and "exit-tween" to constant(0)
   function ticks({x, text, ticks = 8, ...options}) {
