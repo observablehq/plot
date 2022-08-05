@@ -14,25 +14,25 @@
     }
   </style>
   <g aria-label="bar" fill-opacity="0.6">
-    <rect style="mix-blend-mode: multiply;" x="10" width="969" y="29" height="33" fill="#4e79a7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="937.7272840067827" y="66" height="33" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="710.4557260432606" y="103" height="33" fill="#ff9da7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="521.6305058108276" y="140" height="33" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="514.6839819678233" y="177" height="33" fill="#f28e2c"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="509.32714338889116" y="214" height="33" fill="#af7aa1"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="485.8291906199595" y="251" height="33" fill="#edc949"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="448.22445096984984" y="288" height="33" fill="#e15759"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="372.1600148889532" y="325" height="33" fill="#59a14f"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="341.2880598866785" y="362" height="33" fill="#9c755f"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="295.3608503246619" y="399" height="33" fill="#bab0ab"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="281.92199842838824" y="436" height="33" fill="#edc949"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="274.815170189007" y="473" height="33" fill="#9c755f"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="268.069026841474" y="510" height="33" fill="#ff9da7"></rect>
-    <rect style="mix-blend-mode: multiply;" x="10" width="251.45080441705613" y="547" height="33" fill="#edc949"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="969" y="29" height="33" fill="#4e79a7" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="937.7272840067827" y="66" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="710.4557260432606" y="103" height="33" fill="#ff9da7" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="521.6305058108276" y="140" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="514.6839819678233" y="177" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="509.32714338889116" y="214" height="33" fill="#af7aa1" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="485.8291906199595" y="251" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="448.22445096984984" y="288" height="33" fill="#e15759" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="372.1600148889532" y="325" height="33" fill="#59a14f" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="341.2880598866785" y="362" height="33" fill="#9c755f" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="295.3608503246619" y="399" height="33" fill="#bab0ab" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="281.92199842838824" y="436" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="274.815170189007" y="473" height="33" fill="#9c755f" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="268.069026841474" y="510" height="33" fill="#ff9da7" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="251.45080441705613" y="547" height="33" fill="#edc949" opacity="1"></rect>
   </g>
   <g transform="translate(0, 20)" fill="none" font-size="8" font-family="sans-serif" text-anchor="middle" stroke-width="0.75">
     <g class="tick" opacity="1" transform="translate(10.5,0)">
-      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">0</text>
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em"></text>
     </g>
     <g class="tick" opacity="1" transform="translate(144.08699698085118,0)">
       <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">10,000</text>
@@ -56,10 +56,10 @@
       <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">70,000</text>
     </g>
   </g>
-  <g aria-label="tick" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="10" x2="10" y1="20" y2="590"></line>
+  <g aria-label="tick" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0)">
+    <line x1="10" x2="10" y1="26" y2="584"></line>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="30" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-size="40" font-variant="tabular-nums" font-weight="bold" transform="translate(0.5,2)"><text transform="translate(979.070288353,590)">2000</text></g>
-  <g aria-label="text" text-anchor="end" font-size="12" font-weight="bold" transform="translate(-3.5,10)"><text y="0.32em" transform="translate(979,29)">Coca-Cola</text><text y="0.32em" transform="translate(947.7272840067827,66)">Microsoft</text><text y="0.32em" transform="translate(720.4557260432606,103)">IBM</text><text y="0.32em" transform="translate(531.6305058108276,140)">Intel</text><text y="0.32em" transform="translate(524.6839819678233,177)">Nokia</text><text y="0.32em" transform="translate(519.3271433888912,214)">GE</text><text y="0.32em" transform="translate(495.8291906199595,251)">Ford</text><text y="0.32em" transform="translate(458.22445096984984,288)">Disney</text><text y="0.32em" transform="translate(382.1600148889532,325)">McDonald's</text><text y="0.32em" transform="translate(351.2880598866785,362)">AT&amp;T</text><text y="0.32em" transform="translate(305.3608503246619,399)">Marlboro</text><text y="0.32em" transform="translate(291.92199842838824,436)">Mercedes-Benz</text><text y="0.32em" transform="translate(284.815170189007,473)">HP</text><text y="0.32em" transform="translate(278.069026841474,510)">Cisco</text><text y="0.32em" transform="translate(261.45080441705613,547)">Toyota</text></g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-3.5,25)"><text y="0.32em" transform="translate(979,29)">72,537</text><text y="0.32em" transform="translate(947.7272840067827,66)">70,196</text><text y="0.32em" transform="translate(720.4557260432606,103)">53,183</text><text y="0.32em" transform="translate(531.6305058108276,140)">39,048</text><text y="0.32em" transform="translate(524.6839819678233,177)">38,528</text><text y="0.32em" transform="translate(519.3271433888912,214)">38,127</text><text y="0.32em" transform="translate(495.8291906199595,251)">36,368</text><text y="0.32em" transform="translate(458.22445096984984,288)">33,553</text><text y="0.32em" transform="translate(382.1600148889532,325)">27,859</text><text y="0.32em" transform="translate(351.2880598866785,362)">25,548</text><text y="0.32em" transform="translate(305.3608503246619,399)">22,110</text><text y="0.32em" transform="translate(291.92199842838824,436)">21,104</text><text y="0.32em" transform="translate(284.815170189007,473)">20,572</text><text y="0.32em" transform="translate(278.069026841474,510)">20,067</text><text y="0.32em" transform="translate(261.45080441705613,547)">18,823</text></g>
+  <g aria-label="text" stroke="white" stroke-width="30" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-size="40" font-variant="tabular-nums" font-weight="bold" transform="translate(0.5,2)"><text transform="translate(979.070288353,590)" opacity="1">2000</text></g>
+  <g aria-label="text" text-anchor="end" font-size="12" font-weight="bold" transform="translate(-3.5,10)"><text y="0.32em" transform="translate(979,29)" opacity="1">Coca-Cola</text><text y="0.32em" transform="translate(947.7272840067827,66)" opacity="1">Microsoft</text><text y="0.32em" transform="translate(720.4557260432606,103)" opacity="1">IBM</text><text y="0.32em" transform="translate(531.6305058108276,140)" opacity="1">Intel</text><text y="0.32em" transform="translate(524.6839819678233,177)" opacity="1">Nokia</text><text y="0.32em" transform="translate(519.3271433888912,214)" opacity="1">GE</text><text y="0.32em" transform="translate(495.8291906199595,251)" opacity="1">Ford</text><text y="0.32em" transform="translate(458.22445096984984,288)" opacity="1">Disney</text><text y="0.32em" transform="translate(382.1600148889532,325)" opacity="1">McDonald's</text><text y="0.32em" transform="translate(351.2880598866785,362)" opacity="1">AT&amp;T</text><text y="0.32em" transform="translate(305.3608503246619,399)" opacity="1">Marlboro</text><text y="0.32em" transform="translate(291.92199842838824,436)" opacity="1">Mercedes-Benz</text><text y="0.32em" transform="translate(284.815170189007,473)" opacity="1">HP</text><text y="0.32em" transform="translate(278.069026841474,510)" opacity="1">Cisco</text><text y="0.32em" transform="translate(261.45080441705613,547)" opacity="1">Toyota</text></g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-3.5,25)"><text y="0.32em" transform="translate(979,29)" opacity="1">72,537</text><text y="0.32em" transform="translate(947.7272840067827,66)" opacity="1">70,196</text><text y="0.32em" transform="translate(720.4557260432606,103)" opacity="1">53,183</text><text y="0.32em" transform="translate(531.6305058108276,140)" opacity="1">39,048</text><text y="0.32em" transform="translate(524.6839819678233,177)" opacity="1">38,528</text><text y="0.32em" transform="translate(519.3271433888912,214)" opacity="1">38,127</text><text y="0.32em" transform="translate(495.8291906199595,251)" opacity="1">36,368</text><text y="0.32em" transform="translate(458.22445096984984,288)" opacity="1">33,553</text><text y="0.32em" transform="translate(382.1600148889532,325)" opacity="1">27,859</text><text y="0.32em" transform="translate(351.2880598866785,362)" opacity="1">25,548</text><text y="0.32em" transform="translate(305.3608503246619,399)" opacity="1">22,110</text><text y="0.32em" transform="translate(291.92199842838824,436)" opacity="1">21,104</text><text y="0.32em" transform="translate(284.815170189007,473)" opacity="1">20,572</text><text y="0.32em" transform="translate(278.069026841474,510)" opacity="1">20,067</text><text y="0.32em" transform="translate(261.45080441705613,547)" opacity="1">18,823</text></g>
 </svg>

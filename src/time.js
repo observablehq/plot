@@ -1,4 +1,4 @@
-import {interpolateHcl, interpolateHsl, interpolateNumber, interpolateRgb, interpolateRound} from "d3";
+import {interpolateHcl, interpolateHsl, interpolateNumber, interpolateRgb, interpolateRound, InternMap} from "d3";
 import {isObject} from "./options.js";
 
 export function maybeTimeFilter(filter = "eq") {
@@ -40,7 +40,7 @@ function timeEq(I, T, time) {
 }
 
 export function defaultKeys(times){
-  const tkey = new Map();
+  const tkey = new InternMap();
   return times.map((t) => (tkey.set(t, tkey.has(t) ? 1 + tkey.get(t) : 0), tkey.get(t)));
 }
 

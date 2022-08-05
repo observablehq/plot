@@ -1,8 +1,10 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const brands = await d3.csv("data/category-brands.csv", d3.autoType);
+  const format = d3.format(",");
+  const tickFormat = d => d === 0 ? "" : format(d);
   return Plot.plot({
     width: 980,
     height: 15 * 40,
@@ -39,15 +41,15 @@ export default async function() {
           })
         )
       ),
-  
+
       // ticks
       ((data, options) => {
-        options = Plot.mapY("rank", { ...options, title: options.x });
+        options = Plot.mapY("rank", options);
         const b = Plot.tickX(data, options);
         b.render = (
           index,
           { x },
-          { title: T },
+          { x: X },
           { height, marginTop, marginBottom }
         ) =>
           d3
@@ -56,10 +58,14 @@ export default async function() {
             .call(
               d3
                 .axisTop(
-                  d3.scaleLinear([0, d3.max(index, (i) => T[i])], x.range())
+                  d3.scaleLinear(
+                    [0, x.invert(d3.max(index, (i) => X[i]))],
+                    x.range()
+                  )
                 )
                 .ticks(8)
                 .tickSize(-height + marginTop + marginBottom)
+                .tickFormat(tickFormat)
             )
             .call((g) => {
               g.select(".domain").remove();
@@ -75,8 +81,9 @@ export default async function() {
         y: (d) => -d.value,
         z: null
       }),
-      Plot.tickX([0]),
-  
+
+      Plot.tickX([0], {inset: 6, strokeWidth: .5}),
+
       Plot.text(
         brands,
         Plot.selectMaxX({
@@ -93,7 +100,7 @@ export default async function() {
           strokeWidth: 30
         })
       ),
-  
+
       Plot.textX(
         brands,
         Plot.normalizeX(
@@ -113,7 +120,7 @@ export default async function() {
           })
         )
       ),
-  
+
       Plot.textX(
         brands,
         Plot.normalizeX(
@@ -135,4 +142,3 @@ export default async function() {
     ]
   });
 }
-

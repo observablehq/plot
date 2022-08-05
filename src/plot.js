@@ -1,4 +1,4 @@
-import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, scaleLinear, select, sort} from "d3";
+import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, scaleLinear, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -6,9 +6,8 @@ import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, constant, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, valueof, where, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales, isOrdinalScale} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {inferDomain} from "./scales/quantitative.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {maybeTimeFilter, maybeTween, defaultKeys} from "./time.js";
 import {basic, initializer} from "./transforms/basic.js";
@@ -74,18 +73,34 @@ export function plot(options = {}) {
 
   // Aggregate and sort time channels.
   const markTimes = new Map();
-
-  // TODO: time scale & domain
+  let timeScale;
   for (const mark of marks) {
-    if (mark.time) {
-      const time = valueof(mark.data, mark.time, Float64Array);
-      markTimes.set(mark, {time, domain: sort(new Set(time))});
+    if (mark.time) markTimes.set(mark, {time: valueof(mark.data, mark.time)});
+  }
+  if (markTimes.size) {
+    ({time: timeScale} = Scales(new Map([["time", Array.from(markTimes, ([, {time}]) => ({value: time}))]]), options));
+    if (isOrdinalScale(timeScale)) {
+      timeScale.extent = [0, timeScale.domain.length -1];
+      const index = new InternMap(timeScale.domain.map((d, i) => [d, i]));
+      for (const [mark, {time}] of markTimes) {
+        const domain = [...intersection(timeScale.domain, time)].map(d => index.get(d));
+        markTimes.set(mark, {domain, time: time.map(d => index.get(d))});
+      }
+    } else {
+      timeScale.extent = arrayify(timeScale.domain, Float64Array);
+      for (const [mark, {time: time0}] of markTimes) {
+        const time = arrayify(time0, Float64Array);
+        const domain = [];
+        for (const t of time) {
+          if (isNaN(t) || !isFinite(t)) continue;
+          const i = bisectLeft(domain, t);
+          if (domain[i] === t) continue;
+          domain.splice(i, 0, t);
+        }
+        markTimes.set(mark, {domain, time});
+      }
     }
   }
-  const timeChannels = Array.from(markTimes, ([, {time}]) => ({value: time}));
-  const timeDomain = inferDomain(timeChannels);
-  const times = aggregateTimes(timeChannels);
-  const timesIndex = new Map(times.map((d, i) => [d, i]));
 
   // Initialize the marks’ state.
   for (const mark of marks) {
@@ -98,18 +113,18 @@ export function plot(options = {}) {
       : undefined;
 
     // Split across time facets
-    if (mark.time && times.length > 1) {
-      const {time: T} = markTimes.get(mark);
+    if (mark.time) {
+      const {time: T, domain} = markTimes.get(mark);
+      if (domain.length <= 1) continue; // no interpolation
+      const domainIndex = new Map(domain.map((x, i) => [x, i]));
       markFacets = (markFacets || [range(mark.data)]).flatMap(facet => {
-        const keyFrames = Array.from(times, () => []);
-        for (const i of facet) {
-          keyFrames[timesIndex.get(T[i])].push(i);
-        }
+        const keyFrames = Array.from(domain, () => []);
+        for (const i of facet) keyFrames[domainIndex.get(T[i])]?.push(i);
         return keyFrames;
       });
     }
 
-    let {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
 
     stateByMark.set(mark, {data, facets, channels});
@@ -164,25 +179,25 @@ export function plot(options = {}) {
   for (const [mark, state] of stateByMark) {
     // Reassemble across time facets
     const {facets, data, values} = state;
-    if (mark.time && times.length > 1) {
+    if (mark.time) {
+      const m = markTimes.get(mark);
+      const {domain} = m;
+      if (domain.length <= 1) continue; // no interpolation
       const newFacets = [];
-      const newTimes = [];
+      const newTime = [];
 
       // A transform can modify the time key
-      const {domain} = markTimes.get(mark);
       for (let k = 0; k < facets.length; ++k) {
-        const j = Math.floor(k / times.length);
+        const j = Math.floor(k / domain.length);
         newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
-        for (const i of facets[k]) newTimes[i] = times[k % times.length];
+        for (const i of facets[k]) newTime[i] = domain[k % domain.length];
       }
+      m.key = mark.key ? valueof(data, mark.key) : defaultKeys(newTime);
+
       state.facets = newFacets;
       state.interp = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]));
-      state.interp.time = newTimes;
-
-      const key = mark.key
-        ? valueof(data, mark.key)
-        : defaultKeys(newTimes);
-      markTimes.set(mark, {key, domain});
+      state.interp.time = newTime;
+      state.opacity = new Array(newTime.length).fill(1);
     }
   }
 
@@ -333,7 +348,8 @@ export function plot(options = {}) {
   }
 
   if (animateMarks.length > 0) {
-    const interpolateTime = scaleLinear([0, 1], timeDomain); // TODO: time scale
+    const interpolateTime = scaleLinear(timeScale.extent, [0, 1]);
+
     const {
       delay = 0,
       duration = 5000,
@@ -349,7 +365,7 @@ export function plot(options = {}) {
     if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
     if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
     if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
-    if (initial != null && Number.isNaN(interpolateTime.invert(initial))) throw new Error(`Unsupported initial time ${initial}.`);
+    if (initial != null && Number.isNaN(interpolateTime(initial))) throw new Error(`Unsupported initial time ${initial}.`);
     if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
     if (typeof _loop !== "boolean") throw new Error(`Unsupported loop option ${_loop}.`);
     let loop = _loop; // mutable by API
@@ -363,82 +379,74 @@ export function plot(options = {}) {
 
     const timeupdate = (t) => {
       if (t1 === (t = Math.max(0, Math.min(1, t)))) return;
-      currentTime = interpolateTime(t1 = t);
+      currentTime = interpolateTime.invert(t1 = t);
+      for (const timeMark of animateMarks) {
+        const {mark, facet, dimensions} = timeMark;
+        const {domain, key: K} = markTimes.get(mark); // each mark might have a different time domain
+        const i0 = bisectLeft(domain, currentTime);
+        const time0 = domain[i0 - 1];
+        const time1 = domain[i0] !== undefined ? domain[i0] : time0;
+        const timet = time1 === time0 ? 0 : (t - interpolateTime(time0)) / (interpolateTime(time1) - interpolateTime(time0));
+        const {interp, opacity} = stateByMark.get(mark);
+        const T = interp.time;
+        let timeNode;
+        const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
+        const I1 = facet.filter(i => T[i] === time1); // following keyframe
+        const K0 = new Set(I0.map(i => K[i]));
+        const K1 = new Set(I1.map(i => K[i]));
+        const Kenter = difference(K1, K0);
+        const Kupdate = intersection(K0, K1);
+        const Kexit = difference(K0, K1);
+        const enter = I1.filter(i => Kenter.has(K[i]));
+        const update = I0.filter(i => Kupdate.has(K[i]));
+        const target = update.map(i => I1.find(j => K[i] === K[j])); // TODO: use an index
+        const exit = I0.filter(i => Kexit.has(K[i]));
+        const n = update.length;
+        const nt = n + enter.length + exit.length;
+        const Ii = Uint32Array.from({length: nt}).map((_, i) => i + T.length);
+        if (exit.length || enter.length) interp.opacity = opacity;
+        // TODO This is interpolating the already-scaled values, but we
+        // probably want to interpolate in data space instead and then
+        // re-apply the scales. I’m not sure what to do for ordinal data,
+        // but interpolating in data space will ensure that the resulting
+        // instantaneous visualization is meaningful and valid. TODO If the
+        // data is sparse (not all series have values for all times), then
+        // we will need a separate key channel to align the start and end
+        // values for interpolation; this code currently assumes that the
+        // data is complete.
+        for (const k in interp) {
+          if (k === "time") {
+            for (let i = 0; i < nt; ++i) interp[k][Ii[i]] = currentTime;
+          } else if (k === "opacity") {
+            const _exit = easeQuadInOut(1 - timet);
+            const _enter = easeQuadInOut(timet);
+            for (let i = 0; i < exit.length; ++i) interp[k][Ii[i]] = _exit;
+            for (let i = 0; i < n; ++i) interp[k][Ii[exit.length + i]] = 1;
+            for (let i = 0; i < enter.length; ++i) interp[k][Ii[exit.length + n + i]] = _enter;
+          } else {
+            const tween = maybeTween(mark.tween, k);
+            const interpolator = tween ? tween :
+              ["time"].includes(k) ? () => constant(currentTime) :
+              ["x", "x1", "x2", "y", "y1", "y2", "r"].includes(k) ? interpolateNumber :
+              ["fill", "stroke"].includes(k) ? interpolateHsl :
+              ["text"].includes(k) ? (a, b) => typeof a === "number" ? (frac(a) || frac(b) || Math.abs(a-b) < 3) ? interpolateNumber(a, b) : interpolateRound(a, b) : constant(a) :
+              interpolate;
+            for (let i = 0; i < exit.length; ++i) interp[k][Ii[i]] = interp[k][exit[i]];
+            for (let i = 0; i < n; ++i) {
+              const prev = interp[k][update[i]], next = interp[k][target[i]];
+              interp[k][Ii[i + exit.length]] = prev == next ? prev : interpolator(prev, next)(timet);
+            }
+            for (let i = 0; i < enter.length; ++i) interp[k][Ii[i + n + exit.length]] = interp[k][enter[i]];
+          }
+        }
+        const ifacet = [...facet.filter(i => T[i] < time1), ...(currentTime < time1) ? Ii : [], ...facet.filter(i => T[i] >= time1)];
+        const index = mark.timeFilter(ifacet, T, currentTime);
+        timeNode = mark.render(index, scales, interp, dimensions, context);
+        timeMark.node.replaceWith(timeMark.node = timeNode);        
+      }
 
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
       if (window.CustomEvent) figure.dispatchEvent(new window.CustomEvent("timeupdate"));
-
-      for (const timeMark of animateMarks) {
-        const {mark, facet, dimensions} = timeMark;
-        const {domain, key: K} = markTimes.get(mark);
-        const i0 = bisectLeft(domain, currentTime);
-        const time0 = domain[i0 - 1];
-        const time1 = domain[i0];
-        const timet = (currentTime - time0) / (time1 - time0);
-        const {values, interp} = stateByMark.get(mark);
-        const T = interp.time;
-        let timeNode;
-        if (isFinite(timet)) {
-          const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
-          const I1 = facet.filter(i => T[i] === time1); // following keyframe
-          const K0 = new Set(I0.map(i => K[i]));
-          const K1 = new Set(I1.map(i => K[i]));
-          const Kenter = difference(K1, K0);
-          const Kupdate = intersection(K0, K1);
-          const Kexit = difference(K0, K1);
-          const enter = I1.filter(i => Kenter.has(K[i]));
-          const update = I0.filter(i => Kupdate.has(K[i]));
-          const target = update.map(i => I1.find(j => K[i] === K[j])); // TODO: use an index
-          const exit = I0.filter(i => Kexit.has(K[i]));
-          const n = update.length;
-          const nt = n + enter.length + exit.length;
-          const Ii = Uint32Array.from({length: nt}).map((_, i) => i + T.length);
-          if (exit.length || enter.length) interp.opacity = [];
-
-          // TODO This is interpolating the already-scaled values, but we
-          // probably want to interpolate in data space instead and then
-          // re-apply the scales. I’m not sure what to do for ordinal data,
-          // but interpolating in data space will ensure that the resulting
-          // instantaneous visualization is meaningful and valid. TODO If the
-          // data is sparse (not all series have values for all times), then
-          // we will need a separate key channel to align the start and end
-          // values for interpolation; this code currently assumes that the
-          // data is complete.
-          for (const k in interp) {
-            if (k === "time") {
-              for (let i = 0; i < nt; ++i) interp[k][Ii[i]] = currentTime;
-            } else if (k === "opacity") {
-              const _exit = easeQuadInOut(1 - timet);
-              const _enter = easeQuadInOut(timet);
-              for (let i = 0; i < exit.length; ++i) interp[k][Ii[i]] = _exit;
-              for (let i = 0; i < n; ++i) interp[k][Ii[exit.length + i]] = 1;
-              for (let i = 0; i < enter.length; ++i) interp[k][Ii[exit.length + n + i]] = _enter;
-            } else {
-              const tween = maybeTween(mark.tween, k);
-              const interpolator = tween ? tween :
-                ["time"].includes(k) ? () => constant(currentTime) :
-                ["x", "x1", "x2", "y", "y1", "y2", "r"].includes(k) ? interpolateNumber :
-                ["fill", "stroke"].includes(k) ? interpolateHsl :
-                ["text"].includes(k) ? (a, b) => typeof a === "number" ? (frac(a) || frac(b) || Math.abs(a-b) < 3) ? interpolateNumber(a, b) : interpolateRound(a, b) : constant(a) :
-                interpolate;
-              for (let i = 0; i < exit.length; ++i) interp[k][Ii[i]] = interp[k][exit[i]];
-              for (let i = 0; i < n; ++i) {
-                const prev = interp[k][update[i]], next = interp[k][target[i]];
-                interp[k][Ii[i + exit.length]] = prev == next ? prev : interpolator(prev, next)(timet);
-              }
-              for (let i = 0; i < enter.length; ++i) interp[k][Ii[i + n + exit.length]] = interp[k][enter[i]];
-            }
-          }
-          const ifacet = [...facet.filter(i => T[i] < time1), ...(currentTime < time1) ? Ii : [], ...facet.filter(i => T[i] >= time1)];
-          const index = mark.timeFilter(ifacet, T, currentTime);
-          timeNode = mark.render(index, scales, interp, dimensions, context);
-        } else {
-          // here typically t = 0;
-          const index = mark.timeFilter(facet, T, currentTime);
-          timeNode = mark.render(index, scales, values, dimensions, context);
-        }
-        timeMark.node.replaceWith(timeMark.node = timeNode);        
-      }
     };
 
     let ticker = direction * playbackRate < 0 ? 1 : 0;
@@ -479,9 +487,15 @@ export function plot(options = {}) {
       if (figure.parentElement) requestAnimationFrame(tick);
     };
 
+    // When using setTime, the argument is in the original time domain
     const setTime = function(time) {
-      ticker = interpolateTime.invert(time);
-      currentTime = interpolateTime(ticker);
+      if (isOrdinalScale(timeScale)) {
+        const i = timeScale.domain.indexOf(time);
+        if (i === -1) throw new Error(`unknown time ${time}`);
+        time = i;
+      }
+      ticker = interpolateTime(time);
+      currentTime = interpolateTime.invert(ticker);
       ended = ticker < 0 || ticker > 1;
       lastTick = t1 = undefined;
     };
@@ -490,7 +504,7 @@ export function plot(options = {}) {
     figure.play = () => {
       if (ended) {
         setTime(initial == null
-          ? interpolateTime(direction * playbackRate < 0 ? 1 : 0)
+          ? timeScale.domain[direction * playbackRate < 0 ? timeScale.domain.length - 1 : 0]
           : initial
         );
       }
@@ -514,7 +528,12 @@ export function plot(options = {}) {
     Object.defineProperty(figure, 'ended', {get: () => ended});
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
-    Object.defineProperty(figure, 'currentTime', {get: () => currentTime, set: setTime});
+    Object.defineProperty(figure, 'currentTime', {
+      get: () => isOrdinalScale(timeScale) ? timeScale.domain[Math.floor(currentTime)]
+        : timeScale.type === "utc" || timeScale.type === "time" ? new Date(currentTime)
+        : currentTime,
+      set: setTime
+    });
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playbackRate
     // https://github.com/whatwg/html/issues/3754
@@ -646,23 +665,6 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
     }
   }
   return channelsByScale;
-}
-
-// TODO There should be a way to set at explicit domain of the time scale, and
-// probably also a way to control whether times are expressed (and coerced) to
-// numbers or dates. And maybe non-linear (log or sqrt) time, too, or should
-// that be controlled with easing?
-function aggregateTimes(channels) {
-  const times = [];
-  for (const {value} of channels) {
-    for (let t of value) {
-      if (t == null || isNaN(t = +t)) continue;
-      const i = bisectLeft(times, t);
-      if (times[i] === t) continue;
-      times.splice(i, 0, t);
-    }
-  }
-  return times;
 }
 
 // Derives a copy of the specified axis with the label disabled.
