@@ -499,7 +499,10 @@ export function plot(options = {}) {
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause
-    figure.pause = () => {paused = true;};
+    figure.pause = () => {
+      paused = true;
+      t1 = undefined;
+    };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/duration
     Object.defineProperty(figure, 'duration', {get: () => duration / 1000});
