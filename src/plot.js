@@ -333,33 +333,36 @@ export function plot(options = {}) {
   }
 
   if (animateMarks.length > 0) {
-    const interpolateTime = scaleLinear().range(timeDomain); // TODO: time scale
+    const interpolateTime = scaleLinear([0, 1], timeDomain); // TODO: time scale
     const {
       delay = 0,
       duration = 5000,
-      direction,
+      direction = 1,
+      playbackRate: _playbackRate = 1,
       initial,
       autoplay = true,
       iterations = 0,
-      loop = !!iterations,
+      loop: _loop = !!iterations,
       alternate = false,
       loopDelay = 1000
     } = time == null ? {} : time;
     if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
     if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
-    if (direction === -1) interpolateTime.domain([1, 0]); else if (direction != null && direction !== 1) throw new Error(`Unsupported direction ${direction}.`);
+    if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
     if (initial != null && Number.isNaN(interpolateTime.invert(initial))) throw new Error(`Unsupported initial time ${initial}.`);
     if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
-    if (typeof loop !== "boolean") throw new Error(`Unsupported loop option ${loop}.`);
+    if (typeof _loop !== "boolean") throw new Error(`Unsupported loop option ${_loop}.`);
+    let loop = _loop; // mutable by API
+    if (typeof _playbackRate !== "number") throw new Error(`Unsupported playback rate ${_playbackRate}.`);
+    let playbackRate = _playbackRate;
     if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
     if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
 
-    let startTime;
+    let lastTick;
     let t1, currentTime, ended = false, paused = !autoplay;
 
     const timeupdate = (t) => {
       if (t1 === (t = Math.max(0, Math.min(1, t)))) return;
-
       currentTime = interpolateTime(t1 = t);
 
       // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
@@ -438,50 +441,60 @@ export function plot(options = {}) {
       }
     };
 
+    let ticker = direction * playbackRate < 0 ? 1 : 0;
     const tick = function() {
-      let t = startTime === undefined
-        ? (startTime = performance.now(), 0)
-        : performance.now() - startTime;
-      t = Math.max(0, t - delay);
-      t /= duration;
+      if (paused) {
+        lastTick = undefined;
+      } else {
+        // advance (or rewind) the clock by dt
+        const dt = lastTick === undefined
+          ? (lastTick = performance.now(), 0)
+          : performance.now() - lastTick;
+        lastTick += dt;
+        ticker += dt * direction * playbackRate / duration;
+      }
+
+      // t is the projection of the clock to the looping interval
+      let t = ticker;
+
       if (loop) {
         const s = 1 + loopDelay / duration;
-        const t0 = Math.floor(t / s);
+        const t0 = Math.floor((0.5 + Math.abs(t - 0.5)) / s);
         if (iterations && t0 >= iterations) {
-          t = 2;
+          t = 2; // ends
         } else {
-          const dt = t - s * t0;
+          const f = t - s * t0 * Math.sign(t - 0.5);
           if (alternate) {
-            t = t0 % 2 ? 1 - dt : dt;
+            t = t0 % 2 ? 1 - f : f;
           } else {
-            t = dt;
+            t = f;
           }
           t = Math.max(0, Math.min(1, t));
         }
       }
-      ended = t > 1;
-      if (ended) {
-        paused = true;
-      } else if (!paused) {
-        requestAnimationFrame(tick);
-      }
+      ended = t < 0 || t > 1;
+      paused |= ended;
+
       timeupdate(t);
+      requestAnimationFrame(tick);
     };
 
     const setTime = function(time) {
-      const t = interpolateTime.invert(time);
-      currentTime = interpolateTime(t);
-      startTime = performance.now() - delay - duration * t;
-      if (t <= 1) ended = false;
-      t1 = undefined;
-      if (paused) requestAnimationFrame(tick);
+      ticker = interpolateTime.invert(time);
+      currentTime = interpolateTime(ticker);
+      ended = ticker < 0 || ticker > 1;
+      lastTick = t1 = undefined;
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
     figure.play = () => {
-      const time = ended ? initial == null ? interpolateTime(0) : initial : currentTime;
-      setTime(time);
-      if (ended || paused) { paused = false; tick(); }
+      if (ended) {
+        setTime(initial == null
+          ? interpolateTime(direction * playbackRate < 0 ? 1 : 0)
+          : initial
+        );
+      }
+      paused = false;
       return new Promise(r => r());
     };
 
@@ -500,9 +513,19 @@ export function plot(options = {}) {
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/currentTime
     Object.defineProperty(figure, 'currentTime', {get: () => currentTime, set: setTime});
 
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/playbackRate
+    // https://github.com/whatwg/html/issues/3754
+    Object.defineProperty(figure, 'playbackRate', {get: () => playbackRate, set: (l) => {!isNaN(l = +l) && (playbackRate = l);}});
+
+    // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/loop
+    Object.defineProperty(figure, 'loop', {get: () => loop, set: (l) => {loop = !!l;}});
+
     if (initial != null) setTime(initial);
 
-    tick();
+    if (delay) {
+      timeupdate(ticker);
+      setTimeout(tick, delay);
+    } else tick();
   }
 
   return figure;
