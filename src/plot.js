@@ -476,7 +476,7 @@ export function plot(options = {}) {
       paused |= ended;
 
       timeupdate(t);
-      requestAnimationFrame(tick);
+      if (figure.parentElement) requestAnimationFrame(tick);
     };
 
     const setTime = function(time) {
@@ -525,10 +525,8 @@ export function plot(options = {}) {
 
     if (initial != null) setTime(initial);
 
-    if (delay) {
-      timeupdate(ticker);
-      setTimeout(tick, delay);
-    } else tick();
+    timeupdate(ticker);
+    setTimeout(tick, delay);
   }
 
   return figure;
