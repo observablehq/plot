@@ -13,34 +13,49 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="tick" stroke="rgba(0,0,0,0.1)" transform="translate(0.5,0)">
+    <line x1="10" x2="10" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="96.71436646125426" x2="96.71436646125426" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="183.42873292250852" x2="183.42873292250852" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="270.1430993837628" x2="270.1430993837628" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="356.85746584501703" x2="356.85746584501703" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="443.5718323062713" x2="443.5718323062713" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="530.2861987675255" x2="530.2861987675255" y1="20" y2="359" stroke-opacity="1"></line>
+    <line x1="53.35718323062713" x2="53.35718323062713" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="140.0715496918814" x2="140.0715496918814" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="226.78591615313564" x2="226.78591615313564" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="313.5002826143899" x2="313.5002826143899" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="400.21464907564416" x2="400.21464907564416" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="486.9290155368984" x2="486.9290155368984" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="573.6433819981527" x2="573.6433819981527" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="617.0005652287798" x2="617.0005652287798" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="660.3577484594068" x2="660.3577484594068" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="703.7149316900341" x2="703.7149316900341" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="747.0721149206612" x2="747.0721149206612" y1="20" y2="359" stroke-opacity="0"></line>
+    <line x1="790.4292981512883" x2="790.4292981512883" y1="20" y2="359" stroke-opacity="0"></line>
+  </g>
   <g aria-label="bar">
-    <rect x="10" width="628.8526969154218" y="26" height="20" fill="#76b7b2"></rect>
-    <rect x="10" width="608.5576176665005" y="48" height="20" fill="#9c755f"></rect>
-    <rect x="10" width="461.0650148207519" y="70" height="20" fill="#59a14f"></rect>
-    <rect x="10" width="338.5229622007168" y="92" height="20" fill="#9c755f"></rect>
-    <rect x="10" width="334.01487112449337" y="114" height="20" fill="#9c755f"></rect>
-    <rect x="10" width="330.53843935225177" y="136" height="20" fill="#edc949"></rect>
-    <rect x="10" width="315.28895434633444" y="158" height="20" fill="#e15759"></rect>
-    <rect x="10" width="290.8845766933172" y="180" height="20" fill="#76b7b2"></rect>
-    <rect x="10" width="241.52097940867057" y="202" height="20" fill="#edc949"></rect>
-    <rect x="10" width="221.4859823372237" y="224" height="20" fill="#bab0ab"></rect>
-    <rect x="10" width="191.68056479865413" y="246" height="20" fill="#4e79a7"></rect>
-    <rect x="10" width="182.959142447345" y="268" height="20" fill="#e15759"></rect>
-    <rect x="10" width="178.34701850013172" y="290" height="20" fill="#af7aa1"></rect>
-    <rect x="10" width="173.96896851264555" y="312" height="20" fill="#59a14f"></rect>
-    <rect x="10" width="163.18422755337255" y="334" height="20" fill="#e15759"></rect>
+    <rect x="10" width="629" y="26" height="20" fill="#76b7b2"></rect>
+    <rect x="10" width="608.7001668114203" y="48" height="20" fill="#9c755f"></rect>
+    <rect x="10" width="461.1730151508885" y="70" height="20" fill="#59a14f"></rect>
+    <rect x="10" width="338.6022581579056" y="92" height="20" fill="#9c755f"></rect>
+    <rect x="10" width="334.09311110192044" y="114" height="20" fill="#9c755f"></rect>
+    <rect x="10" width="330.61586500682404" y="136" height="20" fill="#edc949"></rect>
+    <rect x="10" width="315.3628079462895" y="158" height="20" fill="#e15759"></rect>
+    <rect x="10" width="290.9527137874464" y="180" height="20" fill="#76b7b2"></rect>
+    <rect x="10" width="241.57755352440824" y="202" height="20" fill="#edc949"></rect>
+    <rect x="10" width="221.5378634352124" y="224" height="20" fill="#bab0ab"></rect>
+    <rect x="10" width="191.72546424583314" y="246" height="20" fill="#4e79a7"></rect>
+    <rect x="10" width="183.001998979831" y="268" height="20" fill="#e15759"></rect>
+    <rect x="10" width="178.38879468409223" y="290" height="20" fill="#af7aa1"></rect>
+    <rect x="10" width="174.00971917779893" y="312" height="20" fill="#59a14f"></rect>
+    <rect x="10" width="163.2224519900189" y="334" height="20" fill="#e15759"></rect>
   </g>
-  <g aria-label="tick" stroke="white" transform="translate(0.5,0)">
+  <g aria-label="tick" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="10" x2="10" y1="20" y2="359"></line>
-    <line x1="96.694059158143" x2="96.694059158143" y1="20" y2="359"></line>
-    <line x1="183.388118316286" x2="183.388118316286" y1="20" y2="359"></line>
-    <line x1="270.08217747442905" x2="270.08217747442905" y1="20" y2="359"></line>
-    <line x1="356.776236632572" x2="356.776236632572" y1="20" y2="359"></line>
-    <line x1="443.47029579071494" x2="443.47029579071494" y1="20" y2="359"></line>
-    <line x1="530.1643549488581" x2="530.1643549488581" y1="20" y2="359"></line>
   </g>
-  <g aria-label="text" font-size="8" transform="translate(0.5,-9.5)"><text y="0.71em" transform="translate(10,20)">0</text><text y="0.71em" transform="translate(96.694059158143,20)">10,000</text><text y="0.71em" transform="translate(183.388118316286,20)">20,000</text><text y="0.71em" transform="translate(270.08217747442905,20)">30,000</text><text y="0.71em" transform="translate(356.776236632572,20)">40,000</text><text y="0.71em" transform="translate(443.47029579071494,20)">50,000</text><text y="0.71em" transform="translate(530.1643549488581,20)">60,000</text></g>
-  <g aria-label="text" text-anchor="end" font-size="40" font-weight="bold" transform="translate(0.5,-4.5)"><text transform="translate(638.8983120034981,359)">2000</text></g>
-  <g aria-label="text" fill="black" stroke="white" stroke-width="7" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(0.5,-9.5)"><text y="0.71em" transform="translate(638.8983120034981,20)">72,537</text></g>
-  <g aria-label="text" fill="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="end" transform="translate(-3.5,10.5)"><text y="0.32em" transform="translate(638.8526969154218,26)" stroke="#76b7b2">Coca-Cola</text><text y="0.32em" transform="translate(618.5576176665005,48)" stroke="#9c755f">Microsoft</text><text y="0.32em" transform="translate(471.0650148207519,70)" stroke="#59a14f">IBM</text><text y="0.32em" transform="translate(348.5229622007168,92)" stroke="#9c755f">Intel</text><text y="0.32em" transform="translate(344.01487112449337,114)" stroke="#9c755f">Nokia</text><text y="0.32em" transform="translate(340.53843935225177,136)" stroke="#edc949">GE</text><text y="0.32em" transform="translate(325.28895434633444,158)" stroke="#e15759">Ford</text><text y="0.32em" transform="translate(300.8845766933172,180)" stroke="#76b7b2">Disney</text><text y="0.32em" transform="translate(251.52097940867057,202)" stroke="#edc949">McDonald's</text><text y="0.32em" transform="translate(231.4859823372237,224)" stroke="#bab0ab">AT&amp;T</text><text y="0.32em" transform="translate(201.68056479865413,246)" stroke="#4e79a7">Marlboro</text><text y="0.32em" transform="translate(192.959142447345,268)" stroke="#e15759">Mercedes-Benz</text><text y="0.32em" transform="translate(188.34701850013172,290)" stroke="#af7aa1">HP</text><text y="0.32em" transform="translate(183.96896851264555,312)" stroke="#59a14f">Cisco</text><text y="0.32em" transform="translate(173.18422755337255,334)" stroke="#e15759">Toyota</text></g>
+  <g aria-label="text" font-size="8" transform="translate(0.5,-9.5)"><text y="0.71em" transform="translate(10,20)" fill-opacity="1" stroke-opacity="1">0</text><text y="0.71em" transform="translate(96.71436646125426,20)" fill-opacity="1" stroke-opacity="1">10,000</text><text y="0.71em" transform="translate(183.42873292250852,20)" fill-opacity="1" stroke-opacity="1">20,000</text><text y="0.71em" transform="translate(270.1430993837628,20)" fill-opacity="1" stroke-opacity="1">30,000</text><text y="0.71em" transform="translate(356.85746584501703,20)" fill-opacity="1" stroke-opacity="1">40,000</text><text y="0.71em" transform="translate(443.5718323062713,20)" fill-opacity="1" stroke-opacity="1">50,000</text><text y="0.71em" transform="translate(530.2861987675255,20)" fill-opacity="1" stroke-opacity="1">60,000</text><text y="0.71em" transform="translate(53.35718323062713,20)" fill-opacity="0" stroke-opacity="0">5,000</text><text y="0.71em" transform="translate(140.0715496918814,20)" fill-opacity="0" stroke-opacity="0">15,000</text><text y="0.71em" transform="translate(226.78591615313564,20)" fill-opacity="0" stroke-opacity="0">25,000</text><text y="0.71em" transform="translate(313.5002826143899,20)" fill-opacity="0" stroke-opacity="0">35,000</text><text y="0.71em" transform="translate(400.21464907564416,20)" fill-opacity="0" stroke-opacity="0">45,000</text><text y="0.71em" transform="translate(486.9290155368984,20)" fill-opacity="0" stroke-opacity="0">55,000</text><text y="0.71em" transform="translate(573.6433819981527,20)" fill-opacity="0" stroke-opacity="0">65,000</text><text y="0.71em" transform="translate(617.0005652287798,20)" fill-opacity="0" stroke-opacity="0">70,000</text><text y="0.71em" transform="translate(660.3577484594068,20)" fill-opacity="0" stroke-opacity="0">75,000</text><text y="0.71em" transform="translate(703.7149316900341,20)" fill-opacity="0" stroke-opacity="0">80,000</text><text y="0.71em" transform="translate(747.0721149206612,20)" fill-opacity="0" stroke-opacity="0">85,000</text><text y="0.71em" transform="translate(790.4292981512883,20)" fill-opacity="0" stroke-opacity="0">90,000</text></g>
+  <g aria-label="text" stroke="white" stroke-width="30" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-size="40" font-variant="tabular-nums" font-weight="bold" transform="translate(0.5,-4.5)"><text transform="translate(639.045625773,359)">2000</text></g>
+  <g aria-label="text" fill="black" stroke="white" stroke-width="7" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-variant="tabular-nums" transform="translate(0.5,-9.5)"><text y="0.71em" transform="translate(639.045625773,20)">72,537</text></g>
+  <g aria-label="text" fill="white" text-anchor="end" transform="translate(-3.5,10.5)"><text y="0.32em" transform="translate(639,26)">Coca-Cola</text><text y="0.32em" transform="translate(618.7001668114203,48)">Microsoft</text><text y="0.32em" transform="translate(471.1730151508885,70)">IBM</text><text y="0.32em" transform="translate(348.6022581579056,92)">Intel</text><text y="0.32em" transform="translate(344.09311110192044,114)">Nokia</text><text y="0.32em" transform="translate(340.61586500682404,136)">GE</text><text y="0.32em" transform="translate(325.3628079462895,158)">Ford</text><text y="0.32em" transform="translate(300.9527137874464,180)">Disney</text><text y="0.32em" transform="translate(251.57755352440824,202)">McDonald's</text><text y="0.32em" transform="translate(231.5378634352124,224)">AT&amp;T</text><text y="0.32em" transform="translate(201.72546424583314,246)">Marlboro</text><text y="0.32em" transform="translate(193.001998979831,268)">Mercedes-Benz</text><text y="0.32em" transform="translate(188.38879468409223,290)">HP</text><text y="0.32em" transform="translate(184.00971917779893,312)">Cisco</text><text y="0.32em" transform="translate(173.2224519900189,334)">Toyota</text></g>
 </svg>
