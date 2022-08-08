@@ -21,28 +21,24 @@ import {color, descending, quantile} from "d3";
 const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
-export function valueof<T extends undefined | null>(data: T, v: Accessor<T, any>, t?: ArrayType): T;
+export function valueof<T extends undefined | null>(d: T, v: Accessor<T, any>, t?: ArrayType): T;
 export function valueof<T extends Datum, U extends TypedArray>(
-  data: Data<T>,
+  d: Data<T>,
   v: Accessor<T, any> | number | Date | boolean,
-  type: Constructor<U>
+  y: Constructor<U>
 ): U;
-export function valueof<V extends number | Date | boolean>(d: Data<Datum>, value: V, t?: ArrayType): V[];
-export function valueof<T extends Datum, U extends keyof T>(
-  data: Data<T>,
-  value: U,
-  arrayType?: ArrayConstructor
-): T[U][];
+export function valueof<V extends number | Date | boolean>(d: Data<Datum>, v: V, t?: ArrayType): V[];
+export function valueof<T extends Datum, U extends keyof T>(d: Data<T>, v: U, t?: ArrayConstructor): T[U][];
 export function valueof<T extends Datum, U extends Value>(
-  data: Data<T>,
-  value: AccessorFunction<T, U>,
-  arrayType?: ArrayConstructor
+  d: Data<T>,
+  v: AccessorFunction<T, U>,
+  t?: ArrayConstructor
 ): U[];
-export function valueof<T extends Datum>(data: Data<T>, value: Accessor<T, Value>, arrayType?: ArrayType): ValueArray;
+export function valueof<T extends Datum>(d: Data<T>, v: Accessor<T, Value>, t?: ArrayType): ValueArray;
 export function valueof<T extends Datum>(
-  data: Data<T>,
-  value: Accessor<T, Value> | number | null | undefined,
-  arrayType?: ArrayType
+  d: Data<T>,
+  v: Accessor<T, Value> | number | null | undefined,
+  t?: ArrayType
 ): ValueArray | null | undefined;
 export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
   data: Data<T> | null | undefined,
@@ -60,9 +56,6 @@ export function valueof<T extends Datum, U extends Value, V extends ArrayType>(
     : arrayify(value, arrayType); // preserve undefined type
 }
 
-/**
- * See Plot.valueof()
- */
 export type Accessor<T extends Datum, U extends Value = Value> =
   | FieldNames<T>
   | AccessorFunction<T, U>
@@ -159,17 +152,17 @@ export function keyword(input: string | null | undefined, name: string, allowed:
 // type is provided (e.g., Array), then the returned array will strictly be of
 // the specified type; otherwise, any array or typed array may be returned. If
 // the specified data is null or undefined, returns the value as-is.
-export function arrayify<T extends null | undefined>(d: T, type?: ArrayType): T;
+export function arrayify<T extends null | undefined>(d: T, t?: ArrayType): T;
 export function arrayify<T extends TypedArray>(d: T, t?: undefined): T;
 export function arrayify<T extends Value>(d: T[], t?: undefined): T[];
 export function arrayify<T extends Value>(d: Iterable<T>, t?: ArrayConstructor): DataArray<T>;
-export function arrayify<T extends TypedArray>(d: TypedArray | Iterable<any>, type: Constructor<T>): T;
+export function arrayify<T extends TypedArray>(d: TypedArray | Iterable<any>, t: Constructor<T>): T;
 export function arrayify<T extends Value>(
   d: Iterable<T> | null | undefined,
   t?: ArrayType
 ): DataArray<T> | null | undefined;
-export function arrayify<T extends Datum>(d: T[], type?: ArrayConstructor): T[];
-export function arrayify<T extends Datum, U extends TypedArray>(d: T[], type: Constructor<U>): U;
+export function arrayify<T extends Datum>(d: T[], t?: ArrayConstructor): T[];
+export function arrayify<T extends Datum, U extends TypedArray>(d: T[], t: Constructor<U>): U;
 export function arrayify<T extends Datum>(d: Data<T>, t?: ArrayType): DataArray<T>;
 export function arrayify<T extends Datum>(
   data: Data<T> | null | undefined,
@@ -189,13 +182,13 @@ export function arrayify<T extends Datum>(
 export type Mapper<T, U extends Value> = (d: T, i: number) => U;
 export type TypedMapper<T> = (d: T, i: number) => number;
 
-export function map<T extends Datum, U extends TypedArray>(values: Data<T>, f: TypedMapper<T>, type: Constructor<U>): U;
-export function map<T extends TypedArray>(values: any, f: any, type: Constructor<T>): T;
-export function map<T extends Datum, U extends Value>(values: Data<T>, f: Mapper<T, U>, type?: ArrayConstructor): U[];
+export function map<T extends Datum, U extends TypedArray>(v: Data<T>, f: TypedMapper<T>, t: Constructor<U>): U;
+export function map<T extends TypedArray>(v: any, f: any, t: Constructor<T>): T;
+export function map<T extends Datum, U extends Value>(v: Data<T>, f: Mapper<T, U>, t?: ArrayConstructor): U[];
 export function map<T extends Datum, U extends Value>(
-  values: Data<T>,
+  v: Data<T>,
   f: Mapper<T, U>,
-  type?: ArrayConstructor | TypedArrayConstructor
+  t?: ArrayConstructor | TypedArrayConstructor
 ): U[] | TypedArray;
 export function map<T extends Datum, U extends Value, V extends ArrayType>(
   values: Data<T>,
@@ -221,8 +214,8 @@ export function isTypedArray(values: ValueArray): values is TypedArray {
 }
 
 // Disambiguates an options object (e.g., {y: "x2"}) from a primitive value.
-export function isObject(option: null | undefined): false;
-export function isObject(option: any): boolean;
+export function isObject(o: null | undefined): false;
+export function isObject(o: any): boolean;
 export function isObject(option: any): boolean {
   return option?.toString === objectToString;
 }
