@@ -71,6 +71,10 @@ https://data.giss.nasa.gov/gistemp/
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
 
+## historical-life-expectancy.tsv
+Wikipedia
+https://en.wikipedia.org/wiki/Life_expectancy#Variation_over_time
+
 ## metros.csv
 The New York Times
 https://www.nytimes.com/2019/12/02/upshot/wealth-poverty-divide-american-cities.html
