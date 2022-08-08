@@ -29,7 +29,7 @@
     "test": "yarn test:typecheck && yarn test:lint && yarn test:mocha",
     "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
-    "test:typecheck": "tsc --noEmit",
+    "test:typecheck": "tsc --noEmit && tsc --noEmit -p test/tsconfig.json",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
@@ -63,6 +63,7 @@
     "prettier": "^2.7.1",
     "rollup": "2",
     "rollup-plugin-terser": "7",
+    "tsd": "^0.22.0",
     "tslib": "^2.4.0",
     "typescript": "^4.6.4",
     "typescript-module-alias": "^1.0.2",
