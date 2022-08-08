@@ -132,6 +132,47 @@ export function plot(options = {}) {
 
   // Initalize the scales and axes.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
+  let interpolateTime;
+  if (timeScale) {
+    const {
+      delay = 0,
+      duration = 5000,
+      direction = 1,
+      playbackRate = 1,
+      initial,
+      autoplay = true,
+      iterations = 0,
+      loop = !!iterations,
+      alternate = false,
+      loopDelay = 1000
+    } = time == null ? {} : time;
+    interpolateTime = scaleLinear(timeScale.extent, [0, 1]);
+    if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
+    if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
+    if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
+    if (initial != null && Number.isNaN(interpolateTime(initial))) throw new Error(`Unsupported initial time ${initial}.`);
+    if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
+    if (typeof loop !== "boolean") throw new Error(`Unsupported loop option ${loop}.`);
+    if (typeof playbackRate !== "number") throw new Error(`Unsupported playback rate ${playbackRate}.`);
+    if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
+    if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
+    scaleDescriptors.time = {
+      type: timeScale.type,
+      domain: timeScale.domain,
+      delay,
+      duration,
+      direction,
+      playbackRate,
+      initial,
+      autoplay,
+      iterations,
+      loop,
+      alternate,
+      loopDelay,
+      scale: timeScale.scale
+    };
+  }
+
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
@@ -348,32 +389,8 @@ export function plot(options = {}) {
   }
 
   if (animateMarks.length > 0) {
-    const interpolateTime = scaleLinear(timeScale.extent, [0, 1]);
-
-    const {
-      delay = 0,
-      duration = 5000,
-      direction = 1,
-      playbackRate: _playbackRate = 1,
-      initial,
-      autoplay = true,
-      iterations = 0,
-      loop: _loop = !!iterations,
-      alternate = false,
-      loopDelay = 1000
-    } = time == null ? {} : time;
-    if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
-    if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
-    if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
-    if (initial != null && Number.isNaN(interpolateTime(initial))) throw new Error(`Unsupported initial time ${initial}.`);
-    if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
-    if (typeof _loop !== "boolean") throw new Error(`Unsupported loop option ${_loop}.`);
-    let loop = _loop; // mutable by API
-    if (typeof _playbackRate !== "number") throw new Error(`Unsupported playback rate ${_playbackRate}.`);
-    let playbackRate = _playbackRate;
-    if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
-    if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
-
+    const {alternate, autoplay, delay, direction, duration, initial, iterations, loopDelay} = scaleDescriptors.time;
+    let {loop, playbackRate} = scaleDescriptors.time;
     let lastTick;
     let t1, currentTime, ended = false, paused = !autoplay;
 
