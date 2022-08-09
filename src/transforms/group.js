@@ -46,8 +46,9 @@ function groupn(
 
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
-  if (outputs.key === undefined) {
-    outputs.push(...maybeOutputs({key: "first"}, {key: maybeZ(inputs)}));
+  if (!hasOutput(outputs, "key")) {
+    // TODO: we also need to key on x, y… 
+    outputs.push(...maybeOutputs({key: (data) => data[0]}, {key: maybeZ(inputs)}));
   }
   reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
