@@ -1,6 +1,6 @@
 import {group as grouper, sort, sum, deviation, min, max, mean, median, mode, variance, InternSet, minIndex, maxIndex, rollup} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
+import {valueof, maybeColorChannel, maybeInput, maybeTuple, maybeColumn, maybeZ, column, first, identity, take, labelof, range, second, percentile} from "../options.js";
 import {basic} from "./basic.js";
 
 // Group on {z, fill, stroke}.
@@ -46,6 +46,9 @@ function groupn(
 
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
+  if (outputs.key === undefined) {
+    outputs.push(...maybeOutputs({key: "first"}, {key: maybeZ(inputs)}));
+  }
   reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);

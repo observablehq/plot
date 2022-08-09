@@ -1,4 +1,4 @@
-import {bisectLeft, cross, difference, easeQuadInOut, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, scaleLinear, select} from "d3";
+import {bisectLeft, cross, difference, easeQuadInOut, extent, group, groups, InternMap, interpolate, interpolateNumber, interpolateRound, interpolateHsl, intersection, scaleLinear, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -6,7 +6,7 @@ import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, constant, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, valueof, where, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, isOrdinalScale} from "./scales.js";
+import {Scales, ScaleFunctions, autoScaleRange, coerceNumbers, exposeScales, isOrdinalScale} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {maybeTimeFilter, maybeTween, defaultKeys} from "./time.js";
@@ -71,38 +71,8 @@ export function plot(options = {}) {
     }
   }
 
-  // Aggregate and sort time channels.
-  const markTimes = new Map();
-  let timeScale;
-  for (const mark of marks) {
-    if (mark.time) markTimes.set(mark, {time: valueof(mark.data, mark.time)});
-  }
-  if (markTimes.size) {
-    ({time: timeScale} = Scales(new Map([["time", Array.from(markTimes, ([, {time}]) => ({value: time}))]]), options));
-    if (isOrdinalScale(timeScale)) {
-      timeScale.extent = [0, timeScale.domain.length -1];
-      const index = new InternMap(timeScale.domain.map((d, i) => [d, i]));
-      for (const [mark, {time}] of markTimes) {
-        const domain = [...intersection(timeScale.domain, time)].map(d => index.get(d));
-        markTimes.set(mark, {domain, time: time.map(d => index.get(d))});
-      }
-    } else {
-      timeScale.extent = arrayify(timeScale.domain, Float64Array);
-      for (const [mark, {time: time0}] of markTimes) {
-        const time = arrayify(time0, Float64Array);
-        const domain = [];
-        for (const t of time) {
-          if (isNaN(t) || !isFinite(t)) continue;
-          const i = bisectLeft(domain, t);
-          if (domain[i] === t) continue;
-          domain.splice(i, 0, t);
-        }
-        markTimes.set(mark, {domain, time});
-      }
-    }
-  }
-
   // Initialize the marks’ state.
+  const markTimes = new Map();
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
 
@@ -112,67 +82,15 @@ export function plot(options = {}) {
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
 
-    // Split across time facets
-    if (mark.time) {
-      const {time: T, domain} = markTimes.get(mark);
-      if (domain.length <= 1) continue; // no interpolation
-      const domainIndex = new Map(domain.map((x, i) => [x, i]));
-      markFacets = (markFacets || [range(mark.data)]).flatMap(facet => {
-        const keyFrames = Array.from(domain, () => []);
-        for (const i of facet) keyFrames[domainIndex.get(T[i])]?.push(i);
-        return keyFrames;
-      });
-    }
-
-    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+    const {data, facets, channels, time, timeFacets} = mark.initialize(markFacets, facetChannels);
+console.warn("initialized", channels);
     applyScaleTransforms(channels, options);
-
     stateByMark.set(mark, {data, facets, channels});
+    if (timeFacets.length) markTimes.set(mark, {time, timeFacets});
   }
 
   // Initalize the scales and axes.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
-  let interpolateTime;
-  if (timeScale) {
-    const {
-      delay = 0,
-      duration = 5000,
-      direction = 1,
-      playbackRate = 1,
-      initial,
-      autoplay = true,
-      iterations = 0,
-      loop = !!iterations,
-      alternate = false,
-      loopDelay = 1000
-    } = time == null ? {} : time;
-    interpolateTime = scaleLinear(timeScale.extent, [0, 1]);
-    if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
-    if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
-    if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
-    if (initial != null && Number.isNaN(interpolateTime(initial))) throw new Error(`Unsupported initial time ${initial}.`);
-    if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
-    if (typeof loop !== "boolean") throw new Error(`Unsupported loop option ${loop}.`);
-    if (typeof playbackRate !== "number") throw new Error(`Unsupported playback rate ${playbackRate}.`);
-    if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
-    if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
-    scaleDescriptors.time = {
-      type: timeScale.type,
-      domain: timeScale.domain,
-      delay,
-      duration,
-      direction,
-      playbackRate,
-      initial,
-      autoplay,
-      iterations,
-      loop,
-      alternate,
-      loopDelay,
-      scale: timeScale.scale
-    };
-  }
-
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
@@ -217,23 +135,90 @@ export function plot(options = {}) {
     state.values = valueObject(state.channels, scales);
   }
 
+  // Infer the time scale
+  let interpolateTime;
+  let timeScale;
+  if (markTimes.size) {
+    ({time: timeScale} = Scales(new Map([["time", Array.from(markTimes, ([, {time}]) => ({value: time}))]]), options));
+    if (isOrdinalScale(timeScale)) {
+      const index = new InternMap(timeScale.domain.map((d, i) => [d, i]));
+      // ordinal times are mapped to their rank in the ordinal domain
+      for (const [, m] of markTimes) {
+        const domain = [...intersection(timeScale.domain, m.time)];
+        m.time = m.time.map(d => index.get(d));
+        m.domain = domain.map(d => index.get(d));
+      }
+    } else {
+      for (const [, m] of markTimes) {
+        m.time = coerceNumbers(m.time);
+        m.domain = [];
+        for (const t of m.time) {
+          if (isNaN(t) || !isFinite(t)) continue;
+          const i = bisectLeft(m.domain, t);
+          if (m.domain[i] === t) continue;
+          m.domain.splice(i, 0, t);
+        }
+      }
+    }
+
+    const {
+      delay = 0,
+      duration = 5000,
+      direction = 1,
+      playbackRate = 1,
+      initial,
+      autoplay = true,
+      iterations = 0,
+      loop = !!iterations,
+      alternate = false,
+      loopDelay = 1000
+    } = time == null ? {} : time;
+    interpolateTime = scaleLinear()
+      .domain(isOrdinalScale(timeScale) ? [0, timeScale.domain.length - 1] : extent(timeScale.domain))
+      .range([0, 1]);
+
+    if (typeof delay !== "number" || delay < 0 || !isFinite(delay)) throw new Error(`Unsupported delay ${delay}.`);
+    if (typeof duration !== "number" || duration < 0 || !isFinite(duration)) throw new Error(`Unsupported duration ${duration}.`);
+    if (![-1, 1, null].includes(direction)) throw new Error(`Unsupported direction ${direction}.`);
+    if (initial != null && Number.isNaN(interpolateTime(initial))) throw new Error(`Unsupported initial time ${initial}.`);
+    if (typeof autoplay !== "boolean") throw new Error(`Unsupported autoplay option ${autoplay}.`);
+    if (typeof loop !== "boolean") throw new Error(`Unsupported loop option ${loop}.`);
+    if (typeof playbackRate !== "number") throw new Error(`Unsupported playback rate ${playbackRate}.`);
+    if (typeof alternate !== "boolean") throw new Error(`Unsupported alternate option ${alternate}.`);
+    if (typeof loopDelay !== "number" || loopDelay < 0) throw new Error(`Unsupported loop delay ${loopDelay}.`);
+    scaleDescriptors.time = {
+      type: timeScale.type,
+      domain: timeScale.domain,
+      delay,
+      duration,
+      direction,
+      playbackRate,
+      initial,
+      autoplay,
+      iterations,
+      loop,
+      alternate,
+      loopDelay,
+      scale: timeScale.scale
+    };
+  }
+  
   for (const [mark, state] of stateByMark) {
-    // Reassemble across time facets
-    const {facets, data, values} = state;
+    const {facets, values} = state;
+
+    // Reassemble time facets
     if (mark.time) {
       const m = markTimes.get(mark);
-      const {domain} = m;
-      if (domain.length <= 1) continue; // no interpolation
-      const newFacets = [];
-      const newTime = [];
+      const {domain, time, timeFacets} = m;
+      if (domain.length <= 1) continue;
 
-      // A transform can modify the time key
+      const newTime = [];
+      const newFacets = [];
       for (let k = 0; k < facets.length; ++k) {
-        const j = Math.floor(k / domain.length);
+        const t = time[k], j = timeFacets[k];
+        for (const i of facets[k]) newTime[i] = t;
         newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
-        for (const i of facets[k]) newTime[i] = domain[k % domain.length];
       }
-      m.key = mark.key ? valueof(data, mark.key) : defaultKeys(newTime);
 
       state.facets = newFacets;
       state.interp = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]));
@@ -323,7 +308,8 @@ export function plot(options = {}) {
           const j = indexByFacet.get(key);
           for (const [mark, {channels, values, facets}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
-            const node = mark.render(facet, scales, values, subdimensions, context);
+            const index = mark.time ? [] : facet;
+            const node = mark.render(index, scales, values, subdimensions, context);
             if (node != null) {
               this.appendChild(node);
               if (mark.time) {
@@ -399,7 +385,9 @@ export function plot(options = {}) {
       currentTime = interpolateTime.invert(t1 = t);
       for (const timeMark of animateMarks) {
         const {mark, facet, dimensions} = timeMark;
-        const {domain, key: K} = markTimes.get(mark); // each mark might have a different time domain
+        const {channels: {key}} = stateByMark.get(mark);
+        const {domain} = markTimes.get(mark);
+        const K = key ? key.value : null;
         const i0 = bisectLeft(domain, currentTime);
         const time0 = domain[i0 - 1];
         const time1 = domain[i0] !== undefined ? domain[i0] : time0;
@@ -409,19 +397,26 @@ export function plot(options = {}) {
         let timeNode;
         const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
         const I1 = facet.filter(i => T[i] === time1); // following keyframe
-        const K0 = new Set(I0.map(i => K[i]));
-        const K1 = new Set(I1.map(i => K[i]));
-        const Kenter = difference(K1, K0);
-        const Kupdate = intersection(K0, K1);
-        const Kexit = difference(K0, K1);
-        const enter = I1.filter(i => Kenter.has(K[i]));
-        const update = I0.filter(i => Kupdate.has(K[i]));
-        const target = update.map(i => I1.find(j => K[i] === K[j])); // TODO: use an index
-        const exit = I0.filter(i => Kexit.has(K[i]));
+        let enter = [], update = [], target = [], exit = [];
+        if (K) {
+          const K0 = new Set(I0.map(i => K[i]));
+          const K1 = new Set(I1.map(i => K[i]));
+          const Kenter = difference(K1, K0);
+          const Kupdate = intersection(K0, K1);
+          const Kexit = difference(K0, K1);
+          enter = I1.filter(i => Kenter.has(K[i]));
+          update = I0.filter(i => Kupdate.has(K[i]));
+          target = update.map(i => I1.find(j => K[i] === K[j])); // TODO: use an index
+          exit = I0.filter(i => Kexit.has(K[i]));
+        } else {
+          enter = I1;
+          exit = I0;
+        }
         const n = update.length;
         const nt = n + enter.length + exit.length;
         const Ii = Uint32Array.from({length: nt}).map((_, i) => i + T.length);
         if (exit.length || enter.length) interp.opacity = opacity;
+
         // TODO This is interpolating the already-scaled values, but we
         // probably want to interpolate in data space instead and then
         // re-apply the scales. I’m not sure what to do for ordinal data,
@@ -595,10 +590,20 @@ export class Mark {
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
+    const T = valueof(data, this.time), time = [], timeFacets = [];
+    if (T != null) {
+      facets = facets.flatMap((facet, j) => Array.from(
+        group(facet, i => T[i]),
+        ([t, I]) => (timeFacets.push(j), time.push(t), I)
+      ));
+      this.channels.key = {value: this.key ?? defaultKeys(T), filter: null};
+    }
+    if (this.transform != null) {
+      ({data, facets} = this.transform(data, facets)), data = arrayify(data);
+    }
     const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
-    return {data, facets, channels};
+    return {data, facets, channels, time, timeFacets};
   }
   filter(index, channels, values) {
     for (const name in channels) {
