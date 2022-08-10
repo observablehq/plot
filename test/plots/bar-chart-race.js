@@ -5,7 +5,7 @@ export default async function () {
   const brands = await d3.csv("data/category-brands.csv", d3.autoType);
   const format = d3.format(",");
   const tickFormat = d => d === 0 ? "" : format(d);
-  return Plot.plot({
+  const chart = Plot.plot({
     width: 980,
     height: 15 * 40,
     marginTop: 20,
@@ -141,4 +141,12 @@ export default async function () {
       )
     ]
   });
+
+  // for CI tests
+  chart.snapshots = [new Date(Date.UTC(2000, 0, 1)), new Date(Date.UTC(2008, 8, 1)), new Date(Date.UTC(2018, 4, 1))];
+
+  // animate on click
+  d3.select(chart).on("click", () => chart.paused ? chart.play() : chart.pause());
+
+  return chart;
 }

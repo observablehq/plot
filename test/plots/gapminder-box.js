@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function () {
   const gapminder = await d3.tsv("data/gapminder.tsv", d3.autoType);
-  return Plot.plot({
+  const chart = Plot.plot({
     marginLeft: 70,
     inset: 10,
     grid: true,
@@ -21,4 +21,12 @@ export default async function () {
       })
     ]
   });
+
+  // for CI tests
+  chart.snapshots = [1952, 1997.3, 2020];
+
+  // animate on click
+  d3.select(chart).on("click", () => chart.paused ? chart.play() : chart.pause());
+
+  return chart;
 }
