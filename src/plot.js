@@ -509,6 +509,7 @@ export function plot(options = {}) {
       currentTime = interpolateTime.invert(ticker);
       ended = ticker < 0 || ticker > 1;
       lastTick = t1 = undefined;
+      timeupdate(Math.max(0, Math.min(1, ticker)));
     };
 
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
