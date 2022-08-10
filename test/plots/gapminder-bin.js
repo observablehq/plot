@@ -69,10 +69,9 @@ export default async function () {
   });
 
   // for CI tests
-  chart.currentTime = 1999;
-  requestAnimationFrame(() => chart.currentTime = 1952);
+  chart.snapshots = [1952, 1997.3, 2020];
 
-  // animate
+  // animate on click
   d3.select(chart).on("click", () => chart.paused ? chart.play() : chart.pause());
 
   return chart;
