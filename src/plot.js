@@ -83,7 +83,6 @@ export function plot(options = {}) {
       : undefined;
 
     const {data, facets, channels, time, timeFacets} = mark.initialize(markFacets, facetChannels);
-console.warn("initialized", channels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
     if (timeFacets.length) markTimes.set(mark, {time, timeFacets});
