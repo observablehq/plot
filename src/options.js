@@ -89,9 +89,12 @@ export function arrayify(data, type) {
 // instanceof the desired array type, the faster values.map method is used.
 export function map(values, f, type = Array) {
   if (values instanceof type) return values.map(f);
-  const V = new type(values.length);
-  for (let i = 0; i < values.length; ++i) V[i] = f(values[i], i);
-  return V;
+  if (values instanceof Array || isTypedArray(values)) {
+    const V = new type(values.length);
+    for (let i = 0; i < values.length; ++i) V[i] = f(values[i], i);
+    return V;
+  }
+  return type.from(values, f);
 }
 
 // An optimization of type.from(values): if the given values are already an
