@@ -44,6 +44,8 @@ function receives as arguments the previous and the next values *a* and *b*, and
 must return a function of *t* that is equal to *a* for *t*=0 and equal to *b*
 for *t*=1.
 
+TODO: shelve specific tweens for now.
+
 The default interpolator depends on the type of the value:
 - position channels default to [number
   interpolation](https://github.com/d3/d3-interpolate/blob/main/README.md#interpolateHsl).
@@ -79,6 +81,8 @@ TODO: scale/axis transition.
 The top-level **time** option controls the time scale and animation parameters.
 The following parameters are supported:
 
+TODO: add scale options (domain, type, exponent…)
+
 - **duration** - the duration of the animation to cover the whole time domain,
   in milliseconds; defaults to 5000
 - **direction** - specifies the direction of the playback: forward (positive) or
@@ -101,6 +105,8 @@ The following parameters are supported:
   backwards, defaults to false
 - **loopDelay** - the delay between two iterations, in milliseconds; defaults to
   1000
+
+TODO: prefer Web animation API
 
 Some of these options correspond to the [HTMLMediaElement
 API](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement). When a

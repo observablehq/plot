@@ -60,7 +60,7 @@ function binn(
   outputs = maybeOutputs(outputs, inputs);
   if (!hasOutput(outputs, "key")) {
     outputs.push(...maybeOutputs({
-      key: (data, bin) => JSON.stringify({...bin, first: data[0]})
+      key: (data, bin) => JSON.stringify({...bin, first: `${data[0]}`}) // TODO: InternMap approach (numbers; the keys should be opaque)
     }, {key: maybeZ(inputs)}));
   }
   reduceData = maybeReduce(reduceData, identity);
