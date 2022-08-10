@@ -492,7 +492,7 @@ export function plot(options = {}) {
         }
       }
       ended = t < 0 || t > 1;
-      paused |= ended;
+      if (ended) paused = true;
 
       timeupdate(t);
       if (figure.parentElement) requestAnimationFrame(tick);
