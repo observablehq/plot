@@ -1,0 +1,63 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="980" height="600" viewBox="0 0 980 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="bar" fill-opacity="0.6">
+    <rect style="mix-blend-mode: multiply;" x="10" width="318.8963055184724" y="547" height="33" fill="#4e79a7" opacity="0.22222222222222182"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="969" y="29" height="33" fill="#4e79a7" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="851.89991535799" y="66" height="33" fill="#ff9da7" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="818.2872004052991" y="103" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="706.2349520430068" y="140" height="33" fill="#af7aa1" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="501.8091991243422" y="177" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="459.4280259517898" y="263.33333333333337" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="439.39279416574664" y="300.33333333333337" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="453.76988428468974" y="238.66666666666666" height="33" fill="#59a14f" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="409.08096485996464" y="349.6666666666667" height="33" fill="#e15759" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="424.5485890023339" y="287.99999999999994" height="33" fill="#f28e2c" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="348.2351605776234" y="423.6666666666667" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="340.3680188389002" y="411.3333333333333" height="33" fill="#9c755f" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="316.5542429317853" y="522.3333333333334" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="324.59995727926037" y="485.33333333333337" height="33" fill="#edc949" opacity="1"></rect>
+    <rect style="mix-blend-mode: multiply;" x="10" width="310.5751156632816" y="510" height="33" fill="#ff9da7" opacity="0.7777777777777781"></rect>
+  </g>
+  <g transform="translate(0, 20)" fill="none" font-size="8" font-family="sans-serif" text-anchor="middle" stroke-width="0.75">
+    <g class="tick" opacity="1" transform="translate(10.5,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(152.90576089352635,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">10,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(295.3115217870527,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">20,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(437.71728268057905,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">30,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(580.1230435741054,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">40,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(722.5288044676317,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">50,000</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(864.9345653611581,0)">
+      <line stroke="white" y2="570"></line><text fill="currentColor" y="-3" dy="0em">60,000</text>
+    </g>
+  </g>
+  <g aria-label="tick" stroke="currentColor" stroke-width="0.5" transform="translate(0.5,0)">
+    <line x1="10" x2="10" y1="26" y2="584"></line>
+  </g>
+  <g aria-label="text" stroke="white" stroke-width="30" stroke-linejoin="round" paint-order="stroke" text-anchor="end" font-size="40" font-variant="tabular-nums" font-weight="bold" transform="translate(0.5,2)"><text transform="translate(979.065935605,590)" opacity="1">2008</text></g>
+  <g aria-label="text" text-anchor="end" font-size="12" font-weight="bold" transform="translate(-3.5,10)"><text y="0.32em" transform="translate(328.8963055184724,547)" opacity="0.22222222222222182">American Express</text><text y="0.32em" transform="translate(979,29)" opacity="1">Coca-Cola</text><text y="0.32em" transform="translate(861.89991535799,66)" opacity="1">IBM</text><text y="0.32em" transform="translate(828.2872004052991,103)" opacity="1">Microsoft</text><text y="0.32em" transform="translate(716.2349520430068,140)" opacity="1">GE</text><text y="0.32em" transform="translate(511.8091991243422,177)" opacity="1">Nokia</text><text y="0.32em" transform="translate(469.4280259517898,263.33333333333337)" opacity="1">Toyota</text><text y="0.32em" transform="translate(449.39279416574664,300.33333333333337)" opacity="1">Intel</text><text y="0.32em" transform="translate(463.76988428468974,238.66666666666666)" opacity="1">McDonald's</text><text y="0.32em" transform="translate(419.08096485996464,349.6666666666667)" opacity="1">Disney</text><text y="0.32em" transform="translate(434.5485890023339,287.99999999999994)" opacity="1">Google</text><text y="0.32em" transform="translate(358.2351605776234,423.6666666666667)" opacity="1">Mercedes-Benz</text><text y="0.32em" transform="translate(350.3680188389002,411.3333333333333)" opacity="1">HP</text><text y="0.32em" transform="translate(326.5542429317853,522.3333333333334)" opacity="1">BMW</text><text y="0.32em" transform="translate(334.59995727926037,485.33333333333337)" opacity="1">Gillette</text><text y="0.32em" transform="translate(320.5751156632816,510)" opacity="0.7777777777777781">Cisco</text></g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-3.5,25)"><text y="0.32em" transform="translate(328.8963055184724,547)" opacity="0.22222222222222182">21,940</text><text y="0.32em" transform="translate(979,29)" opacity="1">68,045</text><text y="0.32em" transform="translate(861.89991535799,66)" opacity="1">59,818</text><text y="0.32em" transform="translate(828.2872004052991,103)" opacity="1">57,434</text><text y="0.32em" transform="translate(716.2349520430068,140)" opacity="1">49,547</text><text y="0.32em" transform="translate(511.8091991243422,177)" opacity="1">35,223</text><text y="0.32em" transform="translate(469.4280259517898,263.33333333333337)" opacity="1">32,237</text><text y="0.32em" transform="translate(449.39279416574664,300.33333333333337)" opacity="1">30,844</text><text y="0.32em" transform="translate(463.76988428468974,238.66666666666666)" opacity="1">31,866</text><text y="0.32em" transform="translate(419.08096485996464,349.6666666666667)" opacity="1">28,715</text><text y="0.32em" transform="translate(434.5485890023339,287.99999999999994)" opacity="1">29,850</text><text y="0.32em" transform="translate(358.2351605776234,423.6666666666667)" opacity="1">24,437</text><text y="0.32em" transform="translate(350.3680188389002,411.3333333333333)" opacity="1">23,900</text><text y="0.32em" transform="translate(326.5542429317853,522.3333333333334)" opacity="1">22,213</text><text y="0.32em" transform="translate(334.59995727926037,485.33333333333337)" opacity="1">22,790</text><text y="0.32em" transform="translate(320.5751156632816,510)" opacity="0.7777777777777781">22,030</text></g>
+</svg>

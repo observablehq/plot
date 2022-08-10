@@ -27,6 +27,10 @@ https://www.bls.gov/
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## category-brands.csv
+Interbrand
+https://interbrand.com/best-brands/
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
@@ -66,6 +70,10 @@ https://data.giss.nasa.gov/gistemp/
 ## hadcrut-annual.txt
 Met Office Hadley Centre
 https://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/series_format.html
+
+## historical-life-expectancy.tsv
+Wikipedia
+https://en.wikipedia.org/wiki/Life_expectancy#Variation_over_time
 
 ## metros.csv
 The New York Times

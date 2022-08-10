@@ -1,5 +1,5 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
-import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, mid, labelof, isTemporal, isIterable} from "../options.js";
+import {valueof, range, identity, maybeColumn, maybeTuple, maybeColorChannel, maybeValue, maybeZ, mid, labelof, isTemporal, isIterable} from "../options.js";
 import {coerceDate, coerceNumber} from "../scales.js";
 import {basic} from "./basic.js";
 import {hasOutput, maybeEvaluator, maybeGroup, maybeOutput, maybeOutputs, maybeReduce, maybeSort, maybeSubgroup, reduceCount, reduceFirst, reduceIdentity} from "./group.js";
@@ -58,6 +58,11 @@ function binn(
 
   // Compute the outputs.
   outputs = maybeOutputs(outputs, inputs);
+  if (!hasOutput(outputs, "key")) {
+    outputs.push(...maybeOutputs({
+      key: (data, bin) => JSON.stringify({...bin, first: `${data[0]}`}) // TODO: InternMap approach (numbers; the keys should be opaque)
+    }, {key: maybeZ(inputs)}));
+  }
   reduceData = maybeReduce(reduceData, identity);
   sort = sort == null ? undefined : maybeOutput("sort", sort, inputs);
   filter = filter == null ? undefined : maybeEvaluator("filter", filter, inputs);

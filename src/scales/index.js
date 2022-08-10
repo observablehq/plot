@@ -22,6 +22,9 @@ export const opacity = Symbol("opacity");
 // Symbol scales have a default range of d3.symbols.
 export const symbol = Symbol("symbol");
 
+// A time scale maps the given times (ordinal or continuous) to the [0, 1] interval
+export const time = Symbol("time");
+
 // TODO Rather than hard-coding the list of known scale names, collect the names
 // and categories for each plot specification, so that custom marks can register
 // custom scales.
@@ -34,5 +37,6 @@ export const registry = new Map([
   ["color", color],
   ["opacity", opacity],
   ["symbol", symbol],
-  ["length", length]
+  ["length", length],
+  ["time", time]
 ]);

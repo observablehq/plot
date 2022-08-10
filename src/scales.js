@@ -414,10 +414,23 @@ function exposeScale({
   interval,
   transform,
   percent,
-  pivot
+  pivot,
+
+  // time
+  alternate,
+  autoplay,
+  delay,
+  direction,
+  duration,
+  initial,
+  iterations,
+  loopDelay,
+  loop,
+  playbackRate 
 }) {
   if (type === "identity") return {type: "identity", apply: d => d, invert: d => d};
   const unknown = scale.unknown ? scale.unknown() : undefined;
+
   return {
     type,
     domain: slice(domain), // defensive copy
@@ -448,6 +461,9 @@ function exposeScale({
     ...scale.align && {align: scale.align(), round: scale.round()},
     ...scale.padding && (scale.paddingInner ? {paddingInner: scale.paddingInner(), paddingOuter: scale.paddingOuter()} : {padding: scale.padding()}),
     ...scale.bandwidth && {bandwidth: scale.bandwidth(), step: scale.step()},
+
+    // time
+    ...duration !== undefined && {alternate, autoplay, delay, direction, duration, initial, iterations, loopDelay, loop, playbackRate},
 
     // utilities
     apply: t => scale(t),

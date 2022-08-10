@@ -1,16 +1,15 @@
-import {bisectLeft, cross, difference, groups, InternMap, interpolate, interpolateNumber, select} from "d3";
+import {cross, difference, group, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, take, where, yes} from "./options.js";
-import {Scales, ScaleFunctions, autoScaleRange, exposeScales, coerceNumbers} from "./scales.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, second, valueof, where, yes} from "./options.js";
+import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {inferDomain} from "./scales/quantitative.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
-import {maybeTimeFilter} from "./time.js";
+import {animate, maybeTimeFilter, defaultKey, prepareTimeScale} from "./time.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings} from "./warnings.js";
@@ -73,16 +72,24 @@ export function plot(options = {}) {
   }
 
   // Initialize the marks’ state.
+  let hasTime = !!options.time;
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const markFacets = facetsIndex === undefined ? undefined
+
+    let markFacets = facetsIndex === undefined ? undefined
       : mark.facet === "auto" ? mark.data === facet.data ? facetsIndex : undefined
       : mark.facet === "include" ? facetsIndex
       : mark.facet === "exclude" ? facetsExclude || (facetsExclude = facetsIndex.map(f => Uint32Array.from(difference(facetIndex, f))))
       : undefined;
-    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+
+    const {data, facets, channels, time, timeFacets} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
-    stateByMark.set(mark, {data, facets, channels});
+    if (timeFacets.length) {
+      stateByMark.set(mark, {data, facets, channels, time, timeFacets, layouts: []});
+      hasTime = true;
+    } else {
+      stateByMark.set(mark, {data, facets, channels});
+    }
   }
 
   // Initalize the scales and axes.
@@ -126,14 +133,40 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Aggregate and sort time channels.
-  const timeChannels = findTimeChannels(stateByMark);
-  const timeDomain = inferDomain(timeChannels);
-  const times = aggregateTimes(timeChannels);
-
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
     state.values = valueObject(state.channels, scales);
+  }
+
+  // Infer the time scale
+  const time = hasTime && prepareTimeScale(options, stateByMark);
+  if (time) {
+    scaleDescriptors.time = time;
+    scales.time = time.scale;
+  }
+  
+  for (const [mark, state] of stateByMark) {
+    const {facets, values} = state;
+
+    // Reassemble time facets
+    if (mark.time) {
+      const m = stateByMark.get(mark);
+      const {domain, time, timeFacets} = m;
+      if (domain.length <= 1) continue;
+
+      const newTime = [];
+      const newFacets = [];
+      for (let k = 0; k < facets.length; ++k) {
+        const t = time[k], j = timeFacets[k];
+        for (const i of facets[k]) newTime[i] = t;
+        newFacets[j] = newFacets[j] ? newFacets[j].concat(facets[k]) : facets[k];
+      }
+
+      state.facets = newFacets;
+      state.interp = Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]));
+      state.interp.time = newTime;
+      state.opacity = new Array(newTime.length).fill(1);
+    }
   }
 
   const {width, height} = dimensions;
@@ -213,90 +246,39 @@ export function plot(options = {}) {
         .attr("transform", facetTranslate(fx, fy))
         .each(function(key) {
           const j = indexByFacet.get(key);
-          for (const [mark, {channels, values, facets}] of stateByMark) {
+          for (const [mark, {channels, values, facets, layouts}] of stateByMark) {
             const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
-            const node = mark.render(facet, scales, values, subdimensions, context);
-            if (node != null) this.appendChild(node);
+            const index = layouts ? [] : facet;
+            const node = mark.render(index, scales, values, subdimensions, context);
+            if (node != null) {
+              this.appendChild(node);
+              if (layouts) {
+                layouts.push({
+                  mark,
+                  node,
+                  facet,
+                  dimensions: subdimensions
+                });
+              }
+            }
           }
         });
   } else {
-    const timeMarks = [];
-    for (const [mark, {channels, values, facets}] of stateByMark) {
+    for (const [mark, {channels, values, facets, layouts}] of stateByMark) {
       const facet = facets ? mark.filter(facets[0], channels, values) : null;
-      const index = channels.time ? [] : facet;
+      const index = layouts ? [] : facet;
       const node = mark.render(index, scales, values, dimensions, context);
-      if (channels.time) timeMarks.push({mark, node, interp: Object.fromEntries(Object.entries(values).map(([key, value]) => [key, Array.from(value)]))});
-      if (node != null) svg.appendChild(node);
-    }
-    if (timeMarks.length) {
-      // TODO There needs to be an option to avoid interpolation and just play
-      // the distinct times, as given, in ascending order, as keyframes. And
-      // there needs to be an option to control the delay, duration, iterations,
-      // and other timing parameters of the animation.
-      const interpolateTime = interpolateNumber(...timeDomain);
-      const delay = 0; // TODO configurable; delay initial rendering
-      const duration = 5000; // TODO configurable
-      const startTime = performance.now() + delay;
-      requestAnimationFrame(function tick() {
-        const t = Math.max(0, Math.min(1, (performance.now() - startTime) / duration));
-        const currentTime = interpolateTime(t);
-        const i0 = bisectLeft(times, currentTime);
-        const time0 = times[i0 - 1];
-        const time1 = times[i0];
-        const timet = (currentTime - time0) / (time1 - time0);
-        for (const timeMark of timeMarks) {
-          const {mark, node, interp} = timeMark;
-          const {channels, values, facets} = stateByMark.get(mark);
-          const facet = facets ? mark.filter(facets[0], channels, values) : null;
-          const {time: T} = values;
-          let timeNode;
-          if (isFinite(timet)) {
-            const I0 = facet.filter(i => T[i] === time0); // preceding keyframe
-            const I1 = facet.filter(i => T[i] === time1); // following keyframe
-            const n = I0.length; // TODO enter, exit, key
-            const Ii = I0.map((_, i) => i + facet.length); // TODO optimize
-
-            // TODO This is interpolating the already-scaled values, but we
-            // probably want to interpolate in data space instead and then
-            // re-apply the scales. I’m not sure what to do for ordinal data,
-            // but interpolating in data space will ensure that the resulting
-            // instantaneous visualization is meaningful and valid. TODO If the
-            // data is sparse (not all series have values for all times), or if
-            // the data is inconsistently ordered, then we will need a separate
-            // key channel to align the start and end values for interpolation;
-            // this code currently assumes that the data is complete and the
-            // order is consistent. TODO The sort transform (which happens by
-            // default with the dot mark) breaks consistent ordering! TODO If
-            // the time filter is not “eq” (strict equals) here, then we’ll need
-            // to combine the interpolated data with the filtered data.
-            for (const k in values) {
-              if (k === "time") {
-                for (let i = 0; i < n; ++i) {
-                  interp[k][Ii[i]] = currentTime;
-                }
-              } else {
-                for (let i = 0; i < n; ++i) {
-                  interp[k][Ii[i]] = interpolate(values[k][I0[i]], values[k][I1[i]])(timet);
-                }
-              }
-            }
-
-            // TODO We need to switch to using temporal facets so that the
-            // facets are guaranteed to be in chronological order. (Within a
-            // facet, there’s no guarantee that the index is sorted
-            // chronologically.)
-            const ifacet = [...facet.filter(i => T[i] <= time0), ...Ii, ...facet.filter(i => T[i] > time0)];
-            const index = mark.timeFilter(ifacet, interp.time, currentTime);
-            timeNode = mark.render(index, scales, interp, dimensions, context);
-          } else {
-            const index = mark.timeFilter(facet, T, currentTime);
-            timeNode = mark.render(index, scales, values, dimensions, context);
-          }
-          node.replaceWith(timeNode);
-          timeMark.node = timeNode;
+      if (node != null) {
+        svg.appendChild(node);
+        if (mark.time) {
+          layouts.push({
+            mark,
+            node,
+            facet,
+            dimensions
+          });
         }
-        if (t < 1) requestAnimationFrame(tick);
-      });
+      }
     }
   }
 
@@ -332,22 +314,34 @@ export function plot(options = {}) {
         .text(`${w.toLocaleString("en-US")} warning${w === 1 ? "" : "s"}. Please check the console.`);
   }
 
+  if (hasTime) {
+    animate(
+      stateByMark,
+      time,
+      scales,
+      figure,
+      context
+    );
+  }
+
   return figure;
 }
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, time, timeFilter, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, time, key, timeFilter, tween, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
     this.facet = facet == null || facet === false ? null : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
     this.timeFilter = maybeTimeFilter(timeFilter);
+    this.tween = tween;
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    if (time != null) channels = {time: {value: time}, ...channels};
+    this.time = time;
+    this.key = key;
     this.channels = Object.fromEntries(Object.entries(channels).filter(([name, {value, optional}]) => {
       if (value != null) return true;
       if (optional) return false;
@@ -360,10 +354,20 @@ export class Mark {
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
     if (facets === undefined && data != null) facets = [range(data)];
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), data = arrayify(data);
+    const T = valueof(data, this.time), time = [], timeFacets = [];
+    if (T != null) {
+      facets = facets.flatMap((facet, j) => Array.from(
+        group(facet, i => T[i]),
+        ([t, I]) => (timeFacets.push(j), time.push(t), I)
+      ));
+      this.channels.key = {value: this.key ?? defaultKey(T), filter: null};
+    }
+    if (this.transform != null) {
+      ({data, facets} = this.transform(data, facets)), data = arrayify(data);
+    }
     const channels = Channels(this.channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
-    return {data, facets, channels};
+    return {data, facets, channels, time, timeFacets};
   }
   filter(index, channels, values) {
     for (const name in channels) {
@@ -447,34 +451,6 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
     }
   }
   return channelsByScale;
-}
-
-// TODO There should be a way to set at explicit domain of the time scale, and
-// probably also a way to control whether times are expressed (and coerced) to
-// numbers or dates. And maybe non-linear (log or sqrt) time, too, or should
-// that be controlled with easing?
-function findTimeChannels(stateByMark) {
-  const channels = [];
-  for (const {channels: {time}} of stateByMark.values()) {
-    if (time) {
-      coerceNumbers(time.value); // Note: mutates!
-      channels.push(time);
-    }
-  }
-  return channels;
-}
-
-function aggregateTimes(channels) {
-  const times = [];
-  for (const {value} of channels) {
-    for (let t of value) {
-      if (t == null || isNaN(t = +t)) continue;
-      const i = bisectLeft(times, t);
-      if (times[i] === t) continue;
-      times.splice(i, 0, t);
-    }
-  }
-  return times;
 }
 
 // Derives a copy of the specified axis with the label disabled.

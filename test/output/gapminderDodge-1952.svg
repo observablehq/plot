@@ -1,0 +1,551 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="170" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="x-axis" aria-description="GDP per capita →" transform="translate(0,140)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(104.12220136080313,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(128.663360265016,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(147.69896197832844,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(163.25218105385454,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(176.40224041136722,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(187.7933399580674,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(197.8410018426931,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(206.82894167137982,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">1k</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(265.95892136443126,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">2k</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(300.5477421532697,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(325.08890105748264,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(344.12450277079523,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(359.67772184632116,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(372.82778120383387,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(384.2188807505341,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(394.2665426351598,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(403.25448246384656,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10k</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(462.3844621568979,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20k</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(496.97328294573646,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(521.5144418499492,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(540.5500435632617,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(556.1032626387879,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(569.2533219963005,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(580.6444215430007,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(590.6920834276264,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em"></text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(599.6800232563131,0)">
+      <line stroke="currentColor" y2="6"></line>
+      <line stroke="currentColor" y2="-140" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">100k</text>
+    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">GDP per capita →</text>
+  </g>
+  <g aria-label="dot" fill-opacity="0.3" stroke-width="0.5" transform="translate(0.5,0.5)">
+    <circle cx="128.25898027240905" cy="119.51540748473009" r="19.484592515269906" fill="#e15759" opacity="1">
+      <title>China</title>
+    </circle>
+    <circle cx="154.79521076794794" cy="94.57274954878247" r="15.933915332005478" fill="#e15759" opacity="1">
+      <title>India</title>
+    </circle>
+    <circle cx="431.3997454084461" cy="128.63034342076045" r="10.369656579239535" fill="#f28e2c" opacity="1">
+      <title>United States</title>
+    </circle>
+    <circle cx="306.00413316212945" cy="131.31832016865835" r="7.681679831341661" fill="#e15759" opacity="1">
+      <title>Japan</title>
+    </circle>
+    <circle cx="181.75156582572038" cy="131.5166575300444" r="7.483342469955608" fill="#e15759" opacity="1">
+      <title>Indonesia</title>
+    </circle>
+    <circle cx="374.06621793982475" cy="132.1303530924394" r="6.869646907560594" fill="#76b7b2" opacity="1">
+      <title>Germany</title>
+    </circle>
+    <circle cx="269.98360830146754" cy="132.78460016307275" r="6.215399836927243" fill="#f28e2c" opacity="1">
+      <title>Brazil</title>
+    </circle>
+    <circle cx="402.57949713312934" cy="133.1332778648685" r="5.866722135131501" fill="#76b7b2" opacity="1">
+      <title>United Kingdom</title>
+    </circle>
+    <circle cx="342.4460658912942" cy="133.2963168782471" r="5.703683121752895" fill="#76b7b2" opacity="1">
+      <title>Italy</title>
+    </circle>
+    <circle cx="173.96019420254657" cy="119.71664537937478" r="5.656875298040344" fill="#e15759" opacity="1">
+      <title>Bangladesh</title>
+    </circle>
+    <circle cx="372.69028563561574" cy="118.94914028529178" r="5.38318527175409" fill="#76b7b2" opacity="1">
+      <title>France</title>
+    </circle>
+    <circle cx="174.0041888326872" cy="107.74769608574752" r="5.312154851512369" fill="#e15759" opacity="1">
+      <title>Pakistan</title>
+    </circle>
+    <circle cx="212.67925081536936" cy="134.24565960887713" r="4.754340391122864" fill="#4e79a7" opacity="1">
+      <title>Nigeria</title>
+    </circle>
+    <circle cx="312.66297556429834" cy="119.90072177737258" r="4.535798565145831" fill="#f28e2c" opacity="1">
+      <title>Mexico</title>
+    </circle>
+    <circle cx="320.9738957326698" cy="134.58578885725132" r="4.414211142748674" fill="#76b7b2" opacity="1">
+      <title>Spain</title>
+    </circle>
+    <circle cx="163.4694980949634" cy="134.7675723900153" r="4.232427609984709" fill="#e15759" opacity="1">
+      <title>Vietnam</title>
+    </circle>
+    <circle cx="325.2121226774392" cy="125.96664083515992" r="4.1905939183700305" fill="#76b7b2" opacity="1">
+      <title>Poland</title>
+    </circle>
+    <circle cx="226.91194239001783" cy="135.08664006680058" r="3.9133599331994233" fill="#e15759" opacity="1">
+      <title>Philippines</title>
+    </circle>
+    <circle cx="264.1306904156602" cy="123.34012878364318" r="3.895616651894478" fill="#76b7b2" opacity="1">
+      <title>Turkey</title>
+    </circle>
+    <circle cx="236.17149108499936" cy="135.10546691503404" r="3.894533084965965" fill="#4e79a7" opacity="1">
+      <title>Egypt</title>
+    </circle>
+    <circle cx="182.67009833149922" cy="113.90878677831067" r="3.8118233539173425" fill="#e15759" opacity="1">
+      <title>Thailand</title>
+    </circle>
+    <circle cx="208.89953564682395" cy="125.49132764710625" r="3.7810974515886944" fill="#e15759" opacity="1">
+      <title>Korea, Rep.</title>
+    </circle>
+    <circle cx="119.68249831259749" cy="96.82426619317893" r="3.7732708679737064" fill="#4e79a7" opacity="1">
+      <title>Ethiopia</title>
+    </circle>
+    <circle cx="112.01089567537176" cy="101.597609267873" r="3.7031677368180813" fill="#e15759" opacity="1">
+      <title>Myanmar</title>
+    </circle>
+    <circle cx="357.9074095890948" cy="135.50700615152502" r="3.4929938484749834" fill="#f28e2c" opacity="1">
+      <title>Argentina</title>
+    </circle>
+    <circle cx="301.04638680302435" cy="120.26411205125508" r="3.4333837699806176" fill="#e15759" opacity="1">
+      <title>Iran</title>
+    </circle>
+    <circle cx="304.0638541354963" cy="113.06886242399737" r="3.36897012490825" fill="#76b7b2" opacity="1">
+      <title>Romania</title>
+    </circle>
+    <circle cx="413.6859597634084" cy="135.82334334887267" r="3.176656651127318" fill="#f28e2c" opacity="1">
+      <title>Canada</title>
+    </circle>
+    <circle cx="338.8040179069724" cy="124.17246570110323" r="3.1202251546293898" fill="#4e79a7" opacity="1">
+      <title>South Africa</title>
+    </circle>
+    <circle cx="185.19285776172921" cy="106.40769226898459" r="3.1021348201354066" fill="#4e79a7" opacity="1">
+      <title>Congo, Dem. Rep.</title>
+    </circle>
+    <circle cx="271.3945277806901" cy="120.50104273963626" r="2.9033411522534456" fill="#f28e2c" opacity="1">
+      <title>Colombia</title>
+    </circle>
+    <circle cx="393.2109258119953" cy="136.33810269546376" r="2.661897304536227" fill="#76b7b2" opacity="1">
+      <title>Netherlands</title>
+    </circle>
+    <circle cx="251.00098381495798" cy="136.39548344991053" r="2.6045165500894774" fill="#4e79a7" opacity="1">
+      <title>Morocco</title>
+    </circle>
+    <circle cx="348.0085174148808" cy="125.90499820448963" r="2.546855170113534" fill="#76b7b2" opacity="1">
+      <title>Hungary</title>
+    </circle>
+    <circle cx="282.7365592610444" cy="136.48340164576817" r="2.516598354231832" fill="#4e79a7" opacity="1">
+      <title>Algeria</title>
+    </circle>
+    <circle cx="154.68588248198148" cy="136.49658785390022" r="2.5034121460997696" fill="#e15759" opacity="1">
+      <title>Nepal</title>
+    </circle>
+    <circle cx="370.8048323535033" cy="110.27287540033856" r="2.495581896772231" fill="#76b7b2" opacity="1">
+      <title>Czech Republic</title>
+    </circle>
+    <circle cx="213.54556757020805" cy="119.93748273144111" r="2.45981450619422" fill="#e15759" opacity="1">
+      <title>Korea, Dem. Rep.</title>
+    </circle>
+    <circle cx="387.30123652011684" cy="134.81463331957048" r="2.4410025361811116" fill="#76b7b2" opacity="1">
+      <title>Belgium</title>
+    </circle>
+    <circle cx="403.0915921588075" cy="123.84514479314852" r="2.4355172336066873" fill="#59a14f" opacity="1">
+      <title>Australia</title>
+    </circle>
+    <circle cx="222.37465498094116" cy="129.33093282418366" r="2.4157015957603662" fill="#e15759" opacity="1">
+      <title>Taiwan</title>
+    </circle>
+    <circle cx="301.96866163989495" cy="106.61941942493301" r="2.4122647620282303" fill="#76b7b2" opacity="1">
+      <title>Portugal</title>
+    </circle>
+    <circle cx="247.2716795435566" cy="131.67769449739737" r="2.40923793019551" fill="#4e79a7" opacity="1">
+      <title>Sudan</title>
+    </circle>
+    <circle cx="185.07287958987678" cy="121.15461452053073" r="2.3979745666436685" fill="#e15759" opacity="1">
+      <title>Afghanistan</title>
+    </circle>
+    <circle cx="177.90757014523638" cy="99.97752661293019" r="2.383356594484377" fill="#4e79a7" opacity="1">
+      <title>Tanzania</title>
+    </circle>
+    <circle cx="319.2770184657308" cy="115.62414082583237" r="2.340412969409715" fill="#f28e2c" opacity="1">
+      <title>Peru</title>
+    </circle>
+    <circle cx="213.17275202499522" cy="114.1555928174883" r="2.3340824904585147" fill="#e15759" opacity="1">
+      <title>Sri Lanka</title>
+    </circle>
+    <circle cx="313.9425590461784" cy="112.17276679142302" r="2.2973758968435796" fill="#76b7b2" opacity="1">
+      <title>Greece</title>
+    </circle>
+    <circle cx="282.57193478233904" cy="130.740909262987" r="2.2282532526670513" fill="#76b7b2" opacity="1">
+      <title>Bulgaria</title>
+    </circle>
+    <circle cx="389.1695508153936" cy="129.48657790509185" r="2.2051264745385795" fill="#76b7b2" opacity="1">
+      <title>Sweden</title>
+    </circle>
+    <circle cx="361.1047125681112" cy="129.65619813278008" r="2.1744420013729293" fill="#76b7b2" opacity="1">
+      <title>Austria</title>
+    </circle>
+    <circle cx="315.1604842888263" cy="106.84912757126344" r="2.163803137311958" fill="#76b7b2" opacity="1">
+      <title>Serbia</title>
+    </circle>
+    <circle cx="257.933833084806" cy="136.85389614012874" r="2.14610385987125" fill="#e15759" opacity="1">
+      <title>Malaysia</title>
+    </circle>
+    <circle cx="192.81964667125607" cy="136.89959397998783" r="2.1004060200121772" fill="#4e79a7" opacity="1">
+      <title>Kenya</title>
+    </circle>
+    <circle cx="141.65263683479554" cy="80.80799696889099" r="2.0975234778692537" fill="#4e79a7" opacity="1">
+      <title>Mozambique</title>
+    </circle>
+    <circle cx="323.29914983419025" cy="111.98108460132076" r="2.0863171141763646" fill="#f28e2c" opacity="1">
+      <title>Chile</title>
+    </circle>
+    <circle cx="353.08687371649415" cy="131.12001596902627" r="2.0249236840173" fill="#f28e2c" opacity="1">
+      <title>Cuba</title>
+    </circle>
+    <circle cx="180.03574367957708" cy="95.03939171082891" r="1.9938451781497022" fill="#4e79a7" opacity="1">
+      <title>Uganda</title>
+    </circle>
+    <circle cx="198.40530501470562" cy="137.04832685915596" r="1.9516731408440284" fill="#4e79a7" opacity="1">
+      <title>Ghana</title>
+    </circle>
+    <circle cx="327.31243134086776" cy="119.16580808418092" r="1.9271741720120705" fill="#e15759" opacity="1">
+      <title>Iraq</title>
+    </circle>
+    <circle cx="380.3452807536461" cy="124.61081541540871" r="1.926784927357563" fill="#f28e2c" opacity="1">
+      <title>Venezuela</title>
+    </circle>
+    <circle cx="219.9166679329211" cy="137.1510317418089" r="1.8489682581910964" fill="#4e79a7" opacity="1">
+      <title>Cameroon</title>
+    </circle>
+    <circle cx="185.3212058688593" cy="100.46634350890693" r="1.8406000995358547" fill="#e15759" opacity="1">
+      <title>Yemen, Rep.</title>
+    </circle>
+    <circle cx="435.81830777416656" cy="116.21046460607216" r="1.8127970296795686" fill="#76b7b2" opacity="1">
+      <title>Switzerland</title>
+    </circle>
+    <circle cx="237.6136094449577" cy="128.56507119094394" r="1.8029650741845702" fill="#4e79a7" opacity="1">
+      <title>Madagascar</title>
+    </circle>
+    <circle cx="121.15908103033595" cy="90.42941122924371" r="1.7898432200252816" fill="#e15759" opacity="1">
+      <title>Cambodia</title>
+    </circle>
+    <circle cx="154.276944344332" cy="131.26248497325705" r="1.7466415074909658" fill="#4e79a7" opacity="1">
+      <title>Burkina Faso</title>
+    </circle>
+    <circle cx="400.08911904637023" cy="119.65430152107608" r="1.719869475650296" fill="#76b7b2" opacity="1">
+      <title>Denmark</title>
+    </circle>
+    <circle cx="313.6986684790246" cy="102.21069032471013" r="1.69952962448826" fill="#4e79a7" opacity="1">
+      <title>Angola</title>
+    </circle>
+    <circle cx="365.00947284851486" cy="137.32914318768408" r="1.6708568123159206" fill="#76b7b2" opacity="1">
+      <title>Finland</title>
+    </circle>
+    <circle cx="365.4734232677821" cy="127.60124509660335" r="1.653442127136249" fill="#e15759" opacity="1">
+      <title>Saudi Arabia</title>
+    </circle>
+    <circle cx="303.37264753702823" cy="101.77889053150507" r="1.6277646394197272" fill="#76b7b2" opacity="1">
+      <title>Croatia</title>
+    </circle>
+    <circle cx="138.65289732628662" cy="85.42846850156054" r="1.6185011984474176" fill="#4e79a7" opacity="1">
+      <title>Mali</title>
+    </circle>
+    <circle cx="248.71086312404077" cy="126.89967539988876" r="1.5808237802938836" fill="#e15759" opacity="1">
+      <title>Syria</title>
+    </circle>
+    <circle cx="239.1058320834169" cy="124.44624665248243" r="1.577838959478996" fill="#4e79a7" opacity="1">
+      <title>Tunisia</title>
+    </circle>
+    <circle cx="344.888868245733" cy="121.86385823289038" r="1.5583405370677088" fill="#76b7b2" opacity="1">
+      <title>Slovak Republic</title>
+    </circle>
+    <circle cx="313.7350174046526" cy="97.95503168401675" r="1.5562842472056821" fill="#f28e2c" opacity="1">
+      <title>Ecuador</title>
+    </circle>
+    <circle cx="183.12837805366655" cy="91.7532422972328" r="1.5187112303927737" fill="#4e79a7" opacity="1">
+      <title>Niger</title>
+    </circle>
+    <circle cx="403.56463285213346" cy="117.24856413431272" r="1.5070405763997605" fill="#76b7b2" opacity="1">
+      <title>Norway</title>
+    </circle>
+    <circle cx="258.3629361867842" cy="132.24956548263648" r="1.4781788170042205" fill="#f28e2c" opacity="1">
+      <title>Haiti</title>
+    </circle>
+    <circle cx="282.00997593426007" cy="126.08101666180738" r="1.465401698590321" fill="#f28e2c" opacity="1">
+      <title>Guatemala</title>
+    </circle>
+    <circle cx="129.61901956971383" cy="97.62294503148729" r="1.4500745475523367" fill="#4e79a7" opacity="1">
+      <title>Zimbabwe</title>
+    </circle>
+    <circle cx="234.33441397767086" cy="125.89559757278175" r="1.4254166861036823" fill="#4e79a7" opacity="1">
+      <title>Cote d'Ivoire</title>
+    </circle>
+    <circle cx="347.1387689898904" cy="118.58349552789679" r="1.419451920423368" fill="#76b7b2" opacity="1">
+      <title>Ireland</title>
+    </circle>
+    <circle cx="121.32001669768363" cy="86.23148303730103" r="1.4111687287475154" fill="#4e79a7" opacity="1">
+      <title>Malawi</title>
+    </circle>
+    <circle cx="290.34040314240735" cy="137.59719572455083" r="1.4028042754491852" fill="#f28e2c" opacity="1">
+      <title>Bolivia</title>
+    </circle>
+    <circle cx="204.04073425978183" cy="137.6198351791773" r="1.3801648208226875" fill="#76b7b2" opacity="1">
+      <title>Bosnia and Herzegovina</title>
+    </circle>
+    <circle cx="238.0467382475916" cy="120.64168863171892" r="1.3713814049016846" fill="#4e79a7" opacity="1">
+      <title>Senegal</title>
+    </circle>
+    <circle cx="220.35190423885044" cy="125.01241578189807" r="1.3530623960030876" fill="#4e79a7" opacity="1">
+      <title>Chad</title>
+    </circle>
+    <circle cx="218.05763210789067" cy="122.10516510867973" r="1.350421246167773" fill="#4e79a7" opacity="1">
+      <title>Zambia</title>
+    </circle>
+    <circle cx="148.9211158534052" cy="137.65153884307657" r="1.3484611569234208" fill="#4e79a7" opacity="1">
+      <title>Guinea</title>
+    </circle>
+    <circle cx="146.05225520897807" cy="135.37272711349553" r="1.3153270869601106" fill="#4e79a7" opacity="1">
+      <title>Rwanda</title>
+    </circle>
+    <circle cx="217.18787298266108" cy="128.80292086311087" r="1.3132673301686588" fill="#4e79a7" opacity="1">
+      <title>Somalia</title>
+    </circle>
+    <circle cx="234.89300434300353" cy="118.75431465341144" r="1.3039713774772528" fill="#f28e2c" opacity="1">
+      <title>Dominican Republic</title>
+    </circle>
+    <circle cx="114.12273209006386" cy="137.70805107092275" r="1.291948929077246" fill="#4e79a7" opacity="1">
+      <title>Burundi</title>
+    </circle>
+    <circle cx="355.05263268474357" cy="127.33510833728644" r="1.2400187660112216" fill="#f28e2c" opacity="1">
+      <title>Uruguay</title>
+    </circle>
+    <circle cx="302.347043120653" cy="98.05699574604887" r="1.2328525667915349" fill="#f28e2c" opacity="1">
+      <title>Puerto Rico</title>
+    </circle>
+    <circle cx="195.4033413135066" cy="133.45004803083881" r="1.2094484160081809" fill="#4e79a7" opacity="1">
+      <title>Sierra Leone</title>
+    </circle>
+    <circle cx="301.5813683390053" cy="94.70596110905691" r="1.2045433966626364" fill="#e15759" opacity="1">
+      <title>Hong Kong, China</title>
+    </circle>
+    <circle cx="301.4103195200032" cy="91.32495661030975" r="1.1807851131027842" fill="#f28e2c" opacity="1">
+      <title>El Salvador</title>
+    </circle>
+    <circle cx="407.37501316477744" cy="126.68807336290091" r="1.1668097831456221" fill="#59a14f" opacity="1">
+      <title>New Zealand</title>
+    </circle>
+    <circle cx="211.52086405465928" cy="110.05231806860047" r="1.0892191645726086" fill="#4e79a7" opacity="1">
+      <title>Benin</title>
+    </circle>
+    <circle cx="326.41445323779834" cy="115.28949160399867" r="1.0517948060178732" fill="#e15759" opacity="1">
+      <title>Israel</title>
+    </circle>
+    <circle cx="263.4000859141008" cy="137.96952247050564" r="1.0304775294943733" fill="#f28e2c" opacity="1">
+      <title>Paraguay</title>
+    </circle>
+    <circle cx="273.3925347492738" cy="125.29042078703728" r="1.0176739539936546" fill="#f28e2c" opacity="1">
+      <title>Honduras</title>
+    </circle>
+    <circle cx="329.0559887880052" cy="137.99173680775618" r="1.008263192243826" fill="#76b7b2" opacity="1">
+      <title>Slovenia</title>
+    </circle>
+    <circle cx="340.758433039017" cy="119.44944469121582" r="0.9911998881745322" fill="#e15759" opacity="1">
+      <title>Lebanon</title>
+    </circle>
+    <circle cx="111.47847046587994" cy="135.76248996294817" r="0.9909351020750988" fill="#4e79a7" opacity="1">
+      <title>Eritrea</title>
+    </circle>
+    <circle cx="297.11249185037866" cy="138.0134360002135" r="0.986563999786516" fill="#f28e2c" opacity="1">
+      <title>Jamaica</title>
+    </circle>
+    <circle cx="212.20509969052637" cy="107.10249090955828" r="0.9389252628966807" fill="#4e79a7" opacity="1">
+      <title>Central African Republic</title>
+    </circle>
+    <circle cx="246.4796106345909" cy="138.06435074809914" r="0.9356492519008452" fill="#76b7b2" opacity="1">
+      <title>Albania</title>
+    </circle>
+    <circle cx="193.4437823843976" cy="131.02011098712092" r="0.9121641853700293" fill="#4e79a7" opacity="1">
+      <title>Togo</title>
+    </circle>
+    <circle cx="303.1844854429747" cy="88.81611275759701" r="0.8919924902274221" fill="#f28e2c" opacity="1">
+      <title>Nicaragua</title>
+    </circle>
+    <circle cx="277.9411615201679" cy="138.122972940381" r="0.8770270596190077" fill="#e15759" opacity="1">
+      <title>Singapore</title>
+    </circle>
+    <circle cx="241.79993694960456" cy="138.1613264553514" r="0.8386735446485997" fill="#e15759" opacity="1">
+      <title>West Bank and Gaza</title>
+    </circle>
+    <circle cx="181.0011566217156" cy="103.79830654892893" r="0.8354002210791549" fill="#4e79a7" opacity="1">
+      <title>Mauritania</title>
+    </circle>
+    <circle cx="280.5683917167909" cy="123.11293633189277" r="0.8342446310762688" fill="#4e79a7" opacity="1">
+      <title>Libya</title>
+    </circle>
+    <circle cx="283.82240804157226" cy="123.3635764937442" r="0.8010017073929901" fill="#f28e2c" opacity="1">
+      <title>Panama</title>
+    </circle>
+    <circle cx="288.72192086030645" cy="134.83907799656293" r="0.7951166583632161" fill="#f28e2c" opacity="1">
+      <title>Costa Rica</title>
+    </circle>
+    <circle cx="159.2065349978647" cy="130.54531532514355" r="0.7675981473837198" fill="#4e79a7" opacity="1">
+      <title>Liberia</title>
+    </circle>
+    <circle cx="270.65554010334836" cy="115.89273307777819" r="0.7638443729680823" fill="#4e79a7" opacity="1">
+      <title>Congo, Rep.</title>
+    </circle>
+    <circle cx="185.84875899805778" cy="96.92560537535428" r="0.7392237557007462" fill="#e15759" opacity="1">
+      <title>Mongolia</title>
+    </circle>
+    <circle cx="103.29348336896656" cy="138.28514397341254" r="0.7148560265874554" fill="#4e79a7" opacity="1">
+      <title>Lesotho</title>
+    </circle>
+    <circle cx="300.70693778344435" cy="88.15361252793176" r="0.6726027915959555" fill="#f28e2c" opacity="1">
+      <title>Trinidad and Tobago</title>
+    </circle>
+    <circle cx="243.54459504629926" cy="136.39484092838595" r="0.6441278955275689" fill="#e15759" opacity="1">
+      <title>Jordan</title>
+    </circle>
+    <circle cx="103.57962818430012" cy="135.95829653295402" r="0.6295197680561051" fill="#4e79a7" opacity="1">
+      <title>Guinea-Bissau</title>
+    </circle>
+    <circle cx="264.08105980360415" cy="117.85097813280404" r="0.5937583640122173" fill="#4e79a7" opacity="1">
+      <title>Mauritius</title>
+    </circle>
+    <circle cx="257.79850370705196" cy="129.23504946535854" r="0.5887236663822089" fill="#e15759" opacity="1">
+      <title>Oman</title>
+    </circle>
+    <circle cx="281.8532415207957" cy="121.07391288574895" r="0.5758291505277758" fill="#4e79a7" opacity="1">
+      <title>Namibia</title>
+    </circle>
+    <circle cx="192.58948678551667" cy="128.7115115012733" r="0.5494313452408228" fill="#4e79a7" opacity="1">
+      <title>Botswana</title>
+    </circle>
+    <circle cx="330.6288089287377" cy="135.99205735716598" r="0.535843939974971" fill="#4e79a7" opacity="1">
+      <title>Gabon</title>
+    </circle>
+    <circle cx="289.38748365690327" cy="132.60973990954616" r="0.531452090338897" fill="#76b7b2" opacity="1">
+      <title>Montenegro</title>
+    </circle>
+    <circle cx="218.131041494929" cy="119.31063421004922" r="0.4450736798705531" fill="#4e79a7" opacity="1">
+      <title>Swaziland</title>
+    </circle>
+    <circle cx="144.64115365479518" cy="138.5594910461047" r="0.44050895389528566" fill="#4e79a7" opacity="1">
+      <title>Gambia</title>
+    </circle>
+    <circle cx="291.6544063401396" cy="135.09957234124693" r="0.41938051093120493" fill="#4e79a7" opacity="1">
+      <title>Reunion</title>
+    </circle>
+    <circle cx="122.8039780293667" cy="83.86181037835951" r="0.3848086932760679" fill="#4e79a7" opacity="1">
+      <title>Equatorial Guinea</title>
+    </circle>
+    <circle cx="606.0467802536295" cy="138.66954598985572" r="0.33045401014428366" fill="#e15759" opacity="1">
+      <title>Kuwait</title>
+    </circle>
+    <circle cx="214.69115871014196" cy="127.95304439169782" r="0.3241314214921838" fill="#4e79a7" opacity="1">
+      <title>Comoros</title>
+    </circle>
+    <circle cx="375.52917582592914" cy="112.87924458160398" r="0.3177796860937788" fill="#76b7b2" opacity="1">
+      <title>Iceland</title>
+    </circle>
+    <circle cx="401.6130259708624" cy="115.24949042614355" r="0.28671408529080994" fill="#e15759" opacity="1">
+      <title>Bahrain</title>
+    </circle>
+    <circle cx="290.09161223543896" cy="131.01960889888238" r="0.20760331021201622" fill="#4e79a7" opacity="1">
+      <title>Djibouti</title>
+    </circle>
+    <circle cx="195.3835440674714" cy="130.17831557929898" r="0.20237947597902753" fill="#4e79a7" opacity="1">
+      <title>Sao Tome and Principe</title>
+    </circle>
+  </g>
+  <g aria-label="text" text-anchor="start" transform="translate(0.5,0.5)"><text y="0.71em" transform="translate(75,0)" opacity="1">1952</text></g>
+</svg>

@@ -51,7 +51,7 @@ function dodge(y, x, anchor, padding, options) {
     options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
-  return initializer(options, function(data, facets, {[x]: X, r: R}, scales, dimensions) {
+  return initializer(options, function(data, facets, {[x]: X, r: R, key: K}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
@@ -111,7 +111,8 @@ function dodge(y, x, anchor, padding, options) {
     return {data, facets, channels: {
       [x]: {value: X},
       [y]: {value: Y},
-      ...R && {r: {value: R}}
+      ...R && {r: {value: R}},
+      ...K && {key: K}
     }};
   });
 }

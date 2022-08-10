@@ -23,7 +23,7 @@ export function boxX(data, {
   const group = y != null ? groupY : groupZ;
   return marks(
     ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
-    barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
+    barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, z: stroke, ...options})),
     tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
     dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options}))
   );

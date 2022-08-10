@@ -16,40 +16,48 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
-    const actual = beautify.html(root.outerHTML, {indent_size: 2});
-    const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
-    const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
-    let expected;
 
-    try {
-      expected = await fs.readFile(outfile, "utf8");
-    } catch (error) {
-      if (error.code === "ENOENT" && process.env.CI !== "true") {
-        console.warn(`! generating ${outfile}`);
-        await fs.writeFile(outfile, actual, "utf8");
-        return;
-      } else {
-        throw error;
+    for (const currentTime of root.snapshots || [undefined]) {
+      let n = name;
+      if (currentTime !== undefined) {
+        root.currentTime = currentTime;
+        n = `${n}-${+currentTime}`;
       }
-    }
-
-    if (actual === expected) {
-      if (process.env.CI !== "true") {
-        try {
-          await fs.unlink(diffile);
-          console.warn(`! deleted ${diffile}`);
-        } catch (error) {
-          if (error.code !== "ENOENT") {
-            throw error;
-          }
+      const actual = beautify.html(root.outerHTML, {indent_size: 2});
+      const outfile = path.resolve("./test/output", `${path.basename(n, ".js")}.${ext}`);
+      const diffile = path.resolve("./test/output", `${path.basename(n, ".js")}-changed.${ext}`);
+      let expected;
+  
+      try {
+        expected = await fs.readFile(outfile, "utf8");
+      } catch (error) {
+        if (error.code === "ENOENT" && process.env.CI !== "true") {
+          console.warn(`! generating ${outfile}`);
+          await fs.writeFile(outfile, actual, "utf8");
+          continue;
+        } else {
+          throw error;
         }
       }
-    } else {
-      console.warn(`! generating ${diffile}`);
-      await fs.writeFile(diffile, actual, "utf8");
-    }
 
-    assert(actual === expected, `${name} must match snapshot`);
+      if (actual === expected) {
+        if (process.env.CI !== "true") {
+          try {
+            await fs.unlink(diffile);
+            console.warn(`! deleted ${diffile}`);
+          } catch (error) {
+            if (error.code !== "ENOENT") {
+              throw error;
+            }
+          }
+        }
+      } else {
+        console.warn(`! generating ${diffile}`);
+        await fs.writeFile(diffile, actual, "utf8");
+      }
+
+      assert(actual === expected, `${name} must match snapshot`);
+    }
   });
 }
 
