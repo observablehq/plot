@@ -24,10 +24,10 @@ export default async function () {
     }
   }
 
-  return Plot.plot({
-    inset: 10,
+  const chart = Plot.plot({
     grid: true,
     x: {
+      label: "GDP per capita (US$) →",
       type: "log",
       transform: (d) => 10 ** d
     },
@@ -49,10 +49,31 @@ export default async function () {
             y: "pop",
             fill: "continent",
             time: "year",
-            order: "sum"
+            order: "sum",
+            pointerEvents: "none"
           }
         )
-      )
+      ),
+      Plot.text(gapminder, Plot.selectFirst({
+        text: d => `${d.year}`, // TODO: should we use the tweening function even for round values?
+        frameAnchor: "top-right",
+        tween: (a, b) => {
+          const i = d3.interpolateRound(a, b);
+          return t => `${i(t)}`;
+        },
+        fontSize: 20,
+        fontVariant: "tabular-nums",
+        time: "year"
+      }))
     ]
   });
+
+  // for CI tests
+  chart.currentTime = 1999;
+  requestAnimationFrame(() => chart.currentTime = 1952);
+
+  // animate
+  d3.select(chart).on("click", () => chart.paused ? chart.play() : chart.pause());
+
+  return chart;
 }
