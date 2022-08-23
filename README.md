@@ -521,7 +521,7 @@ When the *include* or *exclude* facet mode is chosen, the mark data must be para
 
 ## Legends
 
-Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
+Plot can generate legends for *color*, *opacity*, and *symbol* [scales](https://github.com/observablehq/plot/blob/main/README.md#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
 
 * *scale*.**legend** - if truthy, generate a legend for the given scale
 
@@ -556,7 +556,7 @@ Plot.plot({
 
 #### *plot*.legend(*scaleName*, *options*)
 
-Given an existing *plot* returned by [Plot.plot](#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
+Given an existing *plot* returned by [Plot.plot](https://github.com/observablehq/plot/blob/main/README.md#plotplotoptions), returns a detached legend for the *plot*’s scale with the given *scaleName*. The *scaleName* must refer to a scale that supports legends: either `"color"`, `"opacity"`, or `"symbol"`. For example:
 
 ```js
 myplot = Plot.plot(…)
@@ -609,13 +609,13 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginBottom** - the legend’s bottom margin
 * *options*.**marginLeft** - the legend’s left margin
 
-The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](#layout-options).
+The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](https://github.com/observablehq/plot/blob/main/README.md#layout-options).
 
-<!-- jsdocEnd -->
+<!-- jsdoc legend -->
 
 #### Plot.legend(*options*)
 
-Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](https://github.com/observablehq/plot/blob/main/README.md#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
 Plot.legend({color: {type: "linear"}})
@@ -631,6 +631,8 @@ Plot.legend({
   }
 })
 ```
+
+<!-- jsdocEnd -->
 
 ## Marks
 
