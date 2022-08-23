@@ -103,6 +103,21 @@ export function areaX(data, options) {
   return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined})));
 }
 
+/**
+ * ```js
+ * Plot.areaY(aapl, {x: "Date", y: "Close"})
+ * ```
+ *
+ * Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](https://github.com/d3/d3-shape/blob/main/README.md#plotstackystack-options); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
+ *
+ * If the **interval** option is specified, the [binX transform](https://github.com/d3/d3-shape/blob/main/README.md#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
+ *
+ * ```js
+ * Plot.areaY(observations, {x: "date", y: "temperature", interval: d3.utcDay)
+ * ```
+ *
+ * The **interval** option is recommended to “regularize” sampled data; for example, if your data represents timestamped temperature measurements and you expect one sample per day, use d3.utcDay as the interval.
+ */
 export function areaY(data, options) {
   const {x = indexOf, ...rest} = maybeDenseIntervalX(options);
   return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined})));
