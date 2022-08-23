@@ -1547,6 +1547,8 @@ If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*in
 
 For the required channels, see [Plot.tickX](#plottickxdata-options) and [Plot.tickY](#plottickydata-options). The tick mark supports the [standard mark options](#marks), including insets. The **stroke** defaults to currentColor.
 
+<!-- jsdoc tickX -->
+
 #### Plot.tickX(*data*, *options*)
 
 ```js
@@ -1563,6 +1565,8 @@ The following optional channels are supported:
 
 If the **y** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
 
+<!-- jsdoc tickY -->
+
 #### Plot.tickY(*data*, *options*)
 
 ```js
@@ -1578,6 +1582,8 @@ The following optional channels are supported:
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
 If the **x** channel is not specified, the tick will span the full vertical extent of the plot (or facet).
+
+<!-- jsdocEnd -->
 
 ### Vector
 
