@@ -46,12 +46,12 @@ function injectJsDoc(readme: string) {
       isReplacementDelimiter = true;
       insideReplacement = true;
       const parts = [""];
-      const match = line.match(/jsdoc\s+(.+)\s/);
+      const match = line.match(/jsdoc\s+(#+)?\s?(.+)\s/);
       if (!match || match.length < 2) throw new Error(`Malformed jsdoc comment in README.md on line ${i}.`);
-      const [, name] = match;
+      const [, prefix, name] = match;
       const declaration = getByApiName(name);
       if (!declaration) throw new Error(`${name} is not exported by src/index`);
-      parts.push(getJsDocs(name, declaration));
+      parts.push(getJsDocs(name, declaration, prefix));
       parts.push("");
       replacement = parts.join("\n");
     }
@@ -61,12 +61,12 @@ function injectJsDoc(readme: string) {
   return output.join("\n");
 }
 
-function getJsDocs(name: string, declaration: ExportedDeclarations) {
+function getJsDocs(name: string, declaration: ExportedDeclarations, prefix = "####") {
   if ("getParameters" in declaration) {
-    return getJsDocsForFunction(name, declaration);
+    return getJsDocsForFunction(name, declaration, prefix);
   }
   if ("getJsDocs" in declaration) {
-    return `#### Plot.${name}\n${declaration
+    return `${prefix} Plot.${name}\n${declaration
       .getJsDocs()
       .map((doc) => doc.getDescription())
       .join("\n\n")}`;
@@ -74,9 +74,9 @@ function getJsDocs(name: string, declaration: ExportedDeclarations) {
   return `JSDoc extraction for ${declaration.getKindName()} not yet implemented.`;
 }
 
-function getJsDocsForFunction(name: string, declaration: FunctionDeclaration) {
+function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, prefix = "####") {
   const parameters = declaration.getParameters();
-  const title = `#### Plot.${name}(${parameters.map((param) => `*${param.getName()}*`).join(", ")})`;
+  const title = `${prefix} Plot.${name}(${parameters.map((param) => `*${param.getName()}*`).join(", ")})`;
   const parts = [title];
   const docs = declaration.getJsDocs();
   if (docs.length) {

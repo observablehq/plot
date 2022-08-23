@@ -60,6 +60,8 @@ document.body.append(Plot.plot(options));
 
 See also our [Plot + React example](https://github.com/observablehq/plot-create-react-app-example/blob/main/src/App.js).
 
+<!-- jsdoc ## plot -->
+
 ## Plot.plot(*options*)
 
 Renders a new plot given the specified *options* and returns the corresponding SVG or HTML figure element. All *options* are optional.
@@ -227,6 +229,8 @@ const plot = Plot.plot(…); // render a plot
 const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
+
+<!-- jsdocEnd -->
 
 #### Plot.scale(*options*)
 
