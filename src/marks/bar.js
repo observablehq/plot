@@ -129,6 +129,26 @@ export class BarY extends AbstractBar {
   }
 }
 
+/**
+ * ```js
+ * Plot.barX(alphabet, {y: "letter", x: "frequency"})
+ * ```
+ *
+ * Returns a new horizontal bar↔︎ with the given *data* and *options*. The following channels are required:
+ *
+ * * **x1** - the starting horizontal position; bound to the *x* scale
+ * * **x2** - the ending horizontal position; bound to the *x* scale
+ *
+ * If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](https://github.com/d3/d3-shape/blob/main/README.md#plotstackxstack-options); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
+ *
+ * If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
+ *
+ * In addition to the [standard bar channels](https://github.com/d3/d3-shape/blob/main/README.md#bar), the following optional channels are supported:
+ *
+ * * **y** - the vertical position; bound to the *y* scale, which must be *band*
+ *
+ * If the **y** channel is not specified, the bar will span the full vertical extent of the plot (or facet).
+ */
 export function barX(data, options = {y: indexOf, x2: identity}) {
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
 }
