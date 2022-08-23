@@ -42,7 +42,7 @@ export function cell(data, options = {}) {
  * Plot.cellX(simpsons.map(d => d.imdb_rating))
  * ```
  *
- * Equivalent to [Plot.cell](https://github.com/d3/d3-shape/blob/main/README.md#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+ * Equivalent to [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
  */
 export function cellX(data, options = {}) {
   let {x = indexOf, fill, stroke, ...remainingOptions} = options;
@@ -55,7 +55,7 @@ export function cellX(data, options = {}) {
  * Plot.cellY(simpsons.map(d => d.imdb_rating))
  * ```
  *
- * Equivalent to [Plot.cell](https://github.com/d3/d3-shape/blob/main/README.md#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+ * Equivalent to [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
  */
 export function cellY(data, options = {}) {
   let {y = indexOf, fill, stroke, ...remainingOptions} = options;
