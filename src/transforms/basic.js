@@ -62,8 +62,15 @@ function apply(options, t) {
   return (options.initializer != null ? initializer : basic)(options, t);
 }
 
-export function filter(value, options) {
-  return apply(options, filterTransform(value));
+/**
+ * ```js
+ * Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
+ * ```
+ *
+ * Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
+ */
+export function filter(test, options) {
+  return apply(options, filterTransform(test));
 }
 
 function filterTransform(value) {
@@ -73,6 +80,13 @@ function filterTransform(value) {
   };
 }
 
+/**
+ * ```js
+ * Plot.reverse(options) // reverse the input order
+ * ```
+ *
+ * Reverses the order of the data.
+ */
 export function reverse(options) {
   return {...apply(options, reverseTransform), sort: null};
 }
@@ -81,13 +95,28 @@ function reverseTransform(data, facets) {
   return {data, facets: facets.map((I) => I.slice().reverse())};
 }
 
-export function shuffle({seed, ...options} = {}) {
-  return {...apply(options, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
+/**
+ * ```js
+ * Plot.shuffle(options) // show data in random order
+ * ```
+ *
+ * Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
+ */
+export function shuffle(options = {}) {
+  const {seed, ...remainingOptions} = options;
+  return {...apply(remainingOptions, sortValue(seed == null ? Math.random : randomLcg(seed))), sort: null};
 }
 
-export function sort(value, options) {
+/**
+ * ```js
+ * Plot.sort("body_mass_g", options) // show data in ascending body mass order
+ * ```
+ *
+ * Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](https://github.com/observablehq/plot/blob/main/README.md#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
+ */
+export function sort(order, options) {
   return {
-    ...(isOptions(value) && value.channel !== undefined ? initializer : apply)(options, sortTransform(value)),
+    ...(isOptions(order) && order.channel !== undefined ? initializer : apply)(options, sortTransform(order)),
     sort: null
   };
 }

@@ -1707,13 +1707,17 @@ Plot’s option transforms, listed below, do more than populate the **transform*
 
 The *filter*, *sort* and *reverse* transforms are also available as functions, allowing the order of operations to be specified explicitly. For example, sorting before binning results in sorted data inside bins, whereas sorting after binning results affects the *z* order of rendered marks.
 
+<!-- jsdoc sort -->
+
 #### Plot.sort(*order*, *options*)
 
 ```js
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](https://github.com/observablehq/plot/blob/main/README.md#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
+
+<!-- jsdoc shuffle -->
 
 #### Plot.shuffle(*options*)
 
@@ -1723,6 +1727,8 @@ Plot.shuffle(options) // show data in random order
 
 Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
 
+<!-- jsdoc reverse -->
+
 #### Plot.reverse(*options*)
 
 ```js
@@ -1731,6 +1737,8 @@ Plot.reverse(options) // reverse the input order
 
 Reverses the order of the data.
 
+<!-- jsdoc filter -->
+
 #### Plot.filter(*test*, *options*)
 
 ```js
@@ -1738,6 +1746,8 @@ Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is 
 ```
 
 Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
+
+<!-- jsdocEnd -->
 
 ### Bin
 
