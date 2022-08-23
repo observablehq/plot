@@ -1244,6 +1244,8 @@ The given *options* are passed through to these underlying marks, with the excep
 
 Multiple regressions can be defined by specifying the *z*, *fill*, or *stroke* channel.
 
+<!-- jsdoc linearRegressionX -->
+
 #### Plot.linearRegressionX(*data*, *options*)
 
 ```js
@@ -1252,6 +1254,8 @@ Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
 
 Returns a linear regression mark where *x* is the dependent variable and *y* is the independent variable.
 
+<!-- jsdoc linearRegressionY -->
+
 #### Plot.linearRegressionY(*data*, *options*)
 
 ```js
@@ -1259,6 +1263,8 @@ Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
 ```
 
 Returns a linear regression mark where *y* is the dependent variable and *x* is the independent variable.
+
+<!-- jsdocEnd -->
 
 ### Line
 
