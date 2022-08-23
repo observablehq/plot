@@ -16,7 +16,8 @@ export type Row = Record<string, Value>;
  */
 export type Datum = Row | Value | Value[];
 export type FieldNames<T> = T extends Row
-  ? keyof T
+  ? // eslint-disable-next-line @typescript-eslint/ban-types
+    keyof T | (string & {})
   : T extends Value[]
   ? // eslint-disable-next-line @typescript-eslint/ban-types
     "length" | "0" | "1" | "2" | (string & {})

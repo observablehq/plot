@@ -54,8 +54,9 @@ expectType<Float64Array>(valueof([1, 2, 3], (d) => d * 2, Float64Array));
 expectType<ValueArray>(valueof([1, 2, 3], (d) => d * 2, Array));
 expectType<string[]>(valueof({length: 10}, (_, i) => `My String #${i}`));
 
-// @ts-expect-error: red is not one of the keys
-valueof([{one: "one", two: "two"}], "red");
+// no "ts-expect-error: red is not one of the keys", since it's a legal
+// accessor, even though it returns an Array<undefined>
+expectType<ValueArray>(valueof([{one: "one", two: "two"}], "red"));
 // @ts-expect-error: red is not one of the keys
 valueof(null, "red");
 
