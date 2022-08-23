@@ -1387,6 +1387,8 @@ If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be der
 
 The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
 
+<!-- jsdoc rect -->
+
 #### Plot.rect(*data*, *options*)
 
 ```js
@@ -1395,13 +1397,17 @@ Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 
 Returns a new rect with the given *data* and *options*.
 
+<!-- jsdoc rectX -->
+
 #### Plot.rectX(*data*, *options*)
 
 ```js
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+Equivalent to [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+
+<!-- jsdoc rectY -->
 
 #### Plot.rectY(*data*, *options*)
 
@@ -1409,7 +1415,9 @@ Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+Equivalent to [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+
+<!-- jsdocEnd -->
 
 ### Rule
 
