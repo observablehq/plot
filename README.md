@@ -2615,9 +2615,13 @@ You can specify a custom initializer by specifying a function as the mark **init
 
 If an initializer desires a channel that is not supported by the downstream mark, additional channels can be declared using the mark **channels** option.
 
+<!-- jsdoc initializer -->
+
 #### Plot.initializer(*options*, *initializer*)
 
 This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
+
+<!-- jsdocEnd -->
 
 ## Curves
 

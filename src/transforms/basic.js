@@ -23,9 +23,13 @@ export function basic(options = {}, transform) {
   };
 }
 
-// If both i1 and i2 are defined, returns a composite initializer that first
-// applies i1 and then applies i2.
-export function initializer({filter: f1, sort: s1, reverse: r1, initializer: i1, ...options} = {}, i2) {
+/**
+ * This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
+ */
+export function initializer(options = {}, initializer) {
+  let {filter: f1, sort: s1, reverse: r1, initializer: i1, ...remainingOptions} = options;
+  // If both i1 and i2 are defined, returns a composite initializer that first
+  // applies i1 and then applies i2.
   if (i1 === undefined) {
     // explicit initializer overrides filter, sort, and reverse
     if (f1 != null) i1 = filterTransform(f1);
@@ -33,8 +37,8 @@ export function initializer({filter: f1, sort: s1, reverse: r1, initializer: i1,
     if (r1) i1 = composeInitializer(i1, reverseTransform);
   }
   return {
-    ...options,
-    initializer: composeInitializer(i1, i2)
+    ...remainingOptions,
+    initializer: composeInitializer(i1, initializer)
   };
 }
 
