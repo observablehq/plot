@@ -963,6 +963,8 @@ The given *options* are passed through to these underlying marks, with the excep
 * **strokeOpacity** - the stroke opacity of the rule, tick, and dot; defaults to 1
 * **strokeWidth** - the stroke width of the tick; defaults to 1
 
+<!-- jsdoc boxX -->
+
 #### Plot.boxX(*data*, *options*)
 
 ```js
@@ -971,6 +973,8 @@ Plot.boxX(simpsons.map(d => d.imdb_rating))
 
 Returns a horizontal boxplot mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
 
+<!-- jsdoc boxY -->
+
 #### Plot.boxY(*data*, *options*)
 
 ```js
@@ -978,6 +982,8 @@ Plot.boxY(simpsons.map(d => d.imdb_rating))
 ```
 
 Returns a vertical boxplot mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
+
+<!-- jsdocEnd -->
 
 ### Cell
 
