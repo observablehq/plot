@@ -1976,6 +1976,8 @@ Plot.groupX({y: "count", title: masses => masses.join("\n")}, {x: "species", tit
 
 If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
 
+<!-- jsdoc group -->
+
 #### Plot.group(*outputs*, *options*)
 
 ```js
@@ -1983,6 +1985,9 @@ Plot.group({fill: "count"}, {x: "island", y: "species"})
 ```
 
 Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
+
+
+<!-- jsdoc groupX -->
 
 #### Plot.groupX(*outputs*, *options*)
 
@@ -1992,6 +1997,9 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 
 Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
 
+
+<!-- jsdoc groupY -->
+
 #### Plot.groupY(*outputs*, *options*)
 
 ```js
@@ -2000,6 +2008,9 @@ Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 
 Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
+
+<!-- jsdoc groupZ -->
+
 #### Plot.groupZ(*outputs*, *options*)
 
 ```js
@@ -2007,6 +2018,9 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 ```
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
+
+
+<!-- jsdocEnd -->
 
 ### Map
 
