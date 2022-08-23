@@ -769,7 +769,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency"}).plot({width: 1024})
 
 #### Plot.marks(...*marks*)
 
-A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark implementation](.https://github.com/observablehq/plot/blob/main/src/marks/box.js) for an example.
+A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark implementation](https://github.com/observablehq/plot/blob/main/src/marks/box.js) for an example.
 
 <!-- jsdocEnd -->
 
