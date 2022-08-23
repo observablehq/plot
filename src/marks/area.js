@@ -71,6 +71,13 @@ export class Area extends Mark {
   }
 }
 
+/**
+ * ```js
+ * Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
+ * ```
+ *
+ * Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](https://github.com/d3/d3-shape/blob/main/README.md#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](https://github.com/d3/d3-shape/blob/main/README.md#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
+ */
 export function area(data, options) {
   if (options === undefined) return areaY(data, {x: first, y: second});
   return new Area(data, options);
