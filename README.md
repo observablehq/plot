@@ -1129,6 +1129,8 @@ The built-in **symbol** types are: *circle*, *cross*, *diamond*, *square*, *star
 
 Dots are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest dots on top, consider a [sort and reverse transform](#transforms).
 
+<!-- jsdoc dot -->
+
 #### Plot.dot(*data*, *options*)
 
 ```js
@@ -1137,15 +1139,19 @@ Plot.dot(sales, {x: "units", y: "fruit"})
 
 Returns a new dot with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+<!-- jsdoc dotX -->
+
 #### Plot.dotX(*data*, *options*)
 
 ```js
 Plot.dotX(cars.map(d => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+
+<!-- jsdoc dotY -->
 
 #### Plot.dotY(*data*, *options*)
 
@@ -1153,9 +1159,11 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*in
 Plot.dotY(cars.map(d => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+
+<!-- jsdocEnd -->
 
 #### Plot.circle(*data*, *options*)
 
