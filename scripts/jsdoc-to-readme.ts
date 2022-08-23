@@ -76,7 +76,9 @@ function getJsDocs(name: string, declaration: ExportedDeclarations, prefix = "##
 
 function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, prefix = "####") {
   const parameters = declaration.getParameters();
-  const title = `${prefix} Plot.${name}(${parameters.map((param) => `*${param.getName()}*`).join(", ")})`;
+  const title = `${prefix} Plot.${name}(${parameters
+    .map((param) => `${param.getDotDotDotToken() ? "..." : ""}*${param.getName()}*`)
+    .join(", ")})`;
   const parts = [title];
   const docs = declaration.getJsDocs();
   if (docs.length) {
