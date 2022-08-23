@@ -1615,6 +1615,8 @@ The **stroke** defaults to currentColor. The **strokeWidth** defaults to 1.5, an
 
 Vectors are drawn in input order, with the last data drawn on top. If sorting is needed, say to mitigate overplotting by drawing the smallest vectors on top, consider a [sort and reverse transform](#transforms).
 
+<!-- jsdoc vector -->
+
 #### Plot.vector(*data*, *options*)
 
 ```js
@@ -1623,13 +1625,19 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+<!-- jsdoc vectorX -->
+
 #### Plot.vectorX(*data*, *options*)
 
-Equivalent to Plot.vector except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+
+<!-- jsdoc vectorY -->
 
 #### Plot.vectorY(*data*, *options*)
 
-Equivalent to Plot.vector except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
+<!-- jsdocEnd -->
 
 ## Decorations
 
