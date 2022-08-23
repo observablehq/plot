@@ -1869,6 +1869,8 @@ Plot.binX({y: "count"}, {x: "body_mass_g", fill: "species"})
 
 Lastly, the bin transform changes the default [mark insets](#marks): rather than defaulting to zero, a pixel is reserved to separate adjacent bins. Plot.binX changes the defaults for **insetLeft** and **insetRight**; Plot.binY changes the defaults for **insetTop** and **insetBottom**; Plot.bin changes all four.
 
+<!-- jsdoc bin -->
+
 #### Plot.bin(*outputs*, *options*)
 
 ```js
@@ -1876,6 +1878,9 @@ Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"})
 ```
 
 Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke*, if any.
+
+
+<!-- jsdoc binX -->
 
 #### Plot.binX(*outputs*, *options*)
 
@@ -1885,6 +1890,9 @@ Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 
 Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
 
+
+<!-- jsdoc binY -->
+
 #### Plot.binY(*outputs*, *options*)
 
 ```js
@@ -1892,6 +1900,8 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
 Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.
+
+<!-- jsdocEnd -->
 
 ### Group
 
