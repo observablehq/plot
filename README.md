@@ -1086,6 +1086,8 @@ If a **z** channel is specified, the input points are grouped by *z*, and separa
 
 [Source](./src/marks/density.js) · [Examples](https://observablehq.com/@observablehq/plot-density) · Draws contours representing the density of point clouds, implementing [two-dimensional kernel density estimation](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation). Each contour represents the area where the estimated point density is greater than or equal to a given density value.
 
+<!-- jsdoc density -->
+
 #### Plot.density(*data*, *options*)
 
 Draws contours representing the estimated density of the two-dimensional points given by the **x** and **y** channels, and possibly weighted by the **weight** channel. If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
@@ -1093,6 +1095,8 @@ Draws contours representing the estimated density of the two-dimensional points 
 The **thresholds** option, which defaults to 20, specifies one more than the number of contours that will be computed at uniformly-spaced intervals between 0 (exclusive) and the maximum density (exclusive). The **thresholds** option may also be specified as an array or iterable of explicit density values. The **bandwidth** option, which defaults to 20, specifies the standard deviation of the Gaussian kernel used for estimation in pixels.
 
 If a **z**, **stroke** or **fill** channel is specified, the input points are grouped by series, and separate sets of contours are generated for each series. If the **stroke** or **fill** is specified as *density*, a color channel is constructed with values representing the density threshold value of each contour.
+
+<!-- jsdocEnd -->
 
 ### Dot
 
