@@ -2181,6 +2181,8 @@ Like [Plot.mapY](#plotmapymap-options), but applies the window map method with t
 
 The select transform derives a filtered mark index; it does not affect the mark’s data or channels. It is similar to the basic [filter transform](#transforms) except that provides convenient shorthand for pulling a single value out of each series. The data are grouped into series using the *z*, *fill*, or *stroke* channel in the same fashion as the [area](#area) and [line](#line) marks.
 
+<!-- jsdoc select -->
+
 #### Plot.select(*selector*, *options*)
 
 Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, the shorthand “first” or “last”, or as a {*key*: *value*} object with exactly one *key* being the name of a channel and the *value* being a function which receives as input the index of the series and the channel values. The *value* may alternatively be specified as the shorthand “min” and “max” which respectively select the minimum and maximum points for the specified channel.
@@ -2213,29 +2215,43 @@ To pick the point in each city with the highest temperature:
 Plot.select({fill: "max"}, {x: "date", y: "city", fill: "temperature", z: "city"})
 ```
 
+<!-- jsdoc selectFirst -->
+
 #### Plot.selectFirst(*options*)
 
 Selects the first point of each series according to input order.
+
+<!-- jsdoc selectLast -->
 
 #### Plot.selectLast(*options*)
 
 Selects the last point of each series according to input order.
 
+<!-- jsdoc selectMinX -->
+
 #### Plot.selectMinX(*options*)
 
 Selects the leftmost point of each series.
+
+<!-- jsdoc selectMinY -->
 
 #### Plot.selectMinY(*options*)
 
 Selects the lowest point of each series.
 
+<!-- jsdoc selectMaxX -->
+
 #### Plot.selectMaxX(*options*)
 
 Selects the rightmost point of each series.
 
+<!-- jsdoc selectMaxY -->
+
 #### Plot.selectMaxY(*options*)
 
 Selects the highest point of each series.
+
+<!-- jsdocEnd -->
 
 ### Stack
 
