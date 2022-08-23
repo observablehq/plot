@@ -24,7 +24,7 @@ export function stackX(stackOptions = {}, options = {}) {
  * Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
  * ```
  *
- * Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+ * Equivalent to [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
@@ -40,7 +40,7 @@ export function stackX1(stackOptions = {}, options = {}) {
  * Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
  * ```
  *
- * Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+ * Equivalent to [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
@@ -72,7 +72,7 @@ export function stackY(stackOptions = {}, options = {}) {
  * Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
  * ```
  *
- * Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+ * Equivalent to [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
@@ -88,7 +88,7 @@ export function stackY1(stackOptions = {}, options = {}) {
  * Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
  * ```
  *
- * Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+ * Equivalent to [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
