@@ -3,6 +3,15 @@ import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
+/**
+ * ```js
+ * Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * See Plot.stackY, but with *x* as the input value channel, *y* as the stack index, *x1*, *x2* and *x* as the output channels.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
@@ -10,6 +19,15 @@ export function stackX(stackOptions = {}, options = {}) {
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
+/**
+ * ```js
+ * Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackX1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
@@ -17,6 +35,15 @@ export function stackX1(stackOptions = {}, options = {}) {
   return {...transform, y1, y: Y, x: X};
 }
 
+/**
+ * ```js
+ * Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackX2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
@@ -24,6 +51,15 @@ export function stackX2(stackOptions = {}, options = {}) {
   return {...transform, y1, y: Y, x: X};
 }
 
+/**
+ * ```js
+ * Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Creates new channels **y1** and **y2**, obtained by stacking the original **y** channel for data points that share a common **x** (and possibly **z**) value. A new **y** channel is also returned, which lazily computes the middle value of **y1** and **y2**. The input **y** channel defaults to a constant 1, resulting in a count of the data points. The stack options (*offset*, *order*, and *reverse*) may be specified as part of the *options* object, if the only argument, or as a separate *stack* options argument.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackY(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
@@ -31,6 +67,15 @@ export function stackY(stackOptions = {}, options = {}) {
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
+/**
+ * ```js
+ * Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackY1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
@@ -38,6 +83,15 @@ export function stackY1(stackOptions = {}, options = {}) {
   return {...transform, x1, x: X, y: Y};
 }
 
+/**
+ * ```js
+ * Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
 export function stackY2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
