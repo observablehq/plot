@@ -2097,7 +2097,7 @@ Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for ea
 
 <!-- jsdoc mapX -->
 
-#### Plot.mapX(*map*, *options*)
+#### Plot.mapX(*mapping*, *options*)
 
 ```js
 Plot.mapX("cumsum", {x: d3.randomNormal()})
@@ -2108,7 +2108,7 @@ Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores
 
 <!-- jsdoc mapY -->
 
-#### Plot.mapY(*map*, *options*)
+#### Plot.mapY(*mapping*, *options*)
 
 ```js
 Plot.mapY("cumsum", {y: d3.randomNormal()})

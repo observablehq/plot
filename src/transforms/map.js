@@ -11,9 +11,9 @@ import {basic} from "./basic.js";
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#map
  */
-export function mapX(map, options = {}) {
+export function mapX(mapping, options = {}) {
   return map(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
+    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, mapping])),
     options
   );
 }
@@ -27,9 +27,9 @@ export function mapX(map, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#map
  */
-export function mapY(map, options = {}) {
+export function mapY(mapping, options = {}) {
   return map(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
+    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, mapping])),
     options
   );
 }
