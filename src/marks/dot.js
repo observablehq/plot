@@ -154,10 +154,16 @@ export function dotY(data, options = {}) {
   return new Dot(data, maybeIntervalMidX({...remainingOptions, y}));
 }
 
+/**
+ * Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *circle*.
+ */
 export function circle(data, options) {
   return dot(data, {...options, symbol: "circle"});
 }
 
+/**
+ * Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+ */
 export function hexagon(data, options) {
   return dot(data, {...options, symbol: "hexagon"});
 }

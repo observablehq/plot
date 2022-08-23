@@ -1163,15 +1163,19 @@ Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.m
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
 
-<!-- jsdocEnd -->
+<!-- jsdoc circle -->
 
 #### Plot.circle(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *circle*.
+Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *circle*.
+
+<!-- jsdoc hexagon -->
 
 #### Plot.hexagon(*data*, *options*)
 
-Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+
+<!-- jsdocEnd -->
 
 ### Hexgrid
 
