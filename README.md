@@ -2084,6 +2084,8 @@ The following window reducers are supported:
 
 By default, **anchor** is *middle* and **reduce** is *mean*.
 
+<!-- jsdoc map -->
+
 #### Plot.map(*outputs*, *options*)
 
 ```js
@@ -2091,6 +2093,9 @@ Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
 ```
 
 Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for each channel declared in the specified *outputs* object, applies the corresponding map method. Each channel in *outputs* must have a corresponding input channel in *options*.
+
+
+<!-- jsdoc mapX -->
 
 #### Plot.mapX(*map*, *options*)
 
@@ -2100,6 +2105,9 @@ Plot.mapX("cumsum", {x: d3.randomNormal()})
 
 Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores any of **x**, **x1**, and **x2** not present in *options*.
 
+
+<!-- jsdoc mapY -->
+
 #### Plot.mapY(*map*, *options*)
 
 ```js
@@ -2107,6 +2115,9 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 ```
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
+
+
+<!-- jsdocEnd -->
 
 #### Plot.normalize(*basis*)
 
