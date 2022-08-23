@@ -2117,7 +2117,7 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but ignores any of **y**, **y1**, and **y2** not present in *options*.
 
 
-<!-- jsdocEnd -->
+<!-- jsdoc normalize -->
 
 #### Plot.normalize(*basis*)
 
@@ -2127,13 +2127,17 @@ Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"}
 
 Returns a normalize map method for the given *basis*, suitable for use with Plot.map.
 
+<!-- jsdoc normalizeX -->
+
 #### Plot.normalizeX(*basis*, *options*)
 
 ```js
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
+Like [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotmapxmap-options), but applies the normalize map method with the given *basis*.
+
+<!-- jsdoc normalizeY -->
 
 #### Plot.normalizeY(*basis*, *options*)
 
@@ -2141,7 +2145,9 @@ Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method wit
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
+Like [Plot.mapY](https://github.com/observablehq/plot/blob/main/README.md#plotmapymap-options), but applies the normalize map method with the given *basis*.
+
+<!-- jsdocEnd -->
 
 #### Plot.window(*k*)
 
