@@ -516,6 +516,9 @@ export class Mark {
   }
 }
 
+/**
+ * A convenience method for composing a mark from a series of other marks. Returns an array of marks that implements the *mark*.plot function. See the [box mark implementation](.https://github.com/observablehq/plot/blob/main/src/marks/box.js) for an example.
+ */
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot;
   return marks;
