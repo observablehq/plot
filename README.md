@@ -1356,6 +1356,8 @@ The link mark supports the [standard mark options](#marks). The **stroke** defau
 
 The link mark supports [curve options](#curves) to control interpolation between points, and [marker options](#markers) to add a marker (such as a dot or an arrowhead) on each of the control points. Since a link always has two points by definition, only the following curves (or a custom curve) are recommended: *linear*, *step*, *step-after*, *step-before*, *bump-x*, or *bump-y*. Note that the *linear* curve is incapable of showing a fill since a straight line has zero area. For a curved link, you can use a bent [arrow](#arrow) (with no arrowhead, if desired).
 
+<!-- jsdoc link -->
+
 #### Plot.link(*data*, *options*)
 
 ```js
@@ -1363,6 +1365,8 @@ Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R
 ```
 
 Returns a new link with the given *data* and *options*.
+
+<!-- jsdocEnd -->
 
 ### Rect
 
