@@ -874,6 +874,8 @@ The arrow mark supports the [standard mark options](#marks). The **stroke** defa
 
 The **bend** option sets the angle between the straight line between the two points and the outgoing direction of the arrow from the start point. It must be within ±90°. A positive angle will produce a clockwise curve; a negative angle will produce a counterclockwise curve; zero will produce a straight line. The **headAngle** determines how pointy the arrowhead is; it is typically between 0° and 180°. The **headLength** determines the scale of the arrowhead relative to the stroke width. Assuming the default of stroke width 1.5px, the **headLength** is the length of the arrowhead’s side in pixels.
 
+<!-- jsdoc arrow -->
+
 #### Plot.arrow(*data*, *options*)
 
 ```js
@@ -881,6 +883,8 @@ Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "
 ```
 
 Returns a new arrow with the given *data* and *options*.
+
+<!-- jsdocEnd -->
 
 ### Bar
 

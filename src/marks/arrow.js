@@ -176,8 +176,16 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
   return [ax + (dx * x + dy * y) / d, ay + (dy * x - dx * y) / d];
 }
 
-export function arrow(data, {x, x1, x2, y, y1, y2, ...options} = {}) {
+/**
+ * ```js
+ * Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015", bend: true})
+ * ```
+ *
+ * Returns a new arrow with the given *data* and *options*.
+ */
+export function arrow(data, options = {}) {
+  let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);
   [y1, y2] = maybeSameValue(y, y1, y2);
-  return new Arrow(data, {...options, x1, x2, y1, y2});
+  return new Arrow(data, {...remainingOptions, x1, x2, y1, y2});
 }
