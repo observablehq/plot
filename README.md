@@ -1181,9 +1181,13 @@ Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.m
 
 The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
 
-#### Plot.hexgrid([*options*])
+<!-- jsdoc hexgrid -->
+
+#### Plot.hexgrid(*options*)
 
 The **binWidth** option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The **clip** option defaults to true, clipping the mark to the frame’s dimensions.
+
+<!-- jsdocEnd -->
 
 ### Image
 
