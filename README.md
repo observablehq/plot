@@ -230,11 +230,11 @@ const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
-<!-- jsdocEnd -->
+<!-- jsdoc scale -->
 
 #### Plot.scale(*options*)
 
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](https://github.com/observablehq/plot/blob/main/README.md#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
 const color = Plot.scale({color: {type: "linear"}});
@@ -242,7 +242,7 @@ const color = Plot.scale({color: {type: "linear"}});
 
 #### Scale objects
 
-Both [*plot*.scale](#plotscalescalename) and [Plot.scale](#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+Both [*plot*.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscalescalename) and [Plot.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 To reuse a scale across plots, pass the corresponding scale object into another plot specification:
 
@@ -294,7 +294,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**ticks** - the approximate number of ticks to generate
 * *scale*.**tickSize** - the size of each tick (in pixels; default 6)
 * *scale*.**tickPadding** - the separation between the tick and its label (in pixels; default 3)
-* *scale*.**tickFormat** - to format tick values, either a function or format specifier string; see [Formats](#formats)
+* *scale*.**tickFormat** - to format tick values, either a function or format specifier string; see [Formats](https://github.com/observablehq/plot/blob/main/README.md#formats)
 * *scale*.**tickRotate** - whether to rotate tick labels (an angle in degrees clockwise; default 0)
 * *scale*.**grid** - if true, draw grid lines across the plot for each tick
 * *scale*.**line** - if true, draw the axis line
@@ -305,7 +305,7 @@ Plot automatically generates axes for position scales. You can configure these a
 * *scale*.**ariaLabel** - a short label representing the axis in the accessibility tree
 * *scale*.**ariaDescription** - a textual description for the axis
 
-Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
+Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](https://github.com/observablehq/plot/blob/main/README.md#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
 ### Color options
 
@@ -439,7 +439,7 @@ If an ordinal scale’s domain is not set, it defaults to natural ascending orde
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y"}})
 ```
 
-The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](#transforms) (such as [stack](#stack) or [bin](#bin)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](#area), [bar](#bar), and [rect](#rect). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
+The sort option is an object whose keys are ordinal scale names, such as *x* or *fx*, and whose values are mark channel names, such as *y*, *y1*, or *y2*. By specifying an existing channel rather than a new value, you avoid repeating the order definition and can refer to channels derived by [transforms](https://github.com/observablehq/plot/blob/main/README.md#transforms) (such as [stack](https://github.com/observablehq/plot/blob/main/README.md#stack) or [bin](https://github.com/observablehq/plot/blob/main/README.md#bin)). When sorting on the *x*, if no such channel is defined, the *x2* channel will be used instead if available, and similarly for *y* and *y2*; this is useful for marks that implicitly stack such as [area](https://github.com/observablehq/plot/blob/main/README.md#area), [bar](https://github.com/observablehq/plot/blob/main/README.md#bar), and [rect](https://github.com/observablehq/plot/blob/main/README.md#rect). A sort value may also be specified as *width* or *height*, representing derived channels |*x2* - *x1*| and |*y2* - *y1*| respectively.
 
 Note that there may be multiple associated values in the secondary dimension for a given value in the primary ordinal dimension. The secondary values are therefore grouped for each associated primary value, and each group is then aggregated by applying a reducer. Lastly the primary values are sorted based on the associated reduced value in natural ascending order to produce the domain. The default reducer is *max*, but may be changed by specifying the *reduce* option. The above code is shorthand for:
 
@@ -447,7 +447,7 @@ Note that there may be multiple associated values in the secondary dimension for
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reduce: "max"}})
 ```
 
-Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. TODO An example of assigning categorical colors in a scatterplot by descending count to maximize discriminability. See the [group transform](#group) for the list of supported reducers.
+Generally speaking, a reducer only needs to be specified when there are multiple secondary values for a given primary value. TODO An example of assigning categorical colors in a scatterplot by descending count to maximize discriminability. See the [group transform](https://github.com/observablehq/plot/blob/main/README.md#group) for the list of supported reducers.
 
 For descending rather than ascending order, use the *reverse* option:
 
@@ -455,7 +455,7 @@ For descending rather than ascending order, use the *reverse* option:
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", reverse: true}})
 ```
 
-An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
+An additional *limit* option truncates the domain to the first *n* values after sorting. If *limit* is negative, the last *n* values are used instead. Hence, a positive *limit* with *reverse* = true will return the top *n* values in descending order. If *limit* is an array [*lo*, *hi*], the *i*th values with *lo* ≤ *i* < *hi* will be selected. (Note that like the [basic filter transform](https://github.com/observablehq/plot/blob/main/README.md#transforms), limiting the *x* domain here does not affect the computation of the *y* domain, which is computed independently without respect to filtering.)
 
 ```js
 Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: "y", limit: 5}})
@@ -469,7 +469,7 @@ Plot.barY(alphabet, {x: "letter", y: "frequency", sort: {x: {value: "y", reverse
 
 If the input channel is *data*, then the reducer is passed groups of the mark’s data; this is typically used in conjunction with a custom reducer function, as when the built-in single-channel reducers are insufficient.
 
-Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](#transforms). To use both sort options and a sort transform, use [Plot.sort](#plotsortorder-options).
+Note: when the value of the sort option is a string or a function, it is interpreted as a [basic sort transform](https://github.com/observablehq/plot/blob/main/README.md#transforms). To use both sort options and a sort transform, use [Plot.sort](https://github.com/observablehq/plot/blob/main/README.md#plotsortorder-options).
 
 ### Facet options
 
@@ -478,7 +478,7 @@ The *facet* option enables [faceting](https://observablehq.com/@observablehq/plo
 * **fx** - the horizontal position, a *band* scale
 * **fy** - the vertical position, a *band* scale
 
-Similar to [marks](#marks), faceting requires specifying data and at least one of two optional channels:
+Similar to [marks](https://github.com/observablehq/plot/blob/main/README.md#marks), faceting requires specifying data and at least one of two optional channels:
 
 * facet.**data** - the data to be faceted
 * facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
@@ -610,6 +610,8 @@ Continuous color legends are rendered as a ramp, and can be configured with the 
 * *options*.**marginLeft** - the legend’s left margin
 
 The **style** legend option allows custom styles to override Plot’s defaults; it has the same behavior as in Plot’s top-level [layout options](#layout-options).
+
+<!-- jsdocEnd -->
 
 #### Plot.legend(*options*)
 
