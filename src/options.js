@@ -6,30 +6,30 @@ const TypedArray = Object.getPrototypeOf(Uint8Array);
 const objectToString = Object.prototype.toString;
 
 /**
- * Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *arrayType* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
+ * Given an iterable *data* and some *value* accessor, returns an array (a column) of the specified *type* with the corresponding value of each element of the data. The *value* accessor may be one of the following types:
  *
  * * a string - corresponding to the field accessor (`d => d[value]`)
- * * an accessor function - called as *arrayType*.from(*data*, *value*)
+ * * an accessor function - called as *type*.from(*data*, *value*)
  * * a number, Date, or boolean — resulting in an array uniformly filled with the *value*
  * * an object with a transform method — called as *value*.transform(*data*)
  * * an array of values - returning the same
  * * null or undefined - returning the same
  *
- * If *arrayType* is specified, it must be Array or a similar class that implements the [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) interface such as a typed array. When *type* is Array or a typed array class, the return value of valueof will be an instance of the same (or null or undefined). If *type* is not specified, valueof may return either an array or a typed array (or null or undefined).
+ * If *type* is specified, it must be Array or a similar class that implements the [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) interface such as a typed array. When *type* is Array or a typed array class, the return value of valueof will be an instance of the same (or null or undefined). If *type* is not specified, valueof may return either an array or a typed array (or null or undefined).
  *
- * Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *arrayType*, the array may be returned as-is without making a copy.
+ * Plot.valueof is not guaranteed to return a new array. When a transform method is used, or when the given *value* is an array that is compatible with the requested *type*, the array may be returned as-is without making a copy.
  */
-export function valueof(data, value, arrayType) {
-  const type = typeof value;
-  return type === "string"
-    ? map(data, field(value), arrayType)
-    : type === "function"
-    ? map(data, value, arrayType)
-    : type === "number" || value instanceof Date || type === "boolean"
-    ? map(data, constant(value), arrayType)
+export function valueof(data, value, type) {
+  const valueType = typeof value;
+  return valueType === "string"
+    ? map(data, field(value), type)
+    : valueType === "function"
+    ? map(data, value, type)
+    : valueType === "number" || value instanceof Date || valueType === "boolean"
+    ? map(data, constant(value), type)
     : value && typeof value.transform === "function"
-    ? arrayify(value.transform(data), arrayType)
-    : arrayify(value, arrayType); // preserve undefined type
+    ? arrayify(value.transform(data), type)
+    : arrayify(value, type); // preserve undefined type
 }
 
 export const field = (name) => (d) => d[name];
