@@ -253,6 +253,8 @@ const plot2 = Plot.plot({…, color: plot1.scale("color")});
 
 For convenience, scale objects expose a *scale*.**apply**(*input*) method which returns the scale’s output for the given *input* value. When applicable, scale objects also expose a *scale*.**invert**(*output*) method which returns the corresponding input value from the scale’s domain for the given *output* value.
 
+<!-- jsdocEnd -->
+
 ### Position options
 
 The position scales (*x*, *y*, *fx*, and *fy*) support additional options:
