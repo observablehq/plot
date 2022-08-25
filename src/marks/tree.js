@@ -7,7 +7,17 @@ import {link} from "./link.js";
 import {text} from "./text.js";
 
 /**
- * A convenience compound mark for rendering a tree diagram, including a [link](https://github.com/observablehq/plot/blob/main/README.md#link) to render links from parent to child, an optional [dot](https://github.com/observablehq/plot/blob/main/README.md#dot) for nodes, and a [text](https://github.com/observablehq/plot/blob/main/README.md#text) for node labels. The link mark uses the [treeLink transform](https://github.com/observablehq/plot/blob/main/README.md#plottreelinkoptions), while the dot and text marks use the [treeNode transform](https://github.com/observablehq/plot/blob/main/README.md#plottreenodeoptions). The following options are supported:
+ * A convenience compound mark for rendering a tree diagram, including a
+ * [link](https://github.com/observablehq/plot/blob/main/README.md#link) to
+ * render links from parent to child, an optional
+ * [dot](https://github.com/observablehq/plot/blob/main/README.md#dot) for
+ * nodes, and a
+ * [text](https://github.com/observablehq/plot/blob/main/README.md#text) for
+ * node labels. The link mark uses the [treeLink
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plottreelinkoptions),
+ * while the dot and text marks use the [treeNode
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plottreenodeoptions).
+ * The following options are supported:
  *
  * * **fill** - the dot and text fill color; defaults to *node:internal*
  * * **stroke** - the link stroke color; inherits **fill** by default
@@ -21,14 +31,17 @@ import {text} from "./text.js";
  * * **marker** - the link start and end marker
  * * **markerStart** - the link start marker
  * * **markerEnd** - the link end marker
- * * **dot** - if true, whether to render a dot; defaults to false if no link marker
+ * * **dot** - if true, whether to render a dot; defaults to false if no link
+ *   marker
  * * **title** - the text and dot title; defaults to *node:path*
  * * **text** - the text label; defaults to *node:name*
  * * **textStroke** - the text stroke; defaults to *white*
- * * **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6 if right-anchored
+ * * **dx** - the text horizontal offset; defaults to 6 if left-anchored, or -6
+ *   if right-anchored
  * * **dy** - the text vertical offset; defaults to 0
  *
- * Any additional *options* are passed through to the constituent link, dot, and text marks and their corresponding treeLink or treeNode transform.
+ * Any additional *options* are passed through to the constituent link, dot, and
+ * text marks and their corresponding treeLink or treeNode transform.
  */
 export function tree(data, options = {}) {
   let {
@@ -91,7 +104,10 @@ export function tree(data, options = {}) {
 }
 
 /**
- * Like [Plot.tree](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options), except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm, which aligns leaf nodes.
+ * Like
+ * [Plot.tree](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options),
+ * except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
+ * which aligns leaf nodes.
  */
 export function cluster(data, options) {
   return tree(data, {...options, treeLayout: Cluster});

@@ -37,7 +37,9 @@ import {basic} from "./basic.js";
  * Plot.groupZ({x: "proportion"}, {fill: "species"})
  * ```
  *
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of *z*, *fill*, or *stroke* are channels, then all data (within each facet) is placed into a single group.
+ * Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of
+ * *z*, *fill*, or *stroke* are channels, then all data (within each facet) is
+ * placed into a single group.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#group
  */
@@ -83,7 +85,8 @@ export function groupY(outputs = {x: "count"}, options = {}) {
  * Plot.group({fill: "count"}, {x: "island", y: "species"})
  * ```
  *
- * Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if any.
+ * Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if
+ * any.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#group
  */

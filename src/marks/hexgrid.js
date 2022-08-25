@@ -13,7 +13,9 @@ const defaults = {
 };
 
 /**
- * The **binWidth** option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The **clip** option defaults to true, clipping the mark to the frame’s dimensions.
+ * The **binWidth** option specifies the distance between the centers of
+ * neighboring hexagons, in pixels (defaults to 20). The **clip** option
+ * defaults to true, clipping the mark to the frame’s dimensions.
  */
 export function hexgrid(options) {
   return new Hexgrid(options);

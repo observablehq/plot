@@ -8,7 +8,9 @@ import {mapX, mapY} from "./map.js";
  * Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
  * ```
  *
- * Like [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotmapxmap-options), but applies the normalize map method with the given *basis*.
+ * Like
+ * [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotmapxmap-options),
+ * but applies the normalize map method with the given *basis*.
  */
 export function normalizeX(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
@@ -20,7 +22,9 @@ export function normalizeX(basis, options) {
  * Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
  * ```
  *
- * Like [Plot.mapY](https://github.com/observablehq/plot/blob/main/README.md#plotmapymap-options), but applies the normalize map method with the given *basis*.
+ * Like
+ * [Plot.mapY](https://github.com/observablehq/plot/blob/main/README.md#plotmapymap-options),
+ * but applies the normalize map method with the given *basis*.
  */
 export function normalizeY(basis, options) {
   if (arguments.length === 1) ({basis, ...options} = basis);
@@ -32,7 +36,8 @@ export function normalizeY(basis, options) {
  * Plot.map({y: Plot.normalize("first")}, {x: "Date", y: "Close", stroke: "Symbol"})
  * ```
  *
- * Returns a normalize map method for the given *basis*, suitable for use with Plot.map.
+ * Returns a normalize map method for the given *basis*, suitable for use with
+ * Plot.map.
  */
 export function normalize(basis) {
   if (basis === undefined) return normalizeFirst;

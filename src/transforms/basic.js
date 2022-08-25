@@ -3,7 +3,14 @@ import {ascendingDefined, descendingDefined} from "../defined.js";
 import {arrayify, isDomainSort, isOptions, maybeValue, valueof} from "../options.js";
 
 /**
- * Given an *options* object that may specify some basic transforms (*filter*, *sort*, or *reverse*) or a custom *transform* function, composes those transforms if any with the given *transform* function, returning a new *options* object. If a custom *transform* function is present on the given *options*, any basic transforms are ignored. Any additional input *options* are passed through in the returned *options* object. This method facilitates applying the basic transforms prior to applying the given custom *transform* and is used internally by Plot’s built-in transforms.
+ * Given an *options* object that may specify some basic transforms (*filter*,
+ * *sort*, or *reverse*) or a custom *transform* function, composes those
+ * transforms if any with the given *transform* function, returning a new
+ * *options* object. If a custom *transform* function is present on the given
+ * *options*, any basic transforms are ignored. Any additional input *options*
+ * are passed through in the returned *options* object. This method facilitates
+ * applying the basic transforms prior to applying the given custom *transform*
+ * and is used internally by Plot’s built-in transforms.
  */
 export function basic(options = {}, transform) {
   let {filter: f1, sort: s1, reverse: r1, transform: t1, initializer: i1, ...remainingOptions} = options;
@@ -24,7 +31,8 @@ export function basic(options = {}, transform) {
 }
 
 /**
- * This helper composes the *initializer* function with any other transforms present in the *options*, and returns a new *options* object.
+ * This helper composes the *initializer* function with any other transforms
+ * present in the *options*, and returns a new *options* object.
  */
 export function initializer(options = {}, initializer) {
   let {filter: f1, sort: s1, reverse: r1, initializer: i1, ...remainingOptions} = options;
@@ -71,7 +79,9 @@ function apply(options, t) {
  * Plot.filter(d => d.body_mass_g > 3000, options) // show data whose body mass is greater than 3kg
  * ```
  *
- * Filters the data given the specified *test*. The test can be given as an accessor function (which receives the datum and index), or as a channel value definition such as a field name; truthy values are retained.
+ * Filters the data given the specified *test*. The test can be given as an
+ * accessor function (which receives the datum and index), or as a channel value
+ * definition such as a field name; truthy values are retained.
  */
 export function filter(test, options) {
   return apply(options, filterTransform(test));
@@ -104,7 +114,9 @@ function reverseTransform(data, facets) {
  * Plot.shuffle(options) // show data in random order
  * ```
  *
- * Shuffles the data randomly. If a *seed* option is specified, a linear congruential generator with the given seed is used to generate random numbers deterministically; otherwise, Math.random is used.
+ * Shuffles the data randomly. If a *seed* option is specified, a linear
+ * congruential generator with the given seed is used to generate random numbers
+ * deterministically; otherwise, Math.random is used.
  */
 export function shuffle(options = {}) {
   const {seed, ...remainingOptions} = options;
@@ -116,7 +128,11 @@ export function shuffle(options = {}) {
  * Plot.sort("body_mass_g", options) // show data in ascending body mass order
  * ```
  *
- * Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](https://github.com/observablehq/plot/blob/main/README.md#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
+ * Sorts the data by the specified *order*, which can be an accessor function, a
+ * comparator function, or a channel value definition such as a field name. See
+ * also [index
+ * sorting](https://github.com/observablehq/plot/blob/main/README.md#index-sorting),
+ * which allows marks to be sorted by a named channel, such as *r* for radius.
  */
 export function sort(order, options) {
   return {

@@ -158,7 +158,10 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
 }
 
 /**
- * Returns a new text mark with the given *data* and *options*. If neither the **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ * Returns a new text mark with the given *data* and *options*. If neither the
+ * **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed
+ * to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such
+ * that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  */
 export function text(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -167,9 +170,15 @@ export function text(data, options = {}) {
 }
 
 /**
- * Equivalent to [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+ * Equivalent to
+ * [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options),
+ * except **x** defaults to the identity function and assumes that *data* =
+ * [*x₀*, *x₁*, *x₂*, …].
  *
- * If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
+ * If an **interval** is specified, such as d3.utcDay, **y** is transformed to
+ * (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If
+ * the interval is specified as a number *n*, *y* will be the midpoint of two
+ * consecutive multiples of *n* that bracket *y*.
  */
 export function textX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -177,9 +186,15 @@ export function textX(data, options = {}) {
 }
 
 /**
- * Equivalent to [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+ * Equivalent to
+ * [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options),
+ * except **y** defaults to the identity function and assumes that *data* =
+ * [*y₀*, *y₁*, *y₂*, …].
  *
- * If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
+ * If an **interval** is specified, such as d3.utcDay, **x** is transformed to
+ * (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If
+ * the interval is specified as a number *n*, *x* will be the midpoint of two
+ * consecutive multiples of *n* that bracket *x*.
  */
 export function textY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

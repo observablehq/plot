@@ -20,7 +20,9 @@ function maybeAnchor(anchor) {
  * Plot.dodgeX({y: "value"})
  * ```
  *
- * Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position channel that avoids overlapping. The *y* position channel is unchanged.
+ * Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x*
+ * position channel that avoids overlapping. The *y* position channel is
+ * unchanged.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#dodge
  */
@@ -48,7 +50,9 @@ export function dodgeX(dodgeOptions = {}, options = {}) {
  * Plot.dodgeY({x: "date"})
  * ```
  *
- * Given marks arranged along the *x* axis, the dodgeY transform piles them vertically by defining a *y* position channel that avoids overlapping. The *x* position channel is unchanged.
+ * Given marks arranged along the *x* axis, the dodgeY transform piles them
+ * vertically by defining a *y* position channel that avoids overlapping. The
+ * *x* position channel is unchanged.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#dodge
  */

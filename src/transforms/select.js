@@ -3,9 +3,17 @@ import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
 
 /**
- * Selects the points of each series selected by the *selector*, which can be specified either as a function which receives as input the index of the series, the shorthand “first” or “last”, or as a {*key*: *value*} object with exactly one *key* being the name of a channel and the *value* being a function which receives as input the index of the series and the channel values. The *value* may alternatively be specified as the shorthand “min” and “max” which respectively select the minimum and maximum points for the specified channel.
+ * Selects the points of each series selected by the *selector*, which can be
+ * specified either as a function which receives as input the index of the
+ * series, the shorthand “first” or “last”, or as a {*key*: *value*} object with
+ * exactly one *key* being the name of a channel and the *value* being a
+ * function which receives as input the index of the series and the channel
+ * values. The *value* may alternatively be specified as the shorthand “min” and
+ * “max” which respectively select the minimum and maximum points for the
+ * specified channel.
  *
- * For example, to select the point within each series that is the closest to the median of the *y* channel:
+ * For example, to select the point within each series that is the closest to
+ * the median of the *y* channel:
  *
  * ```js
  * Plot.select({

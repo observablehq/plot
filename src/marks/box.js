@@ -12,7 +12,10 @@ import {tickX, tickY} from "./tick.js";
  * Plot.boxX(simpsons.map(d => d.imdb_rating))
  * ```
  *
- * Returns a horizontal boxplot mark. If the **x** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **y** option is not specified, it defaults to null; if the **y** option is specified, it should represent an ordinal (discrete) value.
+ * Returns a horizontal boxplot mark. If the **x** option is not specified, it
+ * defaults to the identity function, as when *data* is an array of numbers. If
+ * the **y** option is not specified, it defaults to null; if the **y** option
+ * is specified, it should represent an ordinal (discrete) value.
  */
 export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
@@ -42,7 +45,10 @@ export function boxX(data, options = {}) {
  * Plot.boxY(simpsons.map(d => d.imdb_rating))
  * ```
  *
- * Returns a vertical boxplot mark. If the **y** option is not specified, it defaults to the identity function, as when *data* is an array of numbers. If the **x** option is not specified, it defaults to null; if the **x** option is specified, it should represent an ordinal (discrete) value.
+ * Returns a vertical boxplot mark. If the **y** option is not specified, it
+ * defaults to the identity function, as when *data* is an array of numbers. If
+ * the **x** option is not specified, it defaults to null; if the **x** option
+ * is specified, it should represent an ordinal (discrete) value.
  */
 export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the

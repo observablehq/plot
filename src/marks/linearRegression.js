@@ -127,7 +127,8 @@ class LinearRegressionY extends LinearRegression {
  * Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
  * ```
  *
- * Returns a linear regression mark where *x* is the dependent variable and *y* is the independent variable.
+ * Returns a linear regression mark where *x* is the dependent variable and *y*
+ * is the independent variable.
  */
 export function linearRegressionX(data, options = {}) {
   const {
@@ -145,7 +146,8 @@ export function linearRegressionX(data, options = {}) {
  * Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
  * ```
  *
- * Returns a linear regression mark where *y* is the dependent variable and *x* is the independent variable.
+ * Returns a linear regression mark where *y* is the dependent variable and *x*
+ * is the independent variable.
  */
 export function linearRegressionY(data, options = {}) {
   const {

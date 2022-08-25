@@ -25,7 +25,13 @@ export function formatNumber(locale = "en-US"): (value: any) => string | undefin
  * Plot.formatMonth("es-MX", "long")(0) // "enero"
  * ```
  *
- * Returns a function that formats a given month number (from 0 = January to 11 = December) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [month format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*, *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to *short*.
+ * Returns a function that formats a given month number (from 0 = January to 11
+ * = December) according to the specified *locale* and *format*. The *locale* is
+ * a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to
+ * U.S. English. The *format* is a [month
+ * format](https://tc39.es/ecma402/#datetimeformat-objects): either *2-digit*,
+ * *numeric*, *narrow*, *short*, *long*; if not specified, it defaults to
+ * *short*.
  */
 export function formatMonth(
   locale = "en-US",
@@ -41,7 +47,12 @@ export function formatMonth(
  * Plot.formatWeekday("es-MX", "long")(0) // "domingo"
  * ```
  *
- * Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
+ * Returns a function that formats a given week day number (from 0 = Sunday to 6
+ * = Saturday) according to the specified *locale* and *format*. The *locale* is
+ * a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to
+ * U.S. English. The *format* is a [weekday
+ * format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*,
+ * *short*, or *long*; if not specified, it defaults to *short*.
  */
 export function formatWeekday(locale = "en-US", weekday: "long" | "short" | "narrow" | undefined = "short") {
   const format = weekdayFormat(locale, weekday);
@@ -54,7 +65,8 @@ export function formatWeekday(locale = "en-US", weekday: "long" | "short" | "nar
  * Plot.formatIsoDate(new Date("2020-01-01T00:00.000Z")) // "2020-01-01"
  * ```
  *
- * Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the given *date* is not valid, returns `"Invalid Date"`.
+ * Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the
+ * given *date* is not valid, returns `"Invalid Date"`.
  */
 export function formatIsoDate(date: Date): string {
   return isoFormat(date, "Invalid Date");

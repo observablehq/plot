@@ -35,7 +35,8 @@ import {maybeInterval} from "./interval.js";
  * Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
  * ```
  *
- * Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
+ * Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or
+ * *stroke*, if any.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#bin
  */
@@ -51,7 +52,8 @@ export function binX(outputs = {y: "count"}, options = {}) {
  * Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
  * ```
  *
- * Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.
+ * Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or
+ * *stroke*, if any.
  */
 export function binY(outputs = {x: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then optionally on x, then bin y.
@@ -65,7 +67,8 @@ export function binY(outputs = {x: "count"}, options = {}) {
  * Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
  * ```
  *
- * Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or *stroke*, if any.
+ * Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or
+ * *stroke*, if any.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#bin
  */
