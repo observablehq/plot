@@ -32,7 +32,8 @@
     "test:typecheck": "tsc --noEmit",
     "readme:check": "tsx scripts/jsdoc-to-readme.ts --check",
     "readme:update": "tsx scripts/jsdoc-to-readme.ts",
-    "prepublishOnly": "rm -rf dist && rollup -c && tsc",
+    "typesJson": "tsc && tsx scripts/types-to-json.ts",
+    "prepublishOnly": "rm -rf dist && rollup -c && yarn typesJson",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
   },
