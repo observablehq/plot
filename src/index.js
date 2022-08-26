@@ -14,6 +14,7 @@ export {Line, line, lineX, lineY} from "./marks/line.js";
 export {linearRegressionX, linearRegressionY} from "./marks/linearRegression.js";
 export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
+export {RectPath, rectPath, rectPathX, rectPathY} from "./marks/rectPath.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
