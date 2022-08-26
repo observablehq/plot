@@ -108,7 +108,7 @@ const output = injectJsDoc(original);
 
 if (original !== output) {
   if (check) {
-    console.log("README.md is out of sync. Please run `yarn readme:udpate`");
+    console.log("README.md is out of sync. Please run `yarn readme:update`");
     process.exit(1);
   } else {
     writeFileSync(readmePath, output);
