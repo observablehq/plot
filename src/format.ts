@@ -29,11 +29,11 @@ export function formatNumber(locale = "en-US"): (value: any) => string | undefin
  */
 export function formatMonth(
   locale = "en-US",
-  month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined = "short"
+  format: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined = "short"
 ) {
-  const format = monthFormat(locale, month);
+  const fmt = monthFormat(locale, format);
   return (i: Date | number | null | undefined) =>
-    i != null && !isNaN((i = +new Date(Date.UTC(2000, +i)))) ? format.format(i) : undefined;
+    i != null && !isNaN((i = +new Date(Date.UTC(2000, +i)))) ? fmt.format(i) : undefined;
 }
 
 /**
@@ -43,10 +43,10 @@ export function formatMonth(
  *
  * Returns a function that formats a given week day number (from 0 = Sunday to 6 = Saturday) according to the specified *locale* and *format*. The *locale* is a [BCP 47 language tag](https://tools.ietf.org/html/bcp47) and defaults to U.S. English. The *format* is a [weekday format](https://tc39.es/ecma402/#datetimeformat-objects): either *narrow*, *short*, or *long*; if not specified, it defaults to *short*.
  */
-export function formatWeekday(locale = "en-US", weekday: "long" | "short" | "narrow" | undefined = "short") {
-  const format = weekdayFormat(locale, weekday);
+export function formatWeekday(locale = "en-US", format: "long" | "short" | "narrow" | undefined = "short") {
+  const fmt = weekdayFormat(locale, format);
   return (i: Date | number | null | undefined) =>
-    i != null && !isNaN((i = +new Date(Date.UTC(2001, 0, +i)))) ? format.format(i) : undefined;
+    i != null && !isNaN((i = +new Date(Date.UTC(2001, 0, +i)))) ? fmt.format(i) : undefined;
 }
 
 /**
