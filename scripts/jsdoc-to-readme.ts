@@ -68,7 +68,7 @@ function getJsDocs(name: string, declaration: ExportedDeclarations, prefix = "##
   if ("getJsDocs" in declaration) {
     return `${prefix} Plot.${name}\n${declaration
       .getJsDocs()
-      .map((doc) => doc.getDescription())
+      .map((doc) => makeRelativeUrls(doc.getDescription()))
       .join("\n\n")}`;
   }
   return `JSDoc extraction for ${declaration.getKindName()} not yet implemented.`;
@@ -82,7 +82,7 @@ function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, pr
   const parts = [title];
   const docs = declaration.getJsDocs();
   if (docs.length) {
-    parts.push(docs.map((doc) => doc.getDescription()).join("\n\n"));
+    parts.push(docs.map((doc) => makeRelativeUrls(doc.getDescription())).join("\n\n"));
     return parts.join("\n");
   }
   // If we didn't find docs on the implementation, it's probably on one of the
@@ -91,11 +91,15 @@ function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, pr
   for (const overload of overloads) {
     const docs = overload.getJsDocs();
     if (!docs.length) continue;
-    parts.push(docs.map((doc) => doc.getDescription()).join("\n\n"));
+    parts.push(docs.map((doc) => makeRelativeUrls(doc.getDescription())).join("\n\n"));
     return parts.join("\n");
   }
 
   return "No JSDocs found.";
+}
+
+function makeRelativeUrls(description: string) {
+  return description.replace(new RegExp("https://github.com/observablehq/plot/blob/main/README.md#", "g"), "#");
 }
 
 const check = process.argv[process.argv.length - 1] === "--check";

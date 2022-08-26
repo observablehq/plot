@@ -68,7 +68,7 @@ Renders a new plot given the specified *options* and returns the corresponding S
 
 ### Mark options
 
-The **marks** option specifies an array of [marks](https://github.com/observablehq/plot/blob/main/README.md#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](https://github.com/observablehq/plot/blob/main/README.md#bar) or [dot](https://github.com/observablehq/plot/blob/main/README.md#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z* order, last on top. For example, here a single rule at *y* = 0 is drawn on top of blue bars for the [*alphabet* dataset](https://github.com/observablehq/plot/blob/main/test/data/alphabet.csv).
+The **marks** option specifies an array of [marks](#marks) to render. Each mark has its own data and options; see the respective mark type (*e.g.*, [bar](#bar) or [dot](#dot)) for which mark options are supported. Each mark may be a nested array of marks, allowing composition. Marks may also be a function which returns an SVG element, if you wish to insert some arbitrary content into your plot. And marks may be null or undefined, which produce no output; this is useful for showing marks conditionally (*e.g.*, when a box is checked). Marks are drawn in *z* order, last on top. For example, here a single rule at *y* = 0 is drawn on top of blue bars for the [*alphabet* dataset](https://github.com/observablehq/plot/blob/main/test/data/alphabet.csv).
 
 ```js
 Plot.plot({
@@ -140,8 +140,8 @@ Each scale’s options are specified as a nested options object with the corresp
 * **r** - radius (size)
 * **color** - fill or stroke
 * **opacity** - fill or stroke opacity
-* **length** - linear length (for [vectors](https://github.com/observablehq/plot/blob/main/README.md#vector))
-* **symbol** - categorical symbol (for [dots](https://github.com/observablehq/plot/blob/main/README.md#dot))
+* **length** - linear length (for [vectors](#vector))
+* **symbol** - categorical symbol (for [dots](#dot))
 
 For example, to set the domain for the *x* and *y* scales:
 
@@ -156,9 +156,9 @@ Plot.plot({
 })
 ```
 
-Plot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as [position](https://github.com/observablehq/plot/blob/main/README.md#position-options) or [color](https://github.com/observablehq/plot/blob/main/README.md#color-options).
+Plot supports many scale types. Some scale types are for quantitative data: values that can be added or subtracted, such as temperature or time. Other scale types are for ordinal or categorical data: unquantifiable values that can only be ordered, such as t-shirt sizes, or values with no inherent order that can only be tested for equality, such as types of fruit. Some scale types are further intended for specific visual encodings: for example, as [position](#position-options) or [color](#color-options).
 
-You can set the scale type explicitly via the *scale*.**type** option, though typically the scale type is inferred automatically. Some marks mandate a particular scale type: for example, [Plot.barY](https://github.com/observablehq/plot/blob/main/README.md#plotbarydata-options) requires that the *x* scale is a *band* scale. Some scales have a default type: for example, the *radius* scale defaults to *sqrt* and the *opacity* scale defaults to *linear*. Most often, the scale type is inferred from associated data, pulled either from the domain (if specified) or from associated channels. A *color* scale defaults to *identity* if no range or scheme is specified and all associated defined values are valid CSS color strings. Otherwise, strings and booleans imply an ordinal scale; dates imply a UTC scale; and anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value.
+You can set the scale type explicitly via the *scale*.**type** option, though typically the scale type is inferred automatically. Some marks mandate a particular scale type: for example, [Plot.barY](#plotbarydata-options) requires that the *x* scale is a *band* scale. Some scales have a default type: for example, the *radius* scale defaults to *sqrt* and the *opacity* scale defaults to *linear*. Most often, the scale type is inferred from associated data, pulled either from the domain (if specified) or from associated channels. A *color* scale defaults to *identity* if no range or scheme is specified and all associated defined values are valid CSS color strings. Otherwise, strings and booleans imply an ordinal scale; dates imply a UTC scale; and anything else is linear. Unless they represent text, we recommend explicitly converting strings to more specific types when loading data (*e.g.*, with d3.autoType or Observable’s FileAttachment). For simplicity’s sake, Plot assumes that data is consistently typed; type inference is based solely on the first non-null, non-undefined value.
 
 For quantitative data (*i.e.* numbers), a mathematical transform may be applied to the data by changing the scale type:
 
@@ -177,7 +177,7 @@ For temporal data (*i.e.* dates), two variants of a *linear* scale are also supp
 
 UTC is recommended over local time as charts in UTC time are guaranteed to appear consistently to all viewers whereas charts in local time will depend on the viewer’s time zone. Due to limitations in JavaScript’s Date class, Plot does not yet support an explicit time zone other than UTC.
 
-For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* [position scale types](https://github.com/observablehq/plot/blob/main/README.md#position-options). The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a [color scale](https://github.com/observablehq/plot/blob/main/README.md#color-options), where it provides a different default color scheme. (Since position is inherently ordinal or even quantitative, categorical data must be assigned an effective order when represented as position, and hence *categorical* and *ordinal* may be considered synonymous in context.)
+For ordinal data (*e.g.*, strings), use the *ordinal* scale type or the *point* or *band* [position scale types](#position-options). The *categorical* scale type is also supported; it is equivalent to *ordinal* except as a [color scale](#color-options), where it provides a different default color scheme. (Since position is inherently ordinal or even quantitative, categorical data must be assigned an effective order when represented as position, and hence *categorical* and *ordinal* may be considered synonymous in context.)
 
 You can opt-out of a scale using the *identity* scale type. This is useful if you wish to specify literal colors or pixel positions within a mark channel rather than relying on the scale to convert abstract values into visual values. For position scales (*x* and *y*), an *identity* scale is still quantitative and may produce an axis, yet unlike a *linear* scale the domain and range are fixed based on the plot layout.
 
@@ -191,9 +191,9 @@ A scale’s domain (the extent of its inputs, abstract values) and range (the ex
 * *scale*.**reverse** - reverses the domain (or in somes cases, the range), say to flip the chart along *x* or *y*
 * *scale*.**interval** - an interval or time interval (for interval data; see below)
 
-For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](https://github.com/observablehq/plot/blob/main/README.md#sort-options) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
+For most quantitative scales, the default domain is the [*min*, *max*] of all values associated with the scale. For the *radius* and *opacity* scales, the default domain is [0, *max*] to ensure a meaningful value encoding. For ordinal scales, the default domain is the set of all distinct values associated with the scale in natural ascending order; for a different order, set the domain explicitly or add a [sort option](#sort-options) to an associated mark. For threshold scales, the default domain is [0] to separate negative and non-negative values. For quantile scales, the default domain is the set of all defined values associated with the scale. If a scale is reversed, it is equivalent to setting the domain as [*max*, *min*] instead of [*min*, *max*].
 
-The default range depends on the scale: for [position scales](https://github.com/observablehq/plot/blob/main/README.md#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](https://github.com/observablehq/plot/blob/main/README.md#layout-options). For [color scales](https://github.com/observablehq/plot/blob/main/README.md#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
+The default range depends on the scale: for [position scales](#position-options) (*x*, *y*, *fx*, and *fy*), the default range depends on the plot’s [size and margins](#layout-options). For [color scales](#color-options), there are default color schemes for quantitative, ordinal, and categorical data. For opacity, the default range is [0, 1]. And for radius, the default range is designed to produce dots of “reasonable” size assuming a *sqrt* scale type for accurate area representation: zero maps to zero, the first quartile maps to a radius of three pixels, and other values are extrapolated. This convention for radius ensures that if the scale’s data values are all equal, dots have the default constant radius of three pixels, while if the data varies, dots will tend to be larger.
 
 The behavior of the *scale*.**unknown** option depends on the scale type. For quantitative and temporal scales, the unknown value is used whenever the input value is undefined, null, or NaN. For ordinal or categorical scales, the unknown value is returned for any input value outside the domain. For band or point scales, the unknown option has no effect; it is effectively always equal to undefined. If the unknown option is set to undefined (the default), or null or NaN, then the affected input values will be considered undefined and filtered from the output.
 
@@ -234,7 +234,7 @@ console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 
 #### Plot.scale(*options*)
 
-You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](https://github.com/observablehq/plot/blob/main/README.md#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+You can also create a standalone scale with Plot.**scale**(*options*). The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
 const color = Plot.scale({color: {type: "linear"}});
@@ -242,7 +242,7 @@ const color = Plot.scale({color: {type: "linear"}});
 
 #### Scale objects
 
-Both [*plot*.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscalescalename) and [Plot.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
+Both [*plot*.scale](#plotscalescalename) and [Plot.scale](#plotscaleoptions) return scale objects. These objects represent the actual (or “materialized”) scale options used by Plot, including the domain, range, interpolate function, *etc.* The scale’s label, if any, is also returned; however, note that other axis properties are not currently exposed. Point and band scales also expose their materialized bandwidth and step.
 
 To reuse a scale across plots, pass the corresponding scale object into another plot specification:
 
@@ -617,7 +617,7 @@ The **style** legend option allows custom styles to override Plot’s defaults; 
 
 #### Plot.legend(*options*)
 
-Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](https://github.com/observablehq/plot/blob/main/README.md#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
+Returns a standalone legend for the scale defined by the given *options* object. The *options* object must define at least one scale; see [Scale options](#scale-options) for how to define a scale. For example, here is a ramp legend of a linear color scale with the default domain of [0, 1] and default scheme *turbo*:
 
 ```js
 Plot.legend({color: {type: "linear"}})
@@ -810,7 +810,7 @@ The area mark supports [curve options](#curves) to control interpolation between
 Plot.area(aapl, {x1: "Date", y1: 0, y2: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](https://github.com/observablehq/plot/blob/main/README.md#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](https://github.com/observablehq/plot/blob/main/README.md#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
+Returns a new area with the given *data* and *options*. Plot.area is rarely used directly; it is only needed when the baseline and topline have neither common *x* nor *y* values. [Plot.areaY](#plotareaydata-options) is used in the common horizontal orientation where the baseline and topline share *x* values, while [Plot.areaX](#plotareaxdata-options) is used in the vertical orientation where the baseline and topline share *y* values.
 
 <!-- jsdoc areaX -->
 
@@ -820,9 +820,9 @@ Returns a new area with the given *data* and *options*. Plot.area is rarely used
 Plot.areaX(aapl, {y: "Date", x: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑. If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options); this is the typical configuration for an area chart with a baseline at *x* = 0. If the **x** option is not specified, it defaults to the identity function. The **y** option specifies the **y1** channel; and the **y1** and **y2** options are ignored.
+Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *y* values, as in a time-series area chart where time goes up↑. If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for an area chart with a baseline at *x* = 0. If the **x** option is not specified, it defaults to the identity function. The **y** option specifies the **y1** channel; and the **y1** and **y2** options are ignored.
 
-If the **interval** option is specified, the [binY transform](https://github.com/observablehq/plot/blob/main/README.md#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
+If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
 Plot.areaX(observations, {y: "date", x: "temperature", interval: d3.utcDay})
@@ -838,9 +838,9 @@ The **interval** option is recommended to “regularize” sampled data; for exa
 Plot.areaY(aapl, {x: "Date", y: "Close"})
 ```
 
-Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
+Returns a new area with the given *data* and *options*. This constructor is used when the baseline and topline share *x* values, as in a time-series area chart where time goes right→. If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for an area chart with a baseline at *y* = 0. If the **y** option is not specified, it defaults to the identity function. The **x** option specifies the **x1** channel; and the **x1** and **x2** options are ignored.
 
-If the **interval** option is specified, the [binX transform](https://github.com/observablehq/plot/blob/main/README.md#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
+If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
 Plot.areaY(observations, {x: "date", y: "temperature", interval: d3.utcDay)
@@ -909,11 +909,11 @@ Returns a new horizontal bar↔︎ with the given *data* and *options*. The foll
 * **x1** - the starting horizontal position; bound to the *x* scale
 * **x2** - the ending horizontal position; bound to the *x* scale
 
-If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
+If neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a horizontal bar chart with bars aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **x2** as the identity function and **y** as the index of data; this allows an array of numbers to be passed to Plot.barX to make a quick sequential bar chart.
 
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*.
 
-In addition to the [standard bar channels](https://github.com/observablehq/plot/blob/main/README.md#bar), the following optional channels are supported:
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **y** - the vertical position; bound to the *y* scale, which must be *band*
 
@@ -932,11 +932,11 @@ Returns a new vertical bar↕︎ with the given *data* and *options*. The follow
 * **y1** - the starting vertical position; bound to the *y* scale
 * **y2** - the ending vertical position; bound to the *y* scale
 
-If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **y2** as the identity function and **x** as the index of data; this allows an array of numbers to be passed to Plot.barY to make a quick sequential bar chart.
+If neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a vertical bar chart with bars aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function. If *options* is undefined, then it defaults to **y2** as the identity function and **x** as the index of data; this allows an array of numbers to be passed to Plot.barY to make a quick sequential bar chart.
 
 If an **interval** is specified, such as d3.utcDay, **y1** and **y2** can be derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*. If the interval is specified as a number *n*, *y1* and *y2* are taken as the two consecutive multiples of *n* that bracket *y*.
 
-In addition to the [standard bar channels](https://github.com/observablehq/plot/blob/main/README.md#bar), the following optional channels are supported:
+In addition to the [standard bar channels](#bar), the following optional channels are supported:
 
 * **x** - the horizontal position; bound to the *x* scale, which must be *band*
 
@@ -1020,7 +1020,7 @@ Returns a new cell with the given *data* and *options*. If neither the **x** nor
 Plot.cellX(simpsons.map(d => d.imdb_rating))
 ```
 
-Equivalent to [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **x** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 <!-- jsdoc cellY -->
 
@@ -1030,7 +1030,7 @@ Equivalent to [Plot.cell](https://github.com/observablehq/plot/blob/main/README.
 Plot.cellY(simpsons.map(d => d.imdb_rating))
 ```
 
-Equivalent to [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.cell](#plotcelldata-options), except that if the **y** option is not specified, it defaults to [0, 1, 2, …], and if the **fill** option is not specified and **stroke** is not a channel, the fill defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 <!-- jsdocEnd -->
 
@@ -1149,7 +1149,7 @@ Returns a new dot with the given *data* and *options*. If neither the **x** nor 
 Plot.dotX(cars.map(d => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
@@ -1161,7 +1161,7 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*in
 Plot.dotY(cars.map(d => d["economy (mpg)"]))
 ```
 
-Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.dot](#plotdotdata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
 
@@ -1169,13 +1169,13 @@ If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*in
 
 #### Plot.circle(*data*, *options*)
 
-Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *circle*.
+Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *circle*.
 
 <!-- jsdoc hexagon -->
 
 #### Plot.hexagon(*data*, *options*)
 
-Equivalent to [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
+Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
 
 <!-- jsdocEnd -->
 
@@ -1309,9 +1309,9 @@ Returns a new line with the given *data* and *options*. If neither the **x** nor
 Plot.lineX(aapl.map(d => d.Close))
 ```
 
-Similar to [Plot.line](https://github.com/observablehq/plot/blob/main/README.md#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
+Similar to [Plot.line](#plotlinedata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …]. If the **y** option is not specified, it defaults to [0, 1, 2, …].
 
-If the **interval** option is specified, the [binY transform](https://github.com/observablehq/plot/blob/main/README.md#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
+If the **interval** option is specified, the [binY transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *x* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
 Plot.lineX(observations, {y: "date", x: "temperature", interval: d3.utcDay})
@@ -1327,9 +1327,9 @@ The **interval** option is recommended to “regularize” sampled data; for exa
 Plot.lineY(aapl.map(d => d.Close))
 ```
 
-Similar to [Plot.line](https://github.com/observablehq/plot/blob/main/README.md#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
+Similar to [Plot.line](#plotlinedata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …]. If the **x** option is not specified, it defaults to [0, 1, 2, …].
 
-If the **interval** option is specified, the [binX transform](https://github.com/observablehq/plot/blob/main/README.md#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
+If the **interval** option is specified, the [binX transform](#bin) is implicitly applied to the specified *options*. The reducer of the output *y* channel may be specified via the **reduce** option, which defaults to *first*. To default to zero instead of showing gaps in data, as when the observed value represents a quantity, use the *sum* reducer.
 
 ```js
 Plot.lineY(observations, {x: "date", y: "temperature", interval: d3.utcDay})
@@ -1407,7 +1407,7 @@ Returns a new rect with the given *data* and *options*.
 Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 ```
 
-Equivalent to [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
+Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **x1** nor **x2** option is specified, the **x** option may be specified as shorthand to apply an implicit [stackX transform](#plotstackxstack-options); this is the typical configuration for a histogram with rects aligned at *x* = 0. If the **x** option is not specified, it defaults to the identity function.
 
 <!-- jsdoc rectY -->
 
@@ -1417,7 +1417,7 @@ Equivalent to [Plot.rect](https://github.com/observablehq/plot/blob/main/README.
 Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 ```
 
-Equivalent to [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
+Equivalent to [Plot.rect](#plotrectdata-options), except that if neither the **y1** nor **y2** option is specified, the **y** option may be specified as shorthand to apply an implicit [stackY transform](#plotstackystack-options); this is the typical configuration for a histogram with rects aligned at *y* = 0. If the **y** option is not specified, it defaults to the identity function.
 
 <!-- jsdocEnd -->
 
@@ -1440,7 +1440,7 @@ Plot.ruleX([0]) // as annotation
 Plot.ruleX(alphabet, {x: "letter", y: "frequency"}) // like barY
 ```
 
-Returns a new rule↕︎ with the given *data* and *options*. In addition to the [standard mark options](https://github.com/observablehq/plot/blob/main/README.md#marks), the following channels are optional:
+Returns a new rule↕︎ with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
 
 * **x** - the horizontal position; bound to the *x* scale
 * **y1** - the starting vertical position; bound to the *y* scale
@@ -1461,7 +1461,7 @@ Plot.ruleY([0]) // as annotation
 Plot.ruleY(alphabet, {y: "letter", x: "frequency"}) // like barX
 ```
 
-Returns a new rule↔︎ with the given *data* and *options*. In addition to the [standard mark options](https://github.com/observablehq/plot/blob/main/README.md#marks), the following channels are optional:
+Returns a new rule↔︎ with the given *data* and *options*. In addition to the [standard mark options](#marks), the following channels are optional:
 
 * **y** - the vertical position; bound to the *y* scale
 * **x1** - the starting horizontal position; bound to the *x* scale
@@ -1527,7 +1527,7 @@ Returns a new text mark with the given *data* and *options*. If neither the **x*
 
 #### Plot.textX(*data*, *options*)
 
-Equivalent to [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.text](#plottextdata-options), except **x** defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If the interval is specified as a number *n*, *y* will be the midpoint of two consecutive multiples of *n* that bracket *y*.
 
@@ -1535,7 +1535,7 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to (*in
 
 #### Plot.textY(*data*, *options*)
 
-Equivalent to [Plot.text](https://github.com/observablehq/plot/blob/main/README.md#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.text](#plottextdata-options), except **y** defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 If an **interval** is specified, such as d3.utcDay, **x** is transformed to (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If the interval is specified as a number *n*, *x* will be the midpoint of two consecutive multiples of *n* that bracket *x*.
 
@@ -1631,13 +1631,13 @@ Returns a new vector with the given *data* and *options*. If neither the **x** n
 
 #### Plot.vectorX(*data*, *options*)
 
-Equivalent to [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+Equivalent to [Plot.vector](#plotvectordata-options) except that if the **x** option is not specified, it defaults to the identity function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
 <!-- jsdoc vectorY -->
 
 #### Plot.vectorY(*data*, *options*)
 
-Equivalent to [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+Equivalent to [Plot.vector](#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 <!-- jsdocEnd -->
 
@@ -1717,7 +1717,7 @@ The *filter*, *sort* and *reverse* transforms are also available as functions, a
 Plot.sort("body_mass_g", options) // show data in ascending body mass order
 ```
 
-Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](https://github.com/observablehq/plot/blob/main/README.md#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
+Sorts the data by the specified *order*, which can be an accessor function, a comparator function, or a channel value definition such as a field name. See also [index sorting](#index-sorting), which allows marks to be sorted by a named channel, such as *r* for radius.
 
 <!-- jsdoc shuffle -->
 
@@ -2099,7 +2099,7 @@ Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for ea
 
 <!-- jsdoc mapX -->
 
-#### Plot.mapX(*mapping*, *options*)
+#### Plot.mapX(*map*, *options*)
 
 ```js
 Plot.mapX("cumsum", {x: d3.randomNormal()})
@@ -2110,7 +2110,7 @@ Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but ignores
 
 <!-- jsdoc mapY -->
 
-#### Plot.mapY(*mapping*, *options*)
+#### Plot.mapY(*map*, *options*)
 
 ```js
 Plot.mapY("cumsum", {y: d3.randomNormal()})
@@ -2137,7 +2137,7 @@ Returns a normalize map method for the given *basis*, suitable for use with Plot
 Plot.normalizeX("first", {y: "Date", x: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotmapxmap-options), but applies the normalize map method with the given *basis*.
+Like [Plot.mapX](#plotmapxmap-options), but applies the normalize map method with the given *basis*.
 
 <!-- jsdoc normalizeY -->
 
@@ -2147,7 +2147,7 @@ Like [Plot.mapX](https://github.com/observablehq/plot/blob/main/README.md#plotma
 Plot.normalizeY("first", {x: "Date", y: "Close", stroke: "Symbol"})
 ```
 
-Like [Plot.mapY](https://github.com/observablehq/plot/blob/main/README.md#plotmapymap-options), but applies the normalize map method with the given *basis*.
+Like [Plot.mapY](#plotmapymap-options), but applies the normalize map method with the given *basis*.
 
 <!-- jsdocEnd -->
 
@@ -2301,7 +2301,7 @@ If two arguments are passed to the stack transform functions below, the stack-sp
 
 <!-- jsdoc stackY -->
 
-#### Plot.stackY(*stackOptions*, *options*)
+#### Plot.stackY(*stack*, *options*)
 
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -2312,29 +2312,29 @@ Creates new channels **y1** and **y2**, obtained by stacking the original **y** 
 
 <!-- jsdoc stackY1 -->
 
-#### Plot.stackY1(*stackOptions*, *options*)
+#### Plot.stackY1(*stack*, *options*)
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Equivalent to [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
+Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y1** channel is returned as the **y** channel. This can be used, for example, to draw a line at the bottom of each stacked area.
 
 
 <!-- jsdoc stackY2 ->
 
-#### Plot.stackY2(*stackOptions*, *options*)
+#### Plot.stackY2(*stack*, *options*)
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
-Equivalent to [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
+Equivalent to [Plot.stackY](#plotstackystack-options), except that the **y2** channel is returned as the **y** channel. This can be used, for example, to draw a line at the top of each stacked area.
 
 
 <!-- jsdoc stackX -->
 
-#### Plot.stackX(*stackOptions*, *options*)
+#### Plot.stackX(*stack*, *options*)
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -2345,24 +2345,24 @@ See Plot.stackY, but with *x* as the input value channel, *y* as the stack index
 
 <!-- jsdoc stackX1 -->
 
-#### Plot.stackX1(*stackOptions*, *options*)
+#### Plot.stackX1(*stack*, *options*)
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Equivalent to [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x1** channel is returned as the **x** channel. This can be used, for example, to draw a line at the left edge of each stacked area.
 
 
 <!-- jsdoc stackX2 -->
 
-#### Plot.stackX2(*stackOptions*, *options*)
+#### Plot.stackX2(*stack*, *options*)
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
-Equivalent to [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
+Equivalent to [Plot.stackX](#plotstackxstack-options), except that the **x2** channel is returned as the **x** channel. This can be used, for example, to draw a line at the right edge of each stacked area.
 
 
 <!-- jsdocEnd -->
@@ -2425,7 +2425,7 @@ The default **treeLayout** implements the Reingold–Tilford “tidy” algorith
 
 #### Plot.treeNode(*options*)
 
-Based on the tree options described above, populates the **x** and **y** channels with the positions for each node. The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**. This transform is intended to be used with [dot](https://github.com/observablehq/plot/blob/main/README.md#dot), [text](https://github.com/observablehq/plot/blob/main/README.md#text), and other point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options).
+Based on the tree options described above, populates the **x** and **y** channels with the positions for each node. The following defaults are also applied: the default **frameAnchor** inherits the **treeAnchor**. This transform is intended to be used with [dot](#dot), [text](#text), and other point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
 The treeNode transform will derive output columns for any *options* that have one of the following named node values:
 
@@ -2441,7 +2441,7 @@ In addition, if any option value is specified as an object with a **node** metho
 
 #### Plot.treeLink(*options*)
 
-Based on the tree options described above, populates the **x1**, **y1**, **x2**, and **y2** channels. The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1.5, and the default **strokeOpacity** is 0.5. This transform is intended to be used with [link](https://github.com/observablehq/plot/blob/main/README.md#link), [arrow](https://github.com/observablehq/plot/blob/main/README.md#arrow), and other two-point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options).
+Based on the tree options described above, populates the **x1**, **y1**, **x2**, and **y2** channels. The following defaults are also applied: the default **curve** is *bump-x*, the default **stroke** is #555, the default **strokeWidth** is 1.5, and the default **strokeOpacity** is 0.5. This transform is intended to be used with [link](#link), [arrow](#arrow), and other two-point-based marks. This transform is rarely used directly; see the [Plot.tree compound mark](#plottreedata-options).
 
 The treeLink transform will derive output columns for any *options* that have one of the following named link values:
 
@@ -2461,7 +2461,7 @@ In addition, if any option value is specified as an object with a **node** metho
 
 #### Plot.tree(*data*, *options*)
 
-A convenience compound mark for rendering a tree diagram, including a [link](https://github.com/observablehq/plot/blob/main/README.md#link) to render links from parent to child, an optional [dot](https://github.com/observablehq/plot/blob/main/README.md#dot) for nodes, and a [text](https://github.com/observablehq/plot/blob/main/README.md#text) for node labels. The link mark uses the [treeLink transform](https://github.com/observablehq/plot/blob/main/README.md#plottreelinkoptions), while the dot and text marks use the [treeNode transform](https://github.com/observablehq/plot/blob/main/README.md#plottreenodeoptions). The following options are supported:
+A convenience compound mark for rendering a tree diagram, including a [link](#link) to render links from parent to child, an optional [dot](#dot) for nodes, and a [text](#text) for node labels. The link mark uses the [treeLink transform](#plottreelinkoptions), while the dot and text marks use the [treeNode transform](#plottreenodeoptions). The following options are supported:
 
 * **fill** - the dot and text fill color; defaults to *node:internal*
 * **stroke** - the link stroke color; inherits **fill** by default
@@ -2488,7 +2488,7 @@ Any additional *options* are passed through to the constituent link, dot, and te
 
 #### Plot.cluster(*data*, *options*)
 
-Like [Plot.tree](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options), except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm, which aligns leaf nodes.
+Like [Plot.tree](#plottreedata-options), except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm, which aligns leaf nodes.
 
 <!-- jsdocEnd -->
 
@@ -2584,7 +2584,7 @@ Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x* position 
 
 #### Plot.hexbin(*outputs*, *options*)
 
-Aggregates the given input channels into hexagonal bins, creating output channels with the reduced data. The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to the [bin transform](https://github.com/observablehq/plot/blob/main/README.md#bin); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
+Aggregates the given input channels into hexagonal bins, creating output channels with the reduced data. The *options* must specify the **x** and **y** channels. The **binWidth** option (default 20) defines the distance between centers of neighboring hexagons in pixels. If any of **z**, **fill**, or **stroke** is a channel, the first of these channels will be used to subdivide bins. The *outputs* options are similar to the [bin transform](#bin); each output channel receives as input, for each hexagon, the subset of the data which has been matched to its center. The outputs object specifies the aggregation method for each output channel.
 
 The following aggregation methods are supported:
 
@@ -2607,7 +2607,7 @@ The following aggregation methods are supported:
 * a function to be passed the array of values for each bin and the extent of the bin
 * an object with a *reduce* method
 
-See also the [hexgrid](https://github.com/observablehq/plot/blob/main/README.md#hexgrid) mark.
+See also the [hexgrid](#hexgrid) mark.
 
 <!-- jsdocEnd -->
 
@@ -2697,7 +2697,7 @@ Given a *date*, returns the shortest equivalent ISO 8601 UTC string. If the give
 
 <!-- jsdoc formatWeekday -->
 
-#### Plot.formatWeekday(*locale*, *weekday*)
+#### Plot.formatWeekday(*locale*, *format*)
 
 ```js
 Plot.formatWeekday("es-MX", "long")(0) // "domingo"
@@ -2707,7 +2707,7 @@ Returns a function that formats a given week day number (from 0 = Sunday to 6 = 
 
 <!-- jsdoc formatMonth -->
 
-#### Plot.formatMonth(*locale*, *month*)
+#### Plot.formatMonth(*locale*, *format*)
 
 ```js
 Plot.formatMonth("es-MX", "long")(0) // "enero"
