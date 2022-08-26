@@ -13,10 +13,10 @@ import {basic} from "./basic.js";
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackX(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
+  const [transform, Y, x1, x2] = stackAlias(y, x, "x", stack, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
@@ -32,10 +32,10 @@ export function stackX(stackOptions = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackX1(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y, X] = stackAlias(y, x, "x", stack, options);
   return {...transform, y1, y: Y, x: X};
 }
 
@@ -51,10 +51,10 @@ export function stackX1(stackOptions = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackX2(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
-  const [transform, Y, , X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y, , X] = stackAlias(y, x, "x", stack, options);
   return {...transform, y1, y: Y, x: X};
 }
 
@@ -73,10 +73,10 @@ export function stackX2(stackOptions = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackY(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
+  const [transform, X, y1, y2] = stackAlias(x, y, "y", stack, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
@@ -92,10 +92,10 @@ export function stackY(stackOptions = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackY1(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X, Y] = stackAlias(x, y, "y", stack, options);
   return {...transform, x1, x: X, y: Y};
 }
 
@@ -111,10 +111,10 @@ export function stackY1(stackOptions = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+export function stackY2(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;
-  const [transform, X, , Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X, , Y] = stackAlias(x, y, "y", stack, options);
   return {...transform, x1, x: X, y: Y};
 }
 
@@ -179,6 +179,9 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     Y2
   ];
 }
+
+// This is used internally so we can use `stack` as an argument name.
+const stackAlias = stack;
 
 function maybeOffset(offset) {
   if (offset == null) return;
