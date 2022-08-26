@@ -8,11 +8,11 @@ const numberFormat = memoize1<Intl.NumberFormat>(
 );
 const monthFormat = memoize1<Intl.DateTimeFormat>(
   (locale: string | string[] | undefined, month: "numeric" | "2-digit" | "long" | "short" | "narrow" | undefined) =>
-    new Intl.DateTimeFormat(locale, {timeZone: "UTC", month})
+    new Intl.DateTimeFormat(locale, {timeZone: "UTC", ...(month && {month})})
 );
 const weekdayFormat = memoize1<Intl.DateTimeFormat>(
   (locale: string | string[] | undefined, weekday: "long" | "short" | "narrow" | undefined) =>
-    new Intl.DateTimeFormat(locale, {timeZone: "UTC", weekday})
+    new Intl.DateTimeFormat(locale, {timeZone: "UTC", ...(weekday && {weekday})})
 );
 
 export function formatNumber(locale = "en-US"): (value: any) => string | undefined {

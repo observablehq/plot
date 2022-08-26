@@ -7,6 +7,8 @@
     "stripInternal": true,
     "outDir": "dist",
     "allowJs": true,
+    "declaration": true,
+    "declarationDir": "types",
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "paths": {
