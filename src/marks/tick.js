@@ -100,10 +100,47 @@ export class TickY extends AbstractTick {
   }
 }
 
-export function tickX(data, {x = identity, ...options} = {}) {
-  return new TickX(data, {...options, x});
+/**
+ * ```js
+ * Plot.tickX(stateage, {x: "population", y: "age"})
+ * ```
+ *
+ * Returns a new tick↕︎ with the given *data* and *options*. The following
+ * channels are required:
+ *
+ * * **x** - the horizontal position; bound to the *x* scale
+ *
+ * The following optional channels are supported:
+ *
+ * * **y** - the vertical position; bound to the *y* scale, which must be *band*
+ *
+ * If the **y** channel is not specified, the tick will span the full vertical
+ * extent of the plot (or facet).
+ */
+export function tickX(data, options = {}) {
+  const {x = identity, ...remainingOptions} = options;
+  return new TickX(data, {...remainingOptions, x});
 }
 
-export function tickY(data, {y = identity, ...options} = {}) {
-  return new TickY(data, {...options, y});
+/**
+ * ```js
+ * Plot.tickY(stateage, {y: "population", x: "age"})
+ * ```
+ *
+ * Returns a new tick↔︎ with the given *data* and *options*. The following
+ * channels are required:
+ *
+ * * **y** - the vertical position; bound to the *y* scale
+ *
+ * The following optional channels are supported:
+ *
+ * * **x** - the horizontal position; bound to the *x* scale, which must be
+ *   *band*
+ *
+ * If the **x** channel is not specified, the tick will span the full vertical
+ * extent of the plot (or facet).
+ */
+export function tickY(data, options = {}) {
+  const {y = identity, ...remainingOptions} = options;
+  return new TickY(data, {...remainingOptions, y});
 }

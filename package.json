@@ -26,10 +26,12 @@
     "src/**/*.js"
   ],
   "scripts": {
-    "test": "yarn test:typecheck && yarn test:lint && yarn test:mocha",
+    "test": "yarn test:typecheck && yarn test:lint && yarn readme:check && yarn test:mocha",
     "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:typecheck": "tsc --noEmit",
+    "readme:check": "tsx scripts/jsdoc-to-readme.ts --check",
+    "readme:update": "tsx scripts/jsdoc-to-readme.ts",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
@@ -63,7 +65,9 @@
     "prettier": "^2.7.1",
     "rollup": "2",
     "rollup-plugin-terser": "7",
+    "ts-morph": "^15.1.0",
     "tslib": "^2.4.0",
+    "tsx": "^3.8.0",
     "typescript": "^4.6.4",
     "typescript-module-alias": "^1.0.2",
     "vite": "3"

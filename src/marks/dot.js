@@ -113,23 +113,76 @@ export class Dot extends Mark {
   }
 }
 
-export function dot(data, {x, y, ...options} = {}) {
+/**
+ * ```js
+ * Plot.dot(sales, {x: "units", y: "fruit"})
+ * ```
+ *
+ * Returns a new dot with the given *data* and *options*. If neither the **x**
+ * nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
+ * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
+ * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ */
+export function dot(data, options = {}) {
+  let {x, y, ...remainingOptions} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
-  return new Dot(data, {...options, x, y});
+  return new Dot(data, {...remainingOptions, x, y});
 }
 
-export function dotX(data, {x = identity, ...options} = {}) {
-  return new Dot(data, maybeIntervalMidY({...options, x}));
+/**
+ * ```js
+ * Plot.dotX(cars.map(d => d["economy (mpg)"]))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
+ * except that if the **x** option is not specified, it defaults to the identity
+ * function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+ *
+ * If an **interval** is specified, such as d3.utcDay, **y** is transformed to
+ * (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If
+ * the interval is specified as a number *n*, *y* will be the midpoint of two
+ * consecutive multiples of *n* that bracket *y*.
+ */
+export function dotX(data, options = {}) {
+  const {x = identity, ...remainingOptions} = options;
+  return new Dot(data, maybeIntervalMidY({...remainingOptions, x}));
 }
 
-export function dotY(data, {y = identity, ...options} = {}) {
-  return new Dot(data, maybeIntervalMidX({...options, y}));
+/**
+ * ```js
+ * Plot.dotY(cars.map(d => d["economy (mpg)"]))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
+ * except that if the **y** option is not specified, it defaults to the identity
+ * function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * If an **interval** is specified, such as d3.utcDay, **x** is transformed to
+ * (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If
+ * the interval is specified as a number *n*, *x* will be the midpoint of two
+ * consecutive multiples of *n* that bracket *x*.
+ */
+export function dotY(data, options = {}) {
+  const {y = identity, ...remainingOptions} = options;
+  return new Dot(data, maybeIntervalMidX({...remainingOptions, y}));
 }
 
+/**
+ * Equivalent to
+ * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
+ * except that the **symbol** option is set to *circle*.
+ */
 export function circle(data, options) {
   return dot(data, {...options, symbol: "circle"});
 }
 
+/**
+ * Equivalent to
+ * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
+ * except that the **symbol** option is set to *hexagon*.
+ */
 export function hexagon(data, options) {
   return dot(data, {...options, symbol: "hexagon"});
 }

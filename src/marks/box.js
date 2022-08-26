@@ -7,11 +7,20 @@ import {dot} from "./dot.js";
 import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
 
-// Returns a composite mark for producing a horizontal box plot, applying the
-// necessary statistical transforms. The boxes are grouped by y, if present.
-export function boxX(
-  data,
-  {
+/**
+ * ```js
+ * Plot.boxX(simpsons.map(d => d.imdb_rating))
+ * ```
+ *
+ * Returns a horizontal boxplot mark. If the **x** option is not specified, it
+ * defaults to the identity function, as when *data* is an array of numbers. If
+ * the **y** option is not specified, it defaults to null; if the **y** option
+ * is specified, it should represent an ordinal (discrete) value.
+ */
+export function boxX(data, options = {}) {
+  // Returns a composite mark for producing a horizontal box plot, applying the
+  // necessary statistical transforms. The boxes are grouped by y, if present.
+  const {
     x = {transform: (x) => x},
     y = null,
     fill = "#ccc",
@@ -20,23 +29,31 @@ export function boxX(
     strokeOpacity,
     strokeWidth = 2,
     sort,
-    ...options
-  } = {}
-) {
+    ...remainingOptions
+  } = options;
   const group = y != null ? groupY : groupZ;
   return marks(
-    ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
-    barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...options})),
-    tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...options}))
+    ruleY(data, group({x1: loqr1, x2: hiqr2}, {x, y, stroke, strokeOpacity, ...remainingOptions})),
+    barX(data, group({x1: "p25", x2: "p75"}, {x, y, fill, fillOpacity, ...remainingOptions})),
+    tickX(data, group({x: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...remainingOptions})),
+    dot(data, map({x: oqr}, {x, y, z: y, stroke, strokeOpacity, ...remainingOptions}))
   );
 }
 
-// Returns a composite mark for producing a vertical box plot, applying the
-// necessary statistical transforms. The boxes are grouped by x, if present.
-export function boxY(
-  data,
-  {
+/**
+ * ```js
+ * Plot.boxY(simpsons.map(d => d.imdb_rating))
+ * ```
+ *
+ * Returns a vertical boxplot mark. If the **y** option is not specified, it
+ * defaults to the identity function, as when *data* is an array of numbers. If
+ * the **x** option is not specified, it defaults to null; if the **x** option
+ * is specified, it should represent an ordinal (discrete) value.
+ */
+export function boxY(data, options = {}) {
+  // Returns a composite mark for producing a vertical box plot, applying the
+  // necessary statistical transforms. The boxes are grouped by x, if present.
+  const {
     y = {transform: (y) => y},
     x = null,
     fill = "#ccc",
@@ -45,15 +62,14 @@ export function boxY(
     strokeOpacity,
     strokeWidth = 2,
     sort,
-    ...options
-  } = {}
-) {
+    ...remainingOptions
+  } = options;
   const group = x != null ? groupX : groupZ;
   return marks(
-    ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...options})),
-    barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...options})),
-    tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...options})),
-    dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...options}))
+    ruleX(data, group({y1: loqr1, y2: hiqr2}, {x, y, stroke, strokeOpacity, ...remainingOptions})),
+    barY(data, group({y1: "p25", y2: "p75"}, {x, y, fill, fillOpacity, ...remainingOptions})),
+    tickY(data, group({y: "p50"}, {x, y, stroke, strokeOpacity, strokeWidth, sort, ...remainingOptions})),
+    dot(data, map({y: oqr}, {x, y, z: x, stroke, strokeOpacity, ...remainingOptions}))
   );
 }
 

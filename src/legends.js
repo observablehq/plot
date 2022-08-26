@@ -11,6 +11,30 @@ const legendRegistry = new Map([
   ["opacity", legendOpacity]
 ]);
 
+/**
+ * Returns a standalone legend for the scale defined by the given *options*
+ * object. The *options* object must define at least one scale; see [Scale
+ * options](https://github.com/observablehq/plot/blob/main/README.md#scale-options)
+ * for how to define a scale. For example, here is a ramp legend of a linear
+ * color scale with the default domain of [0, 1] and default scheme *turbo*:
+ *
+ * ```js
+ * Plot.legend({color: {type: "linear"}})
+ * ```
+ *
+ * The *options* object may also include any additional legend options described
+ * in the previous section. For example, to make the above legend slightly
+ * wider:
+ *
+ * ```js
+ * Plot.legend({
+ *   width: 320,
+ *   color: {
+ *     type: "linear"
+ *   }
+ * })
+ * ```
+ */
 export function legend(options = {}) {
   for (const [key, value] of legendRegistry) {
     const scale = options[key];

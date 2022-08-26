@@ -24,17 +24,54 @@ export class Cell extends AbstractBar {
   }
 }
 
-export function cell(data, {x, y, ...options} = {}) {
+/**
+ * ```js
+ * Plot.cell(simpsons, {x: "number_in_season", y: "season", fill: "imdb_rating"})
+ * ```
+ *
+ * Returns a new cell with the given *data* and *options*. If neither the **x**
+ * nor **y** options are specified, *data* is assumed to be an array of pairs
+ * [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
+ * *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ */
+export function cell(data, options = {}) {
+  let {x, y, ...remainingOptions} = options;
   [x, y] = maybeTuple(x, y);
-  return new Cell(data, {...options, x, y});
+  return new Cell(data, {...remainingOptions, x, y});
 }
 
-export function cellX(data, {x = indexOf, fill, stroke, ...options} = {}) {
+/**
+ * ```js
+ * Plot.cellX(simpsons.map(d => d.imdb_rating))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options),
+ * except that if the **x** option is not specified, it defaults to [0, 1, 2,
+ * …], and if the **fill** option is not specified and **stroke** is not a
+ * channel, the fill defaults to the identity function and assumes that *data* =
+ * [*x₀*, *x₁*, *x₂*, …].
+ */
+export function cellX(data, options = {}) {
+  let {x = indexOf, fill, stroke, ...remainingOptions} = options;
   if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
-  return new Cell(data, {...options, x, fill, stroke});
+  return new Cell(data, {...remainingOptions, x, fill, stroke});
 }
 
-export function cellY(data, {y = indexOf, fill, stroke, ...options} = {}) {
+/**
+ * ```js
+ * Plot.cellY(simpsons.map(d => d.imdb_rating))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.cell](https://github.com/observablehq/plot/blob/main/README.md#plotcelldata-options),
+ * except that if the **y** option is not specified, it defaults to [0, 1, 2,
+ * …], and if the **fill** option is not specified and **stroke** is not a
+ * channel, the fill defaults to the identity function and assumes that *data* =
+ * [*y₀*, *y₁*, *y₂*, …].
+ */
+export function cellY(data, options = {}) {
+  let {y = indexOf, fill, stroke, ...remainingOptions} = options;
   if (fill === undefined && maybeColorChannel(stroke)[0] === undefined) fill = identity;
-  return new Cell(data, {...options, y, fill, stroke});
+  return new Cell(data, {...remainingOptions, y, fill, stroke});
 }

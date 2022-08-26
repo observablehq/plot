@@ -88,14 +88,49 @@ export class Rect extends Mark {
   }
 }
 
+/**
+ * ```js
+ * Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
+ * ```
+ *
+ * Returns a new rect with the given *data* and *options*.
+ */
 export function rect(data, options) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
+/**
+ * ```js
+ * Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
+ * except that if neither the **x1** nor **x2** option is specified, the **x**
+ * option may be specified as shorthand to apply an implicit [stackX
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options);
+ * this is the typical configuration for a histogram with rects aligned at *x* =
+ * 0. If the **x** option is not specified, it defaults to the identity
+ * function.
+ */
 export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
   return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
 }
 
+/**
+ * ```js
+ * Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+ * ```
+ *
+ * Equivalent to
+ * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
+ * except that if neither the **y1** nor **y2** option is specified, the **y**
+ * option may be specified as shorthand to apply an implicit [stackY
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options);
+ * this is the typical configuration for a histogram with rects aligned at *y* =
+ * 0. If the **y** option is not specified, it defaults to the identity
+ * function.
+ */
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));
 }

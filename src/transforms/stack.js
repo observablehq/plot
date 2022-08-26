@@ -3,45 +3,118 @@ import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
-export function stackX(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * See Plot.stackY, but with *x* as the input value channel, *y* as the stack
+ * index, *x1*, *x2* and *x* as the output channels.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackX(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stack(y, x, "x", stackOptions, rest);
+  const [transform, Y, x1, x2] = stackAlias(y, x, "x", stack, rest);
   return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
-export function stackX1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to
+ * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options),
+ * except that the **x1** channel is returned as the **x** channel. This can be
+ * used, for example, to draw a line at the left edge of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackX1(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y, X] = stackAlias(y, x, "x", stack, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackX2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to
+ * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options),
+ * except that the **x2** channel is returned as the **x** channel. This can be
+ * used, for example, to draw a line at the right edge of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackX2(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {y1, y = y1, x} = options;
-  const [transform, Y, , X] = stack(y, x, "x", stackOptions, options);
+  const [transform, Y, , X] = stackAlias(y, x, "x", stack, options);
   return {...transform, y1, y: Y, x: X};
 }
 
-export function stackY(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Creates new channels **y1** and **y2**, obtained by stacking the original
+ * **y** channel for data points that share a common **x** (and possibly **z**)
+ * value. A new **y** channel is also returned, which lazily computes the middle
+ * value of **y1** and **y2**. The input **y** channel defaults to a constant 1,
+ * resulting in a count of the data points. The stack options (*offset*,
+ * *order*, and *reverse*) may be specified as part of the *options* object, if
+ * the only argument, or as a separate *stack* options argument.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackY(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stack(x, y, "y", stackOptions, rest);
+  const [transform, X, y1, y2] = stackAlias(x, y, "y", stack, rest);
   return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
-export function stackY1(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to
+ * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options),
+ * except that the **y1** channel is returned as the **y** channel. This can be
+ * used, for example, to draw a line at the bottom of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackY1(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X, Y] = stackAlias(x, y, "y", stack, options);
   return {...transform, x1, x: X, y: Y};
 }
 
-export function stackY2(stackOptions = {}, options = {}) {
-  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
+/**
+ * ```js
+ * Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
+ * ```
+ *
+ * Equivalent to
+ * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options),
+ * except that the **y2** channel is returned as the **y** channel. This can be
+ * used, for example, to draw a line at the top of each stacked area.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ */
+export function stackY2(stack = {}, options = {}) {
+  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
   const {x1, x = x1, y} = options;
-  const [transform, X, , Y] = stack(x, y, "y", stackOptions, options);
+  const [transform, X, , Y] = stackAlias(x, y, "y", stack, options);
   return {...transform, x1, x: X, y: Y};
 }
 
@@ -106,6 +179,9 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     Y2
   ];
 }
+
+// This is used internally so we can use `stack` as an argument name.
+const stackAlias = stack;
 
 function maybeOffset(offset) {
   if (offset == null) return;

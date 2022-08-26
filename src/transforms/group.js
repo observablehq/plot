@@ -32,27 +32,66 @@ import {
 } from "../options.js";
 import {basic} from "./basic.js";
 
-// Group on {z, fill, stroke}.
+/**
+ * ```js
+ * Plot.groupZ({x: "proportion"}, {fill: "species"})
+ * ```
+ *
+ * Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of
+ * *z*, *fill*, or *stroke* are channels, then all data (within each facet) is
+ * placed into a single group.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#group
+ */
 export function groupZ(outputs, options) {
+  // Group on {z, fill, stroke}.
   return groupn(null, null, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on x.
+/**
+ * ```js
+ * Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
+ * ```
+ *
+ * Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#group
+ */
 export function groupX(outputs = {y: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then on x.
   const {x = identity} = options;
   if (x == null) throw new Error("missing channel: x");
   return groupn(x, null, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on y.
+/**
+ * ```js
+ * Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
+ * ```
+ *
+ * Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#group
+ */
 export function groupY(outputs = {x: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then on y.
   const {y = identity} = options;
   if (y == null) throw new Error("missing channel: y");
   return groupn(null, y, outputs, options);
 }
 
-// Group on {z, fill, stroke}, then on x and y.
+/**
+ * ```js
+ * Plot.group({fill: "count"}, {x: "island", y: "species"})
+ * ```
+ *
+ * Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if
+ * any.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#group
+ */
 export function group(outputs = {fill: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then on x and y.
   let {x, y} = options;
   [x, y] = maybeTuple(x, y);
   if (x == null) throw new Error("missing channel: x");

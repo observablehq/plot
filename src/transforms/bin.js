@@ -30,22 +30,50 @@ import {
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 import {maybeInterval} from "./interval.js";
 
-// Group on {z, fill, stroke}, then optionally on y, then bin x.
+/**
+ * ```js
+ * Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
+ * ```
+ *
+ * Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or
+ * *stroke*, if any.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#bin
+ */
 export function binX(outputs = {y: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then optionally on y, then bin x.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(maybeBinValue(x, options, identity), null, null, y, outputs, maybeInsetX(options));
 }
 
-// Group on {z, fill, stroke}, then optionally on x, then bin y.
+/**
+ * ```js
+ * Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
+ * ```
+ *
+ * Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or
+ * *stroke*, if any.
+ */
 export function binY(outputs = {x: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then optionally on x, then bin y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = options;
   return binn(null, maybeBinValue(y, options, identity), x, null, outputs, maybeInsetY(options));
 }
 
-// Group on {z, fill, stroke}, then bin on x and y.
+/**
+ * ```js
+ * Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"}))
+ * ```
+ *
+ * Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or
+ * *stroke*, if any.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#bin
+ */
 export function bin(outputs = {fill: "count"}, options = {}) {
+  // Group on {z, fill, stroke}, then bin on x and y.
   [outputs, options] = mergeOptions(outputs, options);
   const {x, y} = maybeBinValueTuple(options);
   return binn(x, y, null, null, outputs, maybeInsetX(maybeInsetY(options)));

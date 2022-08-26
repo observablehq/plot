@@ -37,6 +37,13 @@ export class Frame extends Mark {
   }
 }
 
+/**
+ * ```js
+ * Plot.frame({stroke: "red"})
+ * ```
+ *
+ * Returns a new frame with the specified *options*.
+ */
 export function frame(options) {
   return new Frame(options);
 }

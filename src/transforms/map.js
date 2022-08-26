@@ -2,20 +2,52 @@ import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
 
-export function mapX(m, options = {}) {
-  return map(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, m])),
+/**
+ * ```js
+ * Plot.mapX("cumsum", {x: d3.randomNormal()})
+ * ```
+ *
+ * Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but
+ * ignores any of **x**, **x1**, and **x2** not present in *options*.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#map
+ */
+export function mapX(map, options = {}) {
+  return mapAlias(
+    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
     options
   );
 }
 
-export function mapY(m, options = {}) {
-  return map(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, m])),
+/**
+ * ```js
+ * Plot.mapY("cumsum", {y: d3.randomNormal()})
+ * ```
+ *
+ * Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but
+ * ignores any of **y**, **y1**, and **y2** not present in *options*.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#map
+ */
+export function mapY(map, options = {}) {
+  return mapAlias(
+    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
     options
   );
 }
 
+/**
+ * ```js
+ * Plot.map({y: "cumsum"}, {y: d3.randomNormal()})
+ * ```
+ *
+ * Groups on the first channel of *z*, *fill*, or *stroke*, if any, and then for
+ * each channel declared in the specified *outputs* object, applies the
+ * corresponding map method. Each channel in *outputs* must have a corresponding
+ * input channel in *options*.
+ *
+ * @link https://github.com/observablehq/plot/blob/main/README.md#map
+ */
 export function map(outputs = {}, options = {}) {
   const z = maybeZ(options);
   const channels = Object.entries(outputs).map(([key, map]) => {
@@ -39,6 +71,9 @@ export function map(outputs = {}, options = {}) {
     ...Object.fromEntries(channels.map(({key, output}) => [key, output]))
   };
 }
+
+// This is used internally so we can use `map` as an argument name.
+const mapAlias = map;
 
 function maybeMap(map) {
   if (map && typeof map.map === "function") return map;
