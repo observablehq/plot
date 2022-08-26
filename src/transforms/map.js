@@ -11,9 +11,9 @@ import {basic} from "./basic.js";
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#map
  */
-export function mapX(mapping, options = {}) {
-  return map(
-    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, mapping])),
+export function mapX(map, options = {}) {
+  return mapAlias(
+    Object.fromEntries(["x", "x1", "x2"].filter((key) => options[key] != null).map((key) => [key, map])),
     options
   );
 }
@@ -27,9 +27,9 @@ export function mapX(mapping, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#map
  */
-export function mapY(mapping, options = {}) {
-  return map(
-    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, mapping])),
+export function mapY(map, options = {}) {
+  return mapAlias(
+    Object.fromEntries(["y", "y1", "y2"].filter((key) => options[key] != null).map((key) => [key, map])),
     options
   );
 }
@@ -66,6 +66,9 @@ export function map(outputs = {}, options = {}) {
     ...Object.fromEntries(channels.map(({key, output}) => [key, output]))
   };
 }
+
+// This is used internally so we can use `map` as an argument name.
+const mapAlias = map;
 
 function maybeMap(map) {
   if (map && typeof map.map === "function") return map;
