@@ -260,7 +260,8 @@ wish to know. A *sqrt* transform exaggerates differences between small values
 at the expense of large values; it is a special case of the *pow* transform
 which has a configurable *scale*.**exponent** (0.5 for *sqrt*). A *log*
 transform is suitable for comparing orders of magnitude and can only be used
-when the domain does not include zero. The base defaults to 10 and can be
+when the domain does not include zero (for bar plots this means explicit
+non-zero start and end values are required). The base defaults to 10 and can be
 specified with the *scale*.**base** option; note that this only affects the
 axis ticks and not the scale’s behavior. A *symlog* transform is more
 elaborate, but works well with wide-range values that include zero; it can be
