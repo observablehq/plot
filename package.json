@@ -23,7 +23,8 @@
   },
   "files": [
     "dist/**/*.js",
-    "src/**/*.js"
+    "src/**/*.js",
+    "src/**/*.ts"
   ],
   "scripts": {
     "test": "yarn test:typecheck && yarn test:lint && yarn readme:check && yarn test:mocha",
