@@ -9,11 +9,13 @@ import {
   arrayify,
   isDomainSort,
   isScaleOptions,
+  isTypedArray,
   keyword,
   map,
   maybeNamed,
   range,
   second,
+  slice,
   where,
   yes
 } from "./options.js";
@@ -686,9 +688,42 @@ export class Mark {
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
+    let channels = this.channels;
     if (facets === undefined && data != null) facets = [range(data)];
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
-    const channels = Channels(this.channels, data);
+
+    if (this.transform != null) {
+      // If the mark has a transform, reindex facets that overlap
+      const overlap = new Set();
+      const reindex = new Map();
+      let j = data.length;
+      for (const facet of facets) {
+        for (let k = 0; k < facet.length; ++k) {
+          const i = facet[k];
+          if (overlap.has(i)) {
+            facet[k] = j;
+            reindex.set(j, i);
+            ++j;
+          }
+          overlap.add(i);
+        }
+      }
+      // If necessary, expand data and any channel defined as an array
+      if (reindex.size > 0) {
+        data = expandArray(data, data.length + reindex.size);
+        for (const [j, i] of reindex) data[j] = data[i];
+        for (const key in channels) {
+          const A = channels[key].value;
+          if (Array.isArray(A) || isTypedArray(A)) {
+            channels[key].value = (_, i) => A[reindex.has(i) ? reindex.get(i) : i];
+          }
+        }
+      }
+
+      ({facets, data} = this.transform(data, facets));
+      data = arrayify(data);
+    }
+
+    channels = Channels(channels, data);
     if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
     return {data, facets, channels};
   }
@@ -868,4 +903,14 @@ class FacetMap2 extends FacetMap {
     else super.set(key1, new InternMap([[key2, value]]));
     return this;
   }
+}
+
+// expands an array or typed array to make room for n values
+function expandArray(values, n) {
+  if (isTypedArray(values)) {
+    const d = new values.constructor(n);
+    d.set(values);
+    return d;
+  }
+  return slice(values);
 }
