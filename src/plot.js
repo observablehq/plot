@@ -1,16 +1,16 @@
-import {cross, difference, groups, InternMap, select} from "d3";
+import {difference, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
+import {facetGroups, facetKeys, facetMap, facetTranslate, filterFacets, maybeFacet} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {
   arrayify,
   isDomainSort,
   isScaleOptions,
   isTypedArray,
-  keyword,
   map,
   maybeNamed,
   range,
@@ -433,7 +433,7 @@ export function plot(options = {}) {
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
     const markFacets =
-      facetsIndex === undefined
+      facetsIndex === undefined || mark.facet === null
         ? undefined
         : mark.facet === "auto"
         ? mark.data === facet.data
@@ -443,7 +443,8 @@ export function plot(options = {}) {
         ? facetsIndex
         : mark.facet === "exclude"
         ? facetsExclude || (facetsExclude = facetsIndex.map((f) => Uint32Array.from(difference(facetIndex, f))))
-        : undefined;
+        : filterFacets(mark.facet, facetChannels);
+
     const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
@@ -668,10 +669,7 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    this.facet =
-      facet == null || facet === false
-        ? null
-        : keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+    this.facet = maybeFacet(facet, data);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
@@ -693,6 +691,7 @@ export class Mark {
 
     if (this.transform != null) {
       // If the mark has a transform, reindex facets that overlap
+      // TODO optimize
       const overlap = new Set();
       const reindex = new Map();
       let j = data.length;
@@ -832,77 +831,6 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
-}
-
-// Unlike facetGroups, which returns groups in order of input data, this returns
-// keys in order of the associated scale’s domains.
-function facetKeys({fx, fy}) {
-  return fx && fy ? cross(fx.domain(), fy.domain()) : fx ? fx.domain() : fy.domain();
-}
-
-// Returns an array of [[key1, index1], [key2, index2], …] representing the data
-// indexes associated with each facet. For two-dimensional faceting, each key
-// is a two-element array; see also facetMap.
-function facetGroups(index, {fx, fy}) {
-  return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
-}
-
-function facetGroup1(index, {value: F}) {
-  return groups(index, (i) => F[i]);
-}
-
-function facetGroup2(index, {value: FX}, {value: FY}) {
-  return groups(
-    index,
-    (i) => FX[i],
-    (i) => FY[i]
-  ).flatMap(([x, xgroup]) => xgroup.map(([y, ygroup]) => [[x, y], ygroup]));
-}
-
-// This must match the key structure returned by facetGroups.
-function facetTranslate(fx, fy) {
-  return fx && fy
-    ? ([kx, ky]) => `translate(${fx(kx)},${fy(ky)})`
-    : fx
-    ? (kx) => `translate(${fx(kx)},0)`
-    : (ky) => `translate(0,${fy(ky)})`;
-}
-
-function facetMap({fx, fy}) {
-  return new (fx && fy ? FacetMap2 : FacetMap)();
-}
-
-class FacetMap {
-  constructor() {
-    this._ = new InternMap();
-  }
-  has(key) {
-    return this._.has(key);
-  }
-  get(key) {
-    return this._.get(key);
-  }
-  set(key, value) {
-    return this._.set(key, value), this;
-  }
-}
-
-// A Map-like interface that supports paired keys.
-class FacetMap2 extends FacetMap {
-  has([key1, key2]) {
-    const map = super.get(key1);
-    return map ? map.has(key2) : false;
-  }
-  get([key1, key2]) {
-    const map = super.get(key1);
-    return map && map.get(key2);
-  }
-  set([key1, key2], value) {
-    const map = super.get(key1);
-    if (map) map.set(key2, value);
-    else super.set(key1, new InternMap([[key2, value]]));
-    return this;
-  }
 }
 
 // expands an array or typed array to make room for n values

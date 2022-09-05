@@ -699,6 +699,16 @@ Faceting can be explicitly enabled or disabled on a mark with the *facet* option
 * *include* (or true) - draw the subset of the mark’s data in the current facet
 * *exclude* - draw the subset of the mark’s data *not* in the current facet
 * null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
+* an object with a xFilter or yFilter option
+
+The facet filter option can be one of:
+* *eq* (default) - the data points shown in each facet are those that exactly match the facet value
+* *lte* - the data points shown in each facet are those that are lower than or equal to the facet value
+* *gte* - the data points shown in each facet are those that are greater than or equal to the facet value
+* *lt* - the data points shown in each facet are those that are lower than the facet value
+* *gt* - the data points shown in each facet are those that are greater than the facet value
+* a function which takes as input the value of the data point and the facet value, and returns whether the data point is present in the facet
+
 
 ```js
 Plot.plot({

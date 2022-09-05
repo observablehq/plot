@@ -234,6 +234,8 @@ export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
 export {default as vectorField} from "./vector-field.js";
 export {default as vectorFrame} from "./vector-frame.js";
+export {default as walmartExpansion} from "./walmart-expansion.js";
+export {default as walmartExpansionBar} from "./walmart-expansion-bar.js";
 export {default as wealthBritainBar} from "./wealth-britain-bar.js";
 export {default as wealthBritainProportionPlot} from "./wealth-britain-proportion-plot.js";
 export {default as wordCloud} from "./word-cloud.js";
