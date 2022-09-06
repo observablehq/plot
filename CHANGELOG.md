@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.6.0
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+[breaking] Plot.windowX and Plot.windowY now return an aggregate value even when the window contains undefined values, for example at the beginning or at the end of a series. Use the new **strict: true** option to opt-in to the older behavior and return undefined in those cases.
+
+Parts of the README have been incorporated throughout the codebase as JSDoc comments. This allows IDEs to display the documentation as tooltips.
+
 ## 0.5.2
 
 [Released July 4, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.2)
