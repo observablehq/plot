@@ -1,5 +1,13 @@
 # Observable Plot - Changelog
 
+## 0.6.0
+
+[Released September 6, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
+
+[breaking] The **strict** option for Plot.windowX and Plot.windowY will now output `undefined` if any window value is undefined.
+
+Parts of the README have been incorporated throughout the codebase as JSDoc comments. This allows IDEs to display the documentation as tooltips.
+
 ## 0.5.2
 
 [Released July 4, 2022.](https://github.com/observablehq/plot/releases/tag/v0.5.2)
