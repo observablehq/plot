@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAZ0lEQVQ4jaVS2wpAIQjT/v+jewmSMefOKRA0bJc0456MiHXydeosNd6r6HoVVtWAGFH6mDaH3+llPEwzyx1P3VvnP3E+DNsNpR9xlQfUxfLJj5rv1z2bvCiMyUunz+H4O5MXPGf3cwMB/wEBfsriPgAAAABJRU5ErkJggg=="></image>
+  <image x="0" y="18" width="240" height="10" preserveAspectRatio="none" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAABCAYAAAAxWXB3AAAABmJLR0QA/wD/AP+gvaeTAAAAaUlEQVQ4jaWSQQ7AIAgEB///5/bQHiyBdbUmJIToMisEcAHxxuA5Y6rR1FV0d5UWE0PWgC+j22eHqetTMVe546l76/xnnk+l7Ybiz7rKQ+aq8pUfNd/dPVt5URorLx2f0+N0Jn/0nN2PG/8oAgGFofF3AAAAAElFTkSuQmCC"></image>
   <g transform="translate(0,28)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(0.5,0)">
       <line stroke="currentColor" y2="6" y1="-10"></line><text fill="currentColor" y="9" dy="0.71em">1</text>
