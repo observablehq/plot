@@ -9,7 +9,7 @@ export default async function () {
     },
     marks: [
       Plot.areaY(AAPL, {x: "Date", y: "Close", fillOpacity: 0.1}),
-      Plot.line(AAPL, {x: "Date", y: "Close"}),
+      Plot.lineY(AAPL, {x: "Date", y: "Close"}),
       Plot.ruleY([0])
     ]
   });

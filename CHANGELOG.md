@@ -4,7 +4,19 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-[breaking] Plot.windowX and Plot.windowY now return an aggregate value even when the window contains undefined values, for example at the beginning or at the end of a series. Use the new **strict: true** option to opt-in to the older behavior and return undefined in those cases.
+[<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+
+```js
+Plot.plot({
+  marks: [
+    Plot.lineY(aapl, {x: "Date", y: "Close", stroke: "#ccc", strokeWidth: 1}),
+    Plot.lineY(aapl, Plot.windowY({k: 20, strict: false}, {x: "Date", y: "Close", stroke: "red"})),
+    Plot.lineY(aapl, Plot.windowY({k: 20, strict: true}, {x: "Date", y: "Close"}))
+  ]
+})
+```
+
+[breaking] [Plot.window](./README.md#plotwindowk), [Plot.windowX](./README.md#plotwindowxk-options) and [Plot.windowY](./README.md#plotwindowyk-options) now return an aggregate value even when the window contains undefined values, for example at the beginning or end of a series. Set the new **strict** option to true to instead return undefined if the window contains any undefined values.
 
 Parts of the README have been incorporated throughout the codebase as JSDoc comments. This allows IDEs to display the documentation as tooltips.
 
