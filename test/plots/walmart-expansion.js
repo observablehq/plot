@@ -29,8 +29,7 @@ export default async function () {
       Plot.dot(walmart, {
         x: "0",
         y: "1",
-        fill: "date",
-        facet: {yFilter: "eq"}
+        fill: "date"
       })
     ]
   });
