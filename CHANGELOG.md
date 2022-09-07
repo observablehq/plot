@@ -2,7 +2,7 @@
 
 ## 0.6.0
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
 
 [<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
 
