@@ -1,10 +1,10 @@
-import {difference, select} from "d3";
+import {cross, difference, sort, select, InternMap, InternSet} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
-import {facetGroups, facetKeys, facetMap, facetTranslate, filterFacets, maybeFacet} from "./facet.js";
+import {facetTranslate, filterFacets, maybeFacet} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {
   arrayify,
@@ -14,7 +14,6 @@ import {
   map,
   maybeNamed,
   range,
-  second,
   slice,
   where,
   yes
@@ -383,9 +382,12 @@ export function plot(options = {}) {
   // A Map from Mark instance to its render state, including:
   // index - the data index e.g. [0, 1, 2, 3, …]
   // channels - an array of materialized channels e.g. [["x", {value}], …]
-  // faceted - a boolean indicating whether this mark is faceted
   // values - an object of scaled values e.g. {x: [40, 32, …], …}
   const stateByMark = new Map();
+  for (const mark of marks) {
+    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+    stateByMark.set(mark, {});
+  }
 
   // A Map from scale name to an array of associated channels.
   const channelsByScale = new Map();
@@ -401,60 +403,113 @@ export function plot(options = {}) {
   }
 
   // Faceting!
-  let facets; // array of facet definitions (e.g. [["foo", [0, 1, 3, …]], …])
-  let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
-  let facetChannels; // e.g. {fx: {value}, fy: {value}}
-  let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
-  let facetsExclude; // lazily-constructed opposite of facetsIndex
-  let facetData;
+  // top-level facets
+  const facetChannels = {}; // e.g. {fx: {value}, fy: {value}}
   if (facet !== undefined) {
     const {x, y} = facet;
     if (x != null || y != null) {
-      facetData = arrayify(facet.data);
+      const facetData = arrayify(facet.data);
       if (facetData == null) throw new Error("missing facet data");
-      facetChannels = {};
       if (x != null) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
         facetChannels.fx = fx;
+        facetChannels.size = fx.value.length;
         channelsByScale.set("fx", [fx]);
       }
       if (y != null) {
         const fy = Channel(facetData, {value: y, scale: "fy"});
         facetChannels.fy = fy;
+        facetChannels.size = fy.value.length;
         channelsByScale.set("fy", [fy]);
       }
-      facetIndex = range(facetData);
-      facets = facetGroups(facetIndex, facetChannels);
-      facetsIndex = facets.map(second);
     }
+  }
+
+  // mark-level facets
+  for (const mark of marks) {
+    if (mark.facet) {
+      if (mark.facet.x !== undefined) {
+        const channels = channelsByScale.get("fx") || [];
+        channelsByScale.set("fx", channels);
+        channels.push(Channel(mark.data, {value: mark.facet.x, scale: "fx"}));
+      }
+      if (mark.facet.y !== undefined) {
+        const channels = channelsByScale.get("fy") || [];
+        channelsByScale.set("fy", channels);
+        channels.push(Channel(mark.data, {value: mark.facet.y, scale: "fy"}));
+      }
+    }
+  }
+
+  // Create the facet scales
+  const facetScales = Scales(channelsByScale);
+
+  // Create the facet indexes for each mark. A mark might be connected to the
+  // top-level facets, or have its own facets and filters.
+  let facetCells =
+    facetScales.fx || facetScales.fy
+      ? cross(
+          facetScales.fx ? facetScales.fx.domain : [undefined],
+          facetScales.fy ? facetScales.fy.domain : [undefined]
+        )
+      : undefined;
+  if (facetCells) facetCells.forEach((d, j) => (d.j = j));
+
+  // Compute facet indexes for each mark
+  let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
+  let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
+  let facetsExclude; // lazily-constructed opposite of facetsIndex
+  for (const mark of marks) {
+    if (mark.facet === null) {
+      continue;
+    }
+    if (typeof mark.facet === "string") {
+      if (!facet || (mark.facet === "auto" && mark.data !== facet.data)) continue;
+      if (!facetsIndex) {
+        facetIndex = facetIndex || range({length: facetChannels.size});
+        const {fx, fy} = facetChannels;
+        facetsIndex = facetCells.map(([kx, ky]) =>
+          facetIndex.filter((i) => (!fx || fx.value[i] === kx) && (!fy || fy.value[i] === ky))
+        );
+      }
+      stateByMark.get(mark).facetsIndex = facetsIndex;
+      continue;
+    }
+    stateByMark.get(mark).facetsIndex = filterFacets(facetCells, mark.facet, facetChannels);
+  }
+
+  // A facet is empty if none of the faceted index has contents for any mark
+  if (facetCells) {
+    facetCells = facetCells.filter((mark, j) => {
+      let nonFaceted = true;
+      for (const [, {facetsIndex}] of stateByMark) {
+        if (facetsIndex) {
+          nonFaceted = false;
+          if (facetsIndex?.[j].length) return true;
+        }
+      }
+      return nonFaceted;
+    });
   }
 
   // Initialize the marks’ state.
   for (const mark of marks) {
-    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const markFacets =
-      facetsIndex === undefined || mark.facet === null
-        ? undefined
-        : mark.facet === "auto"
-        ? mark.data === facet.data
-          ? facetsIndex
-          : undefined
-        : mark.facet === "include"
-        ? facetsIndex
-        : mark.facet === "exclude"
-        ? facetsExclude || (facetsExclude = facetsIndex.map((f) => Uint32Array.from(difference(facetIndex, f))))
-        : filterFacets(mark.facet, facetChannels);
-
-    const {data, facets, channels} = mark.initialize(markFacets, facetChannels);
+    let {facetsIndex} = stateByMark.get(mark);
+    if (mark.facet === "exclude") {
+      facetsIndex =
+        facetsExclude || (facetsExclude = facetsIndex.map((f) => Uint32Array.from(difference(facetIndex, f))));
+    }
+    const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
 
     // Warn for the common pitfall of wanting to facet mapped data.
     if (
-      facetIndex?.length > 1 && // non-trivial faceting
+      facet &&
+      facetCells.length > 1 && // non-trivial faceting
       mark.facet === "auto" && // no explicit mark facet option
       mark.data !== facet.data && // mark not implicitly faceted (different data)
-      arrayify(mark.data)?.length === facetData.length // mark data seems parallel to facet data
+      arrayify(mark.data)?.length === facetChannels.size // mark data seems parallel to facet data
     ) {
       warn(
         `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
@@ -544,17 +599,21 @@ export function plot(options = {}) {
     .node();
 
   // When faceting, render axes for fx and fy instead of x and y.
-  const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
-  const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
+  const axisY = axes[facetCells && fy ? "fy" : "y"];
+  const axisX = axes[facetCells && fx ? "fx" : "x"];
   if (axisY) svg.appendChild(axisY.render(null, scales, dimensions, context));
   if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
-  if (facets !== undefined) {
-    const fyDomain = fy && fy.domain();
+  if (facetCells) {
     const fxDomain = fx && fx.domain();
-    const indexByFacet = facetMap(facetChannels);
-    facets.forEach(([key], i) => indexByFacet.set(key, i));
+    const fyDomain = fy && fy.domain();
+    const nonEmptyFacets = new InternMap();
+    facetCells.forEach(([x, y]) => {
+      if (!nonEmptyFacets.has(x)) nonEmptyFacets.set(x, new InternSet());
+      nonEmptyFacets.get(x).add(y);
+    });
+
     const selection = select(svg);
     if (fy && axes.y) {
       const axis1 = axes.y,
@@ -571,7 +630,7 @@ export function plot(options = {}) {
         .enter()
         .append((ky, i) =>
           (i === j ? axis1 : axis2).render(
-            fx && where(fxDomain, (kx) => indexByFacet.has([kx, ky])),
+            fx && where(fxDomain, (kx) => nonEmptyFacets.get(kx)?.has(ky)),
             scales,
             {...dimensions, ...fyMargins, offsetTop: fy(ky)},
             context
@@ -590,7 +649,7 @@ export function plot(options = {}) {
         .enter()
         .append((kx, i) =>
           (i === j ? axis1 : axis2).render(
-            fy && where(fyDomain, (ky) => indexByFacet.has([kx, ky])),
+            fy && where(fyDomain, (ky) => nonEmptyFacets.get(kx)?.has(ky)),
             scales,
             {
               ...dimensions,
@@ -603,17 +662,23 @@ export function plot(options = {}) {
           )
         );
     }
+    const fxI = fx && new Map(fx.domain().map((x, i) => [x, i]));
+    const fyI = fy && new Map(fy.domain().map((y, i) => [y, i]));
     selection
       .selectAll()
-      .data(facetKeys(scales).filter(indexByFacet.has, indexByFacet))
+      .data(
+        sort(
+          facetCells,
+          ([xa, ya], [xb, yb]) => (fxI && fxI.get(xa) - fxI.get(xb)) || (fyI && fyI.get(ya) - fyI.get(yb))
+        )
+      )
       .enter()
       .append("g")
       .attr("aria-label", "facet")
       .attr("transform", facetTranslate(fx, fy))
       .each(function (key) {
-        const j = indexByFacet.get(key);
         for (const [mark, {channels, values, facets}] of stateByMark) {
-          const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
+          const facet = facets ? mark.filter(facets[key.j] ?? facets[0], channels, values) : null;
           const node = mark.render(facet, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
         }

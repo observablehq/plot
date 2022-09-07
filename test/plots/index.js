@@ -141,6 +141,8 @@ export {default as penguinCulmenDelaunay} from "./penguin-culmen-delaunay.js";
 export {default as penguinCulmenDelaunayMesh} from "./penguin-culmen-delaunay-mesh.js";
 export {default as penguinCulmenDelaunaySpecies} from "./penguin-culmen-delaunay-species.js";
 export {default as penguinCulmenVoronoi} from "./penguin-culmen-voronoi.js";
+export {default as penguinFacetAnnotated} from "./penguins-facet-annotated.js";
+export {default as penguinFacetAnnotatedX} from "./penguins-facet-annotated-x.js";
 export {default as penguinVoronoi1D} from "./penguin-voronoi-1d.js";
 export {default as penguinDensity} from "./penguin-density.js";
 export {default as penguinDensityFill} from "./penguin-density-fill.js";

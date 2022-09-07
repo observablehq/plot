@@ -709,7 +709,6 @@ The facet filter option can be one of:
 * *gt* - the data points shown in each facet are those that are greater than the facet value
 * a function which takes as input the value of the data point and the facet value, and returns whether the data point is present in the facet
 
-
 ```js
 Plot.plot({
   facet: {
@@ -725,6 +724,20 @@ Plot.plot({
 ```
 
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+
+Alternatively, facets can be defined from each mark, by specifying the facet option as an object with an x or y channel option.
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {
+      x: "culmen_length_mm",
+      y: "culmen_depth_mm",
+      facet: {x: "sex", y: "island"}
+    })
+  ]
+})
+```
 
 ## Legends
 
