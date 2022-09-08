@@ -1,4 +1,5 @@
 import {keyword, isObject, isTypedArray, range, slice, valueof} from "./options.js";
+import {warn} from "./warnings.js";
 
 // facet filter, by mark
 export function filterFacets(facetCells, {x, xFilter, y, yFilter}, facetChannels) {
@@ -84,20 +85,21 @@ export function facetReindex(facets, data, channels) {
   const n = data.length;
 
   // Survey all indices which belong to multiple facets
-  const overlap = new Uint32Array(n);
+  const overlap = new Uint8Array(n);
   let count = 0;
   for (const facet of facets) {
     for (const i of facet) {
-      if (overlap[i]++) {
-        ++count;
-      }
+      if (overlap[i]) ++count;
+      overlap[i] = 1;
     }
   }
 
   // Create a new index for each of them, and update the facets accordingly.
   // Expand the data array to match. If any channel is specified as an array,
   // expand it as well, taking care not to mutate the original channels
-  if (count > 0) {
+  if (n + count > 2 ** 30) {
+    warn("This transform implies a combinatorial extension that exceeds capacity. Please change the facet filter.");
+  } else if (count > 0) {
     facets = facets.map((facet) => slice(facet, Uint32Array));
     const reindex = new Uint32Array(count);
     let c = 0;
@@ -105,11 +107,12 @@ export function facetReindex(facets, data, channels) {
     for (const facet of facets) {
       for (let k = 0; k < facet.length; ++k) {
         const i = facet[k];
-        if (overlap[i]++) {
+        if (overlap[i]) {
           reindex[c] = i;
           facet[k] = n + c;
-          c++;
+          ++c;
         }
+        overlap[i] = 1;
       }
     }
     data = expandArray(data, count);
