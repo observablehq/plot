@@ -15,14 +15,14 @@ export default async function () {
           {
             y: "species",
             fill: "sex",
-            facet: {x: "island"}
+            fx: "island"
           }
         )
       ),
       Plot.text(["Torgersen Island\nonly has\nAdelie\npenguins!"], {
         frameAnchor: "right",
         dx: -10,
-        facet: {x: ["Torgersen"]}
+        fx: ["Torgersen"]
       })
     ]
   });

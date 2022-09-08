@@ -20,7 +20,8 @@ export default async function () {
           {x: "count"},
           {
             fill: "year",
-            facet: {y: "year", yFilter: "lte"},
+            fy: "year",
+            yFilter: "lte",
             stroke: "white",
             offset: "expand"
           }

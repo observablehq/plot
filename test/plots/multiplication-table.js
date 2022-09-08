@@ -9,19 +9,20 @@ export default async function () {
     color: {type: "ordinal", scheme: "tableau10"},
     fx: {axis: "top"},
     marks: [
-      Plot.rect(nums, {facet: {y: nums}, fill: nums}),
+      Plot.rect(nums, {fy: nums, fill: nums}),
       Plot.dot(nums, {
         frameAnchor: "middle",
         r: 19,
-        fill: (d) => d,
+        fill: nums,
         stroke: "white",
-        facet: {x: (d) => d}
+        fx: nums
       }),
       Plot.text(d3.cross(nums, nums), {
         frameAnchor: "middle",
         text: ([a, b]) => a * b,
         fill: "white",
-        facet: {x: (d) => d[1], y: (d) => d[0]}
+        fx: (d) => d[1],
+        fy: (d) => d[0]
       })
     ]
   });

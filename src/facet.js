@@ -1,44 +1,31 @@
-import {keyword, isObject, isTypedArray, labelof, range, slice, valueof} from "./options.js";
+import {keyword, isTypedArray, range, slice} from "./options.js";
 import {warn} from "./warnings.js";
 
 // facet filter, by mark
-export function filterFacets(facetCells, {x, xFilter, y, yFilter}, facetChannels) {
-  const vx = x != null ? x : facetChannels?.fx?.value;
-  const vy = y != null ? y : facetChannels?.fy?.value;
+export function filterFacets(facetCells, {xFilter, yFilter}, {fx, fy}, facetChannels) {
+  const vx = fx != null ? fx.value : facetChannels?.fx?.value;
+  const vy = fy != null ? fy.value : facetChannels?.fy?.value;
+  if (!vx && !vy) return; // ignore facet filter without facets
   const I = range(vx || vy);
   return facetCells.map(([x, y]) => {
     let index = I;
-    if (xFilter && vx) index = xFilter(index, vx, x);
-    if (yFilter && vy) index = yFilter(index, vy, y);
+    if (vx) index = facetFilter(xFilter, "x")(index, vx, x);
+    if (vy) index = facetFilter(yFilter, "y")(index, vy, y);
     return index;
   });
 }
 
-export function maybeFacet(facet, data) {
-  if (facet == null || facet === false) return null;
+export function maybeFacet(options) {
+  const {fx, xFilter, fy, yFilter, facet = "auto"} = options;
+  if (fx !== undefined || fy !== undefined || xFilter !== undefined || yFilter !== undefined)
+    return {x: fx, xFilter, y: fy, yFilter};
+  if (facet === null || facet === false) return null;
   if (facet === true) return "include";
   if (typeof facet === "string") return keyword(facet, "facet", ["auto", "include", "exclude"]);
-  // local facets can be defined as facet: {x: accessor, xFilter: "lte"}
-  if (!isObject(facet)) throw new Error(`Unsupported facet ${facet}`);
-  const {x, xFilter = "eq", y, yFilter = "eq"} = facet;
-  let xv, yv;
-  if (x !== undefined) {
-    xv = valueof(data, x);
-    if (xv != null) xv.label = labelof(x);
-  }
-  if (y !== undefined) {
-    yv = valueof(data, y);
-    if (yv != null) yv.label = labelof(y);
-  }
-  return {
-    ...(xv && {x: xv}),
-    ...(yv && {y: yv}),
-    xFilter: maybeFacetFilter(xFilter, "x"),
-    yFilter: maybeFacetFilter(yFilter, "y")
-  };
+  if (facet) throw new Error(`Unsupported facet ${facet}`);
 }
 
-function maybeFacetFilter(filter = "eq", x /* string */) {
+function facetFilter(filter = "eq", x) {
   if (typeof filter === "function") return facetFunction(filter);
   switch (`${filter}`.toLowerCase()) {
     case "lt":

@@ -17,14 +17,14 @@ export default async function () {
           {
             y: "species",
             fill: "sex",
-            facet: {y: "island"}
+            fy: "island"
           }
         )
       ),
       Plot.text(["↞ Torgersen Island only has Adelie penguins!"], {
         frameAnchor: "top-right",
         dx: -10,
-        facet: {y: ["Torgersen"]}
+        fy: ["Torgersen"]
       })
     ]
   });

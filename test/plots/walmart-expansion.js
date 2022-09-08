@@ -24,7 +24,7 @@ export default async function () {
         y: "1",
         fill: "#ccc",
         r: 2,
-        facet: {yFilter: "lt"}
+        yFilter: "lt"
       }),
       Plot.dot(walmart, {
         x: "0",

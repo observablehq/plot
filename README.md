@@ -699,9 +699,10 @@ Faceting can be explicitly enabled or disabled on a mark with the *facet* option
 * *include* (or true) - draw the subset of the mark’s data in the current facet
 * *exclude* - draw the subset of the mark’s data *not* in the current facet
 * null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
-* an object with a xFilter or yFilter option
 
-The facet filter option can be one of:
+By default, the data points shown in each facet are those that exactly match the facet value. Use the **xFilter** and **yFilter** options to change that behavior for, respectively, the *x* and *y* facets:
+
+The xFilter or yFilter option can be one of:
 * *eq* (default) - the data points shown in each facet are those that exactly match the facet value
 * *lte* - the data points shown in each facet are those that are lower than or equal to the facet value
 * *gte* - the data points shown in each facet are those that are greater than or equal to the facet value
@@ -725,7 +726,7 @@ Plot.plot({
 
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
-Alternatively, facets can be defined from each mark, by specifying the facet option as an object with an x or y channel option.
+Alternatively, facets can be defined from each mark by specifying the channel options **fx** or **fy**.
 
 ```js
 Plot.plot({
@@ -733,7 +734,8 @@ Plot.plot({
     Plot.dot(penguins, {
       x: "culmen_length_mm",
       y: "culmen_depth_mm",
-      facet: {x: "sex", y: "island"}
+      fx: "sex",
+      fy: "island"
     })
   ]
 })

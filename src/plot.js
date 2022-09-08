@@ -420,12 +420,16 @@ export function plot(options = {}) {
       if (mark.facet.x !== undefined) {
         const channels = channelsByScale.get("fx") || [];
         channelsByScale.set("fx", channels);
-        channels.push(Channel(mark.data, {value: mark.facet.x, scale: "fx"}));
+        const channel = Channel(mark.data, {value: mark.facet.x, scale: "fx"});
+        stateByMark.get(mark).fx = channel;
+        channels.push(channel);
       }
       if (mark.facet.y !== undefined) {
         const channels = channelsByScale.get("fy") || [];
         channelsByScale.set("fy", channels);
-        channels.push(Channel(mark.data, {value: mark.facet.y, scale: "fy"}));
+        const channel = Channel(mark.data, {value: mark.facet.y, scale: "fy"});
+        stateByMark.get(mark).fy = channel;
+        channels.push(channel);
       }
     }
   }
@@ -449,9 +453,10 @@ export function plot(options = {}) {
   let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
   let facetsExclude; // lazily-constructed opposite of facetsIndex
   for (const mark of marks) {
-    if (mark.facet === null) {
-      continue;
-    }
+    if (mark.facet === null) continue;
+    const state = stateByMark.get(mark);
+
+    // top-level facet with no filter: optimize by computing facetIndex once
     if (typeof mark.facet === "string") {
       if (!facet || (mark.facet === "auto" && mark.data !== facet.data)) continue;
       if (!facetsIndex) {
@@ -461,10 +466,12 @@ export function plot(options = {}) {
           facetIndex.filter((i) => (!fx || fx.value[i] === kx) && (!fy || fy.value[i] === ky))
         );
       }
-      stateByMark.get(mark).facetsIndex = facetsIndex;
+      state.facetsIndex = facetsIndex;
       continue;
     }
-    stateByMark.get(mark).facetsIndex = filterFacets(facetCells, mark.facet, facetChannels);
+
+    // Otherwise, compute specific indexes for that mark
+    if (facetCells) state.facetsIndex = filterFacets(facetCells, mark.facet, state, facetChannels);
   }
 
   // A facet is empty if none of the faceted index has contents for any mark
@@ -495,7 +502,7 @@ export function plot(options = {}) {
     // Warn for the common pitfall of wanting to facet mapped data.
     if (
       facet &&
-      facetCells.length > 1 && // non-trivial faceting
+      facetCells?.length > 1 && // non-trivial faceting
       mark.facet === "auto" && // no explicit mark facet option
       mark.data !== facet.data && // mark not implicitly faceted (different data)
       arrayify(mark.data)?.length === facetChannels.size // mark data seems parallel to facet data
@@ -718,12 +725,12 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
+    const {sort, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    this.facet = maybeFacet(facet, data);
+    this.facet = maybeFacet(options, data);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
