@@ -4,14 +4,13 @@ import * as d3 from "d3";
 const parse = d3.utcParse("%m/%d/%Y");
 
 export default async function () {
-  const walmart = await d3.tsv("data/walmart.tsv", (d) => ({date: parse(d.date)}));
+  const walmart = await d3.tsv("data/walmart.tsv", (d) => ({
+    date: parse(d.date),
+    year: parse(d.date).getUTCFullYear()
+  }));
   return Plot.plot({
     width: 300,
-    facet: {
-      data: walmart,
-      y: (d) => d.date.getUTCFullYear(),
-      inset: 0
-    },
+    facet: {inset: 0, label: null},
     x: {percent: true},
     fy: {tickFormat: "d"},
     marks: [
@@ -20,8 +19,8 @@ export default async function () {
         Plot.groupZ(
           {x: "count"},
           {
-            fill: (d) => d.date.getUTCFullYear(),
-            facet: {y: (d) => d.date.getUTCFullYear(), yFilter: "lte"},
+            fill: "year",
+            facet: {y: "year", yFilter: "lte"},
             stroke: "white",
             offset: "expand"
           }

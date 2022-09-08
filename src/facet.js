@@ -1,4 +1,4 @@
-import {keyword, isObject, isTypedArray, range, slice, valueof} from "./options.js";
+import {keyword, isObject, isTypedArray, labelof, range, slice, valueof} from "./options.js";
 import {warn} from "./warnings.js";
 
 // facet filter, by mark
@@ -21,9 +21,18 @@ export function maybeFacet(facet, data) {
   // local facets can be defined as facet: {x: accessor, xFilter: "lte"}
   if (!isObject(facet)) throw new Error(`Unsupported facet ${facet}`);
   const {x, xFilter = "eq", y, yFilter = "eq"} = facet;
+  let xv, yv;
+  if (x !== undefined) {
+    xv = valueof(data, x);
+    if (xv != null) xv.label = labelof(x);
+  }
+  if (y !== undefined) {
+    yv = valueof(data, y);
+    if (yv != null) yv.label = labelof(y);
+  }
   return {
-    ...(x !== undefined && {x: valueof(data, x)}),
-    ...(y !== undefined && {y: valueof(data, y)}),
+    ...(xv && {x: xv}),
+    ...(yv && {y: yv}),
     xFilter: maybeFacetFilter(xFilter, "x"),
     yFilter: maybeFacetFilter(yFilter, "y")
   };

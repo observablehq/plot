@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" transform="translate(570,0)" fill="none" text-anchor="start">
+  <g aria-label="fy-axis" aria-description="island" transform="translate(570,0)" fill="none" text-anchor="start">
     <g class="tick" opacity="1" transform="translate(0,50.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Biscoe</text>
     </g>
@@ -22,7 +22,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(0,180.5)">
       <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Torgersen</text>
-    </g>
+    </g><text fill="currentColor" transform="translate(70,115) rotate(-90)" dy="-0.32em" text-anchor="middle">island</text>
   </g>
   <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(75.5,0)">
