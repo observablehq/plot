@@ -1,5 +1,4 @@
-import {cross, group, InternMap} from "d3";
-import {isObject, range, keyword, valueof} from "./options.js";
+import {keyword, isObject, isTypedArray, range, slice, valueof} from "./options.js";
 
 // facet filter, by mark
 export function filterFacets(facetCells, {x, xFilter, y, yFilter}, facetChannels) {
@@ -72,37 +71,7 @@ function facetEq(I, T, facet) {
   return I.filter((i) => T[i] === facet);
 }
 
-// Unlike facetGroups, which returns groups in order of input data, this returns
-// keys in order of the associated scale’s domains.
-export function facetKeys({fx, fy}) {
-  return fx && fy ? cross(fx.domain(), fy.domain()) : fx ? fx.domain() : fy.domain();
-}
-
-// Returns an array of [[keys1, index1], [keys2, index2], …] representing the
-// data indexes associated with each facet. The keys are written in an object
-// {x, y…}, depending on the channels that were passed in the second argument
-export function facetGroups(I, {fx, fy}) {
-  let groups = [[{}, I]];
-  if (fx) {
-    groups = groups.flatMap(([key, I]) =>
-      Array.from(
-        group(I, (i) => fx.value[i]),
-        ([fx, I]) => [{...key, fx}, I]
-      )
-    );
-  }
-  if (fy) {
-    groups = groups.flatMap(([key, I]) =>
-      Array.from(
-        group(I, (i) => fy.value[i]),
-        ([fy, I]) => [{...key, fy}, I]
-      )
-    );
-  }
-  return groups;
-}
-
-// This must match the key structure returned by facetGroups.
+// This must match the key structure of facetCells
 export function facetTranslate(fx, fy) {
   return fx && fy
     ? ([kx, ky]) => `translate(${fx(kx)},${fy(ky)})`
@@ -111,39 +80,58 @@ export function facetTranslate(fx, fy) {
     : ([, ky]) => `translate(0,${fy(ky)})`;
 }
 
-export function facetMap({fx, fy}) {
-  return new (fx && fy ? FacetMap2 : FacetMap)();
+export function facetReindex(facets, data, channels) {
+  const n = data.length;
+
+  // Survey all indices which belong to multiple facets
+  const overlap = new Uint32Array(n);
+  let count = 0;
+  for (const facet of facets) {
+    for (const i of facet) {
+      if (overlap[i]++) {
+        ++count;
+      }
+    }
+  }
+
+  // Create a new index for each of them, and update the facets accordingly.
+  // Expand the data array to match. If any channel is specified as an array,
+  // expand it as well, taking care not to mutate the original channels
+  if (count > 0) {
+    facets = facets.map((facet) => slice(facet, Uint32Array));
+    const reindex = new Uint32Array(count);
+    let c = 0;
+    overlap.fill(0);
+    for (const facet of facets) {
+      for (let k = 0; k < facet.length; ++k) {
+        const i = facet[k];
+        if (overlap[i]++) {
+          reindex[c] = i;
+          facet[k] = n + c;
+          c++;
+        }
+      }
+    }
+    data = expandArray(data, count);
+    for (let i = 0; i < count; ++i) data[n + i] = data[reindex[i]];
+    for (const key in channels) {
+      const A = channels[key].value;
+      if (Array.isArray(A) || isTypedArray(A)) {
+        channels = {...channels}; // avoid mutation
+        channels[key].value = (_, i) => A[i < n ? i : reindex[i - n]];
+      }
+    }
+  }
+
+  return {facets, data, channels};
 }
 
-class FacetMap {
-  constructor() {
-    this._ = new InternMap();
+// expands an array or typed array to make room for n more values
+function expandArray(values, n) {
+  if (isTypedArray(values)) {
+    const d = new values.constructor(values.length + n);
+    d.set(values);
+    return d;
   }
-  has(key) {
-    return this._.has(key);
-  }
-  get(key) {
-    return this._.get(key);
-  }
-  set(key, value) {
-    return this._.set(key, value), this;
-  }
-}
-
-// A Map-like interface that supports paired keys.
-class FacetMap2 extends FacetMap {
-  has([key1, key2]) {
-    const map = super.get(key1);
-    return map ? map.has(key2) : false;
-  }
-  get([key1, key2]) {
-    const map = super.get(key1);
-    return map && map.get(key2);
-  }
-  set([key1, key2], value) {
-    const map = super.get(key1);
-    if (map) map.set(key2, value);
-    else super.set(key1, new InternMap([[key2, value]]));
-    return this;
-  }
+  return slice(values);
 }

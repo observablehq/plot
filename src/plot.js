@@ -4,20 +4,9 @@ import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
-import {facetTranslate, filterFacets, maybeFacet} from "./facet.js";
+import {facetTranslate, filterFacets, maybeFacet, facetReindex} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {
-  arrayify,
-  isDomainSort,
-  isScaleOptions,
-  isTypedArray,
-  map,
-  maybeNamed,
-  range,
-  slice,
-  where,
-  yes
-} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, map, maybeNamed, range, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -755,33 +744,9 @@ export class Mark {
     if (facets === undefined && data != null) facets = [range(data)];
 
     if (this.transform != null) {
-      // If the mark has a transform, reindex facets that overlap
-      // TODO optimize
-      const overlap = new Set();
-      const reindex = new Map();
-      let j = data.length;
-      for (const facet of facets) {
-        for (let k = 0; k < facet.length; ++k) {
-          const i = facet[k];
-          if (overlap.has(i)) {
-            facet[k] = j;
-            reindex.set(j, i);
-            ++j;
-          }
-          overlap.add(i);
-        }
-      }
-      // If necessary, expand data and any channel defined as an array
-      if (reindex.size > 0) {
-        data = expandArray(data, data.length + reindex.size);
-        for (const [j, i] of reindex) data[j] = data[i];
-        for (const key in channels) {
-          const A = channels[key].value;
-          if (Array.isArray(A) || isTypedArray(A)) {
-            channels[key].value = (_, i) => A[reindex.has(i) ? reindex.get(i) : i];
-          }
-        }
-      }
+      // If the mark has a transform, reindex facets that overlap, expanding
+      // data and any channel defined as an array as necessary
+      ({facets, data, channels} = facetReindex(facets, data, channels));
 
       ({facets, data} = this.transform(data, facets));
       data = arrayify(data);
@@ -896,14 +861,4 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
-}
-
-// expands an array or typed array to make room for n values
-function expandArray(values, n) {
-  if (isTypedArray(values)) {
-    const d = new values.constructor(n);
-    d.set(values);
-    return d;
-  }
-  return slice(values);
 }
