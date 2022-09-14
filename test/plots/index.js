@@ -134,6 +134,7 @@ export {default as mobyDickLetterRelativeFrequency} from "./moby-dick-letter-rel
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
 export {default as multiplicationTable} from "./multiplication-table.js";
+export {default as musicFacet} from "./music-facet.js";
 export {default as musicRevenue} from "./music-revenue.js";
 export {default as ordinalBar} from "./ordinal-bar.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";

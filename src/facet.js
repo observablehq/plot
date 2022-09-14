@@ -65,7 +65,7 @@ function facetGte(I, T, facet) {
 }
 
 function facetEq(I, T, facet) {
-  return I.filter((i) => T[i] === facet);
+  return I.filter((i) => facetKeyEquals(T[i], facet));
 }
 
 // This must match the key structure of facetCells
@@ -133,4 +133,9 @@ function expandArray(values, n) {
     return d;
   }
   return slice(values);
+}
+
+// test is a value equals a facet key
+export function facetKeyEquals(a, b) {
+  return a instanceof Date && b instanceof Date ? +a === +b : a === b;
 }

@@ -4,7 +4,7 @@ import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
-import {facetTranslate, filterFacets, maybeFacet, facetReindex} from "./facet.js";
+import {facetKeyEquals, facetTranslate, filterFacets, maybeFacet, facetReindex} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, map, maybeNamed, range, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
@@ -463,7 +463,7 @@ export function plot(options = {}) {
         facetIndex = facetIndex || range({length: facetChannels.size});
         const {fx, fy} = facetChannels;
         facetsIndex = facetCells.map(([kx, ky]) =>
-          facetIndex.filter((i) => (!fx || fx.value[i] === kx) && (!fy || fy.value[i] === ky))
+          facetIndex.filter((i) => (!fx || facetKeyEquals(fx.value[i], kx)) && (!fy || facetKeyEquals(fy.value[i], ky)))
         );
       }
       state.facetsIndex = facetsIndex;
