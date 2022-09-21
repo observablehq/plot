@@ -12,6 +12,11 @@ import {
 } from "../style.js";
 import {initializer} from "../transforms/basic.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "density",
   fill: "none",
@@ -84,6 +89,9 @@ export class Density extends Mark {
  * series. If the **stroke** or **fill** is specified as *density*, a color
  * channel is constructed with values representing the density threshold value
  * of each contour.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function density(data, options = {}) {
   let {x, y, ...remainingOptions} = options;

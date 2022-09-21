@@ -14,6 +14,11 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeTrivialIntervalX, maybeTrivialIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "rect"
 };
@@ -94,6 +99,9 @@ export class Rect extends Mark {
  * ```
  *
  * Returns a new rect with the given *data* and *options*.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function rect(data, options) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
@@ -112,6 +120,9 @@ export function rect(data, options) {
  * this is the typical configuration for a histogram with rects aligned at *x* =
  * 0. If the **x** option is not specified, it defaults to the identity
  * function.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
   return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
@@ -130,6 +141,9 @@ export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
  * this is the typical configuration for a histogram with rects aligned at *y* =
  * 0. If the **y** option is not specified, it defaults to the identity
  * function.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));

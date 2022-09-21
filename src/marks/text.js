@@ -28,6 +28,11 @@ import {
 } from "../style.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "text",
   strokeLinejoin: "round",
@@ -162,6 +167,9 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
  * **x** nor **y** nor **frameAnchor** options are specified, *data* is assumed
  * to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such
  * that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function text(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -179,6 +187,9 @@ export function text(data, options = {}) {
  * (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If
  * the interval is specified as a number *n*, *y* will be the midpoint of two
  * consecutive multiples of *n* that bracket *y*.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function textX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -195,6 +206,9 @@ export function textX(data, options = {}) {
  * (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If
  * the interval is specified as a number *n*, *x* will be the midpoint of two
  * consecutive multiples of *n* that bracket *x*.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function textY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

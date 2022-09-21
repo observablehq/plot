@@ -6,6 +6,11 @@ import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "linear-regression",
   fill: "currentColor",
@@ -129,6 +134,9 @@ class LinearRegressionY extends LinearRegression {
  *
  * Returns a linear regression mark where *x* is the dependent variable and *y*
  * is the independent variable.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function linearRegressionX(data, options = {}) {
   const {
@@ -148,6 +156,9 @@ export function linearRegressionX(data, options = {}) {
  *
  * Returns a linear regression mark where *y* is the dependent variable and *x*
  * is the independent variable.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function linearRegressionY(data, options = {}) {
   const {

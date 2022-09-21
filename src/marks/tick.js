@@ -3,6 +3,11 @@ import {identity, number} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyDirectStyles, applyIndirectStyles, applyTransform, applyChannelStyles, offset} from "../style.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "tick",
   fill: null,
@@ -116,6 +121,9 @@ export class TickY extends AbstractTick {
  *
  * If the **y** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function tickX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -139,6 +147,9 @@ export function tickX(data, options = {}) {
  *
  * If the **x** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function tickY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

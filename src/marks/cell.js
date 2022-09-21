@@ -2,6 +2,11 @@ import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
 import {applyTransform} from "../style.js";
 import {AbstractBar} from "./bar.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "cell"
 };
@@ -33,6 +38,9 @@ export class Cell extends AbstractBar {
  * nor **y** options are specified, *data* is assumed to be an array of pairs
  * [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
  * *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function cell(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -51,6 +59,9 @@ export function cell(data, options = {}) {
  * …], and if the **fill** option is not specified and **stroke** is not a
  * channel, the fill defaults to the identity function and assumes that *data* =
  * [*x₀*, *x₁*, *x₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function cellX(data, options = {}) {
   let {x = indexOf, fill, stroke, ...remainingOptions} = options;
@@ -69,6 +80,9 @@ export function cellX(data, options = {}) {
  * …], and if the **fill** option is not specified and **stroke** is not a
  * channel, the fill defaults to the identity function and assumes that *data* =
  * [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function cellY(data, options = {}) {
   let {y = indexOf, fill, stroke, ...remainingOptions} = options;

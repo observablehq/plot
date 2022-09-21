@@ -10,6 +10,11 @@ import {
   applyTransform
 } from "../style.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "vector",
   fill: null,
@@ -83,6 +88,9 @@ export class Vector extends Mark {
  * **x** nor **y** options are specified, *data* is assumed to be an array of
  * pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*,
  * *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function vector(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -95,6 +103,9 @@ export function vector(data, options = {}) {
  * [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options)
  * except that if the **x** option is not specified, it defaults to the identity
  * function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function vectorX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -106,6 +117,9 @@ export function vectorX(data, options = {}) {
  * [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options)
  * except that if the **y** option is not specified, it defaults to the identity
  * function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function vectorY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

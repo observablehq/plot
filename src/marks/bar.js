@@ -14,6 +14,11 @@ import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}, defaults) {
     super(data, channels, options, defaults);
@@ -163,6 +168,9 @@ export class BarY extends AbstractBar {
  *
  * If the **y** channel is not specified, the bar will span the full vertical
  * extent of the plot (or facet).
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function barX(data, options = {y: indexOf, x2: identity}) {
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
@@ -203,6 +211,9 @@ export function barX(data, options = {y: indexOf, x2: identity}) {
  *
  * If the **x** channel is not specified, the bar will span the full horizontal
  * extent of the plot (or facet).
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function barY(data, options = {x: indexOf, y2: identity}) {
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));

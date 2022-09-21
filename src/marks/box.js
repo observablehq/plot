@@ -8,6 +8,11 @@ import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
 
 /**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
+/**
  * ```js
  * Plot.boxX(simpsons.map(d => d.imdb_rating))
  * ```
@@ -16,6 +21,9 @@ import {tickX, tickY} from "./tick.js";
  * defaults to the identity function, as when *data* is an array of numbers. If
  * the **y** option is not specified, it defaults to null; if the **y** option
  * is specified, it should represent an ordinal (discrete) value.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
@@ -49,6 +57,9 @@ export function boxX(data, options = {}) {
  * defaults to the identity function, as when *data* is an array of numbers. If
  * the **x** option is not specified, it defaults to null; if the **x** option
  * is specified, it should represent an ordinal (discrete) value.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the

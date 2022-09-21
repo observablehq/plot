@@ -14,6 +14,11 @@ import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const defaults = {
   ariaLabel: "area",
   strokeWidth: 1,
@@ -85,6 +90,9 @@ export class Area extends Mark {
  * [Plot.areaX](https://github.com/observablehq/plot/blob/main/README.md#plotareaxdata-options)
  * is used in the vertical orientation where the baseline and topline share *y*
  * values.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function area(data, options) {
   if (options === undefined) return areaY(data, {x: first, y: second});
@@ -121,6 +129,9 @@ export function area(data, options) {
  * The **interval** option is recommended to “regularize” sampled data; for
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function areaX(data, options) {
   const {y = indexOf, ...rest} = maybeDenseIntervalY(options);
@@ -157,6 +168,9 @@ export function areaX(data, options) {
  * The **interval** option is recommended to “regularize” sampled data; for
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function areaY(data, options) {
   const {x = indexOf, ...rest} = maybeDenseIntervalX(options);

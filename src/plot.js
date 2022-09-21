@@ -368,6 +368,9 @@ import {consumeWarnings, warn} from "./warnings.js";
  * const color = plot.scale("color"); // retrieve the color scale object
  * console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
  * ```
+ *
+ * @param {import("../types.js").PlotOptions} options
+ * @returns {Element}
  */
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
@@ -713,6 +716,9 @@ export class Mark {
  * [box mark
  * implementation](https://github.com/observablehq/plot/blob/main/src/marks/box.js)
  * for an example.
+ *
+ * @param {Mark[]} marks
+ * @returns {Mark}
  */
 export function marks(...marks) {
   marks.plot = Mark.prototype.plot;

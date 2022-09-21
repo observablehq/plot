@@ -64,6 +64,9 @@ export class Link extends Mark {
  * ```
  *
  * Returns a new link with the given *data* and *options*.
+ *
+ * @param {import("../types.js").Data} data
+ * @param {import("../types.js").MarkOptions} options
  */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;

@@ -7,6 +7,11 @@ import {link} from "./link.js";
 import {text} from "./text.js";
 
 /**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
+/**
  * A convenience compound mark for rendering a tree diagram, including a
  * [link](https://github.com/observablehq/plot/blob/main/README.md#link) to
  * render links from parent to child, an optional
@@ -42,6 +47,9 @@ import {text} from "./text.js";
  *
  * Any additional *options* are passed through to the constituent link, dot, and
  * text marks and their corresponding treeLink or treeNode transform.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function tree(data, options = {}) {
   let {
@@ -108,6 +116,9 @@ export function tree(data, options = {}) {
  * [Plot.tree](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options),
  * except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
  * which aligns leaf nodes.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
  */
 export function cluster(data, options) {
   return tree(data, {...options, treeLayout: Cluster});

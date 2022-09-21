@@ -12,6 +12,11 @@ import {
 } from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
 
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",
   fill: "none",
@@ -289,6 +294,10 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
  *
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
+ * @returns {DelaunayLink}
  */
 export function delaunayLink(data, options) {
   return delaunayMark(DelaunayLink, data, options);
@@ -304,6 +313,10 @@ export function delaunayLink(data, options) {
  *
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
+ * @returns {DelaunayMesh}
  */
 export function delaunayMesh(data, options) {
   return delaunayMark(DelaunayMesh, data, options);
@@ -320,6 +333,10 @@ export function delaunayMesh(data, options) {
  * separate convex hulls are constructed for each group. If the **z** channel is
  * not specified, it defaults to either the **fill** channel, if any, or the
  * **stroke** channel, if any.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
+ * @returns {Hull}
  */
 export function hull(data, options) {
   return delaunayMark(Hull, data, options);
@@ -331,6 +348,10 @@ export function hull(data, options) {
  *
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
+ * @returns {Voronoi}
  */
 export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
@@ -346,6 +367,10 @@ export function voronoi(data, options) {
  *
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
+ *
+ * @param {Data} data
+ * @param {MarkOptions} options
+ * @returns {VoronoiMesh}
  */
 export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);

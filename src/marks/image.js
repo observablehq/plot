@@ -118,6 +118,9 @@ export class Image extends Mark {
  * nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
  * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
  * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
+ *
+ * @param {import("../types.js").Data} data
+ * @param {import("../types.js").MarkOptions} options
  */
 export function image(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
