@@ -609,9 +609,9 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy))
       .each(function (key) {
         const j = indexByFacet.get(key);
-        for (const [mark, {channels, values, facets}] of stateByMark) {
+        for (const [mark, {channels, values, facets, facetValues}] of stateByMark) {
           const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
-          const node = mark.render(facet, scales, values, subdimensions, context);
+          const node = mark.render(facet, scales, {...values, ...facetValues[j]}, subdimensions, context);
           if (node != null) this.appendChild(node);
         }
       });

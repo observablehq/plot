@@ -58,12 +58,12 @@ export function map(outputs = {}, options = {}) {
   });
   return {
     ...basic(options, (data, facets) => {
-      const Z = valueof(data, z);
-      const X = channels.map(({input}) => valueof(data, input));
-      const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
+      const Z = valueof(data, facets, z);
+      const X = channels.map(({input}) => valueof(data, facets, input));
+      const MX = channels.map(({setOutput}) => setOutput(facets.map(f => new Array(f.length))));
       for (const facet of facets) {
         for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
-          channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
+          channels.forEach(({map}, i) => map.map(I, X[i], MX[j][i]));
         }
       }
       return {data, facets};

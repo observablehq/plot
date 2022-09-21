@@ -1,5 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
+import {facetReindex} from "../facet.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -145,11 +146,28 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const [Y2, setY2] = column(y);
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
+
+  for (const key of options) {
+    const value = options[key];
+    if (isChannel(value) && (isFunction(value) || isArray(value))) {
+      // TODO add this channel to the things that need to be reindexed
+    }
+  }
+
   return [
-    basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
-      const Y = valueof(data, y, Float64Array);
-      const Z = valueof(data, z);
+    basic(options, function(data, facets) {
+      let X = x == null ? undefined : valueof(data, x);
+      let Y = valueof(data, y, Float64Array);
+      let Z = valueof(data, z);
+
+      ({facets, data, channels: [X, Y, Z]} = facetReindex(facets, data, [X, Y, Z]));
+
+      setX(X);
+
+      // TODO
+      // Materialize x, y, z, and any channel specified as a function
+      // Then reindex x, y, z, and any materialized channel (array) using the expanded index
+
       const O = order && order(data, X, Y, Z);
       const n = data.length;
       const Y1 = setY1(new Float64Array(n));
