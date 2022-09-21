@@ -1,5 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
+import {facetReindex} from "../facet.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -138,6 +139,10 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
+function arrayElement(X, {reindex}) {
+  return typeof reindex === "function" ? (i) => X[reindex(i)] : (i) => X[i];
+}
+
 function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
@@ -146,24 +151,27 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
   return [
-    basic(options, (data, facets) => {
+    basic(options, function (data, facets) {
+      let n = data.length;
+      ({facets, n} = facetReindex(facets, n));
+
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
-      const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
-        const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
+        const stacks = X ? Array.from(group(facet, arrayElement(X, facet)).values()) : [facet];
+        const getY = arrayElement(Y, facet);
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0,
             yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
-            const y = Y[i];
+            const y = getY(i);
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
             else Y2[i] = Y1[i] = yp; // NaN or zero

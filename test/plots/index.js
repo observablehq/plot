@@ -207,6 +207,7 @@ export {default as singleValueBar} from "./single-value-bar.js";
 export {default as singleValueBin} from "./single-value-bin.js";
 export {default as softwareVersions} from "./software-versions.js";
 export {default as sparseCell} from "./sparse-cell.js";
+export {default as stackExclude} from "./stack-exclude.js";
 export {default as stackedBar} from "./stacked-bar.js";
 export {default as stackedRect} from "./stacked-rect.js";
 export {default as stargazers} from "./stargazers.js";

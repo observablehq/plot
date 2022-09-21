@@ -1,4 +1,4 @@
-import {cross, difference, groups, InternMap, select} from "d3";
+import {cross, difference, groups, InternMap, max, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -609,8 +609,25 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy))
       .each(function (key) {
         const j = indexByFacet.get(key);
-        for (const [mark, {channels, values, facets}] of stateByMark) {
-          const facet = facets ? mark.filter(facets[j] ?? facets[0], channels, values) : null;
+        for (const [mark, {channels, values: original, facets}] of stateByMark) {
+          // this facet is possibly reindexed
+          let values = original;
+          let F = facets?.[j];
+          const r = F?.reindex;
+          if (r) {
+            const m = max(facets[j]);
+            const long = Object.keys(values).filter((key) => values[key].length >= m);
+            const V = Object.fromEntries(long.map((key) => [key, []]));
+            F = [];
+            for (const i of facets[j]) {
+              const k = r(i);
+              F.push(k);
+              for (const key of long) V[key][k] = original[key][i];
+              values = {...original, ...V};
+            }
+          }
+
+          const facet = facets ? mark.filter(F ?? facets[0], channels, values) : null;
           const node = mark.render(facet, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
         }
