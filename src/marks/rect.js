@@ -99,7 +99,6 @@ export class Rect extends Mark {
  * ```
  *
  * Returns a new rect with the given *data* and *options*.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -120,7 +119,6 @@ export function rect(data, options) {
  * this is the typical configuration for a histogram with rects aligned at *x* =
  * 0. If the **x** option is not specified, it defaults to the identity
  * function.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -141,7 +139,6 @@ export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
  * this is the typical configuration for a histogram with rects aligned at *y* =
  * 0. If the **y** option is not specified, it defaults to the identity
  * function.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

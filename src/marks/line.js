@@ -84,7 +84,6 @@ export class Line extends Mark {
  * nor **y** options are specified, *data* is assumed to be an array of pairs
  * [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
  * *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -119,7 +118,6 @@ export function line(data, options = {}) {
  * The **interval** option is recommended to “regularize” sampled data; for
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -153,7 +151,6 @@ export function lineX(data, options = {}) {
  * The **interval** option is recommended to “regularize” sampled data; for
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

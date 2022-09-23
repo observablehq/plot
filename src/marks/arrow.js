@@ -182,7 +182,6 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
  * ```
  *
  * Returns a new arrow with the given *data* and *options*.
- *
  * @param {import("../types.js").Data} data
  * @param {import("../types.js").MarkOptions} options
  */

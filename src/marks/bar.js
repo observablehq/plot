@@ -168,7 +168,6 @@ export class BarY extends AbstractBar {
  *
  * If the **y** channel is not specified, the bar will span the full vertical
  * extent of the plot (or facet).
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -211,7 +210,6 @@ export function barX(data, options = {y: indexOf, x2: identity}) {
  *
  * If the **x** channel is not specified, the bar will span the full horizontal
  * extent of the plot (or facet).
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

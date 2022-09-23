@@ -716,7 +716,6 @@ export class Mark {
  * [box mark
  * implementation](https://github.com/observablehq/plot/blob/main/src/marks/box.js)
  * for an example.
- *
  * @param {Mark[]} marks
  * @returns {Mark}
  */

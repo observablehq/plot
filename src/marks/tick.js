@@ -121,7 +121,6 @@ export class TickY extends AbstractTick {
  *
  * If the **y** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -147,7 +146,6 @@ export function tickX(data, options = {}) {
  *
  * If the **x** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

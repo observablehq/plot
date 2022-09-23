@@ -64,7 +64,6 @@ export class Link extends Mark {
  * ```
  *
  * Returns a new link with the given *data* and *options*.
- *
  * @param {import("../types.js").Data} data
  * @param {import("../types.js").MarkOptions} options
  */

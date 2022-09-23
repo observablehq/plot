@@ -21,7 +21,6 @@ import {tickX, tickY} from "./tick.js";
  * defaults to the identity function, as when *data* is an array of numbers. If
  * the **y** option is not specified, it defaults to null; if the **y** option
  * is specified, it should represent an ordinal (discrete) value.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -57,7 +56,6 @@ export function boxX(data, options = {}) {
  * defaults to the identity function, as when *data* is an array of numbers. If
  * the **x** option is not specified, it defaults to null; if the **x** option
  * is specified, it should represent an ordinal (discrete) value.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

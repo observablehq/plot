@@ -134,7 +134,6 @@ class LinearRegressionY extends LinearRegression {
  *
  * Returns a linear regression mark where *x* is the dependent variable and *y*
  * is the independent variable.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -156,7 +155,6 @@ export function linearRegressionX(data, options = {}) {
  *
  * Returns a linear regression mark where *y* is the dependent variable and *x*
  * is the independent variable.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

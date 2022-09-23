@@ -142,7 +142,6 @@ export class RuleY extends Mark {
  * *y1*, and *interval*.offset(*y1*) is invoked for each *y1* to produce *y2*.
  * If the interval is specified as a number *n*, *y1* and *y2* are taken as the
  * two consecutive multiples of *n* that bracket *y*.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -183,7 +182,6 @@ export function ruleX(data, options) {
  * *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*.
  * If the interval is specified as a number *n*, *x1* and *x2* are taken as the
  * two consecutive multiples of *n* that bracket *x*.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
