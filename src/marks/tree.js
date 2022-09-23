@@ -47,7 +47,6 @@ import {text} from "./text.js";
  *
  * Any additional *options* are passed through to the constituent link, dot, and
  * text marks and their corresponding treeLink or treeNode transform.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */
@@ -116,7 +115,6 @@ export function tree(data, options = {}) {
  * [Plot.tree](https://github.com/observablehq/plot/blob/main/README.md#plottreedata-options),
  * except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
  * which aligns leaf nodes.
- *
  * @param {Data} data
  * @param {MarkOptions} options
  */

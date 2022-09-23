@@ -408,7 +408,6 @@ const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
-
 <!-- jsdoc scale -->
 
 #### Plot.scale(*options*)
@@ -3036,7 +3035,6 @@ The following options are supported:
 Any additional *options* are passed through to the constituent link, dot, and
 text marks and their corresponding treeLink or treeNode transform.
 
-
 <!-- jsdoc cluster -->
 
 #### Plot.cluster(*data*, *options*)
@@ -3045,7 +3043,6 @@ Like
 [Plot.tree](#plottreedata-options),
 except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
 which aligns leaf nodes.
-
 
 <!-- jsdocEnd -->
 
