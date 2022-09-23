@@ -408,6 +408,7 @@ const color = plot.scale("color"); // retrieve the color scale object
 console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
 ```
 
+
 <!-- jsdoc scale -->
 
 #### Plot.scale(*options*)
@@ -978,6 +979,7 @@ Returns an array of marks that implements the *mark*.plot function. See the
 implementation](https://github.com/observablehq/plot/blob/main/src/marks/box.js)
 for an example.
 
+
 <!-- jsdocEnd -->
 
 ### Area
@@ -1025,6 +1027,7 @@ share *x* values, while
 is used in the vertical orientation where the baseline and topline share *y*
 values.
 
+
 <!-- jsdoc areaX -->
 
 #### Plot.areaX(*data*, *options*)
@@ -1059,6 +1062,7 @@ The **interval** option is recommended to “regularize” sampled data; for
 example, if your data represents timestamped temperature measurements and you
 expect one sample per day, use d3.utcDay as the interval.
 
+
 <!-- jsdoc areaY -->
 
 #### Plot.areaY(*data*, *options*)
@@ -1092,6 +1096,7 @@ Plot.areaY(observations, {x: "date", y: "temperature", interval: d3.utcDay)
 The **interval** option is recommended to “regularize” sampled data; for
 example, if your data represents timestamped temperature measurements and you
 expect one sample per day, use d3.utcDay as the interval.
+
 
 <!-- jsdocEnd -->
 
@@ -1130,6 +1135,7 @@ Plot.arrow(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "
 ```
 
 Returns a new arrow with the given *data* and *options*.
+
 
 <!-- jsdocEnd -->
 
@@ -1179,6 +1185,7 @@ following optional channels are supported:
 If the **y** channel is not specified, the bar will span the full vertical
 extent of the plot (or facet).
 
+
 <!-- jsdoc barY -->
 
 #### Plot.barY(*data*, *options*)
@@ -1218,6 +1225,7 @@ following optional channels are supported:
 If the **x** channel is not specified, the bar will span the full horizontal
 extent of the plot (or facet).
 
+
 <!-- jsdocEnd -->
 
 ### Box
@@ -1245,6 +1253,8 @@ The given *options* are passed through to these underlying marks, with the excep
 
 #### Plot.boxX(*data*, *options*)
 
+
+
 ```js
 Plot.boxX(simpsons.map(d => d.imdb_rating))
 ```
@@ -1253,6 +1263,7 @@ Returns a horizontal boxplot mark. If the **x** option is not specified, it
 defaults to the identity function, as when *data* is an array of numbers. If
 the **y** option is not specified, it defaults to null; if the **y** option
 is specified, it should represent an ordinal (discrete) value.
+
 
 <!-- jsdoc boxY -->
 
@@ -1266,6 +1277,7 @@ Returns a vertical boxplot mark. If the **y** option is not specified, it
 defaults to the identity function, as when *data* is an array of numbers. If
 the **x** option is not specified, it defaults to null; if the **x** option
 is specified, it should represent an ordinal (discrete) value.
+
 
 <!-- jsdocEnd -->
 
@@ -1297,6 +1309,7 @@ nor **y** options are specified, *data* is assumed to be an array of pairs
 [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
 *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdoc cellX -->
 
 #### Plot.cellX(*data*, *options*)
@@ -1312,6 +1325,7 @@ except that if the **x** option is not specified, it defaults to [0, 1, 2,
 channel, the fill defaults to the identity function and assumes that *data* =
 [*x₀*, *x₁*, *x₂*, …].
 
+
 <!-- jsdoc cellY -->
 
 #### Plot.cellY(*data*, *options*)
@@ -1326,6 +1340,7 @@ except that if the **y** option is not specified, it defaults to [0, 1, 2,
 …], and if the **fill** option is not specified and **stroke** is not a
 channel, the fill defaults to the identity function and assumes that *data* =
 [*y₀*, *y₁*, *y₂*, …].
+
 
 <!-- jsdocEnd -->
 
@@ -1349,6 +1364,7 @@ channel value from one of its two endpoints arbitrarily.
 If a **z** channel is specified, the input points are grouped by *z*, and
 separate Delaunay triangulations are constructed for each group.
 
+
 <!-- jsdoc delaunayMesh -->
 
 #### Plot.delaunayMesh(*data*, *options*)
@@ -1362,6 +1378,7 @@ points arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and
 separate Delaunay triangulations are constructed for each group.
+
 
 <!-- jsdoc hull -->
 
@@ -1378,6 +1395,7 @@ separate convex hulls are constructed for each group. If the **z** channel is
 not specified, it defaults to either the **fill** channel, if any, or the
 **stroke** channel, if any.
 
+
 <!-- jsdoc voronoi -->
 
 #### Plot.voronoi(*data*, *options*)
@@ -1387,6 +1405,7 @@ by the **x** and **y** channels.
 
 If a **z** channel is specified, the input points are grouped by *z*, and
 separate Voronoi tesselations are constructed for each group.
+
 
 <!-- jsdoc voronoiMesh -->
 
@@ -1401,6 +1420,7 @@ value from one of its constituent points arbitrarily.
 
 If a **z** channel is specified, the input points are grouped by *z*, and
 separate Voronoi tesselations are constructed for each group.
+
 
 <!-- jsdocEnd -->
 
@@ -1432,6 +1452,7 @@ grouped by series, and separate sets of contours are generated for each
 series. If the **stroke** or **fill** is specified as *density*, a color
 channel is constructed with values representing the density threshold value
 of each contour.
+
 
 <!-- jsdocEnd -->
 
@@ -1479,6 +1500,7 @@ nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
 an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
 **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdoc dotX -->
 
 #### Plot.dotX(*data*, *options*)
@@ -1496,6 +1518,7 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to
 (*interval*.floor(*y*) + *interval*.offset(*interval*.floor(*y*))) / 2. If
 the interval is specified as a number *n*, *y* will be the midpoint of two
 consecutive multiples of *n* that bracket *y*.
+
 
 <!-- jsdoc dotY -->
 
@@ -1515,6 +1538,7 @@ If an **interval** is specified, such as d3.utcDay, **x** is transformed to
 the interval is specified as a number *n*, *x* will be the midpoint of two
 consecutive multiples of *n* that bracket *x*.
 
+
 <!-- jsdoc circle -->
 
 #### Plot.circle(*data*, *options*)
@@ -1523,6 +1547,7 @@ Equivalent to
 [Plot.dot](#plotdotdata-options)
 except that the **symbol** option is set to *circle*.
 
+
 <!-- jsdoc hexagon -->
 
 #### Plot.hexagon(*data*, *options*)
@@ -1530,6 +1555,7 @@ except that the **symbol** option is set to *circle*.
 Equivalent to
 [Plot.dot](#plotdotdata-options)
 except that the **symbol** option is set to *hexagon*.
+
 
 <!-- jsdocEnd -->
 
@@ -1587,6 +1613,7 @@ nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
 an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
 **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdocEnd -->
 
 ### Linear regression
@@ -1616,6 +1643,7 @@ Plot.linearRegressionX(mtcars, {y: "wt", x: "hp"})
 Returns a linear regression mark where *x* is the dependent variable and *y*
 is the independent variable.
 
+
 <!-- jsdoc linearRegressionY -->
 
 #### Plot.linearRegressionY(*data*, *options*)
@@ -1626,6 +1654,7 @@ Plot.linearRegressionY(mtcars, {x: "wt", y: "hp"})
 
 Returns a linear regression mark where *y* is the dependent variable and *x*
 is the independent variable.
+
 
 <!-- jsdocEnd -->
 
@@ -1665,6 +1694,7 @@ nor **y** options are specified, *data* is assumed to be an array of pairs
 [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
 *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdoc lineX -->
 
 #### Plot.lineX(*data*, *options*)
@@ -1694,6 +1724,7 @@ The **interval** option is recommended to “regularize” sampled data; for
 example, if your data represents timestamped temperature measurements and you
 expect one sample per day, use d3.utcDay as the interval.
 
+
 <!-- jsdoc lineY -->
 
 #### Plot.lineY(*data*, *options*)
@@ -1722,6 +1753,7 @@ Plot.lineY(observations, {x: "date", y: "temperature", interval: d3.utcDay})
 The **interval** option is recommended to “regularize” sampled data; for
 example, if your data represents timestamped temperature measurements and you
 expect one sample per day, use d3.utcDay as the interval.
+
 
 <!-- jsdocEnd -->
 
@@ -1754,6 +1786,7 @@ Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R
 
 Returns a new link with the given *data* and *options*.
 
+
 <!-- jsdocEnd -->
 
 ### Rect
@@ -1785,6 +1818,7 @@ Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
 
 Returns a new rect with the given *data* and *options*.
 
+
 <!-- jsdoc rectX -->
 
 #### Plot.rectX(*data*, *options*)
@@ -1802,6 +1836,7 @@ this is the typical configuration for a histogram with rects aligned at *x* =
 0. If the **x** option is not specified, it defaults to the identity
 function.
 
+
 <!-- jsdoc rectY -->
 
 #### Plot.rectY(*data*, *options*)
@@ -1818,6 +1853,7 @@ transform](#plotstackystack-options);
 this is the typical configuration for a histogram with rects aligned at *y* =
 0. If the **y** option is not specified, it defaults to the identity
 function.
+
 
 <!-- jsdocEnd -->
 
@@ -1863,6 +1899,7 @@ derived from **y**: *interval*.floor(*y*) is invoked for each *y* to produce
 If the interval is specified as a number *n*, *y1* and *y2* are taken as the
 two consecutive multiples of *n* that bracket *y*.
 
+
 <!-- jsdoc ruleY -->
 
 #### Plot.ruleY(*data*, *options*)
@@ -1897,6 +1934,7 @@ derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce
 *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*.
 If the interval is specified as a number *n*, *x1* and *x2* are taken as the
 two consecutive multiples of *n* that bracket *x*.
+
 
 <!-- jsdocEnd -->
 
@@ -1953,6 +1991,7 @@ Returns a new text mark with the given *data* and *options*. If neither the
 to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such
 that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdoc textX -->
 
 #### Plot.textX(*data*, *options*)
@@ -1967,6 +2006,7 @@ If an **interval** is specified, such as d3.utcDay, **y** is transformed to
 the interval is specified as a number *n*, *y* will be the midpoint of two
 consecutive multiples of *n* that bracket *y*.
 
+
 <!-- jsdoc textY -->
 
 #### Plot.textY(*data*, *options*)
@@ -1980,6 +2020,7 @@ If an **interval** is specified, such as d3.utcDay, **x** is transformed to
 (*interval*.floor(*x*) + *interval*.offset(*interval*.floor(*x*))) / 2. If
 the interval is specified as a number *n*, *x* will be the midpoint of two
 consecutive multiples of *n* that bracket *x*.
+
 
 <!-- jsdocEnd -->
 
@@ -2011,6 +2052,7 @@ The following optional channels are supported:
 If the **y** channel is not specified, the tick will span the full vertical
 extent of the plot (or facet).
 
+
 <!-- jsdoc tickY -->
 
 #### Plot.tickY(*data*, *options*)
@@ -2031,6 +2073,7 @@ The following optional channels are supported:
 
 If the **x** channel is not specified, the tick will span the full vertical
 extent of the plot (or facet).
+
 
 <!-- jsdocEnd -->
 
@@ -2077,6 +2120,7 @@ Returns a new vector with the given *data* and *options*. If neither the
 pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*,
 *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+
 <!-- jsdoc vectorX -->
 
 #### Plot.vectorX(*data*, *options*)
@@ -2086,6 +2130,7 @@ Equivalent to
 except that if the **x** option is not specified, it defaults to the identity
 function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
 
+
 <!-- jsdoc vectorY -->
 
 #### Plot.vectorY(*data*, *options*)
@@ -2094,6 +2139,7 @@ Equivalent to
 [Plot.vector](#plotvectordata-options)
 except that if the **y** option is not specified, it defaults to the identity
 function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
+
 
 <!-- jsdocEnd -->
 
@@ -2995,6 +3041,8 @@ passed two node arguments, the child and the parent.
 
 #### Plot.tree(*data*, *options*)
 
+
+
 A convenience compound mark for rendering a tree diagram, including a
 [link](#link) to
 render links from parent to child, an optional
@@ -3031,6 +3079,7 @@ The following options are supported:
 Any additional *options* are passed through to the constituent link, dot, and
 text marks and their corresponding treeLink or treeNode transform.
 
+
 <!-- jsdoc cluster -->
 
 #### Plot.cluster(*data*, *options*)
@@ -3039,6 +3088,7 @@ Like
 [Plot.tree](#plottreedata-options),
 except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
 which aligns leaf nodes.
+
 
 <!-- jsdocEnd -->
 
