@@ -3,6 +3,7 @@ import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
+import {facetReindex, getter} from "../facet.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -90,21 +91,26 @@ function dodge(y, x, anchor, padding, options) {
   return initializer(options, function (data, facets, {[x]: X, r: R}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
+
+    // make facets exclusive
+    facets = facetReindex(facets, data.length);
+
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
     if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    const Y = new Float64Array(X.length);
-    const radius = R ? (i) => R[i] : () => r;
+    const Y = new Float64Array((facets.plan || X).length);
+    const radius = R ? getter(facets, R) : () => r;
+    const getX = getter(facets, X);
     for (let I of facets) {
       const tree = IntervalTree();
-      I = I.filter(R ? (i) => finite(X[i]) && positive(R[i]) : (i) => finite(X[i]));
+      I = I.filter(R ? (i) => finite(getX(i)) && positive(radius(i)) : (i) => finite(getX(i)));
       const intervals = new Float64Array(2 * I.length + 2);
       for (const i of I) {
         const ri = radius(i);
         const y0 = ky ? ri + padding : 0; // offset baseline for varying radius
-        const l = X[i] - ri;
-        const h = X[i] + ri;
+        const l = getX(i) - ri;
+        const h = getX(i) + ri;
 
         // The first two positions are 0 to test placing the dot on the baseline.
         let k = 2;
@@ -114,8 +120,8 @@ function dodge(y, x, anchor, padding, options) {
         // https://observablehq.com/@mbostock/circle-offset-along-line
         tree.queryInterval(l - padding, h + padding, ([, , j]) => {
           const yj = Y[j] - y0;
-          const dx = X[i] - X[j];
-          const dr = padding + (R ? R[i] + R[j] : 2 * r);
+          const dx = getX(i) - getX(j);
+          const dr = padding + (R ? radius(i) + radius(j) : 2 * r);
           const dy = Math.sqrt(dr * dr - dx * dx);
           intervals[k++] = yj - dy;
           intervals[k++] = yj + dy;

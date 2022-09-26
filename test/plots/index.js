@@ -150,6 +150,7 @@ export {default as penguinDensityFill} from "./penguin-density-fill.js";
 export {default as penguinDensityZ} from "./penguin-density-z.js";
 export {default as penguinDodge} from "./penguin-dodge.js";
 export {default as penguinDodgeHexbin} from "./penguin-dodge-hexbin.js";
+export {default as penguinDodgeReindexed} from "./penguin-dodge-reindexed.js";
 export {default as penguinDodgeVoronoi} from "./penguin-dodge-voronoi.js";
 export {default as penguinFacetDodge} from "./penguin-facet-dodge.js";
 export {default as penguinFacetDodgeIdentity} from "./penguin-facet-dodge-identity.js";
