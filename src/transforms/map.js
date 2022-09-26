@@ -1,6 +1,7 @@
 import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
+import {facetReindex, getter, expander} from "../facet.js";
 
 /**
  * ```js
@@ -58,11 +59,13 @@ export function map(outputs = {}, options = {}) {
   });
   return {
     ...basic(options, (data, facets) => {
+      // make facets exclusive
+      facets = facetReindex(facets, data.length);
       const Z = valueof(data, z);
-      const X = channels.map(({input}) => valueof(data, input));
-      const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
+      const X = channels.map(({input}) => expander(facets, valueof(data, input)));
+      const MX = channels.map(({setOutput}) => setOutput(new Array((facets.plan || data).length)));
       for (const facet of facets) {
-        for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
+        for (const I of Z ? group(facet, getter(facets, Z)).values() : [facet]) {
           channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
         }
       }
