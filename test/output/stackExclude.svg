@@ -54,8 +54,9 @@
   <g aria-label="facet" transform="translate(240,0)">
     <g aria-label="bar" fill-opacity="0.5">
       <rect x="0" width="180" y="124" height="26" fill="rgb(35, 23, 27)" stroke="rgb(35, 23, 27)"></rect>
+      <rect x="0" width="180" y="45.99999999999999" height="78" fill="rgb(144, 12, 0)" stroke="rgb(144, 12, 0)"></rect>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(90,137)">0</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,0.5)"><text y="0.32em" transform="translate(90,137)">0</text><text y="0.32em" transform="translate(90,85)">2</text></g>
   </g>
   <g aria-label="facet" transform="translate(440,0)">
     <g aria-label="bar" fill-opacity="0.5">

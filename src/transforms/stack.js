@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {facetReindex} from "../facet.js";
+import {facetReindex, getter, expander} from "../facet.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
 import {basic} from "./basic.js";
 
@@ -139,10 +139,6 @@ function mergeOptions(options) {
   return [{offset, order, reverse}, rest];
 }
 
-function arrayElement(X, {reindex}) {
-  return typeof reindex === "function" ? (i) => X[reindex(i)] : (i) => X[i];
-}
-
 function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const z = maybeZ(options);
   const [X, setX] = maybeColumn(x);
@@ -152,20 +148,21 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   order = maybeOrder(order, offset, ky);
   return [
     basic(options, function (data, facets) {
-      let n = data.length;
-      ({facets, n} = facetReindex(facets, n));
-
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
-      const Y1 = setY1(new Float64Array(n));
-      const Y2 = setY2(new Float64Array(n));
+
+      // make facets exclusive
+      facets = facetReindex(facets, data.length);
+      const Y1 = setY1(new Float64Array((facets.plan || data).length));
+      const Y2 = setY2(new Float64Array((facets.plan || data).length));
+
       const facetstacks = [];
       for (const facet of facets) {
-        const stacks = X ? Array.from(group(facet, arrayElement(X, facet)).values()) : [facet];
-        const getY = arrayElement(Y, facet);
-        if (O) applyOrder(stacks, O);
+        const stacks = X ? Array.from(group(facet, getter(facets, X)).values()) : [facet];
+        const getY = getter(facets, Y);
+        if (O) applyOrder(stacks, getter(facets, O));
         for (const stack of stacks) {
           let yn = 0,
             yp = 0;
@@ -179,7 +176,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
         }
         facetstacks.push(stacks);
       }
-      if (offset) offset(facetstacks, Y1, Y2, Z);
+      if (offset) offset(facetstacks, Y1, Y2, expander(facets, Z));
       return {data, facets};
     }),
     X,
@@ -404,8 +401,8 @@ function orderZDomain(Z, domain) {
   return Z.map((z) => domain.get(z));
 }
 
-function applyOrder(stacks, O) {
+function applyOrder(stacks, o) {
   for (const stack of stacks) {
-    stack.sort((i, j) => ascendingDefined(O[i], O[j]));
+    stack.sort((i, j) => ascendingDefined(o(i), o(j)));
   }
 }

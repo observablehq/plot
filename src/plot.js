@@ -1,4 +1,4 @@
-import {cross, difference, groups, InternMap, max, select} from "d3";
+import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -613,14 +613,13 @@ export function plot(options = {}) {
           // this facet is possibly reindexed
           let values = original;
           let F = facets?.[j];
-          const r = F?.reindex;
-          if (r) {
-            const m = max(facets[j]);
-            const long = Object.keys(values).filter((key) => values[key].length >= m);
+          if (F && j > 0 && facets.plan) {
+            const {plan} = facets;
+            const long = Object.keys(values).filter((key) => values[key].length === plan.length);
             const V = Object.fromEntries(long.map((key) => [key, []]));
             F = [];
             for (const i of facets[j]) {
-              const k = r(i);
+              const k = plan[i];
               F.push(k);
               for (const key of long) V[key][k] = original[key][i];
               values = {...original, ...V};
