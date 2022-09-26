@@ -1,9 +1,7 @@
-import {max} from "d3";
 import {slice} from "./options.js";
 
-export function facetReindex(facets) {
+export function facetReindex(facets, n) {
   // Count the number of overlapping indexes across facets.
-  let n = max(facets, (facet) => max(facet)) + 1;
   const overlap = new Uint8Array(n);
   let count = 0;
   for (const facet of facets) {
@@ -15,9 +13,9 @@ export function facetReindex(facets) {
 
   // For each overlapping index (duplicate number), assign a new unique index at
   // the end of the existing array. For example, [[0, 1, 2], [2, 1, 3]] would
-  // become [[0, 1, 2], [4, 5, 3]]. Attach a reindex function to the facet
-  // array, to be able to read the values associated with the old index in
-  // unaffected channels.
+  // become [[0, 1, 2], [4, 5, 3]]. Attach a plan to the facets array, to be
+  // able to read the values associated with the old index in unaffected
+  // channels.
   if (count > 0) {
     facets = facets.map((facet) => slice(facet, Uint32Array));
     const plan = (facets.plan = new Uint32Array(n + count));
