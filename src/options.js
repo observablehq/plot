@@ -331,7 +331,7 @@ export function isTemporalString(values) {
 export function isNumericString(values) {
   for (const value of values) {
     if (value == null || (typeof value === "string" && /^\s*$/.test(value))) continue;
-    return typeof value === "string" && value.trim() !== "" && !isNaN(value);
+    return typeof value === "string" && !isNaN(value);
   }
 }
 
