@@ -1245,8 +1245,6 @@ The given *options* are passed through to these underlying marks, with the excep
 
 #### Plot.boxX(*data*, *options*)
 
-
-
 ```js
 Plot.boxX(simpsons.map(d => d.imdb_rating))
 ```
@@ -2981,8 +2979,6 @@ passed two node arguments, the child and the parent.
 <!-- jsdoc tree -->
 
 #### Plot.tree(*data*, *options*)
-
-
 
 A convenience compound mark for rendering a tree diagram, including a
 [link](#link) to

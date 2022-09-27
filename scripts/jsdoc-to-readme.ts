@@ -1,5 +1,5 @@
 import {readFileSync, writeFileSync} from "fs";
-import type {ExportedDeclarations, FunctionDeclaration} from "ts-morph";
+import type {ExportedDeclarations, FunctionDeclaration, JSDoc} from "ts-morph";
 import {Project} from "ts-morph";
 
 /**
@@ -67,12 +67,21 @@ function getJsDocs(name: string, declaration: ExportedDeclarations, prefix = "##
     return getJsDocsForFunction(name, declaration, prefix);
   }
   if ("getJsDocs" in declaration) {
-    return `${prefix} Plot.${name}\n${declaration
-      .getJsDocs()
-      .map((doc) => makeRelativeUrls(doc.getDescription()))
-      .join("\n\n")}`;
+    return `${prefix} Plot.${name}\n${transformDocs(declaration.getJsDocs())}`;
   }
   return `JSDoc extraction for ${declaration.getKindName()} not yet implemented.`;
+}
+
+function transformDocs(docs: JSDoc[]): string {
+  return makeRelativeUrls(pad(docs.map((doc) => doc.getDescription()).join("\n\n")));
+}
+
+function makeRelativeUrls(description: string) {
+  return description.replace(new RegExp("https://github.com/observablehq/plot/blob/main/README.md#", "g"), "#");
+}
+
+function pad(s: string) {
+  return `\n${s.trim()}\n`;
 }
 
 function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, prefix = "####") {
@@ -83,7 +92,7 @@ function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, pr
   const parts = [title];
   const docs = declaration.getJsDocs();
   if (docs.length) {
-    parts.push(docs.map((doc) => makeRelativeUrls(doc.getDescription())).join("\n\n"));
+    parts.push(transformDocs(docs));
     return parts.join("\n");
   }
   // If we didn't find docs on the implementation, it's probably on one of the
@@ -92,15 +101,11 @@ function getJsDocsForFunction(name: string, declaration: FunctionDeclaration, pr
   for (const overload of overloads) {
     const docs = overload.getJsDocs();
     if (!docs.length) continue;
-    parts.push(docs.map((doc) => makeRelativeUrls(doc.getDescription())).join("\n\n"));
+    parts.push(transformDocs(docs));
     return parts.join("\n");
   }
 
   return "No JSDocs found.";
-}
-
-function makeRelativeUrls(description: string) {
-  return description.replace(new RegExp("https://github.com/observablehq/plot/blob/main/README.md#", "g"), "#");
 }
 
 const check = process.argv[process.argv.length - 1] === "--check";
