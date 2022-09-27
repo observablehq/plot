@@ -44,8 +44,8 @@ export function Dimensions(
   };
 }
 
-function autoHeight({y, fy, fx}, geometry, add) {
+function autoHeight({y, fy, fx}, geometry) {
   const nfy = fy ? fy.scale.domain().length : 1;
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : geometry ? 17 : 1;
-  return !!(y || fy || geometry) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60 + Math.max(0, add);
+  return !!(y || fy || geometry) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }
