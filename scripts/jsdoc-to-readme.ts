@@ -53,8 +53,7 @@ function injectJsDoc(readme: string) {
       if (!declaration) throw new Error(`${name} is not exported by src/index`);
       parts.push(getJsDocs(name, declaration, prefix));
       parts.push("");
-      // Standardize on one leading and trailing new line for each replacement.
-      replacement = `\n${parts.join("\n").trim()}\n`;
+      replacement = pad(parts.join("\n"));
     }
     if (!insideReplacement || isReplacementDelimiter) output.push(line);
     if (replacement) output.push(replacement);
@@ -80,6 +79,7 @@ function makeRelativeUrls(description: string) {
   return description.replace(new RegExp("https://github.com/observablehq/plot/blob/main/README.md#", "g"), "#");
 }
 
+// Standardize on one leading and trailing new line for each replacement.
 function pad(s: string) {
   return `\n${s.trim()}\n`;
 }
