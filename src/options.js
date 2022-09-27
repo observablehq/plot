@@ -330,7 +330,7 @@ export function isTemporalString(values) {
 // coercion because we want to ignore false positives on e.g. empty strings.
 export function isNumericString(values) {
   for (const value of values) {
-    if (value == null || value === "") continue;
+    if (value == null || (typeof value === "string" && /^\s*$/.test(value))) continue;
     return typeof value === "string" && value.trim() !== "" && !isNaN(value);
   }
 }
