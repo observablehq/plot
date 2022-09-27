@@ -27,11 +27,7 @@ export function Dimensions(
     marginLeft = margin !== undefined
       ? margin
       : Math.max((yAxis === "left" ? 40 : 0) + facetMarginLeft, xAxis || fxAxis ? 20 : 0.5 - offset),
-    height = autoHeight(
-      scales,
-      geometry || isProjection(projection),
-      marginTop - marginTopAuto + marginBottom - marginBottomAuto
-    )
+    height = autoHeight(scales, geometry || isProjection(projection)) + Math.max(0, marginTop - marginTopAuto + marginBottom - marginBottomAuto)
   } = {}
 ) {
   return {
