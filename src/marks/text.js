@@ -140,7 +140,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
-    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
+    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? -0.29 - n : (164 - n * 100) / 200;
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
         if (!lines[i]) continue;

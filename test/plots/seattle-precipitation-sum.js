@@ -10,10 +10,7 @@ export default async function () {
       Plot.rectY(weather, Plot.map({y}, {x: "date", y: "precipitation", interval: d3.utcDay})),
       Plot.textY(
         weather,
-        Plot.map(
-          {y, text},
-          {x: "date", y: "precipitation", text: "precipitation", interval: d3.utcDay, frameAnchor: "bottom", dy: -3}
-        )
+        Plot.map({y, text}, {x: "date", y: "precipitation", text: "precipitation", interval: d3.utcDay, dy: -6})
       ),
       Plot.ruleY([0])
     ]
