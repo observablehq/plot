@@ -2348,7 +2348,6 @@ Plot.rect(athletes, Plot.bin({fillOpacity: "count"}, {x: "weight", y: "height"})
 Bins on *x* and *y*. Also groups on the first channel of *z*, *fill*, or
 *stroke*, if any.
 
-
 <!-- jsdoc binX -->
 
 #### Plot.binX(*outputs*, *options*)
@@ -2359,7 +2358,6 @@ Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
 
 Bins on *x*. Also groups on *y* and the first channel of *z*, *fill*, or
 *stroke*, if any.
-
 
 <!-- jsdoc binY -->
 
@@ -2458,7 +2456,6 @@ Plot.group({fill: "count"}, {x: "island", y: "species"})
 Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if
 any.
 
-
 <!-- jsdoc groupX -->
 
 #### Plot.groupX(*outputs*, *options*)
@@ -2469,7 +2466,6 @@ Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
 
 Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
 
-
 <!-- jsdoc groupY -->
 
 #### Plot.groupY(*outputs*, *options*)
@@ -2479,7 +2475,6 @@ Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
 ```
 
 Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
-
 
 <!-- jsdoc groupZ -->
 
@@ -2492,7 +2487,6 @@ Plot.groupZ({x: "proportion"}, {fill: "species"})
 Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of
 *z*, *fill*, or *stroke* are channels, then all data (within each facet) is
 placed into a single group.
-
 
 <!-- jsdocEnd -->
 
@@ -2571,7 +2565,6 @@ each channel declared in the specified *outputs* object, applies the
 corresponding map method. Each channel in *outputs* must have a corresponding
 input channel in *options*.
 
-
 <!-- jsdoc mapX -->
 
 #### Plot.mapX(*map*, *options*)
@@ -2583,7 +2576,6 @@ Plot.mapX("cumsum", {x: d3.randomNormal()})
 Equivalent to Plot.map({x: *map*, x1: *map*, x2: *map*}, *options*), but
 ignores any of **x**, **x1**, and **x2** not present in *options*.
 
-
 <!-- jsdoc mapY -->
 
 #### Plot.mapY(*map*, *options*)
@@ -2594,7 +2586,6 @@ Plot.mapY("cumsum", {y: d3.randomNormal()})
 
 Equivalent to Plot.map({y: *map*, y1: *map*, y2: *map*}, *options*), but
 ignores any of **y**, **y1**, and **y2** not present in *options*.
-
 
 <!-- jsdoc normalize -->
 
@@ -2805,7 +2796,6 @@ resulting in a count of the data points. The stack options (*offset*,
 *order*, and *reverse*) may be specified as part of the *options* object, if
 the only argument, or as a separate *stack* options argument.
 
-
 <!-- jsdoc stackY1 -->
 
 #### Plot.stackY1(*stack*, *options*)
@@ -2818,7 +2808,6 @@ Equivalent to
 [Plot.stackY](#plotstackystack-options),
 except that the **y1** channel is returned as the **y** channel. This can be
 used, for example, to draw a line at the bottom of each stacked area.
-
 
 <!-- jsdoc stackY2 ->
 
@@ -2833,7 +2822,6 @@ Equivalent to
 except that the **y2** channel is returned as the **y** channel. This can be
 used, for example, to draw a line at the top of each stacked area.
 
-
 <!-- jsdoc stackX -->
 
 #### Plot.stackX(*stack*, *options*)
@@ -2844,7 +2832,6 @@ Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
 
 See Plot.stackY, but with *x* as the input value channel, *y* as the stack
 index, *x1*, *x2* and *x* as the output channels.
-
 
 <!-- jsdoc stackX1 -->
 
@@ -2859,7 +2846,6 @@ Equivalent to
 except that the **x1** channel is returned as the **x** channel. This can be
 used, for example, to draw a line at the left edge of each stacked area.
 
-
 <!-- jsdoc stackX2 -->
 
 #### Plot.stackX2(*stack*, *options*)
@@ -2872,7 +2858,6 @@ Equivalent to
 [Plot.stackX](#plotstackxstack-options),
 except that the **x2** channel is returned as the **x** channel. This can be
 used, for example, to draw a line at the right edge of each stacked area.
-
 
 <!-- jsdocEnd -->
 
@@ -3144,7 +3129,6 @@ Given marks arranged along the *x* axis, the dodgeY transform piles them
 vertically by defining a *y* position channel that avoids overlapping. The
 *x* position channel is unchanged.
 
-
 <!-- jsdoc dodgeX -->
 
 #### Plot.dodgeX(*dodgeOptions*, *options*)
@@ -3156,7 +3140,6 @@ Plot.dodgeX({y: "value"})
 Equivalent to Plot.dodgeY, but piling horizontally, creating a new *x*
 position channel that avoids overlapping. The *y* position channel is
 unchanged.
-
 
 <!-- jsdocEnd -->
 

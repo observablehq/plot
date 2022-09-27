@@ -53,7 +53,8 @@ function injectJsDoc(readme: string) {
       if (!declaration) throw new Error(`${name} is not exported by src/index`);
       parts.push(getJsDocs(name, declaration, prefix));
       parts.push("");
-      replacement = parts.join("\n");
+      // Standardize on one leading and trailing new line for each replacement.
+      replacement = `\n${parts.join("\n").trim()}\n`;
     }
     if (!insideReplacement || isReplacementDelimiter) output.push(line);
     if (replacement) output.push(replacement);
