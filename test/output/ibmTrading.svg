@@ -1,4 +1,4 @@
-<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="435" viewBox="0 0 640 435" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <style>
     .plot {
       display: block;
@@ -14,52 +14,52 @@
     }
   </style>
   <g aria-label="y-axis" aria-description="↑ Volume (USD, millions)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,335.5)">
+    <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,304.5899188978348)">
+    <g class="tick" opacity="1" transform="translate(0,336.1554654420387)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,273.6798377956696)">
+    <g class="tick" opacity="1" transform="translate(0,301.8109308840773)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,242.76975669350443)">
+    <g class="tick" opacity="1" transform="translate(0,267.46639632611607)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,211.85967559133928)">
+    <g class="tick" opacity="1" transform="translate(0,233.12186176815476)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,180.94959448917407)">
+    <g class="tick" opacity="1" transform="translate(0,198.77732721019342)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,150.03951338700895)">
+    <g class="tick" opacity="1" transform="translate(0,164.43279265223217)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,119.12943228484376)">
+    <g class="tick" opacity="1" transform="translate(0,130.08825809427083)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,88.21935118267857)">
+    <g class="tick" opacity="1" transform="translate(0,95.74372353630952)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,57.309270080513386)">
+    <g class="tick" opacity="1" transform="translate(0,61.39918897834821)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,26.3991889783482)">
+    <g class="tick" opacity="1" transform="translate(0,27.05465442038689)">
       <line stroke="currentColor" x2="-6"></line>
       <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Volume (USD, millions)</text>
   </g>
-  <g aria-label="x-axis" transform="translate(0,335)" fill="none" text-anchor="middle" font-variant="tabular-nums">
+  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
     <g class="tick" opacity="1" transform="translate(55.5,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" dy="0.32em" transform="translate(0, 12.064177772475912) rotate(-40)" text-anchor="end">2018-04-16</text>
     </g>
@@ -140,25 +140,25 @@
     </g>
   </g>
   <g aria-label="bar">
-    <rect x="45" width="20" y="270.29283622072745" height="64.70716377927255"></rect>
-    <rect x="67" width="20" y="177.24267357482447" height="157.75732642517553"></rect>
-    <rect x="89" width="20" y="20" height="315"></rect>
-    <rect x="111" width="20" y="210.02899659989106" height="124.97100340010894"></rect>
-    <rect x="133" width="20" y="207.25481682097177" height="127.74518317902823"></rect>
-    <rect x="199" width="20" y="252.84718644666538" height="82.15281355333462"></rect>
-    <rect x="221" width="20" y="259.0152931306024" height="75.9847068693976"></rect>
-    <rect x="243" width="20" y="221.77019090654855" height="113.22980909345145"></rect>
-    <rect x="265" width="20" y="269.0718880171919" height="65.9281119828081"></rect>
-    <rect x="287" width="20" y="285.45886751350474" height="49.54113248649526"></rect>
-    <rect x="353" width="20" y="266.75826844669484" height="68.24173155330516"></rect>
-    <rect x="375" width="20" y="266.48162322083044" height="68.51837677916956"></rect>
-    <rect x="397" width="20" y="254.71260984118106" height="80.28739015881894"></rect>
-    <rect x="419" width="20" y="257.4373334903369" height="77.56266650966307"></rect>
-    <rect x="441" width="20" y="266.96382048602425" height="68.03617951397575"></rect>
-    <rect x="507" width="20" y="278.48091670469097" height="56.51908329530903"></rect>
-    <rect x="529" width="20" y="252.02034177718247" height="82.97965822281753"></rect>
-    <rect x="551" width="20" y="270.1506498476575" height="64.84935015234248"></rect>
-    <rect x="573" width="20" y="277.40524588233563" height="57.594754117664365"></rect>
-    <rect x="595" width="20" y="287.5622985325071" height="47.4377014674929"></rect>
+    <rect x="45" width="20" y="298.1031513563638" height="71.89684864363619"></rect>
+    <rect x="67" width="20" y="194.71408174980496" height="175.28591825019504"></rect>
+    <rect x="89" width="20" y="20" height="350"></rect>
+    <rect x="111" width="20" y="231.14332955543452" height="138.85667044456548"></rect>
+    <rect x="133" width="20" y="228.06090757885752" height="141.93909242114248"></rect>
+    <rect x="199" width="20" y="278.71909605185044" height="91.28090394814956"></rect>
+    <rect x="221" width="20" y="285.5725479228916" height="84.4274520771084"></rect>
+    <rect x="243" width="20" y="244.18910100727615" height="125.81089899272385"></rect>
+    <rect x="265" width="20" y="296.74654224132433" height="73.25345775867567"></rect>
+    <rect x="287" width="20" y="314.9542972372275" height="55.04570276277252"></rect>
+    <rect x="353" width="20" y="294.1758538296609" height="75.82414617033908"></rect>
+    <rect x="375" width="20" y="293.8684702453672" height="76.13152975463282"></rect>
+    <rect x="397" width="20" y="280.7917887124234" height="89.2082112875766"></rect>
+    <rect x="419" width="20" y="283.8192594337077" height="86.18074056629229"></rect>
+    <rect x="441" width="20" y="294.40424498447135" height="75.59575501552865"></rect>
+    <rect x="507" width="20" y="307.20101856076775" height="62.79898143923225"></rect>
+    <rect x="529" width="20" y="277.80037975242493" height="92.19962024757507"></rect>
+    <rect x="551" width="20" y="297.9451664973972" height="72.05483350260278"></rect>
+    <rect x="573" width="20" y="306.0058287581507" height="63.9941712418493"></rect>
+    <rect x="595" width="20" y="317.2914428138968" height="52.70855718610318"></rect>
   </g>
 </svg>
