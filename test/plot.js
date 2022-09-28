@@ -16,7 +16,11 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
-    const actual = beautify.html(root.outerHTML, {indent_size: 2});
+    const actual = beautify.html(root.outerHTML, {
+      indent_size: 2,
+      inline: ["text", "tspan", "span", "svg", "a", "i"],
+      indent_inner_html: false
+    });
     const outfile = path.resolve("./test/output", `${path.basename(name, ".js")}.${ext}`);
     const diffile = path.resolve("./test/output", `${path.basename(name, ".js")}-changed.${ext}`);
     let expected;
