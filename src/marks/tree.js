@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {cluster as Cluster} from "d3";
 import {isNoneish} from "../options.js";
 import {marks} from "../plot.js";
@@ -5,11 +10,6 @@ import {maybeTreeAnchor, treeLink, treeNode} from "../transforms/tree.js";
 import {dot} from "./dot.js";
 import {link} from "./link.js";
 import {text} from "./text.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 /**
  * A convenience compound mark for rendering a tree diagram, including a

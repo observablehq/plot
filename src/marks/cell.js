@@ -1,11 +1,11 @@
-import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
-import {applyTransform} from "../style.js";
-import {AbstractBar} from "./bar.js";
-
 /**
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  */
+
+import {identity, indexOf, maybeColorChannel, maybeTuple} from "../options.js";
+import {applyTransform} from "../style.js";
+import {AbstractBar} from "./bar.js";
 
 const defaults = {
   ariaLabel: "cell"

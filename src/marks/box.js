@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {min, max, quantile} from "d3";
 import {marks} from "../plot.js";
 import {groupX, groupY, groupZ} from "../transforms/group.js";
@@ -6,11 +11,6 @@ import {barX, barY} from "./bar.js";
 import {dot} from "./dot.js";
 import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 /**
  * ```js

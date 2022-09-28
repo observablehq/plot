@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {create} from "../context.js";
 import {identity, indexOf, number} from "../options.js";
 import {Mark} from "../plot.js";
@@ -13,11 +18,6 @@ import {
 import {maybeIdentityX, maybeIdentityY} from "../transforms/identity.js";
 import {maybeIntervalX, maybeIntervalY} from "../transforms/interval.js";
 import {maybeStackX, maybeStackY} from "../transforms/stack.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 export class AbstractBar extends Mark {
   constructor(data, channels, options = {}, defaults) {

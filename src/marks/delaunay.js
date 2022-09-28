@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {group, path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
@@ -11,11 +16,6 @@ import {
   applyTransform
 } from "../style.js";
 import {markers, applyMarkers} from "./marker.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 const delaunayLinkDefaults = {
   ariaLabel: "delaunay link",

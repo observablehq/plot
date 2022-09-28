@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {extent, range, sum, area as shapeArea, namespaces} from "d3";
 import {create} from "../context.js";
 import {identity, indexOf, isNone, isNoneish, maybeZ} from "../options.js";
@@ -5,11 +10,6 @@ import {Mark} from "../plot.js";
 import {qt} from "../stats.js";
 import {applyDirectStyles, applyGroupedChannelStyles, applyIndirectStyles, applyTransform, groupZ} from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 const defaults = {
   ariaLabel: "linear-regression",

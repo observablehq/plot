@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {contourDensity, create, geoPath} from "d3";
 import {identity, isTypedArray, maybeTuple, maybeZ, valueof} from "../options.js";
 import {Mark} from "../plot.js";
@@ -11,11 +16,6 @@ import {
   groupZ
 } from "../style.js";
 import {initializer} from "../transforms/basic.js";
-
-/**
- * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
- */
 
 const defaults = {
   ariaLabel: "density",
