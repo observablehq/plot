@@ -48,7 +48,7 @@ type Datum = Row | Value | Value[];
  * The marks data; typically an array of Datum, but can also
  * be defined as an iterable compatible with Array.from.
  */
-type Data<T extends Datum> = ArrayLike<T> | Iterable<T> | TypedArray;
+export type Data<T extends Datum = Datum> = ArrayLike<T> | Iterable<T> | TypedArray;
 
 /**
  * The data is then arrayified, and a range of indices is computed, serving as pointers
@@ -706,7 +706,7 @@ type SelectorFunction = "min" | "max" | ((I: Series, X: ValueArray) => Series);
  * Stack options
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-type StackOptions = {offset?: Offset; order?: StackOrder; reverse?: boolean};
+export type StackOptions = {offset?: Offset; order?: StackOrder; reverse?: boolean};
 
 /**
  * Stack order options:

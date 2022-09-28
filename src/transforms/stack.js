@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").StackOptions} StackOptions
+ */
+
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
@@ -12,6 +17,8 @@ import {basic} from "./basic.js";
  * index, *x1*, *x2* and *x* as the output channels.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackX(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
@@ -31,6 +38,8 @@ export function stackX(stack = {}, options = {}) {
  * used, for example, to draw a line at the left edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackX1(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
@@ -50,6 +59,8 @@ export function stackX1(stack = {}, options = {}) {
  * used, for example, to draw a line at the right edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackX2(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
@@ -72,6 +83,8 @@ export function stackX2(stack = {}, options = {}) {
  * the only argument, or as a separate *stack* options argument.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackY(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
@@ -91,6 +104,8 @@ export function stackY(stack = {}, options = {}) {
  * used, for example, to draw a line at the bottom of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackY1(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
@@ -110,6 +125,8 @@ export function stackY1(stack = {}, options = {}) {
  * used, for example, to draw a line at the top of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
+ * @param {StackOptions & MarkOptions} stack
+ * @param {MarkOptions} options
  */
 export function stackY2(stack = {}, options = {}) {
   if (arguments.length === 1) [stack, options] = mergeOptions(stack);
