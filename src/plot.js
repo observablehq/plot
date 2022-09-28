@@ -368,7 +368,7 @@ import {consumeWarnings, warn} from "./warnings.js";
  * const color = plot.scale("color"); // retrieve the color scale object
  * console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
  * ```
- * @param {import("../types.js").PlotOptions} options
+ * @param {import("./types.js").PlotOptions} options
  * @returns {Element}
  */
 export function plot(options = {}) {

@@ -5,28 +5,19 @@
  */
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorAccessor<T extends Datum, U extends Value = Value> = Accessor<T, U> | (string & {});
+type ColorAccessor = Accessor | (string & {});
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type pXX = `p${Digit}${Digit}` & {};
+type pXX = `p${Digit}${Digit}` & {};
 type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 
-export type GetColumn = {transform: () => ValueArray; label?: string};
+type GetColumn = {transform: () => ValueArray; label?: string};
 
-export type Accessor<T extends Datum, U extends Value = Value> =
-  | FieldNames<T>
-  | AccessorFunction<T, U>
-  | ValueArray
-  | TransformMethod;
+type Accessor = string | AccessorFunction | ValueArray | TransformMethod;
 
-export type AccessorValue<T extends Datum, U extends Value, V extends Accessor<T, U>> = V extends keyof T
-  ? T[V]
-  : V extends AccessorFunction<T, infer Val>
-  ? Val
-  : never;
-type AccessorFunction<T, U extends Value = Value> = (d: T, i: number) => U;
+type AccessorFunction = (d: any, i: number) => any;
 
-export type TransformMethod<T extends Datum = Datum> = {
+type TransformMethod<T extends Datum = Datum> = {
   transform: (data: Data<T> | null | undefined) => ValueArray | Iterable<Value> | null | undefined;
   label?: string;
 };
@@ -38,58 +29,47 @@ export type TransformMethod<T extends Datum = Datum> = {
 /**
  * Values are associated to screen encodings (positions, colors…) via scales.
  */
-export type Value = number | string | Date | boolean | null | undefined;
+type Value = number | string | Date | boolean | null | undefined;
 
 /**
  * A Row represents a data point with values attached to field names; typically,
  * a row from a tabular dataset.
  */
-export type Row = Record<string, Value>;
+type Row = Record<string, Value>;
 
 /**
  * A single Datum is often a Value, a Row, or an array of values; if a Row, possible field names
  * can be inferred from its keys to define accessors; if an array, typical accessors are indices,
  * and length, expressed as strings
  */
-export type Datum = Row | Value | Value[];
-export type FieldNames<T> = T extends Row
-  ? keyof T
-  : T extends Value[]
-  ? // eslint-disable-next-line @typescript-eslint/ban-types
-    "length" | "0" | "1" | "2" | (string & {})
-  : never;
+type Datum = Row | Value | Value[];
 
 /**
  * The marks data; typically an array of Datum, but can also
  * be defined as an iterable compatible with Array.from.
  */
-export type Data<T extends Datum> = ArrayLike<T> | Iterable<T> | TypedArray;
-
-/**
- * An array or typed array constructor, or any class that implements Array.from
- */
-export type ArrayType = ArrayConstructor | TypedArrayConstructor;
+type Data<T extends Datum> = ArrayLike<T> | Iterable<T> | TypedArray;
 
 /**
  * The data is then arrayified, and a range of indices is computed, serving as pointers
  * into the columnar representation of each channel
  */
-export type DataArray<T extends Datum> = T[] | TypedArray;
+type DataArray<T extends Datum = Datum> = T[] | TypedArray;
 
 /**
  * A series is an array of indices, used to group data into classes (e.g., groups and facets)
  */
-export type index = number; // integer
-export type Series = index[] | Uint32Array;
-export type Facets = Series[];
+type index = number; // integer
+type Series = index[] | Uint32Array;
+type Facets = Series[];
 
-export type NumericArray = number[] | TypedArray;
-export type ValueArray = NumericArray | Value[];
+type NumericArray = number[] | TypedArray;
+type ValueArray = NumericArray | Value[];
 
 /**
  * Typed arrays are preserved through arrayify
  */
-export type TypedArray =
+type TypedArray =
   | Int8Array
   | Uint8Array
   | Int16Array
@@ -99,35 +79,6 @@ export type TypedArray =
   | Uint8ClampedArray
   | Float32Array
   | Float64Array;
-
-export type TypedArrayConstructor =
-  | Int8ArrayConstructor
-  | Uint8ArrayConstructor
-  | Int16ArrayConstructor
-  | Uint16ArrayConstructor
-  | Int32ArrayConstructor
-  | Uint32ArrayConstructor
-  | Uint8ClampedArrayConstructor
-  | Float32ArrayConstructor
-  | Float64ArrayConstructor;
-
-export type Constructor<T extends TypedArray> = T extends Int8Array
-  ? Int8ArrayConstructor
-  : T extends Uint8Array
-  ? Uint8ArrayConstructor
-  : T extends Int16Array
-  ? Int16ArrayConstructor
-  : T extends Int32Array
-  ? Int32ArrayConstructor
-  : T extends Uint32Array
-  ? Uint32ArrayConstructor
-  : T extends Uint8ClampedArray
-  ? Uint8ClampedArrayConstructor
-  : T extends Float32Array
-  ? Float32ArrayConstructor
-  : T extends Float64Array
-  ? Float64ArrayConstructor
-  : never;
 
 /**
  * Plot API
@@ -160,11 +111,11 @@ type LayoutOptions = {
 /**
  * Facet options
  */
-type FacetOptions<T extends Datum> = {
+type FacetOptions = {
   facet?: {
-    data: Data<T>;
-    x?: Accessor<T>;
-    y?: Accessor<T>;
+    data: Data<Datum>;
+    x?: Accessor;
+    y?: Accessor;
     marginTop?: pixels; // the top margin
     marginRight?: pixels; // the right margin
     marginBottom?: pixels; // the bottom margin
@@ -185,12 +136,11 @@ type PlotStyleOptions = {
 /**
  * Scale options
  */
-type ScaleOptions = any; // TODO
 type ScalesOptions = {
   x?: ScaleOptions;
   y?: ScaleOptions;
   r?: ScaleOptions;
-  color?: ScaleOptions;
+  color?: ScaleOptions & ColorScaleOptions;
   opacity?: ScaleOptions;
   length?: ScaleOptions;
   symbol?: ScaleOptions;
@@ -200,12 +150,82 @@ type ScalesOptions = {
   grid?: boolean; // shorthand for x.grid and y.grid
 };
 
+export interface ScaleOptions {
+  domain?: any[];
+  range?: any[];
+  type?:
+    | "time"
+    | "utc"
+    | "diverging"
+    | "diverging-sqrt"
+    | "diverging-pow"
+    | "diverging-log"
+    | "diverging-symlog"
+    | "categorical"
+    | "ordinal"
+    | "cyclical"
+    | "sequential"
+    | "linear"
+    | "sqrt"
+    | "threshold"
+    | "quantile"
+    | "quantize"
+    | "pow"
+    | "log"
+    | "symlog"
+    | "utc"
+    | "time"
+    | "point"
+    | "band"
+    | "identity";
+  unknown?: any;
+  reverse?: boolean;
+  interval?: any;
+  tickFormat?: string | ((d: any) => any);
+  base?: number;
+  exponent?: number;
+  clamp?: boolean;
+  nice?: boolean;
+  zero?: boolean;
+  percent?: boolean;
+  transform?: (t: any) => any;
+  inset?: number;
+  round?: boolean;
+  insetLeft?: number;
+  insetRight?: number;
+  insetTop?: number;
+  insetBottom?: number;
+  padding?: number;
+  align?: number;
+  paddingInner?: number;
+  paddingOuter?: number;
+  axis?: "top" | "bottom" | "left" | "right" | null;
+  ticks?: number;
+  tickSize?: number;
+  tickPadding?: number;
+  tickRotate?: number;
+  line?: boolean;
+  label?: string;
+  labelAnchor?: "top" | "right" | "bottom" | "left" | "center";
+  labelOffset?: number;
+  legend?: boolean;
+  fontVariant?: string;
+  ariaLabel?: string;
+  ariaDescription?: string;
+}
+
+export interface ColorScaleOptions {
+  scheme?: OrdinalSchemes | QuantitativeSchemes;
+  interpolate?: "number" | "rgb" | "hsl" | "hcl" | "lab" | ((t: number) => string);
+  pivot?: number;
+}
+
 /**
  * An instantiated mark
  */
-export type InstantiatedMark<T extends Datum> = {
-  initialize: (data: Data<T>) => void;
-  z?: Accessor<T>; // copy the user option for error messages
+type InstantiatedMark = {
+  initialize: (data: Data<Datum>) => void;
+  z?: Accessor; // copy the user option for error messages
   clip?: "frame";
   dx: number;
   dy: number;
@@ -245,8 +265,8 @@ export type InstantiatedMark<T extends Datum> = {
 /**
  * A mark
  */
-type Mark<T extends Datum> = InstantiatedMark<T> | (() => SVGElement | null | undefined) | Mark<T>[];
-type MarksOptions<T extends Datum> = {marks?: Mark<T>[]};
+type Mark = InstantiatedMark | (() => SVGElement | null | undefined) | Mark[];
+type MarksOptions = {marks?: Mark[]};
 
 /**
  * Other top-level options
@@ -262,9 +282,9 @@ type TopLevelOptions = {
 /**
  * Plot options
  */
-export type PlotOptions<T extends Datum> = LayoutOptions &
-  FacetOptions<T> &
-  MarksOptions<T> &
+export type PlotOptions = LayoutOptions &
+  FacetOptions &
+  MarksOptions &
   PlotStyleOptions &
   ScalesOptions &
   TopLevelOptions;
@@ -284,33 +304,33 @@ export interface Chart extends HTMLElement {
   legend: (scaleName: "color" | "opacity" | "symbol", legendOptions: LegendOptions) => HTMLElement | undefined;
 }
 
-export type MaybeSymbol<T extends Datum> = Accessor<T> | SymbolName | SymbolObject | null | undefined;
+type MaybeSymbol = Accessor | SymbolName | SymbolObject | null | undefined;
 
 /**
  * Mark channel options
  */
-export type CommonChannelOptions<T extends Datum> = {
-  x?: Accessor<T> | number; // TODO: OptionsX
-  x1?: Accessor<T> | number;
-  x2?: Accessor<T> | number;
-  y?: Accessor<T> | number; // TODO: OptionsY
-  y1?: Accessor<T> | number;
-  y2?: Accessor<T> | number;
-  z?: Accessor<T>;
-  fill?: ColorAccessor<T> | null;
-  fillOpacity?: Accessor<T> | number | null;
-  r?: Accessor<T>; // TODO: OptionsR
-  stroke?: ColorAccessor<T> | null;
-  strokeOpacity?: Accessor<T> | number | null;
-  strokeWidth?: Accessor<T> | number | null;
-  symbol?: MaybeSymbol<T>;
-  opacity?: Accessor<T> | number | null;
+type CommonChannelOptions = {
+  x?: Accessor | number; // TODO: OptionsX
+  x1?: Accessor | number;
+  x2?: Accessor | number;
+  y?: Accessor | number; // TODO: OptionsY
+  y1?: Accessor | number;
+  y2?: Accessor | number;
+  z?: Accessor;
+  fill?: ColorAccessor | null;
+  fillOpacity?: Accessor | number | null;
+  r?: Accessor; // TODO: OptionsR
+  stroke?: ColorAccessor | null;
+  strokeOpacity?: Accessor | number | null;
+  strokeWidth?: Accessor | number | null;
+  symbol?: MaybeSymbol;
+  opacity?: Accessor | number | null;
 };
 
 /**
  * Mark constant style options
  */
-export type ConstantStyleOptions = {
+type ConstantStyleOptions = {
   ariaDescription?: string;
   ariaHidden?: boolean;
   target?: string;
@@ -328,7 +348,7 @@ export type ConstantStyleOptions = {
 /**
  * Default options for marks, strings or numbers
  */
-export type DefaultOptions = {
+type DefaultOptions = {
   ariaLabel?: string;
   fill?: string;
   fillOpacity?: number;
@@ -344,7 +364,7 @@ export type DefaultOptions = {
 /**
  * Channel styles
  */
-export type ChannelStyles = {
+type ChannelStyles = {
   ariaLabel?: ValueArray;
   title?: ValueArray;
   fill?: ValueArray;
@@ -378,8 +398,8 @@ The interval option is recommended to “regularize” sampled data; for example
  * @link TODO: unclear where to link
  * TODO: accept number or Date (for e.g., d3.utcYear)
  */
-export type Interval = number | IntervalObject;
-export type IntervalObject = {
+type Interval = number | IntervalObject;
+type IntervalObject = {
   floor: (v: number) => number;
   offset: (v: number) => number;
   range: (lo: number, hi: number) => number[];
@@ -400,7 +420,7 @@ export type IntervalObject = {
  * * deviation - each value is transformed by subtracting the mean and then dividing by the standard deviation
  * * a function to be passed an array of values, returning the desired basis
  */
-export type Basis =
+type Basis =
   | "first"
   | "last"
   | "min"
@@ -418,13 +438,13 @@ type BasisFunction = (V: ValueArray) => Value;
 /**
  * Other Mark options
  */
-type OtherMarkOptions<T extends Datum> = {
+type OtherMarkOptions = {
   // the following are necessarily channels
-  title?: Accessor<T>;
-  href?: Accessor<T>;
-  ariaLabel?: Accessor<T>;
+  title?: Accessor;
+  href?: Accessor;
+  ariaLabel?: Accessor;
   // filter & sort
-  filter?: Accessor<T>;
+  filter?: Accessor;
   sort?: SortOption | null;
   reverse?: boolean;
   // include in facet
@@ -434,8 +454,8 @@ type OtherMarkOptions<T extends Datum> = {
   // basis for the normalize transform
   basis?: Basis;
   // transform
-  transform?: TransformOption<T>;
-  initializer?: InitializerOption<T>;
+  transform?: TransformOption;
+  initializer?: InitializerOption;
 };
 
 /**
@@ -445,7 +465,7 @@ type OtherMarkOptions<T extends Datum> = {
  * * an object with a reduce method, an optionally a scope
  * @link https://github.com/observablehq/plot/blob/main/README.md#group
  */
-export type AggregationMethod =
+type AggregationMethod =
   | ((
       | "first"
       | "last"
@@ -485,7 +505,7 @@ export type AggregationMethod =
  * @link https://github.com/observablehq/plot/blob/main/README.md#group
  */
 
-export type Aggregate = {
+type Aggregate = {
   label?: string;
   reduce: (
     I: Series,
@@ -499,7 +519,7 @@ export type Aggregate = {
 /**
  * The extent of a bin, for extent-based reducers
  */
-export type BinExtent = {
+type BinExtent = {
   x1?: number | Date;
   x2?: number | Date;
   y1?: number | Date;
@@ -514,7 +534,7 @@ type AggregationFunction = (values?: ValueArray, extent?: BinExtent) => Value;
  * @link https://github.com/observablehq/plot/blob/main/README.md#transforms
  * @link https://github.com/observablehq/plot/blob/main/README.md#sort-options
  */
-export type SortOption = (
+type SortOption = (
   | // Field, accessor or comparator
   ((string | ((d: Datum) => Datum) | Comparator) & {value?: never; channel?: never}) // duck-typing in isDomainSort
   | ChannelSortOption
@@ -524,7 +544,7 @@ export type SortOption = (
 /**
  * A comparator function returns a number to sort two values
  */
-export type Comparator = (a: Datum, b: Datum) => number;
+type Comparator = (a: Datum, b: Datum) => number;
 
 type SortChannel = "x" | "y" | "r" | "data";
 
@@ -534,7 +554,7 @@ type ChannelSortOption = {
   value?: never; // duck-typing in isDomainSort
 };
 
-export type DomainSortOption = {
+type DomainSortOption = {
   x?: SortChannel | SortValue;
   y?: SortChannel | SortValue;
   fx?: SortChannel | SortValue;
@@ -556,17 +576,17 @@ type SortValue = {
 /**
  * Definition for the transform and initializer functions.
  */
-export type TransformFunction<T extends Datum> = (
-  this: InstantiatedMark<T>,
-  data: DataArray<T>,
+type TransformFunction = (
+  this: InstantiatedMark,
+  data: DataArray,
   facets: Series[]
-) => {data: DataArray<T>; facets: Series[]; channels?: never};
+) => {data: DataArray; facets: Series[]; channels?: never};
 
 /**
  * Plot’s transforms provide a convenient mechanism for transforming data as part of a plot specification.
  * @link https://github.com/observablehq/plot/blob/main/README.md#transforms
  */
-export type TransformOption<T extends Datum> = TransformFunction<T> | null | undefined;
+type TransformOption = TransformFunction | null | undefined;
 
 /**
  * Initializers can be used to transform and derive new channels prior to rendering. Unlike transforms which
@@ -576,15 +596,15 @@ export type TransformOption<T extends Datum> = TransformFunction<T> | null | und
  * may not, as desired) be passed to scales.
  * @link https://github.com/observablehq/plot/blob/main/README.md#initializers
  */
-export type InitializerFunction<T extends Datum> = (
-  this: InstantiatedMark<T>,
-  data: DataArray<T>,
+type InitializerFunction = (
+  this: InstantiatedMark,
+  data: DataArray,
   facets: Series[],
   channels?: any,
   scales?: any,
   dimensions?: Dimensions
-) => {data: DataArray<T>; facets: Series[]; channels?: any};
-export type InitializerOption<T extends Datum> = InitializerFunction<T> | TransformOption<T>; // TODO
+) => {data: DataArray; facets: Series[]; channels?: any};
+type InitializerOption = InitializerFunction | TransformOption;
 
 /**
  * The bin transform’s value option
@@ -617,8 +637,8 @@ export type InitializerOption<T extends Datum> = InitializerFunction<T> | Transf
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#bin
  */
-export type BinValue<T extends Datum> = {
-  value?: Accessor<T>;
+type BinValue = {
+  value?: Accessor;
   thresholds?: any;
   interval?: number | IntervalObject;
   domain?: number[] | ((V: ValueArray) => ValueArray);
@@ -630,7 +650,7 @@ export type BinValue<T extends Datum> = {
 /**
  * The group transform's output options
  */
-export type OutputOptions<T extends Datum> = Partial<{[P in keyof CommonChannelOptions<T>]: AggregationMethod}> & {
+type OutputOptions = Partial<{[P in keyof CommonChannelOptions]: AggregationMethod}> & {
   data?: any; // TODO: this option is not tested in any example, and not documented (https://github.com/observablehq/plot/pull/272)
   title?: AggregationMethod;
   href?: AggregationMethod;
@@ -638,12 +658,12 @@ export type OutputOptions<T extends Datum> = Partial<{[P in keyof CommonChannelO
   sort?: AggregationMethod;
   reverse?: boolean;
   interval?: number | Interval;
-} & BinOptions<T>;
+} & BinOptions;
 
-export type Reducer<T extends Datum> = {
-  name?: keyof OutputOptions<T>;
+type Reducer = {
+  name?: keyof OutputOptions;
   output: GetColumn;
-  initialize: (data: DataArray<T>) => void;
+  initialize: (data: DataArray) => void;
   scope: (scope: Aggregate["scope"], I?: Series) => void;
   reduce: (I: Series, extent?: BinExtent) => ValueArray;
   label?: string;
@@ -653,7 +673,7 @@ export type Reducer<T extends Datum> = {
  * The shuffle transform’s seed option
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotshuffleoptions
  */
-export type ShuffleOptions = {
+type ShuffleOptions = {
   seed?: null | number;
 };
 
@@ -665,9 +685,9 @@ export type ShuffleOptions = {
  * * a function to be passed an array of values, returning new values
  * * an object that implements the map method
  */
-export type MapMethods = "cumsum" | "rank" | "quantile" | ((S: ValueArray) => ValueArray) | MapMethod; // duck-typing in maybeMap
+type MapMethods = "cumsum" | "rank" | "quantile" | ((S: ValueArray) => ValueArray) | MapMethod; // duck-typing in maybeMap
 
-export type MapMethod = {map: (I: Series, S: ValueArray, T: ValueArray) => void};
+type MapMethod = {map: (I: Series, S: ValueArray, T: ValueArray) => void};
 
 /**
  * Selects the points of each series selected by the selector, which can be specified
@@ -679,8 +699,8 @@ export type MapMethod = {map: (I: Series, S: ValueArray, T: ValueArray) => void}
  * for the specified channel.
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotselectselector-options
  */
-export type Selector = ((I: Series) => Series) | "first" | "last" | Record<string, SelectorFunction>;
-export type SelectorFunction = "min" | "max" | ((I: Series, X: ValueArray) => Series);
+type Selector = ((I: Series) => Series) | "first" | "last" | Record<string, SelectorFunction>;
+type SelectorFunction = "min" | "max" | ((I: Series, X: ValueArray) => Series);
 
 /**
  * Stack options
@@ -701,15 +721,7 @@ type StackOptions = {offset?: Offset; order?: StackOrder; reverse?: boolean};
  * * an array of z values
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export type StackOrder =
-  | null
-  | "value"
-  | "sum"
-  | "appearance"
-  | "inside-out"
-  | string
-  | ((d: Datum) => Value)
-  | ValueArray;
+type StackOrder = null | "value" | "sum" | "appearance" | "inside-out" | string | ((d: Datum) => Value) | ValueArray;
 
 /**
  * Stack offset options
@@ -727,7 +739,7 @@ export type StackOrder =
  * If the offset is specified as a function, it will receive four arguments: an index of stacks nested by facet and then stack, an array of start values, an array of end values, and an array of z values. For stackX, the start and end values correspond to x1 and x2, while for stackY, the start and end values correspond to y1 and y2. The offset function is then responsible for mutating the arrays of start and end values, such as by subtracting a common offset for each of the indices that pertain to the same stack.
  */
 type Offset = null | "expand" | "center" | "wiggle" | OffsetFunction;
-export type OffsetFunction = (stacks: Series[][], Y1: Float64Array, Y2: Float64Array, Z?: ValueArray | null) => void;
+type OffsetFunction = (stacks: Series[][], Y1: Float64Array, Y2: Float64Array, Z?: ValueArray | null) => void;
 
 /**
  * Window options
@@ -760,7 +772,7 @@ export type OffsetFunction = (stacks: Series[][], Y1: Float64Array, Y2: Float64A
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotwindowk
  */
-export type WindowOptions = {
+type WindowOptions = {
   k?: number;
   anchor?: "start" | "middle" | "end";
   reduce?:
@@ -787,8 +799,8 @@ export type WindowOptions = {
 /**
  * The bin options can be specified as part of the inputs or of the outputs
  */
-export type BinOptions<T extends Datum> = {
-  value?: Accessor<T>;
+type BinOptions = {
+  value?: Accessor;
   cumulative?: boolean;
   domain?: number[];
   thresholds?: number | number[];
@@ -798,20 +810,14 @@ export type BinOptions<T extends Datum> = {
 /**
  * Mark options (as passed by the user or returned by a transform)
  */
-export type MarkOptions<T extends Datum> = CommonChannelOptions<T> &
-  ConstantStyleOptions &
-  InsetOptions &
-  BinOptions<T> &
-  StackOptions &
-  WindowOptions &
-  OtherMarkOptions<T>;
-export type LineOptions<T extends Datum> = MarkOptions<T> & MarkerOptions;
-// export type RectOptions = MarkOptions & InsetOptions; // TODO: only add inset options where they are meaningful (bars, rects, etc)
+export type MarkOptions = CommonChannelOptions & ConstantStyleOptions & InsetOptions & OtherMarkOptions;
+type LineOptions = MarkOptions & MarkerOptions;
+// type RectOptions = MarkOptions & InsetOptions; // TODO: only add inset options where they are meaningful (bars, rects, etc)
 
 /**
  * The scales passed to a mark's render function
  */
-export type Scales = {
+type Scales = {
   x?: Scale;
   y?: Scale;
   r?: Scale;
@@ -824,7 +830,7 @@ type Scale = any; // TODO
 /**
  * The dimensions passed to a mark's render function
  */
-export type Dimensions = {
+type Dimensions = {
   width: pixels;
   height: pixels;
   marginLeft: pixels;
@@ -837,29 +843,20 @@ export type Dimensions = {
  * A marker defines a graphic drawn on vertices of a delaunay, line or a link mark
  * @link https://github.com/observablehq/plot/blob/main/README.md#markers
  */
-export type MarkerOption =
-  | "none"
-  | "arrow"
-  | "dot"
-  | "circle"
-  | "circle-stroke"
-  | MarkerFunction
-  | boolean
-  | null
-  | undefined;
-export type MarkerOptions = {
+type MarkerOption = "none" | "arrow" | "dot" | "circle" | "circle-stroke" | MarkerFunction | boolean | null | undefined;
+type MarkerOptions = {
   marker?: MarkerOption;
   markerStart?: MarkerOption;
   markerMid?: MarkerOption;
   markerEnd?: MarkerOption;
 };
-export type MarkerFunction = (color: string, document: Context["document"]) => SVGElement;
+type MarkerFunction = (color: string, document: Context["document"]) => SVGElement;
 type MaybeMarkerFunction = MarkerFunction | null;
 
 /**
  * Ordinal color schemes
  */
-export type OrdinalSchemes =
+type OrdinalSchemes =
   | "accent"
   | "category10"
   | "dark2"
@@ -914,7 +911,7 @@ export type OrdinalSchemes =
 /**
  * Quantitative color schemes
  */
-export type QuantitativeSchemes = DivergingSchemes | SequentialSchemes | CyclicalSchemes;
+type QuantitativeSchemes = DivergingSchemes | SequentialSchemes | CyclicalSchemes;
 
 /**
  * Diverging color schemes
@@ -972,7 +969,7 @@ type CyclicalSchemes = "rainbow" | "sinebow";
 /**
  * The context in which Plot operates
  */
-export interface Context {
+interface Context {
   document: Document;
 }
 
@@ -980,7 +977,7 @@ export interface Context {
  * Know symbols for dots
  * @link https://github.com/observablehq/plot/blob/main/README.md#dot
  */
-export type SymbolName =
+type SymbolName =
   | "asterisk"
   | "circle"
   | "cross"
@@ -1000,12 +997,12 @@ export type SymbolName =
  * A symbol object with a draw function
  * @link https://github.com/d3/d3-shape/blob/main/README.md#custom-symbol-types
  */
-export type SymbolObject = {draw: (context: CanvasPath, size: number) => void};
+type SymbolObject = {draw: (context: CanvasPath, size: number) => void};
 
 /**
  * A restrictive definition of D3 selections
  */
-export type Selection = {
+type Selection = {
   append: (name: string) => Selection;
   attr: (name: string, value: any) => Selection;
   call: (callback: (selection: Selection, ...args: any[]) => void, ...args: any[]) => Selection;
