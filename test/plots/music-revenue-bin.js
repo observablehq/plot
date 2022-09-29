@@ -19,15 +19,19 @@ export default async function () {
         data,
         Plot.binX(
           {y: "sum"},
-          {
+          Plot.windowY({
             ...stack,
+            k: 7,
             y: (d) => -d.revenue,
             fill: "#eee",
             facet: "exclude"
-          }
+          })
         )
       ),
-      Plot.rectY(data, Plot.binX({y: "sum"}, {...stack, fill: "group", title: (d) => `${d.format}\n${d.group}`})),
+      Plot.rectY(
+        data,
+        Plot.binX({y: "sum"}, Plot.windowY({...stack, k: 7, fill: "group", title: (d) => `${d.format}\n${d.group}`}))
+      ),
       Plot.ruleY([0])
     ]
   });
