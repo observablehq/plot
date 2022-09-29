@@ -2,6 +2,7 @@ import {stratify, tree} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
+import {originals} from "../facet.js";
 
 /**
  * Based on the tree options described above, populates the **x** and **y**
@@ -155,7 +156,7 @@ export function treeLink(options = {}) {
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
-      for (const facet of facets) {
+      for (const facet of originals(facets)) {
         const treeFacet = [];
         const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
