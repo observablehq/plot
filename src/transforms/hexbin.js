@@ -3,6 +3,7 @@ import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
+import {originals} from "../facet.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -101,7 +102,7 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
     const BY = [];
     let i = -1;
     for (const o of outputs) o.initialize(data);
-    for (const facet of facets) {
+    for (const facet of originals(facets)) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
       for (const [f, I] of maybeGroup(facet, G)) {
