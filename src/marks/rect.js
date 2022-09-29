@@ -1,6 +1,7 @@
 /**
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").RectOptions} RectOptions
  */
 
 import {create} from "../context.js";
@@ -140,7 +141,7 @@ export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
  * 0. If the **y** option is not specified, it defaults to the identity
  * function.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {RectOptions & MarkOptions} options
  */
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));

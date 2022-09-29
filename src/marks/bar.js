@@ -1,5 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").RectOptions} RectOptions
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").StackOptions} StackOptions
  */
@@ -170,7 +171,7 @@ export class BarY extends AbstractBar {
  * If the **y** channel is not specified, the bar will span the full vertical
  * extent of the plot (or facet).
  * @param {Data} data
- * @param {MarkOptions & StackOptions} options
+ * @param {MarkOptions & StackOptions & RectOptions} options
  */
 export function barX(data, options = {y: indexOf, x2: identity}) {
   return new BarX(data, maybeStackX(maybeIntervalX(maybeIdentityX(options))));
@@ -212,7 +213,7 @@ export function barX(data, options = {y: indexOf, x2: identity}) {
  * If the **x** channel is not specified, the bar will span the full horizontal
  * extent of the plot (or facet).
  * @param {Data} data
- * @param {MarkOptions & StackOptions} options
+ * @param {MarkOptions & StackOptions & RectOptions} options
  */
 export function barY(data, options = {x: indexOf, y2: identity}) {
   return new BarY(data, maybeStackY(maybeIntervalY(maybeIdentityY(options))));

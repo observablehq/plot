@@ -1,3 +1,9 @@
+/**
+ * @typedef {import("../types.js").ArrowOptions} ArrowOptions
+ * @typedef {import("../types.js").Data} Data
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ */
+
 import {create} from "../context.js";
 import {radians} from "../math.js";
 import {constant} from "../options.js";
@@ -182,8 +188,8 @@ function circleCircleIntersect([ax, ay, ar], [bx, by, br], sign) {
  * ```
  *
  * Returns a new arrow with the given *data* and *options*.
- * @param {import("../types.js").Data} data
- * @param {import("../types.js").MarkOptions} options
+ * @param {Data} data
+ * @param {ArrowOptions & MarkOptions} options
  */
 export function arrow(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;

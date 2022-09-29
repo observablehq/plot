@@ -1,3 +1,8 @@
+/**
+ * @typedef {import("../types.js").ConstantStyleOptions} ConstantStyleOptions
+ * @typedef {import("../types.js").RectOptions} RectOptions
+ */
+
 import {create} from "../context.js";
 import {number} from "../options.js";
 import {Mark} from "../plot.js";
@@ -43,6 +48,8 @@ export class Frame extends Mark {
  * ```
  *
  * Returns a new frame with the specified *options*.
+ *
+ * @param {ConstantStyleOptions & RectOptions}
  */
 export function frame(options) {
   return new Frame(options);

@@ -330,7 +330,7 @@ type CommonChannelOptions = {
 /**
  * Mark constant style options
  */
-type ConstantStyleOptions = {
+export type ConstantStyleOptions = {
   ariaDescription?: string;
   ariaHidden?: boolean;
   target?: string;
@@ -378,14 +378,22 @@ type ChannelStyles = {
 };
 
 /**
- * Inset options for marks
+ * Rect options for marks
  */
-type InsetOptions = {
+export type RectOptions = RadiusOptions & InsetOptionsX & InsetOptionsY;
+
+export type RadiusOptions = {rx?: number; ry?: number};
+
+export type InsetOptionsX = {
+  inset?: pixels;
+  insetTop?: pixels;
+  insetBottom?: pixels;
+};
+
+export type InsetOptionsY = {
   inset?: pixels;
   insetLeft?: pixels;
   insetRight?: pixels;
-  insetTop?: pixels;
-  insetBottom?: pixels;
 };
 
 /**
@@ -709,6 +717,18 @@ type SelectorFunction = "min" | "max" | ((I: Series, X: ValueArray) => Series);
 export type StackOptions = {offset?: Offset; order?: StackOrder; reverse?: boolean};
 
 /**
+ * Arrow options
+ */
+export type ArrowOptions = {
+  bend?: number | boolean;
+  headAngle?: number;
+  inset?: number;
+  insetStart?: number;
+  insetEnd?: number;
+  length?: number;
+};
+
+/**
  * Stack order options:
  * The following order methods are supported:
  *
@@ -810,9 +830,9 @@ type BinOptions = {
 /**
  * Mark options (as passed by the user or returned by a transform)
  */
-export type MarkOptions = CommonChannelOptions & ConstantStyleOptions & InsetOptions & OtherMarkOptions;
+export type MarkOptions = CommonChannelOptions & ConstantStyleOptions & OtherMarkOptions;
+
 type LineOptions = MarkOptions & MarkerOptions;
-// type RectOptions = MarkOptions & InsetOptions; // TODO: only add inset options where they are meaningful (bars, rects, etc)
 
 /**
  * The scales passed to a mark's render function
