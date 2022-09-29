@@ -44,8 +44,12 @@ export function getter({plan}, X) {
 
 // returns an array of X expanded along the facets’ reindexing plan
 export function expander({plan}, X) {
-  if (!plan || X.length === plan.length) return X;
+  if (!plan || !X || X.length === plan.length) return X;
   const V = new X.constructor(plan.length);
   for (let i = 0; i < plan.length; ++i) V[i] = X[plan[i]];
   return V;
+}
+
+export function originals(facets) {
+  return facets.plan ? facets.map((facet) => facet.map((i) => facets.plan[i])) : facets;
 }
