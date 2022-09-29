@@ -22,6 +22,7 @@ export default async function () {
           Plot.windowY({
             ...stack,
             k: 7,
+            interval: d3.utcYear.every(5),
             y: (d) => -d.revenue,
             fill: "#eee",
             facet: "exclude"
@@ -30,7 +31,16 @@ export default async function () {
       ),
       Plot.rectY(
         data,
-        Plot.binX({y: "sum"}, Plot.windowY({...stack, k: 7, fill: "group", title: (d) => `${d.format}\n${d.group}`}))
+        Plot.binX(
+          {y: "sum"},
+          Plot.windowY({
+            ...stack,
+            k: 7,
+            interval: d3.utcYear.every(5),
+            fill: "group",
+            title: (d) => `${d.format}\n${d.group}`
+          })
+        )
       ),
       Plot.ruleY([0])
     ]

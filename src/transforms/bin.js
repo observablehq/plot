@@ -1,7 +1,14 @@
-import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
+import {
+  bin as binner,
+  extent,
+  sum,
+  thresholdFreedmanDiaconis,
+  thresholdScott,
+  thresholdSturges,
+  utcTickInterval
+} from "d3";
 import {
   valueof,
-  range,
   identity,
   maybeColumn,
   maybeTuple,
@@ -29,7 +36,7 @@ import {
 } from "./group.js";
 import {maybeInsetX, maybeInsetY} from "./inset.js";
 import {maybeInterval} from "./interval.js";
-import {originals} from "../facet.js";
+import {expander, getter, originals} from "../facet.js";
 
 /**
  * ```js
@@ -173,23 +180,30 @@ function binn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
-      const BX = bx ? bx(data) : [[, , (I) => I]];
-      const BY = by ? by(data) : [[, , (I) => I]];
+      const BX = bx ? bx(data, facets) : [[, , (I) => I]];
+      const BY = by ? by(data, facets) : [[, , (I) => I]];
       const BX1 = bx && setBX1([]);
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
       const BY2 = by && setBY2([]);
+
+      const eG = getter(facets, G);
+      const eK = getter(facets, K);
+      const gZ = getter(facets, Z);
+      const gF = getter(facets, F);
+      const gS = getter(facets, S);
+
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
       if (filter) filter.initialize(data);
-      for (const facet of originals(facets)) {
+      for (const facet of facets) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        for (const [f, I] of maybeGroup(facet, G)) {
-          for (const [k, g] of maybeGroup(I, K)) {
+        for (const [f, I] of maybeGroup(facet, eG)) {
+          for (const [k, g] of maybeGroup(I, eK)) {
             for (const [x1, x2, fx] of BX) {
               const bb = fx(g);
               for (const [y1, y2, fy] of BY) {
@@ -197,11 +211,11 @@ function binn(
                 const b = fy(bb);
                 if (filter && !filter.reduce(b, extent)) continue;
                 groupFacet.push(i++);
-                groupData.push(reduceData.reduce(b, data, extent));
+                groupData.push(reduceData.reduce(originals(b), data, extent));
                 if (K) GK.push(k);
-                if (Z) GZ.push(G === Z ? f : Z[b[0]]);
-                if (F) GF.push(G === F ? f : F[b[0]]);
-                if (S) GS.push(G === S ? f : S[b[0]]);
+                if (Z) GZ.push(G === Z ? f : gZ(b[0]));
+                if (F) GF.push(G === F ? f : gF(b[0]));
+                if (S) GS.push(G === S ? f : gS(b[0]));
                 if (BX1) BX1.push(x1), BX2.push(x2);
                 if (BY1) BY1.push(y1), BY2.push(y2);
                 for (const o of outputs) o.reduce(b, extent);
@@ -249,8 +263,8 @@ function maybeBinValueTuple(options) {
 function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
-  const bin = (data) => {
-    let V = valueof(data, value, Array); // d3.bin prefers Array input
+  const bin = (data, facets) => {
+    let V = expander(facets, valueof(data, value, Array)); // d3.bin prefers Array input
     const bin = binner().value((i) => V[i]);
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
       V = V.map(coerceDate);
@@ -280,7 +294,7 @@ function maybeBin(options) {
       }
       bin.thresholds(t).domain(d);
     }
-    let bins = bin(range(data)).map(binset);
+    let bins = bin(union(facets)).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.map(binfilter);
   };
@@ -365,4 +379,11 @@ function binfilter([{x0, x1}, set]) {
 
 function binempty() {
   return new Uint32Array(0);
+}
+
+function union(facets) {
+  const U = new Uint32Array(sum(facets, (d) => d.length));
+  let c = 0;
+  for (const facet of facets) for (const i of facet) U[c++] = i;
+  return U;
 }

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function () {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
-  const noise = d3.randomNormal.source(d3.randomLcg(42))();
+  const noise = d3.randomNormal.source(d3.randomLcg(42))(0, 0.1);
   return Plot.plot({
     width: 960,
     height: 320,

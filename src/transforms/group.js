@@ -31,7 +31,7 @@ import {
   percentile
 } from "../options.js";
 import {basic} from "./basic.js";
-import {originals} from "../facet.js";
+import {getter, originals} from "../facet.js";
 
 /**
  * ```js
@@ -159,26 +159,34 @@ function groupn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
+
+      const eG = getter(facets, G);
+      const eX = getter(facets, X);
+      const eY = getter(facets, Y);
+      const gZ = getter(facets, Z);
+      const gF = getter(facets, F);
+      const gS = getter(facets, S);
+
       let i = 0;
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
       if (filter) filter.initialize(data);
-      for (const facet of originals(facets)) {
+      for (const facet of facets) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
         if (filter) filter.scope("facet", facet);
-        for (const [f, I] of maybeGroup(facet, G)) {
-          for (const [y, gg] of maybeGroup(I, Y)) {
-            for (const [x, g] of maybeGroup(gg, X)) {
+        for (const [f, I] of maybeGroup(facet, eG)) {
+          for (const [y, gg] of maybeGroup(I, eY)) {
+            for (const [x, g] of maybeGroup(gg, eX)) {
               if (filter && !filter.reduce(g)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduce(g, data));
+              groupData.push(reduceData.reduce(originals(g), data));
               if (X) GX.push(x);
               if (Y) GY.push(y);
-              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
-              if (F) GF.push(G === F ? f : F[g[0]]);
-              if (S) GS.push(G === S ? f : S[g[0]]);
+              if (Z) GZ.push(G === Z ? f : gZ(g[0]));
+              if (F) GF.push(G === F ? f : gF(g[0]));
+              if (S) GS.push(G === S ? f : gS(g[0]));
               for (const o of outputs) o.reduce(g);
               if (sort) sort.reduce(g);
             }
@@ -257,10 +265,10 @@ export function maybeEvaluator(name, reduce, inputs) {
   };
 }
 
-export function maybeGroup(I, X) {
-  return X
+export function maybeGroup(I, x) {
+  return x
     ? sort(
-        grouper(I, (i) => X[i]),
+        grouper(I, (i) => x(i)),
         first
       )
     : [[, I]];

@@ -2,7 +2,7 @@ import {stratify, tree} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {column, identity, isObject, one, valueof} from "../options.js";
 import {basic} from "./basic.js";
-import {originals} from "../facet.js";
+import {getter} from "../facet.js";
 
 /**
  * Based on the tree options described above, populates the **x** and **y**
@@ -51,20 +51,20 @@ export function treeNode(options = {}) {
     y: Y,
     frameAnchor,
     ...basic(remainingOptions, (data, facets) => {
-      const P = normalize(valueof(data, path));
+      const gP = getter(facets, normalize(valueof(data, path)));
       const X = setX([]);
       const Y = setY([]);
       let treeIndex = -1;
       const treeData = [];
       const treeFacets = [];
-      const rootof = stratify().path((i) => P[i]);
+      const rootof = stratify().path(gP);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
+        const root = rootof(facet.filter((i) => gP(i) != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
@@ -156,7 +156,7 @@ export function treeLink(options = {}) {
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
-      for (const facet of originals(facets)) {
+      for (const facet of facets) {
         const treeFacet = [];
         const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);

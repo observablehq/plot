@@ -3,7 +3,7 @@ import {sqrt3} from "../symbols.js";
 import {identity, isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
-import {originals} from "../facet.js";
+import {getter} from "../facet.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -101,19 +101,28 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
     const BX = [];
     const BY = [];
     let i = -1;
+
+    // Mind reindexed facets
+    const eG = getter(facets, G);
+    const gX = getter(facets, X);
+    const gY = getter(facets, Y);
+    const gZ = getter(facets, Z);
+    const gF = getter(facets, F);
+    const gS = getter(facets, S);
+    const gQ = getter(facets, Q);
     for (const o of outputs) o.initialize(data);
-    for (const facet of originals(facets)) {
+    for (const facet of facets) {
       const binFacet = [];
       for (const o of outputs) o.scope("facet", facet);
-      for (const [f, I] of maybeGroup(facet, G)) {
-        for (const bin of hbin(I, X, Y, binWidth)) {
+      for (const [f, I] of maybeGroup(facet, eG)) {
+        for (const bin of hbin(I, gX, gY, binWidth)) {
           binFacet.push(++i);
           BX.push(bin.x);
           BY.push(bin.y);
-          if (Z) GZ.push(G === Z ? f : Z[bin[0]]);
-          if (F) GF.push(G === F ? f : F[bin[0]]);
-          if (S) GS.push(G === S ? f : S[bin[0]]);
-          if (Q) GQ.push(G === Q ? f : Q[bin[0]]);
+          if (Z) GZ.push(G === Z ? f : gZ(bin[0]));
+          if (F) GF.push(G === F ? f : gF(bin[0]));
+          if (S) GS.push(G === S ? f : gS(bin[0]));
+          if (Q) GQ.push(G === Q ? f : gQ(bin[0]));
           for (const o of outputs) o.reduce(bin);
         }
       }
@@ -140,12 +149,12 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
   });
 }
 
-function hbin(I, X, Y, dx) {
+function hbin(I, x, y, dx) {
   const dy = dx * (1.5 / sqrt3);
   const bins = new Map();
   for (const i of I) {
-    let px = X[i],
-      py = Y[i];
+    let px = x(i),
+      py = y(i);
     if (isNaN(px) || isNaN(py)) continue;
     let pj = Math.round((py = (py - oy) / dy)),
       pi = Math.round((px = (px - ox) / dx - (pj & 1) / 2)),
