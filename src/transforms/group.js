@@ -31,6 +31,7 @@ import {
   percentile
 } from "../options.js";
 import {basic} from "./basic.js";
+import {originals} from "../facet.js";
 
 /**
  * ```js
@@ -162,7 +163,7 @@ function groupn(
       for (const o of outputs) o.initialize(data);
       if (sort) sort.initialize(data);
       if (filter) filter.initialize(data);
-      for (const facet of facets) {
+      for (const facet of originals(facets)) {
         const groupFacet = [];
         for (const o of outputs) o.scope("facet", facet);
         if (sort) sort.scope("facet", facet);
