@@ -39,7 +39,7 @@ export function facetReindex(facets, n) {
 
 // returns a function that reads X with the facets’ reindexing plan
 export function getter({plan}, X) {
-  return !plan || X.length === plan.length ? (i) => X[i] : (i) => X[plan[i]];
+  return !X ? X : !plan || X.length === plan.length ? (i) => X[i] : (i) => X[plan[i]];
 }
 
 // returns an array of X expanded along the facets’ reindexing plan

@@ -1,6 +1,7 @@
 import {greatest, group, least} from "d3";
 import {maybeZ, valueof} from "../options.js";
 import {basic} from "./basic.js";
+import {expander, getter} from "../facet.js";
 
 /**
  * Selects the points of each series selected by the *selector*, which can be
@@ -143,12 +144,13 @@ function selectChannel(v, selector, options) {
   }
   const z = maybeZ(options);
   return basic(options, (data, facets) => {
-    const Z = valueof(data, z);
-    const V = valueof(data, v);
+    const gz = getter(facets, valueof(data, z));
+    const V = expander(facets, valueof(data, v));
     const selectFacets = [];
+    if ("plan" in facets) selectFacets.plan = facets.plan;
     for (const facet of facets) {
       const selectFacet = [];
-      for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
+      for (const I of gz ? group(facet, gz).values() : [facet]) {
         for (const i of selector(I, V)) {
           selectFacet.push(i);
         }
