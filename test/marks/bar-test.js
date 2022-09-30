@@ -58,11 +58,12 @@ it("barX(data, {fill}) allows fill to be null", () => {
 });
 
 it("barX(data, {fill}) allows fill to be a variable color", () => {
-  const bar = Plot.barX(undefined, {fill: "x"});
+  const data = [{x: 1}, {x: 2}];
+  const bar = Plot.barX(data, {fill: "x"});
   assert.strictEqual(bar.fill, undefined);
-  const {fill} = bar.channels;
-  assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  const {channels} = bar.initialize([[0, 1]]);
+  assert.deepStrictEqual(channels.fill.value, [1, 2]);
+  assert.strictEqual(channels.fill.scale, "color");
 });
 
 it("barX(data, {stroke}) allows stroke to be a constant color", () => {
