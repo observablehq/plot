@@ -61,7 +61,7 @@ type DataArray<T extends Datum = Datum> = T[] | TypedArray;
  */
 type index = number; // integer
 type Series = index[] | Uint32Array;
-type Facets = Series[];
+// type Facets = Series[];
 
 type NumericArray = number[] | TypedArray;
 type ValueArray = NumericArray | Value[];
@@ -832,8 +832,6 @@ type BinOptions = {
  */
 export type MarkOptions = CommonChannelOptions & ConstantStyleOptions & OtherMarkOptions;
 
-type LineOptions = MarkOptions & MarkerOptions;
-
 /**
  * The scales passed to a mark's render function
  */
@@ -864,7 +862,7 @@ type Dimensions = {
  * @link https://github.com/observablehq/plot/blob/main/README.md#markers
  */
 type MarkerOption = "none" | "arrow" | "dot" | "circle" | "circle-stroke" | MarkerFunction | boolean | null | undefined;
-type MarkerOptions = {
+export type MarkerOptions = {
   marker?: MarkerOption;
   markerStart?: MarkerOption;
   markerMid?: MarkerOption;

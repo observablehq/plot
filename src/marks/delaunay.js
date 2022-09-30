@@ -1,6 +1,7 @@
 /**
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkerOptions} MarkerOptions
  */
 
 import {group, path, select, Delaunay} from "d3";
@@ -295,7 +296,7 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  * @returns {DelaunayLink}
  */
 export function delaunayLink(data, options) {
@@ -313,7 +314,7 @@ export function delaunayLink(data, options) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  * @returns {DelaunayMesh}
  */
 export function delaunayMesh(data, options) {
@@ -332,7 +333,7 @@ export function delaunayMesh(data, options) {
  * not specified, it defaults to either the **fill** channel, if any, or the
  * **stroke** channel, if any.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  * @returns {Hull}
  */
 export function hull(data, options) {
@@ -346,7 +347,7 @@ export function hull(data, options) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  * @returns {Voronoi}
  */
 export function voronoi(data, options) {
@@ -364,7 +365,7 @@ export function voronoi(data, options) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  * @returns {VoronoiMesh}
  */
 export function voronoiMesh(data, options) {

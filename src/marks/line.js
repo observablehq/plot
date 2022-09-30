@@ -1,6 +1,7 @@
 /**
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkerOptions} MarkerOptions
  */
 
 import {line as shapeLine} from "d3";
@@ -85,7 +86,7 @@ export class Line extends Mark {
  * [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*,
  * *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  */
 export function line(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -119,7 +120,7 @@ export function line(data, options = {}) {
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  */
 export function lineX(data, options = {}) {
   const {x = identity, y = indexOf, ...remainingOptions} = options;
@@ -152,7 +153,7 @@ export function lineX(data, options = {}) {
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {MarkOptions & MarkerOptions} options
  */
 export function lineY(data, options = {}) {
   const {x = indexOf, y = identity, ...remainingOptions} = options;
