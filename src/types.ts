@@ -795,7 +795,7 @@ type OffsetFunction = (stacks: Series[][], Y1: Float64Array, Y2: Float64Array, Z
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#plotwindowk
  */
-type WindowOptions = {
+export type WindowOptions = {
   k?: number;
   anchor?: "start" | "middle" | "end";
   reduce?:
