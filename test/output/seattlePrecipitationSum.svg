@@ -17,91 +17,112 @@
     <g class="tick" opacity="1" transform="translate(0,370.5)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,344.2434358589648)">
+    <g class="tick" opacity="1" transform="translate(0,344.9936234058515)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,317.9868717179295)">
+    <g class="tick" opacity="1" transform="translate(0,319.48724681170296)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,291.73030757689423)">
+    <g class="tick" opacity="1" transform="translate(0,293.98087021755435)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">30</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,265.473743435859)">
+    <g class="tick" opacity="1" transform="translate(0,268.47449362340586)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">40</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,239.21717929482372)">
+    <g class="tick" opacity="1" transform="translate(0,242.96811702925734)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">50</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,212.96061515378847)">
+    <g class="tick" opacity="1" transform="translate(0,217.4617404351088)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">60</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,186.7040510127532)">
+    <g class="tick" opacity="1" transform="translate(0,191.95536384096027)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">70</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,160.44748687171793)">
+    <g class="tick" opacity="1" transform="translate(0,166.4489872468117)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">80</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,134.19092273068267)">
+    <g class="tick" opacity="1" transform="translate(0,140.94261065266318)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">90</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,107.93435858964743)">
+    <g class="tick" opacity="1" transform="translate(0,115.43623405851464)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">100</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,81.67779444861219)">
+    <g class="tick" opacity="1" transform="translate(0,89.92985746436612)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">110</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,55.421230307576934)">
+    <g class="tick" opacity="1" transform="translate(0,64.42348087021759)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">120</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(0,29.164666166541647)">
+    <g class="tick" opacity="1" transform="translate(0,38.917104276069026)">
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">130</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ precipitation</text>
   </g>
   <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(81.92857142857143,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec 06</text>
+    <g class="tick" opacity="1" transform="translate(68.11904761904762,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Fri 11</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(226.92857142857144,0)">
+    <g class="tick" opacity="1" transform="translate(123.35714285714286,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec 13</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(371.92857142857144,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec 20</text>
+    <g class="tick" opacity="1" transform="translate(178.5952380952381,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Tue 15</text>
     </g>
-    <g class="tick" opacity="1" transform="translate(516.9285714285714,0)">
+    <g class="tick" opacity="1" transform="translate(233.83333333333331,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Thu 17</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(289.07142857142856,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Sat 19</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(344.3095238095238,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Mon 21</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(399.54761904761904,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Wed 23</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(454.78571428571433,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Fri 25</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(510.0238095238095,0)">
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Dec 27</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(565.2619047619048,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Tue 29</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(620.5,0)">
+      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">Thu 31</text>
     </g>
   </g>
   <g aria-label="rect">
-    <rect x="41" y="370" width="19.714285714285708" height="0"></rect>
-    <rect x="61.71428571428571" y="370" width="19.714285714285722" height="0"></rect>
-    <rect x="82.42857142857143" y="370" width="19.714285714285708" height="0"></rect>
-    <rect x="103.14285714285714" y="370" width="19.714285714285722" height="0"></rect>
-    <rect x="123.85714285714286" y="370" width="19.714285714285722" height="0"></rect>
-    <rect x="144.57142857142858" y="370" width="19.714285714285694" height="0"></rect>
-    <rect x="165.28571428571428" y="20" width="19.714285714285722" height="350"></rect>
-    <rect x="186" y="24.46361590397596" width="19.714285714285722" height="345.53638409602405"></rect>
-    <rect x="206.71428571428572" y="23.675918979744868" width="19.714285714285722" height="346.3240810202551"></rect>
-    <rect x="227.42857142857144" y="49.66991747936981" width="19.714285714285722" height="320.3300825206302"></rect>
-    <rect x="248.14285714285717" y="121.6129032258064" width="19.714285714285666" height="248.3870967741936"></rect>
-    <rect x="268.85714285714283" y="259.72243060765186" width="19.714285714285722" height="110.27756939234814"></rect>
-    <rect x="289.57142857142856" y="285.7164291072767" width="19.71428571428578" height="84.28357089272328"></rect>
-    <rect x="310.28571428571433" y="253.15828957239304" width="19.714285714285666" height="116.84171042760696"></rect>
-    <rect x="331" y="205.37134283570887" width="19.714285714285666" height="164.62865716429113"></rect>
-    <rect x="351.71428571428567" y="247.3818454613653" width="19.71428571428578" height="122.61815453863471"></rect>
-    <rect x="372.42857142857144" y="239.5048762190547" width="19.714285714285666" height="130.4951237809453"></rect>
-    <rect x="393.1428571428571" y="167.56189047261807" width="19.71428571428578" height="202.43810952738193"></rect>
-    <rect x="413.8571428571429" y="159.42235558889718" width="19.714285714285666" height="210.57764441110282"></rect>
-    <rect x="434.57142857142856" y="152.85821455363836" width="19.71428571428578" height="217.14178544636164"></rect>
-    <rect x="455.28571428571433" y="203.53338334583643" width="19.714285714285666" height="166.46661665416357"></rect>
-    <rect x="476" y="236.8792198049512" width="19.714285714285666" height="133.1207801950488"></rect>
-    <rect x="496.71428571428567" y="236.8792198049512" width="19.71428571428578" height="133.1207801950488"></rect>
-    <rect x="517.4285714285714" y="225.58889722430604" width="19.714285714285666" height="144.41110277569396"></rect>
-    <rect x="538.1428571428571" y="293.5933983495873" width="19.71428571428578" height="76.40660165041271"></rect>
-    <rect x="558.8571428571429" y="305.6714178544636" width="19.71428571428578" height="64.32858214553642"></rect>
-    <rect x="579.5714285714287" y="321.6879219804951" width="19.714285714285666" height="48.312078019504895"></rect>
-    <rect x="600.2857142857143" y="328.2520630157539" width="19.714285714285666" height="41.74793698424611"></rect>
+    <rect x="-124.71428571428572" y="370" width="26.61904761904762" height="0"></rect>
+    <rect x="-97.0952380952381" y="370" width="26.619047619047635" height="0"></rect>
+    <rect x="-69.47619047619047" y="370" width="26.619047619047606" height="0"></rect>
+    <rect x="-41.85714285714286" y="370" width="26.619047619047628" height="0"></rect>
+    <rect x="-14.238095238095234" y="370" width="26.619047619047617" height="0"></rect>
+    <rect x="13.380952380952383" y="370" width="26.619047619047617" height="0"></rect>
+    <rect x="41" y="30" width="26.61904761904762" height="340"></rect>
+    <rect x="68.61904761904762" y="34.33608402100522" width="26.61904761904762" height="335.6639159789948"></rect>
+    <rect x="96.23809523809524" y="33.570892723180734" width="26.61904761904762" height="336.42910727681925"></rect>
+    <rect x="123.85714285714286" y="58.82220555138781" width="26.61904761904762" height="311.1777944486122"></rect>
+    <rect x="151.47619047619048" y="128.7096774193548" width="26.61904761904762" height="241.2903225806452"></rect>
+    <rect x="179.0952380952381" y="262.8732183045761" width="26.61904761904762" height="107.12678169542392"></rect>
+    <rect x="206.71428571428572" y="288.12453113278315" width="26.619047619047592" height="81.87546886721685"></rect>
+    <rect x="234.33333333333331" y="256.49662415603893" width="26.61904761904765" height="113.50337584396107"></rect>
+    <rect x="261.95238095238096" y="210.07501875468864" width="26.619047619047592" height="159.92498124531136"></rect>
+    <rect x="289.57142857142856" y="250.88522130532627" width="26.61904761904765" height="119.11477869467373"></rect>
+    <rect x="317.1904761904762" y="243.23330832708172" width="26.619047619047592" height="126.76669167291828"></rect>
+    <rect x="344.8095238095238" y="173.3458364591147" width="26.61904761904765" height="196.6541635408853"></rect>
+    <rect x="372.42857142857144" y="165.4388597149287" width="26.619047619047592" height="204.5611402850713"></rect>
+    <rect x="400.04761904761904" y="159.06226556639157" width="26.619047619047592" height="210.93773443360843"></rect>
+    <rect x="427.66666666666663" y="208.28957239309824" width="26.619047619047706" height="161.71042760690176"></rect>
+    <rect x="455.28571428571433" y="240.68267066766688" width="26.619047619047535" height="129.31732933233312"></rect>
+    <rect x="482.90476190476187" y="240.68267066766688" width="26.61904761904765" height="129.31732933233312"></rect>
+    <rect x="510.5238095238095" y="229.714928732183" width="26.619047619047592" height="140.285071267817"></rect>
+    <rect x="538.1428571428571" y="295.7764441110277" width="26.619047619047706" height="74.22355588897233"></rect>
+    <rect x="565.7619047619048" y="307.50937734433603" width="26.619047619047592" height="62.49062265566397"></rect>
+    <rect x="593.3809523809524" y="323.0682670667667" width="26.619047619047592" height="46.93173293323332"></rect>
+    <rect x="621" y="329.4448612153038" width="26.619047619047592" height="40.555138784696226"></rect>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-2.5)"><text transform="translate(174.64285714285717,20)">133</text><text transform="translate(195.35714285714283,24.46361590397596)">132</text><text transform="translate(216.07142857142856,23.675918979744868)">132</text><text transform="translate(236.78571428571428,49.66991747936981)">122</text><text transform="translate(257.5,121.6129032258064)">95</text><text transform="translate(278.2142857142857,259.72243060765186)">42</text><text transform="translate(298.92857142857144,285.7164291072767)">32</text><text transform="translate(319.64285714285717,253.15828957239304)">45</text><text transform="translate(340.3571428571429,205.37134283570887)">63</text><text transform="translate(361.07142857142856,247.3818454613653)">47</text><text transform="translate(381.78571428571433,239.5048762190547)">50</text><text transform="translate(402.5,167.56189047261807)">77</text><text transform="translate(423.21428571428567,159.42235558889718)">80</text><text transform="translate(443.92857142857144,152.85821455363836)">83</text><text transform="translate(464.6428571428571,203.53338334583643)">63</text><text transform="translate(485.3571428571429,236.8792198049512)">51</text><text transform="translate(506.07142857142856,236.8792198049512)">51</text><text transform="translate(526.7857142857143,225.58889722430604)">55</text><text transform="translate(547.5,293.5933983495873)">29</text><text transform="translate(568.2142857142857,305.6714178544636)">25</text><text transform="translate(588.9285714285713,321.6879219804951)">18</text><text transform="translate(609.6428571428571,328.2520630157539)">16</text></g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-5.5)"><text y="0.32em" transform="translate(53.8095238095238,30)">133</text><text y="0.32em" transform="translate(81.42857142857143,34.33608402100522)">132</text><text y="0.32em" transform="translate(109.04761904761905,33.570892723180734)">132</text><text y="0.32em" transform="translate(136.66666666666666,58.82220555138781)">122</text><text y="0.32em" transform="translate(164.28571428571428,128.7096774193548)">95</text><text y="0.32em" transform="translate(191.9047619047619,262.8732183045761)">42</text><text y="0.32em" transform="translate(219.52380952380952,288.12453113278315)">32</text><text y="0.32em" transform="translate(247.14285714285717,256.49662415603893)">45</text><text y="0.32em" transform="translate(274.76190476190476,210.07501875468864)">63</text><text y="0.32em" transform="translate(302.3809523809524,250.88522130532627)">47</text><text y="0.32em" transform="translate(330,243.23330832708172)">50</text><text y="0.32em" transform="translate(357.61904761904765,173.3458364591147)">77</text><text y="0.32em" transform="translate(385.23809523809524,165.4388597149287)">80</text><text y="0.32em" transform="translate(412.8571428571429,159.06226556639157)">83</text><text y="0.32em" transform="translate(440.4761904761905,208.28957239309824)">63</text><text y="0.32em" transform="translate(468.09523809523813,240.68267066766688)">51</text><text y="0.32em" transform="translate(495.71428571428567,240.68267066766688)">51</text><text y="0.32em" transform="translate(523.3333333333334,229.714928732183)">55</text><text y="0.32em" transform="translate(550.952380952381,295.7764441110277)">29</text><text y="0.32em" transform="translate(578.5714285714287,307.50937734433603)">25</text><text y="0.32em" transform="translate(606.1904761904761,323.0682670667667)">18</text><text y="0.32em" transform="translate(633.8095238095237,329.4448612153038)">16</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>
