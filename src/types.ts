@@ -8,12 +8,12 @@
 type ColorAccessor = Accessor | (string & {});
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type pXX = `p${Digit}${Digit}` & {};
-type Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+type pXX = string & {}; // p00 to p99
 
 type GetColumn = {transform: () => ValueArray; label?: string};
 
-type Accessor = string | AccessorFunction | ValueArray | TransformMethod;
+// eslint-disable-next-line @typescript-eslint/ban-types
+type Accessor = AccessorFunction | ValueArray | TransformMethod | (string & {});
 
 type AccessorFunction = (d: any, i: number) => any;
 
