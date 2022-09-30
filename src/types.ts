@@ -319,12 +319,15 @@ type CommonChannelOptions = {
   z?: Accessor;
   fill?: ColorAccessor | null;
   fillOpacity?: Accessor | number | null;
-  r?: Accessor; // TODO: OptionsR
   stroke?: ColorAccessor | null;
   strokeOpacity?: Accessor | number | null;
   strokeWidth?: Accessor | number | null;
-  symbol?: MaybeSymbol;
   opacity?: Accessor | number | null;
+};
+
+export type DotOptions = {
+  r?: Accessor | number;
+  symbol?: MaybeSymbol;
 };
 
 /**
