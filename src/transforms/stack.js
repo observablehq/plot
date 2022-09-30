@@ -1,6 +1,8 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
+import {maybeExpand, facetReindex} from "../facet.js";
+import {field, column, mid, range, valueof, one} from "../options.js";
+import {maybeColumn, maybeColorChannel, maybeZ, maybeZero} from "../options.js";
 import {basic} from "./basic.js";
 
 /**
@@ -13,11 +15,11 @@ import {basic} from "./basic.js";
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
-  const [transform, Y, x1, x2] = stackAlias(y, x, "x", stack, rest);
-  return {...transform, y1, y: Y, x1, x2, x: mid(x1, x2)};
+  const [transform, Y, x1, x2, other] = stack(y, x, "x", stackOptions, rest);
+  return {...transform, y1, y: Y, x1, x2, ...other, x: mid(x1, x2)};
 }
 
 /**
@@ -26,17 +28,17 @@ export function stackX(stack = {}, options = {}) {
  * ```
  *
  * Equivalent to
- * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options),
+ * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstackoptions-options),
  * except that the **x1** channel is returned as the **x** channel. This can be
  * used, for example, to draw a line at the left edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, X] = stackAlias(y, x, "x", stack, options);
-  return {...transform, y1, y: Y, x: X};
+  const [transform, Y, X, , other] = stack(y, x, "x", stackOptions, options);
+  return {...transform, y1, y: Y, x: X, ...other};
 }
 
 /**
@@ -45,17 +47,17 @@ export function stackX1(stack = {}, options = {}) {
  * ```
  *
  * Equivalent to
- * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options),
+ * [Plot.stackX](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstackoptions-options),
  * except that the **x2** channel is returned as the **x** channel. This can be
  * used, for example, to draw a line at the right edge of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackX2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackX2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
-  const [transform, Y, , X] = stackAlias(y, x, "x", stack, options);
-  return {...transform, y1, y: Y, x: X};
+  const [transform, Y, , X, other] = stack(y, x, "x", stackOptions, options);
+  return {...transform, y1, y: Y, x: X, ...other};
 }
 
 /**
@@ -73,11 +75,11 @@ export function stackX2(stack = {}, options = {}) {
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
-  const [transform, X, y1, y2] = stackAlias(x, y, "y", stack, rest);
-  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2)};
+  const [transform, X, y1, y2, other] = stack(x, y, "y", stackOptions, rest);
+  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2), ...other};
 }
 
 /**
@@ -86,17 +88,17 @@ export function stackY(stack = {}, options = {}) {
  * ```
  *
  * Equivalent to
- * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options),
+ * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystackoptions-options),
  * except that the **y1** channel is returned as the **y** channel. This can be
  * used, for example, to draw a line at the bottom of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY1(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY1(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, Y] = stackAlias(x, y, "y", stack, options);
-  return {...transform, x1, x: X, y: Y};
+  const [transform, X, Y, , other] = stack(x, y, "y", stackOptions, options);
+  return {...transform, x1, x: X, y: Y, ...other};
 }
 
 /**
@@ -105,17 +107,17 @@ export function stackY1(stack = {}, options = {}) {
  * ```
  *
  * Equivalent to
- * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options),
+ * [Plot.stackY](https://github.com/observablehq/plot/blob/main/README.md#plotstackystackoptions-options),
  * except that the **y2** channel is returned as the **y** channel. This can be
  * used, for example, to draw a line at the top of each stacked area.
  *
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
-export function stackY2(stack = {}, options = {}) {
-  if (arguments.length === 1) [stack, options] = mergeOptions(stack);
+export function stackY2(stackOptions = {}, options = {}) {
+  if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
-  const [transform, X, , Y] = stackAlias(x, y, "y", stack, options);
-  return {...transform, x1, x: X, y: Y};
+  const [transform, X, , Y, other] = stack(x, y, "y", stackOptions, options);
+  return {...transform, x1, x: X, y: Y, ...other};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
@@ -145,13 +147,62 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const [Y2, setY2] = column(y);
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
+
+  // TODO Here we will need to iterate over the options and pull out any that
+  // represent channels (columns of values). The list of possible channels for
+  // all Marks:
+  // - fill (color)
+  // - fillOpacity (opacity/number)
+  // - stroke (color)
+  // - strokeOpacity (opacity/number)
+  // - strokeWidth (number)
+  // - opacity (opacity/number)
+  // - title
+  // - href
+  // - ariaLabel
+  // - z?
+  // TODO
+  // - text (text)
+  // - rotate (text, dot)
+  // - fontSize (text)
+  // - symbol (dot)
+  // - r (dot)
+  // - length (vector)
+  // - width (image)
+  // - height (image)
+  // - src (image)
+  // - weight (density)
+
+  const knownChannels = [
+    ["fill", (value) => maybeColorChannel(value)[0]],
+    ["stroke", (value) => maybeColorChannel(value)[0]],
+    ["text"]
+  ];
+
+  const other = {};
+  const outputs = [];
+  for (const [name, test = (value) => value] of knownChannels) {
+    const value = test(options[name]);
+    if (value) {
+      const [V, setV] = column(value);
+      other[name] = V;
+      outputs.push((data, plan) => setV(maybeExpand(valueof(data, value), plan)));
+    }
+  }
+
   return [
     basic(options, (data, facets) => {
-      const X = x == null ? undefined : setX(valueof(data, x));
-      const Y = valueof(data, y, Float64Array);
-      const Z = valueof(data, z);
-      const O = order && order(data, X, Y, Z);
-      const n = data.length;
+      let plan;
+      ({facets, plan} = facetReindex(facets, data.length)); // make facets exclusive
+      for (const o of outputs) o(data, plan); // expand any extra channels
+      const XS = x == null ? undefined : valueof(data, x);
+      const YS = valueof(data, y, Float64Array);
+      const ZS = valueof(data, z);
+      const X = XS && setX(maybeExpand(XS, plan));
+      const Y = maybeExpand(YS, plan);
+      const Z = maybeExpand(ZS, plan);
+      const O = order && maybeExpand(order(data, XS, YS, ZS), plan);
+      const n = plan ? plan.length : data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
@@ -176,12 +227,10 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     }),
     X,
     Y1,
-    Y2
+    Y2,
+    other
   ];
 }
-
-// This is used internally so we can use `stack` as an argument name.
-const stackAlias = stack;
 
 function maybeOffset(offset) {
   if (offset == null) return;

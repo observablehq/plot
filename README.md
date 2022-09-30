@@ -1038,7 +1038,7 @@ used when the baseline and topline share *y* values, as in a time-series area
 chart where time goes up↑. If neither the **x1** nor **x2** option is
 specified, the **x** option may be specified as shorthand to apply an
 implicit [stackX
-transform](#plotstackxstack-options);
+transform](#plotstackxstackoptions-options);
 this is the typical configuration for an area chart with a baseline at *x* =
 0. If the **x** option is not specified, it defaults to the identity
 function. The **y** option specifies the **y1** channel; and the **y1** and
@@ -1072,7 +1072,7 @@ used when the baseline and topline share *x* values, as in a time-series area
 chart where time goes right→. If neither the **y1** nor **y2** option is
 specified, the **y** option may be specified as shorthand to apply an
 implicit [stackY
-transform](#plotstackystack-options);
+transform](#plotstackystackoptions-options);
 this is the typical configuration for an area chart with a baseline at *y* =
 0. If the **y** option is not specified, it defaults to the identity
 function. The **x** option specifies the **x1** channel; and the **x1** and
@@ -1157,7 +1157,7 @@ following channels are required:
 
 If neither the **x1** nor **x2** option is specified, the **x** option may be
 specified as shorthand to apply an implicit [stackX
-transform](#plotstackxstack-options);
+transform](#plotstackxstackoptions-options);
 this is the typical configuration for a horizontal bar chart with bars
 aligned at *x* = 0. If the **x** option is not specified, it defaults to the
 identity function. If *options* is undefined, then it defaults to **x2** as
@@ -1195,7 +1195,7 @@ following channels are required:
 
 If neither the **y1** nor **y2** option is specified, the **y** option may be
 specified as shorthand to apply an implicit [stackY
-transform](#plotstackystack-options);
+transform](#plotstackystackoptions-options);
 this is the typical configuration for a vertical bar chart with bars aligned
 at *y* = 0. If the **y** option is not specified, it defaults to the identity
 function. If *options* is undefined, then it defaults to **y2** as the
@@ -1797,7 +1797,7 @@ Equivalent to
 [Plot.rect](#plotrectdata-options),
 except that if neither the **x1** nor **x2** option is specified, the **x**
 option may be specified as shorthand to apply an implicit [stackX
-transform](#plotstackxstack-options);
+transform](#plotstackxstackoptions-options);
 this is the typical configuration for a histogram with rects aligned at *x* =
 0. If the **x** option is not specified, it defaults to the identity
 function.
@@ -1814,7 +1814,7 @@ Equivalent to
 [Plot.rect](#plotrectdata-options),
 except that if neither the **y1** nor **y2** option is specified, the **y**
 option may be specified as shorthand to apply an implicit [stackY
-transform](#plotstackystack-options);
+transform](#plotstackystackoptions-options);
 this is the typical configuration for a histogram with rects aligned at *y* =
 0. If the **y** option is not specified, it defaults to the identity
 function.
@@ -2789,7 +2789,7 @@ If two arguments are passed to the stack transform functions below, the stack-sp
 
 <!-- jsdoc stackY -->
 
-#### Plot.stackY(*stack*, *options*)
+#### Plot.stackY(*stackOptions*, *options*)
 
 ```js
 Plot.stackY({x: "year", y: "revenue", z: "format", fill: "group"})
@@ -2806,35 +2806,35 @@ the only argument, or as a separate *stack* options argument.
 
 <!-- jsdoc stackY1 -->
 
-#### Plot.stackY1(*stack*, *options*)
+#### Plot.stackY1(*stackOptions*, *options*)
 
 ```js
 Plot.stackY1({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to
-[Plot.stackY](#plotstackystack-options),
+[Plot.stackY](#plotstackystackoptions-options),
 except that the **y1** channel is returned as the **y** channel. This can be
 used, for example, to draw a line at the bottom of each stacked area.
 
 
 <!-- jsdoc stackY2 ->
 
-#### Plot.stackY2(*stack*, *options*)
+#### Plot.stackY2(*stackOptions*, *options*)
 
 ```js
 Plot.stackY2({x: "year", y: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to
-[Plot.stackY](#plotstackystack-options),
+[Plot.stackY](#plotstackystackoptions-options),
 except that the **y2** channel is returned as the **y** channel. This can be
 used, for example, to draw a line at the top of each stacked area.
 
 
 <!-- jsdoc stackX -->
 
-#### Plot.stackX(*stack*, *options*)
+#### Plot.stackX(*stackOptions*, *options*)
 
 ```js
 Plot.stackX({y: "year", x: "revenue", z: "format", fill: "group"})
@@ -2846,28 +2846,28 @@ index, *x1*, *x2* and *x* as the output channels.
 
 <!-- jsdoc stackX1 -->
 
-#### Plot.stackX1(*stack*, *options*)
+#### Plot.stackX1(*stackOptions*, *options*)
 
 ```js
 Plot.stackX1({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to
-[Plot.stackX](#plotstackxstack-options),
+[Plot.stackX](#plotstackxstackoptions-options),
 except that the **x1** channel is returned as the **x** channel. This can be
 used, for example, to draw a line at the left edge of each stacked area.
 
 
 <!-- jsdoc stackX2 -->
 
-#### Plot.stackX2(*stack*, *options*)
+#### Plot.stackX2(*stackOptions*, *options*)
 
 ```js
 Plot.stackX2({y: "year", x: "revenue", z: "format", fill: "group"})
 ```
 
 Equivalent to
-[Plot.stackX](#plotstackxstack-options),
+[Plot.stackX](#plotstackxstackoptions-options),
 except that the **x2** channel is returned as the **x** channel. This can be
 used, for example, to draw a line at the right edge of each stacked area.
 

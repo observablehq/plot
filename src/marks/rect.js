@@ -108,7 +108,7 @@ export function rect(data, options) {
  * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
  * except that if neither the **x1** nor **x2** option is specified, the **x**
  * option may be specified as shorthand to apply an implicit [stackX
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstackoptions-options);
  * this is the typical configuration for a histogram with rects aligned at *x* =
  * 0. If the **x** option is not specified, it defaults to the identity
  * function.
@@ -126,7 +126,7 @@ export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
  * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
  * except that if neither the **y1** nor **y2** option is specified, the **y**
  * option may be specified as shorthand to apply an implicit [stackY
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystackoptions-options);
  * this is the typical configuration for a histogram with rects aligned at *y* =
  * 0. If the **y** option is not specified, it defaults to the identity
  * function.

@@ -142,7 +142,7 @@ export class BarY extends AbstractBar {
  *
  * If neither the **x1** nor **x2** option is specified, the **x** option may be
  * specified as shorthand to apply an implicit [stackX
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstackoptions-options);
  * this is the typical configuration for a horizontal bar chart with bars
  * aligned at *x* = 0. If the **x** option is not specified, it defaults to the
  * identity function. If *options* is undefined, then it defaults to **x2** as
@@ -181,7 +181,7 @@ export function barX(data, options = {y: indexOf, x2: identity}) {
  *
  * If neither the **y1** nor **y2** option is specified, the **y** option may be
  * specified as shorthand to apply an implicit [stackY
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystackoptions-options);
  * this is the typical configuration for a vertical bar chart with bars aligned
  * at *y* = 0. If the **y** option is not specified, it defaults to the identity
  * function. If *options* is undefined, then it defaults to **y2** as the

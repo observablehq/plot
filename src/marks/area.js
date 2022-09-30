@@ -101,7 +101,7 @@ export function area(data, options) {
  * chart where time goes up↑. If neither the **x1** nor **x2** option is
  * specified, the **x** option may be specified as shorthand to apply an
  * implicit [stackX
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstackoptions-options);
  * this is the typical configuration for an area chart with a baseline at *x* =
  * 0. If the **x** option is not specified, it defaults to the identity
  * function. The **y** option specifies the **y1** channel; and the **y1** and
@@ -137,7 +137,7 @@ export function areaX(data, options) {
  * chart where time goes right→. If neither the **y1** nor **y2** option is
  * specified, the **y** option may be specified as shorthand to apply an
  * implicit [stackY
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options);
+ * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystackoptions-options);
  * this is the typical configuration for an area chart with a baseline at *y* =
  * 0. If the **y** option is not specified, it defaults to the identity
  * function. The **x** option specifies the **x1** channel; and the **x1** and

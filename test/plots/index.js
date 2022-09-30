@@ -209,6 +209,7 @@ export {default as softwareVersions} from "./software-versions.js";
 export {default as sparseCell} from "./sparse-cell.js";
 export {default as stackedBar} from "./stacked-bar.js";
 export {default as stackedRect} from "./stacked-rect.js";
+export {default as stackExclude} from "./stack-exclude.js";
 export {default as stargazers} from "./stargazers.js";
 export {default as stargazersBinned} from "./stargazers-binned.js";
 export {default as stargazersHourly} from "./stargazers-hourly.js";
