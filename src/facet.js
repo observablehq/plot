@@ -50,6 +50,6 @@ export function expander({plan}, X) {
   return V;
 }
 
-export function originals(facets) {
-  return facets.plan ? facets.map((facet) => facet.map((i) => facets.plan[i])) : facets;
+export function originals({plan}, I) {
+  return plan ? I.map((i) => plan[i]) : I;
 }

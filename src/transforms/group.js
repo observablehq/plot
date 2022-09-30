@@ -181,7 +181,7 @@ function groupn(
             for (const [x, g] of maybeGroup(gg, eX)) {
               if (filter && !filter.reduce(g)) continue;
               groupFacet.push(i++);
-              groupData.push(reduceData.reduce(originals(g), data));
+              groupData.push(reduceData.reduce(originals(facets, g), data));
               if (X) GX.push(x);
               if (Y) GY.push(y);
               if (Z) GZ.push(G === Z ? f : gZ(g[0]));

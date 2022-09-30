@@ -211,7 +211,7 @@ function binn(
                 const b = fy(bb);
                 if (filter && !filter.reduce(b, extent)) continue;
                 groupFacet.push(i++);
-                groupData.push(reduceData.reduce(originals(b), data, extent));
+                groupData.push(reduceData.reduce(originals(facets, b), data, extent));
                 if (K) GK.push(k);
                 if (Z) GZ.push(G === Z ? f : gZ(b[0]));
                 if (F) GF.push(G === F ? f : gF(b[0]));
