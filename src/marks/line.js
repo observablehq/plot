@@ -62,8 +62,8 @@ export class Line extends Mark {
             shapeLine()
               .curve(this.curve)
               .defined((i) => i >= 0)
-              .x((i) => X[i])
-              .y((i) => Y[i])
+              .x((i) => X[i % X.length])
+              .y((i) => Y[i % Y.length])
           )
       )
       .node();

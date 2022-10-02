@@ -86,7 +86,7 @@ class LinearRegressionX extends LinearRegression {
   }
   _renderBand(I, X, Y) {
     const {ci, precision} = this;
-    const [y1, y2] = extent(I, (i) => Y[i]);
+    const [y1, y2] = extent(I, (i) => Y[i % Y.length]);
     const f = linearRegressionF(I, Y, X);
     const g = confidenceIntervalF(I, Y, X, (1 - ci) / 2, f);
     return shapeArea()
@@ -95,7 +95,7 @@ class LinearRegressionX extends LinearRegression {
       .x1((y) => g(y, +1))(range(y1, y2 - precision / 2, precision).concat(y2));
   }
   _renderLine(I, X, Y) {
-    const [y1, y2] = extent(I, (i) => Y[i]);
+    const [y1, y2] = extent(I, (i) => Y[i % Y.length]);
     const f = linearRegressionF(I, Y, X);
     return `M${f(y1)},${y1}L${f(y2)},${y2}`;
   }
@@ -107,7 +107,7 @@ class LinearRegressionY extends LinearRegression {
   }
   _renderBand(I, X, Y) {
     const {ci, precision} = this;
-    const [x1, x2] = extent(I, (i) => X[i]);
+    const [x1, x2] = extent(I, (i) => X[i % X.length]);
     const f = linearRegressionF(I, X, Y);
     const g = confidenceIntervalF(I, X, Y, (1 - ci) / 2, f);
     return shapeArea()
@@ -116,7 +116,7 @@ class LinearRegressionY extends LinearRegression {
       .y1((x) => g(x, +1))(range(x1, x2 - precision / 2, precision).concat(x2));
   }
   _renderLine(I, X, Y) {
-    const [x1, x2] = extent(I, (i) => X[i]);
+    const [x1, x2] = extent(I, (i) => X[i % X.length]);
     const f = linearRegressionF(I, X, Y);
     return `M${x1},${f(x1)}L${x2},${f(x2)}`;
   }
@@ -166,8 +166,8 @@ function linearRegressionF(I, X, Y) {
     sumXY = 0,
     sumX2 = 0;
   for (const i of I) {
-    const xi = X[i];
-    const yi = Y[i];
+    const xi = X[i % X.length];
+    const yi = Y[i % Y.length];
     sumX += xi;
     sumY += yi;
     sumXY += xi * yi;
@@ -180,12 +180,12 @@ function linearRegressionF(I, X, Y) {
 }
 
 function confidenceIntervalF(I, X, Y, p, f) {
-  const mean = sum(I, (i) => X[i]) / I.length;
+  const mean = sum(I, (i) => X[i % X.length]) / I.length;
   let a = 0,
     b = 0;
   for (const i of I) {
-    a += (X[i] - mean) ** 2;
-    b += (Y[i] - f(X[i])) ** 2;
+    a += (X[i % X.length] - mean) ** 2;
+    b += (Y[i % Y.length] - f(X[i % X.length])) ** 2;
   }
   const sy = Math.sqrt(b / (I.length - 2));
   const t = qt(p, I.length - 2);

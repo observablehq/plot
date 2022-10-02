@@ -77,32 +77,32 @@ export class Dot extends Mark {
             circle
               ? (selection) => {
                   selection
-                    .attr("cx", X ? (i) => X[i] : cx)
-                    .attr("cy", Y ? (i) => Y[i] : cy)
-                    .attr("r", R ? (i) => R[i] : this.r);
+                    .attr("cx", X ? (i) => X[i % X.length] : cx)
+                    .attr("cy", Y ? (i) => Y[i % Y.length] : cy)
+                    .attr("r", R ? (i) => R[i % R.length] : this.r);
                 }
               : (selection) => {
                   const translate =
                     X && Y
-                      ? (i) => `translate(${X[i]},${Y[i]})`
+                      ? (i) => `translate(${X[i % X.length]},${Y[i % Y.length]})`
                       : X
-                      ? (i) => `translate(${X[i]},${cy})`
+                      ? (i) => `translate(${X[i % X.length]},${cy})`
                       : Y
-                      ? (i) => `translate(${cx},${Y[i]})`
+                      ? (i) => `translate(${cx},${Y[i % Y.length]})`
                       : () => `translate(${cx},${cy})`;
                   selection
                     .attr(
                       "transform",
                       A
-                        ? (i) => `${translate(i)} rotate(${A[i]})`
+                        ? (i) => `${translate(i)} rotate(${A[i % A.length]})`
                         : this.rotate
                         ? (i) => `${translate(i)} rotate(${this.rotate})`
                         : translate
                     )
                     .attr("d", (i) => {
                       const p = path(),
-                        r = R ? R[i] : this.r;
-                      (S ? S[i] : this.symbol).draw(p, r * r * Math.PI);
+                        r = R ? R[i % R.length] : this.r;
+                      (S ? S[i % S.length] : this.symbol).draw(p, r * r * Math.PI);
                       return p;
                     });
                 }

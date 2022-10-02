@@ -265,8 +265,8 @@ export function mid(x1, x2) {
       const X1 = x1.transform(data);
       const X2 = x2.transform(data);
       return isTemporal(X1) || isTemporal(X2)
-        ? map(X1, (_, i) => new Date((+X1[i] + +X2[i]) / 2))
-        : map(X1, (_, i) => (+X1[i] + +X2[i]) / 2, Float64Array);
+        ? map(X1, (_, i) => new Date((+X1[i % X1.length] + +X2[i % X2.length]) / 2))
+        : map(X1, (_, i) => (+X1[i % X1.length] + +X2[i % X2.length]) / 2, Float64Array);
     },
     label: x1.label
   };

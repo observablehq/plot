@@ -56,14 +56,14 @@ export function treeNode(options = {}) {
       let treeIndex = -1;
       const treeData = [];
       const treeFacets = [];
-      const rootof = stratify().path((i) => P[i]);
+      const rootof = stratify().path((i) => P[i % P.length]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
+        const root = rootof(facet.filter((i) => P[i % P.length] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const node of root.descendants()) {
@@ -150,14 +150,14 @@ export function treeLink(options = {}) {
       let treeIndex = -1;
       const treeData = [];
       const treeFacets = [];
-      const rootof = stratify().path((i) => P[i]);
+      const rootof = stratify().path((i) => P[i % P.length]);
       const layout = treeLayout();
       if (layout.nodeSize) layout.nodeSize([1, 1]);
       if (layout.separation && treeSeparation !== undefined) layout.separation(treeSeparation ?? one);
       for (const o of outputs) o[output_values] = o[output_setValues]([]);
       for (const facet of facets) {
         const treeFacet = [];
-        const root = rootof(facet.filter((i) => P[i] != null)).each((node) => (node.data = data[node.data]));
+        const root = rootof(facet.filter((i) => P[i % P.length] != null)).each((node) => (node.data = data[node.data]));
         if (treeSort != null) root.sort(treeSort);
         layout(root);
         for (const {source, target} of root.links()) {

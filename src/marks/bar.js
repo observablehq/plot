@@ -49,11 +49,11 @@ export class AbstractBar extends Mark {
   }
   _x(scales, {x: X}, {marginLeft}) {
     const {insetLeft} = this;
-    return X ? (i) => X[i] + insetLeft : marginLeft + insetLeft;
+    return X ? (i) => X[i % X.length] + insetLeft : marginLeft + insetLeft;
   }
   _y(scales, {y: Y}, {marginTop}) {
     const {insetTop} = this;
-    return Y ? (i) => Y[i] + insetTop : marginTop + insetTop;
+    return Y ? (i) => Y[i % Y.length] + insetTop : marginTop + insetTop;
   }
   _width({x}, {x: X}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
@@ -90,13 +90,13 @@ export class BarX extends AbstractBar {
   }
   _x({x}, {x1: X1, x2: X2}, {marginLeft}) {
     const {insetLeft} = this;
-    return isCollapsed(x) ? marginLeft + insetLeft : (i) => Math.min(X1[i], X2[i]) + insetLeft;
+    return isCollapsed(x) ? marginLeft + insetLeft : (i) => Math.min(X1[i % X1.length], X2[i % X2.length]) + insetLeft;
   }
   _width({x}, {x1: X1, x2: X2}, {marginRight, marginLeft, width}) {
     const {insetLeft, insetRight} = this;
     return isCollapsed(x)
       ? width - marginRight - marginLeft - insetLeft - insetRight
-      : (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight);
+      : (i) => Math.max(0, Math.abs(X2[i % X2.length] - X1[i % X1.length]) - insetLeft - insetRight);
   }
 }
 
@@ -119,13 +119,13 @@ export class BarY extends AbstractBar {
   }
   _y({y}, {y1: Y1, y2: Y2}, {marginTop}) {
     const {insetTop} = this;
-    return isCollapsed(y) ? marginTop + insetTop : (i) => Math.min(Y1[i], Y2[i]) + insetTop;
+    return isCollapsed(y) ? marginTop + insetTop : (i) => Math.min(Y1[i % Y1.length], Y2[i % Y2.length]) + insetTop;
   }
   _height({y}, {y1: Y1, y2: Y2}, {marginTop, marginBottom, height}) {
     const {insetTop, insetBottom} = this;
     return isCollapsed(y)
       ? height - marginTop - marginBottom - insetTop - insetBottom
-      : (i) => Math.max(0, Math.abs(Y2[i] - Y1[i]) - insetTop - insetBottom);
+      : (i) => Math.max(0, Math.abs(Y2[i % Y2.length] - Y1[i % Y1.length]) - insetTop - insetBottom);
   }
 }
 

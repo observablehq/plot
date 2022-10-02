@@ -126,9 +126,9 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     const SD = strokeDensity && [];
 
     const density = contourDensity()
-      .x(X ? (i) => X[i] : cx)
-      .y(Y ? (i) => Y[i] : cy)
-      .weight(W ? (i) => W[i] : 1)
+      .x(X ? (i) => X[i % X.length] : cx)
+      .y(Y ? (i) => Y[i % Y.length] : cy)
+      .weight(W ? (i) => W[i % W.length] : 1)
       .size([width, height])
       .bandwidth(bandwidth);
 

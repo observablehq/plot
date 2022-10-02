@@ -68,8 +68,8 @@ class DelaunayLink extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? (i) => X[i] : constant(cx);
-    const yi = Y ? (i) => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i % X.length] : constant(cx);
+    const yi = Y ? (i) => Y[i % Y.length] : constant(cy);
     const mark = this;
 
     function links(index) {
@@ -113,8 +113,8 @@ class DelaunayLink extends Mark {
           const p = path();
           const c = curve(p);
           c.lineStart();
-          c.point(X1[i], Y1[i]);
-          c.point(X2[i], Y2[i]);
+          c.point(X1[i % X1.length], Y1[i % Y1.length]);
+          c.point(X2[i % X2.length], Y2[i % Y2.length]);
           c.lineEnd();
           return p;
         })
@@ -130,7 +130,7 @@ class DelaunayLink extends Mark {
           ? (g) =>
               g
                 .selectAll()
-                .data(group(index, (i) => Z[i]).values())
+                .data(group(index, (i) => Z[i % Z.length]).values())
                 .enter()
                 .append("g")
                 .each(links)
@@ -157,8 +157,8 @@ class AbstractDelaunayMark extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? (i) => X[i] : constant(cx);
-    const yi = Y ? (i) => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i % X.length] : constant(cx);
+    const yi = Y ? (i) => Y[i % Y.length] : constant(cy);
     const mark = this;
 
     function mesh(index) {
@@ -179,7 +179,7 @@ class AbstractDelaunayMark extends Mark {
           ? (g) =>
               g
                 .selectAll()
-                .data(group(index, (i) => Z[i]).values())
+                .data(group(index, (i) => Z[i % Z.length]).values())
                 .enter()
                 .append("g")
                 .each(mesh)
@@ -225,8 +225,8 @@ class Voronoi extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const xi = X ? (i) => X[i] : constant(cx);
-    const yi = Y ? (i) => Y[i] : constant(cy);
+    const xi = X ? (i) => X[i % X.length] : constant(cx);
+    const yi = Y ? (i) => Y[i % Y.length] : constant(cy);
 
     function cells(index) {
       const delaunay = Delaunay.from(index, xi, yi);
@@ -249,7 +249,7 @@ class Voronoi extends Mark {
           ? (g) =>
               g
                 .selectAll()
-                .data(group(index, (i) => Z[i]).values())
+                .data(group(index, (i) => Z[i % Z.length]).values())
                 .enter()
                 .append("g")
                 .each(cells)

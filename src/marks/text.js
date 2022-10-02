@@ -101,29 +101,29 @@ export class Text extends Mark {
             "transform",
             R
               ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
+                ? (i) => `translate(${X[i % X.length]},${Y[i % Y.length]}) rotate(${R[i % R.length]})`
                 : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${R[i]})`
+                ? (i) => `translate(${X[i % X.length]},${cy}) rotate(${R[i % R.length]})`
                 : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${R[i]})`
-                : (i) => `translate(${cx},${cy}) rotate(${R[i]})`
+                ? (i) => `translate(${cx},${Y[i % Y.length] % Y.length}) rotate(${R[i % R.length]})`
+                : (i) => `translate(${cx},${cy}) rotate(${R[i % R.length]})`
               : rotate
               ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
+                ? (i) => `translate(${X[i % X.length]},${Y[i % Y.length]}) rotate(${rotate})`
                 : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${rotate})`
+                ? (i) => `translate(${X[i % X.length]},${cy}) rotate(${rotate})`
                 : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${rotate})`
+                ? (i) => `translate(${cx},${Y[i % Y.length]}) rotate(${rotate})`
                 : `translate(${cx},${cy}) rotate(${rotate})`
               : X && Y
-              ? (i) => `translate(${X[i]},${Y[i]})`
+              ? (i) => `translate(${X[i % X.length]},${Y[i % Y.length]})`
               : X
-              ? (i) => `translate(${X[i]},${cy})`
+              ? (i) => `translate(${X[i % X.length]},${cy})`
               : Y
-              ? (i) => `translate(${cx},${Y[i]})`
+              ? (i) => `translate(${cx},${Y[i % Y.length]})`
               : `translate(${cx},${cy})`
           )
-          .call(applyAttr, "font-size", FS && ((i) => FS[i]))
+          .call(applyAttr, "font-size", FS && ((i) => FS[i % FS.length]))
           .call(applyChannelStyles, this, channels)
       )
       .node();
@@ -138,7 +138,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
       : (t) => lineWrap(t, lineWidth * 100, defaultWidth)
     : (t) => t.split(/\r\n?|\n/g);
   selection.each(function (i) {
-    const lines = linesof(formatDefault(T[i]));
+    const lines = linesof(formatDefault(T[i % T.length]));
     const n = lines.length;
     const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? -0.29 - n : (164 - n * 100) / 200;
     if (n > 1) {

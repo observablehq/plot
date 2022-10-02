@@ -3,6 +3,7 @@ import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
+import {facetExclusive} from "../facet.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -88,23 +89,26 @@ function dodge(y, x, anchor, padding, options) {
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
   return initializer(options, function (data, facets, {[x]: X, r: R}, scales, dimensions) {
+    let n;
+    ({n, facets} = facetExclusive(facets, data.length));
+
     if (!X) throw new Error(`missing channel: ${x}`);
     X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
     if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
-    const Y = new Float64Array(X.length);
-    const radius = R ? (i) => R[i] : () => r;
+    const Y = new Float64Array(n);
+    const radius = R ? (i) => R[i % R.length] : () => r;
     for (let I of facets) {
       const tree = IntervalTree();
-      I = I.filter(R ? (i) => finite(X[i]) && positive(R[i]) : (i) => finite(X[i]));
+      I = I.filter(R ? (i) => finite(X[i % X.length]) && positive(R[i % R.length]) : (i) => finite(X[i % X.length]));
       const intervals = new Float64Array(2 * I.length + 2);
       for (const i of I) {
         const ri = radius(i);
         const y0 = ky ? ri + padding : 0; // offset baseline for varying radius
-        const l = X[i] - ri;
-        const h = X[i] + ri;
+        const l = X[i % X.length] - ri;
+        const h = X[i % X.length] + ri;
 
         // The first two positions are 0 to test placing the dot on the baseline.
         let k = 2;
@@ -113,9 +117,9 @@ function dodge(y, x, anchor, padding, options) {
         // the y-positions that place this circle tangent to these other circles.
         // https://observablehq.com/@mbostock/circle-offset-along-line
         tree.queryInterval(l - padding, h + padding, ([, , j]) => {
-          const yj = Y[j] - y0;
-          const dx = X[i] - X[j];
-          const dr = padding + (R ? R[i] + R[j] : 2 * r);
+          const yj = Y[j % Y.length] - y0;
+          const dx = X[i % X.length] - X[j % X.length];
+          const dr = padding + (R ? R[i % R.length] + R[j % R.length] : 2 * r);
           const dy = Math.sqrt(dr * dr - dx * dx);
           intervals[k++] = yj - dy;
           intervals[k++] = yj + dy;
@@ -130,7 +134,7 @@ function dodge(y, x, anchor, padding, options) {
               continue out;
             }
           }
-          Y[i] = y + y0;
+          Y[i % Y.length] = y + y0;
           break;
         }
 
@@ -141,7 +145,7 @@ function dodge(y, x, anchor, padding, options) {
     if (!ky) ky = 1;
     for (const I of facets) {
       for (const i of I) {
-        Y[i] = Y[i] * ky + ty;
+        Y[i % Y.length] = Y[i % Y.length] * ky + ty;
       }
     }
     return {

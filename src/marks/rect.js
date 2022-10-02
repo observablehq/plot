@@ -66,18 +66,28 @@ export class Rect extends Mark {
           .enter()
           .append("rect")
           .call(applyDirectStyles, this)
-          .attr("x", X1 && X2 && !isCollapsed(x) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
-          .attr("y", Y1 && Y2 && !isCollapsed(y) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+          .attr(
+            "x",
+            X1 && X2 && !isCollapsed(x)
+              ? (i) => Math.min(X1[i % X1.length], X2[i % X2.length]) + insetLeft
+              : marginLeft + insetLeft
+          )
+          .attr(
+            "y",
+            Y1 && Y2 && !isCollapsed(y)
+              ? (i) => Math.min(Y1[i % Y1.length], Y2[i % Y2.length]) + insetTop
+              : marginTop + insetTop
+          )
           .attr(
             "width",
             X1 && X2 && !isCollapsed(x)
-              ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
+              ? (i) => Math.max(0, Math.abs(X2[i % X2.length] - X1[i % X1.length]) - insetLeft - insetRight)
               : width - marginRight - marginLeft - insetRight - insetLeft
           )
           .attr(
             "height",
             Y1 && Y2 && !isCollapsed(y)
-              ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
+              ? (i) => Math.max(0, Math.abs(Y1[i % Y1.length] - Y2[i % Y2.length]) - insetTop - insetBottom)
               : height - marginTop - marginBottom - insetTop - insetBottom
           )
           .call(applyAttr, "rx", rx)

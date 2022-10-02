@@ -71,46 +71,46 @@ function normalizeBasis(basis) {
     map(I, S, T) {
       const b = +basis(I, S);
       for (const i of I) {
-        T[i] = S[i] === null ? NaN : S[i] / b;
+        T[i % T.length] = S[i % S.length] === null ? NaN : S[i % S.length] / b;
       }
     }
   };
 }
 
 function normalizeAccessor(f) {
-  return normalizeBasis((I, S) => f(I, (i) => S[i]));
+  return normalizeBasis((I, S) => f(I, (i) => S[i % S.length]));
 }
 
 const normalizeExtent = {
   map(I, S, T) {
-    const [s1, s2] = extent(I, (i) => S[i]),
+    const [s1, s2] = extent(I, (i) => S[i % S.length]),
       d = s2 - s1;
     for (const i of I) {
-      T[i] = S[i] === null ? NaN : (S[i] - s1) / d;
+      T[i % T.length] = S[i % S.length] === null ? NaN : (S[i % S.length] - s1) / d;
     }
   }
 };
 
 const normalizeFirst = normalizeBasis((I, S) => {
   for (let i = 0; i < I.length; ++i) {
-    const s = S[I[i]];
+    const s = S[I[i % I.length]];
     if (defined(s)) return s;
   }
 });
 
 const normalizeLast = normalizeBasis((I, S) => {
   for (let i = I.length - 1; i >= 0; --i) {
-    const s = S[I[i]];
+    const s = S[I[i % I.length]];
     if (defined(s)) return s;
   }
 });
 
 const normalizeDeviation = {
   map(I, S, T) {
-    const m = mean(I, (i) => S[i]);
-    const d = deviation(I, (i) => S[i]);
+    const m = mean(I, (i) => S[i % S.length]);
+    const d = deviation(I, (i) => S[i % S.length]);
     for (const i of I) {
-      T[i] = S[i] === null ? NaN : d ? (S[i] - m) / d : 0;
+      T[i % T.length] = S[i % S.length] === null ? NaN : d ? (S[i % S.length] - m) / d : 0;
     }
   }
 };

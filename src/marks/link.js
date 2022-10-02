@@ -46,8 +46,8 @@ export class Link extends Mark {
             const p = path();
             const c = curve(p);
             c.lineStart();
-            c.point(X1[i], Y1[i]);
-            c.point(X2[i], Y2[i]);
+            c.point(X1[i % X1.length], Y1[i % Y1.length]);
+            c.point(X2[i % X2.length], Y2[i % Y2.length]);
             c.lineEnd();
             return p;
           })

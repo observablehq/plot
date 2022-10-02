@@ -90,7 +90,7 @@ export function filter(test, options) {
 function filterTransform(value) {
   return (data, facets) => {
     const V = valueof(data, value);
-    return {data, facets: facets.map((I) => I.filter((i) => V[i]))};
+    return {data, facets: facets.map((I) => I.filter((i) => V[i % V.length]))};
   };
 }
 
@@ -177,7 +177,7 @@ function sortValue(value) {
       if (!V) return {}; // ignore missing channel
       V = V.value;
     }
-    const compareValue = (i, j) => order(V[i], V[j]);
+    const compareValue = (i, j) => order(V[i % V.length], V[j % V.length]);
     return {data, facets: facets.map((I) => I.slice().sort(compareValue))};
   };
 }

@@ -175,9 +175,9 @@ function groupn(
               groupData.push(reduceData.reduce(g, data));
               if (X) GX.push(x);
               if (Y) GY.push(y);
-              if (Z) GZ.push(G === Z ? f : Z[g[0]]);
-              if (F) GF.push(G === F ? f : F[g[0]]);
-              if (S) GS.push(G === S ? f : S[g[0]]);
+              if (Z) GZ.push(G === Z ? f : Z[g[0] % Z.length]);
+              if (F) GF.push(G === F ? f : F[g[0] % F.length]);
+              if (S) GS.push(G === S ? f : S[g[0] % S.length]);
               for (const o of outputs) o.reduce(g);
               if (sort) sort.reduce(g);
             }
@@ -259,7 +259,7 @@ export function maybeEvaluator(name, reduce, inputs) {
 export function maybeGroup(I, X) {
   return X
     ? sort(
-        grouper(I, (i) => X[i]),
+        grouper(I, (i) => X[i % X.length]),
         first
       )
     : [[, I]];
@@ -330,7 +330,7 @@ export function maybeSubgroup(outputs, inputs) {
 export function maybeSort(facets, sort, reverse) {
   if (sort) {
     const S = sort.output.transform();
-    const compare = (i, j) => ascendingDefined(S[i], S[j]);
+    const compare = (i, j) => ascendingDefined(S[i % S.length], S[j % S.length]);
     facets.forEach((f) => f.sort(compare));
   }
   if (reverse) {
@@ -349,7 +349,7 @@ function reduceFunction(f) {
 function reduceAccessor(f) {
   return {
     reduce(I, X) {
-      return f(I, (i) => X[i]);
+      return f(I, (i) => X[i % X.length]);
     }
   };
 }
@@ -373,7 +373,7 @@ const reduceTitle = {
       rollup(
         I,
         (V) => V.length,
-        (i) => X[i]
+        (i) => X[i % X.length]
       ),
       second
     );
@@ -403,7 +403,7 @@ const reduceDistinct = {
   label: "Distinct",
   reduce: (I, X) => {
     const s = new InternSet();
-    for (const i of I) s.add(X[i]);
+    for (const i of I) s.add(X[i % X.length]);
     return s.size;
   }
 };
@@ -413,7 +413,7 @@ const reduceSum = reduceAccessor(sum);
 function reduceProportion(value, scope) {
   return value == null
     ? {scope, label: "Frequency", reduce: (I, V, basis = 1) => I.length / basis}
-    : {scope, reduce: (I, V, basis = 1) => sum(I, (i) => V[i]) / basis};
+    : {scope, reduce: (I, V, basis = 1) => sum(I, (i) => V[i % V.length]) / basis};
 }
 
 function mid(x1, x2) {

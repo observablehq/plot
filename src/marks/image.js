@@ -81,26 +81,26 @@ export class Image extends Mark {
           .attr(
             "x",
             W && X
-              ? (i) => X[i] - W[i] / 2
+              ? (i) => X[i % X.length] - W[i % W.length] / 2
               : W
-              ? (i) => cx - W[i] / 2
+              ? (i) => cx - W[i % W.length] / 2
               : X
-              ? (i) => X[i] - this.width / 2
+              ? (i) => X[i % X.length] - this.width / 2
               : cx - this.width / 2
           )
           .attr(
             "y",
             H && Y
-              ? (i) => Y[i] - H[i] / 2
+              ? (i) => Y[i % Y.length] - H[i % H.length] / 2
               : H
-              ? (i) => cy - H[i] / 2
+              ? (i) => cy - H[i % H.length] / 2
               : Y
-              ? (i) => Y[i] - this.height / 2
+              ? (i) => Y[i % Y.length] - this.height / 2
               : cy - this.height / 2
           )
-          .attr("width", W ? (i) => W[i] : this.width)
-          .attr("height", H ? (i) => H[i] : this.height)
-          .call(applyAttr, "href", S ? (i) => S[i] : this.src)
+          .attr("width", W ? (i) => W[i % W.length] : this.width)
+          .attr("height", H ? (i) => H[i % H.length] : this.height)
+          .call(applyAttr, "href", S ? (i) => S[i % S.length] : this.src)
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
           .call(applyChannelStyles, this, channels)

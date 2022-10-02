@@ -129,11 +129,11 @@ function* selectorLast(I) {
 }
 
 function* selectorMin(I, X) {
-  yield least(I, (i) => X[i]);
+  yield least(I, (i) => X[i % X.length]);
 }
 
 function* selectorMax(I, X) {
-  yield greatest(I, (i) => X[i]);
+  yield greatest(I, (i) => X[i % X.length]);
 }
 
 function selectChannel(v, selector, options) {
@@ -148,7 +148,7 @@ function selectChannel(v, selector, options) {
     const selectFacets = [];
     for (const facet of facets) {
       const selectFacet = [];
-      for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
+      for (const I of Z ? group(facet, (i) => Z[i % Z.length]).values() : [facet]) {
         for (const i of selector(I, V)) {
           selectFacet.push(i);
         }

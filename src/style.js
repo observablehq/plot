@@ -141,7 +141,7 @@ export function styles(
 export function applyTitle(selection, L) {
   if (L)
     selection
-      .filter((i) => nonempty(L[i]))
+      .filter((i) => nonempty(L[i % L.length]))
       .append("title")
       .call(applyText, L);
 }
@@ -150,17 +150,17 @@ export function applyTitle(selection, L) {
 export function applyTitleGroup(selection, L) {
   if (L)
     selection
-      .filter(([i]) => nonempty(L[i]))
+      .filter(([i]) => nonempty(L[i % L.length]))
       .append("title")
       .call(applyTextGroup, L);
 }
 
 export function applyText(selection, T) {
-  if (T) selection.text((i) => formatDefault(T[i]));
+  if (T) selection.text((i) => formatDefault(T[i % T.length]));
 }
 
 export function applyTextGroup(selection, T) {
-  if (T) selection.text(([i]) => formatDefault(T[i]));
+  if (T) selection.text(([i]) => formatDefault(T[i % T.length]));
 }
 
 export function applyChannelStyles(
@@ -178,14 +178,14 @@ export function applyChannelStyles(
     href: H
   }
 ) {
-  if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
-  if (F) applyAttr(selection, "fill", (i) => F[i]);
-  if (FO) applyAttr(selection, "fill-opacity", (i) => FO[i]);
-  if (S) applyAttr(selection, "stroke", (i) => S[i]);
-  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i]);
-  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
-  if (O) applyAttr(selection, "opacity", (i) => O[i]);
-  if (H) applyHref(selection, (i) => H[i], target);
+  if (AL) applyAttr(selection, "aria-label", (i) => AL[i % AL.length]);
+  if (F) applyAttr(selection, "fill", (i) => F[i % F.length]);
+  if (FO) applyAttr(selection, "fill-opacity", (i) => FO[i % FO.length]);
+  if (S) applyAttr(selection, "stroke", (i) => S[i % S.length]);
+  if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i % SO.length]);
+  if (SW) applyAttr(selection, "stroke-width", (i) => SW[i % SW.length]);
+  if (O) applyAttr(selection, "opacity", (i) => O[i % O.length]);
+  if (H) applyHref(selection, (i) => H[i % H.length], target);
   applyTitle(selection, T);
 }
 
@@ -204,14 +204,14 @@ export function applyGroupedChannelStyles(
     href: H
   }
 ) {
-  if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i]);
-  if (F) applyAttr(selection, "fill", ([i]) => F[i]);
-  if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i]);
-  if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
-  if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i]);
-  if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
-  if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
-  if (H) applyHref(selection, ([i]) => H[i], target);
+  if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i % AL.length]);
+  if (F) applyAttr(selection, "fill", ([i]) => F[i % F.length]);
+  if (FO) applyAttr(selection, "fill-opacity", ([i]) => FO[i % FO.length]);
+  if (S) applyAttr(selection, "stroke", ([i]) => S[i % S.length]);
+  if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i % SO.length]);
+  if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i % SW.length]);
+  if (O) applyAttr(selection, "opacity", ([i]) => O[i % O.length]);
+  if (H) applyHref(selection, ([i]) => H[i % H.length], target);
   applyTitleGroup(selection, T);
 }
 
@@ -230,7 +230,7 @@ function groupAesthetics({
 }
 
 export function groupZ(I, Z, z) {
-  const G = group(I, (i) => Z[i]);
+  const G = group(I, (i) => Z[i % Z.length]);
   if (z === undefined && G.size > I.length >> 1) {
     warn(
       `Warning: the implicit z channel has high cardinality. This may occur when the fill or stroke channel is associated with quantitative data rather than ordinal or categorical data. You can suppress this warning by setting the z option explicitly; if this data represents a single series, set z to null.`
@@ -251,7 +251,7 @@ export function* groupIndex(I, position, {z}, channels) {
     out: for (const i of G) {
       // If any channel has an undefined value for this index, skip it.
       for (const c of C) {
-        if (!defined(c[i])) {
+        if (!defined(c[i % c.length])) {
           if (Gg) Gg.push(-1);
           continue out;
         }
@@ -261,7 +261,7 @@ export function* groupIndex(I, position, {z}, channels) {
       // group. Yield the current group and start a new one.
       if (Ag === undefined) {
         if (Gg) yield Gg;
-        (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
+        (Ag = A.map((c) => keyof(c[i % c.length]))), (Gg = [i]);
         continue;
       }
 
@@ -270,10 +270,10 @@ export function* groupIndex(I, position, {z}, channels) {
       // and start a new group of the current index.
       Gg.push(i);
       for (let j = 0; j < A.length; ++j) {
-        const k = keyof(A[j][i]);
+        const k = keyof(A[j][i % A[j].length]);
         if (k !== Ag[j]) {
           yield Gg;
-          (Ag = A.map((c) => keyof(c[i]))), (Gg = [i]);
+          (Ag = A.map((c) => keyof(c[i % c.length]))), (Gg = [i]);
           continue out;
         }
       }

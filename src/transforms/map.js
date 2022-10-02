@@ -1,6 +1,7 @@
 import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
+import {facetExclusive} from "../facet.js";
 
 /**
  * ```js
@@ -58,12 +59,14 @@ export function map(outputs = {}, options = {}) {
   });
   return {
     ...basic(options, (data, facets) => {
+      let n;
+      ({n, facets} = facetExclusive(facets, data.length));
       const Z = valueof(data, z);
-      const X = channels.map(({input}) => valueof(data, input));
-      const MX = channels.map(({setOutput}) => setOutput(new Array(data.length)));
+      const Xs = channels.map(({input}) => valueof(data, input));
+      const MX = channels.map(({setOutput}) => setOutput(new Array(n)));
       for (const facet of facets) {
-        for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
-          channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));
+        for (const I of Z ? group(facet, (i) => Z[i % Z.length]).values() : [facet]) {
+          channels.forEach(({map}, k) => map.map(I, Xs[k], MX[k]));
         }
       }
       return {data, facets};
@@ -97,9 +100,14 @@ function rankQuantile(V) {
 function mapFunction(f) {
   return {
     map(I, S, T) {
-      const M = f(take(S, I));
+      const M = f(
+        take(
+          S,
+          I.map((i) => i % S.length)
+        )
+      );
       if (M.length !== I.length) throw new Error("map function returned a mismatched length");
-      for (let i = 0, n = I.length; i < n; ++i) T[I[i]] = M[i];
+      for (let i = 0, n = I.length; i < n; ++i) T[I[i % I.length]] = M[i % M.length];
     }
   };
 }
@@ -107,6 +115,6 @@ function mapFunction(f) {
 const mapCumsum = {
   map(I, S, T) {
     let sum = 0;
-    for (const i of I) T[i] = sum += S[i];
+    for (const i of I) T[i] = sum += S[i % S.length];
   }
 };

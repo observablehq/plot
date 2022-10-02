@@ -697,7 +697,7 @@ export class Mark {
       const {filter = defined} = channels[name];
       if (filter !== null) {
         const value = values[name];
-        index = index.filter((i) => filter(value[i]));
+        index = index.filter((i) => filter(value[i % value.length]));
       }
     }
     return index;
@@ -813,14 +813,14 @@ function facetGroups(index, {fx, fy}) {
 }
 
 function facetGroup1(index, {value: F}) {
-  return groups(index, (i) => F[i]);
+  return groups(index, (i) => F[i % F.length]);
 }
 
 function facetGroup2(index, {value: FX}, {value: FY}) {
   return groups(
     index,
-    (i) => FX[i],
-    (i) => FY[i]
+    (i) => FX[i % FX.length],
+    (i) => FY[i % FY.length]
   ).flatMap(([x, xgroup]) => xgroup.map(([y, ygroup]) => [[x, y], ygroup]));
 }
 

@@ -48,7 +48,7 @@ export class Arrow extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1, SW} = channels;
     const {strokeWidth, bend, headAngle, headLength, insetStart, insetEnd} = this;
-    const sw = SW ? (i) => SW[i] : constant(strokeWidth === undefined ? 1 : strokeWidth);
+    const sw = SW ? (i) => SW[i % SW.length] : constant(strokeWidth === undefined ? 1 : strokeWidth);
 
     // When bending, the offset between the straight line between the two points
     // and the outgoing tangent from the start point. (Also the negative
@@ -78,10 +78,10 @@ export class Arrow extends Mark {
           .attr("d", (i) => {
             // The start ⟨x1,y1⟩ and end ⟨x2,y2⟩ points may be inset, and the
             // ending line angle may be altered for inset swoopy arrows.
-            let x1 = X1[i],
-              y1 = Y1[i],
-              x2 = X2[i],
-              y2 = Y2[i];
+            let x1 = X1[i % X1.length],
+              y1 = Y1[i % Y1.length],
+              x2 = X2[i % X2.length],
+              y2 = Y2[i % Y2.length];
             const lineLength = Math.hypot(x2 - x1, y2 - y1);
             if (lineLength <= insetStart + insetEnd) return null;
             let lineAngle = Math.atan2(y2 - y1, x2 - x1);

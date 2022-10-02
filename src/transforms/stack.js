@@ -1,6 +1,7 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
 import {field, column, maybeColumn, maybeZ, mid, range, valueof, maybeZero, one} from "../options.js";
+import {facetExclusive} from "../facet.js";
 import {basic} from "./basic.js";
 
 /**
@@ -147,23 +148,24 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   order = maybeOrder(order, offset, ky);
   return [
     basic(options, (data, facets) => {
+      let n;
+      ({n, facets} = facetExclusive(facets, data.length));
       const X = x == null ? undefined : setX(valueof(data, x));
       const Y = valueof(data, y, Float64Array);
       const Z = valueof(data, z);
       const O = order && order(data, X, Y, Z);
-      const n = data.length;
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
       for (const facet of facets) {
-        const stacks = X ? Array.from(group(facet, (i) => X[i]).values()) : [facet];
+        const stacks = X ? Array.from(group(facet, (i) => X[i % X.length]).values()) : [facet];
         if (O) applyOrder(stacks, O);
         for (const stack of stacks) {
           let yn = 0,
             yp = 0;
           if (reverse) stack.reverse();
           for (const i of stack) {
-            const y = Y[i];
+            const y = Y[i % Y.length];
             if (y < 0) yn = Y2[i] = (Y1[i] = yn) + y;
             else if (y > 0) yp = Y2[i] = (Y1[i] = yp) + y;
             else Y2[i] = Y1[i] = yp; // NaN or zero
@@ -206,7 +208,7 @@ function extent(stack, Y2) {
   let min = 0,
     max = 0;
   for (const i of stack) {
-    const y = Y2[i];
+    const y = Y2[i % Y2.length];
     if (y < min) min = y;
     if (y > max) max = y;
   }
@@ -219,8 +221,8 @@ function offsetExpand(facetstacks, Y1, Y2) {
       const [yn, yp] = extent(stack, Y2);
       for (const i of stack) {
         const m = 1 / (yp - yn || 1);
-        Y1[i] = m * (Y1[i] - yn);
-        Y2[i] = m * (Y2[i] - yn);
+        Y1[i % Y1.length] = m * (Y1[i % Y1.length] - yn);
+        Y2[i % Y2.length] = m * (Y2[i % Y2.length] - yn);
       }
     }
   }
@@ -232,8 +234,8 @@ function offsetCenter(facetstacks, Y1, Y2) {
       const [yn, yp] = extent(stack, Y2);
       for (const i of stack) {
         const m = (yp + yn) / 2;
-        Y1[i] -= m;
-        Y2[i] -= m;
+        Y1[i % Y1.length] -= m;
+        Y2[i % Y2.length] -= m;
       }
     }
     offsetZero(stacks, Y1, Y2);
@@ -247,18 +249,18 @@ function offsetWiggle(facetstacks, Y1, Y2, Z) {
     let y = 0;
     for (const stack of stacks) {
       let j = -1;
-      const Fi = stack.map((i) => Math.abs(Y2[i] - Y1[i]));
+      const Fi = stack.map((i) => Math.abs(Y2[i % Y2.length] - Y1[i % Y1.length]));
       const Df = stack.map((i) => {
-        j = Z ? Z[i] : ++j;
-        const value = Y2[i] - Y1[i];
+        j = Z ? Z[i % Z.length] : ++j;
+        const value = Y2[i % Y2.length] - Y1[i % Y1.length];
         const diff = prev.has(j) ? value - prev.get(j) : 0;
         prev.set(j, value);
         return diff;
       });
       const Cf1 = [0, ...cumsum(Df)];
       for (const i of stack) {
-        Y1[i] += y;
-        Y2[i] += y;
+        Y1[i % Y1.length] += y;
+        Y2[i % Y2.length] += y;
       }
       const s1 = sum(Fi);
       if (s1) y -= sum(Fi, (d, i) => (Df[i] / 2 + Cf1[i]) * d) / s1;
@@ -269,11 +271,11 @@ function offsetWiggle(facetstacks, Y1, Y2, Z) {
 }
 
 function offsetZero(stacks, Y1, Y2) {
-  const m = min(stacks, (stack) => min(stack, (i) => Y1[i]));
+  const m = min(stacks, (stack) => min(stack, (i) => Y1[i % Y1.length]));
   for (const stack of stacks) {
     for (const i of stack) {
-      Y1[i] -= m;
-      Y2[i] -= m;
+      Y1[i % Y1.length] -= m;
+      Y2[i % Y2.length] -= m;
     }
   }
 }
@@ -282,13 +284,13 @@ function offsetCenterFacets(facetstacks, Y1, Y2) {
   const n = facetstacks.length;
   if (n === 1) return;
   const facets = facetstacks.map((stacks) => stacks.flat());
-  const m = facets.map((I) => (min(I, (i) => Y1[i]) + max(I, (i) => Y2[i])) / 2);
+  const m = facets.map((I) => (min(I, (i) => Y1[i % Y1.length]) + max(I, (i) => Y2[i % Y2.length])) / 2);
   const m0 = min(m);
   for (let j = 0; j < n; j++) {
     const p = m0 - m[j];
     for (const i of facets[j]) {
-      Y1[i] += p;
-      Y2[i] += p;
+      Y1[i % Y1.length] += p;
+      Y2[i % Y2.length] += p;
     }
   }
 }
@@ -332,9 +334,9 @@ function orderSum(data, X, Y, Z) {
   return orderZDomain(
     Z,
     groupSort(
-      range(data),
+      range(Y),
       (I) => sum(I, (i) => Y[i]),
-      (i) => Z[i]
+      (i) => Z[i % Z.length]
     )
   );
 }
@@ -344,9 +346,9 @@ function orderAppearance(data, X, Y, Z) {
   return orderZDomain(
     Z,
     groupSort(
-      range(data),
-      (I) => X[greatest(I, (i) => Y[i])],
-      (i) => Z[i]
+      range(Y),
+      (I) => X[greatest(I, (i) => Y[i]) % X.length],
+      (i) => Z[i % Z.length]
     )
   );
 }
@@ -354,16 +356,16 @@ function orderAppearance(data, X, Y, Z) {
 // by x = argmax of value, but rearranged inside-out by alternating series
 // according to the sign of a running divergence of sums
 function orderInsideOut(data, X, Y, Z) {
-  const I = range(data);
+  const I = range(Y);
   const K = groupSort(
     I,
     (I) => X[greatest(I, (i) => Y[i])],
-    (i) => Z[i]
+    (i) => Z[i % Z.length]
   );
   const sums = rollup(
     I,
     (I) => sum(I, (i) => Y[i]),
-    (i) => Z[i]
+    (i) => Z[i % Z.length]
   );
   const Kp = [],
     Kn = [];
@@ -398,6 +400,6 @@ function orderZDomain(Z, domain) {
 
 function applyOrder(stacks, O) {
   for (const stack of stacks) {
-    stack.sort((i, j) => ascendingDefined(O[i], O[j]));
+    stack.sort((i, j) => ascendingDefined(O[i % O.length], O[j % O.length]));
   }
 }

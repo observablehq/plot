@@ -43,10 +43,10 @@ export class Vector extends Mark {
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {length, rotate, anchor} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
-    const fl = L ? (i) => L[i] : () => length;
-    const fr = R ? (i) => R[i] : () => rotate;
-    const fx = X ? (i) => X[i] : () => cx;
-    const fy = Y ? (i) => Y[i] : () => cy;
+    const fl = L ? (i) => L[i % L.length] : () => length;
+    const fr = R ? (i) => R[i % R.length] : () => rotate;
+    const fx = X ? (i) => X[i % X.length] : () => cx;
+    const fy = Y ? (i) => Y[i % Y.length] : () => cy;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g", context)
       .attr("fill", "none")

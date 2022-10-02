@@ -109,10 +109,10 @@ export function hexbin(outputs = {fill: "count"}, options = {}) {
           binFacet.push(++i);
           BX.push(bin.x);
           BY.push(bin.y);
-          if (Z) GZ.push(G === Z ? f : Z[bin[0]]);
-          if (F) GF.push(G === F ? f : F[bin[0]]);
-          if (S) GS.push(G === S ? f : S[bin[0]]);
-          if (Q) GQ.push(G === Q ? f : Q[bin[0]]);
+          if (Z) GZ.push(G === Z ? f : Z[bin[0] % Z.length]);
+          if (F) GF.push(G === F ? f : F[bin[0] % F.length]);
+          if (S) GS.push(G === S ? f : S[bin[0] % S.length]);
+          if (Q) GQ.push(G === Q ? f : Q[bin[0] % Q.length]);
           for (const o of outputs) o.reduce(bin);
         }
       }
@@ -143,8 +143,8 @@ function hbin(I, X, Y, dx) {
   const dy = dx * (1.5 / sqrt3);
   const bins = new Map();
   for (const i of I) {
-    let px = X[i],
-      py = Y[i];
+    let px = X[i % X.length],
+      py = Y[i % Y.length];
     if (isNaN(px) || isNaN(py)) continue;
     let pj = Math.round((py = (py - oy) / dy)),
       pi = Math.round((px = (px - ox) / dx - (pj & 1) / 2)),

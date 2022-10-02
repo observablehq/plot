@@ -68,7 +68,7 @@ export function channelDomain(channels, facetChannels, data, options) {
         let domain = rollup(
           range(XV),
           (I) => reducer.reduce(I, YV),
-          (i) => XV[i]
+          (i) => XV[i % XV.length]
         );
         domain = sort(domain, reverse ? descendingGroup : ascendingGroup);
         if (lo !== 0 || hi !== Infinity) domain = domain.slice(lo, hi);
@@ -88,7 +88,7 @@ function findScaleChannel(channels, scale) {
 function difference(channels, k1, k2) {
   const X1 = values(channels, k1);
   const X2 = values(channels, k2);
-  return map(X2, (x2, i) => Math.abs(x2 - X1[i]), Float64Array);
+  return map(X2, (x2, i) => Math.abs(x2 - X1[i % X1.length]), Float64Array);
 }
 
 function values(channels, name, alias) {
