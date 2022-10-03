@@ -116,8 +116,8 @@ export function tree(data, options = {}) {
  * except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
  * which aligns leaf nodes.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  */
-export function cluster(data, options = undefined) {
+export function cluster(data, options) {
   return tree(data, {...options, treeLayout: Cluster});
 }

@@ -297,10 +297,10 @@ function delaunayMark(DelaunayMark, data, {x, y, ...options} = {}) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  * @returns {DelaunayLink}
  */
-export function delaunayLink(data, options = undefined) {
+export function delaunayLink(data, options) {
   return delaunayMark(DelaunayLink, data, options);
 }
 
@@ -315,10 +315,10 @@ export function delaunayLink(data, options = undefined) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Delaunay triangulations are constructed for each group.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  * @returns {DelaunayMesh}
  */
-export function delaunayMesh(data, options = undefined) {
+export function delaunayMesh(data, options) {
   return delaunayMark(DelaunayMesh, data, options);
 }
 
@@ -334,10 +334,10 @@ export function delaunayMesh(data, options = undefined) {
  * not specified, it defaults to either the **fill** channel, if any, or the
  * **stroke** channel, if any.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  * @returns {Hull}
  */
-export function hull(data, options = undefined) {
+export function hull(data, options) {
   return delaunayMark(Hull, data, options);
 }
 
@@ -348,10 +348,10 @@ export function hull(data, options = undefined) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  * @returns {Voronoi}
  */
-export function voronoi(data, options = undefined) {
+export function voronoi(data, options) {
   return delaunayMark(Voronoi, data, options);
 }
 
@@ -366,9 +366,9 @@ export function voronoi(data, options = undefined) {
  * If a **z** channel is specified, the input points are grouped by *z*, and
  * separate Voronoi tesselations are constructed for each group.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  * @returns {VoronoiMesh}
  */
-export function voronoiMesh(data, options = undefined) {
+export function voronoiMesh(data, options) {
   return delaunayMark(VoronoiMesh, data, options);
 }

@@ -187,9 +187,9 @@ export function dotY(data, options = {}) {
  * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
  * except that the **symbol** option is set to *circle*.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  */
-export function circle(data, options = undefined) {
+export function circle(data, options) {
   return dot(data, {...options, symbol: "circle"});
 }
 
@@ -198,8 +198,8 @@ export function circle(data, options = undefined) {
  * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
  * except that the **symbol** option is set to *hexagon*.
  * @param {Data} data
- * @param {MarkOptions & DotOptions} options
+ * @param {Options=} options
  */
-export function hexagon(data, options = undefined) {
+export function hexagon(data, options) {
   return dot(data, {...options, symbol: "hexagon"});
 }

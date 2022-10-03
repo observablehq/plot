@@ -50,8 +50,8 @@ export class Frame extends Mark {
  *
  * Returns a new frame with the specified *options*.
  *
- * @param {Options} options
+ * @param {Options=} options
  */
-export function frame(options = undefined) {
+export function frame(options) {
   return new Frame(options);
 }

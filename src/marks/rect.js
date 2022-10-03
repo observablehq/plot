@@ -102,9 +102,9 @@ export class Rect extends Mark {
  *
  * Returns a new rect with the given *data* and *options*.
  * @param {Data} data
- * @param {Options} options
+ * @param {Options=} options
  */
-export function rect(data, options = undefined) {
+export function rect(data, options) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
