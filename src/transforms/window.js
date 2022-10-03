@@ -1,6 +1,7 @@
 /**
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").WindowOptions} WindowOptions
+ * @typedef {WindowOptions & MarkOptions | undefined} Options
  */
 
 import {deviation, max, min, median, mode, variance} from "d3";
@@ -10,7 +11,7 @@ import {warn} from "../warnings.js";
 import {mapX, mapY} from "./map.js";
 
 /**
- * @param {WindowOptions & MarkOptions} windowOptions
+ * @param {Options} windowOptions
  * @param {MarkOptions} options
  */
 export function windowX(windowOptions = {}, options) {

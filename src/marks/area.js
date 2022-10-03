@@ -2,6 +2,7 @@
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").StackOptions} StackOptions
+ * @typedef {MarkOptions & StackOptions | undefined} Options
  */
 
 import {area as shapeArea} from "d3";
@@ -92,9 +93,9 @@ export class Area extends Mark {
  * is used in the vertical orientation where the baseline and topline share *y*
  * values.
  * @param {Data} data
- * @param {MarkOptions & StackOptions} options
+ * @param {Options} options
  */
-export function area(data, options) {
+export function area(data, options = undefined) {
   if (options === undefined) return areaY(data, {x: first, y: second});
   return new Area(data, options);
 }
@@ -130,9 +131,9 @@ export function area(data, options) {
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
  * @param {Data} data
- * @param {MarkOptions & StackOptions} options
+ * @param {Options} options
  */
-export function areaX(data, options) {
+export function areaX(data, options = undefined) {
   const {y = indexOf, ...rest} = maybeDenseIntervalY(options);
   return new Area(data, maybeStackX(maybeIdentityX({...rest, y1: y, y2: undefined})));
 }
@@ -168,9 +169,9 @@ export function areaX(data, options) {
  * example, if your data represents timestamped temperature measurements and you
  * expect one sample per day, use d3.utcDay as the interval.
  * @param {Data} data
- * @param {MarkOptions & StackOptions} options
+ * @param {Options} options
  */
-export function areaY(data, options) {
+export function areaY(data, options = undefined) {
   const {x = indexOf, ...rest} = maybeDenseIntervalX(options);
   return new Area(data, maybeStackY(maybeIdentityY({...rest, x1: x, x2: undefined})));
 }

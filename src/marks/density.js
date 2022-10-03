@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {contourDensity, create, geoPath} from "d3";
@@ -90,7 +90,7 @@ export class Density extends Mark {
  * channel is constructed with values representing the density threshold value
  * of each contour.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function density(data, options = {}) {
   let {x, y, ...remainingOptions} = options;

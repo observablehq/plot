@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {create} from "../context.js";
@@ -89,7 +89,7 @@ export class Vector extends Mark {
  * pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*,
  * *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function vector(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -103,7 +103,7 @@ export function vector(data, options = {}) {
  * except that if the **x** option is not specified, it defaults to the identity
  * function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function vectorX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -116,7 +116,7 @@ export function vectorX(data, options = {}) {
  * except that if the **y** option is not specified, it defaults to the identity
  * function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function vectorY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

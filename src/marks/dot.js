@@ -2,6 +2,7 @@
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").DotOptions} DotOptions
+ * @typedef {MarkOptions & DotOptions | undefined} Options
  */
 
 import {path, symbolCircle} from "d3";
@@ -129,7 +130,7 @@ export class Dot extends Mark {
  * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
  * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  * @param {Data} data
- * @param {MarkOptions & DotOptions} options
+ * @param {Options} options
  */
 export function dot(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -152,7 +153,7 @@ export function dot(data, options = {}) {
  * the interval is specified as a number *n*, *y* will be the midpoint of two
  * consecutive multiples of *n* that bracket *y*.
  * @param {Data} data
- * @param {MarkOptions & DotOptions} options
+ * @param {Options} options
  */
 export function dotX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -174,7 +175,7 @@ export function dotX(data, options = {}) {
  * the interval is specified as a number *n*, *x* will be the midpoint of two
  * consecutive multiples of *n* that bracket *x*.
  * @param {Data} data
- * @param {MarkOptions & DotOptions} options
+ * @param {Options} options
  */
 export function dotY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;
@@ -186,9 +187,9 @@ export function dotY(data, options = {}) {
  * [Plot.dot](https://github.com/observablehq/plot/blob/main/README.md#plotdotdata-options)
  * except that the **symbol** option is set to *circle*.
  * @param {Data} data
- * @param {MarkOptions & DotOptions} options
+ * @param {Options} options
  */
-export function circle(data, options) {
+export function circle(data, options = undefined) {
   return dot(data, {...options, symbol: "circle"});
 }
 
@@ -199,6 +200,6 @@ export function circle(data, options) {
  * @param {Data} data
  * @param {MarkOptions & DotOptions} options
  */
-export function hexagon(data, options) {
+export function hexagon(data, options = undefined) {
   return dot(data, {...options, symbol: "hexagon"});
 }

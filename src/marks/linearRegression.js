@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {extent, range, sum, area as shapeArea, namespaces} from "d3";
@@ -135,7 +135,7 @@ class LinearRegressionY extends LinearRegression {
  * Returns a linear regression mark where *x* is the dependent variable and *y*
  * is the independent variable.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function linearRegressionX(data, options = {}) {
   const {
@@ -156,7 +156,7 @@ export function linearRegressionX(data, options = {}) {
  * Returns a linear regression mark where *y* is the dependent variable and *x*
  * is the independent variable.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function linearRegressionY(data, options = {}) {
   const {

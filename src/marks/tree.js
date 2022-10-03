@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {cluster as Cluster} from "d3";
@@ -48,7 +48,7 @@ import {text} from "./text.js";
  * Any additional *options* are passed through to the constituent link, dot, and
  * text marks and their corresponding treeLink or treeNode transform.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function tree(data, options = {}) {
   let {
@@ -116,8 +116,8 @@ export function tree(data, options = {}) {
  * except sets the **treeLayout** option to D3’s cluster (dendrogram) algorithm,
  * which aligns leaf nodes.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
-export function cluster(data, options) {
+export function cluster(data, options = undefined) {
   return tree(data, {...options, treeLayout: Cluster});
 }

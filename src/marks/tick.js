@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {create} from "../context.js";
@@ -122,7 +122,7 @@ export class TickY extends AbstractTick {
  * If the **y** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function tickX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -147,7 +147,7 @@ export function tickX(data, options = {}) {
  * If the **x** channel is not specified, the tick will span the full vertical
  * extent of the plot (or facet).
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function tickY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

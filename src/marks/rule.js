@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {create} from "../context.js";
@@ -143,9 +143,9 @@ export class RuleY extends Mark {
  * If the interval is specified as a number *n*, *y1* and *y2* are taken as the
  * two consecutive multiples of *n* that bracket *y*.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
-export function ruleX(data, options) {
+export function ruleX(data, options = undefined) {
   let {x = identity, y, y1, y2, ...rest} = maybeIntervalY(options);
   [y1, y2] = maybeOptionalZero(y, y1, y2);
   return new RuleX(data, {...rest, x, y1, y2});
@@ -183,9 +183,9 @@ export function ruleX(data, options) {
  * If the interval is specified as a number *n*, *x1* and *x2* are taken as the
  * two consecutive multiples of *n* that bracket *x*.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
-export function ruleY(data, options) {
+export function ruleY(data, options = undefined) {
   let {y = identity, x, x1, x2, ...rest} = maybeIntervalX(options);
   [x1, x2] = maybeOptionalZero(x, x1, x2);
   return new RuleY(data, {...rest, y, x1, x2});

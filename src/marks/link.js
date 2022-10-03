@@ -2,6 +2,7 @@
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").MarkerOptions} MarkerOptions
+ * @typedef {MarkOptions & MarkerOptions | undefined} Options
  */
 
 import {path} from "d3";
@@ -71,7 +72,7 @@ export class Link extends Mark {
  *
  * Returns a new link with the given *data* and *options*.
  * @param {Data} data
- * @param {MarkOptions & MarkerOptions} options
+ * @param {Options} options
  */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;

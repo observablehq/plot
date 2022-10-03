@@ -1,3 +1,9 @@
+/**
+ * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {{binWidth?: number}} HexOptions
+ * @typedef {MarkOptions & HexOptions | undefined} Options
+ */
+
 import {create} from "../context.js";
 import {number} from "../options.js";
 import {Mark} from "../plot.js";
@@ -16,8 +22,9 @@ const defaults = {
  * The **binWidth** option specifies the distance between the centers of
  * neighboring hexagons, in pixels (defaults to 20). The **clip** option
  * defaults to true, clipping the mark to the frame’s dimensions.
+ * @param {Options} options
  */
-export function hexgrid(options) {
+export function hexgrid(options = undefined) {
   return new Hexgrid(options);
 }
 

@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {namespaces} from "d3";
@@ -168,7 +168,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
  * to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such
  * that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function text(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
@@ -187,7 +187,7 @@ export function text(data, options = {}) {
  * the interval is specified as a number *n*, *y* will be the midpoint of two
  * consecutive multiples of *n* that bracket *y*.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function textX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
@@ -205,7 +205,7 @@ export function textX(data, options = {}) {
  * the interval is specified as a number *n*, *x* will be the midpoint of two
  * consecutive multiples of *n* that bracket *x*.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function textY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;

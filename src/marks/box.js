@@ -1,6 +1,6 @@
 /**
  * @typedef {import("../types.js").Data} Data
- * @typedef {import("../types.js").MarkOptions} MarkOptions
+ * @typedef {import("../types.js").MarkOptions | undefined} Options
  */
 
 import {min, max, quantile} from "d3";
@@ -22,7 +22,7 @@ import {tickX, tickY} from "./tick.js";
  * the **y** option is not specified, it defaults to null; if the **y** option
  * is specified, it should represent an ordinal (discrete) value.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
@@ -57,7 +57,7 @@ export function boxX(data, options = {}) {
  * the **x** option is not specified, it defaults to null; if the **x** option
  * is specified, it should represent an ordinal (discrete) value.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the

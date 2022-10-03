@@ -2,6 +2,7 @@
  * @typedef {import("../types.js").Data} Data
  * @typedef {import("../types.js").MarkOptions} MarkOptions
  * @typedef {import("../types.js").RectOptions} RectOptions
+ * @typedef {MarkOptions & RectOptions | undefined} Options
  */
 
 import {create} from "../context.js";
@@ -101,9 +102,9 @@ export class Rect extends Mark {
  *
  * Returns a new rect with the given *data* and *options*.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
-export function rect(data, options) {
+export function rect(data, options = undefined) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
@@ -121,7 +122,7 @@ export function rect(data, options) {
  * 0. If the **x** option is not specified, it defaults to the identity
  * function.
  * @param {Data} data
- * @param {MarkOptions} options
+ * @param {Options} options
  */
 export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
   return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
@@ -141,7 +142,7 @@ export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
  * 0. If the **y** option is not specified, it defaults to the identity
  * function.
  * @param {Data} data
- * @param {RectOptions & MarkOptions} options
+ * @param {Options} options
  */
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));

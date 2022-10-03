@@ -333,6 +333,7 @@ export type StyleOptions = {
   paintOrder?: string;
   pointerEvents?: string;
   shapeRendering?: string;
+  clip?: boolean | null | undefined;
 };
 
 /**
