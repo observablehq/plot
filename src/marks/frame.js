@@ -1,5 +1,5 @@
 /**
- * @typedef {import("../types.js").ConstantStyleOptions} ConstantStyleOptions
+ * @typedef {import("../types.js").StyleOptions} ConstantStyleOptions
  * @typedef {import("../types.js").RectOptions} RectOptions
  */
 

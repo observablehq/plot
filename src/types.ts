@@ -5,15 +5,13 @@
  */
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type ColorAccessor = Accessor | (string & {});
+type ColorAccessor = Channel | (string & {});
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type pXX = string & {}; // p00 to p99
 
-type GetColumn = {transform: () => ValueArray; label?: string};
-
 // eslint-disable-next-line @typescript-eslint/ban-types
-type Accessor = AccessorFunction | ValueArray | TransformMethod | (string & {});
+type Channel = AccessorFunction | ValueArray | TransformMethod | (string & {}) | number | null | undefined;
 
 type AccessorFunction = (d: any, i: number) => any;
 
@@ -114,8 +112,8 @@ type LayoutOptions = {
 type FacetOptions = {
   facet?: {
     data: Data<Datum>;
-    x?: Accessor;
-    y?: Accessor;
+    x?: Channel;
+    y?: Channel;
     marginTop?: pixels; // the top margin
     marginRight?: pixels; // the right margin
     marginBottom?: pixels; // the bottom margin
@@ -124,13 +122,6 @@ type FacetOptions = {
     grid?: boolean; // if true, draw grid lines for each facet
     label?: null; // if null, disable default facet axis labels
   };
-};
-
-/**
- * Style options
- */
-type PlotStyleOptions = {
-  style?: string | Partial<CSSStyleDeclaration>;
 };
 
 /**
@@ -225,7 +216,7 @@ export interface ColorScaleOptions {
  */
 type InstantiatedMark = {
   initialize: (data: Data<Datum>) => void;
-  z?: Accessor; // copy the user option for error messages
+  z?: Channel; // copy the user option for error messages
   clip?: "frame";
   dx: number;
   dy: number;
@@ -284,9 +275,7 @@ type TopLevelOptions = {
  */
 export type PlotOptions = LayoutOptions &
   FacetOptions &
-  MarksOptions &
-  PlotStyleOptions &
-  ScalesOptions &
+  MarksOptions & {style?: string | Partial<CSSStyleDeclaration>} & ScalesOptions &
   TopLevelOptions;
 
 /**
@@ -304,36 +293,37 @@ export interface Chart extends HTMLElement {
   legend: (scaleName: "color" | "opacity" | "symbol", legendOptions: LegendOptions) => HTMLElement | undefined;
 }
 
-type MaybeSymbol = Accessor | SymbolName | SymbolObject | null | undefined;
+type MaybeSymbol = Channel | SymbolName | SymbolObject;
 
 /**
  * Mark channel options
  */
-type CommonChannelOptions = {
-  x?: Accessor | number; // TODO: OptionsX
-  x1?: Accessor | number;
-  x2?: Accessor | number;
-  y?: Accessor | number; // TODO: OptionsY
-  y1?: Accessor | number;
-  y2?: Accessor | number;
-  z?: Accessor;
-  fill?: ColorAccessor | null;
-  fillOpacity?: Accessor | number | null;
-  stroke?: ColorAccessor | null;
-  strokeOpacity?: Accessor | number | null;
-  strokeWidth?: Accessor | number | null;
-  opacity?: Accessor | number | null;
+type ChannelOptions = {
+  x?: Channel; // TODO: OptionsX
+  x1?: Channel;
+  x2?: Channel;
+  y?: Channel; // TODO: OptionsY
+  y1?: Channel;
+  y2?: Channel;
+  z?: Channel;
+  fill?: ColorAccessor;
+  fillOpacity?: Channel;
+  stroke?: ColorAccessor;
+  strokeOpacity?: Channel;
+  strokeWidth?: Channel;
+  title?: Channel;
+  opacity?: Channel;
 };
 
 export type DotOptions = {
-  r?: Accessor | number;
+  r?: Channel;
   symbol?: MaybeSymbol;
 };
 
 /**
  * Mark constant style options
  */
-export type ConstantStyleOptions = {
+export type StyleOptions = {
   ariaDescription?: string;
   ariaHidden?: boolean;
   target?: string;
@@ -346,38 +336,6 @@ export type ConstantStyleOptions = {
   paintOrder?: string;
   pointerEvents?: string;
   shapeRendering?: string;
-};
-
-/**
- * Default options for marks, strings or numbers
- */
-type DefaultOptions = {
-  ariaLabel?: string;
-  fill?: string;
-  fillOpacity?: number;
-  stroke?: string;
-  strokeOpacity?: number;
-  strokeWidth?: pixels;
-  strokeLinecap?: string;
-  strokeLinejoin?: string;
-  strokeMiterlimit?: pixels;
-  paintOrder?: string;
-};
-
-/**
- * Channel styles
- */
-type ChannelStyles = {
-  ariaLabel?: ValueArray;
-  title?: ValueArray;
-  fill?: ValueArray;
-  fillOpacity?: ValueArray;
-  stroke?: ValueArray;
-  strokeOpacity?: ValueArray;
-  strokeWidth?: ValueArray;
-  opacity?: ValueArray;
-  href: ValueArray;
-  z?: ValueArray;
 };
 
 /**
@@ -451,11 +409,11 @@ type BasisFunction = (V: ValueArray) => Value;
  */
 type OtherMarkOptions = {
   // the following are necessarily channels
-  title?: Accessor;
-  href?: Accessor;
-  ariaLabel?: Accessor;
+  title?: Channel;
+  href?: Channel;
+  ariaLabel?: Channel;
   // filter & sort
-  filter?: Accessor;
+  filter?: Channel;
   sort?: SortOption | null;
   reverse?: boolean;
   // include in facet
@@ -618,102 +576,6 @@ type InitializerFunction = (
 type InitializerOption = InitializerFunction | TransformOption;
 
 /**
- * The bin transform’s value option
- *
- * To control how the quantitative dimensions x and y are divided into bins,
- * the following options are supported:
- * * thresholds - the threshold values; see below
- * * interval - an alternative method of specifying thresholds
- * * domain - values outside the domain will be omitted
- * * cumulative - if positive, each bin will contain all lesser bins
- *
- * These options may be specified either on the options or outputs object. If the domain option is not specified, it defaults to the minimum and maximum of the corresponding dimension (x or y), possibly niced to match the threshold interval to ensure that the first and last bin have the same width as other bins. If cumulative is negative (-1 by convention), each bin will contain all greater bins rather than all lesser bins, representing the complementary cumulative distribution.
- *
- * To pass separate binning options for x and y, the x and y input channels can be specified as an object with the options above and a value option to specify the input channel values.
- *
- * The thresholds option may be specified as a named method or a variety of other ways:
- *
- * * auto (default) - Scott’s rule, capped at 200
- * * freedman-diaconis - the Freedman–Diaconis rule
- * * scott - Scott’s normal reference rule
- * * sturges - Sturges’ formula
- * * a count (hint) representing the desired number of bins
- * * an array of n threshold values for n + 1 bins
- * * an interval or time interval (for temporal binning; see below)
- * * a function that returns an array, count, or time interval
- *
- * If the thresholds option is specified as a function, it is passed three arguments: the array of input values, the domain minimum, and the domain maximum. If a number, d3.ticks or d3.utcTicks is used to choose suitable nice thresholds. If an interval, it must expose an interval.floor(value), interval.ceil(value), interval.offset(value), and interval.range(start, stop) methods. If the interval is a time interval such as d3.utcDay, or if the thresholds are specified as an array of dates, then the binned values are implicitly coerced to dates. Time intervals are intervals that are also functions that return a Date instance when called with no arguments.
- *
- * If the interval option is used instead of thresholds, it may be either an interval, a time interval, or a number. If a number n, threshold values are consecutive multiples of n that span the domain; otherwise, the interval option is equivalent to the thresholds option. When the thresholds are specified as an interval, and the default domain is used, the domain will automatically be extended to start and end to align with the interval.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#bin
- */
-type BinValue = {
-  value?: Accessor;
-  thresholds?: any;
-  interval?: number | IntervalObject;
-  domain?: number[] | ((V: ValueArray) => ValueArray);
-  cumulative?: number | boolean;
-  //        order?: "descending" | "ascending" | Comparator;
-  //        reverse?: boolean;
-};
-
-/**
- * The group transform's output options
- */
-type OutputOptions = Partial<{[P in keyof CommonChannelOptions]: AggregationMethod}> & {
-  data?: any; // TODO: this option is not tested in any example, and not documented (https://github.com/observablehq/plot/pull/272)
-  title?: AggregationMethod;
-  href?: AggregationMethod;
-  filter?: AggregationMethod | null;
-  sort?: AggregationMethod;
-  reverse?: boolean;
-  interval?: number | Interval;
-} & BinOptions;
-
-type Reducer = {
-  name?: keyof OutputOptions;
-  output: GetColumn;
-  initialize: (data: DataArray) => void;
-  scope: (scope: Aggregate["scope"], I?: Series) => void;
-  reduce: (I: Series, extent?: BinExtent) => ValueArray;
-  label?: string;
-};
-
-/**
- * The shuffle transform’s seed option
- * @link https://github.com/observablehq/plot/blob/main/README.md#plotshuffleoptions
- */
-type ShuffleOptions = {
-  seed?: null | number;
-};
-
-/**
- * Map methods for Plot.map, Plot.mapX, Plot.mapY
- * * cumsum - a cumulative sum
- * * rank - the rank of each value in the sorted array
- * * quantile - the rank, normalized between 0 and 1
- * * a function to be passed an array of values, returning new values
- * * an object that implements the map method
- */
-type MapMethods = "cumsum" | "rank" | "quantile" | ((S: ValueArray) => ValueArray) | MapMethod; // duck-typing in maybeMap
-
-type MapMethod = {map: (I: Series, S: ValueArray, T: ValueArray) => void};
-
-/**
- * Selects the points of each series selected by the selector, which can be specified
- * either as a function which receives as input the index of the series, the shorthand
- * “first” or “last”, or as a {key: value} object with exactly one key being the name
- * of a channel and the value being a function which receives as input the index of the
- * series and the channel values. The value may alternatively be specified as the
- * shorthand “min” and “max” which respectively select the minimum and maximum points
- * for the specified channel.
- * @link https://github.com/observablehq/plot/blob/main/README.md#plotselectselector-options
- */
-type Selector = ((I: Series) => Series) | "first" | "last" | Record<string, SelectorFunction>;
-type SelectorFunction = "min" | "max" | ((I: Series, X: ValueArray) => Series);
-
-/**
  * Stack options
  * @link https://github.com/observablehq/plot/blob/main/README.md#stack
  */
@@ -820,33 +682,9 @@ export type WindowOptions = {
 };
 
 /**
- * The bin options can be specified as part of the inputs or of the outputs
- */
-type BinOptions = {
-  value?: Accessor;
-  cumulative?: boolean;
-  domain?: number[];
-  thresholds?: number | number[];
-  interval?: number | IntervalObject;
-};
-
-/**
  * Mark options (as passed by the user or returned by a transform)
  */
-export type MarkOptions = CommonChannelOptions & ConstantStyleOptions & OtherMarkOptions;
-
-/**
- * The scales passed to a mark's render function
- */
-type Scales = {
-  x?: Scale;
-  y?: Scale;
-  r?: Scale;
-  length?: Scale;
-  opacity?: Scale;
-};
-
-type Scale = any; // TODO
+export type MarkOptions = ChannelOptions & StyleOptions & OtherMarkOptions;
 
 /**
  * The dimensions passed to a mark's render function
