@@ -1,3 +1,7 @@
+/**
+ * @typedef {import("./types.js").PlotOptions | undefined} Options
+ * @typedef {import("./types.js").Chart | undefined} Chart
+ */
 import {cross, difference, groups, InternMap, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
@@ -368,8 +372,8 @@ import {consumeWarnings, warn} from "./warnings.js";
  * const color = plot.scale("color"); // retrieve the color scale object
  * console.log(color.range); // inspect the color scale’s range, ["red", "blue"]
  * ```
- * @param {import("./types.js").PlotOptions} options
- * @returns {Element}
+ * @param {Options} options
+ * @returns {Chart}
  */
 export function plot(options = {}) {
   const {facet, style, caption, ariaLabel, ariaDescription} = options;
