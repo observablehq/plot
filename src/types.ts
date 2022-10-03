@@ -5,9 +5,6 @@
  */
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-type ColorAccessor = Channel | (string & {});
-
-// eslint-disable-next-line @typescript-eslint/ban-types
 type pXX = string & {}; // p00 to p99
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -306,9 +303,9 @@ type ChannelOptions = {
   y1?: Channel;
   y2?: Channel;
   z?: Channel;
-  fill?: ColorAccessor;
+  fill?: Channel;
   fillOpacity?: Channel;
-  stroke?: ColorAccessor;
+  stroke?: Channel;
   strokeOpacity?: Channel;
   strokeWidth?: Channel;
   title?: Channel;
@@ -389,19 +386,7 @@ type IntervalObject = {
  * * deviation - each value is transformed by subtracting the mean and then dividing by the standard deviation
  * * a function to be passed an array of values, returning the desired basis
  */
-type Basis =
-  | "first"
-  | "last"
-  | "min"
-  | "max"
-  | "median"
-  | "p50"
-  | "p95"
-  | pXX
-  | "sum"
-  | "extent"
-  | "deviation"
-  | BasisFunction;
+type Basis = "first" | "last" | "min" | "max" | "median" | "p95" | pXX | "sum" | "extent" | "deviation" | BasisFunction;
 type BasisFunction = (V: ValueArray) => Value;
 
 /**
