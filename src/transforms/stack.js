@@ -1,8 +1,8 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {maybeExpand, facetReindex} from "../facet.js";
+import {maybeExpand, facetReindex, maybeExpandOutputs} from "../facet.js";
 import {field, column, mid, range, valueof, one} from "../options.js";
-import {maybeColumn, maybeColorChannel, maybeZ, maybeZero} from "../options.js";
+import {maybeColumn, maybeZ, maybeZero} from "../options.js";
 import {basic} from "./basic.js";
 
 /**
@@ -19,7 +19,7 @@ export function stackX(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x, ...rest} = options; // note: consumes x!
   const [transform, Y, x1, x2, other] = stack(y, x, "x", stackOptions, rest);
-  return {...transform, y1, y: Y, x1, x2, ...other, x: mid(x1, x2)};
+  return {...transform, ...other, y1, y: Y, x1, x2, x: mid(x1, x2)};
 }
 
 /**
@@ -38,7 +38,7 @@ export function stackX1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, X, , other] = stack(y, x, "x", stackOptions, options);
-  return {...transform, y1, y: Y, x: X, ...other};
+  return {...transform, ...other, y1, y: Y, x: X};
 }
 
 /**
@@ -57,7 +57,7 @@ export function stackX2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {y1, y = y1, x} = options;
   const [transform, Y, , X, other] = stack(y, x, "x", stackOptions, options);
-  return {...transform, y1, y: Y, x: X, ...other};
+  return {...transform, ...other, y1, y: Y, x: X};
 }
 
 /**
@@ -79,7 +79,7 @@ export function stackY(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y, ...rest} = options; // note: consumes y!
   const [transform, X, y1, y2, other] = stack(x, y, "y", stackOptions, rest);
-  return {...transform, x1, x: X, y1, y2, y: mid(y1, y2), ...other};
+  return {...transform, ...other, x1, x: X, y1, y2, y: mid(y1, y2)};
 }
 
 /**
@@ -98,7 +98,7 @@ export function stackY1(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, Y, , other] = stack(x, y, "y", stackOptions, options);
-  return {...transform, x1, x: X, y: Y, ...other};
+  return {...transform, ...other, x1, x: X, y: Y};
 }
 
 /**
@@ -117,7 +117,7 @@ export function stackY2(stackOptions = {}, options = {}) {
   if (arguments.length === 1) [stackOptions, options] = mergeOptions(stackOptions);
   const {x1, x = x1, y} = options;
   const [transform, X, , Y, other] = stack(x, y, "y", stackOptions, options);
-  return {...transform, x1, x: X, y: Y, ...other};
+  return {...transform, ...other, x1, x: X, y: Y};
 }
 
 export function maybeStackX({x, x1, x2, ...options} = {}) {
@@ -147,54 +147,11 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const [Y2, setY2] = column(y);
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
-
-  // TODO Here we will need to iterate over the options and pull out any that
-  // represent channels (columns of values). The list of possible channels for
-  // all Marks:
-  // - fill (color)
-  // - fillOpacity (opacity/number)
-  // - stroke (color)
-  // - strokeOpacity (opacity/number)
-  // - strokeWidth (number)
-  // - opacity (opacity/number)
-  // - title
-  // - href
-  // - ariaLabel
-  // - z?
-  // TODO
-  // - text (text)
-  // - rotate (text, dot)
-  // - fontSize (text)
-  // - symbol (dot)
-  // - r (dot)
-  // - length (vector)
-  // - width (image)
-  // - height (image)
-  // - src (image)
-  // - weight (density)
-
-  const knownChannels = [
-    ["fill", (value) => maybeColorChannel(value)[0]],
-    ["stroke", (value) => maybeColorChannel(value)[0]],
-    ["text"]
-  ];
-
-  const other = {};
-  const outputs = [];
-  for (const [name, test = (value) => value] of knownChannels) {
-    const value = test(options[name]);
-    if (value) {
-      const [V, setV] = column(value);
-      other[name] = V;
-      outputs.push((data, plan) => setV(maybeExpand(valueof(data, value), plan)));
-    }
-  }
-
+  const [other, outputs] = maybeExpandOutputs(options); // TODO wrap outputs in facetReindex
   return [
     basic(options, (data, facets) => {
       let plan;
       ({facets, plan} = facetReindex(facets, data.length)); // make facets exclusive
-      for (const o of outputs) o(data, plan); // expand any extra channels
       const XS = x == null ? undefined : valueof(data, x);
       const YS = valueof(data, y, Float64Array);
       const ZS = valueof(data, z);
@@ -203,6 +160,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
       const Z = maybeExpand(ZS, plan);
       const O = order && maybeExpand(order(data, XS, YS, ZS), plan);
       const n = plan ? plan.length : data.length;
+      for (const o of outputs) o(data, plan); // expand any extra channels
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];

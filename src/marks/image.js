@@ -34,7 +34,7 @@ function isUrl(string) {
 
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
-function maybePathChannel(value) {
+export function maybePathChannel(value) {
   return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
 }
 

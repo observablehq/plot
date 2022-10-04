@@ -3,6 +3,7 @@ import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
+import {maybeExpand, facetReindex} from "../facet.js";
 
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
@@ -87,11 +88,15 @@ function dodge(y, x, anchor, padding, options) {
     options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
-  return initializer(options, function (data, facets, {[x]: X, r: R}, scales, dimensions) {
+  return initializer(options, function (data, facets, {[x]: X, r: R, ...channels}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
-    X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
+
+    let plan;
+    ({facets, plan} = facetReindex(facets, data.length)); // make facets exclusive
+    X = maybeExpand(coerceNumbers(valueof(X.value, scales[X.scale] || identity)), plan);
+
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
-    if (R) R = coerceNumbers(valueof(R.value, scales[R.scale] || identity));
+    if (R) R = maybeExpand(coerceNumbers(valueof(R.value, scales[R.scale] || identity)));
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     const Y = new Float64Array(X.length);
@@ -144,13 +149,17 @@ function dodge(y, x, anchor, padding, options) {
         Y[i] = Y[i] * ky + ty;
       }
     }
+    for (const key in channels) {
+      channels[key].value = maybeExpand(channels[key].value, plan);
+    }
     return {
       data,
       facets,
       channels: {
         [x]: {value: X},
         [y]: {value: Y},
-        ...(R && {r: {value: R}})
+        ...(R && {r: {value: R}}),
+        ...channels
       }
     };
   });

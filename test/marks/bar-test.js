@@ -41,10 +41,10 @@ it("barX(data, {y}) uses a band scale", () => {
 });
 
 it("barX(data, {title}) specifies an optional title channel", () => {
-  const bar = Plot.barX(undefined, {title: "x"});
-  const {title} = bar.channels;
-  assert.strictEqual(title.value, "x");
-  assert.strictEqual(title.scale, undefined);
+  const bar = Plot.barX([{x: 1}, {x: "b"}], {title: "x"});
+  const {channels} = bar.initialize();
+  assert.deepStrictEqual(channels.title.value, [1, "b"]);
+  assert.strictEqual(channels.title.scale, undefined);
 });
 
 it("barX(data, {fill}) allows fill to be a constant color", () => {
@@ -77,11 +77,11 @@ it("barX(data, {stroke}) allows stroke to be null", () => {
 });
 
 it("barX(data, {stroke}) allows stroke to be a variable color", () => {
-  const bar = Plot.barX(undefined, {stroke: "x"});
+  const bar = Plot.barX([{x: 1}, {x: 2}], {stroke: "x"});
   assert.strictEqual(bar.stroke, undefined);
-  const {stroke} = bar.channels;
-  assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  const {channels} = bar.initialize();
+  assert.deepStrictEqual(channels.stroke.value, [1, 2]);
+  assert.strictEqual(channels.stroke.scale, "color");
 });
 
 it("barX(data, {x, y}) defaults x1 to zero and x2 to x", () => {
@@ -142,10 +142,10 @@ it("barY(data, {x}) uses a band scale", () => {
 });
 
 it("barY(data, {title}) specifies an optional title channel", () => {
-  const bar = Plot.barY(undefined, {title: "x"});
-  const {title} = bar.channels;
-  assert.strictEqual(title.value, "x");
-  assert.strictEqual(title.scale, undefined);
+  const bar = Plot.barY([{x: 1}, {x: 2}], {title: "x"});
+  const {channels} = bar.initialize();
+  assert.deepStrictEqual(channels.title.value, [1, 2]);
+  assert.strictEqual(channels.title.scale, undefined);
 });
 
 it("barY(data, {fill}) allows fill to be a constant color", () => {
@@ -159,11 +159,11 @@ it("barY(data, {fill}) allows fill to be null", () => {
 });
 
 it("barY(data, {fill}) allows fill to be a variable color", () => {
-  const bar = Plot.barY(undefined, {fill: "x"});
+  const bar = Plot.barY([{x: 1}, {x: 2}], {fill: "x"});
   assert.strictEqual(bar.fill, undefined);
-  const {fill} = bar.channels;
-  assert.strictEqual(fill.value, "x");
-  assert.strictEqual(fill.scale, "color");
+  const {channels} = bar.initialize();
+  assert.deepStrictEqual(channels.fill.value, [1, 2]);
+  assert.strictEqual(channels.fill.scale, "color");
 });
 
 it("barY(data, {stroke}) allows stroke to be a constant color", () => {
@@ -177,11 +177,11 @@ it("barY(data, {stroke}) allows stroke to be null", () => {
 });
 
 it("barY(data, {stroke}) allows stroke to be a variable color", () => {
-  const bar = Plot.barY(undefined, {stroke: "x"});
+  const bar = Plot.barY([{x: 1}, {x: 2}], {stroke: "x"});
   assert.strictEqual(bar.stroke, undefined);
-  const {stroke} = bar.channels;
-  assert.strictEqual(stroke.value, "x");
-  assert.strictEqual(stroke.scale, "color");
+  const {channels} = bar.initialize();
+  assert.deepStrictEqual(channels.stroke.value, [1, 2]);
+  assert.strictEqual(channels.stroke.scale, "color");
 });
 
 it("barY(data, {x, y}) defaults y1 to zero and y2 to y", () => {

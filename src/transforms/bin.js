@@ -1,7 +1,6 @@
 import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
 import {
   valueof,
-  range,
   identity,
   maybeColumn,
   maybeTuple,
@@ -161,6 +160,7 @@ function binn(
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
     ...basic(options, (data, facets) => {
+      const cover = (bx || by) && union(facets);
       const K = valueof(data, k);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
@@ -172,8 +172,8 @@ function binn(
       const GZ = Z && setGZ([]);
       const GF = F && setGF([]);
       const GS = S && setGS([]);
-      const BX = bx ? bx(data) : [[, , (I) => I]];
-      const BY = by ? by(data) : [[, , (I) => I]];
+      const BX = bx ? bx(data, cover) : [[, , (I) => I]];
+      const BY = by ? by(data, cover) : [[, , (I) => I]];
       const BX1 = bx && setBX1([]);
       const BX2 = bx && setBX2([]);
       const BY1 = by && setBY1([]);
@@ -248,7 +248,7 @@ function maybeBinValueTuple(options) {
 function maybeBin(options) {
   if (options == null) return;
   const {value, cumulative, domain = extent, thresholds} = options;
-  const bin = (data) => {
+  const bin = (data, cover) => {
     let V = valueof(data, value, Array); // d3.bin prefers Array input
     const bin = binner().value((i) => V[i]);
     if (isTemporal(V) || isTimeThresholds(thresholds)) {
@@ -279,7 +279,7 @@ function maybeBin(options) {
       }
       bin.thresholds(t).domain(d);
     }
-    let bins = bin(range(data)).map(binset);
+    let bins = bin(cover).map(binset);
     if (cumulative) bins = (cumulative < 0 ? bins.reverse() : bins).map(bincumset);
     return bins.map(binfilter);
   };
@@ -364,4 +364,10 @@ function binfilter([{x0, x1}, set]) {
 
 function binempty() {
   return new Uint32Array(0);
+}
+
+function union(facets) {
+  const U = new Set();
+  for (const f of facets) for (const i of f) U.add(i);
+  return U;
 }
