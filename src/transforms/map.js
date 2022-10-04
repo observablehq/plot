@@ -1,7 +1,7 @@
 import {count, group, rank} from "d3";
 import {maybeZ, take, valueof, maybeInput, column} from "../options.js";
 import {basic} from "./basic.js";
-import {maybeExpand, facetReindex, maybeExpandOutputs} from "../facet.js";
+import {maybeExpand, facetReindex, maybeExpandChannels} from "../facet.js";
 
 /**
  * ```js
@@ -57,7 +57,7 @@ export function map(outputs = {}, options = {}) {
     const [output, setOutput] = column(input);
     return {key, input, output, setOutput, map: maybeMap(map)};
   });
-  const [other, facetOutputs] = maybeExpandOutputs(options); // TODO wrap outputs in facetReindex
+  const [other, setPlan] = maybeExpandChannels(options);
   return {
     ...basic(options, (data, facets) => {
       let plan;
@@ -65,7 +65,7 @@ export function map(outputs = {}, options = {}) {
       const Z = maybeExpand(valueof(data, z), plan);
       const X = channels.map(({input}) => maybeExpand(valueof(data, input), plan));
       const MX = channels.map(({setOutput}) => setOutput(new Array(plan ? plan.length : data.length)));
-      for (const o of facetOutputs) o(data, plan); // expand any extra channels
+      setPlan(plan); // expand any extra channels
       for (const facet of facets) {
         for (const I of Z ? group(facet, (i) => Z[i]).values() : [facet]) {
           channels.forEach(({map}, i) => map.map(I, X[i], MX[i]));

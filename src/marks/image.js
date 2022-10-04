@@ -34,8 +34,13 @@ function isUrl(string) {
 
 // Disambiguates a constant src definition from a channel. A path or URL string
 // is assumed to be a constant; any other string is assumed to be a field name.
-export function maybePathChannel(value) {
-  return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
+function maybePathChannel(value) {
+  if (typeof value === "string" && (isPath(value) || isUrl(value))) return [undefined, value];
+  if (value && value.definition) {
+    const [, f] = maybePathChannel(value.definition);
+    if (f !== undefined) return [undefined, f];
+  }
+  return [value, undefined];
 }
 
 export class Image extends Mark {

@@ -241,8 +241,12 @@ const fontSizes = new Set([
 // - string <length>: e.g., "12px"
 // - string <percentage>: e.g., "80%"
 // Anything else is assumed to be a channel definition.
-export function maybeFontSizeChannel(fontSize) {
+function maybeFontSizeChannel(fontSize) {
   if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
+  if (fontSize && fontSize.definition) {
+    const [, f] = maybeFontSizeChannel(fontSize.definition);
+    if (f !== undefined) return [undefined, f];
+  }
   if (typeof fontSize !== "string") return [fontSize, undefined];
   fontSize = fontSize.trim().toLowerCase();
   return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)

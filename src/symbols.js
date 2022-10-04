@@ -55,6 +55,7 @@ export function maybeSymbol(symbol) {
 
 export function maybeSymbolChannel(symbol) {
   if (symbol == null || isSymbolObject(symbol)) return [undefined, symbol];
+  if (symbol && symbol.definition && isSymbolObject(symbol.definition)) return [undefined, symbol.definition];
   if (typeof symbol === "string") {
     const value = symbols.get(`${symbol}`.toLowerCase());
     if (value) return [undefined, value];

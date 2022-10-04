@@ -71,6 +71,7 @@ export function percentile(reduce) {
 // CSS color, use an accessor (d => d.red) instead.
 export function maybeColorChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
+  if (value && value.definition && isColor(value.definition)) return [undefined, value.definition];
   return value === null ? [undefined, "none"] : isColor(value) ? [undefined, value] : [value, undefined];
 }
 
@@ -78,6 +79,7 @@ export function maybeColorChannel(value, defaultValue) {
 // indicating a constant, and otherwise assumes that it’s a channel value.
 export function maybeNumberChannel(value, defaultValue) {
   if (value === undefined) value = defaultValue;
+  if (value && value.definition && typeof value.definition === "number") return [undefined, value.definition];
   return value === null || typeof value === "number" ? [undefined, value] : [value, undefined];
 }
 
@@ -252,7 +254,15 @@ export function maybeColumn(source) {
 }
 
 export function labelof(value, defaultValue) {
-  return typeof value === "string" ? value : value && value.label !== undefined ? value.label : defaultValue;
+  return typeof value === "string"
+    ? value
+    : value
+    ? value.label !== undefined
+      ? value.label
+      : typeof value.definition === "string"
+      ? value.definition
+      : defaultValue
+    : defaultValue;
 }
 
 // Assuming that both x1 and x2 and lazy columns (per above), this derives a new
