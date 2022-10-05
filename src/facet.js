@@ -4,6 +4,7 @@ import {maybeFontSizeChannel} from "./marks/text.js";
 import {maybePathChannel} from "./marks/image.js";
 
 export function facetReindex(facets, n) {
+  if (facets.length === 1) return {facets};
   const overlap = new Uint8Array(n);
   let count = 0;
   let plan;
