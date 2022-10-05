@@ -1,8 +1,9 @@
 // Make sure the facets are exclusive, possibly by creating a rectangular index
 // of size m * n, where m is the number of facets, and n the data’s length
 export function facetExclusive(facets, n) {
-  const overlap = new Uint8Array(n);
   const m = facets.length;
+  if (m === 1) return {facets, n};
+  const overlap = new Uint8Array(n);
   let max = -Infinity;
   for (const facet of facets) {
     for (const i of facet) {

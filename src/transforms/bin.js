@@ -1,4 +1,12 @@
-import {bin as binner, extent, thresholdFreedmanDiaconis, thresholdScott, thresholdSturges, utcTickInterval} from "d3";
+import {
+  bin as binner,
+  extent,
+  sum,
+  thresholdFreedmanDiaconis,
+  thresholdScott,
+  thresholdSturges,
+  utcTickInterval
+} from "d3";
 import {
   valueof,
   identity,
@@ -160,7 +168,7 @@ function binn(
     ...("fill" in inputs && {fill: GF || fill}),
     ...("stroke" in inputs && {stroke: GS || stroke}),
     ...basic(options, (data, facets) => {
-      const cover = (bx || by) && union(facets);
+      const cover = (bx || by) && merge(facets);
       const K = valueof(data, k);
       const Z = valueof(data, z);
       const F = valueof(data, vfill);
@@ -366,8 +374,10 @@ function binempty() {
   return new Uint32Array(0);
 }
 
-function union(facets) {
-  const U = new Set();
-  for (const f of facets) for (const i of f) U.add(i);
+function merge(facets) {
+  if (facets.length === 1) return facets[0];
+  const U = new Uint32Array(sum(facets, (f) => f.length));
+  let k = 0;
+  for (const f of facets) for (const i of f) U[k++] = i;
   return U;
 }
