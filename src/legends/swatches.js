@@ -2,7 +2,8 @@ import {path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
 import {Context, create} from "../context.js";
-import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
+import {isNoneish} from "../options.js";
+import {definition} from "../channel.js";
 import {isOrdinalScale, isThresholdScale} from "../scales.js";
 import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
 
@@ -42,14 +43,14 @@ export function legendSymbols(
   } = {},
   scale
 ) {
-  const [vf, cf] = maybeColorChannel(fill);
-  const [vs, cs] = maybeColorChannel(stroke);
+  const [vf, cf] = definition("fill", fill);
+  const [vs, cs] = definition("stroke", stroke);
   const sf = maybeScale(scale, vf);
   const ss = maybeScale(scale, vs);
   const size = r * r * Math.PI;
-  fillOpacity = maybeNumberChannel(fillOpacity)[1];
-  strokeOpacity = maybeNumberChannel(strokeOpacity)[1];
-  strokeWidth = maybeNumberChannel(strokeWidth)[1];
+  fillOpacity = definition("fillOpacity", fillOpacity)[1];
+  strokeOpacity = definition("strokeOpacity", strokeOpacity)[1];
+  strokeWidth = definition("strokeWidth", strokeWidth)[1];
   return legendItems(
     symbol,
     options,

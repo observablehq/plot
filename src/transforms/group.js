@@ -17,7 +17,6 @@ import {
 import {ascendingDefined} from "../defined.js";
 import {
   valueof,
-  maybeColorChannel,
   maybeInput,
   maybeTuple,
   maybeColumn,
@@ -30,6 +29,7 @@ import {
   second,
   percentile
 } from "../options.js";
+import {definition} from "../channel.js";
 import {basic} from "./basic.js";
 
 /**
@@ -135,8 +135,8 @@ function groupn(
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeColumn(z);
-  const [vfill] = maybeColorChannel(fill);
-  const [vstroke] = maybeColorChannel(stroke);
+  const [vfill] = definition("fill", fill);
+  const [vstroke] = definition("stroke", stroke);
   const [GF, setGF] = maybeColumn(vfill);
   const [GS, setGS] = maybeColumn(vstroke);
 

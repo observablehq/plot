@@ -7,12 +7,12 @@ import {
   thresholdSturges,
   utcTickInterval
 } from "d3";
+import {definition} from "../channel.js";
 import {
   valueof,
   identity,
   maybeColumn,
   maybeTuple,
-  maybeColorChannel,
   maybeValue,
   mid,
   labelof,
@@ -158,8 +158,8 @@ function binn(
     ...options
   } = inputs;
   const [GZ, setGZ] = maybeColumn(z);
-  const [vfill] = maybeColorChannel(fill);
-  const [vstroke] = maybeColorChannel(stroke);
+  const [vfill] = definition("fill", fill);
+  const [vstroke] = definition("stroke", stroke);
   const [GF, setGF] = maybeColumn(vfill);
   const [GS, setGS] = maybeColumn(vstroke);
 

@@ -1,6 +1,6 @@
 import {create} from "../context.js";
 import {positive} from "../defined.js";
-import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, string} from "../options.js";
+import {maybeFrameAnchor, maybeTuple, string} from "../options.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -11,7 +11,7 @@ import {
   impliedString,
   applyFrameAnchor
 } from "../style.js";
-import {maybePathChannel} from "../channel.js";
+import {definition} from "../channel.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -24,9 +24,9 @@ export class Image extends Mark {
     let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
-    const [vs, cs] = maybePathChannel(src);
-    const [vw, cw] = maybeNumberChannel(width, 16);
-    const [vh, ch] = maybeNumberChannel(height, 16);
+    const [vs, cs] = definition("src", src);
+    const [vw, cw] = definition("width", width, 16);
+    const [vh, ch] = definition("height", height, 16);
     super(
       data,
       {

@@ -1,6 +1,7 @@
 import {create} from "../context.js";
 import {radians} from "../math.js";
-import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
+import {maybeFrameAnchor, maybeTuple, keyword, identity} from "../options.js";
+import {definition} from "../channel.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -21,8 +22,8 @@ const defaults = {
 export class Vector extends Mark {
   constructor(data, options = {}) {
     const {x, y, length, rotate, anchor = "middle", frameAnchor} = options;
-    const [vl, cl] = maybeNumberChannel(length, 12);
-    const [vr, cr] = maybeNumberChannel(rotate, 0);
+    const [vl, cl] = definition("length", length, 12);
+    const [vr, cr] = definition("rotate", rotate, 0);
     super(
       data,
       {

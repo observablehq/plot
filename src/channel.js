@@ -37,6 +37,11 @@ export const knownChannels = {
   weight: {definition: maybeNumberChannel} // density
 };
 
+export function definition(name, value, defaultValue) {
+  const {definition} = knownChannels[name];
+  return definition ? definition(value, defaultValue) : value === undefined ? [undefined, defaultValue] : [value];
+}
+
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {
   return {

@@ -1,7 +1,8 @@
 import {path, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {positive} from "../defined.js";
-import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
+import {identity, maybeFrameAnchor, maybeTuple} from "../options.js";
+import {definition} from "../channel.js";
 import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
@@ -10,7 +11,6 @@ import {
   applyIndirectStyles,
   applyTransform
 } from "../style.js";
-import {maybeSymbolChannel} from "../symbols.js";
 import {sort} from "../transforms/basic.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
@@ -24,9 +24,9 @@ const defaults = {
 export class Dot extends Mark {
   constructor(data, options = {}) {
     const {x, y, r, rotate, symbol = symbolCircle, frameAnchor} = options;
-    const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
-    const [vsymbol, csymbol] = maybeSymbolChannel(symbol);
-    const [vr, cr] = maybeNumberChannel(r, vsymbol == null ? 3 : 4.5);
+    const [vrotate, crotate] = definition("rotate", rotate, 0);
+    const [vsymbol, csymbol] = definition("symbol", symbol);
+    const [vr, cr] = definition("r", r, vsymbol == null ? 3 : 4.5);
     super(
       data,
       {
