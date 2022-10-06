@@ -675,11 +675,13 @@ export class Mark {
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
     this.channels = Object.fromEntries(
-      Object.entries(channels).filter(([name, {value, optional}]) => {
-        if (value != null) return true;
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      })
+      Object.entries(channels)
+        .filter(([name, {value, optional}]) => {
+          if (value != null) return true;
+          if (optional) return false;
+          throw new Error(`missing channel value: ${name}`);
+        })
+        .map(([name, {scale = knownChannels[name].scale, ...rest}]) => [name, {scale, ...rest}])
     );
     this.dx = +dx || 0;
     this.dy = +dy || 0;

@@ -54,8 +54,8 @@ class DelaunayLink extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         z: {value: z, optional: true}
       },
       options,
@@ -146,8 +146,8 @@ class AbstractDelaunayMark extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         z: {value: zof(options), optional: true}
       },
       options,
@@ -214,8 +214,8 @@ class Voronoi extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         z: {value: z, optional: true}
       },
       options,

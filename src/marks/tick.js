@@ -40,8 +40,8 @@ export class TickX extends AbstractTick {
     super(
       data,
       {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y", type: "band", optional: true}
+        x: {value: x},
+        y: {value: y, type: "band", optional: true}
       },
       options
     );
@@ -73,8 +73,8 @@ export class TickY extends AbstractTick {
     super(
       data,
       {
-        y: {value: y, scale: "y"},
-        x: {value: x, scale: "x", type: "band", optional: true}
+        y: {value: y},
+        x: {value: x, type: "band", optional: true}
       },
       options
     );

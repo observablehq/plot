@@ -17,9 +17,9 @@ export class RuleX extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y1: {value: y1, scale: "y", optional: true},
-        y2: {value: y2, scale: "y", optional: true}
+        x: {value: x, optional: true},
+        y1: {value: y1, optional: true},
+        y2: {value: y2, optional: true}
       },
       options,
       defaults
@@ -65,9 +65,9 @@ export class RuleY extends Mark {
     super(
       data,
       {
-        y: {value: y, scale: "y", optional: true},
-        x1: {value: x1, scale: "x", optional: true},
-        x2: {value: x2, scale: "x", optional: true}
+        y: {value: y, optional: true},
+        x1: {value: x1, optional: true},
+        x2: {value: x2, optional: true}
       },
       options,
       defaults

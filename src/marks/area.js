@@ -28,10 +28,10 @@ export class Area extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x"},
-        y1: {value: y1, scale: "y"},
-        x2: {value: x2, scale: "x", optional: true},
-        y2: {value: y2, scale: "y", optional: true},
+        x1: {value: x1},
+        y1: {value: y1},
+        x2: {value: x2, optional: true},
+        y2: {value: y2, optional: true},
         z: {value: maybeZ(options), optional: true}
       },
       options,

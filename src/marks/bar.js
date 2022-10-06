@@ -77,9 +77,9 @@ export class BarX extends AbstractBar {
     super(
       data,
       {
-        x1: {value: x1, scale: "x"},
-        x2: {value: x2, scale: "x"},
-        y: {value: y, scale: "y", type: "band", optional: true}
+        x1: {value: x1},
+        x2: {value: x2},
+        y: {value: y, type: "band", optional: true}
       },
       options,
       defaults
@@ -106,9 +106,9 @@ export class BarY extends AbstractBar {
     super(
       data,
       {
-        y1: {value: y1, scale: "y"},
-        y2: {value: y2, scale: "y"},
-        x: {value: x, scale: "x", type: "band", optional: true}
+        y1: {value: y1},
+        y2: {value: y2},
+        x: {value: x, type: "band", optional: true}
       },
       options,
       defaults

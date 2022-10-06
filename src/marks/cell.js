@@ -12,8 +12,8 @@ export class Cell extends AbstractBar {
     super(
       data,
       {
-        x: {value: x, scale: "x", type: "band", optional: true},
-        y: {value: y, scale: "y", type: "band", optional: true}
+        x: {value: x, type: "band", optional: true},
+        y: {value: y, type: "band", optional: true}
       },
       options,
       defaults

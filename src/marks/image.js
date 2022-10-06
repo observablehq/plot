@@ -30,8 +30,8 @@ export class Image extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         width: {value: vw, filter: positive, optional: true},
         height: {value: vh, filter: positive, optional: true},
         src: {value: vs, optional: true}

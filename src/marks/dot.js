@@ -30,11 +30,11 @@ export class Dot extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
-        r: {value: vr, scale: "r", filter: positive, optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
+        r: {value: vr, filter: positive, optional: true},
         rotate: {value: vrotate, optional: true},
-        symbol: {value: vsymbol, scale: "symbol", optional: true}
+        symbol: {value: vsymbol, optional: true}
       },
       options.sort === undefined && options.reverse === undefined
         ? sort({channel: "r", order: "descending"}, options)

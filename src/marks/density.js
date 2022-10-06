@@ -30,8 +30,8 @@ export class Density extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         z: {value: maybeZ({z, fill, stroke}), optional: true},
         weight: {value: weight, optional: true}
       },

@@ -30,7 +30,7 @@ export const knownChannels = {
   rotate: {definition: maybeNumberChannel}, // dot, text
   fontSize: {definition: maybeFontSizeChannel}, // text
   text: {}, // text
-  length: {definition: maybeNumberChannel}, // vector
+  length: {scale: "length", definition: maybeNumberChannel}, // vector
   width: {definition: maybeNumberChannel}, // image
   height: {definition: maybeNumberChannel}, // image
   src: {definition: maybePathChannel}, // image

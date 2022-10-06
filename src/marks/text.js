@@ -59,8 +59,8 @@ export class Text extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
         text: {value: text, filter: nonempty}

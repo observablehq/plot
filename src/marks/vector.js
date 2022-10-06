@@ -27,9 +27,9 @@ export class Vector extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: "x", optional: true},
-        y: {value: y, scale: "y", optional: true},
-        length: {value: vl, scale: "length", optional: true},
+        x: {value: x, optional: true},
+        y: {value: y, optional: true},
+        length: {value: vl, optional: true},
         rotate: {value: vr, optional: true}
       },
       options,

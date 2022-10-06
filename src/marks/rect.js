@@ -36,10 +36,10 @@ export class Rect extends Mark {
     super(
       data,
       {
-        x1: {value: x1, scale: "x", optional: true},
-        y1: {value: y1, scale: "y", optional: true},
-        x2: {value: x2, scale: "x", optional: true},
-        y2: {value: y2, scale: "y", optional: true}
+        x1: {value: x1, optional: true},
+        y1: {value: y1, optional: true},
+        x2: {value: x2, optional: true},
+        y2: {value: y2, optional: true}
       },
       options,
       defaults
