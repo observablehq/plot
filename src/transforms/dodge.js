@@ -3,8 +3,7 @@ import {finite, positive} from "../defined.js";
 import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
-import {maybeExpand, facetReindex} from "../facet.js";
-
+import {exclusiveFacets, maybeExpand} from "../facet.js";
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
 const anchorXMiddle = ({width, marginLeft, marginRight}) => [0, (marginLeft + width - marginRight) / 2];
@@ -88,15 +87,16 @@ function dodge(y, x, anchor, padding, options) {
     options = {...options, channels: {r: {value: r, scale: "r"}, ...maybeNamed(channels)}};
     if (sort === undefined && reverse === undefined) options.sort = {channel: "r", order: "descending"};
   }
+  const [, maybeReindex] = exclusiveFacets(options);
   return initializer(options, function (data, facets, {[x]: X, r: R, ...channels}, scales, dimensions) {
     if (!X) throw new Error(`missing channel: ${x}`);
 
     let plan;
-    ({facets, plan} = facetReindex(facets, data.length)); // make facets exclusive
+    ({facets, plan} = maybeReindex(facets, data));
     X = maybeExpand(coerceNumbers(valueof(X.value, scales[X.scale] || identity)), plan);
 
     const r = R ? undefined : this.r !== undefined ? this.r : options.r !== undefined ? number(options.r) : 3;
-    if (R) R = maybeExpand(coerceNumbers(valueof(R.value, scales[R.scale] || identity)));
+    if (R) R = maybeExpand(coerceNumbers(valueof(R.value, scales[R.scale] || identity)), plan);
     let [ky, ty] = anchor(dimensions);
     const compare = ky ? compareAscending : compareSymmetric;
     const Y = new Float64Array(X.length);

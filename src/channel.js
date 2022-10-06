@@ -2,6 +2,40 @@ import {ascending, descending, rollup, sort} from "d3";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
+import {maybeColorChannel, maybeNumberChannel} from "./options.js";
+import {maybeSymbolChannel} from "./symbols.js";
+
+// An array of known channels, with an associated scale name, and a definition
+// that returns [variable, undefined] if variable, or [undefined, constant] if
+// constant (such as "#eee" for the color channel)
+export const knownChannels = {
+  x: {scale: "x"},
+  x1: {scale: "x"},
+  x2: {scale: "x"},
+  y: {scale: "y"},
+  y1: {scale: "y"},
+  y2: {scale: "y"},
+  z: {},
+  ariaLabel: {},
+  href: {},
+  title: {},
+  fill: {scale: "color", definition: maybeColorChannel},
+  stroke: {scale: "color", definition: maybeColorChannel},
+  fillOpacity: {scale: "opacity", definition: maybeNumberChannel},
+  strokeOpacity: {scale: "opacity", definition: maybeNumberChannel},
+  opacity: {scale: "opacity", definition: maybeNumberChannel},
+  strokeWidth: {definition: maybeNumberChannel},
+  symbol: {scale: "symbol", definition: maybeSymbolChannel}, // dot
+  r: {scale: "r", definition: maybeNumberChannel}, // dot
+  rotate: {definition: maybeNumberChannel}, // dot, text
+  fontSize: {definition: maybeFontSizeChannel}, // text
+  text: {}, // text
+  length: {definition: maybeNumberChannel}, // vector
+  width: {definition: maybeNumberChannel}, // image
+  height: {definition: maybeNumberChannel}, // image
+  src: {definition: maybePathChannel}, // image
+  weight: {definition: maybeNumberChannel} // density
+};
 
 // TODO Type coercion?
 export function Channel(data, {scale, type, value, filter, hint}) {
@@ -104,4 +138,60 @@ function ascendingGroup([ak, av], [bk, bv]) {
 
 function descendingGroup([ak, av], [bk, bv]) {
   return descending(av, bv) || ascending(ak, bk);
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
+const fontSizes = new Set([
+  // global keywords
+  "inherit",
+  "initial",
+  "revert",
+  "unset",
+  // absolute keywords
+  "xx-small",
+  "x-small",
+  "small",
+  "medium",
+  "large",
+  "x-large",
+  "xx-large",
+  "xxx-large",
+  // relative keywords
+  "larger",
+  "smaller"
+]);
+
+// The font size may be expressed as a constant in the following forms:
+// - number in pixels
+// - string keyword: see above
+// - string <length>: e.g., "12px"
+// - string <percentage>: e.g., "80%"
+// Anything else is assumed to be a channel definition.
+export function maybeFontSizeChannel(fontSize) {
+  if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
+  if (typeof fontSize !== "string") return [fontSize, undefined];
+  fontSize = fontSize.trim().toLowerCase();
+  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
+    ? [undefined, fontSize]
+    : [fontSize, undefined];
+}
+
+// Tests if the given string is a path: does it start with a dot-slash
+// (./foo.png), dot-dot-slash (../foo.png), or slash (/foo.png)?
+function isPath(string) {
+  return /^\.*\//.test(string);
+}
+
+// Tests if the given string is a URL (e.g., https://placekitten.com/200/300).
+// The allowed protocols is overly restrictive, but we don’t want to allow any
+// scheme here because it would increase the likelihood of a false positive with
+// a field name that happens to contain a colon.
+function isUrl(string) {
+  return /^(blob|data|file|http|https):/i.test(string);
+}
+
+// Disambiguates a constant src definition from a channel. A path or URL string
+// is assumed to be a constant; any other string is assumed to be a field name.
+export function maybePathChannel(value) {
+  return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
 }

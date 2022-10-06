@@ -1,6 +1,6 @@
 import {InternMap, cumsum, group, groupSort, greatest, max, min, rollup, sum} from "d3";
 import {ascendingDefined} from "../defined.js";
-import {maybeExpand, facetReindex, maybeExpandOutputs} from "../facet.js";
+import {exclusiveFacets, maybeExpand} from "../facet.js";
 import {field, column, mid, range, valueof, one} from "../options.js";
 import {maybeColumn, maybeZ, maybeZero} from "../options.js";
 import {basic} from "./basic.js";
@@ -147,11 +147,11 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
   const [Y2, setY2] = column(y);
   offset = maybeOffset(offset);
   order = maybeOrder(order, offset, ky);
-  const [other, outputs] = maybeExpandOutputs(options); // TODO wrap outputs in facetReindex
+  const [channels, maybeReindex] = exclusiveFacets(options);
   return [
     basic(options, (data, facets) => {
-      let plan;
-      ({facets, plan} = facetReindex(facets, data.length)); // make facets exclusive
+      let plan, n;
+      ({facets, plan, n} = maybeReindex(facets, data));
       const XS = x == null ? undefined : valueof(data, x);
       const YS = valueof(data, y, Float64Array);
       const ZS = valueof(data, z);
@@ -159,8 +159,6 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
       const Y = maybeExpand(YS, plan);
       const Z = maybeExpand(ZS, plan);
       const O = order && maybeExpand(order(data, XS, YS, ZS), plan);
-      const n = plan ? plan.length : data.length;
-      for (const o of outputs) o(data, plan); // expand any extra channels
       const Y1 = setY1(new Float64Array(n));
       const Y2 = setY2(new Float64Array(n));
       const facetstacks = [];
@@ -186,7 +184,7 @@ function stack(x, y = one, ky, {offset, order, reverse}, options) {
     X,
     Y1,
     Y2,
-    other
+    channels
   ];
 }
 

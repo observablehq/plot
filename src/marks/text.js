@@ -27,6 +27,7 @@ import {
   applyFrameAnchor
 } from "../style.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
+import {maybeFontSizeChannel} from "../channel.js";
 
 const defaults = {
   ariaLabel: "text",
@@ -212,42 +213,6 @@ function applyIndirectTextStyles(selection, mark, T) {
     mark.fontVariant === undefined && (isNumeric(T) || isTemporal(T)) ? "tabular-nums" : mark.fontVariant
   );
   applyAttr(selection, "font-weight", mark.fontWeight);
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/CSS/font-size
-const fontSizes = new Set([
-  // global keywords
-  "inherit",
-  "initial",
-  "revert",
-  "unset",
-  // absolute keywords
-  "xx-small",
-  "x-small",
-  "small",
-  "medium",
-  "large",
-  "x-large",
-  "xx-large",
-  "xxx-large",
-  // relative keywords
-  "larger",
-  "smaller"
-]);
-
-// The font size may be expressed as a constant in the following forms:
-// - number in pixels
-// - string keyword: see above
-// - string <length>: e.g., "12px"
-// - string <percentage>: e.g., "80%"
-// Anything else is assumed to be a channel definition.
-export function maybeFontSizeChannel(fontSize) {
-  if (fontSize == null || typeof fontSize === "number") return [undefined, fontSize];
-  if (typeof fontSize !== "string") return [fontSize, undefined];
-  fontSize = fontSize.trim().toLowerCase();
-  return fontSizes.has(fontSize) || /^[+-]?\d*\.?\d+(e[+-]?\d+)?(\w*|%)$/.test(fontSize)
-    ? [undefined, fontSize]
-    : [fontSize, undefined];
 }
 
 // This is a greedy algorithm for line wrapping. It would be better to use the

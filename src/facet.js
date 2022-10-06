@@ -1,9 +1,7 @@
-import {column, maybeColorChannel, maybeNumberChannel, slice, valueof} from "./options.js";
-import {maybeSymbolChannel} from "./symbols.js";
-import {maybeFontSizeChannel} from "./marks/text.js";
-import {maybePathChannel} from "./marks/image.js";
+import {isIterable, labelof, slice, valueof} from "./options.js";
+import {knownChannels} from "./channel.js";
 
-export function facetReindex(facets, n) {
+function facetReindex(facets, n) {
   if (facets.length === 1) return {facets};
   const overlap = new Uint8Array(n);
   let count = 0;
@@ -53,45 +51,35 @@ export function maybeExpand(X, plan) {
 }
 
 // Iterate over the options and pull out any that represent columns of values.
-const knownChannels = [
-  ["x"],
-  ["x1"],
-  ["x2"],
-  ["y"],
-  ["y1"],
-  ["y2"],
-  ["z"],
-  ["ariaLabel"],
-  ["href"],
-  ["title"],
-  ["fill", (value) => maybeColorChannel(value)[0]],
-  ["stroke", (value) => maybeColorChannel(value)[0]],
-  ["fillOpacity", (value) => maybeNumberChannel(value)[0]],
-  ["strokeOpacity", (value) => maybeNumberChannel(value)[0]],
-  ["opacity", (value) => maybeNumberChannel(value)[0]],
-  ["strokeWidth", (value) => maybeNumberChannel(value)[0]],
-  ["symbol", (value) => maybeSymbolChannel(value)[0]], // dot
-  ["r", (value) => maybeNumberChannel(value)[0]], // dot
-  ["rotate", (value) => maybeNumberChannel(value)[0]], // dot, text
-  ["fontSize", (value) => maybeFontSizeChannel(value)[0]], // text
-  ["text"], // text
-  ["length", (value) => maybeNumberChannel(value)[0]], // vector
-  ["width", (value) => maybeNumberChannel(value)[0]], // image
-  ["height", (value) => maybeNumberChannel(value)[0]], // image
-  ["src", (value) => maybePathChannel(value)[0]], // image
-  ["weight", (value) => maybeNumberChannel(value)[0]] // density
-];
-
-export function maybeExpandOutputs(options) {
-  const other = {};
-  const outputs = [];
-  for (const [name, test = (value) => value] of knownChannels) {
-    const value = test(options[name]);
+function maybeExpandChannels({expandChannels, ...options}) {
+  if (expandChannels == null) {
+    expandChannels = Object.entries(knownChannels)
+      .filter(([name, {definition = (value) => [value]}]) => definition(options[name])[0] != null)
+      .map(([name]) => name);
+  } else if (!isIterable(expandChannels)) throw new Error(`the expandChannels option is not iterable`);
+  const channels = {};
+  let data, plan;
+  for (const name of expandChannels) {
+    const value = options[name];
     if (value != null) {
-      const [V, setV] = column(value);
-      other[name] = V;
-      outputs.push((data, plan) => setV(maybeExpand(valueof(data, value), plan)));
+      channels[name] = {
+        transform: () => maybeExpand(valueof(data, value), plan),
+        label: labelof(value)
+      };
     }
   }
-  return [other, outputs];
+  return [channels, (v) => ({data, plan} = v)];
+}
+
+export function exclusiveFacets(options) {
+  const [other, setPlan] = maybeExpandChannels(options);
+  return [
+    other,
+    (facets, data) => {
+      let plan;
+      ({facets, plan} = facetReindex(facets, data.length));
+      setPlan({data, plan});
+      return {facets, plan, n: plan ? plan.length : data.length};
+    }
+  ];
 }

@@ -11,32 +11,13 @@ import {
   impliedString,
   applyFrameAnchor
 } from "../style.js";
+import {maybePathChannel} from "../channel.js";
 
 const defaults = {
   ariaLabel: "image",
   fill: null,
   stroke: null
 };
-
-// Tests if the given string is a path: does it start with a dot-slash
-// (./foo.png), dot-dot-slash (../foo.png), or slash (/foo.png)?
-function isPath(string) {
-  return /^\.*\//.test(string);
-}
-
-// Tests if the given string is a URL (e.g., https://placekitten.com/200/300).
-// The allowed protocols is overly restrictive, but we don’t want to allow any
-// scheme here because it would increase the likelihood of a false positive with
-// a field name that happens to contain a colon.
-function isUrl(string) {
-  return /^(blob|data|file|http|https):/i.test(string);
-}
-
-// Disambiguates a constant src definition from a channel. A path or URL string
-// is assumed to be a constant; any other string is assumed to be a field name.
-export function maybePathChannel(value) {
-  return typeof value === "string" && (isPath(value) || isUrl(value)) ? [undefined, value] : [value, undefined];
-}
 
 export class Image extends Mark {
   constructor(data, options = {}) {

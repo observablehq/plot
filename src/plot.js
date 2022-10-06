@@ -21,6 +21,7 @@ import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js"
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
+import {knownChannels} from "./channel.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
@@ -756,24 +757,8 @@ function applyScaleTransforms(channels, options) {
 function inferChannelScale(channels) {
   for (const name in channels) {
     const channel = channels[name];
-    let {scale} = channel;
-    if (scale === true) {
-      switch (name) {
-        case "fill":
-        case "stroke":
-          scale = "color";
-          break;
-        case "fillOpacity":
-        case "strokeOpacity":
-        case "opacity":
-          scale = "opacity";
-          break;
-        default:
-          scale = scaleRegistry.has(name) ? name : null;
-          break;
-      }
-      channel.scale = scale;
-    }
+    const {scale} = channel;
+    if (scale === true) channel.scale = knownChannels[name].scale;
   }
 }
 
