@@ -1,4 +1,4 @@
-import {isIterable, labelof, slice, valueof} from "./options.js";
+import {labelof, slice, valueof} from "./options.js";
 import {knownChannels} from "./channel.js";
 
 function facetReindex(facets, n) {
@@ -51,16 +51,11 @@ export function maybeExpand(X, plan) {
 }
 
 // Iterate over the options and pull out any that represent columns of values.
-function maybeExpandChannels({expandChannels, ...options}) {
-  if (expandChannels == null) {
-    expandChannels = Object.entries(knownChannels)
-      .filter(([name, {definition = (value) => [value]}]) => definition(options[name])[0] != null)
-      .map(([name]) => name);
-  } else if (!isIterable(expandChannels)) throw new Error(`the expandChannels option is not iterable`);
+function maybeExpandChannels(options) {
   const channels = {};
   let data, plan;
-  for (const name of expandChannels) {
-    const value = options[name];
+  for (const [name, {definition = (value) => [value]}] of knownChannels) {
+    const value = definition(options[name])[0];
     if (value != null) {
       channels[name] = {
         transform: () => maybeExpand(valueof(data, value), plan),

@@ -42,6 +42,7 @@ export {default as crimeanWarArrow} from "./crimean-war-arrow.js";
 export {default as crimeanWarLine} from "./crimean-war-line.js";
 export {default as crimeanWarOverlapped} from "./crimean-war-overlapped.js";
 export {default as crimeanWarStacked} from "./crimean-war-stacked.js";
+export {default as customMark} from "./custom-mark.js";
 export {default as d3Survey2015Comfort} from "./d3-survey-2015-comfort.js";
 export {default as d3Survey2015Why} from "./d3-survey-2015-why.js";
 export {default as darkerDodge} from "./darker-dodge.js";

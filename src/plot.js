@@ -677,11 +677,12 @@ export class Mark {
     this.channels = Object.fromEntries(
       Object.entries(channels)
         .filter(([name, {value, optional}]) => {
+          if (!knownChannels.has(name)) warn(`The ${name} channel is not registered.`);
           if (value != null) return true;
           if (optional) return false;
           throw new Error(`missing channel value: ${name}`);
         })
-        .map(([name, {scale = knownChannels[name].scale, ...rest}]) => [name, {scale, ...rest}])
+        .map(([name, {scale = (knownChannels.get(name) || {}).scale, ...rest}]) => [name, {scale, ...rest}])
     );
     this.dx = +dx || 0;
     this.dy = +dy || 0;
@@ -760,7 +761,7 @@ function inferChannelScale(channels) {
   for (const name in channels) {
     const channel = channels[name];
     const {scale} = channel;
-    if (scale === true) channel.scale = knownChannels[name].scale;
+    if (scale === true) channel.scale = knownChannels.get(name).scale;
   }
 }
 

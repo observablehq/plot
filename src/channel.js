@@ -4,41 +4,49 @@ import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 import {maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {maybeSymbolChannel} from "./symbols.js";
+import {warn} from "./warnings.js";
 
 // An array of known channels, with an associated scale name, and a definition
 // that returns [variable, undefined] if variable, or [undefined, constant] if
 // constant (such as "#eee" for the color channel)
-export const knownChannels = {
-  x: {scale: "x"},
-  x1: {scale: "x"},
-  x2: {scale: "x"},
-  y: {scale: "y"},
-  y1: {scale: "y"},
-  y2: {scale: "y"},
-  z: {},
-  ariaLabel: {},
-  href: {},
-  title: {},
-  fill: {scale: "color", definition: maybeColorChannel},
-  stroke: {scale: "color", definition: maybeColorChannel},
-  fillOpacity: {scale: "opacity", definition: maybeNumberChannel},
-  strokeOpacity: {scale: "opacity", definition: maybeNumberChannel},
-  opacity: {scale: "opacity", definition: maybeNumberChannel},
-  strokeWidth: {definition: maybeNumberChannel},
-  symbol: {scale: "symbol", definition: maybeSymbolChannel}, // dot
-  r: {scale: "r", definition: maybeNumberChannel}, // dot
-  rotate: {definition: maybeNumberChannel}, // dot, text
-  fontSize: {definition: maybeFontSizeChannel}, // text
-  text: {}, // text
-  length: {scale: "length", definition: maybeNumberChannel}, // vector
-  width: {definition: maybeNumberChannel}, // image
-  height: {definition: maybeNumberChannel}, // image
-  src: {definition: maybePathChannel}, // image
-  weight: {definition: maybeNumberChannel} // density
-};
+export const knownChannels = new Map([
+  ["x", {scale: "x"}],
+  ["x1", {scale: "x"}],
+  ["x2", {scale: "x"}],
+  ["y", {scale: "y"}],
+  ["y1", {scale: "y"}],
+  ["y2", {scale: "y"}],
+  ["z", {}],
+  ["ariaLabel", {}],
+  ["href", {}],
+  ["title", {}],
+  ["fill", {scale: "color", definition: maybeColorChannel}],
+  ["stroke", {scale: "color", definition: maybeColorChannel}],
+  ["fillOpacity", {scale: "opacity", definition: maybeNumberChannel}],
+  ["strokeOpacity", {scale: "opacity", definition: maybeNumberChannel}],
+  ["opacity", {scale: "opacity", definition: maybeNumberChannel}],
+  ["strokeWidth", {definition: maybeNumberChannel}],
+  ["symbol", {scale: "symbol", definition: maybeSymbolChannel}], // dot
+  ["r", {scale: "r", definition: maybeNumberChannel}], // dot
+  ["rotate", {definition: maybeNumberChannel}], // dot, text
+  ["fontSize", {definition: maybeFontSizeChannel}], // text
+  ["text", {}], // text
+  ["length", {scale: "length", definition: maybeNumberChannel}], // vector
+  ["width", {definition: maybeNumberChannel}], // image
+  ["height", {definition: maybeNumberChannel}], // image
+  ["src", {definition: maybePathChannel}], // image
+  ["weight", {definition: maybeNumberChannel}] // density
+]);
+
+export function registerChannel(name, {scale, definition} = {}) {
+  knownChannels.set(name, {scale, definition});
+}
 
 export function definition(name, value, defaultValue) {
-  const {definition} = knownChannels[name];
+  if (!knownChannels.has(name)) {
+    warn(`The ${name} channel is not registered and might be incompatible with some transforms.`);
+  }
+  const {definition} = knownChannels.get(name) || {};
   return definition ? definition(value, defaultValue) : value === undefined ? [undefined, defaultValue] : [value];
 }
 
