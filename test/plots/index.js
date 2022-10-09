@@ -133,6 +133,7 @@ export {default as mobyDickLetterPosition} from "./moby-dick-letter-position.js"
 export {default as mobyDickLetterRelativeFrequency} from "./moby-dick-letter-relative-frequency.js";
 export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
+export {default as moviesRatingByGenre} from "./movies-rating-by-genre.js";
 export {default as musicRevenue} from "./music-revenue.js";
 export {default as ordinalBar} from "./ordinal-bar.js";
 export {default as penguinAnnotated} from "./penguin-annotated.js";

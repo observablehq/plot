@@ -46,6 +46,7 @@ export function initializer(options = {}, initializer) {
   }
   return {
     ...remainingOptions,
+    ...((s1 === null || isDomainSort(s1)) && {sort: s1}),
     initializer: composeInitializer(i1, initializer)
   };
 }
