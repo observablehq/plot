@@ -13,7 +13,7 @@ import {
   order,
   slice
 } from "./options.js";
-import {registry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
+import {scaleRegistry, color, position, radius, opacity, symbol, length} from "./scales/index.js";
 import {
   ScaleLinear,
   ScaleSqrt,
@@ -59,7 +59,7 @@ export function Scales(
   for (const [key, channels] of channelsByScale) {
     const scaleOptions = options[key];
     const scale = Scale(key, channels, {
-      round: registry.get(key) === position ? round : undefined, // only for position
+      round: scaleRegistry.get(key) === position ? round : undefined, // only for position
       nice,
       clamp,
       zero,
@@ -231,7 +231,7 @@ function Scale(key, channels = [], options = {}) {
       options = coerceType(channels, options, coerceNumbers);
       break;
     case "identity":
-      switch (registry.get(key)) {
+      switch (scaleRegistry.get(key)) {
         case position:
           options = coerceType(channels, options, coerceNumbers);
           break;
@@ -288,7 +288,7 @@ function Scale(key, channels = [], options = {}) {
     case "band":
       return ScaleBand(key, channels, options);
     case "identity":
-      return registry.get(key) === position ? ScaleIdentity() : {type: "identity"};
+      return scaleRegistry.get(key) === position ? ScaleIdentity() : {type: "identity"};
     case undefined:
       return;
     default:
@@ -319,7 +319,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
   if (domain === undefined && !channels.some(({value}) => value !== undefined)) return;
 
-  const kind = registry.get(key);
+  const kind = scaleRegistry.get(key);
 
   // For color scales, if no range or scheme is specified and all associated
   // defined values (from the domain if present, and otherwise from channels)
@@ -511,7 +511,7 @@ export function coerceDate(x) {
 export function scale(options = {}) {
   let scale;
   for (const key in options) {
-    if (!registry.has(key)) continue; // ignore unknown properties
+    if (!scaleRegistry.has(key)) continue; // ignore unknown properties
     if (!isScaleOptions(options[key])) continue; // e.g., ignore {color: "red"}
     if (scale !== undefined) throw new Error("ambiguous scale definition; multiple scales found");
     scale = exposeScale(normalizeScale(key, options[key]));
@@ -522,7 +522,7 @@ export function scale(options = {}) {
 
 export function exposeScales(scaleDescriptors) {
   return (key) => {
-    if (!registry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
+    if (!scaleRegistry.has((key = `${key}`))) throw new Error(`unknown scale: ${key}`);
     return key in scaleDescriptors ? exposeScale(scaleDescriptors[key]) : undefined;
   };
 }

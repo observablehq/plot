@@ -27,7 +27,7 @@ import {positive, negative, finite} from "../defined.js";
 import {arrayify, constant, order, slice} from "../options.js";
 import {ordinalRange, quantitativeScheme} from "./schemes.js";
 import {maybeInterval} from "../transforms/interval.js";
-import {registry, radius, opacity, color, length} from "./index.js";
+import {scaleRegistry, radius, opacity, color, length} from "./index.js";
 
 export const flip = (i) => (t) => i(1 - t);
 const unit = [0, 1];
@@ -63,14 +63,14 @@ export function ScaleQ(
     round,
     scheme,
     interval,
-    range = registry.get(key) === radius
+    range = scaleRegistry.get(key) === radius
       ? inferRadialRange(channels, domain)
-      : registry.get(key) === length
+      : scaleRegistry.get(key) === length
       ? inferLengthRange(channels, domain)
-      : registry.get(key) === opacity
+      : scaleRegistry.get(key) === opacity
       ? unit
       : undefined,
-    interpolate = registry.get(key) === color
+    interpolate = scaleRegistry.get(key) === color
       ? scheme == null && range !== undefined
         ? interpolateRgb
         : quantitativeScheme(scheme !== undefined ? scheme : type === "cyclical" ? "rainbow" : "turbo")
@@ -166,7 +166,7 @@ export function ScaleQuantile(
     range =
       interpolate !== undefined
         ? quantize(interpolate, n)
-        : registry.get(key) === color
+        : scaleRegistry.get(key) === color
         ? ordinalRange(scheme, n)
         : undefined;
   return ScaleThreshold(key, channels, {
@@ -198,7 +198,7 @@ export function ScaleQuantize(
     range =
       interpolate !== undefined
         ? quantize(interpolate, n)
-        : registry.get(key) === color
+        : scaleRegistry.get(key) === color
         ? ordinalRange(scheme, n)
         : undefined;
   } else {
@@ -219,7 +219,7 @@ export function ScaleThreshold(
     interpolate,
     range = interpolate !== undefined
       ? quantize(interpolate, domain.length + 1)
-      : registry.get(key) === color
+      : scaleRegistry.get(key) === color
       ? ordinalRange(scheme, domain.length + 1)
       : undefined,
     reverse
@@ -256,7 +256,7 @@ export function inferDomain(channels, f = finite) {
 }
 
 function inferAutoDomain(key, channels) {
-  const type = registry.get(key);
+  const type = scaleRegistry.get(key);
   return (type === radius || type === opacity || type === length ? inferZeroDomain : inferDomain)(channels);
 }
 

@@ -1,6 +1,6 @@
 import {ascending, descending, rollup, sort} from "d3";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
-import {registry} from "./scales/index.js";
+import {scaleRegistry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 import {maybeColorChannel, maybeNumberChannel} from "./options.js";
 import {maybeSymbolChannel} from "./symbols.js";
@@ -90,7 +90,7 @@ export function valueObject(channels, scales) {
 export function channelDomain(channels, facetChannels, data, options) {
   const {reverse: defaultReverse, reduce: defaultReduce = true, limit: defaultLimit} = options;
   for (const x in options) {
-    if (!registry.has(x)) continue; // ignore unknown scale keys (including generic options)
+    if (!scaleRegistry.has(x)) continue; // ignore unknown scale keys (including generic options)
     let {value: y, reverse = defaultReverse, reduce = defaultReduce, limit = defaultLimit} = maybeValue(options[x]);
     if (reverse === undefined) reverse = y === "width" || y === "height"; // default to descending for lengths
     if (reduce == null || reduce === false) continue; // disabled reducer

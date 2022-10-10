@@ -9,7 +9,7 @@ import {
 } from "d3";
 import {positive, negative} from "../defined.js";
 import {quantitativeScheme} from "./schemes.js";
-import {registry, color} from "./index.js";
+import {scaleRegistry, color} from "./index.js";
 import {inferDomain, Interpolator, flip, interpolatePiecewise} from "./quantitative.js";
 
 function ScaleD(
@@ -27,7 +27,7 @@ function ScaleD(
     scheme,
     range,
     symmetric = true,
-    interpolate = registry.get(key) === color
+    interpolate = scaleRegistry.get(key) === color
       ? scheme == null && range !== undefined
         ? interpolateRgb
         : quantitativeScheme(scheme !== undefined ? scheme : "rdbu")

@@ -4,7 +4,7 @@ import {ascendingDefined} from "../defined.js";
 import {isNoneish, map} from "../options.js";
 import {maybeInterval} from "../transforms/interval.js";
 import {maybeSymbol} from "../symbols.js";
-import {registry, color, position, symbol} from "./index.js";
+import {scaleRegistry, color, position, symbol} from "./index.js";
 import {maybeBooleanRange, ordinalScheme, quantitativeScheme} from "./schemes.js";
 
 // This denotes an implicitly ordinal color scale: the scale type was not set,
@@ -31,10 +31,10 @@ export function ScaleOrdinal(key, channels, {type, interval, domain, range, sche
   interval = maybeInterval(interval);
   if (domain === undefined) domain = inferDomain(channels, interval, key);
   let hint;
-  if (registry.get(key) === symbol) {
+  if (scaleRegistry.get(key) === symbol) {
     hint = inferSymbolHint(channels);
     range = range === undefined ? inferSymbolRange(hint) : map(range, maybeSymbol);
-  } else if (registry.get(key) === color) {
+  } else if (scaleRegistry.get(key) === color) {
     if (range === undefined && (type === "ordinal" || type === ordinalImplicit)) {
       range = maybeBooleanRange(domain, scheme);
       if (range !== undefined) scheme = undefined; // Don’t re-apply scheme.
@@ -99,7 +99,7 @@ function inferDomain(channels, interval, key) {
     const [min, max] = extent(values).map(interval.floor, interval);
     return interval.range(min, interval.offset(max));
   }
-  if (values.size > 10e3 && registry.get(key) === position)
+  if (values.size > 10e3 && scaleRegistry.get(key) === position)
     throw new Error("implicit ordinal position domain has more than 10,000 values");
   return sort(values, ascendingDefined);
 }

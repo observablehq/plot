@@ -18,7 +18,7 @@ import {
   yes
 } from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
-import {position, registry as scaleRegistry} from "./scales/index.js";
+import {position, scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {channelRegistry} from "./channel.js";

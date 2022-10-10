@@ -25,7 +25,7 @@ export const symbol = Symbol("symbol");
 // TODO Rather than hard-coding the list of known scale names, collect the names
 // and categories for each plot specification, so that custom marks can register
 // custom scales.
-export const registry = new Map([
+export const scaleRegistry = new Map([
   ["x", position],
   ["y", position],
   ["fx", position],
