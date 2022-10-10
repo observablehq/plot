@@ -761,7 +761,7 @@ function inferChannelScale(channels) {
   for (const name in channels) {
     const channel = channels[name];
     const {scale} = channel;
-    if (scale === true) channel.scale = knownChannels.get(name).scale;
+    if (scale === true) channel.scale = knownChannels.get(name)?.scale ?? null;
   }
 }
 
