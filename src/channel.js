@@ -47,7 +47,9 @@ export function definition(name, value, defaultValue) {
     warn(`The ${name} channel is not registered and might be incompatible with some transforms.`);
   }
   const {definition} = knownChannels.get(name) || {};
-  return definition ? definition(value, defaultValue) : value === undefined ? [undefined, defaultValue] : [value];
+  return definition !== undefined ? definition(value, defaultValue)
+    : value === undefined ? [undefined, defaultValue]
+    : [value];
 }
 
 // TODO Type coercion?
