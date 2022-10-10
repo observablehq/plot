@@ -46,7 +46,7 @@ export function definition(name, value, defaultValue) {
   if (!channelRegistry.has(name)) {
     warn(`The ${name} channel is not registered and might be incompatible with some transforms.`);
   }
-  const {definition} = channelRegistry.get(name) || {};
+  const {definition} = channelRegistry.get(name) ?? {};
   return definition !== undefined
     ? definition(value, defaultValue)
     : value === undefined
