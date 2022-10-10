@@ -4,6 +4,7 @@ import {identity, maybeNamed, number, valueof} from "../options.js";
 import {coerceNumbers} from "../scales.js";
 import {initializer} from "./basic.js";
 import {exclusiveFacets, maybeExpand} from "../facet.js";
+
 const anchorXLeft = ({marginLeft}) => [1, marginLeft];
 const anchorXRight = ({width, marginRight}) => [-1, width - marginRight];
 const anchorXMiddle = ({width, marginLeft, marginRight}) => [0, (marginLeft + width - marginRight) / 2];
