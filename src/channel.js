@@ -38,7 +38,7 @@ export const channelRegistry = new Map([
   ["weight", {definition: maybeNumberChannel}] // density
 ]);
 
-export function definition(name, value, defaultValue) {
+export function maybeChannel(name, value, defaultValue) {
   if (!channelRegistry.has(name)) {
     warn(`The ${name} channel is not registered and might be incompatible with some transforms.`);
   }

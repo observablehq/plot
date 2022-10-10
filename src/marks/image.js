@@ -11,7 +11,7 @@ import {
   impliedString,
   applyFrameAnchor
 } from "../style.js";
-import {definition} from "../channel.js";
+import {maybeChannel} from "../channel.js";
 
 const defaults = {
   ariaLabel: "image",
@@ -24,9 +24,9 @@ export class Image extends Mark {
     let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
-    const [vs, cs] = definition("src", src);
-    const [vw, cw] = definition("width", width, 16);
-    const [vh, ch] = definition("height", height, 16);
+    const [vs, cs] = maybeChannel("src", src);
+    const [vw, cw] = maybeChannel("width", width, 16);
+    const [vh, ch] = maybeChannel("height", height, 16);
     super(
       data,
       {

@@ -1,5 +1,5 @@
 import {identity, indexOf, maybeTuple} from "../options.js";
-import {definition} from "../channel.js";
+import {maybeChannel} from "../channel.js";
 import {applyTransform} from "../style.js";
 import {AbstractBar} from "./bar.js";
 
@@ -55,7 +55,7 @@ export function cell(data, options = {}) {
  */
 export function cellX(data, options = {}) {
   let {x = indexOf, fill, stroke, ...remainingOptions} = options;
-  if (fill === undefined && definition("stroke", stroke)[0] === undefined) fill = identity;
+  if (fill === undefined && maybeChannel("stroke", stroke)[0] === undefined) fill = identity;
   return new Cell(data, {...remainingOptions, x, fill, stroke});
 }
 
@@ -73,6 +73,6 @@ export function cellX(data, options = {}) {
  */
 export function cellY(data, options = {}) {
   let {y = indexOf, fill, stroke, ...remainingOptions} = options;
-  if (fill === undefined && definition("stroke", stroke)[0] === undefined) fill = identity;
+  if (fill === undefined && maybeChannel("stroke", stroke)[0] === undefined) fill = identity;
   return new Cell(data, {...remainingOptions, y, fill, stroke});
 }

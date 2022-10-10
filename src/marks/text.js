@@ -26,7 +26,7 @@ import {
   applyFrameAnchor
 } from "../style.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
-import {definition} from "../channel.js";
+import {maybeChannel} from "../channel.js";
 
 const defaults = {
   ariaLabel: "text",
@@ -54,8 +54,8 @@ export class Text extends Mark {
       fontWeight,
       rotate
     } = options;
-    const [vrotate, crotate] = definition("rotate", rotate, 0);
-    const [vfontSize, cfontSize] = definition("fontSize", fontSize);
+    const [vrotate, crotate] = maybeChannel("rotate", rotate, 0);
+    const [vfontSize, cfontSize] = maybeChannel("fontSize", fontSize);
     super(
       data,
       {

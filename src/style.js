@@ -3,7 +3,7 @@ import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {string, number, isNoneish, isNone, isRound, keyof} from "./options.js";
 import {warn} from "./warnings.js";
-import {definition} from "./channel.js";
+import {maybeChannel} from "./channel.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
 
@@ -71,11 +71,11 @@ export function styles(
     if (isNoneish(defaultStroke) && !isNoneish(stroke)) defaultFill = "none";
   }
 
-  const [vfill, cfill] = definition("fill", fill, defaultFill);
-  const [vfillOpacity, cfillOpacity] = definition("fillOpacity", fillOpacity, defaultFillOpacity);
-  const [vstroke, cstroke] = definition("stroke", stroke, defaultStroke);
-  const [vstrokeOpacity, cstrokeOpacity] = definition("strokeOpacity", strokeOpacity, defaultStrokeOpacity);
-  const [vopacity, copacity] = definition("opacity", opacity);
+  const [vfill, cfill] = maybeChannel("fill", fill, defaultFill);
+  const [vfillOpacity, cfillOpacity] = maybeChannel("fillOpacity", fillOpacity, defaultFillOpacity);
+  const [vstroke, cstroke] = maybeChannel("stroke", stroke, defaultStroke);
+  const [vstrokeOpacity, cstrokeOpacity] = maybeChannel("strokeOpacity", strokeOpacity, defaultStrokeOpacity);
+  const [vopacity, copacity] = maybeChannel("opacity", opacity);
 
   // For styles that have no effect if there is no stroke, only apply the
   // defaults if the stroke is not the constant none. (If stroke is a channel,
@@ -95,7 +95,7 @@ export function styles(
     if (!isNone(cfill) && paintOrder === undefined) paintOrder = defaultPaintOrder;
   }
 
-  const [vstrokeWidth, cstrokeWidth] = definition("strokeWidth", strokeWidth);
+  const [vstrokeWidth, cstrokeWidth] = maybeChannel("strokeWidth", strokeWidth);
 
   // Some marks don’t support fill (e.g., tick and rule).
   if (defaultFill !== null) {
