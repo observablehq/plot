@@ -682,7 +682,7 @@ export class Mark {
           if (optional) return false;
           throw new Error(`missing channel value: ${name}`);
         })
-        .map(([name, {scale = (knownChannels.get(name) || {}).scale, ...rest}]) => [name, {scale, ...rest}])
+        .map(([name, {scale = knownChannels.get(name)?.scale, ...rest}]) => [name, {scale, ...rest}])
     );
     this.dx = +dx || 0;
     this.dy = +dy || 0;
