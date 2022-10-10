@@ -3,7 +3,7 @@ import * as d3 from "d3";
 
 export default async function () {
   const data = await d3.csv("data/riaa-us-revenue.csv", d3.autoType);
-  const stack = {x: (d) => d["year"].getFullYear(), y: "revenue", z: "format", order: "value", reverse: true};
+  const stack = {x: (d) => d["year"].getUTCFullYear(), y: "revenue", z: "format", order: "value", reverse: true};
   return Plot.plot({
     marginRight: 90,
     marginBottom: 35,
