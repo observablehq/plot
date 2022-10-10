@@ -1,5 +1,5 @@
 import {labelof, slice, valueof} from "./options.js";
-import {knownChannels} from "./channel.js";
+import {channelRegistry} from "./channel.js";
 
 function facetReindex(facets, n) {
   if (facets.length === 1) return {facets};
@@ -54,7 +54,7 @@ export function maybeExpand(X, plan) {
 function maybeExpandChannels(options) {
   const channels = {};
   let data, plan;
-  for (const [name, {definition = (value) => [value]}] of knownChannels) {
+  for (const [name, {definition = (value) => [value]}] of channelRegistry) {
     const value = definition(options[name])[0];
     if (value != null) {
       channels[name] = {

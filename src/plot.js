@@ -21,7 +21,7 @@ import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js"
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
-import {knownChannels} from "./channel.js";
+import {channelRegistry} from "./channel.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
@@ -677,12 +677,12 @@ export class Mark {
     this.channels = Object.fromEntries(
       Object.entries(channels)
         .filter(([name, {value, optional}]) => {
-          if (!knownChannels.has(name)) warn(`The ${name} channel is not registered.`);
+          if (!channelRegistry.has(name)) warn(`The ${name} channel is not registered.`);
           if (value != null) return true;
           if (optional) return false;
           throw new Error(`missing channel value: ${name}`);
         })
-        .map(([name, {scale = knownChannels.get(name)?.scale, ...rest}]) => [name, {scale, ...rest}])
+        .map(([name, {scale = channelRegistry.get(name)?.scale, ...rest}]) => [name, {scale, ...rest}])
     );
     this.dx = +dx || 0;
     this.dy = +dy || 0;
@@ -761,7 +761,7 @@ function inferChannelScale(channels) {
   for (const name in channels) {
     const channel = channels[name];
     const {scale} = channel;
-    if (scale === true) channel.scale = knownChannels.get(name)?.scale ?? null;
+    if (scale === true) channel.scale = channelRegistry.get(name)?.scale ?? null;
   }
 }
 

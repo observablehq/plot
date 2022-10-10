@@ -9,7 +9,7 @@ import {warn} from "./warnings.js";
 // An array of known channels, with an associated scale name, and a definition
 // that returns [variable, undefined] if variable, or [undefined, constant] if
 // constant (such as "#eee" for the color channel)
-export const knownChannels = new Map([
+export const channelRegistry = new Map([
   ["x", {scale: "x"}],
   ["x1", {scale: "x"}],
   ["x2", {scale: "x"}],
@@ -39,16 +39,18 @@ export const knownChannels = new Map([
 ]);
 
 export function registerChannel(name, {scale, definition} = {}) {
-  knownChannels.set(name, {scale, definition});
+  channelRegistry.set(name, {scale, definition});
 }
 
 export function definition(name, value, defaultValue) {
-  if (!knownChannels.has(name)) {
+  if (!channelRegistry.has(name)) {
     warn(`The ${name} channel is not registered and might be incompatible with some transforms.`);
   }
-  const {definition} = knownChannels.get(name) || {};
-  return definition !== undefined ? definition(value, defaultValue)
-    : value === undefined ? [undefined, defaultValue]
+  const {definition} = channelRegistry.get(name) || {};
+  return definition !== undefined
+    ? definition(value, defaultValue)
+    : value === undefined
+    ? [undefined, defaultValue]
     : [value];
 }
 
