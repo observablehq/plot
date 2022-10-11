@@ -40,12 +40,13 @@ function maybePathChannel(value) {
 
 export class Image extends Mark {
   constructor(data, options = {}) {
-    let {x, y, width, height, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
+    let {x, y, width, height, rotate, src, preserveAspectRatio, crossOrigin, frameAnchor} = options;
     if (width === undefined && height !== undefined) width = height;
     else if (height === undefined && width !== undefined) height = width;
     const [vs, cs] = maybePathChannel(src);
     const [vw, cw] = maybeNumberChannel(width, 16);
     const [vh, ch] = maybeNumberChannel(height, 16);
+    const [vrotate, crotate] = maybeNumberChannel(rotate, 0);
     super(
       data,
       {
@@ -53,6 +54,7 @@ export class Image extends Mark {
         y: {value: y, scale: "y", optional: true},
         width: {value: vw, filter: positive, optional: true},
         height: {value: vh, filter: positive, optional: true},
+        rotate: {value: vrotate, optional: true},
         src: {value: vs, optional: true}
       },
       options,
@@ -61,13 +63,14 @@ export class Image extends Mark {
     this.src = cs;
     this.width = cw;
     this.height = ch;
+    this.rotate = crotate;
     this.preserveAspectRatio = impliedString(preserveAspectRatio, "xMidYMid");
     this.crossOrigin = string(crossOrigin);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
-    const {x: X, y: Y, width: W, height: H, src: S} = channels;
+    const {x: X, y: Y, width: W, height: H, rotate: R, src: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
@@ -105,6 +108,19 @@ export class Image extends Mark {
           .call(applyAttr, "preserveAspectRatio", this.preserveAspectRatio)
           .call(applyAttr, "crossorigin", this.crossOrigin)
           .call(applyChannelStyles, this, channels)
+          .attr("transform", R ? (i) => `rotate(${R[i]})` : this.rotate ? `rotate(${this.rotate})` : null)
+          .attr(
+            "transform-origin",
+            R || this.rotate
+              ? X && Y
+                ? (i) => `${X[i]}px ${Y[i]}px`
+                : X
+                ? (i) => `${X[i]}px ${cy}px`
+                : Y
+                ? (i) => `${cx}px ${Y[i]}px`
+                : `${cx}px ${cy}px`
+              : null
+          )
       )
       .node();
   }
