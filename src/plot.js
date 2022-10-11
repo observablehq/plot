@@ -1,4 +1,4 @@
-import {difference, InternMap, InternSet, select, sort} from "d3";
+import {InternMap, InternSet, select, sort, sum} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -395,8 +395,7 @@ export function plot(options = {}) {
   // Faceting!
   const facetChannels = {}; // e.g. {fx: {value}, fy: {value}}
   let facetsIndex; // nested array of facet indexes [[0, 1, 3, …], [2, 5, …], …]
-  let facetIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
-  let facetsExclude; // lazily-constructed opposite of facetsIndex
+  let facetDataIndex; // index over the facet data, e.g. [0, 1, 2, 3, …]
 
   // Top-level facets
   if (facet !== undefined) {
@@ -408,28 +407,28 @@ export function plot(options = {}) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
         facetChannels.fx = fx;
         channelsByScale.set("fx", [fx]);
-        facetChannels.size = fx.value.length;
+        facetDataIndex = range(facetData);
       }
       if (y != null) {
         const fy = Channel(facetData, {value: y, scale: "fy"});
         facetChannels.fy = fy;
         channelsByScale.set("fy", [fy]);
-        facetChannels.size = fy.value.length;
+        facetDataIndex = facetDataIndex || range(facetData);
       }
     }
   }
 
   // Mark-level facets
   for (const mark of marks) {
-    const {x, y} = mark.facet ?? {};
-    if (x !== undefined) {
+    const {x, y, method} = mark.facet ?? {};
+    if (method && x !== undefined) {
       const channels = channelsByScale.get("fx") ?? [];
       channelsByScale.set("fx", channels);
       const channel = Channel(mark.data, {value: x, scale: "fx"});
       stateByMark.get(mark).fx = channel;
       channels.push(channel);
     }
-    if (y !== undefined) {
+    if (method && y !== undefined) {
       const channels = channelsByScale.get("fy") ?? [];
       channelsByScale.set("fy", channels);
       const channel = Channel(mark.data, {value: y, scale: "fy"});
@@ -445,36 +444,40 @@ export function plot(options = {}) {
   if (facetScales.fx) facets = (facets || [{}]).flatMap((d) => facetScales.fx.domain.map((x) => ({...d, x})));
   if (facetScales.fy) facets = (facets || [{}]).flatMap((d) => facetScales.fy.domain.map((y) => ({...d, y})));
   if (facets) facets.forEach((d, j) => (d.j = j));
+  const facetLength = facets && facets.length;
 
   // Compute the top-level facet index
-  if (facet !== undefined) {
-    facetIndex = range({length: facetChannels.size});
+  if (facetDataIndex) {
     const {fx, fy} = facetChannels;
-    facetsIndex = facets.map(({x, y}) =>
-      facetIndex.filter((i) => (!fx || facetKeyEquals(fx.value[i], x)) && (!fy || facetKeyEquals(fy.value[i], y)))
-    );
+    facetsIndex = [];
+    for (const {x, y} of facets)
+      facetsIndex.push(
+        facetDataIndex.filter((i) => (!fx || facetKeyEquals(fx.value[i], x)) && (!fy || facetKeyEquals(fy.value[i], y)))
+      );
   }
 
-  // Compute facet indexes for each mark
+  // Compute a facet index for each mark
   for (const mark of marks) {
     if (mark.facet === null) continue;
     const state = stateByMark.get(mark);
 
-    // top-level facet? Note: for mark.facet === "exclude", the opposite index
-    // is computed *after* empty facets have been determined
-    if (typeof mark.facet === "string") {
-      if (!facet || (mark.facet === "auto" && mark.data !== facet.data)) continue;
-      state.facetsIndex = facetsIndex;
+    const {x, y, method} = mark.facet;
+    // Mark-level facet ? Compute an index for that mark’s data and options
+    if (x !== undefined || y !== undefined) {
+      if (facets) state.facetsIndex = filterFacets(facets, state, facetChannels);
       continue;
     }
 
-    // Otherwise, compute an index for that mark’s data and facet options
-    if (facets) state.facetsIndex = filterFacets(facets, state, facetChannels);
+    // Otherwise, it's a top-level facet. Note: for mark.facet === "exclude",
+    // the opposite index is computed *after* empty facets have been determined
+    if (!facet || (method === "auto" && mark.data !== facet.data)) continue;
+    state.facetsIndex = facetsIndex;
   }
 
   // A facet is empty if none of the faceted index has contents for any mark
-  if (facets) {
-    facets = facets.filter((_, j) => {
+  facets =
+    facets &&
+    facets.filter((_, j) => {
       let nonFaceted = true;
       for (const [, {facetsIndex}] of stateByMark) {
         if (facetsIndex) {
@@ -484,25 +487,21 @@ export function plot(options = {}) {
       }
       return nonFaceted;
     });
-  }
 
   // Initialize the marks’ state.
   for (const mark of marks) {
     let {facetsIndex} = stateByMark.get(mark);
-    if (mark.facet === "exclude") {
-      facetsIndex =
-        facetsExclude || (facetsExclude = facetsIndex.map((f) => Uint32Array.from(difference(facetIndex, f))));
-    }
+    if (mark.facet?.method === "exclude") facetsIndex = excludeIndex(facetsIndex);
     const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
 
     // Warn for the common pitfall of wanting to facet mapped data.
     if (
-      facetIndex?.length > 1 && // non-trivial faceting
-      mark.facet === "auto" && // no explicit mark facet option
-      mark.data !== facet.data && // mark not implicitly faceted (different data)
-      arrayify(mark.data)?.length === facetChannels.size // mark data seems parallel to facet data
+      facetLength > 1 && // non-trivial faceting
+      mark.facet?.method === "auto" && // no explicit mark facet option
+      mark.data !== facet?.data && // mark not implicitly faceted (different data)
+      arrayify(mark.data)?.length === facetDataIndex?.length // mark data seems parallel to facet data
     ) {
       warn(
         `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
@@ -726,7 +725,7 @@ export class Mark {
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    this.facet = this.facet = maybeFacet(options);
+    this.facet = maybeFacet(options);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
@@ -854,4 +853,21 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
+}
+
+// Returns an index that for each facet lists all the elements present in other
+// facets in the original index
+function excludeIndex(index) {
+  const ex = [];
+  const e = new Uint32Array(sum(index, (d) => d.length));
+  for (const i of index) {
+    let n = 0;
+    for (const j of index) {
+      if (i === j) continue;
+      e.set(j, n);
+      n += j.length;
+    }
+    ex.push(e.slice(0, n));
+  }
+  return ex;
 }
