@@ -1,11 +1,9 @@
 import {keyword, range} from "./options.js";
 
-export function maybeFacet(options) {
-  const {fx, fy, facet = "auto"} = options;
-  if (fx !== undefined || fy !== undefined) return {x: fx, y: fy};
+export function maybeFacet({fx, fy, facet = "auto"} = {}) {
   if (facet === null || facet === false) return null;
-  if (facet === true) return "include";
-  if (typeof facet === "string") return keyword(facet, "facet", ["auto", "include", "exclude"]);
+  if (facet === true) facet = "include";
+  if (typeof facet === "string") return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
   if (facet) throw new Error(`Unsupported facet ${facet}`);
 }
 
