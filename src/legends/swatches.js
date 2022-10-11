@@ -1,10 +1,10 @@
-import {path} from "d3";
-import {inferFontVariant} from "../axes.js";
-import {maybeAutoTickFormat} from "../axis.js";
-import {Context, create} from "../context.js";
-import {isNoneish, maybeColorChannel, maybeNumberChannel} from "../options.js";
-import {isOrdinalScale, isThresholdScale} from "../scales.js";
-import {applyInlineStyles, impliedString, maybeClassName} from "../style.js";
+import { path } from "d3";
+import { inferFontVariant } from "../axes.js";
+import { maybeAutoTickFormat } from "../axis.js";
+import { Context, create } from "../context.js";
+import { isNoneish, maybeColorChannel, maybeNumberChannel } from "../options.js";
+import { isOrdinalScale, isThresholdScale } from "../scales.js";
+import { applyInlineStyles, impliedString, maybeClassName } from "../style.js";
 
 function maybeScale(scale, key) {
   if (key == null) return key;
@@ -88,6 +88,9 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     swatchSize = 15,
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
+    marginTop = 0,
+    marginRight = 0,
+    marginBottom = 0,
     marginLeft = 0,
     className,
     style,
@@ -170,18 +173,22 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       div.insert("style", "*").text(`
         .${className} {
           font-family: system-ui, sans-serif;
-          font-size: 10px;
-          margin-bottom: 0.5em;${
-            marginLeft === undefined
-              ? ""
-              : `
-          margin-left: ${+marginLeft}px;`
-          }${
-        width === undefined
+          font-size: 10px;${marginTop === undefined
           ? ""
-          : `
-          width: ${width}px;`
-      }
+          : `margin-top: ${+marginTop}px;`
+        }${marginRight === undefined
+          ? ""
+          : `margin-right: ${+marginRight}px;`
+        }${marginBottom === undefined
+          ? `margin-bottom: 0.5em;`
+          : `margin-bottom: ${+marginBottom}px;`
+        }${marginLeft === undefined
+          ? ""
+          : `margin-left: ${+marginLeft}px;`
+        }${width === undefined
+          ? ""
+          : `width: ${width}px;`
+        }
         }
         ${swatchStyle(className)}
         ${extraStyle}
