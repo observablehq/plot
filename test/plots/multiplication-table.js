@@ -2,27 +2,42 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function () {
-  const nums = d3.range(2, 10);
+  const numbers = d3.range(2, 10);
   return Plot.plot({
     height: 450,
     width: 450,
-    color: {type: "ordinal", scheme: "tableau10"},
-    fx: {axis: "top"},
+    padding: 0,
+    color: {type: "categorical"},
+    fx: {axis: "top", tickSize: 6},
+    fy: {tickSize: 6},
     marks: [
-      Plot.rect(nums, {fy: nums, fill: nums}),
-      Plot.dot(nums, {
+      // This rect is faceted by y and repeated across x, and hence all rects in
+      // a row have the same fill. With rect, the default definitions of x1, x2,
+      // y1, and y2 will fill the entire frame, similar to Plot.frame.
+      Plot.rect(numbers, {
+        fy: numbers,
+        fill: numbers,
+        inset: 1
+      }),
+      // This dot is faceted by x and repeated across y, and hence all dots in a
+      // column have the same fill. With dot, the default definitions of x and y
+      // would assume that the data is a tuple [x, y], so we set the frameAnchor
+      // to middle to draw one dot in the center of each frame.
+      Plot.dot(numbers, {
         frameAnchor: "middle",
         r: 19,
-        fill: nums,
-        stroke: "white",
-        fx: nums
+        fx: numbers,
+        fill: numbers,
+        stroke: "white"
       }),
-      Plot.text(d3.cross(nums, nums), {
+      // This text is faceted by x and y, and hence we need the cross product of
+      // the numbers. Again there is just one text mark per facet.
+      Plot.text(d3.cross(numbers, numbers), {
         frameAnchor: "middle",
-        text: ([a, b]) => a * b,
+        text: ([x, y]) => x * y,
         fill: "white",
-        fx: (d) => d[1],
-        fy: (d) => d[0]
+        fx: ([x]) => x,
+        fy: ([, y]) => y
       })
     ]
   });
