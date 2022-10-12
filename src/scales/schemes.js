@@ -176,7 +176,7 @@ function schemeicyclical(interpolate) {
 
 export function ordinalScheme(scheme) {
   const s = `${scheme}`.toLowerCase();
-  if (!ordinalSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
+  if (!ordinalSchemes.has(s)) throw new Error(`unknown ordinal scheme: ${s}`);
   return ordinalSchemes.get(s);
 }
 
@@ -255,7 +255,7 @@ const quantitativeSchemes = new Map([
 
 export function quantitativeScheme(scheme) {
   const s = `${scheme}`.toLowerCase();
-  if (!quantitativeSchemes.has(s)) throw new Error(`unknown scheme: ${s}`);
+  if (!quantitativeSchemes.has(s)) throw new Error(`unknown quantitative scheme: ${s}`);
   return quantitativeSchemes.get(s);
 }
 
