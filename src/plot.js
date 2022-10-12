@@ -1,4 +1,4 @@
-import {InternMap, InternSet, select, sort, sum} from "d3";
+import {InternMap, InternSet, cross, select, sort, sum} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -96,28 +96,35 @@ export function plot(options = {}) {
   // Create the facet scales and array of subplots
   const facetScales = Scales(channelsByScale);
 
-  let facets;
-  if (facetScales.fx) facets = (facets || [{}]).flatMap((d) => facetScales.fx.domain.map((x) => ({...d, x})));
-  if (facetScales.fy) facets = (facets || [{}]).flatMap((d) => facetScales.fy.domain.map((y) => ({...d, y})));
-  if (facets) facets.forEach((d, j) => (d.j = j));
+  // TODO Avoid j here? TODO Document this data structure. Note that empty is
+  // mutated below after we’ve computed the per-mark facet channels.
+  let facets =
+    facetScales.fx && facetScales.fy
+      ? cross(facetScales.fx.domain, facetScales.fy.domain).map(([x, y], j) => ({x, y, j, empty: true}))
+      : facetScales.fx
+      ? facetScales.fx.domain.map((x, j) => ({x, j, empty: true}))
+      : facetScales.fy
+      ? facetScales.fy.domain.map((y, j) => ({y, j, empty: true}))
+      : null;
   const facetLength = facets && facets.length;
 
   // Compute the top-level facet index
   if (facetDataIndex) {
     const {fx, fy} = facetChannels;
     facetsIndex = [];
-    for (const {x, y} of facets)
+    for (const {x, y} of facets) {
       facetsIndex.push(
         facetDataIndex.filter((i) => (!fx || facetKeyEquals(fx.value[i], x)) && (!fy || facetKeyEquals(fy.value[i], y)))
       );
+    }
   }
 
   // Compute a facet index for each mark
   for (const mark of marks) {
     if (mark.facet === null) continue;
     const state = stateByMark.get(mark);
-
     const {x, y, method} = mark.facet;
+
     // Mark-level facet ? Compute an index for that mark’s data and options
     if (x !== undefined || y !== undefined) {
       if (facets) state.facetsIndex = filterFacets(facets, state, facetChannels);
@@ -130,12 +137,30 @@ export function plot(options = {}) {
     state.facetsIndex = facetsIndex;
   }
 
-  // A facet is empty if none of the faceted index has contents for any mark
+  // When faceting by both x and y (i.e., when both fx and fy scales are
+  // present), then the cross product of the domains of fx and fy can include
+  // fx-fy combinations for which no mark has an instance associated with that
+  // combination of fx and fy, and therefore we don’t want to render this facet
+  // (not even the frame). The same can occur if you specify the domain of fx
+  // and fy explicitly, but there is no mark instance associated with some
+  // values in the domain.
+  //
+  // TODO We need to do two (or three?) passes here. First, we need determine
+  // the domains of the fx and fy scales (as needed) based on the union of
+  // distinct channel values, including both mark-level facets and top-level
+  // facets. Then we need to check whether we have any mark instances (or
+  // top-level facet data “instances”) associated with each value, or
+  // cross-product of values, in the fx and fy scale domains. This probably
+  // means having an InternSet of fx?+fx? keys recording which facets are
+  // non-empty, similar to the FacetMap data structure we had before.
+
+  // A facet is empty if none of the faceted index has contents for any mark.
+  // TODO Can we do this more declaratively rather than re-assigning facets?
   facets =
     facets &&
     facets.filter((_, j) => {
       let nonFaceted = true;
-      for (const [, {facetsIndex}] of stateByMark) {
+      for (const {facetsIndex} of stateByMark.values()) {
         if (facetsIndex) {
           nonFaceted = false;
           if (facetsIndex?.[j].length) return true;
