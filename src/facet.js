@@ -3,8 +3,7 @@ import {keyword, range} from "./options.js";
 export function maybeFacet({fx, fy, facet = "auto"} = {}) {
   if (facet === null || facet === false) return null;
   if (facet === true) facet = "include";
-  if (typeof facet === "string") return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
-  if (facet) throw new Error(`Unsupported facet ${facet}`);
+  return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
 }
 
 // facet filter, by mark
