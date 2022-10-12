@@ -36,7 +36,9 @@
     "readme:update": "tsx scripts/jsdoc-to-readme.ts",
     "prepublishOnly": "rm -rf dist && rollup -c && tsc",
     "postpublish": "git push && git push --tags",
-    "dev": "vite"
+    "dev": "vite",
+    "prettier": "prettier . --check",
+    "prettier-fix": "prettier . --write"
   },
   "_moduleAliases": {
     "@observablehq/plot": "./src/index.js"
