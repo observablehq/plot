@@ -21,8 +21,7 @@ export function filterFacets(facets, {fx, fy}) {
     : facets.map(({y}) => gy.get(y) ?? []);
 }
 
-// Unlike facetGroups, which returns groups in order of input data, this returns
-// keys in order of the associated scale’s domains.
+// Returns keys in order of the associated scale’s domains.
 export function facetKeys(facets, {fx, fy}) {
   const fxI = fx && new Map(fx.domain().map((x, i) => [x, i]));
   const fyI = fy && new Map(fy.domain().map((y, i) => [y, i]));
@@ -32,15 +31,14 @@ export function facetKeys(facets, {fx, fy}) {
   );
 }
 
-// Returns an array of [[key1, index1], [key2, index2], …] representing the data
-// indexes associated with each facet. For two-dimensional faceting, each key
-// is a two-element array.
+// Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
+// representing the data indexes associated with each facet.
 export function facetGroups(index, {fx, fy}) {
   return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
 }
 
 function facetGroup1(index, {value: F}) {
-  return group(index, (i) => F[i]); //.map(([k, group]) => [{[x]: k}, group]);
+  return group(index, (i) => F[i]);
 }
 
 function facetGroup2(index, {value: FX}, {value: FY}) {
@@ -48,10 +46,9 @@ function facetGroup2(index, {value: FX}, {value: FY}) {
     index,
     (i) => FX[i],
     (i) => FY[i]
-  ); //.flatMap(([x, xgroup]) => xgroup.map(([y, ygroup]) => [{x, y}, ygroup]));
+  );
 }
 
-// This must match the key structure returned by facetGroups.
 export function facetTranslate(fx, fy) {
   return fx && fy
     ? ({x, y}) => `translate(${fx(x)},${fy(y)})`
