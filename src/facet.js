@@ -1,5 +1,5 @@
-import {group, sort} from "d3";
-import {keyword, range} from "./options.js";
+import {group, intersection, sort} from "d3";
+import {arrayify, keyword, range} from "./options.js";
 
 export function maybeFacet({fx, fy, facet = "auto"} = {}) {
   if (facet === null || facet === false) return null;
@@ -7,23 +7,18 @@ export function maybeFacet({fx, fy, facet = "auto"} = {}) {
   return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
 }
 
-// facet filter, by mark
+// Facet filter, by mark; for now only the "eq" filter is provided.
 export function filterFacets(facets, {fx, fy}) {
-  const vx = fx != null && fx.value;
-  const vy = fy != null && fy.value;
-  if (!vx && !vy) return;
-  const index = range(vx || vy);
-  return facets.map(({x, y}) => {
-    let I = index;
-    if (vx) I = I.filter((i) => facetKeyEquals(vx[i], x));
-    if (vy) I = I.filter((i) => facetKeyEquals(vy[i], y));
-    return I;
-  });
-}
-
-// test if a value equals a facet key
-export function facetKeyEquals(a, b) {
-  return a instanceof Date && b instanceof Date ? +a === +b : a === b;
+  const X = fx != null && fx.value;
+  const Y = fy != null && fy.value;
+  const index = range(X || Y);
+  const gx = X && group(index, (i) => X[i]);
+  const gy = Y && group(index, (i) => Y[i]);
+  return X && Y
+    ? facets.map(({x, y}) => arrayify(intersection(gx.get(x) ?? [], gy.get(y) ?? [])))
+    : X
+    ? facets.map(({x}) => gx.get(x) ?? [])
+    : facets.map(({y}) => gy.get(y) ?? []);
 }
 
 // Unlike facetGroups, which returns groups in order of input data, this returns
