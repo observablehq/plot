@@ -175,9 +175,9 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
           font-family: system-ui, sans-serif;
           font-size: 10px;${marginTop === undefined ? "" : `margin-top: ${+marginTop}px;`}${
         marginRight === undefined ? "" : `margin-right: ${+marginRight}px;`
-        }${marginTop === undefined ? "" : `margin-top: ${+marginTop}px;`}${`margin-bottom: ${+marginBottom}px;`}${marginLeft === undefined ? "" : `margin-left: ${+marginLeft}px;`}${
-        width === undefined ? "" : `width: ${+width}px;`
-      }
+      }${marginTop === undefined ? "" : `margin-top: ${+marginTop}px;`}${`margin-bottom: ${+marginBottom}px;`}${
+        marginLeft === undefined ? "" : `margin-left: ${+marginLeft}px;`
+      }${width === undefined ? "" : `width: ${+width}px;`}
         }
         ${swatchStyle(className)}
         ${extraStyle}
