@@ -139,6 +139,10 @@ https://www.census.gov/retail/mrts/historic_releases.html
 U.S. Census Bureau (?)
 https://observablehq.com/@d3/diverging-bar-chart
 
+## walmart
+Thomas J. Holmes, University of Minnesota, Federal Reserve Bank of Minneapolis, and NBER
+https://users.econ.umn.edu/~holmes/data/WalMart/
+
 ## wealth-britain.csv
 U.K. Office for National Statistics
 A recreation of “Who owns Britain?” by Richard Speigal; proportion plot chart type by Stephanie Evergreen
