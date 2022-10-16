@@ -459,19 +459,20 @@ export function plot(options = {}) {
       if (mark.facet === null) continue;
 
       const state = stateByMark.get(mark);
-      const {x, y, method} = mark.facet;
+      const {x, y, xFilter, yFilter, method} = mark.facet;
 
       // For mark-level facets, compute an index for that mark’s data and options.
       if (x !== undefined || y !== undefined) {
-        state.facetsIndex = filterFacets(facets, state);
+        state.facetsIndex = filterFacets(facets, state, {xFilter, yFilter});
       }
 
       // Otherwise, link to the top-level facet information.
       else if (facet && (method !== "auto" || mark.data === facet.data)) {
         const {facetsIndex, fx, fy} = stateByMark.get(top);
-        state.facetsIndex = facetsIndex;
+        if (fx === undefined && fy === undefined) continue;
         if (fx !== undefined) state.fx = fx;
         if (fy !== undefined) state.fy = fy;
+        state.facetsIndex = xFilter || yFilter ? filterFacets(facets, state, {xFilter, yFilter}) : facetsIndex;
       }
     }
 
@@ -638,7 +639,7 @@ export function plot(options = {}) {
         .enter()
         .append((ky, i) =>
           (i === j ? axis1 : axis2).render(
-            cx && where(fxDomain, (kx) => cx.get(ky).has(kx)),
+            cx && where(fxDomain, (kx) => cx.get(ky)?.has(kx)),
             scales,
             {...dimensions, ...fyMargins, offsetTop: fy(ky)},
             context
@@ -664,7 +665,7 @@ export function plot(options = {}) {
         .enter()
         .append((kx, i) =>
           (i === j ? axis1 : axis2).render(
-            cy && where(fyDomain, (ky) => cy.get(kx).has(ky)),
+            cy && where(fyDomain, (ky) => cy.get(kx)?.has(ky)),
             scales,
             {
               ...dimensions,

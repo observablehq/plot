@@ -1,24 +1,31 @@
 import {group, intersection, sort} from "d3";
 import {arrayify, keyword, range} from "./options.js";
 
-export function maybeFacet({fx, fy, facet = "auto"} = {}) {
+export function maybeFacet({fx, fy, xFilter, yFilter, facet = "auto"} = {}) {
   if (facet === null || facet === false) return null;
   if (facet === true) facet = "include";
-  return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
+  return {
+    x: fx,
+    y: fy,
+    xFilter: maybeFacetFilter(xFilter),
+    yFilter: maybeFacetFilter(yFilter),
+    method: keyword(facet, "facet", ["auto", "include", "exclude"])
+  };
 }
 
-// Facet filter, by mark; for now only the "eq" filter is provided.
-export function filterFacets(facets, {fx, fy}) {
+// Facet filter, by mark; if a filter is provided, sort the keys and apply.
+export function filterFacets(facets, {fx, fy}, {xFilter, yFilter}) {
   const X = fx != null && fx.value;
   const Y = fy != null && fy.value;
   const index = range(X || Y);
-  const gx = X && group(index, (i) => X[i]);
-  const gy = Y && group(index, (i) => Y[i]);
+  const gx = filteredFacet(X && group(index, (i) => X[i]), xFilter);
+  const gy = filteredFacet(Y && group(index, (i) => Y[i]), yFilter);
+
   return X && Y
-    ? facets.map(({x, y}) => arrayify(intersection(gx.get(x) ?? [], gy.get(y) ?? [])))
+    ? facets.map(({x, y}) => arrayify(intersection(gx(x), gy(y))))
     : X
-    ? facets.map(({x}) => gx.get(x) ?? [])
-    : facets.map(({y}) => gy.get(y) ?? []);
+    ? facets.map(({x}) => gx(x) ?? [])
+    : facets.map(({y}) => gy(y) ?? []);
 }
 
 // Returns keys in order of the associated scale’s domains.
@@ -55,4 +62,27 @@ export function facetTranslate(fx, fy) {
     : fx
     ? ({x}) => `translate(${fx(x)},0)`
     : ({y}) => `translate(0,${fy(y)})`;
+}
+
+function filteredFacet(g, test) {
+  if (!g) return;
+  if (test === undefined) return (x) => g.get(x) ?? [];
+  return (x) => Array.from(g, ([key, index]) => (test(key, x) ? index : [])).flat();
+}
+
+function maybeFacetFilter(filter = "eq") {
+  if (typeof filter === "function" && filter.length === 2) return filter;
+  switch (filter) {
+    case "eq":
+      return undefined;
+    case "lte":
+      return (a, b) => a <= b;
+    case "lt":
+      return (a, b) => a < b;
+    case "gte":
+      return (a, b) => a >= b;
+    case "gt":
+      return (a, b) => a > b;
+  }
+  throw new Error(`unsupported facet filter: ${filter}`);
 }
