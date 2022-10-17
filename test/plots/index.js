@@ -173,6 +173,8 @@ export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomQuantile} from "./random-quantile.js";
 export {default as randomWalk} from "./random-walk.js";
+export {default as recession} from "./recession.js";
+export {default as recessionHalos} from "./recession-halos.js";
 export {default as rectBand} from "./rect-band.js";
 export {default as seattlePrecipitationDensity} from "./seattle-precipitation-density.js";
 export {default as seattlePrecipitationRule} from "./seattle-precipitation-rule.js";

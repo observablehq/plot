@@ -3257,6 +3257,15 @@ If *curve* is a function, it will be invoked with a given *context* in the same 
 
 The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
 
+
+## Halo
+
+The line mark support a halo filter, allowing to better separate multiple lines by adding a thick white background underneath each line, [a technique described by Sara Soueidan](https://tympanus.net/codrops/2019/01/22/svg-filter-effects-outline-text-with-femorphology/). The halo options can be specified as:
+
+* *haloColor* - the halo’s color, defaults to white
+* *haloRadius* - the halo’s radius, which defaults to 2px
+* *halo* - if true, activates the halo filter; if specified as a color, defines the halo’s color; if specified as a number, defines the halo’s radius
+
 ## Markers
 
 A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defines a graphic drawn on vertices of a [line](#line) or a [link](#link) mark. The supported marker options are:

@@ -1,4 +1,4 @@
-import {line as shapeLine} from "d3";
+import {group, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
@@ -12,6 +12,7 @@ import {
 } from "../style.js";
 import {maybeDenseIntervalX, maybeDenseIntervalY} from "../transforms/bin.js";
 import {applyGroupedMarkers, markers} from "./marker.js";
+import {applyHalo, maybeHalo} from "./halo.js";
 
 const defaults = {
   ariaLabel: "line",
@@ -25,7 +26,7 @@ const defaults = {
 
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, curve, tension} = options;
+    const {x, y, z, curve, tension, halo, haloColor, haloRadius} = options;
     super(
       data,
       {
@@ -38,6 +39,7 @@ export class Line extends Mark {
     );
     this.z = z;
     this.curve = Curve(curve, tension);
+    this.halo = maybeHalo(halo, haloColor, haloRadius);
     markers(this, options);
   }
   filter(index) {
@@ -45,7 +47,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
-    return create("svg:g", context)
+    const g = create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
       .call(applyTransform, this, scales)
       .call((g) =>
@@ -65,8 +67,25 @@ export class Line extends Mark {
               .x((i) => X[i])
               .y((i) => Y[i])
           )
-      )
-      .node();
+      );
+
+    if (this.halo) {
+      // With variable aesthetics, we need to regroup segments by line
+      let line = -1;
+      let segmented = false;
+      const groups = group(g.selectAll("path"), (d) =>
+        d.__data__.segment === undefined ? ++line : ((segmented = true), line)
+      );
+      if (segmented) {
+        for (const [, paths] of groups) {
+          const l = g.append("g").node();
+          for (const p of paths) l.appendChild(p);
+        }
+      }
+      applyHalo(g, this.halo);
+    }
+
+    return g.node();
   }
 }
 

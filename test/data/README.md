@@ -118,6 +118,11 @@ https://observablehq.com/@moklick
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
 
+## us-gdp.csv
+U.S. Gross Domestic Product, chained dollars, Jan 1947-Jan 2022
+Federal Reserve Economic Data
+https://fred.stlouisfed.org/
+
 ## us-population-state-age.csv
 U.S. Census Bureau
 https://observablehq.com/@d3/barcode-plot
