@@ -90,7 +90,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     swatchHeight = swatchSize,
     marginTop = 0,
     marginRight = 0,
-    marginBottom = 8,
+    marginBottom = 5,
     marginLeft = 0,
     className,
     style,
