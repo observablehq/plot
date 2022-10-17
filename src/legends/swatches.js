@@ -88,10 +88,10 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     swatchSize = 15,
     swatchWidth = swatchSize,
     swatchHeight = swatchSize,
-    marginTop = 0,
-    marginRight = 0,
-    marginBottom = 5,
-    marginLeft = 0,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
     className,
     style,
     width
@@ -173,11 +173,16 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
       div.insert("style", "*").text(`
         .${className} {
           font-family: system-ui, sans-serif;
-          font-size: 10px;${marginTop === undefined ? "" : `margin-top: ${+marginTop}px;`}${
-        marginRight === undefined ? "" : `margin-right: ${+marginRight}px;`
-      }${marginTop === undefined ? "" : `margin-top: ${+marginTop}px;`}${`margin-bottom: ${+marginBottom}px;`}${
-        marginLeft === undefined ? "" : `margin-left: ${+marginLeft}px;`
-      }${width === undefined ? "" : `width: ${+width}px;`}
+          font-size: 10px;
+          ${[
+            marginTop === undefined ? null : `margin-top: ${+marginTop}px;`,
+            marginBottom === undefined ? `margin-bottom: 0.5em;` : `margin-bottom: ${+marginBottom}px;`,
+            `margin-left: ${marginLeft === undefined ? 0 : +marginLeft}px;`,
+            marginRight === undefined ? null : `margin-right: ${+marginRight}px;`,
+            width === undefined ? null : `width: ${+width}px;`
+          ]
+            .filter((d) => d)
+            .join("\n          ")}
         }
         ${swatchStyle(className)}
         ${extraStyle}
