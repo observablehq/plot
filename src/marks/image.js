@@ -109,16 +109,7 @@ export class Image extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.image(presidents, {x: "inauguration", y: "favorability", src: "portrait"})
- * ```
- *
- * Returns a new image with the given *data* and *options*. If neither the **x**
- * nor **y** nor **frameAnchor** options are specified, *data* is assumed to be
- * an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that
- * **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
- */
+/** @jsdoc image */
 export function image(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);

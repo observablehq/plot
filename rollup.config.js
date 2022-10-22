@@ -38,7 +38,7 @@ export default [
       name: "Plot",
       format: "umd",
       extend: true,
-      file: `dist/${filename}.umd.js`,
+      file: `build/${filename}.umd.js`,
       globals: {d3: "d3"},
       paths: {d3: d3Path}
     }

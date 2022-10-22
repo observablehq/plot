@@ -12,11 +12,7 @@ const defaults = {
   strokeOpacity: 0.1
 };
 
-/**
- * The **binWidth** option specifies the distance between the centers of
- * neighboring hexagons, in pixels (defaults to 20). The **clip** option
- * defaults to true, clipping the mark to the frame’s dimensions.
- */
+/** @jsdoc hexgrid */
 export function hexgrid(options) {
   return new Hexgrid(options);
 }

@@ -58,13 +58,7 @@ export class Link extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.link(inequality, {x1: "POP_1980", y1: "R90_10_1980", x2: "POP_2015", y2: "R90_10_2015"})
- * ```
- *
- * Returns a new link with the given *data* and *options*.
- */
+/** @jsdoc link */
 export function link(data, options = {}) {
   let {x, x1, x2, y, y1, y2, ...remainingOptions} = options;
   [x1, x2] = maybeSameValue(x, x1, x2);
