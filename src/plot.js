@@ -32,6 +32,17 @@ export function plot(options = {}) {
   const stateByMark = new Map();
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+
+    // TODO It’s undesirable to set this to an empty object here because it
+    // makes it less obvious what the expected type of mark state is. And also
+    // when we (eventually) migrate to TypeScript, this would be disallowed.
+    // Previously mark state was a {data, facet, channels, values} object; now
+    // it looks like we also use: fx, fy, groups, facetChannelLength,
+    // facetsIndex. And these are set at various different points below, so
+    // there are more intermediate representations where the state is partially
+    // initialized. If possible we should try to reduce the number of
+    // intermediate states and simplify the state representations to make the
+    // logic easier to follow.
     stateByMark.set(mark, {});
   }
 
@@ -43,7 +54,9 @@ export function plot(options = {}) {
 
   // Collect all facet definitions (top-level facets then mark facets),
   // materialize the associated channels, and derive facet scales.
-  if (facet || marks.some((mark) => mark.fx || mark.fy)) { // TODO non-null, not truthy
+  if (facet || marks.some((mark) => mark.fx || mark.fy)) {
+    // TODO non-null, not truthy
+
     // TODO Remove/refactor this: here “top” is pretending to be a mark, but
     // it’s not actually a mark. Also there’s no “top” facet method, and the
     // ariaLabel isn’t used for anything. And eventually top is removed from
@@ -60,7 +73,8 @@ export function plot(options = {}) {
       if (!method) continue; // TODO explicitly check for null
       const {fx: x, fy: y} = mark;
       const state = stateByMark.get(mark);
-      if (x == null && y == null && facet != null) { // TODO strict equality
+      if (x == null && y == null && facet != null) {
+        // TODO strict equality
         if (method !== "auto" || mark.data === facet.data) {
           state.groups = stateByMark.get(top).groups;
         } else {
@@ -75,17 +89,20 @@ export function plot(options = {}) {
       } else {
         const data = arrayify(mark.data);
         if ((x != null || y != null) && data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`); // TODO strict equality
-        if (x != null) { // TODO strict equality
+        if (x != null) {
+          // TODO strict equality
           state.fx = Channel(data, {value: x, scale: "fx"});
           if (!channelsByScale.has("fx")) channelsByScale.set("fx", []);
           channelsByScale.get("fx").push(state.fx);
         }
-        if (y != null) { // TODO strict equality
+        if (y != null) {
+          // TODO strict equality
           state.fy = Channel(data, {value: y, scale: "fy"});
           if (!channelsByScale.has("fy")) channelsByScale.set("fy", []);
           channelsByScale.get("fy").push(state.fy);
         }
-        if (state.fx || state.fy) { // TODO strict equality
+        if (state.fx || state.fy) {
+          // TODO strict equality
           const groups = facetGroups(range(data), state);
           state.groups = groups;
           // If the top-level faceting is non-trivial, store the corresponding
