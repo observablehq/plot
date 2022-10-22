@@ -43,8 +43,5 @@ it("mark data parallel to facet data does not trigger a warning if explicitly no
 
 it("mark data not parallel to facet data does not trigger a warning", async () => {
   const data = await d3.csv("data/anscombe.csv", d3.autoType);
-  await assertWarnings(
-    () => Plot.dot(data.slice(0, 1), {x: "x", y: "y"}).plot({facet: {data, x: "series"}}),
-    []
-  );
+  await assertWarnings(() => Plot.dot(data.slice(0, 1), {x: "x", y: "y"}).plot({facet: {data, x: "series"}}), []);
 });
