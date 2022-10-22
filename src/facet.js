@@ -1,11 +1,5 @@
 import {group, intersection, sort} from "d3";
-import {arrayify, keyword, range} from "./options.js";
-
-export function maybeFacet({fx, fy, facet = "auto"} = {}) {
-  if (facet === null || facet === false) return null;
-  if (facet === true) facet = "include";
-  return {x: fx, y: fy, method: keyword(facet, "facet", ["auto", "include", "exclude"])};
-}
+import {arrayify, range} from "./options.js";
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
 export function filterFacets(facets, {fx, fy}) {

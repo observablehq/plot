@@ -5,14 +5,14 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, map, maybeNamed, range, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, where, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
-import {facetGroups, facetKeys, facetTranslate, maybeFacet, filterFacets} from "./facet.js";
+import {facetGroups, facetKeys, facetTranslate, filterFacets} from "./facet.js";
 
 /** @jsdoc plot */
 export function plot(options = {}) {
@@ -43,19 +43,24 @@ export function plot(options = {}) {
 
   // Collect all facet definitions (top-level facets then mark facets),
   // materialize the associated channels, and derive facet scales.
-  if (facet || marks.some(({facet}) => facet.x || facet.y)) {
+  if (facet || marks.some((mark) => mark.fx || mark.fy)) { // TODO non-null, not truthy
+    // TODO Remove/refactor this: here “top” is pretending to be a mark, but
+    // it’s not actually a mark. Also there’s no “top” facet method, and the
+    // ariaLabel isn’t used for anything. And eventually top is removed from
+    // stateByMark. We can find a cleaner way to do this.
     const top =
       facet !== undefined
-        ? {data: facet.data, facet: {x: facet.x, y: facet.y, method: "top"}, ariaLabel: "top-level facet option"}
+        ? {data: facet.data, fx: facet.x, fy: facet.y, facet: "top", ariaLabel: "top-level facet option"}
         : {facet: null};
 
     stateByMark.set(top, {});
 
     for (const mark of [top, ...marks]) {
-      const {x, y, method} = mark?.facet ?? {};
-      if (!method) continue;
+      const method = mark?.facet; // TODO rename to facet; remove check if mark is undefined?
+      if (!method) continue; // TODO explicitly check for null
+      const {fx: x, fy: y} = mark;
       const state = stateByMark.get(mark);
-      if (x == null && y == null && facet != null) {
+      if (x == null && y == null && facet != null) { // TODO strict equality
         if (method !== "auto" || mark.data === facet.data) {
           state.groups = stateByMark.get(top).groups;
         } else {
@@ -69,18 +74,18 @@ export function plot(options = {}) {
         }
       } else {
         const data = arrayify(mark.data);
-        if ((x != null || y != null) && data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
-        if (x != null) {
+        if ((x != null || y != null) && data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`); // TODO strict equality
+        if (x != null) { // TODO strict equality
           state.fx = Channel(data, {value: x, scale: "fx"});
           if (!channelsByScale.has("fx")) channelsByScale.set("fx", []);
           channelsByScale.get("fx").push(state.fx);
         }
-        if (y != null) {
+        if (y != null) { // TODO strict equality
           state.fy = Channel(data, {value: y, scale: "fy"});
           if (!channelsByScale.has("fy")) channelsByScale.set("fy", []);
           channelsByScale.get("fy").push(state.fy);
         }
-        if (state.fx || state.fy) {
+        if (state.fx || state.fy) { // TODO strict equality
           const groups = facetGroups(range(data), state);
           state.groups = groups;
           // If the top-level faceting is non-trivial, store the corresponding
@@ -89,7 +94,7 @@ export function plot(options = {}) {
             mark === top &&
             (groups.size > 1 || (state.fx && state.fy && groups.size === 1 && [...groups][0][1].size > 1))
           )
-            state.facetChannelLength = data.length;
+            state.facetChannelLength = data.length; // TODO curly braces
         }
       }
     }
@@ -112,10 +117,10 @@ export function plot(options = {}) {
 
     // Compute a facet index for each mark, parallel to the facets array.
     for (const mark of [top, ...marks]) {
-      if (mark.facet === null) continue;
-
+      const method = mark.facet; // TODO rename to facet
+      if (method === null) continue;
+      const {fx: x, fy: y} = mark;
       const state = stateByMark.get(mark);
-      const {x, y, method} = mark.facet;
 
       // For mark-level facets, compute an index for that mark’s data and options.
       if (x !== undefined || y !== undefined) {
@@ -171,7 +176,7 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     const state = stateByMark.get(mark);
-    const facetsIndex = mark.facet?.method === "exclude" ? excludeIndex(state.facetsIndex) : state.facetsIndex;
+    const facetsIndex = mark.facet === "exclude" ? excludeIndex(state.facetsIndex) : state.facetsIndex;
     const {data, facets, channels} = mark.initialize(facetsIndex, state);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
@@ -406,12 +411,18 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {sort, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", fx, fy, sort, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
     this.transform = this.initializer ? options.transform : basic(options).transform;
-    this.facet = maybeFacet(options);
+    if (facet === null || facet === false) {
+      this.facet = null;
+    } else {
+      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
+      this.fx = fx;
+      this.fy = fy;
+    }
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
