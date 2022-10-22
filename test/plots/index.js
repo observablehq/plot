@@ -36,6 +36,7 @@ export {default as carsJitter} from "./cars-jitter.js";
 export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
+export {default as classNameOnMarks} from "./className-on-marks.js";
 export {default as collapsedHistogram} from "./collapsed-histogram.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
 export {default as crimeanWarArrow} from "./crimean-war-arrow.js";
