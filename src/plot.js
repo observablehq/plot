@@ -19,7 +19,7 @@ import {
 } from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
+import {applyInlineStyles, maybeClassName, maybeClassNameOptional, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
@@ -683,6 +683,7 @@ export class Mark {
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
+    this.className = maybeClassNameOptional(options.className);
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);

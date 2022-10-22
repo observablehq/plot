@@ -297,6 +297,7 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
+  applyAttr(selection, "class", mark.className);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
@@ -376,6 +377,10 @@ export function maybeClassName(name) {
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
+}
+
+export function maybeClassNameOptional(name) {
+  return name === undefined ? undefined : maybeClassName(name);
 }
 
 export function applyInlineStyles(selection, style) {
