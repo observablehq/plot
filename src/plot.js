@@ -184,16 +184,16 @@ export function plot(options = {}) {
 
   // Initalize the scales and axes.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
+  const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
 
-  const scales = ScaleFunctions(scaleDescriptors);
   const {fx, fy} = scales;
-  const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
+  const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
   const context = Context(options, subdimensions);
 
@@ -279,9 +279,9 @@ export function plot(options = {}) {
   if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
-  if (facets) {
-    const fxDomain = fx && fx.domain();
+  if (facets !== undefined) {
     const fyDomain = fy && fy.domain();
+    const fxDomain = fx && fx.domain();
     const selection = select(svg);
     if (fy && axes.y) {
       const axis1 = axes.y,
@@ -348,8 +348,8 @@ export function plot(options = {}) {
         );
     }
 
-    // Render facets in the order of the fx-fy domain—which might not be the
-    //  ordering used to build the nested index initially, see domainChannel
+    // Render facets in the order of the fx-fy domain, which might not be the
+    // ordering used to build the nested index initially; see domainChannel.
     const facetPosition = new Map(facets.map((f, j) => [f, j]));
     selection
       .selectAll()
