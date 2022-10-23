@@ -1,6 +1,6 @@
-import {ascending, cross, group, select, sort, sum} from "d3";
+import {ascending, cross, group, select, sort} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
+import {Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
@@ -11,8 +11,8 @@ import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
 import {basic, initializer} from "./transforms/basic.js";
 import {maybeInterval} from "./transforms/interval.js";
-import {consumeWarnings, warn} from "./warnings.js";
-import {facetGroups, facetKeys, facetTranslate, filterFacets} from "./facet.js";
+import {consumeWarnings} from "./warnings.js";
+import {excludeIndex, facetKeys, facetTranslate, filterFacets, topFacetRead, facetRead} from "./facet.js";
 
 /** @jsdoc plot */
 export function plot(options = {}) {
@@ -24,132 +24,83 @@ export function plot(options = {}) {
   // Flatten any nested marks.
   const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
 
-  // A Map from Mark instance to its render state, including:
-  // index - the data index e.g. [0, 1, 2, 3, …]
-  // channels - an array of materialized channels e.g. [["x", {value}], …]
-  // faceted - a boolean indicating whether this mark is faceted
-  // values - an object of scaled values e.g. {x: [40, 32, …], …}
-  const stateByMark = new Map();
-  for (const mark of marks) {
-    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-
-    // TODO It’s undesirable to set this to an empty object here because it
-    // makes it less obvious what the expected type of mark state is. And also
-    // when we (eventually) migrate to TypeScript, this would be disallowed.
-    // Previously mark state was a {data, facet, channels, values} object; now
-    // it looks like we also use: fx, fy, groups, facetChannelLength,
-    // facetsIndex. And these are set at various different points below, so
-    // there are more intermediate representations where the state is partially
-    // initialized. If possible we should try to reduce the number of
-    // intermediate states and simplify the state representations to make the
-    // logic easier to follow.
-    stateByMark.set(mark, {});
-  }
-
   // A Map from scale name to an array of associated channels.
   const channelsByScale = new Map();
 
   // Faceting!
   let facets;
 
+  // A map from top-level facet or mark to facet information, including:
+  // * groups - a possibly nested map from facet values to indexes in the data
+  //   array
+  // * fx - a channel to add to the fx scale
+  // * fy - a channel to add to the fy scale
+  // * facetChannelLength - the top-level facet indicates a facet channel length
+  //   to help warn the user if a different data of the same length is used in a
+  //   mark
+  // * facetsIndex - In a second pass, a nested array of indices corresponding
+  //   to the valid facets
+  const facetCollect = new Map();
+
   // Collect all facet definitions (top-level facets then mark facets),
   // materialize the associated channels, and derive facet scales.
-  if (facet || marks.some((mark) => mark.fx || mark.fy)) {
-    // TODO non-null, not truthy
+  const topFacetInfo = topFacetRead(facet);
+  if (topFacetInfo) facetCollect.set(null, topFacetInfo);
 
-    // TODO Remove/refactor this: here “top” is pretending to be a mark, but
-    // it’s not actually a mark. Also there’s no “top” facet method, and the
-    // ariaLabel isn’t used for anything. And eventually top is removed from
-    // stateByMark. We can find a cleaner way to do this.
-    const top =
-      facet !== undefined
-        ? {data: facet.data, fx: facet.x, fy: facet.y, facet: "top", ariaLabel: "top-level facet option"}
-        : {facet: null};
-
-    stateByMark.set(top, {});
-
-    for (const mark of [top, ...marks]) {
-      const method = mark?.facet; // TODO rename to facet; remove check if mark is undefined?
-      if (!method) continue; // TODO explicitly check for null
-      const {fx: x, fy: y} = mark;
-      const state = stateByMark.get(mark);
-      if (x == null && y == null && facet != null) {
-        // TODO strict equality
-        if (method !== "auto" || mark.data === facet.data) {
-          state.groups = stateByMark.get(top).groups;
-        } else {
-          // Warn for the common pitfall of wanting to facet mapped data. See
-          // below for the initialization of facetChannelLength.
-          const {facetChannelLength} = stateByMark.get(top);
-          if (facetChannelLength !== undefined && arrayify(mark.data)?.length === facetChannelLength)
-            warn(
-              `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
-            );
-        }
-      } else {
-        const data = arrayify(mark.data);
-        if ((x != null || y != null) && data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`); // TODO strict equality
-        if (x != null) {
-          // TODO strict equality
-          state.fx = Channel(data, {value: x, scale: "fx"});
-          if (!channelsByScale.has("fx")) channelsByScale.set("fx", []);
-          channelsByScale.get("fx").push(state.fx);
-        }
-        if (y != null) {
-          // TODO strict equality
-          state.fy = Channel(data, {value: y, scale: "fy"});
-          if (!channelsByScale.has("fy")) channelsByScale.set("fy", []);
-          channelsByScale.get("fy").push(state.fy);
-        }
-        if (state.fx || state.fy) {
-          // TODO strict equality
-          const groups = facetGroups(range(data), state);
-          state.groups = groups;
-          // If the top-level faceting is non-trivial, store the corresponding
-          // data length, in order to compare it for the warning above.
-          if (
-            mark === top &&
-            (groups.size > 1 || (state.fx && state.fy && groups.size === 1 && [...groups][0][1].size > 1))
-          )
-            state.facetChannelLength = data.length; // TODO curly braces
-        }
-      }
+  for (const mark of marks) {
+    const f = facetRead(mark, facet, topFacetInfo);
+    if (f) facetCollect.set(mark, f);
+  }
+  for (const f of facetCollect.values()) {
+    const {fx, fy} = f;
+    if (fx) {
+      if (!channelsByScale.has("fx")) channelsByScale.set("fx", []);
+      channelsByScale.get("fx").push(fx);
     }
+    if (fy) {
+      if (!channelsByScale.has("fy")) channelsByScale.set("fy", []);
+      channelsByScale.get("fy").push(fy);
+    }
+  }
 
-    const facetScales = Scales(channelsByScale, options);
+  const facetScales = Scales(channelsByScale, options);
 
-    // All the possible facets are given by the domains of fx or fy, or the
-    // cross-product of these domains if we facet by both x and y. We sort them in
-    // order to apply the facet filters afterwards.
-    const fxDomain = facetScales.fx?.scale.domain();
-    const fyDomain = facetScales.fy?.scale.domain();
-    facets =
-      fxDomain && fyDomain
-        ? cross(sort(fxDomain, ascending), sort(fyDomain, ascending)).map(([x, y]) => ({x, y}))
-        : fxDomain
-        ? sort(fxDomain, ascending).map((x) => ({x}))
-        : fyDomain
-        ? sort(fyDomain, ascending).map((y) => ({y}))
-        : null;
+  // All the possible facets are given by the domains of fx or fy, or the
+  // cross-product of these domains if we facet by both x and y. We sort them in
+  // order to apply the facet filters afterwards.
+  const fxDomain = facetScales.fx?.scale.domain();
+  const fyDomain = facetScales.fy?.scale.domain();
+  facets =
+    fxDomain && fyDomain
+      ? cross(sort(fxDomain, ascending), sort(fyDomain, ascending)).map(([x, y]) => ({x, y}))
+      : fxDomain
+      ? sort(fxDomain, ascending).map((x) => ({x}))
+      : fyDomain
+      ? sort(fyDomain, ascending).map((y) => ({y}))
+      : undefined;
+
+  if (facets !== undefined) {
+    const facetsIndex = topFacetInfo ? filterFacets(facets, topFacetInfo) : undefined;
 
     // Compute a facet index for each mark, parallel to the facets array.
-    for (const mark of [top, ...marks]) {
-      const method = mark.facet; // TODO rename to facet
-      if (method === null) continue;
+    for (const mark of marks) {
+      const {facet} = mark;
+      if (facet === null) continue;
       const {fx: x, fy: y} = mark;
-      const state = stateByMark.get(mark);
+      const facetInfo = facetCollect.get(mark);
+      if (facetInfo === undefined) continue;
 
       // For mark-level facets, compute an index for that mark’s data and options.
       if (x !== undefined || y !== undefined) {
-        state.facetsIndex = filterFacets(facets, state);
+        facetInfo.facetsIndex = filterFacets(facets, facetInfo);
       }
 
       // Otherwise, link to the top-level facet information.
-      else if (facet && (method !== "auto" || mark.data === facet.data)) {
-        const {facetsIndex, fx, fy} = stateByMark.get(top);
-        state.facetsIndex = facetsIndex;
-        if (fx !== undefined) state.fx = fx;
-        if (fy !== undefined) state.fy = fy;
+      else if (topFacetInfo !== undefined) {
+        facetInfo.facetsIndex = facetsIndex;
+        const {fx, fy} = topFacetInfo;
+        if (fx !== undefined) facetInfo.fx = fx;
+        if (fy !== undefined) facetInfo.fy = fy;
       }
     }
 
@@ -161,23 +112,22 @@ export function plot(options = {}) {
     // the domain. Expunge empty facets, and clear the corresponding elements
     // from the nested index in each mark.
     const nonEmpty = new Set();
-    for (const {facetsIndex} of stateByMark.values()) {
+    for (const {facetsIndex} of facetCollect.values()) {
       if (facetsIndex) {
         facetsIndex.forEach((index, i) => {
           if (index?.length > 0) nonEmpty.add(i);
         });
       }
     }
-    if (nonEmpty.size < facets.length) {
+    if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
       facets = facets.filter((_, i) => nonEmpty.has(i));
-      for (const state of stateByMark.values()) {
+      for (const state of facetCollect.values()) {
         const {facetsIndex} = state;
+        //console.warn(facetsIndex);
         if (!facetsIndex) continue;
         state.facetsIndex = facetsIndex.filter((_, i) => nonEmpty.has(i));
       }
     }
-
-    stateByMark.delete(top);
   }
 
   // If a scale is explicitly declared in options, initialize its associated
@@ -190,9 +140,17 @@ export function plot(options = {}) {
     }
   }
 
+  // A Map from Mark instance to its render state, including:
+  // index - the data index e.g. [0, 1, 2, 3, …]
+  // channels - an array of materialized channels e.g. [["x", {value}], …]
+  // faceted - a boolean indicating whether this mark is faceted
+  // values - an object of scaled values e.g. {x: [40, 32, …], …}
+  const stateByMark = new Map();
+
   // Initialize the marks’ state.
   for (const mark of marks) {
-    const state = stateByMark.get(mark);
+    if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
+    const state = facetCollect.get(mark) || {};
     const facetsIndex = mark.facet === "exclude" ? excludeIndex(state.facetsIndex) : state.facetsIndex;
     const {data, facets, channels} = mark.initialize(facetsIndex, state);
     applyScaleTransforms(channels, options);
@@ -568,21 +526,4 @@ function nolabel(axis) {
   return axis === undefined || axis.label === undefined
     ? axis // use the existing axis if unlabeled
     : Object.assign(Object.create(axis), {label: undefined});
-}
-
-// Returns an index that for each facet lists all the elements present in other
-// facets in the original index
-function excludeIndex(index) {
-  const ex = [];
-  const e = new Uint32Array(sum(index, (d) => d.length));
-  for (const i of index) {
-    let n = 0;
-    for (const j of index) {
-      if (i === j) continue;
-      e.set(j, n);
-      n += j.length;
-    }
-    ex.push(e.slice(0, n));
-  }
-  return ex;
 }
