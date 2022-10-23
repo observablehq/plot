@@ -58,9 +58,8 @@ for (const file of glob.sync("build/**/*.js")) {
       const [, name] = match;
       const docs = docmap.get(name);
       if (!docs) throw new Error(`missing @jsdoc definition: ${name}`);
-      if (file === "build/plot.umd.js") "ignore";
-      else if (!unused.has(name)) throw new Error(`duplicate @jsdoc reference: ${name}`);
-      else unused.delete(name);
+      if (!unused.has(name)) throw new Error(`duplicate @jsdoc reference: ${name}`);
+      unused.delete(name);
       ++count;
       lines[i] = docs
         .map((line, i, lines) => (i === 0 ? `/** ${line}` : i === lines.length - 1 ? ` * ${line}\n */` : ` * ${line}`))

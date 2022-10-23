@@ -32,7 +32,7 @@
     "test:mocha": "mkdir -p test/output && mocha --conditions=mocha 'test/**/*-test.*' 'test/plot.js'",
     "test:lint": "eslint src test",
     "test:typecheck": "tsc --noEmit",
-    "prepublishOnly": "rm -rf build dist && rollup -c && tsc && tsx scripts/readme-to-jsdoc.ts",
+    "prepublishOnly": "rm -rf build dist && tsc && tsx scripts/readme-to-jsdoc.ts && rollup -c",
     "postpublish": "git push && git push --tags",
     "dev": "vite"
   },
@@ -45,7 +45,6 @@
     "@rollup/plugin-commonjs": "22",
     "@rollup/plugin-json": "4",
     "@rollup/plugin-node-resolve": "13",
-    "@rollup/plugin-typescript": "^8.3.2",
     "@types/d3": "^7.4.0",
     "@types/expect": "^24.3.0",
     "@types/mocha": "^9.1.1",

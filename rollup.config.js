@@ -4,7 +4,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import node from "@rollup/plugin-node-resolve";
 import * as meta from "./package.json";
-import typescript from "@rollup/plugin-typescript";
 
 const filename = meta.name.split("/").pop();
 
@@ -27,7 +26,7 @@ const config = {
     indent: false,
     banner: `// ${meta.name} v${meta.version} Copyright ${copyrights.join(", ")}`
   },
-  plugins: [typescript(), commonjs(), json(), node()]
+  plugins: [commonjs(), json(), node()]
 };
 
 export default [
@@ -38,7 +37,7 @@ export default [
       name: "Plot",
       format: "umd",
       extend: true,
-      file: `build/${filename}.umd.js`,
+      file: `dist/${filename}.umd.js`,
       globals: {d3: "d3"},
       paths: {d3: d3Path}
     }
