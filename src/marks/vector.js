@@ -74,39 +74,20 @@ export class Vector extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "direction"})
- * ```
- *
- * Returns a new vector with the given *data* and *options*. If neither the
- * **x** nor **y** options are specified, *data* is assumed to be an array of
- * pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*,
- * *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
- */
+/** @jsdoc vector */
 export function vector(data, options = {}) {
   let {x, y, ...remainingOptions} = options;
   if (options.frameAnchor === undefined) [x, y] = maybeTuple(x, y);
   return new Vector(data, {...remainingOptions, x, y});
 }
 
-/**
- * Equivalent to
- * [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options)
- * except that if the **x** option is not specified, it defaults to the identity
- * function and assumes that *data* = [*x₀*, *x₁*, *x₂*, …].
- */
+/** @jsdoc vectorX */
 export function vectorX(data, options = {}) {
   const {x = identity, ...remainingOptions} = options;
   return new Vector(data, {...remainingOptions, x});
 }
 
-/**
- * Equivalent to
- * [Plot.vector](https://github.com/observablehq/plot/blob/main/README.md#plotvectordata-options)
- * except that if the **y** option is not specified, it defaults to the identity
- * function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
- */
+/** @jsdoc vectorY */
 export function vectorY(data, options = {}) {
   const {y = identity, ...remainingOptions} = options;
   return new Vector(data, {...remainingOptions, y});

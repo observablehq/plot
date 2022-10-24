@@ -12,46 +12,7 @@ import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 export const ox = 0.5,
   oy = 0;
 
-/**
- * Aggregates the given input channels into hexagonal bins, creating output
- * channels with the reduced data. The *options* must specify the **x** and
- * **y** channels. The **binWidth** option (default 20) defines the distance
- * between centers of neighboring hexagons in pixels. If any of **z**, **fill**,
- * or **stroke** is a channel, the first of these channels will be used to
- * subdivide bins. The *outputs* options are similar to the [bin
- * transform](https://github.com/observablehq/plot/blob/main/README.md#bin);
- * each output channel receives as input, for each hexagon, the subset of the
- * data which has been matched to its center. The outputs object specifies the
- * aggregation method for each output channel.
- *
- * The following aggregation methods are supported:
- *
- * * *first* - the first value, in input order
- * * *last* - the last value, in input order
- * * *count* - the number of elements (frequency)
- * * *distinct* - the number of distinct values
- * * *sum* - the sum of values
- * * *proportion* - the sum proportional to the overall total (weighted
- *   frequency)
- * * *proportion-facet* - the sum proportional to the facet total
- * * *min* - the minimum value
- * * *min-index* - the zero-based index of the minimum value
- * * *max* - the maximum value
- * * *max-index* - the zero-based index of the maximum value
- * * *mean* - the mean value (average)
- * * *median* - the median value
- * * *deviation* - the standard deviation
- * * *variance* - the variance per [Welford’s
- *   algorithm](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Welford's_online_algorithm)
- * * *mode* - the value with the most occurrences
- * * a function to be passed the array of values for each bin and the extent of
- *   the bin
- * * an object with a *reduce* method
- *
- * See also the
- * [hexgrid](https://github.com/observablehq/plot/blob/main/README.md#hexgrid)
- * mark.
- */
+/** @jsdoc hexbin */
 export function hexbin(outputs = {fill: "count"}, options = {}) {
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?

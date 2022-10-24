@@ -5,7 +5,7 @@
     "lib": ["esnext", "dom"],
     "strict": true,
     "stripInternal": true,
-    "outDir": "dist",
+    "outDir": "build",
     "allowJs": true,
     "declaration": true,
     "declarationDir": "types",
