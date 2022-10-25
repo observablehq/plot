@@ -376,7 +376,7 @@ function markify(mark) {
 class Render extends Mark {
   constructor(render) {
     super();
-    if (render == null) return;
+    if (!render) return;
     if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
     this.render = render;
   }

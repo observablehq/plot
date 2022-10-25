@@ -11,6 +11,8 @@ export default async function () {
       Plot.frame(),
       undefined,
       null,
+      false,
+      "",
       () => null,
       () => undefined,
       () => svg`<circle cx=50% cy=50% r=5 fill=green>`
