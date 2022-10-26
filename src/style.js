@@ -31,7 +31,9 @@ export function styles(
     mixBlendMode,
     paintOrder,
     pointerEvents,
-    shapeRendering
+    shapeRendering,
+    dx,
+    dy
   },
   {
     ariaLabel: cariaLabel,
@@ -75,6 +77,8 @@ export function styles(
   const [vstroke, cstroke] = maybeColorChannel(stroke, defaultStroke);
   const [vstrokeOpacity, cstrokeOpacity] = maybeNumberChannel(strokeOpacity, defaultStrokeOpacity);
   const [vopacity, copacity] = maybeNumberChannel(opacity);
+  const [vstrokeDasharray, cstrokeDasharray] = maybeDasharrayChannel(strokeDasharray);
+  const [vstrokeDashoffset, cstrokeDashoffset] = maybeNumberChannel(strokeDashoffset);
 
   // For styles that have no effect if there is no stroke, only apply the
   // defaults if the stroke is not the constant none. (If stroke is a channel,
@@ -110,8 +114,8 @@ export function styles(
     mark.strokeLinejoin = impliedString(strokeLinejoin, "miter");
     mark.strokeLinecap = impliedString(strokeLinecap, "butt");
     mark.strokeMiterlimit = impliedNumber(strokeMiterlimit, 4);
-    mark.strokeDasharray = impliedString(strokeDasharray, "none");
-    mark.strokeDashoffset = impliedString(strokeDashoffset, "0");
+    mark.strokeDasharray = impliedString(cstrokeDasharray, "none");
+    mark.strokeDashoffset = impliedString(cstrokeDashoffset, "0");
   }
 
   mark.target = string(target);
@@ -124,6 +128,11 @@ export function styles(
   mark.pointerEvents = impliedString(pointerEvents, "auto");
   mark.shapeRendering = impliedString(shapeRendering, "auto");
 
+  const [vdx, cdx] = maybeNumberChannel(dx);
+  const [vdy, cdy] = maybeNumberChannel(dy);
+  mark.dx = cdx || 0;
+  mark.dy = cdy || 0;
+
   return {
     title: {value: title, optional: true},
     href: {value: href, optional: true},
@@ -131,9 +140,13 @@ export function styles(
     fill: {value: vfill, scale: "color", optional: true},
     fillOpacity: {value: vfillOpacity, scale: "opacity", optional: true},
     stroke: {value: vstroke, scale: "color", optional: true},
+    strokeDasharray: {value: vstrokeDasharray, optional: true},
+    strokeDashoffset: {value: vstrokeDashoffset, optional: true},
     strokeOpacity: {value: vstrokeOpacity, scale: "opacity", optional: true},
     strokeWidth: {value: vstrokeWidth, optional: true},
-    opacity: {value: vopacity, scale: "opacity", optional: true}
+    opacity: {value: vopacity, scale: "opacity", optional: true},
+    dx: {value: vdx, optional: true, filter: null},
+    dy: {value: vdy, optional: true, filter: null}
   };
 }
 
@@ -175,7 +188,9 @@ export function applyChannelStyles(
     strokeOpacity: SO,
     strokeWidth: SW,
     opacity: O,
-    href: H
+    href: H,
+    strokeDasharray: SDA,
+    strokeDashoffset: SDO
   }
 ) {
   if (AL) applyAttr(selection, "aria-label", (i) => AL[i]);
@@ -184,6 +199,8 @@ export function applyChannelStyles(
   if (S) applyAttr(selection, "stroke", (i) => S[i]);
   if (SO) applyAttr(selection, "stroke-opacity", (i) => SO[i]);
   if (SW) applyAttr(selection, "stroke-width", (i) => SW[i]);
+  if (SDA) applyAttr(selection, "stroke-dasharray", (i) => SDA[i]);
+  if (SDO) applyAttr(selection, "stroke-dashoffset", (i) => SDO[i]);
   if (O) applyAttr(selection, "opacity", (i) => O[i]);
   if (H) applyHref(selection, (i) => H[i], target);
   applyTitle(selection, T);
@@ -201,7 +218,9 @@ export function applyGroupedChannelStyles(
     strokeOpacity: SO,
     strokeWidth: SW,
     opacity: O,
-    href: H
+    href: H,
+    strokeDasharray: SDA,
+    strokeDashoffset: SDO
   }
 ) {
   if (AL) applyAttr(selection, "aria-label", ([i]) => AL[i]);
@@ -210,6 +229,8 @@ export function applyGroupedChannelStyles(
   if (S) applyAttr(selection, "stroke", ([i]) => S[i]);
   if (SO) applyAttr(selection, "stroke-opacity", ([i]) => SO[i]);
   if (SW) applyAttr(selection, "stroke-width", ([i]) => SW[i]);
+  if (SDA) applyAttr(selection, "stroke-dasharray", ([i]) => SDA[i]);
+  if (SDO) applyAttr(selection, "stroke-dashoffset", ([i]) => SDO[i]);
   if (O) applyAttr(selection, "opacity", ([i]) => O[i]);
   if (H) applyHref(selection, ([i]) => H[i], target);
   applyTitleGroup(selection, T);
@@ -401,4 +422,16 @@ export function applyFrameAnchor({frameAnchor}, {width, height, marginTop, margi
       ? height - marginBottom
       : (marginTop + height - marginBottom) / 2
   ];
+}
+
+// A constant stroke-dasharray can be specified as a number, an array of numbers
+// or as a string joining numbers with white space or comma; any other non-null
+// value is considered as a channel.
+function maybeDasharrayChannel(value) {
+  if (value == null) return [undefined, "none"];
+  return (typeof value === "string" && value.match(/^([\d.]+(\s+|,)){1,}[\d.]+$/)) ||
+    typeof value === "number" ||
+    (Array.isArray(value) && typeof value[0] === "number")
+    ? [undefined, `${value}`]
+    : [value, undefined];
 }

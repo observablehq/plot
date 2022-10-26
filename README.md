@@ -720,14 +720,20 @@ All marks support the following optional channels:
 * **stroke** - a stroke color; bound to the *color* scale
 * **strokeOpacity** - a stroke opacity; bound to the *opacity* scale
 * **strokeWidth** - a stroke width (in pixels)
+* **strokeDasharray** - a comma-separated list of dash lengths (typically in pixels)
+* **strokeDashoffset** - the [stroke dash offset](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset) (typically in pixels)
 * **opacity** - an object opacity; bound to the *opacity* scale
 * **title** - a tooltip (a string of text, possibly with newlines)
 * **href** - a URL to link to
 * **ariaLabel** - a short label representing the value in the accessibility tree
+* **dx** - horizontal offset (in pixels; defaults to 0)
+* **dy** - vertical offset (in pixels; defaults to 0)
 
-The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fill**, **fillOpacity**, **stroke**, **strokeWidth**, **strokeOpacity**, **strokeDasharray**, **strokeDashoffset**, and **opacity** options can be specified as either channels or constants. When the fill or stroke is specified as a function or array, it is interpreted as a channel; when the fill or stroke is specified as a string, it is interpreted as a constant if a valid CSS color and otherwise it is interpreted as a column name for a channel. Similarly when the fill opacity, stroke opacity, object opacity, stroke width, stroke-dashoffset or radius is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When the stroke-dasharray is specified as a number, a string, or an array of numbers, is is interpreted as a constant; otherwise, it is interpreted as a channel.
 
 The **title**, **href**, and **ariaLabel** options can *only* be specified as channels. When these options are specified as a string, the string refers to the name of a column in the mark’s associated data. If you’d like every instance of a particular mark to have the same value, specify the option as a function that returns the desired value, *e.g.* `() => "Hello, world!"`.
+
+Currently, the **dx** option can be specified as a channel only when **x** is a channel; similarly, the **dy** option can be specified as a channel only when **y** is a channel.
 
 The rectangular marks ([bar](#bar), [cell](#cell), and [rect](#rect)) support insets and rounded corner constant options:
 
@@ -1554,7 +1560,7 @@ The following text-specific constant options are also supported:
 
 If a **lineWidth** is specified, input text values will be wrapped as needed to fit while preserving existing newlines. The line wrapping implementation is rudimentary; for non-ASCII, non-U.S. English text, or for when a different font is used, you may get better results by hard-wrapping the text yourself (by supplying newlines in the input). If the **monospace** option is truthy, the default **fontFamily** changes to “ui-monospace, monospace”, and the **lineWidth** option is interpreted as characters (ch) rather than ems.
 
-The **fontSize** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel.
+The **fontSize**, **fontFamily**, **fontStyle**, **fontVariant**, **fontWeight**, **textAnchor** and **rotate** options can be specified as either channels or constants. When fontSize or rotate is specified as a number, it is interpreted as a constant; otherwise it is interpreted as a channel. When fontFamily, fontStyle, or fontVariant is specified as a string, it is interpreted as a constant, otherwise as a channel. When fontWeight is specified as a string or a number, it is interpreted as a constant, otherwise as a channel. When textAnchor is specified as valid keyword, it is interpreted as a constant, otherwise as a channel.
 
 If the **frameAnchor** option is not specified, then **textAnchor** and **lineAnchor** default to middle. Otherwise, **textAnchor** defaults to start if **frameAnchor** is on the left, end if **frameAnchor** is on the right, and otherwise middle. Similarly, **lineAnchor** defaults to top if **frameAnchor** is on the top, bottom if **frameAnchor** is on the bottom, and otherwise middle.
 

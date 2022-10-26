@@ -28,7 +28,12 @@ export function valueObject(channels, scales) {
   return Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       const scale = scales[scaleName];
-      return [name, scale === undefined ? value : map(value, scale)];
+      value = scale === undefined ? value : map(value, scale);
+      let k = channels.dx;
+      if ((k && ["x", "x1", "x2"].includes(name)) || ((k = channels.dy) && ["y", "y1", "y2"].includes(name))) {
+        value = map(value, (d, i) => d + (+k.value[i] || 0));
+      }
+      return [name, value];
     })
   );
 }
