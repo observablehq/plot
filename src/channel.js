@@ -28,7 +28,10 @@ export function valueObject(channels, scales) {
   return Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       const scale = scales[scaleName];
-      return [name, scale === undefined ? value : map(value, scale)];
+      return [
+        name,
+        scale === undefined ? value : map(value, scale, ["x", "y", "r"].includes(scaleName) ? Float64Array : undefined)
+      ];
     })
   );
 }
