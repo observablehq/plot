@@ -13,6 +13,7 @@ export default async function () {
       null,
       false,
       "",
+      0,
       () => null,
       () => undefined,
       () => svg`<circle cx=50% cy=50% r=5 fill=green>`
