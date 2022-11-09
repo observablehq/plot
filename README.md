@@ -2039,6 +2039,8 @@ Plot.groupX({y: "count", title: masses => masses.join("\n")}, {x: "species", tit
 
 If any of **z**, **fill**, or **stroke** is a channel, the first of these channels is considered the *z* dimension and will be used to subdivide groups.
 
+The default reducer for the **title** channel returns a summary list of the top 5 values with the corresponding number of occurrences.
+
 #### Plot.group(*outputs*, *options*)
 
 <!-- jsdoc group -->
