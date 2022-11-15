@@ -1,7 +1,7 @@
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
-export default async function() {
+export default async function () {
   const libor = await d3.csv("data/libor-projections.csv", d3.autoType);
   const pc = d3.format(".2%");
   return Plot.plot({
@@ -15,7 +15,7 @@ export default async function() {
       Plot.text(libor, {
         x: "about",
         y: "on",
-        text: d => pc(d.value),
+        text: (d) => pc(d.value),
         filter: (d) => d.about.getUTCMonth() === 0,
         stroke: "white",
         fill: "black"
