@@ -9,8 +9,6 @@ export default async function () {
       type: "equal-earth",
       rotate: [20, 40, 60]
     },
-    marks: [
-      Plot.geometry([{type: "Sphere"}, d3.geoGraticule10()])
-    ]
+    marks: [Plot.geometry([{type: "Sphere"}, d3.geoGraticule10()])]
   });
 }
