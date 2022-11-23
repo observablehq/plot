@@ -9,7 +9,10 @@ export function maybeProjection(projection, dimensions) {
   if (typeof projection === "function") return projection;
   const {width, height} = dimensions;
   switch (`${projection}`.toLowerCase()) {
-    case "albers-usa": return geoAlbersUsa().scale(Math.min(1.34 * width, 2.14 * height)).translate([width / 2, height / 2]);
+    case "albers-usa":
+      return geoAlbersUsa()
+        .scale(Math.min(1.34 * width, 2.14 * height))
+        .translate([width / 2, height / 2]);
   }
   throw new Error(`invalid projection: ${projection}`);
 }

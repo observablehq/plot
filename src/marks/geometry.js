@@ -49,8 +49,12 @@ export class Geometry extends Mark {
 
 export function geometry(data, options) {
   switch (data?.type) {
-    case "FeatureCollection": data = data.features; break;
-    case "GeometryCollection": data = data.geometries; break;
+    case "FeatureCollection":
+      data = data.features;
+      break;
+    case "GeometryCollection":
+      data = data.geometries;
+      break;
     case "Feature":
     case "LineString":
     case "MultiLineString":
@@ -58,7 +62,9 @@ export function geometry(data, options) {
     case "MultiPolygon":
     case "Point":
     case "Polygon":
-    case "Sphere": data = [data]; break;
+    case "Sphere":
+      data = [data];
+      break;
   }
   return new Geometry(data, options);
 }
