@@ -54,15 +54,17 @@ for (const file of glob.sync("build/**/*.js")) {
   let count = 0;
   for (let i = 0, n = lines.length; i < n; ++i) {
     let match: RegExpExecArray | null;
-    if ((match = /^\/\*\*\s+@jsdoc\s+(\w+)\s+\*\/$/.exec(lines[i]))) {
-      const [, name] = match;
+    if ((match = /^(\s*(?:\/\*)?\*\s+)@jsdoc\s+(\w+)((?:\s*\*\/)?\s*)$/.exec(lines[i]))) {
+      const [, pre, name, post] = match;
       const docs = docmap.get(name);
       if (!docs) throw new Error(`missing @jsdoc definition: ${name}`);
       if (!unused.has(name)) throw new Error(`duplicate @jsdoc reference: ${name}`);
       unused.delete(name);
       ++count;
       lines[i] = docs
-        .map((line, i, lines) => (i === 0 ? `/** ${line}` : i === lines.length - 1 ? ` * ${line}\n */` : ` * ${line}`))
+        .map((line, i, lines) =>
+          i === 0 ? `${pre}${line}` : i === lines.length - 1 ? ` * ${line}${post ? `\n${post}` : ""}` : ` * ${line}`
+        )
         .join("\n");
     }
   }
