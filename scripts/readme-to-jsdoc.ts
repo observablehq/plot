@@ -62,7 +62,9 @@ for (const file of glob.sync("build/**/*.js")) {
       unused.delete(name);
       ++count;
       lines[i] = docs
-        .map((line, i, lines) => (i === 0 ? `${pre}${line}` : i === lines.length - 1 ? ` * ${line}${post ? `\n${post}` : ""}` : ` * ${line}`))
+        .map((line, i, lines) =>
+          i === 0 ? `${pre}${line}` : i === lines.length - 1 ? ` * ${line}${post ? `\n${post}` : ""}` : ` * ${line}`
+        )
         .join("\n");
     }
   }
