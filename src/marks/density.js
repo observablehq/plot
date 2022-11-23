@@ -50,7 +50,7 @@ export class Density extends Mark {
     const path = geoPath();
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {})
       .call((g) =>
         g
           .selectAll()

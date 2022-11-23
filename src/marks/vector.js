@@ -40,6 +40,7 @@ export class Vector extends Mark {
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, length: L, rotate: R} = channels;
     const {length, rotate, anchor} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -51,7 +52,7 @@ export class Vector extends Mark {
     return create("svg:g", context)
       .attr("fill", "none")
       .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()

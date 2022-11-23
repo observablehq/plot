@@ -160,9 +160,9 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Compute value objects, applying scales as needed.
+  // Compute value objects, applying scales and projection as needed.
   for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales);
+    state.values = valueObject(state.channels, scales, context);
   }
 
   const {width, height} = dimensions;

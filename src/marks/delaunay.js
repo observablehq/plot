@@ -65,6 +65,7 @@ class DelaunayLink extends Mark {
     markers(this, options);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const {curve} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
@@ -124,7 +125,7 @@ class DelaunayLink extends Mark {
 
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -155,6 +156,7 @@ class AbstractDelaunayMark extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
@@ -173,7 +175,7 @@ class AbstractDelaunayMark extends Mark {
 
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>
@@ -223,6 +225,7 @@ class Voronoi extends Mark {
     );
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, z: Z} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const xi = X ? (i) => X[i] : constant(cx);
@@ -243,7 +246,7 @@ class Voronoi extends Mark {
 
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
           ? (g) =>

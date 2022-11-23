@@ -52,6 +52,7 @@ export function Scales(
     zero,
     align,
     padding,
+    projection,
     ...options
   } = {}
 ) {
@@ -65,6 +66,7 @@ export function Scales(
       zero,
       align,
       padding,
+      projection,
       ...scaleOptions
     });
     if (scale) {
@@ -300,9 +302,14 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
-function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
+function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
+
+  // If a projection is specified, the x- and y-scales are disabled; these
+  // channels will be projected rather than scaled. TODO Throw an error if these
+  // scales are specified in conjunction with a projection.
+  if ((key === "x" || key === "y") && projection != null) return;
 
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,

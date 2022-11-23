@@ -77,5 +77,5 @@
       <title>null (5)</title>
     </rect>
   </g>
-  <g aria-label="text" text-anchor="end" font-style="italic" transform="translate(-2.5,10.5)"><text transform="translate(620,90)"><tspan x="0" y="-3.948em">Count of penguins</tspan><tspan x="0" y="-2.7479999999999998em">grouped by species</tspan><tspan x="0" y="-1.548em"> and colored by sex</tspan></text></g>
+  <g aria-label="text" text-anchor="end" font-style="italic" transform="translate(-2.5,-2.5)"><text transform="translate(620,90)"><tspan x="0" y="-2em">Count of penguins</tspan><tspan x="0" y="-1em">grouped by species</tspan><tspan x="0" y="0em"> and colored by sex</tspan></text></g>
 </svg>

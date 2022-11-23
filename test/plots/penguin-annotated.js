@@ -10,20 +10,12 @@ export default async function () {
       Plot.frame(),
       Plot.barX(
         penguins,
-        Plot.groupY(
-          {x: "count"},
-          {
-            y: "species",
-            fill: "sex",
-            title: "sex",
-            sort: {y: "x", reverse: true}
-          }
-        )
+        Plot.groupY({x: "count"}, {y: "species", fill: "sex", title: "sex", sort: {y: "x", reverse: true}})
       ),
       Plot.text(["Count of penguins\ngrouped by species\n and colored by sex"], {
         frameAnchor: "bottom-right",
         dx: -3,
-        lineHeight: 1.2,
+        dy: -3,
         fontStyle: "italic"
       })
     ]

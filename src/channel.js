@@ -1,5 +1,6 @@
 import {ascending, descending, rollup, sort} from "d3";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
+import {applyProjection} from "./projection.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
@@ -24,13 +25,17 @@ export function Channels(descriptors, data) {
 }
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
-export function valueObject(channels, scales) {
-  return Object.fromEntries(
+export function valueObject(channels, scales, {projection}) {
+  const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       const scale = scales[scaleName];
       return [name, scale === undefined ? value : map(value, scale)];
     })
   );
+  if (projection) {
+    applyProjection(values, projection);
+  }
+  return values;
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
