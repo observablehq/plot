@@ -5,8 +5,9 @@ export function Dimensions(
   scales,
   {x: {axis: xAxis} = {}, y: {axis: yAxis} = {}, fx: {axis: fxAxis} = {}, fy: {axis: fyAxis} = {}},
   {
+    projection,
     width = 640,
-    height = autoHeight(scales),
+    height = autoHeight(scales, projection),
     facet: {
       margin: facetMargin,
       marginTop: facetMarginTop = facetMargin !== undefined ? facetMargin : fxAxis === "top" ? 30 : 0,
@@ -43,8 +44,8 @@ export function Dimensions(
   };
 }
 
-function autoHeight({y, fy, fx}) {
+function autoHeight({y, fy, fx}, projection) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
-  return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : projection != null ? 17 : 1;
+  return !!(y || fy || projection != null) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }
