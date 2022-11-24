@@ -18,7 +18,6 @@ import {isObject} from "./options.js";
 // - conic equal area?
 // - conic equidistant?
 // - transverse mercator?
-// - allow configuration of rotation?
 // - allow configuration of parallels?
 // - camelCase or hypen-separated?
 // - more named projections?
@@ -26,7 +25,7 @@ import {isObject} from "./options.js";
 // - disallow non-default projection if x and y scales exist?
 export function maybeProjection(projection, dimensions) {
   if (projection == null) return;
-  if (typeof projection === "function") return projection;
+  if (typeof projection.stream === "function") return projection;
   const {width, height} = dimensions;
   let rotate, scale, precision;
   if (isObject(projection)) {
@@ -74,11 +73,16 @@ export function maybeProjection(projection, dimensions) {
 export function applyProjection(values, projection) {
   const {x, y} = values;
   const n = x.length;
-  const X = (values.x = new Float64Array(n));
-  const Y = (values.y = new Float64Array(n));
-  for (let i = 0; i < n; ++i) {
-    const p = projection([x[i], y[i]]);
-    if (p) (X[i] = p[0]), (Y[i] = p[1]);
-    else X[i] = Y[i] = NaN;
+  const X = (values.x = new Float64Array(n).fill(NaN));
+  const Y = (values.y = new Float64Array(n).fill(NaN));
+  let i;
+  const stream = projection.stream({
+    point(x, y) {
+      X[i] = x;
+      Y[i] = y;
+    }
+  });
+  for (i = 0; i < n; ++i) {
+    stream.point(x[i], y[i]);
   }
 }
