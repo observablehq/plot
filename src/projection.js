@@ -31,8 +31,9 @@ export function maybeProjection(projection, dimensions) {
   if (isObject(projection)) {
     ({type: projection, rotate, precision} = projection);
   }
-  if (precision === undefined) precision = 0.15;
   switch (`${projection}`.toLowerCase()) {
+    case "identity":
+      return;
     case "equirectangular":
       projection = geoEquirectangular;
       scale = Math.min(width / 6.28, height / 3.14);
@@ -62,10 +63,10 @@ export function maybeProjection(projection, dimensions) {
       scale = Math.min(1.34 * width, 2.14 * height);
       break;
     default:
-      throw new Error(`invalid projection: ${projection}`);
+      throw new Error(`unknown projection type: ${projection}`);
   }
   projection = projection();
-  projection.precision?.(precision);
+  projection.precision?.(precision === undefined ? 0.15 : precision);
   if (rotate != null) projection.rotate(rotate);
   return projection.scale(scale).translate([width / 2, height / 2]);
 }
