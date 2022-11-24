@@ -1,6 +1,7 @@
+import {valueObject} from "../channel.js";
 import {coerceNumbers} from "../scales.js";
 import {sqrt3} from "../symbols.js";
-import {identity, isNoneish, number, valueof} from "../options.js";
+import {isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
 
@@ -13,32 +14,34 @@ export const ox = 0.5,
   oy = 0;
 
 /** @jsdoc hexbin */
-export function hexbin(outputs = {fill: "count"}, options = {}) {
+export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   // TODO filter e.g. to show empty hexbins?
   // TODO disallow x, x1, x2, y, y1, y2 reducers?
-  let {binWidth, ...remainingOptions} = options;
   binWidth = binWidth === undefined ? 20 : number(binWidth);
-  outputs = maybeOutputs(outputs, remainingOptions);
+  outputs = maybeOutputs(outputs, options);
 
   // A fill output means a fill channel, and hence the stroke should default to
   // none (assuming a mark that defaults to fill and no stroke, such as dot).
   // Note that it’s safe to mutate options here because we just created it with
   // the rest operator above.
-  const {z, fill, stroke} = remainingOptions;
-  if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) remainingOptions.stroke = "none";
+  const {z, fill, stroke} = options;
+  if (stroke === undefined && isNoneish(fill) && hasOutput(outputs, "fill")) options.stroke = "none";
 
   // Populate default values for the r and symbol options, as appropriate.
-  if (remainingOptions.symbol === undefined) remainingOptions.symbol = "hexagon";
-  if (remainingOptions.r === undefined && !hasOutput(outputs, "r")) remainingOptions.r = binWidth / 2;
+  if (options.symbol === undefined) options.symbol = "hexagon";
+  if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initializer(remainingOptions, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales) => {
+  return initializer(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales, _, context) => {
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
 
-    // Coerce the X and Y channels to numbers (so that null is properly treated
-    // as an undefined value rather than being coerced to zero).
-    X = coerceNumbers(valueof(X.value, scales[X.scale] || identity));
-    Y = coerceNumbers(valueof(Y.value, scales[Y.scale] || identity));
+    // Extract the scaled (or projected!) values for the x and y channels.
+    ({x: X, y: Y} = valueObject({x: X, y: Y}, scales, context));
+
+    // Coerce the x and y channels to numbers (so that null is properly
+    // treated as an undefined value rather than being coerced to zero).
+    X = coerceNumbers(X);
+    Y = coerceNumbers(Y);
 
     // Extract the values for channels that are eligible for grouping; not all
     // marks define a z channel, so compute one if it not already computed. If z

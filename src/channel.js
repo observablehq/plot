@@ -26,15 +26,28 @@ export function Channels(descriptors, data) {
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales, {projection}) {
+  let scaledX, scaledY;
+
   const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
-      const scale = scales[scaleName];
+      let scale;
+      if (scaleName !== undefined) {
+        if (name === "x") scaledX = true;
+        else if (name === "y") scaledY = true;
+        scale = scales[scaleName];
+      }
       return [name, scale === undefined ? value : map(value, scale)];
     })
   );
-  if (projection) {
+
+  // If there is a projection, and there are both x and y channels, and those x
+  // and y channels are associated with a scale (presumably the x and y scale)
+  // rather than being in screen coordinates (as with an initializer), then
+  // apply the projection, replacing the x and y values.
+  if (projection && scaledX && scaledY) {
     applyProjection(values, projection);
   }
+
   return values;
 }
 

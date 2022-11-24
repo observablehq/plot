@@ -73,14 +73,12 @@ export function maybeProjection(projection, dimensions) {
 
 export function applyProjection(values, projection) {
   const {x, y} = values;
-  if (x && y) {
-    const n = x.length;
-    const X = (values.x = new Float64Array(n));
-    const Y = (values.y = new Float64Array(n));
-    for (let i = 0; i < n; ++i) {
-      const p = projection([x[i], y[i]]);
-      if (p) (X[i] = p[0]), (Y[i] = p[1]);
-      else X[i] = Y[i] = NaN;
-    }
+  const n = x.length;
+  const X = (values.x = new Float64Array(n));
+  const Y = (values.y = new Float64Array(n));
+  for (let i = 0; i < n; ++i) {
+    const p = projection([x[i], y[i]]);
+    if (p) (X[i] = p[0]), (Y[i] = p[1]);
+    else X[i] = Y[i] = NaN;
   }
 }

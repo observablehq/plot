@@ -134,8 +134,17 @@ export function plot(options = {}) {
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
-      const {facets, channels} = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions);
-      if (facets !== undefined) state.facets = facets;
+      const {facets, channels} = mark.initializer(
+        state.data,
+        state.facets,
+        state.channels,
+        scales,
+        subdimensions,
+        context
+      );
+      if (facets !== undefined) {
+        state.facets = facets;
+      }
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
         applyScaleTransforms(channels, options);
