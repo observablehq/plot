@@ -43,7 +43,10 @@ export function valueObject(channels, scales, {projection}) {
   // If there is a projection, and there are both x and y channels, and those x
   // and y channels are associated with a scale (presumably the x and y scale)
   // rather than being in screen coordinates (as with an initializer), then
-  // apply the projection, replacing the x and y values.
+  // apply the projection, replacing the x and y values. Note that the x and y
+  // scales themselves don’t exist if there is a projection, but whether the
+  // channels are associated with scales still determines whether the projection
+  // should apply; think of the projection as a combination xy-scale.
   if (projection && scaledX && scaledY) {
     applyProjection(values, projection);
   }
