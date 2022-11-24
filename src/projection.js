@@ -9,23 +9,9 @@ import {
 } from "d3";
 import {isObject} from "./options.js";
 
-// TODO
-// - gnomonic?
-// - azimuthal equidistant?
-// - azimuthal equal-area?
-// - albers?
-// - conic conformal?
-// - conic equal area?
-// - conic equidistant?
-// - transverse mercator?
-// - allow configuration of parallels?
-// - camelCase or hypen-separated?
-// - more named projections?
-// - apply x and y scales as linear projection by default?
-// - disallow non-default projection if x and y scales exist?
 export function maybeProjection(projection, dimensions) {
   if (projection == null) return;
-  if (typeof projection.stream === "function") return projection;
+  if (typeof projection.stream === "function") return projection; // d3 projection
   const {width, height} = dimensions;
   let rotate, scale, precision;
   if (isObject(projection)) {
