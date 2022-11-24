@@ -311,6 +311,27 @@ Plot automatically generates axes for position scales. You can configure these a
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
+### Projection options
+
+The top-level **projection** option applies a (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with [geometry marks](#geometry) to produce a map, but can be used with any mark that supports *x* and *y*, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
+
+* *equirectangular* - the equirectangular, or *plate carrée*, projection
+* *orthographic* - the orthographic projection
+* *stereographic* - the stereographic projection
+* *mercator* - the Mercator projection
+* *equal-earth* - the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
+* *natural-earth* - the [Natural Earth projection](https://en.wikipedia.org/wiki/Natural_Earth_projection) by Patterson
+* *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
+* *identity* - the identity projection (for pre-projected geometry)
+
+In addition to the named projections above, the **projection** option may also be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream).
+
+If the **projection** option is specified as an object, the following additional projection options are supported:
+
+* projection.**type** - one of the projection names above
+* projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+
 ### Color options
 
 The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
@@ -1208,6 +1229,18 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option is set to *hexagon*.
 
 <!-- jsdocEnd hexagon -->
+
+### Geometry
+
+[Source](./src/marks/geometry.js) · [Examples](https://observablehq.com/@observablehq/plot-geometry) · Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** option specifies the geometry (GeoJSON object) to draw for each geometry instance; if not specified, the mark’s *data* is assumed to be GeoJSON.
+
+#### Plot.geometry(*data*, *options*)
+
+```js
+Plot.geometry(counties, {fill: d => d.properties.rate})
+```
+
+Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is a single-element array of [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an array of GeoJSON objects.
 
 ### Hexgrid
 
