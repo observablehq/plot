@@ -25,7 +25,7 @@ export default async function () {
       range: [0, 20]
     },
     marks: [
-      Plot.geometry(statemesh, {strokeOpacity: 0.25, strokeWidth: 1}),
+      Plot.geometry(statemesh, {strokeOpacity: 0.25}),
       Plot.dot(
         walmarts,
         Plot.hexbin(
