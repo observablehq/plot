@@ -1242,6 +1242,14 @@ Plot.geometry(counties, {fill: d => d.properties.rate})
 
 Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is a single-element array of [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an array of GeoJSON objects.
 
+#### Plot.sphere(*options*)
+
+Returns a new geometry mark with a *Sphere* geometry object and the given *options*.
+
+#### Plot.graticule(*options*)
+
+Returns a new geometry mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+
 ### Hexgrid
 
 The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.

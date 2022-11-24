@@ -1,4 +1,4 @@
-import {geoPath} from "d3";
+import {geoGraticule10, geoPath} from "d3";
 import {create} from "../context.js";
 import {identity} from "../options.js";
 import {Mark} from "../plot.js";
@@ -67,4 +67,12 @@ export function geometry(data, options) {
       break;
   }
   return new Geometry(data, options);
+}
+
+export function sphere(options) {
+  return geometry({type: "Sphere"}, options);
+}
+
+export function graticule(options) {
+  return geometry(geoGraticule10(), options);
 }
