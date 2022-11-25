@@ -12,31 +12,29 @@ export default async function () {
       })
     )
   ]);
-  const decade = Plot.valueof(walmarts, (d) => `${Math.floor(d.date.getUTCFullYear() / 10)}0’s`);
-  const decades = d3.sort(new Set(decade));
+  const decade = (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10;
+  const coordinate = (d) => [d.longitude, d.latitude];
+  const decades = d3.sort(new Set(walmarts.map(decade)));
   return Plot.plot({
-    style: {overflow: "visible"},
-    width: 900,
-    height: 135,
+    width: 960,
+    height: 150,
+    marginLeft: 0,
+    marginRight: 0,
     projection: "albers-usa",
+    fx: {tickFormat: (d) => `${d}’s`, padding: 0},
     facet: {data: decades, x: decades},
     marks: [
-      Plot.frame({strokeWidth: 0.25}),
       Plot.geometry(statemesh, {strokeOpacity: 0.25}),
-      Plot.geometry(
-        decades.map((y) => ({
-          type: "MultiPoint",
-          coordinates: walmarts.filter((d, i) => decade[i] < y).map((d) => [d.longitude, d.latitude])
-        })),
-        {facet: true, fill: "black", r: 1}
-      ),
-      Plot.geometry(
-        decades.map((y) => ({
-          type: "MultiPoint",
-          coordinates: walmarts.filter((d, i) => decade[i] === y).map((d) => [d.longitude, d.latitude])
-        })),
-        {facet: true, fill: "brown", r: 1}
-      )
+      Plot.geometry(decades, {
+        geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) < y).map(coordinate)}),
+        fill: "black",
+        r: 1
+      }),
+      Plot.geometry(decades, {
+        geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) === y).map(coordinate)}),
+        fill: "red",
+        r: 1
+      })
     ]
   });
 }
