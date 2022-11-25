@@ -1242,6 +1242,8 @@ Plot.geometry(counties, {fill: d => d.properties.rate})
 
 Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is a single-element array of [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an array of GeoJSON objects.
 
+In addition to the [standard mark options](#marks), the optional **r** channel can be specified to indicate the effective radius (in pixels) of Point and MultiPoint geometries. When the radius is specified as a number, it is interpreted as a constant, which defaults to 3 pixels; otherwise it is interpreted as a channel, and uses the *r* scale. Features (or geometries) with a nonpositive radius are not drawn.
+
 #### Plot.sphere(*options*)
 
 Returns a new geometry mark with a *Sphere* geometry object and the given *options*.

@@ -42,12 +42,14 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, precision = 0.15}) => {
+  return ({width, height, marginTop, marginBottom, marginLeft, marginRight, rotate, precision = 0.15}) => {
+    const frameWidth = width - marginLeft - marginRight;
+    const frameHeight = height - marginTop - marginBottom;
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (rotate != null) projection.rotate?.(rotate);
-    projection.scale(Math.min(width / kx, height / ky));
-    projection.translate([width / 2, height / 2]);
+    projection.scale(Math.min(frameWidth / kx, frameHeight / ky));
+    projection.translate([marginLeft + frameWidth / 2, marginTop + frameHeight / 2]);
     return projection;
   };
 }

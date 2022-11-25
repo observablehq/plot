@@ -21,6 +21,12 @@ const defaults = {
   strokeWidth: 1.5
 };
 
+export function withDefaultSort(options) {
+  return options.sort === undefined && options.reverse === undefined
+    ? sort({channel: "r", order: "descending"}, options)
+    : options;
+}
+
 export class Dot extends Mark {
   constructor(data, options = {}) {
     const {x, y, r, rotate, symbol = symbolCircle, frameAnchor} = options;
@@ -36,9 +42,7 @@ export class Dot extends Mark {
         rotate: {value: vrotate, optional: true},
         symbol: {value: vsymbol, scale: "symbol", optional: true}
       },
-      options.sort === undefined && options.reverse === undefined
-        ? sort({channel: "r", order: "descending"}, options)
-        : options,
+      withDefaultSort(options),
       defaults
     );
     this.r = cr;
