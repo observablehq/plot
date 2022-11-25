@@ -18,6 +18,14 @@ export function maybeProjection(projection, dimensions) {
   return projection?.({...dimensions, ...options});
 }
 
+export function isProjection(projection) {
+  if (projection == null) return false;
+  if (typeof projection.stream === "function") return true; // d3 projection
+  if (isObject(projection)) ({type: projection} = projection);
+  if (typeof projection !== "function") projection = namedProjection(projection);
+  return projection != null;
+}
+
 function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
     case "identity":

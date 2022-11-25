@@ -119,7 +119,7 @@ export function plot(options = {}) {
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
-  const dimensions = Dimensions(scaleDescriptors, axes, options);
+  const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -449,6 +449,13 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
     }
   }
   return channelsByScale;
+}
+
+function hasGeometry(stateByMark) {
+  for (const {channels} of stateByMark.values()) {
+    if (channels.geometry) return true;
+  }
+  return false;
 }
 
 // Derives a copy of the specified axis with the label disabled.
