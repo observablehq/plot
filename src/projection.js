@@ -12,7 +12,9 @@ import {isObject} from "./options.js";
 export function maybeProjection(projection, dimensions) {
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
-  const {width, height} = dimensions;
+  const {width: w, height: h, marginTop, marginBottom, marginLeft, marginRight} = dimensions;
+  const width = w - marginLeft - marginRight;
+  const height = h - marginTop - marginBottom;
   let rotate, scale, precision;
   if (isObject(projection)) {
     ({type: projection, rotate, precision} = projection);
@@ -54,7 +56,7 @@ export function maybeProjection(projection, dimensions) {
   projection = projection();
   projection.precision?.(precision === undefined ? 0.15 : precision);
   if (rotate != null) projection.rotate(rotate);
-  return projection.scale(scale).translate([width / 2, height / 2]);
+  return projection.scale(scale).translate([marginLeft + width / 2, marginTop + height / 2]);
 }
 
 export function applyProjection(values, projection) {

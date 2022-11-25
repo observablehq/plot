@@ -120,7 +120,6 @@ export function plot(options = {}) {
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, axes, options);
-  const context = Context(options, dimensions);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -129,6 +128,7 @@ export function plot(options = {}) {
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
   const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+  const context = Context(options, subdimensions);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
