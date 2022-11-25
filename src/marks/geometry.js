@@ -1,8 +1,10 @@
 import {geoGraticule10, geoPath} from "d3";
 import {create} from "../context.js";
-import {identity} from "../options.js";
+import {positive} from "../defined.js";
+import {identity, maybeNumberChannel} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {sort} from "../transforms/basic.js";
 
 const defaults = {
   ariaLabel: "geometry",
@@ -17,19 +19,26 @@ const defaults = {
 export class Geometry extends Mark {
   constructor(data, options = {}) {
     const {geometry = identity} = options;
+    const [vr, cr] = maybeNumberChannel(options.r, 3);
     super(
       data,
       {
-        geometry: {value: geometry}
+        geometry: {value: geometry},
+        r: {value: vr, scale: "r", filter: positive, optional: true}
       },
-      options,
+      options.sort === undefined && options.reverse === undefined
+        ? sort({channel: "r", order: "descending"}, options)
+        : options,
       defaults
     );
+    this.r = cr;
   }
   render(index, scales, channels, dimensions, context) {
-    const {geometry} = channels;
+    const {geometry, r: R} = channels;
     const {projection} = context;
     const path = geoPath(projection);
+    const {r} = this;
+    if (r !== undefined) path.pointRadius(r);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
       .call(applyTransform, this, scales)
@@ -40,7 +49,7 @@ export class Geometry extends Mark {
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", (i) => path(geometry[i]))
+          .attr("d", R ? (i) => path.pointRadius(R[i])(geometry[i]) : (i) => path(geometry[i]))
           .call(applyChannelStyles, this, channels)
       )
       .node();
