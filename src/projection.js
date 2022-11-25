@@ -12,49 +12,44 @@ import {isObject} from "./options.js";
 export function maybeProjection(projection, dimensions) {
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
-  const {width, height} = dimensions;
-  let rotate, scale, precision;
-  if (isObject(projection)) {
-    ({type: projection, rotate, precision} = projection);
-  }
+  let options;
+  if (isObject(projection)) ({type: projection, ...options} = projection);
+  if (typeof projection !== "function") projection = namedProjection(projection);
+  return projection?.({...dimensions, ...options});
+}
+
+function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
     case "identity":
       return;
     case "equirectangular":
-      projection = geoEquirectangular;
-      scale = Math.min(width / 6.28, height / 3.14);
-      break;
+      return scaleProjection(geoEquirectangular, 6.28, 3.14);
     case "orthographic":
-      projection = geoOrthographic;
-      scale = Math.min(width, height) / 2;
-      break;
+      return scaleProjection(geoOrthographic, 2, 2);
     case "stereographic":
-      projection = geoStereographic;
-      scale = Math.min(width, height) / 2;
-      break;
+      return scaleProjection(geoStereographic, 2, 2);
     case "mercator":
-      projection = geoMercator;
-      scale = Math.min(width, height) / 6.29;
-      break;
+      return scaleProjection(geoMercator, 6.29, 6.29);
     case "equal-earth":
-      projection = geoEqualEarth;
-      scale = Math.min(width / 5.42, height / 2.64);
-      break;
+      return scaleProjection(geoEqualEarth, 5.42, 2.64);
     case "natural-earth":
-      projection = geoNaturalEarth1;
-      scale = Math.min(width / 5.48, height / 2.85);
-      break;
+      return scaleProjection(geoNaturalEarth1, 5.48, 2.85);
     case "albers-usa":
-      projection = geoAlbersUsa;
-      scale = Math.min(1.34 * width, 2.14 * height);
-      break;
+      return scaleProjection(geoAlbersUsa, 1 / 1.34, 1 / 2.14);
     default:
       throw new Error(`unknown projection type: ${projection}`);
   }
-  projection = projection();
-  projection.precision?.(precision === undefined ? 0.15 : precision);
-  if (rotate != null) projection.rotate(rotate);
-  return projection.scale(scale).translate([width / 2, height / 2]);
+}
+
+function scaleProjection(createProjection, kx, ky) {
+  return ({width, height, rotate, precision = 0.15}) => {
+    const projection = createProjection();
+    if (precision != null) projection.precision?.(precision);
+    if (rotate != null) projection.rotate?.(rotate);
+    projection.scale(Math.min(width / kx, height / ky));
+    projection.translate([width / 2, height / 2]);
+    return projection;
+  };
 }
 
 export function applyProjection(values, projection) {
