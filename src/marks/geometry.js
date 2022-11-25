@@ -2,7 +2,7 @@ import {geoGraticule10, geoPath} from "d3";
 import {create} from "../context.js";
 import {identity} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform, getClipId} from "../style.js";
 
 const defaults = {
   ariaLabel: "geometry",
@@ -16,7 +16,8 @@ const defaults = {
 
 export class Geometry extends Mark {
   constructor(data, options = {}) {
-    const {geometry = identity} = options;
+    let {geometry = identity, clip} = options;
+    if (clip === "sphere") ({clip, ...options} = options); // drop option to super
     super(
       data,
       {
@@ -25,6 +26,7 @@ export class Geometry extends Mark {
       options,
       defaults
     );
+    if (clip === "sphere") this.clip = clip; // override generic mark.clip
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry} = channels;
@@ -33,16 +35,23 @@ export class Geometry extends Mark {
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions)
       .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .selectAll()
+      .call((g) => {
+        g.selectAll()
           .data(index)
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
           .attr("d", (i) => path(geometry[i]))
-          .call(applyChannelStyles, this, channels)
-      )
+          .call(applyChannelStyles, this, channels);
+        if (this.clip === "sphere") {
+          const id = getClipId();
+          g.attr("clip-path", `url(#${id})`)
+            .append("clipPath")
+            .attr("id", id)
+            .append("path")
+            .attr("d", path({type: "Sphere"}));
+        }
+      })
       .node();
   }
 }

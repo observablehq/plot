@@ -8,6 +8,10 @@ export const offset = typeof window !== "undefined" && window.devicePixelRatio >
 
 let nextClipId = 0;
 
+export function getClipId() {
+  return `plot-clip-${++nextClipId}`;
+}
+
 export function styles(
   mark,
   {
@@ -313,7 +317,7 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   if (mark.clip === "frame") {
     const {x, y} = scales;
     const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-    const id = `plot-clip-${++nextClipId}`;
+    const id = getClipId();
     selection
       .attr("clip-path", `url(#${id})`)
       .append("clipPath")
