@@ -4,7 +4,7 @@ import {positive} from "../defined.js";
 import {identity, maybeNumberChannel} from "../options.js";
 import {Mark} from "../plot.js";
 import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
-import {sort} from "../transforms/basic.js";
+import {withDefaultSort} from "./dot.js";
 
 const defaults = {
   ariaLabel: "geometry",
@@ -26,9 +26,7 @@ export class Geometry extends Mark {
         geometry: {value: geometry},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
-      options.sort === undefined && options.reverse === undefined
-        ? sort({channel: "r", order: "descending"}, options)
-        : options,
+      withDefaultSort(options),
       defaults
     );
     this.r = cr;
