@@ -332,7 +332,7 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
 * *identity* or null (default) - the identity projection for pre-projected geometry
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns such a projection.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, marginTop, marginRight, marginBottom, marginLeft, ...options}) and returns such a projection.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
@@ -1250,9 +1250,9 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 Plot.geometry(counties, {fill: d => d.properties.rate})
 ```
 
-Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is a single-element array of [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an array of GeoJSON objects.
+Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
 
-In addition to the [standard mark options](#marks), the optional **r** channel can be specified to indicate the effective radius (in pixels) of Point and MultiPoint geometries. When the radius is specified as a number, it is interpreted as a constant, which defaults to 3 pixels; otherwise it is interpreted as a channel, and uses the *r* scale. Features (or geometries) with a nonpositive radius are not drawn.
+In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
 #### Plot.sphere(*options*)
 
