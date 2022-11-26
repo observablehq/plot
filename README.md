@@ -321,6 +321,14 @@ The top-level **projection** option applies a (often geographic) projection in p
 * *mercator* - the Mercator projection
 * *equal-earth* - the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
 * *natural-earth* - the [Natural Earth projection](https://en.wikipedia.org/wiki/Natural_Earth_projection) by Patterson
+* *azimuthal-equal-area* - the azimuthal equal-area projection
+* *azimuthal-equidistant* - the azimuthal equidistant projection
+* *conic-conformal* - the conic conformal projection
+* *conic-equal-area* - the conic equal-area projection
+* *conic-equidistant* - the conic equidistant projection
+* *gnomonic* - the gnomonic projection
+* *transverse-mercator* - the transverse Mercator projection
+* *albers* - the Albers’ equal-area conic projection
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
 * *identity* - the identity projection (for pre-projected geometry)
 
