@@ -69,7 +69,7 @@ export class Dot extends Mark {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g

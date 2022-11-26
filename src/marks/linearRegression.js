@@ -40,7 +40,7 @@ class LinearRegression extends Mark {
     const {x: X, y: Y, z: Z} = channels;
     const {ci} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g

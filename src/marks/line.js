@@ -46,7 +46,7 @@ export class Line extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g

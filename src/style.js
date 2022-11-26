@@ -1,4 +1,4 @@
-import {group, namespaces} from "d3";
+import {geoPath, group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
@@ -293,11 +293,12 @@ export function* groupIndex(I, position, {z}, channels) {
 // https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
   if (clip === true) return "frame";
+  if (clip === "sphere") return "sphere";
   if (clip == null || clip === false) return false;
   throw new Error(`invalid clip method: ${clip}`);
 }
 
-export function applyIndirectStyles(selection, mark, scales, dimensions) {
+export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -314,19 +315,35 @@ export function applyIndirectStyles(selection, mark, scales, dimensions) {
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
-  if (mark.clip === "frame") {
-    const {x, y} = scales;
-    const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-    const id = getClipId();
-    selection
-      .attr("clip-path", `url(#${id})`)
-      .append("clipPath")
-      .attr("id", id)
-      .append("rect")
-      .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-      .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-      .attr("width", width - marginRight - marginLeft)
-      .attr("height", height - marginTop - marginBottom);
+  switch (mark.clip) {
+    case "frame": {
+      const {x, y} = scales;
+      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+      const id = getClipId();
+      selection
+        .attr("clip-path", `url(#${id})`)
+        .append("clipPath")
+        .attr("id", id)
+        .append("rect")
+        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
+        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
+        .attr("width", width - marginRight - marginLeft)
+        .attr("height", height - marginTop - marginBottom);
+      break;
+    }
+    case "sphere": {
+      const {projection} = context;
+      if (projection == null) break;
+      const path = geoPath(projection);
+      const id = getClipId();
+      selection
+        .attr("clip-path", `url(#${id})`)
+        .append("clipPath")
+        .attr("id", id)
+        .append("path")
+        .attr("d", path({type: "Sphere"}));
+      break;
+    }
   }
 }
 
