@@ -8,7 +8,7 @@ export const offset = typeof window !== "undefined" && window.devicePixelRatio >
 
 let nextClipId = 0;
 
-export function getClipId() {
+function getClipId() {
   return `plot-clip-${++nextClipId}`;
 }
 
@@ -333,15 +333,14 @@ export function applyIndirectStyles(selection, mark, scales, dimensions, context
     }
     case "sphere": {
       const {projection} = context;
-      if (projection == null) break;
-      const path = geoPath(projection);
+      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
       const id = getClipId();
       selection
         .attr("clip-path", `url(#${id})`)
         .append("clipPath")
         .attr("id", id)
         .append("path")
-        .attr("d", path({type: "Sphere"}));
+        .attr("d", geoPath(projection)({type: "Sphere"}));
       break;
     }
   }
