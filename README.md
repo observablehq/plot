@@ -313,7 +313,7 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 ### Projection options
 
-The top-level **projection** option applies a (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with [geometry marks](#geometry) to produce a map, but can be used with any mark that supports *x* and *y*, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
+The top-level **projection** option applies a two-dimensional projection in place of *x* and *y* scales. It is typically used in conjunction with [geometry](#geometry) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
 
 * *equirectangular* - the equirectangular, or *plate carrée*, projection
 * *orthographic* - the orthographic projection
@@ -330,15 +330,17 @@ The top-level **projection** option applies a (often geographic) projection in p
 * *transverse-mercator* - the transverse Mercator projection
 * *albers* - the Albers’ equal-area conic projection
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
-* *identity* - the identity projection (for pre-projected geometry)
+* *identity* or null (default) - the identity projection for pre-projected geometry
 
-In addition to the named projections above, the **projection** option may also be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns a projection.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns such a projection.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
 * projection.**type** - one of the projection names above
-* projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* projection.**center** - the [projection’s center of reference](https://github.com/d3/d3-geo/blob/main/README.md#projection_center)
+* projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
 
 ### Color options
 
@@ -1254,9 +1256,17 @@ In addition to the [standard mark options](#marks), the optional **r** channel c
 
 #### Plot.sphere(*options*)
 
+```js
+Plot.sphere()
+```
+
 Returns a new geometry mark with a *Sphere* geometry object and the given *options*.
 
 #### Plot.graticule(*options*)
+
+```js
+Plot.graticule()
+```
 
 Returns a new geometry mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
 
@@ -1265,6 +1275,10 @@ Returns a new geometry mark with a [default 10° global graticule](https://githu
 The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
 
 #### Plot.hexgrid(*options*)
+
+```js
+Plot.hexgrid()
+```
 
 <!-- jsdoc hexgrid -->
 
@@ -2406,7 +2420,7 @@ The supported stack options are:
 
 The following **order** methods are supported:
 
-- null - input order (default)
+- null (default) - input order
 - *value* - ascending value order (or descending with **reverse**)
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
@@ -2420,7 +2434,7 @@ The stack transform supports diverging stacks: negative values are stacked below
 
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
-- null - a zero baseline (default)
+- null (default) - a zero baseline
 - *expand* (or *normalize*) - rescale each stack to fill [0, 1]
 - *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
@@ -2820,7 +2834,7 @@ A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defi
 
 The following named markers are supported:
 
-* *none* - no marker (default)
+* *none* (default) - no marker
 * *arrow* - an arrowhead
 * *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius
