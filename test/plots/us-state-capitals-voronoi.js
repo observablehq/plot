@@ -3,8 +3,8 @@ import * as d3 from "d3";
 import {feature} from "topojson-client";
 
 export default async function () {
-  const [walmarts, nationmesh] = await Promise.all([
-    d3.tsv("data/walmarts.tsv", d3.autoType),
+  const [capitals, nationmesh] = await Promise.all([
+    d3.csv("data/us-state-capitals.csv", d3.autoType),
     d3.json("data/us-counties-10m.json").then((us) => feature(us, us.objects.nation))
   ]);
   return Plot.plot({
@@ -26,8 +26,17 @@ export default async function () {
       scheme: "blues"
     },
     marks: [
-      Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
-      Plot.voronoi(walmarts, {x: "longitude", y: "latitude", clip: "sphere", strokeOpacity: 0.2}),
+      Plot.dot(capitals, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
+      Plot.voronoi(capitals, {
+        x: "longitude",
+        y: "latitude",
+        clip: "sphere",
+        title: "state",
+        fill: "white",
+        fillOpacity: 0.01,
+        stroke: "black",
+        strokeOpacity: 0.2
+      }),
       Plot.geometry(nationmesh, {strokeOpacity: 0.3}),
       Plot.geometry({type: "Sphere"}, {strokeWidth: 2})
     ]

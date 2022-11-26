@@ -236,13 +236,13 @@ export {default as usPresidentialElection2020} from "./us-presidential-election-
 export {default as usPresidentialForecast2016} from "./us-presidential-forecast-2016.js";
 export {default as usRetailSales} from "./us-retail-sales.js";
 export {default as usStateCapitals} from "./us-state-capitals.js";
+export {default as usStateCapitalsVoronoi} from "./us-state-capitals-voronoi.js";
 export {default as usStatePopulationChange} from "./us-state-population-change.js";
 export {default as vectorField} from "./vector-field.js";
 export {default as vectorFrame} from "./vector-frame.js";
 export {default as walmarts} from "./walmarts.js";
 export {default as walmartsDecades} from "./walmarts-decades.js";
 export {default as walmartsDensity} from "./walmarts-density.js";
-export {default as walmartsVoronoi} from "./walmarts-voronoi.js";
 export {default as wealthBritainBar} from "./wealth-britain-bar.js";
 export {default as wealthBritainProportionPlot} from "./wealth-britain-proportion-plot.js";
 export {default as wordCloud} from "./word-cloud.js";
