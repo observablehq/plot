@@ -82,13 +82,14 @@ export class Text extends Mark {
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, rotate: R, text: T, fontSize: FS} = channels;
     const {rotate} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyIndirectTextStyles, this, T, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()
@@ -140,7 +141,7 @@ function applyMultilineText(selection, {monospace, lineAnchor, lineHeight, lineW
   selection.each(function (i) {
     const lines = linesof(formatDefault(T[i]));
     const n = lines.length;
-    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? -0.29 - n : (164 - n * 100) / 200;
+    const y = lineAnchor === "top" ? 0.71 : lineAnchor === "bottom" ? 1 - n : (164 - n * 100) / 200;
     if (n > 1) {
       for (let i = 0; i < n; ++i) {
         if (!lines[i]) continue;

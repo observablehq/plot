@@ -184,6 +184,7 @@ export function ScaleQuantize(
     n = range === undefined ? 5 : (range = [...range]).length,
     scheme = "rdylbu",
     domain = inferAutoDomain(key, channels),
+    unknown,
     interpolate,
     reverse
   }
@@ -206,7 +207,7 @@ export function ScaleQuantize(
     if (min instanceof Date) thresholds = thresholds.map((x) => new Date(x)); // preserve date types
   }
   if (order(arrayify(domain)) < 0) thresholds.reverse(); // preserve descending domain
-  return ScaleThreshold(key, channels, {domain: thresholds, range, reverse});
+  return ScaleThreshold(key, channels, {domain: thresholds, range, reverse, unknown});
 }
 
 export function ScaleThreshold(

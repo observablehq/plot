@@ -119,8 +119,7 @@ export function plot(options = {}) {
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
   const axes = Axes(scaleDescriptors, options);
-  const dimensions = Dimensions(scaleDescriptors, axes, options);
-  const context = Context(options);
+  const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
@@ -129,13 +128,23 @@ export function plot(options = {}) {
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
   const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
+  const context = Context(options, subdimensions);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
-      const {facets, channels} = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions);
-      if (facets !== undefined) state.facets = facets;
+      const {facets, channels} = mark.initializer(
+        state.data,
+        state.facets,
+        state.channels,
+        scales,
+        subdimensions,
+        context
+      );
+      if (facets !== undefined) {
+        state.facets = facets;
+      }
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
         applyScaleTransforms(channels, options);
@@ -160,9 +169,9 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Compute value objects, applying scales as needed.
+  // Compute value objects, applying scales and projection as needed.
   for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales);
+    state.values = valueObject(state.channels, scales, context);
   }
 
   const {width, height} = dimensions;
@@ -440,6 +449,13 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
     }
   }
   return channelsByScale;
+}
+
+function hasGeometry(stateByMark) {
+  for (const {channels} of stateByMark.values()) {
+    if (channels.geometry) return true;
+  }
+  return false;
 }
 
 // Derives a copy of the specified axis with the label disabled.

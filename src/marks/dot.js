@@ -21,6 +21,12 @@ const defaults = {
   strokeWidth: 1.5
 };
 
+export function withDefaultSort(options) {
+  return options.sort === undefined && options.reverse === undefined
+    ? sort({channel: "r", order: "descending"}, options)
+    : options;
+}
+
 export class Dot extends Mark {
   constructor(data, options = {}) {
     const {x, y, r, rotate, symbol = symbolCircle, frameAnchor} = options;
@@ -36,9 +42,7 @@ export class Dot extends Mark {
         rotate: {value: vrotate, optional: true},
         symbol: {value: vsymbol, scale: "symbol", optional: true}
       },
-      options.sort === undefined && options.reverse === undefined
-        ? sort({channel: "r", order: "descending"}, options)
-        : options,
+      withDefaultSort(options),
       defaults
     );
     this.r = cr;
@@ -60,12 +64,13 @@ export class Dot extends Mark {
     }
   }
   render(index, scales, channels, dimensions, context) {
+    const {x, y} = scales;
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, scales)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g
           .selectAll()

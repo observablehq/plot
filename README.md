@@ -311,6 +311,37 @@ Plot automatically generates axes for position scales. You can configure these a
 
 Top-level options are also supported as shorthand: **grid** (for *x* and *y* only; see [facet.grid](#facet-options)), **label**, **axis**, **inset**, **round**, **align**, and **padding**.
 
+### Projection options
+
+The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with a [geo mark](#geo) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
+
+* *equirectangular* - the equirectangular, or *plate carrée*, projection
+* *orthographic* - the orthographic projection
+* *stereographic* - the stereographic projection
+* *mercator* - the Mercator projection
+* *equal-earth* - the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
+* *natural-earth* - the [Natural Earth projection](https://en.wikipedia.org/wiki/Natural_Earth_projection) by Patterson
+* *azimuthal-equal-area* - the azimuthal equal-area projection
+* *azimuthal-equidistant* - the azimuthal equidistant projection
+* *conic-conformal* - the conic conformal projection
+* *conic-equal-area* - the conic equal-area projection
+* *conic-equidistant* - the conic equidistant projection
+* *gnomonic* - the gnomonic projection
+* *transverse-mercator* - the transverse Mercator projection
+* *albers* - the Albers’ conic equal-area projection
+* *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
+* *identity* or null (default) - the identity projection for pre-projected geometry
+
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, marginTop, marginRight, marginBottom, marginLeft, ...options}) and returns such a projection.
+
+If the **projection** option is specified as an object, the following additional projection options are supported:
+
+* projection.**type** - one of the projection names above
+* projection.**center** - the [projection’s center of reference](https://github.com/d3/d3-geo/blob/main/README.md#projection_center)
+* projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
+* projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+
 ### Color options
 
 The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
@@ -1209,11 +1240,45 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 
 <!-- jsdocEnd hexagon -->
 
+### Geo
+
+[Source](./src/marks/geo.js) · [Examples](https://observablehq.com/@observablehq/plot-geo) · Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
+
+#### Plot.geo(*data*, *options*)
+
+```js
+Plot.geo(counties, {fill: d => d.properties.rate})
+```
+
+Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
+
+In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
+
+#### Plot.sphere(*options*)
+
+```js
+Plot.sphere()
+```
+
+Returns a new geo mark with a *Sphere* geometry object and the given *options*.
+
+#### Plot.graticule(*options*)
+
+```js
+Plot.graticule()
+```
+
+Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+
 ### Hexgrid
 
 The hexgrid mark can be used to support marks using the [hexbin](#hexbin) layout.
 
 #### Plot.hexgrid(*options*)
+
+```js
+Plot.hexgrid()
+```
 
 <!-- jsdoc hexgrid -->
 
@@ -2355,7 +2420,7 @@ The supported stack options are:
 
 The following **order** methods are supported:
 
-- null - input order (default)
+- null (default) - input order
 - *value* - ascending value order (or descending with **reverse**)
 - *sum* - order series by their total value
 - *appearance* - order series by the position of their maximum value
@@ -2369,7 +2434,7 @@ The stack transform supports diverging stacks: negative values are stacked below
 
 After all values have been stacked from zero, an optional **offset** can be applied to translate or scale the stacks. The following **offset** methods are supported:
 
-- null - a zero baseline (default)
+- null (default) - a zero baseline
 - *expand* (or *normalize*) - rescale each stack to fill [0, 1]
 - *center* (or *silhouette*) - align the centers of all stacks
 - *wiggle* - translate stacks to minimize apparent movement
@@ -2769,7 +2834,7 @@ A [marker](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/marker) defi
 
 The following named markers are supported:
 
-* *none* - no marker (default)
+* *none* (default) - no marker
 * *arrow* - an arrowhead
 * *dot* - a filled *circle* without a stroke and 2.5px radius
 * *circle*, equivalent to *circle-fill* - a filled circle with a white stroke and 3px radius

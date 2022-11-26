@@ -190,3 +190,7 @@ it("ruleY(data, {x1, x2, y}) specifies x1, x2, y", () => {
   assert.strictEqual(y.value, "2");
   assert.strictEqual(y.scale, "y");
 });
+
+it("rule() is incompatible with a projection", () => {
+  assert.throws(() => Plot.ruleX([]).plot({projection: {stream: () => ({})}}), /projection requires x and y channels/);
+});

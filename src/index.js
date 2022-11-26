@@ -8,6 +8,7 @@ export {delaunayLink, delaunayMesh, hull, voronoi, voronoiMesh} from "./marks/de
 export {Density, density} from "./marks/density.js";
 export {Dot, dot, dotX, dotY, circle, hexagon} from "./marks/dot.js";
 export {Frame, frame} from "./marks/frame.js";
+export {Geo, geo, sphere, graticule} from "./marks/geo.js";
 export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Image, image} from "./marks/image.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
