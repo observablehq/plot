@@ -328,7 +328,7 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *conic-equidistant* - the conic equidistant projection
 * *gnomonic* - the gnomonic projection
 * *transverse-mercator* - the transverse Mercator projection
-* *albers* - the Albers’ equal-area conic projection
+* *albers* - the Albers’ conic equal-area projection
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
 * *identity* or null (default) - the identity projection for pre-projected geometry
 
