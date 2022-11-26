@@ -26,14 +26,14 @@ export function Channels(descriptors, data) {
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales, {projection}) {
-  let scaledX, scaledY;
+  let x, y; // names of channels bound to x and y scale
 
   const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       let scale;
       if (scaleName !== undefined) {
-        if (name === "x") scaledX = true;
-        else if (name === "y") scaledY = true;
+        if (scaleName === "x") x = x === undefined ? name : "*";
+        else if (scaleName === "y") y = y === undefined ? name : "*";
         scale = scales[scaleName];
       }
       return [name, scale === undefined ? value : map(value, scale)];
@@ -41,14 +41,18 @@ export function valueObject(channels, scales, {projection}) {
   );
 
   // If there is a projection, and there are both x and y channels, and those x
-  // and y channels are associated with a scale (presumably the x and y scale)
-  // rather than being in screen coordinates (as with an initializer), then
-  // apply the projection, replacing the x and y values. Note that the x and y
-  // scales themselves don’t exist if there is a projection, but whether the
-  // channels are associated with scales still determines whether the projection
-  // should apply; think of the projection as a combination xy-scale.
-  if (projection && scaledX && scaledY) {
-    applyProjection(values, projection);
+  // and y channels are associated with the x and y scale respectively (and not
+  // already in screen coordinates as with an initializer), then apply the
+  // projection, replacing the x and y values. Note that the x and y scales
+  // themselves don’t exist if there is a projection, but whether the channels
+  // are associated with scales still determines whether the projection should
+  // apply; think of the projection as a combination xy-scale.
+  if (projection) {
+    if (x === "x" && y === "y") {
+      applyProjection(values, projection);
+    } else if (x || y) {
+      throw new Error("projection requires x and y channels");
+    }
   }
 
   return values;
