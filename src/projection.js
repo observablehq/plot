@@ -1,11 +1,19 @@
 import {
+  geoAlbers,
   geoAlbersUsa,
+  geoAzimuthalEqualArea,
+  geoAzimuthalEquidistant,
+  geoConicConformal,
+  geoConicEqualArea,
+  geoConicEquidistant,
   geoEqualEarth,
   geoEquirectangular,
+  geoGnomonic,
   geoMercator,
   geoNaturalEarth1,
   geoOrthographic,
-  geoStereographic
+  geoStereographic,
+  geoTransverseMercator
 } from "d3";
 import {isObject} from "./options.js";
 
@@ -26,36 +34,68 @@ export function isProjection(projection) {
   return projection != null;
 }
 
+const pi = Math.PI;
+const tau = 2 * pi;
+
 function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
+    case "albers-usa":
+      return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
+    case "albers":
+      return scaleProjection(geoAlbers, 0.7463, 0.4673);
+    case "azimuthal-equal-area":
+      return scaleProjection(geoAzimuthalEqualArea, 4, 4);
+    case "azimuthal-equidistant":
+      return scaleProjection(geoAzimuthalEquidistant, tau, tau);
+    case "conic-conformal":
+      return scaleProjection(geoConicConformal, tau, tau);
+    case "conic-equal-area":
+      return scaleProjection(geoConicEqualArea, 6.1702, 2.9781);
+    case "conic-equidistant":
+      return scaleProjection(geoConicEquidistant, 7.312, 3.6282);
+    case "equal-earth":
+      return scaleProjection(geoEqualEarth, 5.4133, 2.6347);
+    case "equirectangular":
+      return scaleProjection(geoEquirectangular, tau, pi);
+    case "gnomonic":
+      return scaleProjection(geoGnomonic, 3.4641, 3.4641);
     case "identity":
       return;
-    case "equirectangular":
-      return scaleProjection(geoEquirectangular, 6.28, 3.14);
+    case "mercator":
+      return scaleProjection(geoMercator, tau, tau);
+    case "natural-earth":
+      return scaleProjection(geoNaturalEarth1, 5.4708, 2.8448);
     case "orthographic":
       return scaleProjection(geoOrthographic, 2, 2);
     case "stereographic":
       return scaleProjection(geoStereographic, 2, 2);
-    case "mercator":
-      return scaleProjection(geoMercator, 6.29, 6.29);
-    case "equal-earth":
-      return scaleProjection(geoEqualEarth, 5.42, 2.64);
-    case "natural-earth":
-      return scaleProjection(geoNaturalEarth1, 5.48, 2.85);
-    case "albers-usa":
-      return scaleProjection(geoAlbersUsa, 1 / 1.34, 1 / 2.14);
+    case "transverse-mercator":
+      return scaleProjection(geoTransverseMercator, tau, tau);
     default:
       throw new Error(`unknown projection type: ${projection}`);
   }
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, marginTop, marginBottom, marginLeft, marginRight, rotate, precision = 0.15}) => {
+  return ({
+    width,
+    height,
+    marginTop,
+    marginBottom,
+    marginLeft,
+    marginRight,
+    rotate,
+    center,
+    parallels,
+    precision = 0.15
+  }) => {
     const frameWidth = width - marginLeft - marginRight;
     const frameHeight = height - marginTop - marginBottom;
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
+    if (parallels != null) projection.parallels?.(parallels);
     if (rotate != null) projection.rotate?.(rotate);
+    if (center != null) projection.center?.(center);
     projection.scale(Math.min(frameWidth / kx, frameHeight / ky));
     projection.translate([marginLeft + frameWidth / 2, marginTop + frameHeight / 2]);
     return projection;
