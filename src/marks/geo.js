@@ -7,7 +7,7 @@ import {applyChannelStyles, applyDirectStyles, applyIndirectStyles, applyTransfo
 import {withDefaultSort} from "./dot.js";
 
 const defaults = {
-  ariaLabel: "geometry",
+  ariaLabel: "geo",
   fill: "none",
   stroke: "currentColor",
   strokeWidth: 1,
@@ -16,14 +16,13 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-export class Geometry extends Mark {
+export class Geo extends Mark {
   constructor(data, options = {}) {
-    const {geometry = identity} = options;
     const [vr, cr] = maybeNumberChannel(options.r, 3);
     super(
       data,
       {
-        geometry: {value: geometry},
+        geometry: {value: options.geometry},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
       withDefaultSort(options),
@@ -32,9 +31,8 @@ export class Geometry extends Mark {
     this.r = cr;
   }
   render(index, scales, channels, dimensions, context) {
-    const {geometry, r: R} = channels;
-    const {projection} = context;
-    const path = geoPath(projection);
+    const {geometry: G, r: R} = channels;
+    const path = geoPath(context.projection);
     const {r} = this;
     if (r !== undefined) path.pointRadius(r);
     return create("svg:g", context)
@@ -46,14 +44,14 @@ export class Geometry extends Mark {
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", R ? (i) => path.pointRadius(R[i])(geometry[i]) : (i) => path(geometry[i]))
+          .attr("d", R ? (i) => path.pointRadius(R[i])(G[i]) : (i) => path(G[i]))
           .call(applyChannelStyles, this, channels);
       })
       .node();
   }
 }
 
-export function geometry(data, options) {
+export function geo(data, {geometry = identity, ...options} = {}) {
   switch (data?.type) {
     case "FeatureCollection":
       data = data.features;
@@ -72,13 +70,13 @@ export function geometry(data, options) {
       data = [data];
       break;
   }
-  return new Geometry(data, options);
+  return new Geo(data, {geometry, ...options});
 }
 
 export function sphere(options) {
-  return geometry({type: "Sphere"}, options);
+  return geo({type: "Sphere"}, options);
 }
 
 export function graticule(options) {
-  return geometry(geoGraticule10(), options);
+  return geo(geoGraticule10(), options);
 }

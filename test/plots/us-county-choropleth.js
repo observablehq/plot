@@ -23,8 +23,8 @@ export default async function () {
       label: "Unemployment (%)"
     },
     marks: [
-      Plot.geometry(counties, {fill: (d) => unemployment.get(d.id), title: (d) => d.properties.name}), // TODO string accessors for properties, id
-      Plot.geometry(statemesh, {stroke: "white"})
+      Plot.geo(counties, {fill: (d) => unemployment.get(d.id), title: (d) => d.properties.name}), // TODO string accessors for properties, id
+      Plot.geo(statemesh, {stroke: "white"})
     ]
   });
 }

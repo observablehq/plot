@@ -12,7 +12,7 @@ export default async function () {
     projection: geoArmadillo().precision(0.2),
     marks: [
       Plot.sphere(),
-      Plot.geometry(land, {clip: "sphere", fill: "currentColor"}),
+      Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
       Plot.graticule({clip: "sphere", strokeOpacity: 0.2})
     ]
   });

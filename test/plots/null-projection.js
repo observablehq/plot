@@ -6,7 +6,7 @@ export default async function () {
     height: 400,
     projection: "identity",
     marks: [
-      Plot.geometry({
+      Plot.geo({
         type: "LineString",
         coordinates: Array.from({length: 400}, (_, i) => [
           320 + Math.cos(i / 10) * (i / 2),

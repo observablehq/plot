@@ -313,7 +313,7 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 ### Projection options
 
-The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with [geometry](#geometry) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
+The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with a [geo mark](#geo) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
 
 * *equirectangular* - the equirectangular, or *plate carrée*, projection
 * *orthographic* - the orthographic projection
@@ -1240,17 +1240,17 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 
 <!-- jsdocEnd hexagon -->
 
-### Geometry
+### Geo
 
-[Source](./src/marks/geometry.js) · [Examples](https://observablehq.com/@observablehq/plot-geometry) · Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** option specifies the geometry (GeoJSON object) to draw for each geometry instance; if not specified, the mark’s *data* is assumed to be GeoJSON.
+[Source](./src/marks/geo.js) · [Examples](https://observablehq.com/@observablehq/plot-geo) · Draws polygons, lines, points, and other GeoJSON geometry, often in conjunction with a [geographic projection](#projection-options) to produce a thematic map. The **geometry** channel specifies the geometry (GeoJSON object) to draw; if not specified, the mark’s *data* is assumed to be GeoJSON.
 
-#### Plot.geometry(*data*, *options*)
+#### Plot.geo(*data*, *options*)
 
 ```js
-Plot.geometry(counties, {fill: d => d.properties.rate})
+Plot.geo(counties, {fill: d => d.properties.rate})
 ```
 
-Returns a new geometry mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
+Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
 
 In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
@@ -1260,7 +1260,7 @@ In addition to the [standard mark options](#marks), the **r** option controls th
 Plot.sphere()
 ```
 
-Returns a new geometry mark with a *Sphere* geometry object and the given *options*.
+Returns a new geo mark with a *Sphere* geometry object and the given *options*.
 
 #### Plot.graticule(*options*)
 
@@ -1268,7 +1268,7 @@ Returns a new geometry mark with a *Sphere* geometry object and the given *optio
 Plot.graticule()
 ```
 
-Returns a new geometry mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
+Returns a new geo mark with a [default 10° global graticule](https://github.com/d3/d3-geo/blob/main/README.md#geoGraticule10) geometry object and the given *options*.
 
 ### Hexgrid
 

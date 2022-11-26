@@ -22,7 +22,7 @@ export default async function () {
     marks: [
       Plot.density(walmarts, {x: "longitude", y: "latitude", bandwidth: 12, fill: "density"}),
       Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
-      Plot.geometry(statemesh, {strokeOpacity: 0.3})
+      Plot.geo(statemesh, {strokeOpacity: 0.3})
     ]
   });
 }

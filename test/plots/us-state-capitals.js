@@ -14,8 +14,8 @@ export default async function () {
     height: 600,
     projection: "albers-usa",
     marks: [
-      Plot.geometry(states, {fill: "#ccc"}),
-      Plot.geometry(statemesh, {stroke: "white"}),
+      Plot.geo(states, {fill: "#ccc"}),
+      Plot.geo(statemesh, {stroke: "white"}),
       Plot.dot(capitals, {x: "longitude", y: "latitude", fill: "currentColor"}),
       Plot.text(capitals, {
         x: "longitude",

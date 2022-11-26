@@ -24,13 +24,13 @@ export default async function () {
     fx: {tickFormat: (d) => `${d}’s`, padding: 0},
     facet: {data: decades, x: decades},
     marks: [
-      Plot.geometry(statemesh, {strokeOpacity: 0.25}),
-      Plot.geometry(decades, {
+      Plot.geo(statemesh, {strokeOpacity: 0.25}),
+      Plot.geo(decades, {
         geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) < y).map(coordinate)}),
         fill: "black",
         r: 1
       }),
-      Plot.geometry(decades, {
+      Plot.geo(decades, {
         geometry: (y) => ({type: "MultiPoint", coordinates: walmarts.filter((d) => decade(d) === y).map(coordinate)}),
         fill: "red",
         r: 1
