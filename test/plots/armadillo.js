@@ -8,12 +8,25 @@ export default async function () {
   const land = feature(world, world.objects.land);
   return Plot.plot({
     width: 960,
-    height: 500,
-    projection: geoArmadillo().precision(0.2),
+    height: 548,
+    margin: 1,
+    projection: armadillo,
     marks: [
-      Plot.sphere(),
       Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
-      Plot.graticule({clip: "sphere", strokeOpacity: 0.2})
+      Plot.graticule({clip: "sphere", strokeOpacity: 0.2}),
+      Plot.sphere()
     ]
   });
+}
+
+function armadillo({width, height, marginTop, marginRight, marginBottom, marginLeft}) {
+  return geoArmadillo()
+    .precision(0.2)
+    .fitExtent(
+      [
+        [marginLeft, marginTop],
+        [width - marginRight, height - marginBottom]
+      ],
+      {type: "Sphere"}
+    );
 }
