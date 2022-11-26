@@ -324,7 +324,7 @@ The top-level **projection** option applies a (often geographic) projection in p
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
 * *identity* - the identity projection (for pre-projected geometry)
 
-In addition to the named projections above, the **projection** option may also be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream).
+In addition to the named projections above, the **projection** option may also be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns a projection.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
