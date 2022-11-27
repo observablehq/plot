@@ -292,8 +292,10 @@ export function isTemporalString(values) {
 // coercion because we want to ignore false positives on e.g. empty strings.
 export function isNumericString(values) {
   for (const value of values) {
-    if (value == null || value === "") continue;
-    return typeof value === "string" && !isNaN(value);
+    if (value == null) continue;
+    if (typeof value !== "string") return false;
+    if (!value.trim()) continue;
+    return !isNaN(value);
   }
 }
 
