@@ -742,7 +742,7 @@ All marks support the following style options:
 * **pointerEvents** - the [pointer events](https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events) (*e.g.*, *none*)
 * **clip** - whether and how to clip the mark
 
-If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](#projection-options) is required, and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
+If the **clip** option is *frame* (or equivalently true), the mark is clipped to the frame’s dimensions; if the **clip** option is null (or equivalently false), the mark is not clipped. If the **clip** option is *sphere*, then a [geographic projection](#projection-options) is required and the mark will be clipped to the projected sphere (_e.g._, the front hemisphere when using the orthographic projection).
 
 For all marks except [text](#plottextdata-options), the **dx** and **dy** options are rendered as a transform property, possibly including a 0.5px offset on low-density screens.
 
