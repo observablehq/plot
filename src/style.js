@@ -1,7 +1,17 @@
 import {geoPath, group, namespaces} from "d3";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
-import {string, number, maybeColorChannel, maybeNumberChannel, isNoneish, isNone, isRound, keyof} from "./options.js";
+import {
+  string,
+  number,
+  maybeColorChannel,
+  maybeNumberChannel,
+  maybeKeyword,
+  isNoneish,
+  isNone,
+  isRound,
+  keyof
+} from "./options.js";
 import {warn} from "./warnings.js";
 
 export const offset = typeof window !== "undefined" && window.devicePixelRatio > 1 ? 0 : 0.5;
@@ -288,14 +298,12 @@ export function* groupIndex(I, position, {z}, channels) {
   }
 }
 
-// clip: true clips to the frame
-// TODO: accept other types of clips (paths, urls, x, y, other marks?…)
+// TODO Accept other types of clips (paths, urls, x, y, other marks…)?
 // https://github.com/observablehq/plot/issues/181
 export function maybeClip(clip) {
-  if (clip === true) return "frame";
-  if (clip === "sphere") return "sphere";
-  if (clip == null || clip === false) return false;
-  throw new Error(`invalid clip method: ${clip}`);
+  if (clip === true) clip = "frame";
+  else if (clip === false) clip = null;
+  return maybeKeyword(clip, "clip", ["frame", "sphere"]);
 }
 
 export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
