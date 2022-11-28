@@ -77,6 +77,6 @@ export function sphere({strokeWidth = 1.5, ...options} = {}) {
   return geo({type: "Sphere"}, {strokeWidth, ...options});
 }
 
-export function graticule(options = {}) {
-  return geo(geoGraticule10(), {strokeOpacity: 0.1, ...options});
+export function graticule({strokeOpacity = 0.1, ...options} = {}) {
+  return geo(geoGraticule10(), {strokeOpacity, ...options});
 }
