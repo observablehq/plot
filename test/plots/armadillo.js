@@ -11,11 +11,7 @@ export default async function () {
     height: 548,
     margin: 1,
     projection: armadillo,
-    marks: [
-      Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
-      Plot.graticule({clip: "sphere", strokeOpacity: 0.2}),
-      Plot.sphere()
-    ]
+    marks: [Plot.geo(land, {clip: "sphere", fill: "currentColor"}), Plot.graticule({clip: "sphere"}), Plot.sphere()]
   });
 }
 

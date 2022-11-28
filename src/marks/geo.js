@@ -73,10 +73,10 @@ export function geo(data, {geometry = identity, ...options} = {}) {
   return new Geo(data, {geometry, ...options});
 }
 
-export function sphere(options) {
-  return geo({type: "Sphere"}, options);
+export function sphere({strokeWidth = 1.5, ...options} = {}) {
+  return geo({type: "Sphere"}, {strokeWidth, ...options});
 }
 
-export function graticule(options) {
-  return geo(geoGraticule10(), options);
+export function graticule({strokeOpacity = 0.1, ...options} = {}) {
+  return geo(geoGraticule10(), {strokeOpacity, ...options});
 }
