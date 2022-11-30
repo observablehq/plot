@@ -341,6 +341,11 @@ If the **projection** option is specified as an object, the following additional
 * projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* projection.**inset** - inset the frame by the specified amount in pixels when fitting the projection to the frame
+* projection.**insetLeft** - left inset, defaults to inset
+* projection.**insetRight** - right inset, defaults to inset
+* projection.**insetTop** - top inset, defaults to inset
+* projection.**insetBottom** - bottom inset, defaults to inset
 
 ### Color options
 
