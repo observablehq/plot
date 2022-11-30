@@ -10,19 +10,7 @@ export default async function () {
     width: 960,
     height: 548,
     margin: 1,
-    projection: armadillo,
+    projection: ({width, height}) => geoArmadillo().precision(0.2).fitSize([width, height], {type: "Sphere"}),
     marks: [Plot.geo(land, {clip: "sphere", fill: "currentColor"}), Plot.graticule({clip: "sphere"}), Plot.sphere()]
   });
-}
-
-function armadillo({width, height, marginTop, marginRight, marginBottom, marginLeft}) {
-  return geoArmadillo()
-    .precision(0.2)
-    .fitExtent(
-      [
-        [marginLeft, marginTop],
-        [width - marginRight, height - marginBottom]
-      ],
-      {type: "Sphere"}
-    );
 }

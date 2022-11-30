@@ -9,6 +9,7 @@ import {
   geoEqualEarth,
   geoEquirectangular,
   geoGnomonic,
+  geoIdentity,
   geoMercator,
   geoNaturalEarth1,
   geoOrthographic,
@@ -23,7 +24,17 @@ export function maybeProjection(projection, dimensions) {
   let options;
   if (isObject(projection)) ({type: projection, ...options} = projection);
   if (typeof projection !== "function") projection = namedProjection(projection);
-  return projection?.({...dimensions, ...options});
+  const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+  projection = projection?.({
+    width: width - marginLeft - marginRight,
+    height: height - marginTop - marginBottom,
+    ...options
+  });
+  if (projection == null) return;
+  // wrap the projection stream to shift its origin to <marginLeft, marginTop>
+  if (marginLeft === 0 && marginTop === 0) return projection;
+  const shiftStream = geoIdentity().translate([marginLeft, marginTop]).stream;
+  return {stream: (s) => projection.stream(shiftStream(s))};
 }
 
 export function hasProjection({projection} = {}) {
@@ -77,27 +88,14 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({
-    width,
-    height,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    rotate,
-    center,
-    parallels,
-    precision = 0.15
-  }) => {
-    const frameWidth = width - marginLeft - marginRight;
-    const frameHeight = height - marginTop - marginBottom;
+  return ({width, height, rotate, center, parallels, precision = 0.15}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (parallels != null) projection.parallels?.(parallels);
     if (rotate != null) projection.rotate?.(rotate);
     if (center != null) projection.center?.(center);
-    projection.scale(Math.min(frameWidth / kx, frameHeight / ky));
-    projection.translate([marginLeft + frameWidth / 2, marginTop + frameHeight / 2]);
+    projection.scale(Math.min(width / kx, height / ky));
+    projection.translate([width / 2, height / 2]);
     return projection;
   };
 }
