@@ -66,17 +66,23 @@ export class Rect extends Mark {
           .enter()
           .append("rect")
           .call(applyDirectStyles, this)
-          .attr("x", X1 && X2 && !isCollapsed(x) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
-          .attr("y", Y1 && Y2 && !isCollapsed(y) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+          .attr(
+            "x",
+            X1 && X2 && !isCollapsed(x, context) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft
+          )
+          .attr(
+            "y",
+            Y1 && Y2 && !isCollapsed(y, context) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop
+          )
           .attr(
             "width",
-            X1 && X2 && !isCollapsed(x)
+            X1 && X2 && !isCollapsed(x, context)
               ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
               : width - marginRight - marginLeft - insetRight - insetLeft
           )
           .attr(
             "height",
-            Y1 && Y2 && !isCollapsed(y)
+            Y1 && Y2 && !isCollapsed(y, context)
               ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
               : height - marginTop - marginBottom - insetTop - insetBottom
           )
