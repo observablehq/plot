@@ -18,7 +18,7 @@ export function hexgrid(options) {
 }
 
 export class Hexgrid extends Mark {
-  constructor({binWidth = 20, clip = true, ...options} = {}) {
+  constructor({binWidth = 20, clip = "frame", ...options} = {}) {
     super(undefined, undefined, {clip, ...options}, defaults);
     this.binWidth = number(binWidth);
   }

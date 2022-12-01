@@ -1257,7 +1257,7 @@ Equivalent to [Plot.dot](#plotdotdata-options) except that the **symbol** option
 Plot.geo(counties, {fill: d => d.properties.rate})
 ```
 
-Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects.
+Returns a new geo mark with the given *data* and *options*. If *data* is a GeoJSON feature collection, then the mark’s data is *data*.features; if *data* is a GeoJSON geometry collection, then the mark’s data is *data*.geometries; if *data* is some other GeoJSON object, then the mark’s data is the single-element array [*data*]. If the **geometry** option is not specified, *data* is assumed to be a GeoJSON object or an iterable of GeoJSON objects. The **clip** option defaults to *frame*, clipping the mark to the frame’s dimensions.
 
 In addition to the [standard mark options](#marks), the **r** option controls the size of Point and MultiPoint geometries. It can be specified as either a channel or constant. When **r** is specified as a number, it is interpreted as a constant radius in pixels; otherwise it is interpreted as a channel and the effective radius is controlled by the *r* scale. (As with [dots](#dot), the *r* scale defaults to a *sqrt* scale such that the visual area of a point is proportional to its associated value.) If the **r** option is not specified it defaults to 3 pixels. Geometries with a nonpositive radius are not drawn. If **r** is a channel, geometries will be sorted by descending radius by default.
 
@@ -1289,7 +1289,7 @@ Plot.hexgrid()
 
 <!-- jsdoc hexgrid -->
 
-The **binWidth** option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The **clip** option defaults to true, clipping the mark to the frame’s dimensions.
+The **binWidth** option specifies the distance between the centers of neighboring hexagons, in pixels (defaults to 20). The **clip** option defaults to *frame*, clipping the mark to the frame’s dimensions.
 
 <!-- jsdocEnd hexgrid -->
 

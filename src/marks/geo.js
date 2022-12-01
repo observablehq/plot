@@ -17,15 +17,15 @@ const defaults = {
 };
 
 export class Geo extends Mark {
-  constructor(data, options = {}) {
-    const [vr, cr] = maybeNumberChannel(options.r, 3);
+  constructor(data, {clip = "frame", r, geometry, ...options} = {}) {
+    const [vr, cr] = maybeNumberChannel(r, 3);
     super(
       data,
       {
-        geometry: {value: options.geometry},
+        geometry: {value: geometry},
         r: {value: vr, scale: "r", filter: positive, optional: true}
       },
-      withDefaultSort(options),
+      withDefaultSort({clip, ...options}),
       defaults
     );
     this.r = cr;
