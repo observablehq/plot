@@ -17,7 +17,7 @@ import {
   geoTransform,
   geoTransverseMercator
 } from "d3";
-import {isObject} from "./options.js";
+import {constant, isObject} from "./options.js";
 import {warn} from "./warnings.js";
 
 export function Projection(
@@ -52,6 +52,7 @@ export function Projection(
       insetLeft = inset !== undefined ? inset : insetLeft,
       ...options
     } = projection);
+    if (projection == null) return;
   }
 
   // For named projections, retrieve the corresponding projection initializer.
@@ -66,8 +67,7 @@ export function Projection(
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
 
-  // If there’s no need to translate or scale, return the projection as-is for
-  // speed.
+  // If there’s no need to transform, return the projection as-is for speed.
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
   if (tx === 0 && ty === 0 && domain == null) return projection;
@@ -134,7 +134,9 @@ function namedProjection(projection) {
     case "gnomonic":
       return scaleProjection(geoGnomonic, 3.4641, 3.4641);
     case "identity":
-      return;
+      return identity;
+    case "reflect-y":
+      return reflectY;
     case "mercator":
       return scaleProjection(geoMercator, tau, tau);
     case "natural-earth":
@@ -160,6 +162,16 @@ function scaleProjection(createProjection, kx, ky) {
     return projection;
   };
 }
+
+const identity = constant({stream: (stream) => stream});
+
+const reflectY = constant(
+  geoTransform({
+    point(x, y) {
+      this.stream.point(x, -y);
+    }
+  })
+);
 
 function conicProjection(createProjection, kx, ky) {
   createProjection = scaleProjection(createProjection, kx, ky);

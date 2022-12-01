@@ -137,7 +137,6 @@ export {default as morleyBoxplot} from "./morley-boxplot.js";
 export {default as moviesProfitByGenre} from "./movies-profit-by-genre.js";
 export {default as moviesRatingByGenre} from "./movies-rating-by-genre.js";
 export {default as musicRevenue} from "./music-revenue.js";
-export {default as nullProjection} from "./null-projection.js";
 export {default as ordinalBar} from "./ordinal-bar.js";
 export {default as penguinAnnotated} from "./penguin-annotated.js";
 export {default as penguinCulmen} from "./penguin-culmen.js";
@@ -174,6 +173,7 @@ export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.j
 export {default as polylinear} from "./polylinear.js";
 export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js";
 export {default as projectionFitConic} from "./projection-fit-conic.js";
+export {default as projectionFitIdentity} from "./projection-fit-identity.js";
 export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";

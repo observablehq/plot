@@ -330,7 +330,9 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *transverse-mercator* - the transverse Mercator projection
 * *albers* - the Albers’ conic equal-area projection
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
-* *identity* or null (default) - the identity projection for pre-projected geometry
+* *identity* - the identity projection for planar geometry
+* *reflect-y* - like the identity projection, but *y* points up
+* null (default) - the null projection for pre-projected geometry in screen coordinates
 
 In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 

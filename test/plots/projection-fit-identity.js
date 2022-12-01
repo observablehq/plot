@@ -4,13 +4,16 @@ export default async function () {
   return Plot.plot({
     width: 640,
     height: 400,
-    projection: "identity",
+    projection: {
+      type: "identity",
+      domain: {type: "MultiPoint", coordinates: [[-32, -20], [32, 20]]}
+    },
     marks: [
       Plot.geo({
         type: "LineString",
         coordinates: Array.from({length: 400}, (_, i) => [
-          320 + Math.cos(i / 10) * (i / 2),
-          200 + Math.sin(i / 10) * (i / 2)
+          Math.cos(i / 10) * (i / 20),
+          Math.sin(i / 10) * (i / 20)
         ])
       })
     ]
