@@ -342,10 +342,10 @@ If the **projection** option is specified as an object, the following additional
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
 * projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
-* projection.**insetLeft** - left inset (defaults to inset)
-* projection.**insetRight** - right inset (defaults to inset)
-* projection.**insetTop** - top inset (defaults to inset)
-* projection.**insetBottom** - bottom inset (defaults to inset)
+* projection.**insetLeft** - inset for the left edge of the frame (defaults to inset)
+* projection.**insetRight** - inset for the right edge of the frame (defaults to inset)
+* projection.**insetTop** - inset for the top edge of the frame (defaults to inset)
+* projection.**insetBottom** - inset for the bottom edge of the frame (defaults to inset)
 
 ### Color options
 
