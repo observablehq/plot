@@ -21,19 +21,25 @@ import {isObject} from "./options.js";
 export function maybeProjection(projection, dimensions) {
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
-  let options;
-  if (isObject(projection)) ({type: projection, ...options} = projection);
+  let options, inset, insetLeft, insetRight, insetTop, insetBottom;
+  if (isObject(projection))
+    ({type: projection, inset, insetLeft, insetRight, insetTop, insetBottom, ...options} = projection);
+  if (inset === undefined) inset = 0;
+  if (insetLeft === undefined) insetLeft = inset;
+  if (insetRight === undefined) insetRight = inset;
+  if (insetTop === undefined) insetTop = inset;
+  if (insetBottom === undefined) insetBottom = inset;
   if (typeof projection !== "function") projection = namedProjection(projection);
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
   projection = projection?.({
-    width: width - marginLeft - marginRight,
-    height: height - marginTop - marginBottom,
+    width: width - marginLeft - marginRight - insetLeft - insetRight,
+    height: height - marginTop - marginBottom - insetTop - insetBottom,
     ...options
   });
   if (projection == null) return;
   // wrap the projection stream to shift its origin to <marginLeft, marginTop>
-  if (marginLeft === 0 && marginTop === 0) return projection;
-  const shiftStream = geoIdentity().translate([marginLeft, marginTop]).stream;
+  if (marginLeft + insetLeft === 0 && marginTop + insetTop === 0) return projection;
+  const shiftStream = geoIdentity().translate([marginLeft + insetLeft, marginTop + insetTop]).stream;
   return {stream: (s) => projection.stream(shiftStream(s))};
 }
 
