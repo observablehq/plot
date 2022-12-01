@@ -18,26 +18,57 @@ import {
 } from "d3";
 import {isObject} from "./options.js";
 
-export function maybeProjection(projection, dimensions) {
+export function Projection(
+  {
+    projection,
+    inset: globalInset = 0,
+    insetTop = globalInset,
+    insetRight = globalInset,
+    insetBottom = globalInset,
+    insetLeft = globalInset
+  } = {},
+  dimensions
+) {
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
-  let options, inset, insetLeft, insetRight, insetTop, insetBottom;
-  if (isObject(projection))
-    ({type: projection, inset, insetLeft, insetRight, insetTop, insetBottom, ...options} = projection);
-  if (inset === undefined) inset = 0;
-  if (insetLeft === undefined) insetLeft = inset;
-  if (insetRight === undefined) insetRight = inset;
-  if (insetTop === undefined) insetTop = inset;
-  if (insetBottom === undefined) insetBottom = inset;
+  let options;
+
+  // If the projection was specified as an object with additional options,
+  // extract those. The order of precedence for insetTop (and other insets) is:
+  // projection.insetTop, projection.inset, (global) insetTop, (global) inset.
+  // Any other options on this object will be passed through to the initializer.
+  if (isObject(projection)) {
+    let inset;
+    ({
+      type: projection,
+      inset,
+      insetTop = inset !== undefined ? inset : insetTop,
+      insetRight = inset !== undefined ? inset : insetRight,
+      insetBottom = inset !== undefined ? inset : insetBottom,
+      insetLeft = inset !== undefined ? inset : insetLeft,
+      ...options
+    } = projection);
+  }
+
+  // For named projections, retrieve the corresponding projection initializer.
   if (typeof projection !== "function") projection = namedProjection(projection);
+
+  // Compute the frame dimensions and invoke the projection initializer.
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
   const frameWidth = width - marginLeft - marginRight - insetLeft - insetRight;
   const frameHeight = height - marginTop - marginBottom - insetTop - insetBottom;
   projection = projection?.({width: frameWidth, height: frameHeight, ...options});
+
+  // The projection initializer might decide to not use a projection.
   if (projection == null) return;
+
+  // If there’s no need to translate, return the projection as-is for speed.
+  // TODO Maybe scale to fit features here?
   const tx = marginLeft + insetLeft;
   const ty = marginTop + insetTop;
   if (tx === 0 && ty === 0) return projection;
+
+  // Otherwise wrap the projection stream with a translate transform.
   const {stream: translate} = geoTransform({
     point(x, y) {
       this.stream.point(x + tx, y + ty);
