@@ -1,11 +1,9 @@
 import {creator, select} from "d3";
-import {maybeProjection} from "./projection.js";
+import {Projection} from "./projection.js";
 
-export function Context(
-  {document = typeof window !== "undefined" ? window.document : undefined, projection} = {},
-  dimensions
-) {
-  return {document, projection: maybeProjection(projection, dimensions)};
+export function Context(options = {}, dimensions) {
+  const {document = typeof window !== "undefined" ? window.document : undefined} = options;
+  return {document, projection: Projection(options, dimensions)};
 }
 
 export function create(name, {document}) {

@@ -332,7 +332,7 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *albers-usa* - a composite Albers conic equal-area projection suitable for the United States
 * *identity* or null (default) - the identity projection for pre-projected geometry
 
-In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, marginTop, marginRight, marginBottom, marginLeft, ...options}) and returns such a projection.
+In addition to these named projections, the **projection** option may be specified as a [D3 projection](https://github.com/d3/d3-geo/blob/main/README.md#projections), or any custom projection that implements [*projection*.stream](https://github.com/d3/d3-geo/blob/main/README.md#projection_stream), or a function that receives a configuration object ({width, height, ...options}) and returns such a projection. In the last case, the width and height represent the frame dimensions minus any insets.
 
 If the **projection** option is specified as an object, the following additional projection options are supported:
 
@@ -341,6 +341,11 @@ If the **projection** option is specified as an object, the following additional
 * projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
+* projection.**insetLeft** - inset from the left edge of the frame (defaults to inset)
+* projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
+* projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
+* projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
 
 ### Color options
 

@@ -11,18 +11,8 @@ export default async function () {
     width: 640,
     height: 640,
     margin: 1,
-    projection: ({width, height, marginTop, marginRight, marginBottom, marginLeft}) =>
-      d3
-        .geoAzimuthalEqualArea()
-        .rotate([96, -40])
-        .clipAngle(24)
-        .fitExtent(
-          [
-            [marginLeft, marginTop],
-            [width - marginRight, height - marginBottom]
-          ],
-          {type: "Sphere"}
-        ),
+    projection: ({width, height}) =>
+      d3.geoAzimuthalEqualArea().rotate([96, -40]).clipAngle(24).fitSize([width, height], {type: "Sphere"}),
     marks: [
       Plot.geo(nation, {fill: "currentColor", fillOpacity: 0.2}),
       Plot.dot(capitals, {x: "longitude", y: "latitude", r: 2.5, fill: "currentColor"}),
