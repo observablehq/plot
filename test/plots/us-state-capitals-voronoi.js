@@ -10,7 +10,7 @@ export default async function () {
   return Plot.plot({
     width: 640,
     height: 640,
-    margin: 1,
+    inset: 1,
     projection: ({width, height}) =>
       d3.geoAzimuthalEqualArea().rotate([96, -40]).clipAngle(24).fitSize([width, height], {type: "Sphere"}),
     marks: [
