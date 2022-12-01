@@ -128,12 +128,11 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, center, parallels, precision = 0.15}) => {
+  return ({width, height, rotate, parallels, precision = 0.15}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (parallels != null) projection.parallels?.(parallels);
     if (rotate != null) projection.rotate?.(rotate);
-    if (center != null) projection.center?.(center);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
     return projection;
