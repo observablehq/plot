@@ -31,11 +31,9 @@ export function maybeProjection(projection, dimensions) {
   if (insetBottom === undefined) insetBottom = inset;
   if (typeof projection !== "function") projection = namedProjection(projection);
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-  projection = projection?.({
-    width: width - marginLeft - marginRight - insetLeft - insetRight,
-    height: height - marginTop - marginBottom - insetTop - insetBottom,
-    ...options
-  });
+  const frameWidth = width - marginLeft - marginRight - insetLeft - insetRight;
+  const frameHeight = height - marginTop - marginBottom - insetTop - insetBottom;
+  projection = projection?.({width: frameWidth, height: frameHeight, ...options});
   if (projection == null) return;
   const tx = marginLeft + insetLeft;
   const ty = marginTop + insetTop;
