@@ -340,6 +340,7 @@ If the **projection** option is specified as an object, the following additional
 * projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
+* projection.**domain** - a GeoJSON object to fit in the center of the frame
 * projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
 * projection.**insetLeft** - inset from the left edge of the frame (defaults to inset)
 * projection.**insetRight** - inset from the right edge of the frame (defaults to inset)

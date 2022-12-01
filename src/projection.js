@@ -12,11 +12,13 @@ import {
   geoMercator,
   geoNaturalEarth1,
   geoOrthographic,
+  geoPath,
   geoStereographic,
   geoTransform,
   geoTransverseMercator
 } from "d3";
 import {isObject} from "./options.js";
+import {warn} from "./warnings.js";
 
 export function Projection(
   {
@@ -32,6 +34,7 @@ export function Projection(
   if (projection == null) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
   let options;
+  let domain;
 
   // If the projection was specified as an object with additional options,
   // extract those. The order of precedence for insetTop (and other insets) is:
@@ -41,6 +44,7 @@ export function Projection(
     let inset;
     ({
       type: projection,
+      domain,
       inset,
       insetTop = inset !== undefined ? inset : insetTop,
       insetRight = inset !== undefined ? inset : insetRight,
@@ -62,13 +66,32 @@ export function Projection(
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
 
-  // If there’s no need to translate, return the projection as-is for speed.
-  // TODO Maybe scale to fit features here?
-  const tx = marginLeft + insetLeft;
-  const ty = marginTop + insetTop;
-  if (tx === 0 && ty === 0) return projection;
+  // If there’s no need to translate or scale, return the projection as-is for
+  // speed.
+  let tx = marginLeft + insetLeft;
+  let ty = marginTop + insetTop;
+  if (tx === 0 && ty === 0 && domain == null) return projection;
 
-  // Otherwise wrap the projection stream with a translate transform.
+  // Otherwise wrap the projection stream with a suitable transform. If a domain
+  // is specified, fit the projection to the frame. Otherwise, translate.
+  if (domain) {
+    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
+    const kx = dx / (x1 - x0);
+    const ky = dy / (y1 - y0);
+    const k = Math.min(kx, ky);
+    if (k > 0) {
+      tx -= (k === kx ? x0 * k : ((x0 + x1) * k - dx) / 2);
+      ty -= (k === ky ? y0 * k : ((y0 + y1) * k - dy) / 2);
+      const {stream: affine} = geoTransform({
+        point(x, y) {
+          this.stream.point(x * k + tx, y * k + ty);
+        }
+      });
+      return {stream: (s) => projection.stream(affine(s))};
+    }
+    warn(`The projection could not be fit to the specified domain. Using the default scale.`);
+  }
+
   const {stream: translate} = geoTransform({
     point(x, y) {
       this.stream.point(x + tx, y + ty);
