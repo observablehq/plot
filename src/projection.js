@@ -80,8 +80,8 @@ export function Projection(
     const ky = dy / (y1 - y0);
     const k = Math.min(kx, ky);
     if (k > 0) {
-      tx -= (k === kx ? x0 * k : ((x0 + x1) * k - dx) / 2);
-      ty -= (k === ky ? y0 * k : ((y0 + y1) * k - dy) / 2);
+      tx -= k === kx ? x0 * k : ((x0 + x1) * k - dx) / 2;
+      ty -= k === ky ? y0 * k : ((y0 + y1) * k - dy) / 2;
       const {stream: affine} = geoTransform({
         point(x, y) {
           this.stream.point(x * k + tx, y * k + ty);
@@ -116,17 +116,17 @@ function namedProjection(projection) {
     case "albers-usa":
       return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
     case "albers":
-      return scaleProjection(geoAlbers, 0.7463, 0.4673);
+      return conicProjection(geoAlbers, 0.7463, 0.4673);
     case "azimuthal-equal-area":
       return scaleProjection(geoAzimuthalEqualArea, 4, 4);
     case "azimuthal-equidistant":
       return scaleProjection(geoAzimuthalEquidistant, tau, tau);
     case "conic-conformal":
-      return scaleProjection(geoConicConformal, tau, tau);
+      return conicProjection(geoConicConformal, tau, tau);
     case "conic-equal-area":
-      return scaleProjection(geoConicEqualArea, 6.1702, 2.9781);
+      return conicProjection(geoConicEqualArea, 6.1702, 2.9781);
     case "conic-equidistant":
-      return scaleProjection(geoConicEquidistant, 7.312, 3.6282);
+      return conicProjection(geoConicEquidistant, 7.312, 3.6282);
     case "equal-earth":
       return scaleProjection(geoEqualEarth, 5.4133, 2.6347);
     case "equirectangular":
@@ -151,13 +151,27 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, parallels, precision = 0.15}) => {
+  return ({width, height, rotate, precision = 0.15}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
-    if (parallels != null) projection.parallels?.(parallels);
     if (rotate != null) projection.rotate?.(rotate);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
+    return projection;
+  };
+}
+
+function conicProjection(createProjection, kx, ky) {
+  createProjection = scaleProjection(createProjection, kx, ky);
+  return (options) => {
+    const {parallels, domain, width, height} = options;
+    const projection = createProjection(options);
+    if (parallels != null) {
+      projection.parallels(parallels);
+      if (domain === undefined) {
+        projection.fitSize([width, height], {type: "Sphere"});
+      }
+    }
     return projection;
   };
 }

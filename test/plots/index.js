@@ -173,6 +173,8 @@ export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-
 export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.js";
 export {default as polylinear} from "./polylinear.js";
 export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js";
+export {default as projectionFitConic} from "./projection-fit-conic.js";
+export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomQuantile} from "./random-quantile.js";
@@ -225,7 +227,6 @@ export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as travelersCovidDrop} from "./travelers-covid-drop.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
 export {default as untypedDateBin} from "./untyped-date-bin.js";
-export {default as usAlbers} from "./us-albers.js";
 export {default as usCongressAge} from "./us-congress-age.js";
 export {default as usCongressAgeColorExplicit} from "./us-congress-age-color-explicit.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
