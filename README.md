@@ -320,7 +320,6 @@ The top-level **projection** option applies a two-dimensional (often geographic)
 * *stereographic* - the stereographic projection
 * *mercator* - the Mercator projection
 * *equal-earth* - the [Equal Earth projection](https://en.wikipedia.org/wiki/Equal_Earth_projection) by Šavrič *et al.*
-* *natural-earth* - the [Natural Earth projection](https://en.wikipedia.org/wiki/Natural_Earth_projection) by Patterson
 * *azimuthal-equal-area* - the azimuthal equal-area projection
 * *azimuthal-equidistant* - the azimuthal equidistant projection
 * *conic-conformal* - the conic conformal projection
