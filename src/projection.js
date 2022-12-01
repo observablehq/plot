@@ -10,7 +10,6 @@ import {
   geoEquirectangular,
   geoGnomonic,
   geoMercator,
-  geoNaturalEarth1,
   geoOrthographic,
   geoPath,
   geoStereographic,
@@ -139,8 +138,6 @@ function namedProjection(projection) {
       return reflectY;
     case "mercator":
       return scaleProjection(geoMercator, tau, tau);
-    case "natural-earth":
-      return scaleProjection(geoNaturalEarth1, 5.4708, 2.8448);
     case "orthographic":
       return scaleProjection(geoOrthographic, 2, 2);
     case "stereographic":
