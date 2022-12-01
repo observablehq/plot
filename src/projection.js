@@ -55,9 +55,9 @@ export function Projection(
 
   // Compute the frame dimensions and invoke the projection initializer.
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-  const frameWidth = width - marginLeft - marginRight - insetLeft - insetRight;
-  const frameHeight = height - marginTop - marginBottom - insetTop - insetBottom;
-  projection = projection?.({width: frameWidth, height: frameHeight, ...options});
+  const dx = width - marginLeft - marginRight - insetLeft - insetRight;
+  const dy = height - marginTop - marginBottom - insetTop - insetBottom;
+  projection = projection?.({width: dx, height: dy, ...options});
 
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
