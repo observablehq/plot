@@ -10,21 +10,12 @@ export default async function () {
     facet: {marginRight: 70},
     marks: [
       Plot.frame(),
-      Plot.barX(
-        penguins,
-        Plot.groupY(
-          {x: "count"},
-          {
-            y: "species",
-            fill: "sex",
-            fy: "island"
-          }
-        )
-      ),
-      Plot.text(["↞ Torgersen Island only has Adelie penguins!"], {
+      Plot.barX(penguins, Plot.groupY({x: "count"}, {fy: "island", y: "species", fill: "sex"})),
+      Plot.text(["Torgersen Island only has Adelie penguins!"], {
+        fy: ["Torgersen"],
         frameAnchor: "top-right",
-        dx: -10,
-        fy: ["Torgersen"]
+        dy: 4,
+        dx: -4
       })
     ]
   });

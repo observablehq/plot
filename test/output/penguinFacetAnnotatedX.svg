@@ -77,7 +77,7 @@
       <rect x="73.90322580645162" width="77.7258064516129" y="91" height="26" fill="#f28e2c"></rect>
       <rect x="151.6290322580645" width="6.3709677419354875" y="91" height="26" fill="#e15759"></rect>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-9.5,13.5)"></g>
+    <g aria-label="text" text-anchor="end" transform="translate(-3.5,4.5)"></g>
   </g>
   <g aria-label="facet" transform="translate(263,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="168" height="90"></rect>
@@ -88,7 +88,7 @@
       <rect x="43.32258064516129" width="43.32258064516129" y="62" height="26" fill="#f28e2c"></rect>
       <rect x="70.08064516129032" width="1.2741935483871032" y="33" height="26" fill="#e15759"></rect>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-9.5,13.5)"></g>
+    <g aria-label="text" text-anchor="end" transform="translate(-3.5,4.5)"></g>
   </g>
   <g aria-label="facet" transform="translate(450,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="30" width="168" height="90"></rect>
@@ -97,6 +97,6 @@
       <rect x="30.58064516129032" width="29.306451612903224" y="33" height="26" fill="#f28e2c"></rect>
       <rect x="59.887096774193544" width="6.370967741935495" y="33" height="26" fill="#e15759"></rect>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-9.5,13.5)"><text transform="translate(168,75)"><tspan x="0" y="-1.18em">Torgersen Island</tspan><tspan x="0" y="-0.17999999999999994em">only has</tspan><tspan x="0" y="0.8200000000000001em">Adelie</tspan><tspan x="0" y="1.82em">penguins!</tspan></text></g>
+    <g aria-label="text" text-anchor="end" transform="translate(-3.5,4.5)"><text transform="translate(168,30)"><tspan x="0" y="0.71em">Torgersen Island</tspan><tspan x="0" y="1.71em">only has Adelie</tspan><tspan x="0" y="2.71em">penguins!</tspan></text></g>
   </g>
 </svg>

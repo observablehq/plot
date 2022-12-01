@@ -8,21 +8,13 @@ export default async function () {
     x: {insetRight: 10},
     marks: [
       Plot.frame(),
-      Plot.barX(
-        penguins,
-        Plot.groupY(
-          {x: "count"},
-          {
-            y: "species",
-            fill: "sex",
-            fx: "island"
-          }
-        )
-      ),
-      Plot.text(["Torgersen Island\nonly has\nAdelie\npenguins!"], {
-        frameAnchor: "right",
-        dx: -10,
-        fx: ["Torgersen"]
+      Plot.barX(penguins, Plot.groupY({x: "count"}, {fx: "island", y: "species", fill: "sex"})),
+      Plot.text(["Torgersen Island only has Adelie penguins!"], {
+        fx: ["Torgersen"],
+        frameAnchor: "top-right",
+        dy: 4,
+        dx: -4,
+        lineWidth: 10
       })
     ]
   });
