@@ -225,6 +225,7 @@ export {default as travelersYearOverYear} from "./travelers-year-over-year.js";
 export {default as travelersCovidDrop} from "./travelers-covid-drop.js";
 export {default as uniformRandomDifference} from "./uniform-random-difference.js";
 export {default as untypedDateBin} from "./untyped-date-bin.js";
+export {default as usAlbers} from "./us-albers.js";
 export {default as usCongressAge} from "./us-congress-age.js";
 export {default as usCongressAgeColorExplicit} from "./us-congress-age-color-explicit.js";
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
