@@ -9,11 +9,11 @@ import {
   geoEqualEarth,
   geoEquirectangular,
   geoGnomonic,
-  geoIdentity,
   geoMercator,
   geoNaturalEarth1,
   geoOrthographic,
   geoStereographic,
+  geoTransform,
   geoTransverseMercator
 } from "d3";
 import {isObject} from "./options.js";
@@ -37,10 +37,15 @@ export function maybeProjection(projection, dimensions) {
     ...options
   });
   if (projection == null) return;
-  // wrap the projection stream to shift its origin to <marginLeft, marginTop>
-  if (marginLeft + insetLeft === 0 && marginTop + insetTop === 0) return projection;
-  const shiftStream = geoIdentity().translate([marginLeft + insetLeft, marginTop + insetTop]).stream;
-  return {stream: (s) => projection.stream(shiftStream(s))};
+  const tx = marginLeft + insetLeft;
+  const ty = marginTop + insetTop;
+  if (tx === 0 && ty === 0) return projection;
+  const {stream: translate} = geoTransform({
+    point(x, y) {
+      this.stream.point(x + tx, y + ty);
+    }
+  });
+  return {stream: (s) => projection.stream(translate(s))};
 }
 
 export function hasProjection({projection} = {}) {
