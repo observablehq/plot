@@ -175,6 +175,7 @@ export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js
 export {default as projectionFitConic} from "./projection-fit-conic.js";
 export {default as projectionFitIdentity} from "./projection-fit-identity.js";
 export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
+export {default as projectionFitWinding} from "./projection-fit-winding.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomQuantile} from "./random-quantile.js";

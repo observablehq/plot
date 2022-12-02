@@ -71,16 +71,20 @@ export function Projection(
   let ty = marginTop + insetTop;
   if (tx === 0 && ty === 0 && domain == null) return projection;
 
-  // Otherwise wrap the projection stream with a suitable transform. If a domain
-  // is specified, fit the projection to the frame. Otherwise, translate.
+  // Otherwise wrap the projection stream with a suitable transform. When a
+  // domain is specified as a GeoJSON object, fit the projection to center that
+  // object in the (inset) frame. To avoid blowing up the projection to the
+  // Sphere when polygons have an opposite winding order, consider them as lines
+  // insterad of areas.
   if (domain) {
-    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
+    const {stream: noPoly} = geoTransform({polygonStart() {}, polygonEnd() {}});
+    const [[x0, y0], [x1, y1]] = geoPath({stream: (s) => noPoly(projection.stream(s))}).bounds(domain);
     const kx = dx / (x1 - x0);
     const ky = dy / (y1 - y0);
     const k = Math.min(kx, ky);
     if (k > 0) {
-      tx -= k === kx ? x0 * k : ((x0 + x1) * k - dx) / 2;
-      ty -= k === ky ? y0 * k : ((y0 + y1) * k - dy) / 2;
+      tx -= ((x0 + x1) * k - dx) / 2;
+      ty -= ((y0 + y1) * k - dy) / 2;
       const {stream: affine} = geoTransform({
         point(x, y) {
           this.stream.point(x * k + tx, y * k + ty);
@@ -91,6 +95,8 @@ export function Projection(
     warn(`The projection could not be fit to the specified domain. Using the default scale.`);
   }
 
+  // If no domain is specified, or if the projection could not be fit to the
+  // domain, translate to the frame.
   const {stream: translate} = geoTransform({
     point(x, y) {
       this.stream.point(x + tx, y + ty);
