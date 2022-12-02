@@ -18,9 +18,9 @@ export function Channel(data, {scale, type, value, filter, hint}) {
 
 export function Channels(descriptors, data) {
   return Object.fromEntries(
-    Object.entries(descriptors).map(([name, channel]) => {
-      return [name, Channel(data, channel)];
-    })
+    Object.entries(descriptors)
+      .filter(([name]) => name !== "fx" && name !== "fy") // exclude facet channels
+      .map(([name, channel]) => [name, Channel(data, channel)])
   );
 }
 
