@@ -1,4 +1,4 @@
-import {ascending, cross, group, intersection, sum, select, sort} from "d3";
+import {cross, group, intersection, sum, select, sort, InternMap} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -40,30 +40,15 @@ export function plot(options = {}) {
     if (facetState) facetStateByMark.set(mark, facetState);
   }
 
-  // Const a Map from scale name to an array of associated channels, but only
-  // for the fx and fy scales and channels, which are evaluated specially.
-  const facetChannelsByScale = new Map();
-  if (topFacetState) addFacetChannels(facetChannelsByScale, topFacetState);
-  for (const facetState of facetStateByMark.values()) addFacetChannels(facetChannelsByScale, facetState);
+  // Compute a Map from scale name to an array of associated channels.
+  const channelsByScale = new Map();
+  if (topFacetState) addFacetChannels(channelsByScale, topFacetState);
+  for (const facetState of facetStateByMark.values()) addFacetChannels(channelsByScale, facetState);
 
-  // Construct the initial facet scales.
-  const facetScaleDescriptors = Scales(facetChannelsByScale, options);
-  const facetScales = ScaleFunctions(facetScaleDescriptors);
-  let {fx, fy} = facetScales;
-
-  // All the possible facets are given by the domains of fx or fy, or the
-  // cross-product of these domains if we facet by both x and y. We sort them in
-  // order to apply the facet filters afterwards.
-  let fxDomain = fx?.domain();
-  let fyDomain = fy?.domain();
-  let facets =
-    fxDomain && fyDomain
-      ? cross(sort(fxDomain, ascending), sort(fyDomain, ascending)).map(([x, y]) => ({x, y}))
-      : fxDomain
-      ? sort(fxDomain, ascending).map((x) => ({x}))
-      : fyDomain
-      ? sort(fyDomain, ascending).map((y) => ({y}))
-      : undefined;
+  // All the possible facets are given by the domains of the fx or fy scales, or
+  // the cross-product of these domains if we facet by both x and y. We sort
+  // them in order to apply the facet filters afterwards.
+  let facets = Facets(channelsByScale, options);
 
   if (facets !== undefined) {
     const facetsIndex = topFacetState ? filterFacets(facets, topFacetState) : undefined;
@@ -115,9 +100,6 @@ export function plot(options = {}) {
     }
   }
 
-  // A Map from scale name to an array of associated (non-facet) channels.
-  const channelsByScale = new Map();
-
   // If a scale is explicitly declared in options, initialize its associated
   // channels to the empty array; this will guarantee that a corresponding scale
   // will be created later (even if there are no other channels). Ignore facet
@@ -145,29 +127,16 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // TODO Don’t initialize the fx and fy scales twice.
-  for (const [key, channels] of facetChannelsByScale) channelsByScale.set(key, channels);
-
-  // Initalize the scales.
+  // Initalize the scales and axes.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
-
-  // TODO Don’t initialize the fx and fy scales twice.
-  ({fx, fy} = scales);
-  fxDomain = fx?.domain();
-  fyDomain = fy?.domain();
-
-  // Merge the non-facet scales with the previously-computed facet scales.
-  // Object.assign(scaleDescriptors, facetScaleDescriptors);
-  // Object.assign(scales, facetScales);
-
-  // Intialize the axes.
   const axes = Axes(scaleDescriptors, options);
   const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), axes, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   autoAxisTicks(scaleDescriptors, axes);
 
+  const {fx, fy} = scales;
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
   const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
@@ -260,8 +229,8 @@ export function plot(options = {}) {
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
-    const fyDomain = fy && fy.domain();
-    const fxDomain = fx && fx.domain();
+    const fxDomain = fx?.domain();
+    const fyDomain = fy?.domain();
     const selection = select(svg);
     if (fy && axes.y) {
       const axis1 = axes.y,
@@ -333,7 +302,7 @@ export function plot(options = {}) {
     const facetPosition = new Map(facets.map((f, j) => [f, j]));
     selection
       .selectAll()
-      .data(facetKeys(facets, {fx, fy}))
+      .data(facetKeys(facets, fx, fy))
       .enter()
       .append("g")
       .attr("aria-label", "facet")
@@ -543,14 +512,27 @@ function nolabel(axis) {
     : Object.assign(Object.create(axis), {label: undefined});
 }
 
-// Returns keys in order of the associated scale’s domains.
-function facetKeys(facets, {fx, fy}) {
-  const fxI = fx && new Map(fx.domain().map((x, i) => [x, i]));
-  const fyI = fy && new Map(fy.domain().map((y, i) => [y, i]));
-  return sort(
-    facets,
-    ({x: xa, y: ya}, {x: xb, y: yb}) => (fxI && fxI.get(xa) - fxI.get(xb)) || (fyI && fyI.get(ya) - fyI.get(yb))
-  );
+// Returns an array of {x?, y?} objects representing the facet domain.
+function Facets(channelsByScale, options) {
+  const {fx, fy} = Scales(channelsByScale, options);
+  let fxDomain = fx?.scale.domain(); // TODO .sort(ascending)?
+  let fyDomain = fy?.scale.domain(); // TODO .sort(ascending)?
+  return fxDomain && fyDomain
+    ? cross(fxDomain, fyDomain).map(([x, y]) => ({x, y}))
+    : fxDomain
+    ? fxDomain.map((x) => ({x}))
+    : fyDomain
+    ? fyDomain.map((y) => ({y}))
+    : undefined;
+}
+
+// Returns keys in order of the associated scale’s domains. (We don’t want to
+// recompute the keys here because facets may already be filtered, and facets
+// isn’t sorted because it’s constructed prior to the other mark channels.)
+function facetKeys(facets, fx, fy) {
+  const fxI = fx && new InternMap(fx.domain().map((x, i) => [x, i]));
+  const fyI = fy && new InternMap(fy.domain().map((y, i) => [y, i]));
+  return sort(facets, (a, b) => (fxI && fxI.get(a.x) - fxI.get(b.x)) || (fyI && fyI.get(a.y) - fyI.get(b.y)));
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
@@ -649,8 +631,8 @@ function maybeMarkFacet(mark, topFacetState) {
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
 function filterFacets(facets, {fx, fy}) {
-  const X = fx != null && fx.value;
-  const Y = fy != null && fy.value;
+  const X = fx?.value;
+  const Y = fy?.value;
   const index = range(X || Y);
   const gx = X && group(index, (i) => X[i]);
   const gy = Y && group(index, (i) => Y[i]);
