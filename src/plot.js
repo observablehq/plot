@@ -29,28 +29,29 @@ export function plot(options = {}) {
   // Faceting!
   let facets;
 
-  // A map from top-level facet or mark to facet information, including:
-  // * groups - a possibly nested map from facet values to indexes in the data
-  //   array
-  // * fx - a channel to add to the fx scale
-  // * fy - a channel to add to the fy scale
-  // * facetChannelLength - the top-level facet indicates a facet channel length
-  //   to help warn the user if a different data of the same length is used in a
-  //   mark
-  // * facetsIndex - In a second pass, a nested array of indices corresponding
-  //   to the valid facets
-  const facetCollect = new Map();
+  // A map from mark to facet state, including:
+  // groups - a possibly nested map from facet values to indexes in the data array
+  // fx - a channel to add to the fx scale
+  // fy - a channel to add to the fy scale
+  // facetsIndex - a nested array of indices corresponding to the valid facets
+  const facetStateByMark = new Map();
 
   // Collect all facet definitions (top-level facets then mark facets),
   // materialize the associated channels, and derive facet scales.
+  // TODO Rename to topFacetState.
+  // TODO facetChannelLength - the top-level facet indicates a facet channel
+  // length to help warn the user if a different data of the same length is used
+  // in a mark
   const topFacetInfo = topFacetRead(facet);
-  if (topFacetInfo) facetCollect.set(null, topFacetInfo);
 
+  // TODO
   for (const mark of marks) {
     const f = facetRead(mark, facet, topFacetInfo);
-    if (f) facetCollect.set(mark, f);
+    if (f) facetStateByMark.set(mark, f);
   }
-  for (const f of facetCollect.values()) {
+
+  // TODO
+  for (const f of [...facetStateByMark.values(), ...(topFacetInfo ? [topFacetInfo] : [])]) {
     const {fx, fy} = f;
     if (fx) {
       if (!channelsByScale.has("fx")) channelsByScale.set("fx", []);
@@ -86,7 +87,7 @@ export function plot(options = {}) {
       const {facet} = mark;
       if (facet === null) continue;
       const {fx: x, fy: y} = mark;
-      const facetInfo = facetCollect.get(mark);
+      const facetInfo = facetStateByMark.get(mark);
       if (facetInfo === undefined) continue;
 
       // For mark-level facets, compute an index for that mark’s data and options.
@@ -111,7 +112,7 @@ export function plot(options = {}) {
     // the domain. Expunge empty facets, and clear the corresponding elements
     // from the nested index in each mark.
     const nonEmpty = new Set();
-    for (const {facetsIndex} of facetCollect.values()) {
+    for (const {facetsIndex} of facetStateByMark.values()) {
       if (facetsIndex) {
         facetsIndex.forEach((index, i) => {
           if (index?.length > 0) nonEmpty.add(i);
@@ -120,7 +121,7 @@ export function plot(options = {}) {
     }
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
       facets = facets.filter((_, i) => nonEmpty.has(i));
-      for (const state of facetCollect.values()) {
+      for (const state of facetStateByMark.values()) {
         const {facetsIndex} = state;
         //console.warn(facetsIndex);
         if (!facetsIndex) continue;
@@ -149,7 +150,7 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const state = facetCollect.get(mark) || {};
+    const state = facetStateByMark.get(mark) || {};
     const facetsIndex = mark.facet === "exclude" ? excludeIndex(state.facetsIndex) : state.facetsIndex;
     const {data, facets, channels} = mark.initialize(facetsIndex, state);
     applyScaleTransforms(channels, options);
