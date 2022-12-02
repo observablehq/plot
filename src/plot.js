@@ -55,14 +55,12 @@ export function plot(options = {}) {
 
     // Compute a facet index for each mark, parallel to the facets array.
     for (const mark of marks) {
-      const {facet} = mark;
-      if (facet === null) continue;
+      if (mark.facet === null) continue;
       const facetInfo = facetStateByMark.get(mark);
       if (facetInfo === undefined) continue;
 
       // For mark-level facets, compute an index for that mark’s data and options.
-      const {fx, fy} = mark;
-      if (fx !== undefined || fy !== undefined) {
+      if (mark.fx != null || mark.fy != null) {
         facetInfo.facetsIndex = filterFacets(facets, facetInfo);
       }
 
