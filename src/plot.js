@@ -37,13 +37,7 @@ export function plot(options = {}) {
   const facetStateByMark = new Map();
   for (const mark of marks) {
     const facetState = maybeMarkFacet(mark, topFacetState);
-    if (facetState) {
-      const facetChannels = {};
-      if (facetState.fx) facetChannels.fx = facetState.fx;
-      if (facetState.fy) facetChannels.fy = facetState.fy;
-      applyScaleTransforms(facetChannels, options);
-      facetStateByMark.set(mark, facetState);
-    }
+    if (facetState) facetStateByMark.set(mark, facetState);
   }
 
   // Const a Map from scale name to an array of associated channels, but only
@@ -611,6 +605,7 @@ function maybeTopFacet(facet) {
   if (x != null || y != null) {
     const data = arrayify(facet.data);
     if (data == null) throw new Error(`missing facet data`);
+    // TODO Call applyScaleTransforms on the fx and fy channels.
     const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
     const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
     const groups = facetGroups(data, fx, fy);
@@ -632,6 +627,7 @@ function maybeMarkFacet(mark, topFacetState) {
   if (x != null || y != null) {
     const data = arrayify(mark.data);
     if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
+    // TODO Call applyScaleTransforms on the fx and fy channels.
     const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
     const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
     return {fx, fy, groups: facetGroups(data, fx, fy)};
