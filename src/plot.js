@@ -602,19 +602,18 @@ function excludeIndex(index) {
 function maybeTopFacet(facet) {
   if (facet == null) return;
   const {x, y} = facet;
-  if (x != null || y != null) {
-    const data = arrayify(facet.data);
-    if (data == null) throw new Error(`missing facet data`);
-    // TODO Call applyScaleTransforms on the fx and fy channels.
-    const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
-    const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
-    const groups = facetGroups(data, fx, fy);
-    // If the top-level faceting is non-trivial, track the corresponding data
-    // length, in order to compare it for the warning above.
-    const dataLength =
-      groups.size > 1 || (fx && fy && groups.size === 1 && [...groups][0][1].size > 1) ? data.length : undefined;
-    return {fx, fy, groups, data: facet.data, dataLength};
-  }
+  if (x == null && y == null) return;
+  const data = arrayify(facet.data);
+  if (data == null) throw new Error(`missing facet data`);
+  // TODO Call applyScaleTransforms on the fx and fy channels.
+  const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
+  const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
+  const groups = facetGroups(data, fx, fy);
+  // If the top-level faceting is non-trivial, track the corresponding data
+  // length, in order to compare it for the warning above.
+  const dataLength =
+    groups.size > 1 || (fx && fy && groups.size === 1 && [...groups][0][1].size > 1) ? data.length : undefined;
+  return {fx, fy, groups, data: facet.data, dataLength};
 }
 
 // Returns the facet groups, and possibly fx and fy channels, associated with a
