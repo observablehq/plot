@@ -180,7 +180,6 @@ export function plot(options = {}) {
     Object.assign(scales, newScales);
   }
 
-  // TODO Pass facetChannelsByScale here, separately?
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
   // Compute value objects, applying scales and projection as needed.
