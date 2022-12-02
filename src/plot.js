@@ -56,20 +56,20 @@ export function plot(options = {}) {
     // Compute a facet index for each mark, parallel to the facets array.
     for (const mark of marks) {
       if (mark.facet === null) continue;
-      const facetInfo = facetStateByMark.get(mark);
-      if (facetInfo === undefined) continue;
+      const facetState = facetStateByMark.get(mark);
+      if (facetState === undefined) continue;
 
       // For mark-level facets, compute an index for that mark’s data and options.
       if (mark.fx != null || mark.fy != null) {
-        facetInfo.facetsIndex = filterFacets(facets, facetInfo);
+        facetState.facetsIndex = filterFacets(facets, facetState);
       }
 
       // Otherwise, link to the top-level facet information.
       else if (topFacetState !== undefined) {
-        facetInfo.facetsIndex = facetsIndex;
+        facetState.facetsIndex = facetsIndex;
         const {fx, fy} = topFacetState;
-        if (fx !== undefined) facetInfo.fx = fx;
-        if (fy !== undefined) facetInfo.fy = fy;
+        if (fx !== undefined) facetState.fx = fx;
+        if (fy !== undefined) facetState.fy = fy;
       }
     }
 
@@ -82,11 +82,11 @@ export function plot(options = {}) {
     // from the nested index in each mark.
     const nonEmpty = new Set();
     for (const {facetsIndex} of facetStateByMark.values()) {
-      if (facetsIndex) {
-        facetsIndex.forEach((index, i) => {
-          if (index?.length > 0) nonEmpty.add(i);
-        });
-      }
+      facetsIndex?.forEach((index, i) => {
+        if (index?.length > 0) {
+          nonEmpty.add(i);
+        }
+      });
     }
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
       facets = facets.filter((_, i) => nonEmpty.has(i));
