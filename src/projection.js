@@ -75,12 +75,10 @@ export function Projection(
   // is specified, fit the projection to the frame. Otherwise, translate.
   if (domain) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
-    const kx = dx / (x1 - x0);
-    const ky = dy / (y1 - y0);
-    const k = Math.min(kx, ky);
+    const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
-      tx -= k === kx ? x0 * k : ((x0 + x1) * k - dx) / 2;
-      ty -= k === ky ? y0 * k : ((y0 + y1) * k - dy) / 2;
+      tx -= (k * (x0 + x1) - dx) / 2;
+      ty -= (k * (y0 + y1) - dy) / 2;
       const {stream: affine} = geoTransform({
         point(x, y) {
           this.stream.point(x * k + tx, y * k + ty);
