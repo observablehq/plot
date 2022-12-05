@@ -341,7 +341,7 @@ If the **projection** option is specified as an object, the following additional
 * projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
 * projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
-* projection.**domain** - a GeoJSON object to fit in the center of the frame
+* projection.**domain** - a GeoJSON object to fit in the center of the (inset) frame
 * projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
 * projection.**insetLeft** - inset from the left edge of the frame (defaults to inset)
 * projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
@@ -349,7 +349,7 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
 * projection.**clip** - the projection clipping method (defaults to *frame*)
 
-If the projection.**clip** option is *frame* (the default, or equivalently true), the projection will be clipped to the extent of the frame, respecting margins (but not insets); if the clip option is a number, the projection will be clipped to a great circle of the given radius in degrees centered around the rotated origin; if the clip option is null (or equivalently false), the projection will be clipped. Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
+If the projection.**clip** option is *frame* (the default, or equivalently true), the projection will be clipped to the extent of the frame, respecting margins but not insets; if the clip option is a number, the projection will be clipped to a great circle of the given radius in degrees centered around the rotated origin; if the clip option is null (or equivalently false), the projection will not be clipped. Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
 
 ### Color options
 
