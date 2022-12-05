@@ -88,7 +88,7 @@ export function Projection(
         }
       });
     } else {
-      warn(`The projection could not be fit to the specified domain. Using the default scale.`); // TODO fix warning
+      warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
   }
 
