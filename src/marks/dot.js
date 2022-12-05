@@ -1,6 +1,6 @@
 import {path, symbolCircle} from "d3";
 import {create} from "../context.js";
-import {positive} from "../defined.js";
+import {negative, positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
 import {Mark} from "../plot.js";
 import {
@@ -68,6 +68,8 @@ export class Dot extends Mark {
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
+    const {r} = this;
+    if (negative(r)) index = [];
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
@@ -84,7 +86,7 @@ export class Dot extends Mark {
                   selection
                     .attr("cx", X ? (i) => X[i] : cx)
                     .attr("cy", Y ? (i) => Y[i] : cy)
-                    .attr("r", R ? (i) => R[i] : this.r);
+                    .attr("r", R ? (i) => R[i] : r);
                 }
               : (selection) => {
                   const translate =
@@ -106,8 +108,8 @@ export class Dot extends Mark {
                     )
                     .attr("d", (i) => {
                       const p = path(),
-                        r = R ? R[i] : this.r;
-                      (S ? S[i] : this.symbol).draw(p, r * r * Math.PI);
+                        radius = R ? R[i] : r;
+                      (S ? S[i] : this.symbol).draw(p, radius * radius * Math.PI);
                       return p;
                     });
                 }
