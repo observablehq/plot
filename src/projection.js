@@ -66,15 +66,15 @@ export function Projection(
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
 
-  // If there’s no need to transform, return the projection as-is for speed.
+  // Transforms the projection stream in order to:
+  // 1. fit the projection to the frame, if a domain or a clipAngle is
+  //    specified. Otherwise, to translate the default aspect to the frame’s
+  //    origin;
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
-  if (tx === 0 && ty === 0 && domain == null) return projection;
-
-  // Otherwise wrap the projection stream with a suitable transform. If a domain
-  // is specified, fit the projection to the frame. Otherwise, translate.
-  if (domain) {
-    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
+  const fitDomain = domain ?? (options?.clipAngle != null ? {type: "Sphere"} : null);
+  if (fitDomain != null) {
+    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(fitDomain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
@@ -89,11 +89,15 @@ export function Projection(
     warn(`The projection could not be fit to the specified domain. Using the default scale.`);
   }
 
-  const {stream: translate} = geoTransform({
-    point(x, y) {
-      this.stream.point(x + tx, y + ty);
-    }
-  });
+  const translate =
+    tx === 0 && ty === 0
+      ? (s) => s
+      : geoTransform({
+          point(x, y) {
+            this.stream.point(x + tx, y + ty);
+          }
+        }).stream;
+
   return {stream: (s) => projection.stream(translate(s))};
 }
 
@@ -148,10 +152,11 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, precision = 0.15}) => {
+  return ({width, height, rotate, precision = 0.15, clipAngle}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (rotate != null) projection.rotate?.(rotate);
+    if (clipAngle != null) projection.clipAngle?.(clipAngle);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
     return projection;
