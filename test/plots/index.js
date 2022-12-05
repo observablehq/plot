@@ -26,7 +26,6 @@ export {default as availability} from "./availability.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as bandClip} from "./band-clip.js";
 export {default as beckerBarley} from "./becker-barley.js";
-export {default as bertin1953Facets} from "./bertin1953-facets.js";
 export {default as binStrings} from "./bin-strings.js";
 export {default as binTimestamps} from "./bin-timestamps.js";
 export {default as boxplot} from "./boxplot.js";
@@ -173,6 +172,7 @@ export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.j
 export {default as polylinear} from "./polylinear.js";
 export {default as projectionClipAngle} from "./projection-clip-angle.js";
 export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js";
+export {default as projectionFitBertin1953} from "./projection-fit-bertin1953.js";
 export {default as projectionFitConic} from "./projection-fit-conic.js";
 export {default as projectionFitIdentity} from "./projection-fit-identity.js";
 export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
