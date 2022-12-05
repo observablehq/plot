@@ -7,7 +7,7 @@ import mkdirp from "mkdirp";
 const readme = readFileSync("./README.md", "utf-8");
 const docmap = new Map<string, string[]>();
 let doc: {name: string; lines: string[]} | null = null;
-for (const [i, line] of readme.split("\n").entries()) {
+for (const [i, line] of readme.split(/\r?\n/).entries()) {
   if (/<!--\s*jsdoc/.test(line)) {
     let match: RegExpExecArray | null;
     if ((match = /^<!--\s+jsdoc\s+(\w+)\s+-->$/.exec(line))) {
