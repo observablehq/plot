@@ -74,7 +74,7 @@ export function Projection(
   // Otherwise wrap the projection stream with a suitable transform. If a domain
   // is specified, fit the projection to the frame. Otherwise, translate.
   if (domain) {
-    const fitDomain = domain.type ? [domain] : domain;
+    const fitDomain = domain.type ? [domain] : domain === "sphere" ? {type: "Sphere"} : domain;
     let x0 = Infinity,
       y0 = x0,
       x1 = -x0,
