@@ -2812,6 +2812,7 @@ The following named curve methods are supported:
 * *basis-closed* - a closed cubic basis spline
 * *bump-x* - a Bézier curve with horizontal tangents
 * *bump-y* - a Bézier curve with vertical tangents
+* *bundle* - a straightened cubic basis spline (suitable for lines only, not areas)
 * *cardinal* - a cubic cardinal spline (with one-sided differences at the ends)
 * *cardinal-open* - an open cubic cardinal spline
 * *cardinal-closed* - an closed cubic cardinal spline
@@ -2829,7 +2830,7 @@ The following named curve methods are supported:
 
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves).
 
-The tension option only has an effect on cardinal and Catmull–Rom splines (*cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For cardinal splines, it corresponds to [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
+The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
 
 ## Markers
 
