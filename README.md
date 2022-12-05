@@ -2836,6 +2836,7 @@ The following named curve methods are supported:
 * *step* - a piecewise constant function where *y* changes at the midpoint of *x*
 * *step-after* - a piecewise constant function where *y* changes after *x*
 * *step-before* - a piecewise constant function where *x* changes after *y*
+* *geodesic* - a curve for spherical data along the geodesic (available only for the line mark, associated with a spherical projection)
 
 If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves).
 

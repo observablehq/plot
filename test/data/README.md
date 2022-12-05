@@ -19,6 +19,9 @@ https://www.flother.is/2017/olympic-games-data/
 ## barley.csv
 http://search.r-project.org/R/library/lattice/html/barley.html
 
+## beagle.csv
+https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
+
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
 https://www.bls.gov/
