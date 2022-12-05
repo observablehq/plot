@@ -347,9 +347,9 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
 * projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
-* projection.**clipAngle** - clip the spherical data to a circle of the specified radius before projecting, typically used with an azimuthal projection
+* projection.**clip** - the projection clipping method (defaults to *frame*)
 
-The projection is clipped to the frame.
+If the projection.**clip** option is *frame* (the default, or equivalently true), the projection will be clipped to the extent of the frame, respecting margins (but not insets); if the clip option is a number, the projection will be clipped to a great circle of the given radius in degrees centered around the rotated origin; if the clip option is null (or equivalently false), the projection will be clipped. Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
 
 ### Color options
 
