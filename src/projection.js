@@ -74,7 +74,18 @@ export function Projection(
   // Otherwise wrap the projection stream with a suitable transform. If a domain
   // is specified, fit the projection to the frame. Otherwise, translate.
   if (domain) {
-    const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
+    const fitDomain = domain.type ? [domain] : domain;
+    let x0 = Infinity,
+      y0 = x0,
+      x1 = -x0,
+      y1 = x1;
+    for (const domain of fitDomain) {
+      const [[xl, yl], [xh, yh]] = geoPath(projection).bounds(domain);
+      if (xl < x0) x0 = xl;
+      if (xh > x1) x1 = xh;
+      if (yl < y0) y0 = yl;
+      if (yh > y1) y1 = yh;
+    }
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
