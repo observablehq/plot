@@ -7,16 +7,15 @@ export default async function () {
   const domain = feature(world, world.objects.land);
   const width = 600;
   return Plot.plot({
-    width: width,
+    width,
     height: width,
-    margin: -1,
     projection: {
-      type: "azimuthal-equidistant",
+      type: "azimuthal-equal-area",
       rotate: [45, -90],
       domain: {type: "Sphere"},
-      clipAngle: 31,
+      clip: 31,
       inset: -width * (Math.SQRT1_2 - 0.5) // extend to corners instead of edges
     },
-    marks: [Plot.graticule(), Plot.geo(domain, {fill: "#ccc", stroke: "currentColor"})]
+    marks: [Plot.geo(domain, {fill: "#ccc", stroke: "currentColor"}), Plot.graticule()]
   });
 }
