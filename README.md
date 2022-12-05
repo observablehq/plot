@@ -347,6 +347,7 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
 * projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
+* projection.**clipAngle** - restricts the sphere of an azimuthal projection to a circle of the specified radius (in degrees)
 
 ### Color options
 

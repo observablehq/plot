@@ -148,10 +148,11 @@ function namedProjection(projection) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, precision = 0.15}) => {
+  return ({width, height, rotate, precision = 0.15, clipAngle}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (rotate != null) projection.rotate?.(rotate);
+    if (clipAngle != null) projection.clipAngle?.(clipAngle);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
     return projection;
