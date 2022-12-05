@@ -3,6 +3,7 @@ import {
   geoAlbersUsa,
   geoAzimuthalEqualArea,
   geoAzimuthalEquidistant,
+  geoClipRectangle,
   geoConicConformal,
   geoConicEqualArea,
   geoConicEquidistant,
@@ -70,6 +71,8 @@ export function Projection(
   // 1. fit the projection to the frame, if a domain or a clipAngle is
   //    specified. Otherwise, to translate the default aspect to the frame’s
   //    origin;
+  // 2. clip the projection to the frame.
+  const frame = geoClipRectangle(marginLeft, marginTop, width - marginRight, height - marginBottom);
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
   const fitDomain = domain ?? (options?.clipAngle != null ? {type: "Sphere"} : null);
@@ -84,7 +87,7 @@ export function Projection(
           this.stream.point(x * k + tx, y * k + ty);
         }
       });
-      return {stream: (s) => projection.stream(affine(s))};
+      return {stream: (s) => projection.stream(affine(frame(s)))};
     }
     warn(`The projection could not be fit to the specified domain. Using the default scale.`);
   }
@@ -98,7 +101,7 @@ export function Projection(
           }
         }).stream;
 
-  return {stream: (s) => projection.stream(translate(s))};
+  return {stream: (s) => projection.stream(translate(frame(s)))};
 }
 
 export function hasProjection({projection} = {}) {

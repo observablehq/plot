@@ -349,6 +349,8 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
 * projection.**clipAngle** - clip the spherical data to a circle of the specified radius before projecting, typically used with an azimuthal projection
 
+The projection is clipped to the frame.
+
 ### Color options
 
 The normal scale types—*linear*, *sqrt*, *pow*, *log*, *symlog*, and *ordinal*—can be used to encode color. In addition, Plot supports special scale types for color:
