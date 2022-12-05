@@ -13,6 +13,6 @@ export default async function () {
     height: 600,
     inset: 30,
     projection: {type: "azimuthal-equidistant", rotate: [0, 90], domain},
-    marks: [Plot.graticule({clip: "frame"}), Plot.geo(domain, {clip: "frame", fill: "currentColor"}), Plot.frame({})]
+    marks: [Plot.graticule({clip: "frame"}), Plot.geo(domain, {clip: "frame", fill: "currentColor"}), Plot.frame()]
   });
 }
