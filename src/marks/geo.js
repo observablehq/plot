@@ -28,6 +28,7 @@ export class Geo extends Mark {
       withDefaultSort(options),
       defaults
     );
+    if (data?.length === 1 && data[0]?.type === "Sphere") this.isSphere = true; // TODO: is there a cleaner way to pass this up to applyIndirectStyles?
     this.r = cr;
   }
   render(index, scales, channels, dimensions, context) {

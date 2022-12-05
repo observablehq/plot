@@ -323,24 +323,23 @@ export function applyIndirectStyles(selection, mark, scales, dimensions, context
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
-  switch (mark.clip) {
-    case "frame": {
-      const {x, y} = scales;
-      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-      const id = getClipId();
-      selection
-        .attr("clip-path", `url(#${id})`)
-        .append("clipPath")
-        .attr("id", id)
-        .append("rect")
-        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-        .attr("width", width - marginRight - marginLeft)
-        .attr("height", height - marginTop - marginBottom);
-      break;
-    }
-    case "sphere": {
-      const {projection} = context;
+  if (mark.clip === "frame") {
+    const {x, y} = scales;
+    const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+    const id = getClipId();
+    selection
+      .attr("clip-path", `url(#${id})`)
+      .append("clipPath")
+      .attr("id", id)
+      .append("rect")
+      .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
+      .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
+      .attr("width", width - marginRight - marginLeft)
+      .attr("height", height - marginTop - marginBottom);
+  } else {
+    const projection = context?.projection;
+    const clipSphere = projection?.clipSphere;
+    if (mark.clip === "sphere" || (clipSphere && !mark.isSphere)) {
       if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
       const id = getClipId();
       selection
@@ -349,7 +348,6 @@ export function applyIndirectStyles(selection, mark, scales, dimensions, context
         .attr("id", id)
         .append("path")
         .attr("d", geoPath(projection)({type: "Sphere"}));
-      break;
     }
   }
 }

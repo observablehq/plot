@@ -3,6 +3,7 @@ import {
   geoAlbersUsa,
   geoAzimuthalEqualArea,
   geoAzimuthalEquidistant,
+  geoClipRectangle,
   geoConicConformal,
   geoConicEqualArea,
   geoConicEquidistant,
@@ -16,6 +17,7 @@ import {
   geoTransform,
   geoTransverseMercator
 } from "d3";
+import {maybeClip} from "./style.js";
 import {constant, isObject} from "./options.js";
 import {warn} from "./warnings.js";
 
@@ -34,6 +36,7 @@ export function Projection(
   if (typeof projection.stream === "function") return projection; // d3 projection
   let options;
   let domain;
+  let clip;
 
   // If the projection was specified as an object with additional options,
   // extract those. The order of precedence for insetTop (and other insets) is:
@@ -49,6 +52,7 @@ export function Projection(
       insetRight = inset !== undefined ? inset : insetRight,
       insetBottom = inset !== undefined ? inset : insetBottom,
       insetLeft = inset !== undefined ? inset : insetLeft,
+      clip,
       ...options
     } = projection);
     if (projection == null) return;
@@ -66,14 +70,29 @@ export function Projection(
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
 
-  // If there’s no need to transform, return the projection as-is for speed.
-  let tx = marginLeft + insetLeft;
-  let ty = marginTop + insetTop;
-  if (tx === 0 && ty === 0 && domain == null) return projection;
+  // Post-clip is handled downstream after scale & translate. The intent to clip
+  // to sphere can be specified by the projection definition, or by the
+  // projection itself. By default we clip to frame, to avoid bleeding out.
+  clip = maybeClip(clip ?? projection.clip ?? "frame");
+  let clipSphere = false;
+  switch (clip) {
+    case "frame":
+      clip = geoClipRectangle(marginLeft, marginTop, width - marginRight, height - marginBottom);
+      break;
+    case "sphere":
+      clipSphere = true;
+    // eslint-disable-next-line no-fallthrough
+    default:
+      clip = (s) => s;
+  }
 
   // Otherwise wrap the projection stream with a suitable transform. If a domain
-  // is specified, fit the projection to the frame. Otherwise, translate.
-  if (domain) {
+  // is specified, or a clipAngle has been requested, fit the projection to the
+  // frame. Otherwise, translate if necessary.
+  let tx = marginLeft + insetLeft;
+  let ty = marginTop + insetTop;
+  if (options?.clipAngle != null && domain === undefined) domain = {type: "Sphere"};
+  if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
@@ -84,17 +103,21 @@ export function Projection(
           this.stream.point(x * k + tx, y * k + ty);
         }
       });
-      return {stream: (s) => projection.stream(affine(s))};
+      return {stream: (s) => projection.stream(affine(clip(s))), clipSphere};
     }
     warn(`The projection could not be fit to the specified domain. Using the default scale.`);
   }
 
-  const {stream: translate} = geoTransform({
-    point(x, y) {
-      this.stream.point(x + tx, y + ty);
-    }
-  });
-  return {stream: (s) => projection.stream(translate(s))};
+  const translate =
+    tx === 0 && ty === 0
+      ? (s) => s
+      : geoTransform({
+          point(x, y) {
+            this.stream.point(x + tx, y + ty);
+          }
+        }).stream;
+
+  return {stream: (s) => projection.stream(translate(clip(s))), clipSphere};
 }
 
 export function hasProjection({projection} = {}) {
