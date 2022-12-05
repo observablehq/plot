@@ -110,6 +110,12 @@ const tau = 2 * pi;
 
 function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
+    case "identity":
+      return null;
+    case "planar":
+      return constant(planar);
+    case "reflect-y":
+      return constant(reflectY);
     case "albers-usa":
       return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
     case "albers":
@@ -130,10 +136,6 @@ function namedProjection(projection) {
       return scaleProjection(geoEquirectangular, tau, pi);
     case "gnomonic":
       return scaleProjection(geoGnomonic, 3.4641, 3.4641);
-    case "planar":
-      return identity;
-    case "reflect-y":
-      return reflectY;
     case "mercator":
       return scaleProjection(geoMercator, tau, tau);
     case "orthographic":
@@ -158,15 +160,13 @@ function scaleProjection(createProjection, kx, ky) {
   };
 }
 
-const identity = constant({stream: (stream) => stream});
+const planar = {stream: (stream) => stream};
 
-const reflectY = constant(
-  geoTransform({
-    point(x, y) {
-      this.stream.point(x, -y);
-    }
-  })
-);
+const reflectY = geoTransform({
+  point(x, y) {
+    this.stream.point(x, -y);
+  }
+});
 
 function conicProjection(createProjection, kx, ky) {
   createProjection = scaleProjection(createProjection, kx, ky);
@@ -201,5 +201,5 @@ export function applyProjection(values, projection) {
 }
 
 function isIdentityProjection(projection) {
-  return projection == null || projection === "identity";
+  return projection == null || /^identity$/i.test(projection);
 }
