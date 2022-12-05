@@ -347,9 +347,15 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetRight** - inset from the right edge of the frame (defaults to inset)
 * projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
-* projection.**clip** - the projection clipping method (defaults to *frame*)
+* projection.**clip** - the projection clipping method
 
-If the projection.**clip** option is *frame* (the default, or equivalently true), the projection will be clipped to the extent of the frame, respecting margins but not insets; if the clip option is a number, the projection will be clipped to a great circle of the given radius in degrees centered around the rotated origin; if the clip option is null (or equivalently false), the projection will not be clipped. Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
+The following projection clipping methods are supported for projection.**clip**:
+
+* *frame* or true (default) - clip to the extent of the frame (including margins but not insets)
+* a number - clip to a great circle of the given radius in degrees centered around the origin
+* null or false - do not clip
+
+Whereas the mark.**clip** option is implemented using SVG clipping, the projection.**clip** option affects the generated geometry and typically produces smaller SVG output.
 
 ### Color options
 
