@@ -1,13 +1,11 @@
 import * as Plot from "@observablehq/plot";
 
-// The "identity" projection (aka null projection) does not get fit
 export default async function () {
   return Plot.plot({
     width: 640,
     height: 400,
-    style: "overflow: visible;",
     projection: {
-      type: "identity",
+      type: "reflect-y",
       domain: {
         type: "MultiPoint",
         coordinates: [
@@ -20,8 +18,7 @@ export default async function () {
       Plot.geo({
         type: "LineString",
         coordinates: Array.from({length: 400}, (_, i) => [Math.cos(i / 10) * (i / 20), Math.sin(i / 10) * (i / 20)])
-      }),
-      Plot.frame()
+      })
     ]
   });
 }

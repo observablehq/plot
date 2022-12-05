@@ -30,7 +30,7 @@ export function Projection(
   } = {},
   dimensions
 ) {
-  if (projection == null) return;
+  if (isIdentityProjection(projection)) return;
   if (typeof projection.stream === "function") return projection; // d3 projection
   let options;
   let domain;
@@ -51,7 +51,7 @@ export function Projection(
       insetLeft = inset !== undefined ? inset : insetLeft,
       ...options
     } = projection);
-    if (projection == null) return;
+    if (isIdentityProjection(projection)) return;
   }
 
   // For named projections, retrieve the corresponding projection initializer.
@@ -64,7 +64,7 @@ export function Projection(
   projection = projection?.({width: dx, height: dy, ...options});
 
   // The projection initializer might decide to not use a projection.
-  if (projection == null) return;
+  if (isIdentityProjection(projection)) return;
 
   // If there’s no need to transform, return the projection as-is for speed.
   let tx = marginLeft + insetLeft;
@@ -98,11 +98,11 @@ export function Projection(
 }
 
 export function hasProjection({projection} = {}) {
-  if (projection == null) return false;
+  if (isIdentityProjection(projection)) return false;
   if (typeof projection.stream === "function") return true; // d3 projection
   if (isObject(projection)) ({type: projection} = projection);
   if (typeof projection !== "function") projection = namedProjection(projection);
-  return projection != null;
+  return !isIdentityProjection(projection);
 }
 
 const pi = Math.PI;
@@ -130,7 +130,7 @@ function namedProjection(projection) {
       return scaleProjection(geoEquirectangular, tau, pi);
     case "gnomonic":
       return scaleProjection(geoGnomonic, 3.4641, 3.4641);
-    case "identity":
+    case "planar":
       return identity;
     case "reflect-y":
       return reflectY;
@@ -198,4 +198,8 @@ export function applyProjection(values, projection) {
   for (i = 0; i < n; ++i) {
     stream.point(x[i], y[i]);
   }
+}
+
+function isIdentityProjection(projection) {
+  return projection == null || projection === "identity";
 }

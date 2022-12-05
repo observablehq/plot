@@ -174,6 +174,8 @@ export {default as polylinear} from "./polylinear.js";
 export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js";
 export {default as projectionFitConic} from "./projection-fit-conic.js";
 export {default as projectionFitIdentity} from "./projection-fit-identity.js";
+export {default as projectionFitPlanar} from "./projection-fit-planar.js";
+export {default as projectionFitReflectY} from "./projection-fit-reflect-y.js";
 export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
