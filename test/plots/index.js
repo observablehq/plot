@@ -171,6 +171,7 @@ export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-
 export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.js";
 export {default as polylinear} from "./polylinear.js";
 export {default as projectionClipAngle} from "./projection-clip-angle.js";
+export {default as projectionClipAngleFrame} from "./projection-clip-angle-frame.js";
 export {default as projectionFitAntarctica} from "./projection-fit-antarctica.js";
 export {default as projectionFitBertin1953} from "./projection-fit-bertin1953.js";
 export {default as projectionFitConic} from "./projection-fit-conic.js";
