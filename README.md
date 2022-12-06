@@ -2836,9 +2836,9 @@ The following named curve methods are supported:
 * *step* - a piecewise constant function where *y* changes at the midpoint of *x*
 * *step-after* - a piecewise constant function where *y* changes after *x*
 * *step-before* - a piecewise constant function where *x* changes after *y*
-* *geodesic* - a curve for spherical data along the geodesic (available only for the line mark, associated with a spherical projection)
+* *sphere* - for spherical data along the geodesic
 
-If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves).
+If *curve* is a function, it will be invoked with a given *context* in the same fashion as a [D3 curve factory](https://github.com/d3/d3-shape/blob/main/README.md#custom-curves). The *sphere* curve is only available for the [line mark](#line) and requires an associated (spherical) [projection](#projection-options).
 
 The tension option only has an effect on bundle, cardinal and Catmull–Rom splines (*bundle*, *cardinal*, *cardinal-open*, *cardinal-closed*, *catmull-rom*, *catmull-rom-open*, and *catmull-rom-closed*). For bundle splines, it corresponds to [beta](https://github.com/d3/d3-shape/blob/main/README.md#curveBundle_beta); for cardinal splines, [tension](https://github.com/d3/d3-shape/blob/main/README.md#curveCardinal_tension); for Catmull–Rom splines, [alpha](https://github.com/d3/d3-shape/blob/main/README.md#curveCatmullRom_alpha).
 
