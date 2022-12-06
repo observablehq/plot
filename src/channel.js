@@ -72,9 +72,13 @@ export function valueObject(channels, scales, {projection}) {
 
 function maybeApplyProjection(xy, values, cx, cy, projection) {
   switch (xy) {
-    case 3: applyProjection(values, cx, cy, projection); break;
-    case 2: throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
-    case 1: throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
+    case 3:
+      applyProjection(values, cx, cy, projection);
+      break;
+    case 2:
+      throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
+    case 1:
+      throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
   }
 }
 

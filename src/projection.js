@@ -207,8 +207,8 @@ export function applyProjection(values, cx, cy, projection) {
   const x = values[cx];
   const y = values[cy];
   const n = x.length;
-  const X = values[cx] = new Float64Array(n).fill(NaN);
-  const Y = values[cy] = new Float64Array(n).fill(NaN);
+  const X = (values[cx] = new Float64Array(n).fill(NaN));
+  const Y = (values[cy] = new Float64Array(n).fill(NaN));
   let i;
   const stream = projection.stream({
     point(x, y) {
