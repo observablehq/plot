@@ -418,8 +418,8 @@ export function scaleOrder({range, domain = range}) {
 // domain is degenerate and represents only a single value such as [3, 3]; for
 // example, a rect will span the full extent of the chart along a collapsed
 // dimension (whereas a dot will simply be drawn in the center).
-export function isCollapsed(scale, context) {
-  if (scale === undefined) return context?.projection ? false : true; // treat missing scale as collapsed
+export function isCollapsed(scale) {
+  if (scale === undefined) return true; // treat missing scale as collapsed
   const domain = scale.domain();
   const value = scale(domain[0]);
   for (let i = 1, n = domain.length; i < n; ++i) {

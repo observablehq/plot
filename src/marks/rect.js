@@ -55,6 +55,7 @@ export class Rect extends Mark {
     const {x, y} = scales;
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {projection} = context;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
@@ -68,21 +69,25 @@ export class Rect extends Mark {
           .call(applyDirectStyles, this)
           .attr(
             "x",
-            X1 && X2 && !isCollapsed(x, context) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft
+            X1 && X2 && (projection || !isCollapsed(x))
+              ? (i) => Math.min(X1[i], X2[i]) + insetLeft
+              : marginLeft + insetLeft
           )
           .attr(
             "y",
-            Y1 && Y2 && !isCollapsed(y, context) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop
+            Y1 && Y2 && (projection || !isCollapsed(y))
+              ? (i) => Math.min(Y1[i], Y2[i]) + insetTop
+              : marginTop + insetTop
           )
           .attr(
             "width",
-            X1 && X2 && !isCollapsed(x, context)
+            X1 && X2 && (projection || !isCollapsed(x))
               ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
               : width - marginRight - marginLeft - insetRight - insetLeft
           )
           .attr(
             "height",
-            Y1 && Y2 && !isCollapsed(y, context)
+            Y1 && Y2 && (projection || !isCollapsed(y))
               ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
               : height - marginTop - marginBottom - insetTop - insetBottom
           )
