@@ -12,7 +12,20 @@ export default async function () {
     width: 600,
     height: 600,
     inset: 30,
-    projection: {type: "azimuthal-equidistant", rotate: [0, 90], domain},
-    marks: [Plot.graticule({clip: "frame"}), Plot.geo(domain, {clip: "frame", fill: "currentColor"}), Plot.frame()]
+    style: "overflow: visible;",
+    projection: {
+      type: "azimuthal-equidistant",
+      rotate: [0, 90],
+      domain
+    },
+    marks: [
+      Plot.graticule(),
+      Plot.geo(domain, {fill: "currentColor"}),
+      Plot.frame(),
+      // Since we’re using the default clip: "frame" for the projection, these
+      // marks should not be rendered; the projected point is outside the frame.
+      Plot.dot({length: 1}, {x: -90, y: -63}),
+      Plot.text({length: 1}, {x: -90, y: -63, text: ["Do not render"]})
+    ]
   });
 }

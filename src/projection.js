@@ -3,6 +3,7 @@ import {
   geoAlbersUsa,
   geoAzimuthalEqualArea,
   geoAzimuthalEquidistant,
+  geoClipRectangle,
   geoConicConformal,
   geoConicEqualArea,
   geoConicEquidistant,
@@ -34,6 +35,7 @@ export function Projection(
   if (typeof projection.stream === "function") return projection; // d3 projection
   let options;
   let domain;
+  let clip = "frame";
 
   // If the projection was specified as an object with additional options,
   // extract those. The order of precedence for insetTop (and other insets) is:
@@ -49,6 +51,7 @@ export function Projection(
       insetRight = inset !== undefined ? inset : insetRight,
       insetBottom = inset !== undefined ? inset : insetBottom,
       insetLeft = inset !== undefined ? inset : insetLeft,
+      clip = clip,
       ...options
     } = projection);
     if (projection == null) return;
@@ -61,40 +64,44 @@ export function Projection(
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
   const dx = width - marginLeft - marginRight - insetLeft - insetRight;
   const dy = height - marginTop - marginBottom - insetTop - insetBottom;
-  projection = projection?.({width: dx, height: dy, ...options});
+  projection = projection?.({width: dx, height: dy, clip, ...options});
 
   // The projection initializer might decide to not use a projection.
   if (projection == null) return;
+  clip = maybePostClip(clip, marginLeft, marginTop, width - marginRight, height - marginBottom);
 
-  // If there’s no need to transform, return the projection as-is for speed.
+  // Translate the origin to the top-left corner, respecting margins and insets.
   let tx = marginLeft + insetLeft;
   let ty = marginTop + insetTop;
-  if (tx === 0 && ty === 0 && domain == null) return projection;
+  let transform;
 
-  // Otherwise wrap the projection stream with a suitable transform. If a domain
-  // is specified, fit the projection to the frame. Otherwise, translate.
-  if (domain) {
+  // If a domain is specified, fit the projection to the frame.
+  if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
     if (k > 0) {
       tx -= (k * (x0 + x1) - dx) / 2;
       ty -= (k * (y0 + y1) - dy) / 2;
-      const {stream: affine} = geoTransform({
+      transform = geoTransform({
         point(x, y) {
           this.stream.point(x * k + tx, y * k + ty);
         }
       });
-      return {stream: (s) => projection.stream(affine(s))};
+    } else {
+      warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
-    warn(`The projection could not be fit to the specified domain. Using the default scale.`);
   }
 
-  const {stream: translate} = geoTransform({
-    point(x, y) {
-      this.stream.point(x + tx, y + ty);
-    }
-  });
-  return {stream: (s) => projection.stream(translate(s))};
+  transform ??=
+    tx === 0 && ty === 0
+      ? identity()
+      : geoTransform({
+          point(x, y) {
+            this.stream.point(x + tx, y + ty);
+          }
+        });
+
+  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
 }
 
 export function hasProjection({projection} = {}) {
@@ -147,11 +154,23 @@ function namedProjection(projection) {
   }
 }
 
+function maybePostClip(clip, x1, y1, x2, y2) {
+  if (clip === false || clip == null || typeof clip === "number") return (s) => s;
+  if (clip === true) clip = "frame";
+  switch (`${clip}`.toLowerCase()) {
+    case "frame":
+      return geoClipRectangle(x1, y1, x2, y2);
+    default:
+      throw new Error(`unknown projection clip type: ${clip}`);
+  }
+}
+
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, precision = 0.15}) => {
+  return ({width, height, rotate, precision = 0.15, clip}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
     if (rotate != null) projection.rotate?.(rotate);
+    if (typeof clip === "number") projection.clipAngle?.(clip);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
     return projection;
