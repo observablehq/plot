@@ -181,6 +181,10 @@ export {default as projectionFitBertin1953} from "./projection-fit-bertin1953.js
 export {default as projectionFitConic} from "./projection-fit-conic.js";
 export {default as projectionFitIdentity} from "./projection-fit-identity.js";
 export {default as projectionFitUsAlbers} from "./projection-fit-us-albers.js";
+export {default as projectionHeightAlbers} from "./projection-height-albers.js";
+export {default as projectionHeightEqualEarth} from "./projection-height-equal-earth.js";
+export {default as projectionHeightMercator} from "./projection-height-mercator.js";
+export {default as projectionHeightOrthographic} from "./projection-height-orthographic.js";
 export {default as randomBins} from "./random-bins.js";
 export {default as randomBinsXY} from "./random-bins-xy.js";
 export {default as randomQuantile} from "./random-quantile.js";

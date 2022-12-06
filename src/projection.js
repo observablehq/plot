@@ -20,6 +20,10 @@ import {
 import {constant, isObject} from "./options.js";
 import {warn} from "./warnings.js";
 
+const pi = Math.PI;
+const tau = 2 * pi;
+const golden = 1.618;
+
 export function Projection(
   {
     projection,
@@ -76,6 +80,7 @@ export function Projection(
   let transform;
 
   // If a domain is specified, fit the projection to the frame.
+  let ratio = projection.ratio;
   if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
@@ -87,6 +92,7 @@ export function Projection(
           this.stream.point(x * k + tx, y * k + ty);
         }
       });
+      ratio = Math.max(0.5, Math.min(golden, (y1 - y0) / (x1 - x0)));
     } else {
       warn(`Warning: the projection could not be fit to the specified domain; using the default scale.`);
     }
@@ -101,30 +107,19 @@ export function Projection(
           }
         });
 
-  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
+  return {stream: (s) => projection.stream(transform.stream(clip(s))), ratio};
 }
-
-export function hasProjection({projection} = {}) {
-  if (projection == null) return false;
-  if (typeof projection.stream === "function") return true; // d3 projection
-  if (isObject(projection)) ({type: projection} = projection);
-  if (typeof projection !== "function") projection = namedProjection(projection);
-  return projection != null;
-}
-
-const pi = Math.PI;
-const tau = 2 * pi;
 
 function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
     case "albers-usa":
-      return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
+      return scaleProjection(geoAlbersUsa, 0.7463, 0.4673, 610 / 975);
     case "albers":
-      return conicProjection(geoAlbers, 0.7463, 0.4673);
+      return conicProjection(geoAlbers, 0.7463, 0.4673, 610 / 975);
     case "azimuthal-equal-area":
-      return scaleProjection(geoAzimuthalEqualArea, 4, 4);
+      return scaleProjection(geoAzimuthalEqualArea, 4, 4, 1);
     case "azimuthal-equidistant":
-      return scaleProjection(geoAzimuthalEquidistant, tau, tau);
+      return scaleProjection(geoAzimuthalEquidistant, tau, tau, 1);
     case "conic-conformal":
       return conicProjection(geoConicConformal, tau, tau);
     case "conic-equal-area":
@@ -132,23 +127,23 @@ function namedProjection(projection) {
     case "conic-equidistant":
       return conicProjection(geoConicEquidistant, 7.312, 3.6282);
     case "equal-earth":
-      return scaleProjection(geoEqualEarth, 5.4133, 2.6347);
+      return scaleProjection(geoEqualEarth, 5.4133, 2.6347, 0.4867);
     case "equirectangular":
-      return scaleProjection(geoEquirectangular, tau, pi);
+      return scaleProjection(geoEquirectangular, tau, pi, 0.5);
     case "gnomonic":
-      return scaleProjection(geoGnomonic, 3.4641, 3.4641);
+      return scaleProjection(geoGnomonic, 3.4641, 3.4641, 1);
     case "identity":
       return identity;
     case "reflect-y":
       return reflectY;
     case "mercator":
-      return scaleProjection(geoMercator, tau, tau);
+      return scaleProjection(geoMercator, tau, tau, 1);
     case "orthographic":
-      return scaleProjection(geoOrthographic, 2, 2);
+      return scaleProjection(geoOrthographic, 2, 2, 1);
     case "stereographic":
-      return scaleProjection(geoStereographic, 2, 2);
+      return scaleProjection(geoStereographic, 2, 2, 1);
     case "transverse-mercator":
-      return scaleProjection(geoTransverseMercator, tau, tau);
+      return scaleProjection(geoTransverseMercator, tau, tau, 1);
     default:
       throw new Error(`unknown projection type: ${projection}`);
   }
@@ -165,7 +160,7 @@ function maybePostClip(clip, x1, y1, x2, y2) {
   }
 }
 
-function scaleProjection(createProjection, kx, ky) {
+function scaleProjection(createProjection, kx, ky, ratio) {
   return ({width, height, rotate, precision = 0.15, clip}) => {
     const projection = createProjection();
     if (precision != null) projection.precision?.(precision);
@@ -173,6 +168,7 @@ function scaleProjection(createProjection, kx, ky) {
     if (typeof clip === "number") projection.clipAngle?.(clip);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
+    if (ratio > 0) projection.ratio = ratio;
     return projection;
   };
 }
@@ -217,4 +213,16 @@ export function applyProjection(values, projection) {
   for (i = 0; i < n; ++i) {
     stream.point(x[i], y[i]);
   }
+}
+
+// When a projection is specified, try to determine a good value for the
+// projection’s height, if it is a named projection. When we don’t have a way to
+// know, the golden ratio is our best guess.
+export function projectionFitRatio({projection} = {}, geometry) {
+  projection = Projection(
+    {projection},
+    {width: 100, height: 300, marginLeft: 0, marginRight: 0, marginTop: 0, marginBottom: 0}
+  );
+  if (projection == null) return geometry ? golden - 1 : 0;
+  return projection.ratio ?? golden - 1;
 }

@@ -1,4 +1,4 @@
-import {hasProjection} from "./projection.js";
+import {projectionFitRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 
@@ -49,11 +49,17 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   marginLeft = +marginLeft;
 
   // Compute the outer dimensions of the plot. If the top and bottom margins are
-  // specified explicitly, adjust the automatic height accordingly.
+  // specified explicitly, adjust the automatic height accordingly. If a
+  // projection is specified, base the computation on the projection’s fit
+  // ratio.
   let {
     width = 640,
-    height = autoHeight(scales, geometry || hasProjection(options)) +
-      Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
+    height = autoHeightProjection(
+      scales,
+      projectionFitRatio(options, geometry),
+      width - (marginLeft + marginRight),
+      marginTop + marginBottom // actual marginY, for projections
+    ) ?? autoHeight(scales, Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault))
   } = options;
 
   // Coerce the width and height.
@@ -74,8 +80,21 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   };
 }
 
-function autoHeight({y, fy, fx}, geometry) {
+function autoHeight({y, fy, fx}, paddingY) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : geometry ? 17 : 1;
-  return !!(y || fy || geometry) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60 + paddingY;
+}
+
+function autoHeightProjection({fy, fx}, fitRatio, width, marginY) {
+  if (fitRatio > 0) {
+    return (
+      Math.ceil(
+        Math.max(
+          50,
+          Math.min(1200, (width * (fx ? fx.scale.bandwidth() : 1) * fitRatio) / (fy ? fy.scale.bandwidth() : 1))
+        )
+      ) + marginY
+    );
+  }
 }
