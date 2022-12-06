@@ -138,6 +138,8 @@ function namedProjection(projection) {
     case "gnomonic":
       return scaleProjection(geoGnomonic, 3.4641, 3.4641);
     case "identity":
+      return null;
+    case "planar":
       return identity;
     case "reflect-y":
       return reflectY;
