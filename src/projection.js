@@ -202,11 +202,25 @@ function conicProjection(createProjection, kx, ky) {
   };
 }
 
-export function applyProjection(values, projection) {
-  const {x, y} = values;
+// Applies a point-wise projection to the given paired x and y channels.
+export function maybeApplyProjection(cx, cy, channels, values, projection) {
+  const x = channels[cx] && channels[cx].scale === "x";
+  const y = channels[cy] && channels[cy].scale === "y";
+  if (x && y) {
+    applyProjection(cx, cy, values, projection);
+  } else if (x) {
+    throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
+  } else if (y) {
+    throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
+  }
+}
+
+function applyProjection(cx, cy, values, projection) {
+  const x = values[cx];
+  const y = values[cy];
   const n = x.length;
-  const X = (values.x = new Float64Array(n).fill(NaN));
-  const Y = (values.y = new Float64Array(n).fill(NaN));
+  const X = (values[cx] = new Float64Array(n).fill(NaN));
+  const Y = (values[cy] = new Float64Array(n).fill(NaN));
   let i;
   const stream = projection.stream({
     point(x, y) {

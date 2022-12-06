@@ -313,7 +313,7 @@ Top-level options are also supported as shorthand: **grid** (for *x* and *y* onl
 
 ### Projection options
 
-The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with a [geo mark](#geo) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot) and [text](#text). The following built-in named projections are supported:
+The top-level **projection** option applies a two-dimensional (often geographic) projection in place of *x* and *y* scales. It is typically used in conjunction with a [geo mark](#geo) to produce a map, but can be used with any mark that supports *x* and *y* channels, such as [dot](#dot), [text](#text), [arrow](#arrow), and [rect](#rect). For marks that use *x1*, *y1*, *x2*, and *y2* channels, the two projected points are ⟨*x1*, *y1*⟩ and ⟨*x2*, *y2*⟩; otherwise, the projected point is ⟨*x*, *y*⟩. The following built-in named projections are supported:
 
 * *equirectangular* - the equirectangular, or *plate carrée*, projection
 * *orthographic* - the orthographic projection

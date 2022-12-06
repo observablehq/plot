@@ -1,6 +1,6 @@
 import {ascending, descending, rollup, sort} from "d3";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
-import {applyProjection} from "./projection.js";
+import {maybeApplyProjection} from "./projection.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
@@ -26,33 +26,28 @@ export function Channels(descriptors, data) {
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales, {projection}) {
-  let x, y; // names of channels bound to x and y scale
-
   const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       let scale;
       if (scaleName !== undefined) {
-        if (scaleName === "x") x = x === undefined ? name : "*";
-        else if (scaleName === "y") y = y === undefined ? name : "*";
         scale = scales[scaleName];
       }
       return [name, scale === undefined ? value : map(value, scale)];
     })
   );
 
-  // If there is a projection, and there are both x and y channels, and those x
-  // and y channels are associated with the x and y scale respectively (and not
-  // already in screen coordinates as with an initializer), then apply the
-  // projection, replacing the x and y values. Note that the x and y scales
-  // themselves don’t exist if there is a projection, but whether the channels
-  // are associated with scales still determines whether the projection should
-  // apply; think of the projection as a combination xy-scale.
+  // If there is a projection, and there are both x and y channels (or x1 and
+  // y1, or x2 andy2 channels), and those channels are associated with the x and
+  // y scale respectively (and not already in screen coordinates as with an
+  // initializer), then apply the projection, replacing the x and y values. Note
+  // that the x and y scales themselves don’t exist if there is a projection,
+  // but whether the channels are associated with scales still determines
+  // whether the projection should apply; think of the projection as a
+  // combination xy-scale.
   if (projection) {
-    if (x === "x" && y === "y") {
-      applyProjection(values, projection);
-    } else if (x || y) {
-      throw new Error("projection requires x and y channels");
-    }
+    maybeApplyProjection("x", "y", channels, values, projection);
+    maybeApplyProjection("x1", "y1", channels, values, projection);
+    maybeApplyProjection("x2", "y2", channels, values, projection);
   }
 
   return values;
