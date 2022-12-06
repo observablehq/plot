@@ -3,6 +3,7 @@ import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
+import {coerceNumbers} from "../scales.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -23,26 +24,30 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
+const curveSphere = Symbol("sphere");
+
+// For the “sphere” curve, return a symbol instead of a curve implementation;
+// we’ll use d3.geoPath with a projection instead of d3.line to render.
+function LineCurve({curve, tension}) {
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "sphere" ? curveSphere : Curve(curve, tension);
+}
+
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, curve, tension} = options;
-
-    // When the line mark is used with a "sphere" curve and a projection
-    // (supposedly spherical), keep x and y as numbers.
-    const sphere = curve === "sphere";
+    const {x, y, z} = options;
+    const curve = LineCurve(options);
     super(
       data,
       {
-        x: {value: x, scale: sphere ? undefined : "x"},
-        y: {value: y, scale: sphere ? undefined : "y"},
+        x: {value: x, scale: curve === curveSphere ? undefined : "x"}, // unscaled if projected
+        y: {value: y, scale: curve === curveSphere ? undefined : "y"}, // unscaled if projected
         z: {value: maybeZ(options), optional: true}
       },
       options,
       defaults
     );
     this.z = z;
-    if (sphere) this.sphere = true;
-    else this.curve = Curve(curve, tension);
+    this.curve = curve;
     markers(this, options);
   }
   filter(index) {
@@ -50,25 +55,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
-
-    let shape;
-    if (this.sphere) {
-      const {projection} = context;
-      if (projection === undefined) throw new Error("the sphere curve requires a projection");
-      const path = geoPath(projection);
-      shape = (I) =>
-        path({
-          type: "LineString",
-          coordinates: Array.from(I, (i) => [+X[i], +Y[i]]).filter(([x, y]) => !isNaN(x + y))
-        });
-    } else {
-      shape = shapeLine()
-        .curve(this.curve)
-        .defined((i) => i >= 0)
-        .x((i) => X[i])
-        .y((i) => Y[i]);
-    }
-
+    const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -81,10 +68,40 @@ export class Line extends Mark {
           .call(applyDirectStyles, this)
           .call(applyGroupedChannelStyles, this, channels)
           .call(applyGroupedMarkers, this, channels)
-          .attr("d", shape)
+          .attr(
+            "d",
+            curve === curveSphere
+              ? sphereLine(context.projection, X, Y)
+              : shapeLine()
+                  .curve(curve)
+                  .defined((i) => i >= 0)
+                  .x((i) => X[i])
+                  .y((i) => Y[i])
+          )
       )
       .node();
   }
+}
+
+function sphereLine(projection, X, Y) {
+  if (!projection) throw new Error("sphere curve requires a projection");
+  const path = geoPath(projection);
+  X = coerceNumbers(X);
+  Y = coerceNumbers(Y);
+  return (I) => {
+    let line = [];
+    const lines = [line];
+    for (const i of I) {
+      // Check for undefined value; see groupIndex.
+      if (i === -1) {
+        line = [];
+        lines.push(line);
+      } else {
+        line.push([X[i], Y[i]]);
+      }
+    }
+    return path({type: "MultiLineString", coordinates: lines});
+  };
 }
 
 /** @jsdoc line */
