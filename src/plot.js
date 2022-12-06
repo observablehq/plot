@@ -326,7 +326,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", sort, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", sort, dx, dy, clip, ignoreMissing, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -348,6 +348,7 @@ export class Mark {
     this.dx = +dx || 0;
     this.dy = +dy || 0;
     this.clip = maybeClip(clip);
+    this.ignoreMissing = !!ignoreMissing;
   }
   initialize(facets, facetChannels) {
     let data = arrayify(this.data);
@@ -362,7 +363,14 @@ export class Mark {
       const {filter = defined} = channels[name];
       if (filter !== null) {
         const value = values[name];
+        const n = index.length;
         index = index.filter((i) => filter(value[i]));
+        if (!this.ignoreMissing && index.length < n)
+          warn(
+            `The ${this.ariaLabel} mark ignored ${
+              n - index.length
+            } elements with a missing or invalid ${name}. Set ignoreMissing to true in the mark to hide this warning.`
+          );
       }
     }
     return index;
