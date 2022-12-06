@@ -302,6 +302,9 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
+// A special type symbol when the x and y scales are replaced with a projection.
+const typeProjection = {toString: () => "projection"};
+
 function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
@@ -309,7 +312,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   // If a projection is specified, the x- and y-scales are disabled; these
   // channels will be projected rather than scaled. (But still check that none
   // of the associated channels are incompatible with a projection.)
-  if ((key === "x" || key === "y") && projection != null) type = "projection";
+  if ((key === "x" || key === "y") && projection != null) type = typeProjection;
 
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,
@@ -321,7 +324,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot, proj
   }
 
   // If the scale, a channel, or user specified a (consistent) type, return it.
-  if (type === "projection") return;
+  if (type === typeProjection) return;
   if (type !== undefined) return type;
 
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
