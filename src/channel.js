@@ -26,42 +26,56 @@ export function Channels(descriptors, data) {
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales, {projection}) {
-  const x = [],
-    y = []; // names of channels bound to x and y scale
+  let xy = 0, // bitset to test for x and y channel when projecting
+    xy1 = 0, // bitset to test for x1 and y1 channel when projecting
+    xy2 = 0; // bitset to test for x2 and y2 channel when projecting
 
   const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       let scale;
       if (scaleName !== undefined) {
-        if (scaleName === "x") x.push(name);
-        else if (scaleName === "y") y.push(name);
+        if (projection) {
+          if (scaleName === "x") {
+            if (name === "x") xy |= 1;
+            else if (name === "x1") xy1 |= 1;
+            else if (name === "x2") xy2 |= 1;
+            else throw new Error(`projection requires paired x and y channels; ${name} is not paired`);
+          } else if (scaleName === "y") {
+            if (name === "y") xy |= 2;
+            else if (name === "y1") xy1 |= 2;
+            else if (name === "y2") xy2 |= 2;
+            else throw new Error(`projection requires paired x and y channels; ${name} is not paired`);
+          }
+        }
         scale = scales[scaleName];
       }
       return [name, scale === undefined ? value : map(value, scale)];
     })
   );
 
-  // If there is a projection, and there are both x and y channels (or x1/y1 and
-  // x2/y2 channels), and those channels are associated with the x and y scale
-  // respectively (and not already in screen coordinates as with an
+  // If there is a projection, and there are both x and y channels (or x1 and
+  // y1, or x2 andy2 channels), and those channels are associated with the x and
+  // y scale respectively (and not already in screen coordinates as with an
   // initializer), then apply the projection, replacing the x and y values. Note
   // that the x and y scales themselves don’t exist if there is a projection,
   // but whether the channels are associated with scales still determines
   // whether the projection should apply; think of the projection as a
   // combination xy-scale.
   if (projection) {
-    if (
-      x.length > 0 &&
-      x.length === y.length &&
-      x.every((x, i) => ["x", "x1", "x2"].includes(x) && y[i] === x.replace("x", "y"))
-    ) {
-      applyProjection(values, projection);
-    } else if (x.length || y.length) {
-      throw new Error("projection requires x and y channels");
-    }
+    maybeApplyProjection(xy, values, "x", "y", projection);
+    maybeApplyProjection(xy1, values, "x1", "y1", projection);
+    maybeApplyProjection(xy2, values, "x2", "y2", projection);
   }
 
   return values;
+}
+
+function maybeApplyProjection(xy, values, cx, cy, projection) {
+  switch (xy) {
+    case 3: applyProjection(values, cx, cy, projection); break;
+    case 2: throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
+    case 1: throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
+  }
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
