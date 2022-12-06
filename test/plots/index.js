@@ -25,6 +25,7 @@ export {default as athletesWeightCumulative} from "./athletes-weight-cumulative.
 export {default as availability} from "./availability.js";
 export {default as ballotStatusRace} from "./ballot-status-race.js";
 export {default as bandClip} from "./band-clip.js";
+export {default as beagle} from "./beagle.js";
 export {default as beckerBarley} from "./becker-barley.js";
 export {default as binStrings} from "./bin-strings.js";
 export {default as binTimestamps} from "./bin-timestamps.js";

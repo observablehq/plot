@@ -1,8 +1,9 @@
-import {line as shapeLine} from "d3";
+import {geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
+import {coerceNumbers} from "../scales.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -23,21 +24,32 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
+const curveProjection = Symbol("projection");
+
+// For the “projection” curve, return a symbol instead of a curve
+// implementation; we’ll use d3.geoPath instead of d3.line to render.
+function LineCurve({curve, tension}) {
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "projection"
+    ? curveProjection
+    : Curve(curve, tension);
+}
+
 export class Line extends Mark {
   constructor(data, options = {}) {
-    const {x, y, z, curve, tension} = options;
+    const {x, y, z} = options;
+    const curve = LineCurve(options);
     super(
       data,
       {
-        x: {value: x, scale: "x"},
-        y: {value: y, scale: "y"},
+        x: {value: x, scale: curve === curveProjection ? undefined : "x"}, // unscaled if projected
+        y: {value: y, scale: curve === curveProjection ? undefined : "y"}, // unscaled if projected
         z: {value: maybeZ(options), optional: true}
       },
       options,
       defaults
     );
     this.z = z;
-    this.curve = Curve(curve, tension);
+    this.curve = curve;
     markers(this, options);
   }
   filter(index) {
@@ -45,6 +57,7 @@ export class Line extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
+    const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -59,15 +72,37 @@ export class Line extends Mark {
           .call(applyGroupedMarkers, this, channels)
           .attr(
             "d",
-            shapeLine()
-              .curve(this.curve)
-              .defined((i) => i >= 0)
-              .x((i) => X[i])
-              .y((i) => Y[i])
+            curve === curveProjection
+              ? sphereLine(context.projection, X, Y)
+              : shapeLine()
+                  .curve(curve)
+                  .defined((i) => i >= 0)
+                  .x((i) => X[i])
+                  .y((i) => Y[i])
           )
       )
       .node();
   }
+}
+
+function sphereLine(projection, X, Y) {
+  const path = geoPath(projection);
+  X = coerceNumbers(X);
+  Y = coerceNumbers(Y);
+  return (I) => {
+    let line = [];
+    const lines = [line];
+    for (const i of I) {
+      // Check for undefined value; see groupIndex.
+      if (i === -1) {
+        line = [];
+        lines.push(line);
+      } else {
+        line.push([X[i], Y[i]]);
+      }
+    }
+    return path({type: "MultiLineString", coordinates: lines});
+  };
 }
 
 /** @jsdoc line */
