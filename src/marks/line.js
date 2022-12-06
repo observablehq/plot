@@ -24,12 +24,14 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-const curveSphere = Symbol("sphere");
+const curveProjection = Symbol("projection");
 
-// For the “sphere” curve, return a symbol instead of a curve implementation;
-// we’ll use d3.geoPath with a projection instead of d3.line to render.
+// For the “projection” curve, return a symbol instead of a curve
+// implementation; we’ll use d3.geoPath instead of d3.line to render.
 function LineCurve({curve, tension}) {
-  return typeof curve !== "function" && `${curve}`.toLowerCase() === "sphere" ? curveSphere : Curve(curve, tension);
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "projection"
+    ? curveProjection
+    : Curve(curve, tension);
 }
 
 export class Line extends Mark {
@@ -39,8 +41,8 @@ export class Line extends Mark {
     super(
       data,
       {
-        x: {value: x, scale: curve === curveSphere ? undefined : "x"}, // unscaled if projected
-        y: {value: y, scale: curve === curveSphere ? undefined : "y"}, // unscaled if projected
+        x: {value: x, scale: curve === curveProjection ? undefined : "x"}, // unscaled if projected
+        y: {value: y, scale: curve === curveProjection ? undefined : "y"}, // unscaled if projected
         z: {value: maybeZ(options), optional: true}
       },
       options,
@@ -70,7 +72,7 @@ export class Line extends Mark {
           .call(applyGroupedMarkers, this, channels)
           .attr(
             "d",
-            curve === curveSphere
+            curve === curveProjection
               ? sphereLine(context.projection, X, Y)
               : shapeLine()
                   .curve(curve)
@@ -84,7 +86,6 @@ export class Line extends Mark {
 }
 
 function sphereLine(projection, X, Y) {
-  if (!projection) throw new Error("sphere curve requires a projection");
   const path = geoPath(projection);
   X = coerceNumbers(X);
   Y = coerceNumbers(Y);
