@@ -1,6 +1,6 @@
 import {ascending, descending, rollup, sort} from "d3";
 import {first, isIterable, labelof, map, maybeValue, range, valueof} from "./options.js";
-import {applyProjection} from "./projection.js";
+import {maybeApplyProjection} from "./projection.js";
 import {registry} from "./scales/index.js";
 import {maybeReduce} from "./transforms/group.js";
 
@@ -26,27 +26,10 @@ export function Channels(descriptors, data) {
 
 // TODO Use Float64Array for scales with numeric ranges, e.g. position?
 export function valueObject(channels, scales, {projection}) {
-  let xy = 0, // bitset to test for x and y channel when projecting
-    xy1 = 0, // bitset to test for x1 and y1 channel when projecting
-    xy2 = 0; // bitset to test for x2 and y2 channel when projecting
-
   const values = Object.fromEntries(
     Object.entries(channels).map(([name, {scale: scaleName, value}]) => {
       let scale;
       if (scaleName !== undefined) {
-        if (projection) {
-          if (scaleName === "x") {
-            if (name === "x") xy |= 1;
-            else if (name === "x1") xy1 |= 1;
-            else if (name === "x2") xy2 |= 1;
-            else throw new Error(`projection requires paired x and y channels; ${name} is not paired`);
-          } else if (scaleName === "y") {
-            if (name === "y") xy |= 2;
-            else if (name === "y1") xy1 |= 2;
-            else if (name === "y2") xy2 |= 2;
-            else throw new Error(`projection requires paired x and y channels; ${name} is not paired`);
-          }
-        }
         scale = scales[scaleName];
       }
       return [name, scale === undefined ? value : map(value, scale)];
@@ -62,24 +45,12 @@ export function valueObject(channels, scales, {projection}) {
   // whether the projection should apply; think of the projection as a
   // combination xy-scale.
   if (projection) {
-    maybeApplyProjection(xy, values, "x", "y", projection);
-    maybeApplyProjection(xy1, values, "x1", "y1", projection);
-    maybeApplyProjection(xy2, values, "x2", "y2", projection);
+    maybeApplyProjection("x", "y", channels, values, projection);
+    maybeApplyProjection("x1", "y1", channels, values, projection);
+    maybeApplyProjection("x2", "y2", channels, values, projection);
   }
 
   return values;
-}
-
-function maybeApplyProjection(xy, values, cx, cy, projection) {
-  switch (xy) {
-    case 3:
-      applyProjection(values, cx, cy, projection);
-      break;
-    case 2:
-      throw new Error(`projection requires paired x and y channels; ${cy} is missing ${cx}`);
-    case 1:
-      throw new Error(`projection requires paired x and y channels; ${cx} is missing ${cy}`);
-  }
 }
 
 // Note: mutates channel.domain! This is set to a function so that it is lazily
