@@ -15,7 +15,7 @@ export default async function () {
     marks: [
       Plot.geo(land, {fill: "currentColor"}),
       Plot.graticule(),
-      Plot.line(beagle, {stroke: (d, i) => i, z: null, curve: "projection"}),
+      Plot.line(beagle, {stroke: (d, i) => i, z: null, curve: "projected"}),
       Plot.sphere()
     ]
   });
