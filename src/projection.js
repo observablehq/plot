@@ -23,6 +23,7 @@ import {warn} from "./warnings.js";
 const pi = Math.PI;
 const tau = 2 * pi;
 const golden = 1.618;
+const Ratio = Symbol("projection-ratio");
 
 export function Projection(
   {
@@ -80,7 +81,7 @@ export function Projection(
   let transform;
 
   // If a domain is specified, fit the projection to the frame.
-  let ratio = projection.ratio;
+  let ratio = projection[Ratio];
   if (domain != null) {
     const [[x0, y0], [x1, y1]] = geoPath(projection).bounds(domain);
     const k = Math.min(dx / (x1 - x0), dy / (y1 - y0));
@@ -168,7 +169,7 @@ function scaleProjection(createProjection, kx, ky, ratio) {
     if (typeof clip === "number") projection.clipAngle?.(clip);
     projection.scale(Math.min(width / kx, height / ky));
     projection.translate([width / 2, height / 2]);
-    if (ratio > 0) projection.ratio = ratio;
+    if (ratio > 0) projection[Ratio] = ratio;
     return projection;
   };
 }
