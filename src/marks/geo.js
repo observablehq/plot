@@ -1,4 +1,4 @@
-import {geoGraticule10, geoPath} from "d3";
+import {geoGraticule10, geoPath, geoTransform} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {identity, maybeNumberChannel} from "../options.js";
@@ -32,7 +32,7 @@ export class Geo extends Mark {
   }
   render(index, scales, channels, dimensions, context) {
     const {geometry: G, r: R} = channels;
-    const path = geoPath(context.projection);
+    const path = geoPath(context.projection ?? scaleProjection(scales));
     const {r} = this;
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);
@@ -49,6 +49,20 @@ export class Geo extends Mark {
           .call(applyChannelStyles, this, channels);
       })
       .node();
+  }
+}
+
+// If no projection is specified, default to a projection that passes points
+// through the x and y scales, if any.
+function scaleProjection({x: X, y: Y}) {
+  if (X || Y) {
+    X ??= (x) => x;
+    Y ??= (y) => y;
+    return geoTransform({
+      point(x, y) {
+        this.stream.point(X(x), Y(y));
+      }
+    });
   }
 }
 
