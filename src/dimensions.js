@@ -1,4 +1,4 @@
-import {projectionFitRatio} from "./projection.js";
+import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 
@@ -56,7 +56,7 @@ export function Dimensions(scales, geometry, axes, options = {}) {
     width = 640,
     height = (autoHeightProjection(
       scales,
-      projectionFitRatio(options, geometry),
+      projectionAspectRatio(options, geometry),
       640 - marginLeftDefault - marginRightDefault,
       marginTopDefault + marginBottomDefault
     ) ?? autoHeight(scales)) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)

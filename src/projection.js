@@ -61,7 +61,7 @@ export function Projection(
     if (projection == null) return;
   }
 
-  // For named projections, retrieve the corresponding projection initializer and default aspect ratio.
+  // For named projections, retrieve the corresponding projection initializer.
   if (typeof projection !== "function") ({type: projection} = namedProjection(projection));
 
   // Compute the frame dimensions and invoke the projection initializer.
@@ -169,12 +169,12 @@ function scaleProjection(createProjection, kx, ky) {
       projection.translate([width / 2, height / 2]);
       return projection;
     },
-    ratio: ky / kx
+    aspectRatio: ky / kx
   };
 }
 
 function conicProjection(createProjection, kx, ky) {
-  const {type, ratio} = scaleProjection(createProjection, kx, ky);
+  const {type, aspectRatio} = scaleProjection(createProjection, kx, ky);
   return {
     type: (options) => {
       const {parallels, domain, width, height} = options;
@@ -187,7 +187,7 @@ function conicProjection(createProjection, kx, ky) {
       }
       return projection;
     },
-    ratio
+    aspectRatio
   };
 }
 
@@ -235,11 +235,11 @@ function applyProjection(cx, cy, values, projection) {
 // When a projection is specified, try to determine a good value for the
 // projection’s height, if it is a named projection. When we don’t have a way to
 // know, the golden ratio is our best guess.
-export function projectionFitRatio({projection} = {}, geometry) {
+export function projectionAspectRatio({projection} = {}, geometry) {
   if (isObject(projection)) projection = projection.type;
   if (typeof projection === "string") {
-    const {ratio} = namedProjection(projection);
-    if (ratio) return ratio;
+    const {aspectRatio} = namedProjection(projection);
+    if (aspectRatio) return aspectRatio;
   }
   return geometry ? golden - 1 : 0;
 }
