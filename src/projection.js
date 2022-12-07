@@ -62,7 +62,7 @@ export function Projection(
   }
 
   // For named projections, retrieve the corresponding projection initializer and default aspect ratio.
-  if (typeof projection !== "function") ({projection} = namedProjection(projection));
+  if (typeof projection !== "function") ({type: projection} = namedProjection(projection));
 
   // Compute the frame dimensions and invoke the projection initializer.
   const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
@@ -111,37 +111,37 @@ export function Projection(
 function namedProjection(projection) {
   switch (`${projection}`.toLowerCase()) {
     case "albers-usa":
-      return {projection: scaleProjection(geoAlbersUsa, 0.7463, 0.4673), ratio: 610 / 975};
+      return scaleProjection(geoAlbersUsa, 0.7463, 0.4673);
     case "albers":
-      return {projection: conicProjection(geoAlbers, 0.7463, 0.4673), ratio: 610 / 975};
+      return conicProjection(geoAlbers, 0.7463, 0.4673);
     case "azimuthal-equal-area":
-      return {projection: scaleProjection(geoAzimuthalEqualArea, 4, 4), ratio: 1};
+      return scaleProjection(geoAzimuthalEqualArea, 4, 4);
     case "azimuthal-equidistant":
-      return {projection: scaleProjection(geoAzimuthalEquidistant, tau, tau), ratio: 1};
+      return scaleProjection(geoAzimuthalEquidistant, tau, tau);
     case "conic-conformal":
-      return {projection: conicProjection(geoConicConformal, tau, tau)};
+      return conicProjection(geoConicConformal, tau, tau);
     case "conic-equal-area":
-      return {projection: conicProjection(geoConicEqualArea, 6.1702, 2.9781)};
+      return conicProjection(geoConicEqualArea, 6.1702, 2.9781);
     case "conic-equidistant":
-      return {projection: conicProjection(geoConicEquidistant, 7.312, 3.6282)};
+      return conicProjection(geoConicEquidistant, 7.312, 3.6282);
     case "equal-earth":
-      return {projection: scaleProjection(geoEqualEarth, 5.4133, 2.6347), ratio: 0.4867};
+      return scaleProjection(geoEqualEarth, 5.4133, 2.6347);
     case "equirectangular":
-      return {projection: scaleProjection(geoEquirectangular, tau, pi), ratio: 0.5};
+      return scaleProjection(geoEquirectangular, tau, pi);
     case "gnomonic":
-      return {projection: scaleProjection(geoGnomonic, 3.4641, 3.4641)};
+      return scaleProjection(geoGnomonic, 3.4641, 3.4641);
     case "identity":
-      return {projection: identity};
+      return {type: identity};
     case "reflect-y":
-      return {projection: reflectY};
+      return {type: reflectY};
     case "mercator":
-      return {projection: scaleProjection(geoMercator, tau, tau), ratio: 1};
+      return scaleProjection(geoMercator, tau, tau);
     case "orthographic":
-      return {projection: scaleProjection(geoOrthographic, 2, 2), ratio: 1};
+      return scaleProjection(geoOrthographic, 2, 2);
     case "stereographic":
-      return {projection: scaleProjection(geoStereographic, 2, 2)};
+      return scaleProjection(geoStereographic, 2, 2);
     case "transverse-mercator":
-      return {projection: scaleProjection(geoTransverseMercator, tau, tau), ratio: 1};
+      return scaleProjection(geoTransverseMercator, tau, tau);
     default:
       throw new Error(`unknown projection type: ${projection}`);
   }
@@ -159,14 +159,35 @@ function maybePostClip(clip, x1, y1, x2, y2) {
 }
 
 function scaleProjection(createProjection, kx, ky) {
-  return ({width, height, rotate, precision = 0.15, clip}) => {
-    const projection = createProjection();
-    if (precision != null) projection.precision?.(precision);
-    if (rotate != null) projection.rotate?.(rotate);
-    if (typeof clip === "number") projection.clipAngle?.(clip);
-    projection.scale(Math.min(width / kx, height / ky));
-    projection.translate([width / 2, height / 2]);
-    return projection;
+  return {
+    type: ({width, height, rotate, precision = 0.15, clip}) => {
+      const projection = createProjection();
+      if (precision != null) projection.precision?.(precision);
+      if (rotate != null) projection.rotate?.(rotate);
+      if (typeof clip === "number") projection.clipAngle?.(clip);
+      projection.scale(Math.min(width / kx, height / ky));
+      projection.translate([width / 2, height / 2]);
+      return projection;
+    },
+    ratio: ky / kx
+  };
+}
+
+function conicProjection(createProjection, kx, ky) {
+  const {type, ratio} = scaleProjection(createProjection, kx, ky);
+  return {
+    type: (options) => {
+      const {parallels, domain, width, height} = options;
+      const projection = type(options);
+      if (parallels != null) {
+        projection.parallels(parallels);
+        if (domain === undefined) {
+          projection.fitSize([width, height], {type: "Sphere"});
+        }
+      }
+      return projection;
+    },
+    ratio
   };
 }
 
@@ -179,21 +200,6 @@ const reflectY = constant(
     }
   })
 );
-
-function conicProjection(createProjection, kx, ky) {
-  createProjection = scaleProjection(createProjection, kx, ky);
-  return (options) => {
-    const {parallels, domain, width, height} = options;
-    const projection = createProjection(options);
-    if (parallels != null) {
-      projection.parallels(parallels);
-      if (domain === undefined) {
-        projection.fitSize([width, height], {type: "Sphere"});
-      }
-    }
-    return projection;
-  };
-}
 
 // Applies a point-wise projection to the given paired x and y channels.
 export function maybeApplyProjection(cx, cy, channels, values, projection) {
