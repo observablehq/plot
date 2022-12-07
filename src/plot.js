@@ -17,6 +17,7 @@ import {
   where,
   yes
 } from "./options.js";
+import {maybeProject} from "./projection.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
 import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
@@ -169,9 +170,16 @@ export function plot(options = {}) {
 
   autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
 
-  // Compute value objects, applying scales and projection as needed.
+  // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
-    state.values = valueObject(state.channels, scales, context);
+    state.values = valueObject(state.channels, scales);
+  }
+
+  // Apply projection as needed.
+  if (context.projection) {
+    for (const [mark, state] of stateByMark) {
+      mark.project(state.channels, state.values, context);
+    }
   }
 
   const {width, height} = dimensions;
@@ -366,6 +374,19 @@ export class Mark {
       }
     }
     return index;
+  }
+  // If there is a projection, and there are both x and y channels (or x1 and
+  // y1, or x2 and y2 channels), and those channels are associated with the x
+  // and y scale respectively (and not already in screen coordinates as with an
+  // initializer), then apply the projection, replacing the x and y values. Note
+  // that the x and y scales themselves don’t exist if there is a projection,
+  // but whether the channels are associated with scales still determines
+  // whether the projection should apply; think of the projection as a
+  // combination xy-scale.
+  project(channels, values, context) {
+    maybeProject("x", "y", channels, values, context);
+    maybeProject("x1", "y1", channels, values, context);
+    maybeProject("x2", "y2", channels, values, context);
   }
   plot({marks = [], ...options} = {}) {
     return plot({...options, marks: [...marks, this]});

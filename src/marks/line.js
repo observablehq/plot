@@ -1,4 +1,4 @@
-import {geoPath, line as shapeLine} from "d3";
+import {curveLinear, geoPath, line as shapeLine} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {indexOf, identity, maybeTuple, maybeZ} from "../options.js";
@@ -24,36 +24,44 @@ const defaults = {
   strokeMiterlimit: 1
 };
 
-const curveProjected = Symbol("projected");
+// This is a special built-in curve that will use d3.geoPath when there is a
+// projection, and the linear curve when there is not. You can explicitly
+// opt-out of d3.geoPath and instead use d3.line with the "linear" curve.
+function curveAuto(context) {
+  return curveLinear(context);
+}
 
-// For the “projected” curve, return a symbol instead of a curve
-// implementation; we’ll use d3.geoPath instead of d3.line to render.
-function LineCurve({curve, tension}) {
-  return typeof curve !== "function" && `${curve}`.toLowerCase() === "projected"
-    ? curveProjected
-    : Curve(curve, tension);
+// For the “auto” curve, return a symbol instead of a curve implementation;
+// we’ll use d3.geoPath instead of d3.line to render if there’s a projection.
+function LineCurve({curve = curveAuto, tension}) {
+  return typeof curve !== "function" && `${curve}`.toLowerCase() === "auto" ? curveAuto : Curve(curve, tension);
 }
 
 export class Line extends Mark {
   constructor(data, options = {}) {
     const {x, y, z} = options;
-    const curve = LineCurve(options);
     super(
       data,
       {
-        x: {value: x, scale: curve === curveProjected ? undefined : "x"}, // unscaled if projected
-        y: {value: y, scale: curve === curveProjected ? undefined : "y"}, // unscaled if projected
+        x: {value: x, scale: "x"},
+        y: {value: y, scale: "y"},
         z: {value: maybeZ(options), optional: true}
       },
       options,
       defaults
     );
     this.z = z;
-    this.curve = curve;
+    this.curve = LineCurve(options);
     markers(this, options);
   }
   filter(index) {
     return index;
+  }
+  project(channels, values, context) {
+    // For the auto curve, projection is handled at render.
+    if (this.curve !== curveAuto) {
+      super.project(channels, values, context);
+    }
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y} = channels;
@@ -72,7 +80,7 @@ export class Line extends Mark {
           .call(applyGroupedMarkers, this, channels)
           .attr(
             "d",
-            curve === curveProjected
+            curve === curveAuto && context.projection
               ? sphereLine(context.projection, X, Y)
               : shapeLine()
                   .curve(curve)

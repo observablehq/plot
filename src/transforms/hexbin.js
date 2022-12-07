@@ -4,6 +4,7 @@ import {sqrt3} from "../symbols.js";
 import {isNoneish, number, valueof} from "../options.js";
 import {initializer} from "./basic.js";
 import {hasOutput, maybeGroup, maybeOutputs, maybeSubgroup} from "./group.js";
+import {maybeProject} from "../projection.js";
 
 // We don’t want the hexagons to align with the edges of the plot frame, as that
 // would cause extreme x-values (the upper bound of the default x-scale domain)
@@ -31,15 +32,20 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
   if (options.symbol === undefined) options.symbol = "hexagon";
   if (options.r === undefined && !hasOutput(outputs, "r")) options.r = binWidth / 2;
 
-  return initializer(options, (data, facets, {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q}, scales, _, context) => {
+  return initializer(options, (data, facets, channels, scales, _, context) => {
+    let {x: X, y: Y, z: Z, fill: F, stroke: S, symbol: Q} = channels;
     if (X === undefined) throw new Error("missing channel: x");
     if (Y === undefined) throw new Error("missing channel: y");
 
-    // Extract the scaled (or projected!) values for the x and y channels.
-    ({x: X, y: Y} = valueObject({x: X, y: Y}, scales, context));
+    // Extract the (possibly) scaled values for the x and y channels.
+    const position = valueObject({x: X, y: Y}, scales);
+
+    // Apply the projection.
+    if (context.projection) maybeProject("x", "y", channels, position, context);
 
     // Coerce the x and y channels to numbers (so that null is properly
     // treated as an undefined value rather than being coerced to zero).
+    ({x: X, y: Y} = position);
     X = coerceNumbers(X);
     Y = coerceNumbers(Y);
 
@@ -84,7 +90,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
     }
 
     // Construct the output channels, and populate the radius scale hint.
-    const channels = {
+    const binChannels = {
       x: {value: BX},
       y: {value: BY},
       ...(Z && {z: {value: GZ}}),
@@ -99,7 +105,7 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
       )
     };
 
-    return {data, facets: binFacets, channels};
+    return {data, facets: binFacets, channels: binChannels};
   });
 }
 
