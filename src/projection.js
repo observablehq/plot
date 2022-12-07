@@ -232,14 +232,14 @@ function applyProjection(cx, cy, values, projection) {
   }
 }
 
-// When a projection is specified, try to determine a good value for the
-// projection’s height, if it is a named projection. When we don’t have a way to
-// know, the golden ratio is our best guess.
-export function projectionAspectRatio({projection} = {}, geometry) {
+// When a named projection is specified, we can use its natural aspect ratio to
+// determine a good value for the projection’s height based on the desired
+// width. When we don’t have a way to know, the golden ratio is our best guess.
+export function projectionAspectRatio(projection, geometry) {
   if (isObject(projection)) projection = projection.type;
   if (typeof projection === "string") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
   }
-  return geometry ? golden - 1 : 0;
+  if (geometry) return golden - 1;
 }

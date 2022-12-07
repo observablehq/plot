@@ -49,17 +49,16 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   marginLeft = +marginLeft;
 
   // Compute the outer dimensions of the plot. If the top and bottom margins are
-  // specified explicitly, adjust the automatic height accordingly. If a
-  // projection is specified, base the computation on the projection’s default
-  // fit ratio.
+  // specified explicitly, adjust the automatic height accordingly.
   let {
     width = 640,
-    height = (autoHeightProjection(
-      scales,
-      projectionAspectRatio(options, geometry),
-      640 - marginLeftDefault - marginRightDefault,
-      marginTopDefault + marginBottomDefault
-    ) ?? autoHeight(scales)) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
+    height = autoHeight(scales, geometry, options, {
+      width,
+      marginTopDefault,
+      marginBottomDefault,
+      marginRightDefault,
+      marginLeftDefault
+    }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
 
   // Coerce the width and height.
@@ -80,24 +79,23 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   };
 }
 
-function autoHeight({y, fy, fx}) {
+function autoHeight(
+  {y, fy, fx},
+  geometry,
+  {projection},
+  {width, marginTopDefault, marginBottomDefault, marginRightDefault, marginLeftDefault}
+) {
   const nfy = fy ? fy.scale.domain().length : 1;
+
+  // If a projection is specified, use it’s natural aspect ratio (if known).
+  const ar = projectionAspectRatio(projection, geometry);
+  if (ar) {
+    const nfx = fx ? fx.scale.domain().length : 1;
+    const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding
+    const lar = Math.max(0.1, Math.min(10, far)); // clamp the aspect ratio to a “reasonable” value
+    return Math.round((width - marginLeftDefault - marginRightDefault) * lar + marginTopDefault + marginBottomDefault);
+  }
+
   const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
   return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
-}
-
-function autoHeightProjection({fy, fx}, ratio, width, marginY) {
-  if (ratio > 0) {
-    return Math.round(
-      Math.max(
-        140,
-        Math.min(
-          1260,
-          ((fy ? 1.1 * fy.scale.domain().length - 0.1 : 1) / (fx ? 1.1 * fx.scale.domain().length - 0.1 : 1)) *
-            width *
-            ratio
-        )
-      ) + marginY
-    );
-  }
 }
