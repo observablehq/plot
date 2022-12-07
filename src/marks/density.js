@@ -94,17 +94,14 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     const {width, height} = dimensions;
 
     // Extract the (possibly) scaled values for the x and y channels.
-    let {x: X, y: Y} = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
+    const position = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
 
     // Apply the projection.
-    if (context.projection) {
-      const values = {x: X, y: Y};
-      maybeProject("x", "y", channels, values, context);
-      ({x: X, y: Y} = values);
-    }
+    if (context.projection) maybeProject("x", "y", channels, position, context);
 
     // Coerce the x and y channels to numbers (so that null is properly treated
     // as an undefined value rather than being coerced to zero).
+    let {x: X, y: Y} = position;
     if (X) X = coerceNumbers(X);
     if (Y) Y = coerceNumbers(Y);
 

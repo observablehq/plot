@@ -38,17 +38,14 @@ export function hexbin(outputs = {fill: "count"}, {binWidth, ...options} = {}) {
     if (Y === undefined) throw new Error("missing channel: y");
 
     // Extract the (possibly) scaled values for the x and y channels.
-    ({x: X, y: Y} = valueObject({x: X, y: Y}, scales));
+    const position = valueObject({x: X, y: Y}, scales);
 
     // Apply the projection.
-    if (context.projection) {
-      const values = {x: X, y: Y};
-      maybeProject("x", "y", channels, values, context);
-      ({x: X, y: Y} = values);
-    }
+    if (context.projection) maybeProject("x", "y", channels, position, context);
 
     // Coerce the x and y channels to numbers (so that null is properly
     // treated as an undefined value rather than being coerced to zero).
+    ({x: X, y: Y} = position);
     X = coerceNumbers(X);
     Y = coerceNumbers(Y);
 
