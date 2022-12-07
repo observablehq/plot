@@ -27,7 +27,9 @@ const defaults = {
 // This is a special built-in curve that will use d3.geoPath when there is a
 // projection, and the linear curve when there is not. You can explicitly
 // opt-out of d3.geoPath and instead use d3.line with the "linear" curve.
-function curveAuto() {}
+function curveAuto(context) {
+  return curveLinear(context);
+}
 
 // For the “auto” curve, return a symbol instead of a curve implementation;
 // we’ll use d3.geoPath instead of d3.line to render if there’s a projection.
@@ -81,7 +83,7 @@ export class Line extends Mark {
             curve === curveAuto && context.projection
               ? sphereLine(context.projection, X, Y)
               : shapeLine()
-                  .curve(curve === curveAuto ? curveLinear : curve)
+                  .curve(curve)
                   .defined((i) => i >= 0)
                   .x((i) => X[i])
                   .y((i) => Y[i])
