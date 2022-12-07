@@ -254,6 +254,7 @@ export {default as vectorFrame} from "./vector-frame.js";
 export {default as walmarts} from "./walmarts.js";
 export {default as walmartsDecades} from "./walmarts-decades.js";
 export {default as walmartsDensity} from "./walmarts-density.js";
+export {default as walmartsDensityUnprojected} from "./walmarts-density-unprojected.js";
 export {default as wealthBritainBar} from "./wealth-britain-bar.js";
 export {default as wealthBritainProportionPlot} from "./wealth-britain-proportion-plot.js";
 export {default as wordCloud} from "./word-cloud.js";
