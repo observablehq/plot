@@ -2,6 +2,7 @@ import {contourDensity, create, geoPath} from "d3";
 import {valueObject} from "../channel.js";
 import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
+import {maybeProject} from "../projection.js";
 import {coerceNumbers} from "../scales.js";
 import {
   applyFrameAnchor,
@@ -92,15 +93,15 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
 
-    // Extract the scaled (or projected!) values for the x and y channels.
-    let {x: X, y: Y} = valueObject(
-      {
-        ...(channels.x && {x: channels.x}),
-        ...(channels.y && {y: channels.y})
-      },
-      scales,
-      context
-    );
+    // Extract the (possibly) scaled values for the x and y channels.
+    let {x: X, y: Y} = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
+
+    // Apply the projection.
+    if (context.projection) {
+      const values = {x: X, y: Y};
+      maybeProject("x", "y", channels, values, context);
+      ({x: X, y: Y} = values);
+    }
 
     // Coerce the x and y channels to numbers (so that null is properly treated
     // as an undefined value rather than being coerced to zero).
