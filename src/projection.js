@@ -237,9 +237,11 @@ function applyProjection(cx, cy, values, projection) {
 // width. When we don’t have a way to know, the golden ratio is our best guess.
 export function projectionAspectRatio(projection, geometry) {
   if (isObject(projection)) projection = projection.type;
-  if (typeof projection === "string") {
+  if (projection != null && typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
+  } else if (!geometry) {
+    return;
   }
-  if (geometry) return golden - 1;
+  return golden - 1;
 }
