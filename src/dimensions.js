@@ -91,7 +91,12 @@ function autoHeightProjection({fy, fx}, ratio, width, marginY) {
     return Math.round(
       Math.max(
         140,
-        Math.min(1260, (width * (fx ? fx.scale.bandwidth() : 1) * ratio) / (fy ? fy.scale.bandwidth() : 1))
+        Math.min(
+          1260,
+          ((fy ? 1.1 * fy.scale.domain().length - 0.1 : 1) / (fx ? 1.1 * fx.scale.domain().length - 0.1 : 1)) *
+            width *
+            ratio
+        )
       ) + marginY
     );
   }
