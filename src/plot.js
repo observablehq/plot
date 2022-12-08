@@ -609,8 +609,8 @@ function maybeTopFacet(facet) {
   const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
   const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
   const groups = facetGroups(data, fx, fy);
-  // If the top-level faceting is non-trivial, track the corresponding data
-  // length, in order to compare it for the warning above.
+  // When the top-level facet option generated several frames, track the
+  // corresponding data length in order to compare it for the warning above.
   const dataLength =
     groups.size > 1 || (fx && fy && groups.size === 1 && [...groups][0][1].size > 1) ? data.length : undefined;
   return {fx, fy, groups, data: facet.data, dataLength};
