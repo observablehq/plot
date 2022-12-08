@@ -1,4 +1,4 @@
-import {cross, group, intersection, sum, select, sort, InternMap} from "d3";
+import {cross, group, sum, select, sort, InternMap} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -648,15 +648,10 @@ function maybeMarkFacet(mark, topFacetState) {
 }
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
-function filterFacets(facets, {fx, fy}) {
-  const X = fx?.value;
-  const Y = fy?.value;
-  const index = range(X || Y);
-  const gx = X && group(index, (i) => X[i]);
-  const gy = Y && group(index, (i) => Y[i]);
-  return X && Y
-    ? facets.map(({x, y}) => arrayify(intersection(gx.get(x) ?? [], gy.get(y) ?? [])))
-    : X
-    ? facets.map(({x}) => gx.get(x) ?? [])
-    : facets.map(({y}) => gy.get(y) ?? []);
+function filterFacets(facets, {fx, fy, groups}) {
+  return fx && fy
+    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
+    : fx
+    ? facets.map(({x}) => groups.get(x) ?? [])
+    : facets.map(({y}) => groups.get(y) ?? []);
 }
