@@ -119,9 +119,8 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const facetState = facetStateByMark.get(mark) || {};
-    const facetsIndex = mark.facet === "exclude" ? excludeIndex(facetState.facetsIndex) : facetState.facetsIndex;
-    const {data, facets, channels} = mark.initialize(facetsIndex, facetState); // TODO Only pass {fx, fy}, not all facetState.
+    const {facetsIndex: I, ...state} = facetStateByMark.get(mark) || {};
+    const {data, facets, channels} = mark.initialize(mark.facet === "exclude" ? excludeIndex(I) : I, state);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }
@@ -396,7 +395,7 @@ export class Mark {
     if (facets === undefined && data != null) facets = [range(data)];
     if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
     const channels = Channels(this.channels, data);
-    if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort);
+    if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort); // mutates facetChannels!
     return {data, facets, channels};
   }
   filter(index, channels, values) {
