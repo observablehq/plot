@@ -19,6 +19,9 @@ https://www.flother.is/2017/olympic-games-data/
 ## barley.csv
 http://search.r-project.org/R/library/lattice/html/barley.html
 
+## beagle.csv
+https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
+
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
 https://www.bls.gov/
@@ -32,6 +35,10 @@ Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
 
 ## countries-50m.json
+World Atlas TopoJSON 2.0.2
+https://github.com/topojson/world-atlas
+
+## countries-110m.json
 World Atlas TopoJSON 2.0.2
 https://github.com/topojson/world-atlas
 
