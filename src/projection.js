@@ -22,7 +22,7 @@ import {warn} from "./warnings.js";
 
 const pi = Math.PI;
 const tau = 2 * pi;
-const golden = 1.618;
+const defaultAspectRatio = 0.618;
 
 export function Projection(
   {
@@ -235,13 +235,17 @@ function applyProjection(cx, cy, values, projection) {
 // When a named projection is specified, we can use its natural aspect ratio to
 // determine a good value for the projection’s height based on the desired
 // width. When we don’t have a way to know, the golden ratio is our best guess.
+// Due to a circular dependency (we need to know the height before we can
+// construct the projection), we have to test the raw projection option rather
+// than the materialized projection; therefore we must be extremely careful that
+// the logic of this function exactly matches Projection above!
 export function projectionAspectRatio(projection, geometry) {
+  if (typeof projection?.stream === "function") return defaultAspectRatio;
   if (isObject(projection)) projection = projection.type;
-  if (projection != null && typeof projection !== "function") {
+  if (projection == null) return geometry ? defaultAspectRatio : undefined;
+  if (typeof projection !== "function") {
     const {aspectRatio} = namedProjection(projection);
     if (aspectRatio) return aspectRatio;
-  } else if (!geometry) {
-    return;
   }
-  return golden - 1;
+  return defaultAspectRatio;
 }
