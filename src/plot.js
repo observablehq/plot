@@ -533,8 +533,8 @@ function nolabel(axis) {
 // Returns an array of {x?, y?} objects representing the facet domain.
 function Facets(channelsByScale, options) {
   const {fx, fy} = Scales(channelsByScale, options);
-  let fxDomain = fx?.scale.domain(); // TODO .sort(ascending)?
-  let fyDomain = fy?.scale.domain(); // TODO .sort(ascending)?
+  const fxDomain = fx?.scale.domain();
+  const fyDomain = fy?.scale.domain();
   return fxDomain && fyDomain
     ? cross(fxDomain, fyDomain).map(([x, y]) => ({x, y}))
     : fxDomain
