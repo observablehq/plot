@@ -1,4 +1,4 @@
-import {hasProjection} from "./projection.js";
+import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 
@@ -52,8 +52,13 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   // specified explicitly, adjust the automatic height accordingly.
   let {
     width = 640,
-    height = autoHeight(scales, geometry || hasProjection(options)) +
-      Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
+    height = autoHeight(scales, geometry, options, {
+      width,
+      marginTopDefault,
+      marginBottomDefault,
+      marginRightDefault,
+      marginLeftDefault
+    }) + Math.max(0, marginTop - marginTopDefault + marginBottom - marginBottomDefault)
   } = options;
 
   // Coerce the width and height.
@@ -74,8 +79,23 @@ export function Dimensions(scales, geometry, axes, options = {}) {
   };
 }
 
-function autoHeight({y, fy, fx}, geometry) {
+function autoHeight(
+  {y, fy, fx},
+  geometry,
+  {projection},
+  {width, marginTopDefault, marginBottomDefault, marginRightDefault, marginLeftDefault}
+) {
   const nfy = fy ? fy.scale.domain().length : 1;
-  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : geometry ? 17 : 1;
-  return !!(y || fy || geometry) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
+
+  // If a projection is specified, use its natural aspect ratio (if known).
+  const ar = projectionAspectRatio(projection, geometry);
+  if (ar) {
+    const nfx = fx ? fx.scale.domain().length : 1;
+    const far = ((1.1 * nfy - 0.1) / (1.1 * nfx - 0.1)) * ar; // 0.1 is default facet padding
+    const lar = Math.max(0.1, Math.min(10, far)); // clamp the aspect ratio to a “reasonable” value
+    return Math.round((width - marginLeftDefault - marginRightDefault) * lar + marginTopDefault + marginBottomDefault);
+  }
+
+  const ny = y ? (isOrdinalScale(y) ? y.scale.domain().length : Math.max(7, 17 / nfy)) : 1;
+  return !!(y || fy) * Math.max(1, Math.min(60, ny * nfy)) * 20 + !!fx * 30 + 60;
 }
