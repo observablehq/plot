@@ -34,7 +34,7 @@ export function plot(options = {}) {
   // fx - a channel to add to the fx scale
   // fy - a channel to add to the fy scale
   // groups - a possibly-nested map from facet values to indexes in the data array
-  // facetsIndex - a nested array of indices corresponding to the valid facets
+  // facetsIndex - a sparse nested array of indices corresponding to the valid facets
   const facetStateByMark = new Map();
   for (const mark of marks) {
     const facetState = maybeMarkFacet(mark, topFacetState);
@@ -313,14 +313,24 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy))
       .each(function (key) {
         for (const [mark, {channels, values, facets}] of stateByMark) {
-          const facet = facets ? mark.filter(facets[facetPosition.get(key)] ?? facets[0], channels, values) : null;
+          let facet = null;
+          if (facets) {
+            facet = facets[facetPosition.get(key)] ?? facets[0];
+            if (!facet) continue;
+            facet = mark.filter(facet, channels, values);
+          }
           const node = mark.render(facet, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
         }
       });
   } else {
     for (const [mark, {channels, values, facets}] of stateByMark) {
-      const facet = facets ? mark.filter(facets[0], channels, values) : null;
+      let facet = null;
+      if (facets) {
+        facet = facets[0];
+        if (!facet) continue;
+        facet = mark.filter(facet, channels, values);
+      }
       const node = mark.render(facet, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
     }
@@ -649,8 +659,8 @@ function maybeMarkFacet(mark, topFacetState) {
 // Facet filter, by mark; for now only the "eq" filter is provided.
 function filterFacets(facets, {fx, fy, groups}) {
   return fx && fy
-    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
+    ? facets.map(({x, y}) => groups.get(x)?.get(y))
     : fx
-    ? facets.map(({x}) => groups.get(x) ?? [])
-    : facets.map(({y}) => groups.get(y) ?? []);
+    ? facets.map(({x}) => groups.get(x))
+    : facets.map(({y}) => groups.get(y));
 }
