@@ -31,8 +31,7 @@ export function plot(options = {}) {
   const topFacetState = maybeTopFacet(facet, options);
 
   // Construct a map from (faceted) Mark instance to facet state, including:
-  // fx - a channel to add to the fx scale
-  // fy - a channel to add to the fy scale
+  // channels - an {fx?, fy?} object to add to the fx and fy scale
   // groups - a possibly-nested map from facet values to indexes in the data array
   // facetsIndex - a sparse nested array of indices corresponding to the valid facets
   const facetStateByMark = new Map();
@@ -54,23 +53,14 @@ export function plot(options = {}) {
   if (facets !== undefined) {
     const topFacetsIndex = topFacetState ? filterFacets(facets, topFacetState) : undefined;
 
-    // Compute a facet index for each mark, parallel to the facets array.
+    // Compute a facet index for each mark, parallel to the facets array. For
+    // mark-level facets, compute an index for that mark’s data and options.
+    // Otherwise, use the top-level facet index.
     for (const mark of marks) {
       if (mark.facet === null) continue;
       const facetState = facetStateByMark.get(mark);
       if (facetState === undefined) continue;
-
-      // For mark-level facets, compute an index for that mark’s data and options.
-      if (mark.fx != null || mark.fy != null) {
-        facetState.facetsIndex = filterFacets(facets, facetState);
-      }
-
-      // Otherwise, link to the top-level facet information.
-      // TODO What is this doing, exactly?
-      else if (topFacetState !== undefined) {
-        facetState.facetsIndex = topFacetsIndex;
-        facetState.channels = topFacetState.channels;
-      }
+      facetState.facetsIndex = mark.fx != null || mark.fy != null ? filterFacets(facets, facetState) : topFacetsIndex;
     }
 
     // The cross product of the domains of fx and fy can include fx-fy
@@ -632,7 +622,8 @@ function maybeTopFacet(facet, options) {
 function maybeMarkFacet(mark, topFacetState, options) {
   if (mark.facet === null) return;
 
-  // This mark defines a mark-level facet.
+  // This mark defines a mark-level facet. TODO There’s some code duplication
+  // here with maybeTopFacet that we could reduce.
   const {fx: x, fy: y} = mark;
   if (x != null || y != null) {
     const data = arrayify(mark.data);
@@ -647,8 +638,9 @@ function maybeMarkFacet(mark, topFacetState, options) {
   // This mark links to a top-level facet, if present.
   if (topFacetState === undefined) return;
 
-  const {groups, data, dataLength} = topFacetState;
-  if (mark.facet !== "auto" || mark.data === data) return {groups};
+  // TODO Can we link the top-level facet channels here?
+  const {channels, groups, data, dataLength} = topFacetState;
+  if (mark.facet !== "auto" || mark.data === data) return {channels, groups};
 
   // Warn for the common pitfall of wanting to facet mapped data. See above for
   // the initialization of dataLength.
