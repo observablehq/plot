@@ -116,7 +116,7 @@ The *fx* and *fy* scales now support the *scale*.**transform** and *scale*.**per
 
 [Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
 
-[<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+[<img src="./img/window-strict.png" width="640" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
 
 ```js
 Plot.plot({
@@ -148,7 +148,7 @@ Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) f
 
 The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
-[<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.plot({
@@ -163,7 +163,7 @@ Plot.plot({
 
 By default, as shown above, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
 
-[<img src="./img/density-fill.png" width="640" height="500" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-fill.png" width="640" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
@@ -177,7 +177,7 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 
 The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
-[<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+[<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
 ```js
 Plot.plot({
@@ -192,7 +192,7 @@ Plot.plot({
 
 The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](./README.md#plotdelaunaylinkdata-options) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](./README.md#plotdelaunaymeshdata-options) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](./README.md#plothulldata-options) draws a convex hull around the given points, [Plot.voronoi](./README.md#plotvoronoidata-options) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](./README.md#plotvoronoimeshdata-options) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
 
-[<img src="./img/voronoi.png" width="640" height="396" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+[<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
 
 ```js
 Plot.plot({

@@ -278,7 +278,7 @@ The inset scale options can provide “breathing room” to separate marks from 
 
 In addition to the generic *ordinal* scale type, which requires an explicit output range value for each input domain value, Plot supports special *point* and *band* scale types for encoding ordinal data as position. These scale types accept a [*min*, *max*] range similar to quantitative scales, and divide this continuous interval into discrete points or bands based on the number of distinct values in the domain (*i.e.*, the domain’s cardinality). If the associated marks have no effective width along the ordinal dimension—such as a dot, rule, or tick—then use a *point* scale; otherwise, say for a bar, use a *band* scale. In the image below, the top *x* scale is a *point* scale while the bottom *x* scale is a *band* scale; see [Plot: Scales](https://observablehq.com/@observablehq/plot-scales) for an interactive version.
 
-<img src="./img/point-band.png" width="640" height="144" alt="point and band scales">
+<img src="./img/point-band.png" width="640" alt="point and band scales">
 
 Ordinal position scales support additional options, all specified as proportions in [0, 1]:
 
