@@ -1,5 +1,23 @@
 # Observable Plot - Changelog
 
+## 0.6.1
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The new [geo mark](https://observablehq.com/@observablehq/plot-geo)…
+
+[Projections!](https://observablehq.com/@observablehq/plot-projections)
+
+[Mapping with Plot](https://observablehq.com/@observablehq/plot-mapping)
+
+Mark-level facets via the *mark*.**fx** and *mark*.**fy** option. E.g., facet annotations, or mixing datasets across marks while using facets.
+
+```js
+Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "sex", fy: "island"}).plot()
+```
+
+The *fx* and *fy* scales now support the *scale*.**transform** and *scale*.**percent** options. The *quantize* scale now respects the *scale*.**unknown** option. Initializers (including dodge and hexbin) no longer unintentionally drop the *mark*.**sort** option when being used to sort a scale’s domain. The error message when an invalid color scheme is specified has been improved. Plot no longer warns about empty strings appearing to be numbers. The *mean* and *median* reducers now return dates if the data is temporal. The default **height** now adjusts automatically to preserve the inner size of the plot when margins are specified. Fix the position of the frame anchor when either the *x* or *y* scale is ordinal (band or point). Dots with a negative constant radius *r* are no longer rendered rather than generating invalid SVG.
+
 ## 0.6.0
 
 [Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
