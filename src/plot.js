@@ -86,6 +86,14 @@ export function plot(options = {}) {
         state.facetsIndex = facetsIndex.filter((_, i) => nonEmpty.has(i));
       }
     }
+
+    // For any mark using the “exclude” facet mode, invert the index.
+    for (const mark of marks) {
+      if (mark.facet === "exclude") {
+        const facetState = facetStateByMark.get(mark);
+        facetState.facetsIndex = excludeIndex(facetState.facetsIndex);
+      }
+    }
   }
 
   // If a scale is explicitly declared in options, initialize its associated
@@ -108,8 +116,8 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const {facetsIndex: I, channels: facetChannels} = facetStateByMark.get(mark) || {};
-    const {data, facets, channels} = mark.initialize(mark.facet === "exclude" ? excludeIndex(I) : I, facetChannels);
+    const {facetsIndex, channels: facetChannels} = facetStateByMark.get(mark) || {};
+    const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }
@@ -572,7 +580,7 @@ function facetTranslate(fx, fy) {
 }
 
 // Returns an index that for each facet lists all the elements present in other
-// facets in the original index.
+// facets in the original index. TODO Memoize to avoid repeated work?
 function excludeIndex(index) {
   const ex = [];
   const e = new Uint32Array(sum(index, (d) => d.length));
