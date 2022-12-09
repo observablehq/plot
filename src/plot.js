@@ -70,11 +70,13 @@ export function plot(options = {}) {
       facetChannels = {};
       if (x != null) {
         const fx = Channel(facetData, {value: x, scale: "fx"});
+        applyScaleTransforms({fx}, options);
         facetChannels.fx = fx;
         channelsByScale.set("fx", [fx]);
       }
       if (y != null) {
         const fy = Channel(facetData, {value: y, scale: "fy"});
+        applyScaleTransforms({fy}, options);
         facetChannels.fy = fy;
         channelsByScale.set("fy", [fy]);
       }
