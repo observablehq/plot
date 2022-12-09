@@ -28,7 +28,7 @@ export function plot(options = {}) {
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
   // data and dataLength so we can warn the user if a different data of the same
   // length is used in a mark.
-  const topFacetState = maybeTopFacet(facet);
+  const topFacetState = maybeTopFacet(facet, options);
 
   // Construct a map from (faceted) Mark instance to facet state, including:
   // fx - a channel to add to the fx scale
@@ -37,7 +37,7 @@ export function plot(options = {}) {
   // facetsIndex - a sparse nested array of indices corresponding to the valid facets
   const facetStateByMark = new Map();
   for (const mark of marks) {
-    const facetState = maybeMarkFacet(mark, topFacetState);
+    const facetState = maybeMarkFacet(mark, topFacetState, options);
     if (facetState) facetStateByMark.set(mark, facetState);
   }
 
@@ -52,7 +52,7 @@ export function plot(options = {}) {
   let facets = Facets(channelsByScale, options);
 
   if (facets !== undefined) {
-    const facetsIndex = topFacetState ? filterFacets(facets, topFacetState) : undefined;
+    const topFacetsIndex = topFacetState ? filterFacets(facets, topFacetState) : undefined;
 
     // Compute a facet index for each mark, parallel to the facets array.
     for (const mark of marks) {
@@ -66,11 +66,10 @@ export function plot(options = {}) {
       }
 
       // Otherwise, link to the top-level facet information.
+      // TODO What is this doing, exactly?
       else if (topFacetState !== undefined) {
-        facetState.facetsIndex = facetsIndex;
-        const {fx, fy} = topFacetState;
-        if (fx !== undefined) facetState.fx = fx;
-        if (fy !== undefined) facetState.fy = fy;
+        facetState.facetsIndex = topFacetsIndex;
+        facetState.channels = topFacetState.channels;
       }
     }
 
@@ -119,8 +118,8 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const {facetsIndex: I, ...state} = facetStateByMark.get(mark) || {};
-    const {data, facets, channels} = mark.initialize(mark.facet === "exclude" ? excludeIndex(I) : I, state);
+    const {facetsIndex: I, channels: facetChannels} = facetStateByMark.get(mark) || {};
+    const {data, facets, channels} = mark.initialize(mark.facet === "exclude" ? excludeIndex(I) : I, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
   }
@@ -513,10 +512,10 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
   return channelsByScale;
 }
 
-function addFacetChannels(channelsByScale, facetState) {
-  const {fx, fy} = facetState;
-  if (fx) addMapValue(channelsByScale, "fx", fx);
-  if (fy) addMapValue(channelsByScale, "fy", fy);
+function addFacetChannels(channelsByScale, {channels}) {
+  for (const key in channels) {
+    addMapValue(channelsByScale, key, channels[key]);
+  }
 }
 
 function addMapValue(map, key, value) {
@@ -564,7 +563,7 @@ function facetKeys(facets, fx, fy) {
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
 // representing the data indexes associated with each facet.
-function facetGroups(data, fx, fy) {
+function facetGroups(data, {fx, fy}) {
   const index = range(data);
   return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
 }
@@ -608,26 +607,29 @@ function excludeIndex(index) {
 
 // Returns the facet groups, and possibly fx and fy channels, associated with
 // the top-level facet option {data, x, y}.
-function maybeTopFacet(facet) {
+function maybeTopFacet(facet, options) {
   if (facet == null) return;
   const {x, y} = facet;
   if (x == null && y == null) return;
   const data = arrayify(facet.data);
   if (data == null) throw new Error(`missing facet data`);
-  // TODO Call applyScaleTransforms on the fx and fy channels.
-  const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
-  const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
-  const groups = facetGroups(data, fx, fy);
+  const channels = {};
+  if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
+  if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
+  applyScaleTransforms(channels, options);
+  const groups = facetGroups(data, channels);
   // When the top-level facet option generated several frames, track the
   // corresponding data length in order to compare it for the warning above.
   const dataLength =
-    groups.size > 1 || (fx && fy && groups.size === 1 && [...groups][0][1].size > 1) ? data.length : undefined;
-  return {fx, fy, groups, data: facet.data, dataLength};
+    groups.size > 1 || (channels.fx && channels.fy && groups.size === 1 && [...groups][0][1].size > 1)
+      ? data.length
+      : undefined;
+  return {channels, groups, data: facet.data, dataLength};
 }
 
 // Returns the facet groups, and possibly fx and fy channels, associated with a
 // mark, either through top-level faceting or mark-level facet options {fx, fy}.
-function maybeMarkFacet(mark, topFacetState) {
+function maybeMarkFacet(mark, topFacetState, options) {
   if (mark.facet === null) return;
 
   // This mark defines a mark-level facet.
@@ -635,10 +637,11 @@ function maybeMarkFacet(mark, topFacetState) {
   if (x != null || y != null) {
     const data = arrayify(mark.data);
     if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
-    // TODO Call applyScaleTransforms on the fx and fy channels.
-    const fx = x != null ? Channel(data, {value: x, scale: "fx"}) : undefined;
-    const fy = y != null ? Channel(data, {value: y, scale: "fy"}) : undefined;
-    return {fx, fy, groups: facetGroups(data, fx, fy)};
+    const channels = {};
+    if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
+    if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
+    applyScaleTransforms(channels, options);
+    return {channels, groups: facetGroups(data, channels)};
   }
 
   // This mark links to a top-level facet, if present.
@@ -657,7 +660,7 @@ function maybeMarkFacet(mark, topFacetState) {
 }
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
-function filterFacets(facets, {fx, fy, groups}) {
+function filterFacets(facets, {channels: {fx, fy}, groups}) {
   return fx && fy
     ? facets.map(({x, y}) => groups.get(x)?.get(y))
     : fx

@@ -10,6 +10,7 @@ export {default as anscombeQuartet} from "./anscombe-quartet.js";
 export {default as armadillo} from "./armadillo.js";
 export {default as athletesBinsColors} from "./athletes-bins-colors.js";
 export {default as athletesBirthdays} from "./athletes-birthdays.js";
+export {default as athletesBoxingHeight} from "./athletes-boxing-height.js";
 export {default as athletesHeightWeight} from "./athletes-height-weight.js";
 export {default as athletesHeightWeightBin} from "./athletes-height-weight-bin.js";
 export {default as athletesHeightWeightBinStroke} from "./athletes-height-weight-bin-stroke.js";
