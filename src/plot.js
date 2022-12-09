@@ -42,8 +42,8 @@ export function plot(options = {}) {
 
   // Compute a Map from scale name to an array of associated channels.
   const channelsByScale = new Map();
-  if (topFacetState) addFacetChannels(channelsByScale, topFacetState);
-  for (const facetState of facetStateByMark.values()) addFacetChannels(channelsByScale, facetState);
+  if (topFacetState) addScaleChannels(channelsByScale, [topFacetState]);
+  addScaleChannels(channelsByScale, facetStateByMark);
 
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
@@ -496,23 +496,13 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
       const channel = channels[name];
       const {scale} = channel;
       if (scale != null && filter(scale)) {
-        addMapValue(channelsByScale, scale, channel);
+        const scaleChannels = channelsByScale.get(scale);
+        if (scaleChannels !== undefined) scaleChannels.push(channel);
+        else channelsByScale.set(scale, [channel]);
       }
     }
   }
   return channelsByScale;
-}
-
-function addFacetChannels(channelsByScale, {channels}) {
-  for (const key in channels) {
-    addMapValue(channelsByScale, key, channels[key]);
-  }
-}
-
-function addMapValue(map, key, value) {
-  const values = map.get(key);
-  if (values !== undefined) values.push(value);
-  else map.set(key, [value]);
 }
 
 function hasGeometry(stateByMark) {
