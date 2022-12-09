@@ -6,6 +6,8 @@
 
 The new [geo mark](https://observablehq.com/@observablehq/plot-geo)…
 
+[<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
+
 ```js
 Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
   projection: "albers-usa",
@@ -21,19 +23,18 @@ Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
 
 Faceting.
 
+[<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-geo)
+
 ```js
 Plot.plot({
-  width: 960,
-  height: 150,
-  marginLeft: 0,
-  marginRight: 0,
+  width: 975,
   projection: "albers",
-  fx: { tickFormat: (d) => `${d}’s`, padding: 0 },
-  facet: { data: walmarts, x: (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10 },
+  fx: {tickFormat: (d) => `${d}’s`},
+  facet: {data: walmarts, x: (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10},
   marks: [
-    Plot.geo(statemesh, { clip: "frame", strokeOpacity: 0.1 }),
-    Plot.dot(walmarts, { x: "longitude", y: "latitude", r: 1, fill: "currentColor" }),
-    Plot.geo(nation, { clip: "frame" })
+    Plot.geo(statemesh, {strokeOpacity: 0.1}),
+    Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
+    Plot.geo(nation)
   ]
 })
 ```
@@ -42,22 +43,24 @@ Plot.plot({
 
 Projected vector.
 
+[<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-projections)
+
 ```js
 Plot.plot({
-  projection: "albers-usa",
   width: 975,
+  projection: "albers-usa",
   marks: [
-    Plot.geo(statemesh, {strokeWidth: 0.75}),
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
     Plot.geo(nation),
     Plot.vector(elections, {
       filter: (d) => d.votes > 0,
       anchor: "start",
       x: (d) => centroids.get(d.fips)?.[0],
       y: (d) => centroids.get(d.fips)?.[1],
-      sort: (d) => Math.abs(+d.results_trumpd - +d.results_bidenj),
-      stroke: (d) => (+d.results_trumpd > +d.results_bidenj ? "red" : "blue"),
-      length: (d) => Math.sqrt(Math.abs(+d.margin2020 * +d.votes)),
-      rotate: (d) => (+d.results_bidenj < +d.results_trumpd ? 60 : -60)
+      sort: (d) => Math.abs(d.results_trumpd - d.results_bidenj),
+      stroke: (d) => (d.results_trumpd > d.results_bidenj ? "red" : "blue"),
+      length: (d) => Math.sqrt(Math.abs(d.margin2020 * d.votes)),
+      rotate: (d) => (d.results_bidenj < d.results_trumpd ? 60 : -60)
     })
   ]
 })
@@ -65,14 +68,15 @@ Plot.plot({
 
 Projected line.
 
+[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-projections)
+
 ```js
 Plot.plot({
   projection: "equal-earth",
   marks: [
     Plot.geo(land, {fill: "currentColor"}),
     Plot.graticule(),
-    Plot.line(beagle.coordinates, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
-    Plot.geo(london, {fill: "red", r: 5}),
+    Plot.line(beagle, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
     Plot.sphere()
   ]
 })
@@ -80,28 +84,20 @@ Plot.plot({
 
 Projected transforms (hexbin aggregation).
 
+[<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-projections)
+
 ```js
 Plot.plot({
-  width: 975,
   projection: "albers",
-  r: {
-    range: [0, 20]
-  },
   color: {
     legend: true,
     label: "First year opened",
     scheme: "spectral"
   },
   marks: [
-    Plot.geo(statemesh, { strokeOpacity: 0.25 }),
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
     Plot.geo(nation),
-    Plot.dot(
-      walmarts,
-      Plot.hexbin(
-        { r: "count", fill: "min" },
-        { x: "longitude", y: "latitude", fill: "date" }
-      )
-    )
+    Plot.dot(walmarts, Plot.hexbin({r: "count", fill: "min"}, {x: "longitude", y: "latitude", fill: "date"}))
   ]
 })
 ```
