@@ -69,12 +69,14 @@ export function plot(options = {}) {
       if (facetData == null) throw new Error("missing facet data");
       facetChannels = {};
       if (x != null) {
-        const fx = Channel(facetData, {value: x, scale: "fx", transform: options.fx?.transform});
+        const fx = Channel(facetData, {value: x, scale: "fx"});
+        applyScaleTransforms({fx}, options);
         facetChannels.fx = fx;
         channelsByScale.set("fx", [fx]);
       }
       if (y != null) {
-        const fy = Channel(facetData, {value: y, scale: "fy", transform: options.fy?.transform});
+        const fy = Channel(facetData, {value: y, scale: "fy"});
+        applyScaleTransforms({fy}, options);
         facetChannels.fy = fy;
         channelsByScale.set("fy", [fy]);
       }
