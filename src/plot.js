@@ -225,6 +225,16 @@ export function plot(options = {}) {
     const fxDomain = fx?.domain();
     const fyDomain = fy?.domain();
     const selection = select(svg);
+    // When faceting by both fx and fy, this nested Map allows to look up the
+    // non-empty facets and draw the grid lines properly.
+    const fxy =
+      fx && fy && (axes.x || axes.y)
+        ? group(
+            facets,
+            ({x}) => x,
+            ({y}) => y
+          )
+        : undefined;
     if (fy && axes.y) {
       const axis1 = axes.y,
         axis2 = nolabel(axis1);
@@ -234,23 +244,13 @@ export function plot(options = {}) {
           : axis1.labelAnchor === "center"
           ? fyDomain.length >> 1
           : 0;
-
-      // When faceting by both fx and fy, this nested Map allows to look up the
-      // non-empty facets and draw the grid lines properly.
-      const cx =
-        fx &&
-        group(
-          facets,
-          ({y}) => y,
-          ({x}) => x
-        );
       selection
         .selectAll()
         .data(fyDomain)
         .enter()
         .append((ky, i) =>
           (i === j ? axis1 : axis2).render(
-            cx && where(fxDomain, (kx) => cx.get(ky).has(kx)),
+            fx && where(fxDomain, (kx) => fxy.get(kx).has(ky)),
             scales,
             {...dimensions, ...fyMargins, offsetTop: fy(ky)},
             context
@@ -262,13 +262,6 @@ export function plot(options = {}) {
         axis2 = nolabel(axis1);
       const j =
         axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
-      const cy =
-        fy &&
-        group(
-          facets,
-          ({x}) => x,
-          ({y}) => y
-        );
       const {marginLeft, marginRight} = dimensions;
       selection
         .selectAll()
@@ -276,7 +269,7 @@ export function plot(options = {}) {
         .enter()
         .append((kx, i) =>
           (i === j ? axis1 : axis2).render(
-            cy && where(fyDomain, (ky) => cy.get(kx).has(ky)),
+            fy && where(fyDomain, (ky) => fxy.get(kx).has(ky)),
             scales,
             {
               ...dimensions,
