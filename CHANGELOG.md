@@ -6,9 +6,107 @@
 
 The new [geo mark](https://observablehq.com/@observablehq/plot-geo)…
 
+```js
+Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
+  projection: "albers-usa",
+  color: {
+    type: "quantile",
+    n: 8,
+    scheme: "blues",
+    label: "Unemployment (%)",
+    legend: true
+  }
+})
+```
+
+Faceting.
+
+```js
+Plot.plot({
+  width: 960,
+  height: 150,
+  marginLeft: 0,
+  marginRight: 0,
+  projection: "albers",
+  fx: { tickFormat: (d) => `${d}’s`, padding: 0 },
+  facet: { data: walmarts, x: (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10 },
+  marks: [
+    Plot.geo(statemesh, { clip: "frame", strokeOpacity: 0.1 }),
+    Plot.dot(walmarts, { x: "longitude", y: "latitude", r: 1, fill: "currentColor" }),
+    Plot.geo(nation, { clip: "frame" })
+  ]
+})
+```
+
 [Projections!](https://observablehq.com/@observablehq/plot-projections)
 
-[Mapping with Plot](https://observablehq.com/@observablehq/plot-mapping)
+Projected vector.
+
+```js
+Plot.plot({
+  projection: "albers-usa",
+  width: 975,
+  marks: [
+    Plot.geo(statemesh, {strokeWidth: 0.75}),
+    Plot.geo(nation),
+    Plot.vector(elections, {
+      filter: (d) => d.votes > 0,
+      anchor: "start",
+      x: (d) => centroids.get(d.fips)?.[0],
+      y: (d) => centroids.get(d.fips)?.[1],
+      sort: (d) => Math.abs(+d.results_trumpd - +d.results_bidenj),
+      stroke: (d) => (+d.results_trumpd > +d.results_bidenj ? "red" : "blue"),
+      length: (d) => Math.sqrt(Math.abs(+d.margin2020 * +d.votes)),
+      rotate: (d) => (+d.results_bidenj < +d.results_trumpd ? 60 : -60)
+    })
+  ]
+})
+```
+
+Projected line.
+
+```js
+Plot.plot({
+  projection: "equal-earth",
+  marks: [
+    Plot.geo(land, {fill: "currentColor"}),
+    Plot.graticule(),
+    Plot.line(beagle.coordinates, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
+    Plot.geo(london, {fill: "red", r: 5}),
+    Plot.sphere()
+  ]
+})
+```
+
+Projected transforms (hexbin aggregation).
+
+```js
+Plot.plot({
+  width: 975,
+  projection: "albers",
+  r: {
+    range: [0, 20]
+  },
+  color: {
+    legend: true,
+    label: "First year opened",
+    scheme: "spectral"
+  },
+  marks: [
+    Plot.geo(statemesh, { strokeOpacity: 0.25 }),
+    Plot.geo(nation),
+    Plot.dot(
+      walmarts,
+      Plot.hexbin(
+        { r: "count", fill: "min" },
+        { x: "longitude", y: "latitude", fill: "date" }
+      )
+    )
+  ]
+})
+```
+
+For more, see [Mapping with Plot](https://observablehq.com/@observablehq/plot-mapping).
 
 Mark-level facets via the *mark*.**fx** and *mark*.**fy** option. E.g., facet annotations, or mixing datasets across marks while using facets.
 
