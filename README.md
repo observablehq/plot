@@ -569,6 +569,21 @@ Plot.plot({
 
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
+Alternatively, facets can be defined for each individual mark by specifying the channel options **fx** or **fy**. In that case, the **facet** option only considers the mark data, and the default *auto* setting is equivalent to *include*. Other values of the *facet* option are unchanged: null or false disable faceting, and *exclude* draws the subset of the mark’s data *not* in the current facet.
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {
+      x: "culmen_length_mm",
+      y: "culmen_depth_mm",
+      fx: "sex",
+      fy: "island"
+    })
+  ]
+})
+```
+
 ## Legends
 
 Plot can generate legends for *color*, *opacity*, and *symbol* [scales](#scale-options). (An opacity scale is treated as a color scale with varying transparency.) For an inline legend, use the *scale*.**legend** option:
