@@ -36,7 +36,7 @@
       <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2.1</text>
     </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ height</text>
   </g>
-  <g aria-label="fx-axis" aria-description="nationality" transform="translate(0,320)" fill="none" text-anchor="middle">
+  <g aria-label="fx-axis" aria-description="continent" transform="translate(0,320)" fill="none" text-anchor="middle">
     <g class="tick" opacity="1" transform="translate(90.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Africa</text>
     </g>
@@ -51,7 +51,7 @@
     </g>
     <g class="tick" opacity="1" transform="translate(530.5,0)">
       <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="9" dy="0.71em">Oceania</text>
-    </g><text fill="currentColor" transform="translate(310,30)" dy="-0.32em" text-anchor="middle">nationality</text>
+    </g><text fill="currentColor" transform="translate(310,30)" dy="-0.32em" text-anchor="middle">continent</text>
   </g>
   <g aria-label="facet" transform="translate(41,0)">
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>

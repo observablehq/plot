@@ -20,7 +20,7 @@ export default async function () {
     height: 350,
     facet: {data: athletes, x: "nationality"},
     y: {domain: [1.45, 2.1]},
-    fx: {transform: (countryCode) => continent.get(countryCode)},
+    fx: {transform: (countryCode) => continent.get(countryCode), label: "continent"},
     marks: [
       Plot.frame(),
       Plot.dot(
