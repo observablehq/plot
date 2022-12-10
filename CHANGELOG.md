@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce thematic maps. For example, the choropleth map below shows unemployment rates by U.S. county.
+The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
 
 [<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
 
@@ -42,7 +42,7 @@ The new graticule convenience mark renders meridians and parallels (lines of con
 
 Plot’s projection system works automatically with most of Plot’s mark types, including dots, vectors, lines, and rects. For example, the map below uses vectors to show county-level vote margins in the 2020 U.S. presidential election: a margin for Biden is shown as a blue left-pointing arrow, while a margin for Trump is shown as a red right-pointing arrow; the length of the arrow is proportional to the margin.
 
-[<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-projections)
+[<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-mapping)
 
 ```js
 Plot.plot({
@@ -67,7 +67,7 @@ Plot.plot({
 
 For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This optionally allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
 
-[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-projections)
+[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
 
 ```js
 Plot.plot({
@@ -101,7 +101,7 @@ Plot.plot({
 
 As another example using the same dataset, the map below uses the hexbin transform to aggregate Walmart store opening into local hexagons.
 
-[<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-projections)
+[<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-mapping)
 
 ```js
 Plot.plot({
@@ -121,7 +121,7 @@ Plot.plot({
 
 In addition to the included basic projections, Plot’s projection system can be extended using any projection implementation compatible with D3’s [projection stream interface](https://github.com/d3/d3-geo/blob/main/README.md#streams). This includes all the projections provided by the [d3-geo-projection](https://github.com/d3/d3-geo-projection) and [d3-geo-polygon](https://github.com/d3/d3-geo-polygon) libraries! For example, here is a world map using Goode’s interrupted homolosine projection.
 
-[<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-projections)
+[<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-extended-projections)
 
 ```js
 Plot.plot({
@@ -136,8 +136,6 @@ Plot.plot({
   ]
 })
 ```
-
-For more, see [Mapping with Plot](https://observablehq.com/@observablehq/plot-mapping).
 
 Mark-level facets via the *mark*.**fx** and *mark*.**fy** option. E.g., facet annotations, or mixing datasets across marks while using facets.
 
