@@ -4,7 +4,7 @@
 
 *Not yet released. These are forthcoming changes in the main branch.*
 
-The new [geo mark](https://observablehq.com/@observablehq/plot-geo)…
+The new [geo mark](https://observablehq.com/@observablehq/plot-geo) renders GeoJSON geometries.
 
 [<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
 
@@ -21,7 +21,7 @@ Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
 })
 ```
 
-Faceting.
+Naturally, it works with Plot’s core features, including scales, legends, and faceting.
 
 [<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-geo)
 
@@ -39,9 +39,7 @@ Plot.plot({
 })
 ```
 
-[Projections!](https://observablehq.com/@observablehq/plot-projections)
-
-Projected vector.
+The new top-level [**projection** option](https://observablehq.com/@observablehq/plot-projections) controls how geometry coordinates are mapped to the screen. While primarily for the geo mark, it works automatically with most of Plot’s other mark types. For example, here is a map using vectors to show county-level vote margins in the 2020 U.S. presidential election.
 
 [<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-projections)
 
@@ -66,7 +64,7 @@ Plot.plot({
 })
 ```
 
-Projected line.
+With the line mark, it’s not just a point projection; the line mark automatically passes line geometry through the projection, allow projections to interpret line segments as geodesics and to clip or cut as needed. For example, the route of the HMS *Beagle* shown below is automatically cut when it crosses the antimeridian.
 
 [<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-projections)
 
@@ -82,7 +80,7 @@ Plot.plot({
 })
 ```
 
-Projected transforms (hexbin aggregation).
+Plot’s projection system works with Plot’s transforms. For example, the map below demonstrates using the hexbin transform to aggregate projected locations into local hexagons.
 
 [<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-projections)
 
@@ -102,7 +100,7 @@ Plot.plot({
 })
 ```
 
-Extended projections using D3’s *projection*.stream interface.
+While a variety of basic projections are included by default, Plot’s projection system can be extended using any implementation that is compatible with D3’s *projection*.stream interface. This includes the existing d3-geo-projection and d3-geo-polygon libraries. For example, here is a world map using Goode’s interrupted homolosine projection.
 
 [<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-projections)
 
