@@ -83,7 +83,7 @@ Plot.plot({
 
 Plot’s new geo mark and projection system work with Plot’s other core features, including scales, legends, faceting, and transforms. For example, here is a faceted dot map showing openings of Walmart stores over five decades.
 
-[<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-geo)
+[<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-mapping)
 
 ```js
 Plot.plot({
