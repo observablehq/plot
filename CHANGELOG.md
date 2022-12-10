@@ -102,6 +102,24 @@ Plot.plot({
 })
 ```
 
+Extended projections using D3’s *projection*.stream interface.
+
+[<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-projections)
+
+```js
+Plot.plot({
+  width: 975,
+  height: 424,
+  inset: 1,
+  projection: ({width, height}) => d3.geoInterruptedHomolosine().fitSize([width, height], {type: "Sphere"}),
+  marks: [
+    Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
+    Plot.graticule({clip: "sphere"}),
+    Plot.sphere()
+  ]
+})
+```
+
 For more, see [Mapping with Plot](https://observablehq.com/@observablehq/plot-mapping).
 
 Mark-level facets via the *mark*.**fx** and *mark*.**fy** option. E.g., facet annotations, or mixing datasets across marks while using facets.
