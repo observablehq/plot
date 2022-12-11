@@ -573,14 +573,14 @@ The following top-level facet constant options are also supported:
 * facet.**grid** - if true, draw grid lines for each facet
 * facet.**label** - if null, disable default facet axis labels
 
-When top-level faceting is used, faceting can be explicitly enabled or disabled on a mark with the *mark*.**facet** option, which accepts the following values:
+Faceting can be explicitly enabled or disabled on a mark with the *mark*.**facet** option, which accepts the following values:
 
-* *auto* (default) - equivalent to *include* when mark data is strictly equal to facet data; else null
+* *auto* (default) - automatically determine if this mark should be faceted
 * *include* (or true) - draw the subset of the mark’s data in the current facet
 * *exclude* - draw the subset of the mark’s data *not* in the current facet
 * null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
 
-When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
+When top-level faceting is used, the default *auto* setting is equivalent to *include* when mark data is strictly equal to facet data; otherwise it is equivalent to null. When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the top-level facet data: the mark data must have the same length and order as the top-level facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
 When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if a *mark*.**fx** or *mark*.**fy** channel (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet.
 
