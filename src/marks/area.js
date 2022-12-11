@@ -1,8 +1,9 @@
-import {area as shapeArea} from "d3";
+import {area as shapeArea, geoPath} from "d3";
 import {create} from "../context.js";
-import {Curve} from "../curve.js";
 import {first, indexOf, maybeZ, second} from "../options.js";
+import {coerceNumbers} from "../scales.js";
 import {Mark} from "../plot.js";
+import {curveAuto, LineCurve} from "./line.js";
 import {
   applyDirectStyles,
   applyIndirectStyles,
@@ -38,13 +39,20 @@ export class Area extends Mark {
       defaults
     );
     this.z = z;
-    this.curve = Curve(curve, tension);
+    this.curve = LineCurve({curve, tension});
   }
   filter(index) {
     return index;
   }
+  project(channels, values, context) {
+    // For the auto curve, projection is handled at render.
+    if (this.curve !== curveAuto) {
+      super.project(channels, values, context);
+    }
+  }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2 = X1, y2: Y2 = Y1} = channels;
+    const {curve} = this;
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales, 0, 0)
@@ -58,17 +66,46 @@ export class Area extends Mark {
           .call(applyGroupedChannelStyles, this, channels)
           .attr(
             "d",
-            shapeArea()
-              .curve(this.curve)
-              .defined((i) => i >= 0)
-              .x0((i) => X1[i])
-              .y0((i) => Y1[i])
-              .x1((i) => X2[i])
-              .y1((i) => Y2[i])
+            curve === curveAuto && context.projection
+              ? sphereArea(context.projection, X1, Y1, X2, Y2)
+              : shapeArea()
+                  .curve(this.curve)
+                  .defined((i) => i >= 0)
+                  .x0((i) => X1[i])
+                  .y0((i) => Y1[i])
+                  .x1((i) => X2[i])
+                  .y1((i) => Y2[i])
           )
       )
       .node();
   }
+}
+
+function sphereArea(projection, X1, Y1, X2, Y2) {
+  const path = geoPath(projection);
+  X1 = coerceNumbers(X1);
+  Y1 = coerceNumbers(Y1);
+  X2 = coerceNumbers(X2);
+  Y2 = coerceNumbers(Y2);
+  return (I) => {
+    let ring = [];
+    const rings = [ring];
+    for (const i of I) {
+      // Check for undefined value; see groupIndex.
+      if (i === -1) {
+        rings.push((ring = []));
+      } else {
+        ring.unshift([X1[i], Y1[i]]);
+        ring.push([X2[i], Y2[i]]);
+      }
+    }
+    const coordinates = [];
+    for (const ring of rings) {
+      ring.push(ring[0]);
+      coordinates.push([ring]);
+    }
+    return path({type: "MultiPolygon", coordinates});
+  };
 }
 
 /** @jsdoc area */
