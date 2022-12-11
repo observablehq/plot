@@ -528,13 +528,13 @@ Plot’s [faceting system](https://observablehq.com/@observablehq/plot-facets) p
 * *fx* - the horizontal position, a *band* scale
 * *fy* - the vertical position, a *band* scale
 
-Faceting may either be specified at the top level of the plot, or on individual marks. When specified at the top level, the following options indicate which data should be faceted, and how:
+Faceting may either be specified at the top level of the plot or on individual marks. When specified at the top level, the following options indicate which data should be faceted, and how:
 
 * facet.**data** - the data to be faceted
 * facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
 * facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
 
-With top-level faceting, any mark that uses the specified facet data will be faceted by default (see the *mark*.**facet** option below). When specified at the mark level, facets can be defined for each mark individually by specifying the *mark*.**fx** or *mark*.**fy** channel options.
+With top-level faceting, any mark that uses the specified facet data will be faceted by default, whereas marks that use different data will be repeated across all facets. (See the *mark*.**facet** option below for more). When specified at the mark level, facets can be defined for each mark via the *mark*.**fx** or *mark*.**fy** channel options.
 
 Here is an example of top-level faceting:
 
