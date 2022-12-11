@@ -523,20 +523,47 @@ Note: when the value of the sort option is a string or a function, it is interpr
 
 ### Facet options
 
-The *facet* option enables [faceting](https://observablehq.com/@observablehq/plot-facets). When faceting, two additional band scales may be configured:
+Plot’s [faceting system](https://observablehq.com/@observablehq/plot-facets) produces small multiples by partitioning data in discrete sets and repeating the plot for each set. When faceting, two additional band scales may be configured:
 
-* **fx** - the horizontal position, a *band* scale
-* **fy** - the vertical position, a *band* scale
+* *fx* - the horizontal position, a *band* scale
+* *fy* - the vertical position, a *band* scale
 
-Similar to [marks](#marks), faceting requires specifying data and at least one of two optional channels:
+Faceting may either be specified at the top level of the plot, or on individual marks. When specified at the top level, the following options indicate which data should be faceted, and how:
 
 * facet.**data** - the data to be faceted
 * facet.**x** - the horizontal position; bound to the *fx* scale, which must be *band*
 * facet.**y** - the vertical position; bound to the *fy* scale, which must be *band*
 
-The facet.**x** and facet.**y** channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. (Automatic binning for quantitative data may be added in the future; see [#14](https://github.com/observablehq/plot/issues/14).)
+With top-level faceting, any mark that uses the specified facet data will be faceted by default (see the *mark*.**facet** option below). When specified at the mark level, facets can be defined for each mark individually by specifying the *mark*.**fx** or *mark*.**fy** channel options.
 
-The following *facet* constant options are also supported:
+Here is an example of top-level faceting:
+
+```js
+Plot.plot({
+  facet: {
+    data: penguins,
+    x: "sex",
+    y: "island"
+  },
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"})
+  ]
+})
+```
+
+And here is the equivalent mark-level faceting:
+
+```js
+Plot.plot({
+  marks: [
+    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fx: "sex", fy: "island"})
+  ]
+})
+```
+
+Regardless of whether top- or mark-level faceting is used, the *fx* and *fy* channels are strictly ordinal or categorical (*i.e.*, discrete); each distinct channel value defines a facet. Quantitative data must be manually discretized for faceting, say by rounding or binning. (Automatic binning for quantitative data may be added in the future; see [#14](https://github.com/observablehq/plot/issues/14).) When mark-level faceting is used, the *fx* and *fy* channels are computed prior to the [mark’s transform](#transforms), if any (*i.e.*, facet channels are not transformed).
+
+The following top-level facet constant options are also supported:
 
 * facet.**marginTop** - the top margin
 * facet.**marginRight** - the right margin
@@ -546,43 +573,16 @@ The following *facet* constant options are also supported:
 * facet.**grid** - if true, draw grid lines for each facet
 * facet.**label** - if null, disable default facet axis labels
 
-Faceting can be explicitly enabled or disabled on a mark with the *facet* option, which accepts the following values:
+When top-level faceting is used, faceting can be explicitly enabled or disabled on a mark with the *mark*.**facet** option, which accepts the following values:
 
 * *auto* (default) - equivalent to *include* when mark data is strictly equal to facet data; else null
 * *include* (or true) - draw the subset of the mark’s data in the current facet
 * *exclude* - draw the subset of the mark’s data *not* in the current facet
 * null (or false) - repeat this mark’s data across all facets (i.e., no faceting)
 
-```js
-Plot.plot({
-  facet: {
-    data: penguins,
-    x: "sex"
-  },
-  marks: [
-    Plot.frame(), // draws an outline around each facet
-    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm", fill: "#eee", facet: "exclude"}), // draws excluded penguins on each facet
-    Plot.dot(penguins, {x: "culmen_length_mm", y: "culmen_depth_mm"}) // draws only the current facet’s subset
-  ]
-})
-```
-
 When the *include* or *exclude* facet mode is chosen, the mark data must be parallel to the facet data: the mark data must have the same length and order as the facet data. If the data are not parallel, then the wrong data may be shown in each facet. The default *auto* therefore requires strict equality (`===`) for safety, and using the facet data as mark data is recommended when using the *exclude* facet mode. (To construct parallel data safely, consider using [*array*.map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) on the facet data.)
 
-Alternatively, facets can be defined for each individual mark by specifying the channel options **fx** or **fy**. In that case, the **facet** option only considers the mark data, and the default *auto* setting is equivalent to *include*. Other values of the *facet* option are unchanged: null or false disable faceting, and *exclude* draws the subset of the mark’s data *not* in the current facet.
-
-```js
-Plot.plot({
-  marks: [
-    Plot.dot(penguins, {
-      x: "culmen_length_mm",
-      y: "culmen_depth_mm",
-      fx: "sex",
-      fy: "island"
-    })
-  ]
-})
-```
+When mark-level faceting is used, the default *auto* setting is equivalent to *include*: the mark will be faceted if a *mark*.**fx** or *mark*.**fy** channel (or both) is specified. The null or false option will disable faceting, while *exclude* draws the subset of the mark’s data *not* in the current facet.
 
 ## Legends
 
