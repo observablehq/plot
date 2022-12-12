@@ -137,7 +137,7 @@ Plot.plot({
 })
 ```
 
-Mark-level facets via the *mark*.**fx** and *mark*.**fy** option.
+Plot now supports mark-level faceting via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
 
 [<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/@observablehq/plot-facets)
 
@@ -149,18 +149,7 @@ Plot.plot({
 })
 ```
 
-The above code produces the same result as the top-level **facet** option:
-
-```js
-Plot.plot({
-  grid: true,
-  height: 180,
-  facet: {data: anscombe, x: "series"},
-  marks: [Plot.frame(), Plot.dot(anscombe, {x: "x", y: "y"})]
-})
-```
-
-Why the new mark-level facet syntax? E.g., facet annotations, or mixing datasets across marks while using facets.
+When mark-level faceting is used, the mark will be faceted if either the *mark*.**fx** or *mark*.**fy** channel option (or both) is specified. As before, you can set the *mark*.**facet** option to null or false option will disable faceting, or to *exclude* to draw the subset of the mark’s data not in the current facet.
 
 The *fx* and *fy* scales now support the *scale*.**transform** and *scale*.**percent** options. The *quantize* scale now respects the *scale*.**unknown** option. Initializers (including dodge and hexbin) no longer unintentionally drop the *mark*.**sort** option when being used to sort a scale’s domain. The error message when an invalid color scheme is specified has been improved. Plot no longer warns about empty strings appearing to be numbers. The *mean* and *median* reducers now return dates if the data is temporal. The default **height** now adjusts automatically to preserve the inner size of the plot when margins are specified. Fix the position of the frame anchor when either the *x* or *y* scale is ordinal (band or point). Dots with a negative constant radius *r* are no longer rendered rather than generating invalid SVG.
 
