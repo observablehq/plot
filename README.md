@@ -35,12 +35,12 @@ Plot can then be imported as a namespace:
 import * as Plot from "@observablehq/plot";
 ```
 
-In vanilla HTML, Plot can be imported as an ES module, say from Skypack:
+In vanilla HTML, Plot can be imported as an ES module, say from jsDelivr:
 
 ```html
 <script type="module">
 
-import * as Plot from "https://cdn.skypack.dev/@observablehq/plot@0.6";
+import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
 document.body.append(Plot.plot(options));
 

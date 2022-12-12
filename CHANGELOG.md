@@ -2,7 +2,7 @@
 
 ## 0.6.1
 
-*Not yet released. These are forthcoming changes in the main branch.*
+[Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
 
 The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
 
