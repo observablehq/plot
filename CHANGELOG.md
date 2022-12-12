@@ -65,7 +65,7 @@ Plot.plot({
 })
 ```
 
-For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This optionally allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
+For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
 
 [<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
 
