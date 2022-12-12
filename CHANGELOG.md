@@ -40,7 +40,7 @@ Plot.plot({
 
 The new graticule convenience mark renders meridians and parallels (lines of constant longitude and latitude), while the sphere convenience mark draws the outline of the sphere.
 
-Plot’s projection system works automatically with most of Plot’s mark types, including dots, vectors, lines, and rects. For example, the map below uses vectors to show county-level vote margins in the 2020 U.S. presidential election: a margin for Biden is shown as a blue left-pointing arrow, while a margin for Trump is shown as a red right-pointing arrow; the length of the arrow is proportional to the margin.
+Plot’s projection system works automatically with most of Plot’s mark types, including dots, vectors, lines, and rects. For geographic projections, *x* represents longitude and *y* represents latitude. For example, the map below uses vectors to show county-level vote margins in the 2020 U.S. presidential election: a margin for Biden is shown as a blue left-pointing arrow, while a margin for Trump is shown as a red right-pointing arrow; the length of the arrow is proportional to the margin.
 
 [<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-mapping)
 
