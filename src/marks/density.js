@@ -1,8 +1,7 @@
 import {contourDensity, create, geoPath} from "d3";
-import {valueObject} from "../channel.js";
 import {isTypedArray, maybeTuple, maybeZ} from "../options.js";
 import {Mark} from "../plot.js";
-import {maybeProject} from "../projection.js";
+import {Position} from "../projection.js";
 import {coerceNumbers} from "../scales.js";
 import {
   applyFrameAnchor,
@@ -93,17 +92,8 @@ function densityInitializer(options, fillDensity, strokeDensity) {
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const {width, height} = dimensions;
 
-    // Extract the (possibly) scaled values for the x and y channels.
-    const position = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
-
-    // Apply the projection.
-    if (context.projection) maybeProject("x", "y", channels, position, context);
-
-    // Coerce the x and y channels to numbers (so that null is properly treated
-    // as an undefined value rather than being coerced to zero).
-    let {x: X, y: Y} = position;
-    if (X) X = coerceNumbers(X);
-    if (Y) Y = coerceNumbers(Y);
+    // Get the (either scaled or projected) xy channels.
+    const {x: X, y: Y} = Position(channels, scales, context);
 
     // Group any of the input channels according to the first index associated
     // with each z-series or facet. Drop any channels not be needed for

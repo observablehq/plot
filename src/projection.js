@@ -17,7 +17,9 @@ import {
   geoTransform,
   geoTransverseMercator
 } from "d3";
+import {valueObject} from "./channel.js";
 import {constant, isObject} from "./options.js";
+import {coerceNumbers} from "./scales.js";
 import {warn} from "./warnings.js";
 
 const pi = Math.PI;
@@ -249,4 +251,14 @@ export function projectionAspectRatio(projection, geometry) {
     if (aspectRatio) return aspectRatio;
   }
   return defaultAspectRatio;
+}
+
+// Extract the (possibly) scaled values for the x and y channels, and apply the
+// projection if any.
+export function Position(channels, scales, context) {
+  const position = valueObject({...(channels.x && {x: channels.x}), ...(channels.y && {y: channels.y})}, scales);
+  if (context.projection) maybeProject("x", "y", channels, position, context);
+  if (position.x) position.x = coerceNumbers(position.x);
+  if (position.y) position.y = coerceNumbers(position.y);
+  return position;
 }
