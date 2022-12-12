@@ -30,6 +30,11 @@ https://www.bls.gov/
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## cities-10k.csv
+Geonames
+https://www.geonames.org/about.html
+https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
