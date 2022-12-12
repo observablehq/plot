@@ -177,6 +177,8 @@ export {default as penguinSpeciesIsland} from "./penguin-species-island.js";
 export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-relative.js";
 export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.js";
 export {default as polylinear} from "./polylinear.js";
+export {default as populationByLatitude} from "./population-by-latitude.js";
+export {default as populationByLongitude} from "./population-by-longitude.js";
 export {default as projectionBleedEdges} from "./projection-bleed-edges.js";
 export {default as projectionBleedEdges2} from "./projection-bleed-edges2.js";
 export {default as projectionClipAngle} from "./projection-clip-angle.js";
