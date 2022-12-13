@@ -128,7 +128,10 @@ Plot.plot({
   width: 975,
   height: 424,
   inset: 1,
-  projection: ({width, height}) => d3.geoInterruptedHomolosine().fitSize([width, height], {type: "Sphere"}),
+  projection: {
+    type: d3.geoInterruptedHomolosine,
+    domain: {type: "Sphere"}
+  },
   marks: [
     Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
     Plot.graticule({clip: "sphere"}),
