@@ -177,6 +177,7 @@ export {default as penguinSpeciesGroup} from "./penguin-species-group.js";
 export {default as penguinSpeciesIsland} from "./penguin-species-island.js";
 export {default as penguinSpeciesIslandRelative} from "./penguin-species-island-relative.js";
 export {default as penguinSpeciesIslandSex} from "./penguin-species-island-sex.js";
+export {default as pixel} from "./pixel.js";
 export {default as polylinear} from "./polylinear.js";
 export {default as populationByLatitude} from "./population-by-latitude.js";
 export {default as populationByLongitude} from "./population-by-longitude.js";
