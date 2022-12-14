@@ -45,13 +45,13 @@ export class Pixel extends Mark {
     for (const i of index) {
       // TODO round option?
       // TODO mark-level devicePixelRatio option?
-      const x = Math.round(k * (Math.min(X1[i], X2[i]) + insetLeft));
-      const y = Math.round(k * (Math.min(Y1[i], Y2[i]) + insetTop));
-      const width = Math.round(k * (Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)));
-      const height = Math.round(k * (Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)));
+      const x1 = Math.round(k * (Math.min(X1[i], X2[i]) + insetLeft));
+      const x2 = Math.round(k * (Math.max(X1[i], X2[i]) - insetRight));
+      const y1 = Math.round(k * (Math.min(Y1[i], Y2[i]) + insetTop));
+      const y2 = Math.round(k * (Math.max(Y1[i], Y2[i]) - insetBottom));
       if (F) context2d.fillStyle = F[i];
       if (FO) context2d.globalAlpha = FO[i];
-      context2d.fillRect(x, y, width, height);
+      context2d.fillRect(x1, y1, Math.max(0, x2 - x1), Math.max(0, y2 - y1));
     }
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
