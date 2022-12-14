@@ -13,7 +13,7 @@ export default async function () {
         {
           x: (d, i) => i % m,
           y: (d, i) => Math.floor(i / m),
-          fill: (d, i) => Math.sin(i % m / 20) * Math.cos(i / m / 20)
+          fill: (d, i) => Math.sin((i % m) / 20) * Math.cos(i / m / 20)
         }
       )
     ]

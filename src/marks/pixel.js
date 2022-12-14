@@ -56,13 +56,7 @@ export class Pixel extends Mark {
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
-      .call((g) =>
-        g
-          .append("image")
-          .attr("width", width)
-          .attr("height", height)
-          .attr("xlink:href", canvas.toDataURL())
-      )
+      .call((g) => g.append("image").attr("width", width).attr("height", height).attr("xlink:href", canvas.toDataURL()))
       .node();
   }
 }
