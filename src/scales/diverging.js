@@ -1,4 +1,5 @@
 import {
+  descending,
   interpolateNumber,
   interpolateRgb,
   piecewise,
@@ -37,6 +38,7 @@ function ScaleD(
 ) {
   pivot = +pivot;
   let [min, max] = domain;
+  if (descending(min, max) < 0) ([min, max] = [max, min]), (reverse = !reverse);
   min = Math.min(min, pivot);
   max = Math.max(max, pivot);
 
