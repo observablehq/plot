@@ -1,8 +1,8 @@
 import {create} from "../context.js";
-import {maybeTuple, number, valueof} from "../options.js";
+import {maybeTuple, number, string, valueof} from "../options.js";
 import {Mark} from "../plot.js";
 import {coerceNumbers} from "../scales.js";
-import {applyIndirectStyles, applyTransform} from "../style.js";
+import {applyAttr, applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
   ariaLabel: "pixel",
@@ -31,6 +31,7 @@ export class Pixel extends Mark {
       insetBottom = inset,
       insetLeft = inset,
       pixelRatio,
+      imageRendering = "pixelated",
       round = true
     } = options;
     if (x == null) throw new Error("missing channel: x");
@@ -55,6 +56,7 @@ export class Pixel extends Mark {
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
     this.pixelRatio = number(pixelRatio);
+    this.imageRendering = string(imageRendering);
     this.round = maybeRound(round);
   }
   render(index, scales, channels, dimensions, context) {
@@ -69,10 +71,10 @@ export class Pixel extends Mark {
     if (!F) context2d.fillStyle = this.fill;
     if (!FO) context2d.globalAlpha = this.fillOpacity;
     for (const i of index) {
-      let x1 = pixelRatio * (Math.min(X1[i], X2[i]) + insetLeft);
-      let x2 = pixelRatio * (Math.max(X1[i], X2[i]) - insetRight);
-      let y1 = pixelRatio * (Math.min(Y1[i], Y2[i]) + insetTop);
-      let y2 = pixelRatio * (Math.max(Y1[i], Y2[i]) - insetBottom);
+      let x1 = pixelRatio * (Math.min(X1[i], X2[i]) + insetLeft),
+        x2 = pixelRatio * (Math.max(X1[i], X2[i]) - insetRight),
+        y1 = pixelRatio * (Math.min(Y1[i], Y2[i]) + insetTop),
+        y2 = pixelRatio * (Math.max(Y1[i], Y2[i]) - insetBottom);
       if (round) (x1 = round(x1)), (x2 = round(x2)), (y1 = round(y1)), (y2 = round(y2));
       if (F) context2d.fillStyle = F[i];
       if (FO) context2d.globalAlpha = FO[i];
@@ -81,7 +83,14 @@ export class Pixel extends Mark {
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
-      .call((g) => g.append("image").attr("width", width).attr("height", height).attr("xlink:href", canvas.toDataURL()))
+      .call((g) =>
+        g
+          .append("image")
+          .attr("width", width)
+          .attr("height", height)
+          .call(applyAttr, "image-rendering", this.imageRendering)
+          .attr("xlink:href", canvas.toDataURL())
+      )
       .node();
   }
 }

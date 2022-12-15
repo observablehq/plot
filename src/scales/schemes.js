@@ -193,8 +193,8 @@ export function maybeBooleanRange(domain, scheme = "greys") {
   const range = new Set();
   const [f, t] = ordinalRange(scheme, 2);
   for (const value of domain) {
-    if (value == null) continue;
-    if (value === true) range.add(t);
+    if (value == null) range.add(value); // identity for nullish values
+    else if (value === true) range.add(t);
     else if (value === false) range.add(f);
     else return;
   }

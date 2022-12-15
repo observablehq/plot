@@ -1,19 +1,18 @@
 import * as Plot from "@observablehq/plot";
 
 export default async function () {
-  const m = (640 - 60) / 2;
-  const n = (400 - 50) / 2;
+  const k = 10;
+  const m = Math.ceil((640 - 60) / k);
+  const n = Math.ceil((400 - 50) / k);
   return Plot.plot({
-    color: {
-      scheme: "spectral"
-    },
     marks: [
       Plot.pixel(
         {length: n * m},
         {
+          pixelRatio: 1 / k,
           x: (d, i) => i % m,
           y: (d, i) => Math.floor(i / m),
-          fill: (d, i) => Math.sin((i % m) / 20) * Math.cos(i / m / 20)
+          fill: (d, i) => ((i % m & 1) === (Math.floor(i / m) & 1) ? true : i % m & 1 ? null : undefined)
         }
       )
     ]

@@ -39,6 +39,7 @@ export {default as carsHexbin} from "./cars-hexbin.js";
 export {default as carsJitter} from "./cars-jitter.js";
 export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
+export {default as checkerboard} from "./checkerboard.js";
 export {default as clamp} from "./clamp.js";
 export {default as collapsedHistogram} from "./collapsed-histogram.js";
 export {default as countryCentroids} from "./country-centroids.js";
