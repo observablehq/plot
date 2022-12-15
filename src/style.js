@@ -70,6 +70,7 @@ export function styles(
   if (defaultStroke === null) {
     stroke = null;
     strokeOpacity = null;
+    strokeWidth = null;
   }
 
   // Some marks default to fill with no stroke, while others default to stroke

@@ -1,27 +1,51 @@
 import {create} from "../context.js";
-import {map, maybeTuple, number, valueof} from "../options.js";
+import {maybeTuple, number, valueof} from "../options.js";
 import {Mark} from "../plot.js";
+import {coerceNumbers} from "../scales.js";
 import {applyIndirectStyles, applyTransform} from "../style.js";
 
 const defaults = {
-  ariaLabel: "pixel"
+  ariaLabel: "pixel",
+  stroke: null
 };
+
+function numberof(data, x) {
+  return coerceNumbers(valueof(data, x));
+}
+
+function maybeRound(round) {
+  if (round === false || round == null) return null;
+  if (round === true) return Math.round;
+  if (typeof round !== "function") throw new Error(`invalid round: ${round}`);
+  return round;
+}
 
 export class Pixel extends Mark {
   constructor(data, options = {}) {
-    const {x, y, inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset} = options;
-    let X, Y; // TODO better way of deriving multiple channels from one channel
+    const {
+      x,
+      y,
+      inset = 0,
+      insetTop = inset,
+      insetRight = inset,
+      insetBottom = inset,
+      insetLeft = inset,
+      pixelRatio,
+      round = true
+    } = options;
+    if (x == null) throw new Error("missing channel: x");
+    if (y == null) throw new Error("missing channel: y");
+    let {r = 0.5, rx = r, ry = r} = options;
+    rx = number(rx);
+    ry = number(ry);
+    let X, Y;
     super(
       data,
       {
-        // TODO configurable radius?
-        // TODO enforce quantitative scale?
-        // TODO x and y are required channels; detect when they are missing
-        // TODO disable unsupported channels e.g. stroke, strokeOpacity
-        x1: {value: {transform: (data) => map((X = valueof(data, x)), (x) => x - 0.5)}, scale: "x"},
-        y1: {value: {transform: (data) => map((Y = valueof(data, y)), (y) => y - 0.5)}, scale: "y"},
-        x2: {value: {transform: () => map(X, (x) => x + 0.5)}, scale: "x"},
-        y2: {value: {transform: () => map(Y, (y) => y + 0.5)}, scale: "y"}
+        x1: {value: {transform: (data) => (X = numberof(data, x)).map((x) => x - rx)}, scale: "x"},
+        y1: {value: {transform: (data) => (Y = numberof(data, y)).map((y) => y - ry)}, scale: "y"},
+        x2: {value: {transform: () => X.map((x) => x + rx)}, scale: "x"},
+        y2: {value: {transform: () => Y.map((y) => y + ry)}, scale: "y"}
       },
       options,
       defaults
@@ -30,25 +54,26 @@ export class Pixel extends Mark {
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);
     this.insetLeft = number(insetLeft);
+    this.pixelRatio = number(pixelRatio);
+    this.round = maybeRound(round);
   }
   render(index, scales, channels, dimensions, context) {
     const {x1: X1, y1: Y1, x2: X2, y2: Y2, fill: F, fillOpacity: FO} = channels;
-    const {insetTop, insetRight, insetBottom, insetLeft} = this;
     const {width, height} = dimensions;
-    const {document, devicePixelRatio: k} = context;
+    const {document, devicePixelRatio} = context;
+    const {insetTop, insetRight, insetBottom, insetLeft, pixelRatio = devicePixelRatio, round} = this;
     const canvas = document.createElement("canvas");
-    canvas.width = width * k;
-    canvas.height = height * k;
+    canvas.width = width * pixelRatio;
+    canvas.height = height * pixelRatio;
     const context2d = canvas.getContext("2d");
     if (!F) context2d.fillStyle = this.fill;
     if (!FO) context2d.globalAlpha = this.fillOpacity;
     for (const i of index) {
-      // TODO round option?
-      // TODO mark-level devicePixelRatio option?
-      const x1 = Math.round(k * (Math.min(X1[i], X2[i]) + insetLeft));
-      const x2 = Math.round(k * (Math.max(X1[i], X2[i]) - insetRight));
-      const y1 = Math.round(k * (Math.min(Y1[i], Y2[i]) + insetTop));
-      const y2 = Math.round(k * (Math.max(Y1[i], Y2[i]) - insetBottom));
+      let x1 = pixelRatio * (Math.min(X1[i], X2[i]) + insetLeft);
+      let x2 = pixelRatio * (Math.max(X1[i], X2[i]) - insetRight);
+      let y1 = pixelRatio * (Math.min(Y1[i], Y2[i]) + insetTop);
+      let y2 = pixelRatio * (Math.max(Y1[i], Y2[i]) - insetBottom);
+      if (round) (x1 = round(x1)), (x2 = round(x2)), (y1 = round(y1)), (y2 = round(y2));
       if (F) context2d.fillStyle = F[i];
       if (FO) context2d.globalAlpha = FO[i];
       context2d.fillRect(x1, y1, Math.max(0, x2 - x1), Math.max(0, y2 - y1));
