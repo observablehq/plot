@@ -107,7 +107,8 @@ export function Projection(
           }
         });
 
-  return {stream: (s) => projection.stream(transform.stream(clip(s)))};
+  const simplify = quantizeStream(options?.precision);
+  return {stream: (s) => projection.stream(transform.stream(clip(simplify(s))))};
 }
 
 function namedProjection(projection) {
@@ -261,4 +262,27 @@ export function Position(channels, scales, context) {
   if (position.x) position.x = coerceNumbers(position.x);
   if (position.y) position.y = coerceNumbers(position.y);
   return position;
+}
+
+function quantizeStream(precision = 0.15) {
+  if (!(precision > 0)) return (s) => s;
+  const digits = Math.max(0, Math.ceil(-Math.log10(precision)));
+  let prev; // previous point in the line, also used to indicate that we are in a line
+  return geoTransform({
+    lineStart() {
+      prev = {};
+      this.stream.lineStart();
+    },
+    lineEnd() {
+      prev = false;
+      this.stream.lineEnd();
+    },
+    point(x, y) {
+      if (!isFinite(x) || !isFinite(y)) return;
+      x = +x.toFixed(digits);
+      y = +y.toFixed(digits);
+      if (prev?.x !== x || prev?.y !== y) this.stream.point(x, y);
+      prev &&= {x, y};
+    }
+  }).stream;
 }

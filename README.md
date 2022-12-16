@@ -340,7 +340,7 @@ If the **projection** option is specified as an object, the following additional
 
 * projection.**type** - one of the projection names above
 * projection.**parallels** - the [standard parallels](https://github.com/d3/d3-geo/blob/main/README.md#conic_parallels) (for conic projections only)
-* projection.**precision** - the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision)
+* projection.**precision** - the projection’s precision
 * projection.**rotate** - a two- or three- element array of Euler angles to rotate the sphere
 * projection.**domain** - a GeoJSON object to fit in the center of the (inset) frame
 * projection.**inset** - inset by the given amount in pixels when fitting to the frame (default zero)
@@ -349,6 +349,8 @@ If the **projection** option is specified as an object, the following additional
 * projection.**insetTop** - inset from the top edge of the frame (defaults to inset)
 * projection.**insetBottom** - inset from the bottom edge of the frame (defaults to inset)
 * projection.**clip** - the projection clipping method
+
+The precision controls both the [sampling threshold](https://github.com/d3/d3-geo/blob/main/README.md#projection_precision) and the decimal precision of the final map coordinates. Defaults to 0.15.
 
 The following projection clipping methods are supported for projection.**clip**:
 
