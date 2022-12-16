@@ -361,6 +361,37 @@ it("plot(…).scale(name).unknown reflects the given unknown option for a diverg
   });
 });
 
+it("plot(…).scale(name) handles a diverging scale with a descending domain", async () => {
+  const plot = Plot.plot({
+    color: {type: "diverging", domain: [100, -10]}
+  });
+  const {interpolate, ...color} = plot.scale("color");
+  scaleEqual(color, {
+    type: "diverging",
+    symmetric: false,
+    domain: [-100, 100],
+    pivot: 0,
+    clamp: false
+  });
+  for (const t of d3.ticks(0, 1, 100)) {
+    assert.strictEqual(interpolate(t), d3.interpolateRdBu(1 - t));
+  }
+});
+
+it("plot(…).scale(name) handles a reversed diverging scale with a descending domain", async () => {
+  const plot = Plot.plot({
+    color: {type: "diverging", domain: [100, -10], reverse: true}
+  });
+  scaleEqual(plot.scale("color"), {
+    type: "diverging",
+    symmetric: false,
+    domain: [-100, 100],
+    pivot: 0,
+    clamp: false,
+    interpolate: d3.interpolateRdBu
+  });
+});
+
 it("plot(…).scale(name) promotes the given zero option to the domain", async () => {
   const penguins = await d3.csv("data/penguins.csv", d3.autoType);
   const plot = Plot.dotX(penguins, {x: "body_mass_g"}).plot({x: {zero: true}});
