@@ -16,6 +16,7 @@ export {linearRegressionX, linearRegressionY} from "./marks/linearRegression.js"
 export {Link, link} from "./marks/link.js";
 export {Rect, rect, rectX, rectY} from "./marks/rect.js";
 export {RuleX, RuleY, ruleX, ruleY} from "./marks/rule.js";
+export {Spike, spike} from "./marks/spike.js";
 export {Text, text, textX, textY} from "./marks/text.js";
 export {TickX, TickY, tickX, tickY} from "./marks/tick.js";
 export {tree, cluster} from "./marks/tree.js";
@@ -24,6 +25,7 @@ export {valueof, column} from "./options.js";
 export {filter, reverse, sort, shuffle, basic as transform, initializer} from "./transforms/basic.js";
 export {bin, binX, binY} from "./transforms/bin.js";
 export {dodgeX, dodgeY} from "./transforms/dodge.js";
+export {geoCentroid} from "./transforms/geoCentroid.js";
 export {group, groupX, groupY, groupZ} from "./transforms/group.js";
 export {hexbin} from "./transforms/hexbin.js";
 export {normalize, normalizeX, normalizeY} from "./transforms/normalize.js";

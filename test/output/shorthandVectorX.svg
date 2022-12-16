@@ -30,7 +30,7 @@
       <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">175</text>
     </g>
   </g>
-  <g fill="none" aria-label="vector" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="vector" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path d="M394.8166259168701,21l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
     <path d="M452.76283618581897,21l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>
     <path d="M453.0073349633248,21l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4"></path>

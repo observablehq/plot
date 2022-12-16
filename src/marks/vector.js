@@ -10,16 +10,16 @@ import {
   applyTransform
 } from "../style.js";
 
-const defaults = {
+const vectorDefaults = {
   ariaLabel: "vector",
-  fill: null,
+  fill: "none",
   stroke: "currentColor",
   strokeWidth: 1.5,
   strokeLinecap: "round"
 };
 
 export class Vector extends Mark {
-  constructor(data, options = {}) {
+  constructor(data, options = {}, defaults = vectorDefaults) {
     const {x, y, length, rotate, anchor = "middle", frameAnchor} = options;
     const [vl, cl] = maybeNumberChannel(length, 12);
     const [vr, cr] = maybeNumberChannel(rotate, 0);
@@ -39,6 +39,15 @@ export class Vector extends Mark {
     this.anchor = keyword(anchor, "anchor", ["start", "middle", "end"]);
     this.frameAnchor = maybeFrameAnchor(frameAnchor);
   }
+  _path(fx, fy, fl, fr, k) {
+    const l = fl,
+      a = fr * radians,
+      x = Math.sin(a) * l,
+      y = -Math.cos(a) * l,
+      d = (x + y) / 5,
+      e = (x - y) / 5;
+    return `M${fx - x * k},${fy - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
+  }
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y: Y, length: L, rotate: R} = channels;
@@ -50,7 +59,6 @@ export class Vector extends Mark {
     const fy = Y ? (i) => Y[i] : () => cy;
     const k = anchor === "start" ? 0 : anchor === "end" ? 1 : 0.5;
     return create("svg:g", context)
-      .attr("fill", "none")
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
@@ -60,15 +68,7 @@ export class Vector extends Mark {
           .enter()
           .append("path")
           .call(applyDirectStyles, this)
-          .attr("d", (i) => {
-            const l = fl(i),
-              a = fr(i) * radians;
-            const x = Math.sin(a) * l,
-              y = -Math.cos(a) * l;
-            const d = (x + y) / 5,
-              e = (x - y) / 5;
-            return `M${fx(i) - x * k},${fy(i) - y * k}l${x},${y}m${-e},${-d}l${e},${d}l${-d},${e}`;
-          })
+          .attr("d", (i) => this._path(fx(i), fy(i), fl(i), fr(i), k))
           .call(applyChannelStyles, this, channels)
       )
       .node();

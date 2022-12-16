@@ -48,7 +48,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,20)">
-    <g fill="none" aria-label="vector" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
       <path d="M71.03678929765886,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="brown"></path>
       <path d="M100.13377926421404,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="brown"></path>
       <path d="M129.23076923076923,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="brown"></path>
@@ -68,7 +68,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,44)">
-    <g fill="none" aria-label="vector" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
       <path d="M127.29096989966555,5l1.4695761589768238e-15,12m2.3999999999999995,-2.4000000000000004l-2.3999999999999995,2.4000000000000004l-2.4000000000000004,-2.3999999999999995" stroke="peru"></path>
       <path d="M156.38795986622074,5l1.4695761589768238e-15,12m2.3999999999999995,-2.4000000000000004l-2.3999999999999995,2.4000000000000004l-2.4000000000000004,-2.3999999999999995" stroke="peru"></path>
       <path d="M389.1638795986622,5l1.4695761589768238e-15,12m2.3999999999999995,-2.4000000000000004l-2.3999999999999995,2.4000000000000004l-2.4000000000000004,-2.3999999999999995" stroke="peru"></path>
@@ -106,7 +106,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,68)">
-    <g fill="none" aria-label="vector" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
+    <g aria-label="vector" fill="none" stroke-width="1.5" stroke-linecap="round" transform="translate(0.5,0.5)">
       <path d="M40,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="currentColor"></path>
       <path d="M476.4548494983278,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="currentColor"></path>
       <path d="M505.55183946488296,17l0,-12m-2.4,2.4l2.4,-2.4l2.4,2.4" stroke="currentColor"></path>
