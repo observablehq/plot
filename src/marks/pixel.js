@@ -69,7 +69,8 @@ export class Pixel extends Mark {
     canvas.height = height * pixelRatio;
     const context2d = canvas.getContext("2d");
     if (!F) context2d.fillStyle = this.fill;
-    if (!FO) context2d.globalAlpha = this.fillOpacity;
+    if (!FO) context2d.globalAlpha = this.fillOpacity ?? this.opacity;
+    if (this.mixBlendMode) context2d.globalCompositeOperation = this.mixBlendMode;
     for (const i of index) {
       let x1 = pixelRatio * (Math.min(X1[i], X2[i]) + insetLeft),
         x2 = pixelRatio * (Math.max(X1[i], X2[i]) - insetRight),
