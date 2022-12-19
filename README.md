@@ -1804,7 +1804,7 @@ Equivalent to [Plot.vector](#plotvectordata-options) except that if the **y** op
 
 <!-- jsdoc spike -->
 
-Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** options defaults to spike, and the anchor option defaults to start. The base **width** of the shape can be specified as a constant option, which defaults to 7 pixels.
+Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.
 
 <!-- jsdocEnd spike -->
 
