@@ -156,6 +156,7 @@ export function vectorY(data, options = {}) {
   return new Vector(data, {...rest, y});
 }
 
+/** @jsdoc spike */
 export function spike(data, options = {}) {
   const {
     shape = shapeSpike,

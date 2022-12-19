@@ -1774,6 +1774,16 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
 
+The **shape** option supports the following shapes:
+- **arrow** - default: an arrow pointing top, with an arrow head proportional to its length and to the radius
+- **spike** - an open isosceles triangle pointing top, with a base equal to the width and a height equal to the length 
+- an object with a draw function that receives the context, a length, and the radius
+
+The following options are also supported:
+- **length** - the shape’s length, a constant or variable channel
+- **width** - the shape’s width, twice the shape’s radius, that defaults to 7 pixels.
+- **anchor** - the mark’s anchor (start, middle, end), defaults to middle
+
 <!-- jsdocEnd vector -->
 
 #### Plot.vectorX(*data*, *options*)
@@ -1791,6 +1801,14 @@ Equivalent to [Plot.vector](#plotvectordata-options) except that if the **x** op
 Equivalent to [Plot.vector](#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 <!-- jsdocEnd vectorY -->
+
+#### Plot.spike(*data*, *options*)
+
+<!-- jsdoc spike -->
+
+Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** options defaults to spike, and the anchor option defaults to start. The base **width** of the shape can be specified as a constant option, which defaults to 7 pixels.
+
+<!-- jsdocEnd spike -->
 
 ## Decorations
 
