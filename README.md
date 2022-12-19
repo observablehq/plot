@@ -1331,6 +1331,7 @@ In addition to the [standard mark options](#marks), the following optional chann
 * **y** - the vertical position; bound to the *y* scale
 * **width** - the image width (in pixels)
 * **height** - the image height (in pixels)
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
@@ -1522,6 +1523,40 @@ Typically either **x1** and **x2** are specified, or **y1** and **y2**, or both.
 If an **interval** is specified, such as d3.utcDay, **x1** and **x2** can be derived from **x**: *interval*.floor(*x*) is invoked for each *x* to produce *x1*, and *interval*.offset(*x1*) is invoked for each *x1* to produce *x2*. The same is true for *y*, *y1*, and *y2*, respectively. If the interval is specified as a number *n*, *x1* and *x2* are taken as the two consecutive multiples of *n* that bracket *x*. The interval may be specified either as as {x, interval} or x: {value, interval} to apply different intervals to x and y.
 
 The rect mark supports the [standard mark options](#marks), including insets and rounded corners. The **stroke** defaults to none. The **fill** defaults to currentColor if the stroke is none, and to none otherwise.
+
+### Pixel
+
+#### Plot.pixel(*data*, *options*)
+
+<!-- jsdoc pixel -->
+
+```js
+Plot.pixel(triplets, {x: "0", y: "1", fill: "2"})
+```
+
+Returns a new raster image with samples at coordinates *x* and *y* optionally set to the given *fill* color and *opacity*. The image is created as a canvas and inserted into the chart as an image with a [data-url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs) href.
+
+The **x** and **y** options are both required, as a constant or as a channel, and mapped to the quantitative scales *x* and *y*. Each sample is represented by a rectangular fill from position ﹤x − ½, y − ½﹥ to position ﹤x + ½, y + ½﹥, minus any insets, and possibly rounded to the closest pixel on the underlying canvas to avoid anti-aliasing artifacts.
+
+The pixel mark supports the following options:
+
+* **fill** - the sample’s color, as a constant or a channel
+* **fillOpacity** - the sample’s opacity, as a constant or a channel
+* **opacity** - alias for fillOpacity
+* **mixBlendMode** - controls both the [mix-blend-mode](https://developer.mozilla.org/en-US/docs/Web/CSS/mix-blend-mode) attribute of the image, and the [globalCompositeOperation](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation) for composing overlapping samples
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering) attribute, defaults to pixelated
+* **pixelRatio** - the canvas pixel ratio, defaults to [devicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio)
+* **round** - whether the scaled coordinates are rounded, defaults to true
+* **inset** - inset of the mark in screen pixels, defaults to zero; note: this length is measured independently of the mark’s pixelRatio
+* **insetTop** - inset the top edge
+* **insetRight** - inset the right edge
+* **insetBottom** - inset the bottom edge
+* **insetLeft** - inset the left edge
+
+Only a few common mark options are supported: **dx**, **dy**, **ariaDescription**, **clip**, and **pointerEvents**. All the options related to the **stroke** (**strokeOpacity**, **paintOrder**…) are ignored, as are **shapeRendering** (but, see imageRendering), **href** and **target**.
+
+
+<!-- jsdocEnd pixel -->
 
 #### Plot.rect(*data*, *options*)
 
