@@ -67,10 +67,9 @@ export class Dot extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y: Y, r: R, rotate: A, symbol: S} = channels;
-    const {rotate, symbol} = this;
+    const {r, rotate, symbol} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
-    const {r} = this;
     if (negative(r)) index = [];
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)

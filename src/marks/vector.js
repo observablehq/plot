@@ -20,30 +20,30 @@ const defaults = {
   strokeLinecap: "round"
 };
 
-const defaultWidth = 7;
+const defaultRadius = 3.5;
 
 // The size of the arrowhead is proportional to its length, but we still allow
 // the relative size of the head to be controlled via the mark’s width option;
-// double the default width of 7 will produce an arrowhead that is twice as big.
+// doubling the default radius will produce an arrowhead that is twice as big.
 // That said, we’ll probably want a arrow with a fixed head size, too.
-const wingRatio = (defaultWidth / 2) * 5;
+const wingRatio = defaultRadius * 5;
 
 const shapeArrow = {
-  draw(context, length, radius) {
-    const wing = (length * radius) / wingRatio;
+  draw(context, l, r) {
+    const wing = (l * r) / wingRatio;
     context.moveTo(0, 0);
-    context.lineTo(0, -length);
-    context.moveTo(-wing, wing - length);
-    context.lineTo(0, -length);
-    context.lineTo(wing, wing - length);
+    context.lineTo(0, -l);
+    context.moveTo(-wing, wing - l);
+    context.lineTo(0, -l);
+    context.lineTo(wing, wing - l);
   }
 };
 
 const shapeSpike = {
-  draw(context, length, radius) {
-    context.moveTo(-radius, 0);
-    context.lineTo(0, -length);
-    context.lineTo(radius, 0);
+  draw(context, l, r) {
+    context.moveTo(-r, 0);
+    context.lineTo(0, -l);
+    context.lineTo(r, 0);
   }
 };
 
@@ -65,7 +65,7 @@ function Shape(shape) {
 
 export class Vector extends Mark {
   constructor(data, options = {}) {
-    const {x, y, width = defaultWidth, length, rotate, shape = shapeArrow, anchor = "middle", frameAnchor} = options;
+    const {x, y, r = defaultRadius, length, rotate, shape = shapeArrow, anchor = "middle", frameAnchor} = options;
     const [vl, cl] = maybeNumberChannel(length, 12);
     const [vr, cr] = maybeNumberChannel(rotate, 0);
     super(
@@ -79,7 +79,7 @@ export class Vector extends Mark {
       options,
       defaults
     );
-    this.radius = width / 2;
+    this.r = +r;
     this.length = cl;
     this.rotate = cr;
     this.shape = Shape(shape);
@@ -89,7 +89,7 @@ export class Vector extends Mark {
   render(index, scales, channels, dimensions, context) {
     const {x, y} = scales;
     const {x: X, y: Y, length: L, rotate: A} = channels;
-    const {length, rotate, anchor, shape, radius} = this;
+    const {length, rotate, anchor, shape, r} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
@@ -122,12 +122,12 @@ export class Vector extends Mark {
             L
               ? (i) => {
                   const p = path();
-                  shape.draw(p, L[i], radius);
+                  shape.draw(p, L[i], r);
                   return p;
                 }
               : (() => {
                   const p = path();
-                  shape.draw(p, length, radius);
+                  shape.draw(p, length, r);
                   return p;
                 })()
           )

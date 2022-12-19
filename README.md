@@ -1749,10 +1749,18 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
-The following options are also supported:
+The following constant options are also supported:
 
+* **shape** - the shape of the vector; defaults to *arrow*
+* ***r** - a radius in pixels; defaults to 3.5
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+
+The **shape** option controls the visual appearance (path geometry) of the vector and supports the following values:
+
+* *arrow* (default) - an arrow with head size proportional to its length
+* *spike* - an isosceles triangle with open base
+* any object with a **draw** method; it receives a *context*, *length*, and *radius*
 
 If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
 
@@ -1773,16 +1781,6 @@ Plot.vector(wind, {x: "longitude", y: "latitude", length: "speed", rotate: "dire
 ```
 
 Returns a new vector with the given *data* and *options*. If neither the **x** nor **y** options are specified, *data* is assumed to be an array of pairs [[*x₀*, *y₀*], [*x₁*, *y₁*], [*x₂*, *y₂*], …] such that **x** = [*x₀*, *x₁*, *x₂*, …] and **y** = [*y₀*, *y₁*, *y₂*, …].
-
-The **shape** option supports the following shapes:
-- **arrow** - default: an arrow pointing top, with an arrow head proportional to its length and to the radius
-- **spike** - an open isosceles triangle pointing top, with a base equal to the width and a height equal to the length 
-- an object with a draw function that receives the context, a length, and the radius
-
-The following options are also supported:
-- **length** - the shape’s length, a constant or variable channel
-- **width** - the shape’s width, twice the shape’s radius, that defaults to 7 pixels.
-- **anchor** - the mark’s anchor (start, middle, end), defaults to middle
 
 <!-- jsdocEnd vector -->
 
