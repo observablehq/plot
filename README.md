@@ -2082,21 +2082,28 @@ Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, i
 
 ### Centroid
 
-The centroid transform reads an input geometry channel, and adds two channels *x* and *y* with the coordinates of the centroid of each geometry.
+#### Plot.centroid(*options*)
 
 <!-- jsdoc centroid -->
+
+The centroid transform derives **x** and **y** channels representing the planar centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects. This is generally faster to compute than the [geoCentroid transform](#plotgeocentroidoptions), but may be inaccurate when the geometry is spherical since the centroids are computed prior to projection.
 
 ```js
 Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
 ```
+
 <!-- jsdocEnd centroid -->
 
-The geoCentroid variant computes the centroids in spherical rather than planar coordinates. Most of the time the difference will be imperceptible but for geometries that happen to be clipped by the projection, typically on the antemeridian line.
+#### Plot.geoCentroid(*options*)
 
 <!-- jsdoc geoCentroid -->
+
+The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects. This is generally slower to compute than the [centroid transform](#plotgeocentroidoptions), but may be needed when the geometry is spherical, for example when geometries cover a significant proportion of the sphere, or when geometries are clipped by the projection.
+
 ```js
 Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
 ```
+
 <!-- jsdocEnd geoCentroid -->
 
 ### Group
