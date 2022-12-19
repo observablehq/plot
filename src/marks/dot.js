@@ -70,6 +70,7 @@ export class Dot extends Mark {
     const {r, rotate, symbol} = this;
     const [cx, cy] = applyFrameAnchor(this, dimensions);
     const circle = this.symbol === symbolCircle;
+    const size = R ? undefined : r * r * Math.PI;
     if (negative(r)) index = [];
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
@@ -114,12 +115,12 @@ export class Dot extends Mark {
                         : S
                         ? (i) => {
                             const p = path();
-                            S[i].draw(p, r * r * Math.PI);
+                            S[i].draw(p, size);
                             return p;
                           }
                         : (() => {
                             const p = path();
-                            symbol.draw(p, r * r * Math.PI);
+                            symbol.draw(p, size);
                             return p;
                           })()
                     );
