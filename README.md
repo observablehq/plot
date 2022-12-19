@@ -2082,6 +2082,25 @@ Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, i
 
 <!-- jsdocEnd binY -->
 
+### Centroid
+
+The centroid transform reads an input geometry channel, and adds two channels *x* and *y* with the coordinates of the centroid of each geometry.
+
+<!-- jsdoc centroid -->
+
+```js
+Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
+```
+<!-- jsdocEnd centroid -->
+
+The geoCentroid variant computes the centroids in spherical rather than planar coordinates. Most of the time the difference will be imperceptible but for geometries that happen to be clipped by the projection, typically on the antemeridian line.
+
+<!-- jsdoc geoCentroid -->
+```js
+Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
+```
+<!-- jsdocEnd geoCentroid -->
+
 ### Group
 
 [<img src="./img/group.png" width="320" height="198" alt="a histogram of penguins by species">](https://observablehq.com/@observablehq/plot-group)

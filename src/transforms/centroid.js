@@ -10,11 +10,13 @@ function centroidof(Centroid, options) {
   };
 }
 
+/** @jsdoc centroid */
 export function centroid(options) {
   const path = geoPath();
   return centroidof((object) => path.centroid(object), options);
 }
 
+/** @jsdoc geoCentroid */
 export function geoCentroid(options) {
   return centroidof(GeoCentroid, options);
 }
