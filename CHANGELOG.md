@@ -1,5 +1,15 @@
 # Observable Plot - Changelog
 
+## 0.6.2
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The vector mark now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new spike mark convenience constructor creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
+
+The new geoCentroid transform and centroid initializer transform compute the spherical and projected planar centroids of geometry, respectively.
+
+Diverging scales now correctly handle descending domains.
+
 ## 0.6.1
 
 [Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
