@@ -41,6 +41,7 @@ export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
 export {default as collapsedHistogram} from "./collapsed-histogram.js";
+export {default as countryCentroids} from "./country-centroids.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
 export {default as crimeanWarArrow} from "./crimean-war-arrow.js";
 export {default as crimeanWarLine} from "./crimean-war-line.js";
