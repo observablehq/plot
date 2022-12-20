@@ -25,7 +25,7 @@ export default async function () {
     marks: [
       Plot.geo(nation, {fill: "#e0e0e0"}),
       Plot.geo(statemesh, {stroke: "white"}),
-      Plot.spike(counties.features, Plot.geoCentroid({stroke: "red", length: (d) => population.get(d.id)}))
+      Plot.spike(counties.features, Plot.centroid({stroke: "red", length: (d) => population.get(d.id)}))
     ]
   });
 }
