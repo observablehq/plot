@@ -41,6 +41,7 @@ export {default as carsMpg} from "./cars-mpg.js";
 export {default as carsParcoords} from "./cars-parcoords.js";
 export {default as clamp} from "./clamp.js";
 export {default as collapsedHistogram} from "./collapsed-histogram.js";
+export {default as countryCentroids} from "./country-centroids.js";
 export {default as covidIhmeProjectedDeaths} from "./covid-ihme-projected-deaths.js";
 export {default as crimeanWarArrow} from "./crimean-war-arrow.js";
 export {default as crimeanWarLine} from "./crimean-war-line.js";
@@ -251,6 +252,7 @@ export {default as usCongressAgeColorExplicit} from "./us-congress-age-color-exp
 export {default as usCongressAgeGender} from "./us-congress-age-gender.js";
 export {default as usCongressAgeSymbolExplicit} from "./us-congress-age-symbol-explicit.js";
 export {default as usCountyChoropleth} from "./us-county-choropleth.js";
+export {default as usCountySpikes} from "./us-county-spikes.js";
 export {default as usPopulationStateAge} from "./us-population-state-age.js";
 export {default as usPopulationStateAgeDots} from "./us-population-state-age-dots.js";
 export {default as usPresidentFavorabilityDots} from "./us-president-favorability-dots.js";

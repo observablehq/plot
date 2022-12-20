@@ -1749,10 +1749,18 @@ In addition to the [standard mark options](#marks), the following optional chann
 
 If either of the **x** or **y** channels are not specified, the corresponding position is controlled by the **frameAnchor** option.
 
-The following options are also supported:
+The following constant options are also supported:
 
+* **shape** - the shape of the vector; defaults to *arrow*
+* **r** - a radius in pixels; defaults to 3.5
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
+
+The **shape** option controls the visual appearance (path geometry) of the vector and supports the following values:
+
+* *arrow* (default) - an arrow with head size proportional to its length
+* *spike* - an isosceles triangle with open base
+* any object with a **draw** method; it receives a *context*, *length*, and *radius*
 
 If the **anchor** is *start*, the arrow will start at the given *xy* position and point in the direction given by the rotation angle. If the **anchor** is *end*, the arrow will maintain the same orientation, but be positioned such that it ends in the given *xy* position. If the **anchor** is *middle*, the arrow will be likewise be positioned such that its midpoint intersects the given *xy* position.
 
@@ -1791,6 +1799,14 @@ Equivalent to [Plot.vector](#plotvectordata-options) except that if the **x** op
 Equivalent to [Plot.vector](#plotvectordata-options) except that if the **y** option is not specified, it defaults to the identity function and assumes that *data* = [*y₀*, *y₁*, *y₂*, …].
 
 <!-- jsdocEnd vectorY -->
+
+#### Plot.spike(*data*, *options*)
+
+<!-- jsdoc spike -->
+
+Equivalent to [Plot.vector](#plotvectordata-options) except that the **shape** defaults to *spike*, the **stroke** defaults to *currentColor*, the **strokeWidth** defaults to 1, the **fill** defaults to **stroke**, the **fillOpacity** defaults to 0.3, and the **anchor** defaults to *start*.
+
+<!-- jsdocEnd spike -->
 
 ## Decorations
 
@@ -2063,6 +2079,32 @@ Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
 Bins on *y*. Also groups on *x* and first channel of *z*, *fill*, or *stroke*, if any.
 
 <!-- jsdocEnd binY -->
+
+### Centroid
+
+#### Plot.centroid(*options*)
+
+<!-- jsdoc centroid -->
+
+The centroid initializer derives **x** and **y** channels representing the planar (projected) centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+
+```js
+Plot.dot(regions.features, Plot.centroid()).plot({projection: "reflect-y"})
+```
+
+<!-- jsdocEnd centroid -->
+
+#### Plot.geoCentroid(*options*)
+
+<!-- jsdoc geoCentroid -->
+
+The geoCentroid transform derives **x** and **y** channels representing the spherical centroids for the the given GeoJSON geometry. If the **geometry** option is not specified, the mark’s data is assumed to be GeoJSON objects.
+
+```js
+Plot.dot(counties.features, Plot.geoCentroid()).plot({projection: "albers-usa"})
+```
+
+<!-- jsdocEnd geoCentroid -->
 
 ### Group
 

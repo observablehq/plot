@@ -26,6 +26,7 @@ import {
   impliedString,
   applyFrameAnchor
 } from "../style.js";
+import {template} from "../template.js";
 import {maybeIntervalMidX, maybeIntervalMidY} from "../transforms/interval.js";
 
 const defaults = {
@@ -100,29 +101,9 @@ export class Text extends Mark {
           .call(applyMultilineText, this, T)
           .attr(
             "transform",
-            R
-              ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${R[i]})`
-                : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${R[i]})`
-                : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${R[i]})`
-                : (i) => `translate(${cx},${cy}) rotate(${R[i]})`
-              : rotate
-              ? X && Y
-                ? (i) => `translate(${X[i]},${Y[i]}) rotate(${rotate})`
-                : X
-                ? (i) => `translate(${X[i]},${cy}) rotate(${rotate})`
-                : Y
-                ? (i) => `translate(${cx},${Y[i]}) rotate(${rotate})`
-                : `translate(${cx},${cy}) rotate(${rotate})`
-              : X && Y
-              ? (i) => `translate(${X[i]},${Y[i]})`
-              : X
-              ? (i) => `translate(${X[i]},${cy})`
-              : Y
-              ? (i) => `translate(${cx},${Y[i]})`
-              : `translate(${cx},${cy})`
+            template`translate(${X ? (i) => X[i] : cx},${Y ? (i) => Y[i] : cy})${
+              R ? (i) => ` rotate(${R[i]})` : rotate ? ` rotate(${rotate})` : ``
+            }`
           )
           .call(applyAttr, "font-size", FS && ((i) => FS[i]))
           .call(applyChannelStyles, this, channels)
