@@ -9,9 +9,7 @@ export function template(strings, ...parts) {
         strings = strings.slice(); // copy before mutate
         copy = false;
       }
-      strings[j] += parts[j];
-      strings[j] += strings[j + 1];
-      strings.splice(j + 1, 1);
+      strings.splice(j, 2, strings[j] + parts[j] + strings[j + 1]);
       parts.splice(j, 1);
       --j, --n;
     }
