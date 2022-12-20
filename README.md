@@ -1752,7 +1752,7 @@ If either of the **x** or **y** channels are not specified, the corresponding po
 The following constant options are also supported:
 
 * **shape** - the shape of the vector; defaults to *arrow*
-* ***r** - a radius in pixels; defaults to 3.5
+* **r** - a radius in pixels; defaults to 3.5
 * **anchor** - one of *start*, *middle*, or *end*; defaults to *middle*
 * **frameAnchor** - the [frame anchor](#frameanchor); defaults to *middle*
 
