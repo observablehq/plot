@@ -71,8 +71,7 @@ export class ImageData extends Mark {
       .call((g) =>
         g
           .append("image")
-          .attr("x", Math.min(x1, x2))
-          .attr("y", Math.min(y1, y2))
+          .attr("transform", `translate(${x1},${y1}) scale(${Math.sign(x2 - x1)},${Math.sign(y2 - y1)})`)
           .attr("width", Math.abs(x2 - x1))
           .attr("height", Math.abs(y2 - y1))
           .attr("preserveAspectRatio", "none")
