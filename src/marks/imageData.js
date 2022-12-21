@@ -39,7 +39,9 @@ export class ImageData extends Mark {
     this.imageRendering = string(imageRendering);
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: [x1, x2], y: [y1, y2], fill: F} = channels;
+    const {x: X, y: Y, fill: F} = channels;
+    const [x1, x2] = X;
+    const [y1, y2] = Y;
     const {document} = context;
     const {width, height, imageRendering, fillOpacity} = this;
     const canvas = document.createElement("canvas");
