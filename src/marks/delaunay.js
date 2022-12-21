@@ -1,4 +1,4 @@
-import {group, path, select, Delaunay} from "d3";
+import {group, pathRound as path, select, Delaunay} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {constant, maybeTuple, maybeZ} from "../options.js";

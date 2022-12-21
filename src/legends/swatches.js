@@ -1,4 +1,4 @@
-import {path} from "d3";
+import {pathRound as path} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {maybeAutoTickFormat} from "../axis.js";
 import {Context, create} from "../context.js";

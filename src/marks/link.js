@@ -1,4 +1,4 @@
-import {path} from "d3";
+import {pathRound as path} from "d3";
 import {create} from "../context.js";
 import {Curve} from "../curve.js";
 import {Mark} from "../plot.js";
