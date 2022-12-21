@@ -1,4 +1,4 @@
-import {path, symbolCircle} from "d3";
+import {pathRound as path, symbolCircle} from "d3";
 import {create} from "../context.js";
 import {negative, positive} from "../defined.js";
 import {identity, maybeFrameAnchor, maybeNumberChannel, maybeTuple} from "../options.js";
