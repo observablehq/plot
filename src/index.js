@@ -11,6 +11,7 @@ export {Frame, frame} from "./marks/frame.js";
 export {Geo, geo, sphere, graticule} from "./marks/geo.js";
 export {Hexgrid, hexgrid} from "./marks/hexgrid.js";
 export {Image, image} from "./marks/image.js";
+export {ImageData, imageData} from "./marks/imageData.js";
 export {Line, line, lineX, lineY} from "./marks/line.js";
 export {linearRegressionX, linearRegressionY} from "./marks/linearRegression.js";
 export {Link, link} from "./marks/link.js";
