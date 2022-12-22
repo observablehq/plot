@@ -8,7 +8,7 @@ export default async function () {
       reverse: true
     },
     marks: [
-      Plot.imageData({imageRendering: "auto", width: dem.width, height: dem.height, fill: dem.values}),
+      Plot.imageData({width: dem.width, height: dem.height, fill: dem.values}),
       Plot.frame()
     ]
   });
