@@ -17,7 +17,18 @@ const defaults = {
 // - optimize application of scale as RGB
 export class ImageData extends Mark {
   constructor(options = {}) {
-    const {width, height, x1 = 0, y1 = 0, x2 = width, y2 = height, offset = 0, stride = 1, imageRendering} = options;
+    let {
+      fill,
+      width,
+      height,
+      x1 = 0,
+      y1 = 0,
+      x2 = width,
+      y2 = height,
+      offset = 0,
+      stride = 1,
+      imageRendering
+    } = options;
     if (width == null) throw new Error("missing width");
     if (height == null) throw new Error("missing height");
     super(
@@ -26,7 +37,7 @@ export class ImageData extends Mark {
         x: {value: [x1, x2], scale: "x"},
         y: {value: [y1, y2], scale: "y"}
       },
-      options,
+      typeof fill === "function" ? {...options, fill: sampleFill(x1, y1, x2, y2, width, height, fill)} : options,
       defaults
     );
     this.width = Math.floor(width);
@@ -97,4 +108,12 @@ export class ImageData extends Mark {
 
 export function imageData(options) {
   return new ImageData(options);
+}
+
+function sampleFill(x1, y1, x2, y2, width, height, fill) {
+  const kx = (x2 - x1) / width;
+  const ky = (y2 - y1) / height;
+  return Array.from({length: width * height}, (_, i) => {
+    return fill(x1 + (i % width) * kx, y1 + Math.floor(i / width) * ky, i);
+  });
 }
