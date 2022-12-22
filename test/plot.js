@@ -16,6 +16,7 @@ for (const [name, plot] of Object.entries(plots)) {
     reindexStyle(root);
     reindexMarker(root);
     reindexClip(root);
+    stripImageData(root);
     const actual = beautify.html(root.outerHTML, {
       indent_size: 2,
       inline: ["text", "tspan", "span", "svg", "a", "i"],
@@ -101,5 +102,14 @@ function reindexClip(root) {
       let id = node.getAttribute(key).slice(5, -1);
       if (map.has(id)) node.setAttribute(key, `url(#${map.get(id)})`);
     }
+  }
+}
+
+// node-canvas won’t produce the same output on different architectures, so
+// until we have a way to normalize the output, we need to strip the generated
+// image data…
+function stripImageData(root) {
+  for (const node of root.querySelectorAll("image[href^='data:image/png;base64,']")) {
+    node.setAttribute("href", "data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 20 20' style='background-color: white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h10v10H0zm10 10h10v10H10z' fill='%23f4f4f4' fill-rule='evenodd'/%3E%3C/svg%3E");
   }
 }
