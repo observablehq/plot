@@ -1,8 +1,7 @@
 import {rgb} from "d3";
 import {create} from "../context.js";
-import {string} from "../options.js";
 import {Mark} from "../plot.js";
-import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform} from "../style.js";
+import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impliedString} from "../style.js";
 
 const defaults = {
   ariaLabel: "image data",
@@ -12,12 +11,13 @@ const defaults = {
 // TODO
 // - an image data channel?
 // - verify that fill is width * height array? allow function?
-// - allow opacity channels?
+// - allow or disallow opacity channel?
 // - faceting?
+// - enforce that the x and y scales are linear or utc/time?
 // - optimize application of scale as RGB
 export class ImageData extends Mark {
   constructor(options = {}) {
-    let {x1, y1, x2, y2, width, height, offset = 0, stride = 1, imageRendering = "pixelated"} = options;
+    const {x1, y1, x2, y2, width, height, offset = 0, stride = 1, imageRendering = "pixelated"} = options;
     if (x1 == null) throw new Error("missing x1");
     if (y1 == null) throw new Error("missing y1");
     if (x2 == null) throw new Error("missing x2");
@@ -37,7 +37,7 @@ export class ImageData extends Mark {
     this.height = Math.floor(height);
     this.offset = Math.floor(offset);
     this.stride = Math.floor(stride);
-    this.imageRendering = string(imageRendering);
+    this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
     const {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
@@ -56,7 +56,7 @@ export class ImageData extends Mark {
         for (let x = 0; x < width; ++x, i += stride, j += 4) {
           const f = F[i];
           if (f == null) continue; // skip missing or invalid data
-          const {r, g, b} = rgb(f); // TODO hint to scale to generate rgb instead of string
+          const {r, g, b} = rgb(f);
           imageData[j + 0] = r;
           imageData[j + 1] = g;
           imageData[j + 2] = b;
