@@ -110,10 +110,11 @@ export function imageData(options) {
   return new ImageData(options);
 }
 
-function sampleFill(x1, y1, x2, y2, width, height, fill) {
+// Evaluates the function f at the midpoint of each pixel.
+function sampleFill(x1, y1, x2, y2, width, height, f) {
   const kx = (x2 - x1) / width;
   const ky = (y2 - y1) / height;
-  return Array.from({length: width * height}, (_, i) => {
-    return fill(x1 + (i % width) * kx, y1 + Math.floor(i / width) * ky, i);
-  });
+  x1 += kx / 2;
+  x2 += ky / 2;
+  return Array.from({length: width * height}, (_, i) => f(x1 + (i % width) * kx, y1 + Math.floor(i / width) * ky, i));
 }
