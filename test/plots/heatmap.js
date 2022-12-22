@@ -13,7 +13,10 @@ export default async function () {
         y2: 1,
         width,
         height,
-        fill: Float64Array.from({length: width * height}, (_, i) => Math.sin((i % width) / k) * Math.cos(Math.floor(i / width) / k))
+        fill: Float64Array.from(
+          {length: width * height},
+          (_, i) => Math.sin((i % width) / k) * Math.cos(Math.floor(i / width) / k)
+        )
       }),
       Plot.frame()
     ]
