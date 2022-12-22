@@ -17,17 +17,7 @@ const defaults = {
 // - optimize application of scale as RGB
 export class ImageData extends Mark {
   constructor(options = {}) {
-    const {
-      width,
-      height,
-      x1 = 0,
-      y1 = 0,
-      x2 = width,
-      y2 = height,
-      offset = 0,
-      stride = 1,
-      imageRendering = "pixelated"
-    } = options;
+    const {width, height, x1 = 0, y1 = 0, x2 = width, y2 = height, offset = 0, stride = 1, imageRendering} = options;
     if (width == null) throw new Error("missing width");
     if (height == null) throw new Error("missing height");
     super(
