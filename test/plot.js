@@ -110,6 +110,9 @@ function reindexClip(root) {
 // image data…
 function stripImageData(root) {
   for (const node of root.querySelectorAll("image[href^='data:image/png;base64,']")) {
-    node.setAttribute("href", "data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 20 20' style='background-color: white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h10v10H0zm10 10h10v10H10z' fill='%23f4f4f4' fill-rule='evenodd'/%3E%3C/svg%3E");
+    node.setAttribute(
+      "href",
+      "data:image/svg+xml,%3Csvg width='15' height='15' viewBox='0 0 20 20' style='background-color: white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h10v10H0zm10 10h10v10H10z' fill='%23f4f4f4' fill-rule='evenodd'/%3E%3C/svg%3E"
+    );
   }
 }
