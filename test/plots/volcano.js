@@ -2,14 +2,11 @@ import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 export default async function () {
-  const dem = await d3.json("data/volcano.json");
+  const volcano = await d3.json("data/volcano.json");
   return Plot.plot({
     y: {
       reverse: true
     },
-    marks: [
-      Plot.imageData({width: dem.width, height: dem.height, fill: dem.values}),
-      Plot.frame()
-    ]
+    marks: [Plot.imageData({width: volcano.width, height: volcano.height, fill: volcano.values}), Plot.frame()]
   });
 }
