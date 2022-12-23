@@ -4,6 +4,11 @@ import * as d3 from "d3";
 export default async function () {
   const AAPL = await d3.csv("data/aapl.csv", d3.autoType);
   return Plot.plot({
+    axis: null,
+    margin: 20,
+    marginLeft: 40,
+    marginBottom: 30,
+    height: 400,
     y: {
       grid: true
     },
@@ -13,7 +18,9 @@ export default async function () {
         Plot.map({y1: bollinger(20, -2), y2: bollinger(20, 2)}, {x: "Date", y: "Close", fillOpacity: 0.2})
       ),
       Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
-      Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1})
+      Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1}),
+      Plot.axisY(),
+      Plot.axisX()
     ]
   });
 }
