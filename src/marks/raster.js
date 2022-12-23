@@ -5,7 +5,7 @@ import {applyAttr, applyDirectStyles, applyIndirectStyles, applyTransform, impli
 import {initializer} from "../transforms/basic.js";
 
 const defaults = {
-  ariaLabel: "image data",
+  ariaLabel: "raster",
   stroke: null
 };
 
@@ -16,6 +16,9 @@ export class Raster extends Mark {
       height,
       x,
       y,
+      // If X and Y are not given, we assume that F is a dense array of samples
+      // covering the entire grid in row-major order. These defaults allow
+      // further shorthand where x and y represent grid column and row index.
       x1 = x == null ? 0 : undefined,
       y1 = y == null ? 0 : undefined,
       x2 = x == null ? width : undefined,
@@ -62,7 +65,10 @@ export class Raster extends Mark {
     const image = context2d.createImageData(width, height);
     const imageData = image.data;
     if (X && Y) {
-      // If X and Y are given, then assign each sample to the corresponding pixel location.
+      // If X and Y are given, then assign each sample to the corresponding
+      // pixel location. In the future, it would be better to allow different
+      // interpolation methods here, as the current approach will often lead to
+      // a sparse image when not every pixel has a corresponding sample.
       const kx = width / imageWidth;
       const ky = height / imageHeight;
       for (const i of index) {
