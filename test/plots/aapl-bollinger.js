@@ -9,9 +9,6 @@ export default async function () {
     marginLeft: 40,
     marginBottom: 30,
     height: 400,
-    y: {
-      grid: true
-    },
     marks: [
       Plot.areaY(
         AAPL,
