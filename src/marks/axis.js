@@ -19,6 +19,7 @@ export function axisY({
   textAnchor = "end",
   ticks,
   tickSize = 6,
+  tickPadding = 3,
   ...options
 } = {}) {
   return marks(
@@ -54,14 +55,13 @@ export function axisY({
     textY(
       [],
       initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options},
+        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, dx: -tickSize - tickPadding, ...options},
         function (data, facets, channels, scales) {
           const {x, y} = scales;
           data = y.ticks(ticks);
           facets = [range(data)];
           this.fontVariant = inferFontVariant(y);
           this.channels.text.value = y.tickFormat(ticks);
-          this.dx = -9;
           return {
             data,
             facets,
@@ -90,6 +90,7 @@ export function axisX({
   textAnchor = "middle",
   ticks,
   tickSize = 6,
+  tickPadding = 3,
   ...options
 } = {}) {
   return marks(
@@ -125,13 +126,12 @@ export function axisX({
     textX(
       [],
       initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options},
+        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, dy: +tickSize + +tickPadding, ...options},
         function (data, facets, channels, scales) {
           const {x, y} = scales;
           data = x.ticks(ticks);
           facets = [range(data)];
           this.fontVariant = inferFontVariant(x);
-          this.dy = 9;
           this.channels.text.value = x.tickFormat(ticks);
           return {
             data,
