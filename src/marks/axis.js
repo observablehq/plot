@@ -1,5 +1,5 @@
 import {inferFontVariant} from "../axes.js";
-import {map, range, valueof} from "../options.js";
+import {map, range, valueof, isNone} from "../options.js";
 import {marks} from "../plot.js";
 import {position, registry as scaleRegistry} from "../scales/index.js";
 import {initializer} from "../transforms/basic.js";
@@ -26,12 +26,12 @@ export function axisY({
   ...options
 } = {}) {
   return marks(
-    grid
+    grid && !isNone(grid)
       ? ruleY(
           [],
           initializer(
             {
-              stroke,
+              stroke: grid === true ? stroke : grid,
               strokeOpacity: gridOpacity,
               strokeWidth,
               ...options
@@ -127,12 +127,12 @@ export function axisX({
   ...options
 } = {}) {
   return marks(
-    grid
+    grid && !isNone(grid)
       ? ruleX(
           [],
           initializer(
             {
-              stroke,
+              stroke: grid === true ? stroke : grid,
               strokeOpacity: gridOpacity,
               strokeWidth,
               ...options

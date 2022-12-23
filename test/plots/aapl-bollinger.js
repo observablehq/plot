@@ -16,7 +16,7 @@ export default async function () {
       ),
       Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
       Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1}),
-      Plot.axisY(),
+      Plot.axisY({grid: true}),
       Plot.axisX()
     ]
   });
