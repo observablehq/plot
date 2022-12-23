@@ -89,7 +89,7 @@ export {default as gridChoropleth} from "./grid-choropleth.js";
 export {default as gridChoroplethDx} from "./grid-choropleth-dx.js";
 export {default as groupedRects} from "./grouped-rects.js";
 export {default as hadcrutWarmingStripes} from "./hadcrut-warming-stripes.js";
-export {default as heatmap, heatmapArray} from "./heatmap.js";
+export {default as heatmap, heatmapArray, heatmapLog} from "./heatmap.js";
 export {default as hexbin} from "./hexbin.js";
 export {default as hexbinOranges} from "./hexbin-oranges.js";
 export {default as hexbinR} from "./hexbin-r.js";
