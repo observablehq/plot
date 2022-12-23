@@ -21,12 +21,9 @@ export class Raster extends Mark {
       x2 = x == null ? width : undefined,
       y2 = y == null ? height : undefined,
       imageRendering,
+      pixelRatio = 1,
       fill
     } = options;
-    if (data == null && typeof fill === "function") {
-      data = new Array(width * height);
-      options = initializer(options, sampleFill(x1, y1, x2, y2, width, height, fill));
-    }
     super(
       data,
       {
@@ -37,11 +34,12 @@ export class Raster extends Mark {
         x2: {value: [+x2], scale: "x", filter: null},
         y2: {value: [+y2], scale: "y", filter: null}
       },
-      options,
+      data == null && typeof fill === "function" ? sampleFill(options) : options,
       defaults
     );
     this.width = width === undefined ? undefined : Math.floor(width);
     this.height = height === undefined ? undefined : Math.floor(height);
+    this.pixelRatio = +pixelRatio;
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
@@ -49,35 +47,41 @@ export class Raster extends Mark {
     if (!F) return;
     const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
-    const imageWidth = Math.round(Math.abs(x2 - x1));
-    const imageHeight = Math.round(Math.abs(y2 - y1));
-    const {width: canvasWidth = imageWidth, height: canvasHeight = imageHeight, imageRendering} = this;
+    const imageWidth = Math.abs(x2 - x1);
+    const imageHeight = Math.abs(y2 - y1);
+    const {
+      pixelRatio,
+      width = Math.round(imageWidth / pixelRatio),
+      height = Math.round(imageHeight / pixelRatio),
+      imageRendering
+    } = this;
     const canvas = document.createElement("canvas");
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = width;
+    canvas.height = height;
     const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(canvasWidth, canvasHeight);
+    const image = context2d.createImageData(width, height);
     const imageData = image.data;
     if (X && Y) {
-      const kx = canvasWidth / imageWidth;
-      const ky = canvasHeight / imageHeight;
+      // If X and Y are given, then assign each sample to the corresponding pixel location.
+      const kx = width / imageWidth;
+      const ky = height / imageHeight;
       for (const i of index) {
         const xi = Math.floor((X[i] - x1) * kx);
-        if (xi < 0 || xi >= canvasWidth) continue;
+        if (xi < 0 || xi >= width) continue;
         const yi = Math.floor((Y[i] - y2) * ky);
-        if (yi < 0 || yi >= canvasHeight) continue;
+        if (yi < 0 || yi >= height) continue;
         const {r, g, b} = rgb(F[i]);
-        const j = (yi * canvasWidth + xi) << 2;
+        const j = (yi * width + xi) << 2;
         imageData[j + 0] = r;
         imageData[j + 1] = g;
         imageData[j + 2] = b;
         imageData[j + 3] = 255;
       }
     } else {
-      // If X and Y are not given, then assume that F is a dense array of
-      // samples covering the entire grid in row-major order.
-      for (let y = 0, i = 0; y < canvasHeight; ++y) {
-        for (let x = 0; x < canvasWidth; ++x, ++i) {
+      // Otherwise if X and Y are not given, then assume that F is a dense array
+      // of samples covering the entire grid in row-major order.
+      for (let y = 0, i = 0; y < height; ++y) {
+        for (let x = 0; x < width; ++x, ++i) {
           const f = F[i];
           if (f == null) continue;
           const {r, g, b} = rgb(F[i]);
@@ -97,8 +101,8 @@ export class Raster extends Mark {
         g
           .append("image")
           .attr("transform", `translate(${x1},${y2}) scale(${Math.sign(x2 - x1)},${Math.sign(y1 - y2)})`)
-          .attr("width", Math.abs(x2 - x1))
-          .attr("height", Math.abs(y2 - y1))
+          .attr("width", imageWidth)
+          .attr("height", imageHeight)
           .attr("preserveAspectRatio", "none")
           .call(applyAttr, "image-rendering", imageRendering)
           .call(applyDirectStyles, this)
@@ -114,18 +118,23 @@ export function raster(data, options) {
 }
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
-function sampleFill(x1, y1, x2, y2, width, height, f) {
-  return (data, facets, channels, {x, y}) => {
+function sampleFill({fill, pixelRatio = 1, ...options} = {}) {
+  return initializer(options, (data, facets, channels, scales, dimensions) => {
+    const {x, y} = scales;
+    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+    let {x1, y1, x2, y2, width: w, height: h} = options;
+    if (w === undefined) w = Math.max(0, Math.round((width - marginLeft - marginRight) / pixelRatio));
+    if (h === undefined) h = Math.max(0, Math.round((height - marginTop - marginBottom) / pixelRatio));
     (x1 = x(x1)), (y1 = y(y1)), (x2 = x(x2)), (y2 = y(y2));
-    const kx = (x2 - x1) / width;
-    const ky = (y1 - y2) / height;
+    const kx = (x2 - x1) / w;
+    const ky = (y1 - y2) / h;
     (x1 += kx / 2), (y2 += ky / 2);
-    const F = new Array(width * height);
-    for (let yi = 0, i = 0; yi < height; ++yi) {
-      for (let xi = 0; xi < width; ++xi, ++i) {
-        F[i] = f(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+    const F = new Array(w * h);
+    for (let yi = 0, i = 0; yi < h; ++yi) {
+      for (let xi = 0; xi < w; ++xi, ++i) {
+        F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
       }
     }
-    return {data, facets, channels: {fill: {value: F, scale: "color"}}};
-  };
+    return {data: F, facets, channels: {fill: {value: F, scale: "color"}}};
+  });
 }
