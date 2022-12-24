@@ -1,7 +1,7 @@
 import {format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
-import {formatIsoDate} from "../format.js";
-import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, string, constant} from "../options.js";
+import {formatDefault} from "../format.js";
+import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant} from "../options.js";
 import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -246,13 +246,18 @@ function inferTextChannel(scale, options) {
   return {value: inferTickFormat(scale, options)};
 }
 
-// TODO Remove maybeAutoTickFormat.
+// D3’s ordinal scales simply use toString by default, but if the ordinal scale
+// domain (or ticks) are numbers or dates (say because we’re applying a time
+// interval to the ordinal scale), we want Plot’s default formatter. TODO Remove
+// maybeAutoTickFormat.
 function inferTickFormat(scale, {ticks, tickFormat}) {
-  if (scale.tickFormat) return scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
-  const temporal = isTemporal(scale.domain());
-  if (tickFormat === undefined) return temporal ? formatIsoDate : string;
-  if (typeof tickFormat === "string") return (temporal ? utcFormat : format)(tickFormat);
-  return constant(tickFormat);
+  return scale.tickFormat
+    ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
+    : tickFormat === undefined
+    ? formatDefault
+    : typeof tickFormat === "string"
+    ? (isTemporal(scale.domain()) ? utcFormat : format)(tickFormat)
+    : constant(tickFormat);
 }
 
 const shapeTickX = {
