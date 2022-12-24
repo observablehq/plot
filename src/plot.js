@@ -156,18 +156,21 @@ export function plot(options = {}) {
         inferChannelScale(channels, mark);
         applyScaleTransforms(channels, options);
         Object.assign(state.channels, channels);
-        for (const {scale} of Object.values(channels)) if (scale != null) newByScale.add(scale);
+        for (const channel of Object.values(channels)) {
+          const {scale} = channel;
+          // Initializers aren’t allowed to redefine position scales because
+          // initializers typically depend on position; so simply scale these
+          // channels as-is rather than creating new scales.
+          if (scale != null && scaleRegistry.get(scale) !== position) {
+            newByScale.add(scale);
+          }
+        }
       }
     }
   }
 
   // Reconstruct scales if new scaled channels were created during reinitialization.
   if (newByScale.size) {
-    for (const key of newByScale) {
-      if (scaleRegistry.get(key) === position) {
-        throw new Error(`initializers cannot declare position scales: ${key}`);
-      }
-    }
     const newScaleDescriptors = Scales(
       addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key)),
       options

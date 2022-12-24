@@ -1,52 +1,59 @@
 import {inferFontVariant} from "../axes.js";
-import {map, range, valueof, isNone, isNoneish, isIterable, arrayify} from "../options.js";
+import {range, valueof, isNone, isNoneish, isIterable, arrayify} from "../options.js";
 import {marks} from "../plot.js";
-import {position, registry as scaleRegistry} from "../scales/index.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
 
-export function axisY({
-  grid,
-  gridOpacity = 0.1,
-  color = "currentColor",
-  opacity = 1,
-  stroke = color,
-  strokeOpacity = opacity,
-  strokeWidth = 1,
-  fill = color,
-  fillOpacity = opacity,
-  frameAnchor = "left",
-  lineAnchor = "middle",
-  textAnchor = "end",
-  tickSize = 6,
-  tickPadding = 3,
-  dx = 0,
-  x,
-  ...options
-} = {}) {
+function maybeData(data, options) {
+  if (arguments.length < 2) (options = data), (data = null);
+  if (options === undefined) options = {};
+  return [data, options];
+}
+
+export function axisY() {
+  const [data, options] = maybeData(...arguments);
+  const {
+    grid,
+    gridOpacity = 0.1,
+    color = "currentColor",
+    opacity = 1,
+    stroke = color,
+    strokeOpacity = opacity,
+    strokeWidth = 1,
+    fill = color,
+    fillOpacity = opacity,
+    frameAnchor = "left",
+    lineAnchor = "middle",
+    textAnchor = "end",
+    tickSize = 6,
+    tickPadding = 3,
+    dx = 0,
+    x,
+    ...rest
+  } = options;
   return marks(
     grid && !isNone(grid)
-      ? gridY({
+      ? gridY(data, {
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
           dx,
           x1: x ?? null,
           x2: null,
-          ...options
+          ...rest
         })
       : null,
     tickSize && !isNoneish(stroke)
-      ? axisTickY(vectorY, {
+      ? axisTickY(vectorY, data, {
           stroke,
           strokeOpacity,
           strokeWidth,
           frameAnchor,
           x,
-          ...options,
+          ...rest,
           dx: +dx - offset,
           anchor: "start",
           length: tickSize,
@@ -58,7 +65,8 @@ export function axisY({
     !isNoneish(fill)
       ? axisTickY(
           textY,
-          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...options, dx: +dx - tickSize - tickPadding},
+          data,
+          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...rest, dx: +dx - tickSize - tickPadding},
           function (scales) {
             const {y} = scales;
             const {ticks} = options;
@@ -70,45 +78,47 @@ export function axisY({
   );
 }
 
-export function axisX({
-  grid,
-  gridOpacity = 0.1,
-  color = "currentColor",
-  opacity = 1,
-  stroke = color,
-  strokeOpacity = opacity,
-  strokeWidth = 1,
-  fill = color,
-  fillOpacity = opacity,
-  frameAnchor = "bottom",
-  lineAnchor = "top",
-  textAnchor = "middle",
-  tickSize = 6,
-  tickPadding = 3,
-  dy = 0,
-  y,
-  ...options
-} = {}) {
+export function axisX() {
+  const [data, options] = maybeData(...arguments);
+  const {
+    grid,
+    gridOpacity = 0.1,
+    color = "currentColor",
+    opacity = 1,
+    stroke = color,
+    strokeOpacity = opacity,
+    strokeWidth = 1,
+    fill = color,
+    fillOpacity = opacity,
+    frameAnchor = "bottom",
+    lineAnchor = "top",
+    textAnchor = "middle",
+    tickSize = 6,
+    tickPadding = 3,
+    dy = 0,
+    y,
+    ...rest
+  } = options;
   return marks(
     grid && !isNone(grid)
-      ? gridX({
+      ? gridX(data, {
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
           dy,
           y1: null,
           y2: y ?? null,
-          ...options
+          ...rest
         })
       : null,
     tickSize && !isNoneish(stroke)
-      ? axisTickX(vectorX, {
+      ? axisTickX(vectorX, data, {
           stroke,
           strokeOpacity,
           strokeWidth,
           frameAnchor,
           y,
-          ...options,
+          ...rest,
           dy: +dy - offset,
           anchor: "start",
           length: tickSize,
@@ -120,7 +130,8 @@ export function axisX({
     !isNoneish(fill)
       ? axisTickX(
           textX,
-          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...options, dy: +dy + +tickSize + +tickPadding},
+          data,
+          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...rest, dy: +dy + +tickSize + +tickPadding},
           function (scales) {
             const {x} = scales;
             const {ticks} = options;
@@ -132,58 +143,59 @@ export function axisX({
   );
 }
 
-export function gridY({
-  color = "currentColor",
-  opacity = 0.1,
-  stroke = color,
-  strokeOpacity = opacity,
-  strokeWidth = 1,
-  ...options
-} = {}) {
-  return axisTickY(ruleY, {stroke, strokeOpacity, strokeWidth, ...options});
+export function gridY() {
+  const [data, options] = maybeData(...arguments);
+  const {
+    color = "currentColor",
+    opacity = 0.1,
+    stroke = color,
+    strokeOpacity = opacity,
+    strokeWidth = 1,
+    ...rest
+  } = options;
+  return axisTickY(ruleY, data, {stroke, strokeOpacity, strokeWidth, ...rest});
 }
 
-export function gridX({
-  color = "currentColor",
-  opacity = 0.1,
-  stroke = color,
-  strokeOpacity = opacity,
-  strokeWidth = 1,
-  ...options
-} = {}) {
-  return axisTickX(ruleX, {stroke, strokeOpacity, strokeWidth, ...options});
+export function gridX() {
+  const [data, options] = maybeData(...arguments);
+  const {
+    color = "currentColor",
+    opacity = 0.1,
+    stroke = color,
+    strokeOpacity = opacity,
+    strokeWidth = 1,
+    ...rest
+  } = options;
+  return axisTickX(ruleX, data, {stroke, strokeOpacity, strokeWidth, ...rest});
 }
 
-function axisTickX(mark, options, initialize) {
-  return axisTick(mark, "x", options, initialize);
+function axisTickX(mark, data, options, initialize) {
+  return axisTick(mark, "x", data, options, initialize);
 }
 
-function axisTickY(mark, options, initialize) {
-  return axisTick(mark, "y", options, initialize);
+function axisTickY(mark, data, options, initialize) {
+  return axisTick(mark, "y", data, options, initialize);
 }
 
-function axisTick(mark, k, options, initialize) {
+function axisTick(mark, k, data, options, initialize) {
   return mark(
-    [],
+    data,
     initializer(options, function (data, facets, channels, scales) {
       initialize?.call(this, scales);
-      const {[k]: scale} = scales;
-      const {ticks} = options;
-      data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
-      facets = [range(data)];
+      if (data == null) {
+        const {[k]: scale} = scales;
+        const {ticks} = options;
+        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
+        facets = [range(data)];
+      }
       return {
         data,
         facets,
         channels: Object.fromEntries(
-          Object.entries(this.channels).map(([name, channel]) => {
-            const {scale} = channel;
-            channel = {...channel, value: valueof(data, channel.value)};
-            if (scaleRegistry.get(scale) === position) {
-              channel.scale = null;
-              channel.value = map(channel.value, scales[scale]);
-            }
-            return [name, channel];
-          })
+          Object.entries(this.channels).map(([name, channel]) => [
+            name,
+            {...channel, value: valueof(data, channel.value)}
+          ])
         )
       };
     })
