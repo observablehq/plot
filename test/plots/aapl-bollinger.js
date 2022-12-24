@@ -10,16 +10,18 @@ export default async function () {
     marginBottom: 30,
     height: 400,
     marks: [
-      Plot.areaY(
-        AAPL,
-        Plot.map({y1: bollinger(20, -2), y2: bollinger(20, 2)}, {x: "Date", y: "Close", fillOpacity: 0.2})
-      ),
-      Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
-      Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1}),
+      Plot.axisX(),
       Plot.axisY({grid: true}),
-      Plot.axisX()
+      Plot.text(["↑ Close"], {frameAnchor: "top-left", textAnchor: "end", dy: -17, dx: -2}), // TODO
+      Plot.areaY(AAPL, bollingerBandY(20, 2, {x: "Date", y: "Close", fillOpacity: 0.2})),
+      Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
+      Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1})
     ]
   });
+}
+
+function bollingerBandY(N, K, options) {
+  return Plot.map({y1: bollinger(N, -K), y2: bollinger(N, K)}, options);
 }
 
 function bollinger(N, K) {
