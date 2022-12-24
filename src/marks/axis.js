@@ -1,5 +1,7 @@
+import {format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
-import {range, valueof, isNone, isNoneish, isIterable, arrayify} from "../options.js";
+import {formatIsoDate} from "../format.js";
+import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, string, constant} from "../options.js";
 import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -89,13 +91,8 @@ export function axisY() {
           },
           function (scales) {
             const {y} = scales;
-            const {ticks} = options;
-            if (fontVariant === undefined) {
-              this.fontVariant = inferFontVariant(y);
-            }
-            if (!this.channels.text) {
-              this.channels.text = {value: y.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)};
-            }
+            if (fontVariant === undefined) this.fontVariant = inferFontVariant(y);
+            if (!this.channels.text) this.channels.text = inferTextChannel(y, options);
           }
         )
       : null
@@ -178,13 +175,8 @@ export function axisX() {
           },
           function (scales) {
             const {x} = scales;
-            const {ticks} = options;
-            if (fontVariant === undefined) {
-              this.fontVariant = inferFontVariant(x);
-            }
-            if (!this.channels.text) {
-              this.channels.text = {value: x.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)};
-            }
+            if (fontVariant === undefined) this.fontVariant = inferFontVariant(x);
+            if (!this.channels.text) this.channels.text = inferTextChannel(x, options);
           }
         )
       : null
@@ -233,7 +225,7 @@ function axisTick(mark, k, data, options, initialize) {
       if (data == null) {
         const {[k]: scale} = scales;
         const {ticks} = options;
-        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
+        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks); // TODO consider dimensions
         facets = [range(data)];
       }
       return {
@@ -248,6 +240,19 @@ function axisTick(mark, k, data, options, initialize) {
       };
     })
   );
+}
+
+function inferTextChannel(scale, options) {
+  return {value: inferTickFormat(scale, options)};
+}
+
+// TODO Remove maybeAutoTickFormat.
+function inferTickFormat(scale, {ticks, tickFormat}) {
+  if (scale.tickFormat) return scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat);
+  const temporal = isTemporal(scale.domain());
+  if (tickFormat === undefined) return temporal ? formatIsoDate : string;
+  if (typeof tickFormat === "string") return (temporal ? utcFormat : format)(tickFormat);
+  return constant(tickFormat);
 }
 
 const shapeTickX = {
