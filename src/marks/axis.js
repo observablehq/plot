@@ -40,7 +40,7 @@ export function axisY({
         })
       : null,
     tickSize !== 0 && !isNoneish(stroke)
-      ? tick(vectorY, "y", {
+      ? tickY(vectorY, {
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -56,9 +56,8 @@ export function axisY({
         })
       : null,
     !isNoneish(fill)
-      ? tick(
+      ? tickY(
           textY,
-          "y",
           {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...options, dx: +dx - tickSize - tickPadding},
           function (scales) {
             const {y} = scales;
@@ -103,7 +102,7 @@ export function axisX({
         })
       : null,
     tickSize !== 0 && !isNoneish(stroke)
-      ? tick(vectorX, "x", {
+      ? tickX(vectorX, {
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -119,9 +118,8 @@ export function axisX({
         })
       : null,
     !isNoneish(fill)
-      ? tick(
+      ? tickX(
           textX,
-          "x",
           {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...options, dy: +dy + +tickSize + +tickPadding},
           function (scales) {
             const {x} = scales;
@@ -142,7 +140,7 @@ export function gridY({
   strokeWidth = 1,
   ...options
 } = {}) {
-  return tick(ruleY, "y", {stroke, strokeOpacity, strokeWidth, ...options});
+  return tickY(ruleY, {stroke, strokeOpacity, strokeWidth, ...options});
 }
 
 export function gridX({
@@ -153,7 +151,15 @@ export function gridX({
   strokeWidth = 1,
   ...options
 } = {}) {
-  return tick(ruleX, "x", {stroke, strokeOpacity, strokeWidth, ...options});
+  return tickX(ruleX, {stroke, strokeOpacity, strokeWidth, ...options});
+}
+
+function tickX(mark, options, initialize) {
+  return tick(mark, "x", options, initialize);
+}
+
+function tickY(mark, options, initialize) {
+  return tick(mark, "y", options, initialize);
 }
 
 function tick(mark, k, options, initialize) {
