@@ -1,6 +1,7 @@
 import {extent, format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {formatDefault} from "../format.js";
+import {radians} from "../math.js";
 import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant, keyword} from "../options.js";
 import {marks} from "../plot.js";
 import {offset} from "../style.js";
@@ -33,13 +34,14 @@ export function axisY() {
     fill = color,
     fillOpacity = opacity,
     frameAnchor = anchor,
-    lineAnchor = "middle",
-    textAnchor = anchor === "left" ? "end" : "start",
     fontVariant,
     tickSize = 6,
-    tickPadding = 3,
+    tickRotate = 0,
+    tickPadding = 3 + (Math.abs(tickRotate) >= 10 ? 4 * Math.abs(Math.sin(tickRotate * radians)) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
+    textAnchor = Math.abs(tickRotate) > 60 ? "middle" : anchor === "left" ? "end" : "start",
+    lineAnchor = "middle",
     inset = 0,
     insetLeft = inset,
     insetRight = inset,
@@ -91,6 +93,7 @@ export function axisY() {
             textAnchor,
             text: text === undefined ? null : text,
             fontVariant,
+            rotate: tickRotate,
             x,
             ...rest,
             dx:
@@ -121,13 +124,14 @@ export function axisX() {
     fill = color,
     fillOpacity = opacity,
     frameAnchor = anchor,
-    lineAnchor = anchor === "bottom" ? "top" : "bottom",
-    textAnchor = "middle",
     fontVariant,
     tickSize = 6,
-    tickPadding = 3,
+    tickRotate = 0,
+    tickPadding = 3 + (Math.abs(tickRotate) >= 10 ? 4 * Math.cos(tickRotate * radians) : 0),
     tickFormat,
     text = typeof tickFormat === "function" ? tickFormat : undefined,
+    textAnchor = Math.abs(tickRotate) >= 10 ? ((tickRotate < 0) ^ (anchor === "bottom") ? "start" : "end") : "middle",
+    lineAnchor = Math.abs(tickRotate) >= 10 ? "middle" : anchor === "bottom" ? "top" : "bottom",
     inset = 0,
     insetTop = inset,
     insetBottom = inset,
@@ -179,6 +183,7 @@ export function axisX() {
             textAnchor,
             text: text === undefined ? null : text,
             fontVariant,
+            rotate: tickRotate,
             y,
             ...rest,
             dy:
