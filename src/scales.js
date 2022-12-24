@@ -98,7 +98,12 @@ export function Scales(
 }
 
 export function ScaleFunctions(scales) {
-  return Object.fromEntries(Object.entries(scales).map(([name, {scale}]) => [name, scale]));
+  return Object.fromEntries(
+    Object.entries(scales).map(([name, {scale, interval}]) => {
+      if (interval != null) scale.interval = interval; // for axis
+      return [name, scale];
+    })
+  );
 }
 
 // Mutates scale.range!

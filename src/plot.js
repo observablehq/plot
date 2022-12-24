@@ -135,7 +135,7 @@ export function plot(options = {}) {
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
   const fxMargins = fx && {marginRight: 0, marginLeft: 0, width: fx.bandwidth()};
   const subdimensions = {...dimensions, ...fxMargins, ...fyMargins};
-  const context = Context(options, subdimensions);
+  const context = Context(options, subdimensions, scaleDescriptors);
 
   // Reinitialize; for deriving channels dependent on other channels.
   const newByScale = new Set();

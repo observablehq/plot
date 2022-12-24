@@ -1,4 +1,4 @@
-import {format, utcFormat} from "d3";
+import {extent, format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {formatDefault} from "../format.js";
 import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant} from "../options.js";
@@ -34,7 +34,7 @@ export function axisY() {
     tickSize = 6,
     tickPadding = 3,
     tickFormat,
-    text = typeof tickFormat === "function" ? tickFormat : null,
+    text = typeof tickFormat === "function" ? tickFormat : undefined,
     inset = 0,
     insetLeft = inset,
     insetRight = inset,
@@ -83,16 +83,15 @@ export function axisY() {
             frameAnchor,
             lineAnchor,
             textAnchor,
-            text,
+            text: text === undefined ? null : text,
             fontVariant,
             x,
             ...rest,
             dx: +dx - tickSize - tickPadding + +insetLeft // TODO or insetRight?
           },
-          function (scales) {
-            const {y} = scales;
-            if (fontVariant === undefined) this.fontVariant = inferFontVariant(y);
-            if (!this.channels.text) this.channels.text = inferTextChannel(y, options);
+          function (scale, ticks) {
+            if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
+            if (text === undefined) this.channels.text = inferTextChannel(scale, ticks, tickFormat);
           }
         )
       : null
@@ -118,7 +117,7 @@ export function axisX() {
     tickSize = 6,
     tickPadding = 3,
     tickFormat,
-    text = typeof tickFormat === "function" ? tickFormat : null,
+    text = typeof tickFormat === "function" ? tickFormat : undefined,
     inset = 0,
     insetTop = inset,
     insetBottom = inset,
@@ -167,16 +166,15 @@ export function axisX() {
             frameAnchor,
             lineAnchor,
             textAnchor,
+            text: text === undefined ? null : text,
             fontVariant,
             y,
-            text,
             ...rest,
             dy: +dy + +tickSize + +tickPadding - insetBottom // TODO or insetTop?
           },
-          function (scales) {
-            const {x} = scales;
-            if (fontVariant === undefined) this.fontVariant = inferFontVariant(x);
-            if (!this.channels.text) this.channels.text = inferTextChannel(x, options);
+          function (scale, ticks) {
+            if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
+            if (text === undefined) this.channels.text = inferTextChannel(scale, ticks, tickFormat);
           }
         )
       : null
@@ -221,13 +219,23 @@ function axisTick(mark, k, data, options, initialize) {
   return mark(
     data,
     initializer(options, function (data, facets, channels, scales) {
-      initialize?.call(this, scales);
+      const {[k]: scale} = scales;
+      let {ticks} = options;
       if (data == null) {
-        const {[k]: scale} = scales;
-        const {ticks} = options;
-        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks); // TODO consider dimensions
+        if (ticks === undefined) {
+          const interval = scale.interval;
+          if (interval !== undefined) {
+            const [min, max] = extent(scale.domain());
+            ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+          } else {
+            const [min, max] = extent(scale.range());
+            ticks = (max - min) / (k === "x" ? 80 : 35);
+          }
+        }
+        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
         facets = [range(data)];
       }
+      initialize?.call(this, scale, ticks);
       return {
         data,
         facets,
@@ -242,15 +250,15 @@ function axisTick(mark, k, data, options, initialize) {
   );
 }
 
-function inferTextChannel(scale, options) {
-  return {value: inferTickFormat(scale, options)};
+function inferTextChannel(scale, ticks, tickFormat) {
+  return {value: inferTickFormat(scale, ticks, tickFormat)};
 }
 
 // D3’s ordinal scales simply use toString by default, but if the ordinal scale
 // domain (or ticks) are numbers or dates (say because we’re applying a time
 // interval to the ordinal scale), we want Plot’s default formatter. TODO Remove
 // maybeAutoTickFormat.
-function inferTickFormat(scale, {ticks, tickFormat}) {
+function inferTickFormat(scale, ticks, tickFormat) {
   return scale.tickFormat
     ? scale.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)
     : tickFormat === undefined
