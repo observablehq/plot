@@ -1,5 +1,5 @@
 import {inferFontVariant} from "../axes.js";
-import {map, range, valueof, isNone} from "../options.js";
+import {map, range, valueof, isNone, isNoneish} from "../options.js";
 import {marks} from "../plot.js";
 import {position, registry as scaleRegistry} from "../scales/index.js";
 import {offset} from "../style.js";
@@ -11,8 +11,8 @@ import {vectorX, vectorY} from "./vector.js";
 export function axisY({
   grid,
   gridOpacity = 0.1,
-  color,
-  opacity,
+  color = "currentColor",
+  opacity = 1,
   stroke = color,
   strokeOpacity = opacity,
   strokeWidth = 1,
@@ -53,7 +53,7 @@ export function axisY({
           )
         )
       : null,
-    tickSize !== 0
+    tickSize !== 0 && !isNoneish(stroke)
       ? vectorY(
           [],
           initializer(
@@ -87,36 +87,38 @@ export function axisY({
           )
         )
       : null,
-    textY(
-      [],
-      initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dx: -tickSize - tickPadding},
-        function (data, facets, channels, scales) {
-          const {x, y} = scales;
-          data = y.ticks(ticks);
-          facets = [range(data)];
-          this.fontVariant = inferFontVariant(y);
-          this.channels.text.value = y.tickFormat(ticks);
-          return {
-            data,
-            facets,
-            channels: {
-              y: {value: data.map(y)},
-              ...(channels.x && {x: {value: map(valueof(data, this.channels.x.value), x)}}),
-              ...rechannel(this, data)
+    !isNoneish(fill)
+      ? textY(
+          [],
+          initializer(
+            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dx: -tickSize - tickPadding},
+            function (data, facets, channels, scales) {
+              const {x, y} = scales;
+              data = y.ticks(ticks);
+              facets = [range(data)];
+              this.fontVariant = inferFontVariant(y);
+              this.channels.text.value = y.tickFormat(ticks);
+              return {
+                data,
+                facets,
+                channels: {
+                  y: {value: data.map(y)},
+                  ...(channels.x && {x: {value: map(valueof(data, this.channels.x.value), x)}}),
+                  ...rechannel(this, data)
+                }
+              };
             }
-          };
-        }
-      )
-    )
+          )
+        )
+      : null
   );
 }
 
 export function axisX({
   grid,
   gridOpacity = 0.1,
-  color,
-  opacity,
+  color = "currentColor",
+  opacity = 1,
   stroke = color,
   strokeOpacity = opacity,
   strokeWidth = 1,
@@ -157,7 +159,7 @@ export function axisX({
           )
         )
       : null,
-    tickSize !== 0
+    tickSize !== 0 && !isNoneish(stroke)
       ? vectorX(
           [],
           initializer(
@@ -191,28 +193,30 @@ export function axisX({
           )
         )
       : null,
-    textX(
-      [],
-      initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dy: +tickSize + +tickPadding},
-        function (data, facets, channels, scales) {
-          const {x, y} = scales;
-          data = x.ticks(ticks);
-          facets = [range(data)];
-          this.fontVariant = inferFontVariant(x);
-          this.channels.text.value = x.tickFormat(ticks);
-          return {
-            data,
-            facets,
-            channels: {
-              x: {value: data.map(x)},
-              ...(channels.y && {y: {value: map(valueof(data, this.channels.y.value), y)}}),
-              ...rechannel(this, data)
+    !isNoneish(fill)
+      ? textX(
+          [],
+          initializer(
+            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dy: +tickSize + +tickPadding},
+            function (data, facets, channels, scales) {
+              const {x, y} = scales;
+              data = x.ticks(ticks);
+              facets = [range(data)];
+              this.fontVariant = inferFontVariant(x);
+              this.channels.text.value = x.tickFormat(ticks);
+              return {
+                data,
+                facets,
+                channels: {
+                  x: {value: data.map(x)},
+                  ...(channels.y && {y: {value: map(valueof(data, this.channels.y.value), y)}}),
+                  ...rechannel(this, data)
+                }
+              };
             }
-          };
-        }
-      )
-    )
+          )
+        )
+      : null
   );
 }
 
