@@ -2,6 +2,7 @@ import {inferFontVariant} from "../axes.js";
 import {map, range, valueof, isNone} from "../options.js";
 import {marks} from "../plot.js";
 import {position, registry as scaleRegistry} from "../scales/index.js";
+import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {textX, textY} from "./text.js";
@@ -62,6 +63,7 @@ export function axisY({
               strokeWidth,
               frameAnchor,
               ...options,
+              dx: -offset,
               anchor: "start",
               length: tickSize,
               shape: shapeTickY,
@@ -88,7 +90,7 @@ export function axisY({
     textY(
       [],
       initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, dx: -tickSize - tickPadding, ...options},
+        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dx: -tickSize - tickPadding},
         function (data, facets, channels, scales) {
           const {x, y} = scales;
           data = y.ticks(ticks);
@@ -165,6 +167,7 @@ export function axisX({
               strokeWidth,
               frameAnchor,
               ...options,
+              dy: -offset,
               anchor: "start",
               length: tickSize,
               shape: shapeTickX,
@@ -191,7 +194,7 @@ export function axisX({
     textX(
       [],
       initializer(
-        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, dy: +tickSize + +tickPadding, ...options},
+        {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dy: +tickSize + +tickPadding},
         function (data, facets, channels, scales) {
           const {x, y} = scales;
           data = x.ticks(ticks);
