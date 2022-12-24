@@ -1,7 +1,7 @@
 import {extent, format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {formatDefault} from "../format.js";
-import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant} from "../options.js";
+import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant, keyword} from "../options.js";
 import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -15,8 +15,13 @@ function maybeData(data, options) {
   return [data, options];
 }
 
+function maybeAnchor({anchor} = {}, anchors) {
+  return anchor === undefined ? anchors[0] : keyword(anchor, "anchor", anchors);
+}
+
 export function axisY() {
   const [data, options] = maybeData(...arguments);
+  const anchor = maybeAnchor(options, ["left", "right"]);
   const {
     grid,
     gridOpacity = 0.1,
@@ -27,9 +32,9 @@ export function axisY() {
     strokeWidth = 1,
     fill = color,
     fillOpacity = opacity,
-    frameAnchor = "left",
+    frameAnchor = anchor,
     lineAnchor = "middle",
-    textAnchor = "end",
+    textAnchor = anchor === "left" ? "end" : "start",
     fontVariant,
     tickSize = 6,
     tickPadding = 3,
@@ -40,7 +45,8 @@ export function axisY() {
     insetRight = inset,
     dx = 0,
     x1,
-    x = x1,
+    x2,
+    x = anchor === "left" ? x1 : x2,
     ...rest
   } = options;
   return marks(
@@ -50,8 +56,8 @@ export function axisY() {
           strokeOpacity: gridOpacity,
           strokeWidth,
           dx,
-          x1: x1 === undefined ? x ?? null : x1,
-          x2: null,
+          x1: x1 === undefined ? (anchor === "left" ? x ?? null : null) : x1,
+          x2: x2 === undefined ? (anchor === "right" ? x ?? null : null) : x2,
           insetLeft,
           insetRight,
           ...rest
@@ -65,10 +71,10 @@ export function axisY() {
           frameAnchor,
           x,
           ...rest,
-          dx: +dx - offset + +insetLeft, // TODO or insetRight?
+          dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
           anchor: "start",
           length: tickSize,
-          shape: shapeTickY,
+          shape: anchor === "left" ? shapeTickLeft : shapeTickRight,
           strokeLinejoin: null,
           strokeLinecap: null
         })
@@ -87,7 +93,10 @@ export function axisY() {
             fontVariant,
             x,
             ...rest,
-            dx: +dx - tickSize - tickPadding + +insetLeft // TODO or insetRight?
+            dx:
+              anchor === "left"
+                ? +dx - tickSize - tickPadding + +insetLeft
+                : +dx + +tickSize + +tickPadding - insetRight
           },
           function (scale, ticks) {
             if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -100,6 +109,7 @@ export function axisY() {
 
 export function axisX() {
   const [data, options] = maybeData(...arguments);
+  const anchor = maybeAnchor(options, ["bottom", "top"]);
   const {
     grid,
     gridOpacity = 0.1,
@@ -110,8 +120,8 @@ export function axisX() {
     strokeWidth = 1,
     fill = color,
     fillOpacity = opacity,
-    frameAnchor = "bottom",
-    lineAnchor = "top",
+    frameAnchor = anchor,
+    lineAnchor = anchor === "bottom" ? "top" : "bottom",
     textAnchor = "middle",
     fontVariant,
     tickSize = 6,
@@ -122,8 +132,9 @@ export function axisX() {
     insetTop = inset,
     insetBottom = inset,
     dy = 0,
+    y1,
     y2,
-    y = y2,
+    y = anchor === "bottom" ? y2 : y1,
     ...rest
   } = options;
   return marks(
@@ -133,8 +144,8 @@ export function axisX() {
           strokeOpacity: gridOpacity,
           strokeWidth,
           dy,
-          y1: null,
-          y2: y2 === undefined ? y ?? null : y2,
+          y1: y1 === undefined ? (anchor === "top" ? y ?? null : null) : y1,
+          y2: y2 === undefined ? (anchor === "bottom" ? y ?? null : null) : y2,
           insetTop,
           insetBottom,
           ...rest
@@ -148,10 +159,10 @@ export function axisX() {
           frameAnchor,
           y,
           ...rest,
-          dy: +dy - offset - insetBottom, // TODO or insetTop?
+          dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
           anchor: "start",
           length: tickSize,
-          shape: shapeTickX,
+          shape: anchor === "bottom" ? shapeTickBottom : shapeTickTop,
           strokeLinejoin: null,
           strokeLinecap: null
         })
@@ -170,7 +181,10 @@ export function axisX() {
             fontVariant,
             y,
             ...rest,
-            dy: +dy + +tickSize + +tickPadding - insetBottom // TODO or insetTop?
+            dy:
+              anchor === "bottom"
+                ? +dy + +tickSize + +tickPadding - insetBottom
+                : +dy - tickSize - tickPadding + +insetTop
           },
           function (scale, ticks) {
             if (fontVariant === undefined) this.fontVariant = inferFontVariant(scale);
@@ -268,16 +282,30 @@ function inferTickFormat(scale, ticks, tickFormat) {
     : constant(tickFormat);
 }
 
-const shapeTickX = {
+const shapeTickBottom = {
   draw(context, l) {
     context.moveTo(0, 0);
     context.lineTo(0, l);
   }
 };
 
-const shapeTickY = {
+const shapeTickTop = {
+  draw(context, l) {
+    context.moveTo(0, 0);
+    context.lineTo(0, -l);
+  }
+};
+
+const shapeTickLeft = {
   draw(context, l) {
     context.moveTo(0, 0);
     context.lineTo(-l, 0);
+  }
+};
+
+const shapeTickRight = {
+  draw(context, l) {
+    context.moveTo(0, 0);
+    context.lineTo(l, 0);
   }
 };
