@@ -30,8 +30,12 @@ export function axisY() {
     textAnchor = "end",
     tickSize = 6,
     tickPadding = 3,
+    inset = 0,
+    insetLeft = inset,
+    insetRight = inset,
     dx = 0,
-    x,
+    x1,
+    x = x1,
     ...rest
   } = options;
   return marks(
@@ -41,8 +45,10 @@ export function axisY() {
           strokeOpacity: gridOpacity,
           strokeWidth,
           dx,
-          x1: x ?? null,
+          x1: x1 === undefined ? x ?? null : x1,
           x2: null,
+          insetLeft,
+          insetRight,
           ...rest
         })
       : null,
@@ -54,7 +60,7 @@ export function axisY() {
           frameAnchor,
           x,
           ...rest,
-          dx: +dx - offset,
+          dx: +dx - offset + +insetLeft, // TODO or insetRight?
           anchor: "start",
           length: tickSize,
           shape: shapeTickY,
@@ -66,7 +72,16 @@ export function axisY() {
       ? axisTickY(
           textY,
           data,
-          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...rest, dx: +dx - tickSize - tickPadding},
+          {
+            fill,
+            fillOpacity,
+            frameAnchor,
+            lineAnchor,
+            textAnchor,
+            x,
+            ...rest,
+            dx: +dx - tickSize - tickPadding + +insetLeft // TODO or insetRight?
+          },
           function (scales) {
             const {y} = scales;
             const {ticks} = options;
@@ -95,8 +110,12 @@ export function axisX() {
     textAnchor = "middle",
     tickSize = 6,
     tickPadding = 3,
+    inset = 0,
+    insetTop = inset,
+    insetBottom = inset,
     dy = 0,
-    y,
+    y2,
+    y = y2,
     ...rest
   } = options;
   return marks(
@@ -107,7 +126,9 @@ export function axisX() {
           strokeWidth,
           dy,
           y1: null,
-          y2: y ?? null,
+          y2: y2 === undefined ? y ?? null : y2,
+          insetTop,
+          insetBottom,
           ...rest
         })
       : null,
@@ -119,7 +140,7 @@ export function axisX() {
           frameAnchor,
           y,
           ...rest,
-          dy: +dy - offset,
+          dy: +dy - offset - insetBottom, // TODO or insetTop?
           anchor: "start",
           length: tickSize,
           shape: shapeTickX,
@@ -131,7 +152,16 @@ export function axisX() {
       ? axisTickX(
           textX,
           data,
-          {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...rest, dy: +dy + +tickSize + +tickPadding},
+          {
+            fill,
+            fillOpacity,
+            frameAnchor,
+            lineAnchor,
+            textAnchor,
+            y,
+            ...rest,
+            dy: +dy + +tickSize + +tickPadding - insetBottom // TODO or insetTop?
+          },
           function (scales) {
             const {x} = scales;
             const {ticks} = options;
