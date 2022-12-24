@@ -28,8 +28,11 @@ export function axisY() {
     frameAnchor = "left",
     lineAnchor = "middle",
     textAnchor = "end",
+    fontVariant,
     tickSize = 6,
     tickPadding = 3,
+    tickFormat,
+    text = typeof tickFormat === "function" ? tickFormat : null,
     inset = 0,
     insetLeft = inset,
     insetRight = inset,
@@ -78,6 +81,8 @@ export function axisY() {
             frameAnchor,
             lineAnchor,
             textAnchor,
+            text,
+            fontVariant,
             x,
             ...rest,
             dx: +dx - tickSize - tickPadding + +insetLeft // TODO or insetRight?
@@ -85,8 +90,12 @@ export function axisY() {
           function (scales) {
             const {y} = scales;
             const {ticks} = options;
-            this.fontVariant = inferFontVariant(y);
-            this.channels.text.value = y.tickFormat(isIterable(ticks) ? undefined : ticks);
+            if (fontVariant === undefined) {
+              this.fontVariant = inferFontVariant(y);
+            }
+            if (!this.channels.text) {
+              this.channels.text = {value: y.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)};
+            }
           }
         )
       : null
@@ -108,8 +117,11 @@ export function axisX() {
     frameAnchor = "bottom",
     lineAnchor = "top",
     textAnchor = "middle",
+    fontVariant,
     tickSize = 6,
     tickPadding = 3,
+    tickFormat,
+    text = typeof tickFormat === "function" ? tickFormat : null,
     inset = 0,
     insetTop = inset,
     insetBottom = inset,
@@ -158,15 +170,21 @@ export function axisX() {
             frameAnchor,
             lineAnchor,
             textAnchor,
+            fontVariant,
             y,
+            text,
             ...rest,
             dy: +dy + +tickSize + +tickPadding - insetBottom // TODO or insetTop?
           },
           function (scales) {
             const {x} = scales;
             const {ticks} = options;
-            this.fontVariant = inferFontVariant(x);
-            this.channels.text.value = x.tickFormat(isIterable(ticks) ? undefined : ticks);
+            if (fontVariant === undefined) {
+              this.fontVariant = inferFontVariant(x);
+            }
+            if (!this.channels.text) {
+              this.channels.text = {value: x.tickFormat(isIterable(ticks) ? null : ticks, tickFormat)};
+            }
           }
         )
       : null

@@ -64,7 +64,7 @@ export class Text extends Mark {
         y: {value: y, scale: "y", optional: true},
         fontSize: {value: vfontSize, optional: true},
         rotate: {value: numberChannel(vrotate), optional: true},
-        text: {value: text, filter: nonempty}
+        text: {value: text, filter: nonempty, optional: true}
       },
       options,
       defaults
