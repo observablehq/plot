@@ -40,7 +40,7 @@ export function axisY({
         })
       : null,
     tickSize && !isNoneish(stroke)
-      ? tickY(vectorY, {
+      ? axisTickY(vectorY, {
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -56,7 +56,7 @@ export function axisY({
         })
       : null,
     !isNoneish(fill)
-      ? tickY(
+      ? axisTickY(
           textY,
           {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...options, dx: +dx - tickSize - tickPadding},
           function (scales) {
@@ -102,7 +102,7 @@ export function axisX({
         })
       : null,
     tickSize && !isNoneish(stroke)
-      ? tickX(vectorX, {
+      ? axisTickX(vectorX, {
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -118,7 +118,7 @@ export function axisX({
         })
       : null,
     !isNoneish(fill)
-      ? tickX(
+      ? axisTickX(
           textX,
           {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...options, dy: +dy + +tickSize + +tickPadding},
           function (scales) {
@@ -140,7 +140,7 @@ export function gridY({
   strokeWidth = 1,
   ...options
 } = {}) {
-  return tickY(ruleY, {stroke, strokeOpacity, strokeWidth, ...options});
+  return axisTickY(ruleY, {stroke, strokeOpacity, strokeWidth, ...options});
 }
 
 export function gridX({
@@ -151,18 +151,18 @@ export function gridX({
   strokeWidth = 1,
   ...options
 } = {}) {
-  return tickX(ruleX, {stroke, strokeOpacity, strokeWidth, ...options});
+  return axisTickX(ruleX, {stroke, strokeOpacity, strokeWidth, ...options});
 }
 
-function tickX(mark, options, initialize) {
-  return tick(mark, "x", options, initialize);
+function axisTickX(mark, options, initialize) {
+  return axisTick(mark, "x", options, initialize);
 }
 
-function tickY(mark, options, initialize) {
-  return tick(mark, "y", options, initialize);
+function axisTickY(mark, options, initialize) {
+  return axisTick(mark, "y", options, initialize);
 }
 
-function tick(mark, k, options, initialize) {
+function axisTick(mark, k, options, initialize) {
   return mark(
     [],
     initializer(options, function (data, facets, channels, scales) {
