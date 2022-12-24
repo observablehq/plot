@@ -61,10 +61,12 @@ export function axisY({
               strokeOpacity,
               strokeWidth,
               frameAnchor,
+              ...options,
               anchor: "start",
-              shape: shapeTickY,
               length: tickSize,
-              ...options
+              shape: shapeTickY,
+              strokeLinejoin: null,
+              strokeLinecap: null
             },
             function (data, facets, channels, scales) {
               const {x, y} = scales;
@@ -162,10 +164,12 @@ export function axisX({
               strokeOpacity,
               strokeWidth,
               frameAnchor,
+              ...options,
               anchor: "start",
               length: tickSize,
               shape: shapeTickX,
-              ...options
+              strokeLinejoin: null,
+              strokeLinecap: null
             },
             function (data, facets, channels, scales) {
               const {x, y} = scales;

@@ -38,7 +38,7 @@
     <line x1="40" x2="620" y1="55.641634339150784" y2="55.641634339150784"></line>
     <line x1="40" x2="620" y1="30.410660068391152" y2="30.410660068391152"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0.5)">
     <path transform="translate(40,358.4133255882662)" d="M0,0L-6,0"></path>
     <path transform="translate(40,333.18235131750663)" d="M0,0L-6,0"></path>
     <path transform="translate(40,307.9513770467469)" d="M0,0L-6,0"></path>
@@ -55,7 +55,7 @@
     <path transform="translate(40,30.410660068391152)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,358.4133255882662)">60</text><text y="0.32em" transform="translate(40,333.18235131750663)">70</text><text y="0.32em" transform="translate(40,307.9513770467469)">80</text><text y="0.32em" transform="translate(40,282.72040277598734)">90</text><text y="0.32em" transform="translate(40,257.48942850522775)">100</text><text y="0.32em" transform="translate(40,232.25845423446808)">110</text><text y="0.32em" transform="translate(40,207.0274799637085)">120</text><text y="0.32em" transform="translate(40,181.79650569294887)">130</text><text y="0.32em" transform="translate(40,156.56553142218925)">140</text><text y="0.32em" transform="translate(40,131.3345571514296)">150</text><text y="0.32em" transform="translate(40,106.10358288067003)">160</text><text y="0.32em" transform="translate(40,80.87260860991039)">170</text><text y="0.32em" transform="translate(40,55.641634339150784)">180</text><text y="0.32em" transform="translate(40,30.410660068391152)">190</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0.5)">
     <path transform="translate(114.08991228070175,370)" d="M0,0L0,6"></path>
     <path transform="translate(230.15350877192984,370)" d="M0,0L0,6"></path>
     <path transform="translate(346.2171052631579,370)" d="M0,0L0,6"></path>
