@@ -24,34 +24,22 @@ export function axisY({
   ticks,
   tickSize = 6,
   tickPadding = 3,
+  dx = 0,
+  x,
   ...options
 } = {}) {
   return marks(
     grid && !isNone(grid)
-      ? ruleY(
-          [],
-          initializer(
-            {
-              stroke: grid === true ? stroke : grid,
-              strokeOpacity: gridOpacity,
-              strokeWidth,
-              ...options
-            },
-            function (data, facets, channels, scales) {
-              const {y} = scales;
-              data = y.ticks(ticks);
-              facets = [range(data)];
-              return {
-                data,
-                facets,
-                channels: {
-                  y: {value: data.map(y)},
-                  ...rechannel(this, data)
-                }
-              };
-            }
-          )
-        )
+      ? gridY({
+          stroke: grid === true ? stroke : grid,
+          strokeOpacity: gridOpacity,
+          strokeWidth,
+          ticks,
+          dx,
+          x1: x ?? null,
+          x2: null,
+          ...options
+        })
       : null,
     tickSize !== 0 && !isNoneish(stroke)
       ? vectorY(
@@ -62,8 +50,9 @@ export function axisY({
               strokeOpacity,
               strokeWidth,
               frameAnchor,
+              x,
               ...options,
-              dx: -offset,
+              dx: +dx - offset,
               anchor: "start",
               length: tickSize,
               shape: shapeTickY,
@@ -91,7 +80,7 @@ export function axisY({
       ? textY(
           [],
           initializer(
-            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dx: -tickSize - tickPadding},
+            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, x, ...options, dx: +dx - tickSize - tickPadding},
             function (data, facets, channels, scales) {
               const {x, y} = scales;
               data = y.ticks(ticks);
@@ -130,34 +119,22 @@ export function axisX({
   ticks,
   tickSize = 6,
   tickPadding = 3,
+  dy = 0,
+  y,
   ...options
 } = {}) {
   return marks(
     grid && !isNone(grid)
-      ? ruleX(
-          [],
-          initializer(
-            {
-              stroke: grid === true ? stroke : grid,
-              strokeOpacity: gridOpacity,
-              strokeWidth,
-              ...options
-            },
-            function (data, facets, channels, scales) {
-              const {x} = scales;
-              data = x.ticks(ticks);
-              facets = [range(data)];
-              return {
-                data,
-                facets,
-                channels: {
-                  x: {value: data.map(x)},
-                  ...rechannel(this, data)
-                }
-              };
-            }
-          )
-        )
+      ? gridX({
+          stroke: grid === true ? stroke : grid,
+          strokeOpacity: gridOpacity,
+          strokeWidth,
+          ticks,
+          dy,
+          y1: null,
+          y2: y ?? null,
+          ...options
+        })
       : null,
     tickSize !== 0 && !isNoneish(stroke)
       ? vectorX(
@@ -168,8 +145,9 @@ export function axisX({
               strokeOpacity,
               strokeWidth,
               frameAnchor,
+              y,
               ...options,
-              dy: -offset,
+              dy: +dy - offset,
               anchor: "start",
               length: tickSize,
               shape: shapeTickX,
@@ -197,7 +175,7 @@ export function axisX({
       ? textX(
           [],
           initializer(
-            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, ...options, dy: +tickSize + +tickPadding},
+            {fill, fillOpacity, frameAnchor, lineAnchor, textAnchor, y, ...options, dy: +dy + +tickSize + +tickPadding},
             function (data, facets, channels, scales) {
               const {x, y} = scales;
               data = x.ticks(ticks);
@@ -217,6 +195,80 @@ export function axisX({
           )
         )
       : null
+  );
+}
+
+export function gridY({
+  color = "currentColor",
+  opacity = 0.1,
+  stroke = color,
+  strokeOpacity = opacity,
+  strokeWidth = 1,
+  ticks,
+  ...options
+} = {}) {
+  return ruleY(
+    [],
+    initializer(
+      {
+        stroke,
+        strokeOpacity,
+        strokeWidth,
+        ...options
+      },
+      function (data, facets, channels, scales) {
+        const {x, y} = scales;
+        data = y.ticks(ticks);
+        facets = [range(data)];
+        return {
+          data,
+          facets,
+          channels: {
+            y: {value: data.map(y)},
+            ...(channels.x1 && {x1: {value: map(valueof(data, this.channels.x1.value), x)}}),
+            ...(channels.x2 && {x2: {value: map(valueof(data, this.channels.x2.value), x)}}),
+            ...rechannel(this, data)
+          }
+        };
+      }
+    )
+  );
+}
+
+export function gridX({
+  color = "currentColor",
+  opacity = 0.11,
+  stroke = color,
+  strokeOpacity = opacity,
+  strokeWidth = 1,
+  ticks,
+  ...options
+} = {}) {
+  return ruleX(
+    [],
+    initializer(
+      {
+        stroke,
+        strokeOpacity,
+        strokeWidth,
+        ...options
+      },
+      function (data, facets, channels, scales) {
+        const {x, y} = scales;
+        data = x.ticks(ticks);
+        facets = [range(data)];
+        return {
+          data,
+          facets,
+          channels: {
+            x: {value: data.map(x)},
+            ...(channels.y1 && {y1: {value: map(valueof(data, this.channels.y1.value), y)}}),
+            ...(channels.y2 && {y2: {value: map(valueof(data, this.channels.y2.value), y)}}),
+            ...rechannel(this, data)
+          }
+        };
+      }
+    )
   );
 }
 
