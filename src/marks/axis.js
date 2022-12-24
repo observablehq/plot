@@ -1,5 +1,5 @@
 import {inferFontVariant} from "../axes.js";
-import {map, range, valueof, isNone, isNoneish} from "../options.js";
+import {map, range, valueof, isNone, isNoneish, isIterable, arrayify} from "../options.js";
 import {marks} from "../plot.js";
 import {position, registry as scaleRegistry} from "../scales/index.js";
 import {offset} from "../style.js";
@@ -39,7 +39,7 @@ export function axisY({
           ...options
         })
       : null,
-    tickSize !== 0 && !isNoneish(stroke)
+    tickSize && !isNoneish(stroke)
       ? tickY(vectorY, {
           stroke,
           strokeOpacity,
@@ -63,7 +63,7 @@ export function axisY({
             const {y} = scales;
             const {ticks} = options;
             this.fontVariant = inferFontVariant(y);
-            this.channels.text.value = y.tickFormat(ticks);
+            this.channels.text.value = y.tickFormat(isIterable(ticks) ? undefined : ticks);
           }
         )
       : null
@@ -101,7 +101,7 @@ export function axisX({
           ...options
         })
       : null,
-    tickSize !== 0 && !isNoneish(stroke)
+    tickSize && !isNoneish(stroke)
       ? tickX(vectorX, {
           stroke,
           strokeOpacity,
@@ -125,7 +125,7 @@ export function axisX({
             const {x} = scales;
             const {ticks} = options;
             this.fontVariant = inferFontVariant(x);
-            this.channels.text.value = x.tickFormat(ticks);
+            this.channels.text.value = x.tickFormat(isIterable(ticks) ? undefined : ticks);
           }
         )
       : null
@@ -169,7 +169,7 @@ function tick(mark, k, options, initialize) {
       initialize?.call(this, scales);
       const {[k]: scale} = scales;
       const {ticks} = options;
-      data = scale.ticks(ticks);
+      data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
       facets = [range(data)];
       return {
         data,
