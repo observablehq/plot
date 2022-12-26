@@ -576,11 +576,11 @@ function facetTranslate(fx, fy) {
 // facets in the original index. TODO Memoize to avoid repeated work?
 function excludeIndex(index) {
   const ex = [];
-  const e = new Uint32Array(sum(index, (d) => d.length));
+  const e = new Uint32Array(sum(index, (d) => d?.length));
   for (const i of index) {
     let n = 0;
     for (const j of index) {
-      if (i === j) continue;
+      if (i === j || j === undefined) continue;
       e.set(j, n);
       n += j.length;
     }
