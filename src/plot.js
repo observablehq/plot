@@ -5,7 +5,8 @@ import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, keyword, map, maybeNamed, range, where, yes} from "./options.js";
+import {arrayify, isDomainSort, isScaleOptions, map, range, where, yes} from "./options.js";
+import {keyword, maybeKeyword, maybeNamed} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -296,7 +297,7 @@ export function plot(options = {}) {
 
     // Render facets in the order of the fx-fy domain, which might not be the
     // ordering used to build the nested index initially; see domainChannel.
-    const facetPosition = new Map(facets.map((f, j) => [f, j]));
+    const facetIndex = new Map(facets.map((f, j) => [f, j]));
     selection
       .selectAll()
       .data(facetKeys(facets, fx, fy))
@@ -306,10 +307,31 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy))
       .each(function (key) {
         for (const [mark, {channels, values, facets}] of stateByMark) {
-          let facet = null;
+          switch (mark.facetAnchor) {
+            case "top":
+              if (fyDomain.indexOf(key.y) !== 0) continue;
+              break;
+            case "bottom":
+              if (fyDomain.indexOf(key.y) !== fyDomain.length - 1) continue;
+              break;
+            case "left":
+              if (fxDomain.indexOf(key.x) !== 0) continue;
+              break;
+            case "right":
+              if (fxDomain.indexOf(key.x) !== fxDomain.length - 1) continue;
+              break;
+          }
+          let facet;
           if (facets) {
-            facet = facets[facetPosition.get(key)] ?? facets[0];
-            if (!facet) continue;
+            if (mark.facet === null) {
+              facet = facets[0];
+            } else {
+              facet = facets[facetIndex.get(key)];
+              if (facet === undefined) {
+                if (mark.fx || mark.fy) continue;
+                facet = facets[0];
+              }
+            }
             facet = mark.filter(facet, channels, values);
           }
           const node = mark.render(facet, scales, values, subdimensions, context);
@@ -367,7 +389,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", fx, fy, sort, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", facetAnchor, fx, fy, sort, dx, dy, clip, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -379,6 +401,7 @@ export class Mark {
       this.fx = fx;
       this.fy = fy;
     }
+    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", ["top", "right", "bottom", "left"]);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};

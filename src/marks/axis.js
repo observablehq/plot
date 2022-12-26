@@ -54,6 +54,7 @@ export function axisY() {
   return marks(
     grid && !isNone(grid)
       ? gridY(data, {
+          facetAnchor: anchor,
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
@@ -67,6 +68,7 @@ export function axisY() {
       : null,
     tickSize && !isNoneish(stroke)
       ? axisTickY(vectorY, data, {
+          facetAnchor: anchor,
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -86,6 +88,7 @@ export function axisY() {
           textY,
           data,
           {
+            facetAnchor: anchor,
             fill,
             fillOpacity,
             frameAnchor,
@@ -144,6 +147,7 @@ export function axisX() {
   return marks(
     grid && !isNone(grid)
       ? gridX(data, {
+          facetAnchor: anchor,
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
@@ -157,6 +161,7 @@ export function axisX() {
       : null,
     tickSize && !isNoneish(stroke)
       ? axisTickX(vectorX, data, {
+          facetAnchor: anchor,
           stroke,
           strokeOpacity,
           strokeWidth,
@@ -176,6 +181,7 @@ export function axisX() {
           textX,
           data,
           {
+            facetAnchor: anchor,
             fill,
             fillOpacity,
             frameAnchor,
