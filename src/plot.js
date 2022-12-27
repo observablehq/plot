@@ -72,9 +72,10 @@ export function plot(options = {}) {
     // the domain. Expunge empty facets, and clear the corresponding elements
     // from the nested index in each mark.
     const nonEmpty = new Set();
-    for (const {facetsIndex} of facetStateByMark.values()) {
+    for (const [mark, {facetsIndex}] of facetStateByMark) {
       facetsIndex?.forEach((index, i) => {
         if (index?.length > 0) {
+          if (mark.facetAnchor) return; // ignore axes, e.g.
           nonEmpty.add(i);
         }
       });
@@ -351,15 +352,8 @@ export function plot(options = {}) {
           }
           let index;
           if (indexes) {
-            if (mark.facet === null) {
-              index = indexes[0];
-            } else {
-              index = indexes[i];
-              if (index === undefined) {
-                if (mark.fx || mark.fy) continue;
-                index = indexes[0];
-              }
-            }
+            if (!facetStateByMark.has(mark)) index = indexes[0];
+            else if (!(index = indexes[i])) continue;
             index = mark.filter(index, channels, values);
           }
           const node = mark.render(index, scales, values, subdimensions, context);
