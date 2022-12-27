@@ -54,7 +54,6 @@ export function axisY() {
   return marks(
     grid && !isNone(grid)
       ? gridY(data, {
-          facetAnchor: anchor,
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
@@ -147,7 +146,6 @@ export function axisX() {
   return marks(
     grid && !isNone(grid)
       ? gridX(data, {
-          facetAnchor: anchor,
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,

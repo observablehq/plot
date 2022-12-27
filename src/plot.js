@@ -306,35 +306,63 @@ export function plot(options = {}) {
       .attr("aria-label", "facet")
       .attr("transform", facetTranslate(fx, fy))
       .each(function ({x, y, i}) {
-        for (const [mark, {channels, values, facets}] of stateByMark) {
+        for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
           switch (mark.facetAnchor) {
-            case "top":
-              if (fyDomain.indexOf(y) !== 0) continue;
+            case "top": {
+              const yi = fyDomain.indexOf(y);
+              if (yi > 0) {
+                const yy = fyDomain[yi - 1];
+                if (facets.some((f) => f.x === x && f.y === yy)) {
+                  continue;
+                }
+              }
               break;
-            case "bottom":
-              if (fyDomain.indexOf(y) !== fyDomain.length - 1) continue;
+            }
+            case "bottom": {
+              const yi = fyDomain.indexOf(y);
+              if (yi < fyDomain.length - 1) {
+                const yy = fyDomain[yi + 1];
+                if (facets.some((f) => f.x === x && f.y === yy)) {
+                  continue;
+                }
+              }
               break;
-            case "left":
-              if (fxDomain.indexOf(x) !== 0) continue;
+            }
+            case "left": {
+              const xi = fxDomain.indexOf(x);
+              if (xi > 0) {
+                const xx = fxDomain[xi - 1];
+                if (facets.some((f) => f.x === xx && f.y === y)) {
+                  continue;
+                }
+              }
               break;
-            case "right":
-              if (fxDomain.indexOf(x) !== fxDomain.length - 1) continue;
+            }
+            case "right": {
+              const xi = fxDomain.indexOf(x);
+              if (xi < fxDomain.length - 1) {
+                const xx = fxDomain[xi + 1];
+                if (facets.some((f) => f.x === xx && f.y === y)) {
+                  continue;
+                }
+              }
               break;
+            }
           }
-          let facet;
-          if (facets) {
+          let index;
+          if (indexes) {
             if (mark.facet === null) {
-              facet = facets[0];
+              index = indexes[0];
             } else {
-              facet = facets[i];
-              if (facet === undefined) {
+              index = indexes[i];
+              if (index === undefined) {
                 if (mark.fx || mark.fy) continue;
-                facet = facets[0];
+                index = indexes[0];
               }
             }
-            facet = mark.filter(facet, channels, values);
+            index = mark.filter(index, channels, values);
           }
-          const node = mark.render(facet, scales, values, subdimensions, context);
+          const node = mark.render(index, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
         }
       });
