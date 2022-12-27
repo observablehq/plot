@@ -36,6 +36,8 @@ const defaults = {
   paintOrder: "stroke"
 };
 
+const softHyphen = "\u00ad";
+
 export class Text extends Mark {
   constructor(data, options = {}) {
     const {
@@ -223,7 +225,7 @@ function lineWrap(input, maxWidth, widthof = (_, i, j) => j - i) {
     // make the line longer than the allowed width, then break the line at the
     // previous word end.
     if (lineEnd > lineStart && widthof(input, lineStart, wordEnd) > maxWidth) {
-      lines.push(input.slice(lineStart, lineEnd));
+      lines.push(input.slice(lineStart, lineEnd) + (input[lineEnd - 1] === softHyphen ? "-" : ""));
       lineStart = wordStart;
     }
 
@@ -251,6 +253,7 @@ function* lineBreaks(input) {
   while (j < n) {
     let k = 1;
     switch (input[j]) {
+      case softHyphen:
       case "-": // hyphen
         ++j;
         yield [i, j, false];
