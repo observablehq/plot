@@ -1,8 +1,9 @@
-import {extent, format, utcFormat} from "d3";
+import {cross, extent, format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {formatDefault} from "../format.js";
 import {radians} from "../math.js";
-import {range, valueof, isNone, isNoneish, isIterable, arrayify, isTemporal, constant, keyword} from "../options.js";
+import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
+import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
 import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
@@ -11,7 +12,7 @@ import {textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
 
 function maybeData(data, options) {
-  if (arguments.length < 2) (options = data), (data = null);
+  if (arguments.length < 2) (options = data), (data = undefined); // TODO null instead of undefined?
   if (options === undefined) options = {};
   return [data, options];
 }
@@ -206,28 +207,33 @@ export function axisX() {
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  const {
-    color = "currentColor",
-    opacity = 0.1,
-    stroke = color,
-    strokeOpacity = opacity,
-    strokeWidth = 1,
-    ...rest
-  } = options;
-  return axisTickY(ruleY, data, {stroke, strokeOpacity, strokeWidth, ...rest});
+  return axisTickY(ruleY, data, gridDefaults(options));
 }
 
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  const {
-    color = "currentColor",
-    opacity = 0.1,
-    stroke = color,
-    strokeOpacity = opacity,
-    strokeWidth = 1,
-    ...rest
-  } = options;
-  return axisTickX(ruleX, data, {stroke, strokeOpacity, strokeWidth, ...rest});
+  return axisTickX(ruleX, data, gridDefaults(options));
+}
+
+export function gridFx() {
+  const [data = [], options] = maybeData(...arguments); // TODO allow null data?
+  return axisTick(ruleX, "fx", data, {...gridDefaults(options), x: null, fx: identity});
+}
+
+export function gridFy() {
+  const [data = [], options] = maybeData(...arguments); // TODO allow null data?
+  return axisTick(ruleY, "fy", data, {...gridDefaults(options), y: null, fy: identity});
+}
+
+function gridDefaults({
+  color = "currentColor",
+  opacity = 0.1,
+  stroke = color,
+  strokeOpacity = opacity,
+  strokeWidth = 1,
+  ...rest
+}) {
+  return {stroke, strokeOpacity, strokeWidth, ...rest};
 }
 
 function axisTickX(mark, data, options, initialize) {
@@ -244,7 +250,15 @@ function axisTick(mark, k, data, options, initialize) {
     initializer(options, function (data, facets, channels, scales) {
       const {[k]: scale} = scales;
       let {ticks} = options;
-      if (data == null) {
+      if (k === "fy") {
+        data = scale.domain();
+        facets = cross(scales.fx.domain(), range(data), (_, i) => [i]); // TODO
+        this.channels[k] = {scale: k, value: identity};
+      } else if (k === "fx") {
+        data = scale.domain();
+        facets = cross(range(data), scales.fy.domain(), (i) => [i]); // TODO
+        this.channels[k] = {scale: k, value: identity};
+      } else if (data == null) {
         if (ticks === undefined) {
           const interval = scale.interval;
           if (interval !== undefined) {

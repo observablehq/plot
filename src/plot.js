@@ -144,28 +144,31 @@ export function plot(options = {}) {
   const newByScale = new Set();
   for (const [mark, state] of stateByMark) {
     if (mark.initializer != null) {
-      const {facets, channels} = mark.initializer(
-        state.data,
-        state.facets,
-        state.channels,
-        scales,
-        subdimensions,
-        context
-      );
-      if (facets !== undefined) {
-        state.facets = facets;
+      const update = mark.initializer(state.data, state.facets, state.channels, scales, subdimensions, context);
+      if (update.data !== undefined) {
+        state.data = update.data;
       }
-      if (channels !== undefined) {
-        inferChannelScale(channels, mark);
-        Object.assign(state.channels, channels);
-        for (const channel of Object.values(channels)) {
+      if (update.facets !== undefined) {
+        state.facets = update.facets;
+      }
+      if (update.channels !== undefined) {
+        inferChannelScale(update.channels, mark);
+        Object.assign(state.channels, update.channels);
+        for (const channel of Object.values(update.channels)) {
           const {scale} = channel;
           // Initializers aren’t allowed to redefine position scales as this
           // would introduce a circular dependency; so simply scale these
           // channels as-is rather than creating new scales, and assume that
           // they already have the scale’s transform applied, if any (e.g., when
-          // generating ticks for the axis mark).
-          if (scale != null && scaleRegistry.get(scale) !== position) {
+          // generating ticks for the axis mark). TODO Not sure if support for
+          // faceting is complete here.
+          if (scale === "fx" || scale === "fy") {
+            const facetState = facetStateByMark.get(mark) ?? {channels: {}};
+            facetState.channels[scale] = channel;
+            facetState.groups = facetGroups(state.data, facetState.channels);
+            facetState.facetsIndex = filterFacets(facets, facetState);
+            facetStateByMark.set(mark, facetState);
+          } else if (scale != null && scaleRegistry.get(scale) !== position) {
             applyScaleTransform(channel, options);
             newByScale.add(scale);
           }
@@ -666,13 +669,13 @@ function maybeMarkFacet(mark, topFacetState, options) {
 
   // This mark defines a mark-level facet. TODO There’s some code duplication
   // here with maybeTopFacet that we could reduce.
-  const {fx: x, fy: y} = mark;
-  if (x != null || y != null) {
+  const {fx, fy} = mark;
+  if (fx != null || fy != null) {
     const data = arrayify(mark.data);
     if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
     const channels = {};
-    if (x != null) channels.fx = Channel(data, {value: x, scale: "fx"});
-    if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
+    if (fx != null) channels.fx = Channel(data, {value: fx, scale: "fx"});
+    if (fy != null) channels.fy = Channel(data, {value: fy, scale: "fy"});
     applyScaleTransforms(channels, options);
     return {channels, groups: facetGroups(data, channels)};
   }
