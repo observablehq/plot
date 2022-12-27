@@ -83,10 +83,10 @@ export function plot(options = {}) {
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
       facets = facets.filter((_, i) => nonEmpty.has(i));
       facets.forEach((f, i) => (f.i = i)); // adjust facet index accordingly
-      for (const state of facetStateByMark.values()) {
-        const {facetsIndex} = state;
+      for (const facetState of facetStateByMark.values()) {
+        const {facetsIndex} = facetState;
         if (!facetsIndex) continue;
-        state.facetsIndex = facetsIndex.filter((_, i) => nonEmpty.has(i));
+        facetState.facetsIndex = facetsIndex.filter((_, i) => nonEmpty.has(i));
       }
     }
 
@@ -160,18 +160,23 @@ export function plot(options = {}) {
           // would introduce a circular dependency; so simply scale these
           // channels as-is rather than creating new scales, and assume that
           // they already have the scale’s transform applied, if any (e.g., when
-          // generating ticks for the axis mark). TODO Not sure if support for
-          // faceting is complete here.
-          if (scale === "fx" || scale === "fy") {
-            const facetState = facetStateByMark.get(mark) ?? {channels: {}};
-            facetState.channels[scale] = channel;
-            facetState.groups = facetGroups(state.data, facetState.channels);
-            facetState.facetsIndex = filterFacets(facets, facetState);
-            facetStateByMark.set(mark, facetState);
-          } else if (scale != null && scaleRegistry.get(scale) !== position) {
+          // generating ticks for the axis mark).
+          if (scale != null && scaleRegistry.get(scale) !== position) {
             applyScaleTransform(channel, options);
             newByScale.add(scale);
           }
+        }
+        // If the initializer returns new mark-level facet channels, we must
+        // also recompute the facet state.
+        const {fx, fy} = update.channels;
+        if (fx != null || fy != null) {
+          const facetState = facetStateByMark.get(mark) ?? {channels: {}};
+          if (fx != null) facetState.channels.fx = fx;
+          if (fy != null) facetState.channels.fy = fy;
+          facetState.groups = facetGroups(state.data, facetState.channels);
+          facetState.facetsIndex = filterFacets(facets, facetState);
+          facetStateByMark.set(mark, facetState);
+          state.facets = facetState.facetsIndex;
         }
       }
     }
@@ -672,7 +677,7 @@ function maybeMarkFacet(mark, topFacetState, options) {
   const {fx, fy} = mark;
   if (fx != null || fy != null) {
     const data = arrayify(mark.data);
-    if (data == null) throw new Error(`missing facet data in ${mark.ariaLabel}`);
+    if (data == null) return; // ignore channel definitions if no data is provided
     const channels = {};
     if (fx != null) channels.fx = Channel(data, {value: fx, scale: "fx"});
     if (fy != null) channels.fy = Channel(data, {value: fy, scale: "fy"});

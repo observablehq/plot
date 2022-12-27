@@ -1,4 +1,4 @@
-import {cross, extent, format, utcFormat} from "d3";
+import {extent, format, utcFormat} from "d3";
 import {inferFontVariant} from "../axes.js";
 import {formatDefault} from "../format.js";
 import {radians} from "../math.js";
@@ -12,7 +12,7 @@ import {textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
 
 function maybeData(data, options) {
-  if (arguments.length < 2) (options = data), (data = undefined); // TODO null instead of undefined?
+  if (arguments.length < 2 && !isIterable(data)) (options = data), (data = null);
   if (options === undefined) options = {};
   return [data, options];
 }
@@ -216,13 +216,13 @@ export function gridX() {
 }
 
 export function gridFx() {
-  const [data = [], options] = maybeData(...arguments); // TODO allow null data?
-  return axisTick(ruleX, "fx", data, {...gridDefaults(options), x: null, fx: identity});
+  const [data, options] = maybeData(...arguments);
+  return axisTick(ruleX, "fx", data, {...gridDefaults(options), x: null});
 }
 
 export function gridFy() {
-  const [data = [], options] = maybeData(...arguments); // TODO allow null data?
-  return axisTick(ruleY, "fy", data, {...gridDefaults(options), y: null, fy: identity});
+  const [data, options] = maybeData(...arguments);
+  return axisTick(ruleY, "fy", data, {...gridDefaults(options), y: null});
 }
 
 function gridDefaults({
@@ -249,28 +249,32 @@ function axisTick(mark, k, data, options, initialize) {
     data,
     initializer(options, function (data, facets, channels, scales) {
       const {[k]: scale} = scales;
+      if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks} = options;
-      if (k === "fy") {
-        data = scale.domain();
-        facets = cross(scales.fx.domain(), range(data), (_, i) => [i]); // TODO
-        this.channels[k] = {scale: k, value: identity};
-      } else if (k === "fx") {
-        data = scale.domain();
-        facets = cross(range(data), scales.fy.domain(), (i) => [i]); // TODO
-        this.channels[k] = {scale: k, value: identity};
-      } else if (data == null) {
-        if (ticks === undefined) {
-          const interval = scale.interval;
-          if (interval !== undefined) {
-            const [min, max] = extent(scale.domain());
-            ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
-          } else {
-            const [min, max] = extent(scale.range());
-            ticks = (max - min) / (k === "x" ? 80 : 35);
+      if (data == null) {
+        if (isIterable(ticks)) {
+          data = arrayify(ticks);
+        } else if (scale.ticks) {
+          if (ticks === undefined) {
+            const interval = scale.interval;
+            if (interval !== undefined) {
+              const [min, max] = extent(scale.domain());
+              ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
+            } else {
+              const [min, max] = extent(scale.range());
+              ticks = (max - min) / (k === "x" ? 80 : 35);
+            }
           }
+          data = scale.ticks(ticks);
+        } else {
+          data = scale.domain();
         }
-        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks ? scale.ticks(ticks) : scale.domain();
-        facets = [range(data)];
+      }
+      if (k === "fy" || k === "fx") {
+        this.channels[k] = {scale: k, value: identity};
+        facets = undefined; // computed automatically by plot
+      } else {
+        facets = [range(data)]; // TODO allow faceted ticks?
       }
       initialize?.call(this, scale, ticks);
       return {
