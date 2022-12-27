@@ -157,14 +157,16 @@ export function plot(options = {}) {
       }
       if (channels !== undefined) {
         inferChannelScale(channels, mark);
-        applyScaleTransforms(channels, options);
         Object.assign(state.channels, channels);
         for (const channel of Object.values(channels)) {
           const {scale} = channel;
-          // Initializers aren’t allowed to redefine position scales because
-          // initializers typically depend on position; so simply scale these
-          // channels as-is rather than creating new scales.
+          // Initializers aren’t allowed to redefine position scales as this
+          // would introduce a circular dependency; so simply scale these
+          // channels as-is rather than creating new scales, and assume that
+          // they already have the scale’s transform applied, if any (e.g., when
+          // generating ticks for the axis mark).
           if (scale != null && scaleRegistry.get(scale) !== position) {
+            applyScaleTransform(channel, options);
             newByScale.add(scale);
           }
         }
@@ -299,6 +301,8 @@ export function plot(options = {}) {
 
     // Render facets in the order of the fx-fy domain, which might not be the
     // ordering used to build the nested index initially; see domainChannel.
+    // TODO For facet axis labels, we might need the ability to render marks
+    // into empty facets with facetAnchor.
     selection
       .selectAll()
       .data(sort(facets, fx ? facetOrder("x", fx) : () => {}, fy ? facetOrder("y", fy) : () => {}))
@@ -496,19 +500,20 @@ class Render extends Mark {
 
 // Note: mutates channel.value to apply the scale transform, if any.
 function applyScaleTransforms(channels, options) {
-  for (const name in channels) {
-    const channel = channels[name];
-    const {scale} = channel;
-    if (scale != null) {
-      const {
-        percent,
-        interval,
-        transform = percent ? (x) => x * 100 : maybeInterval(interval)?.floor
-      } = options[scale] || {};
-      if (transform != null) channel.value = map(channel.value, transform);
-    }
-  }
+  for (const name in channels) applyScaleTransform(channels[name], options);
   return channels;
+}
+
+// Note: mutates channel.value to apply the scale transform, if any.
+function applyScaleTransform(channel, options) {
+  const {scale} = channel;
+  if (scale == null) return;
+  const {
+    percent,
+    interval,
+    transform = percent ? (x) => x * 100 : maybeInterval(interval)?.floor
+  } = options[scale] ?? {};
+  if (transform != null) channel.value = map(channel.value, transform);
 }
 
 // An initializer may generate channels without knowing how the downstream mark

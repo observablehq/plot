@@ -1,0 +1,96 @@
+<svg class="plot" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="640" height="400" viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>
+    .plot {
+      display: block;
+      background: white;
+      height: auto;
+      height: intrinsic;
+      max-width: 100%;
+    }
+
+    .plot text,
+    .plot tspan {
+      white-space: pre;
+    }
+  </style>
+  <g aria-label="y-axis" aria-description="↑ Responses (%)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
+    <g class="tick" opacity="1" transform="translate(0,360.5)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,335.3148148148148)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,310.1296296296297)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,284.94444444444446)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,259.7592592592593)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,234.5740740740741)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,209.38888888888889)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,184.20370370370372)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,159.01851851851853)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,133.83333333333334)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,108.64814814814815)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,83.46296296296298)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,58.27777777777779)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">24</text>
+    </g>
+    <g class="tick" opacity="1" transform="translate(0,33.09259259259261)">
+      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">26</text>
+    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Responses (%)</text>
+  </g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+    <path transform="translate(50,360)" d="M0,0L0,6"></path>
+    <path transform="translate(145,360)" d="M0,0L0,6"></path>
+    <path transform="translate(240,360)" d="M0,0L0,6"></path>
+    <path transform="translate(335,360)" d="M0,0L0,6"></path>
+    <path transform="translate(430,360)" d="M0,0L0,6"></path>
+    <path transform="translate(525,360)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(43.5,9.5)"><text transform="translate(50,360)"><tspan x="0" y="0.71em">Committed 671</tspan><tspan x="0" y="1.71em">birthdays to</tspan><tspan x="0" y="2.71em">memory</tspan></text><text transform="translate(145,360)"><tspan x="0" y="0.71em">Discovered how</tspan><tspan x="0" y="1.71em">to “like” things</tspan><tspan x="0" y="2.71em">mentally</tspan></text><text transform="translate(240,360)"><tspan x="0" y="0.71em">Ex is doing too</tspan><tspan x="0" y="1.71em">well</tspan></text><text transform="translate(335,360)"><tspan x="0" y="0.71em">Family in feud</tspan><tspan x="0" y="1.71em">with Zucker­-</tspan><tspan x="0" y="2.71em">bergs</tspan></text><text transform="translate(430,360)"><tspan x="0" y="0.71em">High school</tspan><tspan x="0" y="1.71em">friends all dead</tspan><tspan x="0" y="2.71em">now</tspan></text><text transform="translate(525,360)"><tspan x="0" y="0.71em">Not enough</tspan><tspan x="0" y="1.71em">politics</tspan></text></g>
+  <g aria-label="bar">
+    <rect x="335" width="86" y="145.9259259259259" height="214.0740740740741"></rect>
+    <rect x="50" width="86" y="120.74074074074073" height="239.25925925925927"></rect>
+    <rect x="240" width="86" y="234.0740740740741" height="125.9259259259259"></rect>
+    <rect x="430" width="86" y="171.11111111111111" height="188.88888888888889"></rect>
+    <rect x="145" width="86" y="20" height="340"></rect>
+    <rect x="525" width="86" y="208.88888888888889" height="151.11111111111111"></rect>
+  </g>
+  <g aria-label="rule" stroke="#eee" stroke-opacity="0.2" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="360" y2="360"></line>
+    <line x1="40" x2="620" y1="334.8148148148148" y2="334.8148148148148"></line>
+    <line x1="40" x2="620" y1="309.6296296296297" y2="309.6296296296297"></line>
+    <line x1="40" x2="620" y1="284.44444444444446" y2="284.44444444444446"></line>
+    <line x1="40" x2="620" y1="259.2592592592593" y2="259.2592592592593"></line>
+    <line x1="40" x2="620" y1="234.0740740740741" y2="234.0740740740741"></line>
+    <line x1="40" x2="620" y1="208.88888888888889" y2="208.88888888888889"></line>
+    <line x1="40" x2="620" y1="183.70370370370372" y2="183.70370370370372"></line>
+    <line x1="40" x2="620" y1="158.51851851851853" y2="158.51851851851853"></line>
+    <line x1="40" x2="620" y1="133.33333333333334" y2="133.33333333333334"></line>
+    <line x1="40" x2="620" y1="108.14814814814815" y2="108.14814814814815"></line>
+    <line x1="40" x2="620" y1="82.96296296296298" y2="82.96296296296298"></line>
+    <line x1="40" x2="620" y1="57.77777777777779" y2="57.77777777777779"></line>
+    <line x1="40" x2="620" y1="32.59259259259261" y2="32.59259259259261"></line>
+  </g>
+  <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="360" y2="360"></line>
+  </g>
+</svg>
