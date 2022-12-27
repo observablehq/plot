@@ -255,7 +255,7 @@ function axisTick(mark, k, data, options, initialize) {
             ticks = (max - min) / (k === "x" ? 80 : 35);
           }
         }
-        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks(ticks);
+        data = isIterable(ticks) ? arrayify(ticks) : scale.ticks ? scale.ticks(ticks) : scale.domain();
         facets = [range(data)];
       }
       initialize?.call(this, scale, ticks);
