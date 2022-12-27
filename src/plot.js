@@ -81,6 +81,7 @@ export function plot(options = {}) {
     }
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
       facets = facets.filter((_, i) => nonEmpty.has(i));
+      facets.forEach((f, i) => (f.i = i)); // adjust facet index accordingly
       for (const state of facetStateByMark.values()) {
         const {facetsIndex} = state;
         if (!facetsIndex) continue;
@@ -297,28 +298,27 @@ export function plot(options = {}) {
 
     // Render facets in the order of the fx-fy domain, which might not be the
     // ordering used to build the nested index initially; see domainChannel.
-    const facetIndex = new Map(facets.map((f, j) => [f, j]));
     selection
       .selectAll()
-      .data(facetKeys(facets, fx, fy))
+      .data(sort(facets, fx ? facetOrder("x", fx) : () => {}, fy ? facetOrder("y", fy) : () => {}))
       .enter()
       .append("g")
       .attr("aria-label", "facet")
       .attr("transform", facetTranslate(fx, fy))
-      .each(function (key) {
+      .each(function ({x, y, i}) {
         for (const [mark, {channels, values, facets}] of stateByMark) {
           switch (mark.facetAnchor) {
             case "top":
-              if (fyDomain.indexOf(key.y) !== 0) continue;
+              if (fyDomain.indexOf(y) !== 0) continue;
               break;
             case "bottom":
-              if (fyDomain.indexOf(key.y) !== fyDomain.length - 1) continue;
+              if (fyDomain.indexOf(y) !== fyDomain.length - 1) continue;
               break;
             case "left":
-              if (fxDomain.indexOf(key.x) !== 0) continue;
+              if (fxDomain.indexOf(x) !== 0) continue;
               break;
             case "right":
-              if (fxDomain.indexOf(key.x) !== fxDomain.length - 1) continue;
+              if (fxDomain.indexOf(x) !== fxDomain.length - 1) continue;
               break;
           }
           let facet;
@@ -326,7 +326,7 @@ export function plot(options = {}) {
             if (mark.facet === null) {
               facet = facets[0];
             } else {
-              facet = facets[facetIndex.get(key)];
+              facet = facets[i];
               if (facet === undefined) {
                 if (mark.fx || mark.fy) continue;
                 facet = facets[0];
@@ -545,27 +545,25 @@ function nolabel(axis) {
     : Object.assign(Object.create(axis), {label: undefined});
 }
 
-// Returns an array of {x?, y?} objects representing the facet domain.
+// Returns an array of {x?, y?, i} objects representing the facet domain.
 function Facets(channelsByScale, options) {
   const {fx, fy} = Scales(channelsByScale, options);
   const fxDomain = fx?.scale.domain();
   const fyDomain = fy?.scale.domain();
   return fxDomain && fyDomain
-    ? cross(fxDomain, fyDomain).map(([x, y]) => ({x, y}))
+    ? cross(fxDomain, fyDomain).map(([x, y], i) => ({x, y, i}))
     : fxDomain
-    ? fxDomain.map((x) => ({x}))
+    ? fxDomain.map((x, i) => ({x, i}))
     : fyDomain
-    ? fyDomain.map((y) => ({y}))
+    ? fyDomain.map((y, i) => ({y, i}))
     : undefined;
 }
 
-// Returns keys in order of the associated scale’s domains. (We don’t want to
-// recompute the keys here because facets may already be filtered, and facets
-// isn’t sorted because it’s constructed prior to the other mark channels.)
-function facetKeys(facets, fx, fy) {
-  const fxI = fx && new InternMap(fx.domain().map((x, i) => [x, i]));
-  const fyI = fy && new InternMap(fy.domain().map((y, i) => [y, i]));
-  return sort(facets, (a, b) => (fxI && fxI.get(a.x) - fxI.get(b.x)) || (fyI && fyI.get(a.y) - fyI.get(b.y)));
+// Returns an accessor function that returns the order of the given facet value
+// in the associated facet scale’s domains.
+function facetOrder(k, fk) {
+  const o = new InternMap(fk.domain().map((v, i) => [v, i]));
+  return ({[k]: v}) => o.get(v);
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
