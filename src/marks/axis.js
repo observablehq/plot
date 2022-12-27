@@ -59,8 +59,8 @@ export function axisY() {
           strokeOpacity: gridOpacity,
           strokeWidth,
           dx,
-          x1: x1 === undefined ? (anchor === "left" ? x ?? null : null) : x1,
-          x2: x2 === undefined ? (anchor === "right" ? x ?? null : null) : x2,
+          x1: x1 === undefined && anchor === "left" ? x : x1,
+          x2: x2 === undefined && anchor === "right" ? x : x2,
           insetLeft,
           insetRight,
           ...rest
@@ -151,8 +151,8 @@ export function axisX() {
           strokeOpacity: gridOpacity,
           strokeWidth,
           dy,
-          y1: y1 === undefined ? (anchor === "top" ? y ?? null : null) : y1,
-          y2: y2 === undefined ? (anchor === "bottom" ? y ?? null : null) : y2,
+          y1: y1 === undefined && anchor === "top" ? y : y1,
+          y2: y2 === undefined && anchor === "bottom" ? y : y2,
           insetTop,
           insetBottom,
           ...rest
@@ -207,24 +207,26 @@ export function axisX() {
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  return axisTickY(ruleY, data, gridDefaults(options));
+  const {x1 = null, x2 = null, ...rest} = options;
+  return axisTickY(ruleY, data, {x1, x2, ...gridDefaults(rest)});
 }
 
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  return axisTickX(ruleX, data, gridDefaults(options));
+  const {y1 = null, y2 = null, ...rest} = options;
+  return axisTickX(ruleX, data, {y1, y2, ...gridDefaults(rest)});
 }
 
 export function gridFx() {
   const [data, options] = maybeData(...arguments);
   const {x = null, y1 = null, y2 = null, ...rest} = options;
-  return axisTick(ruleX, "fx", data, gridDefaults({x, y1, y2, ...rest}));
+  return axisTick(ruleX, "fx", data, {x, y1, y2, ...gridDefaults(rest)});
 }
 
 export function gridFy() {
   const [data, options] = maybeData(...arguments);
   const {y = null, x1 = null, x2 = null, ...rest} = options;
-  return axisTick(ruleY, "fy", data, gridDefaults({y, x1, x2, ...rest}));
+  return axisTick(ruleY, "fy", data, {y, x1, x2, ...gridDefaults(rest)});
 }
 
 function gridDefaults({
