@@ -217,12 +217,14 @@ export function gridX() {
 
 export function gridFx() {
   const [data, options] = maybeData(...arguments);
-  return axisTick(ruleX, "fx", data, {...gridDefaults(options), x: null});
+  const {x = null, y1 = null, y2 = null, ...rest} = options;
+  return axisTick(ruleX, "fx", data, gridDefaults({x, y1, y2, ...rest}));
 }
 
 export function gridFy() {
   const [data, options] = maybeData(...arguments);
-  return axisTick(ruleY, "fy", data, {...gridDefaults(options), y: null});
+  const {y = null, x1 = null, x2 = null, ...rest} = options;
+  return axisTick(ruleY, "fy", data, gridDefaults({y, x1, x2, ...rest}));
 }
 
 function gridDefaults({
