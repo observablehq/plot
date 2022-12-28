@@ -7,16 +7,7 @@ import {dot} from "./dot.js";
 import {ruleX, ruleY} from "./rule.js";
 import {tickX, tickY} from "./tick.js";
 
-/**
- * ```js
- * Plot.boxX(simpsons.map(d => d.imdb_rating))
- * ```
- *
- * Returns a horizontal boxplot mark. If the **x** option is not specified, it
- * defaults to the identity function, as when *data* is an array of numbers. If
- * the **y** option is not specified, it defaults to null; if the **y** option
- * is specified, it should represent an ordinal (discrete) value.
- */
+/** @jsdoc boxX */
 export function boxX(data, options = {}) {
   // Returns a composite mark for producing a horizontal box plot, applying the
   // necessary statistical transforms. The boxes are grouped by y, if present.
@@ -40,16 +31,7 @@ export function boxX(data, options = {}) {
   );
 }
 
-/**
- * ```js
- * Plot.boxY(simpsons.map(d => d.imdb_rating))
- * ```
- *
- * Returns a vertical boxplot mark. If the **y** option is not specified, it
- * defaults to the identity function, as when *data* is an array of numbers. If
- * the **x** option is not specified, it defaults to null; if the **x** option
- * is specified, it should represent an ordinal (discrete) value.
- */
+/** @jsdoc boxY */
 export function boxY(data, options = {}) {
   // Returns a composite mark for producing a vertical box plot, applying the
   // necessary statistical transforms. The boxes are grouped by x, if present.

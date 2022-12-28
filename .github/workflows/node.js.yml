@@ -27,4 +27,3 @@ jobs:
           echo ::add-matcher::.github/eslint.json
           yarn run eslint . --format=compact
       - run: yarn test
-      - run: yarn readme:check

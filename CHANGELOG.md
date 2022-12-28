@@ -1,10 +1,176 @@
 # Observable Plot - Changelog
 
+## 0.6.2
+
+*Not yet released. These are forthcoming changes in the main branch.*
+
+The [vector mark](./README.md#vector) now supports the **shape** constant option. The built-in shapes are *arrow* (default) and *spike*. A custom shape can also be implemented, returning the corresponding SVG path data for the desired shape. The new [spike convenience constructor](./README.md#plotspikedata-options) creates a vector suitable for spike maps. The vector mark also now supports an **r** constant option to further customize the shape.
+
+The new [geoCentroid transform](./README.md#plotgeocentroidoptions) and [centroid initializer](./README.md#plotcentroidoptions) compute the spherical and projected planar centroids of geometry, respectively.
+
+Diverging scales now correctly handle descending domains.
+
+## 0.6.1
+
+[Released December 12, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.1)
+
+The new [geo mark](./README.md#geo) renders GeoJSON geometries such as polygons, lines, and points. Together with Plot’s new [projection system](https://observablehq.com/@observablehq/plot-projections), Plot can now produce [thematic maps](https://observablehq.com/@observablehq/plot-mapping). For example, the choropleth map below shows unemployment rates by U.S. county.
+
+[<img src="./img/choropleth.png" width="640" alt="A choropleth of unemployment rate by U.S. county">](https://observablehq.com/@observablehq/plot-geo)
+
+```js
+Plot.geo(counties, {fill: (d) => d.properties.unemployment}).plot({
+  projection: "albers-usa",
+  color: {
+    type: "quantile",
+    n: 8,
+    scheme: "blues",
+    label: "Unemployment (%)",
+    legend: true
+  }
+})
+```
+
+The new top-level [**projection** option](./README.md#projection-options) controls how geometric coordinates are transformed to the screen and supports a variety of common geographic projections, including the composite U.S. Albers projection shown above, the Equal Earth projection, the Mercator projection, the orthographic and stereographic projections, several conic and azimuthal projections, among others. Projections can be fit to geometry using the projection.**domain** option, and rotated to an arbitrary aspect using the projection.**rotate** option.
+
+[<img src="./img/orthographic.png" width="640" alt="A world map using the orthographic projection, centered somewhere around San Antonio, Texas">](https://observablehq.com/@observablehq/plot-projections)
+
+```js
+Plot.plot({
+  height: 640,
+  inset: 1,
+  projection: {type: "orthographic", rotate: [100, -30]},
+  marks: [
+    Plot.graticule(),
+    Plot.geo(land, {fill: "currentColor"}),
+    Plot.sphere()
+  ]
+})
+```
+
+The new graticule convenience mark renders meridians and parallels (lines of constant longitude and latitude), while the sphere convenience mark draws the outline of the sphere.
+
+Plot’s projection system works automatically with most of Plot’s mark types, including dots, vectors, lines, and rects. For geographic projections, *x* represents longitude and *y* represents latitude. For example, the map below uses vectors to show county-level vote margins in the 2020 U.S. presidential election: a margin for Biden is shown as a blue left-pointing arrow, while a margin for Trump is shown as a red right-pointing arrow; the length of the arrow is proportional to the margin.
+
+[<img src="./img/vector-map.png" width="640" alt="An arrow map showing the county-level vote margins in the 2020 U.S. presidential election; a margin for Biden is shown as a blue left-pointing arrow, and a margin for Trump is shown as a red right-pointing arrow">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  width: 975,
+  projection: "albers-usa",
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
+    Plot.geo(nation),
+    Plot.vector(elections, {
+      filter: (d) => d.votes > 0,
+      anchor: "start",
+      x: (d) => centroids.get(d.fips)?.[0],
+      y: (d) => centroids.get(d.fips)?.[1],
+      sort: (d) => Math.abs(d.results_trumpd - d.results_bidenj),
+      stroke: (d) => (d.results_trumpd > d.results_bidenj ? "red" : "blue"),
+      length: (d) => Math.sqrt(Math.abs(d.margin2020 * d.votes)),
+      rotate: (d) => (d.results_bidenj < d.results_trumpd ? 60 : -60)
+    })
+  ]
+})
+```
+
+For the [line mark](./README.md#line), the specified projection doesn’t simply project control points; the projection has full control over how geometry is transformed from its native coordinate system (often spherical) to the screen. This allows line geometry to be represented as [geodesics](https://en.wikipedia.org/wiki/Geodesic), which are sampled and clipped during projection. For example, the map below shows the route of Charles Darwin’s voyage on the HMS *Beagle*; note that the line is cut when it crosses the antimeridian in the Pacific ocean. (Also note the use of the *stroke* channel to vary color.)
+
+[<img src="./img/beagle.png" width="640" alt="A map of the route of the HMS Beagle, 1831–1836; color indicates direction, with the ship initially departing London and heading southwest before circumnavigating the globe">](https://observablehq.com/@observablehq/plot-geo)
+
+```js
+Plot.plot({
+  projection: "equal-earth",
+  marks: [
+    Plot.geo(land, {fill: "currentColor"}),
+    Plot.graticule(),
+    Plot.line(beagle, {stroke: (d, i) => i, z: null, strokeWidth: 2}),
+    Plot.sphere()
+  ]
+})
+```
+
+Plot’s new geo mark and projection system work with Plot’s other core features, including scales, legends, faceting, and transforms. For example, here is a faceted dot map showing openings of Walmart stores over five decades.
+
+[<img src="./img/faceted-map.png" width="930" alt="A dot map of Walmart store openings faceted by decade">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  width: 975,
+  projection: "albers",
+  fx: {tickFormat: (d) => `${d}’s`},
+  facet: {data: walmarts, x: (d) => Math.floor(d.date.getUTCFullYear() / 10) * 10},
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.1}),
+    Plot.dot(walmarts, {x: "longitude", y: "latitude", r: 1, fill: "currentColor"}),
+    Plot.geo(nation)
+  ]
+})
+```
+
+As another example using the same dataset, the map below uses the hexbin transform to aggregate Walmart store opening into local hexagons.
+
+[<img src="./img/hexbin-map.png" width="640" alt="A bivariate hexbin map of Walmart store openings; within each hexagonal area, size indicates the number of Walmart store openings, and color indicates the year of the first opening">](https://observablehq.com/@observablehq/plot-mapping)
+
+```js
+Plot.plot({
+  projection: "albers",
+  color: {
+    legend: true,
+    label: "First year opened",
+    scheme: "spectral"
+  },
+  marks: [
+    Plot.geo(statemesh, {strokeOpacity: 0.25}),
+    Plot.geo(nation),
+    Plot.dot(walmarts, Plot.hexbin({r: "count", fill: "min"}, {x: "longitude", y: "latitude", fill: "date"}))
+  ]
+})
+```
+
+In addition to the included basic projections, Plot’s projection system can be extended using any projection implementation compatible with D3’s [projection stream interface](https://github.com/d3/d3-geo/blob/main/README.md#streams). This includes all the projections provided by the [d3-geo-projection](https://github.com/d3/d3-geo-projection) and [d3-geo-polygon](https://github.com/d3/d3-geo-polygon) libraries! For example, here is a world map using Goode’s interrupted homolosine projection.
+
+[<img src="./img/goode.png" width="640" alt="A world map using Goode’s interrupted homolosine projection">](https://observablehq.com/@observablehq/plot-extended-projections)
+
+```js
+Plot.plot({
+  width: 975,
+  height: 424,
+  inset: 1,
+  projection: {
+    type: d3.geoInterruptedHomolosine,
+    domain: {type: "Sphere"}
+  },
+  marks: [
+    Plot.geo(land, {clip: "sphere", fill: "currentColor"}),
+    Plot.graticule({clip: "sphere"}),
+    Plot.sphere()
+  ]
+})
+```
+
+Plot now supports [mark-level faceting](./README.md#facet-options) via the new *mark*.**fx** and *mark*.**fy** options. Mark-level faceting makes it easier to control which marks are faceted (versus repeated across facets), especially when combining multiple datasets or specifying faceted annotations.
+
+[<img src="./img/anscombe.png" width="640" alt="A faceted scatterplot of Anscombe’s quartet">](https://observablehq.com/@observablehq/plot-facets)
+
+```js
+Plot.plot({
+  grid: true,
+  height: 180,
+  marks: [Plot.frame(), Plot.dot(anscombe, {x: "x", y: "y", fx: "series"})]
+})
+```
+
+When mark-level faceting is used, the mark will be faceted if either the *mark*.**fx** or *mark*.**fy** channel option (or both) is specified. As before, you can set the *mark*.**facet** option to null or false option will disable faceting, or to *exclude* to draw the subset of the mark’s data not in the current facet.
+
+In addition to the above new features, this release also includes a variety of bug fixes. The *fx* and *fy* scales now support the *scale*.**transform** and *scale*.**percent** options. The *quantize* scale now respects the *scale*.**unknown** option. Initializers (including dodge and hexbin) no longer unintentionally drop the *mark*.**sort** option when being used to sort a scale’s domain. The error message when an invalid color scheme is specified has been improved. Plot no longer warns about empty strings appearing to be numbers. The *mean* and *median* reducers now return dates if the data is temporal. The default **height** now adjusts automatically to preserve the inner size of the plot when margins are specified. Fix the position of the frame anchor when either the *x* or *y* scale is ordinal (band or point). Dots with a negative constant radius *r* are no longer rendered rather than generating invalid SVG.
+
 ## 0.6.0
 
 [Released September 7, 2022.](https://github.com/observablehq/plot/releases/tag/v0.6.0)
 
-[<img src="./img/window-strict.png" width="640" height="398" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
+[<img src="./img/window-strict.png" width="640" alt="A smoothed line chart of Apple’s stock price">](https://observablehq.com/@observablehq/plot-window)
 
 ```js
 Plot.plot({
@@ -36,7 +202,7 @@ Plot now uses D3 7.6.1, using [d3.blur2](https://observablehq.com/@d3/d3-blur) f
 
 The new [density mark](./README.md#density) creates contours representing the [estimated density](https://en.wikipedia.org/wiki/Multivariate_kernel_density_estimation) of two-dimensional point clouds. The **bandwidth** and number of **thresholds** are configurable.
 
-[<img src="./img/density-contours.png" width="640" height="400" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-contours.png" width="640" alt="A scatterplot showing the relationship between the idle duration and eruption duration for Old Faithful">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.plot({
@@ -51,7 +217,7 @@ Plot.plot({
 
 By default, as shown above, the density is represented by contour lines. By setting the **fill** option to *density*, you can draw filled regions with a sequential color encoding instead.
 
-[<img src="./img/density-fill.png" width="640" height="500" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
+[<img src="./img/density-fill.png" width="640" alt="A contour plot showing the relationship between diamond price and weight">](https://observablehq.com/@observablehq/plot-density)
 
 ```js
 Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
@@ -65,7 +231,7 @@ Plot.density(diamonds, {x: "carat", y: "price", fill: "density"}).plot({
 
 The new [linear regression marks](./README.md#linear-regression) produce [linear regressions](https://en.wikipedia.org/wiki/Linear_regression) with [confidence interval](https://en.wikipedia.org/wiki/Confidence_interval) bands, representing the estimated relation of a dependent variable (typically *y*) on an independent variable (typically *x*).
 
-[<img src="./img/linear-regression.png" width="640" height="400" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
+[<img src="./img/linear-regression.png" width="640" alt="a scatterplot of penguin culmens, showing the length and depth of several species, with linear regression models by species and for the whole population, illustrating Simpson’s paradox">](https://observablehq.com/@observablehq/plot-linear-regression)
 
 ```js
 Plot.plot({
@@ -80,7 +246,7 @@ Plot.plot({
 
 The new [Delaunay and Voronoi marks](./README.md#delaunay) produce Delaunay triangulations and Voronoi tesselations: [Plot.delaunayLink](./README.md#plotdelaunaylinkdata-options) draws links for each edge of the Delaunay triangulation of the given points, [Plot.delaunayMesh](./README.md#plotdelaunaymeshdata-options) draws a mesh of the Delaunay triangulation  of the given points, [Plot.hull](./README.md#plothulldata-options) draws a convex hull around the given points, [Plot.voronoi](./README.md#plotvoronoidata-options) draws polygons for each cell of the Voronoi tesselation of the given points, and [Plot.voronoiMesh](./README.md#plotvoronoimeshdata-options) draws a mesh for the cell boundaries of the Voronoi tesselation of the given points.
 
-[<img src="./img/voronoi.png" width="640" height="396" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
+[<img src="./img/voronoi.png" width="640" alt="a Voronoi diagram of penguin culmens, showing the length and depth of several species">](https://observablehq.com/@observablehq/plot-delaunay)
 
 ```js
 Plot.plot({

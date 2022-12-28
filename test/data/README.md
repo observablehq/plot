@@ -19,6 +19,9 @@ https://www.flother.is/2017/olympic-games-data/
 ## barley.csv
 http://search.r-project.org/R/library/lattice/html/barley.html
 
+## beagle.csv
+https://observablehq.com/@bmschmidt/data-driven-projections-darwins-world
+
 ## bls-metro-unemployment.csv
 Bureau of Labor Statistics
 https://www.bls.gov/
@@ -27,9 +30,22 @@ https://www.bls.gov/
 1983 ASA Data Exposition
 http://lib.stat.cmu.edu/datasets/
 
+## cities-10k.csv
+Geonames
+https://www.geonames.org/about.html
+https://public.opendatasoft.com/explore/dataset/geonames-all-cities-with-a-population-1000/
+
 ## covid-ihme-projected-deaths.csv
 Institute for Health Metrics and Evaluation
 https://covid19.healthdata.org/
+
+## countries-50m.json
+World Atlas TopoJSON 2.0.2
+https://github.com/topojson/world-atlas
+
+## countries-110m.json
+World Atlas TopoJSON 2.0.2
+https://github.com/topojson/world-atlas
 
 ## d3-survey-2015.json
 D3 Community Survey, 2015
@@ -118,6 +134,17 @@ https://observablehq.com/@moklick
 TSA
 https://www.tsa.gov/coronavirus/passenger-throughput
 
+## us-counties-10m.json
+U.S. Atlas TopoJSON 3.0.0
+https://github.com/topojson/us-atlas
+
+## us-county-unemployment.csv
+U.S. Bureau of Labor Statistics, 2016
+https://www.bls.gov/lau/tables.htm
+
+## us-state-capitals.csv
+Unknown origin
+
 ## us-population-state-age.csv
 U.S. Census Bureau
 https://observablehq.com/@d3/barcode-plot
@@ -138,6 +165,10 @@ https://www.census.gov/retail/mrts/historic_releases.html
 ## us-state-population-2010-2019.csv
 U.S. Census Bureau (?)
 https://observablehq.com/@d3/diverging-bar-chart
+
+## walmarts.tsv
+Thomas J. Holmes, University of Minnesota, Federal Reserve Bank of Minneapolis, and NBER
+https://users.econ.umn.edu/~holmes/data/WalMart/
 
 ## wealth-britain.csv
 U.K. Office for National Statistics

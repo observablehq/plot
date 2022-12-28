@@ -24,7 +24,7 @@ export class Frame extends Mark {
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:rect", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyDirectStyles, this)
       .call(applyTransform, this, {})
       .attr("x", marginLeft + insetLeft)
@@ -37,13 +37,7 @@ export class Frame extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.frame({stroke: "red"})
- * ```
- *
- * Returns a new frame with the specified *options*.
- */
+/** @jsdoc frame */
 export function frame(options) {
   return new Frame(options);
 }

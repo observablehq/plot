@@ -55,10 +55,11 @@ export class Rect extends Mark {
     const {x, y} = scales;
     const {x1: X1, y1: Y1, x2: X2, y2: Y2} = channels;
     const {marginTop, marginRight, marginBottom, marginLeft, width, height} = dimensions;
+    const {projection} = context;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions)
-      .call(applyTransform, this, {x: X1 && X2 ? x : null, y: Y1 && Y2 ? y : null}, 0, 0)
+      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyTransform, this, {x: X1 && X2 && x, y: Y1 && Y2 && y}, 0, 0)
       .call((g) =>
         g
           .selectAll()
@@ -66,17 +67,27 @@ export class Rect extends Mark {
           .enter()
           .append("rect")
           .call(applyDirectStyles, this)
-          .attr("x", X1 && X2 && !isCollapsed(x) ? (i) => Math.min(X1[i], X2[i]) + insetLeft : marginLeft + insetLeft)
-          .attr("y", Y1 && Y2 && !isCollapsed(y) ? (i) => Math.min(Y1[i], Y2[i]) + insetTop : marginTop + insetTop)
+          .attr(
+            "x",
+            X1 && X2 && (projection || !isCollapsed(x))
+              ? (i) => Math.min(X1[i], X2[i]) + insetLeft
+              : marginLeft + insetLeft
+          )
+          .attr(
+            "y",
+            Y1 && Y2 && (projection || !isCollapsed(y))
+              ? (i) => Math.min(Y1[i], Y2[i]) + insetTop
+              : marginTop + insetTop
+          )
           .attr(
             "width",
-            X1 && X2 && !isCollapsed(x)
+            X1 && X2 && (projection || !isCollapsed(x))
               ? (i) => Math.max(0, Math.abs(X2[i] - X1[i]) - insetLeft - insetRight)
               : width - marginRight - marginLeft - insetRight - insetLeft
           )
           .attr(
             "height",
-            Y1 && Y2 && !isCollapsed(y)
+            Y1 && Y2 && (projection || !isCollapsed(y))
               ? (i) => Math.max(0, Math.abs(Y1[i] - Y2[i]) - insetTop - insetBottom)
               : height - marginTop - marginBottom - insetTop - insetBottom
           )
@@ -88,49 +99,17 @@ export class Rect extends Mark {
   }
 }
 
-/**
- * ```js
- * Plot.rect(athletes, Plot.bin({fill: "count"}, {x: "weight", y: "height"}))
- * ```
- *
- * Returns a new rect with the given *data* and *options*.
- */
+/** @jsdoc rect */
 export function rect(data, options) {
   return new Rect(data, maybeTrivialIntervalX(maybeTrivialIntervalY(options)));
 }
 
-/**
- * ```js
- * Plot.rectX(athletes, Plot.binY({x: "count"}, {y: "weight"}))
- * ```
- *
- * Equivalent to
- * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
- * except that if neither the **x1** nor **x2** option is specified, the **x**
- * option may be specified as shorthand to apply an implicit [stackX
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackxstack-options);
- * this is the typical configuration for a histogram with rects aligned at *x* =
- * 0. If the **x** option is not specified, it defaults to the identity
- * function.
- */
+/** @jsdoc rectX */
 export function rectX(data, options = {y: indexOf, interval: 1, x2: identity}) {
   return new Rect(data, maybeStackX(maybeTrivialIntervalY(maybeIdentityX(options))));
 }
 
-/**
- * ```js
- * Plot.rectY(athletes, Plot.binX({y: "count"}, {x: "weight"}))
- * ```
- *
- * Equivalent to
- * [Plot.rect](https://github.com/observablehq/plot/blob/main/README.md#plotrectdata-options),
- * except that if neither the **y1** nor **y2** option is specified, the **y**
- * option may be specified as shorthand to apply an implicit [stackY
- * transform](https://github.com/observablehq/plot/blob/main/README.md#plotstackystack-options);
- * this is the typical configuration for a histogram with rects aligned at *y* =
- * 0. If the **y** option is not specified, it defaults to the identity
- * function.
- */
+/** @jsdoc rectY */
 export function rectY(data, options = {x: indexOf, interval: 1, y2: identity}) {
   return new Rect(data, maybeStackY(maybeTrivialIntervalX(maybeIdentityY(options))));
 }

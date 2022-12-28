@@ -28,35 +28,18 @@ import {
   labelof,
   range,
   second,
-  percentile
+  percentile,
+  isTemporal
 } from "../options.js";
 import {basic} from "./basic.js";
 
-/**
- * ```js
- * Plot.groupZ({x: "proportion"}, {fill: "species"})
- * ```
- *
- * Groups on the first channel of *z*, *fill*, or *stroke*, if any. If none of
- * *z*, *fill*, or *stroke* are channels, then all data (within each facet) is
- * placed into a single group.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#group
- */
+/** @jsdoc groupZ */
 export function groupZ(outputs, options) {
   // Group on {z, fill, stroke}.
   return groupn(null, null, outputs, options);
 }
 
-/**
- * ```js
- * Plot.groupX({y: "sum"}, {x: "species", y: "body_mass_g"})
- * ```
- *
- * Groups on *x* and the first channel of *z*, *fill*, or *stroke*, if any.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#group
- */
+/** @jsdoc groupX */
 export function groupX(outputs = {y: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on x.
   const {x = identity} = options;
@@ -64,15 +47,7 @@ export function groupX(outputs = {y: "count"}, options = {}) {
   return groupn(x, null, outputs, options);
 }
 
-/**
- * ```js
- * Plot.groupY({x: "sum"}, {y: "species", x: "body_mass_g"})
- * ```
- *
- * Groups on *y* and the first channel of *z*, *fill*, or *stroke*, if any.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#group
- */
+/** @jsdoc groupY */
 export function groupY(outputs = {x: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on y.
   const {y = identity} = options;
@@ -80,16 +55,7 @@ export function groupY(outputs = {x: "count"}, options = {}) {
   return groupn(null, y, outputs, options);
 }
 
-/**
- * ```js
- * Plot.group({fill: "count"}, {x: "island", y: "species"})
- * ```
- *
- * Groups on *x*, *y*, and the first channel of *z*, *fill*, or *stroke*, if
- * any.
- *
- * @link https://github.com/observablehq/plot/blob/main/README.md#group
- */
+/** @jsdoc group */
 export function group(outputs = {fill: "count"}, options = {}) {
   // Group on {z, fill, stroke}, then on x and y.
   let {x, y} = options;
@@ -295,9 +261,9 @@ export function maybeReduce(reduce, value) {
     case "max-index":
       return reduceAccessor(maxIndex);
     case "mean":
-      return reduceAccessor(mean);
+      return reduceMaybeTemporalAccessor(mean);
     case "median":
-      return reduceAccessor(median);
+      return reduceMaybeTemporalAccessor(median);
     case "variance":
       return reduceAccessor(variance);
     case "mode":
@@ -350,6 +316,15 @@ function reduceAccessor(f) {
   return {
     reduce(I, X) {
       return f(I, (i) => X[i]);
+    }
+  };
+}
+
+function reduceMaybeTemporalAccessor(f) {
+  return {
+    reduce(I, X) {
+      const x = f(I, (i) => X[i]);
+      return isTemporal(X) ? new Date(x) : x;
     }
   };
 }

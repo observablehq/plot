@@ -52,6 +52,7 @@ export function Scales(
     zero,
     align,
     padding,
+    projection,
     ...options
   } = {}
 ) {
@@ -65,6 +66,7 @@ export function Scales(
       zero,
       align,
       padding,
+      projection,
       ...scaleOptions
     });
     if (scale) {
@@ -300,9 +302,17 @@ function formatScaleType(type) {
   return typeof type === "symbol" ? type.description : type;
 }
 
-function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
+// A special type symbol when the x and y scales are replaced with a projection.
+const typeProjection = {toString: () => "projection"};
+
+function inferScaleType(key, channels, {type, domain, range, scheme, pivot, projection}) {
   // The facet scales are always band scales; this cannot be changed.
   if (key === "fx" || key === "fy") return "band";
+
+  // If a projection is specified, the x- and y-scales are disabled; these
+  // channels will be projected rather than scaled. (But still check that none
+  // of the associated channels are incompatible with a projection.)
+  if ((key === "x" || key === "y") && projection != null) type = typeProjection;
 
   // If a channel dictates a scale type, make sure that it is consistent with
   // the user-specified scale type (if any) and all other channels. For example,
@@ -314,6 +324,7 @@ function inferScaleType(key, channels, {type, domain, range, scheme, pivot}) {
   }
 
   // If the scale, a channel, or user specified a (consistent) type, return it.
+  if (type === typeProjection) return;
   if (type !== undefined) return type;
 
   // If there’s no data (and no type) associated with this scale, don’t create a scale.
@@ -471,43 +482,7 @@ export function coerceDate(x) {
     : new Date(x);
 }
 
-/**
- * You can also create a standalone scale with Plot.**scale**(*options*). The
- * *options* object must define at least one scale; see [Scale
- * options](https://github.com/observablehq/plot/blob/main/README.md#scale-options)
- * for how to define a scale. For example, here is a linear color scale with the
- * default domain of [0, 1] and default scheme *turbo*:
- *
- * ```js
- * const color = Plot.scale({color: {type: "linear"}});
- * ```
- *
- * #### Scale objects
- *
- * Both
- * [*plot*.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscalescalename)
- * and
- * [Plot.scale](https://github.com/observablehq/plot/blob/main/README.md#plotscaleoptions)
- * return scale objects. These objects represent the actual (or “materialized”)
- * scale options used by Plot, including the domain, range, interpolate
- * function, *etc.* The scale’s label, if any, is also returned; however, note
- * that other axis properties are not currently exposed. Point and band scales
- * also expose their materialized bandwidth and step.
- *
- * To reuse a scale across plots, pass the corresponding scale object into
- * another plot specification:
- *
- * ```js
- * const plot1 = Plot.plot(…);
- * const plot2 = Plot.plot({…, color: plot1.scale("color")});
- * ```
- *
- * For convenience, scale objects expose a *scale*.**apply**(*input*) method
- * which returns the scale’s output for the given *input* value. When
- * applicable, scale objects also expose a *scale*.**invert**(*output*) method
- * which returns the corresponding input value from the scale’s domain for the
- * given *output* value.
- */
+/** @jsdoc scale */
 export function scale(options = {}) {
   let scale;
   for (const key in options) {
