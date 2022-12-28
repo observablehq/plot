@@ -400,15 +400,11 @@ export function impliedNumber(value, impliedValue) {
 const validClassName =
   /^-?([_a-z]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])([_a-z0-9-]|[\240-\377]|\\[0-9a-f]{1,6}(\r\n|[ \t\r\n\f])?|\\[^\r\n\f0-9a-f])*$/;
 
-export function maybeClassName(name) {
-  if (name === undefined) return `plot-${Math.random().toString(16).slice(2)}`;
+export function maybeClassName(name, provide) {
+  if (name === undefined) return provide ? `plot-${Math.random().toString(16).slice(2)}` : undefined;
   name = `${name}`;
   if (!validClassName.test(name)) throw new Error(`invalid class name: ${name}`);
   return name;
-}
-
-export function maybeClassNameOptional(name) {
-  return name === undefined ? undefined : maybeClassName(name);
 }
 
 export function applyInlineStyles(selection, style) {

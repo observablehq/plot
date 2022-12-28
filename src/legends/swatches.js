@@ -94,7 +94,7 @@ function legendItems(scale, options = {}, swatch, swatchStyle) {
     width
   } = options;
   const context = Context(options);
-  className = maybeClassName(className);
+  className = maybeClassName(className, true);
   tickFormat = maybeAutoTickFormat(tickFormat, scale.domain);
 
   const swatches = create("div", context)

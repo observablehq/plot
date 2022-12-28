@@ -23,7 +23,7 @@ export function legendRamp(color, options) {
     className
   } = options;
   const context = Context(options);
-  className = maybeClassName(className);
+  className = maybeClassName(className, true);
   if (tickFormat === null) tickFormat = () => null;
 
   const svg = create("svg", context)
