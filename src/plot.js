@@ -1,4 +1,4 @@
-import {cross, group, sum, select, sort, InternMap} from "d3";
+import {cross, group, sum, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
@@ -81,8 +81,7 @@ export function plot(options = {}) {
       });
     }
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
-      facets = facets.filter((_, i) => nonEmpty.has(i));
-      facets.forEach((f, i) => (f.i = i)); // adjust facet index accordingly
+      facets.reduce((j, f, i) => ((f.i = nonEmpty.has(i) ? j++ : -1), j), 0); // adjust facet index
       for (const facetState of facetStateByMark.values()) {
         const {facetsIndex} = facetState;
         if (!facetsIndex) continue;
@@ -174,7 +173,7 @@ export function plot(options = {}) {
           if (fx != null) facetState.channels.fx = fx;
           if (fy != null) facetState.channels.fy = fy;
           facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = state.facets = filterFacets(facets, facetState);
+          facetState.facetsIndex = state.facets = filterFacets(facets.filter(facetNonEmpty), facetState);
           facetStateByMark.set(mark, facetState);
         }
       }
@@ -245,19 +244,29 @@ export function plot(options = {}) {
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
+    const selection = select(svg);
     const fxDomain = fx?.domain();
     const fyDomain = fy?.domain();
-    const selection = select(svg);
+
+    // Sort the facets to match the fx and fy domains; this is needed because
+    // the facets were constructed prior to the fx and fy scales.
+    if (fy) facets.sort(facetOrder("y", fyDomain));
+    if (fx) facets.sort(facetOrder("x", fxDomain));
+
     // When faceting by both fx and fy, this nested Map allows to look up the
-    // non-empty facets and draw the grid lines properly.
+    // non-empty facets and draw the grid lines properly. TODO We also
+    // effectively need this for facetSkip, but we’re doing the slower iterative
+    // scanning of the domain.
     const fxy =
       fx && fy && (axes.x || axes.y)
         ? group(
-            facets,
+            facets.filter(facetNonEmpty),
             ({x}) => x,
             ({y}) => y
           )
         : undefined;
+
+    // Render the fy axis.
     if (fy && axes.y) {
       const axis1 = axes.y,
         axis2 = nolabel(axis1);
@@ -280,6 +289,8 @@ export function plot(options = {}) {
           )
         );
     }
+
+    // Render the fx axis.
     if (fx && axes.x) {
       const axis1 = axes.x,
         axis2 = nolabel(axis1);
@@ -306,13 +317,10 @@ export function plot(options = {}) {
         );
     }
 
-    // Render facets in the order of the fx-fy domain, which might not be the
-    // ordering used to build the nested index initially; see domainChannel.
-    // TODO For facet axis labels, we might need the ability to render marks
-    // into empty facets with facetAnchor.
+    // Render the facets.
     selection
       .selectAll()
-      .data(sort(facets, fx ? facetOrder("x", fx) : () => {}, fy ? facetOrder("y", fy) : () => {}))
+      .data(facets.filter(facetNonEmpty)) // TODO sometimes render empty facets
       .enter()
       .append("g")
       .attr("aria-label", "facet")
@@ -320,6 +328,7 @@ export function plot(options = {}) {
       .each(function ({x, y, i}) {
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
           if (facetSkip(mark, facets, fxDomain, fyDomain, x, y)) continue;
+          if (i === -1) continue; // TODO sometimes render empty facets
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
@@ -554,9 +563,9 @@ function Facets(channelsByScale, options) {
 
 // Returns an accessor function that returns the order of the given facet value
 // in the associated facet scale’s domains.
-function facetOrder(k, fk) {
-  const o = new InternMap(fk.domain().map((v, i) => [v, i]));
-  return ({[k]: v}) => o.get(v);
+function facetOrder(k, domain) {
+  const o = new Map(domain.map((v, i) => [v, i]));
+  return ({[k]: a}, {[k]: b}) => o.get(a) - o.get(b);
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
@@ -593,7 +602,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
       const yi = fyDomain?.indexOf(fy);
       if (yi > 0) {
         const yy = fyDomain[yi - 1];
-        return facets.some((f) => f.x === fx && f.y === yy);
+        return facets.find((f) => f.x === fx && f.y === yy)?.i >= 0;
       }
       break;
     }
@@ -601,7 +610,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
       const yi = fyDomain?.indexOf(fy);
       if (yi < fyDomain.length - 1) {
         const yy = fyDomain[yi + 1];
-        return facets.some((f) => f.x === fx && f.y === yy);
+        return facets.find((f) => f.x === fx && f.y === yy)?.i >= 0;
       }
       break;
     }
@@ -609,7 +618,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
       const xi = fxDomain?.indexOf(fx);
       if (xi > 0) {
         const xx = fxDomain[xi - 1];
-        return facets.some((f) => f.x === xx && f.y === fy);
+        return facets.find((f) => f.x === xx && f.y === fy)?.i >= 0;
       }
       break;
     }
@@ -617,7 +626,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
       const xi = fxDomain?.indexOf(fx);
       if (xi < fxDomain.length - 1) {
         const xx = fxDomain[xi + 1];
-        return facets.some((f) => f.x === xx && f.y === fy);
+        return facets.find((f) => f.x === xx && f.y === fy)?.i >= 0;
       }
       break;
     }
@@ -705,4 +714,8 @@ function filterFacets(facets, {channels: {fx, fy}, groups}) {
     : fx
     ? facets.map(({x}) => groups.get(x))
     : facets.map(({y}) => groups.get(y));
+}
+
+function facetNonEmpty(f) {
+  return f.i >= 0;
 }
