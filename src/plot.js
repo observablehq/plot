@@ -174,9 +174,8 @@ export function plot(options = {}) {
           if (fx != null) facetState.channels.fx = fx;
           if (fy != null) facetState.channels.fy = fy;
           facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = filterFacets(facets, facetState);
+          facetState.facetsIndex = state.facets = filterFacets(facets, facetState);
           facetStateByMark.set(mark, facetState);
-          state.facets = facetState.facetsIndex;
         }
       }
     }
@@ -435,7 +434,7 @@ export class Mark {
       this.fx = fx;
       this.fy = fy;
     }
-    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", ["top", "right", "bottom", "left"]);
+    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", ["top", "right", "bottom", "left", "nonempty"]); // TODO nonempty?
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
