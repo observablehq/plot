@@ -75,7 +75,7 @@ export function plot(options = {}) {
     for (const [mark, {facetsIndex}] of facetStateByMark) {
       facetsIndex?.forEach((index, i) => {
         if (index?.length > 0) {
-          if (mark.facetAnchor) return; // ignore axes, e.g.
+          if (mark.facetAnchor) return; // ignore decorations (e.g., axes)
           nonEmpty.add(i);
         }
       });
@@ -94,7 +94,7 @@ export function plot(options = {}) {
     for (const mark of marks) {
       if (mark.facet === "exclude") {
         const facetState = facetStateByMark.get(mark);
-        facetState.facetsIndex = excludeIndex(facetState.facetsIndex);
+        facetState.facetsIndex = facetExcludeIndex(facetState.facetsIndex);
       }
     }
   }
@@ -319,48 +319,7 @@ export function plot(options = {}) {
       .attr("transform", facetTranslate(fx, fy))
       .each(function ({x, y, i}) {
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
-          switch (mark.facetAnchor) {
-            case "top": {
-              const yi = fyDomain.indexOf(y);
-              if (yi > 0) {
-                const yy = fyDomain[yi - 1];
-                if (facets.some((f) => f.x === x && f.y === yy)) {
-                  continue;
-                }
-              }
-              break;
-            }
-            case "bottom": {
-              const yi = fyDomain.indexOf(y);
-              if (yi < fyDomain.length - 1) {
-                const yy = fyDomain[yi + 1];
-                if (facets.some((f) => f.x === x && f.y === yy)) {
-                  continue;
-                }
-              }
-              break;
-            }
-            case "left": {
-              const xi = fxDomain.indexOf(x);
-              if (xi > 0) {
-                const xx = fxDomain[xi - 1];
-                if (facets.some((f) => f.x === xx && f.y === y)) {
-                  continue;
-                }
-              }
-              break;
-            }
-            case "right": {
-              const xi = fxDomain.indexOf(x);
-              if (xi < fxDomain.length - 1) {
-                const xx = fxDomain[xi + 1];
-                if (facets.some((f) => f.x === xx && f.y === y)) {
-                  continue;
-                }
-              }
-              break;
-            }
-          }
+          if (facetSkip(mark, facets, fxDomain, fyDomain, x, y)) continue;
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
@@ -627,9 +586,48 @@ function facetTranslate(fx, fy) {
     : ({y}) => `translate(0,${fy(y)})`;
 }
 
+// For marks with a declared facetAnchor…
+function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
+  switch (mark.facetAnchor) {
+    case "top": {
+      const yi = fyDomain?.indexOf(fy);
+      if (yi > 0) {
+        const yy = fyDomain[yi - 1];
+        return facets.some((f) => f.x === fx && f.y === yy);
+      }
+      break;
+    }
+    case "bottom": {
+      const yi = fyDomain?.indexOf(fy);
+      if (yi < fyDomain.length - 1) {
+        const yy = fyDomain[yi + 1];
+        return facets.some((f) => f.x === fx && f.y === yy);
+      }
+      break;
+    }
+    case "left": {
+      const xi = fxDomain?.indexOf(fx);
+      if (xi > 0) {
+        const xx = fxDomain[xi - 1];
+        return facets.some((f) => f.x === xx && f.y === fy);
+      }
+      break;
+    }
+    case "right": {
+      const xi = fxDomain?.indexOf(fx);
+      if (xi < fxDomain.length - 1) {
+        const xx = fxDomain[xi + 1];
+        return facets.some((f) => f.x === xx && f.y === fy);
+      }
+      break;
+    }
+  }
+  return false;
+}
+
 // Returns an index that for each facet lists all the elements present in other
 // facets in the original index. TODO Memoize to avoid repeated work?
-function excludeIndex(index) {
+function facetExcludeIndex(index) {
   const ex = [];
   const e = new Uint32Array(sum(index, (d) => d?.length));
   for (const i of index) {
