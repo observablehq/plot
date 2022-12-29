@@ -314,30 +314,30 @@ function axisTextKx(
 
 export function gridY() {
   const [data, options] = maybeData(...arguments);
-  return gridKy("y", data, options);
+  return gridKy("y", data, gridDefaults(options));
 }
 
 export function gridFy() {
-  const [data, options] = maybeData(...arguments);
-  return gridKy("fy", data, options);
+  const [data, {y = null, ...options}] = maybeData(...arguments);
+  return gridKy("fy", data, gridDefaults({y, ...options}));
 }
 
 export function gridX() {
   const [data, options] = maybeData(...arguments);
-  return gridKx("x", data, options);
+  return gridKx("x", data, gridDefaults(options));
 }
 
 export function gridFx() {
-  const [data, options] = maybeData(...arguments);
-  return gridKx("fx", data, options);
+  const [data, {x = null, ...options}] = maybeData(...arguments);
+  return gridKx("fx", data, gridDefaults({x, ...options}));
 }
 
-function gridKy(k, data, {y = k === "fy" ? null : undefined, x1 = null, x2 = null, ...options}) {
-  return axisMark(ruleY, k, data, {y, x1, x2, ...gridDefaults(options)});
+function gridKy(k, data, {x1 = null, x2 = null, ...options}) {
+  return axisMark(ruleY, k, data, {x1, x2, ...options});
 }
 
-function gridKx(k, data, {x = k === "fx" ? null : undefined, y1 = null, y2 = null, ...options}) {
-  return axisMark(ruleX, k, data, {x, y1, y2, ...gridDefaults(options)});
+function gridKx(k, data, {y1 = null, y2 = null, ...options}) {
+  return axisMark(ruleX, k, data, {y1, y2, ...options});
 }
 
 function gridDefaults({
