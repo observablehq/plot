@@ -325,19 +325,19 @@ export function plot(options = {}) {
     // Render the facets.
     selection
       .selectAll()
-      .data(facets.filter((f) => !f.empty))
+      .data(facets)
       .enter()
       .append("g")
       .attr("aria-label", "facet")
       .attr("transform", facetTranslate(fx, fy))
-      .each(function ({x, y, i}) {
+      .each(function (f) {
         let empty = true;
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
-          if (facetSkip(mark, facets, fxDomain, fyDomain, x, y, i)) continue;
+          if (facetSkip(mark, facets, fxDomain, fyDomain, f)) continue;
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
-            else if (!(index = indexes[i])) continue;
+            else if (!(index = indexes[f.i])) continue;
             index = mark.filter(index, channels, values);
             if (index.length === 0) continue;
           }
@@ -413,7 +413,17 @@ export class Mark {
       this.fy = fy;
     }
     this.decoration = decoration;
-    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", ["top", "right", "bottom", "left", "nonempty"]); // TODO nonempty?
+    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", [
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "top-empty",
+      "right-empty",
+      "bottom-empty",
+      "left-empty",
+      "nonempty"
+    ]);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
@@ -606,42 +616,50 @@ function facetTranslate(fx, fy) {
 }
 
 // For marks with a declared facetAnchor…
-function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
+function facetSkip(mark, facets, fxDomain, fyDomain, {x, y, empty}) {
   switch (mark.facetAnchor) {
-    case "top": {
-      const yi = fyDomain?.indexOf(fy);
-      if (yi > 0) {
-        const yy = fyDomain[yi - 1];
-        return !facets.find((f) => f.x === fx && f.y === yy)?.empty;
+    case "top":
+      return fyDomain?.indexOf(y) !== 0;
+    case "bottom":
+      return fyDomain?.indexOf(y) !== fyDomain?.length - 1;
+    case "left":
+      return fxDomain?.indexOf(x) !== 0;
+    case "right":
+      return fxDomain?.indexOf(x) !== fxDomain?.length - 1;
+    case "top-empty": {
+      const i = fyDomain?.indexOf(y);
+      if (i > 0) {
+        const y = fyDomain[i - 1];
+        return !facets.find((f) => f.x === x && f.y === y)?.empty;
       }
       break;
     }
-    case "bottom": {
-      const yi = fyDomain?.indexOf(fy);
-      if (yi < fyDomain.length - 1) {
-        const yy = fyDomain[yi + 1];
-        return !facets.find((f) => f.x === fx && f.y === yy)?.empty;
+    case "bottom-empty": {
+      const i = fyDomain?.indexOf(y);
+      if (i < fyDomain?.length - 1) {
+        const y = fyDomain[i + 1];
+        return !facets.find((f) => f.x === x && f.y === y)?.empty;
       }
       break;
     }
-    case "left": {
-      const xi = fxDomain?.indexOf(fx);
-      if (xi > 0) {
-        const xx = fxDomain[xi - 1];
-        return !facets.find((f) => f.x === xx && f.y === fy)?.empty;
+    case "left-empty": {
+      const i = fxDomain?.indexOf(x);
+      if (i > 0) {
+        const x = fxDomain[i - 1];
+        return !facets.find((f) => f.x === x && f.y === y)?.empty;
       }
       break;
     }
-    case "right": {
-      const xi = fxDomain?.indexOf(fx);
-      if (xi < fxDomain.length - 1) {
-        const xx = fxDomain[xi + 1];
-        return !facets.find((f) => f.x === xx && f.y === fy)?.empty;
+    case "right-empty": {
+      const i = fxDomain?.indexOf(x);
+      if (i < fxDomain?.length - 1) {
+        const x = fxDomain[i + 1];
+        return !facets.find((f) => f.x === x && f.y === y)?.empty;
       }
       break;
     }
   }
-  return i < 0;
+  return empty;
 }
 
 // Returns an index that for each facet lists all the elements present in other

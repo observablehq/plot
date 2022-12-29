@@ -1496,7 +1496,6 @@
       <line x1="0" x2="161" y1="58.298181818181824" y2="58.298181818181824"></line>
       <line x1="0" x2="161" y1="27.934545454545468" y2="27.934545454545468"></line>
     </g>
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(161,83.5)">Chinstrap</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
       <circle cx="82.41666666666664" cy="122.06181818181818" r="2"></circle>
@@ -2575,6 +2574,9 @@
       <circle cx="80.50000000000001" cy="132.3854545454546" r="3"></circle>
       <circle cx="111.16666666666664" cy="134.20727272727274" r="3"></circle>
     </g>
+  </g>
+  <g aria-label="facet" transform="translate(398,216)">
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(161,83.5)">Chinstrap</text></g>
   </g>
   <g aria-label="facet" transform="translate(398,402)">
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
