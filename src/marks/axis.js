@@ -171,9 +171,6 @@ function axisTickKy(
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
-    x1,
-    x2,
-    x = anchor === "left" ? x1 : x2,
     y = k === "fy" ? null : undefined,
     ...options
   }
@@ -184,7 +181,6 @@ function axisTickKy(
     strokeLinejoin,
     facetAnchor,
     frameAnchor,
-    x,
     y,
     ...options,
     dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
@@ -209,9 +205,6 @@ function axisTickKx(
     insetTop = inset,
     insetBottom = inset,
     dy = 0,
-    y1,
-    y2,
-    y = anchor === "bottom" ? y2 : y1,
     x = k === "fx" ? null : undefined,
     ...options
   }
@@ -223,7 +216,6 @@ function axisTickKx(
     facetAnchor,
     frameAnchor,
     x,
-    y,
     ...options,
     dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
     anchor: "start",
@@ -251,9 +243,6 @@ function axisTextKy(
     insetLeft = inset,
     insetRight = inset,
     dx = 0,
-    x1,
-    x2,
-    x = anchor === "left" ? x1 : x2,
     y = k === "fy" ? null : undefined,
     ...options
   }
@@ -270,7 +259,6 @@ function axisTextKy(
       lineAnchor,
       fontVariant,
       rotate: tickRotate,
-      x,
       y,
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
@@ -301,10 +289,7 @@ function axisTextKx(
     insetTop = inset,
     insetBottom = inset,
     dy = 0,
-    y1,
-    y2,
     x = k === "fx" ? null : undefined,
-    y = anchor === "bottom" ? y2 : y1,
     ...options
   }
 ) {
@@ -321,7 +306,6 @@ function axisTextKx(
       fontVariant,
       rotate: tickRotate,
       x,
-      y,
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
