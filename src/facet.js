@@ -72,26 +72,30 @@ export function facetExclude(index) {
   return ex;
 }
 
+const facetAnchors = new Map([
+  ["top", facetAnchorTop],
+  ["right", facetAnchorRight],
+  ["bottom", facetAnchorBottom],
+  ["left", facetAnchorLeft],
+  ["top-left", or(facetAnchorTop, facetAnchorLeft)],
+  ["top-right", or(facetAnchorTop, facetAnchorRight)],
+  ["bottom-left", or(facetAnchorBottom, facetAnchorLeft)],
+  ["bottom-right", or(facetAnchorBottom, facetAnchorRight)],
+  ["top-middle", or(facetAnchorTop, facetAnchorXMid)],
+  ["right-middle", or(facetAnchorRight, facetAnchorYMid)],
+  ["bottom-middle", or(facetAnchorBottom, facetAnchorXMid)],
+  ["left-middle", or(facetAnchorLeft, facetAnchorYMid)],
+  ["middle", or(facetAnchorXMid, facetAnchorYMid)],
+  ["top-empty", facetAnchorTopEmpty],
+  ["right-empty", facetAnchorRightEmpty],
+  ["bottom-empty", facetAnchorBottomEmpty],
+  ["left-empty", facetAnchorLeftEmpty]
+]);
+
 export function maybeFacetAnchor(facetAnchor) {
   if (facetAnchor == null) return null;
-  switch (`${facetAnchor}`.toLowerCase()) {
-    case "top":
-      return facetAnchorTop;
-    case "right":
-      return facetAnchorRight;
-    case "bottom":
-      return facetAnchorBottom;
-    case "left":
-      return facetAnchorLeft;
-    case "top-empty":
-      return facetAnchorTopEmpty;
-    case "right-empty":
-      return facetAnchorRightEmpty;
-    case "bottom-empty":
-      return facetAnchorBottomEmpty;
-    case "left-empty":
-      return facetAnchorLeftEmpty;
-  }
+  const anchor = facetAnchors.get(`${facetAnchor}`.toLowerCase());
+  if (anchor) return anchor;
   throw new Error(`invalid facet anchor: ${facetAnchor}`);
 }
 
@@ -109,6 +113,14 @@ function facetAnchorLeft(facets, {x: X}, {x}) {
 
 function facetAnchorRight(facets, {x: X}, {x}) {
   return X?.indexOf(x) !== X?.length - 1;
+}
+
+function facetAnchorXMid(facets, {x: X}, {x}) {
+  return X?.indexOf(x) !== X?.length >> 1;
+}
+
+function facetAnchorYMid(facets, {y: Y}, {y}) {
+  return Y?.indexOf(y) !== Y?.length >> 1;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
@@ -141,6 +153,12 @@ function facetAnchorRightEmpty(facets, {x: X}, {x, y}) {
     const x = X[i + 1];
     return !facets.find((f) => f.x === x && f.y === y)?.empty;
   }
+}
+
+function or(a, b) {
+  return function () {
+    return a.apply(null, arguments) || b.apply(null, arguments);
+  };
 }
 
 // Facet filter, by mark; for now only the "eq" filter is provided.
