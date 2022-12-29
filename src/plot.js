@@ -4,9 +4,10 @@ import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
+import {maybeFacetAnchor} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, map, range, where, yes} from "./options.js";
-import {keyword, maybeKeyword, maybeNamed} from "./options.js";
+import {keyword, maybeNamed} from "./options.js";
 import {maybeProject} from "./projection.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -250,17 +251,16 @@ export function plot(options = {}) {
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
     const selection = select(svg);
-    const fxDomain = fx?.domain();
-    const fyDomain = fy?.domain();
+    const facetDomains = {x: fx?.domain(), y: fy?.domain()};
 
     // Sort the facets to match the fx and fy domains; this is needed because
     // the facets were constructed prior to the fx and fy scales.
-    facets.sort(facetOrder(fxDomain, fyDomain));
+    facets.sort(facetOrder(facetDomains));
 
     // When faceting by both fx and fy, this nested Map allows to look up the
     // non-empty facets and draw the grid lines properly. TODO We also
-    // effectively need this for facetSkip, but we’re doing the slower iterative
-    // scanning of the domain.
+    // effectively need this for skipping empty facets, but we’re doing the
+    // slower iterative scanning of the domain.
     const fxy =
       fx && fy && (axes.x || axes.y)
         ? group(
@@ -276,17 +276,17 @@ export function plot(options = {}) {
         axis2 = nolabel(axis1);
       const j =
         axis1.labelAnchor === "bottom"
-          ? fyDomain.length - 1
+          ? facetDomains.y.length - 1
           : axis1.labelAnchor === "center"
-          ? fyDomain.length >> 1
+          ? facetDomains.y.length >> 1
           : 0;
       selection
         .selectAll()
-        .data(fyDomain)
+        .data(facetDomains.y)
         .enter()
         .append((ky, i) =>
           (i === j ? axis1 : axis2).render(
-            fx && where(fxDomain, (kx) => fxy.get(kx).has(ky)),
+            fx && where(facetDomains.x, (kx) => fxy.get(kx).has(ky)),
             scales,
             {...dimensions, ...fyMargins, offsetTop: fy(ky)},
             context
@@ -299,15 +299,19 @@ export function plot(options = {}) {
       const axis1 = axes.x,
         axis2 = nolabel(axis1);
       const j =
-        axis1.labelAnchor === "right" ? fxDomain.length - 1 : axis1.labelAnchor === "center" ? fxDomain.length >> 1 : 0;
+        axis1.labelAnchor === "right"
+          ? facetDomains.x.length - 1
+          : axis1.labelAnchor === "center"
+          ? facetDomains.x.length >> 1
+          : 0;
       const {marginLeft, marginRight} = dimensions;
       selection
         .selectAll()
-        .data(fxDomain)
+        .data(facetDomains.x)
         .enter()
         .append((kx, i) =>
           (i === j ? axis1 : axis2).render(
-            fy && where(fyDomain, (ky) => fxy.get(kx).has(ky)),
+            fy && where(facetDomains.y, (ky) => fxy.get(kx).has(ky)),
             scales,
             {
               ...dimensions,
@@ -332,7 +336,7 @@ export function plot(options = {}) {
       .each(function (f) {
         let empty = true;
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
-          if (facetSkip(mark, facets, fxDomain, fyDomain, f)) continue;
+          if (mark.facetAnchor?.(facets, facetDomains, f) ?? f.empty) continue;
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
@@ -412,17 +416,7 @@ export class Mark {
       this.fy = fy;
     }
     this.decoration = decoration;
-    this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", [
-      "top",
-      "right",
-      "bottom",
-      "left",
-      "top-empty",
-      "right-empty",
-      "bottom-empty",
-      "left-empty",
-      "nonempty"
-    ]);
+    this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
     if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
@@ -582,12 +576,12 @@ function Facets(channelsByScale, options) {
 
 // Returns an accessor function that returns the order of the given facet value
 // in the associated facet scales’ domains.
-function facetOrder(fxDomain, fyDomain) {
-  const xi = fxDomain && new Map(fxDomain.map((v, i) => [v, i]));
-  const yi = fyDomain && new Map(fyDomain.map((v, i) => [v, i]));
-  return fxDomain && fyDomain
+function facetOrder({x: X, y: Y}) {
+  const xi = X && new Map(X.map((v, i) => [v, i]));
+  const yi = Y && new Map(Y.map((v, i) => [v, i]));
+  return X && Y
     ? (a, b) => xi.get(a.x) - xi.get(b.x) || yi.get(a.y) - yi.get(b.y)
-    : fxDomain
+    : X
     ? (a, b) => xi.get(a.x) - xi.get(b.x)
     : (a, b) => yi.get(a.y) - yi.get(b.y);
 }
@@ -617,53 +611,6 @@ function facetTranslate(fx, fy) {
     : fx
     ? ({x}) => `translate(${fx(x)},0)`
     : ({y}) => `translate(0,${fy(y)})`;
-}
-
-// For marks with a declared facetAnchor…
-function facetSkip(mark, facets, fxDomain, fyDomain, {x, y, empty}) {
-  switch (mark.facetAnchor) {
-    case "top":
-      return fyDomain?.indexOf(y) !== 0;
-    case "bottom":
-      return fyDomain?.indexOf(y) !== fyDomain?.length - 1;
-    case "left":
-      return fxDomain?.indexOf(x) !== 0;
-    case "right":
-      return fxDomain?.indexOf(x) !== fxDomain?.length - 1;
-    case "top-empty": {
-      const i = fyDomain?.indexOf(y);
-      if (i > 0) {
-        const y = fyDomain[i - 1];
-        return !facets.find((f) => f.x === x && f.y === y)?.empty;
-      }
-      break;
-    }
-    case "bottom-empty": {
-      const i = fyDomain?.indexOf(y);
-      if (i < fyDomain?.length - 1) {
-        const y = fyDomain[i + 1];
-        return !facets.find((f) => f.x === x && f.y === y)?.empty;
-      }
-      break;
-    }
-    case "left-empty": {
-      const i = fxDomain?.indexOf(x);
-      if (i > 0) {
-        const x = fxDomain[i - 1];
-        return !facets.find((f) => f.x === x && f.y === y)?.empty;
-      }
-      break;
-    }
-    case "right-empty": {
-      const i = fxDomain?.indexOf(x);
-      if (i < fxDomain?.length - 1) {
-        const x = fxDomain[i + 1];
-        return !facets.find((f) => f.x === x && f.y === y)?.empty;
-      }
-      break;
-    }
-  }
-  return empty;
 }
 
 // Returns an index that for each facet lists all the elements present in other
