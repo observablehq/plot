@@ -44,8 +44,11 @@ export function axisFx() {
   return axisKx("fx", anchor, data, options);
 }
 
-function axisKy(k, anchor, data, options) {
-  const {
+function axisKy(
+  k,
+  anchor,
+  data,
+  {
     grid,
     gridOpacity = 0.1,
     color = "currentColor",
@@ -60,8 +63,9 @@ function axisKy(k, anchor, data, options) {
     x1,
     x2,
     x = anchor === "left" ? x1 : x2,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return marks(
     grid && !isNone(grid)
       ? gridKy(k, data, {
@@ -70,7 +74,7 @@ function axisKy(k, anchor, data, options) {
           strokeWidth,
           x1: x1 === undefined && anchor === "left" ? x : x1,
           x2: x2 === undefined && anchor === "right" ? x : x2,
-          ...rest
+          ...options
         })
       : null,
     tickSize && !isNoneish(stroke)
@@ -80,7 +84,7 @@ function axisKy(k, anchor, data, options) {
           strokeWidth,
           tickSize,
           x,
-          ...rest
+          ...options
         })
       : null,
     !isNoneish(fill)
@@ -90,14 +94,17 @@ function axisKy(k, anchor, data, options) {
           tickSize,
           tickPadding,
           x,
-          ...rest
+          ...options
         })
       : null
   );
 }
 
-function axisKx(k, anchor, data, options) {
-  const {
+function axisKx(
+  k,
+  anchor,
+  data,
+  {
     grid,
     gridOpacity = 0.1,
     color = "currentColor",
@@ -112,8 +119,9 @@ function axisKx(k, anchor, data, options) {
     y1,
     y2,
     y = anchor === "bottom" ? y2 : y1,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return marks(
     grid && !isNone(grid)
       ? gridKx(k, data, {
@@ -122,7 +130,7 @@ function axisKx(k, anchor, data, options) {
           strokeWidth,
           y1: y1 === undefined && anchor === "top" ? y : y1,
           y2: y2 === undefined && anchor === "bottom" ? y : y2,
-          ...rest
+          ...options
         })
       : null,
     tickSize && !isNoneish(stroke)
@@ -132,7 +140,7 @@ function axisKx(k, anchor, data, options) {
           strokeWidth,
           tickSize,
           y,
-          ...rest
+          ...options
         })
       : null,
     !isNoneish(fill)
@@ -142,14 +150,17 @@ function axisKx(k, anchor, data, options) {
           tickSize,
           tickPadding,
           y,
-          ...rest
+          ...options
         })
       : null
   );
 }
 
-function axisTickKy(k, anchor, data, options) {
-  const {
+function axisTickKy(
+  k,
+  anchor,
+  data,
+  {
     strokeWidth = 1,
     strokeLinecap = null,
     strokeLinejoin = null,
@@ -164,8 +175,9 @@ function axisTickKy(k, anchor, data, options) {
     x2,
     x = anchor === "left" ? x1 : x2,
     y = k === "fy" ? null : undefined,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return axisMark(vectorY, k, data, {
     strokeWidth,
     strokeLinecap,
@@ -174,7 +186,7 @@ function axisTickKy(k, anchor, data, options) {
     frameAnchor,
     x,
     y,
-    ...rest,
+    ...options,
     dx: anchor === "left" ? +dx - offset + +insetLeft : +dx + offset - insetRight,
     anchor: "start",
     length: tickSize,
@@ -182,8 +194,11 @@ function axisTickKy(k, anchor, data, options) {
   });
 }
 
-function axisTickKx(k, anchor, data, options) {
-  const {
+function axisTickKx(
+  k,
+  anchor,
+  data,
+  {
     strokeWidth = 1,
     strokeLinecap = null,
     strokeLinejoin = null,
@@ -198,8 +213,9 @@ function axisTickKx(k, anchor, data, options) {
     y2,
     y = anchor === "bottom" ? y2 : y1,
     x = k === "fx" ? null : undefined,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return axisMark(vectorX, k, data, {
     strokeWidth,
     strokeLinejoin,
@@ -208,7 +224,7 @@ function axisTickKx(k, anchor, data, options) {
     frameAnchor,
     x,
     y,
-    ...rest,
+    ...options,
     dy: anchor === "bottom" ? +dy - offset - insetBottom : +dy + offset + +insetTop,
     anchor: "start",
     length: tickSize,
@@ -216,8 +232,11 @@ function axisTickKx(k, anchor, data, options) {
   });
 }
 
-function axisTextKy(k, anchor, data, options) {
-  const {
+function axisTextKy(
+  k,
+  anchor,
+  data,
+  {
     facetAnchor = anchor,
     frameAnchor = anchor,
     tickSize,
@@ -236,8 +255,9 @@ function axisTextKy(k, anchor, data, options) {
     x2,
     x = anchor === "left" ? x1 : x2,
     y = k === "fy" ? null : undefined,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return axisMark(
     textY,
     k,
@@ -252,7 +272,7 @@ function axisTextKy(k, anchor, data, options) {
       rotate: tickRotate,
       x,
       y,
-      ...rest,
+      ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
     },
     function (scale, ticks) {
@@ -262,8 +282,11 @@ function axisTextKy(k, anchor, data, options) {
   );
 }
 
-function axisTextKx(k, anchor, data, options) {
-  const {
+function axisTextKx(
+  k,
+  anchor,
+  data,
+  {
     facetAnchor = anchor,
     frameAnchor = anchor,
     tickSize,
@@ -282,8 +305,9 @@ function axisTextKx(k, anchor, data, options) {
     y2,
     x = k === "fx" ? null : undefined,
     y = anchor === "bottom" ? y2 : y1,
-    ...rest
-  } = options;
+    ...options
+  }
+) {
   return axisMark(
     textX,
     k,
@@ -298,7 +322,7 @@ function axisTextKx(k, anchor, data, options) {
       rotate: tickRotate,
       x,
       y,
-      ...rest,
+      ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
     },
     function (scale, ticks) {
@@ -328,12 +352,12 @@ export function gridFx() {
   return gridKx("fx", data, options);
 }
 
-function gridKy(k, data, {y = k === "fy" ? null : undefined, x1 = null, x2 = null, ...rest}) {
-  return axisMark(ruleY, k, data, {y, x1, x2, ...gridDefaults(rest)});
+function gridKy(k, data, {y = k === "fy" ? null : undefined, x1 = null, x2 = null, ...options}) {
+  return axisMark(ruleY, k, data, {y, x1, x2, ...gridDefaults(options)});
 }
 
-function gridKx(k, data, {x = k === "fx" ? null : undefined, y1 = null, y2 = null, ...rest}) {
-  return axisMark(ruleX, k, data, {x, y1, y2, ...gridDefaults(rest)});
+function gridKx(k, data, {x = k === "fx" ? null : undefined, y1 = null, y2 = null, ...options}) {
+  return axisMark(ruleX, k, data, {x, y1, y2, ...gridDefaults(options)});
 }
 
 function gridDefaults({
