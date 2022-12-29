@@ -341,8 +341,7 @@ export function plot(options = {}) {
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
             else if (!(index = indexes[f.i])) continue;
-            index = mark.filter(index, channels, values);
-            if (index.length === 0) continue;
+            if ((index = mark.filter(index, channels, values)).length === 0) continue;
           }
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node == null) continue;
@@ -352,15 +351,13 @@ export function plot(options = {}) {
         if (empty) this.remove();
       });
   } else {
-    for (const [mark, {channels, values, facets}] of stateByMark) {
-      let facet = null;
-      if (facets) {
-        facet = facets[0];
-        if (!facet) continue;
-        facet = mark.filter(facet, channels, values);
-        if (facet.length === 0) continue;
+    for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
+      let index = null;
+      if (indexes) {
+        if (!(index = indexes[0])) continue;
+        if ((index = mark.filter(index, channels, values)).length === 0) continue;
       }
-      const node = mark.render(facet, scales, values, dimensions, context);
+      const node = mark.render(index, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
     }
   }
