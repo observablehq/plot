@@ -255,8 +255,7 @@ export function plot(options = {}) {
 
     // Sort the facets to match the fx and fy domains; this is needed because
     // the facets were constructed prior to the fx and fy scales.
-    if (fy) facets.sort(facetOrder("y", fyDomain));
-    if (fx) facets.sort(facetOrder("x", fxDomain));
+    facets.sort(facetOrder(fxDomain, fyDomain));
 
     // When faceting by both fx and fy, this nested Map allows to look up the
     // non-empty facets and draw the grid lines properly. TODO We also
@@ -582,10 +581,15 @@ function Facets(channelsByScale, options) {
 }
 
 // Returns an accessor function that returns the order of the given facet value
-// in the associated facet scale’s domains.
-function facetOrder(k, domain) {
-  const o = new Map(domain.map((v, i) => [v, i]));
-  return ({[k]: a}, {[k]: b}) => o.get(a) - o.get(b);
+// in the associated facet scales’ domains.
+function facetOrder(fxDomain, fyDomain) {
+  const xi = fxDomain && new Map(fxDomain.map((v, i) => [v, i]));
+  const yi = fyDomain && new Map(fyDomain.map((v, i) => [v, i]));
+  return fxDomain && fyDomain
+    ? (a, b) => xi.get(a.x) - xi.get(b.x) || yi.get(a.y) - yi.get(b.y)
+    : fxDomain
+    ? (a, b) => xi.get(a.x) - xi.get(b.x)
+    : (a, b) => yi.get(a.y) - yi.get(b.y);
 }
 
 // Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
