@@ -2227,7 +2227,6 @@
       <line x1="0" x2="161" y1="58.298181818181824" y2="58.298181818181824"></line>
       <line x1="0" x2="161" y1="27.934545454545468" y2="27.934545454545468"></line>
     </g>
-    <g aria-label="text" transform="translate(0.5,-8.5)"></g>
     <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(161,83.5)">Adelie</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
@@ -2594,7 +2593,6 @@
       <line x1="0" x2="161" y1="58.298181818181824" y2="58.298181818181824"></line>
       <line x1="0" x2="161" y1="27.934545454545468" y2="27.934545454545468"></line>
     </g>
-    <g aria-label="text" transform="translate(0.5,-8.5)"></g>
     <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(161,83.5)">Gentoo</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="161" height="167"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">

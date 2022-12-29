@@ -320,24 +320,27 @@ export function plot(options = {}) {
     // Render the facets.
     selection
       .selectAll()
-      .data(facets.filter(facetNonEmpty)) // TODO sometimes render empty facets
+      .data(facets)
       .enter()
       .append("g")
       .attr("aria-label", "facet")
       .attr("transform", facetTranslate(fx, fy))
       .each(function ({x, y, i}) {
+        let empty = true;
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
-          if (facetSkip(mark, facets, fxDomain, fyDomain, x, y)) continue;
-          if (i === -1) continue; // TODO sometimes render empty facets
+          if (facetSkip(mark, facets, fxDomain, fyDomain, x, y, i)) continue;
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
             else if (!(index = indexes[i])) continue;
             index = mark.filter(index, channels, values);
+            if (index.length === 0) continue;
           }
+          empty = false;
           const node = mark.render(index, scales, values, subdimensions, context);
           if (node != null) this.appendChild(node);
         }
+        if (empty) this.remove();
       });
   } else {
     for (const [mark, {channels, values, facets}] of stateByMark) {
@@ -346,6 +349,7 @@ export function plot(options = {}) {
         facet = facets[0];
         if (!facet) continue;
         facet = mark.filter(facet, channels, values);
+        if (facet.length === 0) continue;
       }
       const node = mark.render(facet, scales, values, dimensions, context);
       if (node != null) svg.appendChild(node);
@@ -596,7 +600,7 @@ function facetTranslate(fx, fy) {
 }
 
 // For marks with a declared facetAnchor…
-function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
+function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
   switch (mark.facetAnchor) {
     case "top": {
       const yi = fyDomain?.indexOf(fy);
@@ -631,7 +635,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy) {
       break;
     }
   }
-  return false;
+  return i < 0;
 }
 
 // Returns an index that for each facet lists all the elements present in other
