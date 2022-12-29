@@ -56,7 +56,7 @@ export function plot(options = {}) {
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
   // them in order to apply the facet filters afterwards.
-  let facets = Facets(channelsByScale, options);
+  const facets = Facets(channelsByScale, options);
 
   if (facets !== undefined) {
     const topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
