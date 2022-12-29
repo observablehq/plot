@@ -12,7 +12,7 @@ const defaults = {
 export class Frame extends Mark {
   constructor(options = {}) {
     const {inset = 0, insetTop = inset, insetRight = inset, insetBottom = inset, insetLeft = inset, rx, ry} = options;
-    super(undefined, undefined, options, defaults);
+    super(undefined, undefined, {...options, decoration: true}, defaults);
     this.insetTop = number(insetTop);
     this.insetRight = number(insetRight);
     this.insetBottom = number(insetBottom);

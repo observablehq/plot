@@ -354,7 +354,7 @@ function gridDefaults({
 function axisMark(mark, k, data, options, initialize) {
   return mark(
     data,
-    initializer(options, function (data, facets, channels, scales) {
+    initializer({...options, decoration: true}, function (data, facets, channels, scales) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks} = options;

@@ -23,7 +23,13 @@ export function plot(options = {}) {
   const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
-  const marks = options.marks === undefined ? [] : options.marks.flat(Infinity).map(markify);
+  const marks =
+    options.marks === undefined
+      ? []
+      : options.marks
+          .flat(Infinity)
+          .filter((mark) => mark != null)
+          .map(markify);
 
   // Compute the top-level facet state. This has roughly the same structure as
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
@@ -74,19 +80,18 @@ export function plot(options = {}) {
     const nonEmpty = new Set();
     for (const [mark, {facetsIndex}] of facetStateByMark) {
       facetsIndex?.forEach((index, i) => {
-        if (index?.length > 0) {
-          if (mark.facetAnchor) return; // ignore decorations (e.g., axes)
+        if (index?.length > 0 && !mark.decoration) {
           nonEmpty.add(i);
         }
       });
     }
+
+    // If all the facets are empty (as when none of the marks are actually
+    // faceted), none of them are empty.
     if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
-      facets.reduce((j, f, i) => ((f.i = nonEmpty.has(i) ? j++ : -1), j), 0); // adjust facet index
-      for (const facetState of facetStateByMark.values()) {
-        const {facetsIndex} = facetState;
-        if (!facetsIndex) continue;
-        facetState.facetsIndex = facetsIndex.filter((_, i) => nonEmpty.has(i));
-      }
+      facets.forEach((f, i) => (f.empty = !nonEmpty.has(i)));
+    } else {
+      facets.forEach((f) => (f.empty = false));
     }
 
     // For any mark using the “exclude” facet mode, invert the index.
@@ -173,7 +178,7 @@ export function plot(options = {}) {
           if (fx != null) facetState.channels.fx = fx;
           if (fy != null) facetState.channels.fy = fy;
           facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = state.facets = filterFacets(facets.filter(facetNonEmpty), facetState);
+          facetState.facetsIndex = state.facets = filterFacets(facets, facetState);
           facetStateByMark.set(mark, facetState);
         }
       }
@@ -260,7 +265,7 @@ export function plot(options = {}) {
     const fxy =
       fx && fy && (axes.x || axes.y)
         ? group(
-            facets.filter(facetNonEmpty),
+            facets.filter((f) => !f.empty),
             ({x}) => x,
             ({y}) => y
           )
@@ -320,7 +325,7 @@ export function plot(options = {}) {
     // Render the facets.
     selection
       .selectAll()
-      .data(facets)
+      .data(facets.filter((f) => !f.empty))
       .enter()
       .append("g")
       .attr("aria-label", "facet")
@@ -336,9 +341,10 @@ export function plot(options = {}) {
             index = mark.filter(index, channels, values);
             if (index.length === 0) continue;
           }
-          empty = false;
           const node = mark.render(index, scales, values, subdimensions, context);
-          if (node != null) this.appendChild(node);
+          if (node == null) continue;
+          empty = false;
+          this.appendChild(node);
         }
         if (empty) this.remove();
       });
@@ -394,7 +400,7 @@ export function plot(options = {}) {
 
 export class Mark {
   constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", facetAnchor, fx, fy, sort, dx, dy, clip, channels: extraChannels} = options;
+    const {facet = "auto", facetAnchor, fx, fy, sort, dx, dy, clip, decoration, channels: extraChannels} = options;
     this.data = data;
     this.sort = isDomainSort(sort) ? sort : null;
     this.initializer = initializer(options).initializer;
@@ -406,6 +412,7 @@ export class Mark {
       this.fx = fx;
       this.fy = fy;
     }
+    this.decoration = decoration;
     this.facetAnchor = maybeKeyword(facetAnchor, "facetAnchor", ["top", "right", "bottom", "left", "nonempty"]); // TODO nonempty?
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
@@ -464,13 +471,12 @@ export function marks(...marks) {
 }
 
 function markify(mark) {
-  return typeof mark?.render === "function" ? mark : new Render(mark);
+  return typeof mark.render === "function" ? mark : new Render(mark);
 }
 
 class Render extends Mark {
   constructor(render) {
     super();
-    if (render == null) return;
     if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
     this.render = render;
   }
@@ -606,7 +612,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
       const yi = fyDomain?.indexOf(fy);
       if (yi > 0) {
         const yy = fyDomain[yi - 1];
-        return facets.find((f) => f.x === fx && f.y === yy)?.i >= 0;
+        return !facets.find((f) => f.x === fx && f.y === yy)?.empty;
       }
       break;
     }
@@ -614,7 +620,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
       const yi = fyDomain?.indexOf(fy);
       if (yi < fyDomain.length - 1) {
         const yy = fyDomain[yi + 1];
-        return facets.find((f) => f.x === fx && f.y === yy)?.i >= 0;
+        return !facets.find((f) => f.x === fx && f.y === yy)?.empty;
       }
       break;
     }
@@ -622,7 +628,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
       const xi = fxDomain?.indexOf(fx);
       if (xi > 0) {
         const xx = fxDomain[xi - 1];
-        return facets.find((f) => f.x === xx && f.y === fy)?.i >= 0;
+        return !facets.find((f) => f.x === xx && f.y === fy)?.empty;
       }
       break;
     }
@@ -630,7 +636,7 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
       const xi = fxDomain?.indexOf(fx);
       if (xi < fxDomain.length - 1) {
         const xx = fxDomain[xi + 1];
-        return facets.find((f) => f.x === xx && f.y === fy)?.i >= 0;
+        return !facets.find((f) => f.x === xx && f.y === fy)?.empty;
       }
       break;
     }
@@ -642,11 +648,11 @@ function facetSkip(mark, facets, fxDomain, fyDomain, fx, fy, i) {
 // facets in the original index. TODO Memoize to avoid repeated work?
 function facetExcludeIndex(index) {
   const ex = [];
-  const e = new Uint32Array(sum(index, (d) => d?.length));
+  const e = new Uint32Array(sum(index, (d) => d.length));
   for (const i of index) {
     let n = 0;
     for (const j of index) {
-      if (i === j || j === undefined) continue;
+      if (i === j) continue;
       e.set(j, n);
       n += j.length;
     }
@@ -711,12 +717,8 @@ function maybeMarkFacet(mark, topFacetState, options) {
 // Facet filter, by mark; for now only the "eq" filter is provided.
 function filterFacets(facets, {channels: {fx, fy}, groups}) {
   return fx && fy
-    ? facets.map(({x, y}) => groups.get(x)?.get(y))
+    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
     : fx
-    ? facets.map(({x}) => groups.get(x))
-    : facets.map(({y}) => groups.get(y));
-}
-
-function facetNonEmpty(f) {
-  return f.i >= 0;
+    ? facets.map(({x}) => groups.get(x) ?? [])
+    : facets.map(({y}) => groups.get(y) ?? []);
 }
