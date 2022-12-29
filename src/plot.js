@@ -1,10 +1,10 @@
-import {cross, group, sum, select} from "d3";
+import {group, select} from "d3";
 import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
 import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
 import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
-import {maybeFacetAnchor} from "./facet.js";
+import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter, maybeFacetAnchor} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
 import {arrayify, isDomainSort, isScaleOptions, map, range, where, yes} from "./options.js";
 import {keyword, maybeNamed} from "./options.js";
@@ -59,7 +59,7 @@ export function plot(options = {}) {
   let facets = Facets(channelsByScale, options);
 
   if (facets !== undefined) {
-    const topFacetsIndex = topFacetState ? filterFacets(facets, topFacetState) : undefined;
+    const topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
 
     // Compute a facet index for each mark, parallel to the facets array. For
     // mark-level facets, compute an index for that mark’s data and options.
@@ -68,7 +68,7 @@ export function plot(options = {}) {
       if (mark.facet === null) continue;
       const facetState = facetStateByMark.get(mark);
       if (facetState === undefined) continue;
-      facetState.facetsIndex = mark.fx != null || mark.fy != null ? filterFacets(facets, facetState) : topFacetsIndex;
+      facetState.facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
     }
 
     // The cross product of the domains of fx and fy can include fx-fy
@@ -89,17 +89,17 @@ export function plot(options = {}) {
 
     // If all the facets are empty (as when none of the marks are actually
     // faceted), none of them are empty.
-    if (0 < nonEmpty.size && nonEmpty.size < facets.length) {
-      facets.forEach((f, i) => (f.empty = !nonEmpty.has(i)));
-    } else {
-      facets.forEach((f) => (f.empty = false));
-    }
+    facets.forEach(
+      0 < nonEmpty.size && nonEmpty.size < facets.length
+        ? (f, i) => (f.empty = !nonEmpty.has(i))
+        : (f) => (f.empty = false)
+    );
 
     // For any mark using the “exclude” facet mode, invert the index.
     for (const mark of marks) {
       if (mark.facet === "exclude") {
         const facetState = facetStateByMark.get(mark);
-        facetState.facetsIndex = facetExcludeIndex(facetState.facetsIndex);
+        facetState.facetsIndex = facetExclude(facetState.facetsIndex);
       }
     }
   }
@@ -179,7 +179,7 @@ export function plot(options = {}) {
           if (fx != null) facetState.channels.fx = fx;
           if (fy != null) facetState.channels.fy = fy;
           facetState.groups = facetGroups(state.data, facetState.channels);
-          facetState.facetsIndex = state.facets = filterFacets(facets, facetState);
+          facetState.facetsIndex = state.facets = facetFilter(facets, facetState);
           facetStateByMark.set(mark, facetState);
         }
       }
@@ -560,76 +560,6 @@ function nolabel(axis) {
     : Object.assign(Object.create(axis), {label: undefined});
 }
 
-// Returns an array of {x?, y?, i} objects representing the facet domain.
-function Facets(channelsByScale, options) {
-  const {fx, fy} = Scales(channelsByScale, options);
-  const fxDomain = fx?.scale.domain();
-  const fyDomain = fy?.scale.domain();
-  return fxDomain && fyDomain
-    ? cross(fxDomain, fyDomain).map(([x, y], i) => ({x, y, i}))
-    : fxDomain
-    ? fxDomain.map((x, i) => ({x, i}))
-    : fyDomain
-    ? fyDomain.map((y, i) => ({y, i}))
-    : undefined;
-}
-
-// Returns an accessor function that returns the order of the given facet value
-// in the associated facet scales’ domains.
-function facetOrder({x: X, y: Y}) {
-  const xi = X && new Map(X.map((v, i) => [v, i]));
-  const yi = Y && new Map(Y.map((v, i) => [v, i]));
-  return X && Y
-    ? (a, b) => xi.get(a.x) - xi.get(b.x) || yi.get(a.y) - yi.get(b.y)
-    : X
-    ? (a, b) => xi.get(a.x) - xi.get(b.x)
-    : (a, b) => yi.get(a.y) - yi.get(b.y);
-}
-
-// Returns a (possibly nested) Map of [[key1, index1], [key2, index2], …]
-// representing the data indexes associated with each facet.
-function facetGroups(data, {fx, fy}) {
-  const index = range(data);
-  return fx && fy ? facetGroup2(index, fx, fy) : fx ? facetGroup1(index, fx) : facetGroup1(index, fy);
-}
-
-function facetGroup1(index, {value: F}) {
-  return group(index, (i) => F[i]);
-}
-
-function facetGroup2(index, {value: FX}, {value: FY}) {
-  return group(
-    index,
-    (i) => FX[i],
-    (i) => FY[i]
-  );
-}
-
-function facetTranslate(fx, fy) {
-  return fx && fy
-    ? ({x, y}) => `translate(${fx(x)},${fy(y)})`
-    : fx
-    ? ({x}) => `translate(${fx(x)},0)`
-    : ({y}) => `translate(0,${fy(y)})`;
-}
-
-// Returns an index that for each facet lists all the elements present in other
-// facets in the original index. TODO Memoize to avoid repeated work?
-function facetExcludeIndex(index) {
-  const ex = [];
-  const e = new Uint32Array(sum(index, (d) => d.length));
-  for (const i of index) {
-    let n = 0;
-    for (const j of index) {
-      if (i === j) continue;
-      e.set(j, n);
-      n += j.length;
-    }
-    ex.push(e.slice(0, n));
-  }
-  return ex;
-}
-
 // Returns the facet groups, and possibly fx and fy channels, associated with
 // the top-level facet option {data, x, y}.
 function maybeTopFacet(facet, options) {
@@ -681,13 +611,4 @@ function maybeMarkFacet(mark, topFacetState, options) {
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
   }
-}
-
-// Facet filter, by mark; for now only the "eq" filter is provided.
-function filterFacets(facets, {channels: {fx, fy}, groups}) {
-  return fx && fy
-    ? facets.map(({x, y}) => groups.get(x)?.get(y) ?? [])
-    : fx
-    ? facets.map(({x}) => groups.get(x) ?? [])
-    : facets.map(({y}) => groups.get(y) ?? []);
 }
