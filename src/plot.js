@@ -668,13 +668,7 @@ function maybeTopFacet(facet, options) {
   if (y != null) channels.fy = Channel(data, {value: y, scale: "fy"});
   applyScaleTransforms(channels, options);
   const groups = facetGroups(data, channels);
-  // When the top-level facet option generated several frames, track the
-  // corresponding data length in order to compare it for the warning above.
-  const dataLength =
-    groups.size > 1 || (channels.fx && channels.fy && groups.size === 1 && [...groups][0][1].size > 1)
-      ? data.length
-      : undefined;
-  return {channels, groups, data: facet.data, dataLength};
+  return {channels, groups, data: facet.data};
 }
 
 // Returns the facet groups, and possibly fx and fy channels, associated with a
@@ -699,12 +693,15 @@ function maybeMarkFacet(mark, topFacetState, options) {
   if (topFacetState === undefined) return;
 
   // TODO Can we link the top-level facet channels here?
-  const {channels, groups, data, dataLength} = topFacetState;
+  const {channels, groups, data} = topFacetState;
   if (mark.facet !== "auto" || mark.data === data) return {channels, groups};
 
-  // Warn for the common pitfall of wanting to facet mapped data. See above for
-  // the initialization of dataLength.
-  if (dataLength !== undefined && arrayify(mark.data)?.length === dataLength) {
+  // Warn for the common pitfall of wanting to facet mapped data with the
+  // top-level facet option.
+  if (
+    (groups.size > 1 || (groups.size === 1 && channels.fx && channels.fy && [...groups][0][1].size > 1)) &&
+    arrayify(mark.data)?.length === data.length
+  ) {
     warn(
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
