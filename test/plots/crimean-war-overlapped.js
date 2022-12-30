@@ -11,7 +11,7 @@ export default async function () {
       label: null
     },
     marks: [
-      Plot.rectY(data, {x: "date", interval: d3.utcMonth, y2: "deaths", fill: "cause", mixBlendMode: "multiply"}),
+      Plot.rectY(data, {x: "date", interval: "month", y2: "deaths", fill: "cause", mixBlendMode: "multiply"}),
       Plot.ruleY([0])
     ]
   });

@@ -9,7 +9,7 @@ export default async function () {
     marks: [
       Plot.barX(data, {
         x: "date",
-        interval: d3.utcMonth,
+        interval: "month",
         fill: "unemployed",
         title: "unemployed",
         sort: {fy: "fill", reverse: true},
@@ -23,7 +23,7 @@ export default async function () {
           },
           {
             x: "date",
-            interval: d3.utcMonth,
+            interval: "month",
             stroke: "#fff",
             fill: "black",
             strokeWidth: 1.5,
@@ -40,7 +40,7 @@ export default async function () {
           },
           {
             x: "date",
-            interval: d3.utcMonth,
+            interval: "month",
             value: "unemployed",
             fill: "#333",
             title: "unemployed",

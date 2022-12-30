@@ -1,5 +1,9 @@
 import {parse as isoParse} from "isoformat";
 import {color, descending, range as rangei, quantile} from "d3";
+import {utcSecond, utcMinute, utcHour, utcDay, utcWeek, utcMonth, utcYear} from "d3";
+import {utcMonday, utcTuesday, utcWednesday, utcThursday, utcFriday, utcSaturday, utcSunday} from "d3";
+import {timeSecond, timeMinute, timeHour, timeDay, timeWeek, timeMonth, timeYear} from "d3";
+import {timeMonday, timeTuesday, timeWednesday, timeThursday, timeFriday, timeSaturday, timeSunday} from "d3";
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 const TypedArray = Object.getPrototypeOf(Uint8Array);
@@ -235,6 +239,37 @@ export function mid(x1, x2) {
   };
 }
 
+const intervals = new Map([
+  ["second", utcSecond],
+  ["minute", utcMinute],
+  ["hour", utcHour],
+  ["day", utcDay],
+  ["week", utcWeek],
+  ["month", utcMonth],
+  ["year", utcYear],
+  ["monday", utcMonday],
+  ["tuesday", utcTuesday],
+  ["wednesday", utcWednesday],
+  ["thursday", utcThursday],
+  ["friday", utcFriday],
+  ["saturday", utcSaturday],
+  ["sunday", utcSunday],
+  ["second-local", timeSecond],
+  ["minute-local", timeMinute],
+  ["hour-local", timeHour],
+  ["day-local", timeDay],
+  ["week-local", timeWeek],
+  ["month-local", timeMonth],
+  ["year-local", timeYear],
+  ["monday-local", timeMonday],
+  ["tuesday-local", timeTuesday],
+  ["wednesday-local", timeWednesday],
+  ["thursday-local", timeThursday],
+  ["friday-local", timeFriday],
+  ["saturday-local", timeSaturday],
+  ["sunday-local", timeSunday]
+]);
+
 // TODO Allow the interval to be specified as a string, e.g. “day” or “hour”?
 // This will require the interval knowing the type of the associated scale to
 // chose between UTC and local time (or better, an explicit timeZone option).
@@ -242,14 +277,21 @@ export function maybeInterval(interval) {
   if (interval == null) return;
   if (typeof interval === "number") {
     const n = interval;
+    // Note: this offset doesn’t support the optional step argument for simplicity.
     return {
       floor: (d) => n * Math.floor(d / n),
-      offset: (d) => d + n, // note: no optional step for simplicity
+      offset: (d) => d + n,
       range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
-  if (typeof interval.floor !== "function") throw new Error("invalid interval; missing floor method");
-  if (typeof interval.offset !== "function") throw new Error("invalid interval; missing offset method");
+  if (typeof interval === "string") {
+    const alias = intervals.get(interval.toLowerCase());
+    if (!alias) throw new Error(`unknown interval: ${interval}`);
+    return alias;
+  }
+  if (typeof interval.floor !== "function" || typeof interval.offset !== "function") {
+    throw new Error("invalid interval; missing floor or offset method");
+  }
   return interval;
 }
 

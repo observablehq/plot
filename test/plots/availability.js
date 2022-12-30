@@ -10,7 +10,7 @@ export default async function () {
       Plot.areaY(data, {
         x: "date",
         y: "value",
-        interval: d3.utcDay,
+        interval: "day",
         reduce: sum,
         curve: "step",
         fill: "#f2f2fe"
@@ -18,7 +18,7 @@ export default async function () {
       Plot.lineY(data, {
         x: "date",
         y: "value",
-        interval: d3.utcDay,
+        interval: "day",
         reduce: sum,
         curve: "step"
       }),

@@ -9,10 +9,10 @@ export default async function () {
     x: {domain: d3.extent(weather.slice(6), (d) => d.date)},
     y: {insetTop: 10},
     marks: [
-      Plot.rectY(weather, Plot.map({y}, {x: "date", y: "precipitation", interval: d3.utcDay})),
+      Plot.rectY(weather, Plot.map({y}, {x: "date", y: "precipitation", interval: "day"})),
       Plot.textY(
         weather,
-        Plot.map({y, text}, {x: "date", y: "precipitation", text: "precipitation", interval: d3.utcDay, dy: -6})
+        Plot.map({y, text}, {x: "date", y: "precipitation", text: "precipitation", interval: "day", dy: -6})
       ),
       Plot.ruleY([0])
     ]
