@@ -28,32 +28,31 @@ export class Hexgrid extends Mark {
     const x0 = marginLeft - ox,
       x1 = width - marginRight - ox,
       y0 = marginTop - oy,
-      y1 = height - marginBottom - oy;
-    const rx = binWidth / 2,
+      y1 = height - marginBottom - oy,
+      rx = binWidth / 2,
       ry = rx * sqrt4_3,
       hy = ry / 2,
       wx = rx * 2,
-      wy = ry * 1.5;
-    const path = `m0,${-ry}l${rx},${hy}v${ry}l${-rx},${hy}`;
-    const i0 = Math.floor(x0 / wx),
-      i1 = Math.ceil(x1 / wx);
-    const j0 = Math.floor((y0 + hy) / wy),
-      j1 = Math.ceil((y1 - hy) / wy) + 1;
-    const m = [];
+      wy = ry * 1.5,
+      i0 = Math.floor(x0 / wx),
+      i1 = Math.ceil(x1 / wx),
+      j0 = Math.floor((y0 + hy) / wy),
+      j1 = Math.ceil((y1 - hy) / wy) + 1,
+      path = `m0,${round(-ry)}l${round(rx)},${round(hy)}v${round(ry)}l${round(-rx)},${round(hy)}`;
+    let d = path;
     for (let j = j0; j < j1; ++j) {
       for (let i = i0; i < i1; ++i) {
-        m.push(`M${i * wx + (j & 1) * rx},${j * wy}${path}`);
+        d += `M${round(i * wx + (j & 1) * rx)},${round(j * wy)}${path}`;
       }
     }
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
-      .call((g) =>
-        g
-          .append("path")
-          .call(applyDirectStyles, this)
-          .call(applyTransform, this, {}, offset + ox, offset + oy)
-          .attr("d", m.join(""))
-      )
+      .call(applyTransform, this, {}, offset + ox, offset + oy)
+      .call((g) => g.append("path").call(applyDirectStyles, this).attr("d", d))
       .node();
   }
+}
+
+function round(x) {
+  return Math.round(x * 1e3) / 1e3;
 }
