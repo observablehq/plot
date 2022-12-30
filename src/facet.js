@@ -77,15 +77,15 @@ const facetAnchors = new Map([
   ["right", facetAnchorRight],
   ["bottom", facetAnchorBottom],
   ["left", facetAnchorLeft],
-  ["top-left", or(facetAnchorTop, facetAnchorLeft)],
-  ["top-right", or(facetAnchorTop, facetAnchorRight)],
-  ["bottom-left", or(facetAnchorBottom, facetAnchorLeft)],
-  ["bottom-right", or(facetAnchorBottom, facetAnchorRight)],
-  ["top-middle", or(facetAnchorTop, facetAnchorXMid)],
-  ["right-middle", or(facetAnchorRight, facetAnchorYMid)],
-  ["bottom-middle", or(facetAnchorBottom, facetAnchorXMid)],
-  ["left-middle", or(facetAnchorLeft, facetAnchorYMid)],
-  ["middle", or(facetAnchorXMid, facetAnchorYMid)],
+  ["top-left", and(facetAnchorTop, facetAnchorLeft)],
+  ["top-right", and(facetAnchorTop, facetAnchorRight)],
+  ["bottom-left", and(facetAnchorBottom, facetAnchorLeft)],
+  ["bottom-right", and(facetAnchorBottom, facetAnchorRight)],
+  ["top-middle", and(facetAnchorTop, facetAnchorXMid)],
+  ["right-middle", and(facetAnchorRight, facetAnchorYMid)],
+  ["bottom-middle", and(facetAnchorBottom, facetAnchorXMid)],
+  ["left-middle", and(facetAnchorLeft, facetAnchorYMid)],
+  ["middle", and(facetAnchorXMid, facetAnchorYMid)],
   ["top-empty", facetAnchorTopEmpty],
   ["right-empty", facetAnchorRightEmpty],
   ["bottom-empty", facetAnchorBottomEmpty],
@@ -100,34 +100,34 @@ export function maybeFacetAnchor(facetAnchor) {
 }
 
 function facetAnchorTop(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) !== 0;
+  return Y?.indexOf(y) === 0;
 }
 
 function facetAnchorBottom(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) !== Y?.length - 1;
+  return Y?.indexOf(y) === Y?.length - 1;
 }
 
 function facetAnchorLeft(facets, {x: X}, {x}) {
-  return X?.indexOf(x) !== 0;
+  return X?.indexOf(x) === 0;
 }
 
 function facetAnchorRight(facets, {x: X}, {x}) {
-  return X?.indexOf(x) !== X?.length - 1;
+  return X?.indexOf(x) === X?.length - 1;
 }
 
 function facetAnchorXMid(facets, {x: X}, {x}) {
-  return X?.indexOf(x) !== X?.length >> 1;
+  return X?.indexOf(x) === X?.length >> 1;
 }
 
 function facetAnchorYMid(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) !== Y?.length >> 1;
+  return Y?.indexOf(y) === Y?.length >> 1;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {
   const i = Y?.indexOf(y);
   if (i > 0) {
     const y = Y[i - 1];
-    return !facets.find((f) => f.x === x && f.y === y)?.empty;
+    return facets.find((f) => f.x === x && f.y === y)?.empty;
   }
 }
 
@@ -135,7 +135,7 @@ function facetAnchorBottomEmpty(facets, {y: Y}, {x, y}) {
   const i = Y?.indexOf(y);
   if (i < Y?.length - 1) {
     const y = Y[i + 1];
-    return !facets.find((f) => f.x === x && f.y === y)?.empty;
+    return facets.find((f) => f.x === x && f.y === y)?.empty;
   }
 }
 
@@ -143,7 +143,7 @@ function facetAnchorLeftEmpty(facets, {x: X}, {x, y}) {
   const i = X?.indexOf(x);
   if (i > 0) {
     const x = X[i - 1];
-    return !facets.find((f) => f.x === x && f.y === y)?.empty;
+    return facets.find((f) => f.x === x && f.y === y)?.empty;
   }
 }
 
@@ -151,13 +151,13 @@ function facetAnchorRightEmpty(facets, {x: X}, {x, y}) {
   const i = X?.indexOf(x);
   if (i < X?.length - 1) {
     const x = X[i + 1];
-    return !facets.find((f) => f.x === x && f.y === y)?.empty;
+    return facets.find((f) => f.x === x && f.y === y)?.empty;
   }
 }
 
-function or(a, b) {
+function and(a, b) {
   return function () {
-    return a.apply(null, arguments) || b.apply(null, arguments);
+    return a.apply(null, arguments) && b.apply(null, arguments);
   };
 }
 

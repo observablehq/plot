@@ -336,7 +336,7 @@ export function plot(options = {}) {
       .each(function (f) {
         let empty = true;
         for (const [mark, {channels, values, facets: indexes}] of stateByMark) {
-          if (mark.facetAnchor?.(facets, facetDomains, f) ?? f.empty) continue;
+          if (!(mark.facetAnchor?.(facets, facetDomains, f) ?? !f.empty)) continue;
           let index;
           if (indexes) {
             if (!facetStateByMark.has(mark)) index = indexes[0];
