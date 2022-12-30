@@ -130,14 +130,18 @@ export function plot(options = {}) {
     stateByMark.set(mark, {data, facets, channels});
   }
 
-  // Initalize the scales and axes.
+  // Initalize the scales.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
-  const axes = Axes(scaleDescriptors, options);
-  const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), axes, options);
+
+  // TODO Determine whether there are any axes present, and accommodate for them
+  // in the margins. In the past, we looked for specific axes, but I think we
+  // could do this more generically by allowing arbitrary marks to declare
+  // margins, and apply some sort of margin-collapse algorithm.
+  const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), options);
 
   autoScaleRange(scaleDescriptors, dimensions);
-  autoAxisTicks(scaleDescriptors, axes);
+  // autoAxisTicks(scaleDescriptors, axes);
 
   const {fx, fy} = scales;
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
@@ -197,7 +201,10 @@ export function plot(options = {}) {
     Object.assign(scales, newScales);
   }
 
-  autoScaleLabels(channelsByScale, scaleDescriptors, axes, dimensions, options);
+  // TODO This is running after the mark initializers, so when the mark
+  // initializers run, there won’t be any scale labels yet… Also, this should be
+  // restructured in a way that’s not specific to axes.
+  autoScaleLabels(channelsByScale, scaleDescriptors, dimensions, options);
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -243,14 +250,14 @@ export function plot(options = {}) {
     .node();
 
   // When faceting, render axes for fx and fy instead of x and y.
-  const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
-  const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
-  if (axisY) svg.appendChild(axisY.render(null, scales, dimensions, context));
-  if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
+  // const axisY = axes[facets !== undefined && fy ? "fy" : "y"];
+  // const axisX = axes[facets !== undefined && fx ? "fx" : "x"];
+  // if (axisY) svg.appendChild(axisY.render(null, scales, dimensions, context));
+  // if (axisX) svg.appendChild(axisX.render(null, scales, dimensions, context));
 
   // Render (possibly faceted) marks.
   if (facets !== undefined) {
-    const selection = select(svg);
+    // const selection = select(svg);
     const facetDomains = {x: fx?.domain(), y: fy?.domain()};
 
     // Sort the facets to match the fx and fy domains; this is needed because
@@ -261,72 +268,72 @@ export function plot(options = {}) {
     // non-empty facets and draw the grid lines properly. TODO We also
     // effectively need this for skipping empty facets, but we’re doing the
     // slower iterative scanning of the domain.
-    const fxy =
-      fx && fy && (axes.x || axes.y)
-        ? group(
-            facets.filter((f) => !f.empty),
-            ({x}) => x,
-            ({y}) => y
-          )
-        : undefined;
+    // const fxy =
+    //   fx && fy && (axes.x || axes.y)
+    //     ? group(
+    //         facets.filter((f) => !f.empty),
+    //         ({x}) => x,
+    //         ({y}) => y
+    //       )
+    //     : undefined;
 
     // Render the fy axis.
-    if (fy && axes.y) {
-      const axis1 = axes.y,
-        axis2 = nolabel(axis1);
-      const j =
-        axis1.labelAnchor === "bottom"
-          ? facetDomains.y.length - 1
-          : axis1.labelAnchor === "center"
-          ? facetDomains.y.length >> 1
-          : 0;
-      selection
-        .selectAll()
-        .data(facetDomains.y)
-        .enter()
-        .append((ky, i) =>
-          (i === j ? axis1 : axis2).render(
-            fx && where(facetDomains.x, (kx) => fxy.get(kx).has(ky)),
-            scales,
-            {...dimensions, ...fyMargins, offsetTop: fy(ky)},
-            context
-          )
-        );
-    }
+    // if (fy && axes.y) {
+    //   const axis1 = axes.y,
+    //     axis2 = nolabel(axis1);
+    //   const j =
+    //     axis1.labelAnchor === "bottom"
+    //       ? facetDomains.y.length - 1
+    //       : axis1.labelAnchor === "center"
+    //       ? facetDomains.y.length >> 1
+    //       : 0;
+    //   selection
+    //     .selectAll()
+    //     .data(facetDomains.y)
+    //     .enter()
+    //     .append((ky, i) =>
+    //       (i === j ? axis1 : axis2).render(
+    //         fx && where(facetDomains.x, (kx) => fxy.get(kx).has(ky)),
+    //         scales,
+    //         {...dimensions, ...fyMargins, offsetTop: fy(ky)},
+    //         context
+    //       )
+    //     );
+    // }
 
     // Render the fx axis.
-    if (fx && axes.x) {
-      const axis1 = axes.x,
-        axis2 = nolabel(axis1);
-      const j =
-        axis1.labelAnchor === "right"
-          ? facetDomains.x.length - 1
-          : axis1.labelAnchor === "center"
-          ? facetDomains.x.length >> 1
-          : 0;
-      const {marginLeft, marginRight} = dimensions;
-      selection
-        .selectAll()
-        .data(facetDomains.x)
-        .enter()
-        .append((kx, i) =>
-          (i === j ? axis1 : axis2).render(
-            fy && where(facetDomains.y, (ky) => fxy.get(kx).has(ky)),
-            scales,
-            {
-              ...dimensions,
-              ...fxMargins,
-              labelMarginLeft: marginLeft,
-              labelMarginRight: marginRight,
-              offsetLeft: fx(kx)
-            },
-            context
-          )
-        );
-    }
+    // if (fx && axes.x) {
+    //   const axis1 = axes.x,
+    //     axis2 = nolabel(axis1);
+    //   const j =
+    //     axis1.labelAnchor === "right"
+    //       ? facetDomains.x.length - 1
+    //       : axis1.labelAnchor === "center"
+    //       ? facetDomains.x.length >> 1
+    //       : 0;
+    //   const {marginLeft, marginRight} = dimensions;
+    //   selection
+    //     .selectAll()
+    //     .data(facetDomains.x)
+    //     .enter()
+    //     .append((kx, i) =>
+    //       (i === j ? axis1 : axis2).render(
+    //         fy && where(facetDomains.y, (ky) => fxy.get(kx).has(ky)),
+    //         scales,
+    //         {
+    //           ...dimensions,
+    //           ...fxMargins,
+    //           labelMarginLeft: marginLeft,
+    //           labelMarginRight: marginRight,
+    //           offsetLeft: fx(kx)
+    //         },
+    //         context
+    //       )
+    //     );
+    // }
 
     // Render the facets.
-    selection
+    select(svg)
       .selectAll()
       .data(facets)
       .enter()

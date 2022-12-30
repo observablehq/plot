@@ -7,7 +7,7 @@ import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
-import {textX, textY} from "./text.js";
+import {Text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
 
 function maybeData(data, options) {
@@ -94,8 +94,38 @@ function axisKy(
           x,
           ...options
         })
-      : null
+      : null,
+    new AxisLabel(
+      k,
+      k === "fy"
+        ? {
+            dx: 70,
+            rotate: -90,
+            lineAnchor: "top",
+            textAnchor: "middle",
+            facetAnchor: `${anchor}-middle`,
+            frameAnchor: anchor
+          }
+        : {
+            dy: -20,
+            dx: anchor === "right" ? 40 : -40,
+            lineAnchor: "bottom",
+            facetAnchor: `top-${anchor}`,
+            frameAnchor: `top-${anchor}`
+          }
+    )
   );
+}
+
+class AxisLabel extends Text {
+  constructor(k, options) {
+    super(null, {...options, decoration: true});
+    this.k = k;
+  }
+  render(index, scales, channels, dimensions, context) {
+    channels.text = [scales[this.k].label];
+    return super.render([0], scales, channels, dimensions, context);
+  }
 }
 
 function axisKx(
@@ -149,6 +179,15 @@ function axisKx(
           ...options
         })
       : null
+    // k === "fx"
+    //   ? new AxisLabel(k, {
+    //       dy: -20,
+    //       dx: k === "fx" ? 0 : -30,
+    //       lineAnchor: "bottom",
+    //       facetAnchor: k === "fx" ? "top-middle" : "top-left",
+    //       frameAnchor: k === "fx" ? "top" : "top-left"
+    //     })
+    //   : null
   );
 }
 

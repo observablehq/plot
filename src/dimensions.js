@@ -2,10 +2,10 @@ import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
 import {offset} from "./style.js";
 
-export function Dimensions(scales, geometry, axes, options = {}) {
+export function Dimensions(scales, geometry, options = {}) {
   // The default margins depend on the presence and orientation of axes. If the
   // corresponding scale is not present, the axis is necessarily null.
-  const {x: {axis: x} = {}, y: {axis: y} = {}, fx: {axis: fx} = {}, fy: {axis: fy} = {}} = axes;
+  const {x: {axis: x} = {}, y: {axis: y} = {}, fx: {axis: fx} = {}, fy: {axis: fy} = {}} = {}; // TODO
 
   // Compute the default facet margins. When faceting is not present (and hence
   // the fx and fy axis are null), these will all be zero.

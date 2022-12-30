@@ -2,7 +2,6 @@ import {extent} from "d3";
 import {AxisX, AxisY} from "./axis.js";
 import {formatDefault} from "./format.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
-import {position, registry} from "./scales/index.js";
 
 export function Axes(
   {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
@@ -85,7 +84,8 @@ function autoAxisTicksK(scale, axis, k) {
 }
 
 // Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
-export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, options) {
+export function autoScaleLabels(channels, scales, dimensions, options) {
+  const {x, y, fx, fy} = {}; // TODO
   if (fx) {
     autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
     if (fx.labelOffset === undefined) {
@@ -114,11 +114,8 @@ export function autoScaleLabels(channels, scales, {x, y, fx, fy}, dimensions, op
       y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
     }
   }
-  for (const [key, type] of registry) {
-    if (type !== position && scales[key]) {
-      // not already handled above
-      autoScaleLabel(key, scales[key], channels.get(key), options[key]);
-    }
+  for (const key in scales) {
+    autoScaleLabel(key, scales[key], channels.get(key), options[key]);
   }
 }
 
@@ -156,6 +153,7 @@ function autoScaleLabel(key, scale, channels, options) {
   if (scale.label === undefined) {
     scale.label = inferLabel(channels, scale, null, key);
   }
+  scale.scale.label = scale.label; // XXX
 }
 
 // Channels can have labels; if all the channels for a given scale are
