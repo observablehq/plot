@@ -3,29 +3,34 @@ import {create} from "./context.js";
 import {formatIsoDate} from "./format.js";
 import {radians} from "./math.js";
 import {boolean, take, number, string, keyword, maybeKeyword, constant, isTemporal} from "./options.js";
+import {isOrdinalScale, isTemporalScale} from "./scales.js";
 import {applyAttr, impliedString} from "./style.js";
+import {maybeTimeInterval, maybeUtcInterval} from "./time.js";
 
 export class AxisX {
-  constructor({
-    name = "x",
-    axis,
-    ticks,
-    tickSize = name === "fx" ? 0 : 6,
-    tickPadding = tickSize === 0 ? 9 : 3,
-    tickFormat,
-    fontVariant,
-    grid,
-    label,
-    labelAnchor,
-    labelOffset,
-    line,
-    tickRotate,
-    ariaLabel,
-    ariaDescription
-  } = {}) {
+  constructor(
+    scale,
+    {
+      name = "x",
+      axis,
+      ticks,
+      tickSize = name === "fx" ? 0 : 6,
+      tickPadding = tickSize === 0 ? 9 : 3,
+      tickFormat,
+      fontVariant = inferFontVariant(scale),
+      grid,
+      label,
+      labelAnchor,
+      labelOffset,
+      line,
+      tickRotate,
+      ariaLabel,
+      ariaDescription
+    } = {}
+  ) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["top", "bottom"]);
-    this.ticks = maybeTicks(ticks);
+    this.ticks = maybeTicks(ticks, scale);
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
     this.tickFormat = maybeTickFormat(tickFormat);
@@ -99,26 +104,29 @@ export class AxisX {
 }
 
 export class AxisY {
-  constructor({
-    name = "y",
-    axis,
-    ticks,
-    tickSize = name === "fy" ? 0 : 6,
-    tickPadding = tickSize === 0 ? 9 : 3,
-    tickFormat,
-    fontVariant,
-    grid,
-    label,
-    labelAnchor,
-    labelOffset,
-    line,
-    tickRotate,
-    ariaLabel,
-    ariaDescription
-  } = {}) {
+  constructor(
+    scale,
+    {
+      name = "y",
+      axis,
+      ticks,
+      tickSize = name === "fy" ? 0 : 6,
+      tickPadding = tickSize === 0 ? 9 : 3,
+      tickFormat,
+      fontVariant = inferFontVariant(scale),
+      grid,
+      label,
+      labelAnchor,
+      labelOffset,
+      line,
+      tickRotate,
+      ariaLabel,
+      ariaDescription
+    } = {}
+  ) {
     this.name = name;
     this.axis = keyword(axis, "axis", ["left", "right"]);
-    this.ticks = maybeTicks(ticks);
+    this.ticks = maybeTicks(ticks, scale);
     this.tickSize = number(tickSize);
     this.tickPadding = number(tickPadding);
     this.tickFormat = maybeTickFormat(tickFormat);
@@ -224,8 +232,12 @@ function gridFacetY(index, fx, tx) {
       .attr("d", (index ? take(domain, index) : domain).map((v) => `M${fx(v) + tx},0h${dx}`).join(""));
 }
 
-function maybeTicks(ticks) {
-  return ticks === null ? [] : ticks;
+function maybeTicks(ticks, scale) {
+  return ticks === null
+    ? []
+    : isTemporalScale(scale) && typeof ticks === "string"
+    ? (scale.type === "time" ? maybeTimeInterval : maybeUtcInterval)(ticks)
+    : ticks;
 }
 
 function maybeTickFormat(tickFormat) {
@@ -279,4 +291,8 @@ function maybeTickRotate(g, rotate) {
     text.removeAttribute("y");
     text.setAttribute("dy", "0.32em");
   }
+}
+
+export function inferFontVariant(scale) {
+  return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
 }

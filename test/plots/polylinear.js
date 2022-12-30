@@ -29,7 +29,7 @@ export default async function () {
     x: {
       type: "utc",
       domain: times,
-      ticks: d3.utcDay,
+      ticks: "day",
       tickFormat: "%d",
       inset: 20,
       label: "date →"
