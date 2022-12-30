@@ -124,7 +124,7 @@ class DelaunayLink extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
@@ -174,7 +174,7 @@ class AbstractDelaunayMark extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z
@@ -245,7 +245,7 @@ class Voronoi extends Mark {
     }
 
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call(
         Z

@@ -1,4 +1,5 @@
 import {geoPath, group, namespaces} from "d3";
+import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {
@@ -306,7 +307,7 @@ export function maybeClip(clip) {
   return maybeKeyword(clip, "clip", ["frame", "sphere"]);
 }
 
-export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
+export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
@@ -325,18 +326,24 @@ export function applyIndirectStyles(selection, mark, scales, dimensions, context
   applyAttr(selection, "pointer-events", mark.pointerEvents);
   switch (mark.clip) {
     case "frame": {
-      const {x, y} = scales;
       const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
       const id = getClipId();
-      selection
+      create("svg:g", context)
         .attr("clip-path", `url(#${id})`)
-        .append("clipPath")
-        .attr("id", id)
-        .append("rect")
-        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-        .attr("width", width - marginRight - marginLeft)
-        .attr("height", height - marginTop - marginBottom);
+        .call((g) =>
+          g
+            .append("svg:clipPath")
+            .attr("id", id)
+            .append("rect")
+            .attr("x", marginLeft)
+            .attr("y", marginTop)
+            .attr("width", width - marginRight - marginLeft)
+            .attr("height", height - marginTop - marginBottom)
+        )
+        .each(function () {
+          this.appendChild(selection.node());
+          selection.node = () => this; // Note: mutates selection.node!
+        });
       break;
     }
     case "sphere": {
