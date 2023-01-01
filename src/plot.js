@@ -1,18 +1,15 @@
-import {group, select} from "d3";
-import {Axes, autoAxisTicks, autoScaleLabels} from "./axes.js";
-import {Channel, Channels, channelDomain, valueObject} from "./channel.js";
+import {select} from "d3";
+import {autoScaleLabels} from "./axes.js";
+import {Channel, valueObject} from "./channel.js";
 import {Context, create} from "./context.js";
-import {defined} from "./defined.js";
 import {Dimensions} from "./dimensions.js";
-import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter, maybeFacetAnchor} from "./facet.js";
+import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {arrayify, isDomainSort, isScaleOptions, map, range, where, yes} from "./options.js";
-import {keyword, maybeNamed} from "./options.js";
-import {maybeProject} from "./projection.js";
+import {axisX, axisY} from "./marks/axis.js";
+import {arrayify, isScaleOptions, map, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
-import {applyInlineStyles, maybeClassName, maybeClip, styles} from "./style.js";
-import {basic, initializer} from "./transforms/basic.js";
+import {applyInlineStyles, maybeClassName} from "./style.js";
 import {maybeInterval} from "./transforms/interval.js";
 import {consumeWarnings, warn} from "./warnings.js";
 
@@ -24,13 +21,14 @@ export function plot(options = {}) {
   const className = maybeClassName(options.className);
 
   // Flatten any nested marks.
-  const marks =
-    options.marks === undefined
-      ? []
-      : options.marks
-          .flat(Infinity)
-          .filter((mark) => mark != null)
-          .map(markify);
+  const marks = options.marks === undefined ? [] : flatMarks(options.marks);
+
+  // Add implicit axis marks.
+  // TODO Proper scale detection; extract axis options.
+  if (options.projection == null) {
+    if (hasScale(marks, "x")) marks.unshift(...flatMarks(axisX()));
+    if (hasScale(marks, "y")) marks.unshift(...flatMarks(axisY()));
+  }
 
   // Compute the top-level facet state. This has roughly the same structure as
   // mark-specific facet state, except there isn’t a facetsIndex, and there’s a
@@ -138,7 +136,7 @@ export function plot(options = {}) {
   // in the margins. In the past, we looked for specific axes, but I think we
   // could do this more generically by allowing arbitrary marks to declare
   // margins, and apply some sort of margin-collapse algorithm.
-  const dimensions = Dimensions(scaleDescriptors, hasGeometry(stateByMark), options);
+  const dimensions = Dimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
   // autoAxisTicks(scaleDescriptors, axes);
@@ -405,75 +403,13 @@ export function plot(options = {}) {
   return figure;
 }
 
-export class Mark {
-  constructor(data, channels = {}, options = {}, defaults) {
-    const {facet = "auto", facetAnchor, fx, fy, sort, dx, dy, clip, decoration, channels: extraChannels} = options;
-    this.data = data;
-    this.sort = isDomainSort(sort) ? sort : null;
-    this.initializer = initializer(options).initializer;
-    this.transform = this.initializer ? options.transform : basic(options).transform;
-    if (facet === null || facet === false) {
-      this.facet = null;
-    } else {
-      this.facet = keyword(facet === true ? "include" : facet, "facet", ["auto", "include", "exclude"]);
-      this.fx = fx;
-      this.fy = fy;
-    }
-    this.decoration = decoration;
-    this.facetAnchor = maybeFacetAnchor(facetAnchor);
-    channels = maybeNamed(channels);
-    if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
-    if (defaults !== undefined) channels = {...styles(this, options, defaults), ...channels};
-    this.channels = Object.fromEntries(
-      Object.entries(channels).filter(([name, {value, optional}]) => {
-        if (value != null) return true;
-        if (optional) return false;
-        throw new Error(`missing channel value: ${name}`);
-      })
-    );
-    this.dx = +dx || 0;
-    this.dy = +dy || 0;
-    this.clip = maybeClip(clip);
-  }
-  initialize(facets, facetChannels) {
-    let data = arrayify(this.data);
-    if (facets === undefined && data != null) facets = [range(data)];
-    if (this.transform != null) ({facets, data} = this.transform(data, facets)), (data = arrayify(data));
-    const channels = Channels(this.channels, data);
-    if (this.sort != null) channelDomain(channels, facetChannels, data, this.sort); // mutates facetChannels!
-    return {data, facets, channels};
-  }
-  filter(index, channels, values) {
-    for (const name in channels) {
-      const {filter = defined} = channels[name];
-      if (filter !== null) {
-        const value = values[name];
-        index = index.filter((i) => filter(value[i]));
-      }
-    }
-    return index;
-  }
-  // If there is a projection, and there are both x and y channels (or x1 and
-  // y1, or x2 and y2 channels), and those channels are associated with the x
-  // and y scale respectively (and not already in screen coordinates as with an
-  // initializer), then apply the projection, replacing the x and y values. Note
-  // that the x and y scales themselves don’t exist if there is a projection,
-  // but whether the channels are associated with scales still determines
-  // whether the projection should apply; think of the projection as a
-  // combination xy-scale.
-  project(channels, values, context) {
-    maybeProject("x", "y", channels, values, context);
-    maybeProject("x1", "y1", channels, values, context);
-    maybeProject("x2", "y2", channels, values, context);
-  }
-  plot({marks = [], ...options} = {}) {
-    return plot({...options, marks: [...marks, this]});
-  }
+export function plotThis({marks = [], ...options} = {}) {
+  return plot({...options, marks: [...marks, this]});
 }
 
 /** @jsdoc marks */
 export function marks(...marks) {
-  marks.plot = Mark.prototype.plot;
+  marks.plot = plotThis;
   return marks;
 }
 
@@ -481,9 +417,9 @@ function markify(mark) {
   return typeof mark.render === "function" ? mark : new Render(mark);
 }
 
-class Render extends Mark {
+// Note: does not extend Mark to break circular dependency!
+class Render {
   constructor(render) {
-    super();
     if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
     this.render = render;
   }
@@ -550,20 +486,6 @@ function addScaleChannels(channelsByScale, stateByMark, filter = yes) {
   return channelsByScale;
 }
 
-function hasGeometry(stateByMark) {
-  for (const {channels} of stateByMark.values()) {
-    if (channels.geometry) return true;
-  }
-  return false;
-}
-
-// Derives a copy of the specified axis with the label disabled.
-function nolabel(axis) {
-  return axis === undefined || axis.label === undefined
-    ? axis // use the existing axis if unlabeled
-    : Object.assign(Object.create(axis), {label: undefined});
-}
-
 // Returns the facet groups, and possibly fx and fy channels, associated with
 // the top-level facet option {data, x, y}.
 function maybeTopFacet(facet, options) {
@@ -615,4 +537,22 @@ function maybeMarkFacet(mark, topFacetState, options) {
       `Warning: the ${mark.ariaLabel} mark appears to use faceted data, but isn’t faceted. The mark data has the same length as the facet data and the mark facet option is "auto", but the mark data and facet data are distinct. If this mark should be faceted, set the mark facet option to true; otherwise, suppress this warning by setting the mark facet option to false.`
     );
   }
+}
+
+function hasScale(marks, k) {
+  for (const mark of marks) {
+    for (const key in mark.channels) {
+      if (mark.channels[key].scale === k) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function flatMarks(marks) {
+  return marks
+    .flat(Infinity)
+    .filter((mark) => mark != null)
+    .map(markify);
 }

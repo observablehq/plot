@@ -13,117 +13,56 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="Why do you want to learn d3?" transform="translate(300,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,40.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For work</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,60.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For fun</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,80.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">To express myself</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,100.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">To get a job</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,120.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">For school</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,140.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em"></text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,160.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">I think digital interactive systems tha explain complex systems visually are the future</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,180.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tableau to D3</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,200.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">for my own projects</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,220.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">improve as a product designer</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,240.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to address visual learners</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,260.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to do vis on the web</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,280.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to give back to the dataviz community</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,300.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to understand data better</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,320.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">to work with open data</text>
-    </g><text fill="currentColor" transform="translate(-300,30)" dy="-1em" text-anchor="start">Why do you want to learn d3?</text>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+    <path transform="translate(300,20)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,40)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,60)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,80)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,100)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,120)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,140)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,180)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,200)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,220)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,240)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,260)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,280)" d="M0,0L-6,0"></path>
+    <path transform="translate(300,300)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Frequency (%) →" transform="translate(0,30)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(300.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(364.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(428.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(492.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(556.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(620.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">50</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(684.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(748.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">70</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(812.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(876.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">90</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(940.5,0)">
-      <line stroke="currentColor" y2="-6"></line>
-      <line stroke="currentColor" y2="300" stroke-opacity="0.1"></line><text fill="currentColor" y="-9" dy="0em">100</text>
-    </g><text fill="currentColor" transform="translate(960,-30)" dy="1em" text-anchor="end">Frequency (%) →</text>
+  <g aria-label="text" text-anchor="end" transform="translate(-8.5,10.5)"><text y="0.32em" transform="translate(300,20)">For work</text><text y="0.32em" transform="translate(300,40)">For fun</text><text y="0.32em" transform="translate(300,60)">To express myself</text><text y="0.32em" transform="translate(300,80)">To get a job</text><text y="0.32em" transform="translate(300,100)">For school</text><text y="0.32em" transform="translate(300,120)"></text><text y="0.32em" transform="translate(300,140)">I think digital interactive systems tha explain complex systems visually are the future</text><text y="0.32em" transform="translate(300,160)">Tableau to D3</text><text y="0.32em" transform="translate(300,180)">for my own projects</text><text y="0.32em" transform="translate(300,200)">improve as a product designer</text><text y="0.32em" transform="translate(300,220)">to address visual learners</text><text y="0.32em" transform="translate(300,240)">to do vis on the web</text><text y="0.32em" transform="translate(300,260)">to give back to the dataviz community</text><text y="0.32em" transform="translate(300,280)">to understand data better</text><text y="0.32em" transform="translate(300,300)">to work with open data</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(300,320)" d="M0,0L0,6"></path>
+    <path transform="translate(364,320)" d="M0,0L0,6"></path>
+    <path transform="translate(428,320)" d="M0,0L0,6"></path>
+    <path transform="translate(492,320)" d="M0,0L0,6"></path>
+    <path transform="translate(556,320)" d="M0,0L0,6"></path>
+    <path transform="translate(620,320)" d="M0,0L0,6"></path>
+    <path transform="translate(684,320)" d="M0,0L0,6"></path>
+    <path transform="translate(748,320)" d="M0,0L0,6"></path>
+    <path transform="translate(812,320)" d="M0,0L0,6"></path>
+    <path transform="translate(876,320)" d="M0,0L0,6"></path>
+    <path transform="translate(940,320)" d="M0,0L0,6"></path>
   </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(300,320)">0</text><text y="0.71em" transform="translate(364,320)">10</text><text y="0.71em" transform="translate(428,320)">20</text><text y="0.71em" transform="translate(492,320)">30</text><text y="0.71em" transform="translate(556,320)">40</text><text y="0.71em" transform="translate(620,320)">50</text><text y="0.71em" transform="translate(684,320)">60</text><text y="0.71em" transform="translate(748,320)">70</text><text y="0.71em" transform="translate(812,320)">80</text><text y="0.71em" transform="translate(876,320)">90</text><text y="0.71em" transform="translate(940,320)">100</text></g>
   <g aria-label="bar" fill="steelblue">
-    <rect x="300" width="446.2385321100917" y="51" height="19"></rect>
-    <rect x="300" width="518.6544342507646" y="31" height="19"></rect>
-    <rect x="300" width="309.2354740061162" y="71" height="19"></rect>
-    <rect x="300" width="205.5045871559633" y="91" height="19"></rect>
-    <rect x="300" width="45.01529051987768" y="111" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="311" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="271" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="211" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="171" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="251" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="191" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="131" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="291" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="231" height="19"></rect>
-    <rect x="300" width="1.9571865443425054" y="151" height="19"></rect>
+    <rect x="300" width="446.2385321100917" y="41" height="19"></rect>
+    <rect x="300" width="518.6544342507646" y="21" height="19"></rect>
+    <rect x="300" width="309.2354740061162" y="61" height="19"></rect>
+    <rect x="300" width="205.5045871559633" y="81" height="19"></rect>
+    <rect x="300" width="45.01529051987768" y="101" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="301" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="261" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="201" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="161" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="241" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="181" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="121" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="281" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="221" height="19"></rect>
+    <rect x="300" width="1.9571865443425054" y="141" height="19"></rect>
   </g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-    <line x1="300" x2="300" y1="30" y2="330"></line>
+    <line x1="300" x2="300" y1="20" y2="320"></line>
   </g>
 </svg>

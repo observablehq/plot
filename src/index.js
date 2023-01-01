@@ -1,4 +1,10 @@
-export {plot, Mark, marks} from "./plot.js";
+import {plotThis} from "./plot.js";
+import {Mark} from "./mark.js";
+
+Mark.prototype.plot = plotThis;
+
+export {plot, marks} from "./plot.js";
+export {Mark} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
 export {Arrow, arrow} from "./marks/arrow.js";
 export {axisX, axisY, axisFx, axisFy, gridX, gridY, gridFx, gridFy} from "./marks/axis.js";

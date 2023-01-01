@@ -3,12 +3,16 @@ import {formatDefault} from "../format.js";
 import {radians} from "../math.js";
 import {range, valueof, arrayify, constant, keyword, identity} from "../options.js";
 import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
-import {marks} from "../plot.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
 import {Text, textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
+
+// TODO Remove me without introducing a circular dependency.
+function marks(...marks) {
+  return marks;
+}
 
 function maybeData(data, options) {
   if (arguments.length < 2 && !isIterable(data)) (options = data), (data = null);
@@ -94,26 +98,26 @@ function axisKy(
           x,
           ...options
         })
-      : null,
-    new AxisLabel(
-      k,
-      k === "fy"
-        ? {
-            dx: 70,
-            rotate: -90,
-            lineAnchor: "top",
-            textAnchor: "middle",
-            facetAnchor: `${anchor}-middle`,
-            frameAnchor: anchor
-          }
-        : {
-            dy: -20,
-            dx: anchor === "right" ? 40 : -40,
-            lineAnchor: "bottom",
-            facetAnchor: `top-${anchor}`,
-            frameAnchor: `top-${anchor}`
-          }
-    )
+      : null
+    // new AxisLabel(
+    //   k,
+    //   k === "fy"
+    //     ? {
+    //         dx: 70,
+    //         rotate: -90,
+    //         lineAnchor: "top",
+    //         textAnchor: "middle",
+    //         facetAnchor: `${anchor}-middle`,
+    //         frameAnchor: anchor
+    //       }
+    //     : {
+    //         dy: -20,
+    //         dx: anchor === "right" ? 40 : -40,
+    //         lineAnchor: "bottom",
+    //         facetAnchor: `top-${anchor}`,
+    //         frameAnchor: `top-${anchor}`
+    //       }
+    // )
   );
 }
 
@@ -294,6 +298,9 @@ function axisTextKy(
       lineAnchor,
       fontVariant,
       rotate: tickRotate,
+      margin: 20,
+      marginLeft: anchor === "left" ? 40 : undefined,
+      marginRight: anchor === "right" ? 40 : undefined,
       y,
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
@@ -340,6 +347,9 @@ function axisTextKx(
       lineAnchor,
       fontVariant,
       rotate: tickRotate,
+      margin: 20,
+      marginTop: anchor === "top" ? 30 : undefined,
+      marginBottom: anchor === "bottom" ? 30 : undefined,
       x,
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop

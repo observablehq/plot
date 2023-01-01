@@ -13,85 +13,33 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Annual revenue (billions, adj.)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,370.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,339.223518391829)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,307.947036783658)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,276.670555175487)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,245.39407356731593)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,214.117591959145)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,182.84111035097393)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,151.56462874280294)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,120.28814713463191)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,89.01166552646092)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,57.735183918289906)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,26.458702310118873)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Annual revenue (billions, adj.)</text>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,338.723518391829)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,307.447036783658)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,276.170555175487)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,244.89407356731593)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,213.617591959145)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,182.34111035097393)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.06462874280294)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,119.78814713463191)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,88.51166552646092)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,57.235183918289906)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,25.958702310118873)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(65.70088089994643,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1975</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(128.73760490446998,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1980</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(191.80885066365096,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1985</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(254.84557466817452,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1990</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(317.882298672698,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">1995</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(380.9190226772216,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(443.9902684364025,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2005</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(507.0269924409261,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(570.0637164454497,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2015</text>
-    </g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,338.723518391829)">2</text><text y="0.32em" transform="translate(40,307.447036783658)">4</text><text y="0.32em" transform="translate(40,276.170555175487)">6</text><text y="0.32em" transform="translate(40,244.89407356731593)">8</text><text y="0.32em" transform="translate(40,213.617591959145)">10</text><text y="0.32em" transform="translate(40,182.34111035097393)">12</text><text y="0.32em" transform="translate(40,151.06462874280294)">14</text><text y="0.32em" transform="translate(40,119.78814713463191)">16</text><text y="0.32em" transform="translate(40,88.51166552646092)">18</text><text y="0.32em" transform="translate(40,57.235183918289906)">20</text><text y="0.32em" transform="translate(40,25.958702310118873)">22</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(65.20088089994643,370)" d="M0,0L0,6"></path>
+    <path transform="translate(128.23760490446998,370)" d="M0,0L0,6"></path>
+    <path transform="translate(191.30885066365096,370)" d="M0,0L0,6"></path>
+    <path transform="translate(254.34557466817452,370)" d="M0,0L0,6"></path>
+    <path transform="translate(317.382298672698,370)" d="M0,0L0,6"></path>
+    <path transform="translate(380.4190226772216,370)" d="M0,0L0,6"></path>
+    <path transform="translate(443.4902684364025,370)" d="M0,0L0,6"></path>
+    <path transform="translate(506.5269924409261,370)" d="M0,0L0,6"></path>
+    <path transform="translate(569.5637164454497,370)" d="M0,0L0,6"></path>
   </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(65.20088089994643,370)">1975</text><text y="0.71em" transform="translate(128.23760490446998,370)">1980</text><text y="0.71em" transform="translate(191.30885066365096,370)">1985</text><text y="0.71em" transform="translate(254.34557466817452,370)">1990</text><text y="0.71em" transform="translate(317.382298672698,370)">1995</text><text y="0.71em" transform="translate(380.4190226772216,370)">2000</text><text y="0.71em" transform="translate(443.4902684364025,370)">2005</text><text y="0.71em" transform="translate(506.5269924409261,370)">2010</text><text y="0.71em" transform="translate(569.5637164454497,370)">2015</text></g>
   <g aria-label="area">
     <path fill="#59a14f" d="M40,189.819L52.6,192.692L65.201,193.262L77.801,178.039L90.436,139.038L103.037,116.665L115.637,167.593L128.238,191.35L140.873,195.217L153.473,219.666L166.073,218.011L178.674,203.203L191.309,207.905L203.909,200.715L216.51,174.181L229.11,158.618L241.745,157.818L254.346,139.323L266.946,140.034L279.546,112.85L292.181,92.031L304.782,44.439L317.382,46.792L329.983,50.622L342.618,65.183L355.218,33.695L367.819,20L380.419,37.442L393.054,59.56L405.654,89.596L418.255,112.423L430.855,108.719L443.49,118.411L456.091,136.792L468.691,164.585L481.292,207.021L493.927,224.065L506.527,241.403L519.127,243.173L531.728,247.832L544.363,249.255L556.963,256.939L569.564,256.801L582.164,243.755L594.799,226.524L607.4,213.234L620,196.234L620,196.234L607.4,213.234L594.799,226.524L582.164,243.755L569.564,256.801L556.963,256.939L544.363,249.255L531.728,247.832L519.127,243.173L506.527,241.403L493.927,224.065L481.292,207.021L468.691,164.585L456.091,136.792L443.49,118.411L430.855,108.719L418.255,112.423L405.654,89.596L393.054,59.56L380.419,37.442L367.819,20L355.218,33.695L342.618,65.183L329.983,50.622L317.382,46.792L304.782,44.439L292.181,92.031L279.546,112.85L266.946,140.034L254.346,139.323L241.745,157.818L229.11,158.618L216.51,174.181L203.909,200.715L191.309,207.905L178.674,203.203L166.073,218.011L153.473,221.157L140.873,208.984L128.238,216.92L115.637,205.277L103.037,174.796L90.436,192.543L77.801,225.692L65.201,236.586L52.6,237.23L40,233.851Z">
       <title>8 - Track

@@ -13,74 +13,13 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" aria-description="island" transform="translate(570,0)" fill="none" text-anchor="start">
-    <g class="tick" opacity="1" transform="translate(0,50.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Biscoe</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Dream</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,180.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Torgersen</text>
-    </g><text fill="currentColor" transform="translate(70,115) rotate(-90)" dy="-0.32em" text-anchor="middle">island</text>
-  </g>
-  <g aria-label="x-axis" aria-description="Frequency →" transform="translate(0,210)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(75.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(153.7258064516129,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(231.9516129032258,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(310.1774193548387,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(388.4032258064516,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">80</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(466.62903225806446,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">100</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(544.8548387096774,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">120</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Frequency →</text>
-  </g>
-  <g aria-label="y-axis" transform="translate(75,21)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,10.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,29.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" aria-description="species" transform="translate(75,86)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,10.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,29.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g><text fill="currentColor" transform="translate(-75,29.5) rotate(-90)" dy="0.75em" text-anchor="middle">species</text>
-  </g>
-  <g aria-label="y-axis" transform="translate(75,151)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,10.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Adelie</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,29.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Chinstrap</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Gentoo</text>
-    </g>
-  </g>
   <g aria-label="facet" transform="translate(0,21)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9)">
+      <path transform="translate(75,2)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,21)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,40)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="86.0483870967742" y="2" height="17" fill="#4e79a7"></rect>
@@ -91,6 +30,12 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9)">
+      <path transform="translate(75,2)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,21)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,40)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="105.60483870967741" y="2" height="17" fill="#4e79a7"></rect>
@@ -101,6 +46,22 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,151)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9)">
+      <path transform="translate(75,2)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,21)" d="M0,0L-6,0"></path>
+      <path transform="translate(75,40)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(75,59)" d="M0,0L0,6"></path>
+      <path transform="translate(153.2258064516129,59)" d="M0,0L0,6"></path>
+      <path transform="translate(231.4516129032258,59)" d="M0,0L0,6"></path>
+      <path transform="translate(309.6774193548387,59)" d="M0,0L0,6"></path>
+      <path transform="translate(387.9032258064516,59)" d="M0,0L0,6"></path>
+      <path transform="translate(466.12903225806446,59)" d="M0,0L0,6"></path>
+      <path transform="translate(544.3548387096774,59)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(75,59)">0</text><text y="0.71em" transform="translate(153.2258064516129,59)">20</text><text y="0.71em" transform="translate(231.4516129032258,59)">40</text><text y="0.71em" transform="translate(309.6774193548387,59)">60</text><text y="0.71em" transform="translate(387.9032258064516,59)">80</text><text y="0.71em" transform="translate(466.12903225806446,59)">100</text><text y="0.71em" transform="translate(544.3548387096774,59)">120</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="93.87096774193549" y="2" height="17" fill="#4e79a7"></rect>

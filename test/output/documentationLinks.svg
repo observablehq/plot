@@ -13,121 +13,46 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" transform="translate(140,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,35.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Observable Plot</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Marks</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Scales</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Transforms</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Facets</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,135.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Area Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bar Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Cell Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,195.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Dot Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,215.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Image Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,235.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Line Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Link Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,275.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Rect Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,295.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Rule Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,315.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Text Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,335.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Tick Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,355.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Frame Mark</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,375.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Group Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,395.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Bin Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,415.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Stack Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,435.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Map Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,455.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Window Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,475.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Select Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,495.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Interval Transform</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,515.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">Legends</text>
-    </g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+    <path transform="translate(140,26)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,46)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,66)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,86)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,106)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,126)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,146)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,166)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,186)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,206)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,226)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,246)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,266)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,286)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,306)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,326)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,346)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,366)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,386)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,406)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,426)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,446)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,466)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,486)" d="M0,0L-6,0"></path>
+    <path transform="translate(140,506)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="likes →" transform="translate(0,530)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(140.5,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(199.03658536585365,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(257.5731707317073,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(316.109756097561,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">15</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(374.6463414634146,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(433.1829268292683,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">25</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(491.7195121951219,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(550.2560975609756,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">35</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(608.7926829268292,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-510" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">likes →</text>
+  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(140,26)">0</text><text y="0.32em" transform="translate(140,46)">1</text><text y="0.32em" transform="translate(140,66)">2</text><text y="0.32em" transform="translate(140,86)">3</text><text y="0.32em" transform="translate(140,106)">4</text><text y="0.32em" transform="translate(140,126)">5</text><text y="0.32em" transform="translate(140,146)">6</text><text y="0.32em" transform="translate(140,166)">7</text><text y="0.32em" transform="translate(140,186)">8</text><text y="0.32em" transform="translate(140,206)">9</text><text y="0.32em" transform="translate(140,226)">10</text><text y="0.32em" transform="translate(140,246)">11</text><text y="0.32em" transform="translate(140,266)">12</text><text y="0.32em" transform="translate(140,286)">13</text><text y="0.32em" transform="translate(140,306)">14</text><text y="0.32em" transform="translate(140,326)">15</text><text y="0.32em" transform="translate(140,346)">16</text><text y="0.32em" transform="translate(140,366)">17</text><text y="0.32em" transform="translate(140,386)">18</text><text y="0.32em" transform="translate(140,406)">19</text><text y="0.32em" transform="translate(140,426)">20</text><text y="0.32em" transform="translate(140,446)">21</text><text y="0.32em" transform="translate(140,466)">22</text><text y="0.32em" transform="translate(140,486)">23</text><text y="0.32em" transform="translate(140,506)">24</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(140,530)" d="M0,0L0,6"></path>
+    <path transform="translate(198.53658536585365,530)" d="M0,0L0,6"></path>
+    <path transform="translate(257.0731707317073,530)" d="M0,0L0,6"></path>
+    <path transform="translate(315.609756097561,530)" d="M0,0L0,6"></path>
+    <path transform="translate(374.1463414634146,530)" d="M0,0L0,6"></path>
+    <path transform="translate(432.6829268292683,530)" d="M0,0L0,6"></path>
+    <path transform="translate(491.2195121951219,530)" d="M0,0L0,6"></path>
+    <path transform="translate(549.7560975609756,530)" d="M0,0L0,6"></path>
+    <path transform="translate(608.2926829268292,530)" d="M0,0L0,6"></path>
   </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(140,530)">0</text><text y="0.71em" transform="translate(198.53658536585365,530)">5</text><text y="0.71em" transform="translate(257.0731707317073,530)">10</text><text y="0.71em" transform="translate(315.609756097561,530)">15</text><text y="0.71em" transform="translate(374.1463414634146,530)">20</text><text y="0.71em" transform="translate(432.6829268292683,530)">25</text><text y="0.71em" transform="translate(491.2195121951219,530)">30</text><text y="0.71em" transform="translate(549.7560975609756,530)">35</text><text y="0.71em" transform="translate(608.2926829268292,530)">40</text></g>
   <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-marks" target="_blank">

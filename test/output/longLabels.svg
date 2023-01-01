@@ -13,50 +13,32 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Responses (%)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,360.5)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,335.3148148148148)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,310.1296296296297)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,284.94444444444446)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,259.7592592592593)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,234.5740740740741)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">10</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,209.38888888888889)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">12</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,184.20370370370372)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">14</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,159.01851851851853)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">16</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,133.83333333333334)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">18</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,108.64814814814815)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">20</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,83.46296296296298)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">22</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,58.27777777777779)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">24</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,33.09259259259261)">
-      <line stroke="currentColor" x2="-6"></line><text fill="currentColor" x="-9" dy="0.32em">26</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Responses (%)</text>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,360)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,334.8148148148148)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,309.6296296296297)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,284.44444444444446)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,259.2592592592593)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,234.0740740740741)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,208.88888888888889)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,183.70370370370372)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,158.51851851851853)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,133.33333333333334)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,108.14814814814815)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,82.96296296296298)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,57.77777777777779)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,32.59259259259261)" d="M0,0L-6,0"></path>
   </g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,360)">0</text><text y="0.32em" transform="translate(40,334.8148148148148)">2</text><text y="0.32em" transform="translate(40,309.6296296296297)">4</text><text y="0.32em" transform="translate(40,284.44444444444446)">6</text><text y="0.32em" transform="translate(40,259.2592592592593)">8</text><text y="0.32em" transform="translate(40,234.0740740740741)">10</text><text y="0.32em" transform="translate(40,208.88888888888889)">12</text><text y="0.32em" transform="translate(40,183.70370370370372)">14</text><text y="0.32em" transform="translate(40,158.51851851851853)">16</text><text y="0.32em" transform="translate(40,133.33333333333334)">18</text><text y="0.32em" transform="translate(40,108.14814814814815)">20</text><text y="0.32em" transform="translate(40,82.96296296296298)">22</text><text y="0.32em" transform="translate(40,57.77777777777779)">24</text><text y="0.32em" transform="translate(40,32.59259259259261)">26</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+    <path transform="translate(50,360)" d="M0,0L0,6"></path>
+    <path transform="translate(145,360)" d="M0,0L0,6"></path>
+    <path transform="translate(240,360)" d="M0,0L0,6"></path>
+    <path transform="translate(335,360)" d="M0,0L0,6"></path>
+    <path transform="translate(430,360)" d="M0,0L0,6"></path>
+    <path transform="translate(525,360)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" transform="translate(43.5,9.5)"><text y="0.71em" transform="translate(50,360)">Committed 671 birthdays to memory</text><text y="0.71em" transform="translate(145,360)">Discovered how to “like” things mentally</text><text y="0.71em" transform="translate(240,360)">Ex is doing too well</text><text y="0.71em" transform="translate(335,360)">Family in feud with Zucker­bergs</text><text y="0.71em" transform="translate(430,360)">High school friends all dead now</text><text y="0.71em" transform="translate(525,360)">Not enough politics</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,360)" d="M0,0L0,6"></path>
     <path transform="translate(145,360)" d="M0,0L0,6"></path>

@@ -13,78 +13,29 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis" aria-description="↑ Cost of gasoline ($ per gallon)" transform="translate(40,0)" fill="none" text-anchor="end" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(0,358.4530883502736)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,324.05121188428456)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,289.6493354182955)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">1.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.2474589523065)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,220.8455824863174)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.2</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,186.44370602032842)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.4</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,152.0418295543393)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.6</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,117.63995308835027)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">2.8</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,83.2380766223612)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.0</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,48.83620015637213)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="580" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">3.2</text>
-    </g><text fill="currentColor" font-variant="normal" transform="translate(-40,20)" dy="-1em" text-anchor="start">↑ Cost of gasoline ($ per gallon)</text>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,357.9530883502736)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,323.55121188428456)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,289.1493354182955)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,254.7474589523065)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,220.3455824863174)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,185.94370602032842)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,151.5418295543393)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,117.13995308835027)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,82.7380766223612)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,48.33620015637213)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="x-axis" aria-description="Miles driven (per person-year) →" transform="translate(0,370)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(78.30188410270392,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">4,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(166.19811067845762,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">5,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(254.09433725421138,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">6,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(341.9905638299651,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">7,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(429.8867904057188,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">8,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(517.7830169814725,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">9,000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(605.6792435572262,0)">
-      <line stroke="currentColor" y2="6"></line>
-      <line stroke="currentColor" y2="-350" stroke-opacity="0.1"></line><text fill="currentColor" y="9" dy="0.71em">10,000</text>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">Miles driven (per person-year) →</text>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,357.9530883502736)">1.4</text><text y="0.32em" transform="translate(40,323.55121188428456)">1.6</text><text y="0.32em" transform="translate(40,289.1493354182955)">1.8</text><text y="0.32em" transform="translate(40,254.7474589523065)">2.0</text><text y="0.32em" transform="translate(40,220.3455824863174)">2.2</text><text y="0.32em" transform="translate(40,185.94370602032842)">2.4</text><text y="0.32em" transform="translate(40,151.5418295543393)">2.6</text><text y="0.32em" transform="translate(40,117.13995308835027)">2.8</text><text y="0.32em" transform="translate(40,82.7380766223612)">3.0</text><text y="0.32em" transform="translate(40,48.33620015637213)">3.2</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(77.80188410270392,370)" d="M0,0L0,6"></path>
+    <path transform="translate(165.69811067845762,370)" d="M0,0L0,6"></path>
+    <path transform="translate(253.59433725421138,370)" d="M0,0L0,6"></path>
+    <path transform="translate(341.4905638299651,370)" d="M0,0L0,6"></path>
+    <path transform="translate(429.3867904057188,370)" d="M0,0L0,6"></path>
+    <path transform="translate(517.2830169814725,370)" d="M0,0L0,6"></path>
+    <path transform="translate(605.1792435572262,370)" d="M0,0L0,6"></path>
   </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(77.80188410270392,370)">4,000</text><text y="0.71em" transform="translate(165.69811067845762,370)">5,000</text><text y="0.71em" transform="translate(253.59433725421138,370)">6,000</text><text y="0.71em" transform="translate(341.4905638299651,370)">7,000</text><text y="0.71em" transform="translate(429.3867904057188,370)">8,000</text><text y="0.71em" transform="translate(517.2830169814725,370)">9,000</text><text y="0.71em" transform="translate(605.1792435572262,370)">10,000</text></g>
   <g aria-label="line" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <marker viewBox="-5 -5 10 10" markerWidth="6.67" markerHeight="6.67" orient="auto" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" id="plot-marker-1">
       <path d="M-1.5,-3l3,3l-3,3"></path>

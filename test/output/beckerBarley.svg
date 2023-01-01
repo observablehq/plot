@@ -13,456 +13,242 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" aria-description="site" transform="translate(550,0)" fill="none" text-anchor="start">
-    <g class="tick" opacity="1" transform="translate(0,77.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Waseca</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,204.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Crookston</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,331.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Morris</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,458.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">University Farm</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,585.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Duluth</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,712.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="9" dy="0.32em">Grand Rapids</text>
-    </g><text fill="currentColor" transform="translate(90,395) rotate(-90)" dy="-0.32em" text-anchor="middle">site</text>
-  </g>
-  <g aria-label="x-axis" aria-description="yield →" transform="translate(0,770)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(110.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">10</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(183.83333333333331,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">20</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(257.16666666666663,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">30</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(330.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">40</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(403.8333333333333,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">50</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(477.1666666666667,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">60</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g>
-    <g class="tick" opacity="1" transform="translate(550.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">70</text>
-      <path stroke="currentColor" stroke-opacity="0.1" d="M0,-750v114M0,-623v114M0,-496v114M0,-369v114M0,-242v114M0,-115v114"></path>
-    </g><text fill="currentColor" transform="translate(640,30)" dy="-0.32em" text-anchor="end">yield →</text>
-  </g>
-  <g aria-label="y-axis" transform="translate(110,20)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(110,147)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(110,274)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" aria-description="variety" transform="translate(110,401)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g><text fill="currentColor" transform="translate(-110,57) rotate(-90)" dy="0.75em" text-anchor="middle">variety</text>
-  </g>
-  <g aria-label="y-axis" transform="translate(110,528)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g>
-  </g>
-  <g aria-label="y-axis" transform="translate(110,655)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,12.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Trebi</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,22.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Wisconsin No. 38</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,32.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 457</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,42.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Glabron</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,52.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Peatland</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,62.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Velvet</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,72.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 475</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,82.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Manchuria</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,92.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">No. 462</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,102.5)">
-      <line stroke="currentColor" x2="-6"></line>
-      <line stroke="currentColor" x2="440" stroke-opacity="0.1"></line><text fill="currentColor" x="-9" dy="0.32em">Svansota</text>
-    </g>
-  </g>
   <g aria-label="facet" transform="translate(0,20)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="395.02224666666666" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="441.4666666666667" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="383.77775333333335" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="405.04442000000006" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="504.77753333333334" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="462.7333333333333" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="518.9558" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="392.82217333333335" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="379.6222466666666" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="467.8666666666666" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="282.0889133333333" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="313.3777533333334" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="319" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="310.93333333333334" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="397.7108666666667" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="346.1333333333333" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="364.4666666666667" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="300.9110866666667" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="339.28891333333337" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="463.2222466666667" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="440.366695" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="494.20000000000005" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="427.333305" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="451.9833050000001" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="567.58305" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="518.85" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="584.01695" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="437.81660999999997" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="422.51669499999997" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="524.8" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="309.466695" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="345.73330500000003" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="352.25" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="342.9" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="443.48305" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="383.7" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="404.95" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="331.283305" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="375.766695" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="519.4166950000001" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,147)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="329.51108666666664" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="316.3110866666667" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="333.4222466666667" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="339.77775333333335" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="380.84441999999996" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="371.55558" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="392.82217333333335" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="341.73333333333335" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="360.0666666666667" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="402.35558000000003" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="278.42224666666664" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="228.55558" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="187.97775333333334" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="271.82217333333335" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="343.44442" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="288.44442" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="260.57775333333336" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="221.71108666666663" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="272.31108666666665" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="299.93333333333334" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="364.43330499999996" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="349.13330500000006" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="368.966695" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="376.333305" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="423.93330499999996" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="413.16669500000006" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="437.81660999999997" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="378.6" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="399.85" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="448.866695" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="305.21669499999996" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="247.416695" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="200.383305" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="297.56660999999997" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="380.58330499999994" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="316.833305" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="284.533305" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="239.48330499999997" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="298.133305" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="330.15" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,274)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="237.84449333333333" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="247.62224666666668" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="225.62224666666668" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="228.31108666666665" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="357.6222466666667" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="247.13333333333333" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="259.35558" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="255.68891333333335" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="202.40000000000003" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="252.75558" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="288.68884" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="294.31108666666665" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="293.57775333333336" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="321.44442" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="378.64441999999997" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="355.91116" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="381.33333333333337" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="353.46666666666664" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="361.04442" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="382.55558" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="258.18339000000003" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="269.516695" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="244.01669500000003" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="247.133305" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="397.016695" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="268.95" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="283.116695" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="278.86669500000005" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="217.10000000000002" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="275.466695" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="317.11661000000004" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="323.633305" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="322.78330500000004" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="355.083305" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="421.383305" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="395.03339" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="424.50000000000006" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="392.2" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="400.98330500000003" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="425.91669500000006" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,401)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="234.66666666666669" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="352.48884000000004" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="294.31108666666665" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="329.26666666666665" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="304.8221733333333" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="353.95558" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="305.06666666666666" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="276.95558" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="217.55558000000002" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="324.8666666666667" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="233.93333333333328" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="306.5333333333333" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="237.84449333333333" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="233.20000000000005" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="249.82224666666667" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="230.51116" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="224.15558" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="242.48891333333336" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="256.66666666666663" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="315.33333333333337" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="254.5" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="391.06661" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="323.633305" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="364.15" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="335.81661" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="392.76669499999997" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="336.1" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="303.51669499999997" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="234.666695" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="359.05" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="253.64999999999998" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="337.79999999999995" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="258.18339000000003" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="252.8" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="272.066695" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="249.68339" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="242.31669499999998" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="263.566695" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="280" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="348" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,528)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="249.08891333333332" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="254.22224666666665" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="225.13333333333333" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="229.5333333333333" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="285.51108666666664" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="283.06666666666666" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="242.73333333333335" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="271.3333333333333" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="279.15550666666667" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="268.40000000000003" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="202.15558" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="226.35557999999997" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="199.7110866666667" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="201.4222466666667" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="261.0666666666667" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="203.13333333333333" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="201.66666666666669" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="266.68891333333335" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="237.35557999999997" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="251.7777533333333" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="271.21669499999996" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="277.166695" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="243.45" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="248.55" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="313.43330499999996" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="310.6" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="263.85" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="297" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="306.06661" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="293.6" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="216.81669499999998" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="244.866695" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="213.983305" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="215.96669500000002" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="285.1" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="217.95" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="216.25" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="291.616695" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="257.616695" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="274.333305" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,655)">
-    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(110,12)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,22)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,32)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,42)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,52)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,62)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,72)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,82)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,92)" d="M0,0L-6,0"></path>
+      <path transform="translate(110,102)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(110,114)" d="M0,0L0,6"></path>
+      <path transform="translate(195,114)" d="M0,0L0,6"></path>
+      <path transform="translate(280,114)" d="M0,0L0,6"></path>
+      <path transform="translate(365,114)" d="M0,0L0,6"></path>
+      <path transform="translate(450,114)" d="M0,0L0,6"></path>
+      <path transform="translate(535.0000000000001,114)" d="M0,0L0,6"></path>
+      <path transform="translate(620,114)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(110,114)">10</text><text y="0.71em" transform="translate(195,114)">20</text><text y="0.71em" transform="translate(280,114)">30</text><text y="0.71em" transform="translate(365,114)">40</text><text y="0.71em" transform="translate(450,114)">50</text><text y="0.71em" transform="translate(535.0000000000001,114)">60</text><text y="0.71em" transform="translate(620,114)">70</text></g>
+    <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="510" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
-      <circle cx="278.42224666666664" cy="82" r="3" stroke="#4e79a7"></circle>
-      <circle cx="250.31108666666665" cy="42" r="3" stroke="#4e79a7"></circle>
-      <circle cx="254.22224666666665" cy="102" r="3" stroke="#4e79a7"></circle>
-      <circle cx="205.5777533333333" cy="62" r="3" stroke="#4e79a7"></circle>
-      <circle cx="254.95558" cy="12" r="3" stroke="#4e79a7"></circle>
-      <circle cx="272.55558" cy="32" r="3" stroke="#4e79a7"></circle>
-      <circle cx="219.51116000000002" cy="92" r="3" stroke="#4e79a7"></circle>
-      <circle cx="291.1333333333334" cy="52" r="3" stroke="#4e79a7"></circle>
-      <circle cx="181.13333333333333" cy="72" r="3" stroke="#4e79a7"></circle>
-      <circle cx="289.42224666666664" cy="22" r="3" stroke="#4e79a7"></circle>
-      <circle cx="198.97775333333334" cy="82" r="3" stroke="#f28e2c"></circle>
-      <circle cx="142.51108666666667" cy="42" r="3" stroke="#f28e2c"></circle>
-      <circle cx="158.64442" cy="102" r="3" stroke="#f28e2c"></circle>
-      <circle cx="273.04442" cy="62" r="3" stroke="#f28e2c"></circle>
-      <circle cx="187.97775333333334" cy="12" r="3" stroke="#f28e2c"></circle>
-      <circle cx="179.4222466666667" cy="32" r="3" stroke="#f28e2c"></circle>
-      <circle cx="182.59999999999997" cy="92" r="3" stroke="#f28e2c"></circle>
-      <circle cx="232.95558" cy="52" r="3" stroke="#f28e2c"></circle>
-      <circle cx="148.37775333333332" cy="72" r="3" stroke="#f28e2c"></circle>
-      <circle cx="188.22224666666665" cy="22" r="3" stroke="#f28e2c"></circle>
+      <circle cx="305.21669499999996" cy="82" r="3" stroke="#4e79a7"></circle>
+      <circle cx="272.633305" cy="42" r="3" stroke="#4e79a7"></circle>
+      <circle cx="277.166695" cy="102" r="3" stroke="#4e79a7"></circle>
+      <circle cx="220.78330499999998" cy="62" r="3" stroke="#4e79a7"></circle>
+      <circle cx="278.016695" cy="12" r="3" stroke="#4e79a7"></circle>
+      <circle cx="298.41669500000006" cy="32" r="3" stroke="#4e79a7"></circle>
+      <circle cx="236.93339" cy="92" r="3" stroke="#4e79a7"></circle>
+      <circle cx="319.95000000000005" cy="52" r="3" stroke="#4e79a7"></circle>
+      <circle cx="192.45" cy="72" r="3" stroke="#4e79a7"></circle>
+      <circle cx="317.966695" cy="22" r="3" stroke="#4e79a7"></circle>
+      <circle cx="213.133305" cy="82" r="3" stroke="#f28e2c"></circle>
+      <circle cx="147.68330500000002" cy="42" r="3" stroke="#f28e2c"></circle>
+      <circle cx="166.383305" cy="102" r="3" stroke="#f28e2c"></circle>
+      <circle cx="298.98330500000003" cy="62" r="3" stroke="#f28e2c"></circle>
+      <circle cx="200.383305" cy="12" r="3" stroke="#f28e2c"></circle>
+      <circle cx="190.46669500000002" cy="32" r="3" stroke="#f28e2c"></circle>
+      <circle cx="194.14999999999998" cy="92" r="3" stroke="#f28e2c"></circle>
+      <circle cx="252.516695" cy="52" r="3" stroke="#f28e2c"></circle>
+      <circle cx="154.483305" cy="72" r="3" stroke="#f28e2c"></circle>
+      <circle cx="200.666695" cy="22" r="3" stroke="#f28e2c"></circle>
     </g>
   </g>
 </svg>

@@ -13,70 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="fy-axis" aria-description="industry" transform="translate(140,0)" fill="none" text-anchor="end">
-    <g class="tick" opacity="1" transform="translate(0,35.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Construction</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,55.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Wholesale and Retail Trade</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,75.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Manufacturing</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,95.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Leisure and hospitality</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,115.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Business services</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,135.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Education and Health</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,155.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Government</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,175.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Self-employed</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,195.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Finance</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,215.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Transportation and Utilities</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,235.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Other</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,255.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Information</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,275.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Agriculture</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(0,295.5)">
-      <line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-9" dy="0.32em">Mining and Extraction</text>
-    </g><text fill="currentColor" transform="translate(-140,165) rotate(-90)" dy="0.75em" text-anchor="middle">industry</text>
-  </g>
-  <g aria-label="x-axis" transform="translate(0,310)" fill="none" text-anchor="middle" font-variant="tabular-nums">
-    <g class="tick" opacity="1" transform="translate(140.5,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2000</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(235.02586206896552,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2002</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(329.4224137931035,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2004</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(423.948275862069,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2006</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(518.344827586207,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2008</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(612.8706896551724,0)">
-      <line stroke="currentColor" y2="6"></line><text fill="currentColor" y="9" dy="0.71em">2010</text>
-    </g>
-  </g>
   <g aria-label="facet" transform="translate(0,26)">
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f1814d">
@@ -5018,6 +4954,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,286)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(140,18)" d="M0,0L0,6"></path>
+      <path transform="translate(234.52586206896552,18)" d="M0,0L0,6"></path>
+      <path transform="translate(328.9224137931035,18)" d="M0,0L0,6"></path>
+      <path transform="translate(423.448275862069,18)" d="M0,0L0,6"></path>
+      <path transform="translate(517.844827586207,18)" d="M0,0L0,6"></path>
+      <path transform="translate(612.3706896551724,18)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(140,18)">2000</text><text y="0.71em" transform="translate(234.52586206896552,18)">2002</text><text y="0.71em" transform="translate(328.9224137931035,18)">2004</text><text y="0.71em" transform="translate(423.448275862069,18)">2006</text><text y="0.71em" transform="translate(517.844827586207,18)">2008</text><text y="0.71em" transform="translate(612.3706896551724,18)">2010</text></g>
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f0f724">
         <title>19</title>

@@ -13,21 +13,32 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis" transform="translate(0,30)" fill="none" text-anchor="middle">
-    <g class="tick" opacity="1" transform="translate(50.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of population</text>
-    </g>
-    <g class="tick" opacity="1" transform="translate(580.5,0)">
-      <line stroke="currentColor" y2="0"></line><text fill="currentColor" y="-9" dy="0em">Share of wealth</text>
-    </g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(50,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,335)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,300)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,265)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,230)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,195)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,160)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,125)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,90)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,55)" d="M0,0L-6,0"></path>
+    <path transform="translate(50,20)" d="M0,0L-6,0"></path>
   </g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(50,370)">100</text><text y="0.32em" transform="translate(50,335)">90</text><text y="0.32em" transform="translate(50,300)">80</text><text y="0.32em" transform="translate(50,265)">70</text><text y="0.32em" transform="translate(50,230)">60</text><text y="0.32em" transform="translate(50,195)">50</text><text y="0.32em" transform="translate(50,160)">40</text><text y="0.32em" transform="translate(50,125)">30</text><text y="0.32em" transform="translate(50,90)">20</text><text y="0.32em" transform="translate(50,55)">10</text><text y="0.32em" transform="translate(50,20)">0</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(50,370)" d="M0,0L0,6"></path>
+    <path transform="translate(580,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(50,370)">population</text><text y="0.71em" transform="translate(580,370)">wealth</text></g>
   <g aria-label="area" stroke="white" stroke-linejoin="round" stroke-linecap="round">
-    <path fill="#008837" d="M50,140.7C315,140.7,315,41.07,580,41.07L580,30C315,30,315,30,50,30Z"></path>
-    <path fill="#a6dba0" d="M50,262.47C315,262.47,315,159.15,580,159.15L580,41.07C315,41.07,315,140.7,50,140.7Z"></path>
-    <path fill="#c2a5cf" d="M50,365.79C315,365.79,315,351.03,580,351.03L580,159.15C315,159.15,315,262.47,50,262.47Z"></path>
-    <path fill="#7b3294" d="M50,399C315,399,315,399,580,399L580,351.03C315,351.03,315,365.79,50,365.79Z"></path>
+    <path fill="#008837" d="M50,125C315,125,315,30.5,580,30.5L580,20C315,20,315,20,50,20Z"></path>
+    <path fill="#a6dba0" d="M50,240.5C315,240.5,315,142.5,580,142.5L580,30.5C315,30.5,315,125,50,125Z"></path>
+    <path fill="#c2a5cf" d="M50,338.5C315,338.5,315,324.5,580,324.5L580,142.5C315,142.5,315,240.5,50,240.5Z"></path>
+    <path fill="#7b3294" d="M50,370C315,370,315,370,580,370L580,324.5C315,324.5,315,338.5,50,338.5Z"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)"><text y="0.32em" transform="translate(50,85.35)">30%</text><text y="0.32em" transform="translate(50,201.58499999999998)">33%</text><text y="0.32em" transform="translate(50,314.13)">28%</text><text y="0.32em" transform="translate(50,382.395)">9%</text></g>
-  <g aria-label="text" text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(580,35.535)">3%</text><text y="0.32em" transform="translate(580,100.11)">32%</text><text y="0.32em" transform="translate(580,255.08999999999997)">52%</text><text y="0.32em" transform="translate(580,375.015)">13%</text></g>
-  <g aria-label="text" fill="white" text-anchor="start" font-weight="bold" transform="translate(8.5,0.5)"><text y="0.32em" transform="translate(50,85.35)">16-34’s</text><text y="0.32em" transform="translate(50,201.58499999999998)">35-54’s</text><text y="0.32em" transform="translate(50,314.13)">55-74’s</text><text y="0.32em" transform="translate(50,382.395)">Over 75’s</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-5.5,0.5)"><text y="0.32em" transform="translate(50,72.5)">30%</text><text y="0.32em" transform="translate(50,182.75)">33%</text><text y="0.32em" transform="translate(50,289.50000000000006)">28%</text><text y="0.32em" transform="translate(50,354.24999999999994)">9%</text></g>
+  <g aria-label="text" text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(580,25.25)">3%</text><text y="0.32em" transform="translate(580,86.5)">32%</text><text y="0.32em" transform="translate(580,233.5)">52%</text><text y="0.32em" transform="translate(580,347.25000000000006)">13%</text></g>
+  <g aria-label="text" fill="white" text-anchor="start" font-weight="bold" transform="translate(8.5,0.5)"><text y="0.32em" transform="translate(50,72.5)">16-34’s</text><text y="0.32em" transform="translate(50,182.75)">35-54’s</text><text y="0.32em" transform="translate(50,289.50000000000006)">55-74’s</text><text y="0.32em" transform="translate(50,354.24999999999994)">Over 75’s</text></g>
 </svg>

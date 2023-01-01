@@ -1,7 +1,7 @@
 import {pathRound as path} from "d3";
 import {create} from "../context.js";
+import {Mark} from "../mark.js";
 import {maybeFrameAnchor, maybeNumberChannel, maybeTuple, keyword, identity} from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,

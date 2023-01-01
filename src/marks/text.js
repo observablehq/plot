@@ -2,6 +2,7 @@ import {namespaces} from "d3";
 import {create} from "../context.js";
 import {nonempty} from "../defined.js";
 import {formatDefault} from "../format.js";
+import {Mark} from "../mark.js";
 import {
   indexOf,
   identity,
@@ -16,7 +17,6 @@ import {
   isTextual,
   isIterable
 } from "../options.js";
-import {Mark} from "../plot.js";
 import {
   applyChannelStyles,
   applyDirectStyles,

@@ -4,6 +4,7 @@ import * as d3 from "d3";
 export default async function () {
   const AAPL = (await d3.csv("data/aapl.csv", d3.autoType)).slice(-120);
   return Plot.plot({
+    width: 960,
     inset: 6,
     grid: true,
     y: {
@@ -27,7 +28,6 @@ export default async function () {
         strokeWidth: 4,
         strokeLinecap: "round"
       })
-    ],
-    width: 960
+    ]
   });
 }
