@@ -138,6 +138,7 @@ export function plot(options = {}) {
   const dimensions = Dimensions(scaleDescriptors, marks, options);
 
   autoScaleRange(scaleDescriptors, dimensions);
+  autoScaleLabels(channelsByScale, scaleDescriptors, options);
 
   const {fx, fy} = scales;
   const fyMargins = fy && {marginTop: 0, marginBottom: 0, height: fy.bandwidth()};
@@ -186,21 +187,15 @@ export function plot(options = {}) {
     }
   }
 
-  // Reconstruct scales if new scaled channels were created during reinitialization.
+  // Reconstruct scales if new scaled channels were created during
+  // reinitialization. Preserve existing scale labels, if any.
   if (newByScale.size) {
-    const newScaleDescriptors = Scales(
-      addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key)),
-      options
-    );
+    const newChannelsByScale = addScaleChannels(new Map(), stateByMark, (key) => newByScale.has(key));
+    const newScaleDescriptors = inheritScaleLabels(Scales(newChannelsByScale, options), scaleDescriptors);
     const newScales = ScaleFunctions(newScaleDescriptors);
     Object.assign(scaleDescriptors, newScaleDescriptors);
     Object.assign(scales, newScales);
   }
-
-  // TODO This is running after the mark initializers, so when the mark
-  // initializers run, there won’t be any scale labels yet… Also, this should be
-  // restructured in a way that’s not specific to axes.
-  autoScaleLabels(channelsByScale, scaleDescriptors, dimensions, options);
 
   // Compute value objects, applying scales as needed.
   for (const state of stateByMark.values()) {
@@ -591,4 +586,15 @@ function hasScale(marks, k) {
     }
   }
   return false;
+}
+
+function inheritScaleLabels(newScales, scales) {
+  for (const key in newScales) {
+    const newScale = newScales[key];
+    const scale = scales[key];
+    if (newScale.label === undefined && scale) {
+      newScale.label = scale.label;
+    }
+  }
+  return newScales;
 }

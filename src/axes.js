@@ -4,74 +4,17 @@ import {constant, isTemporal, string} from "./options.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
 
 // Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
-export function autoScaleLabels(channels, scales, dimensions, options) {
-  const {x, y, fx, fy} = {}; // TODO
-  if (fx) {
-    autoAxisLabelsX(fx, scales.fx, channels.get("fx"));
-    if (fx.labelOffset === undefined) {
-      const {facetMarginTop, facetMarginBottom} = dimensions;
-      fx.labelOffset = fx.axis === "top" ? facetMarginTop : facetMarginBottom;
-    }
-  }
-  if (fy) {
-    autoAxisLabelsY(fy, fx, scales.fy, channels.get("fy"));
-    if (fy.labelOffset === undefined) {
-      const {facetMarginLeft, facetMarginRight} = dimensions;
-      fy.labelOffset = fy.axis === "left" ? facetMarginLeft : facetMarginRight;
-    }
-  }
-  if (x) {
-    autoAxisLabelsX(x, scales.x, channels.get("x"));
-    if (x.labelOffset === undefined) {
-      const {marginTop, marginBottom, facetMarginTop, facetMarginBottom} = dimensions;
-      x.labelOffset = x.axis === "top" ? marginTop - facetMarginTop : marginBottom - facetMarginBottom;
-    }
-  }
-  if (y) {
-    autoAxisLabelsY(y, x, scales.y, channels.get("y"));
-    if (y.labelOffset === undefined) {
-      const {marginRight, marginLeft, facetMarginLeft, facetMarginRight} = dimensions;
-      y.labelOffset = y.axis === "left" ? marginLeft - facetMarginLeft : marginRight - facetMarginRight;
-    }
-  }
+export function autoScaleLabels(channels, scales, options) {
   for (const key in scales) {
     autoScaleLabel(key, scales[key], channels.get(key), options[key]);
   }
 }
 
-// Mutates axis.labelAnchor, axis.label, scale.label!
-function autoAxisLabelsX(axis, scale, channels) {
-  if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = isOrdinalScale(scale) ? "center" : scaleOrder(scale) < 0 ? "left" : "right";
-  }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "x");
-  }
-  scale.label = axis.label;
-}
-
-// Mutates axis.labelAnchor, axis.label, scale.label!
-function autoAxisLabelsY(axis, opposite, scale, channels) {
-  if (axis.labelAnchor === undefined) {
-    axis.labelAnchor = isOrdinalScale(scale)
-      ? "center"
-      : opposite && opposite.axis === "top"
-      ? "bottom" // TODO scaleOrder?
-      : "top";
-  }
-  if (axis.label === undefined) {
-    axis.label = inferLabel(channels, scale, axis, "y");
-  }
-  scale.label = axis.label;
-}
-
 // Mutates scale.label!
-function autoScaleLabel(key, scale, channels, options) {
-  if (options) {
-    scale.label = options.label;
-  }
+function autoScaleLabel(key, scale, channels, options = {}) {
   if (scale.label === undefined) {
-    scale.label = inferLabel(channels, scale, null, key);
+    const {label = inferScaleLabel(channels, scale, key)} = options;
+    scale.label = label;
   }
   if (scale.scale) {
     scale.scale.label = scale.label; // TODO cleaner way of exposing scale
@@ -80,9 +23,9 @@ function autoScaleLabel(key, scale, channels, options) {
 
 // Channels can have labels; if all the channels for a given scale are
 // consistently labeled (i.e., have the same value if not undefined), and the
-// corresponding axis doesn’t already have an explicit label, then the channels’
-// label is promoted to the corresponding axis.
-function inferLabel(channels = [], scale, axis, key) {
+// corresponding scale doesn’t already have an explicit label, then the
+// channels’ label is promoted to the scale.
+function inferScaleLabel(channels = [], scale, key) {
   let candidate;
   for (const {label} of channels) {
     if (label === undefined) continue;
@@ -97,7 +40,8 @@ function inferLabel(channels = [], scale, axis, key) {
       if (key === "x" || key === "y") {
         const order = scaleOrder(scale);
         if (order) {
-          if (key === "x" || (axis && axis.labelAnchor === "center")) {
+          // TODO key === "y" && axis?.labelAnchor === "center"
+          if (key === "x") {
             candidate = (key === "x") === order < 0 ? `← ${candidate}` : `${candidate} →`;
           } else {
             candidate = `${order < 0 ? "↑ " : "↓ "}${candidate}`;
