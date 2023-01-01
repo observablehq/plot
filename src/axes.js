@@ -153,7 +153,9 @@ function autoScaleLabel(key, scale, channels, options) {
   if (scale.label === undefined) {
     scale.label = inferLabel(channels, scale, null, key);
   }
-  scale.scale.label = scale.label; // XXX
+  if (scale.scale) {
+    scale.scale.label = scale.label; // TODO cleaner way of exposing scale
+  }
 }
 
 // Channels can have labels; if all the channels for a given scale are

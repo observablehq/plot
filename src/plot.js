@@ -422,6 +422,10 @@ class Render {
   constructor(render) {
     if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
     this.render = render;
+    this.channels = {};
+  }
+  initialize() {
+    return {channels: {}};
   }
   render() {}
 }
