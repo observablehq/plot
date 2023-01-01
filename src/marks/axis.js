@@ -123,7 +123,7 @@ function axisKy(
 
 // class AxisLabel extends Text {
 //   constructor(k, options) {
-//     super(null, {...options, decoration: true});
+//     super(null, options);
 //     this.k = k;
 //   }
 //   render(index, scales, channels, dimensions, context) {
@@ -405,7 +405,7 @@ function gridDefaults({
 function axisMark(mark, k, data, options, initialize) {
   return mark(
     data,
-    initializer({...options, decoration: true}, function (data, facets, channels, scales) {
+    initializer(options, function (data, facets, channels, scales) {
       const {[k]: scale} = scales;
       if (!scale) throw new Error(`missing scale: ${k}`);
       let {ticks} = options;

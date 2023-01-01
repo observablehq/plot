@@ -80,9 +80,9 @@ export function plot(options = {}) {
     // the domain. Expunge empty facets, and clear the corresponding elements
     // from the nested index in each mark.
     const nonEmpty = new Set();
-    for (const [mark, {facetsIndex}] of facetStateByMark) {
+    for (const {facetsIndex} of facetStateByMark.values()) {
       facetsIndex?.forEach((index, i) => {
-        if (index?.length > 0 && !mark.decoration) {
+        if (index?.length > 0) {
           nonEmpty.add(i);
         }
       });

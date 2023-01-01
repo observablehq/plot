@@ -23,7 +23,6 @@ export class Mark {
       marginBottom = margin,
       marginLeft = margin,
       clip,
-      decoration,
       channels: extraChannels
     } = options;
     this.data = data;
@@ -37,7 +36,6 @@ export class Mark {
       this.fx = fx;
       this.fy = fy;
     }
-    this.decoration = decoration;
     this.facetAnchor = maybeFacetAnchor(facetAnchor);
     channels = maybeNamed(channels);
     if (extraChannels !== undefined) channels = {...maybeNamed(extraChannels), ...channels};
