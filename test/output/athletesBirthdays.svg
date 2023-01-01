@@ -36,7 +36,7 @@
     <path transform="translate(40,226)" d="M0,0L-6,0"></path>
     <path transform="translate(40,246)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(40,26)">0</text><text y="0.32em" transform="translate(40,46)">1</text><text y="0.32em" transform="translate(40,66)">2</text><text y="0.32em" transform="translate(40,86)">3</text><text y="0.32em" transform="translate(40,106)">4</text><text y="0.32em" transform="translate(40,126)">5</text><text y="0.32em" transform="translate(40,146)">6</text><text y="0.32em" transform="translate(40,166)">7</text><text y="0.32em" transform="translate(40,186)">8</text><text y="0.32em" transform="translate(40,206)">9</text><text y="0.32em" transform="translate(40,226)">10</text><text y="0.32em" transform="translate(40,246)">11</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(40,26)">Jan</text><text y="0.32em" transform="translate(40,46)">Feb</text><text y="0.32em" transform="translate(40,66)">Mar</text><text y="0.32em" transform="translate(40,86)">Apr</text><text y="0.32em" transform="translate(40,106)">May</text><text y="0.32em" transform="translate(40,126)">Jun</text><text y="0.32em" transform="translate(40,146)">Jul</text><text y="0.32em" transform="translate(40,166)">Aug</text><text y="0.32em" transform="translate(40,186)">Sep</text><text y="0.32em" transform="translate(40,206)">Oct</text><text y="0.32em" transform="translate(40,226)">Nov</text><text y="0.32em" transform="translate(40,246)">Dec</text></g>
   <g aria-label="bar">
     <rect x="40" width="560" y="26" height="18"></rect>
     <rect x="40" width="487.5774134790528" y="46" height="18"></rect>

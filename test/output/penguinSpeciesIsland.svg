@@ -19,6 +19,16 @@
     <path transform="translate(433,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" transform="translate(84.5,9.5)"><text y="0.71em" transform="translate(59,370)">Adelie</text><text y="0.71em" transform="translate(246,370)">Chinstrap</text><text y="0.71em" transform="translate(433,370)">Gentoo</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="323.94736842105266" y2="323.94736842105266"></line>
+    <line x1="40" x2="620" y1="277.89473684210526" y2="277.89473684210526"></line>
+    <line x1="40" x2="620" y1="231.8421052631579" y2="231.8421052631579"></line>
+    <line x1="40" x2="620" y1="185.78947368421052" y2="185.78947368421052"></line>
+    <line x1="40" x2="620" y1="139.73684210526315" y2="139.73684210526315"></line>
+    <line x1="40" x2="620" y1="93.68421052631578" y2="93.68421052631578"></line>
+    <line x1="40" x2="620" y1="47.631578947368425" y2="47.631578947368425"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,323.94736842105266)" d="M0,0L-6,0"></path>

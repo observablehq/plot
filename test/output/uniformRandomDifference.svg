@@ -27,6 +27,19 @@
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">−1.0</text><text y="0.71em" transform="translate(97.99999999999999,370)">−0.8</text><text y="0.71em" transform="translate(156,370)">−0.6</text><text y="0.71em" transform="translate(214,370)">−0.4</text><text y="0.71em" transform="translate(272,370)">−0.2</text><text y="0.71em" transform="translate(330,370)">0.0</text><text y="0.71em" transform="translate(388,370)">0.2</text><text y="0.71em" transform="translate(446,370)">0.4</text><text y="0.71em" transform="translate(504,370)">0.6</text><text y="0.71em" transform="translate(562,370)">0.8</text><text y="0.71em" transform="translate(620,370)">1.0</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="336.41074856046066" y2="336.41074856046066"></line>
+    <line x1="40" x2="620" y1="302.8214971209213" y2="302.8214971209213"></line>
+    <line x1="40" x2="620" y1="269.2322456813819" y2="269.2322456813819"></line>
+    <line x1="40" x2="620" y1="235.64299424184262" y2="235.64299424184262"></line>
+    <line x1="40" x2="620" y1="202.05374280230328" y2="202.05374280230328"></line>
+    <line x1="40" x2="620" y1="168.4644913627639" y2="168.4644913627639"></line>
+    <line x1="40" x2="620" y1="134.87523992322457" y2="134.87523992322457"></line>
+    <line x1="40" x2="620" y1="101.28598848368522" y2="101.28598848368522"></line>
+    <line x1="40" x2="620" y1="67.69673704414588" y2="67.69673704414588"></line>
+    <line x1="40" x2="620" y1="34.10748560460653" y2="34.10748560460653"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,336.41074856046066)" d="M0,0L-6,0"></path>

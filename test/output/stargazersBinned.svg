@@ -24,6 +24,21 @@
     <path transform="translate(572.2943722943724,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">November</text><text y="0.71em" transform="translate(115.32467532467531,370)">December</text><text y="0.71em" transform="translate(193.16017316017314,370)">2021</text><text y="0.71em" transform="translate(270.995670995671,370)">February</text><text y="0.71em" transform="translate(341.29870129870125,370)">March</text><text y="0.71em" transform="translate(419.13419913419915,370)">April</text><text y="0.71em" transform="translate(494.45887445887445,370)">May</text><text y="0.71em" transform="translate(572.2943722943724,370)">June</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="341.9551282051282" y2="341.9551282051282"></line>
+    <line x1="40" x2="620" y1="313.91025641025647" y2="313.91025641025647"></line>
+    <line x1="40" x2="620" y1="285.86538461538464" y2="285.86538461538464"></line>
+    <line x1="40" x2="620" y1="257.8205128205128" y2="257.8205128205128"></line>
+    <line x1="40" x2="620" y1="229.77564102564102" y2="229.77564102564102"></line>
+    <line x1="40" x2="620" y1="201.7307692307692" y2="201.7307692307692"></line>
+    <line x1="40" x2="620" y1="173.68589743589746" y2="173.68589743589746"></line>
+    <line x1="40" x2="620" y1="145.6410256410256" y2="145.6410256410256"></line>
+    <line x1="40" x2="620" y1="117.59615384615384" y2="117.59615384615384"></line>
+    <line x1="40" x2="620" y1="89.55128205128203" y2="89.55128205128203"></line>
+    <line x1="40" x2="620" y1="61.50641025641026" y2="61.50641025641026"></line>
+    <line x1="40" x2="620" y1="33.46153846153845" y2="33.46153846153845"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,341.9551282051282)" d="M0,0L-6,0"></path>

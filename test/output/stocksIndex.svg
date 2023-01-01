@@ -21,6 +21,18 @@
     <path transform="translate(578.6622807017544,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(114.08991228070175,370)">2014</text><text y="0.71em" transform="translate(230.15350877192984,370)">2015</text><text y="0.71em" transform="translate(346.2171052631579,370)">2016</text><text y="0.71em" transform="translate(462.5986842105263,370)">2017</text><text y="0.71em" transform="translate(578.6622807017544,370)">2018</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="365.4729437945022" y2="365.4729437945022"></line>
+    <line x1="40" x2="620" y1="342.4822218216565" y2="342.4822218216565"></line>
+    <line x1="40" x2="620" y1="322.5667525813162" y2="322.5667525813162"></line>
+    <line x1="40" x2="620" y1="305.0000637484925" y2="305.0000637484925"></line>
+    <line x1="40" x2="620" y1="289.2861251196185" y2="289.2861251196185"></line>
+    <line x1="40" x2="620" y1="185.90705386042276" y2="185.90705386042276"></line>
+    <line x1="40" x2="620" y1="125.43417381441303" y2="125.43417381441303"></line>
+    <line x1="40" x2="620" y1="82.52798260122705" y2="82.52798260122705"></line>
+    <line x1="40" x2="620" y1="49.24735513952934" y2="49.24735513952934"></line>
+    <line x1="40" x2="620" y1="22.05510255521732" y2="22.05510255521732"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,365.4729437945022)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.4822218216565)" d="M0,0L-6,0"></path>
@@ -33,7 +45,7 @@
     <path transform="translate(40,49.24735513952934)" d="M0,0L-6,0"></path>
     <path transform="translate(40,22.05510255521732)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,365.4729437945022)">600m</text><text y="0.32em" transform="translate(40,342.4822218216565)">700m</text><text y="0.32em" transform="translate(40,322.5667525813162)">800m</text><text y="0.32em" transform="translate(40,305.0000637484925)">900m</text><text y="0.32em" transform="translate(40,289.2861251196185)">1</text><text y="0.32em" transform="translate(40,185.90705386042276)">2</text><text y="0.32em" transform="translate(40,125.43417381441303)">3</text><text y="0.32em" transform="translate(40,82.52798260122705)">4</text><text y="0.32em" transform="translate(40,49.24735513952934)">5</text><text y="0.32em" transform="translate(40,22.05510255521732)">6</text></g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,365.4729437945022)">−40</text><text y="0.32em" transform="translate(40,342.4822218216565)">−30</text><text y="0.32em" transform="translate(40,322.5667525813162)">−20</text><text y="0.32em" transform="translate(40,305.0000637484925)">−10</text><text y="0.32em" transform="translate(40,289.2861251196185)">+0</text><text y="0.32em" transform="translate(40,185.90705386042276)">+100</text><text y="0.32em" transform="translate(40,125.43417381441303)">+200</text><text y="0.32em" transform="translate(40,82.52798260122705)">+300</text><text y="0.32em" transform="translate(40,49.24735513952934)">+400</text><text y="0.32em" transform="translate(40,22.05510255521732)">+500</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="289.2861251196185" y2="289.2861251196185"></line>
   </g>

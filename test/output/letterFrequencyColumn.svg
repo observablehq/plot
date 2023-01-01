@@ -42,6 +42,21 @@
     <path transform="translate(595,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" transform="translate(10.5,9.5)"><text y="0.71em" transform="translate(45,370)">A</text><text y="0.71em" transform="translate(67,370)">B</text><text y="0.71em" transform="translate(89,370)">C</text><text y="0.71em" transform="translate(111,370)">D</text><text y="0.71em" transform="translate(133,370)">E</text><text y="0.71em" transform="translate(155,370)">F</text><text y="0.71em" transform="translate(177,370)">G</text><text y="0.71em" transform="translate(199,370)">H</text><text y="0.71em" transform="translate(221,370)">I</text><text y="0.71em" transform="translate(243,370)">J</text><text y="0.71em" transform="translate(265,370)">K</text><text y="0.71em" transform="translate(287,370)">L</text><text y="0.71em" transform="translate(309,370)">M</text><text y="0.71em" transform="translate(331,370)">N</text><text y="0.71em" transform="translate(353,370)">O</text><text y="0.71em" transform="translate(375,370)">P</text><text y="0.71em" transform="translate(397,370)">Q</text><text y="0.71em" transform="translate(419,370)">R</text><text y="0.71em" transform="translate(441,370)">S</text><text y="0.71em" transform="translate(463,370)">T</text><text y="0.71em" transform="translate(485,370)">U</text><text y="0.71em" transform="translate(507,370)">V</text><text y="0.71em" transform="translate(529,370)">W</text><text y="0.71em" transform="translate(551,370)">X</text><text y="0.71em" transform="translate(573,370)">Y</text><text y="0.71em" transform="translate(595,370)">Z</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="342.4452842072115" y2="342.4452842072115"></line>
+    <line x1="40" x2="620" y1="314.8905684144229" y2="314.8905684144229"></line>
+    <line x1="40" x2="620" y1="287.3358526216344" y2="287.3358526216344"></line>
+    <line x1="40" x2="620" y1="259.78113682884583" y2="259.78113682884583"></line>
+    <line x1="40" x2="620" y1="232.22642103605727" y2="232.22642103605727"></line>
+    <line x1="40" x2="620" y1="204.6717052432688" y2="204.6717052432688"></line>
+    <line x1="40" x2="620" y1="177.11698945048025" y2="177.11698945048025"></line>
+    <line x1="40" x2="620" y1="149.5622736576917" y2="149.5622736576917"></line>
+    <line x1="40" x2="620" y1="122.00755786490315" y2="122.00755786490315"></line>
+    <line x1="40" x2="620" y1="94.45284207211463" y2="94.45284207211463"></line>
+    <line x1="40" x2="620" y1="66.89812627932609" y2="66.89812627932609"></line>
+    <line x1="40" x2="620" y1="39.34341048653754" y2="39.34341048653754"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.4452842072115)" d="M0,0L-6,0"></path>

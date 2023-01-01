@@ -14,6 +14,19 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,32)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(20,0)" d="M0,0L0,-6"></path>
       <path transform="translate(112,0)" d="M0,0L0,-6"></path>
@@ -69,6 +82,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,71)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="756" cy="19.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#e15759"></circle>
@@ -105,6 +131,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,110)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="654.8000000000001" cy="19.5" r="2.5" stroke="#af7aa1"></circle>
       <circle cx="332.79999999999995" cy="19.5" r="2.5" stroke="#af7aa1"></circle>
@@ -847,6 +886,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,149)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="710" cy="19.5" r="2.5" stroke="#9c755f"></circle>
       <circle cx="728.4000000000001" cy="19.5" r="2.5" stroke="#9c755f"></circle>
@@ -901,6 +953,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,188)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="562.8000000000001" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="774.4" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
@@ -940,6 +1005,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,227)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="581.1999999999999" cy="19.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="728.4000000000001" cy="19.5" r="2.5" stroke="#e15759"></circle>
@@ -1186,6 +1264,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="470.8" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="691.5999999999999" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
@@ -1441,6 +1532,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,305)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="599.6" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="590.4" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
@@ -1678,6 +1782,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,344)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="314.40000000000003" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
@@ -2074,6 +2191,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,383)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="562.8000000000001" cy="19.5" r="2.5" stroke="#59a14f"></circle>
       <circle cx="590.4" cy="19.5" r="2.5" stroke="#59a14f"></circle>
@@ -2082,6 +2212,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,422)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="645.5999999999999" cy="19.5" r="2.5" stroke="#76b7b2"></circle>
       <circle cx="369.59999999999997" cy="19.5" r="2.5" stroke="#76b7b2"></circle>
@@ -2721,6 +2864,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,461)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="673.1999999999999" cy="19.5" r="2.5" stroke="#bab0ab"></circle>
       <circle cx="544.4000000000001" cy="19.5" r="2.5" stroke="#bab0ab"></circle>
@@ -2855,6 +3011,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,500)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="20" x2="20" y1="0" y2="39"></line>
+      <line x1="112" x2="112" y1="0" y2="39"></line>
+      <line x1="204" x2="204" y1="0" y2="39"></line>
+      <line x1="296" x2="296" y1="0" y2="39"></line>
+      <line x1="388" x2="388" y1="0" y2="39"></line>
+      <line x1="480" x2="480" y1="0" y2="39"></line>
+      <line x1="572" x2="572" y1="0" y2="39"></line>
+      <line x1="664" x2="664" y1="0" y2="39"></line>
+      <line x1="756" x2="756" y1="0" y2="39"></line>
+      <line x1="848" x2="848" y1="0" y2="39"></line>
+      <line x1="940" x2="940" y1="0" y2="39"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="581.1999999999999" cy="19.5" r="2.5" stroke="#ff9da7"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#ff9da7"></circle>

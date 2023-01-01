@@ -22,6 +22,20 @@
     <path transform="translate(601.6038629047528,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(100.18557091459951,370)">1995</text><text y="0.71em" transform="translate(200.4582465442151,370)">2000</text><text y="0.71em" transform="translate(300.7858360159061,370)">2005</text><text y="0.71em" transform="translate(401.05851164552166,370)">2010</text><text y="0.71em" transform="translate(501.33118727513727,370)">2015</text><text y="0.71em" transform="translate(601.6038629047528,370)">2020</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="340.4081977746965" y2="340.4081977746965"></line>
+    <line x1="40" x2="620" y1="310.81639554939295" y2="310.81639554939295"></line>
+    <line x1="40" x2="620" y1="281.2245933240894" y2="281.2245933240894"></line>
+    <line x1="40" x2="620" y1="251.6327910987859" y2="251.6327910987859"></line>
+    <line x1="40" x2="620" y1="222.04098887348238" y2="222.04098887348238"></line>
+    <line x1="40" x2="620" y1="192.44918664817882" y2="192.44918664817882"></line>
+    <line x1="40" x2="620" y1="162.8573844228753" y2="162.8573844228753"></line>
+    <line x1="40" x2="620" y1="133.2655821975718" y2="133.2655821975718"></line>
+    <line x1="40" x2="620" y1="103.67377997226826" y2="103.67377997226826"></line>
+    <line x1="40" x2="620" y1="74.08197774696474" y2="74.08197774696474"></line>
+    <line x1="40" x2="620" y1="44.490175521661214" y2="44.490175521661214"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,340.4081977746965)" d="M0,0L-6,0"></path>

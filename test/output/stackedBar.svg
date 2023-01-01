@@ -26,7 +26,7 @@
     <path transform="translate(560,30)" d="M0,0L0,6"></path>
     <path transform="translate(620,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0.0</text><text y="0.71em" transform="translate(80,30)">0.1</text><text y="0.71em" transform="translate(140,30)">0.2</text><text y="0.71em" transform="translate(200,30)">0.3</text><text y="0.71em" transform="translate(260,30)">0.4</text><text y="0.71em" transform="translate(320,30)">0.5</text><text y="0.71em" transform="translate(380,30)">0.6</text><text y="0.71em" transform="translate(440,30)">0.7</text><text y="0.71em" transform="translate(500,30)">0.8</text><text y="0.71em" transform="translate(560,30)">0.9</text><text y="0.71em" transform="translate(620,30)">1.0</text></g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0%</text><text y="0.71em" transform="translate(80,30)">10%</text><text y="0.71em" transform="translate(140,30)">20%</text><text y="0.71em" transform="translate(200,30)">30%</text><text y="0.71em" transform="translate(260,30)">40%</text><text y="0.71em" transform="translate(320,30)">50%</text><text y="0.71em" transform="translate(380,30)">60%</text><text y="0.71em" transform="translate(440,30)">70%</text><text y="0.71em" transform="translate(500,30)">80%</text><text y="0.71em" transform="translate(560,30)">90%</text><text y="0.71em" transform="translate(620,30)">100%</text></g>
   <g aria-label="bar">
     <rect x="21" width="0" y="20" height="10" fill="rgb(35, 23, 27)"></rect>
     <rect x="21" width="2.157894736842106" y="20" height="10" fill="rgb(71, 56, 158)"></rect>

@@ -14,6 +14,15 @@
     }
   </style>
   <g aria-label="facet" transform="translate(40,20)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="275" y1="180" y2="180"></line>
+      <line x1="0" x2="275" y1="150.09966777408638" y2="150.09966777408638"></line>
+      <line x1="0" x2="275" y1="120.19933554817277" y2="120.19933554817277"></line>
+      <line x1="0" x2="275" y1="90.29900332225915" y2="90.29900332225915"></line>
+      <line x1="0" x2="275" y1="60.39867109634551" y2="60.39867109634551"></line>
+      <line x1="0" x2="275" y1="30.498338870431894" y2="30.498338870431894"></line>
+      <line x1="0" x2="275" y1="0.5980066445182763" y2="0.5980066445182763"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,180)" d="M0,0L-6,0"></path>
       <path transform="translate(0,150.09966777408638)" d="M0,0L-6,0"></path>
@@ -80,6 +89,15 @@
       <path transform="translate(258,180)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(8,180)">A</text><text y="0.71em" transform="translate(18,180)">B</text><text y="0.71em" transform="translate(28,180)">C</text><text y="0.71em" transform="translate(38,180)">D</text><text y="0.71em" transform="translate(48,180)">E</text><text y="0.71em" transform="translate(58,180)">F</text><text y="0.71em" transform="translate(68,180)">G</text><text y="0.71em" transform="translate(78,180)">H</text><text y="0.71em" transform="translate(88,180)">I</text><text y="0.71em" transform="translate(98,180)">J</text><text y="0.71em" transform="translate(108,180)">K</text><text y="0.71em" transform="translate(118,180)">L</text><text y="0.71em" transform="translate(128,180)">M</text><text y="0.71em" transform="translate(138,180)">N</text><text y="0.71em" transform="translate(148,180)">O</text><text y="0.71em" transform="translate(158,180)">P</text><text y="0.71em" transform="translate(168,180)">Q</text><text y="0.71em" transform="translate(178,180)">R</text><text y="0.71em" transform="translate(188,180)">S</text><text y="0.71em" transform="translate(198,180)">T</text><text y="0.71em" transform="translate(208,180)">U</text><text y="0.71em" transform="translate(218,180)">V</text><text y="0.71em" transform="translate(228,180)">W</text><text y="0.71em" transform="translate(238,180)">X</text><text y="0.71em" transform="translate(248,180)">Y</text><text y="0.71em" transform="translate(258,180)">Z</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="275" y1="180" y2="180"></line>
+      <line x1="0" x2="275" y1="150.09966777408638" y2="150.09966777408638"></line>
+      <line x1="0" x2="275" y1="120.19933554817277" y2="120.19933554817277"></line>
+      <line x1="0" x2="275" y1="90.29900332225915" y2="90.29900332225915"></line>
+      <line x1="0" x2="275" y1="60.39867109634551" y2="60.39867109634551"></line>
+      <line x1="0" x2="275" y1="30.498338870431894" y2="30.498338870431894"></line>
+      <line x1="0" x2="275" y1="0.5980066445182763" y2="0.5980066445182763"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,180)" d="M0,0L-6,0"></path>
       <path transform="translate(0,150.09966777408638)" d="M0,0L-6,0"></path>
@@ -113,6 +131,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(345,20)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="275" y1="180" y2="180"></line>
+      <line x1="0" x2="275" y1="150.09966777408638" y2="150.09966777408638"></line>
+      <line x1="0" x2="275" y1="120.19933554817277" y2="120.19933554817277"></line>
+      <line x1="0" x2="275" y1="90.29900332225915" y2="90.29900332225915"></line>
+      <line x1="0" x2="275" y1="60.39867109634551" y2="60.39867109634551"></line>
+      <line x1="0" x2="275" y1="30.498338870431894" y2="30.498338870431894"></line>
+      <line x1="0" x2="275" y1="0.5980066445182763" y2="0.5980066445182763"></line>
+    </g>
     <g aria-label="bar">
       <rect x="8" width="9" y="63.837209302325576" height="116.16279069767442"></rect>
       <rect x="48" width="9" y="0" height="180"></rect>
@@ -155,6 +182,15 @@
       <path transform="translate(258,180)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(8,180)">A</text><text y="0.71em" transform="translate(18,180)">B</text><text y="0.71em" transform="translate(28,180)">C</text><text y="0.71em" transform="translate(38,180)">D</text><text y="0.71em" transform="translate(48,180)">E</text><text y="0.71em" transform="translate(58,180)">F</text><text y="0.71em" transform="translate(68,180)">G</text><text y="0.71em" transform="translate(78,180)">H</text><text y="0.71em" transform="translate(88,180)">I</text><text y="0.71em" transform="translate(98,180)">J</text><text y="0.71em" transform="translate(108,180)">K</text><text y="0.71em" transform="translate(118,180)">L</text><text y="0.71em" transform="translate(128,180)">M</text><text y="0.71em" transform="translate(138,180)">N</text><text y="0.71em" transform="translate(148,180)">O</text><text y="0.71em" transform="translate(158,180)">P</text><text y="0.71em" transform="translate(168,180)">Q</text><text y="0.71em" transform="translate(178,180)">R</text><text y="0.71em" transform="translate(188,180)">S</text><text y="0.71em" transform="translate(198,180)">T</text><text y="0.71em" transform="translate(208,180)">U</text><text y="0.71em" transform="translate(218,180)">V</text><text y="0.71em" transform="translate(228,180)">W</text><text y="0.71em" transform="translate(238,180)">X</text><text y="0.71em" transform="translate(248,180)">Y</text><text y="0.71em" transform="translate(258,180)">Z</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="275" y1="180" y2="180"></line>
+      <line x1="0" x2="275" y1="150.09966777408638" y2="150.09966777408638"></line>
+      <line x1="0" x2="275" y1="120.19933554817277" y2="120.19933554817277"></line>
+      <line x1="0" x2="275" y1="90.29900332225915" y2="90.29900332225915"></line>
+      <line x1="0" x2="275" y1="60.39867109634551" y2="60.39867109634551"></line>
+      <line x1="0" x2="275" y1="30.498338870431894" y2="30.498338870431894"></line>
+      <line x1="0" x2="275" y1="0.5980066445182763" y2="0.5980066445182763"></line>
+    </g>
     <g aria-label="bar">
       <rect x="8" width="9" y="177.30897009966776" height="2.6910299003322393"></rect>
       <rect x="48" width="9" y="179.1029900332226" height="0.8970099667774036"></rect>

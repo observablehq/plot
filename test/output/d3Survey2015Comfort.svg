@@ -13,6 +13,19 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="300" x2="300" y1="30" y2="130"></line>
+    <line x1="364" x2="364" y1="30" y2="130"></line>
+    <line x1="428" x2="428" y1="30" y2="130"></line>
+    <line x1="492" x2="492" y1="30" y2="130"></line>
+    <line x1="556" x2="556" y1="30" y2="130"></line>
+    <line x1="620" x2="620" y1="30" y2="130"></line>
+    <line x1="684" x2="684" y1="30" y2="130"></line>
+    <line x1="748" x2="748" y1="30" y2="130"></line>
+    <line x1="812" x2="812" y1="30" y2="130"></line>
+    <line x1="876" x2="876" y1="30" y2="130"></line>
+    <line x1="940" x2="940" y1="30" y2="130"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(300,30)" d="M0,0L0,-6"></path>
     <path transform="translate(364,30)" d="M0,0L0,-6"></path>

@@ -13,6 +13,17 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="140" x2="140" y1="20" y2="530"></line>
+    <line x1="198.53658536585365" x2="198.53658536585365" y1="20" y2="530"></line>
+    <line x1="257.0731707317073" x2="257.0731707317073" y1="20" y2="530"></line>
+    <line x1="315.609756097561" x2="315.609756097561" y1="20" y2="530"></line>
+    <line x1="374.1463414634146" x2="374.1463414634146" y1="20" y2="530"></line>
+    <line x1="432.6829268292683" x2="432.6829268292683" y1="20" y2="530"></line>
+    <line x1="491.2195121951219" x2="491.2195121951219" y1="20" y2="530"></line>
+    <line x1="549.7560975609756" x2="549.7560975609756" y1="20" y2="530"></line>
+    <line x1="608.2926829268292" x2="608.2926829268292" y1="20" y2="530"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(140,530)" d="M0,0L0,6"></path>
     <path transform="translate(198.53658536585365,530)" d="M0,0L0,6"></path>
@@ -52,7 +63,7 @@
     <path transform="translate(140,486)" d="M0,0L-6,0"></path>
     <path transform="translate(140,506)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(140,26)">0</text><text y="0.32em" transform="translate(140,46)">1</text><text y="0.32em" transform="translate(140,66)">2</text><text y="0.32em" transform="translate(140,86)">3</text><text y="0.32em" transform="translate(140,106)">4</text><text y="0.32em" transform="translate(140,126)">5</text><text y="0.32em" transform="translate(140,146)">6</text><text y="0.32em" transform="translate(140,166)">7</text><text y="0.32em" transform="translate(140,186)">8</text><text y="0.32em" transform="translate(140,206)">9</text><text y="0.32em" transform="translate(140,226)">10</text><text y="0.32em" transform="translate(140,246)">11</text><text y="0.32em" transform="translate(140,266)">12</text><text y="0.32em" transform="translate(140,286)">13</text><text y="0.32em" transform="translate(140,306)">14</text><text y="0.32em" transform="translate(140,326)">15</text><text y="0.32em" transform="translate(140,346)">16</text><text y="0.32em" transform="translate(140,366)">17</text><text y="0.32em" transform="translate(140,386)">18</text><text y="0.32em" transform="translate(140,406)">19</text><text y="0.32em" transform="translate(140,426)">20</text><text y="0.32em" transform="translate(140,446)">21</text><text y="0.32em" transform="translate(140,466)">22</text><text y="0.32em" transform="translate(140,486)">23</text><text y="0.32em" transform="translate(140,506)">24</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(140,26)">Observable Plot</text><text y="0.32em" transform="translate(140,46)">Marks</text><text y="0.32em" transform="translate(140,66)">Scales</text><text y="0.32em" transform="translate(140,86)">Transforms</text><text y="0.32em" transform="translate(140,106)">Facets</text><text y="0.32em" transform="translate(140,126)">Area Mark</text><text y="0.32em" transform="translate(140,146)">Bar Mark</text><text y="0.32em" transform="translate(140,166)">Cell Mark</text><text y="0.32em" transform="translate(140,186)">Dot Mark</text><text y="0.32em" transform="translate(140,206)">Image Mark</text><text y="0.32em" transform="translate(140,226)">Line Mark</text><text y="0.32em" transform="translate(140,246)">Link Mark</text><text y="0.32em" transform="translate(140,266)">Rect Mark</text><text y="0.32em" transform="translate(140,286)">Rule Mark</text><text y="0.32em" transform="translate(140,306)">Text Mark</text><text y="0.32em" transform="translate(140,326)">Tick Mark</text><text y="0.32em" transform="translate(140,346)">Frame Mark</text><text y="0.32em" transform="translate(140,366)">Group Transform</text><text y="0.32em" transform="translate(140,386)">Bin Transform</text><text y="0.32em" transform="translate(140,406)">Stack Transform</text><text y="0.32em" transform="translate(140,426)">Map Transform</text><text y="0.32em" transform="translate(140,446)">Window Transform</text><text y="0.32em" transform="translate(140,466)">Select Transform</text><text y="0.32em" transform="translate(140,486)">Interval Transform</text><text y="0.32em" transform="translate(140,506)">Legends</text></g>
   <g aria-label="bar"><a fill="inherit" href="https://observablehq.com/@observablehq/plot" target="_blank">
       <rect x="140" width="480" y="26" height="18"></rect>
     </a><a fill="inherit" href="https://observablehq.com/@observablehq/plot-marks" target="_blank">

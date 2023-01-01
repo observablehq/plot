@@ -15,29 +15,55 @@
   </style>
   <g aria-label="facet" transform="translate(40,0)">
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="21.42857142857143" x2="21.42857142857143" y1="20" y2="290"></line>
+      <line x1="44.28571428571428" x2="44.28571428571428" y1="20" y2="290"></line>
       <line x1="67.14285714285714" x2="67.14285714285714" y1="20" y2="290"></line>
+      <line x1="90" x2="90" y1="20" y2="290"></line>
+      <line x1="112.85714285714286" x2="112.85714285714286" y1="20" y2="290"></line>
+      <line x1="135.7142857142857" x2="135.7142857142857" y1="20" y2="290"></line>
       <line x1="158.57142857142858" x2="158.57142857142858" y1="20" y2="290"></line>
     </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(21.42857142857143,290)" d="M0,0L0,6"></path>
+      <path transform="translate(44.28571428571428,290)" d="M0,0L0,6"></path>
       <path transform="translate(67.14285714285714,290)" d="M0,0L0,6"></path>
+      <path transform="translate(90,290)" d="M0,0L0,6"></path>
+      <path transform="translate(112.85714285714286,290)" d="M0,0L0,6"></path>
+      <path transform="translate(135.7142857142857,290)" d="M0,0L0,6"></path>
       <path transform="translate(158.57142857142858,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(67.14285714285714,290)">4,000</text><text y="0.71em" transform="translate(158.57142857142858,290)">6,000</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(21.42857142857143,290)">3k</text><text y="0.71em" transform="translate(44.28571428571428,290)">3.5k</text><text y="0.71em" transform="translate(67.14285714285714,290)">4k</text><text y="0.71em" transform="translate(90,290)">4.5k</text><text y="0.71em" transform="translate(112.85714285714286,290)">5k</text><text y="0.71em" transform="translate(135.7142857142857,290)">5.5k</text><text y="0.71em" transform="translate(158.57142857142858,290)">6k</text></g>
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="260.7692307692308" y2="260.7692307692308"></line>
+      <line x1="0" x2="180" y1="270.38461538461536" y2="270.38461538461536"></line>
+      <line x1="0" x2="180" y1="251.15384615384613" y2="251.15384615384613"></line>
+      <line x1="0" x2="180" y1="231.92307692307693" y2="231.92307692307693"></line>
       <line x1="0" x2="180" y1="212.6923076923077" y2="212.6923076923077"></line>
-      <line x1="0" x2="180" y1="164.6153846153846" y2="164.6153846153846"></line>
+      <line x1="0" x2="180" y1="193.46153846153845" y2="193.46153846153845"></line>
+      <line x1="0" x2="180" y1="174.2307692307692" y2="174.2307692307692"></line>
+      <line x1="0" x2="180" y1="155" y2="155"></line>
+      <line x1="0" x2="180" y1="135.76923076923077" y2="135.76923076923077"></line>
       <line x1="0" x2="180" y1="116.53846153846153" y2="116.53846153846153"></line>
-      <line x1="0" x2="180" y1="68.46153846153847" y2="68.46153846153847"></line>
+      <line x1="0" x2="180" y1="97.30769230769232" y2="97.30769230769232"></line>
+      <line x1="0" x2="180" y1="78.07692307692307" y2="78.07692307692307"></line>
+      <line x1="0" x2="180" y1="58.846153846153854" y2="58.846153846153854"></line>
+      <line x1="0" x2="180" y1="39.61538461538461" y2="39.61538461538461"></line>
     </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(0,260.7692307692308)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,270.38461538461536)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,251.15384615384613)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,231.92307692307693)" d="M0,0L-6,0"></path>
       <path transform="translate(0,212.6923076923077)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,164.6153846153846)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,193.46153846153845)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,174.2307692307692)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,155)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,135.76923076923077)" d="M0,0L-6,0"></path>
       <path transform="translate(0,116.53846153846153)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,68.46153846153847)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,97.30769230769232)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,78.07692307692307)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,58.846153846153854)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,39.61538461538461)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,260.7692307692308)">35</text><text y="0.32em" transform="translate(0,212.6923076923077)">40</text><text y="0.32em" transform="translate(0,164.6153846153846)">45</text><text y="0.32em" transform="translate(0,116.53846153846153)">50</text><text y="0.32em" transform="translate(0,68.46153846153847)">55</text></g>
+    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,270.38461538461536)">34</text><text y="0.32em" transform="translate(0,251.15384615384613)">36</text><text y="0.32em" transform="translate(0,231.92307692307693)">38</text><text y="0.32em" transform="translate(0,212.6923076923077)">40</text><text y="0.32em" transform="translate(0,193.46153846153845)">42</text><text y="0.32em" transform="translate(0,174.2307692307692)">44</text><text y="0.32em" transform="translate(0,155)">46</text><text y="0.32em" transform="translate(0,135.76923076923077)">48</text><text y="0.32em" transform="translate(0,116.53846153846153)">50</text><text y="0.32em" transform="translate(0,97.30769230769232)">52</text><text y="0.32em" transform="translate(0,78.07692307692307)">54</text><text y="0.32em" transform="translate(0,58.846153846153854)">56</text><text y="0.32em" transform="translate(0,39.61538461538461)">58</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="180" height="270"></rect>
     <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="32.85714285714286" cy="241.53846153846155" r="12.36931687685298" fill="#4e79a7" stroke="#4e79a7"></circle>
@@ -89,20 +115,38 @@
   </g>
   <g aria-label="facet" transform="translate(240,0)">
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="21.42857142857143" x2="21.42857142857143" y1="20" y2="290"></line>
+      <line x1="44.28571428571428" x2="44.28571428571428" y1="20" y2="290"></line>
       <line x1="67.14285714285714" x2="67.14285714285714" y1="20" y2="290"></line>
+      <line x1="90" x2="90" y1="20" y2="290"></line>
+      <line x1="112.85714285714286" x2="112.85714285714286" y1="20" y2="290"></line>
+      <line x1="135.7142857142857" x2="135.7142857142857" y1="20" y2="290"></line>
       <line x1="158.57142857142858" x2="158.57142857142858" y1="20" y2="290"></line>
     </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(21.42857142857143,290)" d="M0,0L0,6"></path>
+      <path transform="translate(44.28571428571428,290)" d="M0,0L0,6"></path>
       <path transform="translate(67.14285714285714,290)" d="M0,0L0,6"></path>
+      <path transform="translate(90,290)" d="M0,0L0,6"></path>
+      <path transform="translate(112.85714285714286,290)" d="M0,0L0,6"></path>
+      <path transform="translate(135.7142857142857,290)" d="M0,0L0,6"></path>
       <path transform="translate(158.57142857142858,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(67.14285714285714,290)">4,000</text><text y="0.71em" transform="translate(158.57142857142858,290)">6,000</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(21.42857142857143,290)">3k</text><text y="0.71em" transform="translate(44.28571428571428,290)">3.5k</text><text y="0.71em" transform="translate(67.14285714285714,290)">4k</text><text y="0.71em" transform="translate(90,290)">4.5k</text><text y="0.71em" transform="translate(112.85714285714286,290)">5k</text><text y="0.71em" transform="translate(135.7142857142857,290)">5.5k</text><text y="0.71em" transform="translate(158.57142857142858,290)">6k</text></g>
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="260.7692307692308" y2="260.7692307692308"></line>
+      <line x1="0" x2="180" y1="270.38461538461536" y2="270.38461538461536"></line>
+      <line x1="0" x2="180" y1="251.15384615384613" y2="251.15384615384613"></line>
+      <line x1="0" x2="180" y1="231.92307692307693" y2="231.92307692307693"></line>
       <line x1="0" x2="180" y1="212.6923076923077" y2="212.6923076923077"></line>
-      <line x1="0" x2="180" y1="164.6153846153846" y2="164.6153846153846"></line>
+      <line x1="0" x2="180" y1="193.46153846153845" y2="193.46153846153845"></line>
+      <line x1="0" x2="180" y1="174.2307692307692" y2="174.2307692307692"></line>
+      <line x1="0" x2="180" y1="155" y2="155"></line>
+      <line x1="0" x2="180" y1="135.76923076923077" y2="135.76923076923077"></line>
       <line x1="0" x2="180" y1="116.53846153846153" y2="116.53846153846153"></line>
-      <line x1="0" x2="180" y1="68.46153846153847" y2="68.46153846153847"></line>
+      <line x1="0" x2="180" y1="97.30769230769232" y2="97.30769230769232"></line>
+      <line x1="0" x2="180" y1="78.07692307692307" y2="78.07692307692307"></line>
+      <line x1="0" x2="180" y1="58.846153846153854" y2="58.846153846153854"></line>
+      <line x1="0" x2="180" y1="39.61538461538461" y2="39.61538461538461"></line>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="180" height="270"></rect>
     <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">
@@ -152,20 +196,38 @@
   </g>
   <g aria-label="facet" transform="translate(440,0)">
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="21.42857142857143" x2="21.42857142857143" y1="20" y2="290"></line>
+      <line x1="44.28571428571428" x2="44.28571428571428" y1="20" y2="290"></line>
       <line x1="67.14285714285714" x2="67.14285714285714" y1="20" y2="290"></line>
+      <line x1="90" x2="90" y1="20" y2="290"></line>
+      <line x1="112.85714285714286" x2="112.85714285714286" y1="20" y2="290"></line>
+      <line x1="135.7142857142857" x2="135.7142857142857" y1="20" y2="290"></line>
       <line x1="158.57142857142858" x2="158.57142857142858" y1="20" y2="290"></line>
     </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(21.42857142857143,290)" d="M0,0L0,6"></path>
+      <path transform="translate(44.28571428571428,290)" d="M0,0L0,6"></path>
       <path transform="translate(67.14285714285714,290)" d="M0,0L0,6"></path>
+      <path transform="translate(90,290)" d="M0,0L0,6"></path>
+      <path transform="translate(112.85714285714286,290)" d="M0,0L0,6"></path>
+      <path transform="translate(135.7142857142857,290)" d="M0,0L0,6"></path>
       <path transform="translate(158.57142857142858,290)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(67.14285714285714,290)">4,000</text><text y="0.71em" transform="translate(158.57142857142858,290)">6,000</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(21.42857142857143,290)">3k</text><text y="0.71em" transform="translate(44.28571428571428,290)">3.5k</text><text y="0.71em" transform="translate(67.14285714285714,290)">4k</text><text y="0.71em" transform="translate(90,290)">4.5k</text><text y="0.71em" transform="translate(112.85714285714286,290)">5k</text><text y="0.71em" transform="translate(135.7142857142857,290)">5.5k</text><text y="0.71em" transform="translate(158.57142857142858,290)">6k</text></g>
     <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="260.7692307692308" y2="260.7692307692308"></line>
+      <line x1="0" x2="180" y1="270.38461538461536" y2="270.38461538461536"></line>
+      <line x1="0" x2="180" y1="251.15384615384613" y2="251.15384615384613"></line>
+      <line x1="0" x2="180" y1="231.92307692307693" y2="231.92307692307693"></line>
       <line x1="0" x2="180" y1="212.6923076923077" y2="212.6923076923077"></line>
-      <line x1="0" x2="180" y1="164.6153846153846" y2="164.6153846153846"></line>
+      <line x1="0" x2="180" y1="193.46153846153845" y2="193.46153846153845"></line>
+      <line x1="0" x2="180" y1="174.2307692307692" y2="174.2307692307692"></line>
+      <line x1="0" x2="180" y1="155" y2="155"></line>
+      <line x1="0" x2="180" y1="135.76923076923077" y2="135.76923076923077"></line>
       <line x1="0" x2="180" y1="116.53846153846153" y2="116.53846153846153"></line>
-      <line x1="0" x2="180" y1="68.46153846153847" y2="68.46153846153847"></line>
+      <line x1="0" x2="180" y1="97.30769230769232" y2="97.30769230769232"></line>
+      <line x1="0" x2="180" y1="78.07692307692307" y2="78.07692307692307"></line>
+      <line x1="0" x2="180" y1="58.846153846153854" y2="58.846153846153854"></line>
+      <line x1="0" x2="180" y1="39.61538461538461" y2="39.61538461538461"></line>
     </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="180" height="270"></rect>
     <g aria-label="dot" fill-opacity="0.2" stroke-width="1.5" transform="translate(0.5,0.5)">

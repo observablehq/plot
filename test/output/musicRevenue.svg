@@ -25,6 +25,20 @@
     <path transform="translate(569.5637164454497,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(65.20088089994643,370)">1975</text><text y="0.71em" transform="translate(128.23760490446998,370)">1980</text><text y="0.71em" transform="translate(191.30885066365096,370)">1985</text><text y="0.71em" transform="translate(254.34557466817452,370)">1990</text><text y="0.71em" transform="translate(317.382298672698,370)">1995</text><text y="0.71em" transform="translate(380.4190226772216,370)">2000</text><text y="0.71em" transform="translate(443.4902684364025,370)">2005</text><text y="0.71em" transform="translate(506.5269924409261,370)">2010</text><text y="0.71em" transform="translate(569.5637164454497,370)">2015</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="338.723518391829" y2="338.723518391829"></line>
+    <line x1="40" x2="620" y1="307.447036783658" y2="307.447036783658"></line>
+    <line x1="40" x2="620" y1="276.170555175487" y2="276.170555175487"></line>
+    <line x1="40" x2="620" y1="244.89407356731593" y2="244.89407356731593"></line>
+    <line x1="40" x2="620" y1="213.617591959145" y2="213.617591959145"></line>
+    <line x1="40" x2="620" y1="182.34111035097393" y2="182.34111035097393"></line>
+    <line x1="40" x2="620" y1="151.06462874280294" y2="151.06462874280294"></line>
+    <line x1="40" x2="620" y1="119.78814713463191" y2="119.78814713463191"></line>
+    <line x1="40" x2="620" y1="88.51166552646092" y2="88.51166552646092"></line>
+    <line x1="40" x2="620" y1="57.235183918289906" y2="57.235183918289906"></line>
+    <line x1="40" x2="620" y1="25.958702310118873" y2="25.958702310118873"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,338.723518391829)" d="M0,0L-6,0"></path>

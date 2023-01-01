@@ -116,7 +116,7 @@ export function plot(options = {}) {
   // Initialize the marks’ state.
   for (const mark of marks) {
     if (stateByMark.has(mark)) throw new Error("duplicate mark; each mark must be unique");
-    const {facetsIndex, channels: facetChannels} = facetStateByMark.get(mark) || {};
+    const {facetsIndex, channels: facetChannels} = facetStateByMark.get(mark) ?? {};
     const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
     applyScaleTransforms(channels, options);
     stateByMark.set(mark, {data, facets, channels});
@@ -141,8 +141,6 @@ export function plot(options = {}) {
       // label,
       // facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}
     } = options;
-    // if (hasScale(marks, "x")) marks.unshift(...flatMarks(axisX()));
-    // if (hasScale(marks, "y")) marks.unshift(...flatMarks(axisY()));
     let {axis: xAxis = axis} = x;
     let {axis: yAxis = axis} = y;
     // let {axis: fxAxis = facetAxis} = fx;
@@ -156,17 +154,16 @@ export function plot(options = {}) {
     // if (!fyScale) fyAxis = null;
     // else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
     const newMarks = [];
-    if (xAxis) newMarks.push(...flatMarks(axisX({anchor: xAxis, grid})));
-    if (yAxis) newMarks.push(...flatMarks(axisY({anchor: yAxis, grid})));
+    if (xAxis) newMarks.push(...flatMarks(axisX(axisOptions(xAxis, {grid}, x))));
+    if (yAxis) newMarks.push(...flatMarks(axisY(axisOptions(yAxis, {grid}, y))));
     for (const mark of newMarks) {
-      let facetState;
-      if (mark.facet === null) {
-        facetState = {};
-      } else {
-        facetState = {channels: {}};
-        facetState.facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
+      const facetState = maybeMarkFacet(mark, topFacetState, options);
+      let facetsIndex, facetChannels;
+      if (facetState) {
+        facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
+        facetChannels = facetState.channels;
+        facetState.facetsIndex = facetsIndex;
       }
-      const {facetsIndex, channels: facetChannels} = facetState;
       const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
       applyScaleTransforms(channels, options);
       stateByMark.set(mark, {data, facets, channels});
@@ -592,4 +589,9 @@ function flatMarks(marks) {
     .flat(Infinity)
     .filter((mark) => mark != null)
     .map(markify);
+}
+
+// TODO more options?
+function axisOptions(anchor, {grid: defaultGrid}, {grid = defaultGrid, ticks, tickFormat}) {
+  return {anchor, grid, ticks, tickFormat};
 }

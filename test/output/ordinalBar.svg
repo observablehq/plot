@@ -22,6 +22,15 @@
     <path transform="translate(525,170)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" transform="translate(43.5,9.5)"><text y="0.71em" transform="translate(50,170)">0</text><text y="0.71em" transform="translate(145,170)">1</text><text y="0.71em" transform="translate(240,170)">2</text><text y="0.71em" transform="translate(335,170)">3</text><text y="0.71em" transform="translate(430,170)">4</text><text y="0.71em" transform="translate(525,170)">5</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="32" y2="32"></line>
+    <line x1="40" x2="620" y1="53" y2="53"></line>
+    <line x1="40" x2="620" y1="74" y2="74"></line>
+    <line x1="40" x2="620" y1="95" y2="95"></line>
+    <line x1="40" x2="620" y1="116" y2="116"></line>
+    <line x1="40" x2="620" y1="137" y2="137"></line>
+    <line x1="40" x2="620" y1="158" y2="158"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
     <path transform="translate(40,53)" d="M0,0L-6,0"></path>

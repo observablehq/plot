@@ -15,33 +15,55 @@
   </style>
   <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="60"></line>
+    <line x1="55.55555555555556" x2="55.55555555555556" y1="20" y2="60"></line>
     <line x1="71.11111111111111" x2="71.11111111111111" y1="20" y2="60"></line>
+    <line x1="86.66666666666666" x2="86.66666666666666" y1="20" y2="60"></line>
     <line x1="102.2222222222222" x2="102.2222222222222" y1="20" y2="60"></line>
+    <line x1="117.77777777777777" x2="117.77777777777777" y1="20" y2="60"></line>
     <line x1="133.33333333333331" x2="133.33333333333331" y1="20" y2="60"></line>
+    <line x1="164.44444444444443" x2="164.44444444444443" y1="20" y2="60"></line>
     <line x1="195.55555555555554" x2="195.55555555555554" y1="20" y2="60"></line>
+    <line x1="226.66666666666666" x2="226.66666666666666" y1="20" y2="60"></line>
     <line x1="273.3333333333333" x2="273.3333333333333" y1="20" y2="60"></line>
+    <line x1="320" x2="320" y1="20" y2="60"></line>
     <line x1="366.66666666666663" x2="366.66666666666663" y1="20" y2="60"></line>
+    <line x1="413.3333333333333" x2="413.3333333333333" y1="20" y2="60"></line>
     <line x1="444.44444444444446" x2="444.44444444444446" y1="20" y2="60"></line>
+    <line x1="475.55555555555554" x2="475.55555555555554" y1="20" y2="60"></line>
     <line x1="506.6666666666667" x2="506.6666666666667" y1="20" y2="60"></line>
+    <line x1="522.2222222222222" x2="522.2222222222222" y1="20" y2="60"></line>
     <line x1="537.7777777777778" x2="537.7777777777778" y1="20" y2="60"></line>
+    <line x1="553.3333333333334" x2="553.3333333333334" y1="20" y2="60"></line>
     <line x1="568.8888888888889" x2="568.8888888888889" y1="20" y2="60"></line>
+    <line x1="584.4444444444445" x2="584.4444444444445" y1="20" y2="60"></line>
     <line x1="600" x2="600" y1="20" y2="60"></line>
   </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,60)" d="M0,0L0,6"></path>
+    <path transform="translate(55.55555555555556,60)" d="M0,0L0,6"></path>
     <path transform="translate(71.11111111111111,60)" d="M0,0L0,6"></path>
+    <path transform="translate(86.66666666666666,60)" d="M0,0L0,6"></path>
     <path transform="translate(102.2222222222222,60)" d="M0,0L0,6"></path>
+    <path transform="translate(117.77777777777777,60)" d="M0,0L0,6"></path>
     <path transform="translate(133.33333333333331,60)" d="M0,0L0,6"></path>
+    <path transform="translate(164.44444444444443,60)" d="M0,0L0,6"></path>
     <path transform="translate(195.55555555555554,60)" d="M0,0L0,6"></path>
+    <path transform="translate(226.66666666666666,60)" d="M0,0L0,6"></path>
     <path transform="translate(273.3333333333333,60)" d="M0,0L0,6"></path>
+    <path transform="translate(320,60)" d="M0,0L0,6"></path>
     <path transform="translate(366.66666666666663,60)" d="M0,0L0,6"></path>
+    <path transform="translate(413.3333333333333,60)" d="M0,0L0,6"></path>
     <path transform="translate(444.44444444444446,60)" d="M0,0L0,6"></path>
+    <path transform="translate(475.55555555555554,60)" d="M0,0L0,6"></path>
     <path transform="translate(506.6666666666667,60)" d="M0,0L0,6"></path>
+    <path transform="translate(522.2222222222222,60)" d="M0,0L0,6"></path>
     <path transform="translate(537.7777777777778,60)" d="M0,0L0,6"></path>
+    <path transform="translate(553.3333333333334,60)" d="M0,0L0,6"></path>
     <path transform="translate(568.8888888888889,60)" d="M0,0L0,6"></path>
+    <path transform="translate(584.4444444444445,60)" d="M0,0L0,6"></path>
     <path transform="translate(600,60)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,60)">Fri 05</text><text y="0.71em" transform="translate(71.11111111111111,60)">Apr 07</text><text y="0.71em" transform="translate(102.2222222222222,60)">Tue 09</text><text y="0.71em" transform="translate(133.33333333333331,60)">Thu 11</text><text y="0.71em" transform="translate(195.55555555555554,60)">Sat 13</text><text y="0.71em" transform="translate(273.3333333333333,60)">Mon 15</text><text y="0.71em" transform="translate(366.66666666666663,60)">Wed 17</text><text y="0.71em" transform="translate(444.44444444444446,60)">Fri 19</text><text y="0.71em" transform="translate(506.6666666666667,60)">Apr 21</text><text y="0.71em" transform="translate(537.7777777777778,60)">Tue 23</text><text y="0.71em" transform="translate(568.8888888888889,60)">Thu 25</text><text y="0.71em" transform="translate(600,60)">Sat 27</text></g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,60)">05</text><text y="0.71em" transform="translate(55.55555555555556,60)">06</text><text y="0.71em" transform="translate(71.11111111111111,60)">07</text><text y="0.71em" transform="translate(86.66666666666666,60)">08</text><text y="0.71em" transform="translate(102.2222222222222,60)">09</text><text y="0.71em" transform="translate(117.77777777777777,60)">10</text><text y="0.71em" transform="translate(133.33333333333331,60)">11</text><text y="0.71em" transform="translate(164.44444444444443,60)">12</text><text y="0.71em" transform="translate(195.55555555555554,60)">13</text><text y="0.71em" transform="translate(226.66666666666666,60)">14</text><text y="0.71em" transform="translate(273.3333333333333,60)">15</text><text y="0.71em" transform="translate(320,60)">16</text><text y="0.71em" transform="translate(366.66666666666663,60)">17</text><text y="0.71em" transform="translate(413.3333333333333,60)">18</text><text y="0.71em" transform="translate(444.44444444444446,60)">19</text><text y="0.71em" transform="translate(475.55555555555554,60)">20</text><text y="0.71em" transform="translate(506.6666666666667,60)">21</text><text y="0.71em" transform="translate(522.2222222222222,60)">22</text><text y="0.71em" transform="translate(537.7777777777778,60)">23</text><text y="0.71em" transform="translate(553.3333333333334,60)">24</text><text y="0.71em" transform="translate(568.8888888888889,60)">25</text><text y="0.71em" transform="translate(584.4444444444445,60)">26</text><text y="0.71em" transform="translate(600,60)">27</text></g>
   <g aria-label="bar">
     <rect x="41" width="14.555555555555557" y="20" height="40" fill="rgb(110, 64, 170)"></rect>
     <rect x="56.55555555555556" width="14.555555555555557" y="20" height="40" fill="rgb(107, 69, 179)"></rect>

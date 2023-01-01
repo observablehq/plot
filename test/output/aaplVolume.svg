@@ -24,6 +24,17 @@
     <path transform="translate(581,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">7.0</text><text y="0.71em" transform="translate(117,370)">7.2</text><text y="0.71em" transform="translate(195,370)">7.4</text><text y="0.71em" transform="translate(272,370)">7.6</text><text y="0.71em" transform="translate(349,370)">7.8</text><text y="0.71em" transform="translate(427,370)">8.0</text><text y="0.71em" transform="translate(504,370)">8.2</text><text y="0.71em" transform="translate(581,370)">8.4</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="327.39130434782606" y2="327.39130434782606"></line>
+    <line x1="40" x2="620" y1="284.7826086956522" y2="284.7826086956522"></line>
+    <line x1="40" x2="620" y1="242.17391304347822" y2="242.17391304347822"></line>
+    <line x1="40" x2="620" y1="199.56521739130432" y2="199.56521739130432"></line>
+    <line x1="40" x2="620" y1="156.9565217391304" y2="156.9565217391304"></line>
+    <line x1="40" x2="620" y1="114.34782608695649" y2="114.34782608695649"></line>
+    <line x1="40" x2="620" y1="71.73913043478258" y2="71.73913043478258"></line>
+    <line x1="40" x2="620" y1="29.13043478260868" y2="29.13043478260868"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,327.39130434782606)" d="M0,0L-6,0"></path>

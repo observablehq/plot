@@ -27,6 +27,11 @@
     <path transform="translate(620,90)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,90)">0.0</text><text y="0.71em" transform="translate(98,90)">0.1</text><text y="0.71em" transform="translate(156,90)">0.2</text><text y="0.71em" transform="translate(214,90)">0.3</text><text y="0.71em" transform="translate(272,90)">0.4</text><text y="0.71em" transform="translate(330,90)">0.5</text><text y="0.71em" transform="translate(388,90)">0.6</text><text y="0.71em" transform="translate(446,90)">0.7</text><text y="0.71em" transform="translate(504,90)">0.8</text><text y="0.71em" transform="translate(562,90)">0.9</text><text y="0.71em" transform="translate(620,90)">1.0</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,10.5)">
+    <line x1="40" x2="620" y1="23" y2="23"></line>
+    <line x1="40" x2="620" y1="45" y2="45"></line>
+    <line x1="40" x2="620" y1="67" y2="67"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,23)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45)" d="M0,0L-6,0"></path>

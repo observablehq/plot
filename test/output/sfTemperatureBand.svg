@@ -25,6 +25,17 @@
     <path transform="translate(940,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">October</text><text y="0.71em" transform="translate(153.26949384404924,370)">2011</text><text y="0.71em" transform="translate(264.07660738714094,370)">April</text><text y="0.71em" transform="translate(376.11491108071135,370)">July</text><text y="0.71em" transform="translate(489.3844049247606,370)">October</text><text y="0.71em" transform="translate(602.6538987688099,370)">2012</text><text y="0.71em" transform="translate(714.6922024623804,370)">April</text><text y="0.71em" transform="translate(826.7305061559507,370)">July</text><text y="0.71em" transform="translate(940,370)">October</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="940" y1="349.6875" y2="349.6875"></line>
+    <line x1="40" x2="940" y1="310.625" y2="310.625"></line>
+    <line x1="40" x2="940" y1="271.5625" y2="271.5625"></line>
+    <line x1="40" x2="940" y1="232.50000000000003" y2="232.50000000000003"></line>
+    <line x1="40" x2="940" y1="193.4375" y2="193.4375"></line>
+    <line x1="40" x2="940" y1="154.375" y2="154.375"></line>
+    <line x1="40" x2="940" y1="115.31250000000001" y2="115.31250000000001"></line>
+    <line x1="40" x2="940" y1="76.25000000000003" y2="76.25000000000003"></line>
+    <line x1="40" x2="940" y1="37.187500000000014" y2="37.187500000000014"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,349.6875)" d="M0,0L-6,0"></path>
     <path transform="translate(40,310.625)" d="M0,0L-6,0"></path>

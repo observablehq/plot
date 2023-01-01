@@ -28,6 +28,19 @@
     <path transform="translate(906.1789309513682,570)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(108.68708351056289,570)">1800</text><text y="0.71em" transform="translate(181.17822203317735,570)">1820</text><text y="0.71em" transform="translate(253.67928541046362,570)">1840</text><text y="0.71em" transform="translate(326.18034878774984,570)">1860</text><text y="0.71em" transform="translate(398.6814121650362,570)">1880</text><text y="0.71em" transform="translate(471.1824755423224,570)">1900</text><text y="0.71em" transform="translate(543.6736140649369,570)">1920</text><text y="0.71em" transform="translate(616.1746774422231,570)">1940</text><text y="0.71em" transform="translate(688.6757408195094,570)">1960</text><text y="0.71em" transform="translate(761.1768041967956,570)">1980</text><text y="0.71em" transform="translate(833.6778675740819,570)">2000</text><text y="0.71em" transform="translate(906.1789309513682,570)">2020</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="940" y1="540" y2="540"></line>
+    <line x1="40" x2="940" y1="491.48514851485146" y2="491.48514851485146"></line>
+    <line x1="40" x2="940" y1="442.970297029703" y2="442.970297029703"></line>
+    <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
+    <line x1="40" x2="940" y1="345.94059405940595" y2="345.94059405940595"></line>
+    <line x1="40" x2="940" y1="297.4257425742574" y2="297.4257425742574"></line>
+    <line x1="40" x2="940" y1="248.91089108910893" y2="248.91089108910893"></line>
+    <line x1="40" x2="940" y1="200.39603960396042" y2="200.39603960396042"></line>
+    <line x1="40" x2="940" y1="151.88118811881185" y2="151.88118811881185"></line>
+    <line x1="40" x2="940" y1="103.36633663366337" y2="103.36633663366337"></line>
+    <line x1="40" x2="940" y1="54.851485148514854" y2="54.851485148514854"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,540)" d="M0,0L-6,0"></path>
     <path transform="translate(40,491.48514851485146)" d="M0,0L-6,0"></path>
@@ -41,7 +54,7 @@
     <path transform="translate(40,103.36633663366337)" d="M0,0L-6,0"></path>
     <path transform="translate(40,54.851485148514854)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,540)">−30</text><text y="0.32em" transform="translate(40,491.48514851485146)">−20</text><text y="0.32em" transform="translate(40,442.970297029703)">−10</text><text y="0.32em" transform="translate(40,394.4554455445544)">0</text><text y="0.32em" transform="translate(40,345.94059405940595)">10</text><text y="0.32em" transform="translate(40,297.4257425742574)">20</text><text y="0.32em" transform="translate(40,248.91089108910893)">30</text><text y="0.32em" transform="translate(40,200.39603960396042)">40</text><text y="0.32em" transform="translate(40,151.88118811881185)">50</text><text y="0.32em" transform="translate(40,103.36633663366337)">60</text><text y="0.32em" transform="translate(40,54.851485148514854)">70</text></g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,540)">−30</text><text y="0.32em" transform="translate(40,491.48514851485146)">−20</text><text y="0.32em" transform="translate(40,442.970297029703)">−10</text><text y="0.32em" transform="translate(40,394.4554455445544)">+0</text><text y="0.32em" transform="translate(40,345.94059405940595)">+10</text><text y="0.32em" transform="translate(40,297.4257425742574)">+20</text><text y="0.32em" transform="translate(40,248.91089108910893)">+30</text><text y="0.32em" transform="translate(40,200.39603960396042)">+40</text><text y="0.32em" transform="translate(40,151.88118811881185)">+50</text><text y="0.32em" transform="translate(40,103.36633663366337)">+60</text><text y="0.32em" transform="translate(40,54.851485148514854)">+70</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="940" y1="394.4554455445544" y2="394.4554455445544"></line>
   </g>

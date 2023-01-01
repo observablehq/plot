@@ -21,6 +21,18 @@
     <path transform="translate(578.6622807017544,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(114.08991228070175,370)">2014</text><text y="0.71em" transform="translate(230.15350877192984,370)">2015</text><text y="0.71em" transform="translate(346.2171052631579,370)">2016</text><text y="0.71em" transform="translate(462.5986842105263,370)">2017</text><text y="0.71em" transform="translate(578.6622807017544,370)">2018</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="620" y1="370" y2="370"></line>
+    <line x1="40" x2="620" y1="333.1656479802122" y2="333.1656479802122"></line>
+    <line x1="40" x2="620" y1="296.3312959604245" y2="296.3312959604245"></line>
+    <line x1="40" x2="620" y1="259.49694394063675" y2="259.49694394063675"></line>
+    <line x1="40" x2="620" y1="222.66259192084902" y2="222.66259192084902"></line>
+    <line x1="40" x2="620" y1="185.82823990106127" y2="185.82823990106127"></line>
+    <line x1="40" x2="620" y1="148.9938878812735" y2="148.9938878812735"></line>
+    <line x1="40" x2="620" y1="112.15953586148576" y2="112.15953586148576"></line>
+    <line x1="40" x2="620" y1="75.325183841698" y2="75.325183841698"></line>
+    <line x1="40" x2="620" y1="38.49083182191024" y2="38.49083182191024"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,333.1656479802122)" d="M0,0L-6,0"></path>
