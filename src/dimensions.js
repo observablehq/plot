@@ -18,7 +18,7 @@ export function Dimensions(scales, marks, options = {}) {
   }
 
   // Compute the actual margins. The order of precedence is: the side-specific
-  // margin options, then the global margin option, then the default margins.
+  // margin options, then the global margin option, then the defaults.
   let {
     margin,
     marginTop = margin !== undefined ? margin : marginTopDefault,
