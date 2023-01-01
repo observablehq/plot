@@ -1,87 +1,7 @@
-import {extent} from "d3";
-import {AxisX, AxisY} from "./axis.js";
-import {formatDefault} from "./format.js";
+import {format, utcFormat} from "d3";
+import {formatIsoDate} from "./format.js";
+import {constant, isTemporal, string} from "./options.js";
 import {isOrdinalScale, isTemporalScale, scaleOrder} from "./scales.js";
-
-export function Axes(
-  {x: xScale, y: yScale, fx: fxScale, fy: fyScale},
-  {
-    x = {},
-    y = {},
-    fx = {},
-    fy = {},
-    axis = true,
-    grid,
-    line,
-    label,
-    facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}
-  } = {}
-) {
-  let {axis: xAxis = axis} = x;
-  let {axis: yAxis = axis} = y;
-  let {axis: fxAxis = facetAxis} = fx;
-  let {axis: fyAxis = facetAxis} = fy;
-  if (!xScale) xAxis = null;
-  else if (xAxis === true) xAxis = "bottom";
-  if (!yScale) yAxis = null;
-  else if (yAxis === true) yAxis = "left";
-  if (!fxScale) fxAxis = null;
-  else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-  if (!fyScale) fyAxis = null;
-  else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
-  return {
-    ...(xAxis && {x: new AxisX({grid, line, label, fontVariant: inferFontVariant(xScale), ...x, axis: xAxis})}),
-    ...(yAxis && {y: new AxisY({grid, line, label, fontVariant: inferFontVariant(yScale), ...y, axis: yAxis})}),
-    ...(fxAxis && {
-      fx: new AxisX({
-        name: "fx",
-        grid: facetGrid,
-        label: facetLabel,
-        fontVariant: inferFontVariant(fxScale),
-        ...fx,
-        axis: fxAxis
-      })
-    }),
-    ...(fyAxis && {
-      fy: new AxisY({
-        name: "fy",
-        grid: facetGrid,
-        label: facetLabel,
-        fontVariant: inferFontVariant(fyScale),
-        ...fy,
-        axis: fyAxis
-      })
-    })
-  };
-}
-
-// Mutates axis.ticks!
-// TODO Populate tickFormat if undefined, too?
-export function autoAxisTicks({x, y, fx, fy}, {x: xAxis, y: yAxis, fx: fxAxis, fy: fyAxis}) {
-  if (fxAxis) autoAxisTicksK(fx, fxAxis, 80);
-  if (fyAxis) autoAxisTicksK(fy, fyAxis, 35);
-  if (xAxis) autoAxisTicksK(x, xAxis, 80);
-  if (yAxis) autoAxisTicksK(y, yAxis, 35);
-}
-
-function autoAxisTicksK(scale, axis, k) {
-  if (axis.ticks === undefined) {
-    const interval = scale.interval;
-    if (interval !== undefined) {
-      const [min, max] = extent(scale.scale.domain());
-      axis.ticks = interval.range(interval.floor(min), interval.offset(interval.floor(max)));
-    } else {
-      const [min, max] = extent(scale.scale.range());
-      axis.ticks = (max - min) / k;
-    }
-  }
-  // D3’s ordinal scales simply use toString by default, but if the ordinal
-  // scale domain (or ticks) are numbers or dates (say because we’re applying a
-  // time interval to the ordinal scale), we want Plot’s default formatter.
-  if (axis.tickFormat === undefined && isOrdinalScale(scale)) {
-    axis.tickFormat = formatDefault;
-  }
-}
 
 // Mutates axis.{label,labelAnchor,labelOffset} and scale.label!
 export function autoScaleLabels(channels, scales, dimensions, options) {
@@ -191,4 +111,17 @@ function inferLabel(channels = [], scale, axis, key) {
 
 export function inferFontVariant(scale) {
   return isOrdinalScale(scale) && scale.interval === undefined ? undefined : "tabular-nums";
+}
+
+// D3 doesn’t provide a tick format for ordinal scales; we want shorthand when
+// an ordinal domain is numbers or dates, and we want null to mean the empty
+// string, not the default identity format.
+export function maybeAutoTickFormat(tickFormat, domain) {
+  return tickFormat === undefined
+    ? isTemporal(domain)
+      ? formatIsoDate
+      : string
+    : typeof tickFormat === "function"
+    ? tickFormat
+    : (typeof tickFormat === "string" ? (isTemporal(domain) ? utcFormat : format) : constant)(tickFormat);
 }
