@@ -1,14 +1,15 @@
 import {projectionAspectRatio} from "./projection.js";
 import {isOrdinalScale} from "./scales.js";
-// TODO import {offset} from "./style.js";
+import {offset} from "./style.js";
 
 export function Dimensions(scales, marks, options = {}) {
   // Compute the default margins: the maximum of the marks’ margins. While not
   // always used, they may be needed to compute the default height of the plot.
-  let marginTopDefault = 0,
-    marginBottomDefault = 0,
-    marginRightDefault = 0,
-    marginLeftDefault = 0;
+  let marginTopDefault = 0.5 - offset,
+    marginRightDefault = 0.5 + offset,
+    marginBottomDefault = 0.5 + offset,
+    marginLeftDefault = 0.5 - offset;
+
   for (const {marginTop, marginRight, marginBottom, marginLeft} of marks) {
     if (marginTop > marginTopDefault) marginTopDefault = marginTop;
     if (marginRight > marginRightDefault) marginRightDefault = marginRight;
