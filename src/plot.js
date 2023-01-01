@@ -484,7 +484,14 @@ function inferAxes(marks, channelsByScale, options) {
     fy = {},
     axis = true,
     grid,
-    facet: {axis: facetAxis = axis, grid: facetGrid} = {},
+    facet: {
+      axis: facetAxis = axis,
+      grid: facetGrid,
+      marginTop: facetMarginTop,
+      marginRight: facetMarginRight,
+      marginBottom: facetMarginBottom,
+      marginLeft: facetMarginLeft
+    } = {},
     x: {type: xType, axis: xAxis = axis} = x,
     y: {type: yType, axis: yAxis = axis} = y,
     fx: {axis: fxAxis = facetAxis} = fx,
@@ -497,17 +504,82 @@ function inferAxes(marks, channelsByScale, options) {
   const axes = [];
   if (xAxis) axes.push(axisX(axisOptions(xAxis, {grid}, x)));
   if (yAxis) axes.push(axisY(axisOptions(yAxis, {grid}, y)));
-  if (fxAxis) axes.push(axisFx(axisOptions(fxAxis, {grid: facetGrid}, fx)));
-  if (fyAxis) axes.push(axisFy(axisOptions(fyAxis, {grid: facetGrid}, fy)));
+  if (fxAxis)
+    axes.push(
+      axisFx(
+        axisOptions(
+          fxAxis,
+          {
+            grid: facetGrid,
+            marginTop: facetMarginTop,
+            marginRight: facetMarginRight,
+            marginBottom: facetMarginBottom,
+            marginLeft: facetMarginLeft
+          },
+          fx
+        )
+      )
+    );
+  if (fyAxis)
+    axes.push(
+      axisFy(
+        axisOptions(
+          fyAxis,
+          {
+            grid: facetGrid,
+            marginTop: facetMarginTop,
+            marginRight: facetMarginRight,
+            marginBottom: facetMarginBottom,
+            marginLeft: facetMarginLeft
+          },
+          fy
+        )
+      )
+    );
   return axes;
 }
 
 function axisOptions(
   anchor,
-  {grid: defaultGrid},
-  {grid = defaultGrid, ticks, tickSize, tickPadding, tickFormat, tickRotate, fontVariant, ariaLabel, ariaDescription}
+  {
+    grid: defaultGrid,
+    marginTop: defaultMarginTop,
+    marginRight: defaultMarginRight,
+    marginBottom: defaultMarginBottom,
+    marginLeft: defaultMarginLeft
+  },
+  {
+    grid = defaultGrid,
+    marginTop = defaultMarginTop,
+    marginRight = defaultMarginRight,
+    marginBottom = defaultMarginBottom,
+    marginLeft = defaultMarginLeft,
+    ticks,
+    tickSize,
+    tickPadding,
+    tickFormat,
+    tickRotate,
+    fontVariant,
+    ariaLabel,
+    ariaDescription
+  }
 ) {
-  return {anchor, grid, ticks, tickSize, tickPadding, tickFormat, tickRotate, fontVariant, ariaLabel, ariaDescription};
+  return {
+    anchor,
+    grid,
+    marginTop,
+    marginRight,
+    marginBottom,
+    marginLeft,
+    ticks,
+    tickSize,
+    tickPadding,
+    tickFormat,
+    tickRotate,
+    fontVariant,
+    ariaLabel,
+    ariaDescription
+  };
 }
 
 function hasScale(marks, k) {

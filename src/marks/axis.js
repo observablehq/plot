@@ -66,6 +66,10 @@ function axisKy(
     x1,
     x2,
     x = anchor === "left" ? x1 : x2,
+    marginTop = 20,
+    marginRight = anchor === "right" ? 40 : 0,
+    marginBottom = 20,
+    marginLeft = anchor === "left" ? 40 : 0,
     ...options
   }
 ) {
@@ -96,6 +100,10 @@ function axisKy(
           fillOpacity,
           tickSize,
           x,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
           ...options
         })
       : null
@@ -150,6 +158,10 @@ function axisKx(
     y1,
     y2,
     y = anchor === "bottom" ? y2 : y1,
+    marginTop = anchor === "top" ? 30 : 0,
+    marginRight = 20,
+    marginBottom = anchor === "bottom" ? 30 : 0,
+    marginLeft = 20,
     ...options
   }
 ) {
@@ -180,6 +192,10 @@ function axisKx(
           fillOpacity,
           tickSize,
           y,
+          marginTop,
+          marginRight,
+          marginBottom,
+          marginLeft,
           ...options
         })
       : null
@@ -298,10 +314,6 @@ function axisTextKy(
       lineAnchor,
       fontVariant,
       rotate: tickRotate,
-      marginTop: 20,
-      marginRight: anchor === "right" ? 40 : 0,
-      marginBottom: 20,
-      marginLeft: anchor === "left" ? 40 : 0,
       y,
       ...options,
       dx: anchor === "left" ? +dx - tickSize - tickPadding + +insetLeft : +dx + +tickSize + +tickPadding - insetRight
@@ -348,10 +360,6 @@ function axisTextKx(
       lineAnchor,
       fontVariant,
       rotate: tickRotate,
-      marginTop: anchor === "top" ? 30 : 0,
-      marginRight: 20,
-      marginBottom: anchor === "bottom" ? 30 : 0,
-      marginLeft: 20,
       x,
       ...options,
       dy: anchor === "bottom" ? +dy + +tickSize + +tickPadding - insetBottom : +dy - tickSize - tickPadding + +insetTop
