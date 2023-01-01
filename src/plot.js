@@ -5,6 +5,7 @@ import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
 import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
+import {Mark} from "./mark.js";
 import {axisFx, axisFy, axisX, axisY} from "./marks/axis.js";
 import {arrayify, isScaleOptions, map, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
@@ -328,9 +329,12 @@ export function plot(options = {}) {
   return figure;
 }
 
-export function plotThis({marks = [], ...options} = {}) {
+function plotThis({marks = [], ...options} = {}) {
   return plot({...options, marks: [...marks, this]});
 }
+
+// Note: This side-effect avoids a circular dependency.
+Mark.prototype.plot = plotThis;
 
 /** @jsdoc marks */
 export function marks(...marks) {
@@ -342,15 +346,11 @@ function markify(mark) {
   return typeof mark.render === "function" ? mark : new Render(mark);
 }
 
-// Note: does not extend Mark to break circular dependency!
-class Render {
+class Render extends Mark {
   constructor(render) {
     if (typeof render !== "function") throw new TypeError("invalid mark; missing render function");
+    super();
     this.render = render;
-    this.channels = {};
-  }
-  initialize() {
-    return {channels: {}};
   }
   render() {}
 }

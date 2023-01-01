@@ -40,7 +40,7 @@
     "@observablehq/plot": "./src/index.js"
   },
   "sideEffects": [
-    "./src/index.js"
+    "./src/plot.js"
   ],
   "devDependencies": {
     "@esbuild-kit/core-utils": "^2.0.2",

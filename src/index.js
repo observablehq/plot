@@ -1,8 +1,3 @@
-import {plotThis} from "./plot.js";
-import {Mark} from "./mark.js";
-
-Mark.prototype.plot = plotThis;
-
 export {plot, marks} from "./plot.js";
 export {Mark} from "./mark.js";
 export {Area, area, areaX, areaY} from "./marks/area.js";
