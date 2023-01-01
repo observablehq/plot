@@ -13,10 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-    <path transform="translate(50,30)" d="M0,0L0,-6"></path>
-    <path transform="translate(580,30)" d="M0,0L0,-6"></path>
-  </g>
   <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(50,30)">Share of population</text><text transform="translate(580,30)">Share of wealth</text></g>
   <g aria-label="area" stroke="white" stroke-linejoin="round" stroke-linecap="round">
     <path fill="#008837" d="M50,135C315,135,315,40.5,580,40.5L580,30C315,30,315,30,50,30Z"></path>

@@ -581,9 +581,12 @@ function flatMarks(marks) {
     .map(markify);
 }
 
-// TODO more options?
-function axisOptions(anchor, {grid: defaultGrid}, {grid = defaultGrid, ticks, tickFormat}) {
-  return {anchor, grid, ticks, tickFormat};
+function axisOptions(
+  anchor,
+  {grid: defaultGrid},
+  {grid = defaultGrid, ticks, tickSize, tickPadding, tickFormat, tickRotate, fontVariant, ariaLabel, ariaDescription}
+) {
+  return {anchor, grid, ticks, tickSize, tickPadding, tickFormat, tickRotate, fontVariant, ariaLabel, ariaDescription};
 }
 
 function hasScale(marks, k) {

@@ -22,7 +22,7 @@
     <path transform="translate(104,150)" d="M0,0L-6,0"></path>
     <path transform="translate(104,175)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(104,25)">economy (mpg)</text><text y="0.32em" transform="translate(104,50)">cylinders</text><text y="0.32em" transform="translate(104,75)">displacement (cc)</text><text y="0.32em" transform="translate(104,100)">power (hp)</text><text y="0.32em" transform="translate(104,125)">weight (lb)</text><text y="0.32em" transform="translate(104,150)">0-60 mph (s)</text><text y="0.32em" transform="translate(104,175)">year</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-14.5,0.5)"><text y="0.32em" transform="translate(104,25)">economy (mpg)</text><text y="0.32em" transform="translate(104,50)">cylinders</text><text y="0.32em" transform="translate(104,75)">displacement (cc)</text><text y="0.32em" transform="translate(104,100)">power (hp)</text><text y="0.32em" transform="translate(104,125)">weight (lb)</text><text y="0.32em" transform="translate(104,150)">0-60 mph (s)</text><text y="0.32em" transform="translate(104,175)">year</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="104" x2="620" y1="25" y2="25"></line>
     <line x1="104" x2="620" y1="50" y2="50"></line>

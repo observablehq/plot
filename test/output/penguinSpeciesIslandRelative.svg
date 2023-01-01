@@ -28,6 +28,9 @@
       <path transform="translate(0,20)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,400)">0</text><text y="0.32em" transform="translate(0,362)">10</text><text y="0.32em" transform="translate(0,324)">20</text><text y="0.32em" transform="translate(0,286)">30</text><text y="0.32em" transform="translate(0,248)">40</text><text y="0.32em" transform="translate(0,210)">50</text><text y="0.32em" transform="translate(0,172)">60</text><text y="0.32em" transform="translate(0,134)">70</text><text y="0.32em" transform="translate(0,95.99999999999999)">80</text><text y="0.32em" transform="translate(0,57.99999999999999)">90</text><text y="0.32em" transform="translate(0,20)">100</text></g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(90,400)" d="M0,0L0,6"></path>
+    </g>
     <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Adelie</text></g>
     <g aria-label="bar">
       <rect x="0" width="180" y="290" height="110" fill="#4e79a7"></rect>
@@ -39,6 +42,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(240,0)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(90,400)" d="M0,0L0,6"></path>
+    </g>
     <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Chinstrap</text></g>
     <g aria-label="bar">
       <rect x="0" width="180" y="20" height="380" fill="#f28e2c"></rect>
@@ -48,6 +54,9 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(440,0)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(90,400)" d="M0,0L0,6"></path>
+    </g>
     <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Gentoo</text></g>
     <g aria-label="bar">
       <rect x="0" width="180" y="20" height="380" fill="#4e79a7"></rect>

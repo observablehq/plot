@@ -50,7 +50,7 @@
     <path transform="translate(40,71.22947326924321)" d="M0,0L-6,0"></path>
     <path transform="translate(40,29.11633045510343)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,323.90833015408174)">155</text><text y="0.32em" transform="translate(40,281.795187339942)">160</text><text y="0.32em" transform="translate(40,239.68204452580224)">165</text><text y="0.32em" transform="translate(40,197.56890171166248)">170</text><text y="0.32em" transform="translate(40,155.45575889752268)">175</text><text y="0.32em" transform="translate(40,113.34261608338295)">180</text><text y="0.32em" transform="translate(40,71.22947326924321)">185</text><text y="0.32em" transform="translate(40,29.11633045510343)">190</text></g>
+  <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,323.90833015408174)">155</text><text y="0.32em" transform="translate(40,281.795187339942)">160</text><text y="0.32em" transform="translate(40,239.68204452580224)">165</text><text y="0.32em" transform="translate(40,197.56890171166248)">170</text><text y="0.32em" transform="translate(40,155.45575889752268)">175</text><text y="0.32em" transform="translate(40,113.34261608338295)">180</text><text y="0.32em" transform="translate(40,71.22947326924321)">185</text><text y="0.32em" transform="translate(40,29.11633045510343)">190</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="46" x2="46" y1="200.60105641690916" y2="185.86145643196028"></line>
     <line x1="61.22285714285714" x2="61.22285714285714" y1="201.27487512456383" y2="192.85224656173585"></line>
