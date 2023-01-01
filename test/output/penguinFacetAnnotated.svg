@@ -20,6 +20,7 @@
       <path transform="translate(75,40)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(570,29.5)">Biscoe</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="86.0483870967742" y="2" height="17" fill="#4e79a7"></rect>
@@ -36,6 +37,7 @@
       <path transform="translate(75,40)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(570,29.5)">Dream</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="105.60483870967741" y="2" height="17" fill="#4e79a7"></rect>
@@ -62,6 +64,7 @@
       <path transform="translate(75,40)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" transform="translate(-8.5,9)"><text y="0.32em" transform="translate(75,2)">Adelie</text><text y="0.32em" transform="translate(75,21)">Chinstrap</text><text y="0.32em" transform="translate(75,40)">Gentoo</text></g>
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(570,29.5)">Torgersen</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="75" y="0" width="495" height="59"></rect>
     <g aria-label="bar">
       <rect x="75" width="93.87096774193549" y="2" height="17" fill="#4e79a7"></rect>

@@ -100,27 +100,27 @@ export function maybeFacetAnchor(facetAnchor) {
 }
 
 function facetAnchorTop(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) === 0;
+  return Y ? Y.indexOf(y) === 0 : true;
 }
 
 function facetAnchorBottom(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) === Y?.length - 1;
+  return Y ? Y.indexOf(y) === Y.length - 1 : true;
 }
 
 function facetAnchorLeft(facets, {x: X}, {x}) {
-  return X?.indexOf(x) === 0;
+  return X ? X.indexOf(x) === 0 : true;
 }
 
 function facetAnchorRight(facets, {x: X}, {x}) {
-  return X?.indexOf(x) === X?.length - 1;
+  return X ? X.indexOf(x) === X.length - 1 : true;
 }
 
 function facetAnchorXMid(facets, {x: X}, {x}) {
-  return X?.indexOf(x) === X?.length >> 1;
+  return X ? X.indexOf(x) === X.length >> 1 : false;
 }
 
 function facetAnchorYMid(facets, {y: Y}, {y}) {
-  return Y?.indexOf(y) === Y?.length >> 1;
+  return Y ? Y.indexOf(y) === Y.length >> 1 : false;
 }
 
 function facetAnchorTopEmpty(facets, {y: Y}, {x, y}) {

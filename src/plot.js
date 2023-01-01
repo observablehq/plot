@@ -5,7 +5,7 @@ import {Context, create} from "./context.js";
 import {Dimensions} from "./dimensions.js";
 import {Facets, facetExclude, facetGroups, facetOrder, facetTranslate, facetFilter} from "./facet.js";
 import {Legends, exposeLegends} from "./legends.js";
-import {axisX, axisY} from "./marks/axis.js";
+import {axisFx, axisFy, axisX, axisY} from "./marks/axis.js";
 import {arrayify, isScaleOptions, map, yes} from "./options.js";
 import {Scales, ScaleFunctions, autoScaleRange, exposeScales} from "./scales.js";
 import {position, registry as scaleRegistry} from "./scales/index.js";
@@ -28,7 +28,6 @@ export function plot(options = {}) {
   // data and dataLength so we can warn the user if a different data of the same
   // length is used in a mark.
   const topFacetState = maybeTopFacet(facet, options);
-  let topFacetsIndex; // TODO cleaner
 
   // Construct a map from (faceted) Mark instance to facet state, including:
   // channels - an {fx?, fy?} object to add to the fx and fy scale
@@ -45,13 +44,49 @@ export function plot(options = {}) {
   if (topFacetState) addScaleChannels(channelsByScale, [topFacetState]);
   addScaleChannels(channelsByScale, facetStateByMark);
 
+  // Add implicit axis marks.
+  {
+    const {
+      projection,
+      x = {},
+      y = {},
+      fx = {},
+      fy = {},
+      axis = true,
+      grid,
+      facet: {axis: facetAxis = axis, grid: facetGrid} = {}
+    } = options;
+    let {axis: xAxis = axis} = x;
+    let {axis: yAxis = axis} = y;
+    let {axis: fxAxis = facetAxis} = fx;
+    let {axis: fyAxis = facetAxis} = fy;
+    if ((x.type === undefined && !hasScale(marks, "x")) || projection) xAxis = null;
+    else if (xAxis === true) xAxis = "bottom";
+    if ((y.type === undefined && !hasScale(marks, "y")) || projection) yAxis = null;
+    else if (yAxis === true) yAxis = "left";
+    if (!channelsByScale.has("fx")) fxAxis = null;
+    else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
+    if (!channelsByScale.has("fy")) fyAxis = null;
+    else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
+    const newMarks = [];
+    if (fyAxis) newMarks.unshift(...flatMarks(axisFy(axisOptions(fyAxis, {grid: facetGrid}, fy))));
+    if (fxAxis) newMarks.unshift(...flatMarks(axisFx(axisOptions(fxAxis, {grid: facetGrid}, fx))));
+    if (yAxis) newMarks.unshift(...flatMarks(axisY(axisOptions(yAxis, {grid}, y))));
+    if (xAxis) newMarks.unshift(...flatMarks(axisX(axisOptions(xAxis, {grid}, x))));
+    for (const mark of newMarks) {
+      const facetState = maybeMarkFacet(mark, topFacetState, options);
+      if (facetState) facetStateByMark.set(mark, facetState);
+    }
+    marks.unshift(...newMarks);
+  }
+
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
   // them in order to apply the facet filters afterwards.
   const facets = Facets(channelsByScale, options);
 
   if (facets !== undefined) {
-    topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
+    const topFacetsIndex = topFacetState ? facetFilter(facets, topFacetState) : undefined;
 
     // Compute a facet index for each mark, parallel to the facets array. For
     // mark-level facets, compute an index for that mark’s data and options.
@@ -125,51 +160,6 @@ export function plot(options = {}) {
   // Initalize the scales.
   const scaleDescriptors = Scales(addScaleChannels(channelsByScale, stateByMark), options);
   const scales = ScaleFunctions(scaleDescriptors);
-
-  // Add implicit axis marks.
-  // TODO Proper scale detection; extract axis options.
-  {
-    const {x: xScale, y: yScale} = scaleDescriptors;
-    const {
-      x = {},
-      y = {},
-      // fx = {},
-      // fy = {},
-      axis = true,
-      grid
-      // line,
-      // label,
-      // facet: {axis: facetAxis = axis, grid: facetGrid, label: facetLabel = label} = {}
-    } = options;
-    let {axis: xAxis = axis} = x;
-    let {axis: yAxis = axis} = y;
-    // let {axis: fxAxis = facetAxis} = fx;
-    // let {axis: fyAxis = facetAxis} = fy;
-    if (!xScale) xAxis = null;
-    else if (xAxis === true) xAxis = "bottom";
-    if (!yScale) yAxis = null;
-    else if (yAxis === true) yAxis = "left";
-    // if (!fxScale) fxAxis = null;
-    // else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-    // if (!fyScale) fyAxis = null;
-    // else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
-    const newMarks = [];
-    if (xAxis) newMarks.push(...flatMarks(axisX(axisOptions(xAxis, {grid}, x))));
-    if (yAxis) newMarks.push(...flatMarks(axisY(axisOptions(yAxis, {grid}, y))));
-    for (const mark of newMarks) {
-      const facetState = maybeMarkFacet(mark, topFacetState, options);
-      let facetsIndex, facetChannels;
-      if (facetState) {
-        facetsIndex = mark.fx != null || mark.fy != null ? facetFilter(facets, facetState) : topFacetsIndex;
-        facetChannels = facetState.channels;
-        facetState.facetsIndex = facetsIndex;
-      }
-      const {data, facets, channels} = mark.initialize(facetsIndex, facetChannels);
-      applyScaleTransforms(channels, options);
-      stateByMark.set(mark, {data, facets, channels});
-    }
-    marks.unshift(...newMarks);
-  }
 
   // TODO Determine whether there are any axes present, and accommodate for them
   // in the margins. In the past, we looked for specific axes, but I think we
@@ -594,4 +584,15 @@ function flatMarks(marks) {
 // TODO more options?
 function axisOptions(anchor, {grid: defaultGrid}, {grid = defaultGrid, ticks, tickFormat}) {
   return {anchor, grid, ticks, tickFormat};
+}
+
+function hasScale(marks, k) {
+  for (const mark of marks) {
+    for (const key in mark.channels) {
+      if (mark.channels[key].scale === k) {
+        return true;
+      }
+    }
+  }
+  return false;
 }

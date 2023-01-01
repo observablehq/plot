@@ -15,42 +15,45 @@
   </style>
   <g aria-label="facet" transform="translate(40,0)">
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(0,410)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,371)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,332)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,293)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,254)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,215)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,176)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,137)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,97.99999999999999)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,58.99999999999999)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,400)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,362)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,324)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,286)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,248)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,210)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,172)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,134)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,95.99999999999999)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,57.99999999999999)" d="M0,0L-6,0"></path>
       <path transform="translate(0,20)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,410)">0</text><text y="0.32em" transform="translate(0,371)">10</text><text y="0.32em" transform="translate(0,332)">20</text><text y="0.32em" transform="translate(0,293)">30</text><text y="0.32em" transform="translate(0,254)">40</text><text y="0.32em" transform="translate(0,215)">50</text><text y="0.32em" transform="translate(0,176)">60</text><text y="0.32em" transform="translate(0,137)">70</text><text y="0.32em" transform="translate(0,97.99999999999999)">80</text><text y="0.32em" transform="translate(0,58.99999999999999)">90</text><text y="0.32em" transform="translate(0,20)">100</text></g>
+    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,400)">0</text><text y="0.32em" transform="translate(0,362)">10</text><text y="0.32em" transform="translate(0,324)">20</text><text y="0.32em" transform="translate(0,286)">30</text><text y="0.32em" transform="translate(0,248)">40</text><text y="0.32em" transform="translate(0,210)">50</text><text y="0.32em" transform="translate(0,172)">60</text><text y="0.32em" transform="translate(0,134)">70</text><text y="0.32em" transform="translate(0,95.99999999999999)">80</text><text y="0.32em" transform="translate(0,57.99999999999999)">90</text><text y="0.32em" transform="translate(0,20)">100</text></g>
+    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Adelie</text></g>
     <g aria-label="bar">
-      <rect x="0" width="180" y="297.10526315789474" height="112.89473684210526" fill="#4e79a7"></rect>
-      <rect x="0" width="180" y="153.42105263157893" height="143.6842105263158" fill="#f28e2c"></rect>
-      <rect x="0" width="180" y="20" height="133.42105263157893" fill="#e15759"></rect>
+      <rect x="0" width="180" y="290" height="110" fill="#4e79a7"></rect>
+      <rect x="0" width="180" y="149.99999999999997" height="140.00000000000003" fill="#f28e2c"></rect>
+      <rect x="0" width="180" y="20" height="129.99999999999997" fill="#e15759"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="410" y2="410"></line>
+      <line x1="0" x2="180" y1="400" y2="400"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(240,0)">
+    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Chinstrap</text></g>
     <g aria-label="bar">
-      <rect x="0" width="180" y="20" height="390" fill="#f28e2c"></rect>
+      <rect x="0" width="180" y="20" height="380" fill="#f28e2c"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="410" y2="410"></line>
+      <line x1="0" x2="180" y1="400" y2="400"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(440,0)">
+    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(90,400)">Gentoo</text></g>
     <g aria-label="bar">
-      <rect x="0" width="180" y="20" height="390" fill="#4e79a7"></rect>
+      <rect x="0" width="180" y="20" height="380" fill="#4e79a7"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="0" x2="180" y1="410" y2="410"></line>
+      <line x1="0" x2="180" y1="400" y2="400"></line>
     </g>
   </g>
 </svg>

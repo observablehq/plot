@@ -23,16 +23,17 @@
       <path transform="translate(40,7.528301886792451)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,133)">0</text><text y="0.32em" transform="translate(40,107.9056603773585)">10</text><text y="0.32em" transform="translate(40,82.81132075471697)">20</text><text y="0.32em" transform="translate(40,57.716981132075475)">30</text><text y="0.32em" transform="translate(40,32.622641509433954)">40</text><text y="0.32em" transform="translate(40,7.528301886792451)">50</text></g>
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(600,66.5)">FEMALE</text></g>
     <g aria-label="rect">
-      <rect x="41" y="112.9245283018868" width="72" height="20.075471698113205"></rect>
-      <rect x="114" y="0" width="71" height="133"></rect>
-      <rect x="186" y="17.566037735849054" width="72" height="115.43396226415095"></rect>
-      <rect x="259" y="95.35849056603774" width="71" height="37.641509433962256"></rect>
-      <rect x="331" y="45.169811320754725" width="72" height="87.83018867924528"></rect>
-      <rect x="404" y="112.9245283018868" width="71" height="20.075471698113205"></rect>
+      <rect x="41" y="112.9245283018868" width="69" height="20.075471698113205"></rect>
+      <rect x="111" y="0" width="69" height="133"></rect>
+      <rect x="181" y="17.566037735849054" width="69" height="115.43396226415095"></rect>
+      <rect x="251" y="95.35849056603774" width="69" height="37.641509433962256"></rect>
+      <rect x="321" y="45.169811320754725" width="69" height="87.83018867924528"></rect>
+      <rect x="391" y="112.9245283018868" width="69" height="20.075471698113205"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="620" y1="133" y2="133"></line>
+      <line x1="40" x2="600" y1="133" y2="133"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,168)">
@@ -45,32 +46,33 @@
       <path transform="translate(40,7.528301886792451)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,133)">0</text><text y="0.32em" transform="translate(40,107.9056603773585)">10</text><text y="0.32em" transform="translate(40,82.81132075471697)">20</text><text y="0.32em" transform="translate(40,57.716981132075475)">30</text><text y="0.32em" transform="translate(40,32.622641509433954)">40</text><text y="0.32em" transform="translate(40,7.528301886792451)">50</text></g>
+    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(600,66.5)">MALE</text></g>
     <g aria-label="rect">
-      <rect x="114" y="115.43396226415095" width="71" height="17.56603773584905"></rect>
-      <rect x="186" y="15.056603773584902" width="72" height="117.9433962264151"></rect>
-      <rect x="259" y="27.603773584905653" width="71" height="105.39622641509435"></rect>
-      <rect x="331" y="100.37735849056604" width="72" height="32.62264150943396"></rect>
-      <rect x="404" y="67.75471698113208" width="71" height="65.24528301886792"></rect>
-      <rect x="476" y="60.22641509433962" width="72" height="72.77358490566039"></rect>
-      <rect x="549" y="122.9622641509434" width="71" height="10.037735849056602"></rect>
+      <rect x="111" y="115.43396226415095" width="69" height="17.56603773584905"></rect>
+      <rect x="181" y="15.056603773584902" width="69" height="117.9433962264151"></rect>
+      <rect x="251" y="27.603773584905653" width="69" height="105.39622641509435"></rect>
+      <rect x="321" y="100.37735849056604" width="69" height="32.62264150943396"></rect>
+      <rect x="391" y="67.75471698113208" width="69" height="65.24528301886792"></rect>
+      <rect x="461" y="60.22641509433962" width="69" height="72.77358490566039"></rect>
+      <rect x="531" y="122.9622641509434" width="69" height="10.037735849056602"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="620" y1="133" y2="133"></line>
+      <line x1="40" x2="600" y1="133" y2="133"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,316)">
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(40,133)" d="M0,0L0,6"></path>
-      <path transform="translate(113,133)" d="M0,0L0,6"></path>
-      <path transform="translate(185,133)" d="M0,0L0,6"></path>
-      <path transform="translate(258,133)" d="M0,0L0,6"></path>
-      <path transform="translate(330,133)" d="M0,0L0,6"></path>
-      <path transform="translate(403,133)" d="M0,0L0,6"></path>
-      <path transform="translate(475,133)" d="M0,0L0,6"></path>
-      <path transform="translate(548,133)" d="M0,0L0,6"></path>
-      <path transform="translate(620,133)" d="M0,0L0,6"></path>
+      <path transform="translate(110,133)" d="M0,0L0,6"></path>
+      <path transform="translate(180,133)" d="M0,0L0,6"></path>
+      <path transform="translate(250,133)" d="M0,0L0,6"></path>
+      <path transform="translate(320,133)" d="M0,0L0,6"></path>
+      <path transform="translate(390,133)" d="M0,0L0,6"></path>
+      <path transform="translate(460,133)" d="M0,0L0,6"></path>
+      <path transform="translate(530,133)" d="M0,0L0,6"></path>
+      <path transform="translate(600,133)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,133)">2,500</text><text y="0.71em" transform="translate(113,133)">3,000</text><text y="0.71em" transform="translate(185,133)">3,500</text><text y="0.71em" transform="translate(258,133)">4,000</text><text y="0.71em" transform="translate(330,133)">4,500</text><text y="0.71em" transform="translate(403,133)">5,000</text><text y="0.71em" transform="translate(475,133)">5,500</text><text y="0.71em" transform="translate(548,133)">6,000</text><text y="0.71em" transform="translate(620,133)">6,500</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,133)">2,500</text><text y="0.71em" transform="translate(110,133)">3,000</text><text y="0.71em" transform="translate(180,133)">3,500</text><text y="0.71em" transform="translate(250,133)">4,000</text><text y="0.71em" transform="translate(320,133)">4,500</text><text y="0.71em" transform="translate(390,133)">5,000</text><text y="0.71em" transform="translate(460,133)">5,500</text><text y="0.71em" transform="translate(530,133)">6,000</text><text y="0.71em" transform="translate(600,133)">6,500</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(40,133)" d="M0,0L-6,0"></path>
       <path transform="translate(40,107.9056603773585)" d="M0,0L-6,0"></path>
@@ -81,14 +83,14 @@
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,133)">0</text><text y="0.32em" transform="translate(40,107.9056603773585)">10</text><text y="0.32em" transform="translate(40,82.81132075471697)">20</text><text y="0.32em" transform="translate(40,57.716981132075475)">30</text><text y="0.32em" transform="translate(40,32.622641509433954)">40</text><text y="0.32em" transform="translate(40,7.528301886792451)">50</text></g>
     <g aria-label="rect">
-      <rect x="41" y="130.49056603773585" width="72" height="2.509433962264154"></rect>
-      <rect x="114" y="127.9811320754717" width="71" height="5.018867924528294"></rect>
-      <rect x="186" y="130.49056603773585" width="72" height="2.509433962264154"></rect>
-      <rect x="259" y="127.9811320754717" width="71" height="5.018867924528294"></rect>
-      <rect x="331" y="125.47169811320755" width="72" height="7.528301886792448"></rect>
+      <rect x="41" y="130.49056603773585" width="69" height="2.509433962264154"></rect>
+      <rect x="111" y="127.9811320754717" width="69" height="5.018867924528294"></rect>
+      <rect x="181" y="130.49056603773585" width="69" height="2.509433962264154"></rect>
+      <rect x="251" y="127.9811320754717" width="69" height="5.018867924528294"></rect>
+      <rect x="321" y="125.47169811320755" width="69" height="7.528301886792448"></rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
-      <line x1="40" x2="620" y1="133" y2="133"></line>
+      <line x1="40" x2="600" y1="133" y2="133"></line>
     </g>
   </g>
 </svg>

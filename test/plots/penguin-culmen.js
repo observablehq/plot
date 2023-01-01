@@ -21,7 +21,7 @@ export default async function () {
       // Plot.axisY({grid: true}),
       // Plot.axisFx(),
       // Plot.axisFy(),
-      // Plot.frame(),
+      Plot.frame(),
       Plot.dot(penguins, {facet: "exclude", x: "culmen_depth_mm", y: "culmen_length_mm", r: 2, fill: "#ddd"}),
       Plot.dot(penguins, {x: "culmen_depth_mm", y: "culmen_length_mm"})
     ]
