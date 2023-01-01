@@ -13,60 +13,40 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,350)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,311.25)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,272.5)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,233.75)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,195)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,156.25)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,117.5)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,78.75)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,40)" d="M0,0L-6,0"></path>
-  </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,350)">−2.5</text><text y="0.32em" transform="translate(40,311.25)">−2.0</text><text y="0.32em" transform="translate(40,272.5)">−1.5</text><text y="0.32em" transform="translate(40,233.75)">−1.0</text><text y="0.32em" transform="translate(40,195)">−0.5</text><text y="0.32em" transform="translate(40,156.25)">0.0</text><text y="0.32em" transform="translate(40,117.5)">0.5</text><text y="0.32em" transform="translate(40,78.75)">1.0</text><text y="0.32em" transform="translate(40,40)">1.5</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(50,370)" d="M0,0L0,6"></path>
-    <path transform="translate(162.5,370)" d="M0,0L0,6"></path>
-    <path transform="translate(275,370)" d="M0,0L0,6"></path>
-    <path transform="translate(387.5,370)" d="M0,0L0,6"></path>
-    <path transform="translate(500,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(50,370)">0.0</text><text y="0.71em" transform="translate(162.5,370)">0.5</text><text y="0.71em" transform="translate(275,370)">1.0</text><text y="0.71em" transform="translate(387.5,370)">1.5</text><text y="0.71em" transform="translate(500,370)">2.0</text></g>
   <g aria-label="link" fill="none" stroke-width="1.5" stroke-opacity="0.5" stroke-miterlimit="1" transform="translate(0.5,0.5)">
-    <path d="M50,156.25C162.5,156.25,162.5,40,275,40" stroke="#bdbdbd"></path>
-    <path d="M50,156.25C162.5,156.25,162.5,117.5,275,117.5" stroke="#bdbdbd"></path>
-    <path d="M50,156.25C162.5,156.25,162.5,195,275,195" stroke="#bdbdbd"></path>
-    <path d="M50,156.25C162.5,156.25,162.5,272.5,275,272.5" stroke="#636363"></path>
-    <path d="M275,272.5C387.5,272.5,387.5,195,500,195" stroke="#bdbdbd"></path>
-    <path d="M275,272.5C387.5,272.5,387.5,272.5,500,272.5" stroke="#bdbdbd"></path>
-    <path d="M275,272.5C387.5,272.5,387.5,350,500,350" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,20,264.5,20" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,109.75,264.5,109.75" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,199.5,264.5,199.5" stroke="#bdbdbd"></path>
+    <path d="M10,154.625C137.25,154.625,137.25,289.25,264.5,289.25" stroke="#636363"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,199.5,519,199.5" stroke="#bdbdbd"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,289.25,519,289.25" stroke="#bdbdbd"></path>
+    <path d="M264.5,289.25C391.75,289.25,391.75,379,519,379" stroke="#bdbdbd"></path>
   </g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
-    <circle cx="50" cy="156.25" r="3" fill="#636363">
+    <circle cx="10" cy="154.625" r="3" fill="#636363">
       <title>/Chaos</title>
     </circle>
-    <circle cx="275" cy="40" r="3" fill="#bdbdbd">
+    <circle cx="264.5" cy="20" r="3" fill="#bdbdbd">
       <title>/Chaos/Eros</title>
     </circle>
-    <circle cx="275" cy="117.5" r="3" fill="#bdbdbd">
+    <circle cx="264.5" cy="109.75" r="3" fill="#bdbdbd">
       <title>/Chaos/Erebus</title>
     </circle>
-    <circle cx="275" cy="195" r="3" fill="#bdbdbd">
+    <circle cx="264.5" cy="199.5" r="3" fill="#bdbdbd">
       <title>/Chaos/Tartarus</title>
     </circle>
-    <circle cx="275" cy="272.5" r="3" fill="#636363">
+    <circle cx="264.5" cy="289.25" r="3" fill="#636363">
       <title>/Chaos/Gaia</title>
     </circle>
-    <circle cx="500" cy="195" r="3" fill="#bdbdbd">
+    <circle cx="519" cy="199.5" r="3" fill="#bdbdbd">
       <title>/Chaos/Gaia/Mountains</title>
     </circle>
-    <circle cx="500" cy="272.5" r="3" fill="#bdbdbd">
+    <circle cx="519" cy="289.25" r="3" fill="#bdbdbd">
       <title>/Chaos/Gaia/Pontus</title>
     </circle>
-    <circle cx="500" cy="350" r="3" fill="#bdbdbd">
+    <circle cx="519" cy="379" r="3" fill="#bdbdbd">
       <title>/Chaos/Gaia/Uranus</title>
     </circle>
   </g>
-  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(50,156.25)">Chaos<title>/Chaos</title></text><text y="0.32em" transform="translate(275,40)">Eros<title>/Chaos/Eros</title></text><text y="0.32em" transform="translate(275,117.5)">Erebus<title>/Chaos/Erebus</title></text><text y="0.32em" transform="translate(275,195)">Tartarus<title>/Chaos/Tartarus</title></text><text y="0.32em" transform="translate(275,272.5)">Gaia<title>/Chaos/Gaia</title></text><text y="0.32em" transform="translate(500,195)">Mountains<title>/Chaos/Gaia/Mountains</title></text><text y="0.32em" transform="translate(500,272.5)">Pontus<title>/Chaos/Gaia/Pontus</title></text><text y="0.32em" transform="translate(500,350)">Uranus<title>/Chaos/Gaia/Uranus</title></text></g>
+  <g aria-label="text" stroke="white" stroke-width="3" stroke-linejoin="round" paint-order="stroke" text-anchor="start" transform="translate(6.5,0.5)"><text y="0.32em" transform="translate(10,154.625)">Chaos<title>/Chaos</title></text><text y="0.32em" transform="translate(264.5,20)">Eros<title>/Chaos/Eros</title></text><text y="0.32em" transform="translate(264.5,109.75)">Erebus<title>/Chaos/Erebus</title></text><text y="0.32em" transform="translate(264.5,199.5)">Tartarus<title>/Chaos/Tartarus</title></text><text y="0.32em" transform="translate(264.5,289.25)">Gaia<title>/Chaos/Gaia</title></text><text y="0.32em" transform="translate(519,199.5)">Mountains<title>/Chaos/Gaia/Mountains</title></text><text y="0.32em" transform="translate(519,289.25)">Pontus<title>/Chaos/Gaia/Pontus</title></text><text y="0.32em" transform="translate(519,379)">Uranus<title>/Chaos/Gaia/Uranus</title></text></g>
 </svg>

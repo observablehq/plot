@@ -13,6 +13,74 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="108.042956836157" x2="108.042956836157" y1="20" y2="610"></line>
+    <line x1="202.7858919982453" x2="202.7858919982453" y1="20" y2="610"></line>
+    <line x1="297.5288271603336" x2="297.5288271603336" y1="20" y2="610"></line>
+    <line x1="392.27176232242186" x2="392.27176232242186" y1="20" y2="610"></line>
+    <line x1="487.0146974845102" x2="487.0146974845102" y1="20" y2="610"></line>
+    <line x1="581.7576326465984" x2="581.7576326465984" y1="20" y2="610"></line>
+    <line x1="676.5005678086868" x2="676.5005678086868" y1="20" y2="610"></line>
+    <line x1="771.2435029707751" x2="771.2435029707751" y1="20" y2="610"></line>
+    <line x1="865.9864381328634" x2="865.9864381328634" y1="20" y2="610"></line>
+  </g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(108.042956836157,610)" d="M0,0L0,6"></path>
+    <path transform="translate(202.7858919982453,610)" d="M0,0L0,6"></path>
+    <path transform="translate(297.5288271603336,610)" d="M0,0L0,6"></path>
+    <path transform="translate(392.27176232242186,610)" d="M0,0L0,6"></path>
+    <path transform="translate(487.0146974845102,610)" d="M0,0L0,6"></path>
+    <path transform="translate(581.7576326465984,610)" d="M0,0L0,6"></path>
+    <path transform="translate(676.5005678086868,610)" d="M0,0L0,6"></path>
+    <path transform="translate(771.2435029707751,610)" d="M0,0L0,6"></path>
+    <path transform="translate(865.9864381328634,610)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(108.042956836157,610)">−80</text><text y="0.71em" transform="translate(202.7858919982453,610)">−60</text><text y="0.71em" transform="translate(297.5288271603336,610)">−40</text><text y="0.71em" transform="translate(392.27176232242186,610)">−20</text><text y="0.71em" transform="translate(487.0146974845102,610)">0</text><text y="0.71em" transform="translate(581.7576326465984,610)">20</text><text y="0.71em" transform="translate(676.5005678086868,610)">40</text><text y="0.71em" transform="translate(771.2435029707751,610)">60</text><text y="0.71em" transform="translate(865.9864381328634,610)">80</text></g>
+  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <line x1="40" x2="940" y1="594.9905114324869" y2="594.9905114324869"></line>
+    <line x1="40" x2="940" y1="588.1608414033238" y2="588.1608414033238"></line>
+    <line x1="40" x2="940" y1="582.136645498858" y2="582.136645498858"></line>
+    <line x1="40" x2="940" y1="576.7478186327382" y2="576.7478186327382"></line>
+    <line x1="40" x2="940" y1="541.295731810124" y2="541.295731810124"></line>
+    <line x1="40" x2="940" y1="520.557590446584" y2="520.557590446584"></line>
+    <line x1="40" x2="940" y1="505.8436449875098" y2="505.8436449875098"></line>
+    <line x1="40" x2="940" y1="494.43062221692423" y2="494.43062221692423"></line>
+    <line x1="40" x2="940" y1="485.10550362396975" y2="485.10550362396975"></line>
+    <line x1="40" x2="940" y1="477.2212281940586" y2="477.2212281940586"></line>
+    <line x1="40" x2="940" y1="470.39155816489546" y2="470.39155816489546"></line>
+    <line x1="40" x2="940" y1="464.3673622604298" y2="464.3673622604298"></line>
+    <line x1="40" x2="940" y1="458.9785353943099" y2="458.9785353943099"></line>
+    <line x1="40" x2="940" y1="423.5264485716957" y2="423.5264485716957"></line>
+    <line x1="40" x2="940" y1="402.78830720815574" y2="402.78830720815574"></line>
+    <line x1="40" x2="940" y1="388.07436174908145" y2="388.07436174908145"></line>
+    <line x1="40" x2="940" y1="376.6613389784958" y2="376.6613389784958"></line>
+    <line x1="40" x2="940" y1="367.3362203855415" y2="367.3362203855415"></line>
+    <line x1="40" x2="940" y1="359.45194495563027" y2="359.45194495563027"></line>
+    <line x1="40" x2="940" y1="352.62227492646724" y2="352.62227492646724"></line>
+    <line x1="40" x2="940" y1="346.59807902200146" y2="346.59807902200146"></line>
+    <line x1="40" x2="940" y1="341.2092521558816" y2="341.2092521558816"></line>
+    <line x1="40" x2="940" y1="305.75716533326744" y2="305.75716533326744"></line>
+    <line x1="40" x2="940" y1="285.0190239697274" y2="285.0190239697274"></line>
+    <line x1="40" x2="940" y1="270.3050785106532" y2="270.3050785106532"></line>
+    <line x1="40" x2="940" y1="258.8920557400676" y2="258.8920557400676"></line>
+    <line x1="40" x2="940" y1="249.5669371471131" y2="249.5669371471131"></line>
+    <line x1="40" x2="940" y1="241.68266171720202" y2="241.68266171720202"></line>
+    <line x1="40" x2="940" y1="234.8529916880389" y2="234.8529916880389"></line>
+    <line x1="40" x2="940" y1="228.8287957835732" y2="228.8287957835732"></line>
+    <line x1="40" x2="940" y1="223.4399689174533" y2="223.4399689174533"></line>
+    <line x1="40" x2="940" y1="187.98788209483905" y2="187.98788209483905"></line>
+    <line x1="40" x2="940" y1="167.24974073129908" y2="167.24974073129908"></line>
+    <line x1="40" x2="940" y1="152.5357952722248" y2="152.5357952722248"></line>
+    <line x1="40" x2="940" y1="141.12277250163928" y2="141.12277250163928"></line>
+    <line x1="40" x2="940" y1="131.79765390868485" y2="131.79765390868485"></line>
+    <line x1="40" x2="940" y1="123.91337847877364" y2="123.91337847877364"></line>
+    <line x1="40" x2="940" y1="117.08370844961054" y2="117.08370844961054"></line>
+    <line x1="40" x2="940" y1="111.05951254514484" y2="111.05951254514484"></line>
+    <line x1="40" x2="940" y1="105.670685679025" y2="105.670685679025"></line>
+    <line x1="40" x2="940" y1="70.21859885641081" y2="70.21859885641081"></line>
+    <line x1="40" x2="940" y1="49.48045749287073" y2="49.48045749287073"></line>
+    <line x1="40" x2="940" y1="34.766512033796545" y2="34.766512033796545"></line>
+  </g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,594.9905114324869)" d="M0,0L-6,0"></path>
     <path transform="translate(40,588.1608414033238)" d="M0,0L-6,0"></path>
@@ -59,18 +127,6 @@
     <path transform="translate(40,34.766512033796545)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,594.9905114324869)"></text><text y="0.32em" transform="translate(40,588.1608414033238)"></text><text y="0.32em" transform="translate(40,582.136645498858)"></text><text y="0.32em" transform="translate(40,576.7478186327382)">100</text><text y="0.32em" transform="translate(40,541.295731810124)">200</text><text y="0.32em" transform="translate(40,520.557590446584)">300</text><text y="0.32em" transform="translate(40,505.8436449875098)"></text><text y="0.32em" transform="translate(40,494.43062221692423)"></text><text y="0.32em" transform="translate(40,485.10550362396975)"></text><text y="0.32em" transform="translate(40,477.2212281940586)"></text><text y="0.32em" transform="translate(40,470.39155816489546)"></text><text y="0.32em" transform="translate(40,464.3673622604298)"></text><text y="0.32em" transform="translate(40,458.9785353943099)">1k</text><text y="0.32em" transform="translate(40,423.5264485716957)">2k</text><text y="0.32em" transform="translate(40,402.78830720815574)">3k</text><text y="0.32em" transform="translate(40,388.07436174908145)"></text><text y="0.32em" transform="translate(40,376.6613389784958)"></text><text y="0.32em" transform="translate(40,367.3362203855415)"></text><text y="0.32em" transform="translate(40,359.45194495563027)"></text><text y="0.32em" transform="translate(40,352.62227492646724)"></text><text y="0.32em" transform="translate(40,346.59807902200146)"></text><text y="0.32em" transform="translate(40,341.2092521558816)">10k</text><text y="0.32em" transform="translate(40,305.75716533326744)">20k</text><text y="0.32em" transform="translate(40,285.0190239697274)">30k</text><text y="0.32em" transform="translate(40,270.3050785106532)"></text><text y="0.32em" transform="translate(40,258.8920557400676)"></text><text y="0.32em" transform="translate(40,249.5669371471131)"></text><text y="0.32em" transform="translate(40,241.68266171720202)"></text><text y="0.32em" transform="translate(40,234.8529916880389)"></text><text y="0.32em" transform="translate(40,228.8287957835732)"></text><text y="0.32em" transform="translate(40,223.4399689174533)">100k</text><text y="0.32em" transform="translate(40,187.98788209483905)">200k</text><text y="0.32em" transform="translate(40,167.24974073129908)">300k</text><text y="0.32em" transform="translate(40,152.5357952722248)"></text><text y="0.32em" transform="translate(40,141.12277250163928)"></text><text y="0.32em" transform="translate(40,131.79765390868485)"></text><text y="0.32em" transform="translate(40,123.91337847877364)"></text><text y="0.32em" transform="translate(40,117.08370844961054)"></text><text y="0.32em" transform="translate(40,111.05951254514484)"></text><text y="0.32em" transform="translate(40,105.670685679025)">1M</text><text y="0.32em" transform="translate(40,70.21859885641081)">2M</text><text y="0.32em" transform="translate(40,49.48045749287073)">3M</text><text y="0.32em" transform="translate(40,34.766512033796545)"></text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(108.042956836157,610)" d="M0,0L0,6"></path>
-    <path transform="translate(202.7858919982453,610)" d="M0,0L0,6"></path>
-    <path transform="translate(297.5288271603336,610)" d="M0,0L0,6"></path>
-    <path transform="translate(392.27176232242186,610)" d="M0,0L0,6"></path>
-    <path transform="translate(487.0146974845102,610)" d="M0,0L0,6"></path>
-    <path transform="translate(581.7576326465984,610)" d="M0,0L0,6"></path>
-    <path transform="translate(676.5005678086868,610)" d="M0,0L0,6"></path>
-    <path transform="translate(771.2435029707751,610)" d="M0,0L0,6"></path>
-    <path transform="translate(865.9864381328634,610)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(108.042956836157,610)">−80</text><text y="0.71em" transform="translate(202.7858919982453,610)">−60</text><text y="0.71em" transform="translate(297.5288271603336,610)">−40</text><text y="0.71em" transform="translate(392.27176232242186,610)">−20</text><text y="0.71em" transform="translate(487.0146974845102,610)">0</text><text y="0.71em" transform="translate(581.7576326465984,610)">20</text><text y="0.71em" transform="translate(676.5005678086868,610)">40</text><text y="0.71em" transform="translate(771.2435029707751,610)">60</text><text y="0.71em" transform="translate(865.9864381328634,610)">80</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="487.0146974845102" x2="487.0146974845102" y1="20" y2="610"></line>
   </g>

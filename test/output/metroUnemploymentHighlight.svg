@@ -13,6 +13,16 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,370)" d="M0,0L0,6"></path>
+    <path transform="translate(124.42453205894066,370)" d="M0,0L0,6"></path>
+    <path transform="translate(208.73357228195937,370)" d="M0,0L0,6"></path>
+    <path transform="translate(293.1581043409,370)" d="M0,0L0,6"></path>
+    <path transform="translate(377.46714456391874,370)" d="M0,0L0,6"></path>
+    <path transform="translate(461.8916766228594,370)" d="M0,0L0,6"></path>
+    <path transform="translate(546.2007168458781,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">2000</text><text y="0.71em" transform="translate(124.42453205894066,370)">2002</text><text y="0.71em" transform="translate(208.73357228195937,370)">2004</text><text y="0.71em" transform="translate(293.1581043409,370)">2006</text><text y="0.71em" transform="translate(377.46714456391874,370)">2008</text><text y="0.71em" transform="translate(461.8916766228594,370)">2010</text><text y="0.71em" transform="translate(546.2007168458781,370)">2012</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,328.8235294117647)" d="M0,0L-6,0"></path>
@@ -25,16 +35,6 @@
     <path transform="translate(40,40.58823529411765)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,328.8235294117647)">2</text><text y="0.32em" transform="translate(40,287.6470588235294)">4</text><text y="0.32em" transform="translate(40,246.4705882352941)">6</text><text y="0.32em" transform="translate(40,205.2941176470588)">8</text><text y="0.32em" transform="translate(40,164.11764705882354)">10</text><text y="0.32em" transform="translate(40,122.94117647058823)">12</text><text y="0.32em" transform="translate(40,81.76470588235296)">14</text><text y="0.32em" transform="translate(40,40.58823529411765)">16</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(40,370)" d="M0,0L0,6"></path>
-    <path transform="translate(124.42453205894066,370)" d="M0,0L0,6"></path>
-    <path transform="translate(208.73357228195937,370)" d="M0,0L0,6"></path>
-    <path transform="translate(293.1581043409,370)" d="M0,0L0,6"></path>
-    <path transform="translate(377.46714456391874,370)" d="M0,0L0,6"></path>
-    <path transform="translate(461.8916766228594,370)" d="M0,0L0,6"></path>
-    <path transform="translate(546.2007168458781,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">2000</text><text y="0.71em" transform="translate(124.42453205894066,370)">2002</text><text y="0.71em" transform="translate(208.73357228195937,370)">2004</text><text y="0.71em" transform="translate(293.1581043409,370)">2006</text><text y="0.71em" transform="translate(377.46714456391874,370)">2008</text><text y="0.71em" transform="translate(461.8916766228594,370)">2010</text><text y="0.71em" transform="translate(546.2007168458781,370)">2012</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>

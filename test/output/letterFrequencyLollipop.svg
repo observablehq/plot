@@ -13,22 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,342.4452842072115)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,314.8905684144229)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,287.3358526216344)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,259.78113682884583)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,232.22642103605727)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,204.6717052432688)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,177.1169894504802)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,149.5622736576917)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,122.00755786490315)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,94.4528420721146)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,66.89812627932609)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,39.34341048653754)" d="M0,0L-6,0"></path>
-  </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0.00</text><text y="0.32em" transform="translate(40,342.4452842072115)">0.01</text><text y="0.32em" transform="translate(40,314.8905684144229)">0.02</text><text y="0.32em" transform="translate(40,287.3358526216344)">0.03</text><text y="0.32em" transform="translate(40,259.78113682884583)">0.04</text><text y="0.32em" transform="translate(40,232.22642103605727)">0.05</text><text y="0.32em" transform="translate(40,204.6717052432688)">0.06</text><text y="0.32em" transform="translate(40,177.1169894504802)">0.07</text><text y="0.32em" transform="translate(40,149.5622736576917)">0.08</text><text y="0.32em" transform="translate(40,122.00755786490315)">0.09</text><text y="0.32em" transform="translate(40,94.4528420721146)">0.10</text><text y="0.32em" transform="translate(40,66.89812627932609)">0.11</text><text y="0.32em" transform="translate(40,39.34341048653754)">0.12</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(55,370)" d="M0,0L0,6"></path>
     <path transform="translate(77,370)" d="M0,0L0,6"></path>
@@ -58,6 +42,22 @@
     <path transform="translate(605,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(55,370)">A</text><text y="0.71em" transform="translate(77,370)">B</text><text y="0.71em" transform="translate(99,370)">C</text><text y="0.71em" transform="translate(121,370)">D</text><text y="0.71em" transform="translate(143,370)">E</text><text y="0.71em" transform="translate(165,370)">F</text><text y="0.71em" transform="translate(187,370)">G</text><text y="0.71em" transform="translate(209,370)">H</text><text y="0.71em" transform="translate(231,370)">I</text><text y="0.71em" transform="translate(253,370)">J</text><text y="0.71em" transform="translate(275,370)">K</text><text y="0.71em" transform="translate(297,370)">L</text><text y="0.71em" transform="translate(319,370)">M</text><text y="0.71em" transform="translate(341,370)">N</text><text y="0.71em" transform="translate(363,370)">O</text><text y="0.71em" transform="translate(385,370)">P</text><text y="0.71em" transform="translate(407,370)">Q</text><text y="0.71em" transform="translate(429,370)">R</text><text y="0.71em" transform="translate(451,370)">S</text><text y="0.71em" transform="translate(473,370)">T</text><text y="0.71em" transform="translate(495,370)">U</text><text y="0.71em" transform="translate(517,370)">V</text><text y="0.71em" transform="translate(539,370)">W</text><text y="0.71em" transform="translate(561,370)">X</text><text y="0.71em" transform="translate(583,370)">Y</text><text y="0.71em" transform="translate(605,370)">Z</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,342.4452842072115)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,314.8905684144229)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,287.3358526216344)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,259.78113682884583)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,232.22642103605727)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,204.6717052432688)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,177.1169894504802)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,149.5622736576917)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,122.00755786490315)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,94.4528420721146)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,66.89812627932609)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,39.34341048653754)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0.00</text><text y="0.32em" transform="translate(40,342.4452842072115)">0.01</text><text y="0.32em" transform="translate(40,314.8905684144229)">0.02</text><text y="0.32em" transform="translate(40,287.3358526216344)">0.03</text><text y="0.32em" transform="translate(40,259.78113682884583)">0.04</text><text y="0.32em" transform="translate(40,232.22642103605727)">0.05</text><text y="0.32em" transform="translate(40,204.6717052432688)">0.06</text><text y="0.32em" transform="translate(40,177.1169894504802)">0.07</text><text y="0.32em" transform="translate(40,149.5622736576917)">0.08</text><text y="0.32em" transform="translate(40,122.00755786490315)">0.09</text><text y="0.32em" transform="translate(40,94.4528420721146)">0.10</text><text y="0.32em" transform="translate(40,66.89812627932609)">0.11</text><text y="0.32em" transform="translate(40,39.34341048653754)">0.12</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="143" x2="143" y1="370" y2="20"></line>
     <line x1="473" x2="473" y1="370" y2="120.46449378050698"></line>

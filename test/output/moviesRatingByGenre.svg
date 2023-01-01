@@ -13,7 +13,21 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="facet" transform="translate(0,22)">
+  <g aria-label="facet" transform="translate(0,32)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+      <path transform="translate(20,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(112,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(204,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(296,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(388,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(480,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(572,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(664,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(756,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(848,0)" d="M0,0L0,-6"></path>
+      <path transform="translate(940,0)" d="M0,0L0,-6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(20,0)">0</text><text transform="translate(112,0)">1</text><text transform="translate(204,0)">2</text><text transform="translate(296,0)">3</text><text transform="translate(388,0)">4</text><text transform="translate(480,0)">5</text><text transform="translate(572,0)">6</text><text transform="translate(664,0)">7</text><text transform="translate(756,0)">8</text><text transform="translate(848,0)">9</text><text transform="translate(940,0)">10</text></g>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#edc949"></circle>
       <circle cx="553.5999999999999" cy="19.5" r="2.5" stroke="#edc949"></circle>
@@ -54,7 +68,7 @@
       <circle cx="700.8000000000001" cy="16.5" r="2.5" stroke="#edc949"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,61)">
+  <g aria-label="facet" transform="translate(0,71)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="756" cy="19.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#e15759"></circle>
@@ -90,7 +104,7 @@
       <circle cx="636.4000000000001" cy="16.5" r="2.5" stroke="#e15759"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,100)">
+  <g aria-label="facet" transform="translate(0,110)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="654.8000000000001" cy="19.5" r="2.5" stroke="#af7aa1"></circle>
       <circle cx="332.79999999999995" cy="19.5" r="2.5" stroke="#af7aa1"></circle>
@@ -832,7 +846,7 @@
       <circle cx="682.4" cy="55.5" r="2.5" stroke="#af7aa1"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,139)">
+  <g aria-label="facet" transform="translate(0,149)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="710" cy="19.5" r="2.5" stroke="#9c755f"></circle>
       <circle cx="728.4000000000001" cy="19.5" r="2.5" stroke="#9c755f"></circle>
@@ -886,7 +900,7 @@
       <circle cx="673.1999999999999" cy="22.5" r="2.5" stroke="#9c755f"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,178)">
+  <g aria-label="facet" transform="translate(0,188)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="562.8000000000001" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="774.4" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
@@ -925,7 +939,7 @@
       <circle cx="480" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,217)">
+  <g aria-label="facet" transform="translate(0,227)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="581.1999999999999" cy="19.5" r="2.5" stroke="#e15759"></circle>
       <circle cx="728.4000000000001" cy="19.5" r="2.5" stroke="#e15759"></circle>
@@ -1171,7 +1185,7 @@
       <circle cx="434" cy="16.5" r="2.5" stroke="#e15759"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,256)">
+  <g aria-label="facet" transform="translate(0,266)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="470.8" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
       <circle cx="691.5999999999999" cy="19.5" r="2.5" stroke="#f28e2c"></circle>
@@ -1426,7 +1440,7 @@
       <circle cx="636.4000000000001" cy="7.5" r="2.5" stroke="#f28e2c"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,295)">
+  <g aria-label="facet" transform="translate(0,305)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="599.6" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="590.4" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
@@ -1663,7 +1677,7 @@
       <circle cx="507.6" cy="31.5" r="2.5" stroke="#4e79a7"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,334)">
+  <g aria-label="facet" transform="translate(0,344)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="314.40000000000003" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#4e79a7"></circle>
@@ -2059,7 +2073,7 @@
       <circle cx="397.2" cy="10.5" r="2.5" stroke="#4e79a7"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,373)">
+  <g aria-label="facet" transform="translate(0,383)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="562.8000000000001" cy="19.5" r="2.5" stroke="#59a14f"></circle>
       <circle cx="590.4" cy="19.5" r="2.5" stroke="#59a14f"></circle>
@@ -2067,7 +2081,7 @@
       <circle cx="783.6" cy="19.5" r="2.5" stroke="#59a14f"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,412)">
+  <g aria-label="facet" transform="translate(0,422)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="645.5999999999999" cy="19.5" r="2.5" stroke="#76b7b2"></circle>
       <circle cx="369.59999999999997" cy="19.5" r="2.5" stroke="#76b7b2"></circle>
@@ -2706,7 +2720,7 @@
       <circle cx="664" cy="-4.5" r="2.5" stroke="#76b7b2"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,451)">
+  <g aria-label="facet" transform="translate(0,461)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="673.1999999999999" cy="19.5" r="2.5" stroke="#bab0ab"></circle>
       <circle cx="544.4000000000001" cy="19.5" r="2.5" stroke="#bab0ab"></circle>
@@ -2840,21 +2854,7 @@
       <circle cx="599.6" cy="13.5" r="2.5" stroke="#bab0ab"></circle>
     </g>
   </g>
-  <g aria-label="facet" transform="translate(0,490)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(20,39)" d="M0,0L0,6"></path>
-      <path transform="translate(112,39)" d="M0,0L0,6"></path>
-      <path transform="translate(204,39)" d="M0,0L0,6"></path>
-      <path transform="translate(296,39)" d="M0,0L0,6"></path>
-      <path transform="translate(388,39)" d="M0,0L0,6"></path>
-      <path transform="translate(480,39)" d="M0,0L0,6"></path>
-      <path transform="translate(572,39)" d="M0,0L0,6"></path>
-      <path transform="translate(664,39)" d="M0,0L0,6"></path>
-      <path transform="translate(756,39)" d="M0,0L0,6"></path>
-      <path transform="translate(848,39)" d="M0,0L0,6"></path>
-      <path transform="translate(940,39)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,39)">0</text><text y="0.71em" transform="translate(112,39)">1</text><text y="0.71em" transform="translate(204,39)">2</text><text y="0.71em" transform="translate(296,39)">3</text><text y="0.71em" transform="translate(388,39)">4</text><text y="0.71em" transform="translate(480,39)">5</text><text y="0.71em" transform="translate(572,39)">6</text><text y="0.71em" transform="translate(664,39)">7</text><text y="0.71em" transform="translate(756,39)">8</text><text y="0.71em" transform="translate(848,39)">9</text><text y="0.71em" transform="translate(940,39)">10</text></g>
+  <g aria-label="facet" transform="translate(0,500)">
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="581.1999999999999" cy="19.5" r="2.5" stroke="#ff9da7"></circle>
       <circle cx="719.1999999999999" cy="19.5" r="2.5" stroke="#ff9da7"></circle>

@@ -14,6 +14,15 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="70" x2="70" y1="0" y2="77"></line>
+      <line x1="153.33333333333331" x2="153.33333333333331" y1="0" y2="77"></line>
+      <line x1="236.66666666666666" x2="236.66666666666666" y1="0" y2="77"></line>
+      <line x1="320" x2="320" y1="0" y2="77"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="77"></line>
+      <line x1="486.6666666666667" x2="486.6666666666667" y1="0" y2="77"></line>
+      <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="77"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="149.16666666666669" cy="38.5" r="4"></circle>
       <circle cx="278.33333333333337" cy="38.5" r="4"></circle>
@@ -169,6 +178,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="70" x2="70" y1="0" y2="77"></line>
+      <line x1="153.33333333333331" x2="153.33333333333331" y1="0" y2="77"></line>
+      <line x1="236.66666666666666" x2="236.66666666666666" y1="0" y2="77"></line>
+      <line x1="320" x2="320" y1="0" y2="77"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="77"></line>
+      <line x1="486.6666666666667" x2="486.6666666666667" y1="0" y2="77"></line>
+      <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="77"></line>
+    </g>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="153.33333333333331" cy="38.5" r="2.5"></circle>
       <circle cx="220" cy="38.5" r="2.5"></circle>
@@ -241,6 +259,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,192)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="70" x2="70" y1="0" y2="77"></line>
+      <line x1="153.33333333333331" x2="153.33333333333331" y1="0" y2="77"></line>
+      <line x1="236.66666666666666" x2="236.66666666666666" y1="0" y2="77"></line>
+      <line x1="320" x2="320" y1="0" y2="77"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="77"></line>
+      <line x1="486.6666666666667" x2="486.6666666666667" y1="0" y2="77"></line>
+      <line x1="569.9999999999999" x2="569.9999999999999" y1="0" y2="77"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(70,77)" d="M0,0L0,6"></path>
       <path transform="translate(153.33333333333331,77)" d="M0,0L0,6"></path>

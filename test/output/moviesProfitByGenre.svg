@@ -13,6 +13,15 @@
       white-space: pre;
     }
   </style>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(182.141592920354,290)" d="M0,0L0,6"></path>
+    <path transform="translate(268.5132743362832,290)" d="M0,0L0,6"></path>
+    <path transform="translate(354.88495575221236,290)" d="M0,0L0,6"></path>
+    <path transform="translate(441.2566371681416,290)" d="M0,0L0,6"></path>
+    <path transform="translate(527.6283185840707,290)" d="M0,0L0,6"></path>
+    <path transform="translate(614,290)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(182.141592920354,290)">0</text><text y="0.71em" transform="translate(268.5132743362832,290)">200</text><text y="0.71em" transform="translate(354.88495575221236,290)">400</text><text y="0.71em" transform="translate(441.2566371681416,290)">600</text><text y="0.71em" transform="translate(527.6283185840707,290)">800</text><text y="0.71em" transform="translate(614,290)">1,000</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(120,26)" d="M0,0L-6,0"></path>
     <path transform="translate(120,46)" d="M0,0L-6,0"></path>
@@ -29,15 +38,6 @@
     <path transform="translate(120,266)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(120,26)">Adventure</text><text y="0.32em" transform="translate(120,46)">Action</text><text y="0.32em" transform="translate(120,66)">Horror</text><text y="0.32em" transform="translate(120,86)">Romantic Comedy</text><text y="0.32em" transform="translate(120,106)">Concert/Performance</text><text y="0.32em" transform="translate(120,126)">Musical</text><text y="0.32em" transform="translate(120,146)">Comedy</text><text y="0.32em" transform="translate(120,166)">Thriller/Suspense</text><text y="0.32em" transform="translate(120,186)">Drama</text><text y="0.32em" transform="translate(120,206)">Black Comedy</text><text y="0.32em" transform="translate(120,226)">Documentary</text><text y="0.32em" transform="translate(120,246)">Western</text><text y="0.32em" transform="translate(120,266)">Other</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(182.141592920354,290)" d="M0,0L0,6"></path>
-    <path transform="translate(268.5132743362832,290)" d="M0,0L0,6"></path>
-    <path transform="translate(354.88495575221236,290)" d="M0,0L0,6"></path>
-    <path transform="translate(441.2566371681416,290)" d="M0,0L0,6"></path>
-    <path transform="translate(527.6283185840707,290)" d="M0,0L0,6"></path>
-    <path transform="translate(614,290)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(182.141592920354,290)">0</text><text y="0.71em" transform="translate(268.5132743362832,290)">200</text><text y="0.71em" transform="translate(354.88495575221236,290)">400</text><text y="0.71em" transform="translate(441.2566371681416,290)">600</text><text y="0.71em" transform="translate(527.6283185840707,290)">800</text><text y="0.71em" transform="translate(614,290)">1,000</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="182.141592920354" x2="182.141592920354" y1="20" y2="290"></line>
   </g>

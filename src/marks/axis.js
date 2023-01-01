@@ -6,7 +6,7 @@ import {isNone, isNoneish, isIterable, isTemporal} from "../options.js";
 import {offset} from "../style.js";
 import {initializer} from "../transforms/basic.js";
 import {ruleX, ruleY} from "./rule.js";
-import {Text, textX, textY} from "./text.js";
+import {textX, textY} from "./text.js";
 import {vectorX, vectorY} from "./vector.js";
 
 // TODO Remove me without introducing a circular dependency.
@@ -121,16 +121,16 @@ function axisKy(
   );
 }
 
-class AxisLabel extends Text {
-  constructor(k, options) {
-    super(null, {...options, decoration: true});
-    this.k = k;
-  }
-  render(index, scales, channels, dimensions, context) {
-    channels.text = [scales[this.k].label];
-    return super.render([0], scales, channels, dimensions, context);
-  }
-}
+// class AxisLabel extends Text {
+//   constructor(k, options) {
+//     super(null, {...options, decoration: true});
+//     this.k = k;
+//   }
+//   render(index, scales, channels, dimensions, context) {
+//     channels.text = [scales[this.k].label];
+//     return super.render([0], scales, channels, dimensions, context);
+//   }
+// }
 
 function axisKx(
   k,

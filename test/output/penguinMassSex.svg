@@ -59,15 +59,6 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,316)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(40,133)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,107.9056603773585)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,82.81132075471697)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,57.716981132075475)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,32.622641509433954)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,7.528301886792451)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,133)">0</text><text y="0.32em" transform="translate(40,107.9056603773585)">10</text><text y="0.32em" transform="translate(40,82.81132075471697)">20</text><text y="0.32em" transform="translate(40,57.716981132075475)">30</text><text y="0.32em" transform="translate(40,32.622641509433954)">40</text><text y="0.32em" transform="translate(40,7.528301886792451)">50</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(40,133)" d="M0,0L0,6"></path>
       <path transform="translate(113,133)" d="M0,0L0,6"></path>
@@ -80,6 +71,15 @@
       <path transform="translate(620,133)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,133)">2,500</text><text y="0.71em" transform="translate(113,133)">3,000</text><text y="0.71em" transform="translate(185,133)">3,500</text><text y="0.71em" transform="translate(258,133)">4,000</text><text y="0.71em" transform="translate(330,133)">4,500</text><text y="0.71em" transform="translate(403,133)">5,000</text><text y="0.71em" transform="translate(475,133)">5,500</text><text y="0.71em" transform="translate(548,133)">6,000</text><text y="0.71em" transform="translate(620,133)">6,500</text></g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(40,133)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,107.9056603773585)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,82.81132075471697)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,57.716981132075475)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,32.622641509433954)" d="M0,0L-6,0"></path>
+      <path transform="translate(40,7.528301886792451)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,133)">0</text><text y="0.32em" transform="translate(40,107.9056603773585)">10</text><text y="0.32em" transform="translate(40,82.81132075471697)">20</text><text y="0.32em" transform="translate(40,57.716981132075475)">30</text><text y="0.32em" transform="translate(40,32.622641509433954)">40</text><text y="0.32em" transform="translate(40,7.528301886792451)">50</text></g>
     <g aria-label="rect">
       <rect x="41" y="130.49056603773585" width="72" height="2.509433962264154"></rect>
       <rect x="114" y="127.9811320754717" width="71" height="5.018867924528294"></rect>

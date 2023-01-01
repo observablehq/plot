@@ -14,187 +14,139 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="580" y="2" height="16" fill="currentColor">
+      <rect x="20" width="600" y="2" height="16" fill="currentColor">
         <title>79.0%</title>
       </rect>
-      <rect x="40" width="2.973009354841146" y="38" height="16" fill="gray">
+      <rect x="20" width="3.075526918801188" y="38" height="16" fill="gray">
         <title>0.4%</title>
       </rect>
-      <rect x="40" width="150.763769464044" y="20" height="16" fill="brown">
+      <rect x="20" width="155.96252013521791" y="20" height="16" fill="brown">
         <title>20.5%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,82)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="574.1878344675839" y="2" height="16" fill="currentColor">
+      <rect x="20" width="593.9874149664662" y="2" height="16" fill="currentColor">
         <title>78.3%</title>
       </rect>
-      <rect x="40" width="4.461598739002213" y="38" height="16" fill="gray">
+      <rect x="20" width="4.615446971381601" y="38" height="16" fill="gray">
         <title>0.6%</title>
       </rect>
-      <rect x="40" width="155.08734561229886" y="20" height="16" fill="brown">
+      <rect x="20" width="160.43518511617125" y="20" height="16" fill="brown">
         <title>21.1%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,144)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="571.7279158827179" y="2" height="16" fill="currentColor">
+      <rect x="20" width="591.4426716028115" y="2" height="16" fill="currentColor">
         <title>77.9%</title>
       </rect>
-      <rect x="40" width="157.49348986553736" y="20" height="16" fill="brown">
+      <rect x="20" width="162.92429986090073" y="20" height="16" fill="brown">
         <title>21.5%</title>
       </rect>
-      <rect x="40" width="4.51537307062987" y="38" height="16" fill="gray">
+      <rect x="20" width="4.67107559030676" y="38" height="16" fill="gray">
         <title>0.6%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="543.6754148397309" y="2" height="16" fill="currentColor">
+      <rect x="20" width="562.4228429376526" y="2" height="16" fill="currentColor">
         <title>74.1%</title>
       </rect>
-      <rect x="40" width="6.053339676816542" y="38" height="16" fill="gray">
+      <rect x="20" width="6.262075527741249" y="38" height="16" fill="gray">
         <title>0.8%</title>
       </rect>
-      <rect x="40" width="184.00802430233776" y="20" height="16" fill="brown">
+      <rect x="20" width="190.35312858862528" y="20" height="16" fill="brown">
         <title>25.1%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,268)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="542.5414328271273" y="2" height="16" fill="currentColor">
+      <rect x="20" width="561.2497580970282" y="2" height="16" fill="currentColor">
         <title>73.9%</title>
       </rect>
-      <rect x="40" width="185.380642170359" y="20" height="16" fill="brown">
+      <rect x="20" width="191.77307810726793" y="20" height="16" fill="brown">
         <title>25.3%</title>
       </rect>
-      <rect x="40" width="5.8147038213988225" y="38" height="16" fill="gray">
+      <rect x="20" width="6.015210849722919" y="38" height="16" fill="gray">
         <title>0.8%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,330)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="186.7641537341062" y="20" height="16" fill="brown">
+      <rect x="20" width="193.20429696631675" y="20" height="16" fill="brown">
         <title>25.5%</title>
       </rect>
-      <rect x="40" width="529.928963816099" y="2" height="16" fill="currentColor">
+      <rect x="20" width="548.2023763614817" y="2" height="16" fill="currentColor">
         <title>72.2%</title>
       </rect>
-      <rect x="40" width="17.043661268679934" y="38" height="16" fill="gray">
+      <rect x="20" width="17.631373726220623" y="38" height="16" fill="gray">
         <title>2.3%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,392)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="bar">
-      <rect x="40" width="494.8125938694602" y="2" height="16" fill="currentColor">
+      <rect x="20" width="511.8750971063382" y="2" height="16" fill="currentColor">
         <title>67.4%</title>
       </rect>
-      <rect x="40" width="231.04209374764588" y="20" height="16" fill="brown">
+      <rect x="20" width="239.00906249756468" y="20" height="16" fill="brown">
         <title>31.5%</title>
       </rect>
-      <rect x="40" width="7.88209120177892" y="38" height="16" fill="gray">
+      <rect x="20" width="8.153887450116123" y="38" height="16" fill="gray">
         <title>1.1%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,454)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,8.5)">
-      <path transform="translate(40,2)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,20)" d="M0,0L-6,0"></path>
-      <path transform="translate(40,38)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,8.5)"><text y="0.32em" transform="translate(40,2)">ACCEPTED</text><text y="0.32em" transform="translate(40,20)">REJECTED</text><text y="0.32em" transform="translate(40,38)">PENDING</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(40,56)" d="M0,0L0,6"></path>
-      <path transform="translate(113.37367788188851,56)" d="M0,0L0,6"></path>
-      <path transform="translate(186.747355763777,56)" d="M0,0L0,6"></path>
-      <path transform="translate(260.12103364566553,56)" d="M0,0L0,6"></path>
-      <path transform="translate(333.494711527554,56)" d="M0,0L0,6"></path>
-      <path transform="translate(406.8683894094425,56)" d="M0,0L0,6"></path>
-      <path transform="translate(480.242067291331,56)" d="M0,0L0,6"></path>
-      <path transform="translate(553.6157451732196,56)" d="M0,0L0,6"></path>
+      <path transform="translate(20,56)" d="M0,0L0,6"></path>
+      <path transform="translate(95.9038047054019,56)" d="M0,0L0,6"></path>
+      <path transform="translate(171.8076094108038,56)" d="M0,0L0,6"></path>
+      <path transform="translate(247.7114141162057,56)" d="M0,0L0,6"></path>
+      <path transform="translate(323.6152188216076,56)" d="M0,0L0,6"></path>
+      <path transform="translate(399.5190235270095,56)" d="M0,0L0,6"></path>
+      <path transform="translate(475.4228282324114,56)" d="M0,0L0,6"></path>
+      <path transform="translate(551.3266329378134,56)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,56)">0</text><text y="0.71em" transform="translate(113.37367788188851,56)">10</text><text y="0.71em" transform="translate(186.747355763777,56)">20</text><text y="0.71em" transform="translate(260.12103364566553,56)">30</text><text y="0.71em" transform="translate(333.494711527554,56)">40</text><text y="0.71em" transform="translate(406.8683894094425,56)">50</text><text y="0.71em" transform="translate(480.242067291331,56)">60</text><text y="0.71em" transform="translate(553.6157451732196,56)">70</text></g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,56)">0</text><text y="0.71em" transform="translate(95.9038047054019,56)">10</text><text y="0.71em" transform="translate(171.8076094108038,56)">20</text><text y="0.71em" transform="translate(247.7114141162057,56)">30</text><text y="0.71em" transform="translate(323.6152188216076,56)">40</text><text y="0.71em" transform="translate(399.5190235270095,56)">50</text><text y="0.71em" transform="translate(475.4228282324114,56)">60</text><text y="0.71em" transform="translate(551.3266329378134,56)">70</text></g>
     <g aria-label="bar">
-      <rect x="40" width="305.72365784120217" y="20" height="16" fill="brown">
+      <rect x="20" width="316.2658529391747" y="20" height="16" fill="brown">
         <title>41.7%</title>
       </rect>
-      <rect x="40" width="428.01312097768295" y="2" height="16" fill="currentColor">
+      <rect x="20" width="442.77219411484447" y="2" height="16" fill="currentColor">
         <title>58.3%</title>
       </rect>
     </g>
     <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
-      <line x1="40" x2="40" y1="0" y2="56"></line>
+      <line x1="20" x2="20" y1="0" y2="56"></line>
     </g>
   </g>
 </svg>

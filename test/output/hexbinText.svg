@@ -14,6 +14,13 @@
     }
   </style>
   <g aria-label="facet" transform="translate(41,0)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(40.89285714285715,290)" d="M0,0L0,6"></path>
+      <path transform="translate(100.65476190476193,290)" d="M0,0L0,6"></path>
+      <path transform="translate(160.41666666666669,290)" d="M0,0L0,6"></path>
+      <path transform="translate(220.17857142857142,290)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40.89285714285715,290)">14</text><text y="0.71em" transform="translate(100.65476190476193,290)">16</text><text y="0.71em" transform="translate(160.41666666666669,290)">18</text><text y="0.71em" transform="translate(220.17857142857142,290)">20</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,250.48000000000005)" d="M0,0L-6,0"></path>
       <path transform="translate(0,206.48000000000002)" d="M0,0L-6,0"></path>
@@ -22,13 +29,6 @@
       <path transform="translate(0,74.48000000000002)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,250.48000000000005)">35</text><text y="0.32em" transform="translate(0,206.48000000000002)">40</text><text y="0.32em" transform="translate(0,162.48000000000002)">45</text><text y="0.32em" transform="translate(0,118.48)">50</text><text y="0.32em" transform="translate(0,74.48000000000002)">55</text></g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(40.89285714285715,290)" d="M0,0L0,6"></path>
-      <path transform="translate(100.65476190476193,290)" d="M0,0L0,6"></path>
-      <path transform="translate(160.41666666666669,290)" d="M0,0L0,6"></path>
-      <path transform="translate(220.17857142857142,290)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40.89285714285715,290)">14</text><text y="0.71em" transform="translate(100.65476190476193,290)">16</text><text y="0.71em" transform="translate(160.41666666666669,290)">18</text><text y="0.71em" transform="translate(220.17857142857142,290)">20</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="279" height="270"></rect>
     <g aria-label="dot" fill="brown" stroke="black" stroke-width="0.5" transform="translate(0.5,0.5)">
       <path transform="translate(140.5,207.84609690826528)" d="M0,11.547L10,5.774L10,-5.774L0,-11.547L-10,-5.774L-10,5.774Z" fill-opacity="0.46153846153846156"></path>

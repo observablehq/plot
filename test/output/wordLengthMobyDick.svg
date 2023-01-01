@@ -13,20 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,335.8845315904139)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,301.7690631808279)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,267.65359477124184)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,233.5381263616558)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,199.42265795206976)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,165.30718954248368)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,131.19172113289764)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,97.07625272331158)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,62.96078431372551)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,28.84531590413947)" d="M0,0L-6,0"></path>
-  </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,335.8845315904139)">2</text><text y="0.32em" transform="translate(40,301.7690631808279)">4</text><text y="0.32em" transform="translate(40,267.65359477124184)">6</text><text y="0.32em" transform="translate(40,233.5381263616558)">8</text><text y="0.32em" transform="translate(40,199.42265795206976)">10</text><text y="0.32em" transform="translate(40,165.30718954248368)">12</text><text y="0.32em" transform="translate(40,131.19172113289764)">14</text><text y="0.32em" transform="translate(40,97.07625272331158)">16</text><text y="0.32em" transform="translate(40,62.96078431372551)">18</text><text y="0.32em" transform="translate(40,28.84531590413947)">20</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(19,0)">
     <path transform="translate(45,370)" d="M0,0L0,6"></path>
     <path transform="translate(86,370)" d="M0,0L0,6"></path>
@@ -44,6 +30,20 @@
     <path transform="translate(578,370)" d="M0,0L0,6"></path>
   </g>
   <g aria-label="text" transform="translate(19,9.5)"><text y="0.71em" transform="translate(45,370)">1</text><text y="0.71em" transform="translate(86,370)">2</text><text y="0.71em" transform="translate(127,370)">3</text><text y="0.71em" transform="translate(168,370)">4</text><text y="0.71em" transform="translate(209,370)">5</text><text y="0.71em" transform="translate(250,370)">6</text><text y="0.71em" transform="translate(291,370)">7</text><text y="0.71em" transform="translate(332,370)">8</text><text y="0.71em" transform="translate(373,370)">9</text><text y="0.71em" transform="translate(414,370)">10</text><text y="0.71em" transform="translate(455,370)">11</text><text y="0.71em" transform="translate(496,370)">12</text><text y="0.71em" transform="translate(537,370)">13</text><text y="0.71em" transform="translate(578,370)">14</text></g>
+  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <path transform="translate(40,370)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,335.8845315904139)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,301.7690631808279)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,267.65359477124184)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,233.5381263616558)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,199.42265795206976)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,165.30718954248368)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,131.19172113289764)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,97.07625272331158)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,62.96078431372551)" d="M0,0L-6,0"></path>
+    <path transform="translate(40,28.84531590413947)" d="M0,0L-6,0"></path>
+  </g>
+  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,335.8845315904139)">2</text><text y="0.32em" transform="translate(40,301.7690631808279)">4</text><text y="0.32em" transform="translate(40,267.65359477124184)">6</text><text y="0.32em" transform="translate(40,233.5381263616558)">8</text><text y="0.32em" transform="translate(40,199.42265795206976)">10</text><text y="0.32em" transform="translate(40,165.30718954248368)">12</text><text y="0.32em" transform="translate(40,131.19172113289764)">14</text><text y="0.32em" transform="translate(40,97.07625272331158)">16</text><text y="0.32em" transform="translate(40,62.96078431372551)">18</text><text y="0.32em" transform="translate(40,28.84531590413947)">20</text></g>
   <g aria-label="bar">
     <rect x="45" width="37" y="284.59694989106754" height="85.40305010893246">
       <title>a</title>

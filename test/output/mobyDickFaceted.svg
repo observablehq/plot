@@ -51,16 +51,6 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(40,220)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-      <path transform="translate(0,180)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,150.09966777408638)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,120.19933554817277)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,90.29900332225915)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,60.39867109634551)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,30.498338870431894)" d="M0,0L-6,0"></path>
-      <path transform="translate(0,0.5980066445182763)" d="M0,0L-6,0"></path>
-    </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,180)">0</text><text y="0.32em" transform="translate(0,150.09966777408638)">200</text><text y="0.32em" transform="translate(0,120.19933554817277)">400</text><text y="0.32em" transform="translate(0,90.29900332225915)">600</text><text y="0.32em" transform="translate(0,60.39867109634551)">800</text><text y="0.32em" transform="translate(0,30.498338870431894)">1,000</text><text y="0.32em" transform="translate(0,0.5980066445182763)">1,200</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(5,0)">
       <path transform="translate(8,180)" d="M0,0L0,6"></path>
       <path transform="translate(18,180)" d="M0,0L0,6"></path>
@@ -90,6 +80,16 @@
       <path transform="translate(258,180)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(8,180)">A</text><text y="0.71em" transform="translate(18,180)">B</text><text y="0.71em" transform="translate(28,180)">C</text><text y="0.71em" transform="translate(38,180)">D</text><text y="0.71em" transform="translate(48,180)">E</text><text y="0.71em" transform="translate(58,180)">F</text><text y="0.71em" transform="translate(68,180)">G</text><text y="0.71em" transform="translate(78,180)">H</text><text y="0.71em" transform="translate(88,180)">I</text><text y="0.71em" transform="translate(98,180)">J</text><text y="0.71em" transform="translate(108,180)">K</text><text y="0.71em" transform="translate(118,180)">L</text><text y="0.71em" transform="translate(128,180)">M</text><text y="0.71em" transform="translate(138,180)">N</text><text y="0.71em" transform="translate(148,180)">O</text><text y="0.71em" transform="translate(158,180)">P</text><text y="0.71em" transform="translate(168,180)">Q</text><text y="0.71em" transform="translate(178,180)">R</text><text y="0.71em" transform="translate(188,180)">S</text><text y="0.71em" transform="translate(198,180)">T</text><text y="0.71em" transform="translate(208,180)">U</text><text y="0.71em" transform="translate(218,180)">V</text><text y="0.71em" transform="translate(228,180)">W</text><text y="0.71em" transform="translate(238,180)">X</text><text y="0.71em" transform="translate(248,180)">Y</text><text y="0.71em" transform="translate(258,180)">Z</text></g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+      <path transform="translate(0,180)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,150.09966777408638)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,120.19933554817277)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,90.29900332225915)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,60.39867109634551)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,30.498338870431894)" d="M0,0L-6,0"></path>
+      <path transform="translate(0,0.5980066445182763)" d="M0,0L-6,0"></path>
+    </g>
+    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,180)">0</text><text y="0.32em" transform="translate(0,150.09966777408638)">200</text><text y="0.32em" transform="translate(0,120.19933554817277)">400</text><text y="0.32em" transform="translate(0,90.29900332225915)">600</text><text y="0.32em" transform="translate(0,60.39867109634551)">800</text><text y="0.32em" transform="translate(0,30.498338870431894)">1,000</text><text y="0.32em" transform="translate(0,0.5980066445182763)">1,200</text></g>
     <g aria-label="bar">
       <rect x="18" width="9" y="177.90697674418604" height="2.0930232558139608"></rect>
       <rect x="28" width="9" y="178.2059800664452" height="1.7940199335548073"></rect>

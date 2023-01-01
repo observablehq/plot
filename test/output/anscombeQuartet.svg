@@ -14,6 +14,24 @@
     }
   </style>
   <g aria-label="facet" transform="translate(42,0)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="22.46666666666667" x2="22.46666666666667" y1="20" y2="210"></line>
+      <line x1="84.80000000000001" x2="84.80000000000001" y1="20" y2="210"></line>
+      <line x1="147.13333333333333" x2="147.13333333333333" y1="20" y2="210"></line>
+    </g>
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(22.46666666666667,210)" d="M0,0L0,6"></path>
+      <path transform="translate(84.80000000000001,210)" d="M0,0L0,6"></path>
+      <path transform="translate(147.13333333333333,210)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(22.46666666666667,210)">5</text><text y="0.71em" transform="translate(84.80000000000001,210)">10</text><text y="0.71em" transform="translate(147.13333333333333,210)">15</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="207" y1="184.1286307053942" y2="184.1286307053942"></line>
+      <line x1="0" x2="207" y1="148.85892116182572" y2="148.85892116182572"></line>
+      <line x1="0" x2="207" y1="113.58921161825727" y2="113.58921161825727"></line>
+      <line x1="0" x2="207" y1="78.3195020746888" y2="78.3195020746888"></line>
+      <line x1="0" x2="207" y1="43.049792531120346" y2="43.049792531120346"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,184.1286307053942)" d="M0,0L-6,0"></path>
       <path transform="translate(0,148.85892116182572)" d="M0,0L-6,0"></path>
@@ -22,12 +40,6 @@
       <path transform="translate(0,43.049792531120346)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,184.1286307053942)">4</text><text y="0.32em" transform="translate(0,148.85892116182572)">6</text><text y="0.32em" transform="translate(0,113.58921161825727)">8</text><text y="0.32em" transform="translate(0,78.3195020746888)">10</text><text y="0.32em" transform="translate(0,43.049792531120346)">12</text></g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(22.46666666666667,210)" d="M0,0L0,6"></path>
-      <path transform="translate(84.80000000000001,210)" d="M0,0L0,6"></path>
-      <path transform="translate(147.13333333333333,210)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(22.46666666666667,210)">5</text><text y="0.71em" transform="translate(84.80000000000001,210)">10</text><text y="0.71em" transform="translate(147.13333333333333,210)">15</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="207" height="190"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="112.8838174273859" r="3"></circle>
@@ -44,12 +56,24 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(272,0)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="22.46666666666667" x2="22.46666666666667" y1="20" y2="210"></line>
+      <line x1="84.80000000000001" x2="84.80000000000001" y1="20" y2="210"></line>
+      <line x1="147.13333333333333" x2="147.13333333333333" y1="20" y2="210"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(22.46666666666667,210)" d="M0,0L0,6"></path>
       <path transform="translate(84.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(147.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(22.46666666666667,210)">5</text><text y="0.71em" transform="translate(84.80000000000001,210)">10</text><text y="0.71em" transform="translate(147.13333333333333,210)">15</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="207" y1="184.1286307053942" y2="184.1286307053942"></line>
+      <line x1="0" x2="207" y1="148.85892116182572" y2="148.85892116182572"></line>
+      <line x1="0" x2="207" y1="113.58921161825727" y2="113.58921161825727"></line>
+      <line x1="0" x2="207" y1="78.3195020746888" y2="78.3195020746888"></line>
+      <line x1="0" x2="207" y1="43.049792531120346" y2="43.049792531120346"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="207" height="190"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="93.48547717842322" r="3"></circle>
@@ -66,12 +90,24 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(502,0)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="22.46666666666667" x2="22.46666666666667" y1="20" y2="210"></line>
+      <line x1="84.80000000000001" x2="84.80000000000001" y1="20" y2="210"></line>
+      <line x1="147.13333333333333" x2="147.13333333333333" y1="20" y2="210"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(22.46666666666667,210)" d="M0,0L0,6"></path>
       <path transform="translate(84.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(147.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(22.46666666666667,210)">5</text><text y="0.71em" transform="translate(84.80000000000001,210)">10</text><text y="0.71em" transform="translate(147.13333333333333,210)">15</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="207" y1="184.1286307053942" y2="184.1286307053942"></line>
+      <line x1="0" x2="207" y1="148.85892116182572" y2="148.85892116182572"></line>
+      <line x1="0" x2="207" y1="113.58921161825727" y2="113.58921161825727"></line>
+      <line x1="0" x2="207" y1="78.3195020746888" y2="78.3195020746888"></line>
+      <line x1="0" x2="207" y1="43.049792531120346" y2="43.049792531120346"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="207" height="190"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="84.80000000000001" cy="123.11203319502076" r="3"></circle>
@@ -88,12 +124,24 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(732,0)">
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="22.46666666666667" x2="22.46666666666667" y1="20" y2="210"></line>
+      <line x1="84.80000000000001" x2="84.80000000000001" y1="20" y2="210"></line>
+      <line x1="147.13333333333333" x2="147.13333333333333" y1="20" y2="210"></line>
+    </g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(22.46666666666667,210)" d="M0,0L0,6"></path>
       <path transform="translate(84.80000000000001,210)" d="M0,0L0,6"></path>
       <path transform="translate(147.13333333333333,210)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(22.46666666666667,210)">5</text><text y="0.71em" transform="translate(84.80000000000001,210)">10</text><text y="0.71em" transform="translate(147.13333333333333,210)">15</text></g>
+    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+      <line x1="0" x2="207" y1="184.1286307053942" y2="184.1286307053942"></line>
+      <line x1="0" x2="207" y1="148.85892116182572" y2="148.85892116182572"></line>
+      <line x1="0" x2="207" y1="113.58921161825727" y2="113.58921161825727"></line>
+      <line x1="0" x2="207" y1="78.3195020746888" y2="78.3195020746888"></line>
+      <line x1="0" x2="207" y1="43.049792531120346" y2="43.049792531120346"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="207" height="190"></rect>
     <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="59.86666666666667" cy="138.63070539419087" r="3"></circle>

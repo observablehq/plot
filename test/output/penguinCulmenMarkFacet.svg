@@ -728,6 +728,11 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(40,399)">
+    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(40.71428571428572,170)" d="M0,0L0,6"></path>
+      <path transform="translate(147.85714285714286,170)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40.71428571428572,170)">15</text><text y="0.71em" transform="translate(147.85714285714286,170)">20</text></g>
     <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,152.0727272727273)" d="M0,0L-6,0"></path>
       <path transform="translate(0,121.16363636363637)" d="M0,0L-6,0"></path>
@@ -736,11 +741,6 @@
       <path transform="translate(0,28.436363636363648)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,152.0727272727273)">35</text><text y="0.32em" transform="translate(0,121.16363636363637)">40</text><text y="0.32em" transform="translate(0,90.25454545454546)">45</text><text y="0.32em" transform="translate(0,59.34545454545455)">50</text><text y="0.32em" transform="translate(0,28.436363636363648)">55</text></g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(40.71428571428572,170)" d="M0,0L0,6"></path>
-      <path transform="translate(147.85714285714286,170)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40.71428571428572,170)">15</text><text y="0.71em" transform="translate(147.85714285714286,170)">20</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="0" width="180" height="170"></rect>
     <g aria-label="dot" fill="#ddd" transform="translate(0.5,0.5)">
       <circle cx="92.14285714285711" cy="124.25454545454546" r="2"></circle>
