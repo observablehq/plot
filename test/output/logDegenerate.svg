@@ -36,9 +36,9 @@
   </g>
   <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">100m</text><text y="0.71em" transform="translate(110.30899869919432,30)">200m</text><text y="0.71em" transform="translate(163.13637641589867,30)">300m</text><text y="0.71em" transform="translate(200.61799739838864,30)"></text><text y="0.71em" transform="translate(229.6910013008056,30)"></text><text y="0.71em" transform="translate(253.44537511509301,30)"></text><text y="0.71em" transform="translate(273.529412004277,30)"></text><text y="0.71em" transform="translate(290.926996097583,30)"></text><text y="0.71em" transform="translate(306.2727528317974,30)"></text><text y="0.71em" transform="translate(319.99999999999994,30)">1</text><text y="0.71em" transform="translate(410.3089986991943,30)">2</text><text y="0.71em" transform="translate(463.13637641589867,30)">3</text><text y="0.71em" transform="translate(500.61799739838864,30)"></text><text y="0.71em" transform="translate(529.6910013008055,30)"></text><text y="0.71em" transform="translate(553.445375115093,30)"></text><text y="0.71em" transform="translate(573.5294120042769,30)"></text><text y="0.71em" transform="translate(590.926996097583,30)"></text><text y="0.71em" transform="translate(606.2727528317974,30)"></text><text y="0.71em" transform="translate(620,30)">10</text></g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
-    <circle cx="20" cy="25" r="3"></circle>
-    <circle cx="319.99999999999994" cy="25" r="3"></circle>
-    <circle cx="410.3089986991943" cy="25" r="3"></circle>
-    <circle cx="620" cy="25" r="3"></circle>
+    <circle cx="20" cy="15" r="3"></circle>
+    <circle cx="319.99999999999994" cy="15" r="3"></circle>
+    <circle cx="410.3089986991943" cy="15" r="3"></circle>
+    <circle cx="620" cy="15" r="3"></circle>
   </g>
 </svg>
