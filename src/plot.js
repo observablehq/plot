@@ -44,41 +44,15 @@ export function plot(options = {}) {
   if (topFacetState) addScaleChannels(channelsByScale, [topFacetState]);
   addScaleChannels(channelsByScale, facetStateByMark);
 
-  // Add implicit axis marks.
-  {
-    const {
-      projection,
-      x = {},
-      y = {},
-      fx = {},
-      fy = {},
-      axis = true,
-      grid,
-      facet: {axis: facetAxis = axis, grid: facetGrid} = {}
-    } = options;
-    let {axis: xAxis = axis} = x;
-    let {axis: yAxis = axis} = y;
-    let {axis: fxAxis = facetAxis} = fx;
-    let {axis: fyAxis = facetAxis} = fy;
-    if ((x.type === undefined && !hasScale(marks, "x")) || projection) xAxis = null;
-    else if (xAxis === true) xAxis = "bottom";
-    if ((y.type === undefined && !hasScale(marks, "y")) || projection) yAxis = null;
-    else if (yAxis === true) yAxis = "left";
-    if (!channelsByScale.has("fx")) fxAxis = null;
-    else if (fxAxis === true) fxAxis = xAxis === "bottom" ? "top" : "bottom";
-    if (!channelsByScale.has("fy")) fyAxis = null;
-    else if (fyAxis === true) fyAxis = yAxis === "left" ? "right" : "left";
-    const newMarks = [];
-    if (fyAxis) newMarks.unshift(...flatMarks(axisFy(axisOptions(fyAxis, {grid: facetGrid}, fy))));
-    if (fxAxis) newMarks.unshift(...flatMarks(axisFx(axisOptions(fxAxis, {grid: facetGrid}, fx))));
-    if (yAxis) newMarks.unshift(...flatMarks(axisY(axisOptions(yAxis, {grid}, y))));
-    if (xAxis) newMarks.unshift(...flatMarks(axisX(axisOptions(xAxis, {grid}, x))));
-    for (const mark of newMarks) {
-      const facetState = maybeMarkFacet(mark, topFacetState, options);
-      if (facetState) facetStateByMark.set(mark, facetState);
-    }
-    marks.unshift(...newMarks);
+  // Add implicit axis marks. This this happens after faceting (because it
+  // depends on whether faceting is present), we must initialize the facet state
+  // of any implicit axes, too.
+  const axes = flatMarks(inferAxes(marks, channelsByScale, options));
+  for (const mark of axes) {
+    const facetState = maybeMarkFacet(mark, topFacetState, options);
+    if (facetState) facetStateByMark.set(mark, facetState);
   }
+  marks.unshift(...axes);
 
   // All the possible facets are given by the domains of the fx or fy scales, or
   // the cross-product of these domains if we facet by both x and y. We sort
@@ -579,6 +553,33 @@ function flatMarks(marks) {
     .flat(Infinity)
     .filter((mark) => mark != null)
     .map(markify);
+}
+
+function inferAxes(marks, channelsByScale, options) {
+  let {
+    projection,
+    x = {},
+    y = {},
+    fx = {},
+    fy = {},
+    axis = true,
+    grid,
+    facet: {axis: facetAxis = axis, grid: facetGrid} = {},
+    x: {type: xType, axis: xAxis = axis} = x,
+    y: {type: yType, axis: yAxis = axis} = y,
+    fx: {axis: fxAxis = facetAxis} = fx,
+    fy: {axis: fyAxis = facetAxis} = fy
+  } = options;
+  xAxis = (xType === undefined && !hasScale(marks, "x")) || projection ? null : xAxis === true ? "bottom" : xAxis;
+  yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
+  fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
+  fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
+  const axes = [];
+  if (xAxis) axes.push(axisX(axisOptions(xAxis, {grid}, x)));
+  if (yAxis) axes.push(axisY(axisOptions(yAxis, {grid}, y)));
+  if (fxAxis) axes.push(axisFx(axisOptions(fxAxis, {grid: facetGrid}, fx)));
+  if (fyAxis) axes.push(axisFy(axisOptions(fyAxis, {grid: facetGrid}, fy)));
+  return axes;
 }
 
 function axisOptions(
