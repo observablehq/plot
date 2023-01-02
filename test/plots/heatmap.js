@@ -84,3 +84,54 @@ export async function heatmapPartial() {
     ]
   });
 }
+
+export async function heatmapFillOpacity() {
+  return Plot.plot({
+    axis: null,
+    marks: [
+      Plot.raster({
+        x1: -1,
+        x2: 1,
+        y1: -1,
+        y2: 1,
+        fill: (x, y) => Math.atan2(y, x),
+        fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
+        pixelRatio: 2
+      })
+    ]
+  });
+}
+
+export async function heatmapOpacity() {
+  return Plot.plot({
+    axis: null,
+    marks: [
+      Plot.raster({
+        x1: -1,
+        x2: 1,
+        y1: -1,
+        y2: 1,
+        fill: "red",
+        fillOpacity: (x, y) => Math.PI - Math.atan2(y, x),
+        pixelRatio: 2
+      })
+    ]
+  });
+}
+
+export async function heatmapConstantOpacity() {
+  return Plot.plot({
+    axis: null,
+    marks: [
+      Plot.raster({
+        x1: -1,
+        x2: 1,
+        y1: -1,
+        y2: 1,
+        fill: (x, y) => Math.atan2(y, x),
+        fillOpacity: 0.5,
+        pixelRatio: 2
+      })
+    ]
+  });
+}

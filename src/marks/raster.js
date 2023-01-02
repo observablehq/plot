@@ -25,7 +25,8 @@ export class Raster extends Mark {
       y2 = y == null ? height : undefined,
       imageRendering,
       pixelRatio = 1,
-      fill
+      fill,
+      fillOpacity
     } = options;
     super(
       data,
@@ -37,7 +38,7 @@ export class Raster extends Mark {
         x2: {value: [+x2], scale: "x", filter: null},
         y2: {value: [+y2], scale: "y", filter: null}
       },
-      data == null && typeof fill === "function" ? sampleFill(options) : options,
+      data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
       defaults
     );
     this.width = width === undefined ? undefined : Math.floor(width);
@@ -46,8 +47,7 @@ export class Raster extends Mark {
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
-    const {x: X, y: Y, fill: F} = channels;
-    if (!F) return;
+    const {x: X, y: Y, fill: F, fillOpacity: FO} = channels;
     const {x1: [x1], y1: [y1], x2: [x2], y2: [y2]} = channels; // prettier-ignore
     const {document} = context;
     const imageWidth = Math.abs(x2 - x1);
@@ -61,45 +61,66 @@ export class Raster extends Mark {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
-    const context2d = canvas.getContext("2d");
-    const image = context2d.createImageData(width, height);
-    const imageData = image.data;
-    if (X && Y) {
-      // If X and Y are given, then assign each sample to the corresponding
-      // pixel location. In the future, it would be better to allow different
-      // interpolation methods here, as the current approach will often lead to
-      // a sparse image when not every pixel has a corresponding sample.
-      const kx = width / imageWidth;
-      const ky = height / imageHeight;
-      for (const i of index) {
-        const xi = Math.floor((X[i] - x1) * kx);
-        if (xi < 0 || xi >= width) continue;
-        const yi = Math.floor((Y[i] - y2) * ky);
-        if (yi < 0 || yi >= height) continue;
-        const {r, g, b} = rgb(F[i]);
-        const j = (yi * width + xi) << 2;
-        imageData[j + 0] = r;
-        imageData[j + 1] = g;
-        imageData[j + 2] = b;
-        imageData[j + 3] = 255;
+    if (F || FO) {
+      const context2d = canvas.getContext("2d");
+      let image;
+      if (F && FO) {
+        image = context2d.createImageData(width, height);
+      } else {
+        context2d.fillStyle = this.fill;
+        context2d.globalAlpha = this.fillOpacity;
+        context2d.fillRect(0, 0, width, height);
+        image = context2d.getImageData(0, 0, width, height);
       }
-    } else {
-      // Otherwise if X and Y are not given, then assume that F is a dense array
-      // of samples covering the entire grid in row-major order.
-      for (let y = 0, i = 0; y < height; ++y) {
-        for (let x = 0; x < width; ++x, ++i) {
-          const f = F[i];
-          if (f == null) continue;
-          const {r, g, b} = rgb(F[i]);
-          const j = i << 2;
-          imageData[j + 0] = r;
-          imageData[j + 1] = g;
-          imageData[j + 2] = b;
-          imageData[j + 3] = 255;
+      const imageData = image.data;
+      if (X && Y) {
+        // If X and Y are given, then assign each sample to the corresponding
+        // pixel location. In the future, it would be better to allow different
+        // interpolation methods here, as the current approach will often lead to
+        // a sparse image when not every pixel has a corresponding sample.
+        const kx = width / imageWidth;
+        const ky = height / imageHeight;
+        for (const i of index) {
+          const xi = Math.floor((X[i] - x1) * kx);
+          if (xi < 0 || xi >= width) continue;
+          const yi = Math.floor((Y[i] - y2) * ky);
+          if (yi < 0 || yi >= height) continue;
+          const j = (yi * width + xi) << 2;
+          if (F) {
+            const {r, g, b} = rgb(F[i]);
+            imageData[j + 0] = r;
+            imageData[j + 1] = g;
+            imageData[j + 2] = b;
+          }
+          if (FO) {
+            imageData[j + 3] = FO[i] * 255;
+          }
+        }
+      } else {
+        // Otherwise if X and Y are not given, then assume that F is a dense array
+        // of samples covering the entire grid in row-major order.
+        for (let y = 0, i = 0; y < height; ++y) {
+          for (let x = 0; x < width; ++x, ++i) {
+            const j = i << 2;
+            if (F) {
+              const f = F[i];
+              if (f == null) {
+                imageData[j + 3] = 0;
+                continue;
+              }
+              const {r, g, b} = rgb(f);
+              imageData[j + 0] = r;
+              imageData[j + 1] = g;
+              imageData[j + 2] = b;
+            }
+            if (FO) {
+              imageData[j + 3] = FO[i] * 255;
+            }
+          }
         }
       }
+      context2d.putImageData(image, 0, 0);
     }
-    context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
@@ -124,22 +145,42 @@ export function raster(data, options) {
 }
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
-function sampleFill({fill, pixelRatio = 1, ...options} = {}) {
+function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
+  if (typeof fill !== "function") (options.fill = fill), (fill = null);
+  if (typeof fillOpacity !== "function") (options.fillOpacity = fillOpacity), (fillOpacity = null);
   return initializer(options, (data, facets, channels, {x, y}) => {
     let {x1, y1, x2, y2, width: w, height: h} = options;
     (x1 = x(x1)), (y1 = y(y1)), (x2 = x(x2)), (y2 = y(y2));
     // Note: this must exactly match the defaults in render above!
     if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
     if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
-    const F = new Array(w * h),
-      kx = (x2 - x1) / w,
-      ky = (y1 - y2) / h;
+    const kx = (x2 - x1) / w;
+    const ky = (y1 - y2) / h;
     (x1 += kx / 2), (y2 += ky / 2);
-    for (let yi = 0, i = 0; yi < h; ++yi) {
-      for (let xi = 0; xi < w; ++xi, ++i) {
-        F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+    let F, FO;
+    if (fill) {
+      F = new Array(w * h);
+      for (let yi = 0, i = 0; yi < h; ++yi) {
+        for (let xi = 0; xi < w; ++xi, ++i) {
+          F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+        }
       }
     }
-    return {data: F, facets, channels: {fill: {value: F, scale: "color"}}};
+    if (fillOpacity) {
+      FO = new Array(w * h);
+      for (let yi = 0, i = 0; yi < h; ++yi) {
+        for (let xi = 0; xi < w; ++xi, ++i) {
+          FO[i] = fillOpacity(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+        }
+      }
+    }
+    return {
+      data: F ?? FO,
+      facets,
+      channels: {
+        ...(F && {fill: {value: F, scale: "color"}}),
+        ...(FO && {fillOpacity: {value: FO, scale: "opacity"}})
+      }
+    };
   });
 }
