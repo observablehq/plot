@@ -17,7 +17,7 @@ export default async function () {
         Plot.binX(
           {y: "count", interval: 1},
           Plot.binX(
-            {x: (d) => Math.min(10, d.length), title: "first", thresholds: d3.utcHour},
+            {x: (d) => Math.min(10, d.length), title: "first", thresholds: "hour"},
             {x: "date", fill: (d) => d.date.getUTCDay(), title: (d) => "SMTWTFS"[d.date.getUTCDay()]}
           )
         )
