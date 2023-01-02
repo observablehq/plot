@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="geo" fill="none" stroke="currentColor" stroke-opacity="0.1" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#plot-clip-1)" transform="translate(0.5,0.5)">
+  <g aria-label="geo" clip-path="url(#plot-clip-1)" fill="none" stroke="currentColor" stroke-opacity="0.1" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <clipPath id="plot-clip-1">
       <path d="M299.5,14.659L319.277,54.729L340.084,96.894L362.963,143.255L392.033,202.163L392.078,202.196L457.086,211.64L508.249,219.072L554.78,225.831L599,232.258L567.003,263.449L533.331,296.268L496.308,332.353L449.267,378.205L449.25,378.257L460.356,443.002L469.098,493.957L477.049,540.299L484.601,584.341L445.049,563.549L403.431,541.667L357.671,517.607L299.527,487.037L299.473,487.037L241.329,517.607L195.569,541.667L153.951,563.549L114.399,584.341L121.951,540.299L129.902,493.957L138.644,443.002L149.75,378.257L149.733,378.205L102.692,332.353L65.669,296.268L31.997,263.449L0,232.258L44.22,225.831L90.751,219.072L141.914,211.64L206.922,202.196L206.967,202.163L236.037,143.255L258.916,96.894L279.723,54.729Z"></path>
     </clipPath>

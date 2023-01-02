@@ -37,7 +37,7 @@ export class Geo extends Mark {
     if (negative(r)) index = [];
     else if (r !== undefined) path.pointRadius(r);
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) => {
         g.selectAll()

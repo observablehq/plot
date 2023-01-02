@@ -73,7 +73,7 @@ export class Dot extends Mark {
     const size = R ? undefined : r * r * Math.PI;
     if (negative(r)) index = [];
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X && x, y: Y && y})
       .call((g) =>
         g

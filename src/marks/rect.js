@@ -58,7 +58,7 @@ export class Rect extends Mark {
     const {projection} = context;
     const {insetTop, insetRight, insetBottom, insetLeft, rx, ry} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, {x: X1 && X2 && x, y: Y1 && Y2 && y}, 0, 0)
       .call((g) =>
         g

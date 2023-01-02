@@ -67,7 +67,7 @@ export class Line extends Mark {
     const {x: X, y: Y} = channels;
     const {curve} = this;
     return create("svg:g", context)
-      .call(applyIndirectStyles, this, scales, dimensions, context)
+      .call(applyIndirectStyles, this, dimensions, context)
       .call(applyTransform, this, scales)
       .call((g) =>
         g

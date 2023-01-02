@@ -1,4 +1,5 @@
 import {geoPath, group, namespaces} from "d3";
+import {create} from "./context.js";
 import {defined, nonempty} from "./defined.js";
 import {formatDefault} from "./format.js";
 import {
@@ -306,10 +307,56 @@ export function maybeClip(clip) {
   return maybeKeyword(clip, "clip", ["frame", "sphere"]);
 }
 
-export function applyIndirectStyles(selection, mark, scales, dimensions, context) {
+// Note: may mutate selection.node!
+function applyClip(selection, mark, dimensions, context) {
+  let clipUrl;
+  switch (mark.clip) {
+    case "frame": {
+      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
+      const id = getClipId();
+      clipUrl = `url(#${id})`;
+      selection = create("svg:g", context)
+        .call((g) =>
+          g
+            .append("svg:clipPath")
+            .attr("id", id)
+            .append("rect")
+            .attr("x", marginLeft)
+            .attr("y", marginTop)
+            .attr("width", width - marginRight - marginLeft)
+            .attr("height", height - marginTop - marginBottom)
+        )
+        .each(function () {
+          this.appendChild(selection.node());
+          selection.node = () => this; // Note: mutation!
+        });
+      break;
+    }
+    case "sphere": {
+      const {projection} = context;
+      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
+      const id = getClipId();
+      clipUrl = `url(#${id})`;
+      selection
+        .append("clipPath")
+        .attr("id", id)
+        .append("path")
+        .attr("d", geoPath(projection)({type: "Sphere"}));
+      break;
+    }
+  }
+  // Here we’re careful to apply the ARIA attributes to the outer G element when
+  // clipping is applied, and to apply the ARIA attributes before any other
+  // attributes (for readability).
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
+  applyAttr(selection, "clip-path", clipUrl);
+}
+
+// Note: may mutate selection.node!
+export function applyIndirectStyles(selection, mark, dimensions, context) {
+  applyClip(selection, mark, dimensions, context);
   applyAttr(selection, "fill", mark.fill);
   applyAttr(selection, "fill-opacity", mark.fillOpacity);
   applyAttr(selection, "stroke", mark.stroke);
@@ -323,35 +370,6 @@ export function applyIndirectStyles(selection, mark, scales, dimensions, context
   applyAttr(selection, "shape-rendering", mark.shapeRendering);
   applyAttr(selection, "paint-order", mark.paintOrder);
   applyAttr(selection, "pointer-events", mark.pointerEvents);
-  switch (mark.clip) {
-    case "frame": {
-      const {x, y} = scales;
-      const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
-      const id = getClipId();
-      selection
-        .attr("clip-path", `url(#${id})`)
-        .append("clipPath")
-        .attr("id", id)
-        .append("rect")
-        .attr("x", marginLeft - (x?.bandwidth ? x.bandwidth() / 2 : 0))
-        .attr("y", marginTop - (y?.bandwidth ? y.bandwidth() / 2 : 0))
-        .attr("width", width - marginRight - marginLeft)
-        .attr("height", height - marginTop - marginBottom);
-      break;
-    }
-    case "sphere": {
-      const {projection} = context;
-      if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
-      const id = getClipId();
-      selection
-        .attr("clip-path", `url(#${id})`)
-        .append("clipPath")
-        .attr("id", id)
-        .append("path")
-        .attr("d", geoPath(projection)({type: "Sphere"}));
-      break;
-    }
-  }
 }
 
 export function applyDirectStyles(selection, mark) {
