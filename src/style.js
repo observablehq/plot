@@ -307,6 +307,7 @@ export function maybeClip(clip) {
   return maybeKeyword(clip, "clip", ["frame", "sphere"]);
 }
 
+// Note: may mutate selection.node!
 export function applyIndirectStyles(selection, mark, dimensions, context) {
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
@@ -342,7 +343,7 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
         )
         .each(function () {
           this.appendChild(selection.node());
-          selection.node = () => this; // Note: mutates selection.node!
+          selection.node = () => this; // Note: mutation!
         });
       break;
     }
