@@ -1504,6 +1504,44 @@ Returns a new link with the given *data* and *options*.
 
 <!-- jsdocEnd link -->
 
+### Raster
+
+[Source](./src/marks/raster.js) · [Examples](https://observablehq.com/@observablehq/plot-raster) · Fills a raster image with colored pixels.
+
+#### Plot.raster(*data*, *options*)
+
+<!-- jsdoc raster -->
+
+```js
+Plot.raster(volcano.values, {width: volcano.width, height: volcano.height, fill: volcano.values})
+```
+
+```js
+Plot.raster({fill: (x, y) => Math.atan2(y, x)})
+```
+
+Returns a new raster with the given *data* and *options*. 
+
+The raster image’s geometry can be specified directly as rectangular dimensions:
+* **width** - the number of (data) values on each horizontal line; a positive integer bound to the *x* scale
+* **height** - the number of lines; a positive integer bound to the *y* scale
+
+Alternatively, the horizontal and vertical dimensions can be specified from a starting and ending positions, together with a pixel ratio:
+* **x1** - the starting horizontal position; bound to the *x* scale
+* **x2** - the ending horizontal position; bound to the *x* scale
+* **y1** - the starting vertical position; bound to the *y* scale
+* **y2** - the ending vertical position; bound to the *y* scale
+* **pixelRatio** - the density of the raster image; defaults to 1 pixel per value
+
+The following channels and options are supported:
+* **fill** - the color; bound to the *color* scale
+* **x** - the horizontal position of the value (needs both x1 and x2 to be specified ??)
+* **y** - the vertical position of the value (needs both y1 and y2 to be specified ??)
+* **imageRendering** - the [image-rendering](https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering) attribute of the image; defaults to auto. A typical setting is pixelated, that renders each data point sharply with nearest-neighbor interpolation.
+
+
+<!-- jsdocEnd raster -->
+
 ### Rect
 
 [<img src="./img/rect.png" width="320" height="198" alt="a histogram">](https://observablehq.com/@observablehq/plot-rect)
