@@ -54,18 +54,14 @@ export async function heatmapArray() {
 export async function heatmapLog() {
   return Plot.plot({
     height: 630,
-    x: {ticks: 10, tickFormat: "+f"},
-    y: {ticks: 10, tickFormat: "+f"},
+    x: {ticks: 10, tickFormat: "+f", domain: [-2, 2]},
+    y: {ticks: 10, tickFormat: "+f", domain: [-2.5, 1.5]},
     color: {type: "log", scheme: "magma"},
     marks: [
       Plot.raster({
         fill: (x, y) =>
           (1 + (x + y + 1) ** 2 * (19 - 14 * x + 3 * x ** 2 - 14 * y + 6 * x * y + 3 * y ** 2)) *
           (30 + (2 * x - 3 * y) ** 2 * (18 - 32 * x + 12 * x * x + 48 * y - 36 * x * y + 27 * y ** 2)),
-        x1: -2,
-        y1: -2.5,
-        x2: 2,
-        y2: 1.5,
         pixelRatio: 4
       }),
       Plot.ruleX([0], {strokeOpacity: 0.2}),
@@ -73,4 +69,8 @@ export async function heatmapLog() {
       Plot.frame()
     ]
   });
+}
+
+export async function heatmapAtan2() {
+  return Plot.plot({axis: null, marks: [Plot.raster({fill: (x, y) => Math.atan2(y - 0.5, x - 0.5), pixelRatio: 2})]});
 }

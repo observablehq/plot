@@ -21,8 +21,8 @@ export class Raster extends Mark {
       // further shorthand where x and y represent grid column and row index.
       x1 = x == null ? 0 : undefined,
       y1 = y == null ? 0 : undefined,
-      x2 = x == null ? width : undefined,
-      y2 = y == null ? height : undefined,
+      x2 = x == null ? width ?? 1 : undefined,
+      y2 = y == null ? height ?? 1 : undefined,
       imageRendering,
       pixelRatio = 1,
       fill
@@ -131,16 +131,30 @@ function sampleFill({fill, pixelRatio = 1, ...options} = {}) {
     let {x1, y1, x2, y2, width: w, height: h} = options;
     if (w === undefined) w = Math.max(0, Math.round((width - marginLeft - marginRight) / pixelRatio));
     if (h === undefined) h = Math.max(0, Math.round((height - marginTop - marginBottom) / pixelRatio));
-    (x1 = x(x1)), (y1 = y(y1)), (x2 = x(x2)), (y2 = y(y2));
+    x1 = x1 == null ? marginLeft : x(x1);
+    y1 = y1 == null ? height - marginBottom : y(y1);
+    x2 = x2 == null ? width - marginRight : x(x2);
+    y2 = y2 == null ? marginTop : y(y2);
     const kx = (x2 - x1) / w;
     const ky = (y1 - y2) / h;
-    (x1 += kx / 2), (y2 += ky / 2);
+    const xb = x1 + kx / 2;
+    const yb = y2 + ky / 2;
     const F = new Array(w * h);
     for (let yi = 0, i = 0; yi < h; ++yi) {
       for (let xi = 0; xi < w; ++xi, ++i) {
-        F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
+        F[i] = fill(x.invert(xb + xi * kx), y.invert(yb + yi * ky));
       }
     }
-    return {data: F, facets, channels: {fill: {value: F, scale: "color"}}};
+    return {
+      data: F,
+      facets,
+      channels: {
+        fill: {value: F, scale: "color"},
+        x1: {value: [x1]},
+        x2: {value: [x2]},
+        y1: {value: [y1]},
+        y2: {value: [y2]}
+      }
+    };
   });
 }
