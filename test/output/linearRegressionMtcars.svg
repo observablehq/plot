@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(112.22193812324214,370)" d="M0,0L0,6"></path>
     <path transform="translate(186.37177192533878,370)" d="M0,0L0,6"></path>
     <path transform="translate(260.52160572743543,370)" d="M0,0L0,6"></path>
@@ -22,8 +22,8 @@
     <path transform="translate(482.97110713372535,370)" d="M0,0L0,6"></path>
     <path transform="translate(557.120940935822,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(112.22193812324214,370)">2.0</text><text y="0.71em" transform="translate(186.37177192533878,370)">2.5</text><text y="0.71em" transform="translate(260.52160572743543,370)">3.0</text><text y="0.71em" transform="translate(334.67143952953205,370)">3.5</text><text y="0.71em" transform="translate(408.82127333162873,370)">4.0</text><text y="0.71em" transform="translate(482.97110713372535,370)">4.5</text><text y="0.71em" transform="translate(557.120940935822,370)">5.0</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(112.22193812324214,370)">2.0</text><text y="0.71em" transform="translate(186.37177192533878,370)">2.5</text><text y="0.71em" transform="translate(260.52160572743543,370)">3.0</text><text y="0.71em" transform="translate(334.67143952953205,370)">3.5</text><text y="0.71em" transform="translate(408.82127333162873,370)">4.0</text><text y="0.71em" transform="translate(482.97110713372535,370)">4.5</text><text y="0.71em" transform="translate(557.120940935822,370)">5.0</text></g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,360.1060070671378)" d="M0,0L-6,0"></path>
     <path transform="translate(40,335.3710247349823)" d="M0,0L-6,0"></path>
     <path transform="translate(40,310.6360424028269)" d="M0,0L-6,0"></path>
@@ -39,7 +39,7 @@
     <path transform="translate(40,63.28621908127208)" d="M0,0L-6,0"></path>
     <path transform="translate(40,38.551236749116626)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,360.1060070671378)">60</text><text y="0.32em" transform="translate(40,335.3710247349823)">80</text><text y="0.32em" transform="translate(40,310.6360424028269)">100</text><text y="0.32em" transform="translate(40,285.9010600706714)">120</text><text y="0.32em" transform="translate(40,261.1660777385159)">140</text><text y="0.32em" transform="translate(40,236.4310954063604)">160</text><text y="0.32em" transform="translate(40,211.69611307420496)">180</text><text y="0.32em" transform="translate(40,186.96113074204945)">200</text><text y="0.32em" transform="translate(40,162.226148409894)">220</text><text y="0.32em" transform="translate(40,137.49116607773854)">240</text><text y="0.32em" transform="translate(40,112.75618374558304)">260</text><text y="0.32em" transform="translate(40,88.02120141342758)">280</text><text y="0.32em" transform="translate(40,63.28621908127208)">300</text><text y="0.32em" transform="translate(40,38.551236749116626)">320</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,360.1060070671378)">60</text><text y="0.32em" transform="translate(40,335.3710247349823)">80</text><text y="0.32em" transform="translate(40,310.6360424028269)">100</text><text y="0.32em" transform="translate(40,285.9010600706714)">120</text><text y="0.32em" transform="translate(40,261.1660777385159)">140</text><text y="0.32em" transform="translate(40,236.4310954063604)">160</text><text y="0.32em" transform="translate(40,211.69611307420496)">180</text><text y="0.32em" transform="translate(40,186.96113074204945)">200</text><text y="0.32em" transform="translate(40,162.226148409894)">220</text><text y="0.32em" transform="translate(40,137.49116607773854)">240</text><text y="0.32em" transform="translate(40,112.75618374558304)">260</text><text y="0.32em" transform="translate(40,88.02120141342758)">280</text><text y="0.32em" transform="translate(40,63.28621908127208)">300</text><text y="0.32em" transform="translate(40,38.551236749116626)">320</text></g>
   <g aria-label="dot" fill="none" stroke="currentColor" stroke-width="1.5" transform="translate(0.5,0.5)">
     <circle cx="204.16773203784197" cy="298.2685512367491" r="2"></circle>
     <circle cx="241.98414727691127" cy="298.2685512367491" r="2"></circle>

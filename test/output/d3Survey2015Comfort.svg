@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="300" x2="300" y1="30" y2="130"></line>
     <line x1="364" x2="364" y1="30" y2="130"></line>
     <line x1="428" x2="428" y1="30" y2="130"></line>
@@ -26,7 +26,7 @@
     <line x1="876" x2="876" y1="30" y2="130"></line>
     <line x1="940" x2="940" y1="30" y2="130"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(300,30)" d="M0,0L0,-6"></path>
     <path transform="translate(364,30)" d="M0,0L0,-6"></path>
     <path transform="translate(428,30)" d="M0,0L0,-6"></path>
@@ -39,15 +39,15 @@
     <path transform="translate(876,30)" d="M0,0L0,-6"></path>
     <path transform="translate(940,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(300,30)">0</text><text transform="translate(364,30)">10</text><text transform="translate(428,30)">20</text><text transform="translate(492,30)">30</text><text transform="translate(556,30)">40</text><text transform="translate(620,30)">50</text><text transform="translate(684,30)">60</text><text transform="translate(748,30)">70</text><text transform="translate(812,30)">80</text><text transform="translate(876,30)">90</text><text transform="translate(940,30)">100</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,10.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(300,30)">0</text><text transform="translate(364,30)">10</text><text transform="translate(428,30)">20</text><text transform="translate(492,30)">30</text><text transform="translate(556,30)">40</text><text transform="translate(620,30)">50</text><text transform="translate(684,30)">60</text><text transform="translate(748,30)">70</text><text transform="translate(812,30)">80</text><text transform="translate(876,30)">90</text><text transform="translate(940,30)">100</text></g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(300,30)" d="M0,0L-6,0"></path>
     <path transform="translate(300,50)" d="M0,0L-6,0"></path>
     <path transform="translate(300,70)" d="M0,0L-6,0"></path>
     <path transform="translate(300,90)" d="M0,0L-6,0"></path>
     <path transform="translate(300,110)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-8.5,10.5)"><text y="0.32em" transform="translate(300,30)">I looked at some examples!</text><text y="0.32em" transform="translate(300,50)">I've forked a bl.ock or two</text><text y="0.32em" transform="translate(300,70)">selectAll(".answers").enter()</text><text y="0.32em" transform="translate(300,90)">Someone told me I should learn it...</text><text y="0.32em" transform="translate(300,110)"></text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)"><text y="0.32em" transform="translate(300,30)">I looked at some examples!</text><text y="0.32em" transform="translate(300,50)">I've forked a bl.ock or two</text><text y="0.32em" transform="translate(300,70)">selectAll(".answers").enter()</text><text y="0.32em" transform="translate(300,90)">Someone told me I should learn it...</text><text y="0.32em" transform="translate(300,110)"></text></g>
   <g aria-label="bar" fill="steelblue">
     <rect x="300" width="150.70336391437309" y="71" height="19"></rect>
     <rect x="300" width="56.75840978593271" y="91" height="19"></rect>

@@ -230,7 +230,7 @@ function axisTickKy(
     ...options
   }
 ) {
-  return axisMark(vectorY, k, data, {
+  return axisMark(vectorY, k, "tick", data, {
     strokeWidth,
     strokeLinecap,
     strokeLinejoin,
@@ -264,7 +264,7 @@ function axisTickKx(
     ...options
   }
 ) {
-  return axisMark(vectorX, k, data, {
+  return axisMark(vectorX, k, "tick", data, {
     strokeWidth,
     strokeLinejoin,
     strokeLinecap,
@@ -305,6 +305,7 @@ function axisTextKy(
   return axisMark(
     textY,
     k,
+    "tick text",
     data,
     {
       facetAnchor,
@@ -351,6 +352,7 @@ function axisTextKx(
   return axisMark(
     textX,
     k,
+    "tick text",
     data,
     {
       facetAnchor,
@@ -392,11 +394,11 @@ export function gridFx() {
 }
 
 function gridKy(k, data, {x1 = null, x2 = null, ...options}) {
-  return axisMark(ruleY, k, data, {x1, x2, ...options});
+  return axisMark(ruleY, k, "grid", data, {x1, x2, ...options});
 }
 
 function gridKx(k, data, {y1 = null, y2 = null, ...options}) {
-  return axisMark(ruleX, k, data, {y1, y2, ...options});
+  return axisMark(ruleX, k, "grid", data, {y1, y2, ...options});
 }
 
 function gridDefaults({
@@ -410,8 +412,8 @@ function gridDefaults({
   return {stroke, strokeOpacity, strokeWidth, ...rest};
 }
 
-function axisMark(mark, k, data, options, initialize) {
-  return mark(
+function axisMark(mark, k, ariaLabel, data, options, initialize) {
+  const m = mark(
     data,
     initializer(options, function (data, facets, channels, scales) {
       const {[k]: scale} = scales;
@@ -455,6 +457,8 @@ function axisMark(mark, k, data, options, initialize) {
       };
     })
   );
+  m.ariaLabel = `${k}-axis ${ariaLabel}`;
+  return m;
 }
 
 function inferTextChannel(scale, ticks, tickFormat) {

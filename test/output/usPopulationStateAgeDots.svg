@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="30" y2="659"></line>
     <line x1="77.73352996145312" x2="77.73352996145312" y1="30" y2="659"></line>
     <line x1="135.4670599229062" x2="135.4670599229062" y1="30" y2="659"></line>
@@ -26,7 +26,7 @@
     <line x1="539.6017696530779" x2="539.6017696530779" y1="30" y2="659"></line>
     <line x1="597.335299614531" x2="597.335299614531" y1="30" y2="659"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(20,30)" d="M0,0L0,-6"></path>
     <path transform="translate(77.73352996145312,30)" d="M0,0L0,-6"></path>
     <path transform="translate(135.4670599229062,30)" d="M0,0L0,-6"></path>
@@ -39,7 +39,7 @@
     <path transform="translate(539.6017696530779,30)" d="M0,0L0,-6"></path>
     <path transform="translate(597.335299614531,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(20,30)">0</text><text transform="translate(77.73352996145312,30)">2</text><text transform="translate(135.4670599229062,30)">4</text><text transform="translate(193.2005898843593,30)">6</text><text transform="translate(250.93411984581243,30)">8</text><text transform="translate(308.6676498072655,30)">10</text><text transform="translate(366.4011797687186,30)">12</text><text transform="translate(424.1347097301717,30)">14</text><text transform="translate(481.86823969162486,30)">16</text><text transform="translate(539.6017696530779,30)">18</text><text transform="translate(597.335299614531,30)">20</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(20,30)">0</text><text transform="translate(77.73352996145312,30)">2</text><text transform="translate(135.4670599229062,30)">4</text><text transform="translate(193.2005898843593,30)">6</text><text transform="translate(250.93411984581243,30)">8</text><text transform="translate(308.6676498072655,30)">10</text><text transform="translate(366.4011797687186,30)">12</text><text transform="translate(424.1347097301717,30)">14</text><text transform="translate(481.86823969162486,30)">16</text><text transform="translate(539.6017696530779,30)">18</text><text transform="translate(597.335299614531,30)">20</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0.5,0)">
     <line x1="20" x2="20" y1="30" y2="659"></line>
   </g>

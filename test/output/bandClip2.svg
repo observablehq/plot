@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(43.5,0)">
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(43.5,0)">
     <line x1="50" x2="50" y1="20" y2="370"></line>
     <line x1="145" x2="145" y1="20" y2="370"></line>
     <line x1="240" x2="240" y1="20" y2="370"></line>
@@ -21,7 +21,7 @@
     <line x1="430" x2="430" y1="20" y2="370"></line>
     <line x1="525" x2="525" y1="20" y2="370"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(43.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,370)" d="M0,0L0,6"></path>
     <path transform="translate(145,370)" d="M0,0L0,6"></path>
     <path transform="translate(240,370)" d="M0,0L0,6"></path>
@@ -29,8 +29,8 @@
     <path transform="translate(430,370)" d="M0,0L0,6"></path>
     <path transform="translate(525,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(43.5,9.5)"><text y="0.71em" transform="translate(50,370)">2022-12-01</text><text y="0.71em" transform="translate(145,370)">2022-12-02</text><text y="0.71em" transform="translate(240,370)">2022-12-03</text><text y="0.71em" transform="translate(335,370)">2022-12-04</text><text y="0.71em" transform="translate(430,370)">2022-12-05</text><text y="0.71em" transform="translate(525,370)">2022-12-06</text></g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(43.5,9.5)"><text y="0.71em" transform="translate(50,370)">2022-12-01</text><text y="0.71em" transform="translate(145,370)">2022-12-02</text><text y="0.71em" transform="translate(240,370)">2022-12-03</text><text y="0.71em" transform="translate(335,370)">2022-12-04</text><text y="0.71em" transform="translate(430,370)">2022-12-05</text><text y="0.71em" transform="translate(525,370)">2022-12-06</text></g>
+  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="335" y2="335"></line>
     <line x1="40" x2="620" y1="300" y2="300"></line>
@@ -43,7 +43,7 @@
     <line x1="40" x2="620" y1="54.99999999999999" y2="54.99999999999999"></line>
     <line x1="40" x2="620" y1="20" y2="20"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,335)" d="M0,0L-6,0"></path>
     <path transform="translate(40,300)" d="M0,0L-6,0"></path>
@@ -56,7 +56,7 @@
     <path transform="translate(40,54.99999999999999)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,335)">1</text><text y="0.32em" transform="translate(40,300)">2</text><text y="0.32em" transform="translate(40,265)">3</text><text y="0.32em" transform="translate(40,230)">4</text><text y="0.32em" transform="translate(40,195)">5</text><text y="0.32em" transform="translate(40,160)">6</text><text y="0.32em" transform="translate(40,125.00000000000001)">7</text><text y="0.32em" transform="translate(40,89.99999999999999)">8</text><text y="0.32em" transform="translate(40,54.99999999999999)">9</text><text y="0.32em" transform="translate(40,20)">10</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,335)">1</text><text y="0.32em" transform="translate(40,300)">2</text><text y="0.32em" transform="translate(40,265)">3</text><text y="0.32em" transform="translate(40,230)">4</text><text y="0.32em" transform="translate(40,195)">5</text><text y="0.32em" transform="translate(40,160)">6</text><text y="0.32em" transform="translate(40,125.00000000000001)">7</text><text y="0.32em" transform="translate(40,89.99999999999999)">8</text><text y="0.32em" transform="translate(40,54.99999999999999)">9</text><text y="0.32em" transform="translate(40,20)">10</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
   </g>

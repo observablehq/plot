@@ -14,13 +14,13 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">WHITE</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">WHITE</text></g>
     <g aria-label="bar">
       <rect x="210" width="410" y="2" height="16" fill="currentColor">
         <title>79.0%</title>
@@ -37,13 +37,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,82)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">UNDESIGNATED</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">UNDESIGNATED</text></g>
     <g aria-label="bar">
       <rect x="210" width="405.8914002270852" y="2" height="16" fill="currentColor">
         <title>78.3%</title>
@@ -60,13 +60,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,144)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">ASIAN</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">ASIAN</text></g>
     <g aria-label="bar">
       <rect x="210" width="404.1524922619212" y="2" height="16" fill="currentColor">
         <title>77.9%</title>
@@ -83,13 +83,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">OTHER</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">OTHER</text></g>
     <g aria-label="bar">
       <rect x="210" width="384.322276007396" y="2" height="16" fill="currentColor">
         <title>74.1%</title>
@@ -106,13 +106,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,268)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">TWO or MORE RACES</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">TWO or MORE RACES</text></g>
     <g aria-label="bar">
       <rect x="210" width="383.5206680329693" y="2" height="16" fill="currentColor">
         <title>73.9%</title>
@@ -129,13 +129,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,330)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">INDIAN AMERICAN or ALASKA NATIVE</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">INDIAN AMERICAN or ALASKA NATIVE</text></g>
     <g aria-label="bar">
       <rect x="210" width="132.02293626031644" y="20" height="16" fill="brown">
         <title>25.5%</title>
@@ -152,13 +152,13 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,392)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">BLACK or AFRICAN AMERICAN</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">BLACK or AFRICAN AMERICAN</text></g>
     <g aria-label="bar">
       <rect x="210" width="349.7813163559978" y="2" height="16" fill="currentColor">
         <title>67.4%</title>
@@ -175,20 +175,20 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,454)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="210" x2="210" y1="0" y2="56"></line>
       <line x1="313.7351997640493" x2="313.7351997640493" y1="0" y2="56"></line>
       <line x1="417.47039952809854" x2="417.47039952809854" y1="0" y2="56"></line>
       <line x1="521.2055992921478" x2="521.2055992921478" y1="0" y2="56"></line>
     </g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(210,56)" d="M0,0L0,6"></path>
       <path transform="translate(313.7351997640493,56)" d="M0,0L0,6"></path>
       <path transform="translate(417.47039952809854,56)" d="M0,0L0,6"></path>
       <path transform="translate(521.2055992921478,56)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(210,56)">0</text><text y="0.71em" transform="translate(313.7351997640493,56)">20</text><text y="0.71em" transform="translate(417.47039952809854,56)">40</text><text y="0.71em" transform="translate(521.2055992921478,56)">60</text></g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(210,56)">0</text><text y="0.71em" transform="translate(313.7351997640493,56)">20</text><text y="0.71em" transform="translate(417.47039952809854,56)">40</text><text y="0.71em" transform="translate(521.2055992921478,56)">60</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(210,28)">NATIVE HAWAIIAN or PACIFIC ISLANDER</text></g>
     <g aria-label="bar">
       <rect x="210" width="216.11499950843603" y="20" height="16" fill="brown">
         <title>41.7%</title>

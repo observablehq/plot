@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,370)" d="M0,0L0,6"></path>
     <path transform="translate(97.99999999999999,370)" d="M0,0L0,6"></path>
     <path transform="translate(156,370)" d="M0,0L0,6"></path>
@@ -26,8 +26,8 @@
     <path transform="translate(562,370)" d="M0,0L0,6"></path>
     <path transform="translate(620,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">−1.0</text><text y="0.71em" transform="translate(97.99999999999999,370)">−0.8</text><text y="0.71em" transform="translate(156,370)">−0.6</text><text y="0.71em" transform="translate(214,370)">−0.4</text><text y="0.71em" transform="translate(272,370)">−0.2</text><text y="0.71em" transform="translate(330,370)">0.0</text><text y="0.71em" transform="translate(388,370)">0.2</text><text y="0.71em" transform="translate(446,370)">0.4</text><text y="0.71em" transform="translate(504,370)">0.6</text><text y="0.71em" transform="translate(562,370)">0.8</text><text y="0.71em" transform="translate(620,370)">1.0</text></g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,370)">−1.0</text><text y="0.71em" transform="translate(97.99999999999999,370)">−0.8</text><text y="0.71em" transform="translate(156,370)">−0.6</text><text y="0.71em" transform="translate(214,370)">−0.4</text><text y="0.71em" transform="translate(272,370)">−0.2</text><text y="0.71em" transform="translate(330,370)">0.0</text><text y="0.71em" transform="translate(388,370)">0.2</text><text y="0.71em" transform="translate(446,370)">0.4</text><text y="0.71em" transform="translate(504,370)">0.6</text><text y="0.71em" transform="translate(562,370)">0.8</text><text y="0.71em" transform="translate(620,370)">1.0</text></g>
+  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="336.41074856046066" y2="336.41074856046066"></line>
     <line x1="40" x2="620" y1="302.8214971209213" y2="302.8214971209213"></line>
@@ -40,7 +40,7 @@
     <line x1="40" x2="620" y1="67.69673704414588" y2="67.69673704414588"></line>
     <line x1="40" x2="620" y1="34.10748560460653" y2="34.10748560460653"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,336.41074856046066)" d="M0,0L-6,0"></path>
     <path transform="translate(40,302.8214971209213)" d="M0,0L-6,0"></path>
@@ -53,7 +53,7 @@
     <path transform="translate(40,67.69673704414588)" d="M0,0L-6,0"></path>
     <path transform="translate(40,34.10748560460653)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0.0</text><text y="0.32em" transform="translate(40,336.41074856046066)">0.5</text><text y="0.32em" transform="translate(40,302.8214971209213)">1.0</text><text y="0.32em" transform="translate(40,269.2322456813819)">1.5</text><text y="0.32em" transform="translate(40,235.64299424184262)">2.0</text><text y="0.32em" transform="translate(40,202.05374280230328)">2.5</text><text y="0.32em" transform="translate(40,168.4644913627639)">3.0</text><text y="0.32em" transform="translate(40,134.87523992322457)">3.5</text><text y="0.32em" transform="translate(40,101.28598848368522)">4.0</text><text y="0.32em" transform="translate(40,67.69673704414588)">4.5</text><text y="0.32em" transform="translate(40,34.10748560460653)">5.0</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0.0</text><text y="0.32em" transform="translate(40,336.41074856046066)">0.5</text><text y="0.32em" transform="translate(40,302.8214971209213)">1.0</text><text y="0.32em" transform="translate(40,269.2322456813819)">1.5</text><text y="0.32em" transform="translate(40,235.64299424184262)">2.0</text><text y="0.32em" transform="translate(40,202.05374280230328)">2.5</text><text y="0.32em" transform="translate(40,168.4644913627639)">3.0</text><text y="0.32em" transform="translate(40,134.87523992322457)">3.5</text><text y="0.32em" transform="translate(40,101.28598848368522)">4.0</text><text y="0.32em" transform="translate(40,67.69673704414588)">4.5</text><text y="0.32em" transform="translate(40,34.10748560460653)">5.0</text></g>
   <g aria-label="rect">
     <rect x="41" y="362.6103646833013" width="13.500000000000014" height="7.389635316698673"></rect>
     <rect x="55.500000000000014" y="344.4721689059501" width="13.499999999999986" height="25.527831094049873"></rect>

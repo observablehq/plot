@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
     <path transform="translate(80,30)" d="M0,0L0,6"></path>
     <path transform="translate(140,30)" d="M0,0L0,6"></path>
@@ -26,7 +26,7 @@
     <path transform="translate(560,30)" d="M0,0L0,6"></path>
     <path transform="translate(620,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0</text><text y="0.71em" transform="translate(80,30)">10</text><text y="0.71em" transform="translate(140,30)">20</text><text y="0.71em" transform="translate(200,30)">30</text><text y="0.71em" transform="translate(260,30)">40</text><text y="0.71em" transform="translate(320,30)">50</text><text y="0.71em" transform="translate(380,30)">60</text><text y="0.71em" transform="translate(440,30)">70</text><text y="0.71em" transform="translate(500,30)">80</text><text y="0.71em" transform="translate(560,30)">90</text><text y="0.71em" transform="translate(620,30)">100</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0</text><text y="0.71em" transform="translate(80,30)">10</text><text y="0.71em" transform="translate(140,30)">20</text><text y="0.71em" transform="translate(200,30)">30</text><text y="0.71em" transform="translate(260,30)">40</text><text y="0.71em" transform="translate(320,30)">50</text><text y="0.71em" transform="translate(380,30)">60</text><text y="0.71em" transform="translate(440,30)">70</text><text y="0.71em" transform="translate(500,30)">80</text><text y="0.71em" transform="translate(560,30)">90</text><text y="0.71em" transform="translate(620,30)">100</text></g>
   <g aria-label="bar">
     <rect x="20.5" width="299" y="0" height="30" fill="#c6dbef"></rect>
     <rect x="320.5" width="135.7441860465117" y="0" height="30" fill="#6baed6"></rect>

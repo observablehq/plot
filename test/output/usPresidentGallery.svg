@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(89.60820454652867,270)" d="M0,0L0,6"></path>
     <path transform="translate(163.82532255777681,270)" d="M0,0L0,6"></path>
     <path transform="translate(238.0526017297604,270)" d="M0,0L0,6"></path>
@@ -27,7 +27,7 @@
     <path transform="translate(831.8606739448934,270)" d="M0,0L0,6"></path>
     <path transform="translate(906.087953116877,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(89.60820454652867,270)">1800</text><text y="0.71em" transform="translate(163.82532255777681,270)">1820</text><text y="0.71em" transform="translate(238.0526017297604,270)">1840</text><text y="0.71em" transform="translate(312.2798809017439,270)">1860</text><text y="0.71em" transform="translate(386.5071600737275,270)">1880</text><text y="0.71em" transform="translate(460.73443924571103,270)">1900</text><text y="0.71em" transform="translate(534.9515572569593,270)">1920</text><text y="0.71em" transform="translate(609.1788364289428,270)">1940</text><text y="0.71em" transform="translate(683.4061156009262,270)">1960</text><text y="0.71em" transform="translate(757.6333947729098,270)">1980</text><text y="0.71em" transform="translate(831.8606739448934,270)">2000</text><text y="0.71em" transform="translate(906.087953116877,270)">2020</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(89.60820454652867,270)">1800</text><text y="0.71em" transform="translate(163.82532255777681,270)">1820</text><text y="0.71em" transform="translate(238.0526017297604,270)">1840</text><text y="0.71em" transform="translate(312.2798809017439,270)">1860</text><text y="0.71em" transform="translate(386.5071600737275,270)">1880</text><text y="0.71em" transform="translate(460.73443924571103,270)">1900</text><text y="0.71em" transform="translate(534.9515572569593,270)">1920</text><text y="0.71em" transform="translate(609.1788364289428,270)">1940</text><text y="0.71em" transform="translate(683.4061156009262,270)">1960</text><text y="0.71em" transform="translate(757.6333947729098,270)">1980</text><text y="0.71em" transform="translate(831.8606739448934,270)">2000</text><text y="0.71em" transform="translate(906.087953116877,270)">2020</text></g>
   <g aria-label="image" transform="translate(0.5,0.5)">
     <image x="247.0917812751075" y="40.09994728663307" width="60" height="60" href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fillmore.jpg/160px-Fillmore.jpg">
       <title>Millard Fillmore</title>

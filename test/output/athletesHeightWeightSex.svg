@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="81" x2="81" y1="20" y2="610"></line>
     <line x1="163" x2="163" y1="20" y2="610"></line>
     <line x1="244" x2="244" y1="20" y2="610"></line>
@@ -22,7 +22,7 @@
     <line x1="489" x2="489" y1="20" y2="610"></line>
     <line x1="571" x2="571" y1="20" y2="610"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(81,610)" d="M0,0L0,6"></path>
     <path transform="translate(163,610)" d="M0,0L0,6"></path>
     <path transform="translate(244,610)" d="M0,0L0,6"></path>
@@ -31,8 +31,8 @@
     <path transform="translate(489,610)" d="M0,0L0,6"></path>
     <path transform="translate(571,610)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(81,610)">40</text><text y="0.71em" transform="translate(163,610)">60</text><text y="0.71em" transform="translate(244,610)">80</text><text y="0.71em" transform="translate(326,610)">100</text><text y="0.71em" transform="translate(408,610)">120</text><text y="0.71em" transform="translate(489,610)">140</text><text y="0.71em" transform="translate(571,610)">160</text></g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(81,610)">40</text><text y="0.71em" transform="translate(163,610)">60</text><text y="0.71em" transform="translate(244,610)">80</text><text y="0.71em" transform="translate(326,610)">100</text><text y="0.71em" transform="translate(408,610)">120</text><text y="0.71em" transform="translate(489,610)">140</text><text y="0.71em" transform="translate(571,610)">160</text></g>
+  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="610" y2="610"></line>
     <line x1="40" x2="620" y1="552" y2="552"></line>
     <line x1="40" x2="620" y1="494" y2="494"></line>
@@ -45,7 +45,7 @@
     <line x1="40" x2="620" y1="89" y2="89"></line>
     <line x1="40" x2="620" y1="32" y2="32"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,610)" d="M0,0L-6,0"></path>
     <path transform="translate(40,552)" d="M0,0L-6,0"></path>
     <path transform="translate(40,494)" d="M0,0L-6,0"></path>
@@ -58,7 +58,7 @@
     <path transform="translate(40,89)" d="M0,0L-6,0"></path>
     <path transform="translate(40,32)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,610)">1.2</text><text y="0.32em" transform="translate(40,552)">1.3</text><text y="0.32em" transform="translate(40,494)">1.4</text><text y="0.32em" transform="translate(40,436)">1.5</text><text y="0.32em" transform="translate(40,379)">1.6</text><text y="0.32em" transform="translate(40,321)">1.7</text><text y="0.32em" transform="translate(40,263)">1.8</text><text y="0.32em" transform="translate(40,205)">1.9</text><text y="0.32em" transform="translate(40,147)">2.0</text><text y="0.32em" transform="translate(40,89)">2.1</text><text y="0.32em" transform="translate(40,32)">2.2</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,610)">1.2</text><text y="0.32em" transform="translate(40,552)">1.3</text><text y="0.32em" transform="translate(40,494)">1.4</text><text y="0.32em" transform="translate(40,436)">1.5</text><text y="0.32em" transform="translate(40,379)">1.6</text><text y="0.32em" transform="translate(40,321)">1.7</text><text y="0.32em" transform="translate(40,263)">1.8</text><text y="0.32em" transform="translate(40,205)">1.9</text><text y="0.32em" transform="translate(40,147)">2.0</text><text y="0.32em" transform="translate(40,89)">2.1</text><text y="0.32em" transform="translate(40,32)">2.2</text></g>
   <g aria-label="rect">
     <rect x="41" y="530" width="7" height="11" fill="#4e79a7" fill-opacity="0.0125"></rect>
     <rect x="49" y="484" width="7" height="10" fill="#4e79a7" fill-opacity="0.0125"></rect>

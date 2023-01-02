@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(50,30)">Share of population</text><text transform="translate(580,30)">Share of wealth</text></g>
+  <g aria-label="x-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(50,30)">Share of population</text><text transform="translate(580,30)">Share of wealth</text></g>
   <g aria-label="area" stroke="white" stroke-linejoin="round" stroke-linecap="round">
     <path fill="#008837" d="M50,140.7C315,140.7,315,41.07,580,41.07L580,30C315,30,315,30,50,30Z"></path>
     <path fill="#a6dba0" d="M50,262.47C315,262.47,315,159.15,580,159.15L580,41.07C315,41.07,315,140.7,50,140.7Z"></path>

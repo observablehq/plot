@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,270)" d="M0,0L0,6"></path>
     <path transform="translate(122.85714285714286,270)" d="M0,0L0,6"></path>
     <path transform="translate(205.71428571428572,270)" d="M0,0L0,6"></path>
@@ -23,8 +23,8 @@
     <path transform="translate(537.1428571428571,270)" d="M0,0L0,6"></path>
     <path transform="translate(620,270)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,270)">30</text><text y="0.71em" transform="translate(122.85714285714286,270)">40</text><text y="0.71em" transform="translate(205.71428571428572,270)">50</text><text y="0.71em" transform="translate(288.57142857142856,270)">60</text><text y="0.71em" transform="translate(371.42857142857144,270)">70</text><text y="0.71em" transform="translate(454.28571428571433,270)">80</text><text y="0.71em" transform="translate(537.1428571428571,270)">90</text><text y="0.71em" transform="translate(620,270)">100</text></g>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,270)">30</text><text y="0.71em" transform="translate(122.85714285714286,270)">40</text><text y="0.71em" transform="translate(205.71428571428572,270)">50</text><text y="0.71em" transform="translate(288.57142857142856,270)">60</text><text y="0.71em" transform="translate(371.42857142857144,270)">70</text><text y="0.71em" transform="translate(454.28571428571433,270)">80</text><text y="0.71em" transform="translate(537.1428571428571,270)">90</text><text y="0.71em" transform="translate(620,270)">100</text></g>
+  <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="270" y2="270"></line>
     <line x1="40" x2="620" y1="229.67741935483872" y2="229.67741935483872"></line>
     <line x1="40" x2="620" y1="189.35483870967744" y2="189.35483870967744"></line>
@@ -33,7 +33,7 @@
     <line x1="40" x2="620" y1="68.38709677419357" y2="68.38709677419357"></line>
     <line x1="40" x2="620" y1="28.06451612903225" y2="28.06451612903225"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,270)" d="M0,0L-6,0"></path>
     <path transform="translate(40,229.67741935483872)" d="M0,0L-6,0"></path>
     <path transform="translate(40,189.35483870967744)" d="M0,0L-6,0"></path>
@@ -42,7 +42,7 @@
     <path transform="translate(40,68.38709677419357)" d="M0,0L-6,0"></path>
     <path transform="translate(40,28.06451612903225)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,270)">0</text><text y="0.32em" transform="translate(40,229.67741935483872)">5</text><text y="0.32em" transform="translate(40,189.35483870967744)">10</text><text y="0.32em" transform="translate(40,149.03225806451613)">15</text><text y="0.32em" transform="translate(40,108.70967741935485)">20</text><text y="0.32em" transform="translate(40,68.38709677419357)">25</text><text y="0.32em" transform="translate(40,28.06451612903225)">30</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,270)">0</text><text y="0.32em" transform="translate(40,229.67741935483872)">5</text><text y="0.32em" transform="translate(40,189.35483870967744)">10</text><text y="0.32em" transform="translate(40,149.03225806451613)">15</text><text y="0.32em" transform="translate(40,108.70967741935485)">20</text><text y="0.32em" transform="translate(40,68.38709677419357)">25</text><text y="0.32em" transform="translate(40,28.06451612903225)">30</text></g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="56.57142857142857" cy="261.93548387096774" r="3">
       <title>Alexandria Ocasio-Cortez</title>

@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
     <line x1="40" x2="40" y1="20" y2="430"></line>
     <line x1="142.29276895943562" x2="142.29276895943562" y1="20" y2="430"></line>
     <line x1="244.58553791887124" x2="244.58553791887124" y1="20" y2="430"></line>
@@ -21,7 +21,7 @@
     <line x1="449.1710758377425" x2="449.1710758377425" y1="20" y2="430"></line>
     <line x1="551.463844797178" x2="551.463844797178" y1="20" y2="430"></line>
   </g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(40,430)" d="M0,0L0,6"></path>
     <path transform="translate(142.29276895943562,430)" d="M0,0L0,6"></path>
     <path transform="translate(244.58553791887124,430)" d="M0,0L0,6"></path>
@@ -29,8 +29,8 @@
     <path transform="translate(449.1710758377425,430)" d="M0,0L0,6"></path>
     <path transform="translate(551.463844797178,430)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,430)">0</text><text y="0.71em" transform="translate(142.29276895943562,430)">100</text><text y="0.71em" transform="translate(244.58553791887124,430)">200</text><text y="0.71em" transform="translate(346.8783068783069,430)">300</text><text y="0.71em" transform="translate(449.1710758377425,430)">400</text><text y="0.71em" transform="translate(551.463844797178,430)">500</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,9.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,430)">0</text><text y="0.71em" transform="translate(142.29276895943562,430)">100</text><text y="0.71em" transform="translate(244.58553791887124,430)">200</text><text y="0.71em" transform="translate(346.8783068783069,430)">300</text><text y="0.71em" transform="translate(449.1710758377425,430)">400</text><text y="0.71em" transform="translate(551.463844797178,430)">500</text></g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
     <path transform="translate(40,66)" d="M0,0L-6,0"></path>
@@ -52,7 +52,7 @@
     <path transform="translate(40,386)" d="M0,0L-6,0"></path>
     <path transform="translate(40,406)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(40,26)">USA</text><text y="0.32em" transform="translate(40,46)">BRA</text><text y="0.32em" transform="translate(40,66)">GER</text><text y="0.32em" transform="translate(40,86)">AUS</text><text y="0.32em" transform="translate(40,106)">FRA</text><text y="0.32em" transform="translate(40,126)">CHN</text><text y="0.32em" transform="translate(40,146)">GBR</text><text y="0.32em" transform="translate(40,166)">JPN</text><text y="0.32em" transform="translate(40,186)">CAN</text><text y="0.32em" transform="translate(40,206)">ESP</text><text y="0.32em" transform="translate(40,226)">ITA</text><text y="0.32em" transform="translate(40,246)">RUS</text><text y="0.32em" transform="translate(40,266)">NED</text><text y="0.32em" transform="translate(40,286)">POL</text><text y="0.32em" transform="translate(40,306)">ARG</text><text y="0.32em" transform="translate(40,326)">KOR</text><text y="0.32em" transform="translate(40,346)">NZL</text><text y="0.32em" transform="translate(40,366)">UKR</text><text y="0.32em" transform="translate(40,386)">SWE</text><text y="0.32em" transform="translate(40,406)">COL</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(40,26)">USA</text><text y="0.32em" transform="translate(40,46)">BRA</text><text y="0.32em" transform="translate(40,66)">GER</text><text y="0.32em" transform="translate(40,86)">AUS</text><text y="0.32em" transform="translate(40,106)">FRA</text><text y="0.32em" transform="translate(40,126)">CHN</text><text y="0.32em" transform="translate(40,146)">GBR</text><text y="0.32em" transform="translate(40,166)">JPN</text><text y="0.32em" transform="translate(40,186)">CAN</text><text y="0.32em" transform="translate(40,206)">ESP</text><text y="0.32em" transform="translate(40,226)">ITA</text><text y="0.32em" transform="translate(40,246)">RUS</text><text y="0.32em" transform="translate(40,266)">NED</text><text y="0.32em" transform="translate(40,286)">POL</text><text y="0.32em" transform="translate(40,306)">ARG</text><text y="0.32em" transform="translate(40,326)">KOR</text><text y="0.32em" transform="translate(40,346)">NZL</text><text y="0.32em" transform="translate(40,366)">UKR</text><text y="0.32em" transform="translate(40,386)">SWE</text><text y="0.32em" transform="translate(40,406)">COL</text></g>
   <g aria-label="bar">
     <rect x="40" width="228.11287477954141" y="306" height="18"></rect>
     <rect x="40" width="440.88183421516754" y="86" height="18"></rect>

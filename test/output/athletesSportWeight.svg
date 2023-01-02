@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,26)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -23,7 +23,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">aquatics</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">aquatics</text></g>
     <g aria-label="bar">
       <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(254, 255, 215)"></rect>
       <rect x="137.61971830985914" width="6.323943661971839" y="0" height="18" fill="rgb(254, 255, 215)"></rect>
@@ -70,7 +70,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,46)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -79,7 +79,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">archery</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">archery</text></g>
     <g aria-label="bar">
       <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
@@ -116,7 +116,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -125,7 +125,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">athletics</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">athletics</text></g>
     <g aria-label="bar">
       <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(254, 255, 214)"></rect>
       <rect x="137.61971830985914" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
@@ -189,7 +189,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -198,7 +198,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">badminton</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">badminton</text></g>
     <g aria-label="bar">
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(234, 247, 185)"></rect>
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
@@ -225,7 +225,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -234,7 +234,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">basketball</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">basketball</text></g>
     <g aria-label="bar">
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
       <rect x="196.21126760563382" width="6.323943661971811" y="0" height="18" fill="rgb(244, 251, 195)"></rect>
@@ -277,7 +277,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,126)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -286,10 +286,10 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">boxing</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">boxing</text></g>
   </g>
   <g aria-label="facet" transform="translate(0,146)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -298,7 +298,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">canoe</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">canoe</text></g>
     <g aria-label="bar">
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
       <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(242, 250, 192)"></rect>
@@ -330,7 +330,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,166)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -339,7 +339,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">cycling</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">cycling</text></g>
     <g aria-label="bar">
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(253, 254, 213)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
@@ -372,7 +372,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -381,7 +381,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">equestrian</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">equestrian</text></g>
     <g aria-label="bar">
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(250, 253, 207)"></rect>
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(240, 249, 190)"></rect>
@@ -408,7 +408,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -417,7 +417,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">fencing</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">fencing</text></g>
     <g aria-label="bar">
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(251, 253, 208)"></rect>
@@ -452,7 +452,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,226)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -461,7 +461,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">football</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">football</text></g>
     <g aria-label="bar">
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(253, 254, 213)"></rect>
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
@@ -492,7 +492,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -501,7 +501,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">golf</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">golf</text></g>
     <g aria-label="bar">
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(236, 247, 186)"></rect>
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(246, 252, 199)"></rect>
@@ -531,7 +531,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -540,7 +540,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">gymnastics</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">gymnastics</text></g>
     <g aria-label="bar">
       <rect x="101" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
       <rect x="108.32394366197184" width="6.323943661971825" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
@@ -570,7 +570,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,286)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -579,7 +579,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">handball</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">handball</text></g>
     <g aria-label="bar">
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
@@ -616,7 +616,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,306)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -625,7 +625,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">hockey</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">hockey</text></g>
     <g aria-label="bar">
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(253, 254, 212)"></rect>
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(250, 253, 207)"></rect>
@@ -655,7 +655,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,326)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -664,7 +664,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">judo</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">judo</text></g>
     <g aria-label="bar">
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(149, 214, 185)"></rect>
@@ -715,7 +715,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,346)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -724,7 +724,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">modern pentathlon</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">modern pentathlon</text></g>
     <g aria-label="bar">
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(240, 249, 189)"></rect>
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(240, 249, 189)"></rect>
@@ -748,7 +748,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,366)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -757,7 +757,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rowing</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rowing</text></g>
     <g aria-label="bar">
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(251, 254, 209)"></rect>
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(249, 253, 205)"></rect>
@@ -794,7 +794,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,386)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -803,7 +803,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rugby sevens</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rugby sevens</text></g>
     <g aria-label="bar">
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 210)"></rect>
       <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(230, 245, 182)"></rect>
@@ -838,7 +838,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,406)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -847,7 +847,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">sailing</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">sailing</text></g>
     <g aria-label="bar">
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(244, 251, 195)"></rect>
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
@@ -878,7 +878,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,426)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -887,7 +887,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">shooting</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">shooting</text></g>
     <g aria-label="bar">
       <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
@@ -931,7 +931,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,446)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -940,7 +940,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">table tennis</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">table tennis</text></g>
     <g aria-label="bar">
       <rect x="144.94366197183098" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(249, 253, 204)"></rect>
@@ -971,7 +971,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,466)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -980,7 +980,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">taekwondo</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">taekwondo</text></g>
     <g aria-label="bar">
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(73, 182, 194)"></rect>
       <rect x="174.23943661971833" width="6.323943661971782" y="0" height="18" fill="rgb(224, 243, 180)"></rect>
@@ -1012,7 +1012,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,486)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -1021,7 +1021,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">tennis</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">tennis</text></g>
     <g aria-label="bar">
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(250, 253, 206)"></rect>
       <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(244, 251, 196)"></rect>
@@ -1050,7 +1050,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,506)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -1059,7 +1059,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">triathlon</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">triathlon</text></g>
     <g aria-label="bar">
       <rect x="152.26760563380282" width="6.323943661971839" y="0" height="18" fill="rgb(233, 247, 184)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(245, 251, 198)"></rect>
@@ -1083,7 +1083,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,526)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -1092,7 +1092,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">volleyball</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">volleyball</text></g>
     <g aria-label="bar">
       <rect x="181.56338028169012" width="6.323943661971839" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="188.88732394366195" width="6.323943661971867" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
@@ -1126,7 +1126,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,546)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -1135,7 +1135,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">weightlifting</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">weightlifting</text></g>
     <g aria-label="bar">
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(247, 252, 200)"></rect>
       <rect x="166.91549295774647" width="6.323943661971867" y="0" height="18" fill="rgb(170, 222, 183)"></rect>
@@ -1183,7 +1183,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,566)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="136.61971830985914" x2="136.61971830985914" y1="0" y2="18"></line>
       <line x1="209.85915492957747" x2="209.85915492957747" y1="0" y2="18"></line>
       <line x1="283.09859154929575" x2="283.09859154929575" y1="0" y2="18"></line>
@@ -1192,7 +1192,7 @@
       <line x1="502.8169014084507" x2="502.8169014084507" y1="0" y2="18"></line>
       <line x1="576.056338028169" x2="576.056338028169" y1="0" y2="18"></line>
     </g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(136.61971830985914,18)" d="M0,0L0,6"></path>
       <path transform="translate(209.85915492957747,18)" d="M0,0L0,6"></path>
       <path transform="translate(283.09859154929575,18)" d="M0,0L0,6"></path>
@@ -1201,8 +1201,8 @@
       <path transform="translate(502.8169014084507,18)" d="M0,0L0,6"></path>
       <path transform="translate(576.056338028169,18)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(136.61971830985914,18)">40</text><text y="0.71em" transform="translate(209.85915492957747,18)">60</text><text y="0.71em" transform="translate(283.09859154929575,18)">80</text><text y="0.71em" transform="translate(356.33802816901414,18)">100</text><text y="0.71em" transform="translate(429.5774647887324,18)">120</text><text y="0.71em" transform="translate(502.8169014084507,18)">140</text><text y="0.71em" transform="translate(576.056338028169,18)">160</text></g>
-    <g aria-label="text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">wrestling</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(136.61971830985914,18)">40</text><text y="0.71em" transform="translate(209.85915492957747,18)">60</text><text y="0.71em" transform="translate(283.09859154929575,18)">80</text><text y="0.71em" transform="translate(356.33802816901414,18)">100</text><text y="0.71em" transform="translate(429.5774647887324,18)">120</text><text y="0.71em" transform="translate(502.8169014084507,18)">140</text><text y="0.71em" transform="translate(576.056338028169,18)">160</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">wrestling</text></g>
     <g aria-label="bar">
       <rect x="130.29577464788733" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>
       <rect x="159.59154929577466" width="6.323943661971811" y="0" height="18" fill="rgb(252, 254, 211)"></rect>

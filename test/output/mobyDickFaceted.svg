@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(41,31)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="0" x2="265" y1="175" y2="175"></line>
       <line x1="0" x2="265" y1="145.93023255813955" y2="145.93023255813955"></line>
       <line x1="0" x2="265" y1="116.86046511627907" y2="116.86046511627907"></line>
@@ -23,7 +23,7 @@
       <line x1="0" x2="265" y1="29.651162790697676" y2="29.651162790697676"></line>
       <line x1="0" x2="265" y1="0.5813953488372131" y2="0.5813953488372131"></line>
     </g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,175)" d="M0,0L-6,0"></path>
       <path transform="translate(0,145.93023255813955)" d="M0,0L-6,0"></path>
       <path transform="translate(0,116.86046511627907)" d="M0,0L-6,0"></path>
@@ -32,8 +32,8 @@
       <path transform="translate(0,29.651162790697676)" d="M0,0L-6,0"></path>
       <path transform="translate(0,0.5813953488372131)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,175)">0</text><text y="0.32em" transform="translate(0,145.93023255813955)">200</text><text y="0.32em" transform="translate(0,116.86046511627907)">400</text><text y="0.32em" transform="translate(0,87.79069767441861)">600</text><text y="0.32em" transform="translate(0,58.72093023255814)">800</text><text y="0.32em" transform="translate(0,29.651162790697676)">1,000</text><text y="0.32em" transform="translate(0,0.5813953488372131)">1,200</text></g>
-    <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(132.5,0)"></text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,175)">0</text><text y="0.32em" transform="translate(0,145.93023255813955)">200</text><text y="0.32em" transform="translate(0,116.86046511627907)">400</text><text y="0.32em" transform="translate(0,87.79069767441861)">600</text><text y="0.32em" transform="translate(0,58.72093023255814)">800</text><text y="0.32em" transform="translate(0,29.651162790697676)">1,000</text><text y="0.32em" transform="translate(0,0.5813953488372131)">1,200</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(132.5,0)"></text></g>
     <g aria-label="bar">
       <rect x="13" width="9" y="156.97674418604652" height="18.023255813953483"></rect>
       <rect x="23" width="9" y="144.7674418604651" height="30.232558139534888"></rect>
@@ -61,7 +61,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(41,225)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(5,0)">
       <path transform="translate(3,175)" d="M0,0L0,6"></path>
       <path transform="translate(13,175)" d="M0,0L0,6"></path>
       <path transform="translate(23,175)" d="M0,0L0,6"></path>
@@ -89,8 +89,8 @@
       <path transform="translate(243,175)" d="M0,0L0,6"></path>
       <path transform="translate(253,175)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(3,175)">A</text><text y="0.71em" transform="translate(13,175)">B</text><text y="0.71em" transform="translate(23,175)">C</text><text y="0.71em" transform="translate(33,175)">D</text><text y="0.71em" transform="translate(43,175)">E</text><text y="0.71em" transform="translate(53,175)">F</text><text y="0.71em" transform="translate(63,175)">G</text><text y="0.71em" transform="translate(73,175)">H</text><text y="0.71em" transform="translate(83,175)">I</text><text y="0.71em" transform="translate(93,175)">J</text><text y="0.71em" transform="translate(103,175)">K</text><text y="0.71em" transform="translate(113,175)">L</text><text y="0.71em" transform="translate(123,175)">M</text><text y="0.71em" transform="translate(133,175)">N</text><text y="0.71em" transform="translate(143,175)">O</text><text y="0.71em" transform="translate(153,175)">P</text><text y="0.71em" transform="translate(163,175)">Q</text><text y="0.71em" transform="translate(173,175)">R</text><text y="0.71em" transform="translate(183,175)">S</text><text y="0.71em" transform="translate(193,175)">T</text><text y="0.71em" transform="translate(203,175)">U</text><text y="0.71em" transform="translate(213,175)">V</text><text y="0.71em" transform="translate(223,175)">W</text><text y="0.71em" transform="translate(233,175)">X</text><text y="0.71em" transform="translate(243,175)">Y</text><text y="0.71em" transform="translate(253,175)">Z</text></g>
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="x-axis tick text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(3,175)">A</text><text y="0.71em" transform="translate(13,175)">B</text><text y="0.71em" transform="translate(23,175)">C</text><text y="0.71em" transform="translate(33,175)">D</text><text y="0.71em" transform="translate(43,175)">E</text><text y="0.71em" transform="translate(53,175)">F</text><text y="0.71em" transform="translate(63,175)">G</text><text y="0.71em" transform="translate(73,175)">H</text><text y="0.71em" transform="translate(83,175)">I</text><text y="0.71em" transform="translate(93,175)">J</text><text y="0.71em" transform="translate(103,175)">K</text><text y="0.71em" transform="translate(113,175)">L</text><text y="0.71em" transform="translate(123,175)">M</text><text y="0.71em" transform="translate(133,175)">N</text><text y="0.71em" transform="translate(143,175)">O</text><text y="0.71em" transform="translate(153,175)">P</text><text y="0.71em" transform="translate(163,175)">Q</text><text y="0.71em" transform="translate(173,175)">R</text><text y="0.71em" transform="translate(183,175)">S</text><text y="0.71em" transform="translate(193,175)">T</text><text y="0.71em" transform="translate(203,175)">U</text><text y="0.71em" transform="translate(213,175)">V</text><text y="0.71em" transform="translate(223,175)">W</text><text y="0.71em" transform="translate(233,175)">X</text><text y="0.71em" transform="translate(243,175)">Y</text><text y="0.71em" transform="translate(253,175)">Z</text></g>
+    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="0" x2="265" y1="175" y2="175"></line>
       <line x1="0" x2="265" y1="145.93023255813955" y2="145.93023255813955"></line>
       <line x1="0" x2="265" y1="116.86046511627907" y2="116.86046511627907"></line>
@@ -99,7 +99,7 @@
       <line x1="0" x2="265" y1="29.651162790697676" y2="29.651162790697676"></line>
       <line x1="0" x2="265" y1="0.5813953488372131" y2="0.5813953488372131"></line>
     </g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,175)" d="M0,0L-6,0"></path>
       <path transform="translate(0,145.93023255813955)" d="M0,0L-6,0"></path>
       <path transform="translate(0,116.86046511627907)" d="M0,0L-6,0"></path>
@@ -108,7 +108,7 @@
       <path transform="translate(0,29.651162790697676)" d="M0,0L-6,0"></path>
       <path transform="translate(0,0.5813953488372131)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,175)">0</text><text y="0.32em" transform="translate(0,145.93023255813955)">200</text><text y="0.32em" transform="translate(0,116.86046511627907)">400</text><text y="0.32em" transform="translate(0,87.79069767441861)">600</text><text y="0.32em" transform="translate(0,58.72093023255814)">800</text><text y="0.32em" transform="translate(0,29.651162790697676)">1,000</text><text y="0.32em" transform="translate(0,0.5813953488372131)">1,200</text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,175)">0</text><text y="0.32em" transform="translate(0,145.93023255813955)">200</text><text y="0.32em" transform="translate(0,116.86046511627907)">400</text><text y="0.32em" transform="translate(0,87.79069767441861)">600</text><text y="0.32em" transform="translate(0,58.72093023255814)">800</text><text y="0.32em" transform="translate(0,29.651162790697676)">1,000</text><text y="0.32em" transform="translate(0,0.5813953488372131)">1,200</text></g>
     <g aria-label="bar">
       <rect x="13" width="9" y="172.96511627906978" height="2.0348837209302246"></rect>
       <rect x="23" width="9" y="173.25581395348837" height="1.7441860465116292"></rect>
@@ -132,7 +132,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(335,31)">
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="0" x2="265" y1="175" y2="175"></line>
       <line x1="0" x2="265" y1="145.93023255813955" y2="145.93023255813955"></line>
       <line x1="0" x2="265" y1="116.86046511627907" y2="116.86046511627907"></line>
@@ -141,8 +141,8 @@
       <line x1="0" x2="265" y1="29.651162790697676" y2="29.651162790697676"></line>
       <line x1="0" x2="265" y1="0.5813953488372131" y2="0.5813953488372131"></line>
     </g>
-    <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(132.5,0)">vowel</text></g>
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(265,87.5)">lower</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(132.5,0)">vowel</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(265,87.5)">lower</text></g>
     <g aria-label="bar">
       <rect x="3" width="9" y="62.063953488372086" height="112.93604651162792"></rect>
       <rect x="43" width="9" y="0" height="175"></rect>
@@ -156,7 +156,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(335,225)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(5,0)">
       <path transform="translate(3,175)" d="M0,0L0,6"></path>
       <path transform="translate(13,175)" d="M0,0L0,6"></path>
       <path transform="translate(23,175)" d="M0,0L0,6"></path>
@@ -184,8 +184,8 @@
       <path transform="translate(243,175)" d="M0,0L0,6"></path>
       <path transform="translate(253,175)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(3,175)">A</text><text y="0.71em" transform="translate(13,175)">B</text><text y="0.71em" transform="translate(23,175)">C</text><text y="0.71em" transform="translate(33,175)">D</text><text y="0.71em" transform="translate(43,175)">E</text><text y="0.71em" transform="translate(53,175)">F</text><text y="0.71em" transform="translate(63,175)">G</text><text y="0.71em" transform="translate(73,175)">H</text><text y="0.71em" transform="translate(83,175)">I</text><text y="0.71em" transform="translate(93,175)">J</text><text y="0.71em" transform="translate(103,175)">K</text><text y="0.71em" transform="translate(113,175)">L</text><text y="0.71em" transform="translate(123,175)">M</text><text y="0.71em" transform="translate(133,175)">N</text><text y="0.71em" transform="translate(143,175)">O</text><text y="0.71em" transform="translate(153,175)">P</text><text y="0.71em" transform="translate(163,175)">Q</text><text y="0.71em" transform="translate(173,175)">R</text><text y="0.71em" transform="translate(183,175)">S</text><text y="0.71em" transform="translate(193,175)">T</text><text y="0.71em" transform="translate(203,175)">U</text><text y="0.71em" transform="translate(213,175)">V</text><text y="0.71em" transform="translate(223,175)">W</text><text y="0.71em" transform="translate(233,175)">X</text><text y="0.71em" transform="translate(243,175)">Y</text><text y="0.71em" transform="translate(253,175)">Z</text></g>
-    <g aria-label="rule" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
+    <g aria-label="x-axis tick text" transform="translate(5,9.5)"><text y="0.71em" transform="translate(3,175)">A</text><text y="0.71em" transform="translate(13,175)">B</text><text y="0.71em" transform="translate(23,175)">C</text><text y="0.71em" transform="translate(33,175)">D</text><text y="0.71em" transform="translate(43,175)">E</text><text y="0.71em" transform="translate(53,175)">F</text><text y="0.71em" transform="translate(63,175)">G</text><text y="0.71em" transform="translate(73,175)">H</text><text y="0.71em" transform="translate(83,175)">I</text><text y="0.71em" transform="translate(93,175)">J</text><text y="0.71em" transform="translate(103,175)">K</text><text y="0.71em" transform="translate(113,175)">L</text><text y="0.71em" transform="translate(123,175)">M</text><text y="0.71em" transform="translate(133,175)">N</text><text y="0.71em" transform="translate(143,175)">O</text><text y="0.71em" transform="translate(153,175)">P</text><text y="0.71em" transform="translate(163,175)">Q</text><text y="0.71em" transform="translate(173,175)">R</text><text y="0.71em" transform="translate(183,175)">S</text><text y="0.71em" transform="translate(193,175)">T</text><text y="0.71em" transform="translate(203,175)">U</text><text y="0.71em" transform="translate(213,175)">V</text><text y="0.71em" transform="translate(223,175)">W</text><text y="0.71em" transform="translate(233,175)">X</text><text y="0.71em" transform="translate(243,175)">Y</text><text y="0.71em" transform="translate(253,175)">Z</text></g>
+    <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="0" x2="265" y1="175" y2="175"></line>
       <line x1="0" x2="265" y1="145.93023255813955" y2="145.93023255813955"></line>
       <line x1="0" x2="265" y1="116.86046511627907" y2="116.86046511627907"></line>
@@ -194,7 +194,7 @@
       <line x1="0" x2="265" y1="29.651162790697676" y2="29.651162790697676"></line>
       <line x1="0" x2="265" y1="0.5813953488372131" y2="0.5813953488372131"></line>
     </g>
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(265,87.5)">upper</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(265,87.5)">upper</text></g>
     <g aria-label="bar">
       <rect x="3" width="9" y="172.38372093023256" height="2.616279069767444"></rect>
       <rect x="43" width="9" y="174.12790697674419" height="0.8720930232558146"></rect>

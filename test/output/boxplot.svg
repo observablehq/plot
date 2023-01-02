@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(20,30)" d="M0,0L0,6"></path>
     <path transform="translate(105.71428571428572,30)" d="M0,0L0,6"></path>
     <path transform="translate(191.42857142857142,30)" d="M0,0L0,6"></path>
@@ -23,7 +23,7 @@
     <path transform="translate(534.2857142857143,30)" d="M0,0L0,6"></path>
     <path transform="translate(620,30)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0</text><text y="0.71em" transform="translate(105.71428571428572,30)">1</text><text y="0.71em" transform="translate(191.42857142857142,30)">2</text><text y="0.71em" transform="translate(277.14285714285717,30)">3</text><text y="0.71em" transform="translate(362.85714285714283,30)">4</text><text y="0.71em" transform="translate(448.5714285714286,30)">5</text><text y="0.71em" transform="translate(534.2857142857143,30)">6</text><text y="0.71em" transform="translate(620,30)">7</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(20,30)">0</text><text y="0.71em" transform="translate(105.71428571428572,30)">1</text><text y="0.71em" transform="translate(191.42857142857142,30)">2</text><text y="0.71em" transform="translate(277.14285714285717,30)">3</text><text y="0.71em" transform="translate(362.85714285714283,30)">4</text><text y="0.71em" transform="translate(448.5714285714286,30)">5</text><text y="0.71em" transform="translate(534.2857142857143,30)">6</text><text y="0.71em" transform="translate(620,30)">7</text></g>
   <g aria-label="rule" stroke="currentColor" transform="translate(0,0.5)">
     <line x1="277.14285714285717" x2="448.5714285714286" y1="15" y2="15"></line>
   </g>

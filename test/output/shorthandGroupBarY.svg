@@ -13,14 +13,14 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(64,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(64,0)">
     <path transform="translate(55,370)" d="M0,0L0,6"></path>
     <path transform="translate(196,370)" d="M0,0L0,6"></path>
     <path transform="translate(337,370)" d="M0,0L0,6"></path>
     <path transform="translate(478,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" transform="translate(64,9.5)"><text y="0.71em" transform="translate(55,370)">A</text><text y="0.71em" transform="translate(196,370)">C</text><text y="0.71em" transform="translate(337,370)">G</text><text y="0.71em" transform="translate(478,370)">T</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" transform="translate(64,9.5)"><text y="0.71em" transform="translate(55,370)">A</text><text y="0.71em" transform="translate(196,370)">C</text><text y="0.71em" transform="translate(337,370)">G</text><text y="0.71em" transform="translate(478,370)">T</text></g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,320)" d="M0,0L-6,0"></path>
     <path transform="translate(40,270)" d="M0,0L-6,0"></path>
@@ -30,7 +30,7 @@
     <path transform="translate(40,70.00000000000001)" d="M0,0L-6,0"></path>
     <path transform="translate(40,20)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,320)">5</text><text y="0.32em" transform="translate(40,270)">10</text><text y="0.32em" transform="translate(40,220)">15</text><text y="0.32em" transform="translate(40,170)">20</text><text y="0.32em" transform="translate(40,120)">25</text><text y="0.32em" transform="translate(40,70.00000000000001)">30</text><text y="0.32em" transform="translate(40,20)">35</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,320)">5</text><text y="0.32em" transform="translate(40,270)">10</text><text y="0.32em" transform="translate(40,220)">15</text><text y="0.32em" transform="translate(40,170)">20</text><text y="0.32em" transform="translate(40,120)">25</text><text y="0.32em" transform="translate(40,70.00000000000001)">30</text><text y="0.32em" transform="translate(40,20)">35</text></g>
   <g aria-label="bar">
     <rect x="55" width="127" y="20" height="350"></rect>
     <rect x="196" width="127" y="190" height="180"></rect>

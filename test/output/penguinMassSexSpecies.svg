@@ -14,15 +14,15 @@
     }
   </style>
   <g aria-label="facet" transform="translate(41,30)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,140)" d="M0,0L-6,0"></path>
       <path transform="translate(0,106.66666666666666)" d="M0,0L-6,0"></path>
       <path transform="translate(0,73.33333333333334)" d="M0,0L-6,0"></path>
       <path transform="translate(0,40)" d="M0,0L-6,0"></path>
       <path transform="translate(0,6.666666666666674)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
-    <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(82,0)">FEMALE</text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(82,0)">FEMALE</text></g>
     <g aria-label="rect">
       <rect x="1" y="120.00000000000001" width="20" height="19.999999999999986"></rect>
       <rect x="22" y="0" width="19" height="140"></rect>
@@ -33,14 +33,14 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(41,185)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,140)" d="M0,0L-6,0"></path>
       <path transform="translate(0,106.66666666666666)" d="M0,0L-6,0"></path>
       <path transform="translate(0,73.33333333333334)" d="M0,0L-6,0"></path>
       <path transform="translate(0,40)" d="M0,0L-6,0"></path>
       <path transform="translate(0,6.666666666666674)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
     <g aria-label="rect">
       <rect x="1" y="133.33333333333331" width="20" height="6.666666666666686"></rect>
       <rect x="22" y="103.33333333333334" width="19" height="36.66666666666666"></rect>
@@ -52,19 +52,19 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(41,340)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(62,140)" d="M0,0L0,6"></path>
       <path transform="translate(144,140)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,140)" d="M0,0L-6,0"></path>
       <path transform="translate(0,106.66666666666666)" d="M0,0L-6,0"></path>
       <path transform="translate(0,73.33333333333334)" d="M0,0L-6,0"></path>
       <path transform="translate(0,40)" d="M0,0L-6,0"></path>
       <path transform="translate(0,6.666666666666674)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,140)">0</text><text y="0.32em" transform="translate(0,106.66666666666666)">10</text><text y="0.32em" transform="translate(0,73.33333333333334)">20</text><text y="0.32em" transform="translate(0,40)">30</text><text y="0.32em" transform="translate(0,6.666666666666674)">40</text></g>
     <g aria-label="rect">
       <rect x="42" y="136.66666666666666" width="20" height="3.333333333333343"></rect>
       <rect x="63" y="93.33333333333334" width="19" height="46.66666666666666"></rect>
@@ -76,7 +76,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(223,30)">
-    <g aria-label="text" transform="translate(0.5,-8.5)"><text transform="translate(82,0)">MALE</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(82,0)">MALE</text></g>
     <g aria-label="rect">
       <rect x="22" y="130" width="19" height="10"></rect>
       <rect x="42" y="33.33333333333334" width="20" height="106.66666666666666"></rect>
@@ -99,11 +99,11 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(223,340)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(62,140)" d="M0,0L0,6"></path>
       <path transform="translate(144,140)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
     <g aria-label="rect">
       <rect x="83" y="133.33333333333331" width="20" height="6.666666666666686"></rect>
       <rect x="104" y="53.33333333333333" width="19" height="86.66666666666667"></rect>
@@ -115,12 +115,12 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(405,30)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(62,140)" d="M0,0L0,6"></path>
       <path transform="translate(144,140)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Adelie</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Adelie</text></g>
     <g aria-label="rect">
       <rect x="1" y="136.66666666666666" width="20" height="3.333333333333343"></rect>
       <rect x="22" y="133.33333333333331" width="19" height="6.666666666666686"></rect>
@@ -132,15 +132,15 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(405,185)">
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Chinstrap</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Chinstrap</text></g>
   </g>
   <g aria-label="facet" transform="translate(405,340)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(62,140)" d="M0,0L0,6"></path>
       <path transform="translate(144,140)" d="M0,0L0,6"></path>
     </g>
-    <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
-    <g aria-label="text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Gentoo</text></g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(62,140)">4,000</text><text y="0.71em" transform="translate(144,140)">6,000</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(164,70)">Gentoo</text></g>
     <g aria-label="rect">
       <rect x="63" y="136.66666666666666" width="19" height="3.333333333333343"></rect>
       <rect x="83" y="130" width="20" height="10"></rect>

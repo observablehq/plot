@@ -496,42 +496,40 @@ function inferAxes(marks, channelsByScale, options) {
   yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
   fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
   fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
-  const axes = [];
-  if (xAxis) axes.push(axisX(axisOptions(xAxis, {grid}, x)));
-  if (yAxis) axes.push(axisY(axisOptions(yAxis, {grid}, y)));
-  if (fxAxis)
-    axes.push(
-      axisFx(
-        axisOptions(
-          fxAxis,
-          {
-            grid: facetGrid,
-            marginTop: facetMarginTop,
-            marginRight: facetMarginRight,
-            marginBottom: facetMarginBottom,
-            marginLeft: facetMarginLeft
-          },
-          fx
+  return [
+    fyAxis
+      ? axisFy(
+          axisOptions(
+            fyAxis,
+            {
+              grid: facetGrid,
+              marginTop: facetMarginTop,
+              marginRight: facetMarginRight,
+              marginBottom: facetMarginBottom,
+              marginLeft: facetMarginLeft
+            },
+            fy
+          )
         )
-      )
-    );
-  if (fyAxis)
-    axes.push(
-      axisFy(
-        axisOptions(
-          fyAxis,
-          {
-            grid: facetGrid,
-            marginTop: facetMarginTop,
-            marginRight: facetMarginRight,
-            marginBottom: facetMarginBottom,
-            marginLeft: facetMarginLeft
-          },
-          fy
+      : null,
+    fxAxis
+      ? axisFx(
+          axisOptions(
+            fxAxis,
+            {
+              grid: facetGrid,
+              marginTop: facetMarginTop,
+              marginRight: facetMarginRight,
+              marginBottom: facetMarginBottom,
+              marginLeft: facetMarginLeft
+            },
+            fx
+          )
         )
-      )
-    );
-  return axes;
+      : null,
+    yAxis ? axisY(axisOptions(yAxis, {grid}, y)) : null,
+    xAxis ? axisX(axisOptions(xAxis, {grid}, x)) : null
+  ];
 }
 
 function axisOptions(

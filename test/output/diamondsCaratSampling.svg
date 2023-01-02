@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
     <path transform="translate(79.92515592515593,370)" d="M0,0L0,6"></path>
     <path transform="translate(139.8004158004158,370)" d="M0,0L0,6"></path>
     <path transform="translate(199.67567567567568,370)" d="M0,0L0,6"></path>
@@ -25,8 +25,8 @@
     <path transform="translate(558.927234927235,370)" d="M0,0L0,6"></path>
     <path transform="translate(618.8024948024948,370)" d="M0,0L0,6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(79.92515592515593,370)">0.5</text><text y="0.71em" transform="translate(139.8004158004158,370)">1.0</text><text y="0.71em" transform="translate(199.67567567567568,370)">1.5</text><text y="0.71em" transform="translate(259.55093555093555,370)">2.0</text><text y="0.71em" transform="translate(319.4261954261955,370)">2.5</text><text y="0.71em" transform="translate(379.30145530145535,370)">3.0</text><text y="0.71em" transform="translate(439.1767151767152,370)">3.5</text><text y="0.71em" transform="translate(499.0519750519751,370)">4.0</text><text y="0.71em" transform="translate(558.927234927235,370)">4.5</text><text y="0.71em" transform="translate(618.8024948024948,370)">5.0</text></g>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(79.92515592515593,370)">0.5</text><text y="0.71em" transform="translate(139.8004158004158,370)">1.0</text><text y="0.71em" transform="translate(199.67567567567568,370)">1.5</text><text y="0.71em" transform="translate(259.55093555093555,370)">2.0</text><text y="0.71em" transform="translate(319.4261954261955,370)">2.5</text><text y="0.71em" transform="translate(379.30145530145535,370)">3.0</text><text y="0.71em" transform="translate(439.1767151767152,370)">3.5</text><text y="0.71em" transform="translate(499.0519750519751,370)">4.0</text><text y="0.71em" transform="translate(558.927234927235,370)">4.5</text><text y="0.71em" transform="translate(618.8024948024948,370)">5.0</text></g>
+  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(44,338.324593177272)" d="M0,0L-6,0"></path>
     <path transform="translate(44,300.4806184786722)" d="M0,0L-6,0"></path>
     <path transform="translate(44,262.63664378007246)" d="M0,0L-6,0"></path>
@@ -37,7 +37,7 @@
     <path transform="translate(44,73.41677028707358)" d="M0,0L-6,0"></path>
     <path transform="translate(44,35.572795588473795)" d="M0,0L-6,0"></path>
   </g>
-  <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(44,338.324593177272)">2,000</text><text y="0.32em" transform="translate(44,300.4806184786722)">4,000</text><text y="0.32em" transform="translate(44,262.63664378007246)">6,000</text><text y="0.32em" transform="translate(44,224.79266908147264)">8,000</text><text y="0.32em" transform="translate(44,186.9486943828729)">10,000</text><text y="0.32em" transform="translate(44,149.1047196842731)">12,000</text><text y="0.32em" transform="translate(44,111.26074498567337)">14,000</text><text y="0.32em" transform="translate(44,73.41677028707358)">16,000</text><text y="0.32em" transform="translate(44,35.572795588473795)">18,000</text></g>
+  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(44,338.324593177272)">2,000</text><text y="0.32em" transform="translate(44,300.4806184786722)">4,000</text><text y="0.32em" transform="translate(44,262.63664378007246)">6,000</text><text y="0.32em" transform="translate(44,224.79266908147264)">8,000</text><text y="0.32em" transform="translate(44,186.9486943828729)">10,000</text><text y="0.32em" transform="translate(44,149.1047196842731)">12,000</text><text y="0.32em" transform="translate(44,111.26074498567337)">14,000</text><text y="0.32em" transform="translate(44,73.41677028707358)">16,000</text><text y="0.32em" transform="translate(44,35.572795588473795)">18,000</text></g>
   <g aria-label="dot" transform="translate(0.5,0.5)">
     <circle cx="47.592515592515596" cy="370" r="1"></circle>
     <circle cx="55.975051975051976" cy="369.41341839217165" r="1"></circle>

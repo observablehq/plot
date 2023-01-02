@@ -14,7 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(41,0)">
-    <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0,0.5)">
+    <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,296.9230769230769)" d="M0,0L-6,0"></path>
       <path transform="translate(0,250.76923076923072)" d="M0,0L-6,0"></path>
       <path transform="translate(0,204.6153846153846)" d="M0,0L-6,0"></path>
@@ -23,8 +23,8 @@
       <path transform="translate(0,66.15384615384619)" d="M0,0L-6,0"></path>
       <path transform="translate(0,20)" d="M0,0L-6,0"></path>
     </g>
-    <g aria-label="text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,296.9230769230769)">1.5</text><text y="0.32em" transform="translate(0,250.76923076923072)">1.6</text><text y="0.32em" transform="translate(0,204.6153846153846)">1.7</text><text y="0.32em" transform="translate(0,158.46153846153848)">1.8</text><text y="0.32em" transform="translate(0,112.30769230769238)">1.9</text><text y="0.32em" transform="translate(0,66.15384615384619)">2.0</text><text y="0.32em" transform="translate(0,20)">2.1</text></g>
-    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Africa</text></g>
+    <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,296.9230769230769)">1.5</text><text y="0.32em" transform="translate(0,250.76923076923072)">1.6</text><text y="0.32em" transform="translate(0,204.6153846153846)">1.7</text><text y="0.32em" transform="translate(0,158.46153846153848)">1.8</text><text y="0.32em" transform="translate(0,112.30769230769238)">1.9</text><text y="0.32em" transform="translate(0,66.15384615384619)">2.0</text><text y="0.32em" transform="translate(0,20)">2.1</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Africa</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="49.5" cy="130.76923076923075" r="3">
@@ -144,7 +144,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(151,0)">
-    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Americas</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Americas</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="49.5" cy="218.4615384615385" r="3">
@@ -342,7 +342,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(261,0)">
-    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Asia</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Asia</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="49.5" cy="121.5384615384616" r="3">
@@ -639,7 +639,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(371,0)">
-    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Europe</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Europe</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="49.5" cy="139.99999999999997" r="3">
@@ -858,7 +858,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(481,0)">
-    <g aria-label="text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Oceania</text></g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(49.5,320)">Oceania</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="0" y="20" width="99" height="300"></rect>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="49.5" cy="167.6923076923077" r="3">

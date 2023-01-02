@@ -13,7 +13,7 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="vector" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
     <path transform="translate(44.1765999414857,30)" d="M0,0L0,-6"></path>
     <path transform="translate(100.7099106241211,30)" d="M0,0L0,-6"></path>
     <path transform="translate(157.2432213067565,30)" d="M0,0L0,-6"></path>
@@ -30,7 +30,7 @@
     <path transform="translate(779.0941608388309,30)" d="M0,0L0,-6"></path>
     <path transform="translate(835.6274715214663,30)" d="M0,0L0,-6"></path>
   </g>
-  <g aria-label="text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(44.1765999414857,30)">1740</text><text transform="translate(100.7099106241211,30)">1760</text><text transform="translate(157.2432213067565,30)">1780</text><text transform="translate(213.77653198939194,30)">1800</text><text transform="translate(270.3021036835698,30)">1820</text><text transform="translate(326.8354143662052,30)">1840</text><text transform="translate(383.3687250488406,30)">1860</text><text transform="translate(439.90203573147596,30)">1880</text><text transform="translate(496.4353464141114,30)">1900</text><text transform="translate(552.9609181082892,30)">1920</text><text transform="translate(609.4942287909246,30)">1940</text><text transform="translate(666.02753947356,30)">1960</text><text transform="translate(722.5608501561954,30)">1980</text><text transform="translate(779.0941608388309,30)">2000</text><text transform="translate(835.6274715214663,30)">2020</text></g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(44.1765999414857,30)">1740</text><text transform="translate(100.7099106241211,30)">1760</text><text transform="translate(157.2432213067565,30)">1780</text><text transform="translate(213.77653198939194,30)">1800</text><text transform="translate(270.3021036835698,30)">1820</text><text transform="translate(326.8354143662052,30)">1840</text><text transform="translate(383.3687250488406,30)">1860</text><text transform="translate(439.90203573147596,30)">1880</text><text transform="translate(496.4353464141114,30)">1900</text><text transform="translate(552.9609181082892,30)">1920</text><text transform="translate(609.4942287909246,30)">1940</text><text transform="translate(666.02753947356,30)">1960</text><text transform="translate(722.5608501561954,30)">1980</text><text transform="translate(779.0941608388309,30)">2000</text><text transform="translate(835.6274715214663,30)">2020</text></g>
   <g aria-label="bar" fill="#ccc">
     <rect x="20" width="200.51719093594573" y="46" height="18"></rect>
     <rect x="58.00617231518446" width="208.96816633162507" y="66" height="18"></rect>
