@@ -308,29 +308,14 @@ export function maybeClip(clip) {
 }
 
 // Note: may mutate selection.node!
-export function applyIndirectStyles(selection, mark, dimensions, context) {
-  applyAttr(selection, "aria-label", mark.ariaLabel);
-  applyAttr(selection, "aria-description", mark.ariaDescription);
-  applyAttr(selection, "aria-hidden", mark.ariaHidden);
-  applyAttr(selection, "fill", mark.fill);
-  applyAttr(selection, "fill-opacity", mark.fillOpacity);
-  applyAttr(selection, "stroke", mark.stroke);
-  applyAttr(selection, "stroke-width", mark.strokeWidth);
-  applyAttr(selection, "stroke-opacity", mark.strokeOpacity);
-  applyAttr(selection, "stroke-linejoin", mark.strokeLinejoin);
-  applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
-  applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
-  applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
-  applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
-  applyAttr(selection, "shape-rendering", mark.shapeRendering);
-  applyAttr(selection, "paint-order", mark.paintOrder);
-  applyAttr(selection, "pointer-events", mark.pointerEvents);
+function applyClip(selection, mark, dimensions, context) {
+  let clipUrl;
   switch (mark.clip) {
     case "frame": {
       const {width, height, marginLeft, marginRight, marginTop, marginBottom} = dimensions;
       const id = getClipId();
-      create("svg:g", context)
-        .attr("clip-path", `url(#${id})`)
+      clipUrl = `url(#${id})`;
+      selection = create("svg:g", context)
         .call((g) =>
           g
             .append("svg:clipPath")
@@ -351,8 +336,8 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
       const {projection} = context;
       if (!projection) throw new Error(`the "sphere" clip option requires a projection`);
       const id = getClipId();
+      clipUrl = `url(#${id})`;
       selection
-        .attr("clip-path", `url(#${id})`)
         .append("clipPath")
         .attr("id", id)
         .append("path")
@@ -360,6 +345,28 @@ export function applyIndirectStyles(selection, mark, dimensions, context) {
       break;
     }
   }
+  applyAttr(selection, "aria-label", mark.ariaLabel);
+  applyAttr(selection, "aria-description", mark.ariaDescription);
+  applyAttr(selection, "aria-hidden", mark.ariaHidden);
+  applyAttr(selection, "clip-path", clipUrl);
+}
+
+// Note: may mutate selection.node!
+export function applyIndirectStyles(selection, mark, dimensions, context) {
+  applyClip(selection, mark, dimensions, context);
+  applyAttr(selection, "fill", mark.fill);
+  applyAttr(selection, "fill-opacity", mark.fillOpacity);
+  applyAttr(selection, "stroke", mark.stroke);
+  applyAttr(selection, "stroke-width", mark.strokeWidth);
+  applyAttr(selection, "stroke-opacity", mark.strokeOpacity);
+  applyAttr(selection, "stroke-linejoin", mark.strokeLinejoin);
+  applyAttr(selection, "stroke-linecap", mark.strokeLinecap);
+  applyAttr(selection, "stroke-miterlimit", mark.strokeMiterlimit);
+  applyAttr(selection, "stroke-dasharray", mark.strokeDasharray);
+  applyAttr(selection, "stroke-dashoffset", mark.strokeDashoffset);
+  applyAttr(selection, "shape-rendering", mark.shapeRendering);
+  applyAttr(selection, "paint-order", mark.paintOrder);
+  applyAttr(selection, "pointer-events", mark.pointerEvents);
 }
 
 export function applyDirectStyles(selection, mark) {
