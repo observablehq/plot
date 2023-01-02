@@ -74,3 +74,13 @@ export async function heatmapLog() {
     ]
   });
 }
+
+export async function heatmapPartial() {
+  return Plot.plot({
+    axis: null,
+    marks: [
+      Plot.raster({x1: -7, x2: 7, y1: -7, y2: 7, fill: (x, y) => Math.atan2(y, x), pixelRatio: 2}),
+      Plot.rect({length: 1}, {x1: -10, x2: 10, y1: -10, y2: 10, stroke: "currentColor"})
+    ]
+  });
+}

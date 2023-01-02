@@ -125,17 +125,16 @@ export function raster(data, options) {
 
 // Evaluates a function at pixel midpoints. TODO Faceting? Optimize linear?
 function sampleFill({fill, pixelRatio = 1, ...options} = {}) {
-  return initializer(options, (data, facets, channels, scales, dimensions) => {
-    const {x, y} = scales;
-    const {width, height, marginTop, marginRight, marginBottom, marginLeft} = dimensions;
+  return initializer(options, (data, facets, channels, {x, y}) => {
     let {x1, y1, x2, y2, width: w, height: h} = options;
-    if (w === undefined) w = Math.max(0, Math.round((width - marginLeft - marginRight) / pixelRatio));
-    if (h === undefined) h = Math.max(0, Math.round((height - marginTop - marginBottom) / pixelRatio));
     (x1 = x(x1)), (y1 = y(y1)), (x2 = x(x2)), (y2 = y(y2));
-    const kx = (x2 - x1) / w;
-    const ky = (y1 - y2) / h;
+    // Note: this must exactly match the defaults in render above!
+    if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
+    if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
+    const F = new Array(w * h),
+      kx = (x2 - x1) / w,
+      ky = (y1 - y2) / h;
     (x1 += kx / 2), (y2 += ky / 2);
-    const F = new Array(w * h);
     for (let yi = 0, i = 0; yi < h; ++yi) {
       for (let xi = 0; xi < w; ++xi, ++i) {
         F[i] = fill(x.invert(x1 + xi * kx), y.invert(y2 + yi * ky));
