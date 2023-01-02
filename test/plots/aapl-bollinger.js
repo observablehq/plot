@@ -8,7 +8,6 @@ export default async function () {
       grid: true
     },
     marks: [
-      // Plot.text(["↑ Close"], {frameAnchor: "top-left", textAnchor: "end", dy: -17, dx: -2}), // TODO
       Plot.areaY(AAPL, bollingerBandY(20, 2, {x: "Date", y: "Close", fillOpacity: 0.2})),
       Plot.line(AAPL, Plot.map({y: bollinger(20, 0)}, {x: "Date", y: "Close", stroke: "blue"})),
       Plot.line(AAPL, {x: "Date", y: "Close", strokeWidth: 1})
