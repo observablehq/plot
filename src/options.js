@@ -250,8 +250,9 @@ export function maybeInterval(interval) {
       range: (lo, hi) => rangei(Math.ceil(lo / n), hi / n).map((x) => n * x)
     };
   }
+  // TODO local time intervals (or better, an explicit timeZone option).
   if (typeof interval === "string") {
-    return maybeUtcInterval(interval); // TODO local time intervals?
+    return maybeUtcInterval(interval);
   }
   if (typeof interval.floor !== "function" || typeof interval.offset !== "function") {
     throw new Error("invalid interval; missing floor or offset method");
