@@ -28,15 +28,17 @@ export class Raster extends Mark {
       fill,
       fillOpacity
     } = options;
+    (x1 = +x1), (y1 = +y1), (x2 = +x2), (y2 = +y2);
+    if (isNaN(x1) || isNaN(y1) || isNaN(x1) || isNaN(y1)) throw new Error(`invalid bounds: ${[x1, y1, x2, y2]}`);
     super(
       data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
-        x1: {value: [+x1], scale: "x", filter: null},
-        y1: {value: [+y1], scale: "y", filter: null},
-        x2: {value: [+x2], scale: "x", filter: null},
-        y2: {value: [+y2], scale: "y", filter: null}
+        x1: {value: [x1], scale: "x", filter: null},
+        y1: {value: [y1], scale: "y", filter: null},
+        x2: {value: [x2], scale: "x", filter: null},
+        y2: {value: [y2], scale: "y", filter: null}
       },
       data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
       defaults
@@ -148,9 +150,9 @@ export function raster(data, options) {
 function sampleFill({fill, fillOpacity, pixelRatio = 1, ...options} = {}) {
   if (typeof fill !== "function") (options.fill = fill), (fill = null);
   if (typeof fillOpacity !== "function") (options.fillOpacity = fillOpacity), (fillOpacity = null);
-  return initializer(options, (data, facets, channels, {x, y}) => {
-    let {x1, y1, x2, y2, width: w, height: h} = options;
-    (x1 = x(x1)), (y1 = y(y1)), (x2 = x(x2)), (y2 = y(y2));
+  return initializer(options, (data, facets, {x1, y1, x2, y2}, {x, y}) => {
+    let {width: w, height: h} = options;
+    (x1 = x(x1.value[0])), (y1 = y(y1.value[0])), (x2 = x(x2.value[0])), (y2 = y(y2.value[0]));
     // Note: this must exactly match the defaults in render above!
     if (w === undefined) w = Math.round(Math.abs(x2 - x1) / pixelRatio);
     if (h === undefined) h = Math.round(Math.abs(y2 - y1) / pixelRatio);
