@@ -345,6 +345,9 @@ function applyClip(selection, mark, dimensions, context) {
       break;
     }
   }
+  // Here we’re careful to apply the ARIA attributes to the outer G element when
+  // clipping is applied, and to apply the ARIA attributes before any other
+  // attributes (for readability).
   applyAttr(selection, "aria-label", mark.ariaLabel);
   applyAttr(selection, "aria-description", mark.ariaDescription);
   applyAttr(selection, "aria-hidden", mark.ariaHidden);
