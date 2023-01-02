@@ -73,66 +73,62 @@ export class Raster extends Mark {
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
-    if (F || FO) {
-      const context2d = canvas.getContext("2d");
-      let image;
-      if (F && FO) {
-        image = context2d.createImageData(width, height);
-      } else {
-        context2d.fillStyle = this.fill;
-        context2d.globalAlpha = this.fillOpacity;
-        context2d.fillRect(0, 0, width, height);
-        image = context2d.getImageData(0, 0, width, height);
+    const {r, g, b} = rgb(this.fill) ?? {r: 0, g: 0, b: 0};
+    const a = (this.fillOpacity ?? 1) * 255;
+    const context2d = canvas.getContext("2d");
+    const image = context2d.createImageData(width, height);
+    const imageData = image.data;
+    if (X && Y) {
+      // If X and Y are given, then assign each sample to the corresponding
+      // pixel location. In the future, it would be better to allow different
+      // interpolation methods here, as the current approach will often lead to
+      // a sparse image when not every pixel has a corresponding sample.
+      const kx = width / imageWidth;
+      const ky = height / imageHeight;
+      for (const i of index) {
+        const xi = Math.floor((X[i] - x1) * kx);
+        if (xi < 0 || xi >= width) continue;
+        const yi = Math.floor((Y[i] - y2) * ky);
+        if (yi < 0 || yi >= height) continue;
+        const j = (yi * width + xi) << 2;
+        if (F) {
+          const {r, g, b} = rgb(F[i]);
+          imageData[j + 0] = r;
+          imageData[j + 1] = g;
+          imageData[j + 2] = b;
+        } else {
+          imageData[j + 0] = r;
+          imageData[j + 1] = g;
+          imageData[j + 2] = b;
+        }
+        imageData[j + 3] = FO ? FO[i] * 255 : a;
       }
-      const imageData = image.data;
-      if (X && Y) {
-        // If X and Y are given, then assign each sample to the corresponding
-        // pixel location. In the future, it would be better to allow different
-        // interpolation methods here, as the current approach will often lead to
-        // a sparse image when not every pixel has a corresponding sample.
-        const kx = width / imageWidth;
-        const ky = height / imageHeight;
-        for (const i of index) {
-          const xi = Math.floor((X[i] - x1) * kx);
-          if (xi < 0 || xi >= width) continue;
-          const yi = Math.floor((Y[i] - y2) * ky);
-          if (yi < 0 || yi >= height) continue;
-          const j = (yi * width + xi) << 2;
+    } else {
+      // Otherwise if X and Y are not given, then assume that F is a dense array
+      // of samples covering the entire grid in row-major order.
+      for (let y = 0, i = 0; y < height; ++y) {
+        for (let x = 0; x < width; ++x, ++i) {
+          const j = i << 2;
           if (F) {
-            const {r, g, b} = rgb(F[i]);
+            const fi = F[i];
+            if (fi == null) {
+              imageData[j + 3] = 0;
+              continue;
+            }
+            const {r, g, b} = rgb(fi);
+            imageData[j + 0] = r;
+            imageData[j + 1] = g;
+            imageData[j + 2] = b;
+          } else {
             imageData[j + 0] = r;
             imageData[j + 1] = g;
             imageData[j + 2] = b;
           }
-          if (FO) {
-            imageData[j + 3] = FO[i] * 255;
-          }
-        }
-      } else {
-        // Otherwise if X and Y are not given, then assume that F is a dense array
-        // of samples covering the entire grid in row-major order.
-        for (let y = 0, i = 0; y < height; ++y) {
-          for (let x = 0; x < width; ++x, ++i) {
-            const j = i << 2;
-            if (F) {
-              const f = F[i];
-              if (f == null) {
-                imageData[j + 3] = 0;
-                continue;
-              }
-              const {r, g, b} = rgb(f);
-              imageData[j + 0] = r;
-              imageData[j + 1] = g;
-              imageData[j + 2] = b;
-            }
-            if (FO) {
-              imageData[j + 3] = FO[i] * 255;
-            }
-          }
+          imageData[j + 3] = FO ? FO[i] * 255 : a;
         }
       }
-      context2d.putImageData(image, 0, 0);
     }
+    context2d.putImageData(image, 0, 0);
     return create("svg:g", context)
       .call(applyIndirectStyles, this, scales, dimensions, context)
       .call(applyTransform, this, scales)
