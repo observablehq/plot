@@ -9,6 +9,18 @@ const defaults = {
   stroke: null
 };
 
+function number(input, name) {
+  const x = +input;
+  if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
+  return x;
+}
+
+function integer(input, name) {
+  const x = Math.floor(input);
+  if (isNaN(x)) throw new Error(`invalid ${name}: ${input}`);
+  return x;
+}
+
 export class Raster extends Mark {
   constructor(data, options = {}) {
     let {
@@ -28,24 +40,22 @@ export class Raster extends Mark {
       fill,
       fillOpacity
     } = options;
-    (x1 = +x1), (y1 = +y1), (x2 = +x2), (y2 = +y2);
-    if (isNaN(x1) || isNaN(y1) || isNaN(x1) || isNaN(y1)) throw new Error(`invalid bounds: ${[x1, y1, x2, y2]}`);
     super(
       data,
       {
         x: {value: x, scale: "x", optional: true},
         y: {value: y, scale: "y", optional: true},
-        x1: {value: [x1], scale: "x", filter: null},
-        y1: {value: [y1], scale: "y", filter: null},
-        x2: {value: [x2], scale: "x", filter: null},
-        y2: {value: [y2], scale: "y", filter: null}
+        x1: {value: [number(x1, "x1")], scale: "x", filter: null},
+        y1: {value: [number(y1, "y1")], scale: "y", filter: null},
+        x2: {value: [number(x2, "x2")], scale: "x", filter: null},
+        y2: {value: [number(y2, "y2")], scale: "y", filter: null}
       },
       data == null && (typeof fill === "function" || typeof fillOpacity === "function") ? sampleFill(options) : options,
       defaults
     );
-    this.width = width === undefined ? undefined : Math.floor(width);
-    this.height = height === undefined ? undefined : Math.floor(height);
-    this.pixelRatio = +pixelRatio;
+    this.width = width === undefined ? undefined : integer(width, "width");
+    this.height = height === undefined ? undefined : integer(height, "height");
+    this.pixelRatio = number(pixelRatio, "pixelRatio");
     this.imageRendering = impliedString(imageRendering, "auto");
   }
   render(index, scales, channels, dimensions, context) {
