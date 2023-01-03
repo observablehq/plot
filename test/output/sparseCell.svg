@@ -214,77 +214,41 @@
     <rect x="123" width="25" y="599" height="20" fill="#ddd"></rect>
   </g>
   <g aria-label="text" transform="translate(13,10.5)">
-    <text y="0.32em" transform="translate(45,32)">8.2<title>Simpsons Roasting on an Open Fire</title>
-    </text>
-    <text y="0.32em" transform="translate(71,32)">7.8<title>Bart the Genius</title>
-    </text>
-    <text y="0.32em" transform="translate(97,32)">7.5<title>Homer's Odyssey</title>
-    </text>
-    <text y="0.32em" transform="translate(123,32)">7.8<title>There's No Disgrace Like Home</title>
-    </text>
-    <text y="0.32em" transform="translate(149,32)">8.1<title>Bart the General</title>
-    </text>
-    <text y="0.32em" transform="translate(175,32)">7.6<title>Moaning Lisa</title>
-    </text>
-    <text y="0.32em" transform="translate(201,32)">7.9<title>The Call of the Simpsons</title>
-    </text>
-    <text y="0.32em" transform="translate(227,32)">7.7<title>The Telltale Head</title>
-    </text>
-    <text y="0.32em" transform="translate(253,32)">7.5<title>Life on the Fast Lane</title>
-    </text>
-    <text y="0.32em" transform="translate(279,32)">7.4<title>Homer's Night Out</title>
-    </text>
-    <text y="0.32em" transform="translate(305,32)">7.8<title>The Crepes of Wrath</title>
-    </text>
-    <text y="0.32em" transform="translate(331,32)">8.3<title>Krusty Gets Busted</title>
-    </text>
-    <text y="0.32em" transform="translate(357,32)">7.9<title>Some Enchanted Evening</title>
-    </text>
-    <text y="0.32em" transform="translate(45,53)">8.2<title>Bart Gets an "F"</title>
-    </text>
-    <text y="0.32em" transform="translate(71,53)">8.3<title>Simpson and Delilah</title>
-    </text>
-    <text y="0.32em" transform="translate(97,53)">8.2<title>Treehouse of Horror</title>
-    </text>
-    <text y="0.32em" transform="translate(123,53)">8.1<title>Two Cars in Every Garage and Three Eyes on Every Fish</title>
-    </text>
-    <text y="0.32em" transform="translate(149,53)">7.5<title>Dancin' Homer</title>
-    </text>
-    <text y="0.32em" transform="translate(175,53)">8.0<title>Dead Putting Society</title>
-    </text>
-    <text y="0.32em" transform="translate(201,53)">7.7<title>Bart vs. Thanksgiving</title>
-    </text>
-    <text y="0.32em" transform="translate(227,53)">8.4<title>Bart the Daredevil</title>
-    </text>
-    <text y="0.32em" transform="translate(253,53)">8.1<title>Itchy &amp; Scratchy &amp; Marge</title>
-    </text>
-    <text y="0.32em" transform="translate(279,53)">7.8<title>Bart Gets Hit by a Car</title>
-    </text>
-    <text y="0.32em" transform="translate(305,53)">8.8<title>One Fish, Two Fish, Blowfish, Blue Fish</title>
-    </text>
-    <text y="0.32em" transform="translate(331,53)">8.2<title>The Way We Was</title>
-    </text>
-    <text y="0.32em" transform="translate(357,53)">8.0<title>Homer vs. Lisa and the 8th Commandment</title>
-    </text>
-    <text y="0.32em" transform="translate(461,578)">6.5<title>The Burns Cage</title>
-    </text>
-    <text y="0.32em" transform="translate(487,578)">6.4<title>How Lisa Got Her Marge Back</title>
-    </text>
-    <text y="0.32em" transform="translate(513,578)">7.1<title>Fland Canyon</title>
-    </text>
-    <text y="0.32em" transform="translate(539,578)">6.7<title>To Courier with Love</title>
-    </text>
-    <text y="0.32em" transform="translate(565,578)">6.4<title>Simprovised</title>
-    </text>
-    <text y="0.32em" transform="translate(591,578)">6.9<title>Orange Is the New Yellow</title>
-    </text>
-    <text y="0.32em" transform="translate(45,599)">6.6<title>Monty Burns' Fleeing Circus</title>
-    </text>
-    <text y="0.32em" transform="translate(71,599)">-<title>Friends and Family"[203]</title>
-    </text>
-    <text y="0.32em" transform="translate(97,599)">-<title>The Town"[205]</title>
-    </text>
-    <text y="0.32em" transform="translate(123,599)">-<title>Treehouse of Horror XXVII"[207]</title>
-    </text>
+    <text y="0.32em" transform="translate(45,32)">8.2<title>Simpsons Roasting on an Open Fire</title></text>
+    <text y="0.32em" transform="translate(71,32)">7.8<title>Bart the Genius</title></text>
+    <text y="0.32em" transform="translate(97,32)">7.5<title>Homer's Odyssey</title></text>
+    <text y="0.32em" transform="translate(123,32)">7.8<title>There's No Disgrace Like Home</title></text>
+    <text y="0.32em" transform="translate(149,32)">8.1<title>Bart the General</title></text>
+    <text y="0.32em" transform="translate(175,32)">7.6<title>Moaning Lisa</title></text>
+    <text y="0.32em" transform="translate(201,32)">7.9<title>The Call of the Simpsons</title></text>
+    <text y="0.32em" transform="translate(227,32)">7.7<title>The Telltale Head</title></text>
+    <text y="0.32em" transform="translate(253,32)">7.5<title>Life on the Fast Lane</title></text>
+    <text y="0.32em" transform="translate(279,32)">7.4<title>Homer's Night Out</title></text>
+    <text y="0.32em" transform="translate(305,32)">7.8<title>The Crepes of Wrath</title></text>
+    <text y="0.32em" transform="translate(331,32)">8.3<title>Krusty Gets Busted</title></text>
+    <text y="0.32em" transform="translate(357,32)">7.9<title>Some Enchanted Evening</title></text>
+    <text y="0.32em" transform="translate(45,53)">8.2<title>Bart Gets an "F"</title></text>
+    <text y="0.32em" transform="translate(71,53)">8.3<title>Simpson and Delilah</title></text>
+    <text y="0.32em" transform="translate(97,53)">8.2<title>Treehouse of Horror</title></text>
+    <text y="0.32em" transform="translate(123,53)">8.1<title>Two Cars in Every Garage and Three Eyes on Every Fish</title></text>
+    <text y="0.32em" transform="translate(149,53)">7.5<title>Dancin' Homer</title></text>
+    <text y="0.32em" transform="translate(175,53)">8.0<title>Dead Putting Society</title></text>
+    <text y="0.32em" transform="translate(201,53)">7.7<title>Bart vs. Thanksgiving</title></text>
+    <text y="0.32em" transform="translate(227,53)">8.4<title>Bart the Daredevil</title></text>
+    <text y="0.32em" transform="translate(253,53)">8.1<title>Itchy &amp; Scratchy &amp; Marge</title></text>
+    <text y="0.32em" transform="translate(279,53)">7.8<title>Bart Gets Hit by a Car</title></text>
+    <text y="0.32em" transform="translate(305,53)">8.8<title>One Fish, Two Fish, Blowfish, Blue Fish</title></text>
+    <text y="0.32em" transform="translate(331,53)">8.2<title>The Way We Was</title></text>
+    <text y="0.32em" transform="translate(357,53)">8.0<title>Homer vs. Lisa and the 8th Commandment</title></text>
+    <text y="0.32em" transform="translate(461,578)">6.5<title>The Burns Cage</title></text>
+    <text y="0.32em" transform="translate(487,578)">6.4<title>How Lisa Got Her Marge Back</title></text>
+    <text y="0.32em" transform="translate(513,578)">7.1<title>Fland Canyon</title></text>
+    <text y="0.32em" transform="translate(539,578)">6.7<title>To Courier with Love</title></text>
+    <text y="0.32em" transform="translate(565,578)">6.4<title>Simprovised</title></text>
+    <text y="0.32em" transform="translate(591,578)">6.9<title>Orange Is the New Yellow</title></text>
+    <text y="0.32em" transform="translate(45,599)">6.6<title>Monty Burns' Fleeing Circus</title></text>
+    <text y="0.32em" transform="translate(71,599)">-<title>Friends and Family"[203]</title></text>
+    <text y="0.32em" transform="translate(97,599)">-<title>The Town"[205]</title></text>
+    <text y="0.32em" transform="translate(123,599)">-<title>Treehouse of Horror XXVII"[207]</title></text>
   </g>
 </svg>
