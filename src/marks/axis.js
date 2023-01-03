@@ -52,6 +52,7 @@ function axisKy(
   {
     grid,
     gridOpacity = 0.1,
+    gridDasharray,
     line,
     color = "currentColor",
     opacity = 1,
@@ -80,6 +81,7 @@ function axisKy(
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
+          strokeDasharray: gridDasharray,
           x1: x1 === undefined && anchor === "left" ? x : x1,
           x2: x2 === undefined && anchor === "right" ? x : x2,
           ...options
@@ -150,6 +152,7 @@ function axisKx(
   {
     grid,
     gridOpacity = 0.1,
+    gridDasharray,
     line,
     color = "currentColor",
     opacity = 1,
@@ -178,6 +181,7 @@ function axisKx(
           stroke: grid === true ? stroke : grid,
           strokeOpacity: gridOpacity,
           strokeWidth,
+          strokeDasharray: gridDasharray,
           y1: y1 === undefined && anchor === "top" ? y : y1,
           y2: y2 === undefined && anchor === "bottom" ? y : y2,
           ...options
