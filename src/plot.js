@@ -494,14 +494,10 @@ function inferAxes(marks, channelsByScale, options) {
   } = options;
   xAxis = (xType === undefined && !hasScale(marks, "x")) || projection ? null : xAxis === true ? "bottom" : xAxis;
   yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
-  if (marks.some((m) => /^x-axis /.test(m.ariaLabel))) xAxis = null;
-  if (marks.some((m) => /^y-axis /.test(m.ariaLabel))) yAxis = null;
   fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
   fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
-  if (marks.some((m) => /^fx-axis /.test(m.ariaLabel))) fxAxis = null;
-  if (marks.some((m) => /^fy-axis /.test(m.ariaLabel))) fyAxis = null;
   return [
-    fyAxis
+    fyAxis && !hasAxis(marks, "fy")
       ? axisFy(
           axisOptions(
             fyAxis,
@@ -516,7 +512,7 @@ function inferAxes(marks, channelsByScale, options) {
           )
         )
       : null,
-    fxAxis
+    fxAxis && !hasAxis(marks, "fx")
       ? axisFx(
           axisOptions(
             fxAxis,
@@ -531,8 +527,8 @@ function inferAxes(marks, channelsByScale, options) {
           )
         )
       : null,
-    yAxis ? axisY(axisOptions(yAxis, {grid}, y)) : null,
-    xAxis ? axisX(axisOptions(xAxis, {grid}, x)) : null
+    yAxis && !hasAxis(marks, "y") ? axisY(axisOptions(yAxis, {grid}, y)) : null,
+    xAxis && !hasAxis(marks, "x") ? axisX(axisOptions(xAxis, {grid}, x)) : null
   ];
 }
 
@@ -577,6 +573,14 @@ function axisOptions(
     ariaLabel,
     ariaDescription
   };
+}
+
+// Is there an explicit axis already present? TODO We probably want a more
+// explicit test than looking for the ARIA label, but it does afford some
+// flexibility in axis implementation which is nice.
+function hasAxis(marks, k) {
+  const prefix = `${k}-axis `;
+  return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 
 function hasScale(marks, k) {
