@@ -580,7 +580,7 @@ function axisOptions(
 // explicit test than looking for the ARIA label, but it does afford some
 // flexibility in axis implementation which is nice.
 function hasAxis(marks, k) {
-  const prefix = `${k}-axis `;
+  const prefix = `${k}-axis tick`;
   return marks.some((m) => m.ariaLabel?.startsWith(prefix));
 }
 
