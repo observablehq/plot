@@ -13,18 +13,18 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(137,90)" d="M0,0L0,6"></path>
-    <path transform="translate(330,90)" d="M0,0L0,6"></path>
-    <path transform="translate(523,90)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(137,90)">A</text><text y="0.71em" transform="translate(330,90)">B</text><text y="0.71em" transform="translate(523,90)">C</text></g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,10.5)">
     <path transform="translate(40,23)" d="M0,0L-6,0"></path>
     <path transform="translate(40,45)" d="M0,0L-6,0"></path>
     <path transform="translate(40,67)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,10.5)"><text y="0.32em" transform="translate(40,23)">A</text><text y="0.32em" transform="translate(40,45)">B</text><text y="0.32em" transform="translate(40,67)">C</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(137,90)" d="M0,0L0,6"></path>
+    <path transform="translate(330,90)" d="M0,0L0,6"></path>
+    <path transform="translate(523,90)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(137,90)">A</text><text y="0.71em" transform="translate(330,90)">B</text><text y="0.71em" transform="translate(523,90)">C</text></g>
   <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="40" y="20" width="580" height="70"></rect>
   <g aria-label="text" clip-path="url(#plot-clip-1)">
     <clipPath id="plot-clip-1">

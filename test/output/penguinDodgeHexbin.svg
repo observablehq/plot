@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Adelie</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
       <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
@@ -23,7 +24,6 @@
       <line x1="491.6666666666667" x2="491.6666666666667" y1="0" y2="77"></line>
       <line x1="567.5" x2="567.5" y1="0" y2="77"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Adelie</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="226.25" cy="73" r="3"></circle>
@@ -332,6 +332,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Chinstrap</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
       <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
@@ -341,7 +342,6 @@
       <line x1="491.6666666666667" x2="491.6666666666667" y1="0" y2="77"></line>
       <line x1="567.5" x2="567.5" y1="0" y2="77"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Chinstrap</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="188.33333333333334" cy="73" r="3"></circle>
@@ -485,6 +485,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,192)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Gentoo</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="112.5" x2="112.5" y1="0" y2="77"></line>
       <line x1="188.33333333333334" x2="188.33333333333334" y1="0" y2="77"></line>
@@ -504,7 +505,6 @@
       <path transform="translate(567.5,77)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(112.5,77)">3,000</text><text y="0.71em" transform="translate(188.33333333333334,77)">3,500</text><text y="0.71em" transform="translate(264.1666666666667,77)">4,000</text><text y="0.71em" transform="translate(340,77)">4,500</text><text y="0.71em" transform="translate(415.8333333333333,77)">5,000</text><text y="0.71em" transform="translate(491.6666666666667,77)">5,500</text><text y="0.71em" transform="translate(567.5,77)">6,000</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(60,38.5)">Gentoo</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="60" y="0" width="560" height="77"></rect>
     <g aria-label="dot" fill="none" stroke="red" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="340" cy="73" r="3"></circle>

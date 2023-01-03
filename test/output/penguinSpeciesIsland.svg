@@ -13,12 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
-    <path transform="translate(59,370)" d="M0,0L0,6"></path>
-    <path transform="translate(246,370)" d="M0,0L0,6"></path>
-    <path transform="translate(433,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" transform="translate(84.5,9.5)"><text y="0.71em" transform="translate(59,370)">Adelie</text><text y="0.71em" transform="translate(246,370)">Chinstrap</text><text y="0.71em" transform="translate(433,370)">Gentoo</text></g>
   <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="323.94736842105266" y2="323.94736842105266"></line>
@@ -40,6 +34,12 @@
     <path transform="translate(40,47.631578947368425)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,323.94736842105266)">20</text><text y="0.32em" transform="translate(40,277.89473684210526)">40</text><text y="0.32em" transform="translate(40,231.8421052631579)">60</text><text y="0.32em" transform="translate(40,185.78947368421052)">80</text><text y="0.32em" transform="translate(40,139.73684210526315)">100</text><text y="0.32em" transform="translate(40,93.68421052631578)">120</text><text y="0.32em" transform="translate(40,47.631578947368425)">140</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(84.5,0)">
+    <path transform="translate(59,370)" d="M0,0L0,6"></path>
+    <path transform="translate(246,370)" d="M0,0L0,6"></path>
+    <path transform="translate(433,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" transform="translate(84.5,9.5)"><text y="0.71em" transform="translate(59,370)">Adelie</text><text y="0.71em" transform="translate(246,370)">Chinstrap</text><text y="0.71em" transform="translate(433,370)">Gentoo</text></g>
   <g aria-label="bar">
     <rect x="59" width="168" y="268.6842105263158" height="101.31578947368422" fill="#4e79a7"></rect>
     <rect x="433" width="168" y="84.47368421052632" height="285.5263157894737" fill="#4e79a7"></rect>

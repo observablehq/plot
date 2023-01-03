@@ -14,15 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,20)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Waseca</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -48,7 +40,15 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Waseca</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="395.02224666666666" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -74,15 +74,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,147)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Crookston</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -108,7 +100,15 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Crookston</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="329.51108666666664" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -134,15 +134,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,274)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Morris</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -168,7 +160,15 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Morris</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="237.84449333333333" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -194,15 +194,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,401)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">University Farm</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -228,7 +220,15 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">University Farm</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="234.66666666666669" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -254,15 +254,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,528)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Duluth</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -288,7 +280,15 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Duluth</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="249.08891333333332" cy="82" r="3" stroke="#4e79a7"></circle>
@@ -314,25 +314,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,655)">
-    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-      <line x1="110" x2="110" y1="0" y2="114"></line>
-      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
-      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
-      <line x1="330" x2="330" y1="0" y2="114"></line>
-      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
-      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
-      <line x1="550" x2="550" y1="0" y2="114"></line>
-    </g>
-    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-      <path transform="translate(110,114)" d="M0,0L0,6"></path>
-      <path transform="translate(183.33333333333331,114)" d="M0,0L0,6"></path>
-      <path transform="translate(256.66666666666663,114)" d="M0,0L0,6"></path>
-      <path transform="translate(330,114)" d="M0,0L0,6"></path>
-      <path transform="translate(403.3333333333333,114)" d="M0,0L0,6"></path>
-      <path transform="translate(476.6666666666667,114)" d="M0,0L0,6"></path>
-      <path transform="translate(550,114)" d="M0,0L0,6"></path>
-    </g>
-    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(110,114)">10</text><text y="0.71em" transform="translate(183.33333333333331,114)">20</text><text y="0.71em" transform="translate(256.66666666666663,114)">30</text><text y="0.71em" transform="translate(330,114)">40</text><text y="0.71em" transform="translate(403.3333333333333,114)">50</text><text y="0.71em" transform="translate(476.6666666666667,114)">60</text><text y="0.71em" transform="translate(550,114)">70</text></g>
+    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Grand Rapids</text></g>
     <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
       <line x1="110" x2="550" y1="12" y2="12"></line>
       <line x1="110" x2="550" y1="22" y2="22"></line>
@@ -358,7 +340,25 @@
       <path transform="translate(110,102)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(110,12)">Trebi</text><text y="0.32em" transform="translate(110,22)">Wisconsin No. 38</text><text y="0.32em" transform="translate(110,32)">No. 457</text><text y="0.32em" transform="translate(110,42)">Glabron</text><text y="0.32em" transform="translate(110,52)">Peatland</text><text y="0.32em" transform="translate(110,62)">Velvet</text><text y="0.32em" transform="translate(110,72)">No. 475</text><text y="0.32em" transform="translate(110,82)">Manchuria</text><text y="0.32em" transform="translate(110,92)">No. 462</text><text y="0.32em" transform="translate(110,102)">Svansota</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="start" transform="translate(9.5,0.5)"><text y="0.32em" transform="translate(550,57)">Grand Rapids</text></g>
+    <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+      <line x1="110" x2="110" y1="0" y2="114"></line>
+      <line x1="183.33333333333331" x2="183.33333333333331" y1="0" y2="114"></line>
+      <line x1="256.66666666666663" x2="256.66666666666663" y1="0" y2="114"></line>
+      <line x1="330" x2="330" y1="0" y2="114"></line>
+      <line x1="403.3333333333333" x2="403.3333333333333" y1="0" y2="114"></line>
+      <line x1="476.6666666666667" x2="476.6666666666667" y1="0" y2="114"></line>
+      <line x1="550" x2="550" y1="0" y2="114"></line>
+    </g>
+    <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+      <path transform="translate(110,114)" d="M0,0L0,6"></path>
+      <path transform="translate(183.33333333333331,114)" d="M0,0L0,6"></path>
+      <path transform="translate(256.66666666666663,114)" d="M0,0L0,6"></path>
+      <path transform="translate(330,114)" d="M0,0L0,6"></path>
+      <path transform="translate(403.3333333333333,114)" d="M0,0L0,6"></path>
+      <path transform="translate(476.6666666666667,114)" d="M0,0L0,6"></path>
+      <path transform="translate(550,114)" d="M0,0L0,6"></path>
+    </g>
+    <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(110,114)">10</text><text y="0.71em" transform="translate(183.33333333333331,114)">20</text><text y="0.71em" transform="translate(256.66666666666663,114)">30</text><text y="0.71em" transform="translate(330,114)">40</text><text y="0.71em" transform="translate(403.3333333333333,114)">50</text><text y="0.71em" transform="translate(476.6666666666667,114)">60</text><text y="0.71em" transform="translate(550,114)">70</text></g>
     <rect aria-label="frame" fill="none" stroke="currentColor" transform="translate(0.5,0.5)" x="110" y="0" width="440" height="114"></rect>
     <g aria-label="dot" fill="none" stroke-width="1.5" transform="translate(0.5,0.5)">
       <circle cx="278.42224666666664" cy="82" r="3" stroke="#4e79a7"></circle>

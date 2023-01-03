@@ -13,16 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(52,570)" d="M0,0L0,6"></path>
-    <path transform="translate(141.67741935483872,570)" d="M0,0L0,6"></path>
-    <path transform="translate(231.3548387096774,570)" d="M0,0L0,6"></path>
-    <path transform="translate(321.0322580645161,570)" d="M0,0L0,6"></path>
-    <path transform="translate(410.7096774193548,570)" d="M0,0L0,6"></path>
-    <path transform="translate(500.38709677419354,570)" d="M0,0L0,6"></path>
-    <path transform="translate(590.0645161290322,570)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(52,570)">0</text><text y="0.71em" transform="translate(141.67741935483872,570)">1</text><text y="0.71em" transform="translate(231.3548387096774,570)">2</text><text y="0.71em" transform="translate(321.0322580645161,570)">3</text><text y="0.71em" transform="translate(410.7096774193548,570)">4</text><text y="0.71em" transform="translate(500.38709677419354,570)">5</text><text y="0.71em" transform="translate(590.0645161290322,570)">6</text></g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,558)" d="M0,0L-6,0"></path>
     <path transform="translate(40,515.5806451612904)" d="M0,0L-6,0"></path>
@@ -39,6 +29,16 @@
     <path transform="translate(40,48.967741935483915)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,558)">0.0</text><text y="0.32em" transform="translate(40,515.5806451612904)">0.5</text><text y="0.32em" transform="translate(40,473.16129032258067)">1.0</text><text y="0.32em" transform="translate(40,430.741935483871)">1.5</text><text y="0.32em" transform="translate(40,388.32258064516134)">2.0</text><text y="0.32em" transform="translate(40,345.9032258064516)">2.5</text><text y="0.32em" transform="translate(40,303.48387096774195)">3.0</text><text y="0.32em" transform="translate(40,261.0645161290323)">3.5</text><text y="0.32em" transform="translate(40,218.6451612903226)">4.0</text><text y="0.32em" transform="translate(40,176.2258064516129)">4.5</text><text y="0.32em" transform="translate(40,133.80645161290326)">5.0</text><text y="0.32em" transform="translate(40,91.38709677419355)">5.5</text><text y="0.32em" transform="translate(40,48.967741935483915)">6.0</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(52,570)" d="M0,0L0,6"></path>
+    <path transform="translate(141.67741935483872,570)" d="M0,0L0,6"></path>
+    <path transform="translate(231.3548387096774,570)" d="M0,0L0,6"></path>
+    <path transform="translate(321.0322580645161,570)" d="M0,0L0,6"></path>
+    <path transform="translate(410.7096774193548,570)" d="M0,0L0,6"></path>
+    <path transform="translate(500.38709677419354,570)" d="M0,0L0,6"></path>
+    <path transform="translate(590.0645161290322,570)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(52,570)">0</text><text y="0.71em" transform="translate(141.67741935483872,570)">1</text><text y="0.71em" transform="translate(231.3548387096774,570)">2</text><text y="0.71em" transform="translate(321.0322580645161,570)">3</text><text y="0.71em" transform="translate(410.7096774193548,570)">4</text><text y="0.71em" transform="translate(500.38709677419354,570)">5</text><text y="0.71em" transform="translate(590.0645161290322,570)">6</text></g>
   <g aria-label="vector" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" transform="translate(0.5,0.5)">
     <path transform="translate(52,558) rotate(0) translate(0,0.8333333333333334)" d="M0,0L0,-1.667M-0.333,-1.333L0,-1.667L0.333,-1.333"></path>
     <path transform="translate(52,541.0322580645161) rotate(-11.920159847703673) translate(0,1)" d="M0,0L0,-2M-0.4,-1.6L0,-2L0.4,-1.6"></path>

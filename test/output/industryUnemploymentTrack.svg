@@ -4967,6 +4967,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,286)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(140,9)">Mining and Extraction</text></g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
       <path transform="translate(140,18)" d="M0,0L0,6"></path>
       <path transform="translate(234.52586206896552,18)" d="M0,0L0,6"></path>
@@ -4976,7 +4977,6 @@
       <path transform="translate(612.3706896551724,18)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(140,18)">2000</text><text y="0.71em" transform="translate(234.52586206896552,18)">2002</text><text y="0.71em" transform="translate(328.9224137931035,18)">2004</text><text y="0.71em" transform="translate(423.448275862069,18)">2006</text><text y="0.71em" transform="translate(517.844827586207,18)">2008</text><text y="0.71em" transform="translate(612.3706896551724,18)">2010</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(140,9)">Mining and Extraction</text></g>
     <g aria-label="bar">
       <rect x="140" width="4.008620689655174" y="0" height="18" fill="#f0f724">
         <title>19</title>

@@ -14,14 +14,14 @@
     }
   </style>
   <g aria-label="facet" transform="translate(43,30)">
-    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
-      <path transform="translate(24,0)" d="M0,0L0,-6"></path>
-    </g>
-    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(24,0)">2</text></g>
     <g aria-label="fy-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
       <path transform="translate(0,25)" d="M0,0L-6,0"></path>
     </g>
     <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(0,25)">2</text></g>
+    <g aria-label="fx-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
+      <path transform="translate(24,0)" d="M0,0L0,-6"></path>
+    </g>
+    <g aria-label="fx-axis tick text" transform="translate(0.5,-8.5)"><text transform="translate(24,0)">2</text></g>
     <g aria-label="rect">
       <rect x="1" y="1" width="46" height="48" fill="#4e79a7"></rect>
     </g>

@@ -3,6 +3,7 @@ export {default as aaplCandlestick} from "./aapl-candlestick.js";
 export {default as aaplChangeVolume} from "./aapl-change-volume.js";
 export {default as aaplClose} from "./aapl-close.js";
 export {default as aaplCloseUntyped} from "./aapl-close-untyped.js";
+export {default as aaplFancyAxis} from "./aapl-fancy-axis.js";
 export {default as aaplMonthly} from "./aapl-monthly.js";
 export {default as aaplVolume} from "./aapl-volume.js";
 export {default as aaplVolumeRect} from "./aapl-volume-rect.js";

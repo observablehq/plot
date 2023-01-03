@@ -13,17 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(60.35087719298246,370)" d="M0,0L0,6"></path>
-    <path transform="translate(131.57894736842104,370)" d="M0,0L0,6"></path>
-    <path transform="translate(202.80701754385964,370)" d="M0,0L0,6"></path>
-    <path transform="translate(274.03508771929825,370)" d="M0,0L0,6"></path>
-    <path transform="translate(345.2631578947369,370)" d="M0,0L0,6"></path>
-    <path transform="translate(416.49122807017545,370)" d="M0,0L0,6"></path>
-    <path transform="translate(487.71929824561397,370)" d="M0,0L0,6"></path>
-    <path transform="translate(558.9473684210526,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(60.35087719298246,370)">Mar 18</text><text y="0.71em" transform="translate(131.57894736842104,370)">Mar 25</text><text y="0.71em" transform="translate(202.80701754385964,370)">April</text><text y="0.71em" transform="translate(274.03508771929825,370)">Apr 08</text><text y="0.71em" transform="translate(345.2631578947369,370)">Apr 15</text><text y="0.71em" transform="translate(416.49122807017545,370)">Apr 22</text><text y="0.71em" transform="translate(487.71929824561397,370)">Apr 29</text><text y="0.71em" transform="translate(558.9473684210526,370)">May 06</text></g>
   <g aria-label="y-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0,0.5)">
     <line x1="40" x2="620" y1="370" y2="370"></line>
     <line x1="40" x2="620" y1="343.699792904655" y2="343.699792904655"></line>
@@ -57,6 +46,17 @@
     <path transform="translate(40,28.09730776051481)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,343.699792904655)">5</text><text y="0.32em" transform="translate(40,317.39958580931)">10</text><text y="0.32em" transform="translate(40,291.09937871396494)">15</text><text y="0.32em" transform="translate(40,264.79917161861994)">20</text><text y="0.32em" transform="translate(40,238.49896452327494)">25</text><text y="0.32em" transform="translate(40,212.1987574279299)">30</text><text y="0.32em" transform="translate(40,185.8985503325849)">35</text><text y="0.32em" transform="translate(40,159.59834323723987)">40</text><text y="0.32em" transform="translate(40,133.2981361418949)">45</text><text y="0.32em" transform="translate(40,106.99792904654987)">50</text><text y="0.32em" transform="translate(40,80.69772195120487)">55</text><text y="0.32em" transform="translate(40,54.39751485585984)">60</text><text y="0.32em" transform="translate(40,28.09730776051481)">65</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(60.35087719298246,370)" d="M0,0L0,6"></path>
+    <path transform="translate(131.57894736842104,370)" d="M0,0L0,6"></path>
+    <path transform="translate(202.80701754385964,370)" d="M0,0L0,6"></path>
+    <path transform="translate(274.03508771929825,370)" d="M0,0L0,6"></path>
+    <path transform="translate(345.2631578947369,370)" d="M0,0L0,6"></path>
+    <path transform="translate(416.49122807017545,370)" d="M0,0L0,6"></path>
+    <path transform="translate(487.71929824561397,370)" d="M0,0L0,6"></path>
+    <path transform="translate(558.9473684210526,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(60.35087719298246,370)">Mar 18</text><text y="0.71em" transform="translate(131.57894736842104,370)">Mar 25</text><text y="0.71em" transform="translate(202.80701754385964,370)">April</text><text y="0.71em" transform="translate(274.03508771929825,370)">Apr 08</text><text y="0.71em" transform="translate(345.2631578947369,370)">Apr 15</text><text y="0.71em" transform="translate(416.49122807017545,370)">Apr 22</text><text y="0.71em" transform="translate(487.71929824561397,370)">Apr 29</text><text y="0.71em" transform="translate(558.9473684210526,370)">May 06</text></g>
   <g aria-label="rect" fill="#ccc">
     <rect x="41" y="162.72964589401167" width="9.175438596491219" height="207.27035410598833"></rect>
     <rect x="71.52631578947368" y="194.06844666468288" width="9.175438596491219" height="175.93155333531712"></rect>

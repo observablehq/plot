@@ -13,15 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(40,270)" d="M0,0L0,6"></path>
-    <path transform="translate(142.00364298724955,270)" d="M0,0L0,6"></path>
-    <path transform="translate(244.0072859744991,270)" d="M0,0L0,6"></path>
-    <path transform="translate(346.0109289617486,270)" d="M0,0L0,6"></path>
-    <path transform="translate(448.0145719489982,270)" d="M0,0L0,6"></path>
-    <path transform="translate(550.0182149362477,270)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,270)">0</text><text y="0.71em" transform="translate(142.00364298724955,270)">200</text><text y="0.71em" transform="translate(244.0072859744991,270)">400</text><text y="0.71em" transform="translate(346.0109289617486,270)">600</text><text y="0.71em" transform="translate(448.0145719489982,270)">800</text><text y="0.71em" transform="translate(550.0182149362477,270)">1,000</text></g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(40,26)" d="M0,0L-6,0"></path>
     <path transform="translate(40,46)" d="M0,0L-6,0"></path>
@@ -37,6 +28,15 @@
     <path transform="translate(40,246)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(40,26)">Jan</text><text y="0.32em" transform="translate(40,46)">Feb</text><text y="0.32em" transform="translate(40,66)">Mar</text><text y="0.32em" transform="translate(40,86)">Apr</text><text y="0.32em" transform="translate(40,106)">May</text><text y="0.32em" transform="translate(40,126)">Jun</text><text y="0.32em" transform="translate(40,146)">Jul</text><text y="0.32em" transform="translate(40,166)">Aug</text><text y="0.32em" transform="translate(40,186)">Sep</text><text y="0.32em" transform="translate(40,206)">Oct</text><text y="0.32em" transform="translate(40,226)">Nov</text><text y="0.32em" transform="translate(40,246)">Dec</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(40,270)" d="M0,0L0,6"></path>
+    <path transform="translate(142.00364298724955,270)" d="M0,0L0,6"></path>
+    <path transform="translate(244.0072859744991,270)" d="M0,0L0,6"></path>
+    <path transform="translate(346.0109289617486,270)" d="M0,0L0,6"></path>
+    <path transform="translate(448.0145719489982,270)" d="M0,0L0,6"></path>
+    <path transform="translate(550.0182149362477,270)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(40,270)">0</text><text y="0.71em" transform="translate(142.00364298724955,270)">200</text><text y="0.71em" transform="translate(244.0072859744991,270)">400</text><text y="0.71em" transform="translate(346.0109289617486,270)">600</text><text y="0.71em" transform="translate(448.0145719489982,270)">800</text><text y="0.71em" transform="translate(550.0182149362477,270)">1,000</text></g>
   <g aria-label="bar">
     <rect x="40" width="560" y="26" height="18"></rect>
     <rect x="40" width="487.5774134790528" y="46" height="18"></rect>

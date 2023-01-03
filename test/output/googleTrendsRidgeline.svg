@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,60)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(160,8)">Australian bushfires</text></g>
     <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,1)">
       <path transform="translate(166.42857142857144,0)" d="M0,0L0,-6"></path>
       <path transform="translate(232.85714285714286,0)" d="M0,0L0,-6"></path>
@@ -29,7 +30,6 @@
       <path transform="translate(884.2857142857143,0)" d="M0,0L0,-6"></path>
     </g>
     <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,-8.5)"><text transform="translate(166.42857142857144,0)">2020</text><text transform="translate(232.85714285714286,0)">February</text><text transform="translate(295,0)">March</text><text transform="translate(361.42857142857144,0)">April</text><text transform="translate(425.71428571428567,0)">May</text><text transform="translate(492.1428571428571,0)">June</text><text transform="translate(556.4285714285714,0)">July</text><text transform="translate(622.8571428571429,0)">August</text><text transform="translate(689.2857142857143,0)">September</text><text transform="translate(753.5714285714286,0)">October</text><text transform="translate(820,0)">November</text><text transform="translate(884.2857142857143,0)">December</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(160,8)">Australian bushfires</text></g>
     <g aria-label="area" fill-opacity="0.3">
       <path d="M160,-0.6L175,-24L190,2.28L205,6.96L220,8.76L235,9.84L250,9.84L265,10.56L280,11.28L295,10.92L310,11.28L325,11.28L340,11.64L355,11.28L370,11.64L385,11.64L400,11.64L415,11.64L430,11.64L445,11.64L460,11.64L475,11.64L490,11.64L505,11.64L520,3L535,8.04L550,11.28L565,11.64L580,11.64L595,11.64L610,11.82L625,11.64L640,11.64L655,11.64L670,11.82L685,11.82L700,11.28L715,11.64L730,11.64L745,11.82L760,11.64L775,11.82L790,11.64L805,11.64L820,11.82L835,11.82L850,11.82L865,11.82L880,11.64L895,11.82L910,11.82L925,11.82L940,11.82L940,12L925,12L910,12L895,12L880,12L865,12L850,12L835,12L820,12L805,12L790,12L775,12L760,12L745,12L730,12L715,12L700,12L685,12L670,12L655,12L640,12L625,12L610,12L595,12L580,12L565,12L550,12L535,12L520,12L505,12L490,12L475,12L460,12L445,12L430,12L415,12L400,12L385,12L370,12L355,12L340,12L325,12L310,12L295,12L280,12L265,12L250,12L235,12L220,12L205,12L190,12L175,12L160,12Z"></path>
     </g>

@@ -13,16 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(80.84507042253522,370)" d="M0,0L0,6"></path>
-    <path transform="translate(162.53521126760563,370)" d="M0,0L0,6"></path>
-    <path transform="translate(244.22535211267603,370)" d="M0,0L0,6"></path>
-    <path transform="translate(325.9154929577465,370)" d="M0,0L0,6"></path>
-    <path transform="translate(407.60563380281695,370)" d="M0,0L0,6"></path>
-    <path transform="translate(489.2957746478873,370)" d="M0,0L0,6"></path>
-    <path transform="translate(570.9859154929577,370)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(80.84507042253522,370)">40</text><text y="0.71em" transform="translate(162.53521126760563,370)">60</text><text y="0.71em" transform="translate(244.22535211267603,370)">80</text><text y="0.71em" transform="translate(325.9154929577465,370)">100</text><text y="0.71em" transform="translate(407.60563380281695,370)">120</text><text y="0.71em" transform="translate(489.2957746478873,370)">140</text><text y="0.71em" transform="translate(570.9859154929577,370)">160</text></g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
     <path transform="translate(40,370)" d="M0,0L-6,0"></path>
     <path transform="translate(40,342.61345852895147)" d="M0,0L-6,0"></path>
@@ -39,6 +29,16 @@
     <path transform="translate(40,41.36150234741784)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,370)">0</text><text y="0.32em" transform="translate(40,342.61345852895147)">50</text><text y="0.32em" transform="translate(40,315.22691705790294)">100</text><text y="0.32em" transform="translate(40,287.8403755868544)">150</text><text y="0.32em" transform="translate(40,260.45383411580593)">200</text><text y="0.32em" transform="translate(40,233.06729264475743)">250</text><text y="0.32em" transform="translate(40,205.6807511737089)">300</text><text y="0.32em" transform="translate(40,178.2942097026604)">350</text><text y="0.32em" transform="translate(40,150.90766823161186)">400</text><text y="0.32em" transform="translate(40,123.5211267605634)">450</text><text y="0.32em" transform="translate(40,96.13458528951487)">500</text><text y="0.32em" transform="translate(40,68.74804381846636)">550</text><text y="0.32em" transform="translate(40,41.36150234741784)">600</text></g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(80.84507042253522,370)" d="M0,0L0,6"></path>
+    <path transform="translate(162.53521126760563,370)" d="M0,0L0,6"></path>
+    <path transform="translate(244.22535211267603,370)" d="M0,0L0,6"></path>
+    <path transform="translate(325.9154929577465,370)" d="M0,0L0,6"></path>
+    <path transform="translate(407.60563380281695,370)" d="M0,0L0,6"></path>
+    <path transform="translate(489.2957746478873,370)" d="M0,0L0,6"></path>
+    <path transform="translate(570.9859154929577,370)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(80.84507042253522,370)">40</text><text y="0.71em" transform="translate(162.53521126760563,370)">60</text><text y="0.71em" transform="translate(244.22535211267603,370)">80</text><text y="0.71em" transform="translate(325.9154929577465,370)">100</text><text y="0.71em" transform="translate(407.60563380281695,370)">120</text><text y="0.71em" transform="translate(489.2957746478873,370)">140</text><text y="0.71em" transform="translate(570.9859154929577,370)">160</text></g>
   <g aria-label="rect">
     <rect x="41" y="369.45226917057903" width="7.16901408450704" height="0.5477308294209706"></rect>
     <rect x="49.16901408450704" y="369.45226917057903" width="7.169014084507047" height="0.5477308294209706"></rect>

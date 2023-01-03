@@ -13,33 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
-    <line x1="100" x2="100" y1="20" y2="590"></line>
-    <line x1="152" x2="152" y1="20" y2="590"></line>
-    <line x1="204" x2="204" y1="20" y2="590"></line>
-    <line x1="256" x2="256" y1="20" y2="590"></line>
-    <line x1="308" x2="308" y1="20" y2="590"></line>
-    <line x1="360" x2="360" y1="20" y2="590"></line>
-    <line x1="412" x2="412" y1="20" y2="590"></line>
-    <line x1="464" x2="464" y1="20" y2="590"></line>
-    <line x1="516" x2="516" y1="20" y2="590"></line>
-    <line x1="568" x2="568" y1="20" y2="590"></line>
-    <line x1="620" x2="620" y1="20" y2="590"></line>
-  </g>
-  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
-    <path transform="translate(100,590)" d="M0,0L0,6"></path>
-    <path transform="translate(152,590)" d="M0,0L0,6"></path>
-    <path transform="translate(204,590)" d="M0,0L0,6"></path>
-    <path transform="translate(256,590)" d="M0,0L0,6"></path>
-    <path transform="translate(308,590)" d="M0,0L0,6"></path>
-    <path transform="translate(360,590)" d="M0,0L0,6"></path>
-    <path transform="translate(412,590)" d="M0,0L0,6"></path>
-    <path transform="translate(464,590)" d="M0,0L0,6"></path>
-    <path transform="translate(516,590)" d="M0,0L0,6"></path>
-    <path transform="translate(568,590)" d="M0,0L0,6"></path>
-    <path transform="translate(620,590)" d="M0,0L0,6"></path>
-  </g>
-  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(100,590)">0</text><text y="0.71em" transform="translate(152,590)">10</text><text y="0.71em" transform="translate(204,590)">20</text><text y="0.71em" transform="translate(256,590)">30</text><text y="0.71em" transform="translate(308,590)">40</text><text y="0.71em" transform="translate(360,590)">50</text><text y="0.71em" transform="translate(412,590)">60</text><text y="0.71em" transform="translate(464,590)">70</text><text y="0.71em" transform="translate(516,590)">80</text><text y="0.71em" transform="translate(568,590)">90</text><text y="0.71em" transform="translate(620,590)">100</text></g>
   <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,9.5)">
     <path transform="translate(100,26)" d="M0,0L-6,0"></path>
     <path transform="translate(100,46)" d="M0,0L-6,0"></path>
@@ -71,6 +44,33 @@
     <path transform="translate(100,566)" d="M0,0L-6,0"></path>
   </g>
   <g aria-label="y-axis tick text" text-anchor="end" transform="translate(-8.5,9.5)"><text y="0.32em" transform="translate(100,26)">boxing</text><text y="0.32em" transform="translate(100,46)">wrestling</text><text y="0.32em" transform="translate(100,66)">canoe</text><text y="0.32em" transform="translate(100,86)">cycling</text><text y="0.32em" transform="translate(100,106)">equestrian</text><text y="0.32em" transform="translate(100,126)">shooting</text><text y="0.32em" transform="translate(100,146)">judo</text><text y="0.32em" transform="translate(100,166)">rowing</text><text y="0.32em" transform="translate(100,186)">weightlifting</text><text y="0.32em" transform="translate(100,206)">sailing</text><text y="0.32em" transform="translate(100,226)">football</text><text y="0.32em" transform="translate(100,246)">tennis</text><text y="0.32em" transform="translate(100,266)">athletics</text><text y="0.32em" transform="translate(100,286)">golf</text><text y="0.32em" transform="translate(100,306)">rugby sevens</text><text y="0.32em" transform="translate(100,326)">aquatics</text><text y="0.32em" transform="translate(100,346)">handball</text><text y="0.32em" transform="translate(100,366)">archery</text><text y="0.32em" transform="translate(100,386)">badminton</text><text y="0.32em" transform="translate(100,406)">basketball</text><text y="0.32em" transform="translate(100,426)">hockey</text><text y="0.32em" transform="translate(100,446)">modern pentathlon</text><text y="0.32em" transform="translate(100,466)">table tennis</text><text y="0.32em" transform="translate(100,486)">taekwondo</text><text y="0.32em" transform="translate(100,506)">triathlon</text><text y="0.32em" transform="translate(100,526)">volleyball</text><text y="0.32em" transform="translate(100,546)">fencing</text><text y="0.32em" transform="translate(100,566)">gymnastics</text></g>
+  <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
+    <line x1="100" x2="100" y1="20" y2="590"></line>
+    <line x1="152" x2="152" y1="20" y2="590"></line>
+    <line x1="204" x2="204" y1="20" y2="590"></line>
+    <line x1="256" x2="256" y1="20" y2="590"></line>
+    <line x1="308" x2="308" y1="20" y2="590"></line>
+    <line x1="360" x2="360" y1="20" y2="590"></line>
+    <line x1="412" x2="412" y1="20" y2="590"></line>
+    <line x1="464" x2="464" y1="20" y2="590"></line>
+    <line x1="516" x2="516" y1="20" y2="590"></line>
+    <line x1="568" x2="568" y1="20" y2="590"></line>
+    <line x1="620" x2="620" y1="20" y2="590"></line>
+  </g>
+  <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(0.5,0)">
+    <path transform="translate(100,590)" d="M0,0L0,6"></path>
+    <path transform="translate(152,590)" d="M0,0L0,6"></path>
+    <path transform="translate(204,590)" d="M0,0L0,6"></path>
+    <path transform="translate(256,590)" d="M0,0L0,6"></path>
+    <path transform="translate(308,590)" d="M0,0L0,6"></path>
+    <path transform="translate(360,590)" d="M0,0L0,6"></path>
+    <path transform="translate(412,590)" d="M0,0L0,6"></path>
+    <path transform="translate(464,590)" d="M0,0L0,6"></path>
+    <path transform="translate(516,590)" d="M0,0L0,6"></path>
+    <path transform="translate(568,590)" d="M0,0L0,6"></path>
+    <path transform="translate(620,590)" d="M0,0L0,6"></path>
+  </g>
+  <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(100,590)">0</text><text y="0.71em" transform="translate(152,590)">10</text><text y="0.71em" transform="translate(204,590)">20</text><text y="0.71em" transform="translate(256,590)">30</text><text y="0.71em" transform="translate(308,590)">40</text><text y="0.71em" transform="translate(360,590)">50</text><text y="0.71em" transform="translate(412,590)">60</text><text y="0.71em" transform="translate(464,590)">70</text><text y="0.71em" transform="translate(516,590)">80</text><text y="0.71em" transform="translate(568,590)">90</text><text y="0.71em" transform="translate(620,590)">100</text></g>
   <g aria-label="bar">
     <rect x="100" width="257.66089965397924" y="326" height="18"></rect>
     <rect x="100" width="260" y="366" height="18"></rect>

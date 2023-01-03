@@ -494,8 +494,12 @@ function inferAxes(marks, channelsByScale, options) {
   } = options;
   xAxis = (xType === undefined && !hasScale(marks, "x")) || projection ? null : xAxis === true ? "bottom" : xAxis;
   yAxis = (yType === undefined && !hasScale(marks, "y")) || projection ? null : yAxis === true ? "left" : yAxis;
+  if (marks.some((m) => /^x-axis /.test(m.ariaLabel))) xAxis = null;
+  if (marks.some((m) => /^y-axis /.test(m.ariaLabel))) yAxis = null;
   fxAxis = !channelsByScale.has("fx") ? null : fxAxis === true ? (xAxis === "bottom" ? "top" : "bottom") : fxAxis;
   fyAxis = !channelsByScale.has("fy") ? null : fyAxis === true ? (yAxis === "left" ? "right" : "left") : fyAxis;
+  if (marks.some((m) => /^fx-axis /.test(m.ariaLabel))) fxAxis = null;
+  if (marks.some((m) => /^fy-axis /.test(m.ariaLabel))) fyAxis = null;
   return [
     fyAxis
       ? axisFy(

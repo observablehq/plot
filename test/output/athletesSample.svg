@@ -14,6 +14,7 @@
     }
   </style>
   <g aria-label="facet" transform="translate(0,26)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">aquatics</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -23,7 +24,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">aquatics</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="358.12949640287775" cy="9" r="5" fill="#d95f02">
         <title>Aaron Younger</title>
@@ -76,6 +76,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,46)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">archery</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -85,7 +86,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">archery</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="268.3453237410072" cy="9" r="5" fill="#d95f02">
         <title>Adrian Andres Puentes Perez</title>
@@ -96,6 +96,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,66)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">athletics</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -105,7 +106,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">athletics</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="223.45323741007195" cy="9" r="5" fill="#d95f02">
         <title>A Jesus Garcia</title>
@@ -179,6 +179,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,86)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">badminton</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -188,7 +189,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">badminton</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="287.0503597122302" cy="9" r="5" fill="#d95f02">
         <title>Adam Cwalina</title>
@@ -199,6 +199,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,106)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">basketball</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -208,7 +209,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">basketball</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="320.71942446043164" cy="9" r="5" fill="#d95f02">
         <title>Adas Juskevicius</title>
@@ -225,6 +225,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,126)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">boxing</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -234,9 +235,9 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">boxing</text></g>
   </g>
   <g aria-label="facet" transform="translate(0,146)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">canoe</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -246,7 +247,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">canoe</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="302.01438848920867" cy="9" r="5" fill="#d95f02">
         <title>Adam van Koeverden</title>
@@ -266,6 +266,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,166)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">cycling</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -275,7 +276,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">cycling</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="249.64028776978418" cy="9" r="5" fill="#d95f02">
         <title>Aaron Gate</title>
@@ -298,6 +298,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,186)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">equestrian</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -307,7 +308,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">equestrian</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="234.67625899280577" cy="9" r="5" fill="#d95f02">
         <title>Abdelkebir Ouaddar</title>
@@ -321,6 +321,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,206)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">fencing</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -330,7 +331,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">fencing</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="193.5251798561151" cy="9" r="5" fill="#1b9e77">
         <title>A Lam Shin</title>
@@ -344,6 +344,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,226)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">football</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -353,7 +354,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">football</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="223.45323741007195" cy="9" r="5" fill="#d95f02">
         <title>Abbubaker Mobara</title>
@@ -376,6 +376,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,246)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">golf</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -385,7 +386,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">golf</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="279.568345323741" cy="9" r="5" fill="#d95f02">
         <title>Adilson da Silva</title>
@@ -396,6 +396,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,266)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">gymnastics</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -405,7 +406,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">gymnastics</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="114.96402877697841" cy="9" r="5" fill="#1b9e77">
         <title>Aiko Sugihara</title>
@@ -425,6 +425,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,286)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">handball</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -434,7 +435,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">handball</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="272.0863309352518" cy="9" r="5" fill="#d95f02">
         <title>Abdulrazzaq Murad</title>
@@ -451,6 +451,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,306)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">hockey</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -460,7 +461,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">hockey</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="245.89928057553954" cy="9" r="5" fill="#d95f02">
         <title>Adam Dixon</title>
@@ -483,6 +483,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,326)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">judo</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -492,7 +493,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">judo</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="320.71942446043164" cy="9" r="5" fill="#d95f02">
         <title>Abderrahmane Benamadi</title>
@@ -509,6 +509,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,346)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">modern pentathlon</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -518,7 +519,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">modern pentathlon</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="264.60431654676256" cy="9" r="5" fill="#d95f02">
         <title>Adam Marosi</title>
@@ -529,6 +529,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,366)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rowing</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -538,7 +539,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rowing</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="339.42446043165467" cy="9" r="5" fill="#d95f02">
         <title>Abdelkhalek Elbanna</title>
@@ -564,6 +564,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,386)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rugby sevens</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -573,7 +574,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">rugby sevens</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="249.64028776978418" cy="9" r="5" fill="#1b9e77">
         <title>Abbie Brown</title>
@@ -590,6 +590,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,406)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">sailing</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -599,7 +600,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">sailing</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="201.0071942446043" cy="9" r="5" fill="#1b9e77">
         <title>Afrodite Zegers</title>
@@ -616,6 +616,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,426)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">shooting</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -625,7 +626,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">shooting</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="283.3093525179856" cy="9" r="5" fill="#d95f02">
         <title>Abdel Aziz Mehelba</title>
@@ -645,6 +645,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,446)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">table tennis</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -654,7 +655,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">table tennis</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="249.64028776978418" cy="9" r="5" fill="#d95f02">
         <title>Adam Pattantyus</title>
@@ -665,6 +665,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,466)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">taekwondo</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -674,7 +675,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">taekwondo</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="283.3093525179856" cy="9" r="5" fill="#d95f02">
         <title>Aaron Cook</title>
@@ -685,6 +685,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,486)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">tennis</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -694,7 +695,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">tennis</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="204.74820143884892" cy="9" r="5" fill="#1b9e77">
         <title>Agnieszka Radwanska</title>
@@ -708,6 +708,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,506)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">triathlon</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -717,7 +718,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">triathlon</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="234.67625899280577" cy="9" r="5" fill="#d95f02">
         <title>Aaron Royle</title>
@@ -728,6 +728,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,526)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">volleyball</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -737,7 +738,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">volleyball</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="350.64748201438846" cy="9" r="5" fill="#d95f02">
         <title>Aaron Russell</title>
@@ -754,6 +754,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,546)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">weightlifting</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -763,7 +764,6 @@
       <line x1="507.7697841726619" x2="507.7697841726619" y1="0" y2="18"></line>
       <line x1="582.589928057554" x2="582.589928057554" y1="0" y2="18"></line>
     </g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">weightlifting</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="335.68345323741005" cy="9" r="5" fill="#d95f02">
         <title>Adrian Edward Zielinski</title>
@@ -780,6 +780,7 @@
     </g>
   </g>
   <g aria-label="facet" transform="translate(0,566)">
+    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">wrestling</text></g>
     <g aria-label="x-axis grid" stroke="currentColor" stroke-opacity="0.1" transform="translate(0.5,0)">
       <line x1="133.66906474820144" x2="133.66906474820144" y1="0" y2="18"></line>
       <line x1="208.48920863309354" x2="208.48920863309354" y1="0" y2="18"></line>
@@ -799,7 +800,6 @@
       <path transform="translate(582.589928057554,18)" d="M0,0L0,6"></path>
     </g>
     <g aria-label="x-axis tick text" font-variant="tabular-nums" transform="translate(0.5,9.5)"><text y="0.71em" transform="translate(133.66906474820144,18)">40</text><text y="0.71em" transform="translate(208.48920863309354,18)">60</text><text y="0.71em" transform="translate(283.3093525179856,18)">80</text><text y="0.71em" transform="translate(358.12949640287775,18)">100</text><text y="0.71em" transform="translate(432.9496402877698,18)">120</text><text y="0.71em" transform="translate(507.7697841726619,18)">140</text><text y="0.71em" transform="translate(582.589928057554,18)">160</text></g>
-    <g aria-label="fy-axis tick text" text-anchor="end" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(100,9)">wrestling</text></g>
     <g aria-label="dot" transform="translate(0.5,0.5)">
       <circle cx="197.26618705035972" cy="9" r="5" fill="#d95f02">
         <title>Abbos Rakhmonov</title>

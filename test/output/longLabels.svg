@@ -13,23 +13,6 @@
       white-space: pre;
     }
   </style>
-  <g aria-label="y-axis tick" fill="none" stroke="currentColor" transform="translate(0,0.5)">
-    <path transform="translate(40,360)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,334.8148148148148)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,309.6296296296297)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,284.44444444444446)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,259.2592592592593)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,234.0740740740741)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,208.88888888888889)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,183.70370370370372)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,158.51851851851853)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,133.33333333333334)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,108.14814814814815)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,82.96296296296298)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,57.77777777777779)" d="M0,0L-6,0"></path>
-    <path transform="translate(40,32.59259259259261)" d="M0,0L-6,0"></path>
-  </g>
-  <g aria-label="y-axis tick text" text-anchor="end" font-variant="tabular-nums" transform="translate(-8.5,0.5)"><text y="0.32em" transform="translate(40,360)">0</text><text y="0.32em" transform="translate(40,334.8148148148148)">2</text><text y="0.32em" transform="translate(40,309.6296296296297)">4</text><text y="0.32em" transform="translate(40,284.44444444444446)">6</text><text y="0.32em" transform="translate(40,259.2592592592593)">8</text><text y="0.32em" transform="translate(40,234.0740740740741)">10</text><text y="0.32em" transform="translate(40,208.88888888888889)">12</text><text y="0.32em" transform="translate(40,183.70370370370372)">14</text><text y="0.32em" transform="translate(40,158.51851851851853)">16</text><text y="0.32em" transform="translate(40,133.33333333333334)">18</text><text y="0.32em" transform="translate(40,108.14814814814815)">20</text><text y="0.32em" transform="translate(40,82.96296296296298)">22</text><text y="0.32em" transform="translate(40,57.77777777777779)">24</text><text y="0.32em" transform="translate(40,32.59259259259261)">26</text></g>
   <g aria-label="x-axis tick" fill="none" stroke="currentColor" transform="translate(43.5,0)">
     <path transform="translate(50,360)" d="M0,0L0,6"></path>
     <path transform="translate(145,360)" d="M0,0L0,6"></path>
